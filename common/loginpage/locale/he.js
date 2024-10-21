@@ -112,4 +112,6 @@ l10n.he = {
     settOptDescAUpdateAsk: "תקבל הודעה על כל שלבי העדכונים",
     settRtlMode: "ממשק RTL",
     settGpuUseMode: "השתמש בהאצת גרפיקה כאשר היא זמינה",
+    tplPanelLocal: "מקומי",
+    tplPanelCloud: "ענן",
 }
