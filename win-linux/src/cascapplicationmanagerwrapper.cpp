@@ -451,7 +451,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 if ( _json_to_open.isEmpty() ) {
                     QString _templates_url{QString::fromStdWString(InputArgs::argument_value(L"--templates-url"))};
                     if ( _templates_url.isEmpty() )
-                        _templates_url = "https://oforms.onlyoffice.com/?desktop=true";
+                        _templates_url = "https://templates.onlyoffice.com/?desktop=true";
 
                     QJsonObject _json_obj{
                         {"portal", _templates_url},
