@@ -2169,6 +2169,7 @@ var
   ext, progId1, progId2: string;
   argsArray: TArrayOfString;
   cleanExts, extensionInfo: TArrayOfString;
+  version: TWindowsVersion;
   prefix, str: string;
 begin
     isFullAssociation := CheckCommandlineParam('/FULLASSOCIATION');
@@ -2176,6 +2177,7 @@ begin
       initExtensions();
     end;
 
+    GetWindowsVersionEx(version);
     for  i := 0 to GetArrayLength(AudioExts) - 1 do
     begin
       Explode(argsArray, ExtensionRegistryInfo[i],':');
@@ -2188,6 +2190,9 @@ begin
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0], 'AppUserModelID', ExpandConstant('{#APP_USER_MODEL_ID}'));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\DefaultIcon', '', ExpandConstant('{app}\{#iconsExe},' + argsArray[2]));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\shell\open\command', '', ExpandConstant('"{app}\{#iconsExe}" "%1"'));
+        if (version.Major = 10) and (version.Minor = 0) and (version.Build < 22000) then begin
+          RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\Application', 'ApplicationIcon', ExpandConstant('{app}\{#iconsExe},33'));
+        end;
       //end;
 
       ext := LowerCase(AudioExts[i]);
