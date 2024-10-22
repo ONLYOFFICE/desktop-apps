@@ -30,18 +30,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2176"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2178"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2179"/>
         <source>Document%1.docx</source>
         <translation>Document%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2181"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2183"/>
         <source>Book%1.xlsx</source>
         <translation>Book%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2182"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2185"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentation%1.pptx</translation>
     </message>
@@ -185,27 +185,27 @@
         <translation>%1 đã được chỉnh sửa.&lt;br&gt;Bạn có muốn lưu thay đổi không?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="405"/>
+        <location filename="../src/ceditortools.cpp" line="406"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Nếu bạn tiếp tục lưu theo định dạng này, tất cả các tính năng ngoại trừ văn bản sẽ bị mất đi.&lt;br&gt;Bạn có chắc muốn tiếp tục không?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="150"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="153"/>
         <source>Open main window</source>
         <translation>Mở cửa sổ chính</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="566"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="571"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Phải lưu tài liệu để tiếp tục.&lt;br&gt;Lưu tài liệu?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="656"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="661"/>
         <source>Print Document</source>
         <translation>In tài liệu</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="865"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="870"/>
         <source>Document must be saved firstly.</source>
         <translation>Cần lưu tài liệu trước.</translation>
     </message>
@@ -213,12 +213,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="607"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="612"/>
         <source>There are no printers available</source>
         <translation>Không có máy in nào</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="722"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="727"/>
         <source>There are no pages set to print.</source>
         <translation>Không có trang nào được thiết lập để in.</translation>
     </message>

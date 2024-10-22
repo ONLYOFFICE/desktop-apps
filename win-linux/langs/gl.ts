@@ -30,18 +30,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2176"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2178"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2179"/>
         <source>Document%1.docx</source>
         <translation>Documento%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2181"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2183"/>
         <source>Book%1.xlsx</source>
         <translation>Libro%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2182"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2185"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentación%1.pptx</translation>
     </message>
@@ -180,22 +180,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="150"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="153"/>
         <source>Open main window</source>
         <translation>Abrir xanela principal</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="566"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="571"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>O documento ten que gardarse para poder continuar.&lt;br&gt;Gardar o documento?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="656"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="661"/>
         <source>Print Document</source>
         <translation>Imprimir documento</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="865"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="870"/>
         <source>Document must be saved firstly.</source>
         <translation>O documento débese gardar primeiro.</translation>
     </message>
@@ -205,7 +205,7 @@
         <translation>Modificouse %1.&lt;br&gt;Queres gardar os cambios?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="405"/>
+        <location filename="../src/ceditortools.cpp" line="406"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Se continúas gardando neste formato todas as características excepto o texto, perderanse.&lt;br&gt;Ten a certeza de querer continuar?</translation>
     </message>
@@ -213,12 +213,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="607"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="612"/>
         <source>There are no printers available</source>
         <translation>Non hai impresoras dispoñibles</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="722"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="727"/>
         <source>There are no pages set to print.</source>
         <translation>Non hai páxinas configuradas para imprimir.</translation>
     </message>

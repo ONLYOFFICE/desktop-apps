@@ -30,18 +30,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2176"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2178"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2179"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2181"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2183"/>
         <source>Book%1.xlsx</source>
         <translation>Kalkylblad%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2182"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2185"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentation%1.pptx</translation>
     </message>
@@ -185,27 +185,27 @@
         <translation>%1 har ändrats.&lt;br&gt;Vill du spara ändringarna?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="405"/>
+        <location filename="../src/ceditortools.cpp" line="406"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Om du fortsätter med att spara i detta format så kommer alla funktioner utom texten att gå förlorade.&lt;br&gt;Är du säker på att du vill fortsätta?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="150"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="153"/>
         <source>Open main window</source>
         <translation>Öppna huvudfönster</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="566"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="571"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokumentet måste sparas för att fortsätta.&lt;br&gt;Spara dokument?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="656"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="661"/>
         <source>Print Document</source>
         <translation>Skriv ut dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="865"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="870"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumentet måste sparas först.</translation>
     </message>
@@ -213,12 +213,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="607"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="612"/>
         <source>There are no printers available</source>
         <translation>Det finns inga tillgängliga skrivare</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="722"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="727"/>
         <source>There are no pages set to print.</source>
         <translation>Det finns inga sidor inställda för utskrift.</translation>
     </message>

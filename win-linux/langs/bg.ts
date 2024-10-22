@@ -30,18 +30,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2176"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2178"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2179"/>
         <source>Document%1.docx</source>
         <translation>Документ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2181"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2183"/>
         <source>Book%1.xlsx</source>
         <translation>Книга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2182"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2185"/>
         <source>Presentation%1.pptx</source>
         <translation>Презентация%1.pptx</translation>
     </message>
@@ -196,22 +196,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="150"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="153"/>
         <source>Open main window</source>
         <translation>Отвори главен прозорец</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="566"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="571"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Документът трябва да бъде запазен, за да продължите.&lt;br&gt;Запазвате ли документа?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="656"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="661"/>
         <source>Print Document</source>
         <translation>Принтирай документ</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="865"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="870"/>
         <source>Document must be saved firstly.</source>
         <translation>Документът първо трябва да бъде запазен.</translation>
     </message>
@@ -221,7 +221,7 @@
         <translation>%1 бе модифициран.&lt;br&gt;Искате ли да запазите промените?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="405"/>
+        <location filename="../src/ceditortools.cpp" line="406"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Ако продължите да запазите в този формат, всички характеристики, освен текста, ще бъдат загубени.&lt;br&gt;Сигурни ли сте, че искате да продължите?</translation>
     </message>
@@ -229,12 +229,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="607"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="612"/>
         <source>There are no printers available</source>
         <translation>Няма налични принтери</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="722"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="727"/>
         <source>There are no pages set to print.</source>
         <translation>Няма зададени за принтиране страници.</translation>
     </message>
