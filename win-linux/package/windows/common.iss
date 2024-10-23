@@ -901,6 +901,12 @@ begin
     if (Length(paramStore) > 0) and (paramStore = 'full') then begin
       RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'uninstall', paramStore);
     end;
+
+    if CheckCommandlineParam('/disableplugins') then begin
+      if DirExists(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}') then
+        DelTree(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}', True, True, True);
+    end;
+
   end else
   if CurStep = ssDone then begin
     // if not (gHWND = 0) then begin
