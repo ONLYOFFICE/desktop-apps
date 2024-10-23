@@ -74,6 +74,7 @@ endif
 DEB_DEPS += $(CHANGELOG_DEB)
 DEB_DEPS += deb/build/debian/compat
 DEB_DEPS += deb/build/debian/control
+DEB_DEPS += deb/build/debian/copyright
 DEB_DEPS += deb/build/debian/postrm
 DEB_DEPS += deb/build/debian/rules
 DEB_DEPS += deb/build/debian/source/format
