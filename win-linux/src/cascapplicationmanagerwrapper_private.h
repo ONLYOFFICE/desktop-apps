@@ -299,6 +299,18 @@ public:
 
                 return true;
             } else
+            if ( cmd.compare(L"files:explore") == 0) {
+                QFileInfo _info(QString::fromStdWString(data.get_Param()));
+                if ( !_info.exists() ) {
+                    int res = CMessage::showMessage(m_appmanager.mainWindow()->handle(),
+                                                    QObject::tr("%1 is not available. It might be renamed, moved or deleted.").arg(_info.fileName()),
+                                                    MsgType::MSG_WARN, MsgBtns::mbOk);
+                    // if ( res == MODAL_RESULT_YES ) {
+                    //     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
+                    // }
+                    return true;
+                }
+            } else
             if ( cmd.compare(L"create:new") == 0 ) {
                 const std::wstring & format = data.get_Param();
                 const std::wstring search_tpl = L"template:";
