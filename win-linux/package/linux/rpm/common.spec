@@ -1,7 +1,7 @@
-Summary: Desktop editors for text, spreadsheet and presentation files
 Name: %{_package_name}
 Version: %{_product_version}
 Release: %{_build_number}
+Summary: Office suite
 License: AGPLv3
 Group: Applications/Office
 URL: %{_publisher_url}
@@ -11,19 +11,19 @@ AutoReq: no
 AutoProv: no
 
 %description
-%{_company_name} %{_product_name} installation package
- %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
+%{_company_name} %{_product_name} is a free office suite that combines text,
+spreadsheet and presentation editors allowing to create, view and edit
+documents without an Internet connection.
+It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx.
 
 %if "%{_company_name}" == "ONLYOFFICE"
 %package help
-Summary: Desktop editors local help files
+Summary: Offline help for %{_company_name} %{_product_name}
 BuildArch: noarch
 Requires: %{_package_name}
 
 %description help
-%{_company_name} %{_product_name} local help files
- %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
- This package contains the local help files.
+This package contains offline help files.
 %endif
 
 %prep
