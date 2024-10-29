@@ -1839,8 +1839,6 @@
             }
         }
 
-        [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":theme}];
-        [[ASCEditorJSVariables instance] apply];
 
         [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:theme];
         [[ASCEditorJSVariables instance] applyParameters];
