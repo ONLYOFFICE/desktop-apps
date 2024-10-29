@@ -904,7 +904,7 @@ begin
   end else
   if CurStep = ssDone then begin
     // if not (gHWND = 0) then begin
-    if CheckCommandlineParam('/update') then begin
+    if CheckCommandlineParam('/update') and not CheckCommandlineParam('/nolaunch') then begin
       ShellExecAsOriginalUser('', ExpandConstant('{app}\{#iconsExe}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
   end else
