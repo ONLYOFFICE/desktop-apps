@@ -982,7 +982,21 @@ void CMainWindow::onLocalFilesOpen(void * data)
 
 void CMainWindow::onLocalFileLocation(QString path)
 {
-    Utils::openFileLocation(path);
+    QJsonObject objRoot = Utils::parseJsonString(path.toStdWString());
+    if ( !objRoot.isEmpty() ) {
+        QString _path = objRoot["path"].toString();
+        int id = objRoot["id"].toInt();
+
+        QFileInfo _info(_path);
+        if ( _info.exists() ) {
+            Utils::openFileLocation(_path);
+        } else {
+            int res = CMessage::showMessage(this, QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+                                                MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
+            if ( res == MODAL_RESULT_YES )
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
+        }
+    }
 }
 
 void CMainWindow::onFileLocation(int uid, QString param)
@@ -991,7 +1005,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
         QString path = m_pTabs->urlByView(uid);
         if ( !path.isEmpty() ) {
 //            if ( Utils::isFileLocal(path) )
-                onLocalFileLocation(path);
+                Utils::openFileLocation(path);
 //            else {
 //            }
         } else {
