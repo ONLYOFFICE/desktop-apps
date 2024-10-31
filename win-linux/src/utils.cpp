@@ -1104,7 +1104,6 @@ namespace WindowHelper {
         CFullScrWidget * _parent = new CFullScrWidget;
         _parent->setWindowIcon(Utils::appIcon());
         _parent->setWindowTitle(_panel->data()->title());
-        _parent->showFullScreen();
 
         QRect _scr_geometry;
 #if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
@@ -1131,6 +1130,7 @@ namespace WindowHelper {
 #endif
 
         _parent->setGeometry(_scr_geometry);
+        _parent->showFullScreen();
 
         _panel->setParent(_parent);
         _panel->show();
