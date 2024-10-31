@@ -51,6 +51,7 @@
 # define APP_LAUNCH_NAME "\\DesktopEditors.exe"
 # define RESTART_BATCH "/apprestart.bat"
 #else
+# include "platform_linux/xcbutils.h"
 # include <QProcess>
 # define APP_LAUNCH_NAME "/DesktopEditors"
 # define RESTART_BATCH "/apprestart.sh"
@@ -406,6 +407,34 @@ public:
     auto editorWindowGeometry(QRect &rc, bool &isMaximized, const std::wstring &wurl) -> void
     {        
         AscEditorType etype = CEditorTools::editorTypeFromFormat(CCefViewEditor::GetFileFormat(wurl));
+        if (!m_appmanager.m_vecEditors.empty()) {
+#ifdef _WIN32
+            if (HWND hWnd = GetTopWindow(GetDesktopWindow())) {
+                do {
+                    WId wid = (WId)hWnd;
+#else
+            std::vector<xcb_window_t> winStack;
+            XcbUtils::getWindowStack(winStack);
+            for (auto it = winStack.rbegin(); it != winStack.rend(); it++) {
+                WId wid = (WId)(*it);
+#endif
+                    QWidget *wgt = QWidget::find(wid);
+                    if (wgt && wgt->isWindow()) {
+                        if (CEditorWindow *editor = qobject_cast<CEditorWindow*>(wgt)) {
+                            if (editor->editorType() == etype) {
+                                rc = editor->normalGeometry();
+                                rc.adjust(50, 50, 50, 50);
+                                isMaximized = editor->windowState().testFlag(Qt::WindowMaximized);
+                                return;
+                            }
+                        }
+                    }
+#ifdef _WIN32
+                } while ((hWnd = GetWindow(hWnd, GW_HWNDNEXT)) != nullptr);
+#endif
+            }
+        }
+
         GET_REGISTRY_USER(reg_user);
         if (etype == AscEditorType::etUndefined) {
             if (!rc.isEmpty())
