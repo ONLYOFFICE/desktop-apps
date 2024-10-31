@@ -403,6 +403,31 @@ public:
         return QRect();
     }
 
+    auto editorWindowGeometry(QRect &rc, bool &isMaximized, const std::wstring &wurl) -> void
+    {        
+        AscEditorType etype = CEditorTools::editorTypeFromFormat(CCefViewEditor::GetFileFormat(wurl));
+        GET_REGISTRY_USER(reg_user);
+        if (etype == AscEditorType::etUndefined) {
+            if (!rc.isEmpty())
+                rc.adjust(50,50,50,50);
+            isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+        } else {
+            QString baseKey = "EditorsGeometry/" + QString::number(int(etype)) + "/";
+            if (reg_user.contains(baseKey + "position"))
+                rc = reg_user.value(baseKey + "position").toRect();
+            else {
+                if (!rc.isEmpty())
+                    rc.adjust(50,50,50,50);
+            }
+
+            if (reg_user.contains(baseKey + "maximized"))
+                isMaximized = reg_user.value(baseKey + "maximized").toBool();
+            else {
+                isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+            }
+        }
+    }
+
     auto editorWindowFromViewId(int viewid) -> CEditorWindow *
     {
         return m_appmanager.editorWindowFromViewId(viewid);
@@ -413,10 +438,9 @@ public:
         COpenOptions opts_ext{opts};
         if ( preferOpenEditorWindow() ) {
             GET_REGISTRY_USER(reg_user);
-            bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+            bool isMaximized = false;
             QRect rect = /*isMaximized ? QRect() :*/ windowRectFromViewId(opts.parent_id);
-            if ( !rect.isEmpty() )
-                rect.adjust(50,50,50,50);
+            editorWindowGeometry(rect, isMaximized, opts.wurl);
             opts_ext.panel_size = CWindowBase::expectedContentSize(rect, true);
             opts_ext.parent_widget = COpenOptions::eWidgetType::window;
             if (CEditorWindow * editor_win = CEditorWindow::create(rect, opts_ext)) {

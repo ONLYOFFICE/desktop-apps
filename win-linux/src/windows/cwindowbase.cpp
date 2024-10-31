@@ -183,15 +183,15 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
     return _boxTitleBtns;
 }
 
-void CWindowBase::saveWindowState()
+void CWindowBase::saveWindowState(const QString &baseKey)
 {
     if (!windowState().testFlag(Qt::WindowFullScreen)) {
         GET_REGISTRY_USER(reg_user)
-        reg_user.setValue("position", normalGeometry());
+        reg_user.setValue(baseKey + "position", normalGeometry());
         if (windowState().testFlag(Qt::WindowMaximized)) {
-            reg_user.setValue("maximized", true);
+            reg_user.setValue(baseKey + "maximized", true);
         } else {
-            reg_user.remove("maximized");
+            reg_user.remove(baseKey + "maximized");
         }
     }
 }
