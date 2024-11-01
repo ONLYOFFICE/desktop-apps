@@ -92,6 +92,8 @@ typedef unsigned char BYTE;
 # define UM_CLOSE_MAINWINDOW    WM_USER+253
 #endif
 
+#define UM_ENDMOVE (QEvent::User + 2)
+
 #ifdef _WIN32
 # define WINDOW_BACKGROUND_COLOR RGB(241, 241, 241)              // #f1f1f1
 # define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
