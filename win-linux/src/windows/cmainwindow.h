@@ -63,7 +63,7 @@ public:
     int attachEditor(QWidget *, const QPoint&);
     int editorsCount();
     int editorsCount(const std::wstring& portal);
-    bool pointInTabs(const QPoint& pt);
+    bool canPinTabAtPoint(const QPoint& pt);
     bool holdView(int id) const;
     virtual void applyTheme(const std::wstring&) final;
     virtual void focus() final;

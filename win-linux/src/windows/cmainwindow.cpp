@@ -187,7 +187,7 @@ int CMainWindow::editorsCount(const std::wstring& portal)
     return tabWidget()->count(portal, true);
 }
 
-bool CMainWindow::pointInTabs(const QPoint& pt)
+bool CMainWindow::canPinTabAtPoint(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
