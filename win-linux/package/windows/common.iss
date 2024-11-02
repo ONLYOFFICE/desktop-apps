@@ -683,6 +683,8 @@ var
 
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
 
+function GetHKLM: Integer; forward;
+
 function UninstallPreviosVersion(): Boolean;
 var
   ResultCode: Integer;
@@ -698,7 +700,7 @@ var
 begin
   Result := True;
   if RegGetValueNames(
-  HKEY_LOCAL_MACHINE,
+  GetHKLM(),
   'SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UpgradeCodes\{#sUpgradeCode}',
   Names) then begin
     ConfirmUninstall := IDOK;
@@ -759,7 +761,6 @@ function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: P
   external 'SendMessageTimeoutA@user32.dll stdcall';
 
 //procedure checkArchitectureVersion; forward;
-function GetHKLM: Integer; forward;
 
 procedure InitializeWizard();
 var
