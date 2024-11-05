@@ -2159,6 +2159,8 @@ begin
      end;
      if version.Major = 10 then begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
+       if RegValueExists(HKEY_CURRENT_USER, 'Software\Classes\' + values[1], '') then
+         RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
      end;
   end;
 end;
