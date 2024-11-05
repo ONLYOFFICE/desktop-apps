@@ -127,7 +127,8 @@ private:
     CFullScreenData * m_dataFullScreen;
     size_params m_widthParams,
                 m_defWidthParams;
-    bool m_isCustomStyle;
+    bool m_isCustomStyle,
+         m_isTabPinAllowed;
     CTabIconSet m_mapTabIcons;
 //    QSize m_tabIconSize;
     CTabBar *m_pBar;
@@ -189,6 +190,8 @@ public:
 
     void activate(bool);
     bool isActiveWidget();
+    bool isTabPinAllowed();
+    void setTabPinAllowed();
 
     void setTabIcons(CTabIconSet&);
     void reloadTabIcons();

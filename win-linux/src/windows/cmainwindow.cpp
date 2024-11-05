@@ -189,14 +189,20 @@ int CMainWindow::editorsCount(const std::wstring& portal)
     return tabWidget()->count(portal, true);
 }
 
-bool CMainWindow::pointInTabs(const QPoint& pt)
+bool CMainWindow::canPinTabAtPoint(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
     int dx1 = (AscAppManager::isRtlEnabled()) ? 3 * int(TITLEBTN_WIDTH * m_dpiRatio) : m_pButtonMain->width();
     int dx2 = (AscAppManager::isRtlEnabled()) ? -1 * m_pButtonMain->width() : -3 * int(TITLEBTN_WIDTH * m_dpiRatio);
     _rc_title.adjust(dx1, 1, dx2, 0);
-    return _rc_title.contains(mapFromGlobal(pt));
+    bool containsPoint = _rc_title.contains(mapFromGlobal(pt));
+    bool pinAllowed = m_pTabs->isTabPinAllowed();
+    if (!containsPoint && !pinAllowed) {
+        m_pTabs->setTabPinAllowed();
+        return false;
+    }
+    return containsPoint && pinAllowed;
 }
 
 bool CMainWindow::holdView(int id) const

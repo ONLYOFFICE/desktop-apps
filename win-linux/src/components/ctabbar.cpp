@@ -1197,8 +1197,8 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             }
                         }
                     }
-                    bool undockDirectionIsValid = AscAppManager::isRtlEnabled() ? d->tabArea->rect().left() <= me->x() : d->tabArea->rect().right() >= me->x();
-                    if (!d->tabArea->rect().contains(me->pos()) && undockDirectionIsValid) {
+                    // bool undockDirectionIsValid = AscAppManager::isRtlEnabled() ? d->tabArea->rect().left() <= me->x() : d->tabArea->rect().right() >= me->x();
+                    if (!d->tabArea->rect().contains(me->pos()) /*&& undockDirectionIsValid*/) {
                         if (d->currentIndex != d->movedTabIndex)
                             d->reorderIndexes();
                         bool accepted = false;

@@ -1563,7 +1563,7 @@ namespace Drop {
                 QObject::connect(drop_timer, &QTimer::timeout, []{
                     CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
                     QPoint current_cursor = QCursor::pos();
-                    if ( main_window->pointInTabs(current_cursor) ) {
+                    if ( main_window->canPinTabAtPoint(current_cursor) ) {
                         if ( current_cursor == last_cursor_pos ) {
                             drop_timer->stop();
 
@@ -1578,7 +1578,7 @@ namespace Drop {
                 });
             }
 
-            if ( main_window->pointInTabs(pt) ) {
+            if ( main_window->canPinTabAtPoint(pt) ) {
                 if ( !drop_timer->isActive() )
                     drop_timer->start(drop_timeout);
 

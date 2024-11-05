@@ -135,6 +135,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
+    , m_isTabPinAllowed(true)
 //    , m_tabIconSize(16, 16)
     , m_pBar(_pBar)
 {
@@ -162,6 +163,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
                 _dropedindex = index;
                 accept = true;
+                m_isTabPinAllowed = false;
 
                 QTimer::singleShot(0, this, [=]() {
                     if (widget(index)) {
@@ -939,6 +941,16 @@ void CAscTabWidget::activate(bool a)
 bool CAscTabWidget::isActiveWidget()
 {
     return property("active").toBool();
+}
+
+bool CAscTabWidget::isTabPinAllowed()
+{
+    return m_isTabPinAllowed;
+}
+
+void CAscTabWidget::setTabPinAllowed()
+{
+    m_isTabPinAllowed = true;
 }
 
 int CAscTabWidget::modifiedCount()

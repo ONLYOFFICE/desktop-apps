@@ -479,6 +479,10 @@ bool CEditorWindow::event(QEvent * event)
                 return true;
             }
         }
+    } else
+    if (event->type() == UM_ENDMOVE) {
+        if (CMainWindow *w = AscAppManager::mainWindow())
+            w->tabWidget()->setTabPinAllowed();
     }
     return CWindowPlatform::event(event);
 }

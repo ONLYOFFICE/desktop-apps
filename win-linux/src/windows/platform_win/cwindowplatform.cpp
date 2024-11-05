@@ -565,10 +565,11 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         break;
     }
 
-//    case WM_EXITSIZEMOVE:
+    case WM_EXITSIZEMOVE:
+        QApplication::postEvent(this, new QEvent(static_cast<QEvent::Type>(UM_ENDMOVE)));
 //        if (m_allowMaximize)
 //            QApplication::postEvent(this, new QEvent(QEvent::User));
-//        break;
+       break;
 
 //    case WM_MOVE:
 //        if (movParam != 0)
