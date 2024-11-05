@@ -79,6 +79,8 @@ CMainWindow::CMainWindow(const QRect &rect) :
     setCentralWidget(m_pMainPanel);
     QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
 #ifdef __linux__
+    if (WindowHelper::getEnvInfo() == WindowHelper::KDE)
+        setWindowTitle(tr("Main Window"));
     setAcceptDrops(true);
     if (isCustomWindowStyle()) {
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
@@ -591,6 +593,10 @@ void CMainWindow::onEditorAllowedClose(int uid)
 void CMainWindow::onTabChanged(int index)
 {
     QString title("");
+#ifdef __linux__
+    if (WindowHelper::getEnvInfo() == WindowHelper::KDE)
+        title = tr("Main Window");
+#endif
     if (index > -1) {
         auto _panel = m_pTabs->panel(index);
         if (_panel)
