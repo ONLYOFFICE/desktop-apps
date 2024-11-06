@@ -33,6 +33,7 @@ $AssociationList = @(
     "csv", "txt",
     "docxf"
 )
+$PluginManagerPath = "editors\sdkjs-plugins\{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}"
 $MD5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
 $ASCII = New-Object -TypeName System.Text.ASCIIEncoding
 [guid]$GUID = $MD5.ComputeHash($ASCII.GetBytes(`
@@ -85,6 +86,7 @@ if ($Arch -eq "x86") {
         "SetComponentAttribute -feature_name MainFeature -unset -64bit_component", `
         "SetComponentAttribute -feature_name Files -unset -64bit_component", `
         "SetComponentAttribute -feature_name Registry -unset -64bit_component", `
+        "SetComponentAttribute -feature_name PluginManager -unset -64bit_component", `
         "SetComponentAttribute -feature_name UpdateService -unset -64bit_component", `
         "SetComponentAttribute -feature_name RegFileTypeAssociations -unset -64bit_component"
     $AssociationList | % {$AdvInstConfig += `
@@ -98,6 +100,7 @@ $AdvInstConfig += `
     "UpdateFile APPDIR\DesktopEditors.exe $BuildDir\desktop\DesktopEditors.exe", `
     "UpdateFile APPDIR\updatesvc.exe $BuildDir\desktop\updatesvc.exe", `
     "NewSync APPDIR $BuildDir\desktop -existingfiles keep -feature Files", `
+    "NewSync APPDIR\$PluginManagerPath $BuildDir\desktop\$PluginManagerPath -existingfiles delete -feature PluginManager", `
     # "GenerateReport -buildname $MsiBuild -output_path .\report.pdf", `
     "Rebuild -buildslist $MsiBuild"
 $AdvInstConfig = ";aic", $AdvInstConfig
