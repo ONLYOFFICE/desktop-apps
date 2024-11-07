@@ -574,9 +574,17 @@
                                     delete themes_map['theme-system'];
                             }
 
+                            const lang = utils.Lang.id;
                             const _combo = $('#opts-ui-theme select', $panel).empty();
                             for (const [key, value] of Object.entries(themes_map)) {
-                                _combo.append(`<option value=${key} l10n>${value['text']}</option>`);
+                                let _new_title;
+                                if ( value.l10n )
+                                    _new_title = value.l10n[lang] || value.l10n[lang.substring(0,2)] || value.text;
+
+                                if ( !_new_title )
+                                    _new_title = value.text;
+
+                                _combo.append(`<option value=${key}>${_new_title}</option>`);
                             }
 
 
@@ -774,6 +782,34 @@
             $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
             $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
             $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
+
+            const l10n = {
+                'theme-system': {
+                    text: utils.Lang.settOptThemeSystem,
+                },
+                'theme-light': {
+                    text: utils.Lang.settOptThemeLight,
+                },
+                'theme-classic-light': {
+                    text: utils.Lang.settOptThemeClassicLight,
+                },
+                'theme-dark': {
+                    text: utils.Lang.settOptThemeDark,
+                },
+                'theme-contrast-dark': {
+                    text: utils.Lang.settOptThemeContrastDark,
+                },
+                'theme-gray': {
+                    text: utils.Lang.settOptThemeGray,
+                },
+            }
+
+            for (const [key, value] of Object.entries(l10n)) {
+                if ( !themes_map[key]['l10n'] )
+                    themes_map[key]['l10n'] = {};
+
+                themes_map[key]['l10n'][nl] = value.text;
+            }
 
             // for ( let k of Object.keys(themes_map) ) {
             //     const t = themes_map[k]
