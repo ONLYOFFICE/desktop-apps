@@ -60,7 +60,7 @@
 #define WINDOW_CLASS_NAME L"DocEditorsWindowClass"
 #define WINDOW_EDITOR_CLASS_NAME L"SingleWindowClass"
 #define REG_APP_NAME "DesktopEditors"
-#define APP_DEFAULT_LOCALE "en-EN"
+#define APP_DEFAULT_LOCALE "en-US"
 #define APP_DEFAULT_SYSTEM_LOCALE 1
 #define APP_USER_MODEL_ID "ASC.Documents.5"
 #define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"
