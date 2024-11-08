@@ -389,6 +389,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
         if (AscAppManager::IsUseSystemScaling())
             updateScaling(false);
+        SKIP_EVENTS_QUEUE([=]() {
+            double dpi = Utils::getScreenDpiRatioByWidget(this);
+            setMinimumSize(WINDOW_MIN_WIDTH * dpi, WINDOW_MIN_HEIGHT * dpi);
+        });
         break;
     }
 
