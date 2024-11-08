@@ -1276,7 +1276,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     wstring wparams{InputArgs::webapps_params()};
     if ( !wparams.empty() ) wparams += L"&";
     wparams += QString("lang=%1&username=%3&location=%2").arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode()).toStdWString();
-    wstring user_name = Utils::appUserName();
+    wstring user_name = QString(QUrl::toPercentEncoding(QString::fromStdWString(Utils::appUserName()))).toStdWString();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
     InputArgs::set_webapps_params(wparams);
