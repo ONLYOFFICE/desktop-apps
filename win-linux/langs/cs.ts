@@ -396,7 +396,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Binární soubor Excel (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -549,7 +549,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="305"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="315"/>
@@ -824,7 +824,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Příprava aktualizace (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
@@ -1005,7 +1005,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="751"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Při spuštění instalace aktualizací došlo k chybě: Aktualizační služba nebyla nalezena!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="761"/>
@@ -1102,34 +1102,34 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Tisk...</translation>
+        <translation>Tisk...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Připravuji dokument</translation>
+        <translation>Připravuji dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;Storno</translation>
+        <translation>&amp;Storno</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="214"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete nastavit %1 jako výchozí aplikaci pro rozšíření: %2?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="216"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete nastavit %1 jako výchozí aplikaci pro všechna podporovaná rozšíření?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="218"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuto zprávu již nezobrazovat</translation>
     </message>
 </context>
 <context>
