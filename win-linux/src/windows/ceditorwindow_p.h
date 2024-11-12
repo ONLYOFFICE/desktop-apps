@@ -117,6 +117,7 @@ class CEditorWindowPrivate : public CCefEventsGate
     QPixmap   avatar;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
+    CFileDownloader *fdl = nullptr;
     int leftBtnsCount = DEFAULT_BTNS_COUNT;
 
     enum LayoutType {
@@ -133,6 +134,8 @@ public:
     ~CEditorWindowPrivate() override {
         if ( leftboxbuttons )
             leftboxbuttons->deleteLater();
+        if (fdl)
+            delete fdl, fdl = nullptr;
     }
 
     void createHomeButton() {
@@ -300,16 +303,14 @@ public:
         }
     }
 
-    virtual void onImageLoadFinished(void* fdl, int err) override
+    virtual void onImageLoadFinished(int err) override
     {
-        CFileDownloader *_fdl = (CFileDownloader*)fdl;
         if (err == 0) {
-            QString path = QString::fromStdWString(_fdl->GetFilePath());
+            QString path = QString::fromStdWString(fdl->GetFilePath());
             if (!(avatar = QPixmap(path)).isNull())
                 iconuser->setPixmap(rounded_pixmap(avatar, iconuser->width()));
             QFile::remove(path);
         }
-        delete _fdl;
     }
 
     void onEditorConfig(int, std::wstring cfg) override
@@ -351,12 +352,16 @@ public:
                                     iconuser->setPixmap(rounded_pixmap(avatar, iconuser->width()));
                             }
                         } else {
-                            QString tmp_name = QString("/avatar_%1.png").arg(QUuid::createUuid().toString().remove('{').remove('}'));
-                            CFileDownloader *fdl = new CFileDownloader(img_url.toStdWString(), false);
-                            fdl->SetFilePath((QDir::tempPath() + tmp_name).toStdWString());
-                            fdl->SetEvent_OnComplete([=](int err) {
-                                QMetaObject::invokeMethod(this, "onImageLoadFinished", Qt::QueuedConnection, Q_ARG(void*, fdl), Q_ARG(int, err));
-                            });
+                            if (!fdl) {
+                                QString tmp_name = QString("/avatar_%1.png").arg(QUuid::createUuid().toString().remove('{').remove('}'));
+                                fdl = new CFileDownloader(img_url.toStdWString(), false);
+                                fdl->SetFilePath((QDir::tempPath() + tmp_name).toStdWString());
+                                fdl->SetEvent_OnComplete([=](int err) {
+                                    QMetaObject::invokeMethod(this, "onImageLoadFinished", Qt::QueuedConnection, Q_ARG(int, err));
+                                });
+                            } else {
+                                fdl->Cancel();
+                            }
                             fdl->Start(0);
                         }
                     }

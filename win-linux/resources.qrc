@@ -201,7 +201,7 @@
         <file alias="fr-FR.qm">langs/fr.qm</file>
         <file alias="ga-IE.qm">langs/ga.qm</file>
         <file alias="gl-ES.qm">langs/gl.qm</file>
-        <file alias="he.qm">langs/he.qm</file>
+        <file alias="he-IL.qm">langs/he.qm</file>
         <file alias="hi-IN.qm">langs/hi.qm</file>
         <file alias="hr-HR.qm">langs/hr.qm</file>
         <file alias="hu-HU.qm">langs/hu.qm</file>
@@ -214,7 +214,7 @@
         <file alias="lt-LT.qm">langs/lt.qm</file>
         <file alias="lv-LV.qm">langs/lv.qm</file>
         <file alias="nl-NL.qm">langs/nl.qm</file>
-        <file alias="no.qm">langs/no.qm</file>
+        <file alias="no-NO.qm">langs/no.qm</file>
         <file alias="pl-PL.qm">langs/pl.qm</file>
         <file alias="pt-BR.qm">langs/pt_BR.qm</file>
         <file alias="pt-PT.qm">langs/pt_PT.qm</file>

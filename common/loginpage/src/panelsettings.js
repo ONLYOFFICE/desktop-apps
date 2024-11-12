@@ -521,17 +521,19 @@
                             $panel.find('.settings-field-lang').show();
                             let $combo = $panel.find('.settings-field-lang select');
 
-                            let def_lang;
+                            let def_lang = 'en';
                             for (let lang in appSettings.locale.langs) {
-                                /^en/.test(lang) && (def_lang = lang);
+                                /^en[-_]US/.test(lang) && (def_lang = lang);
                                 const n = appSettings.locale.langs[lang];
                                 $combo.append(`<option value='${lang}' data-subtext='${n['enname']}'>${n["name"]}</option>`);
                             }
 
                             if ( !appSettings.locale.langs[appSettings.locale.current] ) {
                                 appSettings.locale.current = appSettings.locale.current.substring(0,2);
-                                if ( !appSettings.locale.langs[appSettings.locale.current] && !!def_lang ) {
-                                    appSettings.locale.current = def_lang;
+                                if ( !appSettings.locale.langs[appSettings.locale.current] ) {
+                                    if ( appSettings.locale.langs[def_lang] ) {
+                                        appSettings.locale.current = def_lang;
+                                    }
                                 }
                             }
 

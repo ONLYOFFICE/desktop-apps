@@ -87,7 +87,7 @@
                                         <a data-value='cloud' class='nav-item'>${_lang.tplPanelCloud}</a>
                                     </div>
                                 </div>
-                                <section panel='local'>
+                                <section class='themed-sroll' panel='local'>
                                     <div class='table-box flex-fill'>
                                         <div class='table-templates list'></div>
                                     </div>
@@ -131,7 +131,7 @@
         let templates;
 
         // TODO: for tests only. uncomment static url before release
-        let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com';
+        let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com';
         const _url_templates = `${test_url}/{0}?desktop=true`;
         // const _url_templates = "https://oforms.onlyoffice.com/{0}?desktop=true";
 

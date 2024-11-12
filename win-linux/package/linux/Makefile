@@ -74,6 +74,7 @@ endif
 DEB_DEPS += $(CHANGELOG_DEB)
 DEB_DEPS += deb/build/debian/compat
 DEB_DEPS += deb/build/debian/control
+DEB_DEPS += deb/build/debian/copyright
 DEB_DEPS += deb/build/debian/postrm
 DEB_DEPS += deb/build/debian/rules
 DEB_DEPS += deb/build/debian/source/format
@@ -124,12 +125,11 @@ HELP_GLOB := opt/$(DESKTOPEDITORS_PREFIX)/editors/web-apps/apps/*/main/resources
 
 -include $(BRANDING_DIR)/branding.mk
 
-all : deb rpm rpm-suse tar tar-help
+all : deb rpm rpm-suse tar
 deb : $(DEB)
 rpm : $(RPM)
 rpm-suse : $(RPM_SUSE)
-tar : $(TAR)
-tar-help : $(TAR_HELP)
+tar : $(TAR) $(TAR_HELP)
 
 clean :
 	rm -rf \
@@ -344,4 +344,4 @@ $(BIN_FILES) $(DESKTOP_FILES) :
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
 
-.PHONY : all clean deb rpm rpm-suse tar tar-help
+.PHONY : all clean deb rpm rpm-suse tar

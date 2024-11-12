@@ -103,15 +103,15 @@
     <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Novi_PDF_obrazec"/>
   </ENTRY>
   <ENTRY id="Property.LOCALE">
-    <STRING lang="cs" value="cs"/>
-    <STRING lang="de" value="de"/>
-    <STRING lang="es" value="es"/>
-    <STRING lang="fr" value="fr"/>
-    <STRING lang="ja" value="ja"/>
+    <STRING lang="cs" value="cs-CZ"/>
+    <STRING lang="de" value="de-DE"/>
+    <STRING lang="es" value="es-ES"/>
+    <STRING lang="fr" value="fr-FR"/>
+    <STRING lang="ja" value="ja-JP"/>
     <STRING lang="pt" value="pt-PT"/>
     <STRING lang="pt_BR" value="pt-BR"/>
-    <STRING lang="ru" value="ru"/>
-    <STRING lang="sl" value="sl"/>
+    <STRING lang="ru" value="ru-RU"/>
+    <STRING lang="sl" value="sl-SI"/>
   </ENTRY>
   <ENTRY id="Property.NewDocument">
     <STRING lang="cs" value="Nový dokument"/>

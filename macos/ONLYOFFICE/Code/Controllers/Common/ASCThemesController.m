@@ -79,7 +79,24 @@
 
     [NSDistributedNotificationCenter.defaultCenter addObserver:self selector:@selector(onSystemThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object: nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onUIThemeChanged:)
+                                                 name:ASCEventNameChangedUITheme
+                                               object:nil];
+
     return self;
+}
+
+- (void)onUIThemeChanged:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * theme = params[@"uitheme"];
+
+        [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":theme,
+                                                                         @"type":[[self class] isCurrentThemeDark] ? @"dark" : @"light",
+                                                                       @"system":[[self class] isSystemDarkMode] ? @"dark" : @"light"}];
+        [[ASCEditorJSVariables instance] apply];
+    }
 }
 
 - (void)onSystemThemeChanged:(NSNotification *)notification {

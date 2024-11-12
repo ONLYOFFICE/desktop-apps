@@ -5,7 +5,7 @@ ChangesAssociations=true
 
 [CustomMessages]
 
-en_US.AssociateDescription =Associate office document file types with {#ASSC_APP_NAME}
+en.AssociateDescription =Associate office document file types with {#ASSC_APP_NAME}
 en_GB.AssociateDescription =Associate office document file types with {#ASSC_APP_NAME}
 ar_SA.AssociateDescription =هل تريد ربط صيغة المستند بـ {#ASSC_APP_NAME}
 bg.AssociateDescription =Свържете типовете файлове на офис документи с {#ASSC_APP_NAME}
@@ -52,7 +52,7 @@ sr_Latn_RS.AssociateDescription =Poveži ofis dokument fajl tipove sa {#ASSC_APP
 sr_Cyrl_RS.AssociateDescription =Повежи офис документ фајл типове са {#ASSC_APP_NAME}
 he.AssociateDescription =שייך סוגי קבצי מסמכי משרד ל-{#ASSC_APP_NAME}
 
-en_US.AssociateCaption =File Associations
+en.AssociateCaption =File Associations
 en_GB.AssociateCaption =File Associations
 ar_SA.AssociateCaption =ربط الملفات
 bg.AssociateCaption =Свързвания на файлове
@@ -99,7 +99,7 @@ sr_Latn_RS.AssociateCaption =Fajl povezivanja
 sr_Cyrl_RS.AssociateCaption =Фајл повезивања
 he.AssociateCaption =שיוכי קבצים
 
-en_US.AssociateDont =Do not associate
+en.AssociateDont =Do not associate
 en_GB.AssociateDont =Do not associate
 ar_SA.AssociateDont =عدم ربط
 bg.AssociateDont =Не свързвай
@@ -146,7 +146,7 @@ sr_Latn_RS.AssociateDont =Nemoj da povežeš
 sr_Cyrl_RS.AssociateDont =Немој да повежеш
 he.AssociateDont =אל תשייך
 
-en_US.AssociateAll =Associate all
+en.AssociateAll =Associate all
 en_GB.AssociateAll =Associate all
 ar_SA.AssociateAll =ربط الكل
 bg.AssociateAll =Свържи всички
@@ -193,7 +193,7 @@ sr_Latn_RS.AssociateAll =Poveži sve
 sr_Cyrl_RS.AssociateAll =Повежи све
 he.AssociateAll =שייך הכל
 
-en_US.AssociateSel =Associate selected
+en.AssociateSel =Associate selected
 en_GB.AssociateSel =Associate selected
 ar_SA.AssociateSel =ربط المختار
 bg.AssociateSel =Свържи избраните
@@ -240,7 +240,7 @@ sr_Latn_RS.AssociateSel =Poveži odabrano
 sr_Cyrl_RS.AssociateSel =Повежи одабрано
 he.AssociateSel =שייך נבחרים
 
-en_US.AssociateAudio =File types
+en.AssociateAudio =File types
 en_GB.AssociateAudio =File types
 ar_SA.AssociateAudio =صيغ الملف
 bg.AssociateAudio =Типове файлове
@@ -287,7 +287,7 @@ sr_Latn_RS.AssociateAudio =Fajl tipovi
 sr_Cyrl_RS.AssociateAudio =Фајл типови
 he.AssociateAudio =סוגי קבצים
 
-en_US.extMSWord =Microsoft Word Document
+en.extMSWord =Microsoft Word Document
 en_GB.extMSWord =Microsoft Word Document
 ar_SA.extMSWord =مستند مايكروسوفت وورد
 bg.extMSWord =Microsoft Word документ
@@ -334,7 +334,7 @@ sr_Cyrl_RS.extMSWord =Microsoft Word документ
 sr_Latn_RS.extMSWord =Microsoft Word dokument
 he.extMSWord =מסמך Microsoft Word
 
-en_US.extMSExcel =Microsoft Excel Workbook
+en.extMSExcel =Microsoft Excel Workbook
 en_GB.extMSExcel =Microsoft Excel Workbook
 ar_SA.extMSExcel =جدول بياني مايكروسوفت إكسل
 bg.extMSExcel =Microsoft Excel работна книга
@@ -381,7 +381,7 @@ sr_Cyrl_RS.extMSExcel =Microsoft Excel радна књига
 sr_Latn_RS.extMSExcel =Microsoft Excel radna knjiga
 he.extMSExcel =חוברת עבודה של Microsoft Excel
 
-en_US.extMSPresentation =Microsoft PowerPoint Presentation
+en.extMSPresentation =Microsoft PowerPoint Presentation
 en_GB.extMSPresentation =Microsoft PowerPoint Presentation
 ar_SA.extMSPresentation =عرض تقديمي مايكروسوفت بوربوينت قابل للتعديل
 bg.extMSPresentation =Microsoft PowerPoint презентация
@@ -428,7 +428,7 @@ sr_Cyrl_RS.extMSPresentation =Microsoft PowerPoint презентација
 sr_Latn_RS.extMSPresentation =Microsoft PowerPoint prezentacija
 he.extMSPresentation =מצגת Microsoft PowerPoint
 
-en_US.extMSSlideshow =Microsoft PowerPoint Slideshow
+en.extMSSlideshow =Microsoft PowerPoint Slideshow
 en_GB.extMSSlideshow =Microsoft PowerPoint Slideshow
 ar_SA.extMSSlideshow =عرض تقديمي مايكروسوفت بوربوينت غير قابل للتعديل
 bg.extMSSlideshow =Microsoft PowerPoint слайдшоу
@@ -475,7 +475,7 @@ sr_Cyrl_RS.extMSSlideshow =Microsoft PowerPoint слајд-шоу
 sr_Latn_RS.extMSSlideshow =Microsoft PowerPoint slajd-šou
 he.extMSSlideshow =מצגת שקופיות של Microsoft PowerPoint
 
-en_US.extODT =OpenDocument Text File
+en.extODT =OpenDocument Text File
 en_GB.extODT =OpenDocument Text File
 ar_SA.extODT =ملف نصي ليبري أوفس
 bg.extODT =OpenDocument текстов файл
@@ -522,7 +522,7 @@ sr_Cyrl_RS.extODT =OpenDocument текст фајл
 sr_Latn_RS.extODT =OpenDocument tekst fajl
 he.extODT =קובץ טקסט OpenDocument
 
-en_US.extODS =OpenDocument Spreadsheet
+en.extODS =OpenDocument Spreadsheet
 en_GB.extODS =OpenDocument Spreadsheet
 ar_SA.extODS =جدول ليبري أوفس
 bg.extODS =OpenDocument електронна таблица
@@ -569,7 +569,7 @@ sr_Cyrl_RS.extODS =OpenDocument прорачунска табела
 sr_Latn_RS.extODS =OpenDocument proračunska tabela
 he.extODS =גיליון אלקטרוני OpenDocument
 
-en_US.extODP =OpenDocument Presentation
+en.extODP =OpenDocument Presentation
 en_GB.extODP =OpenDocument Presentation
 ar_SA.extODP =عرض ليبري أوفس
 bg.extODP =OpenDocument презентация
@@ -616,7 +616,7 @@ sr_Cyrl_RS.extODP =OpenDocument презентација
 sr_Latn_RS.extODP =OpenDocument prezentacija
 he.extODP =מצגת OpenDocument
 
-en_US.extDOC =Word 97-2003 Document
+en.extDOC =Word 97-2003 Document
 en_GB.extDOC =Word 97-2003 Document
 ar_SA.extDOC =مستند وورد 97-2003
 bg.extDOC =Word 97-2003 документ
@@ -663,7 +663,7 @@ sr_Cyrl_RS.extDOC =Word 97-2003 документ
 sr_Latn_RS.extDOC =Word 97-2003 dokument
 he.extDOC =מסמך Word 97-2003
 
-en_US.extDOCX =Office Open XML Document
+en.extDOCX =Office Open XML Document
 en_GB.extDOCX =Office Open XML Document
 ar_SA.extDOCX =مستند وورد
 bg.extDOCX =Office Open XML документ
@@ -710,7 +710,7 @@ sr_Cyrl_RS.extDOCX =Office Open XML документ
 sr_Latn_RS.extDOCX =Office Open XML dokument
 he.extDOCX =מסמך Office Open XML
 
-en_US.extDOCXF =ONLYOFFICE Form Template
+en.extDOCXF =ONLYOFFICE Form Template
 en_GB.extDOCXF =ONLYOFFICE Form Template
 ar_SA.extDOCXF =قالب استبيان ONLYOFFICE
 bg.extDOCXF =ONLYOFFICE Шаблон на формуляр
@@ -757,7 +757,7 @@ sr_Cyrl_RS.extDOCXF =ONLYOFFICE формулар шаблон
 sr_Latn_RS.extDOCXF =ONLYOFFICE formular šablon
 he.extDOCXF =תבנית טופס ONLYOFFICE
 
-en_US.extXLS =Excel 97-2003 Spreadsheet
+en.extXLS =Excel 97-2003 Spreadsheet
 en_GB.extXLS =Excel 97-2003 Spreadsheet
 ar_SA.extXLS =جدول إكسل 97-2003
 bg.extXLS =Excel 97-2003 таблица
@@ -804,7 +804,7 @@ sr_Cyrl_RS.extXLS =Excel 97-2003 прорачунска табела
 sr_Latn_RS.extXLS =Excel 97-2003 proračunska tabela
 he.extXLS =גיליון אלקטרוני Excel 97-2003
 
-en_US.extXLSX =Office Open XML Spreadsheet
+en.extXLSX =Office Open XML Spreadsheet
 en_GB.extXLSX =Office Open XML Spreadsheet
 ar_SA.extXLSX =جدول إكسل
 bg.extXLSX =Office Open XML таблица
@@ -851,7 +851,7 @@ sr_Cyrl_RS.extXLSX =Office Open XML прорачунска табела
 sr_Latn_RS.extXLSX =Office Open XML proračunska tabela
 he.extXLSX =גיליון אלקטרוני Office Open XML
 
-en_US.extPPT =PowerPoint 97-2003 Presentation
+en.extPPT =PowerPoint 97-2003 Presentation
 en_GB.extPPT =PowerPoint 97-2003 Presentation
 ar_SA.extPPT =عرض بوربوينت 97-2003
 bg.extPPT =PowerPoint 97-2003 Презентация
@@ -898,7 +898,7 @@ sr_Cyrl_RS.extPPT =PowerPoint 97-2003 презентација
 sr_Latn_RS.extPPT =PowerPoint 97-2003 prezentacija
 he.extPPT =מצגת PowerPoint 97-2003
 
-en_US.extPPTX =Office Open XML Presentation
+en.extPPTX =Office Open XML Presentation
 en_GB.extPPTX =Office Open XML Presentation
 ar_SA.extPPTX =عرض بوربوينت قابل للتعديل
 bg.extPPTX =Office Open XML Презентация
@@ -945,7 +945,7 @@ sr_Cyrl_RS.extPPTX =Office Open XML презентација
 sr_Latn_RS.extPPTX =Office Open XML prezentacija
 he.extPPTX =מצגת Office Open XML
 
-en_US.extPPS =PowerPoint 97-2003 Slide Show
+en.extPPS =PowerPoint 97-2003 Slide Show
 en_GB.extPPS =PowerPoint 97-2003 Slide Show
 ar_SA.extPPS =عرض بوربوينت 97-2003
 bg.extPPS =PowerPoint 97-2003 Слайдшоу
@@ -992,7 +992,7 @@ sr_Cyrl_RS.extPPS =PowerPoint 97-2003 слајд-шоу
 sr_Latn_RS.extPPS =PowerPoint 97-2003 slajd-šou
 he.extPPS =מצגת שקופיות PowerPoint 97-2003
 
-en_US.extPPSX =Office Open XML Slide Show
+en.extPPSX =Office Open XML Slide Show
 en_GB.extPPSX =Office Open XML Slide Show
 ar_SA.extPPSX =عرض بوربوينت غير قابل للتعديل
 bg.extPPSX =Office Open XML Слайдшоу
@@ -1039,7 +1039,7 @@ sr_Cyrl_RS.extPPSX =Office Open XML слајд-шоу
 sr_Latn_RS.extPPSX =Office Open XML slajd-šou
 he.extPPSX =מצגת שקופיות Office Open XML
 
-en_US.extRTF =Rich Text Format File
+en.extRTF =Rich Text Format File
 en_GB.extRTF =Rich Text Format File
 ar_SA.extRTF =ملف نصي غني
 bg.extRTF =Файл с богат текстов формат
@@ -1086,7 +1086,7 @@ sr_Latn_RS.extRTF =Богати текст формат фајл
 sr_Latn_RS.extRTF =Bogati tekst format fajl
 he.extRTF =קובץ בפורמט טקסט עשיר
 
-en_US.extCSV =Comma Separated Values
+en.extCSV =Comma Separated Values
 en_GB.extCSV =Comma Separated Values
 ar_SA.extCSV =قيم مفرّقة بفاصلة
 bg.extCSV =Стойности, разделени със запетая
@@ -1133,7 +1133,7 @@ sr_Cyrl_RS.extCSV =Вредности одвојене зарезом
 sr_Latn_RS.extCSV =Vrednosti odvojene zarezom
 he.extCSV =ערכים מופרדים בפסיקים
 
-en_US.extPDF =Portable Document
+en.extPDF =Portable Document
 en_GB.extPDF =Portable Document
 ar_SA.extPDF =بي دي إف
 bg.extPDF =Преносим документ
@@ -1180,7 +1180,7 @@ sr_Cyrl_RS.extPDF =Преносиви документ
 sr_Latn_RS.extPDF =Prenosivi dokument
 he.extPDF =מסמך נייד
 
-en_US.extDJVU =Digital Document
+en.extDJVU =Digital Document
 en_GB.extDJVU =Digital Document
 ar_SA.extDJVU =مستند رقمي
 bg.extDJVU =Дигитален документ
@@ -1227,7 +1227,7 @@ sr_Cyrl_RS.extDJVU =Дигитални документ
 sr_Latn_RS.extDJVU =Digitalni dokument
 he.extDJVU =מסמך דיגיטלי
 
-en_US.extXPS =Open XML Paper Specification
+en.extXPS =Open XML Paper Specification
 en_GB.extXPS =Open XML Paper Specification
 ar_SA.extXPS =مستند أوبن إكس بي إس
 bg.extXPS =Open XML хартиена спецификация
@@ -1274,7 +1274,7 @@ sr_Cyrl_RS.extXPS =Open XML папир спецификација
 sr_Latn_RS.extXPS =Open XML papir specifikacija
 he.extXPS =מפרט נייר XML פתוח
 
-en_US.extPOT =PowerPoint Template
+en.extPOT =PowerPoint Template
 en_GB.extPOT =PowerPoint Template
 ar_SA.extPOT =قالب بوربوينت
 sr_Latn_RS.extPOT =PowerPoint Šablon
@@ -1293,7 +1293,7 @@ sr_Cyrl_RS.extPOT =PowerPoint шаблон
 sr_Latn_RS.extPOT =PowerPoint šablon
 he.extPOT =תבנית PowerPoint
 
-en_US.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
+en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 en_GB.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 ar_SA.extPPTM =عرض بوربوينت مع خاصية الماكرو
 sr_Latn_RS.extPPTM =PowerPoint Open XML Makro-omogućena Prezentacija
@@ -1312,7 +1312,7 @@ sr_Cyrl_RS.extPPTM =PowerPoint презентација са макроима у
 sr_Latn_RS.extPPTM =PowerPoint prezentacija sa makroima u otvorenom XML formatu
 he.extPPTM =מצגת PowerPoint Open XML עם מאקרו
 
-en_US.extEPUB =Open eBook File
+en.extEPUB =Open eBook File
 en_GB.extEPUB =Open eBook File
 ar_SA.extEPUB =كتاب النشر الإلكتروني
 sr_Latn_RS.extEPUB =Open eBook Fajl
@@ -1331,7 +1331,7 @@ sr_Cyrl_RS.extEPUB =Отворена еКњига
 sr_Latn_RS.extEPUB =Otvorena eKnjiga
 he.extEPUB =קובץ ספר אלקטרוני פתוח
 
-en_US.extFB2 =FictionBook 2.0 File
+en.extFB2 =FictionBook 2.0 File
 en_GB.extFB2 =FictionBook 2.0 File
 ar_SA.extFB2 =ملف فكشنبوك 2.0
 sr_Latn_RS.extFB2 =KnjigaFikcije 2.0 Fajl
@@ -1350,7 +1350,7 @@ sr_Cyrl_RS.extFB2 =FictionBook 2.0 датотека
 sr_Latn_RS.extFB2 =FictionBook 2.0 datoteka
 he.extFB2 =קובץ FictionBook 2.0
 
-en_US.extDOTX =Word Open XML Document Template
+en.extDOTX =Word Open XML Document Template
 en_GB.extDOTX =Word Open XML Document Template
 ar_SA.extDOTX =قالب وورد
 sr_Latn_RS.extDOTX =Word Open XML Dokument Šablon
@@ -1369,7 +1369,7 @@ sr_Cyrl_RS.extDOTX =Word шаблон документа у отвореном X
 sr_Latn_RS.extDOTX =Word šablon dokumenta u otvorenom XML formatu
 he.extDOTX =תבנית מסמך Word Open XML
 
-en_US.extOXPS =Open XML Paper Specification
+en.extOXPS =Open XML Paper Specification
 en_GB.extOXPS =Open XML Paper Specification
 ar_SA.extOXPS =مستند أوبن إكس بي إس
 bg.extOXPS =Open XML хартиена спецификация
@@ -1415,7 +1415,7 @@ sr_Cyrl_RS.extOXPS =Open XML папир спецификација
 sr_Latn_RS.extOXPS =Open XML papir specifikacija
 he.extOXPS =מפרט נייר XML פתוח
 
-en_US.extXLSB =Excel Binary File Format
+en.extXLSB =Excel Binary File Format
 en_GB.extXLSB =Excel Binary File Format
 si.extXLSB =එක්සෙල් ද්විමය ගොනු ආකෘතිය
 es.extXLSB =Formato de archivo binario de Excel
@@ -1434,7 +1434,7 @@ he.extXLSB =פורמט קובץ בינארי של Excel
 
 ;======================================================================================================
 
-en_US.jumpDOCX =New document
+en.jumpDOCX =New document
 en_GB.jumpDOCX =New document
 ar_SA.jumpDOCX =مستند جديد
 bg.jumpDOCX =Нов документ
@@ -1481,7 +1481,7 @@ sr_Latn_RS.jumpDOCX =Novi dokument
 sr_Cyrl_RS.jumpDOCX =Нови документ
 he.jumpDOCX =מסמך חדש
 
-en_US.jumpXLSX =New spreadsheet
+en.jumpXLSX =New spreadsheet
 en_GB.jumpXLSX =New spreadsheet
 ar_SA.jumpXLSX =جدول بياني جديد
 bg.jumpXLSX =Нова електронна таблица
@@ -1528,7 +1528,7 @@ sr_Latn_RS.jumpXLSX =Nova proračunska tabela
 sr_Cyrl_RS.jumpXLSX =Нова прорачунска табела
 he.jumpXLSX =גיליון אלקטרוני חדש
 
-en_US.jumpPPTX =New presentation
+en.jumpPPTX =New presentation
 en_GB.jumpPPTX =New presentation
 ar_SA.jumpPPTX =عرض تقديمي جديد
 bg.jumpPPTX =Нова презентация
@@ -1575,7 +1575,7 @@ sr_Latn_RS.jumpPPTX =Nova prezentacija
 sr_Cyrl_RS.jumpPPTX =Нова презентација
 he.jumpPPTX =מצגת חדשה
 
-en_US.jumpDOCXF =New PDF Form
+en.jumpDOCXF =New PDF Form
 en_GB.jumpDOCXF =New PDF Form
 ar_SA.jumpDOCXF =نموذج PDF جديد
 bg.jumpDOCXF =Нов PDF формуляр
@@ -1622,7 +1622,7 @@ sr_Latn_RS.jumpDOCXF =Novi PDF formular
 sr_Cyrl_RS.jumpDOCXF =Нови PDF формулар
 he.jumpDOCXF =טופס PDF חדש
 
-en_US.defprogAppDescription=Free desktop office suite for document editing and collaboration
+en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 en_GB.defprogAppDescription=Free desktop office suite for document editing and collaboration
 ar_SA.defprogAppDescription=حزمة برامج مكتبية مجانية لتحرير المستندات والتعاون لإنجازها مع رفقائك
 bg.defprogAppDescription=Безплатен офис пакет за редактиране и съвместна работа по документи
@@ -1669,7 +1669,7 @@ sr_Latn_RS.defprogAppDescription=Besplatni desktop ofis paket za uređivanje dok
 sr_Cyrl_RS.defprogAppDescription =Бесплатни десктоп офис пакет за уређивање докумената и сарадњу
 he.defprogAppDescription=חבילת תוכנות משרדיות חינמית לשולחן העבודה לעריכת מסמכים ושיתוף פעולה
 
-en_US.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
+en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 en_GB.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 ar_SA.warnWin10FileAssociationDesc=لربط الملفات مع التطبيق، افتح النافذة التالية بعد إكمال التثبيت
 bg.warnWin10FileAssociationDesc=За да свържете файловете с приложението, отворете следния прозорец, след като инсталацията приключи:
@@ -1716,7 +1716,7 @@ sr_Latn_RS.warnWin10FileAssociationDesc=Da biste povezali fajlove sa aplikacijom
 sr_Cyrl_RS.warnWin10FileAssociationDesc =Да бисте повезали фајлове са апликацијом, отворите предстојећи прозор након што се инсталација заврши
 he.warnWin10FileAssociationDesc=כדי לשייך את הקבצים ליישום, פתח את החלון הבא לאחר סיום ההתקנה:
 
-en_US.warnWin10FileAssociationPath=Settings > Apps > Default apps
+en.warnWin10FileAssociationPath=Settings > Apps > Default apps
 en_GB.warnWin10FileAssociationPath=Settings > Apps > Default apps
 ar_SA.warnWin10FileAssociationPath=الإعدادات > تطبيقات > الافتراضية
 bg.warnWin10FileAssociationPath=Настройки> Приложения> Приложение по подразбиране
@@ -1763,7 +1763,7 @@ sr_Latn_RS.warnWin10FileAssociationPath=Podešavanja > Aplikacije > Podrazumevan
 sr_Cyrl_RS.warnWin10FileAssociationPath =Подешавања > Апликације > Подразумеване апликације
 he.warnWin10FileAssociationPath=הגדרות > יישומים > יישומי ברירת מחדל
 
-en_US.runOpenDefaultApps=Open Default apps
+en.runOpenDefaultApps=Open Default apps
 en_GB.runOpenDefaultApps=Open Default apps
 ar_SA.runOpenDefaultApps=افتح التطبيقات الافتراضية
 bg.runOpenDefaultApps=Отвори приложения по подразбиране
@@ -2107,35 +2107,22 @@ end;
 procedure AddContextMenuNewItems;
 var
   lang, dir, regpath, progpath: String;
-  langs, args, values: TArrayOfString;
+  args, values: TArrayOfString;
   version: TWindowsVersion;
   found: Boolean;
   i: Integer;
 begin
-  langs := ['az-Latn-AZ', 'bg-BG', 'cs-CZ', 'de-DE', 'el-GR', 'en-US', 'en-GB', 'es-ES',
-            'eu-ES',      'fr-FR', 'gl-ES', 'hy-AM', 'it-IT', 'ja-JP', 'ko-KR', 'lv-LV',
-            'ms-MY',      'nl-NL', 'pl-PL', 'pt-PT', 'pt-BR', 'ru-RU', 'sk-SK', 'sv-SE',
-            'tr-TR',      'uk-UA', 'vi-VN', 'zh-CN', 'zh-TW', 'ar-SA', 'sr-Latn-RS'];
-
-  found := False;
-  dir := 'en-US';
-  lang := ExpandConstant('{language}');
-  StringChangeEx(lang, '_', '-', True);
-  for i := 0 to GetArrayLength(langs) - 1 do begin
-    if langs[i] = lang then begin
-       dir := langs[i];
-       found := True;
-       break;
-    end;
-  end;
-
-  if not found then begin
-    for i := 0 to GetArrayLength(langs) - 1 do begin
-      if Copy(langs[i], 1, 2) = lang then begin
-        dir := langs[i];
-        break;
-      end;
-    end;
+  lang := ExpandConstant('{cm:AppLocale}');
+  case lang of
+    'ar-SA', 'az-Latn-AZ', 'bg-BG', 'cs-CZ', 'de-DE', 'el-GR',
+    'en-GB', 'en-US', 'es-ES', 'eu-ES', 'fi-FI', 'fr-FR',
+    'gl-ES', 'he-IL', 'hy-AM', 'it-IT', 'ja-JP', 'ko-KR',
+    'lv-LV', 'ms-MY', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-BR',
+    'pt-PT', 'ru-RU', 'si-LK', 'sk-SK', 'sl-SI', 'sr-Cyrl-RS',
+    'sr-Latn-RS', 'sv-SE', 'tr-TR', 'uk-UA', 'vi-VN', 'zh-CN',
+    'zh-TW' : dir := lang;
+  else
+    dir := 'default';
   end;
 
   args := ['new.docx:.docx:.Document.12:7:1000:1100',

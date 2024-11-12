@@ -886,7 +886,7 @@ void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
 {
     if ( !json.empty() ) {
         int index = m_pTabs->tabIndexByView(viewid);
-        if (m_pTabs->panel(index)->data()->isViewType(cvwtEditor))
+        if (index < 0 || m_pTabs->panel(index)->data()->isViewType(cvwtEditor))
             return;
 
         if ( json.rfind(L"default-", 0) == 0 ) {

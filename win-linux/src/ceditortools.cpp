@@ -319,7 +319,8 @@ namespace CEditorTools
 
         if ( result ) {
             CAscTabData * data = new CAscTabData(opts.name);
-            data->setUrl(opts.wurl);
+            if (!(opts.srctype == etTemplateFile))
+                data->setUrl(opts.wurl);
             data->setCloudName(opts.cloud);
             data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile || opts.srctype == etTemplateFile ||
                            (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
