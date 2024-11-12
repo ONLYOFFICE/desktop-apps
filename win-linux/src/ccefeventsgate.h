@@ -78,7 +78,7 @@ public slots:
     virtual void onWebTitleChanged(int, std::wstring json) = 0;
     virtual void onWebAppsFeatures(int, std::wstring) = 0;
     virtual void onReporterMode(int, bool);
-    virtual void onImageLoadFinished(void* fdl, int err) = 0;
+    virtual void onImageLoadFinished(int err) = 0;
     virtual void onErrorPage(int id, const std::wstring& action);
 };
 

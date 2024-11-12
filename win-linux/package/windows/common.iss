@@ -108,11 +108,11 @@ LZMAUseSeparateProcess=yes
 [Languages]
 #define sLicenseFile BRANDING_DIR + "\..\..\..\common\package\license\" + LIC_FILE + ".rtf"
 #ifdef _ONLYOFFICE
-Name: en_US; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
 Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
 #else
 Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
-Name: en_US; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
 #endif
 Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl; LicenseFile: {#sLicenseFile};
 Name: ca; MessagesFile: compiler:Languages\Catalan.isl; LicenseFile: {#sLicenseFile};
@@ -166,14 +166,60 @@ Name: en_GB; MessagesFile: compiler:Languages\EnglishBritish.isl; LicenseFile: {
 Name: he; MessagesFile: compiler:Languages\Hebrew.isl; LicenseFile: {#sLicenseFile};
 
 [LangOptions]
+en.LanguageName=English (United States)
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
 ar_SA.LanguageName=الْعَرَبِيَّة
-en_US.LanguageName=English (United States)
 
 [CustomMessages]
+en.AppLocale =en-US
+en_GB.AppLocale =en-GB
+ru.AppLocale =ru-RU
+de.AppLocale =de-DE
+fr.AppLocale =fr-FR
+es.AppLocale =es-ES
+sk.AppLocale =sk-SK
+cs.AppLocale =cs-CZ
+it_IT.AppLocale =it-IT
+pt_PT.AppLocale =pt-PT
+pt_BR.AppLocale =pt-BR
+pl.AppLocale =pl-PL
+zh_CN.AppLocale =zh-CN
+zh_TW.AppLocale =zh-TW
+ca.AppLocale =ca-ES
+da.AppLocale =da-DK
+el.AppLocale =el-GR
+;et.AppLocale =et-EE
+fi.AppLocale =fi-FI
+;ga_IE.AppLocale =ga-IE
+he.AppLocale =he-IL
+;hi.AppLocale =hi-IN
+;hr.AppLocale =hr-HR
+hu.AppLocale =hu-HU
+hy_AM.AppLocale =hy-AM
+id.AppLocale =id-ID
+no.AppLocale =no-NO
+ro.AppLocale =ro-RO
+sl.AppLocale =sl-SI
+sv.AppLocale =sv-SE
+tr.AppLocale =tr-TR
+ja.AppLocale =ja-JP
+ko.AppLocale =ko-KR
+bg.AppLocale =bg-BG
+nl.AppLocale =nl-NL
+vi.AppLocale =vi-VN
+lv.AppLocale =lv-LV
+;lt.AppLocale =lt-LT
+be.AppLocale =be-BY
+uk.AppLocale =uk-UA
+lo.AppLocale =lo-LA
+gl.AppLocale =gl-ES
+si.AppLocale =si-LK
+ar_SA.AppLocale =ar-SA
+sr_Latn_RS.AppLocale =sr-Latn-RS
+sr_Cyrl_RS.AppLocale =sr-Cyrl-RS
 ;======================================================================================================
-en_US.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
+en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
 en_GB.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
 ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK', чтобы удалить её, или 'Отмена', чтобы выйти из программы инсталляции.
 it_IT.PrevVer=È stata rilevata la versione precedente di {#sAppName}. Fai clic sul pulsante "OK" per disinstallarla oppure su "Annulla" per uscire dalla configurazione.
@@ -185,7 +231,7 @@ ja.PrevVer=旧バージョンの{#sAppName}が検出されました。「OK」�
 es.PrevVer=Se ha detectado la versión anterior de {#sAppName}. Por favor, haga clic en el botón 'OK' para desinstalarla, o en 'Cancelar' para salir de la instalación.
 de.PrevVer=Die vorherige Version von {#sAppName} wurde erkannt. Bitte klicken Sie auf 'OK', um sie zu deinstallieren, oder auf 'Abbrechen', um das Setup zu beenden.
 ;======================================================================================================
-en_US.Launch =Launch %1
+en.Launch =Launch %1
 en_GB.Launch =Launch %1
 ar_SA.Launch =بدء تشغيل %1
 bg.Launch =Пускане %1
@@ -232,7 +278,7 @@ sr_Latn_RS.Launch =Lansiraj %1
 sr_Cyrl_RS.Launch =Лансирај %1
 he.Launch =הפעל את %1
 ;======================================================================================================
-en_US.CreateDesktopIcon =Create %1 &desktop icon
+en.CreateDesktopIcon =Create %1 &desktop icon
 en_GB.CreateDesktopIcon =Create %1 &desktop icon
 ar_SA.CreateDesktopIcon =إنشاء %1 &أيقونة سطح المكتب
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
@@ -279,7 +325,7 @@ sr_Latn_RS.CreateDesktopIcon =Kreiraj %1 &desktop ikonicu
 sr_Cyrl_RS.CreateDesktopIcon =Креирај %1 &десктоп иконицу
 he.CreateDesktopIcon =צור סמל &שולחן עבודה עבור %1
 ;======================================================================================================
-en_US.InstallAdditionalComponents =Installing additional system components. Please wait...
+en.InstallAdditionalComponents =Installing additional system components. Please wait...
 en_GB.InstallAdditionalComponents =Installing additional system components. Please wait...
 ar_SA.InstallAdditionalComponents =جاري تثبيت مكونات نظام إضافية. الرجاء الانتظار...
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
@@ -326,7 +372,7 @@ sr_Latn_RS.InstallAdditionalComponents =Instaliranje dodatnih sistemskih kompone
 sr_Cyrl_RS.InstallAdditionalComponents =Инсталирање додатних системских компоненти. Молимо сачекајте...
 he.InstallAdditionalComponents =מתקין רכיבי מערכת נוספים. אנא המתן...
 ;======================================================================================================
-en_US.AdditionalTasks =Tasks:
+en.AdditionalTasks =Tasks:
 en_GB.AdditionalTasks =Tasks:
 ar_SA.AdditionalTasks =المهام:
 bg.AdditionalTasks =Задачи:
@@ -373,7 +419,7 @@ sr_Latn_RS.AdditionalTasks =Zadaci:
 sr_Cyrl_RS.AdditionalTasks =Задаци:
 he.AdditionalTasks =משימות:
 ;======================================================================================================
-en_US.Uninstall =Uninstall
+en.Uninstall =Uninstall
 en_GB.Uninstall =Uninstall
 ar_SA.Uninstall =إزالة التثبيت
 bg.AdditionalTasks =Деинсталиране
@@ -420,7 +466,7 @@ sr_Latn_RS.Uninstall =Deinstaliraj
 sr_Cyrl_RS.Uninstall =Деинсталирај
 he.Uninstall =הסר התקנה
 ;======================================================================================================
-en_US.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
+en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 en_GB.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 ar_SA.WarningWrongArchitecture =أنت تحاول تثبيت نسخة %1-bit من التطبيق على نسخة %2-bit المثبتة. فضلًا قم بإزالة النسخة السابقة أولًا أو قم بتحميل النسخة الصحيحة ليتم تثبيتها.
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
@@ -468,7 +514,7 @@ sr_Cyrl_RS.WarningWrongArchitecture =Покушавате да инсталир�
 he.WarningWrongArchitecture =אתה מנסה להתקין את גרסת היישום %1-סיביות על גבי גרסת %2-סיביות מותקנת. אנא הסר תחילה את הגרסה הקודמת או הורד את הגרסה הנכונה להתקנה.
 ;======================================================================================================
 
-en_US.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 en_GB.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 ar_SA.UpdateAppRunning=تم اكتشاف أن %1 قيد التشغيل.%n%nسيتم إغلاقه بشكل تلقائي. اضغط حسنًا للإكمال، أو إلغاء.
 bg.UpdateAppRunning=Настройката установи, че %1 в момента работи.%n%nТова ще бъде затворено автоматично. Щракнете върху OK, за да продължите, или Отказ, за да излезете.
@@ -515,7 +561,7 @@ sr_Latn_RS.UpdateAppRunning=Setup je detektovao da %1 se trenutno izvršava.%n%n
 sr_Cyrl_RS.UpdateAppRunning =Сетуп је детектовао да %1 се тренутно извршава.%n%nБиће затворено аутоматски. Кликните ОК да наставите, или Откажи да изађете.
 he.UpdateAppRunning=תוכנית ההתקנה זיהתה ש-%1 פועלת כרגע.%n%nהיא תיסגר אוטומטית. לחץ על אישור כדי להמשיך, או ביטול כדי לצאת.
 ;======================================================================================================
-en_US.WarningClearAppData =Do you want to clear the user settings and application cached data?
+en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 en_GB.WarningClearAppData =Do you want to clear the user settings and application cached data?
 ar_SA.WarningClearAppData =هل تريد مسح إعدادات المستخدم وبيانات التطبيق المؤقتة؟
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
@@ -564,7 +610,7 @@ he.WarningClearAppData =האם ברצונך לנקות את הגדרות המש�
 ;======================================================================================================
 
 
-;en_US.AssociateDescription =Associate office document file types with %1
+;en.AssociateDescription =Associate office document file types with %1
 ;en_GB.AssociateDescription =Associate office document file types with %1
 ;ar_SA.AssociateDescription =هل تريد ربط صيغة المستند بـ %1
 ;bg.AssociateDescription =Свържете типовете файлове на офис документи с %1
@@ -591,7 +637,7 @@ he.WarningClearAppData =האם ברצונך לנקות את הגדרות המש�
 ;sr_Cyrl_RS.AssociateDescription =Повежи врсте офис фајл докумената са %1
 he.AssociateDescription =שייך סוגי קבצי מסמכי משרד ל-%1
 ;======================================================================================================
-en_US.UpdateService =Update service for {#sAppName}
+en.UpdateService =Update service for {#sAppName}
 en_GB.UpdateService =Update service for {#sAppName}
 ar_SA.UpdateService =خدمة التحديث لـ {#sAppName}
 cs.UpdateService =Služba aktualizace {#sAppName}
@@ -637,6 +683,8 @@ var
 
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
 
+function GetHKLM: Integer; forward;
+
 function UninstallPreviosVersion(): Boolean;
 var
   ResultCode: Integer;
@@ -652,7 +700,7 @@ var
 begin
   Result := True;
   if RegGetValueNames(
-  HKEY_LOCAL_MACHINE,
+  GetHKLM(),
   'SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UpgradeCodes\{#sUpgradeCode}',
   Names) then begin
     ConfirmUninstall := IDOK;
@@ -713,7 +761,6 @@ function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: P
   external 'SendMessageTimeoutA@user32.dll stdcall';
 
 //procedure checkArchitectureVersion; forward;
-function GetHKLM: Integer; forward;
 
 procedure InitializeWizard();
 var
@@ -904,7 +951,7 @@ begin
   end else
   if CurStep = ssDone then begin
     // if not (gHWND = 0) then begin
-    if CheckCommandlineParam('/update') then begin
+    if CheckCommandlineParam('/update') and not CheckCommandlineParam('/nolaunch') then begin
       ShellExecAsOriginalUser('', ExpandConstant('{app}\{#iconsExe}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
   end else
@@ -1017,8 +1064,7 @@ begin
         RegValueExists(GetHKLM(), '{#APP_REG_PATH}', 'locale') and
             RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'locale', lang)) then
   begin
-    lang := ExpandConstant('{language}')
-    if (Length(lang) > 2) and (lang[3] = '_') then StringChangeEx(lang, '_', '-', false);
+    lang := ExpandConstant('{cm:AppLocale}')
   end;
 
   result := lang;
