@@ -192,6 +192,7 @@ public:
     static QString          getWindowStylesheets(double);
     static QString          getWindowStylesheets(CScalingFactor);
     static bool             canAppClose();
+    static bool             hasUnsavedChanges();
     static QCefView *       createViewer(QWidget * parent, const QSize& size);
     static QString          newFileName(int format);
     static QString          newFileName(const std::wstring& format);

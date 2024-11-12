@@ -156,6 +156,12 @@ bool CEditorWindow::closed() const
     return d_ptr.get()->panel()->data()->closed();
 }
 
+bool CEditorWindow::modified() const
+{
+    CAscTabData *doc = d_ptr->panel()->data();
+    return doc->hasChanges() && !doc->closed();
+}
+
 bool CEditorWindow::holdView(const std::wstring& portal) const
 {
     return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;

@@ -63,6 +63,7 @@ public:
     double scaling() const;
     int closeWindow();
     bool closed() const;
+    bool modified() const;
     bool holdView(const std::wstring& portal) const;
     void undock(bool maximized = false);
     virtual bool holdView(int id) const final;

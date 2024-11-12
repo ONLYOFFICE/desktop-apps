@@ -35,6 +35,10 @@
 
 #include <QApplication>
 #include <QByteArray>
+#pragma push_macro("signals")
+#undef signals
+#include <gio/gio.h>
+#pragma pop_macro("signals")
 
 
 class CSocket;
@@ -56,6 +60,9 @@ private slots:
 
 private:
     CSocket *m_socket = nullptr;
+    GDBusConnection *m_conn = nullptr;
+    std::string m_client_id;
+    uint    m_subscrId = 0;
     bool    m_isPrimary = false;
 };
 
