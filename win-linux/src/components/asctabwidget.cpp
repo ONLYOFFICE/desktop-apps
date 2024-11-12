@@ -309,6 +309,18 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
 
         if (doc && (!m || !doc->hasChanges())) {
             doc->close();
+            if (i == currentIndex()) {
+                int last = count() - 1;
+                if (i == last) {
+                    if (last == 0) {
+                        AscAppManager::getInstance().mainWindow()->toggleButtonMain(true);
+                    } else {
+                        QStackedWidget::setCurrentIndex(last - 1);
+                    }
+                } else {
+                    QStackedWidget::setCurrentIndex(i + 1);
+                }
+            }
             AscAppManager::getInstance().DestroyCefView(view->cef()->GetId());
 
 //            RELEASEOBJECT(view)
