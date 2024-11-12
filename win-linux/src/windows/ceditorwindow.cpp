@@ -320,6 +320,7 @@ void CEditorWindow::setMenu()
     QAction *actPinToTab = m_pMenu->addSection(CMenu::ActionPinToTab);
     // actPinToTab->setIcon(IconFactory::icon(IconFactory::Pin, SMALL_ICON * m_dpiRatio));
     connect(actPinToTab, &QAction::triggered, this, [=]() {
+            hide();
             AscAppManager::gotoMainWindow();
             AscAppManager::pinWindowToTab(this, 0);
         }, Qt::QueuedConnection);
