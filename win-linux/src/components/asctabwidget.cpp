@@ -141,7 +141,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 {
     m_pBar->setObjectName("asc_editors_tabbar");
     setProperty("active", false);
-    setProperty("empty", true);
+    // setProperty("empty", true);
     m_pBar->setProperty("active", false);
 
     static int _dropedindex = -1;
@@ -244,7 +244,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
     if ( opts.url.isEmpty() && opts.srctype != etNewFile )
         return -1;
 
-    setProperty("empty", false);
+    // setProperty("empty", false);
 
     int file_format = 0;
     if (opts.srctype == etLocalFile) {
@@ -390,7 +390,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 {
     if ( url.isEmpty() ) return -1;
 
-    setProperty("empty", false);
+    // setProperty("empty", false);
 
     QString args, _url = url;
     if ( provider == "onlyoffice" && !_url.contains(QRegularExpression("desktop=true")) )
@@ -436,7 +436,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
 {
     if ( service.isEmpty() || !type.contains(QRegularExpression("sso|outer")) ) return -1;
 
-    setProperty("empty", false);
+    // setProperty("empty", false);
 
     QWidget * panelwidget = createTabPanel(this);
     CTabPanel * pView = panelfromwidget(panelwidget);

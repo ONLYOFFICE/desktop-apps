@@ -589,9 +589,9 @@ void CMainWindow::onEditorAllowedClose(int uid)
             AscAppManager::getInstance().commonEvents().signal(&_event);
 
             if ( !m_pTabs->count() ) {
-                m_pTabs->setProperty("empty", true);
-                m_pTabs->style()->polish(m_pTabs);
-                toggleButtonMain(true);
+                // m_pTabs->setProperty("empty", true);
+                // m_pTabs->style()->polish(m_pTabs);
+                // toggleButtonMain(true);
 
                 if ( m_isCloseAll ) {
                     emit aboutToClose();
