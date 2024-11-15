@@ -281,6 +281,7 @@ void CMainWindow::close()
     m_isCloseAll = true;
 
     if ( m_pTabs->count() == 0 ) {
+        hide();
         emit aboutToClose();
     } else {
         onFullScreen(-1, false);
@@ -315,6 +316,8 @@ void CMainWindow::close()
                 if ( !m_pTabs->isProcessed(i) ) {
                     int _result = trySaveDocument(i);
                     if ( _result == MODAL_RESULT_NO ) {
+                        if (i == 0)
+                            hide();
                         m_pTabs->editorCloseRequest(i);
                         onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
                     } else
@@ -323,6 +326,8 @@ void CMainWindow::close()
                         return;
                     }
                 } else {
+                    if (i == 0)
+                        hide();
                     m_pTabs->editorCloseRequest(i);
                 }
             }
@@ -584,9 +589,9 @@ void CMainWindow::onEditorAllowedClose(int uid)
             AscAppManager::getInstance().commonEvents().signal(&_event);
 
             if ( !m_pTabs->count() ) {
-                m_pTabs->setProperty("empty", true);
-                m_pTabs->style()->polish(m_pTabs);
-                toggleButtonMain(true);
+                // m_pTabs->setProperty("empty", true);
+                // m_pTabs->style()->polish(m_pTabs);
+                // toggleButtonMain(true);
 
                 if ( m_isCloseAll ) {
                     emit aboutToClose();
