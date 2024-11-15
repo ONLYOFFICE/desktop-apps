@@ -286,6 +286,61 @@ utils.parseFileFormat = function(format) {
     return '';
 };
 
+utils.fileExtensionToFileFormat = function(extension) {
+    switch (extension[0] != '.' ? extension : extension.substring(1)) {
+    case 'doc':     return utils.defines.FileFormat.FILE_DOCUMENT_DOC;
+    case 'docx':    return utils.defines.FileFormat.FILE_DOCUMENT_DOCX;
+    case 'odt':     return utils.defines.FileFormat.FILE_DOCUMENT_ODT;
+    case 'rtf':     return utils.defines.FileFormat.FILE_DOCUMENT_RTF;
+    case 'txt':     return utils.defines.FileFormat.FILE_DOCUMENT_TXT;
+    case 'html':    return utils.defines.FileFormat.FILE_DOCUMENT_HTML;
+    case 'mht':     return utils.defines.FileFormat.FILE_DOCUMENT_MHT;
+    case 'epub':    return utils.defines.FileFormat.FILE_DOCUMENT_EPUB;
+    case 'fb2':     return utils.defines.FileFormat.FILE_DOCUMENT_FB2;
+    case 'docm':    return utils.defines.FileFormat.FILE_DOCUMENT_DOCM;
+    case 'dotx':    return utils.defines.FileFormat.FILE_DOCUMENT_DOTX;
+    case 'ott':     return utils.defines.FileFormat.FILE_DOCUMENT_OTT;
+    case 'oform':   return utils.defines.FileFormat.FILE_DOCUMENT_OFORM;
+    case 'docxf':   return utils.defines.FileFormat.FILE_DOCUMENT_DOCXF;
+    case 'pdf':     return utils.defines.FileFormat.FILE_DOCUMENT_OFORM_PDF;
+    case 'fodt':    return utils.defines.FileFormat.FILE_DOCUMENT_ODT_FLAT;
+    case 'dotm':    return utils.defines.FileFormat.FILE_DOCUMENT_DOTM;
+    case 'dotm':    return utils.defines.FileFormat.FILE_DOCUMENT_DOTM;
+    case 'xml':     return utils.defines.FileFormat.FILE_DOCUMENT_XML;
+
+    case 'xls':     return utils.defines.FileFormat.FILE_SPREADSHEET_XLS;
+    case 'xltx':    return utils.defines.FileFormat.FILE_SPREADSHEET_XLTX;
+    case 'xlsx':    return utils.defines.FileFormat.FILE_SPREADSHEET_XLSX;
+    case 'xlsb':    return utils.defines.FileFormat.FILE_SPREADSHEET_XLSB;
+    case 'ods':     return utils.defines.FileFormat.FILE_SPREADSHEET_ODS;
+    case 'csv':     return utils.defines.FileFormat.FILE_SPREADSHEET_CSV;
+    case 'ots':     return utils.defines.FileFormat.FILE_SPREADSHEET_OTS;
+    case 'xltm':    return utils.defines.FileFormat.FILE_SPREADSHEET_XLTM;
+    case 'xlsm':    return utils.defines.FileFormat.FILE_SPREADSHEET_XLSM;
+    case 'fods':    return utils.defines.FileFormat.FILE_SPREADSHEET_ODS_FLAT;
+
+    case 'ppt':     return utils.defines.FileFormat.FILE_PRESENTATION_PPT;
+    case 'potx':    return utils.defines.FileFormat.FILE_PRESENTATION_POTX;
+    case 'pptx':    return utils.defines.FileFormat.FILE_PRESENTATION_PPTX;
+    case 'odp':     return utils.defines.FileFormat.FILE_PRESENTATION_ODP;
+    case 'ppsx':    return utils.defines.FileFormat.FILE_PRESENTATION_PPSX;
+    case 'otp':     return utils.defines.FileFormat.FILE_PRESENTATION_OTP;
+    case 'pptm':    return utils.defines.FileFormat.FILE_PRESENTATION_PPTM;
+    case 'ppsm':    return utils.defines.FileFormat.FILE_PRESENTATION_PPSM;
+    case 'potm':    return utils.defines.FileFormat.FILE_PRESENTATION_POTM;
+    case 'fodp':    return utils.defines.FileFormat.FILE_PRESENTATION_ODP_FLAT;
+
+    // case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDFA:
+    case 'pdf':     return utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF;
+    case 'djvu':    return utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU;
+    case 'xps':     return utils.defines.FileFormat.FILE_CROSSPLATFORM_XPS;
+
+    default: return utils.defines.FileFormat.FILE_UNKNOWN;
+    }
+
+    return '';
+};
+
 utils.fn = {};
 utils.fn.extend = function(dest, src) {
     for (var prop in src) {

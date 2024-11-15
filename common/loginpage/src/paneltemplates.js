@@ -211,6 +211,24 @@
             }
         }
 
+        const _on_add_cloud_templates = function(data) {
+            let c = 0;
+            for (let i of data) {
+                const info = i['attributes']
+                const file_ext = info['form_exts']['data'][0]['attributes']['ext'];
+                const item = {
+                    uid: info.id,
+                    name: info['name_form'],
+                    descr: info['template_desc'],
+                    type: utils.fileExtensionToFileFormat(file_ext),
+                    icon: info['card_desktop_preview']['data'][0]['attributes']['url'],
+                };
+                const model = new FileTemplateModel(item);
+
+                console.log(++c, 'model', i.id, model.name);
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -220,6 +238,16 @@
                     lang: utils.Lang.id,
                     page: 'templates',
                 });
+
+                const _page_num = 1;
+                const _url = 'https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}';
+                fetch(_url)
+                    .then(r => r.json())
+                    .then(d => {
+                        console.log('fetch data', d)
+                        console.log('data pages', d.meta.pagination.page, 'of', d.meta.pagination.pageCount)
+                        _on_add_cloud_templates(d.data);
+                    });
 
                 this.view.$panel.addClass('local');
                 $('.nav-item[data-value=local]', this.view.$panel).addClass('selected');
