@@ -919,9 +919,9 @@ begin
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
 #ifdef _ONLYOFFICE
-      translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}+{cm:jumpDOCXF}');
+      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200+@{app}\{#iconsExe},-1201+@{app}\{#iconsExe},-1202+@{app}\{#iconsExe},-1103');
 #else
-      translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}');
+      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200+@{app}\{#iconsExe},-1201+@{app}\{#iconsExe},-1202');
 #endif
       StringChangeEx(translateArgs, ' ', '_', True);
       StringChangeEx(translateArgs, '+', ' ', True);
