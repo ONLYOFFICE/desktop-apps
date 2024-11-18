@@ -456,6 +456,13 @@ QDialog::DialogCode PrintDialog::exec()
                 QPageSize ps(QSizeF(width, height), QPageSize::Millimeter);
                 m_printer->setPageSize(ps);
                 m_printer->setPageOrientation(pDevmode->dmOrientation == DMORIENT_PORTRAIT ? QPageLayout::Portrait : QPageLayout::Landscape);
+
+                HANDLE hPrinter = NULL;
+                std::wstring printerName = m_printer->printerName().toStdWString();
+                if (OpenPrinter(&printerName[0], &hPrinter, NULL)) {
+                    DocumentProperties(parent_hwnd, hPrinter, &printerName[0], pDevmode, pDevmode, DM_IN_BUFFER | DM_OUT_BUFFER);
+                    ClosePrinter(hPrinter);
+                }
                 GlobalUnlock(dlg.hDevMode);
             }
             exit_code = QDialog::DialogCode::Accepted;
