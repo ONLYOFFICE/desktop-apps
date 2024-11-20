@@ -44,6 +44,7 @@
 #define BUTTON_MAIN_WIDTH   112
 #define MAIN_WINDOW_BORDER_WIDTH 3
 #define WINDOW_TITLE_MIN_WIDTH 200
+#define TOOLBTN_HEIGHT_WIN10 35
 #define TOOLBTN_HEIGHT      28
 #define TOOLBTN_WIDTH       40
 #ifdef _WIN32
@@ -102,6 +103,7 @@ protected:
     QColor         m_brdColor,
                    m_bkgColor;
     QRect          m_window_rect;
+    int            m_toolbtn_height = TOOLBTN_HEIGHT;
 
     virtual void showEvent(QShowEvent *);
 
