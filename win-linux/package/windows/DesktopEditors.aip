@@ -11,7 +11,7 @@
     <ROW Property="ARPCOMMENTS" Value="Free desktop office suite for document editing and collaboration" ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050" ValueLocId="-"/>
     <ROW Property="ARPHELPLINK" Value="http://dev.onlyoffice.org/" ValueLocId="-"/>
-    <ROW Property="ARPHELPTELEPHONE" Value="+371 66016425"/>
+    <ROW Property="ARPHELPTELEPHONE" Value="+371 66016425" ValueLocId="-"/>
     <ROW Property="ARPNOMODIFY" MultiBuildValue="MsiBuild64:1#MsiBuild32:1"/>
     <ROW Property="ARPNOREPAIR" Value="1"/>
     <ROW Property="ARPPRODUCTICON" Value="i_desktopeditors" Type="8"/>
@@ -40,7 +40,7 @@
     <ROW Property="PLUGINS" Value="1" ValueLocId="-"/>
     <ROW Property="PackageName" Value="[|VendorName] [|AppName]" ValueLocId="-"/>
     <ROW Property="PackageShortName" Value="[|VendorShortName]-[|AppShortName]" ValueLocId="-"/>
-    <ROW Property="ProductCode" Value="1029:{00000000-0000-0000-0000-000000000000} 1031:{00000000-0000-0000-0000-000000000000} 1033:{00000000-0000-0000-0000-000000000000} 1036:{00000000-0000-0000-0000-000000000000} 1041:{00000000-0000-0000-0000-000000000000} 1046:{00000000-0000-0000-0000-000000000000} 1049:{00000000-0000-0000-0000-000000000000} 1060:{00000000-0000-0000-0000-000000000000} 2070:{00000000-0000-0000-0000-000000000000} 3082:{00000000-0000-0000-0000-000000000000} " Type="16"/>
+    <ROW Property="ProductCode" Value="1025:{00000000-0000-0000-0000-000000000000} 1026:{00000000-0000-0000-0000-000000000000} 1027:{00000000-0000-0000-0000-000000000000} 1028:{00000000-0000-0000-0000-000000000000} 1029:{00000000-0000-0000-0000-000000000000} 1030:{00000000-0000-0000-0000-000000000000} 1031:{00000000-0000-0000-0000-000000000000} 1032:{00000000-0000-0000-0000-000000000000} 1033:{00000000-0000-0000-0000-000000000000} 1035:{00000000-0000-0000-0000-000000000000} 1036:{00000000-0000-0000-0000-000000000000} 1037:{00000000-0000-0000-0000-000000000000} 1038:{00000000-0000-0000-0000-000000000000} 1040:{00000000-0000-0000-0000-000000000000} 1041:{00000000-0000-0000-0000-000000000000} 1042:{00000000-0000-0000-0000-000000000000} 1043:{00000000-0000-0000-0000-000000000000} 1044:{00000000-0000-0000-0000-000000000000} 1045:{00000000-0000-0000-0000-000000000000} 1046:{00000000-0000-0000-0000-000000000000} 1048:{00000000-0000-0000-0000-000000000000} 1049:{00000000-0000-0000-0000-000000000000} 1051:{00000000-0000-0000-0000-000000000000} 1053:{00000000-0000-0000-0000-000000000000} 1055:{00000000-0000-0000-0000-000000000000} 1057:{00000000-0000-0000-0000-000000000000} 1058:{00000000-0000-0000-0000-000000000000} 1059:{00000000-0000-0000-0000-000000000000} 1060:{00000000-0000-0000-0000-000000000000} 1062:{00000000-0000-0000-0000-000000000000} 1066:{00000000-0000-0000-0000-000000000000} 1110:{00000000-0000-0000-0000-000000000000} 2052:{00000000-0000-0000-0000-000000000000} 2057:{00000000-0000-0000-0000-000000000000} 2070:{00000000-0000-0000-0000-000000000000} 2074:{00000000-0000-0000-0000-000000000000} 3082:{00000000-0000-0000-0000-000000000000} 3098:{00000000-0000-0000-0000-000000000000} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="[|PackageName]" ValueLocId="-"/>
     <ROW Property="ProductVersion" Value="0.0.0.0" Options="32"/>
@@ -427,21 +427,44 @@
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="251"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|PackageShortName]-[|ProductVersion]-[|Arch]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
-    <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|PackageShortName]-[|ProductVersion]-[|Arch]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
+    <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|PackageShortName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
+    <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|PackageShortName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
-    <ROW Path="&lt;AI_DICTS&gt;ui_ru.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_ar.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_bg.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_ca.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_cs.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_da.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_de.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_el.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en_GB.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_es.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_fi.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_fr.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_he.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_hu.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_id.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_it.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_ja.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_ko.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_nb.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_nl.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_pl.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_pt.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_pt_BR.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_ru.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_sk.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_sl.ail"/>
-    <ROW Path="&lt;AI_DICTS&gt;ui_ja.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_sr_SP_Cyrillic.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_sr_SP_Latin.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_sv.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_tr.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_uk.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_zh.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_zh_TW.ail"/>
     <ROW Path="dictionary.ail" Options="1"/>
     <ATTRIBUTE name="TranslateSegments" value="0b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111100011110000000110000000000001"/>
   </COMPONENT>
@@ -936,7 +959,7 @@
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
-    <ROW Dialog="FileAssociationsCustomDlg" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel" TitleLocId="Control.Text.FileAssociationsDlg#Title"/>
+    <ROW Dialog="FileAssociationsCustomDlg" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel" TitleLocId="Dialog.FileAssociationsDlg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="FA_CSV" Component_="c_reg_fa_ext__csv"/>
