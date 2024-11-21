@@ -1,6 +1,6 @@
 
 TARGET  = online-installer
-CONFIG  += c++11 utf8_source
+CONFIG  += c++11 utf8_source static_runtime
 CONFIG  -= app_bundle
 CONFIG  -= qt
 CONFIG  -= debug_and_release debug_and_release_target
