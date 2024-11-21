@@ -142,7 +142,7 @@ QPushButton* CWindowBase::createToolButton(QWidget * parent, const QString& name
     btn->setObjectName(name);
     btn->setProperty("class", "normal");
     btn->setProperty("act", "tool");
-    btn->setFixedSize(int(TITLEBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+    btn->setFixedSize(int(TITLEBTN_WIDTH*m_dpiRatio), int(m_toolbtn_height * m_dpiRatio));
 #ifdef __linux__
     btn->setMouseTracking(true);
     btn->setProperty("unix", true);
@@ -168,6 +168,7 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
     layoutBtns->setContentsMargins(0, 0, 0, 0);
     layoutBtns->setSpacing(int(1*m_dpiRatio));
     layoutBtns->addStretch();
+    layoutBtns->setAlignment(Qt::AlignTop);
     _boxTitleBtns->setLayout(layoutBtns);
     if (isCustomWindowStyle()) {
         const QString names[3] = {"toolButtonMinimize", "toolButtonMaximize", "toolButtonClose"};
@@ -246,7 +247,7 @@ void CWindowBase::setScreenScalingFactor(double factor, bool resize)
         pLayoutBtns->setSpacing(int(1 * m_dpiRatio));
         if (isCustomWindowStyle()) {
             pLayoutBtns->setContentsMargins(0, 0, 0, 0);
-            QSize small_btn_size(int(TITLEBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+            QSize small_btn_size(int(TITLEBTN_WIDTH*m_dpiRatio), int(m_toolbtn_height * m_dpiRatio));
             foreach (auto pBtn, m_pTopButtons)
                 pBtn->setFixedSize(small_btn_size);
         }

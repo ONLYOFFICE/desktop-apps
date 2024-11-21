@@ -75,6 +75,10 @@ CMainWindow::CMainWindow(const QRect &rect) :
     m_savePortal(QString())
 {
     setObjectName("MainWindow");
+#ifdef _WIN32
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle())
+        m_toolbtn_height = TOOLBTN_HEIGHT_WIN10;
+#endif
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
     QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
@@ -417,6 +421,8 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     mainPanel->setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
 #ifdef _WIN32
     mainPanel->setProperty("unix", false);
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle())
+        mainPanel->setProperty("win10", true);
 #else
     mainPanel->setProperty("unix", true);
 #endif
@@ -437,6 +443,14 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     m_boxTitleBtns->setObjectName("CX11Caption");
     _pMainGridLayout->addWidget(m_boxTitleBtns, 0, 2, 1, 1);
     m_boxTitleBtns->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+
+#ifdef _WIN32
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle()) {
+        foreach (auto *btn, m_pTopButtons) {
+            btn->setProperty("win10", true);
+        }
+    }
+#endif
 
 #ifdef __DONT_WRITE_IN_APP_TITLE
     QLabel * label = new QLabel(m_boxTitleBtns);
@@ -1622,7 +1636,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/
-    m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
+    m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(m_toolbtn_height * dpiratio));
     m_pMainPanel->setProperty("zoom", QString::number(dpiratio) + "x");
     QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
     m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
@@ -1731,6 +1745,36 @@ void CMainWindow::onLayoutDirectionChanged()
         m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
     }
 }
+
+#ifdef _WIN32
+void CMainWindow::applyWindowState()
+{
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle()) {
+        m_toolbtn_height = isMaximized() ? TOOLBTN_HEIGHT : TOOLBTN_HEIGHT_WIN10;
+        m_pMainPanel->setProperty("win10", !isMaximized());
+        m_pMainPanel->style()->polish(m_pMainPanel);
+        m_pButtonMain->style()->polish(m_pButtonMain);
+        m_pButtonMain->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
+        if (m_pWidgetDownload && m_pWidgetDownload->toolButton())
+            m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+
+        QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
+        m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
+                                                     GetColorQValueByRole(ecrButtonBackground),
+                                                     GetColorQValueByRole(ecrButtonHoverBackground),
+                                                     GetColorQValueByRole(ecrButtonPressedBackground),
+                                                     GetColorQValueByRole(ecrTabDivider),
+                                                     GetColorQValueByRole(ecrTabWordActive)));
+
+        foreach (auto *btn, m_pTopButtons) {
+            btn->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
+            btn->setProperty("win10", !isMaximized());
+            btn->style()->polish(btn);
+        }
+    }
+    CWindowBase::applyWindowState();
+}
+#endif
 
 void CMainWindow::handleWindowAction(const std::wstring& action)
 {
