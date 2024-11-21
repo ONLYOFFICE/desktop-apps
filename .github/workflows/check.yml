@@ -1,12 +1,11 @@
-name: Spellcheck
+name: Spellcheck changelogs
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - '*'
+      - '**'
     paths:
-      - 'win-linux/package/windows/update/changes/**'
       - 'macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/**'
       - '.aspell.*.pws'
 
@@ -16,14 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup aspell
-        run: sudo apt-get -y update && sudo apt-get -y install aspell aspell-en aspell-ru
-      - name: Run spellchecker for English Windows changelogs
+        run: |
+          sudo apt-get -y update && \
+          sudo apt-get -y install aspell aspell-en aspell-ru
+      - name: Run spellchecker for english changelogs
         if: always()
         run: |
-          for d in win-linux/package/windows/update/changes/*/ ; do
-            if [ -f ${d}en.html ]; then
-              echo "Checking ${d}en.html"
-              SPELLCHECK_OUT=$(cat ${d}en.html \
+          for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
+            if [ -f ${d}changes.html ]; then
+              echo "Checking ${d}changes.html"
+              SPELLCHECK_OUT=$(cat ${d}changes.html \
                 | aspell --lang=en --encoding=utf-8 \
                   --mode=html --personal=./.aspell.en.pws list)
               if [ $(echo -n $SPELLCHECK_OUT | wc -c) -ne 0 ]; then
@@ -32,43 +33,13 @@ jobs:
             fi
           done
           exit ${RC:-0}
-      - name: Run spellchecker for Russian Windows changelogs
-        if: always()
-        run: |
-          for d in win-linux/package/windows/update/changes/*/ ; do
-            if [ -f ${d}ru.html ]; then
-              echo "Checking ${d}ru.html"
-              SPELLCHECK_OUT=$(cat ${d}ru.html \
-                | aspell --lang=ru --encoding=utf-8 \
-                  --mode=html --personal=./.aspell.ru.pws list)
-              if [ $(echo -n $SPELLCHECK_OUT | wc -c) -ne 0 ]; then
-                echo $SPELLCHECK_OUT && RC=1
-              fi
-            fi
-          done
-          exit ${RC:-0}
-      - name: Run spellchecker for English macOS changelogs
+      - name: Run spellchecker for russian changelogs
         if: always()
         run: |
           for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
-            if [ -f ${d}ReleaseNotes.html ]; then
-              echo "Checking ${d}ReleaseNotes.html"
-              SPELLCHECK_OUT=$(cat ${d}ReleaseNotes.html \
-                | aspell --lang=en --encoding=utf-8 \
-                  --mode=html --personal=./.aspell.en.pws list)
-              if [ $(echo -n $SPELLCHECK_OUT | wc -c) -ne 0 ]; then
-                echo $SPELLCHECK_OUT && RC=1
-              fi
-            fi
-          done
-          exit ${RC:-0}
-      - name: Run spellchecker for Russian macOS changelogs
-        if: always()
-        run: |
-          for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
-            if [ -f ${d}ReleaseNotesRU.html ]; then
-              echo "Checking ${d}ReleaseNotesRU.html"
-              SPELLCHECK_OUT=$(cat ${d}ReleaseNotesRU.html \
+            if [ -f ${d}changes.ru.html ]; then
+              echo "Checking ${d}changes.ru.html"
+              SPELLCHECK_OUT=$(cat ${d}changes.ru.html \
                 | aspell --lang=ru --encoding=utf-8 \
                   --mode=html --personal=./.aspell.ru.pws list)
               if [ $(echo -n $SPELLCHECK_OUT | wc -c) -ne 0 ]; then
