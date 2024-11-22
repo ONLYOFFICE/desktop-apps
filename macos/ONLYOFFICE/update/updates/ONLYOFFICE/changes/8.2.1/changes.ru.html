@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>История изменений ONLYOFFICE</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 8.1.3 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+     </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 8.2.1<span class="releasedate"> - {{DATE}}</span></h1>
+
+        <h2>Fixes</h2>
+
+        <h4>All Editors</h4>
+        <ul>
+            <li>Fixed appearance of an extra argument when switching from a linear equation to a professional one</li>
+            <li>Fixed navigation via menu instead of moving around text when using the Alt key and keyboard arrows</li>
+            <li>Fixed inconsistency in the appearance of labels as compared to other editors when opening some documents with charts</li>
+            <li>Fixed the ability to add some <code>TIF</code>/<code>TIFF</code> images to documents</li>
+            <li>Fixed switching to an incorrect directory when selecting the Open file location option for an unsaved template</li>
+            <li>Fixed an incorrect format when exporting a document to an image if the application is connected to DocSpace</li>
+            <li>Fixed an incorrect format when repeated exporting a document from the portal if it was previously exported to an image</li>
+            <li>Fixed switching the application to the RTL interface</li>
+            <li>Fixed installing the application with the English (United Kingdom) localization instead of English (United States) (macOS Intel Chip)</li>
+            <li>Fixed repeated switching of the application theme to the system one</li>
+            <li>Fixed inconsistency in displaying mathematical equations to the Dark document mode</li>
+            <li>Fixed inconsistency between scroll bar styles in the Local templates section and the selected application theme</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Fixed an issue with calculating spacing before for a paragraph in block-level sdt</li>
+            <li>Fixed an issue with cell selection after removing table rows</li>
+            <li>Fixed calculating footnotes in the extreme case when there is no space even for 1 line</li>
+            <li>Fixed an issue with the exact row height support when opening <code>DOCX</code> files</li>
+            <li>Fixed the input window overlay on text in the Japanese (Microsoft IME) layout</li>
+            <li>Fixed inconsistency in displaying numbered lists as compared to other editors when opening some <code>DOCX</code> documents</li>
+            <li>Fixed appearance of a frame around the paragraph inserted from other sources</li>
+            <li>Fixed the presence of artifacts when applying strikethrough or double strikethrough in a formula</li>
+            <li>Fixed calculation of a math equation that was split into multiple lines</li>
+            <li>Fixed text offset in autoshapes when opening some <code>DOCX</code> files</li>
+            <li>Fixed table offset in header when opening some <code>DOCX</code> files</li>
+            <li>Fixed text offset when opening some <code>DOCX</code> files</li>
+            <li>Fixed saving some <code>SVG</code> images when exporting <code>DOCX</code> to <code>PDF</code></li>
+            <li>Fixed removing a section break after converting some <code>RTF</code> files to <code>DOCX</code></li>
+            <li>Fixed removing the Title and Tag properties when moving the Content Control that contains an image</li>
+            <li>Fixed losing the Drop-down list that was added and modified in the Reviewing mode</li>
+            <li>Fixed duplicating an input field when moving the Content Control using the mouse</li>
+            <li>Fixed shifting focus from the Check Box to other elements after changing its state in some <code>DOCX</code> documents</li>
+            <li>Fixed losing the OLE object contents when exporting some <code>DOCX</code> files to <code>HTML</code></li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Fixed correct work of data validation specified with the <code>LEFT</code> formula</li>
+            <li>Fixed consideration of the time zone when inserting a date using <code>Ctrl</code> + <code>;</code></li>
+            <li>Fixed stopping work of the editor when copying the cell, containing a link to an external file</li>
+            <li>Fixed stopping work of the editor when changing the column width using a stylus</li>
+            <li>Fixed long opening of some <code>XLSX</code> files which causes stopping work of the editor</li>
+            <li>Fixed displaying autoshapes containing a macro mechanism</li>
+            <li>Fixed losing changes when using special paste after building some <code>XLSX</code> files</li>
+            <li>Fixed the value type error when recalculating the <code>IF</code> function in some <code>XLSX</code> files</li>
+            <li>Fixed appearance of extra pages when previewing or printing some <code>XLSX</code> files</li>
+            <li>Fixed appearance of borders after inserting cells copied from third-party applications</li>
+            <li>Fixed appearance of an extra warning when editing a link to an external data source</li>
+            <li>Fixed selecting fractional numbers using Goal Seek</li>
+            <li>Fixed incorrect rounding when using the <code>ROUNDUP</code> function</li>
+            <li>Fixed creating data array as a result of calculating the <code>VLOOKUP</code> function if the argument is not an array</li>
+            <li>Fixed the rendering artifacts for some cases when scrolling the content of the sheet</li>
+            <li>Fixed the dependence of the scroll step on the system scale</li>
+            <li>Fixed displaying the drop-down list button</li>
+            <li>Fixed the ability to apply the AutoFilter to an imported range</li>
+            <li>Fixed the ability to use the space in a name of a protected range</li>
+            <li>Fixed jumps when scrolling a sheet using selection with the <code>Shift</code> key and keyboard arrows</li>
+            <li>Fixed the ability to choose cells after scrolling an area frozen with the Freeze Panes option if there are other cells below them</li>
+            <li>Fixed the position of the comment window when expanding the panel with them</li>
+            <li>Fixed overlapping the cell content by a comment in the Sheet Right-to-left mode</li>
+            <li>Fixed layering of line number when scrolling a sheet in the Sheet Right-to-left mode</li>
+            <li>Fixed duplicating the comment marker in the Sheet Right-to-left mode</li>
+            <li>Fixed shifting of column guides when resizing them in the Sheet Right-to-left mode</li>
+            <li>Fixed shifting of graphic objects when opening the toolbar in the Sheet Right-to-left mode</li>
+            <li>Fixed shifting of the equation field when entering values in the Sheet Right-to-left mode</li>
+            <li>Fixed highlighting of an added equation after after restarting the editor</li>
+            <li>Fixed displaying the equation auxiliary menu when switching to the Sheet Right-to-left mode</li>
+            <li>Fixed displaying the comment after activating the Sheet Right-to-left mode</li>
+            <li>Fixed shifting of conditional formatting icons after enabling the Sheet Right-to-left mode</li>
+            <li>Fixed missing graphic objects in some <code>XLSX</code> files on horizontal scrolling in the Sheet Right-to-left mode</li>
+            <li>Fixed moving graphic objects after their rotation in the Sheet Right-to-left mode</li>
+            <li>Fixed the displayed number of rows or columns exceeding specification limits</li>
+            <li>Fixed inconsistency between the style of row and column headers and the Gray application theme</li>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Fixed missing a chart when opening some <code>PPTX</code> files</li>
+            <li>Fixed inline check and numbering bullet check in presentation mode for math equations</li>
+            <li>Fixed the watermark position when using protection in the DocSpace room</li>
+            <li>Fixed missing graphic elements in the presenter mode when demonstrating some <code>PPTX</code> files</li>
+            <li>Fixed changing the color scheme when opening some <code>PPTX</code> files</li>
+            <li>Fixed the ability to apply columns for a group of SmartArt objects</li>
+            <li>Fixed applying object formatting performed on a parent slide in the Slide Master mode</li>
+        </ul>
+        <h4>Forms</h4>
+        <ul>
+            <li>Fixed the ability to delete the field with the Lock property if the Fixed size setting is enabled</li>
+            <li>Fixed the absence of the ability to submit a completed form if it contains the Date & Time field with the Required property</li>
+            <li>Fixed the work of composite input in fields with the Comb of characters property</li>
+            <li>Fixed the ability to insert an image from storage or URL to the form field</li>
+            <li>Fixed the absence of the ability to go to the Signature field using the toolbar buttons</li>
+            <li>Fixed the ability to put the cursor to the same paragraph after creating an Inline Text Field</li>
+            <li>Fixed moving a form field located in a table after activating the Fixed size field property</li>
+            <li>Fixed the size of the Signature field track when switching from the Edit to View mode and vice versa</li>
+            <li>Fixed stopping navigation through fields using the Previous/Next Field buttons in some forms</li>
+        </ul>
+        <h4>PDF Editor</h4>
+        <ul>
+            <li>Reworked loading of fonts required for page rendering due to page hang out in collaborative mode</li>
+            <li>Fixed stopping work of the editor when printing some <code>PDF</code> files</li>
+            <li>Fixed stopping work of the editor when opening some <code>PDF</code> files</li>
+            <li>Fixed stopping work of the editor after receiving an autoshape with text in co-editing</li>
+            <li>Fixed the issue with different text shaping in collaboration mode</li>
+            <li>Fixed different appearance of documents after transferring an image in co-editing</li>
+            <li>Fixed the appearance of a deleted page after re-saving some <code>PDF</code> files</li>
+            <li>Fixed shifting of a table when adding rows using Tab</li>
+            <li>Fixed applying fill when creating some formulas</li>
+            <li>Fixed displaying styles of some formulas in co-editing</li>
+            <li>Fixed clearing all elements when erasing one of them with the Erase tool</li>
+            <li>Fixed missing Text call out after the file formation</li>
+            <li>Fixed losing a comment in co-editing if another user replied to it</li>
+            <li>Fixed the distortion of the bulleted list after editing some <code>PDF</code> files</li>
+            <li>Fixed missing notifications about inactivity when working with <code>PDF</code> files for a long time</li>
+            <li>Fixed recording of checkbox state changes in <code>PDF</code> files</li>
+            <li>Fixed losing an autoshape shadow when opening some <code>PDF</code> files</li>
+            <li>Fixed changing the color of some images after inserting them and saving the <code>PDF</code> file</li>
+            <li>Fixed changing the color of hieroglyphs when exporting some <code>PDF</code> files to images</li>
+            <li>Fixed rotation of the modified page content after saving some <code>PDF</code> files</li>
+            <li>Fixed missing added changes on preview or after printing some <code>PDF</code> files from the portal</li>
+            <li>Fixed incorrect selector behavior when selecting lines in some <code>PDF</code> files</li>
+            <li>Fixed the ability to enter text after pasting from the clipboard</li>
+            <li>Fixed the appearance of a warning when pasting text via the Paste button on the toolbar</li>
+            <li>Fixed missing contents on the preview of the added page when editing some <code>PDF</code> files</li>
+        </ul>
+        <h4>Convert</h4>
+        <ul>
+            <li>Fixed the appearance of an error when opening the result of converting <code>PDF</code> to <code>DOCX</code> in third-party editors</li>
+            <li>Fixed stopping work of the editor after opening the result of converting some <code>XLSX</code> to <code>XLSB</code></li>
+            <li>Fixed endless conversion of some <code>ODP</code> files to <code>PPTX</code></li>
+            <li>Fixed the Segmentation fault error during the conversion of some <code>ODP</code> files to <code>OTP</code></li>
+            <li>Fixed the Segmentation fault error during the conversion of some <code>DOCX</code> files to <code>HTML</code>/<code>DJVU</code>/<code>EPUB</code></li>
+            <li>Fixed crash when converting some <code>DOCX</code> files to <code>HTML</code>/<code>DJVU</code>/<code>EPUB</code> or image file formats</li>
+            <li>Fixed an error when converting some <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed the appearance of an error when opening the result of converting <code>XPS</code> to <code>DOCX</code> in third-party editors</li>
+            <li>Fixed the appearance of an error when opening the result of converting <code>ODP</code>/<code>OTP</code>/<code>FODT</code> to <code>PPTX</code> in third-party editors</li>
+            <li>Fixed the appearance of an error when opening the result of converting <code>ODT</code> to <code>DOCX</code> in third-party editors</li>
+            <li>Fixed data loss in a table when converting <code>DOCX</code> to <code>RTF</code></li>
+            <li>Fixed layering of hieroglyphs in the <code>EMF</code> images when opening some <code>XLSX</code> files</li>
+            <li>Fixed document structure corruption when opening some <code>EPUB</code> documents</li>
+            <li>Fixed cropping the <code>EMF</code> images after converting some <code>DOCX</code> files to an image</li>
+            <li>Fixed writing the formula calculation result when exporting <code>XLSX</code> to <code>CSV</code></li>
+            <li>Fixed considering the availability of the VBA macros when converting the <code>XLSB</code> files</li>
+            <li>Fixed corruption of links to sheets containing non-Latin characters after exporting to the <code>ODS</code> format</li>
+        </ul>
+    </div>
+</body>
+</html>
