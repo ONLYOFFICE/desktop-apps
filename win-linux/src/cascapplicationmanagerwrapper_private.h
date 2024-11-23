@@ -408,6 +408,24 @@ public:
         return m_appmanager.editorWindowFromViewId(viewid);
     }
 
+    auto recentFromViewId(int viewid) -> int
+    {
+        CCefView * _cef = nullptr;
+        int _recent_id = -1;
+        while(true) {
+            _cef = m_appmanager.GetViewByRecentId(_recent_id);
+            if ( !_cef )
+                break;
+            else
+            if ( _cef->GetId() == viewid )
+                return _recent_id;
+
+            ++_recent_id;
+        }
+
+        return -1;
+    }
+
     auto openDocument(const COpenOptions& opts) -> bool
     {
         COpenOptions opts_ext{opts};
