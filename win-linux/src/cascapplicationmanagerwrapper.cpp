@@ -416,6 +416,14 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
         } else
+        if ( !(cmd.find(L"recent:forget") == std::wstring::npos) ) {
+            int id = m_private->recentFromViewId(event->get_SenderId());
+            if ( !(id < 0) ){
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
+            }
+
+            return true;
+        } else
         if ( !(cmd.find(L"system:changed") == std::wstring::npos) ) {
             QRegularExpression re(":\\s?\"(dark|light)");
             QRegularExpressionMatch match = re.match(QString::fromStdWString(pData->get_Param()));
