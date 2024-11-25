@@ -7,29 +7,13 @@ DEFINES += APP_LANG_PATH=\"./langs/langs.iss\"
 
 OTHER_FILES += $$PWD/res/langs/langs.iss
 
-ENV_URL_INSTALL_X64 = $$(DESKTOP_URL_INSTALL_CHANNEL_X64)
-!isEmpty(ENV_URL_INSTALL_X64) {
-    DEFINES += URL_INSTALL_X64=\\\"$${ENV_URL_INSTALL_X64}\\\"
-}
+ENV_URL_INSTALL = $$(DESKTOP_URL_INSTALL_CHANNEL)
+isEmpty(ENV_URL_INSTALL): DEFINES += URL_INSTALL=\\\"\\\"
+else: DEFINES += URL_INSTALL=\\\"$${ENV_URL_INSTALL}\\\"
 
-ENV_URL_INSTALL_X86 = $$(DESKTOP_URL_INSTALL_CHANNEL_X86)
-!isEmpty(ENV_URL_INSTALL_X86) {
-    DEFINES += URL_INSTALL_X86=\\\"$${ENV_URL_INSTALL_X86}\\\"
-}
+ENV_URL_INSTALL_DEV = $$(DESKTOP_URL_INSTALL_DEV_CHANNEL)
+isEmpty(ENV_URL_INSTALL_DEV): DEFINES += URL_INSTALL_DEV=\\\"\\\"
+else: DEFINES += URL_INSTALL_DEV=\\\"$${ENV_URL_INSTALL_DEV}\\\"
 
-ENV_URL_INSTALL_X64_MSI = $$(DESKTOP_URL_INSTALL_CHANNEL_X64_MSI)
-!isEmpty(ENV_URL_INSTALL_X64_MSI) {
-    DEFINES += URL_INSTALL_X64_MSI=\\\"$${ENV_URL_INSTALL_X64_MSI}\\\"
-}
-
-ENV_URL_INSTALL_X86_MSI = $$(DESKTOP_URL_INSTALL_CHANNEL_X86_MSI)
-!isEmpty(ENV_URL_INSTALL_X86_MSI) {
-    DEFINES += URL_INSTALL_X86_MSI=\\\"$${ENV_URL_INSTALL_X86_MSI}\\\"
-}
-
-message(install x64 url: \\\"$$ENV_URL_INSTALL_X64\\\")
-message(install x86 url: \\\"$$ENV_URL_INSTALL_X86\\\")
-message(install x64 xp url: \\\"$$ENV_URL_INSTALL_X64_XP\\\")
-message(install x86 xp url: \\\"$$ENV_URL_INSTALL_X86_XP\\\")
-message(install x64 msi url: \\\"$$ENV_URL_INSTALL_X64_MSI\\\")
-message(install x86 msi url: \\\"$$ENV_URL_INSTALL_X86_MSI\\\")
+message(install url: \\\"$$ENV_URL_INSTALL\\\")
+message(install dev url: \\\"$$ENV_URL_INSTALL_DEV\\\")

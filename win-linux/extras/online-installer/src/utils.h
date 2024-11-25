@@ -48,6 +48,9 @@ using std::to_wstring;
 
 namespace NS_Utils
 {
+void parseCmdArgs(int argc, wchar_t *argv[]);
+bool cmdArgContains(const wstring &param);
+wstring cmdArgValue(const wstring &param);
 wstring GetLastErrorAsString(DWORD errID = 0);
 void ShowMessage(wstring str, bool showError = false);
 bool IsRtlLanguage(unsigned long lcid);
