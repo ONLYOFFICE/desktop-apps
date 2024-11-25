@@ -16,15 +16,12 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
     UNREFERENCED_PARAMETER(hPrevInstance);
     int num_args = 0;
     if (LPTSTR *args = CommandLineToArgvW(lpCmdLine, &num_args)) {
-        for (int i = 0; i < num_args; i++) {
-            if (lstrcmpi(args[i], _T("--log")) == 0) {
-                NS_Logger::AllowWriteLog();
-                break;
-            }
-        }
         NS_Utils::parseCmdArgs(num_args, args);
         LocalFree(args);
     }
+    if (NS_Utils::cmdArgContains(_T("--log")))
+        NS_Logger::AllowWriteLog();
+
     std::locale::global(std::locale(""));
     LCID lcid = MAKELCID(GetUserDefaultUILanguage(), SORT_DEFAULT);
     Translator lang(lcid, IDT_TRANSLATIONS);
