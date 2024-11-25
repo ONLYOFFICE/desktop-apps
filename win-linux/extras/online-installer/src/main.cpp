@@ -3,7 +3,6 @@
 #include <locale>
 #include "resource.h"
 #include "utils.h"
-#include "baseutils.h"
 #include "translator.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -13,12 +12,6 @@
 #endif
 #ifndef URL_INSTALL_X86
 # define URL_INSTALL_X86 ""
-#endif
-#ifndef URL_INSTALL_X64_XP
-# define URL_INSTALL_X64_XP ""
-#endif
-#ifndef URL_INSTALL_X86_XP
-# define URL_INSTALL_X86_XP ""
 #endif
 #ifndef URL_INSTALL_X64_MSI
 # define URL_INSTALL_X64_MSI ""
@@ -62,11 +55,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
     wstring url_or_path, arch;
     bool app_installed = NS_Utils::IsAppInstalled(url_or_path, &arch);
     if (!app_installed) {
-        if (NS_Utils::IsWin64()) {
-            url_or_path = (Utils::getWinVersion() <= Utils::WinVer::WinVista) ? _T(URL_INSTALL_X64_XP) : _T(URL_INSTALL_X64);
-        } else {
-            url_or_path = (Utils::getWinVersion() <= Utils::WinVer::WinVista) ? _T(URL_INSTALL_X86_XP) : _T(URL_INSTALL_X86);
-        }
+        url_or_path = NS_Utils::IsWin64() ? _T(URL_INSTALL_X64) : _T(URL_INSTALL_X86);
     }
 
     Application app(hInst, lpCmdLine, nCmdShow);

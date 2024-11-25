@@ -26,12 +26,6 @@
 #ifndef URL_INSTALL_X86
 # define URL_INSTALL_X86 ""
 #endif
-#ifndef URL_INSTALL_X64_XP
-# define URL_INSTALL_X64_XP ""
-#endif
-#ifndef URL_INSTALL_X86_XP
-# define URL_INSTALL_X86_XP ""
-#endif
 #ifndef URL_INSTALL_X64_MSI
 # define URL_INSTALL_X64_MSI ""
 #endif
@@ -394,11 +388,7 @@ void MainWindow::startUpdate()
     if (m_package == L"msi") {
         url = (m_arch == L"x64") ? _T(URL_INSTALL_X64_MSI) : _T(URL_INSTALL_X86_MSI);
     } else {
-        if (Utils::getWinVersion() <= Utils::WinVer::WinVista) {
-            url = (m_arch == L"x64") ? _T(URL_INSTALL_X64_XP) : _T(URL_INSTALL_X86_XP);
-        } else {
-            url = (m_arch == L"x64") ? _T(URL_INSTALL_X64) : _T(URL_INSTALL_X86);
-        }
+        url = (m_arch == L"x64") ? _T(URL_INSTALL_X64) : _T(URL_INSTALL_X86);
     }
 
     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
@@ -445,8 +435,6 @@ void MainWindow::startRepair()
     wstring url = L"https://github.com/%1/%2/releases/download/%3/%4";
     {
         wstring url_filename = L"DesktopEditors_" + m_arch;
-        if (Utils::getWinVersion() <= Utils::WinVer::WinVista)
-            url_filename.append(L"_xp");
         url_filename.append(L"." + m_package);
 
         wstring url_ver = L"v" + m_ver;
