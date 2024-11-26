@@ -408,11 +408,6 @@ public:
         return m_appmanager.editorWindowFromViewId(viewid);
     }
 
-    auto removeRecentByViewId(int viewid) -> bool
-    {
-        return m_appmanager.RemoveRecentByViewId(viewid);
-    }
-
     auto openDocument(const COpenOptions& opts) -> bool
     {
         COpenOptions opts_ext{opts};

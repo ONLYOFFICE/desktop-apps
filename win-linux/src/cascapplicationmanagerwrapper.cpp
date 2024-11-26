@@ -417,7 +417,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( !(cmd.find(L"recent:forget") == std::wstring::npos) ) {
-            m_private->removeRecentByViewId(event->get_SenderId());
+            RemoveRecentByViewId(event->get_SenderId());
             return true;
         } else
         if ( !(cmd.find(L"system:changed") == std::wstring::npos) ) {
