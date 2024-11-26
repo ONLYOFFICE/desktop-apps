@@ -408,22 +408,9 @@ public:
         return m_appmanager.editorWindowFromViewId(viewid);
     }
 
-    auto recentFromViewId(int viewid) -> int
+    auto removeRecentByViewId(int viewid) -> bool
     {
-        CCefView * _cef = nullptr;
-        int _recent_id = -1;
-        while(true) {
-            _cef = m_appmanager.GetViewByRecentId(_recent_id);
-            if ( !_cef )
-                break;
-            else
-            if ( _cef->GetId() == viewid )
-                return _recent_id;
-
-            ++_recent_id;
-        }
-
-        return -1;
+        return m_appmanager.RemoveRecentByViewId(viewid);
     }
 
     auto openDocument(const COpenOptions& opts) -> bool

@@ -417,11 +417,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( !(cmd.find(L"recent:forget") == std::wstring::npos) ) {
-            int id = m_private->recentFromViewId(event->get_SenderId());
-            if ( !(id < 0) ){
-                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
-            }
-
+            m_private->removeRecentByViewId(event->get_SenderId());
             return true;
         } else
         if ( !(cmd.find(L"system:changed") == std::wstring::npos) ) {
