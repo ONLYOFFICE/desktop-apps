@@ -56,6 +56,7 @@
 # include <QDesktopServices>
 #include <windowsx.h>
 # include <sddl.h>
+# include <Lm.h>
 #include "shlobj.h"
 #include "lmcons.h"
 #else
@@ -871,8 +872,17 @@ std::wstring Utils::systemUserName()
     WCHAR _env_name[UNLEN + 1]{0};
     DWORD _size = UNLEN + 1;
 
-    return GetUserName(_env_name, &_size) ?
-                            std::wstring(_env_name) : L"Unknown.User";
+    if (GetUserName(_env_name, &_size)) {
+        LPBYTE buff = nullptr;
+        if (NetUserGetInfo(nullptr, _env_name, 10, &buff) == NERR_Success) {
+            std::wstring user_name(reinterpret_cast<USER_INFO_10*>(buff)->usri10_full_name);
+            NetApiBufferFree(buff);
+            if (!user_name.empty())
+                return user_name;
+        }
+        return _env_name;
+    }
+    return L"Unknown.User";
 #else
     QString _env_name = qgetenv("USER");
     if ( _env_name.isEmpty() ) {

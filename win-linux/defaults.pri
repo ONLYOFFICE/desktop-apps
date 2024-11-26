@@ -304,6 +304,7 @@ core_windows {
             -lcredui \
             -lnetapi32 \
             -lcomctl32 \
+            -lnetapi32 \
             -lrpcrt4
 #            -lOpenGL32
 
