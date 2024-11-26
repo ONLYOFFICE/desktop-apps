@@ -1824,10 +1824,12 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         if ( objRoot.contains("langid") ) {
             QString l = objRoot.value("langid").toString();
             if ( _lang_id != l ) {
+                bool direction_changed = (CLangater::isRtlLanguage(_lang_id) != CLangater::isRtlLanguage(l));
                 _lang_id = l;
 
                 _reg_user.setValue("locale", _lang_id);
-                CLangater::reloadTranslations(_lang_id);
+                if (!direction_changed)
+                    CLangater::reloadTranslations(_lang_id);
 #ifdef _UPDMODULE
                 if (m_pUpdateManager) {
                     m_pUpdateManager->setServiceLang(_lang_id);
