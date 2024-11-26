@@ -1289,10 +1289,8 @@ void CAscApplicationManagerWrapper::initializeApp()
         EditorJSVariables::setVariable("localthemes", local_themes_array);
 
 #if !defined(__OS_WIN_XP)
-    bool _is_rtl = CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
-    if ( InputArgs::contains(L"--text-direction") ) {
-        _is_rtl = InputArgs::argument_value(L"--text-direction") == L"rtl";
-    }
+    bool _is_rtl = InputArgs::contains(L"--text-direction") ? InputArgs::argument_value(L"--text-direction") == L"rtl" :
+                       CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
 #else
     const bool _is_rtl = false;
 #endif
