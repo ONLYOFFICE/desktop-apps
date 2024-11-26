@@ -2010,6 +2010,25 @@ bool CAscApplicationManagerWrapper::canAppClose()
     return true;
 }
 
+bool CAscApplicationManagerWrapper::hasUnsavedChanges()
+{
+    APP_CAST(_app);
+    if (_app.mainWindow()) {
+        CAscTabWidget *tabs = _app.mainWindow()->tabWidget();
+        for (int i = 0; i < tabs->count(); i++) {
+            if (tabs->modifiedByIndex(i))
+                return true;
+        }
+    }
+
+    foreach (auto ptr, _app.m_vecEditors) {
+        CEditorWindow *e = reinterpret_cast<CEditorWindow*>(ptr);
+        if (e->modified())
+            return true;
+    }
+    return false;
+}
+
 QCefView * CAscApplicationManagerWrapper::createViewer(QWidget * parent, const QSize& size)
 {
     APP_CAST(_app);
