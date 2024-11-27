@@ -28,7 +28,8 @@ ifelse(M4_PACKAGE_EDITION, full,
   fonts-dejavu | ttf-dejavu,
   fonts-liberation,
   fonts-crosextra-carlito,
-  xdg-utils')
+  xdg-utils,
+  desktop-file-utils')
 Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,Suggests: M4_PACKAGE_NAME-help
 ,)dnl
