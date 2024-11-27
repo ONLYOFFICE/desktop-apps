@@ -412,6 +412,26 @@ QDialog::DialogCode PrintDialog::exec()
         }
     }
 
+    DWORD needed, returned;
+    EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, nullptr, 0, &needed, &returned);
+    std::vector<BYTE> buffer(needed);
+    if (EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, buffer.data(), needed, &needed, &returned)) {
+        PRINTER_INFO_2 *printers = reinterpret_cast<PRINTER_INFO_2*>(buffer.data());
+        for (DWORD i = 0; i < returned; ++i) {
+            HANDLE hPrinter = NULL;
+            if (OpenPrinter(printers[i].pPrinterName, &hPrinter, NULL)) {
+                LPDEVMODE pDevMode = printers[i].pDevMode;
+                if (pDevMode->dmFields & DM_DUPLEX) {
+                    pDevMode->dmDuplex = (qt_duplex == QPrinter::DuplexLongSide) ? DMDUP_VERTICAL :
+                                         (qt_duplex == QPrinter::DuplexShortSide) ? DMDUP_HORIZONTAL : DMDUP_SIMPLEX;
+                    LONG res = DocumentProperties(nullptr, hPrinter, printers[i].pPrinterName, pDevMode, pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER);
+                    //SetPrinter(hPrinter, 2, (LPBYTE)(&printers[i]), 0);
+                }
+                ClosePrinter(hPrinter);
+            }
+        }
+    }
+
     // Switch to legacy print dialog
     bool dialog_was_changed = false;
 #ifndef __OS_WIN_XP
