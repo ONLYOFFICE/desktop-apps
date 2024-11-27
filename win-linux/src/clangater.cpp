@@ -56,6 +56,68 @@ void setNativeUILanguage(std::wstring localeTag)
 }
 #endif
 
+QString normalizeLocale(const QString &locale)
+{
+    int len = locale.length();
+    if (len > 1) {
+        int prim = locale.indexOf(QRegExp("[-_]"));
+        if (prim == -1) {
+            if (len <= 3)
+                return locale.toLower();
+        } else
+        if (prim == 2 || prim == 3) {
+            QString out = locale.mid(0, prim).toLower();
+            int scnd = locale.indexOf(QRegExp("[-_]"), prim + 1);
+            if ((scnd == -1 && len - prim == 3) || (scnd != -1 && scnd - prim == 3)) {
+                out += "-" + locale.mid(prim + 1, 2).toUpper();
+            } else
+            if ((scnd == -1 && len - prim == 5) || (scnd != -1 && scnd - prim == 5)) {
+                out += QString("-") + locale.at(prim + 1).toUpper() + locale.mid(prim + 2, 3).toLower();
+                if (scnd != -1) {
+                    int thrd = locale.indexOf(QRegExp("[-_]"), scnd + 1);
+                    if ((thrd == -1 && len - scnd == 3) || (thrd != -1 && thrd - scnd == 3))
+                        out += "-" + locale.mid(scnd + 1, 2).toUpper();
+                }
+            }
+            return out;
+        }
+    }
+    return "en";
+}
+
+enum class LocaleParts : unsigned char {Language, LanguageAndScript, LanguageAndRegion};
+
+QString getLocaleParts(const QString &locale, LocaleParts parts = LocaleParts::Language)
+{
+    int len = locale.length();
+    if (len > 1) {
+        int prim = locale.indexOf('-');
+        if (prim == -1) {
+            if (len <= 3)
+                return locale;
+        } else
+        if (prim == 2 || prim == 3) {
+            QString out = locale.mid(0, prim);
+            int scnd = locale.indexOf('-', prim + 1);
+            if (parts == LocaleParts::LanguageAndScript) {
+                if ((scnd == -1 && len - prim == 5) || (scnd != -1 && scnd - prim == 5))
+                    return locale.mid(0, prim + 5);
+            } else
+            if (parts == LocaleParts::LanguageAndRegion) {
+                if ((scnd == -1 && len - prim == 3) || (scnd != -1 && scnd - prim == 3)) {
+                    return locale.mid(0, prim + 3);
+                } else
+                if (scnd != -1 && scnd - prim == 5) {
+                    int thrd = locale.indexOf('-', scnd + 1);
+                    if ((thrd == -1 && len - scnd == 3) || (thrd != -1 && thrd - scnd == 3))
+                        out += locale.midRef(scnd, 3);
+                }
+            }
+            return out;
+        }
+    }
+    return "en";
+}
 
 class CLangater::CLangaterIntf
 {
@@ -260,7 +322,7 @@ void CLangater::init()
     _lang.isEmpty() &&
         !((_lang = reg_system.value("locale").value<QString>()).size()) && (_lang = APP_DEFAULT_LOCALE).size();
 #endif
-
+    _lang = normalizeLocale(_lang);
     getInstance()->m_intf->addSearchPath({"./langs", ":/i18n/langs", ":/i18n"});
 
     auto _check_lang = [=](const std::list<QString>& dirs, const QString& l) {
@@ -272,8 +334,17 @@ void CLangater::init()
     };
 
     bool _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
-    if ( !_exist && _lang.length() == 2 ) {
-        QString _close_lang = getInstance()->m_intf->findCloseLang(_lang);
+    if ( !_exist ) {
+        QString lang_part = getLocaleParts(_lang, LocaleParts::LanguageAndScript);
+        QString _close_lang = getInstance()->m_intf->findCloseLang(lang_part);
+        if (_close_lang.isEmpty() && lang_part.length() > 3) {
+            lang_part = getLocaleParts(_lang, LocaleParts::LanguageAndRegion);
+            _close_lang = getInstance()->m_intf->findCloseLang(lang_part);
+            if (_close_lang.isEmpty() && lang_part.length() > 3) {
+                lang_part = getLocaleParts(_lang);
+                _close_lang = getInstance()->m_intf->findCloseLang(lang_part);
+            }
+        }
         if ( !_close_lang.isEmpty() )
             _lang = _close_lang,
             _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
