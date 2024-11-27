@@ -101,7 +101,7 @@ auto resetLegacyPrintDialog()->void
 }
 #endif
 
-struct PrintDialogCallback : public IPrintDialogCallback
+struct PrintDialogCallback : public IPrintDialogCallback, public IObjectWithSite
 {
 public:
     PrintDialogCallback(bool *dialog_was_changed) :
@@ -111,6 +111,11 @@ private:
     virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void **ppv) noexcept final {
         if (riid == IID_IUnknown || riid == IID_IPrintDialogCallback) {
             *ppv = static_cast<IPrintDialogCallback*>(this);
+            AddRef();
+            return S_OK;
+        } else
+        if (riid == IID_IObjectWithSite) {
+            *ppv = static_cast<IObjectWithSite*>(this);
             AddRef();
             return S_OK;
         }
@@ -135,9 +140,59 @@ private:
         return S_FALSE;
     }
     virtual HRESULT STDMETHODCALLTYPE SelectionChange() noexcept final {
+        if (m_pServices) {
+            WCHAR printerName[MAX_PATH];
+            UINT nameLen = ARRAYSIZE(printerName);
+            if (SUCCEEDED(m_pServices->GetCurrentPrinterName(printerName, &nameLen)) && nameLen > 0) {
+                HANDLE hPrinter = NULL;
+                if (OpenPrinter(printerName, &hPrinter, NULL)) {
+                    UINT devModeSize = 0;
+                    if (SUCCEEDED(m_pServices->GetCurrentDevMode(nullptr, &devModeSize)) && devModeSize > 0) {
+                        HGLOBAL hDevMode = GlobalAlloc(GHND, devModeSize);
+                        Q_ASSERT(hDevMode);
+                        LPDEVMODE pDevMode = (LPDEVMODE)GlobalLock(hDevMode);
+                        Q_ASSERT(pDevMode);
+                        if (SUCCEEDED(m_pServices->GetCurrentDevMode(pDevMode, &devModeSize))) {
+                            if (pDevMode->dmFields & DM_DUPLEX) {
+                                pDevMode->dmDuplex = DMDUP_VERTICAL;// (qt_duplex == QPrinter::DuplexLongSide) ? DMDUP_VERTICAL :
+                                                                    // (qt_duplex == QPrinter::DuplexShortSide) ? DMDUP_HORIZONTAL : DMDUP_SIMPLEX;
+                                LONG res = DocumentProperties(NULL, hPrinter, printerName, pDevMode, pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER);
+                            }
+                        }
+                        GlobalUnlock(hDevMode);
+                        GlobalFree(hDevMode);
+                    }
+                    ClosePrinter(hPrinter);
+                }
+            }
+        }
         return S_FALSE;
     }
+    virtual HRESULT STDMETHODCALLTYPE SetSite(IUnknown *pSite) noexcept final {
+        if (m_pServices) {
+            m_pServices->Release();
+            m_pServices = nullptr;
+        }
+        if (m_pSite) {
+            m_pSite->Release();
+            m_pSite = nullptr;
+        }
+        if (pSite) {
+            m_pSite = pSite;
+            m_pSite->AddRef();
+            m_pSite->QueryInterface(IID_PPV_ARGS(&m_pServices));
+        }
+        return S_OK;
+    }
+    virtual HRESULT STDMETHODCALLTYPE GetSite(REFIID riid, void **ppvSite) noexcept final {
+        if (m_pSite)
+            return m_pSite->QueryInterface(riid, ppvSite);
+        *ppvSite = nullptr;
+        return E_NOINTERFACE;
+    }
 
+    IUnknown *m_pSite = nullptr;
+    IPrintDialogServices* m_pServices = nullptr;
     bool *m_dialog_was_changed = nullptr;
 };
 
