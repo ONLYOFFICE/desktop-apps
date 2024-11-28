@@ -20,24 +20,6 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#ifndef URL_INSTALL_X64
-# define URL_INSTALL_X64 ""
-#endif
-#ifndef URL_INSTALL_X86
-# define URL_INSTALL_X86 ""
-#endif
-#ifndef URL_INSTALL_X64_XP
-# define URL_INSTALL_X64_XP ""
-#endif
-#ifndef URL_INSTALL_X86_XP
-# define URL_INSTALL_X86_XP ""
-#endif
-#ifndef URL_INSTALL_X64_MSI
-# define URL_INSTALL_X64_MSI ""
-#endif
-#ifndef URL_INSTALL_X86_MSI
-# define URL_INSTALL_X86_MSI ""
-#endif
 #define _TR(str) Translator::tr(str).c_str()
 
 
@@ -390,16 +372,10 @@ void MainWindow::finishInstall(const std::wstring &app_path)
 void MainWindow::startUpdate()
 {
     wstring tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
-    wstring url;
-    if (m_package == L"msi") {
-        url = (m_arch == L"x64") ? _T(URL_INSTALL_X64_MSI) : _T(URL_INSTALL_X86_MSI);
-    } else {
-        if (Utils::getWinVersion() <= Utils::WinVer::WinVista) {
-            url = (m_arch == L"x64") ? _T(URL_INSTALL_X64_XP) : _T(URL_INSTALL_X86_XP);
-        } else {
-            url = (m_arch == L"x64") ? _T(URL_INSTALL_X64) : _T(URL_INSTALL_X86);
-        }
-    }
+    wstring url = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
+    wstring url_filename = L"DesktopEditors_" + m_arch;
+    url_filename.append(L"." + m_package);
+    NS_Utils::Replace(url, _T("<file>"), url_filename);
 
     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
             m_bar->pulse(true);
@@ -445,8 +421,6 @@ void MainWindow::startRepair()
     wstring url = L"https://github.com/%1/%2/releases/download/%3/%4";
     {
         wstring url_filename = L"DesktopEditors_" + m_arch;
-        if (Utils::getWinVersion() <= Utils::WinVer::WinVista)
-            url_filename.append(L"_xp");
         url_filename.append(L"." + m_package);
 
         wstring url_ver = L"v" + m_ver;

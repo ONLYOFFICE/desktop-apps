@@ -70,6 +70,32 @@ static void RegQueryStringValue(HKEY rootKey, LPCWSTR subkey, REGSAM advFlags, L
 
 namespace NS_Utils
 {
+    std::vector<wstring> cmd_args;
+
+    void parseCmdArgs(int argc, wchar_t *argv[])
+    {
+        for (int i = 0; i < argc; i++)
+            cmd_args.push_back(argv[i]);
+    }
+
+    bool cmdArgContains(const wstring &param)
+    {
+        auto len = param.length();
+        return std::any_of(cmd_args.cbegin(), cmd_args.cend(), [&param, len](const wstring &arg) {
+            return arg.find(param) == 0 && (len == arg.length() || arg[len] == L'=' || arg[len] == L':' || arg[len] == L'|');
+        });
+    }
+
+    wstring cmdArgValue(const wstring &param)
+    {
+        auto len = param.length();
+        for (const auto &arg : cmd_args) {
+            if (arg.find(param) == 0 && len < arg.length() && (arg[len] == L'=' || arg[len] == L':' || arg[len] == L'|'))
+                return arg.substr(len + 1);
+        }
+        return L"";
+    }
+
     wstring GetLastErrorAsString(DWORD _errID)
     {
         DWORD errID = _errID != 0 ? _errID : ::GetLastError();
