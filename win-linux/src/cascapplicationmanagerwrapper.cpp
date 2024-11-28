@@ -416,6 +416,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
         } else
+        if ( !(cmd.find(L"recent:forget") == std::wstring::npos) ) {
+            RemoveRecentByViewId(event->get_SenderId());
+            return true;
+        } else
         if ( !(cmd.find(L"system:changed") == std::wstring::npos) ) {
             QRegularExpression re(":\\s?\"(dark|light)");
             QRegularExpressionMatch match = re.match(QString::fromStdWString(pData->get_Param()));
