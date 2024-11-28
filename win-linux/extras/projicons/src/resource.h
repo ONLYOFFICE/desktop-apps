@@ -32,6 +32,10 @@
 #define IDI_ICON32  132
 #define IDI_ICON33  133
 #define IDI_ICON34  134
+#define IDI_ICON35  135
+#define IDI_ICON36  136
+#define IDI_ICON37  137
+#define IDI_ICON38  138
 
 #define IDS_DOCX  1000
 #define IDS_XLSX  1001
