@@ -1432,6 +1432,13 @@ sr_Cyrl_RS.extXLSB =Excel бинарни формат датотеке
 sr_Latn_RS.extXLSB =Excel binarni format datoteke
 he.extXLSB =פורמט קובץ בינארי של Excel
 
+en.extXLSM =Microsoft Excel Macro-Enabled Workbook
+
+en.extFODS =OpenDocument Flat XML Spreadsheet
+
+en.extFODT =OpenDocument Flat XML Document
+
+en.extVSDX =Visio Drawing
 ;======================================================================================================
 
 en.jumpDOCX =New document
@@ -1862,9 +1869,9 @@ var
   prefix: string;
 begin
 #ifdef _ONLYOFFICE
-  SetArrayLength(AudioExts, 24);
+  SetArrayLength(AudioExts, 28);
 #else
-  SetArrayLength(AudioExts, 23);
+  SetArrayLength(AudioExts, 27);
 #endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
@@ -1892,8 +1899,12 @@ begin
   AudioExts[20] := 'DOTX';
   AudioExts[21] := 'OXPS';
   AudioExts[22] := 'XLSB';
+  AudioExts[23] := 'FODS';
+  AudioExts[24] := 'FODT';
+  AudioExts[25] := 'VSDX';
+  AudioExts[26] := 'XLSM';
 #ifdef _ONLYOFFICE
-  AudioExts[23] := 'DOCXF';
+  AudioExts[27] := 'DOCXF';
 #endif
 
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
@@ -1924,8 +1935,12 @@ begin
   ExtensionRegistryInfo[20] := prefix + 'Dotx:'         + ExpandConstant('{cm:extDOTX}')            + ':' + '30';
   ExtensionRegistryInfo[21] := prefix + 'Oxps:'         + ExpandConstant('{cm:extOXPS}')            + ':' + '31';
   ExtensionRegistryInfo[22] := prefix + 'Xlsb:'         + ExpandConstant('{cm:extXLSB}')            + ':' + '32';
+  ExtensionRegistryInfo[23] := prefix + 'Fods:'         + ExpandConstant('{cm:extFODS}')            + ':' + '34';
+  ExtensionRegistryInfo[24] := prefix + 'Fodt:'         + ExpandConstant('{cm:extFODT}')            + ':' + '35';
+  ExtensionRegistryInfo[25] := prefix + 'Vsdx:'         + ExpandConstant('{cm:extVSDX}')            + ':' + '36';
+  ExtensionRegistryInfo[26] := prefix + 'Xlsm:'         + ExpandConstant('{cm:extXLSM}')            + ':' + '37';
 #ifdef _ONLYOFFICE
-  ExtensionRegistryInfo[23] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+  ExtensionRegistryInfo[27] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
 #endif
 end;
 
