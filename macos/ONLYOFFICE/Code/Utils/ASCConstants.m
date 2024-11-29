@@ -70,15 +70,15 @@
 + (NSArray *)documents {
     return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dot", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
              @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
-             @"fb2", @"oform", @"sxw", @"stw", @"md"];
+             @"fb2", @"oform", @"sxw", @"stw", @"md", @"pages"];
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"xlsm", @"xlsb", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc"];
+    return @[@"xls", @"xlsx", @"xlsm", @"xlsb", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc",@"numbers"];
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi"];
+    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi",@"key"];
 }
 
 + (NSArray *)cancryptformats {
