@@ -319,6 +319,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             } else
             if ( cmd.rfind(L"get") != wstring::npos ) {
                 sendSettings(pData->get_Param());
+            } else
+            if ( cmd.rfind(L"check") != wstring::npos ) {
+                checkSettings(pData->get_Param());
             }
 
 //            RELEASEINTERFACE(event);
@@ -1289,10 +1292,8 @@ void CAscApplicationManagerWrapper::initializeApp()
         EditorJSVariables::setVariable("localthemes", local_themes_array);
 
 #if !defined(__OS_WIN_XP)
-    bool _is_rtl = CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
-    if ( InputArgs::contains(L"--text-direction") ) {
-        _is_rtl = InputArgs::argument_value(L"--text-direction") == L"rtl";
-    }
+    bool _is_rtl = InputArgs::contains(L"--text-direction") ? InputArgs::argument_value(L"--text-direction") == L"rtl" :
+                       CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
 #else
     const bool _is_rtl = false;
 #endif
@@ -1824,10 +1825,12 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         if ( objRoot.contains("langid") ) {
             QString l = objRoot.value("langid").toString();
             if ( _lang_id != l ) {
+                bool direction_changed = (CLangater::isRtlLanguage(_lang_id) != CLangater::isRtlLanguage(l));
                 _lang_id = l;
 
                 _reg_user.setValue("locale", _lang_id);
-                CLangater::reloadTranslations(_lang_id);
+                if (!direction_changed)
+                    CLangater::reloadTranslations(_lang_id);
 #ifdef _UPDMODULE
                 if (m_pUpdateManager) {
                     m_pUpdateManager->setServiceLang(_lang_id);
@@ -1929,6 +1932,30 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
         QTimer::singleShot(0, [_send_cmd, _send_opts] {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, _send_cmd, _send_opts);
         });
+}
+
+void CAscApplicationManagerWrapper::checkSettings(const wstring& opts)
+{
+    QJsonParseError jerror;
+    QByteArray stringdata = QString::fromStdWString(opts).toUtf8();
+    QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+
+    if( jerror.error == QJsonParseError::NoError ) {
+        QJsonObject root = jdoc.object();
+
+        if ( root.contains("langid") ) {
+            QString _curr_lang = CLangater::getCurrentLangCode(),
+                    _new_lang = root.value("langid").toString();
+            if ( _curr_lang != _new_lang ) {
+                bool direction_changed = CLangater::isRtlLanguage(_curr_lang) != CLangater::isRtlLanguage(_new_lang);
+
+                QTimer::singleShot(0, this, [direction_changed] {
+                    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"settings:lang",
+                                direction_changed ? L"restart:true":L"restart:false");
+                });
+            }
+        }
+    }
 }
 
 void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)

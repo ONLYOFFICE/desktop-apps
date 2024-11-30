@@ -138,6 +138,7 @@ private:
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const std::wstring& wstrjson);
     void sendSettings(const std::wstring& opts);
+    void checkSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
     void handleDeeplinkActions(const std::vector<std::wstring>& actions);
     void setHasFrameFeature(CCefView*, const std::wstring&, int);
