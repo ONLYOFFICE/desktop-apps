@@ -1204,7 +1204,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                         bool accepted = false;
                         emit tabUndock(d->currentIndex, accepted);
                         if (accepted) {
-                            d->movedTab->hide();
+                            // d->movedTab->hide();
                             d->movedTab = nullptr;
                             d->movedTabIndex = -1;
                             SKIP_EVENTS_QUEUE([=]() {

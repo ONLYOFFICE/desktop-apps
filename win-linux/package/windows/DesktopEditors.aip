@@ -1452,7 +1452,7 @@
     <ROW Registry="reg_fa_progid__ots" Root="0" Key="[ExtPfx].Ots" Value="OpenDocument Spreadsheet Template" Component_="c_reg_fa_progid__ots"/>
     <ROW Registry="reg_fa_progid__ott" Root="0" Key="[ExtPfx].Ott" Value="OpenDocument Text Template" Component_="c_reg_fa_progid__ott"/>
     <ROW Registry="reg_fa_progid__oxps" Root="0" Key="[ExtPfx].Oxps" Value="Open XML Paper Specification" Component_="c_reg_fa_progid__oxps"/>
-    <ROW Registry="reg_fa_progid__pdf" Root="0" Key="[ExtPfx].Pdf" Value="Adobe Portable Document Format" Component_="c_reg_fa_progid__pdf"/>
+    <ROW Registry="reg_fa_progid__pdf" Root="0" Key="[ExtPfx].Pdf" Value="Portable Document Format" Component_="c_reg_fa_progid__pdf"/>
     <ROW Registry="reg_fa_progid__pot" Root="0" Key="[ExtPfx].Pot" Value="PowerPoint 97-2003 Template" Component_="c_reg_fa_progid__pot"/>
     <ROW Registry="reg_fa_progid__potm" Root="0" Key="[ExtPfx].Potm" Value="PowerPoint 97-2003 Macro-Enabled Template" Component_="c_reg_fa_progid__potm"/>
     <ROW Registry="reg_fa_progid__potx" Root="0" Key="[ExtPfx].Potx" Value="Microsoft PowerPoint Template" Component_="c_reg_fa_progid__potx"/>

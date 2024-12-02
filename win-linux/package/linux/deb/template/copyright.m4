@@ -4,7 +4,7 @@ Upstream-Contact: M4_PUBLISHER_NAME <M4_SUPPORT_MAIL>
 Source: M4_PUBLISHER_URL
 
 Files: *
-Copyright: M4_PUBLISHER_NAME <M4_SUPPORT_MAIL>
+Copyright: 2016-M4_CURRENT_YEAR, M4_PUBLISHER_NAME <M4_SUPPORT_MAIL>
 License: AGPL-3.0-only and CC-BY-SA-4.0
  This program is a free software product. You can redistribute it and/or
  modify it under the terms of the GNU Affero General Public License (AGPL)
