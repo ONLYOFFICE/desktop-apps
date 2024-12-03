@@ -36,6 +36,8 @@
 # include "platform_win/association.h"
 #else
 # include <unistd.h>
+# include <cups/cups.h>
+# include <cups/ppd.h>
 # include "platform_linux/singleapplication.h"
 # ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 #  include "platform_linux/cdialogcertificateinfo.h"
@@ -1094,6 +1096,40 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 #ifdef _WIN32
     Association::instance().chekForAssociations(uid);
 #endif
+
+    static bool check_printers = false;
+    if (!check_printers) {
+        check_printers = true;
+#ifdef _WIN32
+        DWORD need = 0, ret = 0;
+        EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, nullptr, 0, &need, &ret);
+        std::vector<BYTE> buf(need);
+        if (EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, buf.data(), need, &need, &ret)) {
+            PRINTER_INFO_2 *printers = reinterpret_cast<PRINTER_INFO_2*>(buf.data());
+            for (DWORD i = 0; i < ret; ++i) {
+                LPDEVMODE pDevMode = printers[i].pDevMode;
+                bool duplex_supported = (pDevMode && (pDevMode->dmFields & DM_DUPLEX));
+                wprintf(L"%s: %d\n", printers[i].pPrinterName, duplex_supported);
+                fflush(stdout);
+            }
+        }
+#else
+        cups_dest_t *dests = nullptr;
+        int num_dests = cupsGetDests(&dests);
+        if (dests) {
+            for (int i = 0; i < num_dests; i++) {
+                cups_dest_t *dest = &dests[i];
+                const char *ppd = cupsGetPPD(dest->name);
+                ppd_file_t *ppdF = ppdOpenFile(ppd);
+                bool duplex_supported = ppdFindOption(ppdF, "Duplex");
+                printf("%s: %d\n", dest->name, duplex_supported);
+                fflush(stdout);
+                ppdClose(ppdF);
+            }
+            cupsFreeDests(num_dests, dests);
+        }
+#endif
+    }
 }
 
 void CAscApplicationManagerWrapper::startApp()
