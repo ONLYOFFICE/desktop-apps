@@ -1439,6 +1439,13 @@ en.extFODS =OpenDocument Flat XML Spreadsheet
 en.extFODT =OpenDocument Flat XML Document
 
 en.extVSDX =Visio Drawing
+
+en.extPAGES =Apple Pages text document
+
+en.extNUMBERS =Apple Numbers spreadsheet
+
+en.extKEY =Apple Keynotes presentation
+
 ;======================================================================================================
 
 en.jumpDOCX =New document
@@ -1869,9 +1876,9 @@ var
   prefix: string;
 begin
 #ifdef _ONLYOFFICE
-  SetArrayLength(AudioExts, 28);
+  SetArrayLength(AudioExts, 31);
 #else
-  SetArrayLength(AudioExts, 27);
+  SetArrayLength(AudioExts, 30);
 #endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
@@ -1903,8 +1910,11 @@ begin
   AudioExts[24] := 'FODT';
   AudioExts[25] := 'VSDX';
   AudioExts[26] := 'XLSM';
+  AudioExts[27] := 'PAGES';
+  AudioExts[28] := 'NUMBERS';
+  AudioExts[29] := 'KEY';
 #ifdef _ONLYOFFICE
-  AudioExts[27] := 'DOCXF';
+  AudioExts[30] := 'DOCXF';
 #endif
 
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
@@ -1939,8 +1949,11 @@ begin
   ExtensionRegistryInfo[24] := prefix + 'Fodt:'         + ExpandConstant('{cm:extFODT}')            + ':' + '35';
   ExtensionRegistryInfo[25] := prefix + 'Vsdx:'         + ExpandConstant('{cm:extVSDX}')            + ':' + '36';
   ExtensionRegistryInfo[26] := prefix + 'Xlsm:'         + ExpandConstant('{cm:extXLSM}')            + ':' + '37';
+  ExtensionRegistryInfo[27] := prefix + 'Pages:'        + ExpandConstant('{cm:extPAGES}')           + ':' + '38';
+  ExtensionRegistryInfo[28] := prefix + 'Numbers:'      + ExpandConstant('{cm:extNUMBERS}')         + ':' + '39';
+  ExtensionRegistryInfo[29] := prefix + 'Key:'          + ExpandConstant('{cm:extKEY}')             + ':' + '40';
 #ifdef _ONLYOFFICE
-  ExtensionRegistryInfo[27] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+  ExtensionRegistryInfo[30] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
 #endif
 end;
 

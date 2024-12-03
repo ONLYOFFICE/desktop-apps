@@ -39,6 +39,9 @@ IDI_ICON35      ICON    DISCARDABLE "./res/icons/fods.ico"
 IDI_ICON36      ICON    DISCARDABLE "./res/icons/fodt.ico"
 IDI_ICON37      ICON    DISCARDABLE "./res/icons/vsdx.ico"
 IDI_ICON38      ICON    DISCARDABLE "./res/icons/xlsm.ico"
+IDI_ICON39      ICON    DISCARDABLE "./res/icons/pages.ico"
+IDI_ICON40      ICON    DISCARDABLE "./res/icons/numbers.ico"
+IDI_ICON41      ICON    DISCARDABLE "./res/icons/key.ico"
 
 #include <windows.h>
 #include "src/version.h"
