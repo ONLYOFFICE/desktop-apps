@@ -300,7 +300,7 @@ void CMainWindow::close()
                 for (int i = 0; i < m_pTabs->count(); i++) {
                     if (!m_pTabs->modifiedByIndex(i)) {
                         bool dontAskAgain = false;
-                        int res = CMessage::showMessage(this, tr("More than one document is open.<br>Close the window anyway?"),
+                        int res = CMessage::showMessage(this, tr("More than one document is open.\nClose the window anyway?"),
                                                            MsgType::MSG_WARN, MsgBtns::mbYesNo, &dontAskAgain,
                                                            tr("Don't ask again."));
                         if (dontAskAgain)
@@ -967,7 +967,7 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
-            int modal_res = CMessage::showMessage(this, tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+            int modal_res = CMessage::showMessage(this, tr("%1 doesn't exists!\nRemove file from the list?").arg(_info.fileName()),
                                                   MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if (modal_res == MODAL_RESULT_YES) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
@@ -1022,7 +1022,7 @@ void CMainWindow::onLocalFileLocation(QString path)
         if ( _info.exists() ) {
             Utils::openFileLocation(_path);
         } else {
-            int res = CMessage::showMessage(this, QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+            int res = CMessage::showMessage(this, QObject::tr("%1 doesn't exists!\nRemove file from the list?").arg(_info.fileName()),
                                                 MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if ( res == MODAL_RESULT_YES )
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
@@ -1201,7 +1201,7 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
 
 void CMainWindow::onDocumentSaveInnerRequest(int id)
 {
-    int modal_res = CMessage::showMessage(this, tr("Document must be saved to continue.<br>Save the document?"),
+    int modal_res = CMessage::showMessage(this, tr("Document must be saved to continue.\nSave the document?"),
                                           MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
     pData->put_Value(modal_res == MODAL_RESULT_YES);
@@ -1679,7 +1679,7 @@ void CMainWindow::setScreenScalingFactor(double factor, bool resize)
 
 QString CMainWindow::getSaveMessage() const
 {
-    return tr("%1 is modified.<br>Do you want to keep changes?");
+    return tr("%1 is modified.\nDo you want to keep changes?");
 }
 
 bool CMainWindow::holdUid(int uid) const

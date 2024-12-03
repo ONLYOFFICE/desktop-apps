@@ -1162,7 +1162,7 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
         }
     } else
     if (result == Result::ERROR)
-        CMessage::error(parent, QObject::tr("An error occurred while opening the portal:<br>%1").arg(QString::fromUtf8(getErrorText())));
+        CMessage::error(parent, QObject::tr("An error occurred while opening the portal:\n%1").arg(QString::fromUtf8(getErrorText())));
 
     quitDBus();
 

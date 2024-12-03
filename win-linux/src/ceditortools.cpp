@@ -403,7 +403,7 @@ namespace CEditorTools
                 case AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT:
                 case AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV: {
                     int res = CMessage::showMessage(_parent,
-                                                    QCoreApplication::translate("CEditorWindow", "Some data will lost.<br>Continue?"),
+                                                    QCoreApplication::translate("CEditorWindow", "Some data will lost.\nContinue?"),
                                                     MsgType::MSG_WARN, MsgBtns::mbOkDefCancel);
                     _allowed = (MODAL_RESULT_OK == res);
                     break; }

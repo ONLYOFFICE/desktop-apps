@@ -223,7 +223,7 @@ bool CDialogOpenSsl::checkCertificate()
         m_private->_txtCertPass->setFocus();
         if ( m_private->_txtCertPass->text().isEmpty() )
             CMessage::info(this, tr("Enter certificate password"));
-        else CMessage::info(this, tr("Wrong certificate password.<br>Please enter again"));
+        else CMessage::info(this, tr("Wrong certificate password.\nPlease enter again"));
         break;
     case OPEN_SSL_WARNING_OK:
     case OPEN_SSL_WARNING_ALL_OK:

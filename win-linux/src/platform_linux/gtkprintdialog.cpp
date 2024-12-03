@@ -543,7 +543,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
         gtk_main_iteration_do(FALSE);
 
     if (res == GTK_RESPONSE_REJECT)
-        CMessage::error(m_parent, QObject::tr("The syntaxis for the page range is invalid.<br>"
+        CMessage::error(m_parent, QObject::tr("The syntaxis for the page range is invalid.\n"
                                               "Enter one or more page ranges, for example: 1-3,7,11."));
 
     return exit_code;

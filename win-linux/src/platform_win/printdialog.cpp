@@ -489,7 +489,7 @@ QDialog::DialogCode PrintDialog::exec()
             GlobalFree(hDevNames);
 
         const wchar_t *err = _com_error(hr).ErrorMessage();
-        CMessage::error(m_parent, QObject::tr("Unable to open print dialog:<br>%1").arg(QString::fromStdWString(err)));
+        CMessage::error(m_parent, QObject::tr("Unable to open print dialog:\n%1").arg(QString::fromStdWString(err)));
     }
     GlobalFree(page_ranges);
 

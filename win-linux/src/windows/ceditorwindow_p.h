@@ -572,7 +572,7 @@ public:
     void onDocumentSaveInnerRequest(int) override
     {
         int reply = CMessage::showMessage(window->handle(),
-                                          CEditorWindow::tr("Document must be saved to continue.<br>Save the document?"),
+                                          CEditorWindow::tr("Document must be saved to continue.\nSave the document?"),
                                           MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
         pData->put_Value(reply == MODAL_RESULT_YES);

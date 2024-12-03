@@ -62,7 +62,7 @@ int GtkMsg::showMessage(QWidget *parent,
                         bool   *checkBoxState,
                         const QString &chekBoxText)
 {           
-    QString plainText = QTextDocumentFragment::fromHtml(msg).toPlainText();
+    QString plainText = msg;
     const int delim = plainText.indexOf('\n');
     const QString primaryText = (delim != -1) ? plainText.mid(0, delim) : plainText;
     const QString secondaryText = (delim != -1) ? plainText.mid(delim + 1) : "";
