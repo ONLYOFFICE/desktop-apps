@@ -124,6 +124,7 @@ Tab::Tab(QWidget *parent) :
 
     text_label = new QLabel(this);
     text_label->setObjectName("tabText");
+    text_label->setTextFormat(Qt::PlainText);
     text_label->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignVCenter | Qt::AlignAbsolute);
     text_label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     lut->addWidget(text_label);

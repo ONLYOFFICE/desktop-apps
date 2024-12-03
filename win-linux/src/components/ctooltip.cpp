@@ -74,6 +74,7 @@ CToolTip::CToolTip(QWidget * parent, const QString &text,
     setLayout(lut);
     layout()->setContentsMargins(margins, margins, margins, margins);
     m_label = new QLabel(this);
+    m_label->setTextFormat(Qt::PlainText);
     layout()->addWidget(m_label);
     m_label->setText(text);
     parent->installEventFilter(this);

@@ -45,12 +45,15 @@ auto ellipsis_text_(const QWidget * widget, const QString& str, Qt::TextElideMod
 
 CElipsisLabel::CElipsisLabel(QWidget *parent, Qt::WindowFlags f)
     : QLabel(parent, f)
-{}
+{
+    setTextFormat(Qt::PlainText);
+}
 
 CElipsisLabel::CElipsisLabel(const QString &text, QWidget *parent)
     : QLabel(text, parent)
     , orig_text(text)
 {
+    setTextFormat(Qt::PlainText);
 //    QString elt = elipsis_text(this, text, Qt::ElideMiddle);
 //    setText(elt);
 }
