@@ -38,7 +38,6 @@
 
 
 class GtkMainWindow;
-
 class CWindowPlatform : public CWindowBase, public CX11Decoration
 {
 public:
@@ -55,7 +54,6 @@ public:
     void setGeometry(const QRect &rc);
     void setWindowIcon(const QIcon &icon);
     void setWindowTitle(const QString &title) override;
-    void setBackgroundColor(const QString &color);
     void setFocus();
     void setWindowState(Qt::WindowStates ws);
     void show();
@@ -71,8 +69,6 @@ public:
     bool isVisible() const;
     bool isHidden() const;
     QString windowTitle() const;
-    QPoint mapToGlobal(const QPoint &pt) const;
-    QPoint mapFromGlobal(const QPoint &pt) const;
     QSize size() const;
     QRect geometry() const;
     QRect normalGeometry() const;
@@ -94,7 +90,7 @@ protected:
     virtual void onLayoutDirectionChanged() = 0;   
 
 private:
-    GtkMainWindow *pimpl = nullptr;
+    GtkMainWindow *m_gtk_wnd = nullptr;
     QTimer *m_propertyTimer;
 };
 

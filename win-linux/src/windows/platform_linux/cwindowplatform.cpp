@@ -31,15 +31,10 @@
 */
 
 #include "windows/platform_linux/cwindowplatform.h"
+#include "windows/platform_linux/gtkmainwindow.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "utils.h"
-#pragma push_macro("signals")
-#undef signals
-#include <gtk/gtk.h>
-#include <gtk/gtkx.h>
-#include <cairo.h>
-#pragma pop_macro("signals")
 #include <QTimer>
 #include <QPainter>
 #include <QX11Info>
@@ -50,229 +45,14 @@
 #endif
 #define WINDOW_CORNER_RADIUS 6
 
-typedef std::function<bool(QEvent *ev)> FnEvent;
-typedef std::function<void(QCloseEvent*)> FnCloseEvent;
-
-
-static void sendConfigureNotify(QWidget *wgt, int x, int y, int width, int height)
-{
-    xcb_connection_t* con = QX11Info::connection();
-    xcb_window_t wnd = (xcb_window_t)wgt->winId();
-    xcb_configure_notify_event_t ev;
-    memset(&ev, 0, sizeof(ev));
-    ev.response_type = XCB_CONFIGURE_NOTIFY;
-    ev.event = wnd;
-    ev.window = wnd;
-    ev.x = x;
-    ev.y = y;
-    ev.width = width;
-    ev.height = height;
-    ev.border_width = 0;
-    ev.above_sibling = XCB_WINDOW_NONE;
-    ev.override_redirect = 0;
-    xcb_send_event(con, 0, wnd, XCB_EVENT_MASK_STRUCTURE_NOTIFY, (const char*)&ev);
-    xcb_flush(con);
-}
-
-static void sendFocusIn(QWidget *wgt, int focus)
-{
-    xcb_connection_t* con = QX11Info::connection();
-    xcb_window_t wnd = (xcb_window_t)wgt->winId();
-    xcb_client_message_event_t ev;
-    memset(&ev, 0, sizeof(ev));
-    ev.response_type = /*(focus == 1) ?*/ XCB_FOCUS_IN /*: XCB_FOCUS_OUT*/;
-    ev.window = wnd;
-    ev.type = XCB_INPUT_FOCUS_POINTER_ROOT;
-    xcb_send_event(con, 0, wnd, XCB_EVENT_MASK_STRUCTURE_NOTIFY, (const char*)&ev);
-    xcb_flush(con);
-}
-
-class GtkMainWindow
-{
-public:
-    GtkMainWindow(QWidget *_underlay);
-    ~GtkMainWindow();
-    void init();
-
-    QWidget *underlay = nullptr;
-    GtkWidget *wnd = nullptr;
-    guint state = 0;
-    FnCloseEvent close_event;
-    FnEvent event;
-    QPoint pos, normalPos;
-    QSize size, normalSize;
-    bool is_maximized = false,
-        is_support_round_corners = false;
-
-private:
-    static gboolean on_event(GtkWidget *wgt, GdkEvent *ev, gpointer data);
-    static void on_event_after(GtkWidget *wgt, GdkEvent *ev, gpointer data);
-    static void set_rounded_corners(GtkWidget *wgt, double rad);
-    static void on_size_allocate(GtkWidget *wgt, GdkRectangle *alloc, gpointer data);
-    static void on_size_allocate_top(GtkWidget *wgt, GdkRectangle*, gpointer data);
-};
-
-GtkMainWindow::GtkMainWindow(QWidget *_underlay) : underlay(_underlay)
-{
-    underlay->createWinId();
-}
-
-GtkMainWindow::~GtkMainWindow()
-{
-    gtk_widget_destroy(GTK_WIDGET(wnd));
-    wnd = nullptr;
-}
-
-void GtkMainWindow::init()
-{
-    wnd = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_type_hint(GTK_WINDOW(wnd), GdkWindowTypeHint::GDK_WINDOW_TYPE_HINT_NORMAL);
-//    gtk_window_set_title(GTK_WINDOW(wnd), "GtkMainWindow");
-//    gtk_window_set_position(GTK_WINDOW(wnd), GtkWindowPosition::GTK_WIN_POS_CENTER);
-
-    GtkCssProvider *provider = gtk_css_provider_new();
-    gtk_css_provider_load_from_data(provider, "decoration {border-radius: 6px 6px 0px 0px;}", -1, NULL);
-    GtkStyleContext *context = gtk_widget_get_style_context(wnd);
-    gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-    GtkWidget *header = gtk_header_bar_new();
-    gtk_window_set_titlebar(GTK_WINDOW(wnd), header);
-    gtk_widget_destroy(header);
-
-    GtkWidget *socket = gtk_socket_new();
-    gtk_widget_set_name(socket, "socket");
-    gtk_widget_set_has_window(socket, TRUE);
-    gtk_container_add(GTK_CONTAINER(wnd), socket);
-
-    gtk_widget_set_app_paintable(wnd, TRUE);
-    GdkScreen *scr = gtk_widget_get_screen(wnd);
-    if (GdkVisual *vis = gdk_screen_get_rgba_visual(scr))
-        gtk_widget_set_visual(wnd, vis);
-
-    gtk_socket_add_id(GTK_SOCKET(socket), (Window)underlay->winId());
-    g_signal_connect(G_OBJECT(socket), "size-allocate", G_CALLBACK(on_size_allocate), this);
-    g_signal_connect(G_OBJECT(wnd), "size-allocate", G_CALLBACK(on_size_allocate_top), this);
-    g_signal_connect(G_OBJECT(wnd), "event", G_CALLBACK(on_event), this);
-    g_signal_connect(G_OBJECT(wnd), "event-after", G_CALLBACK(on_event_after), this);
-}
-
-gboolean GtkMainWindow::on_event(GtkWidget *wgt, GdkEvent *ev, gpointer data)
-{
-    GtkMainWindow *pimpl = (GtkMainWindow*)data;
-    switch (ev->type) {
-    case GDK_DELETE: {
-        QCloseEvent qtcev;
-        (pimpl->close_event)(&qtcev);
-        return !qtcev.isAccepted();
-    }
-    default:
-        break;
-    }
-    return FALSE;
-}
-
-void GtkMainWindow::on_event_after(GtkWidget *wgt, GdkEvent *ev, gpointer data)
-{
-    GtkMainWindow *pimpl = (GtkMainWindow*)data;
-    switch (ev->type) {
-    case GDK_CONFIGURE: {
-        gint x = 0, y = 0;
-        gint f = gtk_widget_get_scale_factor(wgt);
-        gtk_window_get_position(GTK_WINDOW(pimpl->wnd), &x, &y);
-        pimpl->pos = QPoint(f*x, f*y);
-        if (!pimpl->is_maximized) {
-            pimpl->normalPos = pimpl->pos;
-        }
-        sendConfigureNotify(pimpl->underlay, f*x, f*y, pimpl->underlay->width(), pimpl->underlay->height());
-        break;
-    }
-    case GDK_FOCUS_CHANGE: {
-        if (ev->focus_change.in == 1)
-            sendFocusIn(pimpl->underlay, ev->focus_change.in);
-            //qApp->postEvent(pimpl->cw, new QEvent(Event_GtkFocusIn));
-        break;
-    }
-    case GDK_WINDOW_STATE: {
-        guint state = guint(ev->window_state.new_window_state) & (GDK_WINDOW_STATE_ICONIFIED | GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN);
-        if (pimpl->state != state) {
-            pimpl->state = state;
-            pimpl->is_maximized = state & GDK_WINDOW_STATE_MAXIMIZED;
-            QEvent ev(QEvent::WindowStateChange);
-            (pimpl->event)(&ev);
-            //qApp->postEvent(pimpl->cw, new QEvent(QEvent::WindowStateChange));
-        }
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-void GtkMainWindow::set_rounded_corners(GtkWidget *wgt, double rad)
-{
-    if (GdkWindow *gdk_window = gtk_widget_get_window(wgt)) {
-        int w = gtk_widget_get_allocated_width(wgt);
-        int h = gtk_widget_get_allocated_height(wgt);
-
-        cairo_surface_t *sfc = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, w, h);
-        cairo_t *cr = cairo_create(sfc);
-        cairo_set_source_rgba(cr, 1, 1, 1, 1);
-        cairo_move_to(cr, rad, 0);
-        // cairo_arc(cr, w - rad, rad, rad, -G_PI_2, 0);
-        // cairo_arc(cr, w - rad, h - rad, rad, 0, G_PI_2);
-        // cairo_arc(cr, rad, h - rad, rad, G_PI_2, G_PI);
-        // cairo_arc(cr, rad, rad, rad, G_PI, -G_PI_2);
-        cairo_arc(cr, w - rad, rad, rad, -G_PI_2, 0);
-        cairo_line_to(cr, w, h);
-        cairo_line_to(cr, 0, h);
-        cairo_line_to(cr, 0, rad);
-        cairo_arc(cr, rad, rad, rad, G_PI, -G_PI_2);
-        cairo_close_path(cr);
-        cairo_fill(cr);
-
-        cairo_surface_t *sfc_tgt = cairo_get_target(cr);
-        cairo_surface_flush(sfc_tgt);
-
-        cairo_region_t *mask = gdk_cairo_region_create_from_surface(sfc_tgt);
-        gdk_window_shape_combine_region(gdk_window, mask, 0, 0);
-
-        cairo_region_destroy(mask);
-        cairo_destroy(cr);
-        cairo_surface_destroy(sfc);
-    }
-}
-
-void GtkMainWindow::on_size_allocate(GtkWidget *wgt, GdkRectangle *alloc, gpointer data)
-{
-    GtkMainWindow *pimpl = (GtkMainWindow*)data;
-    gint f = gtk_widget_get_scale_factor(wgt);
-    pimpl->underlay->resize(f*alloc->width, f*alloc->height);
-    set_rounded_corners(wgt, pimpl->is_maximized ? 0 : 1.18 * WINDOW_CORNER_RADIUS);
-    pimpl->underlay->update();
-}
-
-void GtkMainWindow::on_size_allocate_top(GtkWidget *wgt, GdkRectangle*, gpointer data)
-{
-    GtkMainWindow *pimpl = (GtkMainWindow*)data;
-    gint w = 0, h = 0;
-    gint f = gtk_widget_get_scale_factor(wgt);
-    gtk_window_get_size(GTK_WINDOW(pimpl->wnd), &w, &h);
-    pimpl->size = QSize(f*w, f*h);
-    if (!pimpl->is_maximized) {
-        pimpl->normalSize = pimpl->size;
-    }
-}
 
 CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CWindowBase(rect),
     CX11Decoration(this)
 {
 #ifndef DONT_USE_GTK_MAINWINDOW
-    pimpl = new GtkMainWindow(this);
-    pimpl->event = std::bind(&CWindowPlatform::event, this, std::placeholders::_1);
-    pimpl->close_event = std::bind(&CWindowPlatform::closeEvent, this, std::placeholders::_1);
-    pimpl->init();
-
+    m_gtk_wnd = new GtkMainWindow(this, std::bind(&CWindowPlatform::event, this, std::placeholders::_1),
+                                      std::bind(&CWindowPlatform::closeEvent, this, std::placeholders::_1));
     setWindowIcon(Utils::appIcon());
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
     setGeometry(m_window_rect);
@@ -299,8 +79,8 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
 
 CWindowPlatform::~CWindowPlatform()
 {
-    if (pimpl)
-        delete pimpl, pimpl = nullptr;
+    if (m_gtk_wnd)
+        delete m_gtk_wnd, m_gtk_wnd = nullptr;
 }
 
 /** Public **/
@@ -322,9 +102,9 @@ void CWindowPlatform::show(bool maximized)
         QMainWindow::setWindowState(Qt::WindowMaximized);
     }
 #else
-    show();
+    m_gtk_wnd->show();
     if (maximized) {
-        setWindowState(Qt::WindowMaximized);
+        m_gtk_wnd->setWindowState(Qt::WindowMaximized);
     }
 #endif
 }
@@ -338,7 +118,7 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
         setStyleSheet(QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name()));
 #else
         setStyleSheet("QWidget#underlay{border: none; background: transparent;}");
-        setBackgroundColor(background.name());
+        m_gtk_wnd->setBackgroundColor(background.name());
 #endif
     }
 }
@@ -354,184 +134,119 @@ void CWindowPlatform::adjustGeometry()
 #ifndef DONT_USE_GTK_MAINWINDOW
 void CWindowPlatform::move(const QPoint &pos)
 {
-    gint f = gtk_widget_get_scale_factor(pimpl->wnd);
-    gtk_window_move(GTK_WINDOW(pimpl->wnd), pos.x()/f, pos.y()/f);
-    gdk_window_process_all_updates();
+    m_gtk_wnd->move(pos);
 }
 
 void CWindowPlatform::setGeometry(const QRect &rc)
 {
-    gint f = gtk_widget_get_scale_factor(pimpl->wnd);
-    gtk_window_resize(GTK_WINDOW(pimpl->wnd), rc.width()/f, rc.height()/f);
-    gtk_window_move(GTK_WINDOW(pimpl->wnd), rc.x()/f, rc.y()/f);
-    gdk_window_process_all_updates();
+    m_gtk_wnd->setGeometry(rc);
 }
 
 void CWindowPlatform::setWindowIcon(const QIcon &icon)
 {
-    if (!icon.isNull()) {
-        QImage img = icon.pixmap(96, 96).toImage().rgbSwapped();
-        if (!img.isNull()) {
-            if (GdkPixbuf *pb = gdk_pixbuf_new_from_data(img.constBits(), GDK_COLORSPACE_RGB, TRUE, 8, img.width(), img.height(),
-                                                         img.bytesPerLine(), NULL, NULL)) {
-                gtk_window_set_icon(GTK_WINDOW(pimpl->wnd), pb);
-                g_object_unref(pb);
-            }
-        }
-    }
+    m_gtk_wnd->setWindowIcon(icon);
 }
 
 void CWindowPlatform::setWindowTitle(const QString &title)
 {
-    gtk_window_set_title(GTK_WINDOW(pimpl->wnd), title.toLocal8Bit().constData());
+    m_gtk_wnd->setWindowTitle(title);
     if (m_labelTitle)
         m_labelTitle->setText(title);
 }
 
-void CWindowPlatform::setBackgroundColor(const QString &color)
-{
-    GdkRGBA c;
-    gdk_rgba_parse(&c, color.toLocal8Bit().constData());
-    gtk_widget_override_background_color(pimpl->wnd, GTK_STATE_FLAG_NORMAL, &c);
-}
-
 void CWindowPlatform::setFocus()
 {
-    gtk_window_present(GTK_WINDOW(pimpl->wnd));
-    sendFocusIn(this, 1);
+    m_gtk_wnd->setFocus();
 }
 
 void CWindowPlatform::setWindowState(Qt::WindowStates ws)
 {
-    if (ws.testFlag(Qt::WindowMaximized))
-        gtk_window_maximize(GTK_WINDOW(pimpl->wnd));
-    if (ws.testFlag(Qt::WindowMinimized))
-        gtk_window_iconify(GTK_WINDOW(pimpl->wnd));
-    if (ws.testFlag(Qt::WindowFullScreen))
-        gtk_window_fullscreen(GTK_WINDOW(pimpl->wnd));
-    if (ws.testFlag(Qt::WindowActive))
-        gtk_window_present(GTK_WINDOW(pimpl->wnd));
+    m_gtk_wnd->setWindowState(ws);
 }
 
 void CWindowPlatform::show()
 {
-    gtk_widget_show_all(pimpl->wnd);
-    while (gtk_events_pending())
-        gtk_main_iteration_do(FALSE);
-    //GdkDisplay *dsp = gdk_display_get_default();
-    //gdk_display_sync(dsp);
-    //gdk_display_flush(dsp);
-    //gdk_window_process_all_updates();
-    GdkWindow *gdk_wnd = gtk_widget_get_window(pimpl->wnd);
-    Window xid = GDK_WINDOW_XID(gdk_wnd);
-    setProperty("gtk_window_xid", QVariant::fromValue(xid));
-    QMainWindow::show();
-    //qApp->processEvents();
+    m_gtk_wnd->show();
 }
 
 void CWindowPlatform::showMinimized()
 {
-    gtk_window_iconify(GTK_WINDOW(pimpl->wnd));
+    m_gtk_wnd->showMinimized();
 }
 
 void CWindowPlatform::showMaximized()
 {
-    gtk_window_maximize(GTK_WINDOW(pimpl->wnd));
+    m_gtk_wnd->showMaximized();
 }
 
 void CWindowPlatform::showNormal()
 {
-    if (gtk_window_is_maximized(GTK_WINDOW(pimpl->wnd)))
-        gtk_window_unmaximize(GTK_WINDOW(pimpl->wnd));
-    // gtk_window_present(GTK_WINDOW(pimpl->wnd));
+    m_gtk_wnd->showNormal();
 }
 
 void CWindowPlatform::activateWindow()
 {
-    gtk_window_present(GTK_WINDOW(pimpl->wnd));
+    m_gtk_wnd->activateWindow();
 }
 
 void CWindowPlatform::setMinimumSize(int w, int h)
 {
-    gint f = gtk_widget_get_scale_factor(pimpl->wnd);
-    gtk_widget_set_size_request(pimpl->wnd, w/f, h/f);
-    gdk_window_process_all_updates();
+    m_gtk_wnd->setMinimumSize(w, h);
 }
 
 void CWindowPlatform::hide() const
 {
-    gtk_widget_hide(pimpl->wnd);
+    m_gtk_wnd->hide();
 }
 
 bool CWindowPlatform::isMaximized()
 {
-    return gtk_window_is_maximized(GTK_WINDOW(pimpl->wnd));
+    return m_gtk_wnd->isMaximized();
 }
 
 bool CWindowPlatform::isMinimized()
 {
-    return pimpl->state & GDK_WINDOW_STATE_ICONIFIED;
+    return m_gtk_wnd->isMinimized();
 }
 
 bool CWindowPlatform::isActiveWindow()
 {
-    return gtk_window_is_active(GTK_WINDOW(pimpl->wnd));
+    return m_gtk_wnd->isActiveWindow();
 }
 
 bool CWindowPlatform::isVisible() const
 {
-    return gtk_widget_is_visible(pimpl->wnd);
+    return m_gtk_wnd->isVisible();
 }
 
 bool CWindowPlatform::isHidden() const
 {
-    return !gtk_widget_is_visible(pimpl->wnd);
+    return !m_gtk_wnd->isVisible();
 }
 
 QString CWindowPlatform::windowTitle() const
 {
-    return gtk_window_get_title(GTK_WINDOW(pimpl->wnd));
-}
-
-QPoint CWindowPlatform::mapToGlobal(const QPoint &pt) const
-{
-    return QMainWindow::mapToGlobal(pt); //(pt + geometry().topLeft());
-}
-
-QPoint CWindowPlatform::mapFromGlobal(const QPoint &pt) const
-{
-    return QMainWindow::mapFromGlobal(pt); //(pt - geometry().topLeft());
+    return m_gtk_wnd->windowTitle();
 }
 
 QSize CWindowPlatform::size() const
 {
-    return pimpl->size;
+    return m_gtk_wnd->size();
 }
 
 QRect CWindowPlatform::geometry() const
 {
-    return QRect(pimpl->pos, pimpl->size);
+    return m_gtk_wnd->geometry();
 }
 
 QRect CWindowPlatform::normalGeometry() const
 {
-    return QRect(pimpl->normalPos, pimpl->normalSize);
+    return m_gtk_wnd->normalGeometry();
 }
 
 Qt::WindowStates CWindowPlatform::windowState() const
 {
-    Qt::WindowStates ws;
-    if (pimpl->state == 0)
-        ws.setFlag(Qt::WindowNoState);
-    if (pimpl->state & GDK_WINDOW_STATE_MAXIMIZED)
-        ws.setFlag(Qt::WindowMaximized);
-    if (pimpl->state & GDK_WINDOW_STATE_ICONIFIED)
-        ws.setFlag(Qt::WindowMinimized);
-    if (pimpl->state & GDK_WINDOW_STATE_FULLSCREEN)
-        ws.setFlag(Qt::WindowFullScreen);
-    //    if (pimpl->state & GDK_WINDOW_STATE_FOCUSED)
-    //        ws.setFlag(Qt::WindowActive);
-    return ws;
+    return m_gtk_wnd->windowState();
 }
 #endif
 

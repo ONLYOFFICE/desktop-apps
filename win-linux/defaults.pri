@@ -227,6 +227,9 @@ core_linux {
 
     dontusegtkmainwindow {
         DEFINES += DONT_USE_GTK_MAINWINDOW
+    } else {
+        HEADERS += $$PWD/src/windows/platform_linux/gtkmainwindow.h
+        SOURCES += $$PWD/src/windows/platform_linux/gtkmainwindow.cpp
     }
 
     updmodule {
