@@ -556,6 +556,18 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>vsdx</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-vsdx</string>
+			<key>CFBundleTypeName</key>
+			<string>Microsoft Visio File (.vsdx)</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>

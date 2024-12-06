@@ -45,6 +45,9 @@
 		5A0229692CCFC05C0011C6EC /* file-potx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A02295E2CCFC05C0011C6EC /* file-potx.icns */; };
 		5A02296A2CCFC05C0011C6EC /* file-potx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A02295E2CCFC05C0011C6EC /* file-potx.icns */; };
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
+		5A54B9342D0353A8008FA596 /* file-vsdx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A54B9332D0353A8008FA596 /* file-vsdx.icns */; };
+		5A54B9352D0353A8008FA596 /* file-vsdx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A54B9332D0353A8008FA596 /* file-vsdx.icns */; };
+		5A54B9362D0353A8008FA596 /* file-vsdx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A54B9332D0353A8008FA596 /* file-vsdx.icns */; };
 		5A9D7AE8289336130069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
 		5A9D7AE92893D86C0069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
 		5A9D7AEA2893D86D0069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
@@ -503,6 +506,7 @@
 		5A4ECA692AA88CB900286D52 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		5A4ECA6A2AA88CB900286D52 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		5A513A992A1827F2001A5FBD /* ascprinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ascprinter.h; sourceTree = "<group>"; };
+		5A54B9332D0353A8008FA596 /* file-vsdx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-vsdx.icns"; sourceTree = "<group>"; };
 		5A7F85D027A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5A7F85D127A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5A7F85D227A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "lv-LV"; path = "lv-LV.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -1244,6 +1248,7 @@
 		FC081EBC1C325E8400F9881C /* file-formats */ = {
 			isa = PBXGroup;
 			children = (
+				5A54B9332D0353A8008FA596 /* file-vsdx.icns */,
 				5AB89E292CFD1441000972EF /* file-key.icns */,
 				5AB89E282CFD1441000972EF /* file-numbers.icns */,
 				5AB89E262CFD1440000972EF /* file-pages.icns */,
@@ -2072,6 +2077,7 @@
 				FC0BD6DB258B63F700C47F95 /* file-csv.icns in Resources */,
 				FC0BD6DC258B63F700C47F95 /* file-xps.icns in Resources */,
 				FC0BD6DD258B63F700C47F95 /* dictionaries in Resources */,
+				5A54B9362D0353A8008FA596 /* file-vsdx.icns in Resources */,
 				FC0BD6DE258B63F700C47F95 /* file-docx.icns in Resources */,
 				5A0229562CCFC01B0011C6EC /* file-dotx.icns in Resources */,
 				FC0BD6DF258B63F700C47F95 /* login in Resources */,
@@ -2134,6 +2140,7 @@
 				5ACC12892BC036B30089A585 /* file-ots.icns in Resources */,
 				FCB4C71726DD018B0012C20D /* file-csv.icns in Resources */,
 				FCB4C71826DD018B0012C20D /* file-xps.icns in Resources */,
+				5A54B9342D0353A8008FA596 /* file-vsdx.icns in Resources */,
 				FCB4C71926DD018B0012C20D /* dictionaries in Resources */,
 				5A0229542CCFC01B0011C6EC /* file-dotx.icns in Resources */,
 				FCB4C71A26DD018B0012C20D /* file-docx.icns in Resources */,
@@ -2196,6 +2203,7 @@
 				5ACC12882BC036B20089A585 /* file-ots.icns in Resources */,
 				FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */,
 				FC98AF411E94E16A00718A12 /* file-xps.icns in Resources */,
+				5A54B9352D0353A8008FA596 /* file-vsdx.icns in Resources */,
 				BE6251BA22BD089100656116 /* dictionaries in Resources */,
 				5A0229552CCFC01B0011C6EC /* file-dotx.icns in Resources */,
 				FC98AF171E94E16A00718A12 /* file-docx.icns in Resources */,
