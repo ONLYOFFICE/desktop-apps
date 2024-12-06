@@ -90,7 +90,9 @@ protected:
     virtual void onLayoutDirectionChanged() = 0;   
 
 private:
+#ifndef DONT_USE_GTK_MAINWINDOW
     GtkMainWindow *m_gtk_wnd = nullptr;
+#endif
     QTimer *m_propertyTimer;
 };
 

@@ -79,8 +79,10 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
 
 CWindowPlatform::~CWindowPlatform()
 {
+#ifndef DONT_USE_GTK_MAINWINDOW
     if (m_gtk_wnd)
         delete m_gtk_wnd, m_gtk_wnd = nullptr;
+#endif
 }
 
 /** Public **/
@@ -261,7 +263,7 @@ void CWindowPlatform::onMinimizeEvent()
 #ifdef DONT_USE_GTK_MAINWINDOW
     CX11Decoration::setMinimized();
 #else
-    setMinimized();
+    showMinimized();
 #endif
 }
 
