@@ -225,6 +225,10 @@ core_linux {
                 $$PWD/src/platform_linux/xcbutils.cpp \
                 $$PWD/extras/update-daemon/src/classes/csocket.cpp
 
+    dontusegtkmainwindow {
+        DEFINES += DONT_USE_GTK_MAINWINDOW
+    }
+
     updmodule {
         HEADERS += $$PWD/src/platform_linux/updatedialog.h
         SOURCES += $$PWD/src/platform_linux/updatedialog.cpp

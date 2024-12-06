@@ -213,7 +213,11 @@ QStringList Gtk::openGtkFileChooser(QWidget *parent,
     char **filenames = nullptr;
     char *_sel_filter = (sel_filter) ? strdup(sel_filter->toLocal8Bit().data()) : nullptr;
     int files_count = 0;
+#ifdef DONT_USE_GTK_MAINWINDOW
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
+#else
+    Window parent_xid = (parent) ? parent->property("gtk_window_xid").value<unsigned long>() : 0L;
+#endif
     nativeFileDialog(parent_xid,
                      mode,
                      &filenames,

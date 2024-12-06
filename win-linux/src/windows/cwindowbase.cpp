@@ -71,11 +71,15 @@ CWindowBase::CWindowBase(const QRect& rect)
     , pimpl{new CWindowBasePrivate}
     , m_windowActivated(false)
 {
+#ifdef DONT_USE_GTK_MAINWINDOW
     setWindowIcon(Utils::appIcon());
+#endif
     m_window_rect = startRect(rect, m_dpiRatio);
+#ifdef DONT_USE_GTK_MAINWINDOW
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
-#ifdef __linux__
+# ifdef __linux__
     setGeometry(m_window_rect); // for Windows is set in CWindowPlatform
+# endif
 #endif
 }
 
@@ -200,7 +204,7 @@ void CWindowBase::saveWindowState(const QString &baseKey)
 
 void CWindowBase::moveToPrimaryScreen()
 {
-    QMainWindow::showNormal();
+    showNormal();
     QRect rect = QApplication::primaryScreen()->availableGeometry();
     double dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
     m_window_rect = QRect(rect.translated(100, 100).topLeft() * dpiRatio,

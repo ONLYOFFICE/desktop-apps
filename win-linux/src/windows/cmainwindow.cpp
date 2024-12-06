@@ -281,7 +281,7 @@ void CMainWindow::closeEvent(QCloseEvent * e)
 
 void CMainWindow::close()
 {
-    CWindowBase::saveWindowState();
+    saveWindowState();
     m_isCloseAll = true;
 
     if ( m_pTabs->count() == 0 ) {
@@ -424,6 +424,9 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle())
         mainPanel->setProperty("win10", true);
 #else
+# ifndef DONT_USE_GTK_MAINWINDOW
+    mainPanel->setProperty("gtk-window", true);
+# endif
     mainPanel->setProperty("unix", true);
 #endif
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
@@ -517,7 +520,7 @@ void CMainWindow::attachStartPanel(QCefView * const view)
 #ifdef __linux
 void CMainWindow::setMouseTracking(bool enable)
 {
-    QWidget::setMouseTracking(enable);
+    CWindowPlatform::setMouseTracking(enable);
     m_pMainPanel->findChild<QLabel *>("labelAppTitle")->setMouseTracking(enable);
 
     m_boxTitleBtns->setMouseTracking(enable);
@@ -1069,7 +1072,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
 
             if ( !(_tab_index < 0) ) {
                 if (windowState().testFlag(Qt::WindowMinimized))
-                    QMainWindow::setWindowState(Qt::WindowNoState);
+                    CWindowPlatform::setWindowState(Qt::WindowNoState);
 
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(_tab_index);

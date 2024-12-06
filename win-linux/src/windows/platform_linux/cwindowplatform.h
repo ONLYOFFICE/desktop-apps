@@ -37,6 +37,8 @@
 #include "cx11decoration.h"
 
 
+class GtkMainWindow;
+
 class CWindowPlatform : public CWindowBase, public CX11Decoration
 {
 public:
@@ -48,19 +50,51 @@ public:
     virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) final;
     virtual void adjustGeometry() final;
 
+#ifndef DONT_USE_GTK_MAINWINDOW
+    void move(const QPoint &pos);
+    void setGeometry(const QRect &rc);
+    void setWindowIcon(const QIcon &icon);
+    void setWindowTitle(const QString &title) override;
+    void setBackgroundColor(const QString &color);
+    void setFocus();
+    void setWindowState(Qt::WindowStates ws);
+    void show();
+    void showMinimized();
+    void showMaximized();
+    void showNormal();
+    void activateWindow();
+    void setMinimumSize(int w, int h);
+    void hide() const;
+    bool isMaximized();
+    bool isMinimized();
+    bool isActiveWindow();
+    bool isVisible() const;
+    bool isHidden() const;
+    QString windowTitle() const;
+    QPoint mapToGlobal(const QPoint &pt) const;
+    QPoint mapFromGlobal(const QPoint &pt) const;
+    QSize size() const;
+    QRect geometry() const;
+    QRect normalGeometry() const;
+    Qt::WindowStates windowState() const;
+#endif
+
 protected:
-    virtual void onMinimizeEvent() override;
     virtual bool event(QEvent *event) override;
-    virtual bool nativeEvent(const QByteArray&, void*, long*) final;
     virtual void setScreenScalingFactor(double, bool resize = true) override;
+    virtual void onMaximizeEvent() override;
+    virtual void onMinimizeEvent() override;
+    virtual bool nativeEvent(const QByteArray&, void*, long*) final;
+#ifdef DONT_USE_GTK_MAINWINDOW
     virtual void paintEvent(QPaintEvent *event) override;
-    virtual void onLayoutDirectionChanged() = 0;
+#else
+    virtual void applyWindowState() override;
+    virtual void saveWindowState(const QString &baseKey = "") override;
+#endif
+    virtual void onLayoutDirectionChanged() = 0;   
 
 private:
-    virtual void mouseMoveEvent(QMouseEvent *) final;
-    virtual void mousePressEvent(QMouseEvent *) final;
-    virtual void mouseReleaseEvent(QMouseEvent *) final;
-    virtual void mouseDoubleClickEvent(QMouseEvent *) final;
+    GtkMainWindow *pimpl = nullptr;
     QTimer *m_propertyTimer;
 };
 

@@ -1769,6 +1769,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         QRect rect = _main_window->windowState().testFlag(Qt::WindowMaximized) ?
                                      _main_window->normalGeometry() : _main_window->windowRect();
 
+                        SKIP_EVENTS_QUEUE([=]{
                         CEditorWindow * editor_win = new CEditorWindow(rect.translated(QPoint(50,50)), _editor);
                         editor_win->undock(_main_window->isMaximized());
 
@@ -1776,6 +1777,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         if ( editor_win->isCustomWindowStyle() )
                             sendCommandTo(_editor->cef(), L"window:features",
                                     Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+                        });
                     }
 //                });
             }

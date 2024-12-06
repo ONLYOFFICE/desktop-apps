@@ -37,6 +37,9 @@
 # include "platform_linux/singleapplication.h"
 # include "components/cmessage.h"
 # include <unistd.h>
+# ifndef DONT_USE_GTK_MAINWINDOW
+#  include <glib.h>
+# endif
 #endif
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
@@ -68,6 +71,9 @@ int main( int argc, char *argv[] )
         Utils::setInstAppPort(std::stoi(InputArgs::argument_value(L"--set-instapp-port")));
         return 0;
     }
+# ifndef DONT_USE_GTK_MAINWINDOW
+    g_set_application_name(WINDOW_NAME);
+# endif
 #endif
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_Use96Dpi);

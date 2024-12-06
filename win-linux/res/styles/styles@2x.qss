@@ -14,6 +14,10 @@ QPushButton#toolButtonMaximize[kde=true],
 QPushButton#toolButtonMinimize[kde=true],
 QPushButton#toolButtonClose[kde=true] {padding: 4px 0px 14px;}
 
+#mainPanel[gtk-window=true] QPushButton#toolButtonMaximize[kde=true],
+#mainPanel[gtk-window=true] QPushButton#toolButtonMinimize[kde=true],
+#mainPanel[gtk-window=true] QPushButton#toolButtonClose[kde=true] {padding: 0px 10px 0px 0px;}
+
 QPushButton#toolButtonMain {font-size: 20px; border-right-width: 2px;}
 QPushButton#toolButtonMain[theme=light] {border-width: 2px; border-bottom: 0 none;}
 QPushButton#toolButtonMain[class=normal],

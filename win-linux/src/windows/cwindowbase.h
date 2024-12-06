@@ -82,7 +82,7 @@ protected:
 
     QPushButton* createToolButton(QWidget * parent, const QString& name);
     QWidget* createTopPanel(QWidget *parent);
-    void saveWindowState(const QString &baseKey = "");
+    virtual void saveWindowState(const QString &baseKey = "");
     void moveToPrimaryScreen();
     void setIsCustomWindowStyle(bool);
     virtual bool event(QEvent*);

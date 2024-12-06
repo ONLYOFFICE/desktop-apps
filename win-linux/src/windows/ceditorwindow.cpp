@@ -245,6 +245,9 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     QString css(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
 #ifdef __linux__
     css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+# ifndef DONT_USE_GTK_MAINWINDOW
+    mainPanel->setProperty("gtk-window", true);
+# endif
 #endif
     mainPanel->setStyleSheet(css);
 
@@ -292,7 +295,7 @@ void CEditorWindow::init(CTabPanel *panel)
     recalculatePlaces();
 #endif
 
-    QTimer::singleShot(0, this, [=]{m_pMainView->show();});
+    //QTimer::singleShot(0, this, [=]{m_pMainView->show();});
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
     AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
 
@@ -412,13 +415,16 @@ void CEditorWindow::captureMouse()
 #else
     QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
     QApplication::sendEvent(AscAppManager::mainWindow(), &_event);
-    setGeometry(QRect(QCursor::pos() - QPoint(CAPTURED_WINDOW_OFFSET_X, CAPTURED_WINDOW_OFFSET_Y), size()));
-    Q_ASSERT(m_boxTitleBtns != nullptr);
-    QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() + QPoint(CAPTURED_WINDOW_OFFSET_X, CAPTURED_WINDOW_OFFSET_Y));
-    _event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
-    CX11Decoration::dispatchMouseDown(&_event);
-    _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
-    CX11Decoration::dispatchMouseMove(&_event);
+    QTimer::singleShot(0, this, [=]() {
+        bringToTop();
+        move(QCursor::pos() - QPoint(CAPTURED_WINDOW_OFFSET_X, CAPTURED_WINDOW_OFFSET_Y));
+        Q_ASSERT(m_boxTitleBtns != nullptr);
+        QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() + QPoint(CAPTURED_WINDOW_OFFSET_X, CAPTURED_WINDOW_OFFSET_Y));
+        QMouseEvent _event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+        CX11Decoration::dispatchMouseDown(&_event);
+        _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+        CX11Decoration::dispatchMouseMove(&_event);
+    });
 #endif
 }
 
@@ -441,7 +447,7 @@ void CEditorWindow::onCloseEvent()
         if ( closeWindow() == MODAL_RESULT_YES ) {
             AscEditorType editorType = d_ptr->panel()->data()->contentType();
             QString baseKey = (editorType == AscEditorType::etUndefined) ? "" : "EditorsGeometry/" + QString::number(int(editorType)) + "/";
-            CWindowBase::saveWindowState(baseKey);
+            saveWindowState(baseKey);
             hide();
         }
     }

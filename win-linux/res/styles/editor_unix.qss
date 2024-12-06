@@ -67,6 +67,9 @@
 #toolButtonMinimize[kde=true],
 #toolButtonClose[kde=true],
 #toolButtonMaximize[kde=true] {padding: 2px 0px 7px;}
+#mainPanel[gtk-window=true] #toolButtonMinimize[kde=true],
+#mainPanel[gtk-window=true] #toolButtonClose[kde=true],
+#mainPanel[gtk-window=true] #toolButtonMaximize[kde=true] {padding: 0px 5px 0px 0px;}
 
 /* 1.25x */
 #mainPanel[zoom="1.25x"] #toolButtonMinimize[kde=true],
@@ -87,6 +90,9 @@
 #mainPanel[zoom="2x"] #toolButtonMinimize[kde=true],
 #mainPanel[zoom="2x"] #toolButtonClose[kde=true],
 #mainPanel[zoom="2x"] #toolButtonMaximize[kde=true] {padding: 4px 0px 14px;}
+#mainPanel[zoom="2x"][gtk-window=true] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="2x"][gtk-window=true] #toolButtonClose[kde=true],
+#mainPanel[zoom="2x"][gtk-window=true] #toolButtonMaximize[kde=true] {padding: 0px 10px 0px 0px;}
 
 /* 2.25x */
 #mainPanel[zoom="2.25x"] #toolButtonMinimize[kde=true],

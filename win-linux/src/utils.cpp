@@ -933,13 +933,18 @@ namespace WindowHelper {
         if (parent) {
             parent->setProperty("blocked", true);
             Qt::WindowFlags flags = Qt::FramelessWindowHint;
+#ifdef DONT_USE_GTK_MAINWINDOW
             if (!QX11Info::isCompositingManagerRunning()) {
+#endif
                 flags |= (Qt::SubWindow | Qt::BypassWindowManagerHint);
                 Utils::processMoreEvents(); // Fixed Cef rendering before reopening the dialog
+#ifdef DONT_USE_GTK_MAINWINDOW
             } else
                 flags |= Qt::Dialog;
+#endif
             m_pChild = new QWidget(parent, flags);
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
+#ifdef DONT_USE_GTK_MAINWINDOW
             if (QX11Info::isCompositingManagerRunning()) {
                 m_pChild->setWindowModality(Qt::ApplicationModal);
                 int offset = parent->isMaximized() ? 0 : 10;
@@ -947,6 +952,7 @@ namespace WindowHelper {
                 m_pChild->setFixedSize(parent->size() + 2 * QSize(offset, offset));
                 parent = m_pChild;
             } else
+#endif
                 m_pChild->setGeometry(parent->rect());
             m_pChild->show();
         }

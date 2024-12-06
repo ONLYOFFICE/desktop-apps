@@ -66,8 +66,11 @@ int GtkMsg::showMessage(QWidget *parent,
     const int delim = plainText.indexOf('\n');
     const QString primaryText = (delim != -1) ? plainText.mid(0, delim) : plainText;
     const QString secondaryText = (delim != -1) ? plainText.mid(delim + 1) : "";
+#ifdef DONT_USE_GTK_MAINWINDOW
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
-
+#else
+    Window parent_xid = (parent) ? parent->property("gtk_window_xid").value<unsigned long>() : 0L;
+#endif
     const char* img_name = NULL;
     switch (msgType) {
     case MsgType::MSG_INFO:    img_name = "dialog-information"; break;
