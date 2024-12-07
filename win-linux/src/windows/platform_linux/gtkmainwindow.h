@@ -36,6 +36,7 @@ public:
     bool isMaximized();
     bool isMinimized();
     bool isActiveWindow();
+    bool isFocused();
     bool isVisible() const;
     bool isHidden() const;
     QString windowTitle() const;

@@ -41,6 +41,8 @@ namespace XcbUtils
 {
 void moveWindow(xcb_window_t window, int x, int y);
 void setNativeFocusTo(xcb_window_t window);
+void sendNativeFocusTo(xcb_window_t window, int focus);
+void sendConfigureNotify(xcb_window_t window, int x, int y, int width, int height);
 bool isNativeFocus(xcb_window_t window);
 void findWindowAsync(const char *window_name, void *user_data,
                      uint timeout_ms,

@@ -1,4 +1,5 @@
 #include "gtkmainwindow.h"
+#include "platform_linux/xcbutils.h"
 #include <QTimer>
 #include <QX11Info>
 #include <xcb/xcb.h>
@@ -11,39 +12,6 @@
 
 #define WINDOW_CORNER_RADIUS 6
 
-
-static void sendConfigureNotify(QWidget *wgt, int x, int y, int width, int height)
-{
-    xcb_connection_t* con = QX11Info::connection();
-    xcb_window_t wnd = (xcb_window_t)wgt->winId();
-    xcb_configure_notify_event_t ev;
-    memset(&ev, 0, sizeof(ev));
-    ev.response_type = XCB_CONFIGURE_NOTIFY;
-    ev.event = wnd;
-    ev.window = wnd;
-    ev.x = x;
-    ev.y = y;
-    ev.width = width;
-    ev.height = height;
-    ev.border_width = 0;
-    ev.above_sibling = XCB_WINDOW_NONE;
-    ev.override_redirect = 0;
-    xcb_send_event(con, 0, wnd, XCB_EVENT_MASK_STRUCTURE_NOTIFY, (const char*)&ev);
-    xcb_flush(con);
-}
-
-static void sendFocusIn(QWidget *wgt, int focus)
-{
-    xcb_connection_t* con = QX11Info::connection();
-    xcb_window_t wnd = (xcb_window_t)wgt->winId();
-    xcb_client_message_event_t ev;
-    memset(&ev, 0, sizeof(ev));
-    ev.response_type = /*(focus == 1) ?*/ XCB_FOCUS_IN /*: XCB_FOCUS_OUT*/;
-    ev.window = wnd;
-    ev.type = XCB_INPUT_FOCUS_POINTER_ROOT;
-    xcb_send_event(con, 0, wnd, XCB_EVENT_MASK_STRUCTURE_NOTIFY, (const char*)&ev);
-    xcb_flush(con);
-}
 
 class GtkMainWindowPrivate
 {
@@ -61,6 +29,7 @@ public:
     QPoint pos, normalPos;
     QSize size, normalSize;
     bool is_maximized = false,
+         is_focused = false,
          is_support_round_corners = false;
 
 private:
@@ -84,8 +53,8 @@ void GtkMainWindowPrivate::init()
 {
     wnd = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_type_hint(GTK_WINDOW(wnd), GdkWindowTypeHint::GDK_WINDOW_TYPE_HINT_NORMAL);
-    //    gtk_window_set_title(GTK_WINDOW(wnd), "GtkMainWindow");
-    //    gtk_window_set_position(GTK_WINDOW(wnd), GtkWindowPosition::GTK_WIN_POS_CENTER);
+//    gtk_window_set_title(GTK_WINDOW(wnd), "GtkMainWindow");
+//    gtk_window_set_position(GTK_WINDOW(wnd), GtkWindowPosition::GTK_WIN_POS_CENTER);
 
     GtkCssProvider *provider = gtk_css_provider_new();
     gtk_css_provider_load_from_data(provider, "decoration {border-radius: 6px 6px 0px 0px;}", -1, NULL);
@@ -97,9 +66,14 @@ void GtkMainWindowPrivate::init()
     gtk_widget_destroy(header);
 
     GtkWidget *socket = gtk_socket_new();
-    gtk_widget_set_name(socket, "socket");
-    gtk_widget_set_has_window(socket, TRUE);
+    /* Call the show according to the GtkSocket documentation */
+    gtk_widget_show(socket);
+//    gtk_widget_set_name(socket, "socket");
     gtk_container_add(GTK_CONTAINER(wnd), socket);
+    /* The following call is only necessary if one of
+    the ancestors of the socket is not yet visible
+    (according to the GtkSocket documentation) */
+    gtk_widget_realize(socket);
 
     gtk_widget_set_app_paintable(wnd, TRUE);
     GdkScreen *scr = gtk_widget_get_screen(wnd);
@@ -140,13 +114,12 @@ void GtkMainWindowPrivate::on_event_after(GtkWidget *wgt, GdkEvent *ev, gpointer
         if (!pimpl->is_maximized) {
             pimpl->normalPos = pimpl->pos;
         }
-        sendConfigureNotify(pimpl->underlay, f*x, f*y, pimpl->underlay->width(), pimpl->underlay->height());
+        XcbUtils::sendConfigureNotify(pimpl->underlay->winId(), f*x, f*y, pimpl->underlay->width(), pimpl->underlay->height());
         break;
     }
     case GDK_FOCUS_CHANGE: {
-        if (ev->focus_change.in == 1)
-            sendFocusIn(pimpl->underlay, ev->focus_change.in);
-        //qApp->postEvent(pimpl->cw, new QEvent(Event_GtkFocusIn));
+        if ((pimpl->is_focused = ev->focus_change.in) == 1)
+            XcbUtils::sendNativeFocusTo(pimpl->underlay->winId(), 1);
         break;
     }
     case GDK_WINDOW_STATE: {
@@ -280,7 +253,7 @@ void GtkMainWindow::setBackgroundColor(const QString &color)
 void GtkMainWindow::setFocus()
 {
     gtk_window_present(GTK_WINDOW(pimpl->wnd));
-    sendFocusIn(pimpl->underlay, 1);
+    XcbUtils::sendNativeFocusTo(pimpl->underlay->winId(), 1);
 }
 
 void GtkMainWindow::setWindowState(Qt::WindowStates ws)
@@ -358,6 +331,11 @@ bool GtkMainWindow::isMinimized()
 bool GtkMainWindow::isActiveWindow()
 {
     return gtk_window_is_active(GTK_WINDOW(pimpl->wnd));
+}
+
+bool GtkMainWindow::isFocused()
+{
+    return pimpl->is_focused;
 }
 
 bool GtkMainWindow::isVisible() const

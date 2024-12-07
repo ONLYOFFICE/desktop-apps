@@ -34,6 +34,7 @@
 #include "windows/platform_linux/gtkmainwindow.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
+#include "platform_linux/xcbutils.h"
 #include "utils.h"
 #include <QTimer>
 #include <QPainter>
@@ -330,7 +331,11 @@ bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, long *re
         xcb_generic_event_t *ev = static_cast<xcb_generic_event_t*>(msg);
         switch (ev->response_type & ~0x80) {
         case XCB_FOCUS_IN:
+#ifdef DONT_USE_GTK_MAINWINDOW
             if (isNativeFocus()) {
+#else
+            if (m_gtk_wnd->isFocused()) {
+#endif
                 focus();
                 m_propertyTimer->stop();
                 if (property("stabilized").toBool())
@@ -338,6 +343,14 @@ bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, long *re
                 m_propertyTimer->start();
             }
             break;
+        case XCB_FOCUS_OUT: {
+#ifndef DONT_USE_GTK_MAINWINDOW
+            /* Workaround when focus is lost on click in Wayland */
+            if (m_gtk_wnd->isFocused() && WindowHelper::isLeftButtonPressed())
+                XcbUtils::sendNativeFocusTo(winId(), 1);
+#endif
+            break;
+        }
         default:
             break;
         }

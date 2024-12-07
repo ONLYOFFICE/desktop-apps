@@ -82,6 +82,37 @@ void XcbUtils::setNativeFocusTo(xcb_window_t window)
     }
 }
 
+void XcbUtils::sendNativeFocusTo(xcb_window_t window, int focus)
+{
+    xcb_connection_t* conn = QX11Info::connection();
+    xcb_client_message_event_t ev;
+    memset(&ev, 0, sizeof(ev));
+    ev.response_type = (focus == 1) ? XCB_FOCUS_IN : XCB_FOCUS_OUT;
+    ev.window = window;
+    ev.type = XCB_INPUT_FOCUS_POINTER_ROOT;
+    xcb_send_event(conn, 0, window, XCB_EVENT_MASK_STRUCTURE_NOTIFY, (const char*)&ev);
+    xcb_flush(conn);
+}
+
+void XcbUtils::sendConfigureNotify(xcb_window_t window, int x, int y, int width, int height)
+{
+    xcb_connection_t* con = QX11Info::connection();
+    xcb_configure_notify_event_t ev;
+    memset(&ev, 0, sizeof(ev));
+    ev.response_type = XCB_CONFIGURE_NOTIFY;
+    ev.event = window;
+    ev.window = window;
+    ev.x = x;
+    ev.y = y;
+    ev.width = width;
+    ev.height = height;
+    ev.border_width = 0;
+    ev.above_sibling = XCB_WINDOW_NONE;
+    ev.override_redirect = 0;
+    xcb_send_event(con, 0, window, XCB_EVENT_MASK_STRUCTURE_NOTIFY, (const char*)&ev);
+    xcb_flush(con);
+}
+
 static void SetSkipTaskbar(Display* disp, Window win)
 {
     Atom wm_state = XInternAtom(disp, "_NET_WM_STATE", True);
