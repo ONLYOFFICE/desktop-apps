@@ -79,6 +79,18 @@ void add_to_recent(const gchar *uri)
     gtk_recent_manager_add_item(rm, uri);
 }
 
+xcb_window_t qt_underlay_from_xid(xcb_window_t xid)
+{
+    if (GdkDisplay *dsp = gdk_display_get_default()) {
+        if (GdkWindow *gdk_wnd = gdk_x11_window_lookup_for_display(dsp, xid)) {
+            Window *qt_underlay_xid = (Window*)g_object_get_data(G_OBJECT(gdk_wnd), "qt_underlay_xid");
+            if (qt_underlay_xid)
+                return *qt_underlay_xid;
+        }
+    }
+    return None;
+}
+
 GtkWidget *find_widget_by_path(GtkWidget *parent, const gchar *widget_path)
 {
     if (!parent)

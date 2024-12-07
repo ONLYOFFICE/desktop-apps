@@ -55,6 +55,9 @@
 # include <QProcess>
 # define APP_LAUNCH_NAME "/DesktopEditors"
 # define RESTART_BATCH "/apprestart.sh"
+# ifndef DONT_USE_GTK_MAINWINDOW
+#  include "platform_linux/gtkutils.h"
+# endif
 #endif
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
@@ -417,6 +420,9 @@ public:
             XcbUtils::getWindowStack(winStack);
             for (auto it = winStack.rbegin(); it != winStack.rend(); it++) {
                 WId wid = (WId)(*it);
+# ifndef DONT_USE_GTK_MAINWINDOW
+                wid = qt_underlay_from_xid(wid);
+# endif
 #endif
                     QWidget *wgt = QWidget::find(wid);
                     if (wgt && wgt->isWindow()) {

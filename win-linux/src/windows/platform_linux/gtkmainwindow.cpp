@@ -45,6 +45,10 @@ GtkMainWindowPrivate::GtkMainWindowPrivate()
 
 GtkMainWindowPrivate::~GtkMainWindowPrivate()
 {
+    GdkWindow *gdk_wnd = gtk_widget_get_window(wnd);
+    gpointer q_underlay_xid = g_object_get_data(G_OBJECT(gdk_wnd), "qt_underlay_xid");
+    if (q_underlay_xid)
+        g_free(q_underlay_xid);
     gtk_widget_destroy(GTK_WIDGET(wnd));
     wnd = nullptr;
 }
@@ -67,7 +71,7 @@ void GtkMainWindowPrivate::init()
 
     GtkWidget *socket = gtk_socket_new();
     /* Call the show according to the GtkSocket documentation */
-    gtk_widget_show(socket);
+//    gtk_widget_show(socket);
 //    gtk_widget_set_name(socket, "socket");
     gtk_container_add(GTK_CONTAINER(wnd), socket);
     /* The following call is only necessary if one of
@@ -278,6 +282,10 @@ void GtkMainWindow::show()
     //gdk_display_flush(dsp);
     //gdk_window_process_all_updates();
     GdkWindow *gdk_wnd = gtk_widget_get_window(pimpl->wnd);
+    Window *qt_underlay_xid = (Window*)g_malloc(sizeof(Window));
+    *qt_underlay_xid = (Window)pimpl->underlay->winId();
+    g_object_set_data(G_OBJECT(gdk_wnd), "qt_underlay_xid", qt_underlay_xid);
+
     Window xid = GDK_WINDOW_XID(gdk_wnd);
     pimpl->underlay->setProperty("gtk_window_xid", QVariant::fromValue(xid));
     pimpl->underlay->show();

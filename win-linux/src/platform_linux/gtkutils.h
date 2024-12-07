@@ -33,7 +33,11 @@
 #ifndef GTKUTILS_H
 #define GTKUTILS_H
 
+#include <xcb/xcb.h>
+#pragma push_macro("signals")
+#undef signals
 #include <gtk/gtk.h>
+#pragma pop_macro("signals")
 
 
 typedef struct DialogTag {
@@ -45,6 +49,7 @@ gboolean set_focus(GtkWidget *dialog);
 gboolean focus_out(gpointer data);
 void set_parent(GtkWidget *dialog, gpointer data);
 void add_to_recent(const gchar *uri);
+xcb_window_t qt_underlay_from_xid(xcb_window_t xid);
 GtkWidget *find_widget_by_path(GtkWidget *parent, const gchar *widget_path);
 
 #endif // GTKUTILS_H
