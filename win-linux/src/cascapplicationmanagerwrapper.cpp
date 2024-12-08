@@ -1100,6 +1100,8 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
     static bool check_printers = false;
     if (!check_printers) {
         check_printers = true;
+
+        QJsonArray printersArray;
 #ifdef _WIN32
         DWORD need = 0, ret = 0;
         EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, nullptr, 0, &need, &ret);
@@ -1109,8 +1111,26 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
             for (DWORD i = 0; i < ret; ++i) {
                 LPDEVMODE pDevMode = printers[i].pDevMode;
                 bool duplex_supported = (pDevMode && (pDevMode->dmFields & DM_DUPLEX));
-                wprintf(L"%s: %d\n", printers[i].pPrinterName, duplex_supported);
-                fflush(stdout);
+
+                QJsonObject printerObject;
+                printerObject["name"] = QString::fromWCharArray(printers[i].pPrinterName);
+                printerObject["duplex_supported"] = duplex_supported;
+
+                int paperCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, NULL, NULL);
+                if (paperCount > 0) {
+                    constexpr int PAPER_NAME_LENGTH = 64;
+                    std::vector<WCHAR> buffer(paperCount * PAPER_NAME_LENGTH, L'\0');
+                    int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, buffer.data(), NULL);
+                    if (res == paperCount) {
+                        QJsonArray paperArray;
+                        for (int j = 0; j < paperCount; ++j) {
+                            std::wstring paperName(&buffer[j * PAPER_NAME_LENGTH], PAPER_NAME_LENGTH);
+                            paperArray.append(QString::fromWCharArray(paperName.c_str()));
+                        }
+                        printerObject["paper_names"] = paperArray;
+                    }
+                }
+                printersArray.append(printerObject);
             }
         }
 #else
@@ -1129,6 +1149,10 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
             cupsFreeDests(num_dests, dests);
         }
 #endif
+        QJsonObject rootObject;
+        rootObject["printers"] = printersArray;
+        QJsonDocument jsonDoc(rootObject);
+        qDebug().noquote() << jsonDoc.toJson(QJsonDocument::Indented);
     }
 }
 
