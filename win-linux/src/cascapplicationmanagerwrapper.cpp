@@ -1142,8 +1142,23 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                 const char *ppd = cupsGetPPD(dest->name);
                 ppd_file_t *ppdF = ppdOpenFile(ppd);
                 bool duplex_supported = ppdFindOption(ppdF, "Duplex");
-                printf("%s: %d\n", dest->name, duplex_supported);
-                fflush(stdout);
+
+                QJsonObject printerObject;
+                printerObject["name"] = QString::fromUtf8(dest->name);
+                printerObject["duplex_supported"] = duplex_supported;
+
+                ppd_option_t *option = ppdFirstOption(ppdF);
+                while (option) {
+                    if (strcmp(option->keyword, "PageSize") == 0) {
+                        QJsonArray paperArray;
+                        for (int j = 0; j < option->num_choices; j++) {
+                            paperArray.append(QString::fromUtf8(option->choices[j].choice));
+                        }
+                        printerObject["paper_names"] = paperArray;
+                    }
+                    option = ppdNextOption(ppdF);
+                }
+                printersArray.append(printerObject);
                 ppdClose(ppdF);
             }
             cupsFreeDests(num_dests, dests);
