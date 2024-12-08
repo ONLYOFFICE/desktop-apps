@@ -36,8 +36,6 @@
 # include "platform_win/association.h"
 #else
 # include <unistd.h>
-# include <cups/cups.h>
-# include <cups/ppd.h>
 # include "platform_linux/singleapplication.h"
 # ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 #  include "platform_linux/cdialogcertificateinfo.h"

@@ -40,6 +40,10 @@
 #include <QSettings>
 #include <future>
 #include <cmath>
+#ifdef __linux__
+# include <cups/cups.h>
+# include <cups/ppd.h>
+#endif
 
 class CPrintData::CPrintDataPrivate
 {
