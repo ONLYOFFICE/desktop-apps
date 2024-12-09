@@ -221,7 +221,7 @@ bool CWindowBase::event(QEvent *event)
 {
     if (event->type() == QEvent::ToolTip) {
        QHelpEvent *hlp = static_cast<QHelpEvent*>(event);
-       QWidget *wgt = qApp->widgetAt(hlp->globalPos());
+       QWidget *wgt = childAt(hlp->pos());
        if (wgt && !findChild<CToolTip*>()) {
            QString text("");
            if (wgt->property("ToolTip").isValid())

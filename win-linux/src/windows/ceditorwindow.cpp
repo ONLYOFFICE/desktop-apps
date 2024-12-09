@@ -484,7 +484,7 @@ bool CEditorWindow::event(QEvent * event)
         if (m_pMenu) {
             QContextMenuEvent* cm_event = static_cast<QContextMenuEvent*>(event);
             QPoint pos = mapToGlobal(cm_event->pos());
-            QWidget *wgt = qApp->widgetAt(pos);
+            QWidget *wgt = childAt(cm_event->pos());
             if (wgt && (wgt == m_labelTitle || wgt->objectName() == "boxtitlelabel")) {
                 SKIP_EVENTS_QUEUE([=]() {
                     m_pMenu->exec(pos);

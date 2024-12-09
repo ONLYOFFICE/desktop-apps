@@ -361,15 +361,15 @@ QString GtkMainWindow::windowTitle() const
     return gtk_window_get_title(GTK_WINDOW(pimpl->wnd));
 }
 
-QPoint GtkMainWindow::mapToGlobal(const QPoint &pt) const
-{
-    return (pt + geometry().topLeft());
-}
+// QPoint GtkMainWindow::mapToGlobal(const QPoint &pt) const
+// {
+//     return (pt + geometry().topLeft());
+// }
 
-QPoint GtkMainWindow::mapFromGlobal(const QPoint &pt) const
-{
-    return (pt - geometry().topLeft());
-}
+// QPoint GtkMainWindow::mapFromGlobal(const QPoint &pt) const
+// {
+//     return (pt - geometry().topLeft());
+// }
 
 QSize GtkMainWindow::size() const
 {
