@@ -160,6 +160,7 @@ pl.MSG_ERR_CLOSE_APP =Instalator wykrył, że %1 jest aktualnie uruchomiona. Zam
 sk.MSG_ERR_CLOSE_APP =Nastavenie zistilo, že momentálne je spustené %1. Zatvorte všetky jeho kópie.
 vi.MSG_ERR_CLOSE_APP =Thiết lập đã phát hiện ra rằng %1 hiện đang chạy. Vui lòng đóng tất cả các bản sao đang hoạt động.
 he.MSG_ERR_CLOSE_APP =ההתקנה זיהתה ש-%1 פועל כרגע. אנא סגור את כל המופעים הפתוחים שלו.
+lv.MSG_ERR_CLOSE_APP =Sistēma ir konstatējusi, ka pašlaik darbojas programma %1. Lūdzu, aizveriet visus tās logus.
 
 en.MSG_REMOVE =This will remove %1 and its components.
 en_GB.MSG_REMOVE =This will remove %1 and its components.
@@ -190,6 +191,7 @@ pl.MSG_REMOVE =Spowoduje to usunięcie %1 i jej komponentów.
 sk.MSG_REMOVE =Tým sa odstráni %1 a jeho komponenty.
 vi.MSG_REMOVE =Thao tác này sẽ xóa %1 và các thành phần của nó.
 he.MSG_REMOVE =פעולה זו תסיר את %1 ואת כל הרכיבים שלו.
+lv.MSG_REMOVE =Tādējādi %1 un tās sastāvdaļas tiks dzēstas.
 
 en.MSG_REPAIR =This will repair the current version of %1.
 en_GB.MSG_REPAIR =This will repair the current version of %1.
@@ -220,6 +222,7 @@ pl.MSG_REPAIR =Spowoduje to naprawę aktualnej wersji %1.
 sk.MSG_REPAIR =Tým sa opraví aktuálna verzia %1.
 vi.MSG_REPAIR =Thao tác này sẽ sửa chữa phiên bản hiện tại của %1.
 he.MSG_REPAIR =פעולה זו תתקן את הגרסה הנוכחית של %1.
+lv.MSG_REPAIR =Tādējādi pašreizējā %1 versija tiks salabota.
 
 en.MSG_UPDATE =This will update %1 to the latest version available.
 en_GB.MSG_UPDATE =This will update %1 to the latest version available.
@@ -250,6 +253,7 @@ pl.MSG_UPDATE =Spowoduje to aktualizację %1 do najnowszej dostępnej wersji.
 sk.MSG_UPDATE =Týmto sa %1 aktualizuje na najnovšiu dostupnú verziu.
 vi.MSG_UPDATE =Thao tác này sẽ cập nhật %1 lên phiên bản mới nhất hiện có.
 he.MSG_UPDATE =פעולה זו תעדכן את %1 לגרסה העדכנית ביותר הזמינה.
+lv.MSG_UPDATE =Tādējādi %1 tiks atjaunināta uz jaunāko pieejamo versiju.
 
 en.LABEL_DOWNLOAD =Downloading
 en_GB.LABEL_DOWNLOAD =Downloading
@@ -280,6 +284,7 @@ pl.LABEL_DOWNLOAD =Pobieranie
 sk.LABEL_DOWNLOAD =Stiahnutie
 vi.LABEL_DOWNLOAD =Đang tải về
 he.LABEL_DOWNLOAD =מתבצע הורדה
+lv.LABEL_DOWNLOAD =Lejupielādē
 
 en.LABEL_INSTALL =Installing
 en_GB.LABEL_INSTALL =Installing
@@ -310,6 +315,7 @@ pl.LABEL_INSTALL =Instalowanie
 sk.LABEL_INSTALL =Inštalácia
 vi.LABEL_INSTALL =Đang cài đặt
 he.LABEL_INSTALL =מתבצעת התקנה
+lv.LABEL_INSTALL =Instalē
 
 en.LABEL_UPDATING =Updating
 en_GB.LABEL_UPDATING =Updating
@@ -340,6 +346,7 @@ pl.LABEL_UPDATING =Aktualizowanie
 sk.LABEL_UPDATING =Aktualizácia
 vi.LABEL_UPDATING =Đang cập nhật
 he.LABEL_UPDATING =מתבצע עדכון
+lv.LABEL_UPDATING =Atjaunina
 
 en.LABEL_REPAIRING =Repairing
 en_GB.LABEL_REPAIRING =Repairing
@@ -370,6 +377,7 @@ pl.LABEL_REPAIRING =Naprawa
 sk.LABEL_REPAIRING =Oprava
 vi.LABEL_REPAIRING =Đang sửa chữa
 he.LABEL_REPAIRING =מתבצע תיקון
+lv.LABEL_REPAIRING =Labo
 
 en.LABEL_UNINSTLING =Uninstalling
 en_GB.LABEL_UNINSTLING =Uninstalling
@@ -400,6 +408,7 @@ pl.LABEL_UNINSTLING =Odinstalowywanie
 sk.LABEL_UNINSTLING =Odinštalovanie
 vi.LABEL_UNINSTLING =Đang hủy cài đặt
 he.LABEL_UNINSTLING =מתבצעת הסרה
+lv.LABEL_UNINSTLING =Atinstalē
 
 en.LABEL_UPDATE_COMPL =Update complete!
 en_GB.LABEL_UPDATE_COMPL =Update complete!
@@ -430,6 +439,7 @@ pl.LABEL_UPDATE_COMPL =Zakończono aktualizowanie!
 sk.LABEL_UPDATE_COMPL =Aktualizácia dokončená!
 vi.LABEL_UPDATE_COMPL =Đã hoàn thành cập nhật!
 he.LABEL_UPDATE_COMPL =העדכון הושלם בהצלחה!
+lv.LABEL_UPDATE_COMPL =Atjaunināšana pabeigta!
 
 en.LABEL_REPAIR_COMPL =Repairing completed!
 en_GB.LABEL_REPAIR_COMPL =Repairing completed!
@@ -460,6 +470,7 @@ pl.LABEL_REPAIR_COMPL =Zakończono naprawę!
 sk.LABEL_REPAIR_COMPL =Oprava dokončená!
 vi.LABEL_REPAIR_COMPL =Đã hoàn thành sửa chữa!
 he.LABEL_REPAIR_COMPL =התיקון הושלם בהצלחה!!
+lv.LABEL_REPAIR_COMPL =Labošana pabeigta!
 
 en.LABEL_UNINST_COMPL =Uninstalling completed!
 en_GB.LABEL_UNINST_COMPL =Uninstalling completed!
@@ -490,6 +501,7 @@ pl.LABEL_UNINST_COMPL =Zakończono odinstalowywanie!
 sk.LABEL_UNINST_COMPL =Odinštalovanie dokončené!
 vi.LABEL_UNINST_COMPL =Đã hoàn thành gỡ cài đặt!
 he.LABEL_UNINST_COMPL =ההסרה הושלמה בהצלחה!
+lv.LABEL_UNINST_COMPL =Atinstalēšana pabeigta!
 
 en.LABEL_VERSION =%1 %2 (%3 %4) is installed
 en_GB.LABEL_VERSION =%1 %2 (%3 %4) is installed
@@ -520,6 +532,7 @@ pl.LABEL_VERSION =Trwa instalowanie %1 %2 (%3 %4)
 sk.LABEL_VERSION =%1 %2 (%3 %4) je nainštalovaný
 vi.LABEL_VERSION =%1 %2 (%3 %4) đã được cài đặt
 he.LABEL_VERSION =%1 %2 (%3 %4) מותקן
+lv.LABEL_VERSION =%1 %2 (%3 %4) ir instalēts
 
 en.LABEL_UNKN_VER =unknown version
 en_GB.LABEL_UNKN_VER =unknown version
@@ -550,6 +563,7 @@ pl.LABEL_UNKN_VER =nieznana wersja
 sk.LABEL_UNKN_VER =neznáma verzia
 vi.LABEL_UNKN_VER =phiên bản không xác định
 he.LABEL_UNKN_VER =גרסה לא ידועה
+lv.LABEL_UNKN_VER =nezināma versija
 
 en.LABEL_UNKN_PACK =unknown package
 en_GB.LABEL_UNKN_PACK =unknown package
@@ -580,6 +594,7 @@ pl.LABEL_UNKN_PACK =nieznany pakiet
 sk.LABEL_UNKN_PACK =neznámy balík
 vi.LABEL_UNKN_PACK =gói không xác định
 he.LABEL_UNKN_PACK =חבילה לא ידועה
+lv.LABEL_UNKN_PACK =nezināma pakotne
 
 en.LABEL_NO_OPTIONS =No additional options available.
 en_GB.LABEL_NO_OPTIONS =No additional options available.
@@ -610,6 +625,7 @@ pl.LABEL_NO_OPTIONS =Brak dostępnych dodatkowych opcji.
 sk.LABEL_NO_OPTIONS =Nie sú k dispozícii žiadne ďalšie možnosti.
 vi.LABEL_NO_OPTIONS =Không có tùy chọn bổ sung nào.
 he.LABEL_NO_OPTIONS =אין אפשרויות נוספות זמינות.
+lv.LABEL_NO_OPTIONS =Papildu opcijas nav pieejamas.
 
 en.LABEL_NO_VER_AVAIL =No version available
 en_GB.LABEL_NO_VER_AVAIL =No version available
@@ -640,6 +656,7 @@ pl.LABEL_NO_VER_AVAIL =Brak dostępnej wersji
 sk.LABEL_NO_VER_AVAIL =Nie je k dispozícii žiadna verzia
 vi.LABEL_NO_VER_AVAIL =Không có phiên bản nào
 he.LABEL_NO_VER_AVAIL =אין גרסה זמינה
+lv.LABEL_NO_VER_AVAIL =Versijas nav pieejamas
 
 en.LABEL_WARN_CLOSE =This will install ONLYOFFICE Desktop Editors on your computer.\nIt is recommended that you close all other applications before continuing.
 en_GB.LABEL_WARN_CLOSE =This will install ONLYOFFICE Desktop Editors on your computer.\nIt is recommended that you close all other applications before continuing.
@@ -670,6 +687,7 @@ pl.LABEL_WARN_CLOSE =Spowoduje to zainstalowanie ONLYOFFICE Desktop Editors na T
 sk.LABEL_WARN_CLOSE =Na váš počítač sa nainštalujú aplikácie ONLYOFFICE Desktop Editors.\nIt Pred pokračovaním sa odporúča zatvoriť všetky ostatné aplikácie.
 vi.LABEL_WARN_CLOSE =Thao tác này sẽ cài đặt ONLYOFFICE Desktop Editors trên máy tính của bạn.\nBạn nên đóng tất cả các ứng dụng khác trước khi tiếp tục.
 he.LABEL_WARN_CLOSE =פעולה זו תתקין את ONLYOFFICE Desktop Editors במחשב שלך.\nמומלץ לסגור את כל היישומים האחרים לפני המשך ההתקנה.
+lv.LABEL_WARN_CLOSE =Tādējādi datorā tiks instalēta programma ONLYOFFICE Desktop Editors.\nPirms turpināšanas ieteicams aizvērt visas pārējās programmas.
 
 en.LABEL_ALMOST_DONE =Just a bit more and we're done
 en_GB.LABEL_ALMOST_DONE =Just a bit more and we're done
@@ -700,6 +718,7 @@ pl.LABEL_ALMOST_DONE =Jeszcze chwila i kończymy
 sk.LABEL_ALMOST_DONE =Ešte chvíľu a sme hotoví
 vi.LABEL_ALMOST_DONE =Chỉ cần thêm một chút nữa là chúng ta sẽ hoàn thành
 he.LABEL_ALMOST_DONE =רק עוד קצת וסיימנו
+lv.LABEL_ALMOST_DONE =Vēl tikai nedaudz un viss būs pabeigts
 
 en.LABEL_INSTALL_COMPL =%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box.
 en_GB.LABEL_INSTALL_COMPL =%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box.
@@ -730,6 +749,7 @@ pl.LABEL_INSTALL_COMPL =Pomyślnie zainstalowano %1 na Twoim komputerze.\nAby ur
 sk.LABEL_INSTALL_COMPL =%1 bol úspešne nainštalovaný na váš počítač.\nAk chcete spustiť aplikáciu po zatvorení inštalácie, označte zaškrtávacie políčko.
 vi.LABEL_INSTALL_COMPL =%1 đã được cài đặt thành công trên máy tính của bạn.\nĐể chạy ứng dụng sau khi đóng trình cài đặt này, hãy nhấp chọn vào ô.
 he.LABEL_INSTALL_COMPL =%1 הותקן בהצלחה במחשב שלך.\nכדי להפעיל את היישום לאחר סגירת מתקין זה, בחר בתיבת הסימון.
+lv.LABEL_INSTALL_COMPL =%1 ir veiksmīgi instalēta jūsu datorā.\nLai palaistu programmu pēc instalatora aizvēršanas, atzīmējiet izvēles rūtiņu.
 
 en.LABEL_ERR_PROD_CODE =Error while retrieving product code.
 en_GB.LABEL_ERR_PROD_CODE =Error while retrieving product code.
@@ -760,6 +780,7 @@ pl.LABEL_ERR_PROD_CODE =Błąd podczas pobierania kodu produktu.
 sk.LABEL_ERR_PROD_CODE =Chyba pri načítaní kódu produktu.
 vi.LABEL_ERR_PROD_CODE =Đã xảy ra lỗi khi truy xuất mã sản phẩm.
 he.LABEL_ERR_PROD_CODE =שגיאה במהלך אחזור קוד המוצר.
+lv.LABEL_ERR_PROD_CODE =Kļūda produkta koda izgūšanas laikā.
 
 en.LABEL_ERR_PACK_NAME =Error while retrieving package name.
 en_GB.LABEL_ERR_PACK_NAME =Error while retrieving package name.
@@ -790,6 +811,7 @@ pl.LABEL_ERR_PACK_NAME =Błąd podczas pobierania nazwy pakietu.
 sk.LABEL_ERR_PACK_NAME =Chyba pri načítaní názvu balíka.
 vi.LABEL_ERR_PACK_NAME =Đã xảy ra lỗi khi truy xuất tên gói.
 he.LABEL_ERR_PACK_NAME =שגיאה במהלך אחזור שם החבילה.
+lv.LABEL_ERR_PACK_NAME =Kļūda pakotnes nosaukuma izgūšanas laikā.
 
 en.LABEL_ERR_INSTALL =An error occurred during installation.
 en_GB.LABEL_ERR_INSTALL =An error occurred during installation.
@@ -820,6 +842,7 @@ pl.LABEL_ERR_INSTALL =Wystąpił błąd podczas instalowania.
 sk.LABEL_ERR_INSTALL =Počas inštalácie došlo k chybe.
 vi.LABEL_ERR_INSTALL =Đã xảy ra lỗi trong khi cài đặt.
 he.LABEL_ERR_INSTALL =אירעה שגיאה במהלך ההתקנה.
+lv.LABEL_ERR_INSTALL =Instalēšanas laikā notika kļūda.
 
 en.LABEL_ERR_UNINST =An error occurred during uninstalling.
 en_GB.LABEL_ERR_UNINST =An error occurred during uninstalling.
@@ -850,6 +873,7 @@ pl.LABEL_ERR_UNINST =Wystąpił błąd podczas odinstalowywania.
 sk.LABEL_ERR_UNINST =Počas odinštalovania došlo k chybe.
 vi.LABEL_ERR_UNINST =Đã xảy ra lỗi trong quá trình gỡ cài đặt.
 he.LABEL_ERR_UNINST =אירעה שגיאה במהלך ההסרה.
+lv.LABEL_ERR_UNINST =Atinstalēšanas laikā notika kļūda.
 
 en.LABEL_ERR_COMMON =An error occurred:
 en_GB.LABEL_ERR_COMMON =An error occurred:
@@ -880,6 +904,7 @@ pl.LABEL_ERR_COMMON =Wystąpił błąd:
 sk.LABEL_ERR_COMMON =Vyskytla sa chyba:
 vi.LABEL_ERR_COMMON =Đã xảy ra lỗi:
 he.LABEL_ERR_COMMON =אירעה שגיאה:
+lv.LABEL_ERR_COMMON =Notika kļūda:
 
 en.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
 en_GB.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
@@ -951,6 +976,7 @@ pl.LABEL_ERR_CANCELLED =Skasowany!
 sk.LABEL_ERR_CANCELLED =Zrušené!
 vi.LABEL_ERR_CANCELLED =Đã hủy!
 he.LABEL_ERR_CANCELLED =בוטל!
+lv.LABEL_ERR_CANCELLED =Atcelts!
 
 en.BUTTON_INSTALL =Install
 en_GB.BUTTON_INSTALL =Install
@@ -980,6 +1006,7 @@ pl.BUTTON_INSTALL =Zainstalować
 sk.BUTTON_INSTALL =Inštalovať
 vi.BUTTON_INSTALL =Cài đặt
 he.BUTTON_INSTALL =התקן
+lv.BUTTON_INSTALL =Instalēt
 
 en.BUTTON_CANCEL =Cancel
 en_GB.BUTTON_CANCEL =Cancel
@@ -1054,6 +1081,7 @@ pl.BUTTON_APPLY =Zatwierdź
 sk.BUTTON_APPLY =Použiť
 vi.BUTTON_APPLY =Áp dụng
 he.BUTTON_APPLY =החל
+lv.BUTTON_APPLY =Piemērot
 
 en.BUTTON_CLOSE =Close
 en_GB.BUTTON_CLOSE =Close
@@ -1084,6 +1112,7 @@ pl.BUTTON_CLOSE =Zamknij
 sk.BUTTON_CLOSE =Zatvoriť
 vi.BUTTON_CLOSE =Đóng
 he.BUTTON_CLOSE =סגור
+lv.BUTTON_CLOSE =Aizvērt
 
 en.BUTTON_BACK =Back
 en_GB.BUTTON_BACK =Back
@@ -1114,6 +1143,7 @@ pl.BUTTON_BACK =Wstecz
 sk.BUTTON_BACK =Späť
 vi.BUTTON_BACK =Quay lại
 he.BUTTON_BACK =חזור
+lv.BUTTON_BACK =Atpakaļ
 
 en.RADIO_UPDATE =Update
 en_GB.RADIO_UPDATE =Update
@@ -1144,6 +1174,7 @@ pl.RADIO_UPDATE =Aktualizacja
 sk.RADIO_UPDATE =Aktualizácia
 vi.RADIO_UPDATE =Cập nhật
 he.RADIO_UPDATE =עדכן
+lv.RADIO_UPDATE =Atjaunināt
 
 en.RADIO_REPAIR =Repair
 en_GB.RADIO_REPAIR =Repair
@@ -1173,6 +1204,7 @@ pl.RADIO_REPAIR =Naprawiać
 sk.RADIO_REPAIR =Opraviť
 vi.RADIO_REPAIR =Sửa chữa
 he.RADIO_REPAIR =תיקן
+lv.RADIO_REPAIR =Remonts
 
 en.RADIO_UNINST =Uninstall
 en_GB.RADIO_UNINST =Uninstall
@@ -1202,6 +1234,7 @@ pl.RADIO_UNINST =Odinstaluj
 sk.RADIO_UNINST =Odinštalovať
 vi.RADIO_UNINST =Gỡ bỏ
 he.RADIO_UNINST =הסר
+lv.RADIO_UNINST =Atinstalēt
 
 en.CHECK_SILENT =Silent Installation
 en_GB.CHECK_SILENT =Silent Installation
