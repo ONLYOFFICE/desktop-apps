@@ -23,6 +23,8 @@ public:
 
     QWidget *underlay = nullptr;
     GtkWidget *wnd = nullptr;
+    GtkWidget *socket = nullptr;
+    GdkWindow *plug = nullptr;
     guint state = 0;
     FnCloseEvent close_event;
     FnEvent event;
@@ -53,12 +55,28 @@ GtkMainWindowPrivate::~GtkMainWindowPrivate()
     wnd = nullptr;
 }
 
+void on_plug_added(GtkSocket *socket, gpointer data)
+{
+    GtkMainWindowPrivate *pimpl = (GtkMainWindowPrivate*)data;
+    pimpl->plug = gtk_socket_get_plug_window(socket);
+}
+
+void on_plug_removed(GtkSocket*, gpointer data)
+{
+    GtkMainWindowPrivate *pimpl = (GtkMainWindowPrivate*)data;
+    pimpl->plug = nullptr;
+}
+
 void GtkMainWindowPrivate::init()
 {
     wnd = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_type_hint(GTK_WINDOW(wnd), GdkWindowTypeHint::GDK_WINDOW_TYPE_HINT_NORMAL);
 //    gtk_window_set_title(GTK_WINDOW(wnd), "GtkMainWindow");
 //    gtk_window_set_position(GTK_WINDOW(wnd), GtkWindowPosition::GTK_WIN_POS_CENTER);
+    gtk_widget_set_app_paintable(wnd, TRUE);
+    GdkScreen *scr = gtk_widget_get_screen(wnd);
+    if (GdkVisual *vis = gdk_screen_get_rgba_visual(scr))
+        gtk_widget_set_visual(wnd, vis);
 
     GtkCssProvider *provider = gtk_css_provider_new();
     gtk_css_provider_load_from_data(provider, "decoration {border-radius: 6px 6px 0px 0px;}", -1, NULL);
@@ -67,9 +85,11 @@ void GtkMainWindowPrivate::init()
 
     GtkWidget *header = gtk_header_bar_new();
     gtk_window_set_titlebar(GTK_WINDOW(wnd), header);
-    gtk_widget_destroy(header);
+    // gtk_widget_destroy(header);
 
-    GtkWidget *socket = gtk_socket_new();
+    socket = gtk_socket_new();
+    g_signal_connect(G_OBJECT(socket), "plug-added", G_CALLBACK(on_plug_added), this);
+    g_signal_connect(G_OBJECT(socket), "plug-removed", G_CALLBACK(on_plug_removed), this);
     /* Call the show according to the GtkSocket documentation */
 //    gtk_widget_show(socket);
 //    gtk_widget_set_name(socket, "socket");
@@ -79,16 +99,13 @@ void GtkMainWindowPrivate::init()
     (according to the GtkSocket documentation) */
     gtk_widget_realize(socket);
 
-    gtk_widget_set_app_paintable(wnd, TRUE);
-    GdkScreen *scr = gtk_widget_get_screen(wnd);
-    if (GdkVisual *vis = gdk_screen_get_rgba_visual(scr))
-        gtk_widget_set_visual(wnd, vis);
-
     gtk_socket_add_id(GTK_SOCKET(socket), (Window)underlay->winId());
     g_signal_connect(G_OBJECT(socket), "size-allocate", G_CALLBACK(on_size_allocate), this);
     g_signal_connect(G_OBJECT(wnd), "size-allocate", G_CALLBACK(on_size_allocate_top), this);
     g_signal_connect(G_OBJECT(wnd), "event", G_CALLBACK(on_event), this);
     g_signal_connect(G_OBJECT(wnd), "event-after", G_CALLBACK(on_event_after), this);
+    while (!plug && gtk_events_pending())
+        gtk_main_iteration_do(FALSE);
 }
 
 gboolean GtkMainWindowPrivate::on_event(GtkWidget *wgt, GdkEvent *ev, gpointer data)
@@ -204,7 +221,6 @@ GtkMainWindow::GtkMainWindow(QWidget *underlay, const FnEvent &qev, const FnClos
     pimpl->event = qev;
     pimpl->close_event = qcev;
     pimpl->underlay = underlay;
-    pimpl->underlay->createWinId();
     pimpl->init();
 }
 
@@ -274,7 +290,8 @@ void GtkMainWindow::setWindowState(Qt::WindowStates ws)
 
 void GtkMainWindow::show()
 {
-    gtk_widget_show_all(pimpl->wnd);
+    gtk_widget_show(pimpl->wnd);
+    gtk_widget_show(pimpl->socket);
     while (gtk_events_pending())
         gtk_main_iteration_do(FALSE);
     //GdkDisplay *dsp = gdk_display_get_default();
