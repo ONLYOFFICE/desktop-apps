@@ -156,6 +156,9 @@ ko.MSG_ERR_CLOSE_APP =설치 프로그램에서 현재 %1이/가 실행 중임�
 pt_PT.MSG_ERR_CLOSE_APP =O programa de instalação detetou que %1 está em execução no momento. Feche todas as instâncias.
 tr.MSG_ERR_CLOSE_APP =Kurulum, %1'in şu anda çalıştığını tespit etti. Lütfen tüm örneklerini kapatın.
 uk.MSG_ERR_CLOSE_APP =Виявлено, що зараз запущено %1. Закрийте всі екземпляри.
+pl.MSG_ERR_CLOSE_APP =Instalator wykrył, że %1 jest aktualnie uruchomiona. Zamknij wszystkie jej instancje.
+sk.MSG_ERR_CLOSE_APP =Nastavenie zistilo, že momentálne je spustené %1. Zatvorte všetky jeho kópie.
+vi.MSG_ERR_CLOSE_APP =Thiết lập đã phát hiện ra rằng %1 hiện đang chạy. Vui lòng đóng tất cả các bản sao đang hoạt động.
 
 en.MSG_REMOVE =This will remove %1 and its components.
 en_GB.MSG_REMOVE =This will remove %1 and its components.
@@ -182,6 +185,9 @@ ko.MSG_REMOVE =이렇게 하면 %1 및 컴포넌트가 제거됩니다.
 pt_PT.MSG_REMOVE =Isso removerá %1 e seus componentes.
 tr.MSG_REMOVE =Bu, %1'i ve bileşenlerini kaldıracaktır.
 uk.MSG_REMOVE =Буде видалено %1 з компонентами.
+pl.MSG_REMOVE =Spowoduje to usunięcie %1 i jej komponentów.
+sk.MSG_REMOVE =Tým sa odstráni %1 a jeho komponenty.
+vi.MSG_REMOVE =Thao tác này sẽ xóa %1 và các thành phần của nó.
 
 en.MSG_REPAIR =This will repair the current version of %1.
 en_GB.MSG_REPAIR =This will repair the current version of %1.
@@ -208,6 +214,9 @@ ko.MSG_REPAIR =이렇게 하면 %1의 현재 버전이 복구됩니다.
 pt_PT.MSG_REPAIR =Isso reparará a versão atual de %1.
 tr.MSG_REPAIR =Bu, %1'in geçerli sürümünü onaracaktır.
 uk.MSG_REPAIR =Буде відновлено поточну версію %1.
+pl.MSG_REPAIR =Spowoduje to naprawę aktualnej wersji %1.
+sk.MSG_REPAIR =Tým sa opraví aktuálna verzia %1.
+vi.MSG_REPAIR =Thao tác này sẽ sửa chữa phiên bản hiện tại của %1.
 
 en.MSG_UPDATE =This will update %1 to the latest version available.
 en_GB.MSG_UPDATE =This will update %1 to the latest version available.
@@ -234,6 +243,9 @@ ko.MSG_UPDATE =이렇게 하면 사용 가능한 %1의 최신 버전으로 업�
 pt_PT.MSG_UPDATE =Isso atualizará %1 para a versão mais recente disponível.
 tr.MSG_UPDATE =Bu, %1'i mevcut en son sürüme güncelleyecektir.
 uk.MSG_UPDATE =%1 буде оновлено до останньої доступної версії.
+pl.MSG_UPDATE =Spowoduje to aktualizację %1 do najnowszej dostępnej wersji.
+sk.MSG_UPDATE =Týmto sa %1 aktualizuje na najnovšiu dostupnú verziu.
+vi.MSG_UPDATE =Thao tác này sẽ cập nhật %1 lên phiên bản mới nhất hiện có.
 
 en.LABEL_DOWNLOAD =Downloading
 en_GB.LABEL_DOWNLOAD =Downloading
@@ -260,6 +272,9 @@ ko.LABEL_DOWNLOAD =다운로드 중입니다
 pt_PT.LABEL_DOWNLOAD =Transferir
 tr.LABEL_DOWNLOAD =İndiriliyor
 uk.LABEL_DOWNLOAD =Завантаження
+pl.LABEL_DOWNLOAD =Pobieranie
+sk.LABEL_DOWNLOAD =Stiahnutie
+vi.LABEL_DOWNLOAD =Đang tải về
 
 en.LABEL_INSTALL =Installing
 en_GB.LABEL_INSTALL =Installing
@@ -286,6 +301,9 @@ ko.LABEL_INSTALL =설치 중입니다
 pt_PT.LABEL_INSTALL =Instalação
 tr.LABEL_INSTALL =Yükleniyor
 uk.LABEL_INSTALL =Інсталювання
+pl.LABEL_INSTALL =Instalowanie
+sk.LABEL_INSTALL =Inštalácia
+vi.LABEL_INSTALL =Đang cài đặt
 
 en.LABEL_UPDATING =Updating
 en_GB.LABEL_UPDATING =Updating
@@ -312,6 +330,9 @@ ko.LABEL_UPDATING =업데이트 중입니다
 pt_PT.LABEL_UPDATING =Atualização
 tr.LABEL_UPDATING =Güncelleniyor
 uk.LABEL_UPDATING =Оновлення
+pl.LABEL_UPDATING =Aktualizowanie
+sk.LABEL_UPDATING =Aktualizácia
+vi.LABEL_UPDATING =Đang cập nhật
 
 en.LABEL_REPAIRING =Repairing
 en_GB.LABEL_REPAIRING =Repairing
@@ -338,6 +359,9 @@ ko.LABEL_REPAIRING =복구 중입니다
 pt_PT.LABEL_REPAIRING =Reparação
 tr.LABEL_REPAIRING =Onarılıyor
 uk.LABEL_REPAIRING =Відновлення
+pl.LABEL_REPAIRING =Naprawa
+sk.LABEL_REPAIRING =Oprava
+vi.LABEL_REPAIRING =Đang sửa chữa
 
 en.LABEL_UNINSTLING =Uninstalling
 en_GB.LABEL_UNINSTLING =Uninstalling
@@ -364,6 +388,9 @@ ko.LABEL_UNINSTLING =삭제 중입니다
 pt_PT.LABEL_UNINSTLING =Desinstalação
 tr.LABEL_UNINSTLING =Kaldırılıyor
 uk.LABEL_UNINSTLING =Видалення
+pl.LABEL_UNINSTLING =Odinstalowywanie
+sk.LABEL_UNINSTLING =Odinštalovanie
+vi.LABEL_UNINSTLING =Đang hủy cài đặt
 
 en.LABEL_UPDATE_COMPL =Update complete!
 en_GB.LABEL_UPDATE_COMPL =Update complete!
@@ -390,6 +417,9 @@ ko.LABEL_UPDATE_COMPL =업데이트가 완료되었습니다!
 pt_PT.LABEL_UPDATE_COMPL =Atualização completa!
 tr.LABEL_UPDATE_COMPL =Güncelleme tamamlandı!
 uk.LABEL_UPDATE_COMPL =Оновлення виконано!
+pl.LABEL_UPDATE_COMPL =Zakończono aktualizowanie!
+sk.LABEL_UPDATE_COMPL =Aktualizácia dokončená!
+vi.LABEL_UPDATE_COMPL =Đã hoàn thành cập nhật!
 
 en.LABEL_REPAIR_COMPL =Repairing completed!
 en_GB.LABEL_REPAIR_COMPL =Repairing completed!
@@ -416,6 +446,9 @@ ko.LABEL_REPAIR_COMPL =복구가 완료되었습니다!
 pt_PT.LABEL_REPAIR_COMPL =Reparação concluída!
 tr.LABEL_REPAIR_COMPL =Onarım tamamlandı!
 uk.LABEL_REPAIR_COMPL =Відновлення виконано!
+pl.LABEL_REPAIR_COMPL =Zakończono naprawę!
+sk.LABEL_REPAIR_COMPL =Oprava dokončená!
+vi.LABEL_REPAIR_COMPL =Đã hoàn thành sửa chữa!
 
 en.LABEL_UNINST_COMPL =Uninstalling completed!
 en_GB.LABEL_UNINST_COMPL =Uninstalling completed!
@@ -442,6 +475,9 @@ ko.LABEL_UNINST_COMPL =삭제가 완료되었습니다!
 pt_PT.LABEL_UNINST_COMPL =Desinstalação concluída!
 tr.LABEL_UNINST_COMPL =Kaldırma tamamlandı!
 uk.LABEL_UNINST_COMPL =Видалення виконано!
+pl.LABEL_UNINST_COMPL =Zakończono odinstalowywanie!
+sk.LABEL_UNINST_COMPL =Odinštalovanie dokončené!
+vi.LABEL_UNINST_COMPL =Đã hoàn thành gỡ cài đặt!
 
 en.LABEL_VERSION =%1 %2 (%3 %4) is installed
 en_GB.LABEL_VERSION =%1 %2 (%3 %4) is installed
@@ -468,6 +504,9 @@ ko.LABEL_VERSION =%1 %2 (%3 %4) 설치가 완료되었습니다
 pt_PT.LABEL_VERSION =%1 %2 (%3 %4) está instalado
 tr.LABEL_VERSION =%1 %2 (%3 %4) yüklendi
 uk.LABEL_VERSION =%1 %2 (%3 %4) інстальовано
+pl.LABEL_VERSION =Trwa instalowanie %1 %2 (%3 %4)
+sk.LABEL_VERSION =%1 %2 (%3 %4) je nainštalovaný
+vi.LABEL_VERSION =%1 %2 (%3 %4) đã được cài đặt
 
 en.LABEL_UNKN_VER =unknown version
 en_GB.LABEL_UNKN_VER =unknown version
@@ -494,6 +533,9 @@ ko.LABEL_UNKN_VER =알 수 없는 버전입니다
 pt_PT.LABEL_UNKN_VER =versão desconhecida
 tr.LABEL_UNKN_VER =bilinmeyen sürüm
 uk.LABEL_UNKN_VER =невідома версія
+pl.LABEL_UNKN_VER =nieznana wersja
+sk.LABEL_UNKN_VER =neznáma verzia
+vi.LABEL_UNKN_VER =phiên bản không xác định
 
 en.LABEL_UNKN_PACK =unknown package
 en_GB.LABEL_UNKN_PACK =unknown package
@@ -520,6 +562,9 @@ ko.LABEL_UNKN_PACK =알 수 없는 패키지입니다
 pt_PT.LABEL_UNKN_PACK =pacote desconhecido
 tr.LABEL_UNKN_PACK =bilinmeyen paket
 uk.LABEL_UNKN_PACK =невідомий пакет
+pl.LABEL_UNKN_PACK =nieznany pakiet
+sk.LABEL_UNKN_PACK =neznámy balík
+vi.LABEL_UNKN_PACK =gói không xác định
 
 en.LABEL_NO_OPTIONS =No additional options available.
 en_GB.LABEL_NO_OPTIONS =No additional options available.
@@ -546,6 +591,9 @@ ko.LABEL_NO_OPTIONS =패키지 추가 옵션이 없습니다.
 pt_PT.LABEL_NO_OPTIONS =Não há opções adicionais disponíveis.
 tr.LABEL_NO_OPTIONS =Ek seçenek mevcut değil.
 uk.LABEL_NO_OPTIONS =Немає додаткових опцій.
+pl.LABEL_NO_OPTIONS =Brak dostępnych dodatkowych opcji.
+sk.LABEL_NO_OPTIONS =Nie sú k dispozícii žiadne ďalšie možnosti.
+vi.LABEL_NO_OPTIONS =Không có tùy chọn bổ sung nào.
 
 en.LABEL_NO_VER_AVAIL =No version available
 en_GB.LABEL_NO_VER_AVAIL =No version available
@@ -572,6 +620,9 @@ ko.LABEL_NO_VER_AVAIL =사용 가능한 버전이 없습니다
 pt_PT.LABEL_NO_VER_AVAIL =Nenhuma versão disponível
 tr.LABEL_NO_VER_AVAIL =Sürüm mevcut değil
 uk.LABEL_NO_VER_AVAIL =Немає доступних версій
+pl.LABEL_NO_VER_AVAIL =Brak dostępnej wersji
+sk.LABEL_NO_VER_AVAIL =Nie je k dispozícii žiadna verzia
+vi.LABEL_NO_VER_AVAIL =Không có phiên bản nào
 
 en.LABEL_WARN_CLOSE =This will install ONLYOFFICE Desktop Editors on your computer.\nIt is recommended that you close all other applications before continuing.
 en_GB.LABEL_WARN_CLOSE =This will install ONLYOFFICE Desktop Editors on your computer.\nIt is recommended that you close all other applications before continuing.
@@ -598,6 +649,9 @@ ko.LABEL_WARN_CLOSE =이렇게 하면 컴퓨터에 ONLYOFFICE Desktop Editors가
 pt_PT.LABEL_WARN_CLOSE =Isso instalará o ONLYOFFICE Desktop Editors no seu computador.\nÉ recomendável que você feche todos os outros aplicativos antes de continuar.
 tr.LABEL_WARN_CLOSE =Bu, bilgisayarınıza ONLYOFFICE Desktop Editors yükleyecektir.\nDevam etmeden önce diğer tüm uygulamaları kapatmanız önerilmektedir.
 uk.LABEL_WARN_CLOSE =Настільні редактори ONLYOFFICE буде інстальовано на ваш комп'ютер.\nПерш ніж продовжити, рекомендується закрити інші застосунки.
+pl.LABEL_WARN_CLOSE =Spowoduje to zainstalowanie ONLYOFFICE Desktop Editors na Twoim komputerze.\nZalecamy zamknięcie wszystkich innych aplikacji przed kontynuowaniem.
+sk.LABEL_WARN_CLOSE =Na váš počítač sa nainštalujú aplikácie ONLYOFFICE Desktop Editors.\nIt Pred pokračovaním sa odporúča zatvoriť všetky ostatné aplikácie.
+vi.LABEL_WARN_CLOSE =Thao tác này sẽ cài đặt ONLYOFFICE Desktop Editors trên máy tính của bạn.\nBạn nên đóng tất cả các ứng dụng khác trước khi tiếp tục.
 
 en.LABEL_ALMOST_DONE =Just a bit more and we're done
 en_GB.LABEL_ALMOST_DONE =Just a bit more and we're done
@@ -624,6 +678,9 @@ ko.LABEL_ALMOST_DONE =조금만 더 하면 끝입니다
 pt_PT.LABEL_ALMOST_DONE =Apenas um pouco mais e estamos prontos
 tr.LABEL_ALMOST_DONE =Az kaldı, işimiz bitiyor
 uk.LABEL_ALMOST_DONE =Ще трохи — і готово
+pl.LABEL_ALMOST_DONE =Jeszcze chwila i kończymy
+sk.LABEL_ALMOST_DONE =Ešte chvíľu a sme hotoví
+vi.LABEL_ALMOST_DONE =Chỉ cần thêm một chút nữa là chúng ta sẽ hoàn thành
 
 en.LABEL_INSTALL_COMPL =%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box.
 en_GB.LABEL_INSTALL_COMPL =%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box.
@@ -650,6 +707,9 @@ ko.LABEL_INSTALL_COMPL =컴퓨터에 % 설치가 완료되었습니다.\n이 인
 pt_PT.LABEL_INSTALL_COMPL =%1 foi instalado com êxito no seu computador.\nPara executar o aplicativo depois de fechar este instalador, marque a caixa de seleção.
 tr.LABEL_INSTALL_COMPL =%1 bilgisayarınıza başarıyla yüklendi.\nBu yükleyiciyi kapattıktan sonra uygulamayı çalıştırmak için onay kutusuna tıklayın.
 uk.LABEL_INSTALL_COMPL =%1 успішно інстальовано на ваш комп'ютер.\nЩоб запустити застосунок після закриття цього інсталятора, установіть прапорець.
+pl.LABEL_INSTALL_COMPL =Pomyślnie zainstalowano %1 na Twoim komputerze.\nAby uruchomić aplikację po zamknięciu tego instalatora, zaznacz pole wyboru.
+sk.LABEL_INSTALL_COMPL =%1 bol úspešne nainštalovaný na váš počítač.\nAk chcete spustiť aplikáciu po zatvorení inštalácie, označte zaškrtávacie políčko.
+vi.LABEL_INSTALL_COMPL =%1 đã được cài đặt thành công trên máy tính của bạn.\nĐể chạy ứng dụng sau khi đóng trình cài đặt này, hãy nhấp chọn vào ô.
 
 en.LABEL_ERR_PROD_CODE =Error while retrieving product code.
 en_GB.LABEL_ERR_PROD_CODE =Error while retrieving product code.
@@ -676,6 +736,9 @@ ko.LABEL_ERR_PROD_CODE =제품 코드 검색 중 오류가 발생했습니다.
 pt_PT.LABEL_ERR_PROD_CODE =Erro ao recuperar o código do produto.
 tr.LABEL_ERR_PROD_CODE =Ürün kodunu alırken hata oluştu.
 uk.LABEL_ERR_PROD_CODE =Помилка під час отримання коду продукту.
+pl.LABEL_ERR_PROD_CODE =Błąd podczas pobierania kodu produktu.
+sk.LABEL_ERR_PROD_CODE =Chyba pri načítaní kódu produktu.
+vi.LABEL_ERR_PROD_CODE =Đã xảy ra lỗi khi truy xuất mã sản phẩm.
 
 en.LABEL_ERR_PACK_NAME =Error while retrieving package name.
 en_GB.LABEL_ERR_PACK_NAME =Error while retrieving package name.
@@ -702,6 +765,9 @@ ko.LABEL_ERR_PACK_NAME =패키지 이름 검색 중 오류가 발생했습니다
 pt_PT.LABEL_ERR_PACK_NAME =Erro ao recuperar o nome do pacote.
 tr.LABEL_ERR_PACK_NAME =Paket adını alırken hata oluştu.
 uk.LABEL_ERR_PACK_NAME =Помилка під час отримання імені пакету.
+pl.LABEL_ERR_PACK_NAME =Błąd podczas pobierania nazwy pakietu.
+sk.LABEL_ERR_PACK_NAME =Chyba pri načítaní názvu balíka.
+vi.LABEL_ERR_PACK_NAME =Đã xảy ra lỗi khi truy xuất tên gói.
 
 en.LABEL_ERR_INSTALL =An error occurred during installation.
 en_GB.LABEL_ERR_INSTALL =An error occurred during installation.
@@ -728,6 +794,9 @@ ko.LABEL_ERR_INSTALL =설치 중 오류가 발생했습니다.
 pt_PT.LABEL_ERR_INSTALL =Ocorreu um erro durante a instalação.
 tr.LABEL_ERR_INSTALL =Yükleme esnasında bir hata oluştu.
 uk.LABEL_ERR_INSTALL =Під час інсталювання сталася помилка.
+pl.LABEL_ERR_INSTALL =Wystąpił błąd podczas instalowania.
+sk.LABEL_ERR_INSTALL =Počas inštalácie došlo k chybe.
+vi.LABEL_ERR_INSTALL =Đã xảy ra lỗi trong khi cài đặt.
 
 en.LABEL_ERR_UNINST =An error occurred during uninstalling.
 en_GB.LABEL_ERR_UNINST =An error occurred during uninstalling.
@@ -754,6 +823,9 @@ ko.LABEL_ERR_UNINST =삭제 중 오류가 발생했습니다.
 pt_PT.LABEL_ERR_UNINST =Ocorreu um erro durante a desinstalação.
 tr.LABEL_ERR_UNINST =Kaldırma esnasında bir hata oluştu.
 uk.LABEL_ERR_UNINST =Під час видалення сталася помилка.
+pl.LABEL_ERR_UNINST =Wystąpił błąd podczas odinstalowywania.
+sk.LABEL_ERR_UNINST =Počas odinštalovania došlo k chybe.
+vi.LABEL_ERR_UNINST =Đã xảy ra lỗi trong quá trình gỡ cài đặt.
 
 en.LABEL_ERR_COMMON =An error occurred:
 en_GB.LABEL_ERR_COMMON =An error occurred:
@@ -780,6 +852,9 @@ ko.LABEL_ERR_COMMON =오류가 발생했습니다:
 pt_PT.LABEL_ERR_COMMON =Ocorreu um erro:
 tr.LABEL_ERR_COMMON =Bir hata oluştu:
 uk.LABEL_ERR_COMMON =Сталася помилка:
+pl.LABEL_ERR_COMMON =Wystąpił błąd:
+sk.LABEL_ERR_COMMON =Vyskytla sa chyba:
+vi.LABEL_ERR_COMMON =Đã xảy ra lỗi:
 
 en.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
 en_GB.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
@@ -847,6 +922,9 @@ fi.LABEL_ERR_CANCELLED =Peruutettu!
 ko.LABEL_ERR_CANCELLED =취소!
 pt_PT.LABEL_ERR_CANCELLED =Cancelado!
 uk.LABEL_ERR_CANCELLED =Скасовано!
+pl.LABEL_ERR_CANCELLED =Skasowany!
+sk.LABEL_ERR_CANCELLED =Zrušené!
+vi.LABEL_ERR_CANCELLED =Đã hủy!
 
 en.BUTTON_INSTALL =Install
 en_GB.BUTTON_INSTALL =Install
@@ -872,6 +950,9 @@ ko.BUTTON_INSTALL =설치하다
 pt_PT.BUTTON_INSTALL =Instalar
 tr.BUTTON_INSTALL =Kurulum
 uk.BUTTON_INSTALL =Установити
+pl.BUTTON_INSTALL =Zainstalować
+sk.BUTTON_INSTALL =Inštalovať
+vi.BUTTON_INSTALL =Cài đặt
 
 en.BUTTON_CANCEL =Cancel
 en_GB.BUTTON_CANCEL =Cancel
@@ -942,6 +1023,9 @@ ko.BUTTON_APPLY =적용
 pt_PT.BUTTON_APPLY =Aplicar
 tr.BUTTON_APPLY =Uygula
 uk.BUTTON_APPLY =Застосувати
+pl.BUTTON_APPLY =Zatwierdź
+sk.BUTTON_APPLY =Použiť
+vi.BUTTON_APPLY =Áp dụng
 
 en.BUTTON_CLOSE =Close
 en_GB.BUTTON_CLOSE =Close
@@ -968,6 +1052,9 @@ ko.BUTTON_CLOSE =닫기
 pt_PT.BUTTON_CLOSE =Fechar
 tr.BUTTON_CLOSE =Kapat
 uk.BUTTON_CLOSE =Закрити
+pl.BUTTON_CLOSE =Zamknij
+sk.BUTTON_CLOSE =Zatvoriť
+vi.BUTTON_CLOSE =Đóng
 
 en.BUTTON_BACK =Back
 en_GB.BUTTON_BACK =Back
@@ -994,6 +1081,9 @@ ko.BUTTON_BACK =뒤로
 pt_PT.BUTTON_BACK =Voltar
 tr.BUTTON_BACK =Geri
 uk.BUTTON_BACK =Назад
+pl.BUTTON_BACK =Wstecz
+sk.BUTTON_BACK =Späť
+vi.BUTTON_BACK =Quay lại
 
 en.RADIO_UPDATE =Update
 en_GB.RADIO_UPDATE =Update
@@ -1020,6 +1110,9 @@ ko.RADIO_UPDATE =업데이트
 pt_PT.RADIO_UPDATE =Atualizar
 tr.RADIO_UPDATE =Güncelle
 uk.RADIO_UPDATE =Оновити
+pl.RADIO_UPDATE =Aktualizacja
+sk.RADIO_UPDATE =Aktualizácia
+vi.RADIO_UPDATE =Cập nhật
 
 en.RADIO_REPAIR =Repair
 en_GB.RADIO_REPAIR =Repair
@@ -1045,6 +1138,9 @@ ko.RADIO_REPAIR =수리
 pt_PT.RADIO_REPAIR =Reparar
 tr.RADIO_REPAIR =Tamir
 uk.RADIO_REPAIR =Ремонтувати
+pl.RADIO_REPAIR =Naprawiać
+sk.RADIO_REPAIR =Opraviť
+vi.RADIO_REPAIR =Sửa chữa
 
 en.RADIO_UNINST =Uninstall
 en_GB.RADIO_UNINST =Uninstall
@@ -1070,6 +1166,9 @@ ko.RADIO_UNINST =제거
 pt_PT.RADIO_UNINST =Desinstalar
 tr.RADIO_UNINST =Kaldır
 uk.RADIO_UNINST =Деінсталювати
+pl.RADIO_UNINST =Odinstaluj
+sk.RADIO_UNINST =Odinštalovať
+vi.RADIO_UNINST =Gỡ bỏ
 
 en.CHECK_SILENT =Silent Installation
 en_GB.CHECK_SILENT =Silent Installation
