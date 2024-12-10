@@ -186,7 +186,7 @@ PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 
-ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
 include($$CORE_ROOT_DIR/../desktop-sdk/ChromiumBasedEditors/videoplayerlib/videoplayerlib_deps.pri)
 
 core_linux {
