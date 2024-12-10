@@ -63,6 +63,8 @@ public:
     auto viewId() const -> int;
     auto copiesCount() const -> int;
     auto duplexMode() const -> QPrinter::DuplexMode;
+    auto printerCapabilitiesReady() const -> bool;
+    auto getPrinterCapabilitiesJson() const -> QString;
     auto queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const -> void;
 
 private:

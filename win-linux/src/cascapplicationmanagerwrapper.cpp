@@ -1095,12 +1095,19 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
     Association::instance().chekForAssociations(uid);
 #endif
 
+    if (uid > -1 && printData().printerCapabilitiesReady())
+        AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+
     static bool check_printers = false;
     if (!check_printers) {
         check_printers = true;
 
-        printData().queryPrinterCapabilitiesAsync([](const QString &json) {
+        printData().queryPrinterCapabilitiesAsync([=](const QString &json) {
             qDebug().noquote() << json;
+            for (int _uid : GetViewsId()) {
+                if (_uid > -1)
+                    AscAppManager::sendCommandTo(GetViewById(_uid), L"printer:config", json.toStdWString());
+            }
         });
     }
 }

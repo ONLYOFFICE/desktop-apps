@@ -45,8 +45,9 @@
 # include <cups/ppd.h>
 #endif
 
-class CPrintData::CPrintDataPrivate
+class CPrintData::CPrintDataPrivate : public QObject
 {
+    Q_OBJECT
 public:
     QPrinterInfo printer_info;
     QPrintDialog::PrintRange print_range{QPrintDialog::PrintRange::AllPages};
@@ -60,6 +61,7 @@ public:
     int paper_width = 0,
         paper_height = 0;
     QString size_preset;
+    QString printers_capabilities_json;
     int sender_id = -1;
     int copies_count = 1;
     FnVoidStr m_query_callback = nullptr;
@@ -220,6 +222,14 @@ public:
         rootObject["printers"] = printersArray;
         return QJsonDocument(rootObject).toJson(QJsonDocument::Indented);
     }
+
+public slots:
+    void onPrinterCapabilitiesReady(QString json)
+    {
+        printers_capabilities_json = json;
+        if (m_query_callback)
+            m_query_callback(json);
+    }
 };
 
 CPrintData::CPrintData()
@@ -368,12 +378,23 @@ auto CPrintData::duplexMode() const -> QPrinter::DuplexMode
     return m_priv->duplex_mode;
 }
 
+bool CPrintData::printerCapabilitiesReady() const
+{
+    return !m_priv->printers_capabilities_json.isEmpty();
+}
+
+QString CPrintData::getPrinterCapabilitiesJson() const
+{
+    return m_priv->printers_capabilities_json;
+}
+
 auto CPrintData::queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const -> void
 {
     m_priv->m_query_callback = callback;
     m_priv->m_future = std::async(std::launch::async, [=]() {
         QString json = m_priv->getPrintersCapabilitiesJson();
-        if (m_priv->m_query_callback)
-            m_priv->m_query_callback(json);
+        QMetaObject::invokeMethod(m_priv, "onPrinterCapabilitiesReady", Qt::QueuedConnection, Q_ARG(QString, json));
     });
 }
+
+#include "cprintdata.moc"
