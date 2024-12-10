@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Da bodo nastavitve začele veljati, morate znova zagnati aplikacijo.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
@@ -829,7 +829,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Trenutna različica ne podpira neposredne namestitve te posodobitve. Če želite namestiti posodobitve, lahko zahtevani paket prenesete z uradnega spletnega mesta.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="888"/>

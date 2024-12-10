@@ -23,7 +23,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>설정을 적용하려면 애플리케이션을 다시 시작해야 합니다.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
@@ -376,7 +376,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>엑셀 바이너리 파일(*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -529,7 +529,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="305"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="315"/>
@@ -800,7 +800,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 준비 중(%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
@@ -825,7 +825,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 버전에서는 이 업데이트를 직접 설치하는 것이 지원되지 않습니다. 업데이트를 설치하려면 공식 웹사이트에서 필요한 패키지를 다운로드하세요.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="888"/>
@@ -957,7 +957,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="751"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 설치를 시작하는 중 오류가 발생했습니다. 업데이트 서비스를 찾지 못했습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="761"/>
@@ -1054,34 +1054,34 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">인쇄 중...</translation>
+        <translation>인쇄 중...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">문서 준비 중</translation>
+        <translation>문서 준비 중</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;취소</translation>
+        <translation>&amp;취소</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="214"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 애플리케이션을 %2 확장 프로그램의 기본 애플리케이션으로 설정하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="216"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 애플리케이션을 모든 지원되는 확장 프로그램의 기본 애플리케이션으로 설정하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="218"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>이 메시지 다시 표시 안 함</translation>
     </message>
 </context>
 <context>
