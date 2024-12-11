@@ -37,16 +37,14 @@
 
 #if defined(SYS_getrandom)
 # if defined(GETRANDOM_NR)
-static_assert(GETRANDOM_NR == SYS_getrandom,
-              "GETRANDOM_NR should match the actual SYS_getrandom value");
+static_assert(GETRANDOM_NR == SYS_getrandom, "GETRANDOM_NR should match the actual SYS_getrandom value");
 # endif
 #else
 # define SYS_getrandom GETRANDOM_NR
 #endif
 
 #if defined(GRND_NONBLOCK)
-static_assert(GRND_NONBLOCK == 1,
-              "If GRND_NONBLOCK is not 1 the #define below is wrong");
+static_assert(GRND_NONBLOCK == 1, "If GRND_NONBLOCK is not 1 the #define below is wrong");
 #else
 # define GRND_NONBLOCK 1
 #endif
@@ -56,7 +54,7 @@ static_assert(GRND_NONBLOCK == 1,
 #define __dbusAppend dbus_message_iter_append_basic
 //#define ADD_EXTENSION // not reccomended
 
-
+typedef unsigned int uint;
 const char URI_PREFIX[] = "file://";
 constexpr size_t URI_PREFIX_SIZE = sizeof(URI_PREFIX) - 1;
 const char* dbus_unique_name = nullptr;
@@ -68,31 +66,16 @@ enum class EntryType : uchar {
     Directory, Multiple
 };
 
-extern "C" {
-typedef unsigned int uint;
-typedef enum {
-    SUCCESS,
-    ERROR,
-    CANCEL
-} Result;
+enum Result {
+    SUCCESS, ERROR, CANCEL
+};
 
-typedef struct {
+struct FilterItem {
     const char* name;
     const char* pattern;
-} FilterItem;
-
+};
 
 Result initDBus(void);
-Result openDialog(Window parent, Xdg::Mode mode, const char* title,
-                  char** outPaths,
-                  const FilterItem* filterList,
-                  uint filterCount,
-                  FilterItem* selFilter,
-                  const char* defltPath,
-                  const char* defltName,
-                  bool multiple);
-
-
 const char* getErrorText(void);
 char* strcopy(const char* start, const char* end, char* out);
 void quitDBus(void);
@@ -100,12 +83,7 @@ void clearDBusError(void);
 void setErrorText(const char* msg);
 void Free(void* p);
 void freePath(char* filePath);
-void pathSetFree(const void* pathSet);
-void pathSetFreePath(const char* filePath);
-Result pathSetGetCount(const void* pathSet, uint* count);
-Result pathSetGetPath(const void* pathSet, uint ind, char** outPath);
 
-} // extern "C"
 
 struct UnrefLater_DBusMessage {
     UnrefLater_DBusMessage(DBusMessage *_msg) noexcept :
@@ -162,8 +140,7 @@ public:
 
 private:
     char* resp_path;
-    static char* CreateResponsePath(const char* unique_path,
-                                    const char* unique_name) {
+    static char* CreateResponsePath(const char* unique_path, const char* unique_name) {
         constexpr const char PART_1[] = "type='signal',sender='org.freedesktop.portal.Desktop',path='";
         constexpr const char PART_2[] = "',interface='org.freedesktop.portal.Request',member='Response',destination='";
         constexpr const char PART_3[] = "'";
@@ -197,13 +174,11 @@ char* replaceSymbol(const char *start, const char *end, char *out, Fn func) {
 }
 
 void setOpenFileEntryType(DBusMessageIter &msg_iter, EntryType entry_type) {
-    const char* ENTRY_MULTIPLE = "multiple";
-    const char* ENTRY_DIRECTORY = "directory";
+    const char* ENTRY_TYPE = (entry_type == EntryType::Multiple) ? "multiple" : "directory";
     DBusMessageIter iter;
     DBusMessageIter var_iter;
     __dbusOpen(&msg_iter, DBUS_TYPE_DICT_ENTRY, nullptr, &iter);
-    __dbusAppend(&iter, DBUS_TYPE_STRING, (entry_type == EntryType::Multiple)
-                 ? &ENTRY_MULTIPLE : &ENTRY_DIRECTORY);
+    __dbusAppend(&iter, DBUS_TYPE_STRING, &ENTRY_TYPE);
     __dbusOpen(&iter, DBUS_TYPE_VARIANT, "b", &var_iter);
     {
         int val = 1;
@@ -250,12 +225,9 @@ void setFilter(DBusMessageIter &msg_iter, const FilterItem &filterItem) {
     __dbusClose(&msg_iter, &struct_iter);
 }
 
-void setFilters(DBusMessageIter &msg_iter, const FilterItem *filterList,
-                uint filterCount, FilterItem *selFilter) {
+void setFilters(DBusMessageIter &msg_iter, const FilterItem *filterList, uint filterCount, FilterItem *selFilter) {
     if (filterCount != 0) {
-        DBusMessageIter dict_iter;
-        DBusMessageIter var_iter;
-        DBusMessageIter arr_iter;
+        DBusMessageIter dict_iter, var_iter, arr_iter;
         const char* FILTERS = "filters";
         const char* CURRENT_FILTER = "current_filter";
         // set filters
@@ -286,8 +258,7 @@ void setCurrentName(DBusMessageIter &msg_iter, const char *name) {
     if (!name)
         return;
     const char* CURRENT_NAME = "current_name";
-    DBusMessageIter dict_iter;
-    DBusMessageIter variant_iter;
+    DBusMessageIter dict_iter, variant_iter;
     __dbusOpen(&msg_iter, DBUS_TYPE_DICT_ENTRY, nullptr, &dict_iter);
     __dbusAppend(&dict_iter, DBUS_TYPE_STRING, &CURRENT_NAME);
     __dbusOpen(&dict_iter, DBUS_TYPE_VARIANT, "s", &variant_iter);
@@ -300,9 +271,7 @@ void setCurrentFolder(DBusMessageIter &msg_iter, const char *path) {
     if (!path)
         return;
     const char* CURRENT_FOLDER = "current_folder";
-    DBusMessageIter dict_iter;
-    DBusMessageIter var_iter;
-    DBusMessageIter arr_iter;
+    DBusMessageIter dict_iter, var_iter, arr_iter;
     __dbusOpen(&msg_iter, DBUS_TYPE_DICT_ENTRY, nullptr, &dict_iter);
     __dbusAppend(&dict_iter, DBUS_TYPE_STRING, &CURRENT_FOLDER);
     __dbusOpen(&dict_iter, DBUS_TYPE_VARIANT, "ay", &var_iter);
@@ -345,9 +314,7 @@ void setCurrentFile(DBusMessageIter &msg_iter, const char *path, const char *nam
     if (access(pathname, F_OK) != 0)
         return;
     const char* CURRENT_FILE = "current_file";
-    DBusMessageIter dict_iter;
-    DBusMessageIter var_iter;
-    DBusMessageIter arr_iter;
+    DBusMessageIter dict_iter, var_iter, arr_iter;
     __dbusOpen(&msg_iter, DBUS_TYPE_DICT_ENTRY, nullptr, &dict_iter);
     __dbusAppend(&dict_iter, DBUS_TYPE_STRING, &CURRENT_FILE);
     __dbusOpen(&dict_iter, DBUS_TYPE_VARIANT, "ay", &var_iter);
@@ -366,15 +333,8 @@ Result readDictImpl(const char*, DBusMessageIter&) {
 }
 
 template <class Fn, typename... Args>
-Result readDictImpl(const char* key,
-                    DBusMessageIter& msg,
-                    const char* &candidate_key,
-                    Fn& callback,
-                    Args&... args) {
-    if (strcmp(key, candidate_key) == 0)
-        return callback(msg);
-    else
-        return readDictImpl(key, msg, args...);
+Result readDictImpl(const char* key, DBusMessageIter& msg, const char* &candidate_key, Fn& callback, Args&... args) {
+    return strcmp(key, candidate_key) == 0 ? callback(msg) : readDictImpl(key, msg, args...);
 }
 
 template <typename... Args>
@@ -496,8 +456,7 @@ uint readResponseUrisUncheckedSize(DBusMessage* msg) {
     return arr_size;
 }
 
-Result readResponseCurrentFilter(DBusMessage* msg,
-                                 FilterItem* selFilter) {
+Result readResponseCurrentFilter(DBusMessage* msg, FilterItem* selFilter) {
     DBusMessageIter iter;
     const Result res = readResponseResults(msg, iter);
     if (res != SUCCESS)
@@ -567,8 +526,7 @@ Result readResponseCurrentFilter(DBusMessage* msg,
     return SUCCESS;
 }
 
-Result readResponseUrisSingle(DBusMessage* msg,
-                              const char* &file) {
+Result readResponseUrisSingle(DBusMessage* msg, const char* &file) {
     DBusMessageIter uri_iter;
     const Result res = readResponseUris(msg, uri_iter);
     if (res != SUCCESS)
@@ -582,10 +540,7 @@ Result readResponseUrisSingle(DBusMessage* msg,
 }
 
 #ifdef ADD_EXTENSION
-Result readResponseUrisSingleAndCurrentExtension(DBusMessage* msg,
-                                                 const char* &file,
-                                                 const char* &extn,
-                                                 FilterItem* selFilter) {
+Result readResponseUrisSingleAndCurrentExtension(DBusMessage* msg, const char* &file, const char* &extn, FilterItem* selFilter) {
     DBusMessageIter iter;
     const Result res = readResponseResults(msg, iter);
     if (res != SUCCESS)
@@ -719,9 +674,7 @@ char* createUniquePath(const char** handle_token) {
 }
 
 bool isHex(char ch) {
-    return ('0' <= ch && ch <= '9') ||
-           ('A' <= ch && ch <= 'F') ||
-           ('a' <= ch && ch <= 'f');
+    return ('0' <= ch && ch <= '9') || ('A' <= ch && ch <= 'F') || ('a' <= ch && ch <= 'f');
 }
 
 bool tryUriDecodeLen(const char* fileUri, size_t &out, const char* &fileUriEnd) {
@@ -794,9 +747,7 @@ Result allocAndCopyFilePath(const char* fileUri, char* &outPath) {
 }
 
 #ifdef ADD_EXTENSION
-bool tryGetExtension(const char* extn,
-                     const char* &trimmed_extn,
-                     const char* &trimmed_extn_end) {
+bool tryGetExtension(const char* extn, const char* &trimmed_extn, const char* &trimmed_extn_end) {
     if (!extn)
         return false;
     if (*extn != '*')
@@ -875,8 +826,7 @@ Result callXdgPortal(Window parent, Xdg::Mode mode, const char* title,
     DBusMessage* methd = dbus_message_new_method_call("org.freedesktop.portal.Desktop",
                                                       "/org/freedesktop/portal/desktop",
                                                       "org.freedesktop.portal.FileChooser",
-                                                      (mode == Xdg::Mode::SAVE)
-                                                        ? "SaveFile" : "OpenFile");
+                                                      (mode == Xdg::Mode::SAVE) ? "SaveFile" : "OpenFile");
     UnrefLater_DBusMessage __unrefLater(methd);
     DBusMessageIter iter;
     dbus_message_iter_init_append(methd, &iter);
@@ -1040,8 +990,7 @@ Result openDialog(Window parent, Xdg::Mode mode, const char* title,
         const char* uri = NULL;
         const char* extn = NULL;
         {
-            const Result res = readResponseUrisSingleAndCurrentExtension(
-                                    msg, uri, extn, selFilter);
+            const Result res = readResponseUrisSingleAndCurrentExtension(msg, uri, extn, selFilter);
             if (res != SUCCESS) {
                 return res;
             }
@@ -1070,17 +1019,14 @@ Result openDialog(Window parent, Xdg::Mode mode, const char* title,
     }
 }
 
-Result pathSetGetCount(const void* pathSet,
-                       uint* count) {
+Result pathSetGetCount(const void* pathSet, uint* count) {
     assert(pathSet);
     DBusMessage* msg = const_cast<DBusMessage*>(static_cast<const DBusMessage*>(pathSet));
     *count = readResponseUrisUncheckedSize(msg);
     return SUCCESS;
 }
 
-Result pathSetGetPath(const void* pathSet,
-                            uint index,
-                            char** outPath) {
+Result pathSetGetPath(const void* pathSet, uint index, char** outPath) {
     assert(pathSet);
     DBusMessage* msg = const_cast<DBusMessage*>(static_cast<const DBusMessage*>(pathSet));
     DBusMessageIter uri_iter;
@@ -1162,13 +1108,9 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
 {
     initDBus();
     Window parentWid = (parent) ? (Window)parent->winId() : 0L;
-    QStringList files;
-
     const int pos = file_name.lastIndexOf('/');
-    const QString _file_name = (pos != -1) ?
-                file_name.mid(pos + 1) : file_name;
-    const QString _path = (path.isEmpty() && pos != -1) ?
-                file_name.mid(0, pos) : path;
+    const QString _file_name = (pos != -1) ? file_name.mid(pos + 1) : file_name;
+    const QString _path = (path.isEmpty() && pos != -1) ? file_name.mid(0, pos) : path;
 
     int filterSize = 0;
     FilterItem *filterItem = nullptr;
@@ -1202,9 +1144,10 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
                         _file_name.toLocal8Bit().data(),
                         sel_multiple);
 
-    if (mode == Mode::OPEN && sel_multiple) {
-        if (result == Result::SUCCESS) {
-            uint numPaths;
+    QStringList files;
+    if (result == Result::SUCCESS) {
+        if (mode == Mode::OPEN && sel_multiple) {
+            uint numPaths = 0;
             pathSetGetCount(outPaths, &numPaths);
             for (uint i = 0; i < numPaths; ++i) {
                 char* path = nullptr;
@@ -1213,18 +1156,13 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
                 pathSetFreePath(path);
             }
             pathSetFree(outPaths);
-        }
-    } else {
-        if (result == Result::SUCCESS) {
+        } else {
             files.append(QString::fromUtf8(outPaths));
             freePath(outPaths);
         }
-    }
-
-    if (result == Result::ERROR) {
-        CMessage::error(parent, QObject::tr("An error occurred while opening the portal:<br>%1")
-                        .arg(QString::fromUtf8(getErrorText())));
-    }
+    } else
+    if (result == Result::ERROR)
+        CMessage::error(parent, QObject::tr("An error occurred while opening the portal:<br>%1").arg(QString::fromUtf8(getErrorText())));
 
     quitDBus();
 

@@ -31,6 +31,14 @@
 #define IDI_ICON31  131
 #define IDI_ICON32  132
 #define IDI_ICON33  133
+#define IDI_ICON34  134
+#define IDI_ICON35  135
+#define IDI_ICON36  136
+#define IDI_ICON37  137
+#define IDI_ICON38  138
+#define IDI_ICON39  139
+#define IDI_ICON40  140
+#define IDI_ICON41  141
 
 #define IDS_DOCX  1000
 #define IDS_XLSX  1001
@@ -41,3 +49,7 @@
 #define IDS_NEW_XLSX  1101
 #define IDS_NEW_PPTX  1102
 #define IDS_NEW_PDF   1103
+
+#define IDS_JUMP_DOCX  1200
+#define IDS_JUMP_XLSX  1201
+#define IDS_JUMP_PPTX  1202

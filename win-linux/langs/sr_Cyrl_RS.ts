@@ -525,7 +525,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="305"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="315"/>
@@ -910,7 +910,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="751"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Дошло је до грешке приликом покретања инсталације ажурирања: Сервис за ажурирање није пронађен!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="761"/>
@@ -1007,34 +1007,34 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Штампање…</translation>
+        <translation>Штампање…</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Припрема документа</translation>
+        <translation>Припрема документа</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;Откажи</translation>
+        <translation>&amp;Откажи</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="214"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Желите ли да поставите %1 као подразумевану апликацију за екстензију: %2?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="216"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>Желите ли да поставите %1 као подразумевану апликацију за све подржане екстензије?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="218"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Не приказуј ову поруку поново</translation>
     </message>
 </context>
 </TS>

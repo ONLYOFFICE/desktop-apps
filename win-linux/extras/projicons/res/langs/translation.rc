@@ -15,6 +15,10 @@ BEGIN
     IDS_NEW_XLSX  "New Office Open XML Spreadsheet"
     IDS_NEW_PPTX  "New Office Open XML Presentation"
     IDS_NEW_PDF   "New PDF Form"
+
+    IDS_JUMP_DOCX  "New document"
+    IDS_JUMP_XLSX  "New spreadsheet"
+    IDS_JUMP_PPTX  "New presentation"
 END
 
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
@@ -155,6 +159,10 @@ BEGIN
     IDS_NEW_XLSX  "Новая электронная таблица Office Open XML"
     IDS_NEW_PPTX  "Новая презентация Office Open XML"
     IDS_NEW_PDF   "Новая PDF-форма"
+
+    IDS_JUMP_DOCX  "Новый документ"
+    IDS_JUMP_XLSX  "Новая таблица"
+    IDS_JUMP_PPTX  "Новая презентация"
 END
 
 LANGUAGE LANG_GERMAN, SUBLANG_GERMAN

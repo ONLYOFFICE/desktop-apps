@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lai iestatījumi stātos spēkā, programma ir jārestartē.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
@@ -380,7 +380,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel binārais fails (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -533,7 +533,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="305"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="315"/>
@@ -804,7 +804,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sagatavo atjauninājumu (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
@@ -829,7 +829,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pašreizējā versija neatbalsta šī atjauninājuma tiešu instalēšanu. Lai instalētu atjauninājumus, varat lejupielādēt nepieciešamo pakotni no oficiālās vietnes.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="888"/>
@@ -977,7 +977,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="751"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzsākot atjauninājumu instalēšanu, radās kļūda: atjaunināšanas pakalpojums nav atrasts!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="761"/>
@@ -1074,34 +1074,34 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Notiek printēšana...</translation>
+        <translation>Notiek printēšana...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Dokuments tiek sagatavots</translation>
+        <translation>Dokuments tiek sagatavots</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;Atcelt</translation>
+        <translation>&amp;Atcelt</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="214"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vai vēlaties padarīt %1 par noklusējuma lietojumprogrammu paplašinājumam: %2?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="216"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vai vēlaties padarīt %1 par noklusējuma lietojumprogrammu visiem atbalstītajiem paplašinājumiem?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="218"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Vairs nerādīt šo paziņojumu</translation>
     </message>
 </context>
 <context>

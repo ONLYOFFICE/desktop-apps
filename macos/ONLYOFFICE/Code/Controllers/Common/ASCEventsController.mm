@@ -602,6 +602,9 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorAppActionRequest
                                                                                 object:nil
                                                                               userInfo:params];
+                        } else if (cmd.find(L"recent:forget") != std::wstring::npos) {
+                            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                            appManager->RemoveRecentByViewId(senderId);
                         } else if (cmd.find(L"go:folder") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorOpenFolder
                                                                                 object:nil
@@ -670,10 +673,6 @@ public:
                                     }
 
                                     [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
-                                }
-
-                                if ( [json objectForKey:@"rtl"] != nil ) {
-                                    [ASCLinguist setUILayoutDirectionRtl:[json[@"rtl"] boolValue]];
                                 }
 
                                 if ( [json objectForKey:@"usegpu"] != nil ) {

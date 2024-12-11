@@ -33,8 +33,8 @@
 #ifndef CWINDOWBASE_H
 #define CWINDOWBASE_H
 
-#define WINDOW_MIN_WIDTH    500
-#define WINDOW_MIN_HEIGHT   300
+#define WINDOW_MIN_WIDTH    520
+#define WINDOW_MIN_HEIGHT   480
 
 #define MAIN_WINDOW_MIN_WIDTH    960
 #define MAIN_WINDOW_MIN_HEIGHT   661
@@ -44,6 +44,7 @@
 #define BUTTON_MAIN_WIDTH   112
 #define MAIN_WINDOW_BORDER_WIDTH 3
 #define WINDOW_TITLE_MIN_WIDTH 200
+#define TOOLBTN_HEIGHT_WIN10 35
 #define TOOLBTN_HEIGHT      28
 #define TOOLBTN_WIDTH       40
 #ifdef _WIN32
@@ -71,7 +72,7 @@ public:
     bool isCustomWindowStyle();
     void updateScaling(bool resize = true);
     virtual void adjustGeometry() = 0;
-    virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false);
+    virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) = 0;
     virtual void applyTheme(const std::wstring&);
 
 protected:
@@ -81,7 +82,7 @@ protected:
 
     QPushButton* createToolButton(QWidget * parent, const QString& name);
     QWidget* createTopPanel(QWidget *parent);
-    void saveWindowState();
+    void saveWindowState(const QString &baseKey = "");
     void moveToPrimaryScreen();
     void setIsCustomWindowStyle(bool);
     virtual bool event(QEvent*);
@@ -102,6 +103,7 @@ protected:
     QColor         m_brdColor,
                    m_bkgColor;
     QRect          m_window_rect;
+    int            m_toolbtn_height = TOOLBTN_HEIGHT;
 
     virtual void showEvent(QShowEvent *);
 

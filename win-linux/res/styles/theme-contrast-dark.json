@@ -37,6 +37,16 @@
 
         "download-scrollbar-handle": "#999999",
 
+        "menu-background": "#212121",
+        "menu-border": "#696969",
+        "menu-item-hover-background": "#424242",
+
+        "menu-text": "#e8e8e8",
+        "menu-text-item-hover": "#e8e8e8",
+        "menu-text-item-disabled": "#717171",
+
+        "menu-separator": "#505050",
+
         "tooltip-text": "#d2d2d2",
         "tooltip-border": "#696969",
         "tooltip-background": "#212121",

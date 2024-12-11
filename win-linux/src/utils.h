@@ -127,6 +127,7 @@ public:
         Undef, WinXP, WinVista, Win7, Win8, Win8_1, Win10, Win11
     };
     static WinVer getWinVersion();
+    static QString GetCurrentUserSID();
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
     static void setAppUserModelId();
@@ -164,7 +165,6 @@ namespace WindowHelper {
 //    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
 //    auto adjustWindowRect(HWND, double, LPRECT) -> void;
     auto bringToTop(HWND) -> void;
-    auto getColorizationColor(bool isActive = true, const QColor &bkgColor = QColor()) -> QColor;
     auto toggleLayoutDirection(HWND hwnd) -> void;
 #endif
 

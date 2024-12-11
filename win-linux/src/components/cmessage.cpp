@@ -339,6 +339,14 @@ int QtMsg::showMessage(QWidget *parent,
     WindowHelper::CParentDisable oDisabler(parent);
 #endif
     QtMsg dlg(parent);
+    if (AscAppManager::isRtlEnabled()) {
+#ifdef _WIN32
+        LONG exstyle = GetWindowLong((HWND)dlg.winId(), GWL_EXSTYLE);
+        SetWindowLong((HWND)dlg.winId(), GWL_EXSTYLE, exstyle | WS_EX_LAYOUTRTL);
+#else
+        dlg.setLayoutDirection(Qt::RightToLeft);
+#endif
+    }
     dlg.setText(msg);
     dlg.setIcon(msgType);
     if (msgBtns != MsgBtns::mbOk)

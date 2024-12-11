@@ -1432,6 +1432,20 @@ sr_Cyrl_RS.extXLSB =Excel бинарни формат датотеке
 sr_Latn_RS.extXLSB =Excel binarni format datoteke
 he.extXLSB =פורמט קובץ בינארי של Excel
 
+en.extXLSM =Microsoft Excel Macro-Enabled Workbook
+
+en.extFODS =OpenDocument Flat XML Spreadsheet
+
+en.extFODT =OpenDocument Flat XML Document
+
+en.extVSDX =Visio Drawing
+
+en.extPAGES =Apple Pages text document
+
+en.extNUMBERS =Apple Numbers spreadsheet
+
+en.extKEY =Apple Keynotes presentation
+
 ;======================================================================================================
 
 en.jumpDOCX =New document
@@ -1862,9 +1876,9 @@ var
   prefix: string;
 begin
 #ifdef _ONLYOFFICE
-  SetArrayLength(AudioExts, 24);
+  SetArrayLength(AudioExts, 31);
 #else
-  SetArrayLength(AudioExts, 23);
+  SetArrayLength(AudioExts, 30);
 #endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
@@ -1892,8 +1906,15 @@ begin
   AudioExts[20] := 'DOTX';
   AudioExts[21] := 'OXPS';
   AudioExts[22] := 'XLSB';
+  AudioExts[23] := 'FODS';
+  AudioExts[24] := 'FODT';
+  AudioExts[25] := 'VSDX';
+  AudioExts[26] := 'XLSM';
+  AudioExts[27] := 'PAGES';
+  AudioExts[28] := 'NUMBERS';
+  AudioExts[29] := 'KEY';
 #ifdef _ONLYOFFICE
-  AudioExts[23] := 'DOCXF';
+  AudioExts[30] := 'DOCXF';
 #endif
 
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
@@ -1924,8 +1945,15 @@ begin
   ExtensionRegistryInfo[20] := prefix + 'Dotx:'         + ExpandConstant('{cm:extDOTX}')            + ':' + '30';
   ExtensionRegistryInfo[21] := prefix + 'Oxps:'         + ExpandConstant('{cm:extOXPS}')            + ':' + '31';
   ExtensionRegistryInfo[22] := prefix + 'Xlsb:'         + ExpandConstant('{cm:extXLSB}')            + ':' + '32';
+  ExtensionRegistryInfo[23] := prefix + 'Fods:'         + ExpandConstant('{cm:extFODS}')            + ':' + '34';
+  ExtensionRegistryInfo[24] := prefix + 'Fodt:'         + ExpandConstant('{cm:extFODT}')            + ':' + '35';
+  ExtensionRegistryInfo[25] := prefix + 'Vsdx:'         + ExpandConstant('{cm:extVSDX}')            + ':' + '36';
+  ExtensionRegistryInfo[26] := prefix + 'Xlsm:'         + ExpandConstant('{cm:extXLSM}')            + ':' + '37';
+  ExtensionRegistryInfo[27] := prefix + 'Pages:'        + ExpandConstant('{cm:extPAGES}')           + ':' + '38';
+  ExtensionRegistryInfo[28] := prefix + 'Numbers:'      + ExpandConstant('{cm:extNUMBERS}')         + ':' + '39';
+  ExtensionRegistryInfo[29] := prefix + 'Key:'          + ExpandConstant('{cm:extKEY}')             + ':' + '40';
 #ifdef _ONLYOFFICE
-  ExtensionRegistryInfo[23] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+  ExtensionRegistryInfo[30] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
 #endif
 end;
 
@@ -2146,6 +2174,8 @@ begin
      end;
      if version.Major = 10 then begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
+       if RegValueExists(HKEY_CURRENT_USER, 'Software\Classes\' + values[1], '') then
+         RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
      end;
   end;
 end;
@@ -2156,6 +2186,7 @@ var
   ext, progId1, progId2: string;
   argsArray: TArrayOfString;
   cleanExts, extensionInfo: TArrayOfString;
+  version: TWindowsVersion;
   prefix, str: string;
 begin
     isFullAssociation := CheckCommandlineParam('/FULLASSOCIATION');
@@ -2163,6 +2194,7 @@ begin
       initExtensions();
     end;
 
+    GetWindowsVersionEx(version);
     for  i := 0 to GetArrayLength(AudioExts) - 1 do
     begin
       Explode(argsArray, ExtensionRegistryInfo[i],':');
@@ -2175,6 +2207,9 @@ begin
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0], 'AppUserModelID', ExpandConstant('{#APP_USER_MODEL_ID}'));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\DefaultIcon', '', ExpandConstant('{app}\{#iconsExe},' + argsArray[2]));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\shell\open\command', '', ExpandConstant('"{app}\{#iconsExe}" "%1"'));
+        if (version.Major = 10) and (version.Minor = 0) and (version.Build < 22000) then begin
+          RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\Application', 'ApplicationIcon', ExpandConstant('{app}\{#iconsExe},33'));
+        end;
       //end;
 
       ext := LowerCase(AudioExts[i]);

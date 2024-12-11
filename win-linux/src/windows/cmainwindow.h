@@ -63,7 +63,7 @@ public:
     int attachEditor(QWidget *, const QPoint&);
     int editorsCount();
     int editorsCount(const std::wstring& portal);
-    bool pointInTabs(const QPoint& pt);
+    bool canPinTabAtPoint(const QPoint& pt);
     bool holdView(int id) const;
     virtual void applyTheme(const std::wstring&) final;
     virtual void focus() final;
@@ -109,6 +109,9 @@ protected:
     virtual QString getSaveMessage() const;
     virtual void refreshAboutVersion() {};
     virtual void onLayoutDirectionChanged() final;
+#ifdef _WIN32
+    virtual void applyWindowState() final;
+#endif
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
 
@@ -154,6 +157,7 @@ public slots:
 private:
     QWidget * createMainPanel(QWidget *parent);
     int  trySaveDocument(int);
+    void setTabMenu(int index, CTabPanel *panel = nullptr);
 
     CAscTabWidget *  m_pTabs = nullptr;
     CSVGPushButton*  m_pButtonMain = nullptr;

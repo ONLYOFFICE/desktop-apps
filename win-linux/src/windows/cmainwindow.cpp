@@ -32,17 +32,21 @@
 
 #include "windows/cmainwindow.h"
 #include "ceditortools.h"
+#include "iconfactory.h"
 #include "clangater.h"
 #include "defines.h"
 #include "utils.h"
 #include "components/cfiledialog.h"
+#include "components/cmenu.h"
 #include "common/Types.h"
 #include "version.h"
 #include "components/cmessage.h"
+#include "ctabundockevent.h"
 #include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
 #include <QApplication>
+#include <QAction>
 #include "components/cprintdialog.h"
 #include <QRegularExpression>
 #include <QJsonDocument>
@@ -71,10 +75,16 @@ CMainWindow::CMainWindow(const QRect &rect) :
     m_savePortal(QString())
 {
     setObjectName("MainWindow");
+#ifdef _WIN32
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle())
+        m_toolbtn_height = TOOLBTN_HEIGHT_WIN10;
+#endif
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
     QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
 #ifdef __linux__
+    if (WindowHelper::getEnvInfo() == WindowHelper::KDE)
+        setWindowTitle(tr("Main Window"));
     setAcceptDrops(true);
     if (isCustomWindowStyle()) {
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
@@ -83,7 +93,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     }
     QMetaObject::connectSlotsByName(this);
     css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
-#endif    
+#endif
     m_pMainPanel->setStyleSheet(css);
     QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
     m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
@@ -148,6 +158,7 @@ int CMainWindow::attachEditor(QWidget * panel, int index)
     if ( !(_index < 0) ) {
         tabWidget()->setCurrentIndex(_index);
         toggleButtonMain(false);
+        setTabMenu(_index, qobject_cast<CTabPanel*>(panel));
     }
     return _index;
 }
@@ -182,14 +193,20 @@ int CMainWindow::editorsCount(const std::wstring& portal)
     return tabWidget()->count(portal, true);
 }
 
-bool CMainWindow::pointInTabs(const QPoint& pt)
+bool CMainWindow::canPinTabAtPoint(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
     int dx1 = (AscAppManager::isRtlEnabled()) ? 3 * int(TITLEBTN_WIDTH * m_dpiRatio) : m_pButtonMain->width();
     int dx2 = (AscAppManager::isRtlEnabled()) ? -1 * m_pButtonMain->width() : -3 * int(TITLEBTN_WIDTH * m_dpiRatio);
     _rc_title.adjust(dx1, 1, dx2, 0);
-    return _rc_title.contains(mapFromGlobal(pt));
+    bool containsPoint = _rc_title.contains(mapFromGlobal(pt));
+    bool pinAllowed = m_pTabs->isTabPinAllowed();
+    if (!containsPoint && !pinAllowed) {
+        m_pTabs->setTabPinAllowed();
+        return false;
+    }
+    return containsPoint && pinAllowed;
 }
 
 bool CMainWindow::holdView(int id) const
@@ -206,6 +223,11 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
             AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
+        }
+        if (CMenu *menu = m_pTabs->tabBar()->tabMenu(i)) {
+            menu->setSectionIcon(CMenu::ActionCreateNew, IconFactory::icon(IconFactory::CreateNew, SMALL_ICON * m_dpiRatio));
+            menu->setSectionIcon(CMenu::ActionShowInFolder, IconFactory::icon(IconFactory::Browse, SMALL_ICON * m_dpiRatio));
+            // menu->setSectionIcon(CMenu::ActionUnpinTab, IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
         }
     }
     // m_boxTitleBtns->style()->polish(m_boxTitleBtns);
@@ -263,6 +285,7 @@ void CMainWindow::close()
     m_isCloseAll = true;
 
     if ( m_pTabs->count() == 0 ) {
+        hide();
         emit aboutToClose();
     } else {
         onFullScreen(-1, false);
@@ -297,6 +320,8 @@ void CMainWindow::close()
                 if ( !m_pTabs->isProcessed(i) ) {
                     int _result = trySaveDocument(i);
                     if ( _result == MODAL_RESULT_NO ) {
+                        if (i == 0)
+                            hide();
                         m_pTabs->editorCloseRequest(i);
                         onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
                     } else
@@ -305,6 +330,8 @@ void CMainWindow::close()
                         return;
                     }
                 } else {
+                    if (i == 0)
+                        hide();
                     m_pTabs->editorCloseRequest(i);
                 }
             }
@@ -394,6 +421,8 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     mainPanel->setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
 #ifdef _WIN32
     mainPanel->setProperty("unix", false);
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle())
+        mainPanel->setProperty("win10", true);
 #else
     mainPanel->setProperty("unix", true);
 #endif
@@ -414,6 +443,14 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     m_boxTitleBtns->setObjectName("CX11Caption");
     _pMainGridLayout->addWidget(m_boxTitleBtns, 0, 2, 1, 1);
     m_boxTitleBtns->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+
+#ifdef _WIN32
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle()) {
+        foreach (auto *btn, m_pTopButtons) {
+            btn->setProperty("win10", true);
+        }
+    }
+#endif
 
 #ifdef __DONT_WRITE_IN_APP_TITLE
     QLabel * label = new QLabel(m_boxTitleBtns);
@@ -566,9 +603,9 @@ void CMainWindow::onEditorAllowedClose(int uid)
             AscAppManager::getInstance().commonEvents().signal(&_event);
 
             if ( !m_pTabs->count() ) {
-                m_pTabs->setProperty("empty", true);
-                m_pTabs->style()->polish(m_pTabs);
-                toggleButtonMain(true);
+                // m_pTabs->setProperty("empty", true);
+                // m_pTabs->style()->polish(m_pTabs);
+                // toggleButtonMain(true);
 
                 if ( m_isCloseAll ) {
                     emit aboutToClose();
@@ -581,6 +618,10 @@ void CMainWindow::onEditorAllowedClose(int uid)
 void CMainWindow::onTabChanged(int index)
 {
     QString title("");
+#ifdef __linux__
+    if (WindowHelper::getEnvInfo() == WindowHelper::KDE)
+        title = tr("Main Window");
+#endif
     if (index > -1) {
         auto _panel = m_pTabs->panel(index);
         if (_panel)
@@ -686,6 +727,108 @@ int CMainWindow::trySaveDocument(int index)
     return modal_res;
 }
 
+void CMainWindow::setTabMenu(int index, CTabPanel *panel)
+{
+    CMenu *menu = new CMenu(m_pTabs->tabBar()->tabAtIndex(index));
+    QAction* actClose = menu->addSection(CMenu::ActionClose);
+    connect(actClose, &QAction::triggered, this, [=]() {
+            onTabCloseRequest(m_pTabs->tabBar()->tabMenuIndex(menu));
+            Utils::processMoreEvents();
+        }, Qt::QueuedConnection);
+
+    QAction* actCloseSaved = menu->addSection(CMenu::ActionCloseSaved);
+    connect(actCloseSaved, &QAction::triggered, this, [=]() {
+            for (int i(m_pTabs->count()); !(--i < 0);) {
+                CAscTabData *doc = m_pTabs->panel(i)->data();
+                if (doc->isViewType(cvwtEditor) && !doc->closed() && doc->isLocal() && !doc->hasChanges() && !doc->url().empty()) {
+                    onTabCloseRequest(i);
+                    Utils::processMoreEvents();
+                }
+            }
+        }, Qt::QueuedConnection);
+
+    QAction* actCloseAll = menu->addSection(CMenu::ActionCloseAll);
+    connect(actCloseAll, &QAction::triggered, this, [=]() {
+            for (int i(m_pTabs->count()); !(--i < 0);) {
+                CAscTabData *doc = m_pTabs->panel(i)->data();
+                if (/*doc->isViewType(cvwtEditor) &&*/ !doc->closed()) {
+                    onTabCloseRequest(i);
+                    Utils::processMoreEvents();
+                }
+            }
+        }, Qt::QueuedConnection);
+
+    if (panel) {
+        menu->addSeparator();
+        QAction *actShowInFolder = menu->addSection(CMenu::ActionShowInFolder);
+        actShowInFolder->setIcon(IconFactory::icon(IconFactory::Browse, SMALL_ICON * m_dpiRatio));
+        actShowInFolder->setEnabled(panel->data()->isLocal() && !panel->data()->url().empty());
+        connect(actShowInFolder, &QAction::triggered, this, [=]() {
+                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+                if (CTabPanel *panel = m_pTabs->panel(index))
+                    Utils::openFileLocation(QString::fromStdWString(panel->data()->url()));
+            }, Qt::QueuedConnection);
+    }
+    menu->addSeparator();
+
+    QAction *actMoveToStart = menu->addSection(CMenu::ActionMoveToStart);
+    // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
+    connect(actMoveToStart, &QAction::triggered, this, [=]() {
+            int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+            int destIndex = AscAppManager::isRtlEnabled() ? m_pTabs->count() - 1 : 0;
+            if (m_pTabs->count() > 1 && index != destIndex)
+                m_pTabs->tabBar()->moveTab(index, destIndex);
+        }, Qt::QueuedConnection);
+
+    QAction *actMoveToEnd = menu->addSection(CMenu::ActionMoveToEnd);
+    // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
+    connect(actMoveToEnd, &QAction::triggered, this, [=]() {
+            int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+            int destIndex = AscAppManager::isRtlEnabled() ? 0 : m_pTabs->count() - 1;
+            if (m_pTabs->count() > 1 && index != destIndex)
+                m_pTabs->tabBar()->moveTab(index, destIndex);
+        }, Qt::QueuedConnection);
+
+    if (panel) {
+        QAction *actUnpinTab = menu->addSection(CMenu::ActionUnpinTab);
+        // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
+        connect(actUnpinTab, &QAction::triggered, this, [=]() {
+                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+                CTabPanel *panel = m_pTabs->panel(index);
+                if (panel && panel->data()->viewType() == cvwtEditor) {
+                    CTabUndockEvent event(index);
+                    QObject *obj = qobject_cast<QObject*>(&AscAppManager::getInstance());
+                    if (QApplication::sendEvent(obj, &event) && event.isAccepted()) {
+                        QTimer::singleShot(0, this, [=]() {
+                            QWidget *view = m_pTabs->widget(index);
+                            m_pTabs->removeWidget(view);
+                            view->deleteLater();
+                            m_pTabs->tabBar()->removeTab(index);
+                        });
+                    }
+                }
+            }, Qt::QueuedConnection);
+        menu->addSeparator();
+
+        QAction *actCreateNew = menu->addSection(CMenu::ActionCreateNew);
+        actCreateNew->setIcon(IconFactory::icon(IconFactory::CreateNew, SMALL_ICON * m_dpiRatio));
+        AscEditorType etype = panel->data()->contentType();
+        actCreateNew->setEnabled(panel->isReady() && (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
+                                                      etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf));
+        connect(actCreateNew, &QAction::triggered, this, [=]() {
+                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+                AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
+                std::wstring cmd = etype == AscEditorType::etDocument ? L"--new:word" :
+                                       etype == AscEditorType::etPresentation ? L"--new:slide" :
+                                       etype == AscEditorType::etSpreadsheet ? L"--new:cell" :
+                                       etype == AscEditorType::etPdf ? L"--new:form" : L"";
+                if (!cmd.empty())
+                    AscAppManager::handleInputCmd({cmd});
+            }, Qt::QueuedConnection);
+    }
+    m_pTabs->tabBar()->setTabMenu(index, menu);
+}
+
 void CMainWindow::onPortalLogout(std::wstring wjson)
 {
     const auto _is_url_starts_with = [](const QString& url, const std::vector<QString>& v) -> bool {
@@ -767,16 +910,16 @@ void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
 
         if ( json.rfind(L"default-", 0) == 0 ) {
             if ( json.compare(L"default-dark") == 0 )
-                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "dark", "#333");
-            else m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "light", "#fff");
+                m_pTabs->setTabTheme(index, "dark", "#333");
+            else m_pTabs->setTabTheme(index, "light", "#fff");
         } else {
             QJsonParseError jerror;
             QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toLatin1(), &jerror);
 
             if( jerror.error == QJsonParseError::NoError ) {
                 QJsonObject objRoot = jdoc.object();
-                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), objRoot["type"].toString(), objRoot["color"].toString());
-}
+                m_pTabs->setTabTheme(index, objRoot["type"].toString(), objRoot["color"].toString());
+            }
         }
     }
 }
@@ -870,7 +1013,21 @@ void CMainWindow::onLocalFilesOpen(void * data)
 
 void CMainWindow::onLocalFileLocation(QString path)
 {
-    Utils::openFileLocation(path);
+    QJsonObject objRoot = Utils::parseJsonString(path.toStdWString());
+    if ( !objRoot.isEmpty() ) {
+        QString _path = objRoot["path"].toString();
+        int id = objRoot["id"].toInt();
+
+        QFileInfo _info(_path);
+        if ( _info.exists() ) {
+            Utils::openFileLocation(_path);
+        } else {
+            int res = CMessage::showMessage(this, QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+                                                MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
+            if ( res == MODAL_RESULT_YES )
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
+        }
+    }
 }
 
 void CMainWindow::onFileLocation(int uid, QString param)
@@ -879,7 +1036,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
         QString path = m_pTabs->urlByView(uid);
         if ( !path.isEmpty() ) {
 //            if ( Utils::isFileLocal(path) )
-                onLocalFileLocation(path);
+                Utils::openFileLocation(path);
 //            else {
 //            }
         } else {
@@ -996,6 +1153,15 @@ void CMainWindow::onDocumentReady(int uid)
         });
     } else {
         m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_LOADING_FINISH);
+
+        int index = m_pTabs->tabIndexByView(uid);
+        if (CMenu *menu = m_pTabs->tabBar()->tabMenu(index)) {
+            AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
+            if (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
+                    etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf) {
+                menu->setSectionEnabled(CMenu::ActionCreateNew, true);
+            }
+        }
     }
     AscAppManager::getInstance().onDocumentReady(uid);
 }
@@ -1022,6 +1188,9 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
                 {
                     m_pTabs->closeEditorByIndex(_i);
                 }
+            else {
+                m_pTabs->tabBar()->tabMenu(_i)->setSectionEnabled(CMenu::ActionShowInFolder, true);
+            }
         } else {
             m_pTabs->cancelDocumentSaving(_i);
 
@@ -1366,6 +1535,7 @@ void CMainWindow::onPortalOpen(QString json)
             if (!(res < 0)) {
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);
+                setTabMenu(res);
             }
 
             QString _title = objRoot["title"].toString();
@@ -1390,6 +1560,7 @@ void CMainWindow::onPortalNew(QString in)
             m_pTabs->applyDocumentChanging(_uid, _name, _domain);
             m_pTabs->applyDocumentChanging(_uid, int(etPortal));
             onTabChanged(m_pTabs->currentIndex());
+            setTabMenu(_tab_index);
         }
     }
 }
@@ -1404,6 +1575,7 @@ void CMainWindow::onPortalCreate()
     if (!(res < 0)) {
         toggleButtonMain(false, true);
         m_pTabs->setCurrentIndex(res);
+        setTabMenu(res);
     }
 }
 
@@ -1423,6 +1595,7 @@ void CMainWindow::onOutsideAuth(QString json)
         if (!(_tab_index < 0)) {
             m_pTabs->setCurrentIndex(_tab_index);
             toggleButtonMain(false, true);
+            setTabMenu(_tab_index);
         }
     }
 }
@@ -1463,7 +1636,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/
-    m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
+    m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(m_toolbtn_height * dpiratio));
     m_pMainPanel->setProperty("zoom", QString::number(dpiratio) + "x");
     QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
     m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
@@ -1480,6 +1653,13 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
         m_pWidgetDownload->updateScalingFactor(dpiratio);
         m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
+    for (int i(m_pTabs->count()); !(--i < 0);) {
+        if (CMenu *menu = m_pTabs->tabBar()->tabMenu(i)) {
+            menu->setSectionIcon(CMenu::ActionCreateNew, IconFactory::icon(IconFactory::CreateNew, SMALL_ICON * m_dpiRatio));
+            menu->setSectionIcon(CMenu::ActionShowInFolder, IconFactory::icon(IconFactory::Browse, SMALL_ICON * m_dpiRatio));
+            // menu->setSectionIcon(CMenu::ActionUnpinTab, IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
+        }
     }
 }
 
@@ -1565,6 +1745,36 @@ void CMainWindow::onLayoutDirectionChanged()
         m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
     }
 }
+
+#ifdef _WIN32
+void CMainWindow::applyWindowState()
+{
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle()) {
+        m_toolbtn_height = isMaximized() ? TOOLBTN_HEIGHT : TOOLBTN_HEIGHT_WIN10;
+        m_pMainPanel->setProperty("win10", !isMaximized());
+        m_pMainPanel->style()->polish(m_pMainPanel);
+        m_pButtonMain->style()->polish(m_pButtonMain);
+        m_pButtonMain->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
+        if (m_pWidgetDownload && m_pWidgetDownload->toolButton())
+            m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+
+        QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
+        m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
+                                                     GetColorQValueByRole(ecrButtonBackground),
+                                                     GetColorQValueByRole(ecrButtonHoverBackground),
+                                                     GetColorQValueByRole(ecrButtonPressedBackground),
+                                                     GetColorQValueByRole(ecrTabDivider),
+                                                     GetColorQValueByRole(ecrTabWordActive)));
+
+        foreach (auto *btn, m_pTopButtons) {
+            btn->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
+            btn->setProperty("win10", !isMaximized());
+            btn->style()->polish(btn);
+        }
+    }
+    CWindowBase::applyWindowState();
+}
+#endif
 
 void CMainWindow::handleWindowAction(const std::wstring& action)
 {

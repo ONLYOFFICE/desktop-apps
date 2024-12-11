@@ -144,7 +144,6 @@ l10n.en = {
     settOptDescDisabled: "Auto checking updates will be disabled",
     settOptDescAUpdateSilent: "Download and install update in background",
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
-    settRtlMode: "RTL Interface",
     settGpuUseMode: "Use graphics acceleration when available",
     tplPanelLocal: "Local",
     tplPanelCloud: "Cloud",
@@ -158,7 +157,7 @@ function loadLocale(lang) {
             utils.Lang[i] = l10n[lang][i];
         }
 
-        utils.Lang.id = lang;
+        // utils.Lang.id = lang;
     }
 };
 
@@ -205,6 +204,7 @@ function changelang(lang) {
     if ( lang ) {
         let old = utils.Lang.id;
         lang = correctLang(lang);
+        utils.Lang.id = lang;
 
         if ( l10n[lang] ) {
             _applytohtml(lang);
@@ -237,6 +237,7 @@ function is_lang_rtl(code) {
 
     if ( lang ) {
         lang = correctLang(lang);
+        utils.Lang.id = lang;
 
         if ( l10n[lang] )
             loadLocale(lang);

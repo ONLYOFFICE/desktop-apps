@@ -919,9 +919,9 @@ begin
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
 #ifdef _ONLYOFFICE
-      translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}+{cm:jumpDOCXF}');
+      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200+@{app}\{#iconsExe},-1201+@{app}\{#iconsExe},-1202+@{app}\{#iconsExe},-1103');
 #else
-      translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}');
+      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200+@{app}\{#iconsExe},-1201+@{app}\{#iconsExe},-1202');
 #endif
       StringChangeEx(translateArgs, ' ', '_', True);
       StringChangeEx(translateArgs, '+', ' ', True);
@@ -948,6 +948,12 @@ begin
     if (Length(paramStore) > 0) and (paramStore = 'full') then begin
       RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'uninstall', paramStore);
     end;
+
+    if CheckCommandlineParam('/disableplugins') then begin
+      if DirExists(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}') then
+        DelTree(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}', True, True, True);
+    end;
+
   end else
   if CurStep = ssDone then begin
     // if not (gHWND = 0) then begin

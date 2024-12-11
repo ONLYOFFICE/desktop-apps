@@ -36,6 +36,7 @@
 #include <QFrame>
 
 
+class CMenu;
 class CTabBar : public QFrame
 {
     Q_OBJECT
@@ -57,11 +58,13 @@ public:
     int insertTab(int index, const QString &text);
     int insertTab(int index, const QIcon &icon, const QString &text);
     void swapTabs(int from, int to);
+    void moveTab(int from, int to);
     void removeTab(int index);
     void setElideMode(Qt::TextElideMode mode);
     void setIconSize(const QSize &size);
     void setTabIconLabel(int index, QWidget *widget);
     void setTabButton(int index, QWidget *widget);
+    void setTabMenu(int index, CMenu *menu);
 //    void setTabData(int index, const QVariant &data);
     void setTabIcon(int index, const QIcon &icon);
     void setTabText(int index, const QString &text);
@@ -77,8 +80,11 @@ public:
     void activate(bool);
     void refreshTheme();
     int tabIndexAt(const QPoint &pos) const;
+    QWidget* tabAtIndex(int index) const;
     QWidget* tabIconLabel(int index) const;
     QWidget* tabButton(int index) const;
+    CMenu* tabMenu(int index) const;
+    int tabMenuIndex(CMenu *menu) const;
 //    QVariant tabData(int index) const;
     QIcon tabIcon(int index) const;
     QRect tabRect(int index) const;

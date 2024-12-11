@@ -135,12 +135,13 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
+    , m_isTabPinAllowed(true)
 //    , m_tabIconSize(16, 16)
     , m_pBar(_pBar)
 {
     m_pBar->setObjectName("asc_editors_tabbar");
     setProperty("active", false);
-    setProperty("empty", true);
+    // setProperty("empty", true);
     m_pBar->setProperty("active", false);
 
     static int _dropedindex = -1;
@@ -162,6 +163,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
                 _dropedindex = index;
                 accept = true;
+                m_isTabPinAllowed = false;
 
                 QTimer::singleShot(0, this, [=]() {
                     if (widget(index)) {
@@ -175,7 +177,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         QTimer::singleShot(0, this, [=]() {
             setCurrentIndex(index);
         });
-        if (old_index > -1)
+        if (old_index > -1 && panel(old_index))
             AscAppManager::sendCommandTo(panel(old_index)->cef(), L"althints:show", L"false");
     };
     QObject::connect(m_pBar, &CTabBar::tabBarClicked, this, [=](int index) {
@@ -188,8 +190,24 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         if (from < 0 || from >= count() || to < 0 || to >= count() || from == to)
             return;
         auto wgt = widget(from);
+        blockSignals(true);
         removeWidget(wgt);
         insertWidget(to, wgt);
+        if (from < m_pBar->currentIndex()) {
+            if (to >= m_pBar->currentIndex()) {
+                if (m_pBar->currentIndex() - 1 != currentIndex())
+                    QStackedWidget::setCurrentIndex(m_pBar->currentIndex() - 1);
+            }
+        } else
+        if (from == m_pBar->currentIndex()) {
+            QStackedWidget::setCurrentIndex(to);
+        } else {
+            if (to <= m_pBar->currentIndex()) {
+                if (m_pBar->currentIndex() + 1 != currentIndex())
+                    QStackedWidget::setCurrentIndex(m_pBar->currentIndex() + 1);
+            }
+        }
+        blockSignals(false);
     });
     QObject::connect(m_pBar, &CTabBar::tabsSwapped, this, [=](int from, int to) {
         if (from == to || !indexIsValid(from) || !indexIsValid(to))
@@ -213,7 +231,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 CTabPanel * CAscTabWidget::panel(int index) const
 {
     QWidget * _w = widget(index);
-    return _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
+    return _w && _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
 }
 
 CTabBar *CAscTabWidget::tabBar() const
@@ -226,7 +244,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
     if ( opts.url.isEmpty() && opts.srctype != etNewFile )
         return -1;
 
-    setProperty("empty", false);
+    // setProperty("empty", false);
 
     int file_format = 0;
     if (opts.srctype == etLocalFile) {
@@ -291,6 +309,18 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
 
         if (doc && (!m || !doc->hasChanges())) {
             doc->close();
+            if (i == currentIndex()) {
+                int last = count() - 1;
+                if (i == last) {
+                    if (last == 0) {
+                        AscAppManager::getInstance().mainWindow()->toggleButtonMain(true);
+                    } else {
+                        QStackedWidget::setCurrentIndex(last - 1);
+                    }
+                } else {
+                    QStackedWidget::setCurrentIndex(i + 1);
+                }
+            }
             AscAppManager::getInstance().DestroyCefView(view->cef()->GetId());
 
 //            RELEASEOBJECT(view)
@@ -360,7 +390,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 {
     if ( url.isEmpty() ) return -1;
 
-    setProperty("empty", false);
+    // setProperty("empty", false);
 
     QString args, _url = url;
     if ( provider == "onlyoffice" && !_url.contains(QRegularExpression("desktop=true")) )
@@ -406,7 +436,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
 {
     if ( service.isEmpty() || !type.contains(QRegularExpression("sso|outer")) ) return -1;
 
-    setProperty("empty", false);
+    // setProperty("empty", false);
 
     QWidget * panelwidget = createTabPanel(this);
     CTabPanel * pView = panelfromwidget(panelwidget);
@@ -923,6 +953,16 @@ void CAscTabWidget::activate(bool a)
 bool CAscTabWidget::isActiveWidget()
 {
     return property("active").toBool();
+}
+
+bool CAscTabWidget::isTabPinAllowed()
+{
+    return m_isTabPinAllowed;
+}
+
+void CAscTabWidget::setTabPinAllowed()
+{
+    m_isTabPinAllowed = true;
 }
 
 int CAscTabWidget::modifiedCount()

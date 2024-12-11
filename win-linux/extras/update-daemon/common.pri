@@ -112,6 +112,7 @@ core_windows {
             -ladvapi32 \
             -lwinhttp \
             -lws2_32 \
+            -lole32 \
             -lrpcrt4 \
             -lwtsapi32 \
             -lwintrust \

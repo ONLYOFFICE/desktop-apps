@@ -33,6 +33,7 @@
 #include "cx11decoration.h"
 #include "windows/cwindowbase.h"
 #include "utils.h"
+#include "defines.h"
 #include <QX11Info>
 #include <QTimer>
 #include <QApplication>
@@ -456,6 +457,7 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
             } else {
                 m_motionTimer->stop();
                 sendButtonRelease();
+                QApplication::postEvent(m_window, new QEvent(static_cast<QEvent::Type>(UM_ENDMOVE)));
 //                QTimer::singleShot(25, [=]() {
 //                    if (m_window->size() == m_startSize)
 //                        QApplication::postEvent(m_window, new QEvent(QEvent::User));
