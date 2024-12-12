@@ -42,7 +42,7 @@ private:
     static void set_rounded_corners(GtkWidget *wgt, double rad);
     static void on_size_allocate(GtkWidget *wgt, GdkRectangle *alloc, gpointer data);
     static void on_size_allocate_top(GtkWidget *wgt, GdkRectangle*, gpointer data);
-    static void on_processing_done(gpointer data);
+    static gboolean on_processing_done(gpointer data);
 };
 
 GtkMainWindowPrivate::GtkMainWindowPrivate()
@@ -122,7 +122,7 @@ void GtkMainWindowPrivate::processEvents()
 {
     int event_loop_guard = 256;
     bool is_event_processed = false;
-    g_idle_add_once(on_processing_done, &is_event_processed);
+    g_idle_add(on_processing_done, &is_event_processed);
     while (!is_event_processed && gtk_events_pending() && event_loop_guard-- > 0)
         gtk_main_iteration_do(FALSE);
 }
@@ -234,10 +234,11 @@ void GtkMainWindowPrivate::on_size_allocate_top(GtkWidget *wgt, GdkRectangle*, g
     }
 }
 
-void GtkMainWindowPrivate::on_processing_done(gpointer data)
+gboolean GtkMainWindowPrivate::on_processing_done(gpointer data)
 {
     bool *is_event_processed = (bool*)data;
     *is_event_processed = true;
+    return FALSE;
 }
 
 
