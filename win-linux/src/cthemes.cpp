@@ -39,6 +39,7 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrTabSlideActive, "brand-slide"},
             {CTheme::ColorRole::ecrTabCellActive, "brand-cell"},
             {CTheme::ColorRole::ecrTabViewerActive, "brand-pdf"},
+            {CTheme::ColorRole::ecrTabDrawActive, "brand-draw"},
 
             {CTheme::ColorRole::ecrWindowBackground, "window-background"},
             {CTheme::ColorRole::ecrWindowBorder, "window-border"},
@@ -99,6 +100,7 @@ namespace NSTheme {
             {"brand-slide", "toolbar-header-presentation"},
             {"brand-cell", "toolbar-header-spreadsheet"},
             {"brand-pdf", "toolbar-header-pdf"},
+            {"brand-draw", "toolbar-header-draw"},
 
             {"window-background", "background-toolbar"},
 //            {CTheme::ColorRole::ecrWindowBorder, "window-border"},

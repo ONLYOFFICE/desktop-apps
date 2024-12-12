@@ -32,6 +32,7 @@ public:
         , ecrTabCellActive
         , ecrTabSlideActive
         , ecrTabViewerActive
+        , ecrTabDrawActive
         , ecrTabSimpleActiveBackground
         , ecrTabSimpleActiveText
         , ecrTabDefaultActiveBackground
