@@ -462,8 +462,8 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
                 m_motionTimer->stop();
                 sendButtonRelease();
 #ifndef DONT_USE_GTK_MAINWINDOW
-                //if (CWindowBase *wnd = (CWindowBase*)m_window->property("top_level").value<uintptr_t>())
-                  //  wnd->setFocus();
+                xcb_window_t wnd = m_window->property("gtk_window_xid").value<unsigned long>();
+                XcbUtils::sendNativeFocusTo(wnd, 1);
 #endif
                 QApplication::postEvent(m_window, new QEvent(static_cast<QEvent::Type>(UM_ENDMOVE)));
 //                QTimer::singleShot(25, [=]() {

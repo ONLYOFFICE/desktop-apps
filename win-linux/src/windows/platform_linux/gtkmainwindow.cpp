@@ -20,6 +20,7 @@ public:
     ~GtkMainWindowPrivate();
 
     void init();
+    void processEvents();
 
     QWidget *underlay = nullptr;
     GtkWidget *wnd = nullptr;
@@ -40,6 +41,7 @@ private:
     static void set_rounded_corners(GtkWidget *wgt, double rad);
     static void on_size_allocate(GtkWidget *wgt, GdkRectangle *alloc, gpointer data);
     static void on_size_allocate_top(GtkWidget *wgt, GdkRectangle*, gpointer data);
+    static void on_processing_done(gpointer data);
 };
 
 GtkMainWindowPrivate::GtkMainWindowPrivate()
@@ -103,8 +105,15 @@ void GtkMainWindowPrivate::init()
     g_signal_connect(G_OBJECT(socket), "size-allocate", G_CALLBACK(on_size_allocate), this);
     g_signal_connect(G_OBJECT(wnd), "size-allocate", G_CALLBACK(on_size_allocate_top), this);
     g_signal_connect(G_OBJECT(wnd), "event", G_CALLBACK(on_event), this);
-    g_signal_connect(G_OBJECT(wnd), "event-after", G_CALLBACK(on_event_after), this);
-    while (!plug && gtk_events_pending())
+    g_signal_connect(G_OBJECT(wnd), "event-after", G_CALLBACK(on_event_after), this);        
+}
+
+void GtkMainWindowPrivate::processEvents()
+{
+    int event_loop_guard = 256;
+    bool is_event_processed = false;
+    g_idle_add_once(on_processing_done, &is_event_processed);
+    while (!is_event_processed && gtk_events_pending() && event_loop_guard-- > 0)
         gtk_main_iteration_do(FALSE);
 }
 
@@ -214,6 +223,12 @@ void GtkMainWindowPrivate::on_size_allocate_top(GtkWidget *wgt, GdkRectangle*, g
     }
 }
 
+void GtkMainWindowPrivate::on_processing_done(gpointer data)
+{
+    bool *is_event_processed = (bool*)data;
+    *is_event_processed = true;
+}
+
 
 GtkMainWindow::GtkMainWindow(QWidget *underlay, const FnEvent &qev, const FnCloseEvent &qcev) :
     pimpl(new GtkMainWindowPrivate)
@@ -292,12 +307,11 @@ void GtkMainWindow::show()
 {
     gtk_widget_show(pimpl->wnd);
     gtk_widget_show(pimpl->socket);
-    while (gtk_events_pending())
-        gtk_main_iteration_do(FALSE);
-    //GdkDisplay *dsp = gdk_display_get_default();
-    //gdk_display_sync(dsp);
-    //gdk_display_flush(dsp);
-    //gdk_window_process_all_updates();
+    pimpl->processEvents();
+    pimpl->underlay->show();
+    pimpl->processEvents();
+    gdk_window_process_all_updates();
+
     GdkWindow *gdk_wnd = gtk_widget_get_window(pimpl->wnd);
     Window *qt_underlay_xid = (Window*)g_malloc(sizeof(Window));
     *qt_underlay_xid = (Window)pimpl->underlay->winId();
@@ -305,8 +319,6 @@ void GtkMainWindow::show()
 
     Window xid = GDK_WINDOW_XID(gdk_wnd);
     pimpl->underlay->setProperty("gtk_window_xid", QVariant::fromValue(xid));
-    pimpl->underlay->show();
-    //qApp->processEvents();
 }
 
 void GtkMainWindow::showMinimized()
