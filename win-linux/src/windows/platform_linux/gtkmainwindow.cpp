@@ -32,8 +32,9 @@ public:
     QPoint pos, normalPos;
     QSize size, normalSize;
     bool is_maximized = false,
+         is_custom_style = false,
          is_focused = false,
-         is_support_round_corners = false;
+         is_support_round_corners = true;
 
 private:
     static gboolean on_event(GtkWidget *wgt, GdkEvent *ev, gpointer data);
@@ -85,9 +86,18 @@ void GtkMainWindowPrivate::init()
     GtkStyleContext *context = gtk_widget_get_style_context(wnd);
     gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-    GtkWidget *header = gtk_header_bar_new();
-    gtk_window_set_titlebar(GTK_WINDOW(wnd), header);
-    // gtk_widget_destroy(header);
+    if (is_custom_style) {
+        if (QX11Info::isCompositingManagerRunning()) {
+            GtkWidget *header = gtk_header_bar_new();
+            gtk_window_set_titlebar(GTK_WINDOW(wnd), header);
+            // gtk_widget_destroy(header);
+        } else {
+            is_support_round_corners = false;
+            gtk_window_set_decorated(GTK_WINDOW(wnd), FALSE);
+        }
+    } else {
+        is_support_round_corners = false;
+    }
 
     socket = gtk_socket_new();
     g_signal_connect(G_OBJECT(socket), "plug-added", G_CALLBACK(on_plug_added), this);
@@ -207,7 +217,8 @@ void GtkMainWindowPrivate::on_size_allocate(GtkWidget *wgt, GdkRectangle *alloc,
     GtkMainWindowPrivate *pimpl = (GtkMainWindowPrivate*)data;
     gint f = gtk_widget_get_scale_factor(wgt);
     pimpl->underlay->resize(f*alloc->width, f*alloc->height);
-    set_rounded_corners(wgt, pimpl->is_maximized ? 0 : 1.18 * WINDOW_CORNER_RADIUS);
+    if (pimpl->is_support_round_corners)
+        set_rounded_corners(wgt, pimpl->is_maximized ? 0 : 1.18 * WINDOW_CORNER_RADIUS);
     pimpl->underlay->update();
 }
 
@@ -230,9 +241,10 @@ void GtkMainWindowPrivate::on_processing_done(gpointer data)
 }
 
 
-GtkMainWindow::GtkMainWindow(QWidget *underlay, const FnEvent &qev, const FnCloseEvent &qcev) :
+GtkMainWindow::GtkMainWindow(QWidget *underlay, bool isCustomStyle, const FnEvent &qev, const FnCloseEvent &qcev) :
     pimpl(new GtkMainWindowPrivate)
 {
+    pimpl->is_custom_style = isCustomStyle;
     pimpl->event = qev;
     pimpl->close_event = qcev;
     pimpl->underlay = underlay;

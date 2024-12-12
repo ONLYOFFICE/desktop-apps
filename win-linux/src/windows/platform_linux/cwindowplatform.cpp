@@ -52,7 +52,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CX11Decoration(this)
 {
 #ifndef DONT_USE_GTK_MAINWINDOW
-    m_gtk_wnd = new GtkMainWindow(this, std::bind(&CWindowPlatform::event, this, std::placeholders::_1),
+    m_gtk_wnd = new GtkMainWindow(this, isCustomWindowStyle(), std::bind(&CWindowPlatform::event, this, std::placeholders::_1),
                                       std::bind(&CWindowPlatform::closeEvent, this, std::placeholders::_1));
     setWindowIcon(Utils::appIcon());
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
@@ -120,17 +120,24 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
 #ifdef DONT_USE_GTK_MAINWINDOW
         setStyleSheet(QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name()));
 #else
-        setStyleSheet("QWidget#underlay{border: none; background: transparent;}");
-        m_gtk_wnd->setBackgroundColor(background.name());
+        if (!QX11Info::isCompositingManagerRunning())
+            setStyleSheet(QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name()));
+        else {
+            m_gtk_wnd->setBackgroundColor(background.name());
+        }
 #endif
     }
 }
 
 void CWindowPlatform::adjustGeometry()
 {
-#ifdef DONT_USE_GTK_MAINWINDOW
-    int border = (CX11Decoration::isDecorated() || isMaximized()) ? 0 : qRound(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
-    setContentsMargins(border, border, border, border);
+#ifndef DONT_USE_GTK_MAINWINDOW
+    if (!QX11Info::isCompositingManagerRunning()) {
+#endif
+        int border = (CX11Decoration::isDecorated() || isMaximized()) ? 0 : qRound(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
+        setContentsMargins(border, border, border, border);
+#ifndef DONT_USE_GTK_MAINWINDOW
+    }
 #endif
 }
 

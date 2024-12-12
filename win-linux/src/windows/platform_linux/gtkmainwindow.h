@@ -14,7 +14,7 @@ class GtkMainWindowPrivate;
 class GtkMainWindow
 {
 public:
-    GtkMainWindow(QWidget *underlay, const FnEvent &qev, const FnCloseEvent &qcev);
+    GtkMainWindow(QWidget *underlay, bool isCustomStyle, const FnEvent &qev, const FnCloseEvent &qcev);
     ~GtkMainWindow();
 
     void move(const QPoint &pos);
