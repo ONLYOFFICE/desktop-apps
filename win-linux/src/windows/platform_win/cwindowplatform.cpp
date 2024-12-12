@@ -344,7 +344,7 @@ bool CWindowPlatform::event(QEvent * event)
 void CWindowPlatform::resizeEvent(QResizeEvent *ev)
 {
     CWindowBase::resizeEvent(ev);
-    if (m_borderless && Utils::getWinVersion() == WinVer::WinXP) {
+    if (m_borderless && Utils::getWinVersion() <= WinVer::WinVista) {
         RECT rc;
         GetClientRect(m_hWnd, &rc);
         if (centralWidget()) {
