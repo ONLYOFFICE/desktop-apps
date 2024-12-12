@@ -83,7 +83,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     setCentralWidget(m_pMainPanel);
     QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
 #ifdef __linux__
-    if (WindowHelper::getEnvInfo() == WindowHelper::KDE || WindowHelper::getEnvInfo() == WindowHelper::XFCE)
+    if (WindowHelper::getEnvInfo() == WindowHelper::KDE)
         setWindowTitle(tr("Main Window"));
     setAcceptDrops(true);
     if (isCustomWindowStyle()) {
@@ -622,7 +622,7 @@ void CMainWindow::onTabChanged(int index)
 {
     QString title("");
 #ifdef __linux__
-    if (WindowHelper::getEnvInfo() == WindowHelper::KDE)
+    if (WindowHelper::getEnvInfo() == WindowHelper::KDE || WindowHelper::getEnvInfo() == WindowHelper::XFCE)
         title = tr("Main Window");
 #endif
     if (index > -1) {
