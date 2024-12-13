@@ -304,11 +304,8 @@ ru.BUTTON_CLOSE =Закрыть
 en.BUTTON_BACK =Back
 ru.BUTTON_BACK =Назад
 
-en.RADIO_UPDATE =Update
-ru.RADIO_UPDATE =Обновить
-
-en.RADIO_REPAIR =Repair
-ru.RADIO_REPAIR =Восстановить
+en.RADIO_UPDATE =Update/Repair
+ru.RADIO_UPDATE =Обновить/Восстановить
 
 en.RADIO_UNINST =Uninstall
 ru.RADIO_UNINST =Удалить
