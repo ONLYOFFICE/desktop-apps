@@ -55,7 +55,7 @@ private:
     BoxLayout   *m_cenPanelVlut;
     CheckBox    *m_launchCheck;
     RadioButton *m_updRadio,
-                *m_repRadio,
+                // *m_repRadio,
                 *m_uninsRadio;
     Button      *m_cancelBtn;
     Mode m_mode;
