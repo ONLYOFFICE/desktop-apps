@@ -177,6 +177,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initInstallationMode(const std::wstring &url)
 {
+    m_is_checked = true;
     m_mode = Mode::Install;
     /* Image section*/
     Label *wlcLbl = new Label(m_cenPanel);
@@ -189,6 +190,7 @@ void MainWindow::initInstallationMode(const std::wstring &url)
 
     /* Check box section*/
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_SILENT));
+    chkBox->setChecked(m_is_checked);
     chkBox->setGeometry(m_cenPanel->size().width/2 - 43, 254, 180, 16);
     setSelectorStyle(chkBox);
     chkBox->onClick([chkBox, this]() {
