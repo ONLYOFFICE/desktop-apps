@@ -29,7 +29,7 @@ private:
     void startInstall(const std::wstring &url);
     void finishInstall(const std::wstring &app_path);
     void startUpdate();
-    void startRepair();
+    // void startRepair();
     void startUninstall();
     void createSelectionPage();
     void createProgressPage(const std::wstring &text);

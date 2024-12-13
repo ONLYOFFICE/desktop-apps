@@ -411,73 +411,73 @@ void MainWindow::startUpdate()
     });
 }
 
-void MainWindow::startRepair()
-{
-    wstring tmp_path;
-    if (m_package == L"msi") {
-        wstring prodCode = NS_Utils::MsiProductCode(_T(WINDOW_NAME));
-        if (prodCode.empty()) {
-            m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
-            return;
-        }
-        wstring packageName =  NS_Utils::MsiGetProperty(prodCode.c_str(), INSTALLPROPERTY_PACKAGENAME);
-        if (packageName.empty()) {
-            m_comntInfoLbl->setText(_TR(LABEL_ERR_PACK_NAME), true);
-            return;
-        }
-        tmp_path = NS_File::toNativeSeparators(NS_File::tempPath() + _T("/") + packageName);
-    } else {
-        tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
-    }
+// void MainWindow::startRepair()
+// {
+//     wstring tmp_path;
+//     if (m_package == L"msi") {
+//         wstring prodCode = NS_Utils::MsiProductCode(_T(WINDOW_NAME));
+//         if (prodCode.empty()) {
+//             m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
+//             return;
+//         }
+//         wstring packageName =  NS_Utils::MsiGetProperty(prodCode.c_str(), INSTALLPROPERTY_PACKAGENAME);
+//         if (packageName.empty()) {
+//             m_comntInfoLbl->setText(_TR(LABEL_ERR_PACK_NAME), true);
+//             return;
+//         }
+//         tmp_path = NS_File::toNativeSeparators(NS_File::tempPath() + _T("/") + packageName);
+//     } else {
+//         tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
+//     }
 
-    wstring url = L"https://github.com/%1/%2/releases/download/%3/%4";
-    {
-        wstring url_filename = L"DesktopEditors_" + m_arch;
-        url_filename.append(L"." + m_package);
+//     wstring url = L"https://github.com/%1/%2/releases/download/%3/%4";
+//     {
+//         wstring url_filename = L"DesktopEditors_" + m_arch;
+//         url_filename.append(L"." + m_package);
 
-        wstring url_ver = L"v" + m_ver;
-        size_t pos = url_ver.find_last_of(L'.');
-        if (pos != std::wstring::npos)
-            url_ver = url_ver.substr(0, pos);
+//         wstring url_ver = L"v" + m_ver;
+//         size_t pos = url_ver.find_last_of(L'.');
+//         if (pos != std::wstring::npos)
+//             url_ver = url_ver.substr(0, pos);
 
-        NS_Utils::Replace(url, L"%1", _T(REG_GROUP_KEY));
-        NS_Utils::Replace(url, L"%2", _T(APP_NAME));
-        NS_Utils::Replace(url, L"%3", url_ver);
-        NS_Utils::Replace(url, L"%4", url_filename);
-    }
+//         NS_Utils::Replace(url, L"%1", _T(REG_GROUP_KEY));
+//         NS_Utils::Replace(url, L"%2", _T(APP_NAME));
+//         NS_Utils::Replace(url, L"%3", url_ver);
+//         NS_Utils::Replace(url, L"%4", url_filename);
+//     }
 
-    CDownloader *dnl = startDownload(url, tmp_path, [=]() {
-            m_bar->pulse(true);
-            wstring cmd = (m_package == L"msi") ? L"msiexec" : L"cmd",
-                args = (m_package == L"msi") ? L"/fvamus \"" : L"/c \"";
-                args += tmp_path;
-                args += (m_package == L"msi") ? L"\" /qn" : L" /VERYSILENT\"";
-            if (!NS_File::runProcess(cmd, args, true)) {
-                m_bar->pulse(false);
-                m_bar->setProgress(0);
-                m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
-            } else {
-                if (m_checkState & ClrDataCheck) {
-                    wstring dataPath = NS_File::appDataPath();
-                    if (!dataPath.empty())
-                        NS_File::removeDirRecursively(dataPath);
-                }
-                if (m_checkState & ClrStnCheck) {
-                    wstring key(L"SOFTWARE\\");
-                    key.append(_T(REG_GROUP_KEY));
-                    SHDeleteKey(HKEY_CURRENT_USER, key.c_str());
-                }
-                m_bar->pulse(false);
-                m_bar->setProgress(100);
-                m_comntLbl->setText(_TR(LABEL_REPAIR_COMPL));
-                m_is_completed = true;
-            }
-        });
+//     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
+//             m_bar->pulse(true);
+//             wstring cmd = (m_package == L"msi") ? L"msiexec" : L"cmd",
+//                 args = (m_package == L"msi") ? L"/fvamus \"" : L"/c \"";
+//                 args += tmp_path;
+//                 args += (m_package == L"msi") ? L"\" /qn" : L" /VERYSILENT\"";
+//             if (!NS_File::runProcess(cmd, args, true)) {
+//                 m_bar->pulse(false);
+//                 m_bar->setProgress(0);
+//                 m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
+//             } else {
+//                 if (m_checkState & ClrDataCheck) {
+//                     wstring dataPath = NS_File::appDataPath();
+//                     if (!dataPath.empty())
+//                         NS_File::removeDirRecursively(dataPath);
+//                 }
+//                 if (m_checkState & ClrStnCheck) {
+//                     wstring key(L"SOFTWARE\\");
+//                     key.append(_T(REG_GROUP_KEY));
+//                     SHDeleteKey(HKEY_CURRENT_USER, key.c_str());
+//                 }
+//                 m_bar->pulse(false);
+//                 m_bar->setProgress(100);
+//                 m_comntLbl->setText(_TR(LABEL_REPAIR_COMPL));
+//                 m_is_completed = true;
+//             }
+//         });
 
-    m_cancelBtn->onClick([=]() {
-        dnl->stop();
-    });
-}
+//     m_cancelBtn->onClick([=]() {
+//         dnl->stop();
+//     });
+// }
 
 void MainWindow::startUninstall()
 {
