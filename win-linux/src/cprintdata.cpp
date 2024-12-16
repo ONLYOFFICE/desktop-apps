@@ -181,7 +181,7 @@ public:
                             std::wstring paperName(&buffer[j * PAPER_NAME_LENGTH], PAPER_NAME_LENGTH);
                             paperArray.append(QString::fromWCharArray(paperName.c_str()));
                         }
-                        printerObject["paper_names"] = paperArray;
+                        printerObject["paper_supported"] = paperArray;
                     }
                 }
                 printersArray.append(printerObject);
@@ -206,9 +206,17 @@ public:
                     if (strcmp(option->keyword, "PageSize") == 0) {
                         QJsonArray paperArray;
                         for (int j = 0; j < option->num_choices; j++) {
-                            paperArray.append(QString::fromUtf8(option->choices[j].choice));
+                            if (strcmp(option->choices[j].choice, "Custom") != 0) {
+                                if (ppd_size_t *size = ppdPageSize(ppdF, option->choices[j].choice)) {
+                                    QJsonObject paperObj;
+                                    paperObj["name"] = QString::fromUtf8(option->choices[j].choice);
+                                    paperObj["width"] = qRound(25.4 * size->width / 72.0);
+                                    paperObj["height"] = qRound(25.4 * size->length / 72.0);
+                                    paperArray.append(paperObj);
+                                }
+                            }
                         }
-                        printerObject["paper_names"] = paperArray;
+                        printerObject["paper_supported"] = paperArray;
                     }
                     option = ppdNextOption(ppdF);
                 }
