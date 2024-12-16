@@ -196,7 +196,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_borderless = isCustomWindowStyle();
     if (AscAppManager::isRtlEnabled())
         setLayoutDirection(Qt::RightToLeft);
-    if (m_borderless && Utils::getWinVersion() == WinVer::WinXP)
+    if (m_borderless && Utils::getWinVersion() <= WinVer::WinVista)
         setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
     setGeometry(m_window_rect);
     m_hWnd = (HWND)winId();
