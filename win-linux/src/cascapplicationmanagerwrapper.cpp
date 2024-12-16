@@ -308,7 +308,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             GET_REGISTRY_USER(reg_user)
             if (reg_user.value("lockPortals", false).toBool()
 #ifdef Q_OS_WIN
-                    || !IsWindowsVistaOrGreater()
+                    || Utils::getWinVersion() <= Utils::WinVer::WinVista
 #endif
             )
                 sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
