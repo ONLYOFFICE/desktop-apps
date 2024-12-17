@@ -1158,7 +1158,7 @@ void CMainWindow::onDocumentReady(int uid)
         if (CMenu *menu = m_pTabs->tabBar()->tabMenu(index)) {
             AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
             if (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
-                    etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf) {
+                    etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf || etype == AscEditorType::etDraw) {
                 menu->setSectionEnabled(CMenu::ActionCreateNew, true);
             }
         }

@@ -349,6 +349,8 @@ void Association::chekForAssociations(int uid)
                     break;
                 case AscEditorType::etPdf:
                     fileExt = L".pdf";
+                case AscEditorType::etDraw:
+                    fileExt = L".vsdx";
                     break;
                 default:
                     break;
