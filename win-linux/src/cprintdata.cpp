@@ -170,19 +170,35 @@ public:
                 printerObject["name"] = QString::fromWCharArray(printers[i].pPrinterName);
                 printerObject["duplex_supported"] = duplex_supported;
 
-                int paperCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, NULL, NULL);
-                if (paperCount > 0) {
-                    constexpr int PAPER_NAME_LENGTH = 64;
-                    std::vector<WCHAR> buffer(paperCount * PAPER_NAME_LENGTH, L'\0');
-                    int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, buffer.data(), NULL);
-                    if (res == paperCount) {
-                        QJsonArray paperArray;
-                        for (int j = 0; j < paperCount; ++j) {
-                            std::wstring paperName(&buffer[j * PAPER_NAME_LENGTH], PAPER_NAME_LENGTH);
-                            paperArray.append(QString::fromWCharArray(paperName.c_str()));
-                        }
-                        printerObject["paper_supported"] = paperArray;
+                constexpr int PAPER_NAME_LENGTH = 64;
+                bool paperNamesSuccess = false, paperSizeSuccess = false;
+                std::vector<WCHAR> paperNames;
+                std::vector<POINT> paperSize;
+                int paperNamesCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, NULL, NULL);
+                if (paperNamesCount > 0) {
+                    paperNames.assign(paperNamesCount * PAPER_NAME_LENGTH, L'\0');
+                    int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, paperNames.data(), NULL);
+                    if (res == paperNamesCount)
+                        paperNamesSuccess = true;
+                }                
+                int paperSizeCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERSIZE, NULL, NULL);
+                if (paperSizeCount > 0) {
+                    paperSize.assign(paperSizeCount, {0, 0});
+                    int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERSIZE, (LPWSTR)paperSize.data(), NULL);
+                    if (res == paperSizeCount)
+                        paperSizeSuccess = true;
+                }
+                if (paperNamesSuccess && paperSizeSuccess && paperNamesCount == paperSizeCount) {
+                    QJsonArray paperArray;
+                    for (int j = 0; j < paperNamesCount; ++j) {
+                        std::wstring paperName(&paperNames[j * PAPER_NAME_LENGTH], PAPER_NAME_LENGTH);
+                        QJsonObject paperObj;
+                        paperObj["name"] = QString::fromWCharArray(paperName.c_str());
+                        paperObj["width"] = (double)paperSize[j].x/10;
+                        paperObj["height"] = (double)paperSize[j].y/10;
+                        paperArray.append(paperObj);
                     }
+                    printerObject["paper_supported"] = paperArray;
                 }
                 printersArray.append(printerObject);
             }
