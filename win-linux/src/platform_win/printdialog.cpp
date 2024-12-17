@@ -336,15 +336,18 @@ QDialog::DialogCode PrintDialog::exec()
                                          (qt_duplex == QPrinter::DuplexShortSide) ? DMDUP_HORIZONTAL : DMDUP_SIMPLEX;
                 }
 
+                int paper_size = getPaperSizeFromPageSize(m_printer->pageLayout().pageSize().id());
                 if (pDevMode->dmFields & DM_PAPERSIZE)
-                    pDevMode->dmPaperSize = getPaperSizeFromPageSize(m_printer->pageLayout().pageSize().id());
+                    pDevMode->dmPaperSize = paper_size;
 
-                QPageSize ps = m_printer->pageLayout().pageSize();
-                QSizeF page_size = ps.size(QPageSize::Millimeter);
-                if (pDevMode->dmFields & DM_PAPERWIDTH)
-                    pDevMode->dmPaperWidth = qRound(10 * page_size.width());
-                if (pDevMode->dmFields & DM_PAPERLENGTH)
-                    pDevMode->dmPaperLength = qRound(10 * page_size.height());
+                if (paper_size == DMPAPER_USER || !(pDevMode->dmFields & DM_PAPERSIZE)) {
+                    QPageSize ps = m_printer->pageLayout().pageSize();
+                    QSizeF page_size = ps.size(QPageSize::Millimeter);
+                    if (pDevMode->dmFields & DM_PAPERWIDTH)
+                        pDevMode->dmPaperWidth = qRound(10 * page_size.width());
+                    if (pDevMode->dmFields & DM_PAPERLENGTH)
+                        pDevMode->dmPaperLength = qRound(10 * page_size.height());
+                }
 
                 dwRet = DocumentProperties(parent_hwnd, hPrinter, pPrinterName, pDevMode, pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER);
             }
