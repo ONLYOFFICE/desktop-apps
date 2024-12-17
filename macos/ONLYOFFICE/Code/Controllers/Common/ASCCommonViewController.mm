@@ -1117,6 +1117,7 @@
         [filter addObjectsFromArray:[ASCConstants documents]];
         [filter addObjectsFromArray:[ASCConstants spreadsheets]];
         [filter addObjectsFromArray:[ASCConstants presentations]];
+        [filter addObjectsFromArray:[ASCConstants draws]];
         
         openPanel.canChooseDirectories = NO;
         openPanel.allowsMultipleSelection = NO;

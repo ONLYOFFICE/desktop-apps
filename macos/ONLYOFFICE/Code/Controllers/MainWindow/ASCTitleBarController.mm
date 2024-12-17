@@ -329,6 +329,7 @@ static float kASCRTLTabsRightMargin = 0;
                 case AscEditorType::etSpreadsheet  : docType = ASCTabViewTypeSpreadsheet; break;
                 case AscEditorType::etPresentation : docType = ASCTabViewTypePresentation; break;
                 case AscEditorType::etPdf          : docType = ASCTabViewTypePdf; break;
+                case AscEditorType::etDraw         : docType = ASCTabViewTypeDraw; break;
                 default:
                     break;
             }
