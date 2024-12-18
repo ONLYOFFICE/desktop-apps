@@ -822,10 +822,12 @@
             }
 
             for (const [key, value] of Object.entries(l10n)) {
-                if ( !themes_map[key]['l10n'] )
-                    themes_map[key]['l10n'] = {};
+                if ( themes_map[key] ) {
+                    if ( !themes_map[key]['l10n'] )
+                        themes_map[key]['l10n'] = {};
 
-                themes_map[key]['l10n'][nl] = value.text;
+                    themes_map[key]['l10n'][nl] = value.text;
+                }
             }
 
             // for ( let k of Object.keys(themes_map) ) {
