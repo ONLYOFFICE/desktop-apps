@@ -740,7 +740,7 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
     connect(actCloseSaved, &QAction::triggered, this, [=]() {
             for (int i(m_pTabs->count()); !(--i < 0);) {
                 CAscTabData *doc = m_pTabs->panel(i)->data();
-                if (doc->isViewType(cvwtEditor) && !doc->closed() && doc->isLocal() && !doc->hasChanges() && !doc->url().empty()) {
+                if (doc->isViewType(cvwtEditor) && !doc->closed() && !doc->hasChanges() && !doc->url().empty()) {
                     onTabCloseRequest(i);
                     Utils::processMoreEvents();
                 }
