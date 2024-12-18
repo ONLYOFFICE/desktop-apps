@@ -370,6 +370,9 @@ namespace CEditorTools
         else
         if (format > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM && format < AVS_OFFICESTUDIO_FILE_IMAGE )
             return AscEditorType::etPdf;
+        else
+        if (format & AVS_OFFICESTUDIO_FILE_DRAW )
+            return AscEditorType::etDraw;
 
         return AscEditorType::etUndefined;
     }

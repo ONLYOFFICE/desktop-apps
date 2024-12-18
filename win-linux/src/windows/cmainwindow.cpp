@@ -814,13 +814,15 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
         actCreateNew->setIcon(IconFactory::icon(IconFactory::CreateNew, SMALL_ICON * m_dpiRatio));
         AscEditorType etype = panel->data()->contentType();
         actCreateNew->setEnabled(panel->isReady() && (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
-                                                      etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf));
+                                                      etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf /*||
+                                                      etype == AscEditorType::etDraw*/));
         connect(actCreateNew, &QAction::triggered, this, [=]() {
                 int index = m_pTabs->tabBar()->tabMenuIndex(menu);
                 AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
                 std::wstring cmd = etype == AscEditorType::etDocument ? L"--new:word" :
                                        etype == AscEditorType::etPresentation ? L"--new:slide" :
                                        etype == AscEditorType::etSpreadsheet ? L"--new:cell" :
+                                       // etype == AscEditorType::etDraw ? L"--new:draw" :
                                        etype == AscEditorType::etPdf ? L"--new:form" : L"";
                 if (!cmd.empty())
                     AscAppManager::handleInputCmd({cmd});
@@ -1158,7 +1160,7 @@ void CMainWindow::onDocumentReady(int uid)
         if (CMenu *menu = m_pTabs->tabBar()->tabMenu(index)) {
             AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
             if (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
-                    etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf) {
+                    etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf /*|| etype == AscEditorType::etDraw*/) {
                 menu->setSectionEnabled(CMenu::ActionCreateNew, true);
             }
         }
