@@ -8,7 +8,6 @@
 #define APP_LAUNCH_NAME           "\\DesktopEditors.exe"
 
 #define CAPTION                   VER_PRODUCTNAME_STR
-#define MSG_ERR_ARCH              "The application cannot continue because this architecture is not supported."
 #define MSG_ERR_SYSTEM            "The current version of the operating system is not supported. %1 requires Microsoft Windows 7 or newer."
 #define MSG_ERR_ALREADY_RUNNING   "The application is already running."
 #define MSG_ERR_CLOSE_APP         "Setup has detected that %1 is currently running. Please close all instances of it."
