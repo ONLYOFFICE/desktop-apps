@@ -27,7 +27,7 @@
 #define LABEL_UNKN_PACK           "unknown package"
 #define LABEL_NO_OPTIONS          "No additional options available."
 #define LABEL_NO_VER_AVAIL        "No version available"
-#define LABEL_WARN_CLOSE          "This will install ONLYOFFICE Desktop Editors on your computer.\nIt is reccomended that you close all other applications before continuing."
+#define LABEL_WARN_CLOSE          "This will install %1 on your computer.\nIt is reccomended that you close all other applications before continuing."
 #define LABEL_ALMOST_DONE         "Just a bit more and we're done"
 #define LABEL_INSTALL_COMPL       "%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box."
 #define LABEL_ERR_PROD_CODE       "Error while retrieving product code."

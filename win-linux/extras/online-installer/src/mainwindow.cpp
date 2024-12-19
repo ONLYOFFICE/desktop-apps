@@ -198,8 +198,10 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     });
 
     /* Comment section */
+    wstring warn_text = _TR(LABEL_WARN_CLOSE);
+    NS_Utils::Replace(warn_text, L"%1", _T(WINDOW_NAME));
     Label *comntLbl = new Label(m_cenPanel);
-    comntLbl->setText(_TR(LABEL_WARN_CLOSE), true);
+    comntLbl->setText(warn_text, true);
     comntLbl->setGeometry(0, m_cenPanel->size().height - 130, m_cenPanel->size().width, 48);
     setLabelStyle(comntLbl);
 

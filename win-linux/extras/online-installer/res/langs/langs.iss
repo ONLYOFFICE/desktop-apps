@@ -140,8 +140,8 @@ ru.LABEL_NO_OPTIONS =Дополнительные опции недоступн�
 en.LABEL_NO_VER_AVAIL =No version available
 ru.LABEL_NO_VER_AVAIL =Нет доступной версии
 
-en.LABEL_WARN_CLOSE =This will install ONLYOFFICE Desktop Editors on your computer.\nIt is reccomended that you close all other applications before continuing.
-ru.LABEL_WARN_CLOSE =Программа установит ONLYOFFICE Desktop Editors на ваш компьютер.\nРекомендуется закрыть все прочие приложения перед тем, как продолжить.
+en.LABEL_WARN_CLOSE =This will install %1 on your computer.\nIt is reccomended that you close all other applications before continuing.
+ru.LABEL_WARN_CLOSE =Программа установит %1 на ваш компьютер.\nРекомендуется закрыть все прочие приложения перед тем, как продолжить.
 
 en.LABEL_ALMOST_DONE =Just a bit more and we're done
 ru.LABEL_ALMOST_DONE =Еще немного и мы закончим
