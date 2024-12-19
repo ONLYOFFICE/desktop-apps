@@ -191,12 +191,14 @@ public:
                 if (paperNamesSuccess && paperSizeSuccess && paperNamesCount == paperSizeCount) {
                     QJsonArray paperArray;
                     for (int j = 0; j < paperNamesCount; ++j) {
-                        std::wstring paperName(&paperNames[j * PAPER_NAME_LENGTH], PAPER_NAME_LENGTH);
-                        QJsonObject paperObj;
-                        paperObj["name"] = QString::fromWCharArray(paperName.c_str());
-                        paperObj["width"] = (double)paperSize[j].x/10;
-                        paperObj["height"] = (double)paperSize[j].y/10;
-                        paperArray.append(paperObj);
+                        if (paperSize[j].x > 0 && paperSize[j].y > 0) {
+                            std::wstring paperName(&paperNames[j * PAPER_NAME_LENGTH], PAPER_NAME_LENGTH);
+                            QJsonObject paperObj;
+                            paperObj["name"] = QString::fromWCharArray(paperName.c_str());
+                            paperObj["width"] = (double)paperSize[j].x/10;
+                            paperObj["height"] = (double)paperSize[j].y/10;
+                            paperArray.append(paperObj);
+                        }
                     }
                     printerObject["paper_supported"] = paperArray;
                 }
