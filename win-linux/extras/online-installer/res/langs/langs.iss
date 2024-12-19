@@ -85,6 +85,9 @@ sv.MSG_ERR_ARCH =Applikationen kan inte fortsätta eftersom denna arkitektur int
 sr_Cyrl_RS.MSG_ERR_ARCH =Апликација не може наставити јер ова архитектура није подржана.
 he.MSG_ERR_ARCH =היישום אינו יכול להמשיך מכיוון שארכיטקטורה זו אינה נתמכת.
 
+en.MSG_ERR_SYSTEM =The current version of the operating system is not supported. %1 requires Microsoft Windows 7 or newer.
+ru.MSG_ERR_SYSTEM =Текущая версия операционной системы не поддерживается. Для работы %1 требуется Microsoft Windows 7 или более новая версия.
+
 en.MSG_ERR_ALREADY_RUNNING =The application is already running.
 en_GB.MSG_ERR_ALREADY_RUNNING =The application is already running.
 ru.MSG_ERR_ALREADY_RUNNING =Приложение уже запущено.

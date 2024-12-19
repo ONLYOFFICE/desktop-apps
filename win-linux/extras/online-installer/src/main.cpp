@@ -3,6 +3,7 @@
 #include <locale>
 #include "resource.h"
 #include "utils.h"
+#include "baseutils.h"
 #include "translator.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -28,6 +29,14 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
     HANDLE hMutex = CreateMutex(NULL, FALSE, _T(VER_PRODUCTNAME_STR));
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         NS_Utils::ShowMessage(_TR(MSG_ERR_ALREADY_RUNNING));
+        return 0;
+    }
+
+    if (Utils::getWinVersion() < Utils::Win7) {
+        wstring msg(_TR(MSG_ERR_SYSTEM));
+        NS_Utils::Replace(msg, L"%1", _TR(CAPTION));
+        NS_Utils::ShowMessage(msg);
+        CloseHandle(hMutex);
         return 0;
     }
 
