@@ -70,7 +70,7 @@
 #define VER_LEGALTRADEMARKS1_STR    "All Rights Reserved\0"
 #define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
 #define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"
-#define VER_PRODUCTNAME_STR         "ONLYOFFICE Desktop Editors\0"
+#define VER_PRODUCTNAME_STR         "ONLYOFFICE\0"
 
 #define VER_LANG_AND_CHARSET        "040904E4"
 #define VER_LANG_ID                 0x0409

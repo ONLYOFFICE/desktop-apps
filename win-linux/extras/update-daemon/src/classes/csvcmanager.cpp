@@ -773,7 +773,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
             HKEY hKey, hAppKey;
             if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall"), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
                 wstring app_name(TEXT(WINDOW_NAME));
-                wstring app_key(app_name);
+                wstring app_key(TEXT(REG_UNINST_KEY));
                 app_key += (packageType == TEXT("iss")) ? L"_is1" : L"";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
                     wstring disp_name = app_name + L" " + verToAppVer(ver) + L" (" + currentArch().substr(1) + L")";
