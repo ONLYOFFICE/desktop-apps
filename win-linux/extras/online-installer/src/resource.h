@@ -8,7 +8,7 @@
 #define APP_LAUNCH_NAME           "\\DesktopEditors.exe"
 
 #define CAPTION                   VER_PRODUCTNAME_STR
-#define MSG_ERR_ARCH              "The application cannot continue because this architecture is not supported."
+#define MSG_ERR_SYSTEM            "The current version of the operating system is not supported. %1 requires Microsoft Windows 7 or newer."
 #define MSG_ERR_ALREADY_RUNNING   "The application is already running."
 #define MSG_ERR_CLOSE_APP         "Setup has detected that %1 is currently running. Please close all instances of it."
 #define MSG_REMOVE                "This will remove %1 and its components."
@@ -27,7 +27,7 @@
 #define LABEL_UNKN_PACK           "unknown package"
 #define LABEL_NO_OPTIONS          "No additional options available."
 #define LABEL_NO_VER_AVAIL        "No version available"
-#define LABEL_WARN_CLOSE          "This will install ONLYOFFICE Desktop Editors on your computer.\nIt is reccomended that you close all other applications before continuing."
+#define LABEL_WARN_CLOSE          "This will install %1 on your computer.\nIt is recommended that you close all other applications before continuing."
 #define LABEL_ALMOST_DONE         "Just a bit more and we're done"
 #define LABEL_INSTALL_COMPL       "%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box."
 #define LABEL_ERR_PROD_CODE       "Error while retrieving product code."
