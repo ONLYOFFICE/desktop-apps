@@ -300,7 +300,6 @@ void CWindowBase::showEvent(QShowEvent *event)
     QMainWindow::showEvent(event);
     if (!m_windowActivated) {
         m_windowActivated = true;
-        adjustGeometry();
         applyTheme(GetCurrentTheme().id());
     }
 }

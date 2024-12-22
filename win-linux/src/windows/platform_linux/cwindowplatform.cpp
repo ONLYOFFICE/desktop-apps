@@ -68,6 +68,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
         CX11Decoration::turnOff();
     }
     setIsCustomWindowStyle(!CX11Decoration::isDecorated());
+    adjustGeometry();
     setFocusPolicy(Qt::StrongFocus);
     setProperty("stabilized", true);
     m_propertyTimer = new QTimer(this);

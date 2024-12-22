@@ -220,6 +220,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
         SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
     });
+    adjustGeometry();
 }
 
 CWindowPlatform::~CWindowPlatform()

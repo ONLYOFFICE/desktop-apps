@@ -85,12 +85,13 @@ void GtkMainWindowPrivate::init()
     gtk_css_provider_load_from_data(provider, "decoration {border-radius: 6px 6px 0px 0px;}", -1, NULL);
     GtkStyleContext *context = gtk_widget_get_style_context(wnd);
     gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    g_object_unref(provider);
 
     if (is_custom_style) {
         if (QX11Info::isCompositingManagerRunning()) {
             GtkWidget *header = gtk_header_bar_new();
             gtk_window_set_titlebar(GTK_WINDOW(wnd), header);
-            // gtk_widget_destroy(header);
+            gtk_widget_destroy(header);
         } else {
             is_support_round_corners = false;
             gtk_window_set_decorated(GTK_WINDOW(wnd), FALSE);
@@ -98,6 +99,7 @@ void GtkMainWindowPrivate::init()
     } else {
         is_support_round_corners = false;
     }
+    gtk_widget_realize(wnd);
 
     socket = gtk_socket_new();
     g_signal_connect(G_OBJECT(socket), "plug-added", G_CALLBACK(on_plug_added), this);
@@ -318,8 +320,7 @@ void GtkMainWindow::setWindowState(Qt::WindowStates ws)
 
 void GtkMainWindow::show()
 {
-    gtk_widget_show(pimpl->wnd);
-    gtk_widget_show(pimpl->socket);
+    gtk_widget_show_all(pimpl->wnd);
     pimpl->processEvents();
     pimpl->underlay->show();
     pimpl->processEvents();
@@ -332,6 +333,8 @@ void GtkMainWindow::show()
 
     Window xid = GDK_WINDOW_XID(gdk_wnd);
     pimpl->underlay->setProperty("gtk_window_xid", QVariant::fromValue(xid));
+    gtk_window_present(GTK_WINDOW(pimpl->wnd));
+    gdk_window_process_all_updates();
 }
 
 void GtkMainWindow::showMinimized()

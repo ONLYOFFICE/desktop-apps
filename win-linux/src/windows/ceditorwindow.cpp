@@ -295,7 +295,7 @@ void CEditorWindow::init(CTabPanel *panel)
     recalculatePlaces();
 #endif
 
-    //QTimer::singleShot(0, this, [=]{m_pMainView->show();});
+    QTimer::singleShot(0, this, [=]{m_pMainView->show();});
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
     AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
 
@@ -415,16 +415,14 @@ void CEditorWindow::captureMouse()
 #else
     QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
     QApplication::sendEvent(AscAppManager::mainWindow(), &_event);
-    QTimer::singleShot(0, this, [=]() {
-        bringToTop();
-        move(QCursor::pos() - QPoint(CAPTURED_WINDOW_OFFSET_X, CAPTURED_WINDOW_OFFSET_Y));
-        Q_ASSERT(m_boxTitleBtns != nullptr);
-        QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() + QPoint(CAPTURED_WINDOW_OFFSET_X, CAPTURED_WINDOW_OFFSET_Y));
-        QMouseEvent _event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
-        CX11Decoration::dispatchMouseDown(&_event);
-        _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
-        CX11Decoration::dispatchMouseMove(&_event);
-    });
+    PROCESSEVENTS();
+    move(QCursor::pos() - QPoint(CAPTURED_WINDOW_OFFSET_X, CAPTURED_WINDOW_OFFSET_Y));
+    Q_ASSERT(m_boxTitleBtns != nullptr);
+    QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() + QPoint(CAPTURED_WINDOW_OFFSET_X, CAPTURED_WINDOW_OFFSET_Y));
+    QMouseEvent press_event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+    CX11Decoration::dispatchMouseDown(&press_event);
+    QMouseEvent move_event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+    CX11Decoration::dispatchMouseMove(&move_event);
 #endif
 }
 
