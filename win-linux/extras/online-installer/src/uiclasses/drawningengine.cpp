@@ -146,25 +146,17 @@ void DrawingEngine::DrawIcon(HICON hIcon) const
     DrawIconEx(m_hdc, x, y, hIcon, m_ds->metrics()->value(Metrics::IconWidth), m_ds->metrics()->value(Metrics::IconHeight), 0, NULL, DI_NORMAL);
 }
 
-void DrawingEngine::DrawEmfIcon(HENHMETAFILE hIcon) const
+void DrawingEngine::DrawEmfIcon(Gdiplus::Bitmap *hEmfBmp) const
 {
-    int x = m_rc->left + (m_rc->right - m_rc->left - m_ds->metrics()->value(Metrics::IconWidth)) / 2;
-    int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
-    RECT _rc{x, y, x + m_ds->metrics()->value(Metrics::IconWidth), y + m_ds->metrics()->value(Metrics::IconHeight)};
-    SetGraphicsMode(m_hdc, GM_ADVANCED);
-    SetPolyFillMode(m_hdc, WINDING);
-    SetStretchBltMode(m_hdc, HALFTONE);
-    SetBrushOrgEx(m_hdc, 0, 0, nullptr);
-    PlayEnhMetaFile(m_hdc, hIcon, &_rc);
-    // Gdiplus::Graphics gr(m_hdc);
-    // gr.SetInterpolationMode(Gdiplus::InterpolationModeBilinear);
+    int w = m_ds->metrics()->value(Metrics::IconWidth);
+    int h = m_ds->metrics()->value(Metrics::IconHeight);
+    int x = m_rc->left + (m_rc->right - m_rc->left - w) / 2;
+    int y = m_rc->top + (m_rc->bottom - m_rc->top - h) / 2;
+    Gdiplus::Graphics gr(m_hdc);
+    // gr.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
     // gr.SetPixelOffsetMode(Gdiplus::PixelOffsetModeHighQuality);
-    // gr.SetSmoothingMode(Gdiplus::SmoothingMode::SmoothingModeAntiAlias);
-    // int x = m_rc->left + (m_rc->right - m_rc->left - m_ds->metrics()->value(Metrics::IconWidth)) / 2;
-    // int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
-    // Gdiplus::Metafile mf(hIcon);
-    // mf.ConvertToEmfPlus(&gr, NULL , Gdiplus::EmfTypeEmfPlusOnly, NULL);
-    // gr.DrawImage(&mf, x, y, m_ds->metrics()->value(Metrics::IconWidth), m_ds->metrics()->value(Metrics::IconHeight));
+    // gr.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
+    gr.DrawImage(hEmfBmp, x, y, w, h);
 }
 
 void DrawingEngine::DrawImage(Gdiplus::Bitmap *hBmp) const
