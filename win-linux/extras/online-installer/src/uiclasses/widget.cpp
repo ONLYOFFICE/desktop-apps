@@ -141,7 +141,7 @@ void Widget::setProperty(Properties property, int val)
 
 void Widget::show()
 {
-    ShowWindow(m_hWnd, SW_SHOW);
+    ShowWindow(m_hWnd, SW_SHOWNORMAL);
     UpdateWindow(m_hWnd);
 }
 

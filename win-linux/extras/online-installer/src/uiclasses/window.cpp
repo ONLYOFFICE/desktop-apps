@@ -14,7 +14,7 @@ using WinVer = Utils::WinVer;
 
 static BOOL CALLBACK EnumChildProc(_In_ HWND hwnd, _In_ LPARAM lParam)
 {
-    ShowWindow(hwnd, SW_SHOW);
+    ShowWindow(hwnd, SW_SHOWNORMAL);
     UpdateWindow(hwnd);
     return TRUE;
 }
@@ -186,9 +186,10 @@ void Window::setResizable(bool isResizable)
 
 void Window::showAll()
 {
-    ShowWindow(m_hWnd, SW_SHOW);
+    ShowWindow(m_hWnd, SW_SHOWNORMAL);
     UpdateWindow(m_hWnd);
     EnumChildWindows(m_hWnd, EnumChildProc, 0);
+    SetForegroundWindow(m_hWnd);
 }
 
 void Window::showNormal()
