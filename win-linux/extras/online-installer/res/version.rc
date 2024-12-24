@@ -4,7 +4,7 @@
 #include "../src/resource.h"
 
 IDI_MAINICON   ICON    DISCARDABLE APP_ICON_PATH
-IDI_WELCOME    PNG     "./icons/welcome.png"
+IDI_WELCOME    RCDATA  "./icons/welcome.emf"
 IDT_TRANSLATIONS   RCDATA APP_LANG_PATH
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "./manifest/online-installer.exe.manifest"
 

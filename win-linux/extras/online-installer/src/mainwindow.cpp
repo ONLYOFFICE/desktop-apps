@@ -182,7 +182,7 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     /* Image section*/
     Label *wlcLbl = new Label(m_cenPanel);
     wlcLbl->resize(282, 200);
-    wlcLbl->setImage(IDI_WELCOME, 282, 200);
+    wlcLbl->setEMFIcon(IDI_WELCOME, 282, 200);
     wlcLbl->palette()->setColor(Palette::Background, Palette::Normal, 0xfefefe);
     wlcLbl->setProperty(Widget::HSizeBehavior, Widget::Expanding);
     wlcLbl->setProperty(Widget::VSizeBehavior, Widget::Fixed);
