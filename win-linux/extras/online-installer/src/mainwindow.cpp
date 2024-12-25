@@ -336,8 +336,9 @@ void MainWindow::startInstall(const std::wstring &url)
 void MainWindow::finishInstall(const std::wstring &app_path)
 {
     /* Check box section*/
-    m_is_checked = false;
+    m_is_checked = true;
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_LAUNCH));
+    chkBox->setChecked(m_is_checked);
     chkBox->setGeometry(m_cenPanel->size().width/2 - 43, 254, 180, 18);
     setSelectorStyle(chkBox);
     chkBox->onClick([chkBox, this]() {
