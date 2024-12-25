@@ -34,8 +34,7 @@ protected:
 
 private:
     HICON m_hIcon;
-    HENHMETAFILE m_hMetaFile;
-    //Gdiplus::Metafile *m_hMetaFile;
+    Gdiplus::Bitmap *m_hEmfBmp;
     int  m_stockIcon;
     bool supportSnapLayouts,
          snapLayoutAllowed;
