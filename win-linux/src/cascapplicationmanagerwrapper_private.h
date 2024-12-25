@@ -250,7 +250,7 @@ public:
                         QFileInfo _info(opts.url);
                         if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
                             int res = CMessage::showMessage(m_appmanager.mainWindow()->handle(),
-                                                            QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+                                                            QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
                                                             MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
                             if ( res == MODAL_RESULT_YES ) {
                                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));

@@ -187,6 +187,7 @@ QtMsg::QtMsg(QWidget * p)
 //    m_message->setWordWrap(true);
     m_message->setProperty("class", "msg-report");
     m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(int(8*m_priv->dpiRatio)));
+    m_message->setTextFormat(Qt::PlainText);
 
     QFormLayout * _f_layout = new QFormLayout;
     _f_layout->addWidget(m_message);
