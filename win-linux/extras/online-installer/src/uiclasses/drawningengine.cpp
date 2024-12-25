@@ -241,7 +241,7 @@ void DrawingEngine::DrawStockRestoreIcon()
 
 void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
 {
-    int x = m_rc->left;
+    int x = m_rc->left + 1;
     int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
 
     m_memDC = CreateCompatibleDC(m_hdc);
@@ -305,7 +305,7 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
 
 void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
 {
-    int x = m_rc->left;
+    int x = m_rc->left + 1;
     int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
 
     m_memDC = CreateCompatibleDC(m_hdc);
