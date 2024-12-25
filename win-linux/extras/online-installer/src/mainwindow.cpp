@@ -191,7 +191,7 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     /* Check box section*/
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_SILENT));
     chkBox->setChecked(m_is_checked);
-    chkBox->setGeometry(m_cenPanel->size().width/2 - 43, 254, 180, 16);
+    chkBox->setGeometry(m_cenPanel->size().width/2 - 60, 254, 180, 16);
     setSelectorStyle(chkBox);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
@@ -219,7 +219,7 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     });
 
     m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, instlBtn](int w, int h) {
-        chkBox->setGeometry(w/2 - 43, 254, 180, 16);
+        chkBox->setGeometry(w/2 - 60, 254, 180, 16);
         comntLbl->setGeometry(0, h - 130, w, 48);
         instlBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
