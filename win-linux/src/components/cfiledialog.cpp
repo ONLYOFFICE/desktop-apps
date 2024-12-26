@@ -101,6 +101,13 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]   = tr("SVG Image (*.svg)");
 
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSDX]           = tr("VSDX File") + " (*.vsdx)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSDM]           = tr("VSDM File") + " (*.vsdm)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSSX]           = tr("VSSX File") + " (*.vssx)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSSM]           = tr("VSSM File") + " (*.vssm)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSTX]           = tr("VSTX File") + " (*.vstx)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSTM]           = tr("VSTM File") + " (*.vstm)";
+
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image (*.jpg *.jpeg)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image (*.png)");
 }
