@@ -210,7 +210,7 @@ void Window::showMaximized()
 void Window::setIcon(int id)
 {
     HMODULE hInstance = GetModuleHandle(NULL);
-    HICON hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(id));
+    HICON hIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(id), IMAGE_ICON, 96, 96, LR_DEFAULTCOLOR | LR_SHARED);
     SendMessage(m_hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
     SendMessage(m_hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 }

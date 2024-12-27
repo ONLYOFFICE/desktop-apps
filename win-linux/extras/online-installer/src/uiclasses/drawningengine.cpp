@@ -118,15 +118,19 @@ void DrawingEngine::FillBackground() const
 
 void DrawingEngine::DrawBorder() const
 {
-    HPEN hPen = CreatePen(PS_SOLID, m_ds->metrics()->value(Metrics::BorderWidth), m_ds->palette()->color(Palette::Border));
-    HPEN oldPen = (HPEN)SelectObject(m_hdc, hPen);
-    MoveToEx(m_hdc, m_rc->left, m_rc->top, NULL);
-    LineTo(m_hdc, m_rc->right - 1, m_rc->top);
-    LineTo(m_hdc, m_rc->right - 1, m_rc->bottom - 1);
-    LineTo(m_hdc, m_rc->left, m_rc->bottom - 1);
-    LineTo(m_hdc, m_rc->left, m_rc->top);
-    SelectObject(m_hdc, oldPen);
-    DeleteObject(hPen);
+    RECT rc;
+    SetRect(&rc, m_rc->left, m_rc->top, m_rc->right, m_rc->bottom);
+    HBRUSH brdBrush = CreateSolidBrush(m_ds->palette()->color(Palette::Border));
+    HBRUSH oldBrdBrush = (HBRUSH)SelectObject(m_hdc, brdBrush);
+    for (int i = 0; i < m_ds->metrics()->value(Metrics::BorderWidth); i++) {
+        FrameRect(m_hdc, &rc, brdBrush);
+        rc.left += i + 1;
+        rc.top += i + 1;
+        rc.right -= i + 1;
+        rc.bottom -= i + 1;
+    }
+    SelectObject(m_hdc, oldBrdBrush);
+    DeleteObject(brdBrush);
 }
 
 void DrawingEngine::DrawTopBorder(int brdWidth, COLORREF brdColor) const
