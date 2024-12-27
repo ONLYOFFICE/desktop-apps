@@ -360,7 +360,7 @@ void MainWindow::finishInstall(const std::wstring &app_path)
     setButtonStyle(closeBtn);
     closeBtn->onClick([=]() {
         if (m_is_checked)
-            NS_File::runProcess(app_path + _T(APP_LAUNCH_NAME), L"", false);
+            NS_File::runProcess(L"explorer.exe", app_path + _T(APP_LAUNCH_NAME), false);
         close();
     });
 
@@ -719,7 +719,7 @@ void MainWindow::createCloseAndBackButtons()
             if (m_launchCheck && m_is_completed && (m_checkState & LaunchCheck)) {
                 wstring app_path;
                 if (NS_Utils::IsAppInstalled(app_path))
-                    NS_File::runProcess(app_path + _T(APP_LAUNCH_NAME), L"", false);
+                    NS_File::runProcess(L"explorer.exe", app_path + _T(APP_LAUNCH_NAME), false);
             }
             close();
         });
