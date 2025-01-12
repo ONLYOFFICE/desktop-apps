@@ -103,6 +103,55 @@ namespace NSTheme {
             {"brand-draw", "toolbar-header-draw"},
 
             {"window-background", "background-toolbar"},
+            // {"window-border", ""},
+
+            {"text-pretty", "text-toolbar-header"},
+
+            {"tool-button-background",         "background-toolbar"},
+            {"tool-button-hover-background",   "highlight-button-hover"},
+            {"tool-button-pressed-background", "highlight-button-pressed-hover"},
+            {"tool-button-active-background",  "background-normal"},
+
+            {"download-widget-background",     "background-normal"},
+            {"download-widget-border",         "border-regular-control"},
+            {"download-item-hover-background", "highlight-button-hover"},
+
+            // {"download-ghost-button-text",          ""},
+            {"download-ghost-button-text-hover",    "text-normal"},
+            // {"download-ghost-button-text-pressed",  ""},
+            // {"download-ghost-button-text-pressed-item-hover", ""},
+
+            {"download-label-text",                 "text-normal"},
+            // {"download-label-text-info",            ""},
+            // {"download-label-text-info-item-hover", ""},
+
+            // {"download-progressbar-chunk",          ""},
+            // {"download-progressbar-background",     ""},
+            // {"download-progressbar-background-item-hover", ""},
+
+            {"download-scrollbar-handle",  "canvas-scroll-thumb-hover"},
+
+            {"menu-background",            "background-normal"},
+            {"menu-border",                "border-regular-control"},
+            {"menu-item-hover-background", "highlight-button-hover"},
+
+            {"menu-text",            "text-normal"},
+            {"menu-text-item-hover", "text-normal"},
+            // {"menu-text-item-disabled", ""},
+
+            {"menu-separator",       "border-divider"},
+
+            {"tooltip-text",         "text-normal"},
+            {"tooltip-border",       "border-regular-control"},
+            {"tooltip-background",   "background-normal"},
+
+            // {"tab-active-background",         ""}, // not used
+            // {"tab-simple-active-background",  ""},
+            // {"tab-simple-active-text",        ""},
+            // {"tab-default-active-background", ""},
+            // {"tab-default-active-text",       ""}, // not used
+            {"tab-divider",                   "border-divider"},
+
 //            {CTheme::ColorRole::ecrWindowBorder, "window-border"},
 
 //            {CTheme::ColorRole::ecrTextNormal, "text-normal"},
