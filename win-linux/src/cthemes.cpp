@@ -46,6 +46,7 @@ namespace NSTheme {
 
             {CTheme::ColorRole::ecrTextNormal, "text-normal"},
             {CTheme::ColorRole::ecrTextPretty, "text-pretty"},
+            {CTheme::ColorRole::ecrTextInverse, "text-inverse"},
 
             {CTheme::ColorRole::ecrButtonBackground, "tool-button-background"},
             {CTheme::ColorRole::ecrButtonHoverBackground, "tool-button-hover-background"},
@@ -147,7 +148,7 @@ namespace NSTheme {
 
             // {"tab-active-background",         ""}, // not used
             // {"tab-simple-active-background",  ""},
-            // {"tab-simple-active-text",        ""},
+            {"tab-simple-active-text",        "text-normal"},
             // {"tab-default-active-background", ""},
             // {"tab-default-active-text",       ""}, // not used
             {"tab-divider",                   "border-divider"},

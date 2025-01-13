@@ -13,6 +13,7 @@
 
         "text-normal": "#e8e8e8",
         "text-pretty": "#e8e8e8",
+        "text-inverse": "#444",
 
         "tool-button-background": "#2a2a2a",
         "tool-button-hover-background": "#424242",
