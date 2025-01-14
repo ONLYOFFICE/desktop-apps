@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@ditë@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d ditë ka mbetur deri në skadimin e licencës.</string>
+			<key>other</key>
+			<string>%d ditë kanë mbetur deri në skadimin e licencës.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@ditë@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ju jeni duke përdorur një version provë të aplikacionit.
+Periudha e provës do të përfundojë për %d ditë, pas kësaj nuk do të mund të krijoni dhe modifikoni dokumente.</string>
+			<key>other</key>
+			<string>Ju jeni duke përdorur një version provë të aplikacionit.
+Periudha e provës do të përfundojë për %d ditë, pas kësaj ju nuk do të mund të krijoni dhe modifikoni dokumente. .</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dokumente@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Ju keni %ld %@ dokument me ndryshime të pakonfirmuara. Dëshironi që t'i rishikoni këto ndryshime përpara se të hiqni dorë?</string>
+			<key>other</key>
+			<string>Ju keni  %ld %@ dokumente me ndryshime të pakonfirmuara. Dëshironi që t'i rishikoni këto ndryshime përpara se të hiqni dorë?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

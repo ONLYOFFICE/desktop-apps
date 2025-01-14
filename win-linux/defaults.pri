@@ -43,6 +43,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/pt_PT.ts \
                 ./langs/ro.ts \
                 ./langs/sl.ts \
+                ./langs/sq.ts \
                 ./langs/sv.ts \
                 ./langs/tr.ts \
                 ./langs/uk.ts \
