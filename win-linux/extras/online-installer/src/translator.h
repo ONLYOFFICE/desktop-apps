@@ -5,6 +5,8 @@
 #include <string>
 #include <tchar.h>
 
+#define _TR(str) Translator::tr(str).c_str()
+
 using std::wstring;
 using std::unordered_map;
 

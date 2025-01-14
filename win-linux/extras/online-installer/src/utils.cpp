@@ -45,7 +45,6 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#define _TR(str) Translator::tr(str).c_str()
 #define APP_REG_PATH "\\" REG_GROUP_KEY "\\" REG_APP_NAME
 #define BIT123_LAYOUTRTL 0x08000000
 #ifndef LOCALE_IREADINGLAYOUT
