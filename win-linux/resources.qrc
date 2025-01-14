@@ -224,6 +224,7 @@
         <file alias="si-LK.qm">langs/si.qm</file>
         <file alias="sk-SK.qm">langs/sk.qm</file>
         <file alias="sl-SI.qm">langs/sl.qm</file>
+        <file alias="sq-AL.qm">langs/sq.qm</file>
         <file alias="sr-Latn-RS.qm">langs/sr_Latn_RS.qm</file>
         <file alias="sr-Cyrl-RS.qm">langs/sr_Cyrl_RS.qm</file>
         <file alias="sv-SE.qm">langs/sv.qm</file>

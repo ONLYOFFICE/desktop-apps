@@ -740,3 +740,21 @@ BEGIN
     IDS_JUMP_XLSX  "גיליון אלקטרוני חדש"
     IDS_JUMP_PPTX  "מצגת חדשה"
 END
+
+LANGUAGE LANG_ALBANIAN, SUBLANG_ALBANIAN_ALBANIA
+STRINGTABLE
+BEGIN
+    IDS_DOCX  "Office Open XML Document"
+    IDS_XLSX  "Office Open XML Spreadsheet"
+    IDS_PPTX  "Office Open XML Presentation"
+    IDS_PDF   "PDF Form"
+
+    IDS_NEW_DOCX  "New Office Open XML Document"
+    IDS_NEW_XLSX  "New Office Open XML Spreadsheet"
+    IDS_NEW_PPTX  "New Office Open XML Presentation"
+    IDS_NEW_PDF   "New PDF Form"
+
+    IDS_JUMP_DOCX  "New document"
+    IDS_JUMP_XLSX  "New spreadsheet"
+    IDS_JUMP_PPTX  "New presentation"
+END
