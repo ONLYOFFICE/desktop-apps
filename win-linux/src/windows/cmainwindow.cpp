@@ -740,7 +740,7 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
     connect(actCloseSaved, &QAction::triggered, this, [=]() {
             for (int i(m_pTabs->count()); !(--i < 0);) {
                 CAscTabData *doc = m_pTabs->panel(i)->data();
-                if (doc->isViewType(cvwtEditor) && !doc->closed() && !doc->hasChanges() && !doc->url().empty()) {
+                if (doc->isViewType(cvwtEditor) && !doc->closed() && !doc->hasChanges() && !m_pTabs->panel(i)->hasUncommittedChanges() && !doc->url().empty()) {
                     onTabCloseRequest(i);
                     Utils::processMoreEvents();
                 }
@@ -865,7 +865,7 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
                 if ( _doc.isViewType(cvwtEditor) && !_doc.closed() &&
                         _is_url_starts_with(QString::fromStdWString(_doc.url()), _portals) )
                 {
-                    if ( _doc.hasChanges() ) {
+                    if ( _doc.hasChanges() || m_pTabs->panel(i)->hasUncommittedChanges() ) {
                         _answer = trySaveDocument(i);
                         if ( _answer == MODAL_RESULT_CANCEL) {
                             AscAppManager::cancelClose();
