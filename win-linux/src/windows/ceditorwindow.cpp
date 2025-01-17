@@ -116,7 +116,7 @@ int CEditorWindow::closeWindow()
     CTabPanel * panel = d_ptr.get()->panel();
 
     int _reply = MODAL_RESULT_YES;
-    if ( panel->data()->hasChanges() && !panel->data()->closed() ) {
+    if ( (panel->data()->hasChanges() || panel->hasUncommittedChanges()) && !panel->data()->closed() ) {
         if (windowState() == Qt::WindowMinimized)
             showNormal();
 
@@ -159,7 +159,7 @@ bool CEditorWindow::closed() const
 bool CEditorWindow::modified() const
 {
     CAscTabData *doc = d_ptr->panel()->data();
-    return doc->hasChanges() && !doc->closed();
+    return (doc->hasChanges() || d_ptr->panel()->hasUncommittedChanges()) && !doc->closed();
 }
 
 bool CEditorWindow::holdView(const std::wstring& portal) const

@@ -307,7 +307,7 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
         CTabPanel * view = panel(i);
         CAscTabData * doc = view->data();
 
-        if (doc && (!m || !doc->hasChanges())) {
+        if (doc && (!m || (!doc->hasChanges() && !view->hasUncommittedChanges()))) {
             doc->close();
             if (i == currentIndex()) {
                 int last = count() - 1;
@@ -982,7 +982,7 @@ int CAscTabWidget::modifiedCount()
 
     for (int i = m_pBar->count(); i-- > 0; ) {
         doc = panel(i)->data();
-        doc->hasChanges() && mod_count++;
+        (doc->hasChanges() || panel(i)->hasUncommittedChanges()) && mod_count++;
     }
 
     return mod_count;
@@ -1023,7 +1023,7 @@ bool CAscTabWidget::modifiedByIndex(int index)
 {
     if (indexIsValid(index)) {
         const CAscTabData * doc = panel(index)->data();
-        return doc->hasChanges() && !doc->closed();
+        return (doc->hasChanges() || panel(index)->hasUncommittedChanges()) && !doc->closed();
     }
 
     return false;
@@ -1048,7 +1048,7 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
         doc = panel(i)->data();
 
         if (doc->isViewType(cvwtEditor) &&
-                doc->hasChanges() && !doc->closed() &&
+            (doc->hasChanges() || panel(i)->hasUncommittedChanges()) && !doc->closed() &&
                 (portal.empty() || doc->url().find(portal) != wstring::npos))
         {
             mapModified.insert(viewByIndex(i), titleByIndex(i, true));
@@ -1068,7 +1068,7 @@ int CAscTabWidget::findModified(const QString& portalname)
         if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
                 (portal.empty() || doc->url().find(portal) != wstring::npos) )
         {
-            if ( doc->hasChanges() ) {
+            if ( doc->hasChanges() || panel(i)->hasUncommittedChanges() ) {
                 return i;
             }
         }
