@@ -723,8 +723,6 @@
             NSInteger returnCode = [alert runModalSheet];
 
             if(returnCode == NSAlertFirstButtonReturn) {
-                NSCefView * cefView = [self cefViewWithTab:tab];
-
                 tab.params[@"shouldClose"] = @(YES);
 
                 if (cefView) {
