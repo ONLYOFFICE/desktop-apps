@@ -20,8 +20,6 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#define _TR(str) Translator::tr(str).c_str()
-
 
 template <class T>
 static void setSelectorStyle(T *sel) // style for CheckBox and RadioButton

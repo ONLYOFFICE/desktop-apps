@@ -7,7 +7,6 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#define _TR(str) Translator::tr(str).c_str()
 #define WINDOW_SIZE Size(768, 480)
 
 

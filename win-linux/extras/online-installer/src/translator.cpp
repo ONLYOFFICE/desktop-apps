@@ -103,9 +103,9 @@ wstring Translator::tr(const char *str)
     if (is_translations_valid) {
         for (auto &strIdPair : translMap) {
             //LocaleMap locMap = strIdPair.second;
-            for (LocaleMap::const_iterator it = strIdPair.second.begin(); it != strIdPair.second.end(); ++it) {
+            // for (LocaleMap::const_iterator it = strIdPair.second.begin(); it != strIdPair.second.end(); ++it) {
                 //wcout << L"\n\n" << translatedStr << L"\n" << it->second;
-                if (it->second == translatedStr) {
+                if (strIdPair.first == translatedStr) {
                     if (strIdPair.second.find(langName) != strIdPair.second.end())
                         translatedStr = strIdPair.second[langName];
                     else {
@@ -120,7 +120,7 @@ wstring Translator::tr(const char *str)
                     }
                     break;
                 }
-            }
+            // }
         }
     }
     return translatedStr;
