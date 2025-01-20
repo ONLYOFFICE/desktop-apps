@@ -107,17 +107,19 @@ wstring Translator::tr(const char *str)
                 //wcout << L"\n\n" << translatedStr << L"\n" << it->second;
                 if (strIdPair.first == translatedStr) {
                     if (strIdPair.second.find(langName) != strIdPair.second.end())
-                        translatedStr = strIdPair.second[langName];
+                        return strIdPair.second[langName];
                     else {
                         wstring primaryLangAndScript = getPrimaryLang(langName, true);
                         if (strIdPair.second.find(primaryLangAndScript) != strIdPair.second.end())
-                            translatedStr = strIdPair.second[primaryLangAndScript];
+                            return strIdPair.second[primaryLangAndScript];
                         else {
                             wstring primaryLang = getPrimaryLang(langName);
                             if (strIdPair.second.find(primaryLang) != strIdPair.second.end())
-                                translatedStr = strIdPair.second[primaryLang];
+                                return strIdPair.second[primaryLang];
                         }
                     }
+                    if (strIdPair.second.find(L"en") != strIdPair.second.end())
+                        return strIdPair.second[L"en"];
                     break;
                 }
             // }
