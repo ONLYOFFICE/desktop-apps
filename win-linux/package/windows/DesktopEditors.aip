@@ -104,6 +104,7 @@
     <ROW Property="ServiceDescription" Value="Update service for [|PackageName]"/>
     <ROW Property="ServiceName" Value="ONLYOFFICE Update Service" ValueLocId="-"/>
     <ROW Property="ServiceShortName" Value="[|ServiceName]" ValueLocId="-"/>
+    <ROW Property="ShortcutName" Value="ONLYOFFICE" ValueLocId="-"/>
     <ROW Property="UPDATE_SERVICE" Value="0" ValueLocId="-"/>
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
     <ROW Property="VC_REDIST" Value="1" ValueLocId="-"/>
@@ -2329,8 +2330,8 @@
     <ROW ServiceInstall="updatesvc.exe" Name="[ServiceShortName]" DisplayName="[ServiceName]" ServiceType="16" StartType="2" ErrorControl="1" Component_="c_exe_updatesvc" Description="[ServiceDescription]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="sc_desktop_exe_desktopeditors" Directory_="DesktopFolder" Name="ONLYOF~2|[|DesktopEditorsName]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="sc_menu_exe_desktopeditors" Directory_="SHORTCUTDIR" Name="ONLYOF~3|[|DesktopEditorsName]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="sc_desktop_exe_desktopeditors" Directory_="DesktopFolder" Name="ONLYOF~1|[|ShortcutName]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="sc_menu_exe_desktopeditors" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|ShortcutName]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="sc_menu_exe_desktopeditors_cell" Directory_="SHORTCUTDIR" Name="NEWSPR~1|[|NewSpreadsheet]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:cell" Hotkey="0" Icon_="i_desktopeditors_cell" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="sc_menu_exe_desktopeditors_form" Directory_="SHORTCUTDIR" Name="NEWPDF~1|[|NewForm]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:form" Hotkey="0" Icon_="i_desktopeditors_form" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="sc_menu_exe_desktopeditors_slide" Directory_="SHORTCUTDIR" Name="NEWPRE~1|[|NewPresentation]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:slide" Hotkey="0" Icon_="i_desktopeditors_slide" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
