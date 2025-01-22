@@ -185,6 +185,8 @@ utils.defines.FileFormat = {
     FILE_DOCUMENT_DOCXF: FILE_DOCUMENT + 0x0016,
     FILE_DOCUMENT_OFORM_PDF: FILE_DOCUMENT + 0x0017,
     FILE_DOCUMENT_PAGES: FILE_DOCUMENT + 0x0018,
+    FILE_DOCUMENT_HWP:  FILE_DOCUMENT + 0x0019,
+    FILE_DOCUMENT_HWPX: FILE_DOCUMENT + 0x0020,
     FILE_DOCUMENT_XML:   FILE_DOCUMENT + 0x0030,
 
 
@@ -265,6 +267,8 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_DOTM:       return 'dotm';
     case utils.defines.FileFormat.FILE_DOCUMENT_XML:        return 'xml';
     case utils.defines.FileFormat.FILE_DOCUMENT_PAGES:      return 'pages';
+    case utils.defines.FileFormat.FILE_DOCUMENT_HWP:        return 'hwpx';
+    case utils.defines.FileFormat.FILE_DOCUMENT_HWPX:       return 'hwp';
 
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLS:     return 'xls';
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLTX:    return 'xltx';
@@ -295,6 +299,11 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU:  return 'djvu';
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_XPS:   return 'xps';
 
+    case utils.defines.FileFormat.FILE_DRAW_VSTX:
+    case utils.defines.FileFormat.FILE_DRAW_VSSX:
+    case utils.defines.FileFormat.FILE_DRAW_VSDM:
+    case utils.defines.FileFormat.FILE_DRAW_VSSM:
+    case utils.defines.FileFormat.FILE_DRAW_VSTM:
     case utils.defines.FileFormat.FILE_DRAW_VSDX:           return 'vsdx';
 
     default: return 'neutral';
