@@ -10,7 +10,8 @@
 #define sAppPublisherURL                "https://www.onlyoffice.com/"
 #define sAppSupportURL                  "https://www.onlyoffice.com/support.aspx"
 #define sAppCopyright                   str("Copyright (C) " + GetDateTimeString("yyyy",,) + " " + sAppPublisher)
-#define sAppIconName                    "ONLYOFFICE Editors"
+#define sAppIconName                    "ONLYOFFICE"
+#define sOldAppIconName                 "ONLYOFFICE Editors"
 #define sAppProtocol                    'oo-office'
 
 #define APP_PATH                        str(sIntCompanyName + "\" + sIntProductName)
