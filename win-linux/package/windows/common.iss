@@ -46,6 +46,7 @@
 AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#VERSION}
+AppId                     ={#APP_REG_UNINST_KEY}
 VersionInfoVersion        ={#VERSION}
 
 AppPublisher              = {#sAppPublisher}
