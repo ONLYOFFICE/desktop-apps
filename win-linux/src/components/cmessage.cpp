@@ -31,6 +31,7 @@
 */
 
 #include "components/cmessage.h"
+#include <QTextDocumentFragment>
 #include <QDialog>
 #include <QPushButton>
 #include <QFormLayout>
@@ -348,7 +349,7 @@ int QtMsg::showMessage(QWidget *parent,
         dlg.setLayoutDirection(Qt::RightToLeft);
 #endif
     }
-    dlg.setText(msg);
+    dlg.setText(QTextDocumentFragment::fromHtml(msg).toPlainText());
     dlg.setIcon(msgType);
     if (msgBtns != MsgBtns::mbOk)
         dlg.setButtons(msgBtns);
