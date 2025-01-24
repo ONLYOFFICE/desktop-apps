@@ -164,6 +164,8 @@ vi.MSG_ERR_CLOSE_APP =Thiết lập đã phát hiện ra rằng %1 hiện đang 
 ;he.MSG_ERR_CLOSE_APP =ההתקנה זיהתה ש-%1 פועל כרגע. אנא סגור את כל המופעים הפתוחים שלו.
 lv.MSG_ERR_CLOSE_APP =Sistēma ir konstatējusi, ka pašlaik darbojas programma %1. Lūdzu, aizveriet visus tās logus.
 sq.MSG_ERR_CLOSE_APP =Konfigurimi ka zbuluar se %1 po ekzekutohet aktualisht. Ju lutem mbyllni të gjitha rastet e tij.
+id.MSG_ERR_CLOSE_APP =Setup mendeteksi %1 sedang berjalan. Mohon untuk ditutup.
+sv.MSG_ERR_CLOSE_APP =Installationsprogrammet har upptäckt att %1 körs. Stäng alla instanser av programmet.
 
 en.MSG_REMOVE =This will remove %1 and its components.
 en_GB.MSG_REMOVE =This will remove %1 and its components.
@@ -196,6 +198,8 @@ vi.MSG_REMOVE =Thao tác này sẽ xóa %1 và các thành phần của nó.
 ;he.MSG_REMOVE =פעולה זו תסיר את %1 ואת כל הרכיבים שלו.
 lv.MSG_REMOVE =Tādējādi %1 un tās sastāvdaļas tiks dzēstas.
 sq.MSG_REMOVE =Kjo do të heqë %1 dhe përbërësit e tij.
+id.MSG_REMOVE =Ini akan menghapus %1 beserta komponennya.
+sv.MSG_REMOVE =Detta tar bort %1 och dess komponenter.
 
 en.MSG_REPAIR =This will repair the current version of %1.
 en_GB.MSG_REPAIR =This will repair the current version of %1.
@@ -228,6 +232,8 @@ vi.MSG_REPAIR =Thao tác này sẽ sửa chữa phiên bản hiện tại của 
 ;he.MSG_REPAIR =פעולה זו תתקן את הגרסה הנוכחית של %1.
 lv.MSG_REPAIR =Tādējādi pašreizējā %1 versija tiks salabota.
 sq.MSG_REPAIR =Kjo do të riparojë versionin aktual të %1.
+id.MSG_REPAIR =Ini akan memperbaiki versi terbaru %1.
+sv.MSG_REPAIR =Detta reparerar den aktuella versionen av %1.
 
 en.MSG_UPDATE =This will update %1 to the latest version available.
 en_GB.MSG_UPDATE =This will update %1 to the latest version available.
@@ -260,6 +266,8 @@ vi.MSG_UPDATE =Thao tác này sẽ cập nhật %1 lên phiên bản mới nhấ
 ;he.MSG_UPDATE =פעולה זו תעדכן את %1 לגרסה העדכנית ביותר הזמינה.
 lv.MSG_UPDATE =Tādējādi %1 tiks atjaunināta uz jaunāko pieejamo versiju.
 sq.MSG_UPDATE =Kjo do të përditësojë %1 në versionin më të fundit të disponueshëm.
+id.MSG_UPDATE =Ini akan melakukan update %1 ke versi terbaru yang tersedia.
+sv.MSG_UPDATE =Detta uppdaterar %1 till den senaste tillgängliga versionen.
 
 en.LABEL_DOWNLOAD =Downloading
 en_GB.LABEL_DOWNLOAD =Downloading
@@ -292,6 +300,8 @@ vi.LABEL_DOWNLOAD =Đang tải về
 ;he.LABEL_DOWNLOAD =מתבצע הורדה
 lv.LABEL_DOWNLOAD =Lejupielādē
 sq.LABEL_DOWNLOAD =Po shkarkohet
+id.LABEL_DOWNLOAD =Mendownload
+sv.LABEL_DOWNLOAD =Hämtar
 
 en.LABEL_INSTALL =Installing
 en_GB.LABEL_INSTALL =Installing
@@ -324,6 +334,8 @@ vi.LABEL_INSTALL =Đang cài đặt
 ;he.LABEL_INSTALL =מתבצעת התקנה
 lv.LABEL_INSTALL =Instalē
 sq.LABEL_INSTALL =Po instalohet
+id.LABEL_INSTALL =Menginstall
+sv.LABEL_INSTALL =Installerar
 
 en.LABEL_UPDATING =Updating
 en_GB.LABEL_UPDATING =Updating
@@ -356,6 +368,8 @@ vi.LABEL_UPDATING =Đang cập nhật
 ;he.LABEL_UPDATING =מתבצע עדכון
 lv.LABEL_UPDATING =Atjaunina
 sq.LABEL_UPDATING =Po përditësohet
+id.LABEL_UPDATING =Mengupdate
+sv.LABEL_UPDATING =Uppdaterar
 
 en.LABEL_REPAIRING =Repairing
 en_GB.LABEL_REPAIRING =Repairing
@@ -388,6 +402,8 @@ vi.LABEL_REPAIRING =Đang sửa chữa
 ;he.LABEL_REPAIRING =מתבצע תיקון
 lv.LABEL_REPAIRING =Labo
 sq.LABEL_REPAIRING =Po riparohet
+id.LABEL_REPAIRING =Memperbaiki
+sv.LABEL_REPAIRING =Reparerar
 
 en.LABEL_UNINSTLING =Uninstalling
 en_GB.LABEL_UNINSTLING =Uninstalling
@@ -420,6 +436,8 @@ vi.LABEL_UNINSTLING =Đang hủy cài đặt
 ;he.LABEL_UNINSTLING =מתבצעת הסרה
 lv.LABEL_UNINSTLING =Atinstalē
 sq.LABEL_UNINSTLING =Po çinstalohet
+id.LABEL_UNINSTLING =Menghapus
+sv.LABEL_UNINSTLING =Avinstallerar
 
 en.LABEL_UPDATE_COMPL =Update complete!
 en_GB.LABEL_UPDATE_COMPL =Update complete!
@@ -452,6 +470,8 @@ vi.LABEL_UPDATE_COMPL =Đã hoàn thành cập nhật!
 ;he.LABEL_UPDATE_COMPL =העדכון הושלם בהצלחה!
 lv.LABEL_UPDATE_COMPL =Atjaunināšana pabeigta!
 sq.LABEL_UPDATE_COMPL =Përditësimi përfundoj!
+id.LABEL_UPDATE_COMPL =Update selesai!
+sv.LABEL_UPDATE_COMPL =Uppdatering slutförd!
 
 en.LABEL_REPAIR_COMPL =Repairing completed!
 en_GB.LABEL_REPAIR_COMPL =Repairing completed!
@@ -484,6 +504,8 @@ vi.LABEL_REPAIR_COMPL =Đã hoàn thành sửa chữa!
 ;he.LABEL_REPAIR_COMPL =התיקון הושלם בהצלחה!!
 lv.LABEL_REPAIR_COMPL =Labošana pabeigta!
 sq.LABEL_REPAIR_COMPL =Riparimi përfundoj!
+id.LABEL_REPAIR_COMPL =Perbaikan selesai!
+sv.LABEL_REPAIR_COMPL =Reparation slutförd!
 
 en.LABEL_UNINST_COMPL =Uninstalling completed!
 en_GB.LABEL_UNINST_COMPL =Uninstalling completed!
@@ -516,6 +538,8 @@ vi.LABEL_UNINST_COMPL =Đã hoàn thành gỡ cài đặt!
 ;he.LABEL_UNINST_COMPL =ההסרה הושלמה בהצלחה!
 lv.LABEL_UNINST_COMPL =Atinstalēšana pabeigta!
 sq.LABEL_UNINST_COMPL =Çinstalimi përfundoj!
+id.LABEL_UNINST_COMPL =Uninstall selesai!
+sv.LABEL_UNINST_COMPL =Avinstallation slutförd!
 
 en.LABEL_VERSION =%1 %2 (%3 %4) is installed
 en_GB.LABEL_VERSION =%1 %2 (%3 %4) is installed
@@ -548,6 +572,8 @@ vi.LABEL_VERSION =%1 %2 (%3 %4) đã được cài đặt
 ;he.LABEL_VERSION =%1 %2 (%3 %4) מותקן
 lv.LABEL_VERSION =%1 %2 (%3 %4) ir instalēts
 sq.LABEL_VERSION =%1 %2 (%3 %4) është instaluar
+id.LABEL_VERSION =%1 %2 (%3 %4) sudah terinstall
+sv.LABEL_VERSION =%1 %2 (%3 %4) är installerad
 
 en.LABEL_UNKN_VER =unknown version
 en_GB.LABEL_UNKN_VER =unknown version
@@ -580,6 +606,8 @@ vi.LABEL_UNKN_VER =phiên bản không xác định
 ;he.LABEL_UNKN_VER =גרסה לא ידועה
 lv.LABEL_UNKN_VER =nezināma versija
 sq.LABEL_UNKN_VER =version i panjohur
+id.LABEL_UNKN_VER =versi tidak dikenal
+sv.LABEL_UNKN_VER =okänd version
 
 en.LABEL_UNKN_PACK =unknown package
 en_GB.LABEL_UNKN_PACK =unknown package
@@ -612,6 +640,8 @@ vi.LABEL_UNKN_PACK =gói không xác định
 ;he.LABEL_UNKN_PACK =חבילה לא ידועה
 lv.LABEL_UNKN_PACK =nezināma pakotne
 sq.LABEL_UNKN_PACK =paketë e panjohur
+id.LABEL_UNKN_PACK =paket tidak dikenal
+sv.LABEL_UNKN_PACK =okänt paket
 
 en.LABEL_NO_OPTIONS =No additional options available.
 en_GB.LABEL_NO_OPTIONS =No additional options available.
@@ -644,6 +674,8 @@ vi.LABEL_NO_OPTIONS =Không có tùy chọn bổ sung nào.
 ;he.LABEL_NO_OPTIONS =אין אפשרויות נוספות זמינות.
 lv.LABEL_NO_OPTIONS =Papildu opcijas nav pieejamas.
 sq.LABEL_NO_OPTIONS =Nuk ka opsione shtesë të disponueshme.
+id.LABEL_NO_OPTIONS =Tidak ada opsi tambahan yang tersedia.
+sv.LABEL_NO_OPTIONS =Inga ytterligare alternativ tillgängliga.
 
 en.LABEL_NO_VER_AVAIL =No version available
 en_GB.LABEL_NO_VER_AVAIL =No version available
@@ -676,6 +708,8 @@ vi.LABEL_NO_VER_AVAIL =Không có phiên bản nào
 ;he.LABEL_NO_VER_AVAIL =אין גרסה זמינה
 lv.LABEL_NO_VER_AVAIL =Versijas nav pieejamas
 sq.LABEL_NO_VER_AVAIL =Asnjë version i disponueshëm
+id.LABEL_NO_VER_AVAIL =Tidak ada versi yang tersedia
+sv.LABEL_NO_VER_AVAIL =Ingen version tillgänglig
 
 en.LABEL_WARN_CLOSE =This will install ONLYOFFICE Desktop Editors on your computer.\nIt is recommended that you close all other applications before continuing.
 en_GB.LABEL_WARN_CLOSE =This will install ONLYOFFICE Desktop Editors on your computer.\nIt is recommended that you close all other applications before continuing.
@@ -708,6 +742,8 @@ vi.LABEL_WARN_CLOSE =Thao tác này sẽ cài đặt ONLYOFFICE Desktop Editors 
 ;he.LABEL_WARN_CLOSE =פעולה זו תתקין את ONLYOFFICE Desktop Editors במחשב שלך.\nמומלץ לסגור את כל היישומים האחרים לפני המשך ההתקנה.
 lv.LABEL_WARN_CLOSE =Tādējādi datorā tiks instalēta programma ONLYOFFICE Desktop Editors.\nPirms turpināšanas ieteicams aizvērt visas pārējās programmas.
 sq.LABEL_WARN_CLOSE =Kjo do të instalojë %1 në kompjuterin tuaj.\nRekomandohet që të mbyllni të gjitha aplikacionet e tjera përpara se të vazhdoni.
+id.LABEL_WARN_CLOSE =Ini akan menjalankan instalasi ONLYOFFICE Desktop Editors di komputer Anda.\nDirekomendasikan untuk menutup semua aplikasi sebelum melanjutkan.
+sv.LABEL_WARN_CLOSE =Detta installerar ONLYOFFICE Desktop Editors på din dator.\nDet rekommenderas att du stänger alla andra program innan du fortsätter.
 
 en.LABEL_ALMOST_DONE =Just a bit more and we're done
 en_GB.LABEL_ALMOST_DONE =Just a bit more and we're done
@@ -740,6 +776,8 @@ vi.LABEL_ALMOST_DONE =Chỉ cần thêm một chút nữa là chúng ta sẽ ho�
 ;he.LABEL_ALMOST_DONE =רק עוד קצת וסיימנו
 lv.LABEL_ALMOST_DONE =Vēl tikai nedaudz un viss būs pabeigts
 sq.LABEL_ALMOST_DONE =Edhe pak dhe kemi mbaruar
+id.LABEL_ALMOST_DONE =Sedikit lagi dan kita akan selesai
+sv.LABEL_ALMOST_DONE =Bara lite till så är vi klara
 
 en.LABEL_INSTALL_COMPL =%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box.
 en_GB.LABEL_INSTALL_COMPL =%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box.
@@ -772,6 +810,8 @@ vi.LABEL_INSTALL_COMPL =%1 đã được cài đặt thành công trên máy tí
 ;he.LABEL_INSTALL_COMPL =%1 הותקן בהצלחה במחשב שלך.\nכדי להפעיל את היישום לאחר סגירת מתקין זה, בחר בתיבת הסימון.
 lv.LABEL_INSTALL_COMPL =%1 ir veiksmīgi instalēta jūsu datorā.\nLai palaistu programmu pēc instalatora aizvēršanas, atzīmējiet izvēles rūtiņu.
 sq.LABEL_INSTALL_COMPL =%1 është instaluar me sukses në kompjuterin tuaj.\nPër të ekzekutuar aplikacionin pas mbylljes së këtir instaluesi, zgjidhni kutinë e kontrollit.
+id.LABEL_INSTALL_COMPL =%1 berhasil terpasang ke komputer Anda.\nSetelah menutup installer, centang kotak untuk menjalankan aplikasi.
+sv.LABEL_INSTALL_COMPL =%1 har installerats framgångsrikt på din dator.\nOm du vill köra programmet efter att du har stängt det här installationsprogrammet markerar du kryssrutan.
 
 en.LABEL_ERR_PROD_CODE =Error while retrieving product code.
 en_GB.LABEL_ERR_PROD_CODE =Error while retrieving product code.
@@ -804,6 +844,8 @@ vi.LABEL_ERR_PROD_CODE =Đã xảy ra lỗi khi truy xuất mã sản phẩm.
 ;he.LABEL_ERR_PROD_CODE =שגיאה במהלך אחזור קוד המוצר.
 lv.LABEL_ERR_PROD_CODE =Kļūda produkta koda izgūšanas laikā.
 sq.LABEL_ERR_PROD_CODE =Gabim gjatë marrjes së kodit të produktit.
+id.LABEL_ERR_PROD_CODE =Kesalahan saat mengakses kode produk.
+sv.LABEL_ERR_PROD_CODE =Fel vid hämtning av produktkod.
 
 en.LABEL_ERR_PACK_NAME =Error while retrieving package name.
 en_GB.LABEL_ERR_PACK_NAME =Error while retrieving package name.
@@ -836,6 +878,8 @@ vi.LABEL_ERR_PACK_NAME =Đã xảy ra lỗi khi truy xuất tên gói.
 ;he.LABEL_ERR_PACK_NAME =שגיאה במהלך אחזור שם החבילה.
 lv.LABEL_ERR_PACK_NAME =Kļūda pakotnes nosaukuma izgūšanas laikā.
 sq.LABEL_ERR_PACK_NAME =Gabim gjatë marrjes së emrit të paketës.
+id.LABEL_ERR_PACK_NAME =Kesalahan saat mengakses nama paket.
+sv.LABEL_ERR_PACK_NAME =Fel vid hämtning av paketnamn.
 
 en.LABEL_ERR_INSTALL =An error occurred during installation.
 en_GB.LABEL_ERR_INSTALL =An error occurred during installation.
@@ -868,6 +912,8 @@ vi.LABEL_ERR_INSTALL =Đã xảy ra lỗi trong khi cài đặt.
 ;he.LABEL_ERR_INSTALL =אירעה שגיאה במהלך ההתקנה.
 lv.LABEL_ERR_INSTALL =Instalēšanas laikā notika kļūda.
 sq.LABEL_ERR_INSTALL =Ndodhi një gabim gjatë instalimit.
+id.LABEL_ERR_INSTALL =Ada kesalahan saat instalasi.
+sv.LABEL_ERR_INSTALL =Ett fel uppstod under installationen.
 
 en.LABEL_ERR_UNINST =An error occurred during uninstalling.
 en_GB.LABEL_ERR_UNINST =An error occurred during uninstalling.
@@ -900,6 +946,8 @@ vi.LABEL_ERR_UNINST =Đã xảy ra lỗi trong quá trình gỡ cài đặt.
 ;he.LABEL_ERR_UNINST =אירעה שגיאה במהלך ההסרה.
 lv.LABEL_ERR_UNINST =Atinstalēšanas laikā notika kļūda.
 sq.LABEL_ERR_UNINST =Ndodhi një gabim gjatë çinstalimit.
+id.LABEL_ERR_UNINST =Ada kesalahan saat uninstall.
+sv.LABEL_ERR_UNINST =Ett fel uppstod under avinstallationen.
 
 en.LABEL_ERR_COMMON =An error occurred:
 en_GB.LABEL_ERR_COMMON =An error occurred:
@@ -932,6 +980,8 @@ vi.LABEL_ERR_COMMON =Đã xảy ra lỗi:
 ;he.LABEL_ERR_COMMON =אירעה שגיאה:
 lv.LABEL_ERR_COMMON =Notika kļūda:
 sq.LABEL_ERR_COMMON =Një gabim ka ndodhur:
+id.LABEL_ERR_COMMON =Ada kesalahan:
+sv.LABEL_ERR_COMMON =Ett fel uppstod:
 
 en.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
 en_GB.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
@@ -1006,6 +1056,8 @@ vi.LABEL_ERR_CANCELLED =Đã hủy!
 ;he.LABEL_ERR_CANCELLED =בוטל!
 lv.LABEL_ERR_CANCELLED =Atcelts!
 sq.LABEL_ERR_CANCELLED =Anuluar!
+id.LABEL_ERR_CANCELLED =Dibatalkan!
+sv.LABEL_ERR_CANCELLED =Avbrutet!
 
 en.BUTTON_INSTALL =Install
 en_GB.BUTTON_INSTALL =Install
@@ -1036,7 +1088,9 @@ sk.BUTTON_INSTALL =Inštalovať
 vi.BUTTON_INSTALL =Cài đặt
 ;he.BUTTON_INSTALL =התקן
 lv.BUTTON_INSTALL =Instalēt
-sq.BUTTON_INSTALL ==Instaloni
+sq.BUTTON_INSTALL =Instaloni
+id.BUTTON_INSTALL =Install
+sv.BUTTON_INSTALL =Installera
 
 en.BUTTON_CANCEL =Cancel
 en_GB.BUTTON_CANCEL =Cancel
@@ -1081,7 +1135,7 @@ hi.BUTTON_CANCEL =रद्द करें
 sv.BUTTON_CANCEL =Avbryt
 sr_Cyrl_RS.BUTTON_CANCEL =Откажи
 ;he.BUTTON_CANCEL =ביטול
-sq.BUTTON_CANCEL ==Anuloni
+sq.BUTTON_CANCEL =Anuloni
 
 en.BUTTON_APPLY =Apply
 en_GB.BUTTON_APPLY =Apply
@@ -1113,7 +1167,9 @@ sk.BUTTON_APPLY =Použiť
 vi.BUTTON_APPLY =Áp dụng
 ;he.BUTTON_APPLY =החל
 lv.BUTTON_APPLY =Piemērot
-sq.BUTTON_APPLY ==Aplikoni
+sq.BUTTON_APPLY =Aplikoni
+id.BUTTON_APPLY =Terapkan
+sv.BUTTON_APPLY =Verkställ
 
 en.BUTTON_CLOSE =Close
 en_GB.BUTTON_CLOSE =Close
@@ -1145,7 +1201,9 @@ sk.BUTTON_CLOSE =Zatvoriť
 vi.BUTTON_CLOSE =Đóng
 ;he.BUTTON_CLOSE =סגור
 lv.BUTTON_CLOSE =Aizvērt
-sq.BUTTON_CLOSE ==Mbyllni
+sq.BUTTON_CLOSE =Mbyllni
+id.BUTTON_CLOSE =Tutup
+sv.BUTTON_CLOSE =Stäng
 
 en.BUTTON_BACK =Back
 en_GB.BUTTON_BACK =Back
@@ -1177,7 +1235,9 @@ sk.BUTTON_BACK =Späť
 vi.BUTTON_BACK =Quay lại
 ;he.BUTTON_BACK =חזור
 lv.BUTTON_BACK =Atpakaļ
-sq.BUTTON_BACK ==Mbrapa
+sq.BUTTON_BACK =Mbrapa
+id.BUTTON_BACK =Kembali
+sv.BUTTON_BACK =Tillbaka
 
 en.RADIO_UPDATE =Update
 en_GB.RADIO_UPDATE =Update
@@ -1210,6 +1270,8 @@ vi.RADIO_UPDATE =Cập nhật
 ;he.RADIO_UPDATE =עדכן
 lv.RADIO_UPDATE =Atjaunināt
 sq.RADIO_UPDATE =Përditësim
+id.RADIO_UPDATE =Update
+sv.RADIO_UPDATE =Uppdatera
 
 en.RADIO_REPAIR =Repair
 en_GB.RADIO_REPAIR =Repair
@@ -1241,6 +1303,8 @@ vi.RADIO_REPAIR =Sửa chữa
 ;he.RADIO_REPAIR =תיקן
 lv.RADIO_REPAIR =Remonts
 sq.RADIO_REPAIR =Riparim
+id.RADIO_REPAIR =Perbaiki
+sv.RADIO_REPAIR =Reparera
 
 en.RADIO_UNINST =Uninstall
 en_GB.RADIO_UNINST =Uninstall
@@ -1272,6 +1336,8 @@ vi.RADIO_UNINST =Gỡ bỏ
 ;he.RADIO_UNINST =הסר
 lv.RADIO_UNINST =Atinstalēt
 sq.RADIO_UNINST =Çinstaloni
+id.RADIO_UNINST =Uninstall
+sv.RADIO_UNINST =Avinstallera
 
 en.CHECK_SILENT =Silent Installation
 en_GB.CHECK_SILENT =Silent Installation
@@ -1334,6 +1400,8 @@ sr_Latn_RS.CHECK_LAUNCH =Pokreni aplikaciju
 sr_Cyrl_RS.CHECK_LAUNCH =Покрени апликацију
 ;he.CHECK_LAUNCH =הפעל אפליקציה
 sq.CHECK_LAUNCH =Hapni aplikacionin
+id.CHECK_LAUNCH =Jalankan app
+sv.CHECK_LAUNCH =Starta app
 
 en.CHECK_CLR_DATA =Clear cached data
 en_GB.CHECK_CLR_DATA =Clear cached data
@@ -1351,6 +1419,8 @@ sr_Latn_RS.CHECK_CLR_DATA =Obriši keširane podatke
 sr_Cyrl_RS.CHECK_CLR_DATA =Обриши кеширане податке
 ;he.CHECK_CLR_DATA =נקה נתונים זמניים
 sq.CHECK_CLR_DATA =Pastroni të dhënat e memories së ruajtur
+id.CHECK_CLR_DATA =Hapus data cache
+sv.CHECK_CLR_DATA =Rensa cachelagrade data
 
 en.CHECK_CLR_STNGS =Clear user settings
 en_GB.CHECK_CLR_STNGS =Clear user settings
@@ -1368,6 +1438,8 @@ sr_Latn_RS.CHECK_CLR_STNGS =Obriši korisnička podešavanja
 sr_Cyrl_RS.CHECK_CLR_STNGS =Обриши корисничка подешавања
 ;he.CHECK_CLR_STNGS =נקה הגדרות משתמש
 sq.CHECK_CLR_STNGS =Pastroni cilësimet e përdoruesit
+id.CHECK_CLR_STNGS =Hapus pengaturan user
+sv.CHECK_CLR_STNGS =Rensa användarinställningar
 
 en.CHECK_CLR_ALL =Clear user settings and cached data
 en_GB.CHECK_CLR_ALL =Clear user settings and cached data
@@ -1385,3 +1457,5 @@ sr_Latn_RS.CHECK_CLR_ALL =Obriši korisnička podešavanja i keširane podatke
 sr_Cyrl_RS.CHECK_CLR_ALL =Обриши корисничка подешавања и кеширане податке
 ;he.CHECK_CLR_ALL =נקה הגדרות משתמש ונתונים זמניים
 sq.CHECK_CLR_ALL =Pastroni cilësimet e përdoruesit dhe të dhënat e memories së ruajtur
+id.CHECK_CLR_ALL =Hapus pengaturan user dan data cache
+sv.CHECK_CLR_ALL =Rensa användarinställningar och cachelagrade data

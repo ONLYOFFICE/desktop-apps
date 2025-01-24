@@ -744,17 +744,17 @@ END
 LANGUAGE LANG_ALBANIAN, SUBLANG_ALBANIAN_ALBANIA
 STRINGTABLE
 BEGIN
-    IDS_DOCX  "Office Open XML Document"
-    IDS_XLSX  "Office Open XML Spreadsheet"
-    IDS_PPTX  "Office Open XML Presentation"
-    IDS_PDF   "PDF Form"
+    IDS_DOCX  "Dokumenti Office Open XML"
+    IDS_XLSX  "Fletëllogaritëse Office Open XML"
+    IDS_PPTX  "Prezantimi Office Open XML"
+    IDS_PDF   "Formë PDF"
 
-    IDS_NEW_DOCX  "New Office Open XML Document"
-    IDS_NEW_XLSX  "New Office Open XML Spreadsheet"
-    IDS_NEW_PPTX  "New Office Open XML Presentation"
-    IDS_NEW_PDF   "New PDF Form"
+    IDS_NEW_DOCX  "Dokumenti Office Open XML i ri"
+    IDS_NEW_XLSX  "Fletëllogaritëse Office Open XML e re"
+    IDS_NEW_PPTX  "Prezantimi Office Open XML i ri"
+    IDS_NEW_PDF   "Formë PDF e re"
 
-    IDS_JUMP_DOCX  "New document"
-    IDS_JUMP_XLSX  "New spreadsheet"
-    IDS_JUMP_PPTX  "New presentation"
+    IDS_JUMP_DOCX  "Dokument i ri"
+    IDS_JUMP_XLSX  "Fletëllogaritëse e re"
+    IDS_JUMP_PPTX  "Prezantim i ri"
 END
