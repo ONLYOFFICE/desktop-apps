@@ -46,6 +46,7 @@
 AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#VERSION}
+AppId                     ={#APP_REG_UNINST_KEY}
 VersionInfoVersion        ={#VERSION}
 
 AppPublisher              = {#sAppPublisher}
@@ -1145,6 +1146,8 @@ Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
+Type: files; Name: "{commondesktop}\{#sOldAppIconName}.lnk"; Tasks: desktopicon;
+Type: files; Name: "{group}\{#sOldAppIconName}.lnk";
 
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescription: {cm:AdditionalIcons};

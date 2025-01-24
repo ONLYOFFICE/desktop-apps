@@ -188,7 +188,7 @@ namespace NS_Utils
         }
         for (auto &flag : flags) {
             wstring subkey(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\");
-            subkey += _T(WINDOW_NAME);
+            subkey += _T(REG_UNINST_KEY);
             for (int i = 0; i < 2; i++) {
                 RegQueryStringValue(HKEY_LOCAL_MACHINE, subkey.c_str(), flag, value, name);
                 if (!name.empty()) {

@@ -418,7 +418,7 @@ void MainWindow::startUpdate()
 // {
 //     wstring tmp_path;
 //     if (m_package == L"msi") {
-//         wstring prodCode = NS_Utils::MsiProductCode(_T(WINDOW_NAME));
+//         wstring prodCode = NS_Utils::MsiProductCode(_T(REG_UNINST_KEY));
 //         if (prodCode.empty()) {
 //             m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
 //             return;
