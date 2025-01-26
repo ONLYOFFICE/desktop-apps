@@ -31,6 +31,7 @@
  */
 
 #include <windowsx.h>
+#include "cascapplicationmanagerwrapper.h"
 #include "singleapplication.h"
 #include "defines.h"
 #include <QThread>
@@ -122,6 +123,12 @@ LRESULT SingleApplication::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
         COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
         if (pcds->dwData == 1 && pcds->lpData)
             QMetaObject::invokeMethod(app, "invokeSignal", Qt::QueuedConnection, Q_ARG(QString, QString::fromWCharArray((WCHAR*)pcds->lpData)));
+        break;
+    }
+    case UM_INSTALL_UPDATE: {
+        QTimer::singleShot(500, []() {
+            AscAppManager::closeAppWindows();
+        });
         break;
     }
     default:
