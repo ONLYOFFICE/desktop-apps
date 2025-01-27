@@ -58,8 +58,8 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
     }
 
     Application app(hInst, lpCmdLine, nCmdShow);
-    // if (NS_Utils::IsRtlLanguage(lcid))
-    //     app.setLayoutDirection(LayoutDirection::RightToLeft);
+    if (NS_Utils::IsRtlLanguage(lcid))
+        app.setLayoutDirection(LayoutDirection::RightToLeft);
     int scrWidth = GetSystemMetrics(SM_CXSCREEN);
     int scrHeight = GetSystemMetrics(SM_CYSCREEN);
     int x = (scrWidth - WINDOW_SIZE.width) / 2;

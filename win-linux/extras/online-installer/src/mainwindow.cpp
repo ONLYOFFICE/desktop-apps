@@ -25,6 +25,7 @@ template <class T>
 static void setSelectorStyle(T *sel) // style for CheckBox and RadioButton
 {
     sel->metrics()->setMetrics(Metrics::TextMarginLeft, 6);
+    sel->metrics()->setMetrics(Metrics::TextMarginRight, 6);
     sel->metrics()->setMetrics(Metrics::PrimitiveRadius, 1);
     sel->metrics()->setMetrics(Metrics::AlternatePrimitiveWidth, 2);
     sel->palette()->setColor(Palette::Text, Palette::Disabled, 0x888888);
