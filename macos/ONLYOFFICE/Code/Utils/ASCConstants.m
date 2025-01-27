@@ -261,6 +261,10 @@
              @(AVS_OFFICESTUDIO_FILE_IMAGE_JPG): @{
                      @"description" : NSLocalizedString(@"JPG Image", nil),
                      @"extension"   : @"jpg"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DRAW_VSDX): @{
+                     @"description" : NSLocalizedString(@"VSDX File", nil),
+                     @"extension"   : @"vsdx"
              }
     };
 }
