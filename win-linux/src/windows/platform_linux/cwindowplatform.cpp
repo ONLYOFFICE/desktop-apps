@@ -35,6 +35,7 @@
 #include "defines.h"
 #include "utils.h"
 #include <QTimer>
+#include <QGraphicsOpacityEffect>
 #include <QPainter>
 #include <QX11Info>
 #include <xcb/xcb.h>
@@ -108,6 +109,18 @@ void CWindowPlatform::adjustGeometry()
 
 /** Protected **/
 
+void CWindowPlatform::onWindowActivate(bool is_active)
+{
+    for (auto *btn : m_pTopButtons) {
+        QGraphicsOpacityEffect *efct = qobject_cast<QGraphicsOpacityEffect*>(btn->graphicsEffect());
+        if (!efct) {
+            efct = new QGraphicsOpacityEffect(btn);
+            btn->setGraphicsEffect(efct);
+        }
+        efct->setOpacity(is_active ? 1.0 : 0.6);
+    }
+}
+
 void CWindowPlatform::onMinimizeEvent()
 {
     CX11Decoration::setMinimized();
@@ -129,6 +142,13 @@ bool CWindowPlatform::event(QEvent * event)
             m_pMainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
             onLayoutDirectionChanged();
         }
+    } else
+    if (event->type() == QEvent::WindowActivate) {
+        onWindowActivate(true);
+    }
+    else
+    if (event->type() == QEvent::WindowDeactivate) {
+        onWindowActivate(false);
     }
     return CWindowBase::event(event);
 }
