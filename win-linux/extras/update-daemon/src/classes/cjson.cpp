@@ -99,12 +99,8 @@ tstring JsonValue::toTString()
     if (pimpl->val && pimpl->val->type == json_type_string) {
         json_string_s *jstr = (json_string_s*)pimpl->val->payload;
 #ifdef _WIN32
-        size_t len = jstr->string_size, outSize = 0;
-        wchar_t *pDestBuf = new wchar_t[len + 1];
-        mbstowcs_s(&outSize, pDestBuf, len + 1, jstr->string, len);
-        if (outSize > 0)
-            str = pDestBuf;
-        delete[] pDestBuf;
+        std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+        str = converter.from_bytes(std::string(jstr->string, jstr->string_size));
 #else
         str = std::string(jstr->string, jstr->string_size);
 #endif

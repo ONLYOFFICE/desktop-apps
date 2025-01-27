@@ -250,7 +250,7 @@ public:
                         QFileInfo _info(opts.url);
                         if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
                             int res = CMessage::showMessage(m_appmanager.mainWindow()->handle(),
-                                                            QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+                                                            QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
                                                             MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
                             if ( res == MODAL_RESULT_YES ) {
                                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
@@ -332,6 +332,7 @@ public:
                     int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
                                  format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                                  format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                                 // format == L"draw" ? AVS_OFFICESTUDIO_FILE_DRAW_VSDX :
                                  format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
                     COpenOptions opts{m_appmanager.newFileName(_f), etNewFile};

@@ -251,6 +251,7 @@ private:
         ,{"no-NO", {"Norsk", "Norwegian"}}
         ,{"ro-RO", {"Romanian", "Romanian"}}
         ,{"sl-SI", {"Slovene", "Slovenian"}}
+        ,{"sq-AL", {"Shqip", "Albanian"}}
         ,{"sv-SE", {"Svenska", "Swedish"}}
         ,{"tr-TR", {"Türkçe", "Turkish"}}
         ,{"ja-JP", {"日本語", "Japanese"}}

@@ -4,6 +4,7 @@
 #include "resource.h"
 #include "utils.h"
 #include <Windows.h>
+#include <codecvt>
 #include <cwctype>
 #include <algorithm>
 #include <sstream>
@@ -45,10 +46,8 @@ wstring getPrimaryLang(const wstring &lang, bool withScript = false)
 
 wstring StrToWStr(const string &str)
 {
-    size_t len = str.length(), outSize = 0;
-    wstring wstr(len, '\0');
-    mbstowcs_s(&outSize, &wstr[0], len + 1, str.c_str(), len);
-    return wstr.c_str();
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    return converter.from_bytes(str);
 }
 
 TranslationsMap Translator::translMap = TranslationsMap();

@@ -112,4 +112,6 @@ l10n.id = {
     settOptDescAUpdateAsk: "Anda akan mendapatkan notifikasi langkah untuk melakukan update",
     settRtlMode: "RTL Interface",
     settGpuUseMode: "Gunakan akselerasi grafik jika tersedia",
+    tplPanelLocal: "Lokal",
+    tplPanelCloud: "Cloud",
 }

@@ -14,7 +14,7 @@ using WinVer = Utils::WinVer;
 
 static BOOL CALLBACK EnumChildProc(_In_ HWND hwnd, _In_ LPARAM lParam)
 {
-    ShowWindow(hwnd, SW_SHOW);
+    ShowWindow(hwnd, SW_SHOWNORMAL);
     UpdateWindow(hwnd);
     return TRUE;
 }
@@ -186,9 +186,10 @@ void Window::setResizable(bool isResizable)
 
 void Window::showAll()
 {
-    ShowWindow(m_hWnd, SW_SHOW);
+    ShowWindow(m_hWnd, SW_SHOWNORMAL);
     UpdateWindow(m_hWnd);
     EnumChildWindows(m_hWnd, EnumChildProc, 0);
+    SetForegroundWindow(m_hWnd);
 }
 
 void Window::showNormal()
@@ -209,7 +210,7 @@ void Window::showMaximized()
 void Window::setIcon(int id)
 {
     HMODULE hInstance = GetModuleHandle(NULL);
-    HICON hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(id));
+    HICON hIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(id), IMAGE_ICON, 96, 96, LR_DEFAULTCOLOR | LR_SHARED);
     SendMessage(m_hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
     SendMessage(m_hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 }

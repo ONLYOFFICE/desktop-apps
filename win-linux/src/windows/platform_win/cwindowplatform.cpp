@@ -196,7 +196,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_borderless = isCustomWindowStyle();
     if (AscAppManager::isRtlEnabled())
         setLayoutDirection(Qt::RightToLeft);
-    if (m_borderless && Utils::getWinVersion() == WinVer::WinXP)
+    if (m_borderless && Utils::getWinVersion() <= WinVer::WinVista)
         setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
     setGeometry(m_window_rect);
     m_hWnd = (HWND)winId();
@@ -344,7 +344,7 @@ bool CWindowPlatform::event(QEvent * event)
 void CWindowPlatform::resizeEvent(QResizeEvent *ev)
 {
     CWindowBase::resizeEvent(ev);
-    if (m_borderless && Utils::getWinVersion() == WinVer::WinXP) {
+    if (m_borderless && Utils::getWinVersion() <= WinVer::WinVista) {
         RECT rc;
         GetClientRect(m_hWnd, &rc);
         if (centralWidget()) {
@@ -523,12 +523,6 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_TIMER:
         AscAppManager::getInstance().CheckKeyboard();
-        break;
-
-    case UM_INSTALL_UPDATE:
-        QTimer::singleShot(500, this, [=](){
-            onCloseEvent();
-        });
         break;
 
     case WM_POWERBROADCAST: {

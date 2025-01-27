@@ -27,7 +27,7 @@ protected:
 private:
     std::wstring m_text;
     HICON m_hIcon;
-    HENHMETAFILE m_hMetaFile;
+    Gdiplus::Bitmap *m_hEmfBmp;
     Gdiplus::Bitmap *m_hBmp;
     bool  m_multiline;
 };

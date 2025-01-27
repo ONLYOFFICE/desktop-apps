@@ -118,15 +118,19 @@ void DrawingEngine::FillBackground() const
 
 void DrawingEngine::DrawBorder() const
 {
-    HPEN hPen = CreatePen(PS_SOLID, m_ds->metrics()->value(Metrics::BorderWidth), m_ds->palette()->color(Palette::Border));
-    HPEN oldPen = (HPEN)SelectObject(m_hdc, hPen);
-    MoveToEx(m_hdc, m_rc->left, m_rc->top, NULL);
-    LineTo(m_hdc, m_rc->right - 1, m_rc->top);
-    LineTo(m_hdc, m_rc->right - 1, m_rc->bottom - 1);
-    LineTo(m_hdc, m_rc->left, m_rc->bottom - 1);
-    LineTo(m_hdc, m_rc->left, m_rc->top);
-    SelectObject(m_hdc, oldPen);
-    DeleteObject(hPen);
+    RECT rc;
+    SetRect(&rc, m_rc->left, m_rc->top, m_rc->right, m_rc->bottom);
+    HBRUSH brdBrush = CreateSolidBrush(m_ds->palette()->color(Palette::Border));
+    HBRUSH oldBrdBrush = (HBRUSH)SelectObject(m_hdc, brdBrush);
+    for (int i = 0; i < m_ds->metrics()->value(Metrics::BorderWidth); i++) {
+        FrameRect(m_hdc, &rc, brdBrush);
+        rc.left += i + 1;
+        rc.top += i + 1;
+        rc.right -= i + 1;
+        rc.bottom -= i + 1;
+    }
+    SelectObject(m_hdc, oldBrdBrush);
+    DeleteObject(brdBrush);
 }
 
 void DrawingEngine::DrawTopBorder(int brdWidth, COLORREF brdColor) const
@@ -146,25 +150,17 @@ void DrawingEngine::DrawIcon(HICON hIcon) const
     DrawIconEx(m_hdc, x, y, hIcon, m_ds->metrics()->value(Metrics::IconWidth), m_ds->metrics()->value(Metrics::IconHeight), 0, NULL, DI_NORMAL);
 }
 
-void DrawingEngine::DrawEmfIcon(HENHMETAFILE hIcon) const
+void DrawingEngine::DrawEmfIcon(Gdiplus::Bitmap *hEmfBmp) const
 {
-    int x = m_rc->left + (m_rc->right - m_rc->left - m_ds->metrics()->value(Metrics::IconWidth)) / 2;
-    int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
-    RECT _rc{x, y, x + m_ds->metrics()->value(Metrics::IconWidth), y + m_ds->metrics()->value(Metrics::IconHeight)};
-    SetGraphicsMode(m_hdc, GM_ADVANCED);
-    SetPolyFillMode(m_hdc, WINDING);
-    SetStretchBltMode(m_hdc, HALFTONE);
-    SetBrushOrgEx(m_hdc, 0, 0, nullptr);
-    PlayEnhMetaFile(m_hdc, hIcon, &_rc);
-    // Gdiplus::Graphics gr(m_hdc);
-    // gr.SetInterpolationMode(Gdiplus::InterpolationModeBilinear);
+    int w = m_ds->metrics()->value(Metrics::IconWidth);
+    int h = m_ds->metrics()->value(Metrics::IconHeight);
+    int x = m_rc->left + (m_rc->right - m_rc->left - w) / 2;
+    int y = m_rc->top + (m_rc->bottom - m_rc->top - h) / 2;
+    Gdiplus::Graphics gr(m_hdc);
+    // gr.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
     // gr.SetPixelOffsetMode(Gdiplus::PixelOffsetModeHighQuality);
-    // gr.SetSmoothingMode(Gdiplus::SmoothingMode::SmoothingModeAntiAlias);
-    // int x = m_rc->left + (m_rc->right - m_rc->left - m_ds->metrics()->value(Metrics::IconWidth)) / 2;
-    // int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
-    // Gdiplus::Metafile mf(hIcon);
-    // mf.ConvertToEmfPlus(&gr, NULL , Gdiplus::EmfTypeEmfPlusOnly, NULL);
-    // gr.DrawImage(&mf, x, y, m_ds->metrics()->value(Metrics::IconWidth), m_ds->metrics()->value(Metrics::IconHeight));
+    // gr.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
+    gr.DrawImage(hEmfBmp, x, y, w, h);
 }
 
 void DrawingEngine::DrawImage(Gdiplus::Bitmap *hBmp) const
@@ -249,7 +245,7 @@ void DrawingEngine::DrawStockRestoreIcon()
 
 void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
 {
-    int x = m_rc->left;
+    int x = m_rc->left + 1;
     int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
 
     m_memDC = CreateCompatibleDC(m_hdc);
@@ -313,7 +309,7 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
 
 void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
 {
-    int x = m_rc->left;
+    int x = m_rc->left + 1;
     int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
 
     m_memDC = CreateCompatibleDC(m_hdc);

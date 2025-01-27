@@ -8,7 +8,7 @@
 #define APP_LAUNCH_NAME           "\\DesktopEditors.exe"
 
 #define CAPTION
-#define MSG_ERR_ARCH
+#define MSG_ERR_SYSTEM
 #define MSG_ERR_ALREADY_RUNNING
 #define MSG_ERR_CLOSE_APP
 #define MSG_REMOVE
@@ -43,7 +43,7 @@
 #define BUTTON_CLOSE
 #define BUTTON_BACK
 #define RADIO_UPDATE
-#define RADIO_REPAIR
+// #define RADIO_REPAIR
 #define RADIO_UNINST
 #define CHECK_SILENT
 #define CHECK_LAUNCH

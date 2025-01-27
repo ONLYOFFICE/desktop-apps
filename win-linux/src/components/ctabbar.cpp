@@ -124,6 +124,7 @@ Tab::Tab(QWidget *parent) :
 
     text_label = new QLabel(this);
     text_label->setObjectName("tabText");
+    text_label->setTextFormat(Qt::PlainText);
     text_label->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignVCenter | Qt::AlignAbsolute);
     text_label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     lut->addWidget(text_label);
@@ -225,11 +226,17 @@ void Tab::refreshIcon(const QString& themetype)
 void Tab::refreshTextColor()
 {
     const CTheme & _app_theme = AscAppManager::themes().current();
-    const CTheme & _tab_theme = tab_theme_type == "dark" ? AscAppManager::themes().defaultDark() :
-                                                            AscAppManager::themes().defaultLight();
+    std::wstring text_color;
+    if (tab_theme_type == "dark") {
+        text_color = _app_theme.isDark() ? _app_theme.value(CTheme::ColorRole::ecrTabSimpleActiveText) :
+                         _app_theme.value(CTheme::ColorRole::ecrTextInverse);
+    } else {
+        text_color = _app_theme.isDark() ? _app_theme.value(CTheme::ColorRole::ecrTextInverse) :
+                         _app_theme.value(CTheme::ColorRole::ecrTabSimpleActiveText);
+    }
 
     QString _styles = "#tabText{color:" + QString::fromStdWString(_app_theme.value(CTheme::ColorRole::ecrTabSimpleActiveText)) + ";}"
-                      "[selected=true] #tabText{color:" + QString::fromStdWString(_tab_theme.value(CTheme::ColorRole::ecrTabSimpleActiveText)) + ";}";
+                      "[selected=true] #tabText{color:" + QString::fromStdWString(text_color) + ";}";
     text_label->setStyleSheet(_styles);
 }
 

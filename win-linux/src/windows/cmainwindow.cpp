@@ -708,7 +708,7 @@ int CMainWindow::trySaveDocument(int index)
         toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
-        modal_res = CMessage::showMessage(this, getSaveMessage().arg(m_pTabs->titleByIndex(index)),
+        modal_res = CMessage::showMessage(this, getSaveMessage().arg(m_pTabs->titleByIndex(index).toHtmlEscaped()),
                                           MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
         switch (modal_res) {
         case MODAL_RESULT_NO: break;
@@ -740,7 +740,7 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
     connect(actCloseSaved, &QAction::triggered, this, [=]() {
             for (int i(m_pTabs->count()); !(--i < 0);) {
                 CAscTabData *doc = m_pTabs->panel(i)->data();
-                if (doc->isViewType(cvwtEditor) && !doc->closed() && doc->isLocal() && !doc->hasChanges() && !doc->url().empty()) {
+                if (doc->isViewType(cvwtEditor) && !doc->closed() && !doc->hasChanges() && !m_pTabs->panel(i)->hasUncommittedChanges() && !doc->url().empty()) {
                     onTabCloseRequest(i);
                     Utils::processMoreEvents();
                 }
@@ -814,13 +814,15 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
         actCreateNew->setIcon(IconFactory::icon(IconFactory::CreateNew, SMALL_ICON * m_dpiRatio));
         AscEditorType etype = panel->data()->contentType();
         actCreateNew->setEnabled(panel->isReady() && (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
-                                                      etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf));
+                                                      etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf /*||
+                                                      etype == AscEditorType::etDraw*/));
         connect(actCreateNew, &QAction::triggered, this, [=]() {
                 int index = m_pTabs->tabBar()->tabMenuIndex(menu);
                 AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
                 std::wstring cmd = etype == AscEditorType::etDocument ? L"--new:word" :
                                        etype == AscEditorType::etPresentation ? L"--new:slide" :
                                        etype == AscEditorType::etSpreadsheet ? L"--new:cell" :
+                                       // etype == AscEditorType::etDraw ? L"--new:draw" :
                                        etype == AscEditorType::etPdf ? L"--new:form" : L"";
                 if (!cmd.empty())
                     AscAppManager::handleInputCmd({cmd});
@@ -863,7 +865,7 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
                 if ( _doc.isViewType(cvwtEditor) && !_doc.closed() &&
                         _is_url_starts_with(QString::fromStdWString(_doc.url()), _portals) )
                 {
-                    if ( _doc.hasChanges() ) {
+                    if ( _doc.hasChanges() || m_pTabs->panel(i)->hasUncommittedChanges() ) {
                         _answer = trySaveDocument(i);
                         if ( _answer == MODAL_RESULT_CANCEL) {
                             AscAppManager::cancelClose();
@@ -967,7 +969,7 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
-            int modal_res = CMessage::showMessage(this, tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+            int modal_res = CMessage::showMessage(this, tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
                                                   MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if (modal_res == MODAL_RESULT_YES) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
@@ -1022,7 +1024,7 @@ void CMainWindow::onLocalFileLocation(QString path)
         if ( _info.exists() ) {
             Utils::openFileLocation(_path);
         } else {
-            int res = CMessage::showMessage(this, QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+            int res = CMessage::showMessage(this, QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
                                                 MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if ( res == MODAL_RESULT_YES )
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
@@ -1158,7 +1160,7 @@ void CMainWindow::onDocumentReady(int uid)
         if (CMenu *menu = m_pTabs->tabBar()->tabMenu(index)) {
             AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
             if (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
-                    etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf) {
+                    etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf /*|| etype == AscEditorType::etDraw*/) {
                 menu->setSectionEnabled(CMenu::ActionCreateNew, true);
             }
         }

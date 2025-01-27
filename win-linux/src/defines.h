@@ -53,10 +53,11 @@
 # define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
 # define APP_REG_NAME  "ONLYOFFICE Editors"
 # define REG_GROUP_KEY "ONLYOFFICE"
+# define REG_UNINST_KEY "ONLYOFFICE Desktop Editors"
 # define APP_MUTEX_NAME "TEAMLAB"
 #endif
 
-#define WINDOW_NAME "ONLYOFFICE Desktop Editors"
+#define WINDOW_NAME "ONLYOFFICE"
 #define WINDOW_TITLE WINDOW_NAME
 #define WINDOW_CLASS_NAME L"DocEditorsWindowClass"
 #define WINDOW_EDITOR_CLASS_NAME L"SingleWindowClass"

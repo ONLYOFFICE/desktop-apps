@@ -73,6 +73,7 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     case AscEditorType::etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
     case AscEditorType::etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
     case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
+    case AscEditorType::etDraw: c = theme.value(CTheme::ColorRole::ecrTabDrawActive); break;
     }
     QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
 #ifdef __linux__
@@ -87,6 +88,7 @@ auto editor_color(AscEditorType type) -> QColor {
     case AscEditorType::etPresentation: return GetColorByRole(ecrTabSlideActive);
     case AscEditorType::etSpreadsheet: return GetColorByRole(ecrTabCellActive);
     case AscEditorType::etPdf: return GetColorByRole(ecrTabViewerActive);
+    case AscEditorType::etDraw: return GetColorByRole(ecrTabDrawActive);
     default: return GetColorByRole(ecrTabWordActive);
     }
 }
@@ -503,6 +505,10 @@ public:
             break;
         case AscEditorType::etPdf:
             background = GetColorValueByRole(ecrTabViewerActive);
+            border = background;
+            break;
+        case AscEditorType::etDraw:
+            background = GetColorValueByRole(ecrTabDrawActive);
             border = background;
             break;
         default:

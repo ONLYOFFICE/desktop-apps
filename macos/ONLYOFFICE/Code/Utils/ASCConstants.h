@@ -159,6 +159,7 @@ static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificateP
 + (NSArray *)documents;
 + (NSArray *)spreadsheets;
 + (NSArray *)presentations;
++ (NSArray *)draws;
 + (NSArray *)plugins;
 + (NSArray *)csvtxt;
 + (NSArray *)cancryptformats;

@@ -30,11 +30,11 @@ void ProgressBar::pulse(bool enable)
     m_pulse_pos = enable ? 0 : -1;
     m_pulse_direction = 1;
     if (enable) {
-        timeBeginPeriod(1);
+        // timeBeginPeriod(1);
         SetTimer(m_hWnd, PROGRESS_PULSE_TIMER_ID, 17, NULL);
     } else {
         KillTimer(m_hWnd, PROGRESS_PULSE_TIMER_ID);
-        timeEndPeriod(1);
+        // timeEndPeriod(1);
     }
 }
 

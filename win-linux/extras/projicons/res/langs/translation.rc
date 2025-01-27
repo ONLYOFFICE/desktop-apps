@@ -33,6 +33,10 @@ BEGIN
     IDS_NEW_XLSX  "New Office Open XML Spreadsheet"
     IDS_NEW_PPTX  "New Office Open XML Presentation"
     IDS_NEW_PDF   "New PDF Form"
+
+    IDS_JUMP_DOCX  "New document"
+    IDS_JUMP_XLSX  "New spreadsheet"
+    IDS_JUMP_PPTX  "New presentation"
 END
 
 LANGUAGE LANG_ARABIC, SUBLANG_ARABIC_SAUDI_ARABIA
@@ -47,6 +51,10 @@ BEGIN
     IDS_NEW_XLSX  "جديد Office Open XML جدول بياني"
     IDS_NEW_PPTX  "جديد Office Open XML عرض تقديمي"
     IDS_NEW_PDF   "نموذج PDF جديد"
+
+    IDS_JUMP_DOCX  "مستند جديد"
+    IDS_JUMP_XLSX  "جدول بياني جديد"
+    IDS_JUMP_PPTX  "عرض تقديمي جديد"
 END
 
 LANGUAGE LANG_BULGARIAN, SUBLANG_DEFAULT
@@ -61,6 +69,10 @@ BEGIN
     IDS_NEW_XLSX  "Нова Office Open XML таблица"
     IDS_NEW_PPTX  "Нова Office Open XML презентация"
     IDS_NEW_PDF   "Нов PDF формуляр"
+
+    IDS_JUMP_DOCX  "Нов документ"
+    IDS_JUMP_XLSX  "Нова електронна таблица"
+    IDS_JUMP_PPTX  "Нова презентация"
 END
 
 LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
@@ -75,6 +87,10 @@ BEGIN
     IDS_NEW_XLSX  "Nou full de càlcul Office Open XML"
     IDS_NEW_PPTX  "Nova presentació Office Open XML"
     IDS_NEW_PDF   "Nou formulari PDF"
+
+    IDS_JUMP_DOCX  "Nou document"
+    IDS_JUMP_XLSX  "Nou full de càlcul"
+    IDS_JUMP_PPTX  "Nova presentació"
 END
 
 LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
@@ -89,6 +105,10 @@ BEGIN
     IDS_NEW_XLSX  "Nový tabulkový procesor Office Open XML"
     IDS_NEW_PPTX  "Nová prezentace Office Open XML"
     IDS_NEW_PDF   "Nový PDF formulář"
+
+    IDS_JUMP_DOCX  "Nový dokument"
+    IDS_JUMP_XLSX  "Nový sešit"
+    IDS_JUMP_PPTX  "Nová prezentace"
 END
 
 LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
@@ -103,6 +123,10 @@ BEGIN
     IDS_NEW_XLSX  "Νέα υπολογιστικό φύλλο Office με ανοιχτή μορφή XML"
     IDS_NEW_PPTX  "Νέα παρουσίαση Office με ανοιχτή μορφή XML"
     IDS_NEW_PDF   "Νέα φόρμα PDF"
+
+    IDS_JUMP_DOCX  "Νέο έγγραφο"
+    IDS_JUMP_XLSX  "Νέο λογιστικό φύλλο"
+    IDS_JUMP_PPTX  "Νέα παρουσίαση"
 END
 
 LANGUAGE LANG_FINNISH, SUBLANG_DEFAULT
@@ -117,6 +141,10 @@ BEGIN
     IDS_NEW_XLSX  "Uusi Officen avoin XML-laskentataulukko"
     IDS_NEW_PPTX  "Uusi Officen avoin XML-esitys"
     IDS_NEW_PDF   "Uusi PDF-lomake"
+
+    IDS_JUMP_DOCX  "Uusi asiakirja"
+    IDS_JUMP_XLSX  "Uusi laskentataulukko"
+    IDS_JUMP_PPTX  "Uusi esitys"
 END
 
 LANGUAGE LANG_LAO, SUBLANG_DEFAULT
@@ -131,6 +159,10 @@ BEGIN
     IDS_NEW_XLSX  "ເປີດຕາຕະລາງ XML ໃໝ່"
     IDS_NEW_PPTX  "ການນຳສະເໜີ XML ໃໝ່"
     IDS_NEW_PDF   "ແບບຟອມ PDF ໃໝ່"
+
+    IDS_JUMP_DOCX  "ເອກະສານໃໝ່"
+    IDS_JUMP_XLSX  "ຕາຕະລາງໃໝ່"
+    IDS_JUMP_PPTX  "ບົດນຳສະເໜີໃໝ່"
 END
 
 LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
@@ -145,6 +177,10 @@ BEGIN
     IDS_NEW_XLSX  "Nieuwe Office Open XML-spreadsheet"
     IDS_NEW_PPTX  "Nieuwe Office Open XML-presentatie"
     IDS_NEW_PDF   "Nieuw PDF-formulier"
+
+    IDS_JUMP_DOCX  "Nieuw Document"
+    IDS_JUMP_XLSX  "Nieuw werkblad"
+    IDS_JUMP_PPTX  "Nieuwe presentatie"
 END
 
 LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
@@ -177,20 +213,28 @@ BEGIN
     IDS_NEW_XLSX  "Neue Office Open XML-Tabellenkalkulation"
     IDS_NEW_PPTX  "Neue Office Open XML-Präsentation"
     IDS_NEW_PDF   "Neues PDF-Formular"
+
+    IDS_JUMP_DOCX  "Neues Dokument"
+    IDS_JUMP_XLSX  "Neue Tabelle"
+    IDS_JUMP_PPTX  "Neue Präsentation"
 END
 
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 STRINGTABLE
 BEGIN
     IDS_DOCX  "Document Office Open XML"
-    IDS_XLSX  "Classeur Office Open XML"
+    IDS_XLSX  "Feuille de calcul Office Open XML"
     IDS_PPTX  "Présentation Office Open XML"
     IDS_PDF   "Formulaire PDF"
 
     IDS_NEW_DOCX  "Nouveau document Office Open XML"
-    IDS_NEW_XLSX  "Nouveau classeur Office Open XML"
+    IDS_NEW_XLSX  "Nouvelle feuille de calcul Office Open XML"
     IDS_NEW_PPTX  "Nouvelle présentation Office Open XML"
     IDS_NEW_PDF   "Nouveau formulaire PDF"
+
+    IDS_JUMP_DOCX  "Nouveau document"
+    IDS_JUMP_XLSX  "Nouvelle feuille de calcul"
+    IDS_JUMP_PPTX  "Nouvelle présentation"
 END
 
 LANGUAGE LANG_SPANISH, SUBLANG_SPANISH
@@ -205,6 +249,10 @@ BEGIN
     IDS_NEW_XLSX  "Nueva hoja de cálculo Office Open XML"
     IDS_NEW_PPTX  "Nueva presentación Office Open XML"
     IDS_NEW_PDF   "Nuevo formulario PDF"
+
+    IDS_JUMP_DOCX  "Nuevo documento"
+    IDS_JUMP_XLSX  "Nueva hoja de cálculo"
+    IDS_JUMP_PPTX  "Nueva presentación"
 END
 
 LANGUAGE LANG_INDONESIAN, SUBLANG_DEFAULT
@@ -219,6 +267,10 @@ BEGIN
     IDS_NEW_XLSX  "Office Open XML Spreadsheet baru"
     IDS_NEW_PPTX  "Office Open XML Presentation baru"
     IDS_NEW_PDF   "Formulir PDF baru"
+
+    IDS_JUMP_DOCX  "Dokumen baru"
+    IDS_JUMP_XLSX  "Lembar kerja baru"
+    IDS_JUMP_PPTX  "Presentasi baru"
 END
 
 LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
@@ -233,6 +285,10 @@ BEGIN
     IDS_NEW_XLSX  "Nuovo foglio di calcolo Open Office XML"
     IDS_NEW_PPTX  "Nuova presentazione Open Office XML"
     IDS_NEW_PDF   "Nuovo modulo PDF"
+
+    IDS_JUMP_DOCX  "Nuovo documento"
+    IDS_JUMP_XLSX  "Nuovo foglio elettronico"
+    IDS_JUMP_PPTX  "Nuova presentazione"
 END
 
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
@@ -247,6 +303,10 @@ BEGIN
     IDS_NEW_XLSX  "Nova planilha do Office Open XML"
     IDS_NEW_PPTX  "Nova apresentação do Office Open XML"
     IDS_NEW_PDF   "Novo formulário PDF"
+
+    IDS_JUMP_DOCX  "Novo documento"
+    IDS_JUMP_XLSX  "Nova planilha"
+    IDS_JUMP_PPTX  "Nova apresentação"
 END
 
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
@@ -261,6 +321,10 @@ BEGIN
     IDS_NEW_XLSX  "Nova folha de cálculo XML Open Office"
     IDS_NEW_PPTX  "Nova apresentação em XML Open Office"
     IDS_NEW_PDF   "Novo formulário PDF"
+
+    IDS_JUMP_DOCX  "Novo documento"
+    IDS_JUMP_XLSX  "Nova folha de cálculo"
+    IDS_JUMP_PPTX  "Nova apresentação"
 END
 
 LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
@@ -275,6 +339,10 @@ BEGIN
     IDS_NEW_XLSX  "Nowy arkusz kalkulacyjny Open Office XML"
     IDS_NEW_PPTX  "Nowa prezentacja Open Office XML"
     IDS_NEW_PDF   "Nowy formularz PDF"
+
+    IDS_JUMP_DOCX  "Nowy dokument"
+    IDS_JUMP_XLSX  "Nowy arkusz kalkulacyjny"
+    IDS_JUMP_PPTX  "Nowa prezentacja"
 END
 
 LANGUAGE LANG_ROMANIAN, SUBLANG_DEFAULT
@@ -289,6 +357,10 @@ BEGIN
     IDS_NEW_XLSX  "Foaia de calcul Office Open XML noua"
     IDS_NEW_PPTX  "Prezentare Office Open XML noua"
     IDS_NEW_PDF   "Formular PDF nou"
+
+    IDS_JUMP_DOCX  "Document nou"
+    IDS_JUMP_XLSX  "Foaie de calcul nouă"
+    IDS_JUMP_PPTX  "Prezentare nouă"
 END
 
 LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
@@ -303,6 +375,10 @@ BEGIN
     IDS_NEW_XLSX  "Nová tabuľka Office Open XML"
     IDS_NEW_PPTX  "Nová prezentácia Office Open XML"
     IDS_NEW_PDF   "Nový formulár PDF"
+
+    IDS_JUMP_DOCX  "Nový dokument"
+    IDS_JUMP_XLSX  "Nová tabuľka"
+    IDS_JUMP_PPTX  "Nová prezentácia"
 END
 
 LANGUAGE LANG_SLOVENIAN, SUBLANG_DEFAULT
@@ -317,6 +393,10 @@ BEGIN
     IDS_NEW_XLSX  "Nova Office Open XML preglednica"
     IDS_NEW_PPTX  "Nova Office Open XML predstavitev"
     IDS_NEW_PDF   "Novi PDF obrazec"
+
+    IDS_JUMP_DOCX  "Nov dokument"
+    IDS_JUMP_XLSX  "Nova razpredelnica"
+    IDS_JUMP_PPTX  "Nova predstavitev"
 END
 
 LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
@@ -331,6 +411,10 @@ BEGIN
     IDS_NEW_XLSX  "Nytt Office Open XML-kalkylblad"
     IDS_NEW_PPTX  "Ny Office Open XML-presentation"
     IDS_NEW_PDF   "Nytt PDF-formulär"
+
+    IDS_JUMP_DOCX  "Nytt dokument"
+    IDS_JUMP_XLSX  "Nytt kalkylblad"
+    IDS_JUMP_PPTX  "Ny presentation"
 END
 
 LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
@@ -345,6 +429,10 @@ BEGIN
     IDS_NEW_XLSX  "Yeni Office Open XML Elektronik Tablosu"
     IDS_NEW_PPTX  "Yeni Office Open XML Sunumu"
     IDS_NEW_PDF   "Yeni PDF Formu"
+
+    IDS_JUMP_DOCX  "Yeni Belge"
+    IDS_JUMP_XLSX  "Yeni Hesap Tablosu"
+    IDS_JUMP_PPTX  "Yeni Sunum"
 END
 
 LANGUAGE LANG_VIETNAMESE, SUBLANG_DEFAULT
@@ -359,6 +447,10 @@ BEGIN
     IDS_NEW_XLSX  "Bảng tính Office Open XML mới"
     IDS_NEW_PPTX  "Bản trình bày Office Open XML mới"
     IDS_NEW_PDF   "Mẫu PDF mới"
+
+    IDS_JUMP_DOCX  "Tài liệu mới"
+    IDS_JUMP_XLSX  "Bảng tính mới"
+    IDS_JUMP_PPTX  "Bản trình chiếu mới"
 END
 
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
@@ -373,6 +465,10 @@ BEGIN
     IDS_NEW_XLSX  "新建 Office Open XML 电子表格"
     IDS_NEW_PPTX  "新建 Office Open XML 演示文稿"
     IDS_NEW_PDF   "新建 PDF 表单"
+
+    IDS_JUMP_DOCX  "新建文档"
+    IDS_JUMP_XLSX  "新建表格"
+    IDS_JUMP_PPTX  "新建幻灯片"
 END
 
 LANGUAGE LANG_ARMENIAN, SUBLANG_DEFAULT
@@ -387,6 +483,10 @@ BEGIN
     IDS_NEW_XLSX  "Նոր Office Open XML աղյուսակ"
     IDS_NEW_PPTX  "Նոր Office Open XML ներկայացում"
     IDS_NEW_PDF   "Նոր PDF Ֆորմ"
+
+    IDS_JUMP_DOCX  "Նոր փաստաթուղթ"
+    IDS_JUMP_XLSX  "Նոր աղյուսակաթերթ"
+    IDS_JUMP_PPTX  "Նոր ներկայացում"
 END
 
 LANGUAGE LANG_DANISH, SUBLANG_DEFAULT
@@ -401,6 +501,10 @@ BEGIN
     IDS_NEW_XLSX  "Nyt Office Open XML-regneark"
     IDS_NEW_PPTX  "Ny Office Open XML-præsentation"
     IDS_NEW_PDF   "Ny PDF-formular"
+
+    IDS_JUMP_DOCX  "Nyt dokument"
+    IDS_JUMP_XLSX  "Nyt regneark"
+    IDS_JUMP_PPTX  "Ny præsentation"
 END
 
 LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
@@ -415,6 +519,10 @@ BEGIN
     IDS_NEW_XLSX  "Új Office Open XML munkafüzet"
     IDS_NEW_PPTX  "Új Office Open XML prezentáció"
     IDS_NEW_PDF   "Új PDF űrlap"
+
+    IDS_JUMP_DOCX  "Új dokumentum"
+    IDS_JUMP_XLSX  "Új táblázat"
+    IDS_JUMP_PPTX  "Új bemutató"
 END
 
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
@@ -429,6 +537,10 @@ BEGIN
     IDS_NEW_XLSX  "新しいOffice オープン XML スプレッドシート"
     IDS_NEW_PPTX  "新しいOfficeオープンXMLプレゼンテーション"
     IDS_NEW_PDF   "新しいPDFフォーム"
+
+    IDS_JUMP_DOCX  "新しいドキュメント"
+    IDS_JUMP_XLSX  "新しいスプレッドシート"
+    IDS_JUMP_PPTX  "新しいプレゼンテーション"
 END
 
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
@@ -443,6 +555,10 @@ BEGIN
     IDS_NEW_XLSX  "새로운 Office Open XML 스프레드시트"
     IDS_NEW_PPTX  "새로운 Office Open XML 프레젠테이션"
     IDS_NEW_PDF   "새로운 PDF 양식"
+
+    IDS_JUMP_DOCX  "신규 문서"
+    IDS_JUMP_XLSX  "새로운 스프레드 시트"
+    IDS_JUMP_PPTX  "새 프리젠 테이션"
 END
 
 LANGUAGE LANG_LATVIAN, SUBLANG_DEFAULT
@@ -457,6 +573,10 @@ BEGIN
     IDS_NEW_XLSX  "Jauna Office Open XML izklājlapa"
     IDS_NEW_PPTX  "Jauna Office Open XML prezentācija"
     IDS_NEW_PDF   "Jauna PDF veidlapa"
+
+    IDS_JUMP_DOCX  "Jauns dokuments"
+    IDS_JUMP_XLSX  "Jauna tabula"
+    IDS_JUMP_PPTX  "Jauna prezentācija"
 END
 
 LANGUAGE LANG_NORWEGIAN, SUBLANG_DEFAULT
@@ -471,6 +591,10 @@ BEGIN
     IDS_NEW_XLSX  "Nytt Office Open XML-regneark"
     IDS_NEW_PPTX  "Ny Office Open XML-presentasjon"
     IDS_NEW_PDF   "Nytt PDF-skjema"
+
+    IDS_JUMP_DOCX  "Nytt dokument"
+    IDS_JUMP_XLSX  "Nytt regneark"
+    IDS_JUMP_PPTX  "Ny presentasjon"
 END
 
 LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
@@ -485,6 +609,10 @@ BEGIN
     IDS_NEW_XLSX  "Нова електронна таблиця Office Open XML"
     IDS_NEW_PPTX  "Нова презентація Office Open XML"
     IDS_NEW_PDF   "Нова PDF-форма"
+
+    IDS_JUMP_DOCX  "Новий документ"
+    IDS_JUMP_XLSX  "Нова таблиця"
+    IDS_JUMP_PPTX  "Нова презентація"
 END
 
 LANGUAGE LANG_BELARUSIAN, SUBLANG_DEFAULT
@@ -499,6 +627,10 @@ BEGIN
     IDS_NEW_XLSX  "Новая электронная табліца Office Open XML"
     IDS_NEW_PPTX  "Новая прэзентацыя Office Open XML"
     IDS_NEW_PDF   "Новая форма PDF"
+
+    IDS_JUMP_DOCX  "Новы дакумент"
+    IDS_JUMP_XLSX  "Новая электронная табліца"
+    IDS_JUMP_PPTX  "Новая прэзентацыя"
 END
 
 LANGUAGE LANG_GALICIAN, SUBLANG_DEFAULT
@@ -513,6 +645,10 @@ BEGIN
     IDS_NEW_XLSX  "Nova folla de cálcula Office Open XML"
     IDS_NEW_PPTX  "Nova presentación do Office Open XML"
     IDS_NEW_PDF   "Novo formulario PDF"
+
+    IDS_JUMP_DOCX  "Novo documento"
+    IDS_JUMP_XLSX  "Nova folla de cálculo"
+    IDS_JUMP_PPTX  "Nova presentación"
 END
 
 LANGUAGE LANG_SINHALESE, SUBLANG_DEFAULT
@@ -527,6 +663,10 @@ BEGIN
     IDS_NEW_XLSX  "නව ඔෆිස් විවෘත XML පැතුරුම්පත"
     IDS_NEW_PPTX  "නව ඔෆිස් විවෘත XML සමර්පණය"
     IDS_NEW_PDF   "නව PDF පෝරමය"
+
+    IDS_JUMP_DOCX  "නව ලේඛනය"
+    IDS_JUMP_XLSX  "නව පැතුරුම්පත"
+    IDS_JUMP_PPTX  "නව සමර්පණය"
 END
 
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
@@ -541,6 +681,10 @@ BEGIN
     IDS_NEW_XLSX  "新的 Office Open XML 試算表"
     IDS_NEW_PPTX  "新的 Office Open XML 簡報"
     IDS_NEW_PDF   "新的 PDF 表格"
+
+    IDS_JUMP_DOCX  "新文件"
+    IDS_JUMP_XLSX  "新試算表"
+    IDS_JUMP_PPTX  "新簡報"
 END
 
 LANGUAGE LANG_SERBIAN, SUBLANG_SERBIAN_LATIN
@@ -555,6 +699,10 @@ BEGIN
     IDS_NEW_XLSX  "Nova Office Open XML proračunska tabela"
     IDS_NEW_PPTX  "Nova Office Open XML prezentacija"
     IDS_NEW_PDF   "Novi PDF formular"
+
+    IDS_JUMP_DOCX  "Novi dokument"
+    IDS_JUMP_XLSX  "Nova proračunska tabela"
+    IDS_JUMP_PPTX  "Nova prezentacija"
 END
 
 LANGUAGE LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC
@@ -569,6 +717,10 @@ BEGIN
     IDS_NEW_XLSX  "Нова Office Open XML прорачунска табела"
     IDS_NEW_PPTX  "Нова Office Open XML презентација"
     IDS_NEW_PDF   "Нови PDF формулар"
+
+    IDS_JUMP_DOCX  "Нови документ"
+    IDS_JUMP_XLSX  "Нова прорачунска табела"
+    IDS_JUMP_PPTX  "Нова презентација"
 END
 
 LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
@@ -583,4 +735,26 @@ BEGIN
     IDS_NEW_XLSX  "גיליון אלקטרוני Office Open XML חדש"
     IDS_NEW_PPTX  "מצגת Office Open XML חדש"
     IDS_NEW_PDF   "טופס PDF חדש"
+
+    IDS_JUMP_DOCX  "מסמך חדש"
+    IDS_JUMP_XLSX  "גיליון אלקטרוני חדש"
+    IDS_JUMP_PPTX  "מצגת חדשה"
+END
+
+LANGUAGE LANG_ALBANIAN, SUBLANG_ALBANIAN_ALBANIA
+STRINGTABLE
+BEGIN
+    IDS_DOCX  "Dokumenti Office Open XML"
+    IDS_XLSX  "Fletëllogaritëse Office Open XML"
+    IDS_PPTX  "Prezantimi Office Open XML"
+    IDS_PDF   "Formë PDF"
+
+    IDS_NEW_DOCX  "Dokumenti Office Open XML i ri"
+    IDS_NEW_XLSX  "Fletëllogaritëse Office Open XML e re"
+    IDS_NEW_PPTX  "Prezantimi Office Open XML i ri"
+    IDS_NEW_PDF   "Formë PDF e re"
+
+    IDS_JUMP_DOCX  "Dokument i ri"
+    IDS_JUMP_XLSX  "Fletëllogaritëse e re"
+    IDS_JUMP_PPTX  "Prezantim i ri"
 END

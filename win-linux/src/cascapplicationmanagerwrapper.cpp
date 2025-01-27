@@ -308,7 +308,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             GET_REGISTRY_USER(reg_user)
             if (reg_user.value("lockPortals", false).toBool()
 #ifdef Q_OS_WIN
-                    || !IsWindowsVistaOrGreater()
+                    || Utils::getWinVersion() <= Utils::WinVer::WinVista
 #endif
             )
                 sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
@@ -926,6 +926,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 open_opts.srctype = etNewFile;
                 open_opts.format = arg.rfind(L"cell") != wstring::npos ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                                     arg.rfind(L"slide") != wstring::npos ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX :
+                                    // arg.rfind(L"draw") != wstring::npos ? AVS_OFFICESTUDIO_FILE_DRAW_VSDX :
                                     arg.rfind(L"form") != wstring::npos ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
                             /*if ( line.rfind(L"word") != wstring::npos )*/ AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
 
@@ -2253,6 +2254,7 @@ QString CAscApplicationManagerWrapper::newFileName(const std::wstring& format)
     int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
                  format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                  format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                 // format == L"draw" ? AVS_OFFICESTUDIO_FILE_DRAW_VSDX :
                  format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
     return newFileName(_f);

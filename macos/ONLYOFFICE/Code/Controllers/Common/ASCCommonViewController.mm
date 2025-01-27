@@ -445,16 +445,22 @@
                                                                  @"terminate"  : @(YES)
                                                                }];
 
+    NSMutableArray * locked_uuids = [NSMutableArray array];
     for (ASCTabView * tab in self.tabsControl.tabs) {
         if (tab.changed) {
             unsaved++;
         }
 
-        // Blockchain check
         if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+            // Blockchain check
             if ([cefView checkCloudCryptoNeedBuild]) {
                 self.shouldTerminateApp = YES;
                 return NO;
+            } else {
+                if ([cefView isSaveLocked]) {
+                    unsaved++;
+                    [locked_uuids addObject:tab.uuid];
+                }
             }
         }
     }
@@ -479,7 +485,7 @@
             
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             for (ASCTabView * tab in tabs) {
-                if (tab.changed) {
+                if (tab.changed || [locked_uuids containsObject:tab.uuid]) {
                     [self.tabsWithChanges addObject:tab];
                 } else {
                     [self.tabsControl removeTab:tab selected:NO];
@@ -701,33 +707,34 @@
 }
 
 - (void)requestSaveChangesForTab:(ASCTabView *)tab {
-    if (tab && tab.changed) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Don't Save", nil)];
-        [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
-        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
-        [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
-        [alert setAlertStyle:NSAlertStyleWarning];
+    if (tab) {
+        NSCefView * cefView = [self cefViewWithTab:tab];
+        if (tab.changed || (cefView && [cefView isSaveLocked])) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
+            [alert addButtonWithTitle:NSLocalizedString(@"Don't Save", nil)];
+            [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
+            [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
+            [alert setAlertStyle:NSAlertStyleWarning];
 
-        [self.tabsControl selectTab:tab];
+            [self.tabsControl selectTab:tab];
 
-        NSInteger returnCode = [alert runModalSheet];
+            NSInteger returnCode = [alert runModalSheet];
 
-        if(returnCode == NSAlertFirstButtonReturn) {
-            NSCefView * cefView = [self cefViewWithTab:tab];
+            if(returnCode == NSAlertFirstButtonReturn) {
+                tab.params[@"shouldClose"] = @(YES);
 
-            tab.params[@"shouldClose"] = @(YES);
-
-            if (cefView) {
-                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
-                [cefView apply:pEvent];
+                if (cefView) {
+                    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
+                    [cefView apply:pEvent];
+                }
+            } else if (returnCode == NSAlertSecondButtonReturn) {
+                [self.tabsControl removeTab:tab];
+            } else if (returnCode == NSAlertThirdButtonReturn) {
+                self.shouldTerminateApp = NO;
+                self.shouldLogoutPortal = NO;
             }
-        } else if (returnCode == NSAlertSecondButtonReturn) {
-            [self.tabsControl removeTab:tab];
-        } else if (returnCode == NSAlertThirdButtonReturn) {
-            self.shouldTerminateApp = NO;
-            self.shouldLogoutPortal = NO;
         }
     }
 }
@@ -1117,6 +1124,7 @@
         [filter addObjectsFromArray:[ASCConstants documents]];
         [filter addObjectsFromArray:[ASCConstants spreadsheets]];
         [filter addObjectsFromArray:[ASCConstants presentations]];
+        [filter addObjectsFromArray:[ASCConstants draws]];
         
         openPanel.canChooseDirectories = NO;
         openPanel.allowsMultipleSelection = NO;
@@ -1332,6 +1340,7 @@
             };
             
             NSMutableArray * portalTabs = [NSMutableArray array];
+            NSMutableArray * saveLockedTabs = [NSMutableArray array];
             NSInteger unsaved = 0;
             
             for (ASCTabView * tab in self.tabsControl.tabs) {
@@ -1347,15 +1356,17 @@
                 }
                 
                 if ( _is_array_contains_url(portals, tabVirtualUrl) ) {
+                    NSCefView * cefView = [self cefViewWithTab:tab];
                     if ( isReload ) {
-                        if ( NSCefView * cefView = [self cefViewWithTab:tab] ) {
+                        if ( cefView ) {
                             [cefView reload];
                         }
                     } else {
                         [portalTabs addObject:tab];
                         
-                        if (tab.changed) {
+                        if (tab.changed || (cefView && [cefView isSaveLocked])) {
                             unsaved++;
+                            [saveLockedTabs addObject:tab.uuid];
                         }
                     }
                 }
@@ -1379,7 +1390,7 @@
                         // "Review Changes..." clicked
                         
                         for (ASCTabView * tab in portalTabs) {
-                            if (tab.changed) {
+                            if (tab.changed || [saveLockedTabs containsObject:tab.uuid]) {
                                 [self.tabsWithChanges addObject:tab];
                             } else {
                                 [self.tabsControl removeTab:tab selected:NO];
@@ -2010,7 +2021,7 @@
             return NO;
         }
 
-        if (tab.changed) {
+        if (tab.changed || (cefView && [cefView isSaveLocked])) {
             [self requestSaveChangesForTab:tab];
             return NO;
         }
