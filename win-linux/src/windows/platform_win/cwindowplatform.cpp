@@ -525,12 +525,6 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         AscAppManager::getInstance().CheckKeyboard();
         break;
 
-    case UM_INSTALL_UPDATE:
-        QTimer::singleShot(500, this, [=](){
-            onCloseEvent();
-        });
-        break;
-
     case WM_POWERBROADCAST: {
         if (msg->wParam == PBT_APMRESUMEAUTOMATIC) {
             HMONITOR monitor = MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTONULL);
