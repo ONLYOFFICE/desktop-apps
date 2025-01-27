@@ -39,10 +39,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
         return 0;
     }
 
-    if (HWND hWnd = FindWindow(WINDOW_CLASS_NAME, NULL)) {
-        wstring msg(_TR(MSG_ERR_CLOSE_APP));
-        NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
-        NS_Utils::ShowMessage(msg);
+    if (!NS_Utils::checkAndWaitForAppClosure()) {
         CloseHandle(hMutex);
         return 0;
     }

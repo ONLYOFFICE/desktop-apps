@@ -173,6 +173,36 @@ namespace NS_Utils
         return false;
     }
 
+    bool checkAndWaitForAppClosure(HWND parent)
+    {
+        bool accept = true;
+        if (HWND app_hwnd = FindWindow(WINDOW_CLASS_NAME, NULL)) {
+            wstring caption(_T("    "));
+            caption.append(_TR(CAPTION));
+            wstring msg(_TR(MSG_ERR_TRY_CLOSE_APP));
+            NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
+            accept = (IDOK == MessageBox(parent, msg.c_str(), caption.c_str(), MB_ICONINFORMATION | MB_SERVICE_NOTIFICATION_NT3X | MB_APPLMODAL | MB_OKCANCEL | MB_DEFBUTTON1));
+            if (accept) {
+                PostMessage(app_hwnd, UM_INSTALL_UPDATE, 0, 0);
+                Sleep(1000);
+                while(true) {
+                    if ((app_hwnd = FindWindow(WINDOW_CLASS_NAME, NULL)) != nullptr) {
+                        wstring msg(_TR(MSG_ERR_CLOSE_APP));
+                        NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
+                        int result = MessageBox(parent, msg.c_str(), caption.c_str(), MB_ICONWARNING | MB_SERVICE_NOTIFICATION_NT3X | MB_APPLMODAL | MB_OKCANCEL | MB_DEFBUTTON1);
+                        if (result != IDOK) {
+                            accept = false;
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return accept;
+    }
+
     void InstalledVerInfo(LPCWSTR value, wstring &name, wstring &arch)
     {
         if (!name.empty())

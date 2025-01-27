@@ -92,6 +92,9 @@ sr_Cyrl_RS.MSG_ERR_ALREADY_RUNNING =Апликација већ ради.
 ;he.MSG_ERR_ALREADY_RUNNING =היישום כבר פועל.
 sq.MSG_ERR_ALREADY_RUNNING =Aplikacioni tashmë po funksionon.
 
+en.MSG_ERR_TRY_CLOSE_APP =Setup has detected that %1 is currently running. It'll be closed automatically.
+ru.MSG_ERR_TRY_CLOSE_APP =Обнаружен запущенный экземпляр %1. Он будет закрыт автоматически.
+
 en.MSG_ERR_CLOSE_APP =Setup has detected that %1 is currently running. Please close all instances of it.
 en_GB.MSG_ERR_CLOSE_APP =Setup has detected that %1 is currently running. Please close all instances of it.
 ru.MSG_ERR_CLOSE_APP =Обнаружен запущенный экземпляр %1. Пожалуйста, закройте все экземпляры приложения.

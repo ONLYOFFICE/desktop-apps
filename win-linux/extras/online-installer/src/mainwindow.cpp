@@ -381,6 +381,11 @@ void MainWindow::startUpdate()
     NS_Utils::Replace(url, _T("<file>"), url_filename);
 
     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
+            if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle())) {
+                m_bar->setProgress(0);
+                m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
+                return;
+            }
             m_bar->pulse(true);
             wstring args = L"/c \"" + tmp_path;
             args += (m_package == L"msi") ? L" /qn\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
@@ -448,6 +453,11 @@ void MainWindow::startUpdate()
 //     }
 
 //     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
+//             if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle())) {
+//                 m_bar->setProgress(0);
+//                 m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
+//                 return;
+//             }
 //             m_bar->pulse(true);
 //             wstring cmd = (m_package == L"msi") ? L"msiexec" : L"cmd",
 //                 args = (m_package == L"msi") ? L"/fvamus \"" : L"/c \"";
@@ -483,6 +493,12 @@ void MainWindow::startUpdate()
 void MainWindow::startUninstall()
 {
     m_cancelBtn->setDisabled(true);
+    if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle())) {
+        m_bar->setProgress(0);
+        m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
+        createCloseAndBackButtons();
+        return;
+    }
     m_bar->pulse(true);
     wstring args = L"/c \"" + m_uninst_cmd;
     args += (m_package == L"msi") ? L" /qn\"" : L" /VERYSILENT\"";
@@ -599,6 +615,8 @@ void MainWindow::createSelectionPage()
         wstring msg = m_uninsRadio->isChecked() ? _TR(MSG_REMOVE) : /*m_repRadio->isChecked() ? _TR(MSG_REPAIR) :*/ _TR(MSG_UPDATE);
         NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
         if (IDOK == MessageBox(nativeWindowHandle(), msg.c_str(), _TR(CAPTION), MB_ICONWARNING | MB_OKCANCEL | MB_DEFBUTTON2)) {
+            if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle()))
+                return;
             m_cenPanel->disconnect(m_resize_conn);
             m_updRadio->close();
             // m_repRadio->close();
