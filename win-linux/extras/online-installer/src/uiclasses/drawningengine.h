@@ -36,7 +36,7 @@ public:
 
     // void LayeredBegin(DrawningSurface*, HWND, RECT *rc);
     // void LayeredDrawRoundedRect() const;
-    void LayeredDrawText(RECT &rc, const std::wstring &text) const;
+    void LayeredDrawText(RECT &rc, const std::wstring &text, bool rtl = false) const;
     // void LayeredDrawShadow(int shadowWidth, int rad);
     // void LayeredUpdate(BYTE alpha);
     // void LayeredEnd();

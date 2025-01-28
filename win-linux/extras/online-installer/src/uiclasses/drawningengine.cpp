@@ -120,14 +120,17 @@ void DrawingEngine::DrawBorder() const
 {
     RECT rc;
     SetRect(&rc, m_rc->left, m_rc->top, m_rc->right, m_rc->bottom);
+    DWORD dwOldLayout = GetLayout(m_hdc);
+    if (dwOldLayout & LAYOUT_RTL)
+        rc.right -= 1;
     HBRUSH brdBrush = CreateSolidBrush(m_ds->palette()->color(Palette::Border));
     HBRUSH oldBrdBrush = (HBRUSH)SelectObject(m_hdc, brdBrush);
     for (int i = 0; i < m_ds->metrics()->value(Metrics::BorderWidth); i++) {
         FrameRect(m_hdc, &rc, brdBrush);
-        rc.left += i + 1;
-        rc.top += i + 1;
-        rc.right -= i + 1;
-        rc.bottom -= i + 1;
+        rc.left += 1;
+        rc.top += 1;
+        rc.right -= 1;
+        rc.bottom -= 1;
     }
     SelectObject(m_hdc, oldBrdBrush);
     DeleteObject(brdBrush);
@@ -252,10 +255,17 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
     m_memBmp = CreateCompatibleBitmap(m_hdc, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top);
     m_oldBmp = (HBITMAP)SelectObject(m_memDC, m_memBmp);
 
-    SetLayout(m_memDC, LAYOUT_BITMAPORIENTATIONPRESERVED);
     m_graphics = new Gdiplus::Graphics(m_memDC);
     m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
     m_graphics->Clear(ColorFromColorRef(m_ds->palette()->color(Palette::Background)));
+
+    DWORD dwOldLayout = GetLayout(m_memDC);
+    Gdiplus::Matrix origMatrix;
+    m_graphics->GetTransform(&origMatrix);
+    if (dwOldLayout & LAYOUT_RTL) {
+        Gdiplus::Matrix rtlMatrix(-1.0f, 0.0f, 0.0f, 1.0f, float(m_rc->right + m_rc->left - 1), 0.0f);
+        m_graphics->SetTransform(&rtlMatrix);
+    }
 
     Gdiplus::Pen pen(ColorFromColorRef(m_ds->palette()->color(Palette::Primitive)), m_ds->metrics()->value(Metrics::PrimitiveWidth));
     Gdiplus::Rect rc(x, y, m_ds->metrics()->value(Metrics::IconWidth) - 1, m_ds->metrics()->value(Metrics::IconHeight) - 1);
@@ -275,11 +285,13 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
     }
     if (!text.empty()) {
         RECT rc;
-        SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth), m_rc->top, m_rc->right, m_rc->bottom);
+        int offset = (dwOldLayout & LAYOUT_RTL) ? m_ds->metrics()->value(Metrics::IconWidth) : 0;
+        SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth) - offset, m_rc->top, m_rc->right - offset, m_rc->bottom);
         m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
-        LayeredDrawText(rc, text);
+        m_graphics->SetTransform(&origMatrix);
+        LayeredDrawText(rc, text, dwOldLayout & LAYOUT_RTL);
     }
-    BitBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, SRCCOPY);
+    StretchBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, SRCCOPY);
 
     delete m_graphics;
     m_graphics = nullptr;
@@ -316,10 +328,17 @@ void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
     m_memBmp = CreateCompatibleBitmap(m_hdc, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top);
     m_oldBmp = (HBITMAP)SelectObject(m_memDC, m_memBmp);
 
-    SetLayout(m_memDC, LAYOUT_BITMAPORIENTATIONPRESERVED);
     m_graphics = new Gdiplus::Graphics(m_memDC);
     m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
     m_graphics->Clear(ColorFromColorRef(m_ds->palette()->color(Palette::Background)));
+
+    DWORD dwOldLayout = GetLayout(m_memDC);
+    Gdiplus::Matrix origMatrix;
+    m_graphics->GetTransform(&origMatrix);
+    if (dwOldLayout & LAYOUT_RTL) {
+        Gdiplus::Matrix rtlMatrix(-1.0f, 0.0f, 0.0f, 1.0f, float(m_rc->right + m_rc->left - 1), 0.0f);
+        m_graphics->SetTransform(&rtlMatrix);
+    }
 
     Gdiplus::Pen pen(ColorFromColorRef(m_ds->palette()->color(Palette::Primitive)), m_ds->metrics()->value(Metrics::PrimitiveWidth));
     m_graphics->DrawEllipse(&pen, x, y, m_ds->metrics()->value(Metrics::IconHeight) - 1, m_ds->metrics()->value(Metrics::IconHeight) - 1);
@@ -329,10 +348,13 @@ void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
     }    
     if (!text.empty()) {
         RECT rc;
-        SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth), m_rc->top, m_rc->right, m_rc->bottom);
-        LayeredDrawText(rc, text);
+        int offset = (dwOldLayout & LAYOUT_RTL) ? m_ds->metrics()->value(Metrics::IconWidth) : 0;
+        SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth) - offset, m_rc->top, m_rc->right - offset, m_rc->bottom);
+        m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
+        m_graphics->SetTransform(&origMatrix);
+        LayeredDrawText(rc, text, dwOldLayout & LAYOUT_RTL);
     }
-    BitBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, SRCCOPY);
+    StretchBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, SRCCOPY);
 
     delete m_graphics;
     m_graphics = nullptr;
@@ -392,7 +414,7 @@ void DrawingEngine::DrawProgressBar(int progress, int pulse_pos)
         m_graphics->DrawPath(&pen, &ph);
     }
 
-    BitBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, SRCCOPY);
+    StretchBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, SRCCOPY);
 
     delete m_graphics;
     m_graphics = nullptr;
@@ -412,7 +434,7 @@ void DrawingEngine::DrawText(const RECT &rc, const std::wstring &text, bool mult
     SetBkMode(m_hdc, TRANSPARENT);
     SetTextColor(m_hdc, m_ds->palette()->color(Palette::Text));
     RECT _rc{rc.left + m_ds->metrics()->value(Metrics::TextMarginLeft), rc.top + m_ds->metrics()->value(Metrics::TextMarginTop),
-             rc.right + m_ds->metrics()->value(Metrics::TextMarginRight), rc.bottom + m_ds->metrics()->value(Metrics::TextMarginBottom)};
+             rc.right - m_ds->metrics()->value(Metrics::TextMarginRight), rc.bottom - m_ds->metrics()->value(Metrics::TextMarginBottom)};
     UINT fmt = multiline ? 0 : DT_SINGLELINE;
     UINT algn = m_ds->metrics()->value(Metrics::TextAlignment);
     if (algn & Metrics::AlignHLeft)
@@ -484,7 +506,7 @@ void DrawingEngine::End()
 //     m_graphics->FillPath(&brush, &ph);
 // }
 
-void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text) const
+void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text, bool rtl) const
 {
 //     Gdiplus::FontFamily fntFam(L"Segoe UI");
 //     Gdiplus::Font font(&fntFam, m_ds->metrics()->value(Metrics::FontHeight), Gdiplus::FontStyleRegular, Gdiplus::Unit::UnitPixel);
@@ -495,8 +517,8 @@ void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text) const
     Gdiplus::Font font(m_memDC, &logFont);
     DeleteObject(hFont);
     Gdiplus::RectF rcF(rc.left + m_ds->metrics()->value(Metrics::TextMarginLeft), rc.top + m_ds->metrics()->value(Metrics::TextMarginTop),
-                       rc.right + m_ds->metrics()->value(Metrics::TextMarginRight) - rc.left - m_ds->metrics()->value(Metrics::TextMarginLeft),
-                       rc.bottom + m_ds->metrics()->value(Metrics::TextMarginBottom) - rc.top - m_ds->metrics()->value(Metrics::TextMarginTop));
+                       rc.right - m_ds->metrics()->value(Metrics::TextMarginRight) - rc.left - m_ds->metrics()->value(Metrics::TextMarginLeft),
+                       rc.bottom - m_ds->metrics()->value(Metrics::TextMarginBottom) - rc.top - m_ds->metrics()->value(Metrics::TextMarginTop));
     Gdiplus::StringAlignment h_algn, v_algn;
     UINT algn = m_ds->metrics()->value(Metrics::TextAlignment);
     if (algn & Metrics::AlignHLeft)
@@ -514,6 +536,8 @@ void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text) const
     Gdiplus::StringFormat strFmt;
     strFmt.SetAlignment(h_algn);
     strFmt.SetLineAlignment(v_algn);
+    if (rtl)
+        strFmt.SetFormatFlags(Gdiplus::StringFormatFlagsDirectionRightToLeft);
     Gdiplus::SolidBrush brush(ColorFromColorRef(m_ds->palette()->color(Palette::Text)));
     m_graphics->DrawString(text.c_str(), -1, &font, rcF, &strFmt, &brush);
 }
