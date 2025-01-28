@@ -152,7 +152,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
     };
 
     if (StartServiceCtrlDispatcher(DispatchTable) == 0) {
-       NS_Utils::ShowMessage(_TR("ServiceCtrlDispatcher returned error:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
+       NS_Utils::ShowMessage(_TR(MESSAGE_TEXT_ERR17) + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
        return GetLastError();
     }
 

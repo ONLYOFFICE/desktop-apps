@@ -40,7 +40,7 @@
 CApplication::CApplication()
 {
     if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER) != 0)
-        NS_Logger::WriteLog(_TR("SDL init error:") + _T(" ") + SDL_GetError(), true);
+        NS_Logger::WriteLog(_TR(MESSAGE_TEXT_ERR16) + _T(" ") + SDL_GetError(), true);
 }
 
 CApplication::~CApplication()
