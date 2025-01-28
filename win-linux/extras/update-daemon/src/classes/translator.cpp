@@ -134,24 +134,26 @@ tstring Translator::tr(const char *str)
     if (is_translations_valid) {
         for (auto &strIdPair : translMap) {
             //LocaleMap locMap = strIdPair.second;
-            for (LocaleMap::const_iterator it = strIdPair.second.begin(); it != strIdPair.second.end(); ++it) {
+            // for (LocaleMap::const_iterator it = strIdPair.second.begin(); it != strIdPair.second.end(); ++it) {
                 //wcout << L"\n\n" << translatedStr << L"\n" << it->second;
-                if (it->second == translatedStr) {
+                if (strIdPair.first == translatedStr) {
                     if (strIdPair.second.find(langName) != strIdPair.second.end())
-                        translatedStr = strIdPair.second[langName];
+                        return strIdPair.second[langName];
                     else {
                         tstring primaryLangAndScript = getPrimaryLang(langName, true);
                         if (strIdPair.second.find(primaryLangAndScript) != strIdPair.second.end())
-                            translatedStr = strIdPair.second[primaryLangAndScript];
+                            return strIdPair.second[primaryLangAndScript];
                         else {
                             tstring primaryLang = getPrimaryLang(langName);
                             if (strIdPair.second.find(primaryLang) != strIdPair.second.end())
-                                translatedStr = strIdPair.second[primaryLang];
+                                return strIdPair.second[primaryLang];
                         }
                     }
+                    if (strIdPair.second.find(L"en") != strIdPair.second.end())
+                        return strIdPair.second[L"en"];
                     break;
                 }
-            }
+            // }
         }
     }
     return translatedStr;

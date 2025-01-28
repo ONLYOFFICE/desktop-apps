@@ -137,7 +137,7 @@ namespace NS_Utils
 
         gtk_init(NULL, NULL);
         GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", str.c_str());
-        string prod_name = _TR(VER_PRODUCTNAME_STR);
+        string prod_name = _TR(CAPTION_TEXT);
         gtk_window_set_title(GTK_WINDOW(dialog), prod_name.c_str());
         gtk_window_set_keep_above(GTK_WINDOW(dialog), true);
         gtk_window_set_default_size(GTK_WINDOW(dialog), 400, 150);
