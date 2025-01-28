@@ -56,6 +56,7 @@ void ShowMessage(wstring str, bool showError = false);
 bool IsRtlLanguage(unsigned long lcid);
 bool IsWin64();
 bool IsAppInstalled(wstring &path, wstring *arch = nullptr);
+bool checkAndWaitForAppClosure(HWND parent = nullptr);
 void InstalledVerInfo(LPCWSTR value, wstring &name, wstring &arch);
 void Replace(wstring &str, const wstring &from, const wstring &to);
 wstring MsiGetProperty(LPCWSTR prodCode, LPCWSTR propName);

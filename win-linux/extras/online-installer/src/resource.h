@@ -10,6 +10,7 @@
 #define CAPTION
 #define MSG_ERR_SYSTEM
 #define MSG_ERR_ALREADY_RUNNING
+#define MSG_ERR_TRY_CLOSE_APP
 #define MSG_ERR_CLOSE_APP
 #define MSG_REMOVE
 #define MSG_REPAIR
