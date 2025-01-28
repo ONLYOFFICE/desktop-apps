@@ -775,3 +775,9 @@ sq.MESSAGE_TEXT_ERR17 =DispeçeriKontrollittëShërbimit ktheu gabim:
 
 en.MESSAGE_TEXT_ERR18 =An error occurred while start install updates!
 sq.MESSAGE_TEXT_ERR18 =Ka ndodhur një gabim gjatë fillimit të instalimit të përditësimeve!
+
+en.MESSAGE_TEXT_ERR19 =Update cancelled. Can't rename updatesvc to ~updatesvc:
+
+en.MESSAGE_TEXT_ERR20 =Update cancelled. Can't replace file updatesvc to app path:
+
+en.MESSAGE_TEXT_ERR21 =Can't restore file updatesvc!

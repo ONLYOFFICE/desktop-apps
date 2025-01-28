@@ -869,15 +869,15 @@ void CSvcManager::startReplacingService(const bool restartAfterUpdate)
 
     // Rename updatesvc.exe to ~updatesvc.exe
     if (NS_File::fileExists(appPath + DAEMON_NAME) && !NS_File::replaceFile(appPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD)) {
-        NS_Logger::WriteLog(_TR("Update cancelled. Can't rename updatesvc.exe to ~updatesvc.exe:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
+        NS_Logger::WriteLog(_TR(MESSAGE_TEXT_ERR19) + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
         return;
     }
 
     // Move updatesvc.exe to app path
     if (!NS_File::replaceFile(updSubPath + DAEMON_NAME, appPath + DAEMON_NAME)) {
-        NS_Logger::WriteLog(_TR("Update cancelled. Can't replace file updatesvc.exe to app path:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
+        NS_Logger::WriteLog(_TR(MESSAGE_TEXT_ERR20) + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::fileExists(appPath + DAEMON_NAME_OLD) && !NS_File::replaceFile(appPath + DAEMON_NAME_OLD, appPath + DAEMON_NAME))
-            NS_Logger::WriteLog(_TR("Can't restore file updatesvc.exe!"), true);
+            NS_Logger::WriteLog(_TR(MESSAGE_TEXT_ERR21), true);
         return;
     }
 
