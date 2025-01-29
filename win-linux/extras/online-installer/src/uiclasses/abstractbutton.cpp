@@ -1,5 +1,6 @@
 #include "abstractbutton.h"
 #include "palette.h"
+#include "metrics.h"
 
 
 AbstractButton::AbstractButton(Widget *parent, const std::wstring &text) :
@@ -18,6 +19,19 @@ void AbstractButton::setText(const std::wstring &text)
 {
     m_text = text;
     update();
+}
+
+void AbstractButton::adjustSizeBasedOnContent()
+{
+    HDC hdc = GetDC(nativeWindowHandle());
+    HFONT hOldFont = (HFONT)SelectObject(hdc, m_hFont);
+    SIZE textSize{0, 0};
+    GetTextExtentPoint32(hdc, m_text.c_str(), m_text.length(), &textSize);
+    SelectObject(hdc, hOldFont);
+    ReleaseDC(nativeWindowHandle(), hdc);
+    int w = textSize.cx + 2*metrics()->value(Metrics::IconWidth) + metrics()->value(Metrics::TextMarginLeft) + metrics()->value(Metrics::TextMarginRight);
+    int h = max(textSize.cy + metrics()->value(Metrics::TextMarginTop) + metrics()->value(Metrics::TextMarginBottom), metrics()->value(Metrics::IconHeight)) + 1;
+    resize(w, h);
 }
 
 int AbstractButton::onClick(const FnVoidVoid &callback)

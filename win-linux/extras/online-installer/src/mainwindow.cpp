@@ -190,8 +190,9 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     /* Check box section*/
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_SILENT));
     chkBox->setChecked(m_is_checked);
-    chkBox->setGeometry(m_cenPanel->size().width/2 - 60, 254, 180, 18);
     setSelectorStyle(chkBox);
+    chkBox->adjustSizeBasedOnContent();
+    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -218,7 +219,7 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     });
 
     m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, instlBtn](int w, int h) {
-        chkBox->setGeometry(w/2 - 60, 254, 180, 18);
+        chkBox->move(w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         instlBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
@@ -338,8 +339,9 @@ void MainWindow::finishInstall(const std::wstring &app_path)
     m_is_checked = true;
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_LAUNCH));
     chkBox->setChecked(m_is_checked);
-    chkBox->setGeometry(m_cenPanel->size().width/2 - 43, 254, 180, 18);
     setSelectorStyle(chkBox);
+    chkBox->adjustSizeBasedOnContent();
+    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -364,7 +366,7 @@ void MainWindow::finishInstall(const std::wstring &app_path)
     });
 
     m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, closeBtn](int w, int h) {
-        chkBox->setGeometry(w/2 - 43, 254, 180, 18);
+        chkBox->move(w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         closeBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
