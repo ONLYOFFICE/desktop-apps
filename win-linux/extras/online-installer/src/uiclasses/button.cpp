@@ -143,7 +143,7 @@ bool Button::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
         if (m_hEmfBmp)
             engine()->DrawEmfIcon(m_hEmfBmp);
         if (!m_text.empty())
-            engine()->DrawText(rc, m_text);
+            engine()->DrawText(rc, m_text, m_hFont);
 
         if (m_stockIcon == StockIcon::CloseIcon)
             engine()->DrawStockCloseIcon();

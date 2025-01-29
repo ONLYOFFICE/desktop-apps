@@ -34,6 +34,7 @@ Widget::Widget(Widget *parent, HWND hwnd) :
     Object(parent),
     DrawningSurface(),
     m_hWnd(hwnd),
+    m_hFont(nullptr),
     m_layout(nullptr),
     m_disabled(false),
     m_is_created(false),
@@ -52,6 +53,7 @@ Widget::Widget(Widget *parent, ObjectType type, const Rect &rc) :
     Object(parent),
     DrawningSurface(),
     m_hWnd(nullptr),
+    m_hFont(nullptr),
     m_layout(nullptr),
     m_disabled(false),
     m_is_created(false),
@@ -74,6 +76,8 @@ Widget::~Widget()
     }
     if (!m_is_destroyed)
         DestroyWindow(m_hWnd);
+    if (m_hFont)
+        DeleteObject(m_hFont);
 }
 
 void Widget::setGeometry(int x, int y, int width, int height)
@@ -137,6 +141,17 @@ void Widget::setWindowTitle(const std::wstring &title)
 void Widget::setProperty(Properties property, int val)
 {
     m_properties[property] = val;
+}
+
+void Widget::setFont(const std::wstring &font)
+{
+    if (m_hFont) {
+        DeleteObject(m_hFont);
+        m_hFont = nullptr;
+    }
+    m_hFont = CreateFontW(metrics()->value(Metrics::FontHeight), metrics()->value(Metrics::FontWidth), 0, 0, FW_NORMAL, 0, 0, 0,
+                          DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH,
+                          font.empty() ? L"Arial" : font.c_str());
 }
 
 void Widget::show()
@@ -283,6 +298,7 @@ bool Widget::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
         for (auto it = m_create_callbacks.begin(); it != m_create_callbacks.end(); it++)
             if (it->second)
                 (it->second)();
+        setFont(Application::instance()->font());
         break;
     }
 
