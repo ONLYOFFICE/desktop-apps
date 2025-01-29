@@ -440,32 +440,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Disegno di Visio (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Disegno con attivazione macro di Visio (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Stencil di Visio (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Stencil con attivazione macro di Visio (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello di Visio (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello con attivazione macro di Visio (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>

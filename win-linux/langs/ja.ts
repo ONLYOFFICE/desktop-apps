@@ -440,32 +440,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio 図面 (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio マクロ対応図面 (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio ステンシル (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio マクロ対応ステンシル (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio テンプレート (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio マクロ対応テンプレート (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
