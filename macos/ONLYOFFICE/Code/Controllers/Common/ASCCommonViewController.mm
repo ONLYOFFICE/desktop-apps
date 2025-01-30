@@ -1489,8 +1489,11 @@
 
 - (void)onCEFFileInFinder:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-        NSURL * fileUrl = [NSURL fileURLWithPath:notification.userInfo[@"path"]];
-        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[fileUrl]];
+        NSString * info = notification.userInfo[@"info"];
+        if (NSDictionary * json = [info dictionary]) {
+            NSURL * fileUrl = [NSURL fileURLWithPath:json[@"path"]];
+            [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[fileUrl]];
+        }
     }
 }
 
