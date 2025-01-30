@@ -35,7 +35,7 @@ bool RadioButton::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
         GetClientRect(m_hWnd, &rc);
 
         engine()->Begin(this, m_hWnd, &rc);
-        engine()->DrawRadioButton(m_text, m_checked);
+        engine()->DrawRadioButton(m_text, m_hFont, m_checked);
         if (metrics()->value(Metrics::BorderWidth) != 0)
             engine()->DrawBorder();
 

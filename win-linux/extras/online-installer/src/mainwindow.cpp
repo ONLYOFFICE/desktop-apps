@@ -190,8 +190,9 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     /* Check box section*/
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_SILENT));
     chkBox->setChecked(m_is_checked);
-    chkBox->setGeometry(m_cenPanel->size().width/2 - 60, 254, 180, 18);
     setSelectorStyle(chkBox);
+    chkBox->adjustSizeBasedOnContent();
+    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -218,7 +219,7 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     });
 
     m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, instlBtn](int w, int h) {
-        chkBox->setGeometry(w/2 - 60, 254, 180, 18);
+        chkBox->move(w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         instlBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
@@ -338,8 +339,9 @@ void MainWindow::finishInstall(const std::wstring &app_path)
     m_is_checked = true;
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_LAUNCH));
     chkBox->setChecked(m_is_checked);
-    chkBox->setGeometry(m_cenPanel->size().width/2 - 43, 254, 180, 18);
     setSelectorStyle(chkBox);
+    chkBox->adjustSizeBasedOnContent();
+    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -364,7 +366,7 @@ void MainWindow::finishInstall(const std::wstring &app_path)
     });
 
     m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, closeBtn](int w, int h) {
-        chkBox->setGeometry(w/2 - 43, 254, 180, 18);
+        chkBox->move(w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         closeBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
@@ -535,8 +537,9 @@ void MainWindow::createSelectionPage()
     CheckBox *clrChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_DATA));
     clrChkBox->setDisabled(!(m_checkState & UpdateRadio));
     clrChkBox->setChecked(m_checkState & ClrDataCheck);
-    clrChkBox->setGeometry(79, 80, 450, 18);
     setSelectorStyle(clrChkBox);
+    clrChkBox->adjustSizeBasedOnContent();
+    clrChkBox->move(79, 80);
     clrChkBox->onClick([=]() {
         m_checkState = (m_checkState & ~ClrDataCheck) | (clrChkBox->isChecked() * ClrDataCheck);
     });
@@ -544,8 +547,9 @@ void MainWindow::createSelectionPage()
     CheckBox *stnChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_STNGS));
     stnChkBox->setDisabled(!(m_checkState & UpdateRadio));
     stnChkBox->setChecked(m_checkState & ClrStnCheck);
-    stnChkBox->setGeometry(79, 112, 450, 18);
     setSelectorStyle(stnChkBox);
+    stnChkBox->adjustSizeBasedOnContent();
+    stnChkBox->move(79, 112);
     stnChkBox->onClick([stnChkBox, this]() {
         m_checkState = (m_checkState & ~ClrStnCheck) | (stnChkBox->isChecked() * ClrStnCheck);
     });
@@ -553,8 +557,9 @@ void MainWindow::createSelectionPage()
     CheckBox *clrAllChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_ALL));
     clrAllChkBox->setDisabled(!(m_checkState & UninstRadio));
     clrAllChkBox->setChecked(m_checkState & ClrAllCheck);
-    clrAllChkBox->setGeometry(79, 182, 450, 18);
     setSelectorStyle(clrAllChkBox);
+    clrAllChkBox->adjustSizeBasedOnContent();
+    clrAllChkBox->move(79, 182);
     clrAllChkBox->onClick([clrAllChkBox, this]() {
         m_checkState = (m_checkState & ~ClrAllCheck) | (clrAllChkBox->isChecked() * ClrAllCheck);
     });
@@ -562,8 +567,9 @@ void MainWindow::createSelectionPage()
     /* Update radio button section*/
     m_updRadio = new RadioButton(m_cenPanel, _TR(RADIO_UPDATE));
     m_updRadio->setChecked(m_checkState & UpdateRadio);
-    m_updRadio->setGeometry(50, 48, 350, 18);
     setSelectorStyle(m_updRadio);
+    m_updRadio->adjustSizeBasedOnContent();
+    m_updRadio->move(50, 48);
     m_updRadio->onClick([=]() {
         clrChkBox->setDisabled(false);
         stnChkBox->setDisabled(false);
@@ -578,8 +584,9 @@ void MainWindow::createSelectionPage()
     /* Repair radio button section*/
     // m_repRadio = new RadioButton(m_cenPanel, _TR(RADIO_REPAIR));
     // m_repRadio->setChecked(m_checkState & RepairRadio);
-    // m_repRadio->setGeometry(50, 82, 128, 18);
     // setSelectorStyle(m_repRadio);
+    // m_repRadio->adjustSizeBasedOnContent();
+    // m_repRadio->move(50, 82);
     // m_repRadio->onClick([=]() {
     //     clrChkBox->setDisabled(false);
     //     stnChkBox->setDisabled(false);
@@ -594,8 +601,9 @@ void MainWindow::createSelectionPage()
     /* Uninstall radio button section*/
     m_uninsRadio = new RadioButton(m_cenPanel, _TR(RADIO_UNINST));
     m_uninsRadio->setChecked(m_checkState & UninstRadio);
-    m_uninsRadio->setGeometry(50, 150, 350, 18);
     setSelectorStyle(m_uninsRadio);
+    m_uninsRadio->adjustSizeBasedOnContent();
+    m_uninsRadio->move(50, 150);
     m_uninsRadio->onClick([=]() {
         clrChkBox->setDisabled(true);
         stnChkBox->setDisabled(true);
@@ -632,8 +640,9 @@ void MainWindow::createSelectionPage()
                 /* Check box section*/
                 m_launchCheck = new CheckBox(m_cenPanel, _TR(CHECK_LAUNCH));
                 m_launchCheck->setChecked(m_checkState & LaunchCheck);
-                m_launchCheck->setGeometry(42, 100, 450, 18);
                 setSelectorStyle(m_launchCheck);
+                m_launchCheck->adjustSizeBasedOnContent();
+                m_launchCheck->move(42, 100);
                 m_launchCheck->onClick([this]() {
                     m_checkState = (m_checkState & ~LaunchCheck) | (m_launchCheck->isChecked() * LaunchCheck);
                 });

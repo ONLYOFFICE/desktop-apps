@@ -18,6 +18,8 @@ public:
     static Application *instance();
     HINSTANCE moduleHandle();
     void setLayoutDirection(LayoutDirection);
+    void setFont(const std::wstring &font) const;
+    std::wstring font() const;
 
     int exec();
     void exit(int);

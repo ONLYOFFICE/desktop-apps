@@ -246,7 +246,7 @@ void DrawingEngine::DrawStockRestoreIcon()
     DeleteObject(hPen);
 }
 
-void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
+void DrawingEngine::DrawCheckBox(const std::wstring &text, HFONT hFont, bool checked)
 {
     int x = m_rc->left + 1;
     int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
@@ -289,7 +289,7 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
         SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth) - offset, m_rc->top, m_rc->right - offset, m_rc->bottom);
         m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
         m_graphics->SetTransform(&origMatrix);
-        LayeredDrawText(rc, text, dwOldLayout & LAYOUT_RTL);
+        LayeredDrawText(rc, text, hFont, dwOldLayout & LAYOUT_RTL);
     }
     StretchBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, SRCCOPY);
 
@@ -319,7 +319,7 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
 //    DeleteObject(hPen);
 }
 
-void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
+void DrawingEngine::DrawRadioButton(const std::wstring &text, HFONT hFont, bool checked)
 {
     int x = m_rc->left + 1;
     int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
@@ -352,7 +352,7 @@ void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
         SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth) - offset, m_rc->top, m_rc->right - offset, m_rc->bottom);
         m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
         m_graphics->SetTransform(&origMatrix);
-        LayeredDrawText(rc, text, dwOldLayout & LAYOUT_RTL);
+        LayeredDrawText(rc, text, hFont, dwOldLayout & LAYOUT_RTL);
     }
     StretchBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, SRCCOPY);
 
@@ -426,10 +426,8 @@ void DrawingEngine::DrawProgressBar(int progress, int pulse_pos)
     m_memDC = nullptr;
 }
 
-void DrawingEngine::DrawText(const RECT &rc, const std::wstring &text, bool multiline) const
+void DrawingEngine::DrawText(const RECT &rc, const std::wstring &text, HFONT hFont, bool multiline) const
 {
-    HFONT hFont = CreateFontW(m_ds->metrics()->value(Metrics::FontHeight), m_ds->metrics()->value(Metrics::FontWidth), 0, 0, FW_NORMAL,
-                              0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, TEXT("Segoe UI"));
     HFONT hOldFont = (HFONT) SelectObject(m_hdc, hFont);
     SetBkMode(m_hdc, TRANSPARENT);
     SetTextColor(m_hdc, m_ds->palette()->color(Palette::Text));
@@ -452,7 +450,6 @@ void DrawingEngine::DrawText(const RECT &rc, const std::wstring &text, bool mult
     ::DrawText(m_hdc, text.c_str(), text.length(), &_rc, fmt);
     SelectObject(m_hdc, hOldFont);
     SetBkMode(m_hdc, OPAQUE);
-    DeleteObject(hFont);
 }
 
 void DrawingEngine::End()
@@ -506,16 +503,13 @@ void DrawingEngine::End()
 //     m_graphics->FillPath(&brush, &ph);
 // }
 
-void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text, bool rtl) const
+void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text, HFONT hFont, bool rtl) const
 {
 //     Gdiplus::FontFamily fntFam(L"Segoe UI");
 //     Gdiplus::Font font(&fntFam, m_ds->metrics()->value(Metrics::FontHeight), Gdiplus::FontStyleRegular, Gdiplus::Unit::UnitPixel);
-    HFONT hFont = CreateFontW(m_ds->metrics()->value(Metrics::FontHeight), m_ds->metrics()->value(Metrics::FontWidth), 0, 0, FW_NORMAL,
-                              0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, TEXT("Segoe UI"));
     LOGFONTW logFont = {0};
     GetObject(hFont, sizeof(LOGFONTW), &logFont);
     Gdiplus::Font font(m_memDC, &logFont);
-    DeleteObject(hFont);
     Gdiplus::RectF rcF(rc.left + m_ds->metrics()->value(Metrics::TextMarginLeft), rc.top + m_ds->metrics()->value(Metrics::TextMarginTop),
                        rc.right - m_ds->metrics()->value(Metrics::TextMarginRight) - rc.left - m_ds->metrics()->value(Metrics::TextMarginLeft),
                        rc.bottom - m_ds->metrics()->value(Metrics::TextMarginBottom) - rc.top - m_ds->metrics()->value(Metrics::TextMarginTop));

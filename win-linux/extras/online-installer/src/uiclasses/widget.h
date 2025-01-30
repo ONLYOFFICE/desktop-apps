@@ -38,6 +38,7 @@ public:
     void size(int*, int*);
     void setWindowTitle(const std::wstring &title);
     void setProperty(Properties, int);
+    void setFont(const std::wstring &font);
     void show();
     void hide();
     void repaint();
@@ -66,6 +67,7 @@ protected:
     virtual bool event(UINT, WPARAM, LPARAM, LRESULT*);
 
     HWND         m_hWnd;
+    HFONT        m_hFont;
     Layout      *m_layout;
     std::wstring m_title;
     bool         m_disabled;

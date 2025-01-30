@@ -55,6 +55,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
     }
 
     Application app(hInst, lpCmdLine, nCmdShow);
+    app.setFont(L"Segoe UI");
     if (NS_Utils::IsRtlLanguage(lcid))
         app.setLayoutDirection(LayoutDirection::RightToLeft);
     int scrWidth = GetSystemMetrics(SM_CXSCREEN);
