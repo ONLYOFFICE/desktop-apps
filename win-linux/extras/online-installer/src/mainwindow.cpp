@@ -377,7 +377,25 @@ void MainWindow::finishInstall(const std::wstring &app_path)
 
 void MainWindow::startUpdate()
 {
-    wstring tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
+    wstring tmp_path;
+    if (m_package == L"msi") {
+        wstring prodCode = NS_Utils::MsiProductCode(_T(REG_UNINST_KEY));
+        if (prodCode.empty()) {
+            m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
+            createCloseAndBackButtons();
+            return;
+        }
+        wstring packageName =  NS_Utils::MsiGetProperty(prodCode.c_str(), INSTALLPROPERTY_PACKAGENAME);
+        if (packageName.empty()) {
+            m_comntInfoLbl->setText(_TR(LABEL_ERR_PACK_NAME), true);
+            createCloseAndBackButtons();
+            return;
+        }
+        tmp_path = NS_File::toNativeSeparators(NS_File::tempPath() + _T("/") + packageName);
+    } else {
+        tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
+    }
+
     wstring url = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
     wstring url_filename = L"DesktopEditors_" + m_arch;
     url_filename.append(L"." + m_package);
@@ -391,7 +409,7 @@ void MainWindow::startUpdate()
             }
             m_bar->pulse(true);
             wstring args = L"/c \"" + tmp_path;
-            args += (m_package == L"msi") ? L" /qn\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
+            args += (m_package == L"msi") ? L" /qn /norestart\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
             if (!NS_File::runProcess(L"cmd", args, true)) {
                 m_bar->pulse(false);
                 m_bar->setProgress(0);
