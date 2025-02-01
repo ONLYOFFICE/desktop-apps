@@ -159,7 +159,9 @@ namespace NS_Utils
         subkey += _T(APP_REG_PATH);
         for (auto &flag : flags) {
             RegQueryStringValue(HKEY_LOCAL_MACHINE, subkey.c_str(), flag, L"AppPath", path);
-            if (!path.empty() /*&& NS_File::fileExists(path + _T(APP_LAUNCH_NAME))*/) {
+            if (!path.empty() && (path.back() == L'\\' || path.back() == L'/'))
+                path.pop_back();
+            if (!path.empty() /*&& NS_File::fileExists(path + _T(APP_LAUNCH_NAME))*/) {                    
                 if (arch) {
 #ifdef _WIN64
                     *arch = (flag == 0) ? L"x64" : L"x86";
