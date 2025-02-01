@@ -1191,7 +1191,9 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
                     m_pTabs->closeEditorByIndex(_i);
                 }
             else {
-                m_pTabs->tabBar()->tabMenu(_i)->setSectionEnabled(CMenu::ActionShowInFolder, true);
+                CMenu * _menu = m_pTabs->tabBar()->tabMenu(_i);
+                if ( _menu )
+                    _menu->setSectionEnabled(CMenu::ActionShowInFolder, true);
             }
         } else {
             m_pTabs->cancelDocumentSaving(_i);
