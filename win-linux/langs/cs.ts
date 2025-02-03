@@ -528,7 +528,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="259"/>
         <source>Visio diagram</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagram Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="260"/>
@@ -619,7 +619,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
         <location filename="../src/windows/cmainwindow.cpp" line="623"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlavní okno</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="303"/>
@@ -691,47 +691,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít uložený</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít vše</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Show in folder</source>
-        <translation type="unfinished">Zobrazit ve složce</translation>
+        <translation>Zobrazit ve složce</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Přesunout na začátek</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Přesun na konec</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušení připnutí karty k oknu</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Připnout na kartu</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit nový</translation>
     </message>
 </context>
 <context>
@@ -1225,7 +1225,7 @@
         <location filename="../src/platform_linux/singleapplication.cpp" line="98"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Existují neuložené dokumenty</translation>
     </message>
 </context>
 <context>
