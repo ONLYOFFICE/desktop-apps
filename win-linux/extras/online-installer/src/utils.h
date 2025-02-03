@@ -40,6 +40,7 @@ using std::string;
 using std::wstring;
 using std::to_wstring;
 
+#define ERROR_LAUNCH 0x20000000
 #define DEFAULT_ERROR_MESSAGE _T("An error occurred: ") + \
     wstring(_T(__FUNCTION__)) + _T(" Line: ") + to_wstring(__LINE__)
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
@@ -65,7 +66,7 @@ wstring MsiProductCode(const wstring &prodName);
 
 namespace NS_File
 {
-bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = false, bool wait = true);
+DWORD runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = false, bool wait = true);
 // bool isProcessRunning(const wstring &fileName);
 bool fileExists(const wstring &filePath);
 bool removeFile(const wstring &filePath);

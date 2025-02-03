@@ -278,7 +278,7 @@ namespace NS_Utils
 
 namespace NS_File
 {
-    bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin, bool wait)
+    DWORD runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin, bool wait)
     {
         SHELLEXECUTEINFO shExInfo = {0};
         shExInfo.cbSize = sizeof(shExInfo);
@@ -291,12 +291,13 @@ namespace NS_File
         shExInfo.nShow = SW_HIDE;
         shExInfo.hInstApp = NULL;
         if (ShellExecuteEx(&shExInfo)) {
-            if (wait)
-                WaitForSingleObject(shExInfo.hProcess, INFINITE);
+            DWORD exitCode = 0;
+            if (wait && (WaitForSingleObject(shExInfo.hProcess, INFINITE) == WAIT_FAILED || !GetExitCodeProcess(shExInfo.hProcess, &exitCode)))
+                exitCode = GetLastError();
             CloseHandle(shExInfo.hProcess);
-            return true;
+            return exitCode;
         }
-        return false;
+        return GetLastError() | ERROR_LAUNCH;
     }
 
 //    bool isProcessRunning(const wstring &fileName)
