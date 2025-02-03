@@ -306,12 +306,13 @@ void MainWindow::startInstall(const std::wstring &url)
             } else {
                 hide();
             }
-            if (!NS_File::runProcess(path, args)) {
+            DWORD status = NS_File::runProcess(path, args);
+            if (status != 0) {
                 if (!m_is_checked)
                     show();
                 m_bar->pulse(false);
                 m_bar->setProgress(0);
-                m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
+                m_comntInfoLbl->setText((status & ERROR_LAUNCH) ? _TR(LABEL_ERR_RUNNING) : _TR(LABEL_ERR_COMMON) + wstring(L" ") + std::to_wstring(status), true);
             } else {
                 if (m_is_checked) {
                     wstring app_path;
@@ -410,10 +411,11 @@ void MainWindow::startUpdate()
             m_bar->pulse(true);
             wstring args = L"/c \"" + tmp_path;
             args += (m_package == L"msi") ? L" /qn /norestart\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
-            if (!NS_File::runProcess(L"cmd", args, true)) {
+            DWORD status = NS_File::runProcess(L"cmd", args, true);
+            if (status != 0) {
                 m_bar->pulse(false);
                 m_bar->setProgress(0);
-                m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
+                m_comntInfoLbl->setText((status & ERROR_LAUNCH) ? _TR(LABEL_ERR_RUNNING) : _TR(LABEL_ERR_COMMON) + wstring(L" ") + std::to_wstring(status), true);
             } else {
                 if (m_checkState & ClrDataCheck) {
                     wstring dataPath = NS_File::appDataPath();
@@ -484,10 +486,11 @@ void MainWindow::startUpdate()
 //                 args = (m_package == L"msi") ? L"/fvamus \"" : L"/c \"";
 //                 args += tmp_path;
 //                 args += (m_package == L"msi") ? L"\" /qn" : L" /VERYSILENT\"";
-//             if (!NS_File::runProcess(cmd, args, true)) {
+//             DWORD status = NS_File::runProcess(cmd, args, true);
+//             if (status != 0) {
 //                 m_bar->pulse(false);
 //                 m_bar->setProgress(0);
-//                 m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
+//                 m_comntInfoLbl->setText((status & ERROR_LAUNCH) ? _TR(LABEL_ERR_RUNNING) : _TR(LABEL_ERR_COMMON) + wstring(L" ") + std::to_wstring(status), true);
 //             } else {
 //                 if (m_checkState & ClrDataCheck) {
 //                     wstring dataPath = NS_File::appDataPath();
@@ -524,7 +527,8 @@ void MainWindow::startUninstall()
     wstring args = L"/c \"" + m_uninst_cmd;
     args += (m_package == L"msi") ? L" /qn\"" : L" /VERYSILENT\"";
     m_future = std::async(std::launch::async, [=]() {
-        if (!NS_File::runProcess(L"cmd", args, true)) {
+        DWORD status = NS_File::runProcess(L"cmd", args, true);
+        if (status != 0) {
             m_bar->pulse(false);
             m_bar->setProgress(0);
             m_comntInfoLbl->setText(_TR(LABEL_ERR_UNINST));
