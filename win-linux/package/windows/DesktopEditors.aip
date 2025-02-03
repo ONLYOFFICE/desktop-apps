@@ -84,12 +84,12 @@
     <ROW Property="REGISTER_PROTOCOL" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_RTF" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_TXT" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_VSDM" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_VSDX" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_VSSM" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_VSSX" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_VSTM" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_VSTX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_VSDM" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_VSDX" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_VSSM" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_VSSX" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_VSTM" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_VSTX" Value="0" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLSB" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLSM" Value="1" Type="4" ValueLocId="-"/>
@@ -173,12 +173,12 @@
     <ROW Component="c_reg_fa_cap__pptx" ComponentId="{324F9DB4-5BFF-423D-8BB5-C7B15BB1E232}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__pptx"/>
     <ROW Component="c_reg_fa_cap__rtf" ComponentId="{7D603190-62DA-4825-9452-9B5ED94678BC}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__rtf"/>
     <ROW Component="c_reg_fa_cap__txt" ComponentId="{5513A73B-3B4F-465E-977C-A43066F6889D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__txt"/>
-    <ROW Component="c_reg_fa_cap__vsdm" ComponentId="{D974A4B4-7BBF-4245-B0DB-E4E5ED05CCAB}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__vsdm"/>
-    <ROW Component="c_reg_fa_cap__vsdx" ComponentId="{DE0638F5-5199-4238-8DB7-FF9498BC735F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__vsdx"/>
-    <ROW Component="c_reg_fa_cap__vssm" ComponentId="{CBC8EA49-B7F2-4FC5-B44F-E4282A11899D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__vssm"/>
-    <ROW Component="c_reg_fa_cap__vssx" ComponentId="{8C24F89A-967E-4AEC-87D8-3CC110ED8FB5}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__vssx"/>
-    <ROW Component="c_reg_fa_cap__vstm" ComponentId="{5DB74D71-33F2-4785-B992-29CA2BAA6935}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__vstm"/>
-    <ROW Component="c_reg_fa_cap__vstx" ComponentId="{2DDAA561-2861-4841-B63C-CF3FE517C7EC}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__vstx"/>
+    <ROW Component="c_reg_fa_cap__vsdm" ComponentId="{D974A4B4-7BBF-4245-B0DB-E4E5ED05CCAB}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_cap__vsdm"/>
+    <ROW Component="c_reg_fa_cap__vsdx" ComponentId="{DE0638F5-5199-4238-8DB7-FF9498BC735F}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_cap__vsdx"/>
+    <ROW Component="c_reg_fa_cap__vssm" ComponentId="{CBC8EA49-B7F2-4FC5-B44F-E4282A11899D}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_cap__vssm"/>
+    <ROW Component="c_reg_fa_cap__vssx" ComponentId="{8C24F89A-967E-4AEC-87D8-3CC110ED8FB5}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_cap__vssx"/>
+    <ROW Component="c_reg_fa_cap__vstm" ComponentId="{5DB74D71-33F2-4785-B992-29CA2BAA6935}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_cap__vstm"/>
+    <ROW Component="c_reg_fa_cap__vstx" ComponentId="{2DDAA561-2861-4841-B63C-CF3FE517C7EC}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_cap__vstx"/>
     <ROW Component="c_reg_fa_cap__xls" ComponentId="{63A28E1B-CCC3-4B52-B237-37BAC45ACF53}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xls"/>
     <ROW Component="c_reg_fa_cap__xlsb" ComponentId="{4519B465-3161-4675-AF39-4136C97E98C2}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xlsb"/>
     <ROW Component="c_reg_fa_cap__xlsm" ComponentId="{116DDF2F-6CDF-4FC2-8EA1-E1C6736729AC}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xlsm"/>
@@ -225,12 +225,12 @@
     <ROW Component="c_reg_fa_ext__pptx" ComponentId="{2DF6E02E-B417-4D65-90D2-B4AA5D2039F2}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__pptx"/>
     <ROW Component="c_reg_fa_ext__rtf" ComponentId="{F17EBC15-C85C-46B2-AA83-34E829030530}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__rtf"/>
     <ROW Component="c_reg_fa_ext__txt" ComponentId="{6F1014BE-83A1-430C-AB38-3278506FDF4A}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__txt"/>
-    <ROW Component="c_reg_fa_ext__vsdm" ComponentId="{CC78ED1A-2DB6-4E13-BC0A-E357458117A1}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__vsdm"/>
-    <ROW Component="c_reg_fa_ext__vsdx" ComponentId="{01B803BE-A411-4B1A-8133-94DD16D84ED4}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__vsdx"/>
-    <ROW Component="c_reg_fa_ext__vssm" ComponentId="{AECFD3E6-3726-4A15-8666-1FB7AF623594}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__vssm"/>
-    <ROW Component="c_reg_fa_ext__vssx" ComponentId="{8357EC11-4B0F-4ED8-995B-B7247149E139}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__vssx"/>
-    <ROW Component="c_reg_fa_ext__vstm" ComponentId="{1620AF68-1E3D-4087-B03A-E438903F0ED5}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__vstm"/>
-    <ROW Component="c_reg_fa_ext__vstx" ComponentId="{EE47C87A-98B2-42E8-86E2-469E88744EA6}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__vstx"/>
+    <ROW Component="c_reg_fa_ext__vsdm" ComponentId="{CC78ED1A-2DB6-4E13-BC0A-E357458117A1}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_ext__vsdm"/>
+    <ROW Component="c_reg_fa_ext__vsdx" ComponentId="{01B803BE-A411-4B1A-8133-94DD16D84ED4}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_ext__vsdx"/>
+    <ROW Component="c_reg_fa_ext__vssm" ComponentId="{AECFD3E6-3726-4A15-8666-1FB7AF623594}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_ext__vssm"/>
+    <ROW Component="c_reg_fa_ext__vssx" ComponentId="{8357EC11-4B0F-4ED8-995B-B7247149E139}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_ext__vssx"/>
+    <ROW Component="c_reg_fa_ext__vstm" ComponentId="{1620AF68-1E3D-4087-B03A-E438903F0ED5}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_ext__vstm"/>
+    <ROW Component="c_reg_fa_ext__vstx" ComponentId="{EE47C87A-98B2-42E8-86E2-469E88744EA6}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_ext__vstx"/>
     <ROW Component="c_reg_fa_ext__xls" ComponentId="{8F908E39-27BF-439D-A904-37FAFCB6D22F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xls"/>
     <ROW Component="c_reg_fa_ext__xlsb" ComponentId="{F74F44C3-B5EB-4431-BD2B-559A2F1E79B7}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xlsb"/>
     <ROW Component="c_reg_fa_ext__xlsm" ComponentId="{86C25A4A-8302-46CB-BEAE-0C580FEA46DD}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xlsm"/>
@@ -281,12 +281,12 @@
     <ROW Component="c_reg_fa_openwith__pptx" ComponentId="{B1D81FBF-0C84-4492-9969-B2153B63D3D7}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__pptx"/>
     <ROW Component="c_reg_fa_openwith__rtf" ComponentId="{597C5103-6F6D-4192-90E7-DF0BCC4277DA}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__rtf"/>
     <ROW Component="c_reg_fa_openwith__txt" ComponentId="{EE56AEF4-DA95-4D28-98DA-BE770775B1D0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__txt"/>
-    <ROW Component="c_reg_fa_openwith__vsdm" ComponentId="{6666498F-0119-4D5B-AD89-FB5700A6108D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__vsdm"/>
-    <ROW Component="c_reg_fa_openwith__vsdx" ComponentId="{050550C2-9456-4C14-87EC-1B58F600BE88}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__vsdx"/>
-    <ROW Component="c_reg_fa_openwith__vssm" ComponentId="{A7812DA2-D940-4E3F-A269-3859A2EADE2C}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__vssm"/>
-    <ROW Component="c_reg_fa_openwith__vssx" ComponentId="{FB46C6E3-A4A1-4F23-BD31-6A12C42798A7}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__vssx"/>
-    <ROW Component="c_reg_fa_openwith__vstm" ComponentId="{BB3D3F13-EC4E-4B0E-A787-49ECF28B77A9}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__vstm"/>
-    <ROW Component="c_reg_fa_openwith__vstx" ComponentId="{DE20D795-76E9-44AD-80C8-ABDEF757AA16}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__vstx"/>
+    <ROW Component="c_reg_fa_openwith__vsdm" ComponentId="{6666498F-0119-4D5B-AD89-FB5700A6108D}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_openwith__vsdm"/>
+    <ROW Component="c_reg_fa_openwith__vsdx" ComponentId="{050550C2-9456-4C14-87EC-1B58F600BE88}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_openwith__vsdx"/>
+    <ROW Component="c_reg_fa_openwith__vssm" ComponentId="{A7812DA2-D940-4E3F-A269-3859A2EADE2C}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_openwith__vssm"/>
+    <ROW Component="c_reg_fa_openwith__vssx" ComponentId="{FB46C6E3-A4A1-4F23-BD31-6A12C42798A7}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_openwith__vssx"/>
+    <ROW Component="c_reg_fa_openwith__vstm" ComponentId="{BB3D3F13-EC4E-4B0E-A787-49ECF28B77A9}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_openwith__vstm"/>
+    <ROW Component="c_reg_fa_openwith__vstx" ComponentId="{DE20D795-76E9-44AD-80C8-ABDEF757AA16}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_openwith__vstx"/>
     <ROW Component="c_reg_fa_openwith__xls" ComponentId="{37774A51-F421-40B6-B414-36A9C00E9EB5}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__xls"/>
     <ROW Component="c_reg_fa_openwith__xlsb" ComponentId="{0E96EC94-04A3-4B72-8591-B054D239DB65}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__xlsb"/>
     <ROW Component="c_reg_fa_openwith__xlsm" ComponentId="{C4741C03-B537-4163-9A1E-FA42B0CFD839}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__xlsm"/>
@@ -333,12 +333,12 @@
     <ROW Component="c_reg_fa_progid__pptx" ComponentId="{E313F9AA-0710-440D-8008-E70001D6B01F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__pptx"/>
     <ROW Component="c_reg_fa_progid__rtf" ComponentId="{D5829591-7F55-4505-996F-88E1DC415777}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__rtf"/>
     <ROW Component="c_reg_fa_progid__txt" ComponentId="{1F1867B1-258B-43AE-8DF7-9235585BA09B}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__txt"/>
-    <ROW Component="c_reg_fa_progid__vsdm" ComponentId="{4CA0D78D-3623-4017-910A-919C8B3059C4}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__vsdm"/>
-    <ROW Component="c_reg_fa_progid__vsdx" ComponentId="{A3657AEA-7F26-4294-9282-925BE4C9190D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__vsdx"/>
-    <ROW Component="c_reg_fa_progid__vssm" ComponentId="{8F669DF7-7F8B-4DB5-87F8-0960F6737767}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__vssm"/>
-    <ROW Component="c_reg_fa_progid__vssx" ComponentId="{8C3FD017-A244-4999-A5F2-6C186725D87B}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__vssx"/>
-    <ROW Component="c_reg_fa_progid__vstm" ComponentId="{9A36CA7E-DC5B-45A0-9770-DF4F6CB22498}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__vstm"/>
-    <ROW Component="c_reg_fa_progid__vstx" ComponentId="{91A2ABE6-3991-4F98-BAEE-E84E26182C11}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__vstx"/>
+    <ROW Component="c_reg_fa_progid__vsdm" ComponentId="{4CA0D78D-3623-4017-910A-919C8B3059C4}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid__vsdm"/>
+    <ROW Component="c_reg_fa_progid__vsdx" ComponentId="{A3657AEA-7F26-4294-9282-925BE4C9190D}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid__vsdx"/>
+    <ROW Component="c_reg_fa_progid__vssm" ComponentId="{8F669DF7-7F8B-4DB5-87F8-0960F6737767}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid__vssm"/>
+    <ROW Component="c_reg_fa_progid__vssx" ComponentId="{8C3FD017-A244-4999-A5F2-6C186725D87B}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid__vssx"/>
+    <ROW Component="c_reg_fa_progid__vstm" ComponentId="{9A36CA7E-DC5B-45A0-9770-DF4F6CB22498}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid__vstm"/>
+    <ROW Component="c_reg_fa_progid__vstx" ComponentId="{91A2ABE6-3991-4F98-BAEE-E84E26182C11}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid__vstx"/>
     <ROW Component="c_reg_fa_progid__xls" ComponentId="{E49C212F-5A5F-413B-9E04-C5EDB3CA4570}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xls"/>
     <ROW Component="c_reg_fa_progid__xlsb" ComponentId="{10FEC295-A80E-4667-94C0-2A6957D606CA}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xlsb"/>
     <ROW Component="c_reg_fa_progid__xlsm" ComponentId="{3CB648C0-82A8-4A04-ABBE-7F61608158C0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xlsm"/>
@@ -385,12 +385,12 @@
     <ROW Component="c_reg_fa_progid_app__pptx" ComponentId="{C28AA331-6C83-4B65-ACD0-06B1BB05B1BB}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__pptx"/>
     <ROW Component="c_reg_fa_progid_app__rtf" ComponentId="{A7815616-B25F-4981-A633-6E08FA674509}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__rtf"/>
     <ROW Component="c_reg_fa_progid_app__txt" ComponentId="{092C3DE5-25AB-437B-8FBE-FB0E8A46761C}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__txt"/>
-    <ROW Component="c_reg_fa_progid_app__vsdm" ComponentId="{EC4B2D39-163F-4954-A532-62ED3778F10B}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__vsdm"/>
-    <ROW Component="c_reg_fa_progid_app__vsdx" ComponentId="{FEB706E7-875C-4AA5-8FF5-E24BEF8876E3}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__vsdx"/>
-    <ROW Component="c_reg_fa_progid_app__vssm" ComponentId="{AA732F61-1C1B-457D-B109-32A90BD613A6}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__vssm"/>
-    <ROW Component="c_reg_fa_progid_app__vssx" ComponentId="{D6D1C894-BCD7-437C-B77D-BF69A7D484D8}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__vssx"/>
-    <ROW Component="c_reg_fa_progid_app__vstm" ComponentId="{A717A445-271B-4FE5-A96A-7DB620EDA423}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__vstm"/>
-    <ROW Component="c_reg_fa_progid_app__vstx" ComponentId="{FA81053A-9989-4183-88F7-6FDED9DCC2C3}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__vstx"/>
+    <ROW Component="c_reg_fa_progid_app__vsdm" ComponentId="{EC4B2D39-163F-4954-A532-62ED3778F10B}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid_app_icon__vsdm"/>
+    <ROW Component="c_reg_fa_progid_app__vsdx" ComponentId="{FEB706E7-875C-4AA5-8FF5-E24BEF8876E3}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid_app_icon__vsdx"/>
+    <ROW Component="c_reg_fa_progid_app__vssm" ComponentId="{AA732F61-1C1B-457D-B109-32A90BD613A6}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid_app_icon__vssm"/>
+    <ROW Component="c_reg_fa_progid_app__vssx" ComponentId="{D6D1C894-BCD7-437C-B77D-BF69A7D484D8}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid_app_icon__vssx"/>
+    <ROW Component="c_reg_fa_progid_app__vstm" ComponentId="{A717A445-271B-4FE5-A96A-7DB620EDA423}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid_app_icon__vstm"/>
+    <ROW Component="c_reg_fa_progid_app__vstx" ComponentId="{FA81053A-9989-4183-88F7-6FDED9DCC2C3}" Directory_="APPDIR" Attributes="260" Condition="FALSE" KeyPath="reg_fa_progid_app_icon__vstx"/>
     <ROW Component="c_reg_fa_progid_app__xls" ComponentId="{A24FF129-2FD0-4C92-9826-03E3A29B86BE}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__xls"/>
     <ROW Component="c_reg_fa_progid_app__xlsb" ComponentId="{7A91B32A-ECC8-43B0-ADC2-D3E9FD24FA5E}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__xlsb"/>
     <ROW Component="c_reg_fa_progid_app__xlsm" ComponentId="{3F23534A-D5FD-46AF-8BE7-A8BD60A6C89E}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__xlsm"/>
@@ -444,12 +444,12 @@
     <ROW Feature="FA_PPTX" Feature_Parent="RegFileTypeAssociations" Title=".pptx" Display="35" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_RTF" Feature_Parent="RegFileTypeAssociations" Title=".rtf" Display="89" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_TXT" Feature_Parent="RegFileTypeAssociations" Title=".txt" Display="103" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_VSDM" Feature_Parent="RegFileTypeAssociations" Title=".vsdm" Display="53" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_VSDX" Feature_Parent="RegFileTypeAssociations" Title=".vsdx" Display="47" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_VSSM" Feature_Parent="RegFileTypeAssociations" Title=".vssm" Display="57" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_VSSX" Feature_Parent="RegFileTypeAssociations" Title=".vssx" Display="51" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_VSTM" Feature_Parent="RegFileTypeAssociations" Title=".vstm" Display="55" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_VSTX" Feature_Parent="RegFileTypeAssociations" Title=".vstx" Display="49" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_VSDM" Feature_Parent="RegFileTypeAssociations" Title=".vsdm" Display="53" Level="0" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_VSDX" Feature_Parent="RegFileTypeAssociations" Title=".vsdx" Display="47" Level="0" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_VSSM" Feature_Parent="RegFileTypeAssociations" Title=".vssm" Display="57" Level="0" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_VSSX" Feature_Parent="RegFileTypeAssociations" Title=".vssx" Display="51" Level="0" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_VSTM" Feature_Parent="RegFileTypeAssociations" Title=".vstm" Display="55" Level="0" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_VSTX" Feature_Parent="RegFileTypeAssociations" Title=".vstx" Display="49" Level="0" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_XLS" Feature_Parent="RegFileTypeAssociations" Title=".xls" Display="15" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_XLSB" Feature_Parent="RegFileTypeAssociations" Title=".xlsb" Display="27" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_XLSM" Feature_Parent="RegFileTypeAssociations" Title=".xlsm" Display="23" Level="4" Directory_="APPDIR" Attributes="0"/>
@@ -631,12 +631,12 @@
     <ROW Property="REGISTER_PPTX" Value="1"/>
     <ROW Property="REGISTER_RTF" Value="1"/>
     <ROW Property="REGISTER_TXT" Value="1"/>
-    <ROW Property="REGISTER_VSDM" Value="1"/>
-    <ROW Property="REGISTER_VSDX" Value="1"/>
-    <ROW Property="REGISTER_VSSM" Value="1"/>
-    <ROW Property="REGISTER_VSSX" Value="1"/>
-    <ROW Property="REGISTER_VSTM" Value="1"/>
-    <ROW Property="REGISTER_VSTX" Value="1"/>
+    <ROW Property="REGISTER_VSDM" Value="0"/>
+    <ROW Property="REGISTER_VSDX" Value="0"/>
+    <ROW Property="REGISTER_VSSM" Value="0"/>
+    <ROW Property="REGISTER_VSSX" Value="0"/>
+    <ROW Property="REGISTER_VSTM" Value="0"/>
+    <ROW Property="REGISTER_VSTX" Value="0"/>
     <ROW Property="REGISTER_XLS" Value="1"/>
     <ROW Property="REGISTER_XLSB" Value="1"/>
     <ROW Property="REGISTER_XLSM" Value="1"/>
@@ -782,51 +782,45 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_dot" Type="CheckBox" X="185" Y="80" Width="48" Height="13" Attributes="3" Property="REGISTER_DOT" Text=".dot" Order="1500" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_dotx" Type="CheckBox" X="235" Y="80" Width="48" Height="13" Attributes="3" Property="REGISTER_DOTX" Text=".dotx" Order="1600" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_dotm" Type="CheckBox" X="285" Y="80" Width="48" Height="13" Attributes="3" Property="REGISTER_DOTM" Text=".dotm" Order="1700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xls" Type="CheckBox" X="35" Y="94" Width="48" Height="13" Attributes="3" Property="REGISTER_XLS" Text=".xls" Order="1800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsx" Type="CheckBox" X="85" Y="94" Width="48" Height="13" Attributes="3" Property="REGISTER_XLSX" Text=".xlsx" Order="1900" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsm" Type="CheckBox" X="135" Y="94" Width="48" Height="13" Attributes="3" Property="REGISTER_XLSM" Text=".xlsm" Order="2000" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsb" Type="CheckBox" X="185" Y="94" Width="48" Height="13" Attributes="3" Property="REGISTER_XLSB" Text=".xlsb" Order="2100" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xltx" Type="CheckBox" X="235" Y="94" Width="48" Height="13" Attributes="3" Property="REGISTER_XLTX" Text=".xltx" Order="2200" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xltm" Type="CheckBox" X="285" Y="94" Width="48" Height="13" Attributes="3" Property="REGISTER_XLTM" Text=".xltm" Order="2300" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppt" Type="CheckBox" X="35" Y="108" Width="48" Height="13" Attributes="3" Property="REGISTER_PPT" Text=".ppt" Order="2400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pptx" Type="CheckBox" X="85" Y="108" Width="48" Height="13" Attributes="3" Property="REGISTER_PPTX" Text=".pptx" Order="2500" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pptm" Type="CheckBox" X="135" Y="108" Width="48" Height="13" Attributes="3" Property="REGISTER_PPTM" Text=".pptm" Order="2600" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pot" Type="CheckBox" X="185" Y="108" Width="48" Height="13" Attributes="3" Property="REGISTER_POT" Text=".pot" Order="2700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_potx" Type="CheckBox" X="235" Y="108" Width="48" Height="13" Attributes="3" Property="REGISTER_POTX" Text=".potx" Order="2800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_potm" Type="CheckBox" X="285" Y="108" Width="48" Height="13" Attributes="3" Property="REGISTER_POTM" Text=".potm" Order="2900" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pps" Type="CheckBox" X="35" Y="122" Width="48" Height="13" Attributes="3" Property="REGISTER_PPS" Text=".pps" Order="3000" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppsx" Type="CheckBox" X="85" Y="122" Width="48" Height="13" Attributes="3" Property="REGISTER_PPSX" Text=".ppsx" Order="3100" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppsm" Type="CheckBox" X="135" Y="122" Width="48" Height="13" Attributes="3" Property="REGISTER_PPSM" Text=".ppsm" Order="3200" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_vsdx" Type="CheckBox" X="35" Y="136" Width="48" Height="13" Attributes="3" Property="REGISTER_VSDX" Text=".vsdx" Order="3300" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_vstx" Type="CheckBox" X="85" Y="136" Width="48" Height="13" Attributes="3" Property="REGISTER_VSTX" Text=".vstx" Order="3400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_vssx" Type="CheckBox" X="135" Y="136" Width="48" Height="13" Attributes="3" Property="REGISTER_VSSX" Text=".vssx" Order="3500" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_vsdm" Type="CheckBox" X="185" Y="136" Width="48" Height="13" Attributes="3" Property="REGISTER_VSDM" Text=".vsdm" Order="3600" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_vstm" Type="CheckBox" X="235" Y="136" Width="48" Height="13" Attributes="3" Property="REGISTER_VSTM" Text=".vstm" Order="3700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_vssm" Type="CheckBox" X="285" Y="136" Width="48" Height="13" Attributes="3" Property="REGISTER_VSSM" Text=".vssm" Order="3800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_odt" Type="CheckBox" X="35" Y="150" Width="48" Height="13" Attributes="3" Property="REGISTER_ODT" Text=".odt" Order="3900" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ods" Type="CheckBox" X="85" Y="150" Width="48" Height="13" Attributes="3" Property="REGISTER_ODS" Text=".ods" Order="4000" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_odp" Type="CheckBox" X="135" Y="150" Width="48" Height="13" Attributes="3" Property="REGISTER_ODP" Text=".odp" Order="4100" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ott" Type="CheckBox" X="185" Y="150" Width="48" Height="13" Attributes="3" Property="REGISTER_OTT" Text=".ott" Order="4200" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ots" Type="CheckBox" X="235" Y="150" Width="48" Height="13" Attributes="3" Property="REGISTER_OTS" Text=".ots" Order="4300" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_otp" Type="CheckBox" X="285" Y="150" Width="48" Height="13" Attributes="3" Property="REGISTER_OTP" Text=".otp" Order="4400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fodt" Type="CheckBox" X="35" Y="164" Width="48" Height="13" Attributes="3" Property="REGISTER_FODT" Text=".fodt" Order="4500" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fods" Type="CheckBox" X="85" Y="164" Width="48" Height="13" Attributes="3" Property="REGISTER_FODS" Text=".fods" Order="4600" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fodp" Type="CheckBox" X="135" Y="164" Width="48" Height="13" Attributes="3" Property="REGISTER_FODP" Text=".fodp" Order="4700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pages" Type="CheckBox" X="185" Y="164" Width="48" Height="13" Attributes="3" Property="REGISTER_PAGES" Text=".pages" Order="4800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_numbers" Type="CheckBox" X="235" Y="164" Width="48" Height="13" Attributes="3" Property="REGISTER_NUMBERS" Text=".numbers" Order="4900" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_key" Type="CheckBox" X="285" Y="164" Width="48" Height="13" Attributes="3" Property="REGISTER_KEY" Text=".key" Order="5000" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_djvu" Type="CheckBox" X="35" Y="178" Width="48" Height="13" Attributes="3" Property="REGISTER_DJVU" Text=".djvu" Order="5100" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fb2" Type="CheckBox" X="85" Y="178" Width="48" Height="13" Attributes="3" Property="REGISTER_FB2" Text=".fb2" Order="5200" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pdf" Type="CheckBox" X="135" Y="178" Width="48" Height="13" Attributes="3" Property="REGISTER_PDF" Text=".pdf" Order="5300" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_rtf" Type="CheckBox" X="185" Y="178" Width="48" Height="13" Attributes="3" Property="REGISTER_RTF" Text=".rtf" Order="5400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xps" Type="CheckBox" X="235" Y="178" Width="48" Height="13" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="5500" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oxps" Type="CheckBox" X="285" Y="178" Width="48" Height="13" Attributes="3" Property="REGISTER_OXPS" Text=".oxps" Order="5600" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_epub" Type="CheckBox" X="35" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_EPUB" Text=".epub" Order="5700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_html" Type="CheckBox" X="85" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_HTML" Text=".html" Order="5800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xml" Type="CheckBox" X="135" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="5900" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_csv" Type="CheckBox" X="185" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_CSV" Text=".csv" Order="6000" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_txt" Type="CheckBox" X="235" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_TXT" Text=".txt" Order="6100" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="285" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="6200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xls" Type="CheckBox" X="35" Y="95" Width="48" Height="13" Attributes="3" Property="REGISTER_XLS" Text=".xls" Order="1800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsx" Type="CheckBox" X="85" Y="95" Width="48" Height="13" Attributes="3" Property="REGISTER_XLSX" Text=".xlsx" Order="1900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsm" Type="CheckBox" X="135" Y="95" Width="48" Height="13" Attributes="3" Property="REGISTER_XLSM" Text=".xlsm" Order="2000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsb" Type="CheckBox" X="185" Y="95" Width="48" Height="13" Attributes="3" Property="REGISTER_XLSB" Text=".xlsb" Order="2100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xltx" Type="CheckBox" X="235" Y="95" Width="48" Height="13" Attributes="3" Property="REGISTER_XLTX" Text=".xltx" Order="2200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xltm" Type="CheckBox" X="285" Y="95" Width="48" Height="13" Attributes="3" Property="REGISTER_XLTM" Text=".xltm" Order="2300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppt" Type="CheckBox" X="35" Y="110" Width="48" Height="13" Attributes="3" Property="REGISTER_PPT" Text=".ppt" Order="2400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pptx" Type="CheckBox" X="85" Y="110" Width="48" Height="13" Attributes="3" Property="REGISTER_PPTX" Text=".pptx" Order="2500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pptm" Type="CheckBox" X="135" Y="110" Width="48" Height="13" Attributes="3" Property="REGISTER_PPTM" Text=".pptm" Order="2600" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pot" Type="CheckBox" X="185" Y="110" Width="48" Height="13" Attributes="3" Property="REGISTER_POT" Text=".pot" Order="2700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_potx" Type="CheckBox" X="235" Y="110" Width="48" Height="13" Attributes="3" Property="REGISTER_POTX" Text=".potx" Order="2800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_potm" Type="CheckBox" X="285" Y="110" Width="48" Height="13" Attributes="3" Property="REGISTER_POTM" Text=".potm" Order="2900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pps" Type="CheckBox" X="35" Y="125" Width="48" Height="13" Attributes="3" Property="REGISTER_PPS" Text=".pps" Order="3000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppsx" Type="CheckBox" X="85" Y="125" Width="48" Height="13" Attributes="3" Property="REGISTER_PPSX" Text=".ppsx" Order="3100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppsm" Type="CheckBox" X="135" Y="125" Width="48" Height="13" Attributes="3" Property="REGISTER_PPSM" Text=".ppsm" Order="3200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_odt" Type="CheckBox" X="35" Y="140" Width="48" Height="13" Attributes="3" Property="REGISTER_ODT" Text=".odt" Order="3300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ods" Type="CheckBox" X="85" Y="140" Width="48" Height="13" Attributes="3" Property="REGISTER_ODS" Text=".ods" Order="3400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_odp" Type="CheckBox" X="135" Y="140" Width="48" Height="13" Attributes="3" Property="REGISTER_ODP" Text=".odp" Order="3500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ott" Type="CheckBox" X="185" Y="140" Width="48" Height="13" Attributes="3" Property="REGISTER_OTT" Text=".ott" Order="3600" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ots" Type="CheckBox" X="235" Y="140" Width="48" Height="13" Attributes="3" Property="REGISTER_OTS" Text=".ots" Order="3700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_otp" Type="CheckBox" X="285" Y="140" Width="48" Height="13" Attributes="3" Property="REGISTER_OTP" Text=".otp" Order="3800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fodt" Type="CheckBox" X="35" Y="155" Width="48" Height="13" Attributes="3" Property="REGISTER_FODT" Text=".fodt" Order="3900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fods" Type="CheckBox" X="85" Y="155" Width="48" Height="13" Attributes="3" Property="REGISTER_FODS" Text=".fods" Order="4000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fodp" Type="CheckBox" X="135" Y="155" Width="48" Height="13" Attributes="3" Property="REGISTER_FODP" Text=".fodp" Order="4100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pages" Type="CheckBox" X="185" Y="155" Width="48" Height="13" Attributes="3" Property="REGISTER_PAGES" Text=".pages" Order="4200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_numbers" Type="CheckBox" X="235" Y="155" Width="48" Height="13" Attributes="3" Property="REGISTER_NUMBERS" Text=".numbers" Order="4300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_key" Type="CheckBox" X="285" Y="155" Width="48" Height="13" Attributes="3" Property="REGISTER_KEY" Text=".key" Order="4400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_djvu" Type="CheckBox" X="35" Y="170" Width="48" Height="13" Attributes="3" Property="REGISTER_DJVU" Text=".djvu" Order="4500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fb2" Type="CheckBox" X="85" Y="170" Width="48" Height="13" Attributes="3" Property="REGISTER_FB2" Text=".fb2" Order="4600" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pdf" Type="CheckBox" X="135" Y="170" Width="48" Height="13" Attributes="3" Property="REGISTER_PDF" Text=".pdf" Order="4700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_rtf" Type="CheckBox" X="185" Y="170" Width="48" Height="13" Attributes="3" Property="REGISTER_RTF" Text=".rtf" Order="4800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xps" Type="CheckBox" X="235" Y="170" Width="48" Height="13" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="4900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oxps" Type="CheckBox" X="285" Y="170" Width="48" Height="13" Attributes="3" Property="REGISTER_OXPS" Text=".oxps" Order="5000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_epub" Type="CheckBox" X="35" Y="185" Width="48" Height="13" Attributes="3" Property="REGISTER_EPUB" Text=".epub" Order="5100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_html" Type="CheckBox" X="85" Y="185" Width="48" Height="13" Attributes="3" Property="REGISTER_HTML" Text=".html" Order="5200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xml" Type="CheckBox" X="135" Y="185" Width="48" Height="13" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="5300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_csv" Type="CheckBox" X="185" Y="185" Width="48" Height="13" Attributes="3" Property="REGISTER_CSV" Text=".csv" Order="5400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_txt" Type="CheckBox" X="235" Y="185" Width="48" Height="13" Attributes="3" Property="REGISTER_TXT" Text=".txt" Order="5500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="285" Y="185" Width="48" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="5600" TextLocId="-"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
@@ -970,36 +964,30 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPS]" Argument="1" Condition="AI_INSTALL" Ordering="18"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPSX]" Argument="1" Condition="AI_INSTALL" Ordering="19"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPSM]" Argument="1" Condition="AI_INSTALL" Ordering="20"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_VSDX]" Argument="1" Condition="AI_INSTALL" Ordering="21"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_VSTX]" Argument="1" Condition="AI_INSTALL" Ordering="22"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_VSSX]" Argument="1" Condition="AI_INSTALL" Ordering="23"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_VSDM]" Argument="1" Condition="AI_INSTALL" Ordering="24"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_VSTM]" Argument="1" Condition="AI_INSTALL" Ordering="25"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_VSSM]" Argument="1" Condition="AI_INSTALL" Ordering="26"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODT]" Argument="1" Condition="AI_INSTALL" Ordering="27"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODS]" Argument="1" Condition="AI_INSTALL" Ordering="28"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODP]" Argument="1" Condition="AI_INSTALL" Ordering="29"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTT]" Argument="1" Condition="AI_INSTALL" Ordering="30"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTS]" Argument="1" Condition="AI_INSTALL" Ordering="31"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTP]" Argument="1" Condition="AI_INSTALL" Ordering="32"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FODT]" Argument="1" Condition="AI_INSTALL" Ordering="33"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FODS]" Argument="1" Condition="AI_INSTALL" Ordering="34"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FODP]" Argument="1" Condition="AI_INSTALL" Ordering="35"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PAGES]" Argument="1" Condition="AI_INSTALL" Ordering="36"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_NUMBERS]" Argument="1" Condition="AI_INSTALL" Ordering="37"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_KEY]" Argument="1" Condition="AI_INSTALL" Ordering="38"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DJVU]" Argument="1" Condition="AI_INSTALL" Ordering="39"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FB2]" Argument="1" Condition="AI_INSTALL" Ordering="40"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PDF]" Argument="1" Condition="AI_INSTALL" Ordering="41"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_RTF]" Argument="1" Condition="AI_INSTALL" Ordering="42"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XPS]" Argument="1" Condition="AI_INSTALL" Ordering="43"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OXPS]" Argument="1" Condition="AI_INSTALL" Ordering="44"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_EPUB]" Argument="1" Condition="AI_INSTALL" Ordering="45"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_HTML]" Argument="1" Condition="AI_INSTALL" Ordering="46"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XML]" Argument="1" Condition="AI_INSTALL" Ordering="47"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_CSV]" Argument="1" Condition="AI_INSTALL" Ordering="48"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_TXT]" Argument="1" Condition="AI_INSTALL" Ordering="49"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOCXF]" Argument="1" Condition="AI_INSTALL" Ordering="50"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODT]" Argument="1" Condition="AI_INSTALL" Ordering="21"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODS]" Argument="1" Condition="AI_INSTALL" Ordering="22"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODP]" Argument="1" Condition="AI_INSTALL" Ordering="23"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTT]" Argument="1" Condition="AI_INSTALL" Ordering="24"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTS]" Argument="1" Condition="AI_INSTALL" Ordering="25"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTP]" Argument="1" Condition="AI_INSTALL" Ordering="26"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FODT]" Argument="1" Condition="AI_INSTALL" Ordering="27"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FODS]" Argument="1" Condition="AI_INSTALL" Ordering="28"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FODP]" Argument="1" Condition="AI_INSTALL" Ordering="29"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PAGES]" Argument="1" Condition="AI_INSTALL" Ordering="30"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_NUMBERS]" Argument="1" Condition="AI_INSTALL" Ordering="31"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_KEY]" Argument="1" Condition="AI_INSTALL" Ordering="32"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DJVU]" Argument="1" Condition="AI_INSTALL" Ordering="33"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FB2]" Argument="1" Condition="AI_INSTALL" Ordering="34"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PDF]" Argument="1" Condition="AI_INSTALL" Ordering="35"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_RTF]" Argument="1" Condition="AI_INSTALL" Ordering="36"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XPS]" Argument="1" Condition="AI_INSTALL" Ordering="37"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OXPS]" Argument="1" Condition="AI_INSTALL" Ordering="38"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_EPUB]" Argument="1" Condition="AI_INSTALL" Ordering="39"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_HTML]" Argument="1" Condition="AI_INSTALL" Ordering="40"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XML]" Argument="1" Condition="AI_INSTALL" Ordering="41"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_CSV]" Argument="1" Condition="AI_INSTALL" Ordering="42"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_TXT]" Argument="1" Condition="AI_INSTALL" Ordering="43"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOCXF]" Argument="1" Condition="AI_INSTALL" Ordering="44"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOC]" Argument="{}" Condition="AI_INSTALL" Ordering="0"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCX]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCM]" Argument="{}" Condition="AI_INSTALL" Ordering="2"/>
@@ -1021,36 +1009,30 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPS]" Argument="{}" Condition="AI_INSTALL" Ordering="18"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPSX]" Argument="{}" Condition="AI_INSTALL" Ordering="19"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPSM]" Argument="{}" Condition="AI_INSTALL" Ordering="20"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_VSDX]" Argument="{}" Condition="AI_INSTALL" Ordering="21"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_VSTX]" Argument="{}" Condition="AI_INSTALL" Ordering="22"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_VSSX]" Argument="{}" Condition="AI_INSTALL" Ordering="23"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_VSDM]" Argument="{}" Condition="AI_INSTALL" Ordering="24"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_VSTM]" Argument="{}" Condition="AI_INSTALL" Ordering="25"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_VSSM]" Argument="{}" Condition="AI_INSTALL" Ordering="26"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODT]" Argument="{}" Condition="AI_INSTALL" Ordering="27"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODS]" Argument="{}" Condition="AI_INSTALL" Ordering="28"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODP]" Argument="{}" Condition="AI_INSTALL" Ordering="29"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTT]" Argument="{}" Condition="AI_INSTALL" Ordering="30"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTS]" Argument="{}" Condition="AI_INSTALL" Ordering="31"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTP]" Argument="{}" Condition="AI_INSTALL" Ordering="32"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FODT]" Argument="{}" Condition="AI_INSTALL" Ordering="33"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FODS]" Argument="{}" Condition="AI_INSTALL" Ordering="34"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FODP]" Argument="{}" Condition="AI_INSTALL" Ordering="35"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PAGES]" Argument="{}" Condition="AI_INSTALL" Ordering="36"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_NUMBERS]" Argument="{}" Condition="AI_INSTALL" Ordering="37"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_KEY]" Argument="{}" Condition="AI_INSTALL" Ordering="38"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DJVU]" Argument="{}" Condition="AI_INSTALL" Ordering="39"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FB2]" Argument="{}" Condition="AI_INSTALL" Ordering="40"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PDF]" Argument="{}" Condition="AI_INSTALL" Ordering="41"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_RTF]" Argument="{}" Condition="AI_INSTALL" Ordering="42"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XPS]" Argument="{}" Condition="AI_INSTALL" Ordering="43"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OXPS]" Argument="{}" Condition="AI_INSTALL" Ordering="44"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_EPUB]" Argument="{}" Condition="AI_INSTALL" Ordering="45"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_HTML]" Argument="{}" Condition="AI_INSTALL" Ordering="46"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XML]" Argument="{}" Condition="AI_INSTALL" Ordering="47"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_CSV]" Argument="{}" Condition="AI_INSTALL" Ordering="48"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_TXT]" Argument="{}" Condition="AI_INSTALL" Ordering="49"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCXF]" Argument="{}" Condition="AI_INSTALL" Ordering="50"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODT]" Argument="{}" Condition="AI_INSTALL" Ordering="21"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODS]" Argument="{}" Condition="AI_INSTALL" Ordering="22"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODP]" Argument="{}" Condition="AI_INSTALL" Ordering="23"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTT]" Argument="{}" Condition="AI_INSTALL" Ordering="24"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTS]" Argument="{}" Condition="AI_INSTALL" Ordering="25"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTP]" Argument="{}" Condition="AI_INSTALL" Ordering="26"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FODT]" Argument="{}" Condition="AI_INSTALL" Ordering="27"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FODS]" Argument="{}" Condition="AI_INSTALL" Ordering="28"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FODP]" Argument="{}" Condition="AI_INSTALL" Ordering="29"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PAGES]" Argument="{}" Condition="AI_INSTALL" Ordering="30"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_NUMBERS]" Argument="{}" Condition="AI_INSTALL" Ordering="31"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_KEY]" Argument="{}" Condition="AI_INSTALL" Ordering="32"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DJVU]" Argument="{}" Condition="AI_INSTALL" Ordering="33"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FB2]" Argument="{}" Condition="AI_INSTALL" Ordering="34"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PDF]" Argument="{}" Condition="AI_INSTALL" Ordering="35"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_RTF]" Argument="{}" Condition="AI_INSTALL" Ordering="36"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XPS]" Argument="{}" Condition="AI_INSTALL" Ordering="37"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OXPS]" Argument="{}" Condition="AI_INSTALL" Ordering="38"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_EPUB]" Argument="{}" Condition="AI_INSTALL" Ordering="39"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_HTML]" Argument="{}" Condition="AI_INSTALL" Ordering="40"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XML]" Argument="{}" Condition="AI_INSTALL" Ordering="41"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_CSV]" Argument="{}" Condition="AI_INSTALL" Ordering="42"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_TXT]" Argument="{}" Condition="AI_INSTALL" Ordering="43"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCXF]" Argument="{}" Condition="AI_INSTALL" Ordering="44"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="c_dir_app" ManualDelete="true"/>
