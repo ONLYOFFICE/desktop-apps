@@ -121,6 +121,21 @@ namespace NS_Utils
         MessageBox(NULL, str.c_str(), caption.c_str(), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
     }
 
+    int ShowTaskDialog(HWND parent, const wstring &msg, PCWSTR icon)
+    {
+        int result = IDCANCEL;
+        wstring caption(_T("    "));
+        caption.append(_TR(CAPTION));
+        if (HMODULE lib = LoadLibrary(L"Comctl32")) {
+            HRESULT (WINAPI *_TaskDialog)(HWND, HINSTANCE, PCWSTR, PCWSTR, PCWSTR, TASKDIALOG_COMMON_BUTTON_FLAGS, PCWSTR, int*);
+            *(FARPROC*)&_TaskDialog = GetProcAddress(lib, "TaskDialog");
+            if (_TaskDialog)
+                _TaskDialog(parent, GetModuleHandle(NULL), caption.c_str(), msg.c_str(), NULL, TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON, icon, &result);
+            FreeLibrary(lib);
+        }
+        return result;
+    }
+
     bool IsRtlLanguage(unsigned long lcid)
     {
         if (Utils::getWinVersion() >= Utils::WinVer::Win7) {
@@ -179,11 +194,9 @@ namespace NS_Utils
     {
         bool accept = true;
         if (HWND app_hwnd = FindWindow(WINDOW_CLASS_NAME, NULL)) {
-            wstring caption(_T("    "));
-            caption.append(_TR(CAPTION));
             wstring msg(_TR(MSG_ERR_TRY_CLOSE_APP));
             NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
-            accept = (IDOK == MessageBox(parent, msg.c_str(), caption.c_str(), MB_ICONINFORMATION | MB_SERVICE_NOTIFICATION_NT3X | MB_APPLMODAL | MB_OKCANCEL | MB_DEFBUTTON1));
+            accept = (IDOK == NS_Utils::ShowTaskDialog(parent, msg.c_str(), TD_INFORMATION_ICON));
             if (accept) {
                 PostMessage(app_hwnd, UM_INSTALL_UPDATE, 0, 0);
                 Sleep(1000);
@@ -191,7 +204,7 @@ namespace NS_Utils
                     if ((app_hwnd = FindWindow(WINDOW_CLASS_NAME, NULL)) != nullptr) {
                         wstring msg(_TR(MSG_ERR_CLOSE_APP));
                         NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
-                        int result = MessageBox(parent, msg.c_str(), caption.c_str(), MB_ICONWARNING | MB_SERVICE_NOTIFICATION_NT3X | MB_APPLMODAL | MB_OKCANCEL | MB_DEFBUTTON1);
+                        int result = NS_Utils::ShowTaskDialog(parent, msg.c_str(), TD_WARNING_ICON);
                         if (result != IDOK) {
                             accept = false;
                             break;

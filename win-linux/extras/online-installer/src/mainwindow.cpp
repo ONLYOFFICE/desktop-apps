@@ -381,6 +381,8 @@ void MainWindow::startUpdate()
     wstring tmp_path;
     if (m_package == L"msi") {
         wstring prodCode = NS_Utils::MsiProductCode(_T(REG_UNINST_KEY));
+        if (prodCode.empty())
+            prodCode = NS_Utils::MsiProductCode(_T(REG_GROUP_KEY));
         if (prodCode.empty()) {
             m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
             createCloseAndBackButtons();
@@ -445,13 +447,17 @@ void MainWindow::startUpdate()
 //     wstring tmp_path;
 //     if (m_package == L"msi") {
 //         wstring prodCode = NS_Utils::MsiProductCode(_T(REG_UNINST_KEY));
+//         if (prodCode.empty())
+//             prodCode = NS_Utils::MsiProductCode(_T(REG_GROUP_KEY));
 //         if (prodCode.empty()) {
 //             m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
+//             createCloseAndBackButtons();
 //             return;
 //         }
 //         wstring packageName =  NS_Utils::MsiGetProperty(prodCode.c_str(), INSTALLPROPERTY_PACKAGENAME);
 //         if (packageName.empty()) {
 //             m_comntInfoLbl->setText(_TR(LABEL_ERR_PACK_NAME), true);
+//             createCloseAndBackButtons();
 //             return;
 //         }
 //         tmp_path = NS_File::toNativeSeparators(NS_File::tempPath() + _T("/") + packageName);
@@ -645,7 +651,7 @@ void MainWindow::createSelectionPage()
     applyBtn->onClick([=]() {
         wstring msg = m_uninsRadio->isChecked() ? _TR(MSG_REMOVE) : /*m_repRadio->isChecked() ? _TR(MSG_REPAIR) :*/ _TR(MSG_UPDATE);
         NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
-        if (IDOK == MessageBox(nativeWindowHandle(), msg.c_str(), _TR(CAPTION), MB_ICONWARNING | MB_OKCANCEL | MB_DEFBUTTON2)) {
+        if (IDOK == NS_Utils::ShowTaskDialog(nativeWindowHandle(), msg.c_str(), TD_WARNING_ICON)) {
             if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle()))
                 return;
             m_cenPanel->disconnect(m_resize_conn);
