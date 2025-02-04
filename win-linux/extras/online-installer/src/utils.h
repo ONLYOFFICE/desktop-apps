@@ -54,6 +54,7 @@ bool cmdArgContains(const wstring &param);
 wstring cmdArgValue(const wstring &param);
 wstring GetLastErrorAsString(DWORD errID = 0);
 void ShowMessage(wstring str, bool showError = false);
+int  ShowTaskDialog(HWND parent, const wstring &msg, PCWSTR icon);
 bool IsRtlLanguage(unsigned long lcid);
 bool IsWin64();
 bool IsAppInstalled(wstring &path, wstring *arch = nullptr);
