@@ -381,6 +381,8 @@ void MainWindow::startUpdate()
     wstring tmp_path;
     if (m_package == L"msi") {
         wstring prodCode = NS_Utils::MsiProductCode(_T(REG_UNINST_KEY));
+        if (prodCode.empty())
+            prodCode = NS_Utils::MsiProductCode(_T(REG_GROUP_KEY));
         if (prodCode.empty()) {
             m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
             createCloseAndBackButtons();
@@ -445,13 +447,17 @@ void MainWindow::startUpdate()
 //     wstring tmp_path;
 //     if (m_package == L"msi") {
 //         wstring prodCode = NS_Utils::MsiProductCode(_T(REG_UNINST_KEY));
+//         if (prodCode.empty())
+//             prodCode = NS_Utils::MsiProductCode(_T(REG_GROUP_KEY));
 //         if (prodCode.empty()) {
 //             m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
+//             createCloseAndBackButtons();
 //             return;
 //         }
 //         wstring packageName =  NS_Utils::MsiGetProperty(prodCode.c_str(), INSTALLPROPERTY_PACKAGENAME);
 //         if (packageName.empty()) {
 //             m_comntInfoLbl->setText(_TR(LABEL_ERR_PACK_NAME), true);
+//             createCloseAndBackButtons();
 //             return;
 //         }
 //         tmp_path = NS_File::toNativeSeparators(NS_File::tempPath() + _T("/") + packageName);
