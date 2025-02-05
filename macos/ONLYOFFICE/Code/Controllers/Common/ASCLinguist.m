@@ -49,11 +49,7 @@ static BOOL uiLayoutDirectionRTL = NO;
     [[NSUserDefaults standardUserDefaults] setObject:[ASCLinguist appLanguageCode] forKey:@"AppleLocale"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-//    bool l = [NSLocale characterDirectionForLanguage:[ASCLinguist appLanguageCode]] == NSLocaleLanguageDirectionRightToLeft;
-    NSString * direction = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILayoutDirection];
-    if ( direction != nil )
-        uiLayoutDirectionRTL = [direction isEqualToString:@"rtl"];
-    
+    uiLayoutDirectionRTL = [NSLocale characterDirectionForLanguage:[ASCLinguist appLanguageCode]] == NSLocaleLanguageDirectionRightToLeft;
     if ( uiLayoutDirectionRTL ) {
         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"AppleTextDirection"];
         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"NSForceRightToLeftWritingDirection"];
@@ -82,14 +78,6 @@ static BOOL uiLayoutDirectionRTL = NO;
     [[NSUserDefaults standardUserDefaults] setObject:langCode forKey:ASCUserUILanguage];
     [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:langCode] forKey:@"AppleLanguages"];
     [[NSUserDefaults standardUserDefaults] setObject:langCode forKey:@"AppleLocale"];
-
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-+ (void)setUILayoutDirectionRtl:(BOOL)value {
-    if ( value )
-        [[NSUserDefaults standardUserDefaults] setObject:@"rtl" forKey:ASCUserUILayoutDirection];
-    else [[NSUserDefaults standardUserDefaults] removeObjectForKey:ASCUserUILayoutDirection];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -145,6 +133,7 @@ static BOOL uiLayoutDirectionRTL = NO;
         @"gl-ES": @{@"name": @"Galego", @"enname": @"Galego"},
         @"si-LK": @{@"name": @"සිංහල", @"enname": @"Sinhala (Sri Lanka)"},
         @"ar-SA": @{@"name": @"اَلْعَرَبِيَّة", @"enname": @"Arabic"},
+        @"sq-AL": @{@"name": @"Shqip", @"enname": @"Albanian"},
         @"he-IL": @{@"name": @"עברית", @"enname": @"Hebrew"}
     };
 }

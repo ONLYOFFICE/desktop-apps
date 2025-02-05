@@ -27,11 +27,13 @@ public:
         , ecrWindowBorder
         , ecrTextNormal
         , ecrTextPretty
+        , ecrTextInverse
         , ecrLogoColor
         , ecrTabWordActive
         , ecrTabCellActive
         , ecrTabSlideActive
         , ecrTabViewerActive
+        , ecrTabDrawActive
         , ecrTabSimpleActiveBackground
         , ecrTabSimpleActiveText
         , ecrTabDefaultActiveBackground
@@ -55,6 +57,13 @@ public:
         , ecrDownloadProgressBarBackgroundItemHover
         , ecrDownloadProgressBarChunk
         , ecrDownloadScrollBarHandle
+        , ecrMenuBackground
+        , ecrMenuBorder
+        , ecrMenuItemHoverBackground
+        , ecrMenuText
+        , ecrMenuTextItemHover
+        , ecrMenuTextItemDisabled
+        , ecrMenuSeparator
         , ecrToolTipText
         , ecrToolTipBorder
         , ecrToolTipBackground

@@ -74,6 +74,13 @@
     return UIColorFromRGB(0xaa5252);
 }
 
++ (NSColor *) brandDrawEditor {
+    if (@available(macOS 10.13, *)) {
+        return [NSColor colorNamed:@"brand-DrawEditor"];
+    }
+    return UIColorFromRGB(0x444796);
+}
+
 @end
 
 #pragma mark - Extensions

@@ -9,6 +9,13 @@
 @tooltip-text: %8;
 @tooltip-border: %9;
 @tooltip-background: %10;
+@menu-background: %11;
+@menu-border: %12;
+@menu-item-hover-background: %13;
+@menu-text: %14;
+@menu-text-item-hover: %15;
+@menu-text-item-disabled: %16;
+@menu-separator: %17;
 */
 
 #mainPanel {margin: 0; padding: 0; background: %1;}
@@ -32,6 +39,10 @@ QPushButton#toolButtonDownload {border: none; margin: 0; padding: 0; border-radi
 QPushButton#toolButtonMaximize,
 QPushButton#toolButtonMinimize,
 QPushButton#toolButtonClose {background-origin: content; padding: 5px 0px 7px;}
+
+QPushButton#toolButtonMaximize[win10=true],
+QPushButton#toolButtonMinimize[win10=true],
+QPushButton#toolButtonClose[win10=true] {padding: 9px 0px 10px;}
 
 QPushButton#toolButtonMaximize[kde=true],
 QPushButton#toolButtonMinimize[kde=true],
@@ -57,6 +68,7 @@ QPushButton#toolButtonMain {
     border-right: 1px solid %7;
 }
 #mainPanel[rtl=true] QPushButton#toolButtonMain {border-right: 0px; border-left: 1px solid %7;}
+#mainPanel[win10=true] QPushButton#toolButtonMain {margin-top: 5px;}
 
 QPushButton#toolButtonMain[class=active] {background: %7;}
 /*QPushButton#toolButtonMain[class=active],
@@ -71,6 +83,7 @@ QPushButton::menu-indicator {width: 0px; height: 0px;}
 
 QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid %6; max-width: 40px; width: 40px; max-height: 28px; height: 28px;}
 #mainPanel[rtl=true] QPushButton#toolButtonDownload {border-right: 0px; border-left: 1px solid %6;}
+#mainPanel[win10=true] QPushButton#toolButtonDownload {max-height: 35px; height: 35px;}
 
 /**************************/
 /* dark theme definitions */
@@ -80,6 +93,26 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid %6; ma
 #mainPanel[uithemetype=dark] QPushButton#toolButtonMaximize[class=min] {image: url(:/maximize_light.svg) center no-repeat;}
 #mainPanel[uithemetype=dark] QPushButton#toolButtonMinimize {image: url(:/minimize_light.svg) center no-repeat;}
 #mainPanel[uithemetype=dark] QPushButton#toolButtonClose {image: url(:/close_light.svg) center no-repeat;}
+
+/* Menu */
+
+#CMenuWidget #menuItem {
+    min-height: 26px;
+    padding-left: 25px; padding-right: 17px; padding-top: 0px; padding-bottom: 0px;
+    color: %14;
+    font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif; font-size: 11px; font-weight: normal;
+    qproperty-alignment: AlignVCenter;
+    border: none;
+    background: %11;
+}
+#CMenuWidget #menuItem[hovered=true] {color: %15; background: %13;}
+#CMenuWidget #menuItem[disabled=true] {color: %16;}
+#CMenuWidget #menuFrame {border: 1px solid %12; border-radius: 4px; background: %11;}
+#CMenuWidget QFrame[frameShape="4"] {max-height: 1px; border: none; background: %17;}
+
+#mainPanel[uithemetype=dark] #CMenuWidget #menuItem {font-weight: 500;}
+#mainPanel[uithemetype=dark][unix=true] #CMenuWidget #menuItem {font-weight: normal;}
+#mainPanel[rtl-font=true] #CMenuWidget #menuItem {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}
 
 /* ToolTip*/
 

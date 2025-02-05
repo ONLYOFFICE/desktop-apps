@@ -39,6 +39,7 @@
 #include "ceditortools.h"
 #include "components/cfullscrwidget.h"
 #include "components/cprintdialog.h"
+#include "components/cmenu.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
 #include <QDir>
 #include <QUuid>
@@ -47,6 +48,7 @@
 #include <QJsonObject>
 #include <QGridLayout>
 #include <QPrintEngine>
+#include <QAction>
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"
@@ -71,6 +73,7 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     case AscEditorType::etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
     case AscEditorType::etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
     case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
+    case AscEditorType::etDraw: c = theme.value(CTheme::ColorRole::ecrTabDrawActive); break;
     }
     QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
 #ifdef __linux__
@@ -85,6 +88,7 @@ auto editor_color(AscEditorType type) -> QColor {
     case AscEditorType::etPresentation: return GetColorByRole(ecrTabSlideActive);
     case AscEditorType::etSpreadsheet: return GetColorByRole(ecrTabCellActive);
     case AscEditorType::etPdf: return GetColorByRole(ecrTabViewerActive);
+    case AscEditorType::etDraw: return GetColorByRole(ecrTabDrawActive);
     default: return GetColorByRole(ecrTabWordActive);
     }
 }
@@ -503,6 +507,10 @@ public:
             background = GetColorValueByRole(ecrTabViewerActive);
             border = background;
             break;
+        case AscEditorType::etDraw:
+            background = GetColorValueByRole(ecrTabDrawActive);
+            border = background;
+            break;
         default:
             background = GetColorValueByRole(ecrWindowBackground);
             border = GetColorValueByRole(ecrWindowBorder);
@@ -561,6 +569,8 @@ public:
                 window->hide();
             }
         } else {
+            if (!cancel)
+                window->menu()->setSectionEnabled(CMenu::ActionShowInFolder, true);
             AscAppManager::cancelClose();
         }
     }
@@ -1040,6 +1050,7 @@ public:
         if (QLayoutItem *stretch = _layout->takeAt(0))
             delete stretch;
         boxtitlelabel = new QWidget(window->m_boxTitleBtns);
+        boxtitlelabel->setObjectName("boxtitlelabel");
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
         boxtitlelabel->layout()->setMargin(0);

@@ -714,7 +714,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
     }
 
     // Replace app path to Backup
-#ifdef _WIN32
+#ifdef _WIN32_UNUSED
     if (packageType == TEXT("portable") && !NS_File::dirExists(tmpPath) && !NS_File::makePath(tmpPath)) {
         NS_Logger::WriteLog(_TR("Update cancelled. Can't create folder:") + _T(" ") + tmpPath, true);
         return;
@@ -773,7 +773,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
             HKEY hKey, hAppKey;
             if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall"), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
                 wstring app_name(TEXT(WINDOW_NAME));
-                wstring app_key(app_name);
+                wstring app_key(TEXT(REG_UNINST_KEY));
                 app_key += (packageType == TEXT("iss")) ? L"_is1" : L"";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
                     wstring disp_name = app_name + L" " + verToAppVer(ver) + L" (" + currentArch().substr(1) + L")";

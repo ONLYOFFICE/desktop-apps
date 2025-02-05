@@ -70,15 +70,19 @@
 + (NSArray *)documents {
     return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dot", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
              @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
-             @"fb2", @"oform", @"sxw", @"stw", @"md"];
+             @"fb2", @"oform", @"sxw", @"stw", @"md", @"pages", @"hwp", @"hwpx"];
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"xlsm", @"xlsb", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc"];
+    return @[@"xls", @"xlsx", @"xlsm", @"xlsb", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc",@"numbers"];
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi"];
+    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi",@"key"];
+}
+
++ (NSArray *)draws {
+    return @[@"vsdx",@"vssx",@"vstx",@"vsdm",@"vssm",@"vstm"];
 }
 
 + (NSArray *)cancryptformats {
@@ -257,6 +261,10 @@
              @(AVS_OFFICESTUDIO_FILE_IMAGE_JPG): @{
                      @"description" : NSLocalizedString(@"JPG Image", nil),
                      @"extension"   : @"jpg"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DRAW_VSDX): @{
+                     @"description" : NSLocalizedString(@"VSDX File", nil),
+                     @"extension"   : @"vsdx"
              }
     };
 }

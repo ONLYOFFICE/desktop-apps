@@ -99,6 +99,7 @@
         <file alias="pdf-form.svg">res/icons/tabbar/tabicon_pdf_normal.svg</file>
         <file alias="pe.svg">res/icons/tabbar/tabicon_pe_normal.svg</file>
         <file alias="se.svg">res/icons/tabbar/tabicon_se_normal.svg</file>
+        <file alias="ve.svg">res/icons/tabbar/tabicon_ve_normal.svg</file>
         <file alias="pdf.svg">res/icons/tabbar/tabicon_pdf_normal.svg</file>
         <file alias="portal.svg">res/icons/tabbar/portal.svg</file>
         <file alias="portal_light.svg">res/icons/tabbar/portal_light.svg</file>
@@ -130,6 +131,14 @@
     <qresource prefix="/title/icons">
         <file alias="buttons.svg">res/icons/webeditor/buttons.svg</file>
         <file alias="secure.svg">res/icons/webeditor/secureicon.svg</file>
+    </qresource>
+    <qresource prefix="/menu/icons">
+        <file alias="iconssmall_1x.png">res/icons/menu/iconssmall.png</file>
+        <file alias="iconssmall_1.25x.png">res/icons/menu/iconssmall@1.25x.png</file>
+        <file alias="iconssmall_1.5x.png">res/icons/menu/iconssmall@1.5x.png</file>
+        <file alias="iconssmall_1.75x.png">res/icons/menu/iconssmall@1.75x.png</file>
+        <file alias="iconssmall_2x.png">res/icons/menu/iconssmall@2x.png</file>
+        <file alias="iconssmall_2.5x.svg">res/icons/menu/iconssmall@2.5x.svg</file>
     </qresource>
     <qresource prefix="/styles">
         <file alias="styles.qss">res/styles/styles.qss</file>
@@ -215,6 +224,7 @@
         <file alias="si-LK.qm">langs/si.qm</file>
         <file alias="sk-SK.qm">langs/sk.qm</file>
         <file alias="sl-SI.qm">langs/sl.qm</file>
+        <file alias="sq-AL.qm">langs/sq.qm</file>
         <file alias="sr-Latn-RS.qm">langs/sr_Latn_RS.qm</file>
         <file alias="sr-Cyrl-RS.qm">langs/sr_Cyrl_RS.qm</file>
         <file alias="sv-SE.qm">langs/sv.qm</file>

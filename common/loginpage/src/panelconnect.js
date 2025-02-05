@@ -233,7 +233,6 @@
     utils.fn.extend(ControllerPortals.prototype, (function() {
         let collection,
             ppmenu;
-        // let dlgLogin;
 
         function _on_context_menu(menu, action, data) {
             var model = data;
@@ -274,62 +273,6 @@
 
             _dialog.show();
         };
-
-        // TODO: remove after ver 8.0. login proc via portal's api isn't used any more
-        /* function _do_login(model) {
-            if ( !dlgLogin ) {
-                !model && (model = {})
-                dlgLogin = new LoginDlg({
-                    success: info => {
-                        if ( info.type == 'sso' ) {
-                            window.sdk.execCommand("auth:sso", JSON.stringify(info));
-                        } else
-                        if ( info.type == 'outer' ) {
-                            window.sdk.execCommand("auth:outer", JSON.stringify(info));
-                        } else
-                        if ( info.type == 'user' ) {
-                            window.sdk.execCommand("portal:open", JSON.stringify({portal:info.data.portal}));
-
-                            // dlgLogin.close();
-                            PortalsStore.keep(info.data);
-                            _update_portals.call(this);
-
-                            window.selectAction('connect');
-                        }
-                    },
-                    close: code => {
-                        dlgLogin = undefined;
-                    }
-                });
-
-                dlgLogin.show({portal: model.path, provider: model.provider, email: model.email});
-            }
-        }; */
-
-        // TODO: remove after ver 8.0. login proc via portal's api isn't used any more
-        // if ( config.portals && !!config.portals.auth_use_api ) {
-        //     _do_connect = _do_login;
-        // }
-
-        // TODO: remove after ver 8.0. login proc via portal's api isn't used any more
-        // function _authorize(portal, user, data) {
-        //     if ( !dlgLogin ) {
-        //         dlgLogin = new LoginDlg({
-        //             success: info => {
-        //                 // dlgLogin.close();
-        //                 PortalsStore.keep(info.data);
-        //                 _update_portals.call(this);
-
-        //                 CommonEvents.fire('portal:authorized', [data]);
-        //             },
-        //             close: code => {
-        //                 dlgLogin = undefined;
-        //             }
-        //         });
-
-        //         dlgLogin.show({portal: portal, email: user});
-        //     }
-        // };
 
         function _do_logout(model) {
             // var model = portalCollection.find('name', info);
@@ -500,7 +443,6 @@
         };
 
         var _on_create_portal = function() {
-            // dlgLogin && dlgLogin.close();
             window.sdk.execCommand('portal:create', '');
         };
 
@@ -597,10 +539,6 @@
                     try {
                         opts = JSON.parse(params);
                     } catch (e) { /*delete opts;*/ }
-
-                    // if ( opts && opts.portals && opts.portals.auth_use_api ) {
-                    //     _do_connect = _do_login;
-                    // }
                 } else
                 if (params.includes('\"uitheme\"\:')) {
                     // let opts = JSON.parse(params);
@@ -747,16 +685,6 @@
                 var model = collection.find('name', utils.skipUrlProtocol(portal));
                 return model && model.logged;
             },
-            // TODO: remove after ver 8.0. login proc via portal's api isn't used any more
-            // authorizeOn: function(portal, data) {
-            //     var model = collection.find('name', utils.skipUrlProtocol(portal));
-            //     if ( !model ) {
-            //         _authorize.call(this, portal, undefined, data);
-            //     } else
-            //     if ( !model.logged ) {
-            //         _authorize.call(this, portal, model.email, data);
-            //     }
-            // },
             collection: function() {
                 return collection;
             },

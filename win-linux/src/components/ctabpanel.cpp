@@ -149,6 +149,15 @@ bool CTabPanel::isReady()
     return m_isReady;
 }
 
+bool CTabPanel::hasUncommittedChanges()
+{
+    if (m_pViewer) {
+        CCefViewEditor *pViewEditor = (CCefViewEditor*)m_pViewer->GetCefView();
+        return pViewEditor && pViewEditor->IsSaveLocked();
+    }
+    return false;
+}
+
 /*void CTabPanel::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);

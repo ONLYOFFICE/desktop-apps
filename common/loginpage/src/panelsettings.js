@@ -175,19 +175,12 @@
                                             </div>
                                         </div>
                                         <div class='settings-field settings-field-lang'>
-                                            <label class='sett__caption' l10n>${_lang.settLanguage}</label>
+                                            <label class='sett__caption' l10n>${_lang.settLanguage}</label><label class='sett__caption sett__caption-restart' style='display:none'> *</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox subtext-right' data-size="10"></select>
                                                 </section>
                                             </div>
-                                        </div>
-                                        <div class='settings-field' style='display:none;'>
-                                            <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
-                                                <input type="checkbox" class="checkbox" id="sett-rtl-mode">
-                                                <label for="sett-rtl-mode" class='sett__caption' l10n>${_lang.settRtlMode} *</label>
-                                                <span class='sett__caption sett__caption-beta'>Beta</span>
-                                            </section>
                                         </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
                                             <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
@@ -318,8 +311,7 @@
             $optsSpellcheckMode,
             $optsLaunchMode,
             $optsAutoupdateMode;
-        let $chRtl,
-            $chGpu;
+        let $chGpu;
         let appSettings;
 
         function _set_user_name(name) {
@@ -452,15 +444,6 @@
                     $optsSpellcheckMode.selectpicker('refresh');
                 }
 
-                if ( $chRtl ) {
-                    _new_settings.rtl = $chRtl.prop("checked");
-
-                    if ( appSettings.rtl != _new_settings.rtl ) {
-                        _new_settings.restart = true;
-                        appSettings.rtl = _new_settings.rtl;
-                    }
-                }
-
                 if ( $chGpu ) {
                     _new_settings.usegpu = $chGpu.prop("checked");
 
@@ -472,7 +455,7 @@
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
                 $btnApply.disable(true);
-                
+
                 localStorage.setItem('username', _user_new_name);
                 localStorage.setItem('docopenmode', _doc_open_mode);
 
@@ -484,7 +467,7 @@
 
         function _on_txt_user_change(e) {
             $userName.removeClass('error');
-            
+
             if ( $btnApply.isdisabled() )
                 $btnApply.disable(false);
         };
@@ -499,20 +482,11 @@
             }
 
             const _is_rtl = utils.Lang.isLangRTL(l);
-            if ( $chRtl ) {
-                $chRtl.prop("checked", _is_rtl);
-                if ( !_is_rtl ) {
-                    $chRtl.prop("disabled", "disabled");
-                    $chRtl.next().attr("disabled", "disabled");
-                } else {
-                    $chRtl.removeAttr("disabled");
-                    $chRtl.next().removeAttr("disabled");
-                }
-            }
-
             $btnApply.parent().toggleClass('rtl-font', _is_rtl);
             $btnApply.toggleClass('rtl-font--skip', !_is_rtl);
             $optsLang.toggleClass('notted', true);
+
+            sdk.command("settings:check", JSON.stringify({"langid":l}));
         };
 
         function _on_autoupdate_change() {
@@ -569,13 +543,18 @@
                             $combo.selectpicker();
 
                             if ( appSettings.locale.restart ) {
-                                if ( !$panel.find('.settings-field-lang label[l10n] + .sett__caption-restart').length ) 
-                                    $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption sett__caption-restart'> *</label>`);
-
+                                $panel.find('.settings-field-lang label.sett__caption-restart').show();
                                 $('#caption-restart', $panel).show();
                             }
 
                             $(document.body).toggleClass('rtl-font', utils.Lang.isLangRTL(appSettings.locale.current));
+                        }
+
+                        if ( appSettings.rtl === true ) {
+                            document.body.setAttribute('dir', 'rtl');
+                            document.body.classList.add('rtl');
+
+                            $userName.css('direction', 'rtl');
                         }
 
                         if ( appSettings.uiscaling != undefined && !$optsUIScaling ) {
@@ -597,9 +576,17 @@
                                     delete themes_map['theme-system'];
                             }
 
+                            const lang = utils.Lang.id;
                             const _combo = $('#opts-ui-theme select', $panel).empty();
                             for (const [key, value] of Object.entries(themes_map)) {
-                                _combo.append(`<option value=${key} l10n>${value['text']}</option>`);
+                                let _new_title;
+                                if ( value.l10n )
+                                    _new_title = value.l10n[lang] || value.l10n[lang.substring(0,2)] || value.text;
+
+                                if ( !_new_title )
+                                    _new_title = value.text;
+
+                                _combo.append(`<option value=${key}>${_new_title}</option>`);
                             }
 
 
@@ -685,12 +672,13 @@
                     }
 
                     if ( appSettings.rtl !== undefined ) {
-                        if ( !$chRtl || $chRtl.prop('checked') != appSettings.rtl ) {
-                            $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
-                            $chRtl.prop('checked', !!appSettings.rtl)
-                                .on('change', e => {
-                                    $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
-                                });
+                        // if ( !$chRtl || $chRtl.prop('checked') != appSettings.rtl ) 
+                        {
+                            // $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
+                            // $chRtl.prop('checked', !!appSettings.rtl)
+                            //     .on('change', e => {
+                            //         $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
+                            //     });
 
                             if ( appSettings.rtl ) {
                                 document.body.setAttribute('dir', 'rtl');
@@ -698,15 +686,29 @@
 
                                 $userName.css('direction', 'rtl');
                             } else {
-                                if ( !utils.Lang.isLangRTL(appSettings.locale.current) )
-                                    $chRtl.attr('disabled', 'disabled')
-                                        .next().attr('disabled', 'disabled');
+                                // if ( !utils.Lang.isLangRTL(appSettings.locale.current) )
+                                //     $chRtl.attr('disabled', 'disabled')
+                                //         .next().attr('disabled', 'disabled');
                             }
 
                         }
                     }
 
                     $('.settings-field:visible:last').css('margin-bottom','0');
+                } else
+                if (/lang$/.test(cmd)) {
+                    if ( param.startsWith("restart:") ) {
+                        const $label = $panel.find('.settings-field-lang label.sett__caption-restart');
+                        const is_sign_visible = $label.is(':visible');
+                        if ( param.endsWith("true") && !is_sign_visible ) {
+                            $label.show();
+                            appSettings.locale.restart = true;
+                        } else
+                        if ( param.endsWith("false") && is_sign_visible) {
+                            $label.hide();
+                            appSettings.locale.restart = false;
+                        }
+                    }
                 } else
                 if (/updates/.test(cmd)) {
                     // TODO: will be deprecated soon
@@ -797,6 +799,36 @@
             $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
             $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
             $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
+
+            const l10n = {
+                'theme-system': {
+                    text: utils.Lang.settOptThemeSystem,
+                },
+                'theme-light': {
+                    text: utils.Lang.settOptThemeLight,
+                },
+                'theme-classic-light': {
+                    text: utils.Lang.settOptThemeClassicLight,
+                },
+                'theme-dark': {
+                    text: utils.Lang.settOptThemeDark,
+                },
+                'theme-contrast-dark': {
+                    text: utils.Lang.settOptThemeContrastDark,
+                },
+                'theme-gray': {
+                    text: utils.Lang.settOptThemeGray,
+                },
+            }
+
+            for (const [key, value] of Object.entries(l10n)) {
+                if ( themes_map[key] ) {
+                    if ( !themes_map[key]['l10n'] )
+                        themes_map[key]['l10n'] = {};
+
+                    themes_map[key]['l10n'][nl] = value.text;
+                }
+            }
 
             // for ( let k of Object.keys(themes_map) ) {
             //     const t = themes_map[k]

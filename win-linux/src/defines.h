@@ -48,19 +48,21 @@
 # define APP_DATA_PATH "/onlyoffice/desktopeditors"
 # define REG_GROUP_KEY "onlyoffice"
 # define APP_MUTEX_NAME "asc:editors"
+# define DESKTOP_FILE_NAME "onlyoffice-desktopeditors"
 #else
 # define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
 # define APP_REG_NAME  "ONLYOFFICE Editors"
 # define REG_GROUP_KEY "ONLYOFFICE"
+# define REG_UNINST_KEY "ONLYOFFICE Desktop Editors"
 # define APP_MUTEX_NAME "TEAMLAB"
 #endif
 
-#define WINDOW_NAME "ONLYOFFICE Desktop Editors"
+#define WINDOW_NAME "ONLYOFFICE"
 #define WINDOW_TITLE WINDOW_NAME
 #define WINDOW_CLASS_NAME L"DocEditorsWindowClass"
 #define WINDOW_EDITOR_CLASS_NAME L"SingleWindowClass"
 #define REG_APP_NAME "DesktopEditors"
-#define APP_DEFAULT_LOCALE "en-EN"
+#define APP_DEFAULT_LOCALE "en-US"
 #define APP_DEFAULT_SYSTEM_LOCALE 1
 #define APP_USER_MODEL_ID "ASC.Documents.5"
 #define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"
@@ -91,6 +93,8 @@ typedef unsigned char BYTE;
 # define UM_INSTALL_UPDATE      WM_USER+254
 # define UM_CLOSE_MAINWINDOW    WM_USER+253
 #endif
+
+#define UM_ENDMOVE (QEvent::User + 2)
 
 #ifdef _WIN32
 # define WINDOW_BACKGROUND_COLOR RGB(241, 241, 241)              // #f1f1f1

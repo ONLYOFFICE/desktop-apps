@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ Help" = "Ndihmë";
+
+/* No comment provided by engineer. */
+"About %@" = "Për";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Mirënjohje";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Para nënshkrimit të dokumentit ai duhet të ruhet.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Anuloni";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Skedari i nënshkrimit dixhital nuk mund të hapet";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Skedari i çelësit privat nuk mund të hapet";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Dosja e vendndodhjes së skedarit nuk mund të hapet.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Vlerat e ndara me presje";
+
+/* No comment provided by engineer. */
+"Create portal" = "Krijoni portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Fshini dhe hiqni dorë";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Skedari DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Dëshironi të ruani ndryshimet e bëra në dokument \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Dokument %ld.docx";
+
+/* No comment provided by engineer. */
+"Document %ld.pdf" = "Dokument %ld.pdf";
+
+/* No comment provided by engineer. */
+"Document template" = "Shabllon dokumenti";
+
+/* No comment provided by engineer. */
+"Don't Save" = "Mos e ruani";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Fletëllogaritëse Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Fletëllogaritëse Excel 2007";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Skedari i FictionBook";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Skedari \"%@\" nuk mund të jetë i hapur ose nuk ekziston.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Skedari nuk mund të hapet.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Formati i skedarit:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Fshihni %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Në qoftë se nuk i rishikoni dokumentet tuaja, të gjitha ndryshimet tuaja do të humbasin.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Në qoftë se e keni blerë tashmë %@, ju duhet të gjeni çelësin tuaj të aktivizimit në një konfigurim me email.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Marrëveshje license";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "Prezantim i aktivizuar me makro";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Shablloni i fletëllogaritëses i aktivizuar me makro";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "E-libër Mobipocket";
+
+/* No comment provided by engineer. */
+"new-document" = "Dokument i ri";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Format PDF i ri";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Prezantim i ri";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Fletëllogaritëse e re";
+
+/* No comment provided by engineer. */
+"No" = "Jo";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nuk mund të hapë skedarin e nënshkrimit dixhital. Provoni të hapni një skedar tjetër.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nuk mund të hapë çelësin privat. Provoni të hapni një skedar tjetër.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Shabllon dokumenti OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Shabllon prezantimi OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Shabllon fletëllogaritjes OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Po hapet";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Dokument OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Prezantim OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Fletëllogaritëse OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Skedar PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Skedar PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Tekst i thjeshtë";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Prezantim PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Prezantim PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Shfaqje e slajdeve PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Po përgatitet...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Prezantim %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Shabllon prezantimi";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Pamja e prezantuesit";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Hiqni dorë %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Rishikoni ndryshimet...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Dokument me tekst të pasur";
+
+/* No comment provided by engineer. */
+"Save" = "Ruani";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Ruani dokumentin?";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Detajet e nënshkrimit";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Fletëllogaritëse %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Shabllon fletëllogaritjes";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Ju faleminderit për vlerësimin %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Dokumenti \"%@\" duhet të ndërtohet. Vazhdoni?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Për të hapur vendndodhjen e skedarit, ai duhet të ruhet.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "E pakonfirmuar";
+
+/* No comment provided by engineer. */
+"Untitled" = "Pa titull";
+
+/* No comment provided by engineer. */
+"Web Page" = "Faqe interneti";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Me akses në veçoritë pro";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Dokument Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Dokument Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Letër specifikimi XML";
+
+/* No comment provided by engineer. */
+"Yes" = "Po";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Ju keni %1$ld %2$@ dokumente me ndryshime të pakonfirmuara. Dëshironi që t'i rishikoni këto ndryshime përpara se të largoheni?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Ju keni aktivizuar me sukses %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Ndryshimet tuaja do të humbasin në qoftë se nuk i ruani ato. ";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Abonimi juaj ka skaduar.\n\nProgrami funksionon në modalitetin e paaktivizuar.\n\nTani ju mund të zgjasni ose përmirësoni abonimin tuaj me një zbritje.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Abonimi juaj është gati të skadojë\n(%d ditë të mbetura).\n\nNe kemi një ofertë speciale për ju.";
+

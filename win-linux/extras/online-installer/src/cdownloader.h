@@ -35,11 +35,16 @@
 
 #include <string>
 #include <functional>
-#include <future>
 
+typedef unsigned long ulong;
 typedef std::function<void(int)> FnVoidInt;
+typedef std::function<void(ulong)> FnVoidUl;
+typedef std::function<void(ulong,ulong)> FnVoidUlUl;
 
 using std::wstring;
+
+
+class CDownloaderPrivate;
 
 class CDownloader
 {
@@ -47,23 +52,19 @@ public:
     CDownloader();
     ~CDownloader();
 
+    void queryContentLenght(const wstring &url);
     void downloadFile(const wstring &url, const wstring &filePath);
     void start();
     void stop();
     wstring GetFilePath();
 
     /* callback */
-    void onComplete(FnVoidInt callback);
+    void onQueryResponse(FnVoidUlUl callback);
+    void onComplete(FnVoidUl callback);
     void onProgress(FnVoidInt callback);
 
 private:
-    FnVoidInt m_complete_callback = nullptr,
-              m_progress_callback = nullptr;
-    wstring   m_url,
-              m_filePath;
-    std::future<void> m_future;
-    std::atomic_bool m_run,
-                     m_lock;
+    CDownloaderPrivate *pimpl = nullptr;
 };
 
 #endif // CDOWNLOADER_H

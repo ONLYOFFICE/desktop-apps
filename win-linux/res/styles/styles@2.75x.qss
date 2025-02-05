@@ -6,6 +6,10 @@ QPushButton#toolButtonMaximize,
 QPushButton#toolButtonMinimize,
 QPushButton#toolButtonClose {padding: 14px 0px 19px;}
 
+QPushButton#toolButtonMaximize[win10=true],
+QPushButton#toolButtonMinimize[win10=true],
+QPushButton#toolButtonClose[win10=true] {padding: 26px 0px 26px;}
+
 QPushButton#toolButtonMaximize[kde=true],
 QPushButton#toolButtonMinimize[kde=true],
 QPushButton#toolButtonClose[kde=true] {padding: 6px 0px 19px;}
@@ -15,9 +19,22 @@ QPushButton#toolButtonMain[theme=light] {border-width: 3px; border-bottom: 0 non
 QPushButton#toolButtonMain[class=normal],
 QPushButton#toolButtonMain[class=normal]:hover {border-bottom-width: 3px;}
 #mainPanel[rtl=true] QPushButton#toolButtonMain {border-left-width: 3px;}
+#mainPanel[win10=true] QPushButton#toolButtonMain {margin-top: 14px;}
 
 QPushButton#toolButtonDownload {border-right-width: 3px; max-width: 110px; width: 110px; max-height: 77px; height: 77px;}
 #mainPanel[rtl=true] QPushButton#toolButtonDownload {border-left-width: 3px;}
+#mainPanel[win10=true] QPushButton#toolButtonDownload {max-height: 96px; height: 96px;}
+
+/* Menu */
+
+#CMenuWidget #menuItem {
+    min-height: 72px;
+    padding-left: 69px; padding-right: 47px;
+    font-size: 30px;
+}
+#CMenuWidget #menuFrame {border-width: 3px; border-radius: 11px;}
+#CMenuWidget QFrame[frameShape="4"] {max-height: 3px;}
+#mainPanel[uithemetype=dark] #CMenuWidget #menuItem {font-weight: normal;}
 
 /* ToolTip*/
 

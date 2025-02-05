@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger, ASCTabViewType) {
     ASCTabViewTypeSpreadsheet,
     ASCTabViewTypePresentation,
     ASCTabViewTypePdf,
+    ASCTabViewTypeDraw,
     ASCTabViewTypePortal
 };
 

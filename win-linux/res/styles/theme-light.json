@@ -3,15 +3,17 @@
     "type": "light",
     "values": {
         "brand-word": "#446995",
-        "brand-slide": "#be664f",
-        "brand-cell": "#40865c",
+        "brand-slide": "#b75b44",
+        "brand-cell": "#3a8056",
         "brand-pdf": "#aa5252",
+        "brand-draw": "#444796",
 
         "window-background": "#f1f1f1",
         "window-border": "#888",
 
         "text-normal": "#444",
         "text-pretty": "#fff",
+        "text-inverse": "#fff",
 
         "tool-button-background": "#f1f1f1",
         "tool-button-hover-background": "#cecece",
@@ -36,6 +38,16 @@
         "download-progressbar-background-item-hover": "#cacaca",
 
         "download-scrollbar-handle": "#cacaca",
+
+        "menu-background": "#fff",
+        "menu-border": "#c0c0c0",
+        "menu-item-hover-background": "#e0e0e0",
+
+        "menu-text": "#444",
+        "menu-text-item-hover": "#444",
+        "menu-text-item-disabled": "#c9c9c9",
+
+        "menu-separator": "#dfdfdf",
 
         "tooltip-text": "#373737",
         "tooltip-border": "#c0c0c0",

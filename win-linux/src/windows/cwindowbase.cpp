@@ -73,6 +73,7 @@ CWindowBase::CWindowBase(const QRect& rect)
 {
     setWindowIcon(Utils::appIcon());
     m_window_rect = startRect(rect, m_dpiRatio);
+    setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
 #ifdef __linux__
     setGeometry(m_window_rect); // for Windows is set in CWindowPlatform
 #endif
@@ -125,35 +126,6 @@ void CWindowBase::updateScaling(bool resize)
     }
 }
 
-void CWindowBase::setWindowColors(const QColor& background, const QColor& border, bool isActive)
-{
-    m_brdColor = border;
-    m_bkgColor = background;
-#ifdef _WIN32
-    QString css;
-    if (Utils::getWinVersion() == Utils::WinVer::WinXP) {
-        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
-        RedrawWindow((HWND)winId(), NULL, NULL, RDW_INVALIDATE | RDW_FRAME | RDW_UPDATENOW); // Apply colors to NC-area
-    } else
-    if (Utils::getWinVersion() < Utils::WinVer::Win10) {
-        css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
-    } else
-    if (Utils::getWinVersion() == Utils::WinVer::Win10) {
-        int brdWidth = 0;
-        HDC hdc = GetDC(NULL);
-        brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
-        ReleaseDC(NULL, hdc);
-        QColor brdColor = WindowHelper::getColorizationColor(isActive, background);
-        css = QString("QMainWindow{border-top: %1px solid %2; background-color: %3;}").arg(QString::number(brdWidth), brdColor.name(), background.name());
-    } else {
-        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
-    }
-#else
-    QString css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
-#endif
-    setStyleSheet(css);
-}
-
 void CWindowBase::applyTheme(const std::wstring& theme)
 {
     Q_UNUSED(theme)
@@ -170,7 +142,7 @@ QPushButton* CWindowBase::createToolButton(QWidget * parent, const QString& name
     btn->setObjectName(name);
     btn->setProperty("class", "normal");
     btn->setProperty("act", "tool");
-    btn->setFixedSize(int(TITLEBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+    btn->setFixedSize(int(TITLEBTN_WIDTH*m_dpiRatio), int(m_toolbtn_height * m_dpiRatio));
 #ifdef __linux__
     btn->setMouseTracking(true);
     btn->setProperty("unix", true);
@@ -196,6 +168,7 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
     layoutBtns->setContentsMargins(0, 0, 0, 0);
     layoutBtns->setSpacing(int(1*m_dpiRatio));
     layoutBtns->addStretch();
+    layoutBtns->setAlignment(Qt::AlignTop);
     _boxTitleBtns->setLayout(layoutBtns);
     if (isCustomWindowStyle()) {
         const QString names[3] = {"toolButtonMinimize", "toolButtonMaximize", "toolButtonClose"};
@@ -212,15 +185,15 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
     return _boxTitleBtns;
 }
 
-void CWindowBase::saveWindowState()
+void CWindowBase::saveWindowState(const QString &baseKey)
 {
     if (!windowState().testFlag(Qt::WindowFullScreen)) {
         GET_REGISTRY_USER(reg_user)
-        reg_user.setValue("position", normalGeometry());
+        reg_user.setValue(baseKey + "position", normalGeometry());
         if (windowState().testFlag(Qt::WindowMaximized)) {
-            reg_user.setValue("maximized", true);
+            reg_user.setValue(baseKey + "maximized", true);
         } else {
-            reg_user.remove("maximized");
+            reg_user.remove(baseKey + "maximized");
         }
     }
 }
@@ -261,7 +234,7 @@ bool CWindowBase::event(QEvent *event)
 void CWindowBase::setScreenScalingFactor(double factor, bool resize)
 {
     if (resize && !isMaximized()) {
-        setMinimumSize(0,0);
+        setMinimumSize(WINDOW_MIN_WIDTH * factor, WINDOW_MIN_HEIGHT * factor);
         double change_factor = factor / m_dpiRatio;
         QRect _src_rect = geometry();
         double dest_width_change = _src_rect.width() * (1 - change_factor);
@@ -274,7 +247,7 @@ void CWindowBase::setScreenScalingFactor(double factor, bool resize)
         pLayoutBtns->setSpacing(int(1 * m_dpiRatio));
         if (isCustomWindowStyle()) {
             pLayoutBtns->setContentsMargins(0, 0, 0, 0);
-            QSize small_btn_size(int(TITLEBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+            QSize small_btn_size(int(TITLEBTN_WIDTH*m_dpiRatio), int(m_toolbtn_height * m_dpiRatio));
             foreach (auto pBtn, m_pTopButtons)
                 pBtn->setFixedSize(small_btn_size);
         }

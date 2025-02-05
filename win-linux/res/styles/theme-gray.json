@@ -6,12 +6,14 @@
         "brand-slide": "#f7f7f7",
         "brand-cell": "#f7f7f7",
         "brand-pdf": "#f7f7f7",
+        "brand-draw": "#f7f7f7",
 
         "window-background": "#d9d9d9",
         "window-border": "#cbcbcb",
 
         "text-normal": "#444",
         "text-pretty": "#fff",
+        "text-inverse": "#fff",
 
         "tool-button-background": "#d9d9d9",
         "tool-button-hover-background": "#e6e6e6",
@@ -36,6 +38,16 @@
         "download-progressbar-background-item-hover": "#cacaca",
 
         "download-scrollbar-handle": "#cacaca",
+
+        "menu-background": "#fff",
+        "menu-border": "#c0c0c0",
+        "menu-item-hover-background": "#e0e0e0",
+
+        "menu-text": "#444",
+        "menu-text-item-hover": "#444",
+        "menu-text-item-disabled": "#c9c9c9",
+
+        "menu-separator": "#dfdfdf",
 
         "tooltip-text": "#313131",
         "tooltip-border": "#cbcbcb",
