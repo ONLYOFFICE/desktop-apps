@@ -569,7 +569,7 @@ public:
                 window->hide();
             }
         } else {
-            if (!cancel)
+            if (!cancel && window->menu())
                 window->menu()->setSectionEnabled(CMenu::ActionShowInFolder, true);
             AscAppManager::cancelClose();
         }

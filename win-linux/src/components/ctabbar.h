@@ -84,7 +84,6 @@ public:
     QWidget* tabIconLabel(int index) const;
     QWidget* tabButton(int index) const;
     CMenu* tabMenu(int index) const;
-    int tabMenuIndex(CMenu *menu) const;
 //    QVariant tabData(int index) const;
     QIcon tabIcon(int index) const;
     QRect tabRect(int index) const;
@@ -101,6 +100,7 @@ signals:
     void tabMoved(int from, int to);
     void tabsSwapped(int from, int to);
     void tabUndock(int index, bool &accepted);
+    void tabMenuRequested(int index, const QPoint &pos);
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;

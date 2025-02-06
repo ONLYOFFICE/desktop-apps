@@ -65,6 +65,9 @@ public:
     void setSectionEnabled(Action action, bool enabled);
     void exec(const QPoint &pos);
 
+signals:
+    void wasHidden();
+
 private:
     static const char* m_actionText[ACTION_COUNT];
     QVector<QAction*> m_actions;

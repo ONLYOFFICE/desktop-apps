@@ -446,6 +446,7 @@ void CMenu::exec(const QPoint &pos)
     connect(m_menu_widget, &CMenuWidget::wasHidden, this, [=]() {
         m_menu_widget->deleteLater();
         m_menu_widget = nullptr;
+        emit wasHidden();
     });
     foreach (auto *act, m_actions) {
         if (act->isSeparator()) {

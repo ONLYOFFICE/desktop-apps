@@ -232,7 +232,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         }
 
         d_ptr->customizeTitleLabel();
-        setMenu();
     } else {
 //        QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
 //        gradient.setColorAt(0, QColor("#eee"));
@@ -308,6 +307,10 @@ void CEditorWindow::init(CTabPanel *panel)
 void CEditorWindow::setMenu()
 {
     m_pMenu = new CMenu(m_boxTitleBtns);
+    connect(m_pMenu, &CMenu::wasHidden, this, [=]() {
+        m_pMenu->deleteLater();
+        m_pMenu = nullptr;
+    });
     QAction* actClose = m_pMenu->addSection(CMenu::ActionClose);
     connect(actClose, &QAction::triggered, this, [=]() {
             onCloseEvent();
@@ -475,17 +478,16 @@ bool CEditorWindow::event(QEvent * event)
     }
     else
     if (event->type() == QEvent::ContextMenu) {
-        if (m_pMenu) {
             QContextMenuEvent* cm_event = static_cast<QContextMenuEvent*>(event);
             QPoint pos = mapToGlobal(cm_event->pos());
             QWidget *wgt = qApp->widgetAt(pos);
             if (wgt && (wgt == m_labelTitle || wgt->objectName() == "boxtitlelabel")) {
                 SKIP_EVENTS_QUEUE([=]() {
+                    setMenu();
                     m_pMenu->exec(pos);
                 });
                 return true;
             }
-        }
     } else
     if (event->type() == UM_ENDMOVE) {
         if (CMainWindow *w = AscAppManager::mainWindow())
