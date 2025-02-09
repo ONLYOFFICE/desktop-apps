@@ -1,0 +1,22 @@
+{
+    "provider": "vboxxcloud",
+    "name": "vBoxxCloud",
+    "entryPage": "https://web.vboxx.nl/files",
+    "extraLogout": "https://vboxx.nl/",
+    "editorPage": "/edit/",
+    "startPage": "/",
+    "cryptoSupport": "true",
+    "check": {
+        "url": "https://web.vboxx.nl/api/2/version"
+    },
+    "icons": {
+        "themeLight": {
+            "connectionsList": "./assets/listicon.svg",
+            "buttonLogo": "./assets/buttonlogo.svg"
+        },
+        "themeDark": {
+            "connectionsList": "./assets/listicon_dark.svg",
+            "buttonLogo": "./assets/buttonlogo_dark.svg"
+        }
+    }
+}
