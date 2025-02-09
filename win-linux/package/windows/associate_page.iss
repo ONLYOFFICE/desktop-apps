@@ -1915,9 +1915,9 @@ var
   prefix: string;
 begin
 #ifdef _ONLYOFFICE
-  SetArrayLength(AudioExts, 28);
-#else
   SetArrayLength(AudioExts, 27);
+#else
+  SetArrayLength(AudioExts, 26);
 #endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
@@ -1947,10 +1947,10 @@ begin
   AudioExts[22] := 'XLSB';
   AudioExts[23] := 'FODS';
   AudioExts[24] := 'FODT';
-  AudioExts[25] := 'VSDX';
-  AudioExts[26] := 'XLSM';
+//  AudioExts[25] := 'VSDX';
+  AudioExts[25] := 'XLSM';
 #ifdef _ONLYOFFICE
-  AudioExts[27] := 'DOCXF';
+  AudioExts[26] := 'DOCXF';
 #endif
 
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
@@ -1983,10 +1983,10 @@ begin
   ExtensionRegistryInfo[22] := prefix + 'Xlsb:'         + ExpandConstant('{cm:extXLSB}')            + ':' + '32';
   ExtensionRegistryInfo[23] := prefix + 'Fods:'         + ExpandConstant('{cm:extFODS}')            + ':' + '34';
   ExtensionRegistryInfo[24] := prefix + 'Fodt:'         + ExpandConstant('{cm:extFODT}')            + ':' + '35';
-  ExtensionRegistryInfo[25] := prefix + 'Vsdx:'         + ExpandConstant('{cm:extVSDX}')            + ':' + '36';
-  ExtensionRegistryInfo[26] := prefix + 'Xlsm:'         + ExpandConstant('{cm:extXLSM}')            + ':' + '37';
+//  ExtensionRegistryInfo[25] := prefix + 'Vsdx:'         + ExpandConstant('{cm:extVSDX}')            + ':' + '36';
+  ExtensionRegistryInfo[25] := prefix + 'Xlsm:'         + ExpandConstant('{cm:extXLSM}')            + ':' + '37';
 #ifdef _ONLYOFFICE
-  ExtensionRegistryInfo[27] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+  ExtensionRegistryInfo[26] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
 #endif
 end;
 
@@ -2240,6 +2240,7 @@ begin
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0], 'AppUserModelID', ExpandConstant('{#APP_USER_MODEL_ID}'));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\DefaultIcon', '', ExpandConstant('{app}\{#iconsExe},' + argsArray[2]));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\shell\open\command', '', ExpandConstant('"{app}\{#iconsExe}" "%1"'));
+        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\Application', 'ApplicationName', '{#sAppName}');
         if (version.Major = 10) and (version.Minor = 0) and (version.Build < 22000) then begin
           RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\Application', 'ApplicationIcon', ExpandConstant('{app}\{#iconsExe},33'));
         end;

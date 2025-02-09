@@ -88,12 +88,16 @@
             const is_dark_theme = ui_theme == 'theme-dark' || ui_theme == 'theme-contrast-dark';
             let img = `<svg class='img-welcome'><use href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
 
-            if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) {
+            if ( utils.isWinXp ) {
                 img = img.replace(' href=', ' xlink:href=');
             }
 
             this.view.tplPage = this.view.tplPage.replace(/<imagewelcome>/, img);
             this.view.render();
+
+            if ( utils.isWinXp ) {
+                $('h4.text-description, .tools-connect', this.view.$panel).hide();
+            }
 
             window.CommonEvents.on('theme:changed', name => {
                 const is_dark_theme = name == 'theme-dark';

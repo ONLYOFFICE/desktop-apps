@@ -566,7 +566,7 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFileInFinder
                                                                                 object:nil
                                                                               userInfo:@{
-                                                                                         @"path": [NSString stringWithstdwstring:param]
+                                                                                         @"info": [NSString stringWithstdwstring:param]
                                                                                          }];
                         } else if (cmd.compare(L"files:check") == 0) {                            
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFilesCheck

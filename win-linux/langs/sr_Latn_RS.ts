@@ -412,32 +412,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio crtež (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio crtež sa omogućenom makronaredbom (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio šablon (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio šablon sa omogućenom makronaredbom (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio šablon (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio šablon sa omogućenom makronaredbom (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>

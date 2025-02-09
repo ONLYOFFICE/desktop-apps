@@ -424,32 +424,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Նկար (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Մակրո-Միացված Նկար(*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Տրաֆարետ (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Մակրո-Միացված Տրաֆարետ(*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Ձևանմուշ (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Մակրո-Միացված Ձևանմուշ (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>

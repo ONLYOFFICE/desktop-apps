@@ -563,7 +563,7 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>vsdx</string>
+				<string>vsdx.locked</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>file-vsdx</string>

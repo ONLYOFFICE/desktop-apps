@@ -412,32 +412,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio цртеж (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio цртеж са омогућеном макронаредбом (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio шаблон (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio шаблон са омогућеном макронаредбом (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio шаблон (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio шаблон са омогућеном макронаредбом (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>

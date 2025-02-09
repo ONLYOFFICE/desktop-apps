@@ -1,6 +1,5 @@
 changequote(',')dnl
-define('DESKTOPEDITORS[Name[en]]', 'ONLYOFFICE Desktop Editors')dnl
-define('DESKTOPEDITORS[Name[ru]]', 'Редактор ONLYOFFICE')dnl
+define('DESKTOPEDITORS_NAME', 'ONLYOFFICE')dnl
 define('DESKTOPEDITORS[GenericName[en]]', 'Document Editor')dnl
 define('DESKTOPEDITORS[GenericName[ru]]', 'Редактор документов')dnl
 define('DESKTOPEDITORS[Comment[en]]', 'Edit office documents')dnl
@@ -11,6 +10,8 @@ define('NEWDOCUMENT[Name[de]]', 'Neues Dokument')dnl
 define('NEWDOCUMENT[Name[fr]]', 'Nouveau document')dnl
 define('NEWDOCUMENT[Name[es]]', 'Nuevo documento')dnl
 define('NEWDOCUMENT[Name[ru]]', 'Новый документ')dnl
+dnl
+define('DESKTOPEDITORS_WM_CLASS', 'ONLYOFFICE')dnl
 dnl
 define('NEWSPREADSHEET[Name[en]]', 'New spreadsheet')dnl
 define('NEWSPREADSHEET[Name[de]]', 'Neue Tabelle')dnl
