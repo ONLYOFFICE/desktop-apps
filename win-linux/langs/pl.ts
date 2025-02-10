@@ -512,7 +512,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="259"/>
         <source>Visio diagram</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagram Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="260"/>
@@ -603,7 +603,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
         <location filename="../src/windows/cmainwindow.cpp" line="623"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno główne</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="303"/>
@@ -675,47 +675,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij zapisane</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij wszystko</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Show in folder</source>
-        <translation type="unfinished">Pokaż w folderze</translation>
+        <translation>Pokaż w folderze</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś na początek</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś na koniec</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Odepnij kartę do okna</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Przypnij do karty</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz nowy</translation>
     </message>
 </context>
 <context>
@@ -1181,7 +1181,7 @@
         <location filename="../src/platform_linux/singleapplication.cpp" line="98"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Masz niezapisane dokumenty</translation>
     </message>
 </context>
 <context>
