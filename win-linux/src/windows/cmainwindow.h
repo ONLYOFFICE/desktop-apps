@@ -157,7 +157,7 @@ public slots:
 private:
     QWidget * createMainPanel(QWidget *parent);
     int  trySaveDocument(int);
-    void setTabMenu(int index, CTabPanel *panel = nullptr);
+    void setTabMenu(int index, const QPoint &pos);
 
     CAscTabWidget *  m_pTabs = nullptr;
     CSVGPushButton*  m_pButtonMain = nullptr;
