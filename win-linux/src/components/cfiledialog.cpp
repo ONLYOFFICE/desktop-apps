@@ -402,12 +402,12 @@ QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)
 QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QString& path, bool multi)
 {
     QString selected, extra;
-    if ( type == "video" ) {
+    if ( type == VIDEO_TYPE ) {
         selected = tr("Video file") + " (*.mp4 *.mkv *.avi *.mpg *.mpeg *.mpe *.mpv *.mov *.wmv *.m2v *.m4v *.webm *.ogg *.f4v *.m2ts *.mts)";
         extra = "Avi (*.avi);;Mpeg (*.mpg *.mpeg *.mpe *.mpv *.m2v *.m4v *.mp4);;Mkv (*.mkv);;Mts (*.m2ts *.mts);;Webm (*.webm);;Mov (*.mov)"
                                       ";;Wmv (*.wmv);;F4v (*.f4v);;Ogg (*.ogg)";
     } else
-    if ( type == "audio" ) {
+    if ( type == AUDIO_TYPE ) {
         selected = tr("Audio file") + " (*.mp3 *.mp2 *.ogg *.wav *.wma *.flac *.ape *.aac *.m4a)";
         extra = "Mp3 (*.mp3);;Mp2 (*.mp2);;Wav (*.wav);;Flac (*.flac);;Wma (*.wma);;Ogg (*.ogg);;Ape (*.ape);;Aac (*.aac);;M4a (*.m4a)";
     }
