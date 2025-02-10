@@ -1124,7 +1124,7 @@
         [filter addObjectsFromArray:[ASCConstants documents]];
         [filter addObjectsFromArray:[ASCConstants spreadsheets]];
         [filter addObjectsFromArray:[ASCConstants presentations]];
-        [filter addObjectsFromArray:[ASCConstants draws]];
+//        [filter addObjectsFromArray:[ASCConstants draws]];
         
         openPanel.canChooseDirectories = NO;
         openPanel.allowsMultipleSelection = NO;
@@ -1489,8 +1489,11 @@
 
 - (void)onCEFFileInFinder:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-        NSURL * fileUrl = [NSURL fileURLWithPath:notification.userInfo[@"path"]];
-        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[fileUrl]];
+        NSString * info = notification.userInfo[@"info"];
+        if (NSDictionary * json = [info dictionary]) {
+            NSURL * fileUrl = [NSURL fileURLWithPath:json[@"path"]];
+            [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[fileUrl]];
+        }
     }
 }
 
