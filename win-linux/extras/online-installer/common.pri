@@ -74,7 +74,7 @@ SOURCES += $$PWD/src/main.cpp \
 OTHER_FILES += $$PWD/res/version.rc \
                $$PWD/res/manifest/online-installer.exe.manifest
 
-ENV_PRODUCT_VERSION = "1.0.0" # $$(PRODUCT_VERSION)
+ENV_PRODUCT_VERSION = "1.1.0" # $$(PRODUCT_VERSION)
 !isEmpty(ENV_PRODUCT_VERSION) {
     FULL_PRODUCT_VERSION = $${ENV_PRODUCT_VERSION}.$$(BUILD_NUMBER)
     DEFINES += VER_PRODUCT_VERSION=$$FULL_PRODUCT_VERSION \
