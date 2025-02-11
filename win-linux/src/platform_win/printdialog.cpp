@@ -33,6 +33,7 @@
 #include <windows.h>
 #include <commdlg.h>
 #include <comdef.h>
+#include <private/qprintengine_win_p.h>
 #include "printdialog.h"
 #include "utils.h"
 #include "components/cmessage.h"
@@ -456,15 +457,12 @@ QDialog::DialogCode PrintDialog::exec()
                 QPageSize ps(QSizeF(width, height), QPageSize::Millimeter);
                 m_printer->setPageSize(ps);
                 m_printer->setPageOrientation(pDevmode->dmOrientation == DMORIENT_PORTRAIT ? QPageLayout::Portrait : QPageLayout::Landscape);
-
-                HANDLE hPrinter = NULL;
-                std::wstring printerName = m_printer->printerName().toStdWString();
-                if (OpenPrinter(&printerName[0], &hPrinter, NULL)) {
-                    DocumentProperties(parent_hwnd, hPrinter, &printerName[0], pDevmode, pDevmode, DM_IN_BUFFER | DM_OUT_BUFFER);
-                    ClosePrinter(hPrinter);
-                }
                 GlobalUnlock(dlg.hDevMode);
             }
+
+            if (QWin32PrintEngine *wpe = dynamic_cast<QWin32PrintEngine*>(m_printer->printEngine()))
+                wpe->setGlobalDevMode(dlg.hDevNames, dlg.hDevMode);
+
             exit_code = QDialog::DialogCode::Accepted;
             break;
         }
