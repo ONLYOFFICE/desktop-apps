@@ -1,5 +1,5 @@
 
-QT  += core gui widgets gui-private widgets-private core-private printsupport
+QT  += core gui widgets gui-private widgets-private core-private printsupport printsupport-private
 QT  += svg
 
 TEMPLATE = app
