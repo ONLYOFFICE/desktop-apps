@@ -57,6 +57,12 @@
 		5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
+		5AA2F5842D5B824300C9DDC9 /* file-hwpx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5822D5B824300C9DDC9 /* file-hwpx.icns */; };
+		5AA2F5852D5B824300C9DDC9 /* file-hwpx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5822D5B824300C9DDC9 /* file-hwpx.icns */; };
+		5AA2F5862D5B824300C9DDC9 /* file-hwpx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5822D5B824300C9DDC9 /* file-hwpx.icns */; };
+		5AA2F5872D5B824300C9DDC9 /* file-hwp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */; };
+		5AA2F5882D5B824300C9DDC9 /* file-hwp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */; };
+		5AA2F5892D5B824300C9DDC9 /* file-hwp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */; };
 		5AAE526D28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
 		5AAE526E28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
 		5AAE526F28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
@@ -849,6 +855,8 @@
 		5A9F8D382848AA06007CA93F /* file-xlsm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsm.icns"; sourceTree = "<group>"; };
 		5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCLinguist.h; sourceTree = "<group>"; };
 		5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCLinguist.m; sourceTree = "<group>"; };
+		5AA2F5822D5B824300C9DDC9 /* file-hwpx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-hwpx.icns"; sourceTree = "<group>"; };
+		5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-hwp.icns"; sourceTree = "<group>"; };
 		5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCThemesController.m; sourceTree = "<group>"; };
 		5AAE527028B53C1F001E31F4 /* ASCThemesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCThemesController.h; sourceTree = "<group>"; };
 		5AAFF09E2989B70400D433B5 /* si */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = si; path = "si.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
@@ -1257,6 +1265,8 @@
 		FC081EBC1C325E8400F9881C /* file-formats */ = {
 			isa = PBXGroup;
 			children = (
+				5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */,
+				5AA2F5822D5B824300C9DDC9 /* file-hwpx.icns */,
 				5A54B9332D0353A8008FA596 /* file-vsdx.icns */,
 				5AB89E292CFD1441000972EF /* file-key.icns */,
 				5AB89E282CFD1441000972EF /* file-numbers.icns */,
@@ -2070,6 +2080,7 @@
 				FC0BD6CB258B63F700C47F95 /* file-epub.icns in Resources */,
 				FC0BD6CC258B63F700C47F95 /* file-htm.icns in Resources */,
 				FC0BD6CD258B63F700C47F95 /* file-odt.icns in Resources */,
+				5AA2F5892D5B824300C9DDC9 /* file-hwp.icns in Resources */,
 				FC0BD6CE258B63F700C47F95 /* file-rtf.icns in Resources */,
 				FC0BD6CF258B63F700C47F95 /* file-odp.icns in Resources */,
 				FC0BD6D0258B63F700C47F95 /* file-pdf.icns in Resources */,
@@ -2099,6 +2110,7 @@
 				5A02295A2CCFC02B0011C6EC /* file-oxps.icns in Resources */,
 				5A0229672CCFC05C0011C6EC /* file-pptm.icns in Resources */,
 				FC0BD6E4258B63F700C47F95 /* Images.xcassets in Resources */,
+				5AA2F5862D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2C2CFD1441000972EF /* file-pages.icns in Resources */,
 				5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */,
 				FC0BD6E5258B63F700C47F95 /* Localizable.strings in Resources */,
@@ -2133,6 +2145,7 @@
 				FCB4C70726DD018B0012C20D /* file-epub.icns in Resources */,
 				FCB4C70826DD018B0012C20D /* file-htm.icns in Resources */,
 				5AB20F62274D360A003732A0 /* file-oform.icns in Resources */,
+				5AA2F5872D5B824300C9DDC9 /* file-hwp.icns in Resources */,
 				FCB4C70926DD018B0012C20D /* file-odt.icns in Resources */,
 				FCB4C70A26DD018B0012C20D /* file-rtf.icns in Resources */,
 				FCB4C70B26DD018B0012C20D /* file-odp.icns in Resources */,
@@ -2162,6 +2175,7 @@
 				5A0229582CCFC02B0011C6EC /* file-oxps.icns in Resources */,
 				5A0229652CCFC05C0011C6EC /* file-pptm.icns in Resources */,
 				FCB4C71E26DD018B0012C20D /* converter in Resources */,
+				5AA2F5842D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2A2CFD1441000972EF /* file-pages.icns in Resources */,
 				FCB4C71F26DD018B0012C20D /* file-ods.icns in Resources */,
 				FCB4C72026DD018B0012C20D /* Images.xcassets in Resources */,
@@ -2196,6 +2210,7 @@
 				FCA3F30C2570EC9500DCAB12 /* file-fb2.icns in Resources */,
 				FCA3F3102570EC9500DCAB12 /* file-epub.icns in Resources */,
 				FCA3F30F2570EC9500DCAB12 /* file-htm.icns in Resources */,
+				5AA2F5882D5B824300C9DDC9 /* file-hwp.icns in Resources */,
 				FC98AF231E94E16A00718A12 /* file-odt.icns in Resources */,
 				FC98AF351E94E16A00718A12 /* file-rtf.icns in Resources */,
 				FC98AF1D1E94E16A00718A12 /* file-odp.icns in Resources */,
@@ -2225,6 +2240,7 @@
 				5A0229592CCFC02B0011C6EC /* file-oxps.icns in Resources */,
 				5A0229662CCFC05C0011C6EC /* file-pptm.icns in Resources */,
 				FC0907411C186A7A00D9E881 /* converter in Resources */,
+				5AA2F5852D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2B2CFD1441000972EF /* file-pages.icns in Resources */,
 				FC98AF201E94E16A00718A12 /* file-ods.icns in Resources */,
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
