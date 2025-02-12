@@ -233,7 +233,7 @@ core_linux {
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb
-    LIBS += -lX11 -lX11-xcb
+    LIBS += -lX11 -lX11-xcb -lcups
 
     cef_version_107 {
         LIBS += $$PWD/../../build_tools/tools/linux/sysroot/ubuntu14/libdbus-1.so.3
