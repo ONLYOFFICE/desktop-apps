@@ -301,22 +301,6 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, HFONT hFont, bool che
     m_memBmp = nullptr;
     DeleteDC(m_memDC);
     m_memDC = nullptr;
-//    HPEN hPen = CreatePen(PS_SOLID, m_ds->metrics()->value(Metrics::PrimitiveWidth), m_ds->palette()->color(Palette::Primitive));
-//    HPEN oldPen = (HPEN)SelectObject(m_hdc, hPen);
-//    int x = m_rc->left;
-//    int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
-//    MoveToEx(m_hdc, x, y, NULL);
-//    LineTo(m_hdc, x + m_ds->metrics()->value(Metrics::IconWidth) - 1, y);
-//    LineTo(m_hdc, x + m_ds->metrics()->value(Metrics::IconWidth) - 1, y + m_ds->metrics()->value(Metrics::IconHeight) - 1);
-//    LineTo(m_hdc, x, y + m_ds->metrics()->value(Metrics::IconHeight) - 1);
-//    LineTo(m_hdc, x, y + m_ds->metrics()->value(Metrics::PrimitiveWidth) - 1);
-//    if (checked) {
-//        MoveToEx(m_hdc, x + 2, y + m_ds->metrics()->value(Metrics::IconHeight)/2 - 1, NULL);
-//        LineTo(m_hdc, x + m_ds->metrics()->value(Metrics::IconWidth)/2 - 2, y + m_ds->metrics()->value(Metrics::IconHeight) - 5);
-//        LineTo(m_hdc, x + m_ds->metrics()->value(Metrics::IconWidth) - 2, y + 3);
-//    }
-//    SelectObject(m_hdc, oldPen);
-//    DeleteObject(hPen);
 }
 
 void DrawingEngine::DrawRadioButton(const std::wstring &text, HFONT hFont, bool checked)
