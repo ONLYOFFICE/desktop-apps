@@ -125,7 +125,7 @@ static bool isThemeActive()
 }
 
 Window::Window(Widget *parent, const Rect &rc) :
-    Widget(parent, ObjectType::WindowType, rc),
+    Widget(parent, ObjectType::WindowType, nullptr, rc),
     m_centralWidget(nullptr),
     m_contentMargins(0,0,0,0),
     m_resAreaWidth(0),

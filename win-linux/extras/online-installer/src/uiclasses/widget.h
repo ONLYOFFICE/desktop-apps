@@ -62,8 +62,7 @@ public:
 
 protected:
     friend class Application;
-    Widget(Widget *parent, HWND);
-    Widget(Widget *parent, ObjectType type, const Rect &rc = Rect(CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT));
+    Widget(Widget *parent, ObjectType type, HWND hWnd = nullptr, const Rect &rc = Rect(CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT));
     virtual bool event(UINT, WPARAM, LPARAM, LRESULT*);
 
     HWND         m_hWnd;

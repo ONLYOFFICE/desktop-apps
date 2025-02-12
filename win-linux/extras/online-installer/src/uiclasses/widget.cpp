@@ -30,7 +30,7 @@ Widget::Widget(Widget *parent) :
     Widget(parent, ObjectType::WidgetType)
 {}
 
-Widget::Widget(Widget *parent, HWND hwnd) :
+Widget::Widget(Widget *parent, ObjectType type, HWND hwnd, const Rect &rc) :
     Object(parent),
     DrawningSurface(),
     m_hWnd(hwnd),
@@ -42,28 +42,15 @@ Widget::Widget(Widget *parent, HWND hwnd) :
     m_is_class_destroyed(false),
     m_mouse_entered(false)
 {
-    LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE) | WS_CHILD;
-    ::SetWindowLong(m_hWnd, GWL_STYLE, style);
     m_properties[Properties::HSizeBehavior] = SizeBehavior::Expanding;
     m_properties[Properties::VSizeBehavior] = SizeBehavior::Expanding;
-    SetParent(hwnd, parent->nativeWindowHandle());
-}
-
-Widget::Widget(Widget *parent, ObjectType type, const Rect &rc) :
-    Object(parent),
-    DrawningSurface(),
-    m_hWnd(nullptr),
-    m_hFont(nullptr),
-    m_layout(nullptr),
-    m_disabled(false),
-    m_is_created(false),
-    m_is_destroyed(false),
-    m_is_class_destroyed(false),
-    m_mouse_entered(false)
-{
-    m_properties[Properties::HSizeBehavior] = SizeBehavior::Expanding;
-    m_properties[Properties::VSizeBehavior] = SizeBehavior::Expanding;
-    Application::instance()->registerWidget(this, type, rc);
+    if (m_hWnd) {
+        LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE) | WS_CHILD;
+        ::SetWindowLong(m_hWnd, GWL_STYLE, style);
+        SetParent(m_hWnd, parent->nativeWindowHandle());
+    } else {
+        Application::instance()->registerWidget(this, type, rc);
+    }
 }
 
 Widget::~Widget()
@@ -215,7 +202,7 @@ HWND Widget::nativeWindowHandle()
 
 Widget *Widget::widgetFromHwnd(Widget *parent, HWND hwnd)
 {
-    return new Widget(parent, hwnd);
+    return new Widget(parent, Object::WidgetType, hwnd);
 }
 
 int Widget::onResize(const FnVoidIntInt &callback)
