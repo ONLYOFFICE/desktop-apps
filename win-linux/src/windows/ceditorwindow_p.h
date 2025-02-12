@@ -94,12 +94,13 @@ auto editor_color(AscEditorType type) -> QColor {
 }
 
 auto rounded_pixmap(const QPixmap &px, int size) -> QPixmap {
-    int diam = qMin(px.width(), px.height());
+    qreal diam = qMin(px.width(), px.height());
     QPixmap pxm(diam, diam);
     pxm.fill(Qt::transparent);
     QPainter p(&pxm);
+    p.setRenderHint(QPainter::Antialiasing);
     p.setBrush(QBrush(px));
-    p.drawEllipse(0, 0, diam, diam);
+    p.drawEllipse(QRectF(0.5, 0.5, diam - 1.0, diam - 1.0));
     p.end();
     return pxm.scaled(size, size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
