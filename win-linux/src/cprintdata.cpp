@@ -246,7 +246,7 @@ public:
 #endif
         QJsonObject rootObject;
         rootObject["printers"] = printersArray;
-        return QJsonDocument(rootObject).toJson(QJsonDocument::Indented);
+        return QJsonDocument(rootObject).toJson(QJsonDocument::Compact);
     }
 
 public slots:
