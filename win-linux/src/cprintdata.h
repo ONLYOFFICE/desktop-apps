@@ -36,6 +36,10 @@
 #include "applicationmanager_events.h"
 #include <QPrinterInfo>
 #include <QPrintDialog>
+#include <functional>
+
+typedef std::function<void(const QString&)> FnVoidStr;
+
 
 class CPrintData
 {
@@ -59,6 +63,9 @@ public:
     auto viewId() const -> int;
     auto copiesCount() const -> int;
     auto duplexMode() const -> QPrinter::DuplexMode;
+    auto printerCapabilitiesReady() const -> bool;
+    auto getPrinterCapabilitiesJson() const -> QString;
+    auto queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const -> void;
 
 private:
     class CPrintDataPrivate;
