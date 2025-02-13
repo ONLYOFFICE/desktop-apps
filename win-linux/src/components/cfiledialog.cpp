@@ -38,6 +38,7 @@
 #include "components/cmessage.h"
 #include "../Common/OfficeFileFormats.h"
 #include <QList>
+#include <QMimeDatabase>
 
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
@@ -47,6 +48,9 @@
 # include "platform_linux/gtkfilechooser.h"
 #endif
 
+static const char *IMAGE_TYPE = "image",
+                  *VIDEO_TYPE = "video",
+                  *AUDIO_TYPE = "audio";
 
 namespace CFileDialogHelper {
     auto useModalDialog() -> bool {
@@ -313,7 +317,9 @@ QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
     filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)"));
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
-    return modalOpen(path, filter, &selected, false);
+    auto result = modalOpen(path, filter, &selected, false);
+    checkForMimeTypes(result, IMAGE_TYPE);
+    return result;
 }
 
 QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
@@ -323,7 +329,9 @@ QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
     filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)"));
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
-    return modalOpen(path, filter, &selected, true);
+    auto result = modalOpen(path, filter, &selected, true);
+    checkForMimeTypes(result, IMAGE_TYPE);
+    return result;
 }
 
 QStringList CFileDialogWrapper::modalOpenPlugin(const QString& path)
@@ -394,18 +402,20 @@ QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)
 QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QString& path, bool multi)
 {
     QString selected, extra;
-    if ( type == "video" ) {
+    if ( type == VIDEO_TYPE ) {
         selected = tr("Video file") + " (*.mp4 *.mkv *.avi *.mpg *.mpeg *.mpe *.mpv *.mov *.wmv *.m2v *.m4v *.webm *.ogg *.f4v *.m2ts *.mts)";
         extra = "Avi (*.avi);;Mpeg (*.mpg *.mpeg *.mpe *.mpv *.m2v *.m4v *.mp4);;Mkv (*.mkv);;Mts (*.m2ts *.mts);;Webm (*.webm);;Mov (*.mov)"
                                       ";;Wmv (*.wmv);;F4v (*.f4v);;Ogg (*.ogg)";
     } else
-    if ( type == "audio" ) {
+    if ( type == AUDIO_TYPE ) {
         selected = tr("Audio file") + " (*.mp3 *.mp2 *.ogg *.wav *.wma *.flac *.ape *.aac *.m4a)";
         extra = "Mp3 (*.mp3);;Mp2 (*.mp2);;Wav (*.wav);;Flac (*.flac);;Wma (*.wma);;Ogg (*.ogg);;Ape (*.ape);;Aac (*.aac);;M4a (*.m4a)";
     }
 
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" + selected + ";;" + extra;
-    return modalOpen(path, filter, &selected, multi);
+    auto result = modalOpen(path, filter, &selected, multi);
+    checkForMimeTypes(result, type);
+    return result;
 }
 
 QString CFileDialogWrapper::selectFolder(const QString& folder)
@@ -484,6 +494,22 @@ int CFileDialogWrapper::getKey(const QString &value)
     }
 #endif
     return -1;
+}
+
+void CFileDialogWrapper::checkForMimeTypes(QStringList &files, const QString &type)
+{
+    QMimeDatabase mdb;
+    foreach (const auto &filePath, files) {
+        QMimeType mt = mdb.mimeTypeForFile(filePath);
+        if (!mt.name().startsWith(type)) {
+            files.clear();
+            QWidget *_parent = CFileDialogHelper::useModalDialog() ? (QWidget*)parent() : nullptr;
+            CMessage::warning(_parent, (type == IMAGE_TYPE) ? tr("Unknown image format.") :
+                                       (type == VIDEO_TYPE) ? tr("Unknown video format.") :
+                                       (type == AUDIO_TYPE) ? tr("Unknown audio format.") : tr("Unknown format."));
+            break;
+        }
+    }
 }
 
 int CFileDialogWrapper::getFormat()
