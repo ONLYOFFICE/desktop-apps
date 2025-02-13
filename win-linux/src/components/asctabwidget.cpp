@@ -528,7 +528,10 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
             m_pBar->setTabThemeType(tabindex,
                 ui_theme.value(CTheme::ColorRole::ecrTabThemeType, L"dark") == L"dark" ? CTabBar::DarkTab : CTabBar::LightTab);
             break;
-        default: break;
+        default:
+            if (!tabdata->isLocal())
+                m_pBar->setTabLoading(tabindex);
+            break;
         }
 
         m_pBar->setActiveTabColor(tabindex, tabcolor);
@@ -866,6 +869,9 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         default: break;
         }
 
+        if (AscEditorType::etUndefined != AscEditorType(type) && !panel(tabIndex)->data()->isLocal())
+            m_pBar->setTabLoading(tabIndex, false);
+
         m_pBar->setTabThemeType(tabIndex,
             ui_theme.value(CTheme::ColorRole::ecrTabThemeType, L"dark") == L"dark" ? CTabBar::DarkTab : CTabBar::LightTab);
 
@@ -889,7 +895,8 @@ void CAscTabWidget::applyPageLoadingStatus(int id, int state)
         } else
         if ( state == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
             if ( !panel(tabIndex)->data()->eventLoadSupported() ) {
-                m_pBar->setTabLoading(tabIndex, false);
+                if (panel(tabIndex)->data()->isViewType(cvwtSimple))
+                    m_pBar->setTabLoading(tabIndex, false);
                 panel(tabIndex)->applyLoader("hide");
             }
         }
