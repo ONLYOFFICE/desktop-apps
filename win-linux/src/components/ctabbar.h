@@ -72,10 +72,9 @@ public:
     void setCurrentIndex(int index);
     void setActiveTabColor(int index, const QString&);
     void setUseTabCustomPalette(int, bool);
-    void setTabLoading(int, bool);
+    void setTabLoading(int, bool start = true, const QString& theme = QString());
     void setTabThemeType(int, TabTheme);
     void setTabThemeIcons(int, const std::pair<QString, QString> &);
-    void tabStartLoading(int, const QString& theme = QString());
     void polish();
     void activate(bool);
     void refreshTheme();

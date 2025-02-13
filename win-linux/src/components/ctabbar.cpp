@@ -995,10 +995,13 @@ void CTabBar::setUseTabCustomPalette(int index, bool use)
     }
 }
 
-void CTabBar::setTabLoading(int index, bool start)
+void CTabBar::setTabLoading(int index, bool start, const QString& theme)
 {
-    if (!start) {
-        if (CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index))
+    if (CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index)) {
+        if (start) {
+            if (!icon->isStarted() )
+                icon->startSvg(":/tabbar/icons/loader.svg", theme);
+        } else
             icon->stop();
     }
 }
@@ -1015,13 +1018,6 @@ void CTabBar::setTabThemeIcons(int index, const std::pair<QString, QString> & ic
     if ( d->indexIsValid(index) ) {
         d->tabList[index]->setThemeIcons(icons);
     }
-}
-
-void CTabBar::tabStartLoading(int index, const QString& theme)
-{
-    CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index);
-    if (icon && !icon->isStarted() )
-        icon->startSvg(":/tabbar/icons/loader.svg", theme);
 }
 
 void CTabBar::polish()
