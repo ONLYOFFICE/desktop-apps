@@ -1617,6 +1617,7 @@ void CMainWindow::onErrorPage(int id, const std::wstring& action)
     if ( view && cvwtEditor == view->GetType() && action.compare(L"open") == 0 ) {
         int ind = m_pTabs->tabIndexByView(id);
         m_pTabs->panel(ind)->data()->setHasError();
+        m_pTabs->tabBar()->setTabLoading(ind, false);
     }
 }
 

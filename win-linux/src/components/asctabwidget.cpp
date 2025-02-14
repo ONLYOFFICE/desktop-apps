@@ -289,7 +289,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         tab_index = insertWidget(tab_index, panelwidget);
         m_pBar->insertTab(tab_index, data->title());
         m_pBar->setTabToolTip(tab_index, data->title());
-        m_pBar->tabStartLoading(tab_index);
+        m_pBar->setTabLoading(tab_index);
 
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
@@ -426,7 +426,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     m_pBar->setTabThemeType(tab_index, GetCurrentTheme().isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
     m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal_light.svg"));
     m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabSimpleActiveBackground)));
-    m_pBar->tabStartLoading(tab_index);
+    m_pBar->setTabLoading(tab_index);
 //    updateTabIcon(tabIndexByView(id));
 
     return tab_index;
@@ -528,7 +528,10 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
             m_pBar->setTabThemeType(tabindex,
                 ui_theme.value(CTheme::ColorRole::ecrTabThemeType, L"dark") == L"dark" ? CTabBar::DarkTab : CTabBar::LightTab);
             break;
-        default: break;
+        default:
+            if (!tabdata->isLocal())
+                m_pBar->setTabLoading(tabindex);
+            break;
         }
 
         m_pBar->setActiveTabColor(tabindex, tabcolor);
@@ -866,6 +869,9 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         default: break;
         }
 
+        if (AscEditorType::etUndefined != AscEditorType(type) && !panel(tabIndex)->data()->isLocal())
+            m_pBar->setTabLoading(tabIndex, false);
+
         m_pBar->setTabThemeType(tabIndex,
             ui_theme.value(CTheme::ColorRole::ecrTabThemeType, L"dark") == L"dark" ? CTabBar::DarkTab : CTabBar::LightTab);
 
@@ -889,7 +895,8 @@ void CAscTabWidget::applyPageLoadingStatus(int id, int state)
         } else
         if ( state == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
             if ( !panel(tabIndex)->data()->eventLoadSupported() ) {
-                m_pBar->setTabLoading(tabIndex, false);
+                if (panel(tabIndex)->data()->isViewType(cvwtSimple))
+                    m_pBar->setTabLoading(tabIndex, false);
                 panel(tabIndex)->applyLoader("hide");
             }
         }
