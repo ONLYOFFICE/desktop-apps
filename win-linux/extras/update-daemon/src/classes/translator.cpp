@@ -149,8 +149,8 @@ tstring Translator::tr(const char *str)
                                 return strIdPair.second[primaryLang];
                         }
                     }
-                    if (strIdPair.second.find(L"en") != strIdPair.second.end())
-                        return strIdPair.second[L"en"];
+                    if (strIdPair.second.find(_T("en")) != strIdPair.second.end())
+                        return strIdPair.second[_T("en")];
                     break;
                 }
             // }
