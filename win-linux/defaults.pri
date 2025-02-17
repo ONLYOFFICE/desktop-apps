@@ -1,5 +1,5 @@
 
-QT  += core gui widgets gui-private widgets-private core-private printsupport printsupport-private
+QT  += core gui widgets printsupport
 QT  += svg
 
 TEMPLATE = app
@@ -248,6 +248,8 @@ core_linux {
 }
 
 core_windows {
+    QT += printsupport-private
+
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
     CONFIG -= embed_manifest_exe
