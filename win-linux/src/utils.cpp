@@ -1178,4 +1178,13 @@ namespace WindowHelper {
             return wgt;
         return nullptr;
     }
+
+    auto defaultWindowMaximizeState() -> bool
+    {
+        GET_REGISTRY_USER(reg_user);
+        if (reg_user.contains("position") || reg_user.childGroups().contains("EditorsGeometry"))
+            return false;
+        auto scr_rc = qApp->primaryScreen()->geometry();
+        return (scr_rc.width() <= SCREEN_THRESHOLD_SIZE.width() || scr_rc.height() <= SCREEN_THRESHOLD_SIZE.height());
+    }
 }
