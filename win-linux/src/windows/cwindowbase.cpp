@@ -89,7 +89,7 @@ CWindowBase::~CWindowBase()
 QRect CWindowBase::startRect(const QRect &rc, double &dpi)
 {
     QRect prim_scr_rc = qApp->primaryScreen()->availableGeometry();
-    dpi = Utils::getScreenDpiRatio(rc.isEmpty() ? qApp->primaryScreen()->geometry().topLeft() : rc.topLeft());
+    dpi = Utils::getScreenDpiRatio(rc.isEmpty() ? prim_scr_rc.topLeft() : rc.topLeft());
     QSize def_size = MAIN_WINDOW_DEFAULT_SIZE * dpi;
     QRect def_rc = QRect(prim_scr_rc.center() - QPoint(def_size.width()/2, def_size.height()/2), def_size),
           out_rc = rc.isEmpty() ? def_rc : rc,
