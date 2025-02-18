@@ -440,7 +440,7 @@ public:
         if (etype == AscEditorType::etUndefined) {
             if (!rc.isEmpty())
                 rc.adjust(50,50,50,50);
-            isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+            isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool();
         } else {
             QString baseKey = "EditorsGeometry/" + QString::number(int(etype)) + "/";
             if (reg_user.contains(baseKey + "position"))
@@ -453,7 +453,7 @@ public:
             if (reg_user.contains(baseKey + "maximized"))
                 isMaximized = reg_user.value(baseKey + "maximized").toBool();
             else {
-                isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+                isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool();
             }
         }
     }

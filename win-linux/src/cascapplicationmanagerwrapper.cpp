@@ -1022,7 +1022,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         } else {
             if ( !_app.m_pMainWindow ) {
                 _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-                _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+                _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
             } else
             if (!_app.m_pMainWindow->isVisible())
                 _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
@@ -1042,7 +1042,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     if ( !list_failed.empty() && !open_in_new_window ) {
         if ( !_app.m_pMainWindow ) {
             _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-            _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+            _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
         }
 
         for ( auto & o : list_failed ) {
@@ -1119,7 +1119,7 @@ void CAscApplicationManagerWrapper::startApp()
     GET_REGISTRY_USER(reg_user)
 
 //    QRect _start_rect = reg_user.value("position").toRect();
-    bool _is_maximized = reg_user.value("maximized", false).toBool();
+    bool _is_maximized = reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool();
 
 #if 0
     CMainWindow * _window = createMainWindow(_start_rect);
@@ -1404,7 +1404,7 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
         }
 
         _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-        _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+        _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
     }
 
     if ( !_app.m_pMainWindow->isVisible() )
