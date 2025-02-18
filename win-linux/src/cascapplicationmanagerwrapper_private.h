@@ -284,14 +284,17 @@ public:
                 std::wstring file_path = CEditorTools::getlocalfile(data.get_Param(), event.m_nSenderId).toStdWString();
 
                 if ( !file_path.empty() ) {
+                    QString qfile_path = QString::fromStdWString(file_path);
                     if ( bringEditorToFront(QString::fromStdWString(file_path)) )
                         return true;
 
-                    COpenOptions opts{file_path, etLocalFile};
+                    QFileInfo _info(qfile_path);
+                    COpenOptions opts{_info.fileName(), etLocalFile};
                     opts.parent_id = event.m_nSenderId;
+                    opts.url = qfile_path;
+                    opts.wurl = file_path;
 
                     if ( !openDocument(opts) ) {
-                        QFileInfo _info(QString::fromStdWString(file_path));
                         CMessage::error(m_appmanager.mainWindow()->handle(),
                                         QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                     }
