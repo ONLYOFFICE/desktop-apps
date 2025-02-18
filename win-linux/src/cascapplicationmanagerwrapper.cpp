@@ -1007,7 +1007,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         if ( open_in_new_window ) {
             bool isMaximized = false;
-            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts.wurl);
+            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts);
             open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, true);
             open_opts.parent_widget = COpenOptions::eWidgetType::window;
             if (CEditorWindow * editor_win = CEditorWindow::create(_start_rect, open_opts)) {

@@ -405,9 +405,22 @@ public:
         return QRect();
     }
 
-    auto editorWindowGeometry(QRect &rc, bool &isMaximized, const std::wstring &wurl) -> void
+    auto editorWindowGeometry(QRect &rc, bool &isMaximized, const COpenOptions& opts) -> void
     {        
-        AscEditorType etype = CEditorTools::editorTypeFromFormat(CCefViewEditor::GetFileFormat(wurl));
+        AscEditorType etype = AscEditorType::etUndefined;
+        int format = (opts.format == 0) ? CCefViewEditor::GetFileFormat(opts.wurl) : opts.format;
+        switch (format) {
+        case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF:
+        case AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM:
+        case AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF:
+        case AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA:
+            etype = AscEditorType::etPdf;
+            break;
+        default:
+            etype = CEditorTools::editorTypeFromFormat(format);
+            break;
+        }
+
         if (!m_appmanager.m_vecEditors.empty()) {
 #ifdef _WIN32
             if (HWND hWnd = GetTopWindow(GetDesktopWindow())) {
@@ -470,7 +483,7 @@ public:
             GET_REGISTRY_USER(reg_user);
             bool isMaximized = false;
             QRect rect = /*isMaximized ? QRect() :*/ windowRectFromViewId(opts.parent_id);
-            editorWindowGeometry(rect, isMaximized, opts.wurl);
+            editorWindowGeometry(rect, isMaximized, opts);
             opts_ext.panel_size = CWindowBase::expectedContentSize(rect, true);
             opts_ext.parent_widget = COpenOptions::eWidgetType::window;
             if (CEditorWindow * editor_win = CEditorWindow::create(rect, opts_ext)) {
