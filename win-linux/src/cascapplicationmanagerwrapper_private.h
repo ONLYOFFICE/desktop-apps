@@ -285,7 +285,7 @@ public:
 
                 if ( !file_path.empty() ) {
                     QString qfile_path = QString::fromStdWString(file_path);
-                    if ( bringEditorToFront(QString::fromStdWString(file_path)) )
+                    if ( bringEditorToFront(qfile_path) )
                         return true;
 
                     QFileInfo _info(qfile_path);
