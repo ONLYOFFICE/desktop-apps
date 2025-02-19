@@ -322,11 +322,7 @@ copy_templates() {
   exit 0
 }
 
-for arg in "$@"; do
-  if [ "$arg" = "--new-document-templates" ]; then
-    copy_templates
-  fi
-done
+copy_templates
 
 DIR=/opt/M4_DESKTOPEDITORS_PREFIX
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
