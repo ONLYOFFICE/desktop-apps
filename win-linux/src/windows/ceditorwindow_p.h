@@ -72,6 +72,7 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     case AscEditorType::etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
     case AscEditorType::etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
     case AscEditorType::etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
+    case AscEditorType::etDocumentMasterForm:
     case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
     case AscEditorType::etDraw: c = theme.value(CTheme::ColorRole::ecrTabDrawActive); break;
     }
@@ -504,6 +505,7 @@ public:
             background = GetColorValueByRole(ecrTabCellActive);
             border = background;
             break;
+        case AscEditorType::etDocumentMasterForm:
         case AscEditorType::etPdf:
             background = GetColorValueByRole(ecrTabViewerActive);
             border = background;

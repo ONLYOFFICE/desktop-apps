@@ -353,12 +353,11 @@ namespace CEditorTools
         if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF ) {
             return AscEditorType::etDocumentMasterForm;
         } else
-        if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF ) {
+        if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF ||
+                   format == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM ) {
             return AscEditorType::etPdf;
         } else
-        if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
-                format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
-                    format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
+        if ( format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION )
             return AscEditorType::etDocument;
         else
         if ( format > AVS_OFFICESTUDIO_FILE_PRESENTATION && format < AVS_OFFICESTUDIO_FILE_SPREADSHEET )
