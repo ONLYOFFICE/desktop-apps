@@ -499,10 +499,10 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
         case AscEditorType::etSpreadsheet:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabCellActive));
             break;
-        case AscEditorType::etDocumentMasterForm:
         case AscEditorType::etDocument:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabWordActive));
             break;
+        case AscEditorType::etDocumentMasterForm:
         case AscEditorType::etPdf:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive));
             break;
@@ -856,6 +856,7 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
             m_pBar->setActiveTabColor(tabIndex,
                 QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSlideActive)));
             break;
+        case AscEditorType::etDocumentMasterForm:
         case AscEditorType::etPdf:
             panel(tabIndex)->applyLoader("loader:style", "pdf");
             m_pBar->setActiveTabColor(tabIndex,
@@ -1277,10 +1278,10 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
         case AscEditorType::etSpreadsheet:
             m_pBar->setActiveTabColor(i, tab_color.at(1));
             break;
-        case AscEditorType::etDocumentMasterForm:
         case AscEditorType::etDocument:
             m_pBar->setActiveTabColor(i, tab_color.at(0));
             break;
+        case AscEditorType::etDocumentMasterForm:
         case AscEditorType::etPdf:
             m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive)));
             break;

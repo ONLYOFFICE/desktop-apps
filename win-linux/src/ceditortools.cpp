@@ -353,22 +353,21 @@ namespace CEditorTools
         if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF ) {
             return AscEditorType::etDocumentMasterForm;
         } else
-        if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF ) {
+        if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF ||
+                   format == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM ) {
             return AscEditorType::etPdf;
         } else
-        if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
-                format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
-                    format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
+        if ( format & AVS_OFFICESTUDIO_FILE_DOCUMENT )
             return AscEditorType::etDocument;
         else
-        if ( format > AVS_OFFICESTUDIO_FILE_PRESENTATION && format < AVS_OFFICESTUDIO_FILE_SPREADSHEET )
+        if ( format & AVS_OFFICESTUDIO_FILE_PRESENTATION )
             return AscEditorType::etPresentation;
         else
-        if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
+        if (format & AVS_OFFICESTUDIO_FILE_SPREADSHEET ) {
             return AscEditorType::etSpreadsheet;
         }
         else
-        if (format > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM && format < AVS_OFFICESTUDIO_FILE_IMAGE )
+        if (format & AVS_OFFICESTUDIO_FILE_CROSSPLATFORM )
             return AscEditorType::etPdf;
         else
         if (format & AVS_OFFICESTUDIO_FILE_DRAW )

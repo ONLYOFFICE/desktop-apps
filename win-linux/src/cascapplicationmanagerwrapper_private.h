@@ -414,9 +414,6 @@ public:
         int format = (opts.format == 0) ? CCefViewEditor::GetFileFormat(opts.wurl) : opts.format;
         switch (format) {
         case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF:
-        case AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM:
-        case AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF:
-        case AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA:
             etype = AscEditorType::etPdf;
             break;
         default:
