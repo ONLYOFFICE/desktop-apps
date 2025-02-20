@@ -68,7 +68,7 @@ using namespace NSNetwork::NSFileTransport;
 auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     std::wstring c;
     switch (type) {
-    default: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
+    default: c = theme.value(CTheme::ColorRole::ecrWindowBackground); break;
     case AscEditorType::etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
     case AscEditorType::etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
     case AscEditorType::etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
