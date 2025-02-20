@@ -82,16 +82,16 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     return g_css.arg(QString::fromStdWString(c), GetColorQValueByRole(ecrTextNormal), GetColorQValueByRole(ecrTextPretty));
 }
 
-auto editor_color(AscEditorType type) -> QColor {
-    switch (type) {
-    case AscEditorType::etDocument: return GetColorByRole(ecrTabWordActive);
-    case AscEditorType::etPresentation: return GetColorByRole(ecrTabSlideActive);
-    case AscEditorType::etSpreadsheet: return GetColorByRole(ecrTabCellActive);
-    case AscEditorType::etPdf: return GetColorByRole(ecrTabViewerActive);
-    case AscEditorType::etDraw: return GetColorByRole(ecrTabDrawActive);
-    default: return GetColorByRole(ecrTabWordActive);
-    }
-}
+// auto editor_color(AscEditorType type) -> QColor {
+//     switch (type) {
+//     case AscEditorType::etDocument: return GetColorByRole(ecrTabWordActive);
+//     case AscEditorType::etPresentation: return GetColorByRole(ecrTabSlideActive);
+//     case AscEditorType::etSpreadsheet: return GetColorByRole(ecrTabCellActive);
+//     case AscEditorType::etPdf: return GetColorByRole(ecrTabViewerActive);
+//     case AscEditorType::etDraw: return GetColorByRole(ecrTabDrawActive);
+//     default: return GetColorByRole(ecrTabWordActive);
+//     }
+// }
 
 auto rounded_pixmap(const QPixmap &px, int size) -> QPixmap {
     qreal diam = qMin(px.width(), px.height());
