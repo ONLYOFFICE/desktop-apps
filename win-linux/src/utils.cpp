@@ -42,6 +42,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QScreen>
@@ -854,6 +855,18 @@ int Utils::getInstAppPort()
 QString Utils::replaceBackslash(const QString& path)
 {
     return QString(path).replace(QRegularExpression("\\\\"), "/");
+}
+
+std::wstring Utils::normalizeAppProtocolUrl(const std::wstring &url)
+{
+    QUrl _url(QString::fromStdWString(url));
+    if (_url.scheme() == APP_PROTOCOL) {
+        QUrlQuery query(_url);
+        query.addQueryItem("placement", "desktop");
+        _url.setQuery(query);
+        return _url.toString(QUrl::RemoveScheme).toStdWString();
+    }
+    return url;
 }
 
 void Utils::replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace)

@@ -680,7 +680,7 @@ int CAscTabWidget::tabIndexByUrl(const wstring& url)
         for (int i(count()); !(--i < 0);) {
             doc = panel(i)->data();
 
-            if (doc && doc->url().compare(url) == 0)
+            if (doc && Utils::normalizeAppProtocolUrl(doc->url()).compare(Utils::normalizeAppProtocolUrl(url)) == 0)
                 return i;
         }
     }

@@ -217,11 +217,8 @@ public:
             opts.parent_id = event.m_nSenderId;
             opts.name = QString::fromStdWString(data.get_Name());
 
-            // TODO: remove for ver 8.2 if unused
-            //            if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
-            //                bringEditorToFront(_v->GetId());
-            //            } else openDocument(opts);
-            openDocument(opts);
+            if ( !bringEditorToFront(QString::fromStdWString(opts.wurl)) )
+                openDocument(opts);
 
             return true;
         }
