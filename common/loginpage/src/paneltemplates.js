@@ -83,8 +83,8 @@
                                 <div class='lr-flex'>
                                     <h3 class='table-caption' l10n>${_lang.actTemplates}</h3>
                                     <div id='idx-nav-templates'>
-                                        <a data-value='local' class='nav-item'>${_lang.tplPanelLocal}</a>
-                                        <a data-value='cloud' class='nav-item'>${_lang.tplPanelCloud}</a>
+                                        <a data-value='local' class='nav-item' l10n>${_lang.tplPanelLocal}</a>
+                                        <a data-value='cloud' class='nav-item' l10n>${_lang.tplPanelCloud}</a>
                                     </div>
                                 </div>
                                 <section class='themed-sroll' panel='local'>

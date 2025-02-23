@@ -512,7 +512,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="259"/>
         <source>Visio diagram</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio diagram</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="260"/>
@@ -603,7 +603,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
         <location filename="../src/windows/cmainwindow.cpp" line="623"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoofdvenster</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="303"/>
@@ -675,47 +675,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluiten</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluit opgeslagen</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles sluiten</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Show in folder</source>
-        <translation type="unfinished">Weergeven in map</translation>
+        <translation>Weergeven in map</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Verplaats naar start</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Verplaats naar einde</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabblad loskoppelen van venster</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Vastkoppelen aan tabblad</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuw maken</translation>
     </message>
 </context>
 <context>
@@ -1181,7 +1181,7 @@
         <location filename="../src/platform_linux/singleapplication.cpp" line="98"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Er zijn niet-opgeslagen documenten</translation>
     </message>
 </context>
 <context>

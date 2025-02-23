@@ -58,6 +58,7 @@ static std::string registerClient()
 {
     std::string result;
     GVariant *args = g_variant_new("(ss)", DESKTOP_FILE_NAME, "");
+    g_variant_ref_sink(args);
     if (GVariant *ret = callMethod(GNOME_SESSION_PATH, GNOME_SESSION_ITF, "RegisterClient", args)) {
         gchar *client_id = nullptr;
         g_variant_get(ret, "(o)", &client_id);
@@ -74,6 +75,7 @@ static std::string registerClient()
 static void unregisterClient(const std::string &client_id)
 {
     GVariant *args = g_variant_new("(o)", client_id.c_str());
+    g_variant_ref_sink(args);
     if (GVariant *ret = callMethod(GNOME_SESSION_PATH, GNOME_SESSION_ITF, "UnregisterClient", args)) {
         g_variant_unref(ret);
     }
@@ -83,6 +85,7 @@ static void unregisterClient(const std::string &client_id)
 static void endSessionResponse(const std::string &client_id, gboolean is_ok, const std::string &reason)
 {
     GVariant *args = g_variant_new("(bs)", is_ok, reason.c_str());
+    g_variant_ref_sink(args);
     if (GVariant *ret = callMethod(client_id.c_str(), GNOME_SESSION_CLNT_ITF, "EndSessionResponse", args)) {
         g_variant_unref(ret);
     }
