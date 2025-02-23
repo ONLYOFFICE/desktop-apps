@@ -308,7 +308,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             GET_REGISTRY_USER(reg_user)
             if (reg_user.value("lockPortals", false).toBool()
 #ifdef Q_OS_WIN
-                    || !IsWindowsVistaOrGreater()
+                    || Utils::getWinVersion() <= Utils::WinVer::WinVista
 #endif
             )
                 sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
@@ -319,6 +319,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             } else
             if ( cmd.rfind(L"get") != wstring::npos ) {
                 sendSettings(pData->get_Param());
+            } else
+            if ( cmd.rfind(L"check") != wstring::npos ) {
+                checkSettings(pData->get_Param());
             }
 
 //            RELEASEINTERFACE(event);
@@ -414,6 +417,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
+            return true;
+        } else
+        if ( !(cmd.find(L"recent:forget") == std::wstring::npos) ) {
+            RemoveRecentByViewId(event->get_SenderId());
             return true;
         } else
         if ( !(cmd.find(L"system:changed") == std::wstring::npos) ) {
@@ -919,6 +926,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 open_opts.srctype = etNewFile;
                 open_opts.format = arg.rfind(L"cell") != wstring::npos ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                                     arg.rfind(L"slide") != wstring::npos ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX :
+                                    // arg.rfind(L"draw") != wstring::npos ? AVS_OFFICESTUDIO_FILE_DRAW_VSDX :
                                     arg.rfind(L"form") != wstring::npos ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
                             /*if ( line.rfind(L"word") != wstring::npos )*/ AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
 
@@ -999,7 +1007,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         if ( open_in_new_window ) {
             bool isMaximized = false;
-            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts.wurl);
+            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts);
             open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, true);
             open_opts.parent_widget = COpenOptions::eWidgetType::window;
             if (CEditorWindow * editor_win = CEditorWindow::create(_start_rect, open_opts)) {
@@ -1014,7 +1022,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         } else {
             if ( !_app.m_pMainWindow ) {
                 _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-                _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+                _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
             } else
             if (!_app.m_pMainWindow->isVisible())
                 _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
@@ -1034,7 +1042,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     if ( !list_failed.empty() && !open_in_new_window ) {
         if ( !_app.m_pMainWindow ) {
             _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-            _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+            _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
         }
 
         for ( auto & o : list_failed ) {
@@ -1087,6 +1095,22 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 #ifdef _WIN32
     Association::instance().chekForAssociations(uid);
 #endif
+
+    if (uid > -1 && printData().printerCapabilitiesReady())
+        AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+
+    static bool check_printers = false;
+    if (!check_printers) {
+        check_printers = true;
+
+        printData().queryPrinterCapabilitiesAsync([=](const QString &json) {
+            // qDebug().noquote() << json;
+            for (int _uid : GetViewsId()) {
+                if (_uid > -1)
+                    AscAppManager::sendCommandTo(GetViewById(_uid), L"printer:config", json.toStdWString());
+            }
+        });
+    }
 }
 
 void CAscApplicationManagerWrapper::startApp()
@@ -1095,7 +1119,7 @@ void CAscApplicationManagerWrapper::startApp()
     GET_REGISTRY_USER(reg_user)
 
 //    QRect _start_rect = reg_user.value("position").toRect();
-    bool _is_maximized = reg_user.value("maximized", false).toBool();
+    bool _is_maximized = reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool();
 
 #if 0
     CMainWindow * _window = createMainWindow(_start_rect);
@@ -1289,10 +1313,8 @@ void CAscApplicationManagerWrapper::initializeApp()
         EditorJSVariables::setVariable("localthemes", local_themes_array);
 
 #if !defined(__OS_WIN_XP)
-    bool _is_rtl = CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
-    if ( InputArgs::contains(L"--text-direction") ) {
-        _is_rtl = InputArgs::argument_value(L"--text-direction") == L"rtl";
-    }
+    bool _is_rtl = InputArgs::contains(L"--text-direction") ? InputArgs::argument_value(L"--text-direction") == L"rtl" :
+                       CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
 #else
     const bool _is_rtl = false;
 #endif
@@ -1382,7 +1404,7 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
         }
 
         _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-        _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+        _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
     }
 
     if ( !_app.m_pMainWindow->isVisible() )
@@ -1824,10 +1846,12 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         if ( objRoot.contains("langid") ) {
             QString l = objRoot.value("langid").toString();
             if ( _lang_id != l ) {
+                bool direction_changed = (CLangater::isRtlLanguage(_lang_id) != CLangater::isRtlLanguage(l));
                 _lang_id = l;
 
                 _reg_user.setValue("locale", _lang_id);
-                CLangater::reloadTranslations(_lang_id);
+                if (!direction_changed)
+                    CLangater::reloadTranslations(_lang_id);
 #ifdef _UPDMODULE
                 if (m_pUpdateManager) {
                     m_pUpdateManager->setServiceLang(_lang_id);
@@ -1931,6 +1955,30 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
         });
 }
 
+void CAscApplicationManagerWrapper::checkSettings(const wstring& opts)
+{
+    QJsonParseError jerror;
+    QByteArray stringdata = QString::fromStdWString(opts).toUtf8();
+    QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+
+    if( jerror.error == QJsonParseError::NoError ) {
+        QJsonObject root = jdoc.object();
+
+        if ( root.contains("langid") ) {
+            QString _curr_lang = CLangater::getCurrentLangCode(),
+                    _new_lang = root.value("langid").toString();
+            if ( _curr_lang != _new_lang ) {
+                bool direction_changed = CLangater::isRtlLanguage(_curr_lang) != CLangater::isRtlLanguage(_new_lang);
+
+                QTimer::singleShot(0, this, [direction_changed] {
+                    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"settings:lang",
+                                direction_changed ? L"restart:true":L"restart:false");
+                });
+            }
+        }
+    }
+}
+
 void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 {
     APP_CAST(_app);
@@ -2008,6 +2056,25 @@ bool CAscApplicationManagerWrapper::canAppClose()
     }
 
     return true;
+}
+
+bool CAscApplicationManagerWrapper::hasUnsavedChanges()
+{
+    APP_CAST(_app);
+    if (_app.mainWindow()) {
+        CAscTabWidget *tabs = _app.mainWindow()->tabWidget();
+        for (int i = 0; i < tabs->count(); i++) {
+            if (tabs->modifiedByIndex(i))
+                return true;
+        }
+    }
+
+    foreach (auto ptr, _app.m_vecEditors) {
+        CEditorWindow *e = reinterpret_cast<CEditorWindow*>(ptr);
+        if (e->modified())
+            return true;
+    }
+    return false;
 }
 
 QCefView * CAscApplicationManagerWrapper::createViewer(QWidget * parent, const QSize& size)
@@ -2203,6 +2270,7 @@ QString CAscApplicationManagerWrapper::newFileName(const std::wstring& format)
     int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
                  format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                  format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                 // format == L"draw" ? AVS_OFFICESTUDIO_FILE_DRAW_VSDX :
                  format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
     return newFileName(_f);

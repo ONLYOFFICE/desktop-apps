@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1354"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1366"/>
         <source>Presenter View</source>
         <translation>Náhled prezentace</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Uložit jako</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1907"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aby se nastavení projevilo, je nutné aplikaci restartovat.</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2179"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2239"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2241"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2183"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2245"/>
         <source>Book%1.xlsx</source>
         <translation>Sešit%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2185"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2247"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentace%1.pptx</translation>
     </message>
@@ -65,8 +65,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="903"/>
-        <location filename="../src/components/asctabwidget.cpp" line="661"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="910"/>
+        <location filename="../src/components/asctabwidget.cpp" line="696"/>
         <source>Document</source>
         <translation>Otevírám...</translation>
     </message>
@@ -196,32 +196,32 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="153"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="157"/>
         <source>Open main window</source>
         <translation>Otevřít hlavní okno</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="571"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="581"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Než budete pokračovat, musíte dokument uložit.&lt;br&gt;Chcete dokument uložit?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="661"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="671"/>
         <source>Print Document</source>
         <translation>Vytisknout dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="870"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="880"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument musíte nejprve uložit.</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow.cpp" line="122"/>
+        <location filename="../src/windows/ceditorwindow.cpp" line="126"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1 byl upraven.&lt;br&gt;Chcete uložit tyto změny?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="406"/>
+        <location filename="../src/ceditortools.cpp" line="409"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Pokud budete pokračovat v ukládání v tomto formátu, vše kromě textu bude ztraceno.&lt;br&gt;Opravdu chcete pokračovat?</translation>
     </message>
@@ -229,12 +229,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="612"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="622"/>
         <source>There are no printers available</source>
         <translation>Nejsou k dispozici žádné tiskárny</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="727"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="737"/>
         <source>There are no pages set to print.</source>
         <translation>Nejsou nastaveny žádné stránky k tisku.</translation>
     </message>
@@ -435,80 +435,115 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
+        <source>VSDX File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
+        <source>VSDM File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="106"/>
+        <source>VSSX File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="107"/>
+        <source>VSSM File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="108"/>
+        <source>VSTX File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="109"/>
+        <source>VSTM File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
         <translation>Obrázek JPG (*.jpg *.jpeg)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
+        <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>PNG Image (*.png)</source>
         <translation>Obrázek PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="153"/>
+        <location filename="../src/components/cfiledialog.cpp" line="160"/>
         <source>Save As</source>
         <translation>Uložit jako</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="199"/>
+        <location filename="../src/components/cfiledialog.cpp" line="206"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 již existuje.&lt;br&gt;Přejete si ho přepsat?</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="225"/>
+        <location filename="../src/components/cfiledialog.cpp" line="232"/>
         <source>Word Document</source>
         <translation>Word dokument</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="228"/>
+        <location filename="../src/components/cfiledialog.cpp" line="235"/>
         <source>Excel Workbook</source>
         <translation>Tabulka Excel</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="231"/>
+        <location filename="../src/components/cfiledialog.cpp" line="238"/>
         <source>PowerPoint Presentation</source>
         <translation>PowerPoint prezentace</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="234"/>
+        <location filename="../src/components/cfiledialog.cpp" line="241"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 soubor (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="342"/>
-        <location filename="../src/components/cfiledialog.cpp" line="366"/>
-        <location filename="../src/components/cfiledialog.cpp" line="368"/>
+        <location filename="../src/components/cfiledialog.cpp" line="251"/>
+        <location filename="../src/components/cfiledialog.cpp" line="350"/>
+        <location filename="../src/components/cfiledialog.cpp" line="374"/>
+        <location filename="../src/components/cfiledialog.cpp" line="376"/>
         <source>Text documents</source>
         <translation>Textové dokumenty</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="250"/>
-        <location filename="../src/components/cfiledialog.cpp" line="350"/>
-        <location filename="../src/components/cfiledialog.cpp" line="370"/>
+        <location filename="../src/components/cfiledialog.cpp" line="257"/>
+        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="378"/>
         <source>Spreadsheets</source>
         <translation>Tabulky</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="251"/>
-        <location filename="../src/components/cfiledialog.cpp" line="358"/>
-        <location filename="../src/components/cfiledialog.cpp" line="371"/>
+        <location filename="../src/components/cfiledialog.cpp" line="258"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="379"/>
         <source>Presentations</source>
         <translation>Prezentace</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="252"/>
+        <location filename="../src/components/cfiledialog.cpp" line="259"/>
+        <source>Visio diagram</source>
+        <translation>Diagram Visio</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="260"/>
         <source>Web Page</source>
         <translation>Webová stránka</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="253"/>
+        <location filename="../src/components/cfiledialog.cpp" line="261"/>
         <source>Text files</source>
         <translation>Textové soubory</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
-        <location filename="../src/components/cfiledialog.cpp" line="255"/>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="263"/>
+        <location filename="../src/components/cfiledialog.cpp" line="381"/>
         <source>All supported files</source>
         <translation>Všechny podporované soubory</translation>
     </message>
@@ -536,44 +571,44 @@
         <translation>Soubor s motivem</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="273"/>
+        <location filename="../src/components/cfiledialog.cpp" line="281"/>
         <source>Open Document</source>
         <translation>Otevřít dokument</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="303"/>
-        <location filename="../src/components/cfiledialog.cpp" line="313"/>
+        <location filename="../src/components/cfiledialog.cpp" line="311"/>
+        <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>All Images</source>
         <translation>Všechny obrázky</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="315"/>
+        <location filename="../src/components/cfiledialog.cpp" line="323"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="324"/>
-        <location filename="../src/components/cfiledialog.cpp" line="333"/>
+        <location filename="../src/components/cfiledialog.cpp" line="332"/>
+        <location filename="../src/components/cfiledialog.cpp" line="341"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Soubor pluginu (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="390"/>
+        <location filename="../src/components/cfiledialog.cpp" line="398"/>
         <source>Video file</source>
         <translation>Videosoubor</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="395"/>
+        <location filename="../src/components/cfiledialog.cpp" line="403"/>
         <source>Audio file</source>
         <translation>Zvukový soubor</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="412"/>
+        <location filename="../src/components/cfiledialog.cpp" line="420"/>
         <source>Select Folder</source>
         <translation>Vybrat složku</translation>
     </message>
@@ -581,58 +616,64 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="280"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="87"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="623"/>
+        <source>Main Window</source>
+        <translation>Hlavní okno</translation>
+    </message>
+    <message>
+        <location filename="../src/windows/cmainwindow.cpp" line="303"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Je otevřen více než jeden dokument.&lt;br&gt;Zavřít okno i tak?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="282"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="305"/>
         <source>Don&apos;t ask again.</source>
         <translation>Neptejte se znovu.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="803"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="843"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="948"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="988"/>
         <source>File format not supported.</source>
         <translation>Formát souboru není podporován.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="827"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="972"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 není dostupný. Možná byl přejmenován, přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="886"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1045"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument musíte nejprve uložit.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1035"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1206"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Než budete pokračovat, musíte dokument uložit.&lt;br&gt;Chcete dokument uložit?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1141"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1312"/>
         <source>There are no printers available</source>
         <translation>Nejsou k dispozici žádné tiskárny</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1201"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1372"/>
         <source>Print Document</source>
         <translation>Vytisknout dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1267"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1438"/>
         <source>There are no pages set to print.</source>
         <translation>Nejsou nastaveny žádné stránky k tisku.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1403"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1576"/>
         <source>Sign Up</source>
         <translation>Vytvořit kanceláře cloud</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1502"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1684"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 byl upraven.&lt;br&gt;Chcete uložit tyto změny?</translation>
     </message>
@@ -643,6 +684,54 @@
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
         <translation>Licencováno pod</translation>
+    </message>
+</context>
+<context>
+    <name>CMenu</name>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="372"/>
+        <source>Close</source>
+        <translation>Zavřít</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="373"/>
+        <source>Close saved</source>
+        <translation>Zavřít uložený</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="374"/>
+        <source>Close all</source>
+        <translation>Zavřít vše</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="375"/>
+        <source>Show in folder</source>
+        <translation>Zobrazit ve složce</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="376"/>
+        <source>Move to start</source>
+        <translation>Přesunout na začátek</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="377"/>
+        <source>Move to end</source>
+        <translation>Přesun na konec</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="378"/>
+        <source>Unpin tab to window</source>
+        <translation>Zrušení připnutí karty k oknu</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="379"/>
+        <source>Pin to tab</source>
+        <translation>Připnout na kartu</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="380"/>
+        <source>Create new</source>
+        <translation>Vytvořit nový</translation>
     </message>
 </context>
 <context>
@@ -849,7 +938,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuální verze nepodporuje přímou instalaci této aktualizace. Chcete-li nainstalovat aktualizace, můžete si stáhnout požadovaný balíček z oficiálních webových stránek.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="888"/>
@@ -899,12 +988,13 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="252"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="253"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1027"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 není dostupný. Možná byl přejmenován, přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="295"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="296"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Soubor %1 nelze otevřít nebo neexistuje.</translation>
     </message>
@@ -929,12 +1019,12 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="791"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="936"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Přístup k souboru &apos;%1&apos; je odepřen!</translation>
     </message>
     <message>
-        <location filename="../src/casctabdata.cpp" line="219"/>
+        <location filename="../src/casctabdata.cpp" line="220"/>
         <source>Read only</source>
         <translation>Pouze pro čtení</translation>
     </message>
@@ -1013,48 +1103,48 @@
         <translation>Při spouštění nahrazování souborů došlo k chybě: Aktualizační služba nebyla nalezena!</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="121"/>
+        <location filename="../src/defines.h" line="125"/>
         <source>Cancel</source>
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="122"/>
+        <location filename="../src/defines.h" line="126"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="123"/>
+        <location filename="../src/defines.h" line="127"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="198"/>
-        <location filename="../src/defines.h" line="124"/>
+        <location filename="../src/components/cmessage.cpp" line="200"/>
+        <location filename="../src/defines.h" line="128"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="125"/>
+        <location filename="../src/defines.h" line="129"/>
         <source>Skip</source>
         <translation>Přeskočit</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="126"/>
+        <location filename="../src/defines.h" line="130"/>
         <source>Buy Now</source>
         <translation>Koupit nyní</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="127"/>
+        <location filename="../src/defines.h" line="131"/>
         <source>Activate</source>
         <translation>Aktivace</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="128"/>
+        <location filename="../src/defines.h" line="132"/>
         <source>Continue</source>
         <translation>Pokračovat</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1225"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1165"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>Při otevírání portálu došlo k chybě:&lt;br&gt;%1</translation>
     </message>
@@ -1063,7 +1153,7 @@
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="380"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="383"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>Soubor %1 je již načten. Nahradit jej?</translation>
     </message>
@@ -1089,12 +1179,12 @@
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="586"/>
-        <location filename="../src/platform_win/printdialog.cpp" line="527"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="534"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
         <translation>Zadaný rozsah %1-%2 překračuje limity dokumentu: maximální počet stránek je %3</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/printdialog.cpp" line="485"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="492"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
         <translation>Nelze otevřít dialogové okno pro tisk:&lt;br&gt;%1</translation>
     </message>
@@ -1130,6 +1220,12 @@
         <location filename="../src/platform_win/association.cpp" line="218"/>
         <source>Do not show this message again</source>
         <translation>Tuto zprávu již nezobrazovat</translation>
+    </message>
+    <message>
+        <location filename="../src/platform_linux/singleapplication.cpp" line="98"/>
+        <source>There are unsaved documents</source>
+        <comment>SingleApplication</comment>
+        <translation>Existují neuložené dokumenty</translation>
     </message>
 </context>
 <context>

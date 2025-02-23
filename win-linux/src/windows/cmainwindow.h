@@ -109,6 +109,9 @@ protected:
     virtual QString getSaveMessage() const;
     virtual void refreshAboutVersion() {};
     virtual void onLayoutDirectionChanged() final;
+#ifdef _WIN32
+    virtual void applyWindowState() final;
+#endif
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
 
@@ -154,7 +157,7 @@ public slots:
 private:
     QWidget * createMainPanel(QWidget *parent);
     int  trySaveDocument(int);
-    void setTabMenu(int index, CTabPanel *panel = nullptr);
+    void setTabMenu(int index, const QPoint &pos);
 
     CAscTabWidget *  m_pTabs = nullptr;
     CSVGPushButton*  m_pButtonMain = nullptr;

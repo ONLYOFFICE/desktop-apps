@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1354"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1366"/>
         <source>Presenter View</source>
         <translation>簡報者檢視畫面</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">另存新檔</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1907"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>您必須重新啟動應用程式，設定變更才會生效。</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2179"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2239"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2241"/>
         <source>Document%1.docx</source>
         <translation>文件%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2183"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2245"/>
         <source>Book%1.xlsx</source>
         <translation>書%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2185"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2247"/>
         <source>Presentation%1.pptx</source>
         <translation>簡報%1.pptx</translation>
     </message>
@@ -65,8 +65,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="903"/>
-        <location filename="../src/components/asctabwidget.cpp" line="661"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="910"/>
+        <location filename="../src/components/asctabwidget.cpp" line="696"/>
         <source>Document</source>
         <translation>開啟中...</translation>
     </message>
@@ -159,7 +159,7 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="175"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>下載</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="178"/>
@@ -175,7 +175,7 @@
         <location filename="../src/components/cdownloadwidget.cpp" line="278"/>
         <location filename="../src/components/cdownloadwidget.cpp" line="387"/>
         <source>kBps</source>
-        <translation type="unfinished"></translation>
+        <translation>kBps</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="306"/>
@@ -190,38 +190,38 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="359"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>在資料夾中顯示</translation>
     </message>
 </context>
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow.cpp" line="122"/>
+        <location filename="../src/windows/ceditorwindow.cpp" line="126"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1 已經被修改。&lt;br&gt;您要儲存變更嗎？</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="406"/>
+        <location filename="../src/ceditortools.cpp" line="409"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>如您繼續以此格式儲存，除了文字以外的所有功能都將會遺失。&lt;br&gt;您確定要繼續嗎？</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="153"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="157"/>
         <source>Open main window</source>
         <translation>開啟主視窗</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="571"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="581"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>必須先儲存文件才能繼續。&lt;br&gt;儲存文件？</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="661"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="671"/>
         <source>Print Document</source>
         <translation>列印文件</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="870"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="880"/>
         <source>Document must be saved firstly.</source>
         <translation>必須先儲存文件。</translation>
     </message>
@@ -229,12 +229,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="612"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="622"/>
         <source>There are no printers available</source>
         <translation>沒有可用的印表機</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="727"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="737"/>
         <source>There are no pages set to print.</source>
         <translation>尚未設定要列印的頁面</translation>
     </message>
@@ -381,7 +381,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished">PDF 表格 (*.pdf)</translation>
+        <translation>PDF 表格 (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -396,7 +396,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel 二進位檔案（.xlsb）</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -435,80 +435,115 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
+        <source>VSDX File</source>
+        <translation>Visio 繪圖（.vsdx）</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
+        <source>VSDM File</source>
+        <translation>Visio 啟用巨集的繪圖（.vsdm）</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="106"/>
+        <source>VSSX File</source>
+        <translation>Visio 模具（.vssx）</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="107"/>
+        <source>VSSM File</source>
+        <translation>Visio 啟用巨集的模具（.vssm）</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="108"/>
+        <source>VSTX File</source>
+        <translation>Visio 範本（.vstx）</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="109"/>
+        <source>VSTM File</source>
+        <translation>Visio 啟用巨集的範本（*.vstm）</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
         <translation>JPG圖像 (*.jpg *.jpeg)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
+        <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>PNG Image (*.png)</source>
         <translation>PNG圖像 (*.png)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="153"/>
+        <location filename="../src/components/cfiledialog.cpp" line="160"/>
         <source>Save As</source>
         <translation>另存新檔</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="199"/>
+        <location filename="../src/components/cfiledialog.cpp" line="206"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 已經存在。&lt;br&gt;您要取代它嗎？</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="225"/>
+        <location filename="../src/components/cfiledialog.cpp" line="232"/>
         <source>Word Document</source>
         <translation>Word 文件</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="228"/>
+        <location filename="../src/components/cfiledialog.cpp" line="235"/>
         <source>Excel Workbook</source>
         <translation>Excel 試算表</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="231"/>
+        <location filename="../src/components/cfiledialog.cpp" line="238"/>
         <source>PowerPoint Presentation</source>
         <translation>PowerPoint 簡報</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="234"/>
+        <location filename="../src/components/cfiledialog.cpp" line="241"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 檔案 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="342"/>
-        <location filename="../src/components/cfiledialog.cpp" line="366"/>
-        <location filename="../src/components/cfiledialog.cpp" line="368"/>
+        <location filename="../src/components/cfiledialog.cpp" line="251"/>
+        <location filename="../src/components/cfiledialog.cpp" line="350"/>
+        <location filename="../src/components/cfiledialog.cpp" line="374"/>
+        <location filename="../src/components/cfiledialog.cpp" line="376"/>
         <source>Text documents</source>
         <translation>文字文件</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="250"/>
-        <location filename="../src/components/cfiledialog.cpp" line="350"/>
-        <location filename="../src/components/cfiledialog.cpp" line="370"/>
+        <location filename="../src/components/cfiledialog.cpp" line="257"/>
+        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="378"/>
         <source>Spreadsheets</source>
         <translation>試算表</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="251"/>
-        <location filename="../src/components/cfiledialog.cpp" line="358"/>
-        <location filename="../src/components/cfiledialog.cpp" line="371"/>
+        <location filename="../src/components/cfiledialog.cpp" line="258"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="379"/>
         <source>Presentations</source>
         <translation>簡報</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="252"/>
+        <location filename="../src/components/cfiledialog.cpp" line="259"/>
+        <source>Visio diagram</source>
+        <translation>Visio 圖表</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="260"/>
         <source>Web Page</source>
         <translation>網頁</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="253"/>
+        <location filename="../src/components/cfiledialog.cpp" line="261"/>
         <source>Text files</source>
         <translation>文字檔</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
-        <location filename="../src/components/cfiledialog.cpp" line="255"/>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="263"/>
+        <location filename="../src/components/cfiledialog.cpp" line="381"/>
         <source>All supported files</source>
         <translation>所有支援的檔案</translation>
     </message>
@@ -536,44 +571,44 @@
         <translation>主題檔案</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="273"/>
+        <location filename="../src/components/cfiledialog.cpp" line="281"/>
         <source>Open Document</source>
         <translation>開啟文件</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="303"/>
-        <location filename="../src/components/cfiledialog.cpp" line="313"/>
+        <location filename="../src/components/cfiledialog.cpp" line="311"/>
+        <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>All Images</source>
         <translation>所有影像</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="315"/>
+        <location filename="../src/components/cfiledialog.cpp" line="323"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="324"/>
-        <location filename="../src/components/cfiledialog.cpp" line="333"/>
+        <location filename="../src/components/cfiledialog.cpp" line="332"/>
+        <location filename="../src/components/cfiledialog.cpp" line="341"/>
         <source>Plugin file (*.plugin)</source>
         <translation>外掛程式檔案 (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="390"/>
+        <location filename="../src/components/cfiledialog.cpp" line="398"/>
         <source>Video file</source>
         <translation>影片檔案</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="395"/>
+        <location filename="../src/components/cfiledialog.cpp" line="403"/>
         <source>Audio file</source>
         <translation>音訊檔案</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="412"/>
+        <location filename="../src/components/cfiledialog.cpp" line="420"/>
         <source>Select Folder</source>
         <translation>選擇資料夾</translation>
     </message>
@@ -581,58 +616,64 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="280"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="87"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="623"/>
+        <source>Main Window</source>
+        <translation>主視窗</translation>
+    </message>
+    <message>
+        <location filename="../src/windows/cmainwindow.cpp" line="303"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>有多個文件是開啟的。&lt;br&gt;仍要關閉視窗？</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="282"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="305"/>
         <source>Don&apos;t ask again.</source>
         <translation>不再詢問。</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="803"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="843"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="948"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="988"/>
         <source>File format not supported.</source>
         <translation>不支援檔案格式。</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="827"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="972"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 無法使用。它可能已被重新命名、移動或刪除。&lt;br&gt;您要從清單中移除檔案嗎？</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="886"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1045"/>
         <source>Document must be saved firstly.</source>
         <translation>文件必須先完成儲存。</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1035"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1206"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>必須先儲存文件才能繼續。&lt;br&gt;儲存文件？</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1141"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1312"/>
         <source>There are no printers available</source>
         <translation>沒有可用的印表機</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1201"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1372"/>
         <source>Print Document</source>
         <translation>列印文件</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1267"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1438"/>
         <source>There are no pages set to print.</source>
         <translation>尚未設定要列印的頁面</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1403"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1576"/>
         <source>Sign Up</source>
         <translation>建立入口</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1502"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1684"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 已經被修改。&lt;br&gt;您要儲存變更嗎？</translation>
     </message>
@@ -643,6 +684,54 @@
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
         <translation>根據...許可</translation>
+    </message>
+</context>
+<context>
+    <name>CMenu</name>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="372"/>
+        <source>Close</source>
+        <translation>關閉</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="373"/>
+        <source>Close saved</source>
+        <translation>關閉已儲存</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="374"/>
+        <source>Close all</source>
+        <translation>關閉所有</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="375"/>
+        <source>Show in folder</source>
+        <translation>在資料夾中顯示</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="376"/>
+        <source>Move to start</source>
+        <translation>移至開頭</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="377"/>
+        <source>Move to end</source>
+        <translation>移至結尾</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="378"/>
+        <source>Unpin tab to window</source>
+        <translation>取消固定分頁到視窗</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="379"/>
+        <source>Pin to tab</source>
+        <translation>固定至分頁</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="380"/>
+        <source>Create new</source>
+        <translation>建立新項目</translation>
     </message>
 </context>
 <context>
@@ -824,7 +913,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>正在準備更新 (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
@@ -849,7 +938,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>目前版本不支援直接安裝此更新。若要安裝更新，請從官方網站下載所需的安裝套件。</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="888"/>
@@ -899,12 +988,13 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="252"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="253"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1027"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 無法使用。它可能已被重新命名、移動或刪除。&lt;br&gt;您要從清單中移除檔案嗎？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="295"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="296"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>檔案%1無法開啟或不存在。</translation>
     </message>
@@ -929,12 +1019,12 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="791"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="936"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>拒絕存取檔案 &apos;%1&apos;！</translation>
     </message>
     <message>
-        <location filename="../src/casctabdata.cpp" line="219"/>
+        <location filename="../src/casctabdata.cpp" line="220"/>
         <source>Read only</source>
         <translation>只讀</translation>
     </message>
@@ -1005,7 +1095,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="751"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>啟動安裝更新時發生錯誤：找不到更新服務！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="761"/>
@@ -1013,48 +1103,48 @@
         <translation>開始替換檔案時發生錯誤：找不到更新服務！</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="121"/>
+        <location filename="../src/defines.h" line="125"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="122"/>
+        <location filename="../src/defines.h" line="126"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="123"/>
+        <location filename="../src/defines.h" line="127"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="198"/>
-        <location filename="../src/defines.h" line="124"/>
+        <location filename="../src/components/cmessage.cpp" line="200"/>
+        <location filename="../src/defines.h" line="128"/>
         <source>OK</source>
         <translation>好</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="125"/>
+        <location filename="../src/defines.h" line="129"/>
         <source>Skip</source>
         <translation>跳過</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="126"/>
+        <location filename="../src/defines.h" line="130"/>
         <source>Buy Now</source>
         <translation>立即購買</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="127"/>
+        <location filename="../src/defines.h" line="131"/>
         <source>Activate</source>
         <translation>啟用</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="128"/>
+        <location filename="../src/defines.h" line="132"/>
         <source>Continue</source>
         <translation>繼續</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1225"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1165"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>開啟入口時發生錯誤：&lt;br&gt;%1</translation>
     </message>
@@ -1063,7 +1153,7 @@
         <translation type="obsolete">&amp;好</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="380"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="383"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>檔案 %1 已載入。是否取代？</translation>
     </message>
@@ -1089,12 +1179,12 @@
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="586"/>
-        <location filename="../src/platform_win/printdialog.cpp" line="527"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="534"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
         <translation>指定的範圍 %1-%2 超出文件限制：頁數上限為 %3</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/printdialog.cpp" line="485"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="492"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
         <translation>無法開啟列印對話視窗：&lt;br&gt;%1</translation>
     </message>
@@ -1102,34 +1192,40 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">列印中...</translation>
+        <translation>列印中...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">文件準備中</translation>
+        <translation>文件準備中</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;取消</translation>
+        <translation>&amp;取消</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="214"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>您要將 %1 設為副檔名 %2 的預設應用程式嗎？</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="216"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>您要將 %1 設為所有支援的副檔名的預設應用程式嗎？</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="218"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>不要再顯示此訊息</translation>
+    </message>
+    <message>
+        <location filename="../src/platform_linux/singleapplication.cpp" line="98"/>
+        <source>There are unsaved documents</source>
+        <comment>SingleApplication</comment>
+        <translation>有未儲存的文件</translation>
     </message>
 </context>
 <context>

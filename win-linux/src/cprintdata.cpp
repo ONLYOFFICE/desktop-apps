@@ -33,13 +33,21 @@
 #include "cprintdata.h"
 #include "utils.h"
 #include "defines.h"
+#include <QJsonDocument>
+#include <QJsonArray>
 #include <QJsonObject>
 #include <QRegularExpression>
 #include <QSettings>
+#include <future>
 #include <cmath>
+#ifdef __linux__
+# include <cups/cups.h>
+# include <cups/ppd.h>
+#endif
 
-class CPrintData::CPrintDataPrivate
+class CPrintData::CPrintDataPrivate : public QObject
 {
+    Q_OBJECT
 public:
     QPrinterInfo printer_info;
     QPrintDialog::PrintRange print_range{QPrintDialog::PrintRange::AllPages};
@@ -53,8 +61,11 @@ public:
     int paper_width = 0,
         paper_height = 0;
     QString size_preset;
+    QString printers_capabilities_json;
     int sender_id = -1;
     int copies_count = 1;
+    FnVoidStr m_query_callback = nullptr;
+    std::future<void> m_future;
 
     auto parseJsonOptions(const std::wstring& json) -> bool {
         QJsonObject jsonOptions = Utils::parseJsonString(json);
@@ -142,6 +153,109 @@ public:
         parseJsonOptions(data->get_Options());
     }
 
+    auto getPrintersCapabilitiesJson() const -> QString
+    {
+        QJsonArray printersArray;
+#ifdef _WIN32
+        DWORD need = 0, ret = 0;
+        EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, nullptr, 0, &need, &ret);
+        std::vector<BYTE> buf(need);
+        if (EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, buf.data(), need, &need, &ret)) {
+            PRINTER_INFO_2 *printers = reinterpret_cast<PRINTER_INFO_2*>(buf.data());
+            for (DWORD i = 0; i < ret; ++i) {
+                LPDEVMODE pDevMode = printers[i].pDevMode;
+                bool duplex_supported = (pDevMode && (pDevMode->dmFields & DM_DUPLEX));
+
+                QJsonObject printerObject;
+                printerObject["name"] = QString::fromWCharArray(printers[i].pPrinterName);
+                printerObject["duplex_supported"] = duplex_supported;
+
+                constexpr int PAPER_NAME_LENGTH = 64;
+                bool paperNamesSuccess = false, paperSizeSuccess = false;
+                std::vector<WCHAR> paperNames;
+                std::vector<POINT> paperSize;
+                int paperNamesCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, NULL, NULL);
+                if (paperNamesCount > 0) {
+                    paperNames.assign(paperNamesCount * PAPER_NAME_LENGTH, L'\0');
+                    int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, paperNames.data(), NULL);
+                    if (res == paperNamesCount)
+                        paperNamesSuccess = true;
+                }                
+                int paperSizeCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERSIZE, NULL, NULL);
+                if (paperSizeCount > 0) {
+                    paperSize.assign(paperSizeCount, {0, 0});
+                    int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERSIZE, (LPWSTR)paperSize.data(), NULL);
+                    if (res == paperSizeCount)
+                        paperSizeSuccess = true;
+                }
+                if (paperNamesSuccess && paperSizeSuccess && paperNamesCount == paperSizeCount) {
+                    QJsonArray paperArray;
+                    for (int j = 0; j < paperNamesCount; ++j) {
+                        if (paperSize[j].x > 0 && paperSize[j].y > 0) {
+                            std::wstring paperName(&paperNames[j * PAPER_NAME_LENGTH], PAPER_NAME_LENGTH);
+                            QJsonObject paperObj;
+                            paperObj["name"] = QString::fromWCharArray(paperName.c_str());
+                            paperObj["width"] = (double)paperSize[j].x/10;
+                            paperObj["height"] = (double)paperSize[j].y/10;
+                            paperArray.append(paperObj);
+                        }
+                    }
+                    printerObject["paper_supported"] = paperArray;
+                }
+                printersArray.append(printerObject);
+            }
+        }
+#else
+        cups_dest_t *dests = nullptr;
+        int num_dests = cupsGetDests(&dests);
+        if (dests) {
+            for (int i = 0; i < num_dests; i++) {
+                cups_dest_t *dest = &dests[i];
+                const char *ppd = cupsGetPPD(dest->name);
+                ppd_file_t *ppdF = ppdOpenFile(ppd);
+                bool duplex_supported = ppdFindOption(ppdF, "Duplex");
+
+                QJsonObject printerObject;
+                printerObject["name"] = QString::fromUtf8(dest->name);
+                printerObject["duplex_supported"] = duplex_supported;
+
+                ppd_option_t *option = ppdFirstOption(ppdF);
+                while (option) {
+                    if (strcmp(option->keyword, "PageSize") == 0) {
+                        QJsonArray paperArray;
+                        for (int j = 0; j < option->num_choices; j++) {
+                            if (strcmp(option->choices[j].choice, "Custom") != 0) {
+                                if (ppd_size_t *size = ppdPageSize(ppdF, option->choices[j].choice)) {
+                                    QJsonObject paperObj;
+                                    paperObj["name"] = QString::fromUtf8(option->choices[j].choice);
+                                    paperObj["width"] = qRound(25.4 * size->width / 72.0);
+                                    paperObj["height"] = qRound(25.4 * size->length / 72.0);
+                                    paperArray.append(paperObj);
+                                }
+                            }
+                        }
+                        printerObject["paper_supported"] = paperArray;
+                    }
+                    option = ppdNextOption(ppdF);
+                }
+                printersArray.append(printerObject);
+                ppdClose(ppdF);
+            }
+            cupsFreeDests(num_dests, dests);
+        }
+#endif
+        QJsonObject rootObject;
+        rootObject["printers"] = printersArray;
+        return QJsonDocument(rootObject).toJson(QJsonDocument::Compact);
+    }
+
+public slots:
+    void onPrinterCapabilitiesReady(QString json)
+    {
+        printers_capabilities_json = json;
+        if (m_query_callback)
+            m_query_callback(json);
+    }
 };
 
 CPrintData::CPrintData()
@@ -152,6 +266,8 @@ CPrintData::CPrintData()
 
 CPrintData::~CPrintData()
 {
+    if (m_priv->m_future.valid())
+        m_priv->m_future.wait();
     delete m_priv, m_priv = nullptr;
 }
 
@@ -287,3 +403,24 @@ auto CPrintData::duplexMode() const -> QPrinter::DuplexMode
 {
     return m_priv->duplex_mode;
 }
+
+bool CPrintData::printerCapabilitiesReady() const
+{
+    return !m_priv->printers_capabilities_json.isEmpty();
+}
+
+QString CPrintData::getPrinterCapabilitiesJson() const
+{
+    return m_priv->printers_capabilities_json;
+}
+
+auto CPrintData::queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const -> void
+{
+    m_priv->m_query_callback = callback;
+    m_priv->m_future = std::async(std::launch::async, [=]() {
+        QString json = m_priv->getPrintersCapabilitiesJson();
+        QMetaObject::invokeMethod(m_priv, "onPrinterCapabilitiesReady", Qt::QueuedConnection, Q_ARG(QString, json));
+    });
+}
+
+#include "cprintdata.moc"

@@ -138,6 +138,7 @@ private:
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const std::wstring& wstrjson);
     void sendSettings(const std::wstring& opts);
+    void checkSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
     void handleDeeplinkActions(const std::vector<std::wstring>& actions);
     void setHasFrameFeature(CCefView*, const std::wstring&, int);
@@ -192,6 +193,7 @@ public:
     static QString          getWindowStylesheets(double);
     static QString          getWindowStylesheets(CScalingFactor);
     static bool             canAppClose();
+    static bool             hasUnsavedChanges();
     static QCefView *       createViewer(QWidget * parent, const QSize& size);
     static QString          newFileName(int format);
     static QString          newFileName(const std::wstring& format);

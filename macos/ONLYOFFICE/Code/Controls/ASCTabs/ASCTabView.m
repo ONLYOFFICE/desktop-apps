@@ -124,6 +124,8 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                @{@"normal": @"icon_tabs_pe_inactive", @"active": @"icon_tabs_pe_active"},
                // ASCTabViewTypePdf
                @{@"normal": @"icon_tabs_pdf_inactive", @"active": @"icon_tabs_pdf_active"},
+               // ASCTabViewTypeDraw
+               @{@"normal": @"icon_tabs_ve_inactive", @"active": @"icon_tabs_ve_active"},
                // ASCTabViewTypePortal
                @{@"normal": @"icon_tab_portal_active", @"active": @"icon_tab_portal_active"}
                ]
@@ -245,6 +247,9 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         } else if (type == ASCTabViewTypePdf) {
             tabViewCell.activeColor =
             tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabPdfActiveBackgroundColor];
+        } else if (type == ASCTabViewTypeDraw) {
+            tabViewCell.activeColor =
+            tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabDrawActiveBackgroundColor];
         }
     }
 

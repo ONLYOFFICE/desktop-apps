@@ -38,6 +38,7 @@
 #include "components/cmessage.h"
 #include "../Common/OfficeFileFormats.h"
 #include <QList>
+#include <QMimeDatabase>
 
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
@@ -47,6 +48,9 @@
 # include "platform_linux/gtkfilechooser.h"
 #endif
 
+static const char *IMAGE_TYPE = "image",
+                  *VIDEO_TYPE = "video",
+                  *AUDIO_TYPE = "audio";
 
 namespace CFileDialogHelper {
     auto useModalDialog() -> bool {
@@ -100,6 +104,13 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]   = tr("SVG Image (*.svg)");
+
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSDX]           = tr("VSDX File") + " (*.vsdx)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSDM]           = tr("VSDM File") + " (*.vsdm)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSSX]           = tr("VSSX File") + " (*.vssx)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSSM]           = tr("VSSM File") + " (*.vssm)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSTX]           = tr("VSTX File") + " (*.vstx)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSTM]           = tr("VSTM File") + " (*.vstm)";
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image (*.jpg *.jpeg)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image (*.png)");
@@ -196,7 +207,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
             if ( info.exists() ) {
                 QWidget * _mess_parent = (QWidget *)parent();
                 int _answ = CMessage::showMessage(_mess_parent,
-                                                  tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName()),
+                                                  tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName().toHtmlEscaped()),
                                                   MsgType::MSG_WARN, MsgBtns::mbYesNo);
                 if ( MODAL_RESULT_NO == _answ ) {
                     continue;
@@ -243,12 +254,13 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 //        _filter_ = joinFilters();
         _filter_ =  tr("Text documents") +
 #ifndef __LOCK_OFORM_FORMATS
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw *.xps *.oxps);;" +
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw *.xps *.oxps *.pages *.hwp *.hwpx);;" +
 #else
                         " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw *.xps *.oxps);;" +
 #endif
-                    tr("Spreadsheets") + " (*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi);;" +
+                    tr("Spreadsheets") + " (*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers);;" +
+                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi *.key);;" +
+                    // tr("Visio diagram") + " (*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
 //#ifdef __linux__
@@ -305,7 +317,9 @@ QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
     filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)"));
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
-    return modalOpen(path, filter, &selected, false);
+    auto result = modalOpen(path, filter, &selected, false);
+    checkForMimeTypes(result, IMAGE_TYPE);
+    return result;
 }
 
 QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
@@ -315,7 +329,9 @@ QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
     filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)"));
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
-    return modalOpen(path, filter, &selected, true);
+    auto result = modalOpen(path, filter, &selected, true);
+    checkForMimeTypes(result, IMAGE_TYPE);
+    return result;
 }
 
 QStringList CFileDialogWrapper::modalOpenPlugin(const QString& path)
@@ -386,18 +402,20 @@ QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)
 QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QString& path, bool multi)
 {
     QString selected, extra;
-    if ( type == "video" ) {
+    if ( type == VIDEO_TYPE ) {
         selected = tr("Video file") + " (*.mp4 *.mkv *.avi *.mpg *.mpeg *.mpe *.mpv *.mov *.wmv *.m2v *.m4v *.webm *.ogg *.f4v *.m2ts *.mts)";
         extra = "Avi (*.avi);;Mpeg (*.mpg *.mpeg *.mpe *.mpv *.m2v *.m4v *.mp4);;Mkv (*.mkv);;Mts (*.m2ts *.mts);;Webm (*.webm);;Mov (*.mov)"
                                       ";;Wmv (*.wmv);;F4v (*.f4v);;Ogg (*.ogg)";
     } else
-    if ( type == "audio" ) {
+    if ( type == AUDIO_TYPE ) {
         selected = tr("Audio file") + " (*.mp3 *.mp2 *.ogg *.wav *.wma *.flac *.ape *.aac *.m4a)";
         extra = "Mp3 (*.mp3);;Mp2 (*.mp2);;Wav (*.wav);;Flac (*.flac);;Wma (*.wma);;Ogg (*.ogg);;Ape (*.ape);;Aac (*.aac);;M4a (*.m4a)";
     }
 
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" + selected + ";;" + extra;
-    return modalOpen(path, filter, &selected, multi);
+    auto result = modalOpen(path, filter, &selected, multi);
+    checkForMimeTypes(result, type);
+    return result;
 }
 
 QString CFileDialogWrapper::selectFolder(const QString& folder)
@@ -476,6 +494,22 @@ int CFileDialogWrapper::getKey(const QString &value)
     }
 #endif
     return -1;
+}
+
+void CFileDialogWrapper::checkForMimeTypes(QStringList &files, const QString &type)
+{
+    QMimeDatabase mdb;
+    foreach (const auto &filePath, files) {
+        QMimeType mt = mdb.mimeTypeForFile(filePath);
+        if (!mt.name().startsWith(type)) {
+            files.clear();
+            QWidget *_parent = CFileDialogHelper::useModalDialog() ? (QWidget*)parent() : nullptr;
+            CMessage::warning(_parent, (type == IMAGE_TYPE) ? tr("Unknown image format.") :
+                                       (type == VIDEO_TYPE) ? tr("Unknown video format.") :
+                                       (type == AUDIO_TYPE) ? tr("Unknown audio format.") : tr("Unknown format."));
+            break;
+        }
+    }
 }
 
 int CFileDialogWrapper::getFormat()

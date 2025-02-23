@@ -54,6 +54,7 @@
 - (BOOL)checkCloudCryptoNeedBuild;
 - (BOOL)checkBuilding;
 - (NSString *)originalUrl;
+- (BOOL)isSaveLocked;
 
 - (void)loadWithUrl:(NSString *)url;
 - (void)createFileWithName:(NSString *)name type:(AscEditorType)type;

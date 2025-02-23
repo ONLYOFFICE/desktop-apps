@@ -175,7 +175,7 @@
                                             </div>
                                         </div>
                                         <div class='settings-field settings-field-lang'>
-                                            <label class='sett__caption' l10n>${_lang.settLanguage}</label><label class='sett__caption'> *</label>
+                                            <label class='sett__caption' l10n>${_lang.settLanguage}</label><label class='sett__caption sett__caption-restart' style='display:none'> *</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox subtext-right' data-size="10"></select>
@@ -485,6 +485,8 @@
             $btnApply.parent().toggleClass('rtl-font', _is_rtl);
             $btnApply.toggleClass('rtl-font--skip', !_is_rtl);
             $optsLang.toggleClass('notted', true);
+
+            sdk.command("settings:check", JSON.stringify({"langid":l}));
         };
 
         function _on_autoupdate_change() {
@@ -541,9 +543,7 @@
                             $combo.selectpicker();
 
                             if ( appSettings.locale.restart ) {
-                                if ( !$panel.find('.settings-field-lang label[l10n] + .sett__caption-restart').length )
-                                    $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption sett__caption-restart'> *</label>`);
-
+                                $panel.find('.settings-field-lang label.sett__caption-restart').show();
                                 $('#caption-restart', $panel).show();
                             }
 
@@ -672,12 +672,13 @@
                     }
 
                     if ( appSettings.rtl !== undefined ) {
-                        if ( !$chRtl || $chRtl.prop('checked') != appSettings.rtl ) {
-                            $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
-                            $chRtl.prop('checked', !!appSettings.rtl)
-                                .on('change', e => {
-                                    $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
-                                });
+                        // if ( !$chRtl || $chRtl.prop('checked') != appSettings.rtl ) 
+                        {
+                            // $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
+                            // $chRtl.prop('checked', !!appSettings.rtl)
+                            //     .on('change', e => {
+                            //         $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
+                            //     });
 
                             if ( appSettings.rtl ) {
                                 document.body.setAttribute('dir', 'rtl');
@@ -685,15 +686,29 @@
 
                                 $userName.css('direction', 'rtl');
                             } else {
-                                if ( !utils.Lang.isLangRTL(appSettings.locale.current) )
-                                    $chRtl.attr('disabled', 'disabled')
-                                        .next().attr('disabled', 'disabled');
+                                // if ( !utils.Lang.isLangRTL(appSettings.locale.current) )
+                                //     $chRtl.attr('disabled', 'disabled')
+                                //         .next().attr('disabled', 'disabled');
                             }
 
                         }
                     }
 
                     $('.settings-field:visible:last').css('margin-bottom','0');
+                } else
+                if (/lang$/.test(cmd)) {
+                    if ( param.startsWith("restart:") ) {
+                        const $label = $panel.find('.settings-field-lang label.sett__caption-restart');
+                        const is_sign_visible = $label.is(':visible');
+                        if ( param.endsWith("true") && !is_sign_visible ) {
+                            $label.show();
+                            appSettings.locale.restart = true;
+                        } else
+                        if ( param.endsWith("false") && is_sign_visible) {
+                            $label.hide();
+                            appSettings.locale.restart = false;
+                        }
+                    }
                 } else
                 if (/updates/.test(cmd)) {
                     // TODO: will be deprecated soon
@@ -807,10 +822,12 @@
             }
 
             for (const [key, value] of Object.entries(l10n)) {
-                if ( !themes_map[key]['l10n'] )
-                    themes_map[key]['l10n'] = {};
+                if ( themes_map[key] ) {
+                    if ( !themes_map[key]['l10n'] )
+                        themes_map[key]['l10n'] = {};
 
-                themes_map[key]['l10n'][nl] = value.text;
+                    themes_map[key]['l10n'][nl] = value.text;
+                }
             }
 
             // for ( let k of Object.keys(themes_map) ) {

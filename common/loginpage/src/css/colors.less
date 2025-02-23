@@ -1,17 +1,8 @@
 
 :root {
-    --color-gray-3: #cbcbcb;
-    --color-gray-4: #a5a5a5;
-    --color-gray-light: #999;
-    --color-gray: #666666;
-
-    --color-blue-2: #5b9bea;
-    --color-blue-3: #5293e2;
-    --color-blue-light: #3a83db;
-
     --background-normal: #fff;
     --background-tabbar: #f7f7f7;
-    --background-button: #fff;
+    /*--background-button: #fff;*/
     --background-accent-button: #3483db;
     --background-primary-button: #444;
     --background-scrim: fade(#000, 20%);
@@ -50,18 +41,9 @@
     --theme-inverted-image-filter: none;
 }
 
-@color-gray-3: var(--color-gray-3);
-@color-gray-4: var(--color-gray-4);
-@color-gray-light: var(--color-gray-light);
-@color-gray: var(--color-gray);
-
-@color-blue-2: var(--color-blue-2);
-@color-blue-3: var(--color-blue-3);
-@color-blue-light: var(--color-blue-light);
-
 @background-normal: var(--background-normal);
 @background-tabbar: var(--background-tabbar);
-@background-button: var(--background-button);
+@background-button: var(--background-button,#fff);
 @background-accent-button: var(--background-accent-button);
 @background-primary-button: var(--background-primary-button);
 @background-scrim: var(--background-scrim);

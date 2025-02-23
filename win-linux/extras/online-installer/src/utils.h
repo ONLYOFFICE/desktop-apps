@@ -40,6 +40,7 @@ using std::string;
 using std::wstring;
 using std::to_wstring;
 
+#define ERROR_LAUNCH 0x20000000
 #define DEFAULT_ERROR_MESSAGE _T("An error occurred: ") + \
     wstring(_T(__FUNCTION__)) + _T(" Line: ") + to_wstring(__LINE__)
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
@@ -48,11 +49,16 @@ using std::to_wstring;
 
 namespace NS_Utils
 {
+void parseCmdArgs(int argc, wchar_t *argv[]);
+bool cmdArgContains(const wstring &param);
+wstring cmdArgValue(const wstring &param);
 wstring GetLastErrorAsString(DWORD errID = 0);
 void ShowMessage(wstring str, bool showError = false);
+int  ShowTaskDialog(HWND parent, const wstring &msg, PCWSTR icon);
 bool IsRtlLanguage(unsigned long lcid);
 bool IsWin64();
 bool IsAppInstalled(wstring &path, wstring *arch = nullptr);
+bool checkAndWaitForAppClosure(HWND parent = nullptr);
 void InstalledVerInfo(LPCWSTR value, wstring &name, wstring &arch);
 void Replace(wstring &str, const wstring &from, const wstring &to);
 wstring MsiGetProperty(LPCWSTR prodCode, LPCWSTR propName);
@@ -61,7 +67,7 @@ wstring MsiProductCode(const wstring &prodName);
 
 namespace NS_File
 {
-bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = false, bool wait = true);
+DWORD runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = false, bool wait = true);
 // bool isProcessRunning(const wstring &fileName);
 bool fileExists(const wstring &filePath);
 bool removeFile(const wstring &filePath);

@@ -174,6 +174,7 @@ namespace WindowHelper {
     auto useNativeDialog() -> bool;
     auto activeWindow() -> QWidget*;
     auto currentTopWindow() -> QWidget*;
+    auto defaultWindowMaximizeState() -> bool;
 }
 
 #endif // UTILS_H

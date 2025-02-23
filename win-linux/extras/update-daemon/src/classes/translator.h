@@ -13,6 +13,8 @@
 # define tstring std::string
 #endif
 
+#define _TR(str) Translator::tr(#str)
+
 using std::unordered_map;
 
 typedef unordered_map<tstring, tstring> LocaleMap;

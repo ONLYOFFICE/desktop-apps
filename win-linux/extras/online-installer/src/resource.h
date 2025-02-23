@@ -7,46 +7,47 @@
 
 #define APP_LAUNCH_NAME           "\\DesktopEditors.exe"
 
-#define CAPTION                   VER_PRODUCTNAME_STR
-#define MSG_ERR_ARCH              "The application cannot continue because this architecture is not supported."
-#define MSG_ERR_ALREADY_RUNNING   "The application is already running."
-#define MSG_ERR_CLOSE_APP         "Setup has detected that %1 is currently running. Please close all instances of it."
-#define MSG_REMOVE                "This will remove %1 and its components."
-#define MSG_REPAIR                "This will repair the current version of %1."
-#define MSG_UPDATE                "This will update %1 to the latest version available."
-#define LABEL_DOWNLOAD            "Downloading"
-#define LABEL_INSTALL             "Installing"
-#define LABEL_UPDATING            "Updating"
-#define LABEL_REPAIRING           "Repairing"
-#define LABEL_UNINSTLING          "Uninstalling"
-#define LABEL_UPDATE_COMPL        "Update complete!"
-#define LABEL_REPAIR_COMPL        "Repairing completed!"
-#define LABEL_UNINST_COMPL        "Uninstalling completed!"
-#define LABEL_VERSION             "%1 %2 (%3 %4) is installed"
-#define LABEL_UNKN_VER            "unknown version"
-#define LABEL_UNKN_PACK           "unknown package"
-#define LABEL_NO_OPTIONS          "No additional options available."
-#define LABEL_NO_VER_AVAIL        "No version available"
-#define LABEL_WARN_CLOSE          "This will install ONLYOFFICE Desktop Editors on your computer.\nIt is reccomended that you close all other applications before continuing."
-#define LABEL_ALMOST_DONE         "Just a bit more and we're done"
-#define LABEL_INSTALL_COMPL       "%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box."
-#define LABEL_ERR_PROD_CODE       "Error while retrieving product code."
-#define LABEL_ERR_PACK_NAME       "Error while retrieving package name."
-#define LABEL_ERR_INSTALL         "An error occurred during installation."
-#define LABEL_ERR_UNINST          "An error occurred during uninstalling."
-#define LABEL_ERR_COMMON          "An error occurred:"
-#define LABEL_ERR_RUNNING         "An error occurred while running the package.\nPlease try restarting the app later."
-#define LABEL_ERR_CANCELLED       "Cancelled!"
-#define BUTTON_INSTALL            "Install"
-#define BUTTON_CANCEL             "Cancel"
-#define BUTTON_APPLY              "Apply"
-#define BUTTON_CLOSE              "Close"
-#define BUTTON_BACK               "Back"
-#define RADIO_UPDATE              "Update"
-#define RADIO_REPAIR              "Repair"
-#define RADIO_UNINST              "Uninstall"
-#define CHECK_SILENT              "Silent Installation"
-#define CHECK_LAUNCH              "Launch app"
-#define CHECK_CLR_DATA            "Clear cached data"
-#define CHECK_CLR_STNGS           "Clear user settings"
-#define CHECK_CLR_ALL             "Clear user settings and cached data"
+#define CAPTION
+#define MSG_ERR_SYSTEM
+#define MSG_ERR_ALREADY_RUNNING
+#define MSG_ERR_TRY_CLOSE_APP
+#define MSG_ERR_CLOSE_APP
+#define MSG_REMOVE
+#define MSG_REPAIR
+#define MSG_UPDATE
+#define LABEL_DOWNLOAD
+#define LABEL_INSTALL
+#define LABEL_UPDATING
+#define LABEL_REPAIRING
+#define LABEL_UNINSTLING
+#define LABEL_UPDATE_COMPL
+#define LABEL_REPAIR_COMPL
+#define LABEL_UNINST_COMPL
+#define LABEL_VERSION
+#define LABEL_UNKN_VER
+#define LABEL_UNKN_PACK
+#define LABEL_NO_OPTIONS
+#define LABEL_NO_VER_AVAIL
+#define LABEL_WARN_CLOSE
+#define LABEL_ALMOST_DONE
+#define LABEL_INSTALL_COMPL
+#define LABEL_ERR_PROD_CODE
+#define LABEL_ERR_PACK_NAME
+#define LABEL_ERR_INSTALL
+#define LABEL_ERR_UNINST
+#define LABEL_ERR_COMMON
+#define LABEL_ERR_RUNNING
+#define LABEL_ERR_CANCELLED
+#define BUTTON_INSTALL
+#define BUTTON_CANCEL
+#define BUTTON_APPLY
+#define BUTTON_CLOSE
+#define BUTTON_BACK
+#define RADIO_UPDATE
+// #define RADIO_REPAIR
+#define RADIO_UNINST
+#define CHECK_SILENT
+#define CHECK_LAUNCH
+#define CHECK_CLR_DATA
+#define CHECK_CLR_STNGS
+#define CHECK_CLR_ALL

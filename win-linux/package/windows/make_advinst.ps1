@@ -22,12 +22,53 @@ $MsiBuild = switch ($Arch) {
     "x64" { "MsiBuild64" }
     "x86" { "MsiBuild32" }
 }
-$LanguageCodes = @(1029, 1031, 1033, 1036, 1041, 1046, 1049, 1060, 2070, 3082)
+$LanguageCodes = @(
+    1033, # en              English (United States)
+    1025, # ar              Arabic (Saudi Arabia)
+    1059, # be              Belarusian
+    1026, # bg              Bulgarian
+    1027, # ca              Catalan
+    1029, # cs              Czech
+    1030, # da              Danish
+    1031, # de              German
+    1032, # el              Greek
+    2057, # en_GB           English (United Kingdom)
+    3082, # es              Spanish (Modern Sort)
+    1035, # fi              Finnish
+    1036, # fr              French
+    1110, # gl              Galician
+    1037, # he              Hebrew
+    1038, # hu              Hungarian
+    1057, # id              Indonesian
+    1040, # it              Italian
+    1041, # ja              Japanese
+    1042, # ko              Korean
+    1062, # lv              Latvian
+    1044, # nb              Norwegian (Bokmal)
+    1043, # nl              Dutch
+    1045, # pl              Polish
+    2070, # pt              Portuguese (Portugal)
+    1046, # pt_BR           Portuguese (Brazil)
+    1048, # ro              Romanian
+    1049, # ru              Russian
+    1051, # sk              Slovak
+    1060, # sl              Slovenian
+    3098, # sr_SP_Cyrillic  Serbian (Cyrillic)
+    2074, # sr_SP_Latin     Serbian (Latin)
+    1053, # sv              Swedish
+    1055, # tr              Turkish
+    1058, # uk              Ukrainian
+    1066, # vi              Vietnamese
+    2052, # zh              Chinese (Simplified)
+    1028  # zh_TW           Chinese (Traditional)
+)
 $AssociationList = @(
-    "doc", "dot", "docm", "dotm", "docx", "dotx",
-    "xls", <#"xlt",#> "xlsm", "xltm", "xlsb", "xlsx", "xltx",
-    "ppt", "pot", "pps", "pptm", "potm", "ppsm", "pptx", "potx", "ppsx",
-    "odt", "ott", "ods", "ots", "odp", "otp",
+    "doc", "dot", "docx", "dotx", "docm", "dotm",
+    "xls", "xlt", "xlsx", "xltx", "xlsm", "xltm", "xlsb",
+    "ppt", "pot", "pps", "pptx", "potx", "ppsx", "pptm", "potm", "ppsm",
+    "vsdx", "vstx", "vssx", "vsdm", "vstm", "vssm",
+    "odt", "ott", "ods", "ots", "odp", "otp", "fodt", "fods", "fodp",
+    "pages", "numbers", "key",
     "djvu", "fb2", "pdf", "rtf", "xps", "oxps",
     "epub", "html", "xml",
     "csv", "txt",
@@ -120,7 +161,7 @@ if ($LastExitCode -ne 0) { throw }
 
 Write-Host "`n[ Fix Summary Information Properties ]"
 
-$Template = ";1033,1049,1029,1031,3082,1036,2070,1046,1060,1041,0"
+$Template = ";$($LanguageCodes -join ','),0"
 $Template = switch ($Arch) {
     "x64" { "x64" + $Template }
     "x86" { "Intel" + $Template }

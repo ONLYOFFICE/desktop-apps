@@ -276,8 +276,12 @@ window.DialogConnect = function(params) {
 // A connection attempt was refused.
 // NET_ERROR(CONNECTION_REFUSED, -102)
 
-                        if ( e.statusCode == -102 ) e.statusCode = 404;
-                        reject({status:status, response:e});
+                        if ( e.responseStatus == 302)
+                            resolve({status:'success', response:e});
+                        else {
+                            if ( e.statusCode == -102 ) e.statusCode = 404;
+                            reject({status:status, response:e});
+                        }
                     }
                 });
             }
