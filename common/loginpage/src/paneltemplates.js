@@ -85,14 +85,20 @@
                                     <div id='idx-nav-templates'>
                                         <a data-value='local' class='nav-item' l10n>${_lang.tplPanelLocal}</a>
                                         <a data-value='cloud' class='nav-item' l10n>${_lang.tplPanelCloud}</a>
+                                        <a data-value='test' class='nav-item' l10n>Cloud old</a>
                                     </div>
                                 </div>
                                 <section class='themed-sroll' panel='local'>
                                     <div class='table-box flex-fill'>
-                                        <div class='table-templates list'></div>
+                                        <div id='idx-local-tpls' class='table-templates list'></div>
                                     </div>
                                 </section>
-                                <section panel='cloud'>${this.emptyPanelContent}</section>
+                                <section class='themed-sroll' panel='cloud'>
+                                    <div class='table-box flex-fill'>
+                                        <div id='idx-cloud-tpls' class='table-templates list'></div>
+                                    </div>
+                                </section>
+                                <section panel='test'>${this.emptyPanelContent}</section>
                             </div>
                     </div>`;
 
@@ -128,7 +134,8 @@
         let iframe;
         let panel_local,
             panel_cloud;
-        let templates;
+        let local_templates,
+            cloud_templates;
 
         // TODO: for tests only. uncomment static url before release
         let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com';
@@ -159,71 +166,99 @@
             const $item = $(e.target);
             $item.addClass('selected');
 
-            this.view.$panel.removeClass('local cloud').addClass($item.data('value'));
+            const panel = $item.data('value');
+            $('[panel]', this.view.$panel).hide();
+            $(`[panel=${panel}]`, this.view.$panel).show();
+
+            this.view.$panel.removeClass('local cloud test').addClass($item.data('value'));
         }
 
 
         function _init_collection() {
-            templates = new Collection({
+            local_templates = new Collection({
                 view: $('section[panel=local]', this.view.$panel),
-                list: $('.table-templates.list', this.view.$panel),
+                list: $('#idx-local-tpls', this.view.$panel),
             });
 
-            templates.events.erased.attach(collection => {
+            local_templates.events.erased.attach(collection => {
                 collection.list.parent().addClass('empty');
             });
 
-            templates.events.inserted.attach((collection, model) => {
+            local_templates.events.inserted.attach((collection, model) => {
                 let $item = this.view.listitemtemplate(model);
 
                 collection.list.append($item);
                 collection.list.parent().removeClass('empty');
             });
 
-            templates.events.click.attach((collection, model) => {
+            local_templates.events.click.attach((collection, model) => {
                 sdk.command('create:new', JSON.stringify({'template': {id:model.id, type:model.type, path: model.path}}));
             });
 
-            templates.events.contextmenu.attach(function(collection, model, e){
+            local_templates.events.contextmenu.attach(function(collection, model, e){
                 // ppmenu.actionlist = 'recent';
                 // ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
                 // ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
-            templates.events.changed.attach(function(collection, model){
+            local_templates.events.changed.attach(function(collection, model){
                 // let $el = collection.list.find('#' + model.uid);
                 // if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
             });
 
-            templates.empty();
+            cloud_templates = new Collection({
+                view: $('section[panel=local]', this.view.$panel),
+                list: $('#idx-cloud-tpls', this.view.$panel),
+            });
+
+            cloud_templates.events.erased.attach(collection => {
+                collection.list.parent().addClass('empty');
+            });
+
+            cloud_templates.events.inserted.attach((collection, model) => {
+                let $item = this.view.listitemtemplate(model);
+
+                collection.list.append($item);
+                collection.list.parent().removeClass('empty');
+            });
+
+            cloud_templates.events.click.attach((collection, model) => {
+                sdk.command('create:new', JSON.stringify({'template': {id:model.id, type:model.type, path: model.path}}));
+            });
+
+            local_templates.empty();
+            cloud_templates.empty();
         }
 
         const _on_update_template = function(index) {
 
         }
 
-        const _on_add_templates = function(tmpls) {
-            templates.empty();
+        const _on_add_local_templates = function(tmpls) {
+            local_templates.empty();
             for (let item of tmpls) {
                 var model = new FileTemplateModel(item);
 
-                templates.add(model);
+                local_templates.add(model);
             }
         }
 
         const _on_add_cloud_templates = function(data) {
-            let c = 0;
+            let c = 0,
+                icon_url;
             for (let i of data) {
                 const info = i['attributes']
                 const file_ext = info['form_exts']['data'][0]['attributes']['ext'];
+                icon_url = info.template_image?.data.attributes.formats.xxsmall;
                 const item = {
                     uid: info.id,
                     name: info['name_form'],
                     descr: info['template_desc'],
                     type: utils.fileExtensionToFileFormat(file_ext),
-                    icon: info['card_desktop_preview']['data'][0]['attributes']['url'],
+                    icon: icon_url,
                 };
                 const model = new FileTemplateModel(item);
+                cloud_templates.add(model);
 
                 console.log(++c, 'model', i.id, model.name);
             }
@@ -240,17 +275,22 @@
                 });
 
                 const _page_num = 1;
-                const _url = 'https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}';
+                const _url = `https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+                // const _url = `https://oforms.onlyoffice.com/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
                 fetch(_url)
                     .then(r => r.json())
                     .then(d => {
-                        console.log('fetch data', d)
-                        console.log('data pages', d.meta.pagination.page, 'of', d.meta.pagination.pageCount)
-                        _on_add_cloud_templates(d.data);
+                        if (!!d.data) {
+                            console.log('fetch data', d)
+                            console.log('data pages', d.meta.pagination.page, 'of', d.meta.pagination.pageCount)
+                            _on_add_cloud_templates(d.data);
+                        }
                     });
 
                 this.view.$panel.addClass('local');
                 $('.nav-item[data-value=local]', this.view.$panel).addClass('selected');
+                $('[panel]', this.view.$panel).hide();
+                $(`[panel=local]`, this.view.$panel).show();
 
                 if ( window.utils.isWinXp ) {
                     $('#idx-nav-templates', this.view.$panel).hide();
@@ -325,7 +365,7 @@
 
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 window.sdk.on('onupdatetemplate', _on_update_template.bind(this));
-                window.sdk.on('onaddtemplates', _on_add_templates.bind(this));
+                window.sdk.on('onaddtemplates', _on_add_local_templates.bind(this));
 
                 _init_collection.call(this);
 
