@@ -103,6 +103,7 @@ public:
     static double getScreenDpiRatioByWidget(QWidget*);
     static QScreen * screenAt(const QPoint&);
     static QString replaceBackslash(const QString&);
+    static std::wstring normalizeAppProtocolUrl(const std::wstring &url);
     static void replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace);
     static bool isFileLocal(const QString&);
     static QString uniqFileName(const QString& path);

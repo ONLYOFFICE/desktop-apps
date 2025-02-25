@@ -164,7 +164,8 @@ bool CEditorWindow::modified() const
 
 bool CEditorWindow::holdView(const std::wstring& portal) const
 {
-    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
+    auto url = qobject_cast<CTabPanel*>(m_pMainView)->data()->url();
+    return Utils::normalizeAppProtocolUrl(url).find(Utils::normalizeAppProtocolUrl(portal)) != std::wstring::npos;
 }
 
 void CEditorWindow::undock(bool maximized)
