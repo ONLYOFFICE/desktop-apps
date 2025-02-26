@@ -357,7 +357,7 @@
             } else
             if (/\:explore/.test(action)) {
                 if (menu.actionlist == 'recent') {
-                    sdk.execCommand('files:explore', JSON.stringify({path: data.path, id: data.fileid}));
+                    sdk.execCommand('files:explore', JSON.stringify({path: data.path, id: data.fileid, hash: data.hash}));
                 }
             }
         };
