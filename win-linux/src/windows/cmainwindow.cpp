@@ -1024,6 +1024,11 @@ void CMainWindow::onLocalFileLocation(QString path)
                                                 MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if ( res == MODAL_RESULT_YES )
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
+            else
+            if ( res == MODAL_RESULT_NO ) {
+                int uid = objRoot["hash"].toInt();
+                AscAppManager::getInstance().onFileChecked(_info.fileName(), uid, false);
+            }
         }
     }
 }
