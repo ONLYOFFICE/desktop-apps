@@ -33,7 +33,7 @@
 #ifndef CEMLHANDLER_H
 #define CEMLHANDLER_H
 
-#include <QString>
+#include <string>
 
 
 class CEmlHandler
@@ -43,7 +43,7 @@ public:
     CEmlHandler& operator=(const CEmlHandler&) = delete;
     static CEmlHandler& instance();
 
-    void openEML(const QString &from, const QString &to, const QString &subject, const QString &msg);
+    void openEML(const std::string &from, const std::string &to, const std::string &subject, const std::string &msg);
 
 private:
     CEmlHandler();

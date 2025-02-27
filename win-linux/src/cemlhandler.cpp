@@ -31,31 +31,53 @@
 */
 
 #include "cemlhandler.h"
-#include "defines.h"
-#include "utils.h"
-#include <QDateTime>
-#include <QLocale>
-#include <QTimeZone>
-#include <QUuid>
-#include <QDir>
-#include <QStack>
+#include <iomanip>
+#include <sstream>
+#include <fstream>
+#include <ctime>
+#include <stack>
+#ifdef __APPLE__
+
+#else
+# include "utils.h"
+#endif
 
 
-static QString getFormattedDate()
+static std::string getFormattedDate()
 {
-    QDateTime now = QDateTime::currentDateTime();
-    QTimeZone timeZone = QTimeZone::systemTimeZone();
-    now = now.toTimeZone(timeZone);
-    QString formattedDate = now.toString("ddd, dd MMM yyyy HH:mm:ss");
-
-    int offsetSec = timeZone.offsetFromUtc(now);
+    std::time_t now = std::time(nullptr);
+    std::tm local_tm, utc_tm;
+#ifdef _WIN32
+    localtime_s(&local_tm, &now);
+    gmtime_s(&utc_tm, &now);
+#else
+    localtime_r(&now, &local_tm);
+    gmtime_r(&now, &utc_tm);
+#endif
+    int offsetSec = static_cast<int>(std::difftime(std::mktime(&local_tm), std::mktime(&utc_tm)));
     int hrs = offsetSec / 3600;
-    int min = (offsetSec % 3600) / 60;
-    QString offsetStr = QString("%1%2%3")
-                            .arg(hrs >= 0 ? "+" : "-")
-                            .arg(qAbs(hrs), 2, 10, QChar('0'))
-                            .arg(qAbs(min), 2, 10, QChar('0'));
-    return formattedDate + " " + offsetStr;
+    int min = std::abs(offsetSec % 3600) / 60;
+    std::ostringstream oss;
+    oss << std::put_time(&local_tm, "%a, %d %b %Y %H:%M:%S")
+        << " " << (hrs >= 0 ? "+" : "-")
+        << std::setw(2) << std::setfill('0') << std::abs(hrs)
+        << std::setw(2) << std::setfill('0') << min;
+    return oss.str();
+}
+
+static bool writeFile(const std::string &filePath, const std::string &data)
+{
+    std::ofstream file(filePath, std::ios::out);
+    if (file.is_open()) {
+        file.write(data.c_str(), data.length());
+        if (file.fail()) {
+            file.close();
+            return false;
+        }
+        file.close();
+        return true;
+    }
+    return false;
 }
 
 class CEmlHandler::CEmlHandlerPrivate
@@ -65,11 +87,13 @@ public:
     {}
     ~CEmlHandlerPrivate()
     {
-        while (!eml_paths.isEmpty())
-            QFile::remove(eml_paths.pop());
+        while (!eml_paths.empty()) {
+            std::remove(eml_paths.top().c_str());
+            eml_paths.pop();
+        }
     }
 
-    QStack<QString> eml_paths;
+    std::stack<std::string> eml_paths;
 };
 
 CEmlHandler::CEmlHandler() :
@@ -87,20 +111,29 @@ CEmlHandler &CEmlHandler::instance()
     return inst;
 }
 
-void CEmlHandler::openEML(const QString &from, const QString &to, const QString &subject, const QString &msg)
+void CEmlHandler::openEML(const std::string &from, const std::string &to, const std::string &subject, const std::string &msg)
 {
-    QString data(QString("From: %1\nTo: %2\nSubject: %3\n").arg(from, to, subject));
-    data.append(QString("Date: %1\n").arg(getFormattedDate()));
-    data.append("X-Unsent: 1\n");
-    data.append("MIME-Version: 1.0\n");
-    // data.append("Content-Type: text/plain; charset=UTF-8\n");
-    data.append("\n");
-    data.append(msg);
-    data.append("\n");
+    std::ostringstream data;
+    data << "From: " << from << "\n"
+         << "To: " << to << "\n"
+         << "Subject: " << subject << "\n"
+         << "Date: " << getFormattedDate() << "\n"
+         << "X-Unsent: 1\n"
+         << "MIME-Version: 1.0\n"
+         // << "Content-Type: text/plain; charset=UTF-8\n"
+         << "\n" << msg << "\n";
 
-    QString tmp_name = QDir::tempPath() + QString("/%1%2.eml").arg(FILE_PREFIX, QUuid::createUuid().toString().remove('{').remove('}'));
-    if (Utils::writeFile(tmp_name, data.toUtf8())) {
-        Utils::openUrl(tmp_name);
+    static int id = 0;
+    char buff[L_tmpnam];
+    std::string tmp_name(std::tmpnam(buff));
+    tmp_name.append(std::to_string(++id));
+    tmp_name.append(".eml");
+    if (writeFile(tmp_name, data.str())) {
+#ifdef __APPLE__
+
+#else
+        Utils::openUrl(QString::fromStdString(tmp_name));
+#endif
         pimpl->eml_paths.push(tmp_name);
     }
 }
