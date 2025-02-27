@@ -1164,6 +1164,8 @@ void CMainWindow::onDocumentReady(int uid)
                 menu->setSectionEnabled(CMenu::ActionCreateNew, true);
             }
         }
+        if (m_pTabs->isActiveWidget())
+            m_pTabs->setFocusedView();
     }
     AscAppManager::getInstance().onDocumentReady(uid);
 }
