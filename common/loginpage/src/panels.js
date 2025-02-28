@@ -262,6 +262,7 @@ function openFile(from, model) {
                     path: utils.fn.decodeHtml(model.path),
                     type: model.type,
                     cloud: model.cloud,
+                    hash: model.hash,
                     recovery: from == OPEN_FILE_RECOVERY,
                 };
 

@@ -36,6 +36,7 @@
 #include "utils.h"
 #include <QTimer>
 #include <QDesktopWidget>
+#include <QGraphicsOpacityEffect>
 #include <QWindow>
 #include <QScreen>
 #include <QJsonObject>
@@ -196,7 +197,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_borderless = isCustomWindowStyle();
     if (AscAppManager::isRtlEnabled())
         setLayoutDirection(Qt::RightToLeft);
-    if (m_borderless && Utils::getWinVersion() == WinVer::WinXP)
+    if (m_borderless && Utils::getWinVersion() <= WinVer::WinVista)
         setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
     setGeometry(m_window_rect);
     m_hWnd = (HWND)winId();
@@ -330,6 +331,18 @@ bool CWindowPlatform::isSessionInProgress()
     return m_isSessionInProgress;
 }
 
+void CWindowPlatform::onWindowActivate(bool is_active)
+{
+    for (auto *btn : m_pTopButtons) {
+        QGraphicsOpacityEffect *efct = qobject_cast<QGraphicsOpacityEffect*>(btn->graphicsEffect());
+        if (!efct) {
+            efct = new QGraphicsOpacityEffect(btn);
+            btn->setGraphicsEffect(efct);
+        }
+        efct->setOpacity(is_active ? 1.0 : 0.5);
+    }
+}
+
 bool CWindowPlatform::event(QEvent * event)
 {
     if (event->type() == QEvent::LayoutDirectionChange) {
@@ -345,7 +358,7 @@ bool CWindowPlatform::event(QEvent * event)
 void CWindowPlatform::resizeEvent(QResizeEvent *ev)
 {
     CWindowBase::resizeEvent(ev);
-    if (m_borderless && Utils::getWinVersion() == WinVer::WinXP) {
+    if (m_borderless && Utils::getWinVersion() <= WinVer::WinVista) {
         RECT rc;
         GetClientRect(m_hWnd, &rc);
         if (centralWidget()) {
@@ -526,12 +539,6 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         AscAppManager::getInstance().CheckKeyboard();
         break;
 
-    case UM_INSTALL_UPDATE:
-        QTimer::singleShot(500, this, [=](){
-            onCloseEvent();
-        });
-        break;
-
     case WM_POWERBROADCAST: {
         if (msg->wParam == PBT_APMRESUMEAUTOMATIC) {
             HMONITOR monitor = MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTONULL);
@@ -643,6 +650,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_NCACTIVATE: {
         if (m_borderless) {
+            onWindowActivate(LOWORD(msg->wParam));
             if (Utils::getWinVersion() > WinVer::WinXP && Utils::getWinVersion() < WinVer::Win10) {
                 // Prevent drawing of inactive system frame (needs ~WS_CAPTION or temporary ~WS_VISIBLE to work)
                 *result = DefWindowProc(msg->hwnd, WM_NCACTIVATE, msg->wParam, -1);

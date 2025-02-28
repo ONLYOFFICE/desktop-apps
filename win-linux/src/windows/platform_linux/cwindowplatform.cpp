@@ -37,6 +37,7 @@
 #include "platform_linux/xcbutils.h"
 #include "utils.h"
 #include <QTimer>
+#include <QGraphicsOpacityEffect>
 #include <QPainter>
 #include <QX11Info>
 #include <xcb/xcb.h>
@@ -267,6 +268,18 @@ void CWindowPlatform::onMaximizeEvent()
     isMaximized() ? showNormal() : showMaximized();
 }
 
+void CWindowPlatform::onWindowActivate(bool is_active)
+{
+    for (auto *btn : m_pTopButtons) {
+        QGraphicsOpacityEffect *efct = qobject_cast<QGraphicsOpacityEffect*>(btn->graphicsEffect());
+        if (!efct) {
+            efct = new QGraphicsOpacityEffect(btn);
+            btn->setGraphicsEffect(efct);
+        }
+        efct->setOpacity(is_active ? 1.0 : 0.6);
+    }
+}
+
 void CWindowPlatform::onMinimizeEvent()
 {
 #ifdef DONT_USE_GTK_MAINWINDOW
@@ -298,6 +311,13 @@ bool CWindowPlatform::event(QEvent * event)
             QMouseEvent *me = static_cast<QMouseEvent*>(event);
             CX11Decoration::dispatchMouseMove(me);
         }
+    } else
+    if (event->type() == QEvent::WindowActivate) {
+        onWindowActivate(true);
+    }
+    else
+    if (event->type() == QEvent::WindowDeactivate) {
+        onWindowActivate(false);
     } else
     if (event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *me = static_cast<QMouseEvent*>(event);

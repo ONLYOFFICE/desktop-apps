@@ -3,15 +3,17 @@
     "type": "light",
     "values": {
         "brand-word": "#446995",
-        "brand-slide": "#be664f",
-        "brand-cell": "#40865c",
+        "brand-slide": "#b75b44",
+        "brand-cell": "#3a8056",
         "brand-pdf": "#aa5252",
+        "brand-draw": "#444796",
 
         "window-background": "#f1f1f1",
         "window-border": "#888",
 
         "text-normal": "#444",
         "text-pretty": "#fff",
+        "text-inverse": "#fff",
 
         "tool-button-background": "#f1f1f1",
         "tool-button-hover-background": "#cecece",

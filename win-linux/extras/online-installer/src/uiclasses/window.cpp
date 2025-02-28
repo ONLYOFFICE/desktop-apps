@@ -14,7 +14,7 @@ using WinVer = Utils::WinVer;
 
 static BOOL CALLBACK EnumChildProc(_In_ HWND hwnd, _In_ LPARAM lParam)
 {
-    ShowWindow(hwnd, SW_SHOW);
+    ShowWindow(hwnd, SW_SHOWNORMAL);
     UpdateWindow(hwnd);
     return TRUE;
 }
@@ -125,7 +125,7 @@ static bool isThemeActive()
 }
 
 Window::Window(Widget *parent, const Rect &rc) :
-    Widget(parent, ObjectType::WindowType, rc),
+    Widget(parent, ObjectType::WindowType, nullptr, rc),
     m_centralWidget(nullptr),
     m_contentMargins(0,0,0,0),
     m_resAreaWidth(0),
@@ -152,7 +152,7 @@ Window::Window(Widget *parent, const Rect &rc) :
         HDC hdc = GetDC(NULL);
         m_brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
         ReleaseDC(NULL, hdc);
-        m_brdColor = Utils::getColorizationColor(true, RGB(0xfe, 0xfe, 0xfe));
+        m_brdColor = Utils::getColorizationColor(true, palette()->color(Palette::Background));
     }
     SetWindowPos(m_hWnd, NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
 }
@@ -186,9 +186,10 @@ void Window::setResizable(bool isResizable)
 
 void Window::showAll()
 {
-    ShowWindow(m_hWnd, SW_SHOW);
+    ShowWindow(m_hWnd, SW_SHOWNORMAL);
     UpdateWindow(m_hWnd);
     EnumChildWindows(m_hWnd, EnumChildProc, 0);
+    SetForegroundWindow(m_hWnd);
 }
 
 void Window::showNormal()
@@ -209,7 +210,7 @@ void Window::showMaximized()
 void Window::setIcon(int id)
 {
     HMODULE hInstance = GetModuleHandle(NULL);
-    HICON hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(id));
+    HICON hIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(id), IMAGE_ICON, 96, 96, LR_DEFAULTCOLOR | LR_SHARED);
     SendMessage(m_hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
     SendMessage(m_hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 }
@@ -411,26 +412,11 @@ bool Window::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
                 return true;
             } else
             if (Utils::getWinVersion() == WinVer::Win10) {
-                m_brdColor = Utils::getColorizationColor(LOWORD(wParam), RGB(0xfe, 0xfe, 0xfe));
-                // POINT pt = {2,2};
-                // ClientToScreen(m_hWnd, &pt);
-                // HWND chld = WindowFromPoint(pt);
-                // if (chld) {
-                //     HDC dc = GetDC(chld);
-                //     int x = pt.x, y = pt.y;
-                //     COLORREF color = GetPixel(dc, x, y);
-                //     ReleaseDC(chld, dc);
-
-                //     int _red = GetRValue(color);
-                //     int _green = GetGValue(color);
-                //     int _blue = GetBValue(color);
-
-                //     printf("Red: 0x%02x\n", _red);
-                //     printf("Green: 0x%02x\n", _green);
-                //     printf("Blue: 0x%02x\n", _blue);
-                //     fflush(stdout);
-                // }
-                repaint();
+                m_brdColor = Utils::getColorizationColor(LOWORD(wParam), palette()->color(Palette::Background));
+                RECT rc;
+                GetClientRect(m_hWnd, &rc);
+                rc.bottom = m_brdWidth;
+                RedrawWindow(m_hWnd, &rc, NULL, RDW_INVALIDATE | RDW_NOERASE | RDW_INTERNALPAINT | RDW_UPDATENOW);
             }
         }
         return false;

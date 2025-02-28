@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1354"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1366"/>
         <source>Presenter View</source>
         <translation>Presentationsvy</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Spara som</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1907"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du måste starta om programmet för att inställningarna ska börja gälla.</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2177"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2179"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2239"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2241"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2183"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2245"/>
         <source>Book%1.xlsx</source>
         <translation>Kalkylblad%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2185"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2247"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentation%1.pptx</translation>
     </message>
@@ -49,8 +49,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="903"/>
-        <location filename="../src/components/asctabwidget.cpp" line="661"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="910"/>
+        <location filename="../src/components/asctabwidget.cpp" line="696"/>
         <source>Document</source>
         <translation>Öppnar...</translation>
     </message>
@@ -180,32 +180,32 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow.cpp" line="122"/>
+        <location filename="../src/windows/ceditorwindow.cpp" line="126"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1 har ändrats.&lt;br&gt;Vill du spara ändringarna?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="406"/>
+        <location filename="../src/ceditortools.cpp" line="409"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Om du fortsätter med att spara i detta format så kommer alla funktioner utom texten att gå förlorade.&lt;br&gt;Är du säker på att du vill fortsätta?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="153"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="157"/>
         <source>Open main window</source>
         <translation>Öppna huvudfönster</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="571"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="581"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokumentet måste sparas för att fortsätta.&lt;br&gt;Spara dokument?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="661"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="671"/>
         <source>Print Document</source>
         <translation>Skriv ut dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="870"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="880"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumentet måste sparas först.</translation>
     </message>
@@ -213,12 +213,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="612"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="622"/>
         <source>There are no printers available</source>
         <translation>Det finns inga tillgängliga skrivare</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="727"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="737"/>
         <source>There are no pages set to print.</source>
         <translation>Det finns inga sidor inställda för utskrift.</translation>
     </message>
@@ -380,7 +380,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel-binärfil (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -419,80 +419,115 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
+        <source>VSDX File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
+        <source>VSDM File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="106"/>
+        <source>VSSX File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="107"/>
+        <source>VSSM File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="108"/>
+        <source>VSTX File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="109"/>
+        <source>VSTM File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
         <translation>JPG-bild (*.jpg *.jpeg)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
+        <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>PNG Image (*.png)</source>
         <translation>PNG-bild (*.png)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="153"/>
+        <location filename="../src/components/cfiledialog.cpp" line="160"/>
         <source>Save As</source>
         <translation>Spara som</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="199"/>
+        <location filename="../src/components/cfiledialog.cpp" line="206"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 finns redan.&lt;br&gt;Vill du ersätta den?</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="225"/>
+        <location filename="../src/components/cfiledialog.cpp" line="232"/>
         <source>Word Document</source>
         <translation>Word-document</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="228"/>
+        <location filename="../src/components/cfiledialog.cpp" line="235"/>
         <source>Excel Workbook</source>
         <translation>Excel-kalkylblad</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="231"/>
+        <location filename="../src/components/cfiledialog.cpp" line="238"/>
         <source>PowerPoint Presentation</source>
         <translation>PowerPoint-presentation</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="234"/>
+        <location filename="../src/components/cfiledialog.cpp" line="241"/>
         <source>%1 File (*.%2)</source>
         <translation>%1-fil (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="342"/>
-        <location filename="../src/components/cfiledialog.cpp" line="366"/>
-        <location filename="../src/components/cfiledialog.cpp" line="368"/>
+        <location filename="../src/components/cfiledialog.cpp" line="251"/>
+        <location filename="../src/components/cfiledialog.cpp" line="350"/>
+        <location filename="../src/components/cfiledialog.cpp" line="374"/>
+        <location filename="../src/components/cfiledialog.cpp" line="376"/>
         <source>Text documents</source>
         <translation>Textdokument</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="250"/>
-        <location filename="../src/components/cfiledialog.cpp" line="350"/>
-        <location filename="../src/components/cfiledialog.cpp" line="370"/>
+        <location filename="../src/components/cfiledialog.cpp" line="257"/>
+        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="378"/>
         <source>Spreadsheets</source>
         <translation>Kalkylblad</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="251"/>
-        <location filename="../src/components/cfiledialog.cpp" line="358"/>
-        <location filename="../src/components/cfiledialog.cpp" line="371"/>
+        <location filename="../src/components/cfiledialog.cpp" line="258"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="379"/>
         <source>Presentations</source>
         <translation>Presentationer</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="252"/>
+        <location filename="../src/components/cfiledialog.cpp" line="259"/>
+        <source>Visio diagram</source>
+        <translation>Visio-diagram</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="260"/>
         <source>Web Page</source>
         <translation>Webbsida</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="253"/>
+        <location filename="../src/components/cfiledialog.cpp" line="261"/>
         <source>Text files</source>
         <translation>Textfiler</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
-        <location filename="../src/components/cfiledialog.cpp" line="255"/>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="263"/>
+        <location filename="../src/components/cfiledialog.cpp" line="381"/>
         <source>All supported files</source>
         <translation>Alla filer som stöds</translation>
     </message>
@@ -520,44 +555,44 @@
         <translation>Temafil</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="273"/>
+        <location filename="../src/components/cfiledialog.cpp" line="281"/>
         <source>Open Document</source>
         <translation>Öppna dokument</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="303"/>
-        <location filename="../src/components/cfiledialog.cpp" line="313"/>
+        <location filename="../src/components/cfiledialog.cpp" line="311"/>
+        <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>All Images</source>
         <translation>Alla Bilder</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="315"/>
+        <location filename="../src/components/cfiledialog.cpp" line="323"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="324"/>
-        <location filename="../src/components/cfiledialog.cpp" line="333"/>
+        <location filename="../src/components/cfiledialog.cpp" line="332"/>
+        <location filename="../src/components/cfiledialog.cpp" line="341"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Plugin-fil (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="390"/>
+        <location filename="../src/components/cfiledialog.cpp" line="398"/>
         <source>Video file</source>
         <translation>Videofil</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="395"/>
+        <location filename="../src/components/cfiledialog.cpp" line="403"/>
         <source>Audio file</source>
         <translation>Ljudfil</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="412"/>
+        <location filename="../src/components/cfiledialog.cpp" line="420"/>
         <source>Select Folder</source>
         <translation>Välj mapp</translation>
     </message>
@@ -565,58 +600,64 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="280"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="87"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="623"/>
+        <source>Main Window</source>
+        <translation>Huvudfönster</translation>
+    </message>
+    <message>
+        <location filename="../src/windows/cmainwindow.cpp" line="303"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Fler än ett dokument är öppet. Stäng fönstret ändå?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="282"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="305"/>
         <source>Don&apos;t ask again.</source>
         <translation>Fråga inte igen.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="803"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="843"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="948"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="988"/>
         <source>File format not supported.</source>
         <translation>Filformatet stöds inte.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="827"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="972"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 är inte tillgänlig. Det är möjligt att filen har bytt namn, flyttats eller tagits bort.&lt;br&gt;Vill du ta bort filen från listan?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="886"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1045"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumentet måste sparas först.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1035"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1206"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokumentet måste sparas för att fortsätta.&lt;br&gt;Spara dokument?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1141"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1312"/>
         <source>There are no printers available</source>
         <translation>Det finns inga tillgängliga skrivare</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1201"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1372"/>
         <source>Print Document</source>
         <translation>Skriv ut dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1267"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1438"/>
         <source>There are no pages set to print.</source>
         <translation>Det finns inga sidor inställda för utskrift.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1403"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1576"/>
         <source>Sign Up</source>
         <translation>Skapa portal</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1502"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1684"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 har ändrats.&lt;br&gt;Vill du spara ändringarna?</translation>
     </message>
@@ -627,6 +668,54 @@
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
         <translation>Licensierad enligt</translation>
+    </message>
+</context>
+<context>
+    <name>CMenu</name>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="372"/>
+        <source>Close</source>
+        <translation>Stäng</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="373"/>
+        <source>Close saved</source>
+        <translation>Stäng sparade</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="374"/>
+        <source>Close all</source>
+        <translation>Stäng alla</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="375"/>
+        <source>Show in folder</source>
+        <translation>Visa i mapp</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="376"/>
+        <source>Move to start</source>
+        <translation>Flytta till början</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="377"/>
+        <source>Move to end</source>
+        <translation>Flytta till slutet</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="378"/>
+        <source>Unpin tab to window</source>
+        <translation>Ta bort fästning av flik i fönster</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="379"/>
+        <source>Pin to tab</source>
+        <translation>Fäst i flik</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmenu.cpp" line="380"/>
+        <source>Create new</source>
+        <translation>Skapa ny</translation>
     </message>
 </context>
 <context>
@@ -804,7 +893,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Förbereder uppdatering (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
@@ -829,7 +918,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Den aktuella versionen stöder inte direkt installation av den här uppdateringen. För att installera uppdateringar kan du ladda ned det nödvändiga paketet från den officiella webbplatsen.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="888"/>
@@ -867,12 +956,13 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="252"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="253"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1027"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 är inte tillgänlig. Det är möjligt att filen har bytt namn, flyttats eller tagits bort.&lt;br&gt;Vill du ta bort filen från listan?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="295"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="296"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Fil %1 kan inte öppnas eller finns inte.</translation>
     </message>
@@ -889,12 +979,12 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="791"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="936"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Åtkomst till filen &apos;%1&apos; är nekad!</translation>
     </message>
     <message>
-        <location filename="../src/casctabdata.cpp" line="219"/>
+        <location filename="../src/casctabdata.cpp" line="220"/>
         <source>Read only</source>
         <translation>Skrivskyddad</translation>
     </message>
@@ -957,7 +1047,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="751"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett fel uppstod när installationen av uppdateringar startades: Update Service hittades inte!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="761"/>
@@ -965,48 +1055,48 @@
         <translation>Ett fel inträffade vid filersättning: Uppdateringstjänsten hittades inte!</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="121"/>
+        <location filename="../src/defines.h" line="125"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="122"/>
+        <location filename="../src/defines.h" line="126"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="123"/>
+        <location filename="../src/defines.h" line="127"/>
         <source>No</source>
         <translation>Nej</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="198"/>
-        <location filename="../src/defines.h" line="124"/>
+        <location filename="../src/components/cmessage.cpp" line="200"/>
+        <location filename="../src/defines.h" line="128"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="125"/>
+        <location filename="../src/defines.h" line="129"/>
         <source>Skip</source>
         <translation>Hoppa över</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="126"/>
+        <location filename="../src/defines.h" line="130"/>
         <source>Buy Now</source>
         <translation>Köp nu</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="127"/>
+        <location filename="../src/defines.h" line="131"/>
         <source>Activate</source>
         <translation>Aktivera</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="128"/>
+        <location filename="../src/defines.h" line="132"/>
         <source>Continue</source>
         <translation>Fortsätt</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1225"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1165"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>Ett fel inträffade vid öppning av portalen: &lt;br&gt;%1</translation>
     </message>
@@ -1015,7 +1105,7 @@
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="380"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="383"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>Filen %1 är redan inläst. Vill du ersätta den?</translation>
     </message>
@@ -1041,12 +1131,12 @@
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="586"/>
-        <location filename="../src/platform_win/printdialog.cpp" line="527"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="534"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
         <translation>Angivet intervall %1-%2 överskrider dokumentgränserna: maximalt antal sidor är %3</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/printdialog.cpp" line="485"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="492"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
         <translation>Kan inte öppna utskriftsdialog:&lt;br&gt;%1</translation>
     </message>
@@ -1054,34 +1144,40 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Skriver ut...</translation>
+        <translation>Skriver ut...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Förbereder dokument</translation>
+        <translation>Förbereder dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="214"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du göra %1 till standardprogram för filändelsen: %2?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="216"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du göra %1 till standardprogram för alla stödda filändelser?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="218"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa inte det här meddelandet igen</translation>
+    </message>
+    <message>
+        <location filename="../src/platform_linux/singleapplication.cpp" line="98"/>
+        <source>There are unsaved documents</source>
+        <comment>SingleApplication</comment>
+        <translation>Det finns osparade dokument</translation>
     </message>
 </context>
 <context>

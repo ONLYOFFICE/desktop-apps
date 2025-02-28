@@ -1,0 +1,96 @@
+﻿/* No comment provided by engineer. */
+"Comma-Separated Values" = "Vlerat e ndara me presje (*.csv)";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Dokument dixhital (*.djvu)";
+
+/* No comment provided by engineer. */
+"Document template" = "Shabllon dokumenti Word Open XML (*.dotx)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Fletëllogaritëse Excel 97-2003 (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Fletëllogaritëse Office Open XML (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2 File (*.fb2)";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Në qoftë se nuk i rishikoni dokumentet tuaja, të gjitha ndryshimet tuaja do të humbasin.";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "Prezantim i aktivizuar me makro (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Shablloni i fletëllogaritjes i aktivizuar me makro (*.xltm)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Skedari Mobipocket (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "Dokument i ri";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Format PDF i ri";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Prezantim i ri";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Fletëllogaritëse e re";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Shabllon dokumenti OpenDocument (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Shabllon prezantimi OpenDocument (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Shabllon i fletëllogaritjes OpenDocument (*.ots)";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Skedar teksti OpenDocument (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Prezantim OpenDocument (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Fletëllogaritëse OpenDocument (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "Dokument portativ (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Dokument portativ /A (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Skedar teksti i thjeshtë (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Prezantim PowerPoint 97-2003 (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Prezantim Office Open XML (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Shfaqje e slajdeve Office Open XML (*.ppsx)";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Shabllon prezantimi PowerPoint Open XML (*.potx)";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Skedar i formatit të tekstit të pasur (*.rtf)";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Shabllon fletëllogaritjes Excel Open XML (*.xltx)";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Dokument Word 97-2003 (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Dokument Office Open XML (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Dokument OpenXPS (*.xps)";
+

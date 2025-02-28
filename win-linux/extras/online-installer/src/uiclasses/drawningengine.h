@@ -22,21 +22,21 @@ public:
     void DrawBorder() const;
     void DrawTopBorder(int, COLORREF) const;
     void DrawIcon(HICON hIcon) const;
-    void DrawEmfIcon(HENHMETAFILE hIconc) const;
+    void DrawEmfIcon(Gdiplus::Bitmap *hEmfBmp) const;
     void DrawImage(Gdiplus::Bitmap *hBmp) const;
     void DrawStockCloseIcon();
     void DrawStockMinimizeIcon();
     void DrawStockMaximizeIcon();
     void DrawStockRestoreIcon();
-    void DrawCheckBox(const std::wstring &text, bool checked = false);
-    void DrawRadioButton(const std::wstring &text, bool checked = false);
+    void DrawCheckBox(const std::wstring &text, HFONT hFont, bool checked = false);
+    void DrawRadioButton(const std::wstring &text, HFONT hFont, bool checked = false);
     void DrawProgressBar(int progress, int pulse_pos);
-    void DrawText(const RECT &rc, const std::wstring &text, bool multiline = false) const;
+    void DrawText(const RECT &rc, const std::wstring &text, HFONT hFont, bool multiline = false) const;
     void End();
 
     // void LayeredBegin(DrawningSurface*, HWND, RECT *rc);
     // void LayeredDrawRoundedRect() const;
-    void LayeredDrawText(RECT &rc, const std::wstring &text) const;
+    void LayeredDrawText(RECT &rc, const std::wstring &text, HFONT hFont, bool rtl = false) const;
     // void LayeredDrawShadow(int shadowWidth, int rad);
     // void LayeredUpdate(BYTE alpha);
     // void LayeredEnd();

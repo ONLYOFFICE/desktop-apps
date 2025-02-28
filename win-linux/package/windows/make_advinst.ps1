@@ -63,10 +63,12 @@ $LanguageCodes = @(
     1028  # zh_TW           Chinese (Traditional)
 )
 $AssociationList = @(
-    "doc", "dot", "docm", "dotm", "docx", "dotx",
-    "xls", <#"xlt",#> "xlsm", "xltm", "xlsb", "xlsx", "xltx",
-    "ppt", "pot", "pps", "pptm", "potm", "ppsm", "pptx", "potx", "ppsx",
-    "odt", "ott", "ods", "ots", "odp", "otp",
+    "doc", "dot", "docx", "dotx", "docm", "dotm",
+    "xls", "xlt", "xlsx", "xltx", "xlsm", "xltm", "xlsb",
+    "ppt", "pot", "pps", "pptx", "potx", "ppsx", "pptm", "potm", "ppsm",
+    "vsdx", "vstx", "vssx", "vsdm", "vstm", "vssm",
+    "odt", "ott", "ods", "ots", "odp", "otp", "fodt", "fods", "fodp",
+    "pages", "numbers", "key",
     "djvu", "fb2", "pdf", "rtf", "xps", "oxps",
     "epub", "html", "xml",
     "csv", "txt",

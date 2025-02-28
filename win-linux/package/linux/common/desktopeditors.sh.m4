@@ -1,135 +1,336 @@
 #!/bin/sh
 
-ifelse(M4_COMPANY_NAME, ONLYOFFICE,
-set_names() {
+copy_templates() {
+  ifelse(M4_COMPANY_NAME, ONLYOFFICE,
   case $LANG in
-    cs*`)'
-      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/cs-CZ"
-      SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Nový dokument"
-      NEW_XLSX_NAME="Nová tabulka"
-      NEW_PPTX_NAME="Nová prezentace"
-      NEW_DOCXF_NAME="Nový PDF formulář"
+    ar_* `)'
+      TEMPLATE_LANG="ar-SA"
+      NEW_DOCX="مستند جديد"
+      NEW_XLSX="جدول بياني جديد"
+      NEW_PPTX="عرض تقديمي جديد"
+      NEW_PDFF="نموذج PDF جديد"
       ;;
-    de*`)'
-      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/de-DE"
-      SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Neues Dokument"
-      NEW_XLSX_NAME="Neue Tabelle"
-      NEW_PPTX_NAME="Neue Präsentation"
-      NEW_DOCXF_NAME="Neues PDF-Formular"
+    be_* `)'
+      TEMPLATE_LANG="default"
+      NEW_DOCX="Новы дакумент"
+      NEW_XLSX="Новая электронная табліца"
+      NEW_PPTX="Новая прэзентацыя"
+      NEW_PDFF="Новая форма PDF"
       ;;
-    es*`)'
-      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/es-ES"
-      SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Nuevo documento"
-      NEW_XLSX_NAME="Nueva hoja de cálculo"
-      NEW_PPTX_NAME="Nueva presentación"
-      NEW_DOCXF_NAME="Nuevo formulario PDF"
+    bg_* `)'
+      TEMPLATE_LANG="bg-BG"
+      NEW_DOCX="Нов документ"
+      NEW_XLSX="Нова електронна таблица"
+      NEW_PPTX="Нова презентация"
+      NEW_PDFF="Нов PDF формуляр"
       ;;
-    fr*`)'
-      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/fr-FR"
-      SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Nouveau document"
-      NEW_XLSX_NAME="Nouveau classeur"
-      NEW_PPTX_NAME="Nouvelle présentation"
-      NEW_DOCXF_NAME="Nouveau formulaire PDF"
+    ca_* `)'
+      TEMPLATE_LANG="default"
+      NEW_DOCX="Nou document"
+      NEW_XLSX="Nou full de càlcul"
+      NEW_PPTX="Nova presentació"
+      NEW_PDFF="Nou formulari PDF"
       ;;
-    it*`)'
-      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/it-IT"
-      SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Nuovo documento"
-      NEW_XLSX_NAME="Nuovo foglio di calcolo"
-      NEW_PPTX_NAME="Nuova presentazione"
-      NEW_DOCXF_NAME="Nuovo modulo PDF"
+    cs_* `)'
+      TEMPLATE_LANG="cs-CZ"
+      NEW_DOCX="Nový dokument"
+      NEW_XLSX="Nový sešit"
+      NEW_PPTX="Nová prezentace"
+      NEW_PDFF="Nový PDF formulář"
       ;;
-    pt*`)'
-      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/pt-BR"
-      SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Novo documento"
-      NEW_XLSX_NAME="Nova planilha"
-      NEW_PPTX_NAME="Nova apresentação"
-      NEW_DOCXF_NAME="Novo formulário PDF"
+    da_* `)'
+      TEMPLATE_LANG="default"
+      NEW_DOCX="Nyt dokument"
+      NEW_XLSX="Nyt regneark"
+      NEW_PPTX="Ny præsentation"
+      NEW_PDFF="Ny PDF-formular"
       ;;
-    ru*`)'
-      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/ru-RU"
-      SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Новый документ"
-      NEW_XLSX_NAME="Новая таблица"
-      NEW_PPTX_NAME="Новая презентация"
-      NEW_DOCXF_NAME="Новая PDF-форма"
+    de_* `)'
+      TEMPLATE_LANG="de-DE"
+      NEW_DOCX="Neues Dokument"
+      NEW_XLSX="Neue Tabelle"
+      NEW_PPTX="Neue Präsentation"
+      NEW_PDFF="Neues PDF-Formular"
       ;;
-    *`)'
-      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/en-US"
-      SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="New document"
-      NEW_XLSX_NAME="New spreadsheet"
-      NEW_PPTX_NAME="New presentation"
-      NEW_DOCXF_NAME="New PDF form"
+    el_* `)'
+      TEMPLATE_LANG="el-GR"
+      NEW_DOCX="Νέο έγγραφο"
+      NEW_XLSX="Νέο λογιστικό φύλλο"
+      NEW_PPTX="Νέα παρουσίαση"
+      NEW_PDFF="Νέα φόρμα PDF"
+      ;;
+    en_GB* `)'
+      TEMPLATE_LANG="en-GB"
+      NEW_DOCX="New document"
+      NEW_XLSX="New spreadsheet"
+      NEW_PPTX="New presentation"
+      NEW_PDFF="New PDF Form"
+      ;;
+    en_* `)'
+      TEMPLATE_LANG="en-US"
+      NEW_DOCX="New document"
+      NEW_XLSX="New spreadsheet"
+      NEW_PPTX="New presentation"
+      NEW_PDFF="New PDF Form"
+      ;;
+    es_* `)'
+      TEMPLATE_LANG="es-ES"
+      NEW_DOCX="Nuevo Documento"
+      NEW_XLSX="Nueva Hoja de Cálculo"
+      NEW_PPTX="Nueva Presentación"
+      NEW_PDFF="Nuevo formulario PDF"
+      ;;
+    fi_* `)'
+      TEMPLATE_LANG="fi-FI"
+      NEW_DOCX="Uusi asiakirja"
+      NEW_XLSX="Uusi laskentataulukko"
+      NEW_PPTX="Uusi esitys"
+      NEW_PDFF="Uusi PDF-lomake"
+      ;;
+    fr_* `)'
+      TEMPLATE_LANG="fr-FR"
+      NEW_DOCX="Nouveau document"
+      NEW_XLSX="Nouvelle feuille de calcul"
+      NEW_PPTX="Nouvelle présentation"
+      NEW_PDFF="Nouveau formulaire PDF"
+      ;;
+    gl_* `)'
+      TEMPLATE_LANG="gl-ES"
+      NEW_DOCX="Novo documento"
+      NEW_XLSX="Nova folla de cálculo"
+      NEW_PPTX="Nova presentación"
+      NEW_PDFF="Novo formulario PDF"
+      ;;
+    he_* `)'
+      TEMPLATE_LANG="he-IL"
+      NEW_DOCX="מסמך חדש"
+      NEW_XLSX="גיליון אלקטרוני חדש"
+      NEW_PPTX="מצגת חדשה"
+      NEW_PDFF="טופס PDF חדש"
+      ;;
+    hu_* `)'
+      TEMPLATE_LANG="default"
+      NEW_DOCX="Új dokumentum"
+      NEW_XLSX="Új táblázat"
+      NEW_PPTX="Új bemutató"
+      NEW_PDFF="Új PDF űrlap"
+      ;;
+    hy_* `)'
+      TEMPLATE_LANG="hy-AM"
+      NEW_DOCX="Նոր փաստաթուղթ"
+      NEW_XLSX="Նոր աղյուսակաթերթ"
+      NEW_PPTX="Նոր ներկայացում"
+      NEW_PDFF="Նոր PDF Ֆորմ"
+      ;;
+    id_* `)'
+      TEMPLATE_LANG="default"
+      NEW_DOCX="Dokumen baru"
+      NEW_XLSX="Lembar kerja baru"
+      NEW_PPTX="Presentasi Baru"
+      NEW_PDFF="Formulir PDF baru"
+      ;;
+    it_* `)'
+      TEMPLATE_LANG="it-IT"
+      NEW_DOCX="Nuovo documento"
+      NEW_XLSX="Nuovo foglio elettronico"
+      NEW_PPTX="Nuova presentazione"
+      NEW_PDFF="Nuovo modulo PDF"
+      ;;
+    ja_* `)'
+      TEMPLATE_LANG="ja-JP"
+      NEW_DOCX="新しいドキュメント"
+      NEW_XLSX="新しいスプレッドシート"
+      NEW_PPTX="新しいプレゼンテーション"
+      NEW_PDFF="新しいPDFフォーム"
+      ;;
+    ko_* `)'
+      TEMPLATE_LANG="ko-KR"
+      NEW_DOCX="신규 문서"
+      NEW_XLSX="새로운 스프레드 시트"
+      NEW_PPTX="새 프리젠 테이션"
+      NEW_PDFF="새로운 PDF 양식"
+      ;;
+    lo_* `)'
+      TEMPLATE_LANG="default"
+      NEW_DOCX="ເອກະສານໃໝ່"
+      NEW_XLSX="ຕາຕະລາງໃໝ່"
+      NEW_PPTX="ບົດນຳສະເໜີໃໝ່"
+      NEW_PDFF="ແບບຟອມ PDF ໃໝ່"
+      ;;
+    lv_* `)'
+      TEMPLATE_LANG="lv-LV"
+      NEW_DOCX="Jauns dokuments"
+      NEW_XLSX="Jauna tabula"
+      NEW_PPTX="Jauna prezentācija"
+      NEW_PDFF="Jauna PDF veidlapa"
+      ;;
+    nb_* `)'
+      TEMPLATE_LANG="nb-NO"
+      NEW_DOCX="Nytt dokument"
+      NEW_XLSX="Nieuw werkblad"
+      NEW_PPTX="Nieuwe presentatie"
+      NEW_PDFF="Nieuw PDF-formulier"
+      ;;
+    nl_* `)'
+      TEMPLATE_LANG="nl-NL"
+      NEW_DOCX="Nieuw Document"
+      NEW_XLSX="Nytt regneark"
+      NEW_PPTX="Ny presentasjon"
+      NEW_PDFF="Nytt PDF-skjema"
+      ;;
+    pl_* `)'
+      TEMPLATE_LANG="pl-PL"
+      NEW_DOCX="Nowy dokument"
+      NEW_XLSX="Nowy arkusz kalkulacyjny"
+      NEW_PPTX="Nowa prezentacja"
+      NEW_PDFF="Nowy formularz PDF"
+      ;;
+    pt_BR* `)'
+      TEMPLATE_LANG="pt-BR"
+      NEW_DOCX="Novo Documento"
+      NEW_XLSX="Nova planilha"
+      NEW_PPTX="Nova apresentação"
+      NEW_PDFF="Novo formulário PDF"
+      ;;
+    pt_* `)'
+      TEMPLATE_LANG="pt-PT"
+      NEW_DOCX="Novo documento"
+      NEW_XLSX="Nova folha de cálculo"
+      NEW_PPTX="Nova Apresentação"
+      NEW_PDFF="Novo formulário PDF"
+      ;;
+    ro_* `)'
+      TEMPLATE_LANG="default"
+      NEW_DOCX="Document nou"
+      NEW_XLSX="Foaie de calcul nouă"
+      NEW_PPTX="Prezentare nouă"
+      NEW_PDFF="Formular PDF nou"
+      ;;
+    ru_* `)'
+      TEMPLATE_LANG="ru-RU"
+      NEW_DOCX="Новый документ"
+      NEW_XLSX="Новая таблица"
+      NEW_PPTX="Новая презентация"
+      NEW_PDFF="Новая PDF-форма"
+      ;;
+    si_* `)'
+      TEMPLATE_LANG="si-LK"
+      NEW_DOCX="නව ලේඛනය"
+      NEW_XLSX="නව පැතුරුම්පත"
+      NEW_PPTX="නව සමර්පණය"
+      NEW_PDFF="නව PDF පෝරමය"
+      ;;
+    sk_* `)'
+      TEMPLATE_LANG="sk-SK"
+      NEW_DOCX="Nový dokument"
+      NEW_XLSX="Nová tabuľka"
+      NEW_PPTX="Nová prezentácia"
+      NEW_PDFF="Nový formulár PDF"
+      ;;
+    sl_* `)'
+      TEMPLATE_LANG="sl-SI"
+      NEW_DOCX="Nov dokument"
+      NEW_XLSX="Nova razpredelnica"
+      NEW_PPTX="Nova predstavitev"
+      NEW_PDFF="Novi PDF obrazec"
+      ;;
+    sr_RS@latin* `)'
+      TEMPLATE_LANG="sr-Latn-RS"
+      NEW_DOCX="Novi dokument"
+      NEW_XLSX="Nova proračunska tabela"
+      NEW_PPTX="Nova prezentacija"
+      NEW_PDFF="Novi PDF formular"
+      ;;
+    sr_RS* `)'
+      TEMPLATE_LANG="sr-Cyrl-RS"
+      NEW_DOCX="Нови документ"
+      NEW_XLSX="Нова прорачунска табела"
+      NEW_PPTX="Нова презентација"
+      NEW_PDFF="Нови PDF формулар"
+      ;;
+    sv_* `)'
+      TEMPLATE_LANG="sv-SE"
+      NEW_DOCX="Nytt dokument"
+      NEW_XLSX="Nytt kalkylblad"
+      NEW_PPTX="Ny presentation"
+      NEW_PDFF="Nytt PDF-formulär"
+      ;;
+    tr_* `)'
+      TEMPLATE_LANG="tr-TR"
+      NEW_DOCX="Yeni Belge"
+      NEW_XLSX="Yeni Hesap Tablosu"
+      NEW_PPTX="Yeni Sunum"
+      NEW_PDFF="Yeni PDF Formu"
+      ;;
+    uk_* `)'
+      TEMPLATE_LANG="uk-UA"
+      NEW_DOCX="Новий документ"
+      NEW_XLSX="Нова таблиця"
+      NEW_PPTX="Нова презентація"
+      NEW_PDFF="Нова PDF-форма"
+      ;;
+    vi_* `)'
+      TEMPLATE_LANG="vi-VN"
+      NEW_DOCX="Tài liệu mới"
+      NEW_XLSX="Bảng tính mới"
+      NEW_PPTX="Bản trình chiếu mới"
+      NEW_PDFF="Mẫu PDF mới"
+      ;;
+    zh_CN* `)'
+      TEMPLATE_LANG="zh-CN"
+      NEW_DOCX="新建文档"
+      NEW_XLSX="新建表格"
+      NEW_PPTX="新建幻灯片"
+      NEW_PDFF="新建 PDF 表单"
+      ;;
+    zh_TW* `)'
+      TEMPLATE_LANG="zh-TW"
+      NEW_DOCX="新文件"
+      NEW_XLSX="新試算表"
+      NEW_PPTX="新簡報"
+      NEW_PDFF="新的 PDF 表格"
+      ;;
+    * `)'
+      TEMPLATE_LANG="default"
+      NEW_DOCX="New document"
+      NEW_XLSX="New spreadsheet"
+      NEW_PPTX="New presentation"
+      NEW_PDFF="New PDF Form"
       ;;
   esac
-},
-set_names_ru() {
-  SOURCE_DOC_NAME="new"
-  NEW_DOCX_NAME="Новый документ"
-  NEW_XLSX_NAME="Новая таблица"
-  NEW_PPTX_NAME="Новая презентация"
-})
+  SOURCE_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty/$TEMPLATE_LANG",
+  TEMPLATE_LANG="ru-RU"
+  NEW_DOCX="Новый документ"
+  NEW_XLSX="Новая таблица"
+  NEW_PPTX="Новая презентация"
+  SOURCE_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty")
 
-check_templates() {
-  if [ "$1" != "--new-document-templates" ]; then
-    return 0
+  if command -v xdg-user-dir &> /dev/null; then
+    XDG_TEMPLATES_DIR=$(xdg-user-dir TEMPLATES)
+  else
+    echo "xdg-user-dir not installed"
+    exit 1
   fi
 
-  SOURCE_DOC_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty"
-
+  mkdir -pv "$XDG_TEMPLATES_DIR"
+  cp -fv "$SOURCE_DIR/new.docx" "$XDG_TEMPLATES_DIR/$NEW_DOCX.docx"
+  cp -fv "$SOURCE_DIR/new.xlsx" "$XDG_TEMPLATES_DIR/$NEW_XLSX.xlsx"
+  cp -fv "$SOURCE_DIR/new.pptx" "$XDG_TEMPLATES_DIR/$NEW_PPTX.pptx"
   ifelse(M4_COMPANY_NAME, ONLYOFFICE,
-  set_names,
-  set_names_ru)
+  cp -fv "$SOURCE_DIR/new.pdf" "$XDG_TEMPLATES_DIR/$NEW_PDFF.pdf")
 
-  eval TEMPLATE_DIR=$(grep XDG_TEMPLATES_DIR $HOME/.config/user-dirs.dirs | cut -d \" -f2)
-  if [ $TEMPLATE_DIR = $HOME ]; then
-    echo "system template's folder isn't found"
-    return 0
-  fi
-  
-  TEMPLATE_DOCX="$TEMPLATE_DIR/$NEW_DOCX_NAME.docx"
-  TEMPLATE_XLSX="$TEMPLATE_DIR/$NEW_XLSX_NAME.xlsx"
-  TEMPLATE_PPTX="$TEMPLATE_DIR/$NEW_PPTX_NAME.pptx"
-  TEMPLATE_DOCXF="$TEMPLATE_DIR/$NEW_DOCXF_NAME.docxf"
-
-  mkdir -p $TEMPLATE_DIR
-
-  if [ $(ls -A $TEMPLATE_DIR/*.docx 2>/dev/null | wc -l) -eq 0 ]
-  then
-    cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.docx "$TEMPLATE_DOCX"
-  fi
-
-  if [ $(ls -A $TEMPLATE_DIR/*.xlsx 2>/dev/null | wc -l) -eq 0 ]
-  then
-    cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.xlsx "$TEMPLATE_XLSX"
-  fi
-
-  if [ $(ls -A $TEMPLATE_DIR/*.pptx 2>/dev/null | wc -l) -eq 0 ]
-  then
-    cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.pptx "$TEMPLATE_PPTX"
-  fi
-
-  ifelse(M4_COMPANY_NAME, ONLYOFFICE,
-  if [ $(ls -A $TEMPLATE_DIR/*.docxf 2>/dev/null | wc -l) -eq 0 ]
-  then
-    cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.docxf "$TEMPLATE_DOCXF"
-  fi)
+  exit 0
 }
 
-check_templates "$@"
+for arg in "$@"; do
+  if [ "$arg" = "--new-document-templates" ]; then
+    copy_templates
+  fi
+done
 
 DIR=/opt/M4_DESKTOPEDITORS_PREFIX
-if [ ! -z "$LD_LIBRARY_PATH" ]; then
-  LDLPATH=:$LD_LIBRARY_PATH
-fi
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
-export LD_LIBRARY_PATH=$DIR$LDLPATH,
+export LD_LIBRARY_PATH=$DIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH},
 DIR_MV=/opt/M4_MEDIAVIEWER_PREFIX
 export LD_LIBRARY_PATH=$DIR:$DIR/converter:$DIR_MV$LDLPATH
 export VLC_PLUGIN_PATH=$DIR_MV/plugins)

@@ -35,6 +35,7 @@ public:
     bool openRecoverFile(int id);
     bool openRecentFile(int id);
     bool isReady();
+    bool hasUncommittedChanges();
     void applyLoader(const QString& cmd, const QString& args = QString());
     void setReady();
     //void resize(int w, int h);

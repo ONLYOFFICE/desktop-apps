@@ -42,6 +42,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QScreen>
@@ -856,6 +857,18 @@ QString Utils::replaceBackslash(const QString& path)
     return QString(path).replace(QRegularExpression("\\\\"), "/");
 }
 
+std::wstring Utils::normalizeAppProtocolUrl(const std::wstring &url)
+{
+    QUrl _url(QString::fromStdWString(url));
+    if (_url.scheme() == APP_PROTOCOL) {
+        QUrlQuery query(_url);
+        query.addQueryItem("placement", "desktop");
+        _url.setQuery(query);
+        return _url.toString(QUrl::RemoveScheme).toStdWString();
+    }
+    return url;
+}
+
 void Utils::replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace)
 {
     size_t pos = 0;
@@ -1189,5 +1202,14 @@ namespace WindowHelper {
                 && wgt->property("stabilized").toBool())
             return wgt;
         return nullptr;
+    }
+
+    auto defaultWindowMaximizeState() -> bool
+    {
+        GET_REGISTRY_USER(reg_user);
+        if (reg_user.contains("position") || reg_user.childGroups().contains("EditorsGeometry"))
+            return false;
+        auto scr_rc = qApp->primaryScreen()->geometry();
+        return (scr_rc.width() <= SCREEN_THRESHOLD_SIZE.width() || scr_rc.height() <= SCREEN_THRESHOLD_SIZE.height());
     }
 }

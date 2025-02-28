@@ -27,11 +27,13 @@ public:
         , ecrWindowBorder
         , ecrTextNormal
         , ecrTextPretty
+        , ecrTextInverse
         , ecrLogoColor
         , ecrTabWordActive
         , ecrTabCellActive
         , ecrTabSlideActive
         , ecrTabViewerActive
+        , ecrTabDrawActive
         , ecrTabSimpleActiveBackground
         , ecrTabSimpleActiveText
         , ecrTabDefaultActiveBackground

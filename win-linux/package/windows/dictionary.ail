@@ -134,43 +134,43 @@
   </ENTRY>
   <ENTRY id="Property.IncompatibleVersion_ErrorText">
     <STRING lang="en" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="ar" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="be" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="bg" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="ca" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="cs" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="da" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="de" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="el" value="(IncompatibleVersion_ErrorText)"/>
+    <STRING lang="ar" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="be" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="bg" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ca" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="cs" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="da" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="de" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="el" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="en_GB" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="es" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="fi" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="fr" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="gl" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="he" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="hu" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="id" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="it" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="ja" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="ko" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="lv" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="nb" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="nl" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="pl" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="pt" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="pt_BR" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="ro" value="(IncompatibleVersion_ErrorText)"/>
+    <STRING lang="es" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="fi" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="fr" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="gl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="he" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="hu" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="id" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="it" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ja" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ko" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="lv" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="nb" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="nl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pt" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pt_BR" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ro" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="ru" value="Уже установлена другая версия приложения, несовместимая с этой установкой. Пожалуйста, сначала удалите текущую версию или загрузите правильную версию для установки."/>
-    <STRING lang="sk" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="sl" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="sr_SP_Cyrillic" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="sr_SP_Latin" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="sv" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="tr" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="uk" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="vi" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="zh" value="(IncompatibleVersion_ErrorText)"/>
-    <STRING lang="zh_TW" value="(IncompatibleVersion_ErrorText)"/>
+    <STRING lang="sk" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="sl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="sr_SP_Cyrillic" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="sr_SP_Latin" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="sv" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="tr" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="uk" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="vi" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="zh" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="zh_TW" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
   </ENTRY>
   <ENTRY id="Property.JUMP_LIST_ARG">
     <STRING lang="en" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
@@ -413,123 +413,123 @@
     <STRING lang="zh_TW" value="新試算表"/>
   </ENTRY>
   <ENTRY id="Property.ServiceDescription">
-    <STRING lang="en" value="Update service for [|PackageName]"/>
-    <STRING lang="ar" value="خدمة التحديث لـ [|PackageName]"/>
-    <STRING lang="be" value="Update service for [|PackageName]"/>
-    <STRING lang="bg" value="Update service for [|PackageName]"/>
-    <STRING lang="ca" value="Update service for [|PackageName]"/>
-    <STRING lang="cs" value="Služba aktualizace [|PackageName]"/>
-    <STRING lang="da" value="Update service for [|PackageName]"/>
-    <STRING lang="de" value="Update service for [|PackageName]"/>
-    <STRING lang="el" value="Υπηρεσία για ενημέρωση [|PackageName]"/>
-    <STRING lang="en_GB" value="Update service for [|PackageName]"/>
-    <STRING lang="es" value="Update service for [|PackageName]"/>
-    <STRING lang="fi" value="Palvelu päivitystä varten [|PackageName]"/>
-    <STRING lang="fr" value="Service de mise à jour [|PackageName]"/>
-    <STRING lang="gl" value="Update service for [|PackageName]"/>
-    <STRING lang="he" value="שירות עדכון עבור [|PackageName]"/>
-    <STRING lang="hu" value="Update service for [|PackageName]"/>
-    <STRING lang="id" value="Update service for [|PackageName]"/>
-    <STRING lang="it" value="Servizio per l&apos;aggiornamento [|PackageName]"/>
-    <STRING lang="ja" value="アップデートサービス[|PackageName]"/>
-    <STRING lang="ko" value="[|PackageName] 업데이트 서비스"/>
-    <STRING lang="lv" value="Pakalpojums atjauninājumam [|PackageName]"/>
-    <STRING lang="nb" value="Update service for [|PackageName]"/>
-    <STRING lang="nl" value="Dienst voor update [|PackageName]"/>
-    <STRING lang="pl" value="Usługa do aktualizacji [|PackageName]"/>
-    <STRING lang="pt" value="Update service for [|PackageName]"/>
-    <STRING lang="pt_BR" value="Serviço para atualização [|PackageName]"/>
-    <STRING lang="ro" value="Serviciu de actualizare [|PackageName]"/>
-    <STRING lang="ru" value="Сервис обновлений [|PackageName]"/>
-    <STRING lang="sk" value="Služba aktualizácie [|PackageName]"/>
-    <STRING lang="sl" value="Storitev za posodobitev [|PackageName]"/>
-    <STRING lang="sr_SP_Cyrillic" value="Ажурирај услугу за [|PackageName]"/>
-    <STRING lang="sr_SP_Latin" value="Ažuriraj uslugu za [|PackageName]"/>
-    <STRING lang="sv" value="Update service for [|PackageName]"/>
-    <STRING lang="tr" value="[|PackageName] için hizmet güncellemesi"/>
-    <STRING lang="uk" value="Сервіс для оновлення [|PackageName]"/>
-    <STRING lang="vi" value="Dịch vụ cập nhật [|PackageName]"/>
-    <STRING lang="zh" value="Update service for [|PackageName]"/>
-    <STRING lang="zh_TW" value="Update service for [|PackageName]"/>
+    <STRING lang="en" value="Update service for [|AppName]"/>
+    <STRING lang="ar" value="خدمة التحديث لـ [|AppName]"/>
+    <STRING lang="be" value="Update service for [|AppName]"/>
+    <STRING lang="bg" value="Update service for [|AppName]"/>
+    <STRING lang="ca" value="Update service for [|AppName]"/>
+    <STRING lang="cs" value="Služba aktualizace [|AppName]"/>
+    <STRING lang="da" value="Update service for [|AppName]"/>
+    <STRING lang="de" value="Update service for [|AppName]"/>
+    <STRING lang="el" value="Υπηρεσία για ενημέρωση [|AppName]"/>
+    <STRING lang="en_GB" value="Update service for [|AppName]"/>
+    <STRING lang="es" value="Update service for [|AppName]"/>
+    <STRING lang="fi" value="Palvelu päivitystä varten [|AppName]"/>
+    <STRING lang="fr" value="Service de mise à jour [|AppName]"/>
+    <STRING lang="gl" value="Update service for [|AppName]"/>
+    <STRING lang="he" value="שירות עדכון עבור [|AppName]"/>
+    <STRING lang="hu" value="Update service for [|AppName]"/>
+    <STRING lang="id" value="Update service for [|AppName]"/>
+    <STRING lang="it" value="Servizio per l&apos;aggiornamento [|AppName]"/>
+    <STRING lang="ja" value="アップデートサービス[|AppName]"/>
+    <STRING lang="ko" value="[|AppName] 업데이트 서비스"/>
+    <STRING lang="lv" value="Pakalpojums atjauninājumam [|AppName]"/>
+    <STRING lang="nb" value="Update service for [|AppName]"/>
+    <STRING lang="nl" value="Dienst voor update [|AppName]"/>
+    <STRING lang="pl" value="Usługa do aktualizacji [|AppName]"/>
+    <STRING lang="pt" value="Update service for [|AppName]"/>
+    <STRING lang="pt_BR" value="Serviço para atualização [|AppName]"/>
+    <STRING lang="ro" value="Serviciu de actualizare [|AppName]"/>
+    <STRING lang="ru" value="Сервис обновлений [|AppName]"/>
+    <STRING lang="sk" value="Služba aktualizácie [|AppName]"/>
+    <STRING lang="sl" value="Storitev za posodobitev [|AppName]"/>
+    <STRING lang="sr_SP_Cyrillic" value="Ажурирај услугу за [|AppName]"/>
+    <STRING lang="sr_SP_Latin" value="Ažuriraj uslugu za [|AppName]"/>
+    <STRING lang="sv" value="Update service for [|AppName]"/>
+    <STRING lang="tr" value="[|AppName] için hizmet güncellemesi"/>
+    <STRING lang="uk" value="Сервіс для оновлення [|AppName]"/>
+    <STRING lang="vi" value="Dịch vụ cập nhật [|AppName]"/>
+    <STRING lang="zh" value="Update service for [|AppName]"/>
+    <STRING lang="zh_TW" value="Update service for [|AppName]"/>
   </ENTRY>
   <ENTRY id="ButtonText_DeselectAll">
     <STRING lang="en" value="Deselect All"/>
-    <STRING lang="ar" value="(DeselectAll)"/>
-    <STRING lang="be" value="(DeselectAll)"/>
-    <STRING lang="bg" value="(DeselectAll)"/>
-    <STRING lang="ca" value="(DeselectAll)"/>
+    <STRING lang="ar" value="Deselect All"/>
+    <STRING lang="be" value="Deselect All"/>
+    <STRING lang="bg" value="Deselect All"/>
+    <STRING lang="ca" value="Deselect All"/>
     <STRING lang="cs" value="Zrušit výběr všech"/>
-    <STRING lang="da" value="(DeselectAll)"/>
+    <STRING lang="da" value="Deselect All"/>
     <STRING lang="de" value="Alle abwählen"/>
-    <STRING lang="el" value="(DeselectAll)"/>
+    <STRING lang="el" value="Deselect All"/>
     <STRING lang="en_GB" value="Deselect All"/>
     <STRING lang="es" value="Desmarcar todo"/>
-    <STRING lang="fi" value="(DeselectAll)"/>
+    <STRING lang="fi" value="Deselect All"/>
     <STRING lang="fr" value="Désélectionner tout"/>
-    <STRING lang="gl" value="(DeselectAll)"/>
-    <STRING lang="he" value="(DeselectAll)"/>
-    <STRING lang="hu" value="(DeselectAll)"/>
-    <STRING lang="id" value="(DeselectAll)"/>
-    <STRING lang="it" value="(DeselectAll)"/>
+    <STRING lang="gl" value="Deselect All"/>
+    <STRING lang="he" value="Deselect All"/>
+    <STRING lang="hu" value="Deselect All"/>
+    <STRING lang="id" value="Deselect All"/>
+    <STRING lang="it" value="Deselect All"/>
     <STRING lang="ja" value="選択を解除"/>
-    <STRING lang="ko" value="(DeselectAll)"/>
-    <STRING lang="lv" value="(DeselectAll)"/>
-    <STRING lang="nb" value="(DeselectAll)"/>
-    <STRING lang="nl" value="(DeselectAll)"/>
-    <STRING lang="pl" value="(DeselectAll)"/>
+    <STRING lang="ko" value="Deselect All"/>
+    <STRING lang="lv" value="Deselect All"/>
+    <STRING lang="nb" value="Deselect All"/>
+    <STRING lang="nl" value="Deselect All"/>
+    <STRING lang="pl" value="Deselect All"/>
     <STRING lang="pt" value="Desselecionar tudo"/>
     <STRING lang="pt_BR" value="Desmarcar Todos"/>
-    <STRING lang="ro" value="(DeselectAll)"/>
+    <STRING lang="ro" value="Deselect All"/>
     <STRING lang="ru" value="Снять выделение"/>
-    <STRING lang="sk" value="(DeselectAll)"/>
+    <STRING lang="sk" value="Deselect All"/>
     <STRING lang="sl" value="Počistite vse"/>
-    <STRING lang="sr_SP_Cyrillic" value="(DeselectAll)"/>
-    <STRING lang="sr_SP_Latin" value="(DeselectAll)"/>
-    <STRING lang="sv" value="(DeselectAll)"/>
-    <STRING lang="tr" value="(DeselectAll)"/>
-    <STRING lang="uk" value="(DeselectAll)"/>
-    <STRING lang="vi" value="(DeselectAll)"/>
-    <STRING lang="zh" value="(DeselectAll)"/>
-    <STRING lang="zh_TW" value="(DeselectAll)"/>
+    <STRING lang="sr_SP_Cyrillic" value="Deselect All"/>
+    <STRING lang="sr_SP_Latin" value="Deselect All"/>
+    <STRING lang="sv" value="Deselect All"/>
+    <STRING lang="tr" value="Deselect All"/>
+    <STRING lang="uk" value="Deselect All"/>
+    <STRING lang="vi" value="Deselect All"/>
+    <STRING lang="zh" value="Deselect All"/>
+    <STRING lang="zh_TW" value="Deselect All"/>
   </ENTRY>
   <ENTRY id="ButtonText_SelectAll">
     <STRING lang="en" value="Select All"/>
-    <STRING lang="ar" value="(SelectAll)"/>
-    <STRING lang="be" value="(SelectAll)"/>
-    <STRING lang="bg" value="(SelectAll)"/>
-    <STRING lang="ca" value="(SelectAll)"/>
+    <STRING lang="ar" value="Select All"/>
+    <STRING lang="be" value="Select All"/>
+    <STRING lang="bg" value="Select All"/>
+    <STRING lang="ca" value="Select All"/>
     <STRING lang="cs" value="Vybrat vše"/>
-    <STRING lang="da" value="(SelectAll)"/>
+    <STRING lang="da" value="Select All"/>
     <STRING lang="de" value="Alle auswählen"/>
-    <STRING lang="el" value="(SelectAll)"/>
+    <STRING lang="el" value="Select All"/>
     <STRING lang="en_GB" value="Select All"/>
     <STRING lang="es" value="Seleccionar todo"/>
-    <STRING lang="fi" value="(SelectAll)"/>
+    <STRING lang="fi" value="Select All"/>
     <STRING lang="fr" value="Tout sélectionner"/>
-    <STRING lang="gl" value="(SelectAll)"/>
-    <STRING lang="he" value="(SelectAll)"/>
-    <STRING lang="hu" value="(SelectAll)"/>
-    <STRING lang="id" value="(SelectAll)"/>
-    <STRING lang="it" value="(SelectAll)"/>
+    <STRING lang="gl" value="Select All"/>
+    <STRING lang="he" value="Select All"/>
+    <STRING lang="hu" value="Select All"/>
+    <STRING lang="id" value="Select All"/>
+    <STRING lang="it" value="Select All"/>
     <STRING lang="ja" value="すべて選択"/>
-    <STRING lang="ko" value="(SelectAll)"/>
-    <STRING lang="lv" value="(SelectAll)"/>
-    <STRING lang="nb" value="(SelectAll)"/>
-    <STRING lang="nl" value="(SelectAll)"/>
-    <STRING lang="pl" value="(SelectAll)"/>
+    <STRING lang="ko" value="Select All"/>
+    <STRING lang="lv" value="Select All"/>
+    <STRING lang="nb" value="Select All"/>
+    <STRING lang="nl" value="Select All"/>
+    <STRING lang="pl" value="Select All"/>
     <STRING lang="pt" value="Selecionar tudo"/>
     <STRING lang="pt_BR" value="Selecionar Tudo"/>
-    <STRING lang="ro" value="(SelectAll)"/>
+    <STRING lang="ro" value="Select All"/>
     <STRING lang="ru" value="Выбрать все"/>
-    <STRING lang="sk" value="(SelectAll)"/>
+    <STRING lang="sk" value="Select All"/>
     <STRING lang="sl" value="Izberite vse"/>
-    <STRING lang="sr_SP_Cyrillic" value="(SelectAll)"/>
-    <STRING lang="sr_SP_Latin" value="(SelectAll)"/>
-    <STRING lang="sv" value="(SelectAll)"/>
-    <STRING lang="tr" value="(SelectAll)"/>
-    <STRING lang="uk" value="(SelectAll)"/>
-    <STRING lang="vi" value="(SelectAll)"/>
-    <STRING lang="zh" value="(SelectAll)"/>
-    <STRING lang="zh_TW" value="(SelectAll)"/>
+    <STRING lang="sr_SP_Cyrillic" value="Select All"/>
+    <STRING lang="sr_SP_Latin" value="Select All"/>
+    <STRING lang="sv" value="Select All"/>
+    <STRING lang="tr" value="Select All"/>
+    <STRING lang="uk" value="Select All"/>
+    <STRING lang="vi" value="Select All"/>
+    <STRING lang="zh" value="Select All"/>
+    <STRING lang="zh_TW" value="Select All"/>
   </ENTRY>
 </DICTIONARY>

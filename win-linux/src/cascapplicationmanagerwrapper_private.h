@@ -220,11 +220,8 @@ public:
             opts.parent_id = event.m_nSenderId;
             opts.name = QString::fromStdWString(data.get_Name());
 
-            // TODO: remove for ver 8.2 if unused
-            //            if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
-            //                bringEditorToFront(_v->GetId());
-            //            } else openDocument(opts);
-            openDocument(opts);
+            if ( !bringEditorToFront(QString::fromStdWString(opts.wurl)) )
+                openDocument(opts);
 
             return true;
         }
@@ -253,10 +250,14 @@ public:
                         QFileInfo _info(opts.url);
                         if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
                             int res = CMessage::showMessage(m_appmanager.mainWindow()->handle(),
-                                                            QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+                                                            QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
                                                             MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
                             if ( res == MODAL_RESULT_YES ) {
                                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
+                            } else
+                            if ( res == MODAL_RESULT_NO ) {
+                                int uid = objRoot["hash"].toInt();
+                                m_appmanager.onFileChecked(opts.name, uid, false);
                             }
 
                             return true;
@@ -287,14 +288,17 @@ public:
                 std::wstring file_path = CEditorTools::getlocalfile(data.get_Param(), event.m_nSenderId).toStdWString();
 
                 if ( !file_path.empty() ) {
-                    if ( bringEditorToFront(QString::fromStdWString(file_path)) )
+                    QString qfile_path = QString::fromStdWString(file_path);
+                    if ( bringEditorToFront(qfile_path) )
                         return true;
 
-                    COpenOptions opts{file_path, etLocalFile};
+                    QFileInfo _info(qfile_path);
+                    COpenOptions opts{_info.fileName(), etLocalFile};
                     opts.parent_id = event.m_nSenderId;
+                    opts.url = qfile_path;
+                    opts.wurl = file_path;
 
                     if ( !openDocument(opts) ) {
-                        QFileInfo _info(QString::fromStdWString(file_path));
                         CMessage::error(m_appmanager.mainWindow()->handle(),
                                         QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                     }
@@ -335,6 +339,7 @@ public:
                     int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
                                  format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                                  format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                                 // format == L"draw" ? AVS_OFFICESTUDIO_FILE_DRAW_VSDX :
                                  format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
                     COpenOptions opts{m_appmanager.newFileName(_f), etNewFile};
@@ -407,9 +412,19 @@ public:
         return QRect();
     }
 
-    auto editorWindowGeometry(QRect &rc, bool &isMaximized, const std::wstring &wurl) -> void
+    auto editorWindowGeometry(QRect &rc, bool &isMaximized, const COpenOptions& opts) -> void
     {        
-        AscEditorType etype = CEditorTools::editorTypeFromFormat(CCefViewEditor::GetFileFormat(wurl));
+        AscEditorType etype = AscEditorType::etUndefined;
+        int format = (opts.format == 0) ? CCefViewEditor::GetFileFormat(opts.wurl) : opts.format;
+        switch (format) {
+        case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF:
+            etype = AscEditorType::etPdf;
+            break;
+        default:
+            etype = CEditorTools::editorTypeFromFormat(format);
+            break;
+        }
+
         if (!m_appmanager.m_vecEditors.empty()) {
 #ifdef _WIN32
             if (HWND hWnd = GetTopWindow(GetDesktopWindow())) {
@@ -445,7 +460,7 @@ public:
         if (etype == AscEditorType::etUndefined) {
             if (!rc.isEmpty())
                 rc.adjust(50,50,50,50);
-            isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+            isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool();
         } else {
             QString baseKey = "EditorsGeometry/" + QString::number(int(etype)) + "/";
             if (reg_user.contains(baseKey + "position"))
@@ -458,7 +473,7 @@ public:
             if (reg_user.contains(baseKey + "maximized"))
                 isMaximized = reg_user.value(baseKey + "maximized").toBool();
             else {
-                isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+                isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool();
             }
         }
     }
@@ -475,7 +490,7 @@ public:
             GET_REGISTRY_USER(reg_user);
             bool isMaximized = false;
             QRect rect = /*isMaximized ? QRect() :*/ windowRectFromViewId(opts.parent_id);
-            editorWindowGeometry(rect, isMaximized, opts.wurl);
+            editorWindowGeometry(rect, isMaximized, opts);
             opts_ext.panel_size = CWindowBase::expectedContentSize(rect, true);
             opts_ext.parent_widget = COpenOptions::eWidgetType::window;
             if (CEditorWindow * editor_win = CEditorWindow::create(rect, opts_ext)) {

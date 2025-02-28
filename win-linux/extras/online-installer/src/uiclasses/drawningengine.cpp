@@ -118,15 +118,22 @@ void DrawingEngine::FillBackground() const
 
 void DrawingEngine::DrawBorder() const
 {
-    HPEN hPen = CreatePen(PS_SOLID, m_ds->metrics()->value(Metrics::BorderWidth), m_ds->palette()->color(Palette::Border));
-    HPEN oldPen = (HPEN)SelectObject(m_hdc, hPen);
-    MoveToEx(m_hdc, m_rc->left, m_rc->top, NULL);
-    LineTo(m_hdc, m_rc->right - 1, m_rc->top);
-    LineTo(m_hdc, m_rc->right - 1, m_rc->bottom - 1);
-    LineTo(m_hdc, m_rc->left, m_rc->bottom - 1);
-    LineTo(m_hdc, m_rc->left, m_rc->top);
-    SelectObject(m_hdc, oldPen);
-    DeleteObject(hPen);
+    RECT rc;
+    SetRect(&rc, m_rc->left, m_rc->top, m_rc->right, m_rc->bottom);
+    DWORD dwOldLayout = GetLayout(m_hdc);
+    if (dwOldLayout & LAYOUT_RTL)
+        rc.right -= 1;
+    HBRUSH brdBrush = CreateSolidBrush(m_ds->palette()->color(Palette::Border));
+    HBRUSH oldBrdBrush = (HBRUSH)SelectObject(m_hdc, brdBrush);
+    for (int i = 0; i < m_ds->metrics()->value(Metrics::BorderWidth); i++) {
+        FrameRect(m_hdc, &rc, brdBrush);
+        rc.left += 1;
+        rc.top += 1;
+        rc.right -= 1;
+        rc.bottom -= 1;
+    }
+    SelectObject(m_hdc, oldBrdBrush);
+    DeleteObject(brdBrush);
 }
 
 void DrawingEngine::DrawTopBorder(int brdWidth, COLORREF brdColor) const
@@ -146,25 +153,17 @@ void DrawingEngine::DrawIcon(HICON hIcon) const
     DrawIconEx(m_hdc, x, y, hIcon, m_ds->metrics()->value(Metrics::IconWidth), m_ds->metrics()->value(Metrics::IconHeight), 0, NULL, DI_NORMAL);
 }
 
-void DrawingEngine::DrawEmfIcon(HENHMETAFILE hIcon) const
+void DrawingEngine::DrawEmfIcon(Gdiplus::Bitmap *hEmfBmp) const
 {
-    int x = m_rc->left + (m_rc->right - m_rc->left - m_ds->metrics()->value(Metrics::IconWidth)) / 2;
-    int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
-    RECT _rc{x, y, x + m_ds->metrics()->value(Metrics::IconWidth), y + m_ds->metrics()->value(Metrics::IconHeight)};
-    SetGraphicsMode(m_hdc, GM_ADVANCED);
-    SetPolyFillMode(m_hdc, WINDING);
-    SetStretchBltMode(m_hdc, HALFTONE);
-    SetBrushOrgEx(m_hdc, 0, 0, nullptr);
-    PlayEnhMetaFile(m_hdc, hIcon, &_rc);
-    // Gdiplus::Graphics gr(m_hdc);
-    // gr.SetInterpolationMode(Gdiplus::InterpolationModeBilinear);
+    int w = m_ds->metrics()->value(Metrics::IconWidth);
+    int h = m_ds->metrics()->value(Metrics::IconHeight);
+    int x = m_rc->left + (m_rc->right - m_rc->left - w) / 2;
+    int y = m_rc->top + (m_rc->bottom - m_rc->top - h) / 2;
+    Gdiplus::Graphics gr(m_hdc);
+    // gr.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
     // gr.SetPixelOffsetMode(Gdiplus::PixelOffsetModeHighQuality);
-    // gr.SetSmoothingMode(Gdiplus::SmoothingMode::SmoothingModeAntiAlias);
-    // int x = m_rc->left + (m_rc->right - m_rc->left - m_ds->metrics()->value(Metrics::IconWidth)) / 2;
-    // int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
-    // Gdiplus::Metafile mf(hIcon);
-    // mf.ConvertToEmfPlus(&gr, NULL , Gdiplus::EmfTypeEmfPlusOnly, NULL);
-    // gr.DrawImage(&mf, x, y, m_ds->metrics()->value(Metrics::IconWidth), m_ds->metrics()->value(Metrics::IconHeight));
+    // gr.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
+    gr.DrawImage(hEmfBmp, x, y, w, h);
 }
 
 void DrawingEngine::DrawImage(Gdiplus::Bitmap *hBmp) const
@@ -247,19 +246,26 @@ void DrawingEngine::DrawStockRestoreIcon()
     DeleteObject(hPen);
 }
 
-void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
+void DrawingEngine::DrawCheckBox(const std::wstring &text, HFONT hFont, bool checked)
 {
-    int x = m_rc->left;
+    int x = m_rc->left + 1;
     int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
 
     m_memDC = CreateCompatibleDC(m_hdc);
     m_memBmp = CreateCompatibleBitmap(m_hdc, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top);
     m_oldBmp = (HBITMAP)SelectObject(m_memDC, m_memBmp);
 
-    SetLayout(m_memDC, LAYOUT_BITMAPORIENTATIONPRESERVED);
     m_graphics = new Gdiplus::Graphics(m_memDC);
     m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
     m_graphics->Clear(ColorFromColorRef(m_ds->palette()->color(Palette::Background)));
+
+    DWORD dwOldLayout = GetLayout(m_memDC);
+    Gdiplus::Matrix origMatrix;
+    m_graphics->GetTransform(&origMatrix);
+    if (dwOldLayout & LAYOUT_RTL) {
+        Gdiplus::Matrix rtlMatrix(-1.0f, 0.0f, 0.0f, 1.0f, float(m_rc->right + m_rc->left - 1), 0.0f);
+        m_graphics->SetTransform(&rtlMatrix);
+    }
 
     Gdiplus::Pen pen(ColorFromColorRef(m_ds->palette()->color(Palette::Primitive)), m_ds->metrics()->value(Metrics::PrimitiveWidth));
     Gdiplus::Rect rc(x, y, m_ds->metrics()->value(Metrics::IconWidth) - 1, m_ds->metrics()->value(Metrics::IconHeight) - 1);
@@ -279,11 +285,13 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
     }
     if (!text.empty()) {
         RECT rc;
-        SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth), m_rc->top, m_rc->right, m_rc->bottom);
+        int offset = (dwOldLayout & LAYOUT_RTL) ? m_ds->metrics()->value(Metrics::IconWidth) : 0;
+        SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth) - offset, m_rc->top, m_rc->right - offset, m_rc->bottom);
         m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
-        LayeredDrawText(rc, text);
+        m_graphics->SetTransform(&origMatrix);
+        LayeredDrawText(rc, text, hFont, dwOldLayout & LAYOUT_RTL);
     }
-    BitBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, SRCCOPY);
+    StretchBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, SRCCOPY);
 
     delete m_graphics;
     m_graphics = nullptr;
@@ -293,37 +301,28 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
     m_memBmp = nullptr;
     DeleteDC(m_memDC);
     m_memDC = nullptr;
-//    HPEN hPen = CreatePen(PS_SOLID, m_ds->metrics()->value(Metrics::PrimitiveWidth), m_ds->palette()->color(Palette::Primitive));
-//    HPEN oldPen = (HPEN)SelectObject(m_hdc, hPen);
-//    int x = m_rc->left;
-//    int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
-//    MoveToEx(m_hdc, x, y, NULL);
-//    LineTo(m_hdc, x + m_ds->metrics()->value(Metrics::IconWidth) - 1, y);
-//    LineTo(m_hdc, x + m_ds->metrics()->value(Metrics::IconWidth) - 1, y + m_ds->metrics()->value(Metrics::IconHeight) - 1);
-//    LineTo(m_hdc, x, y + m_ds->metrics()->value(Metrics::IconHeight) - 1);
-//    LineTo(m_hdc, x, y + m_ds->metrics()->value(Metrics::PrimitiveWidth) - 1);
-//    if (checked) {
-//        MoveToEx(m_hdc, x + 2, y + m_ds->metrics()->value(Metrics::IconHeight)/2 - 1, NULL);
-//        LineTo(m_hdc, x + m_ds->metrics()->value(Metrics::IconWidth)/2 - 2, y + m_ds->metrics()->value(Metrics::IconHeight) - 5);
-//        LineTo(m_hdc, x + m_ds->metrics()->value(Metrics::IconWidth) - 2, y + 3);
-//    }
-//    SelectObject(m_hdc, oldPen);
-//    DeleteObject(hPen);
 }
 
-void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
+void DrawingEngine::DrawRadioButton(const std::wstring &text, HFONT hFont, bool checked)
 {
-    int x = m_rc->left;
+    int x = m_rc->left + 1;
     int y = m_rc->top + (m_rc->bottom - m_rc->top - m_ds->metrics()->value(Metrics::IconHeight)) / 2;
 
     m_memDC = CreateCompatibleDC(m_hdc);
     m_memBmp = CreateCompatibleBitmap(m_hdc, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top);
     m_oldBmp = (HBITMAP)SelectObject(m_memDC, m_memBmp);
 
-    SetLayout(m_memDC, LAYOUT_BITMAPORIENTATIONPRESERVED);
     m_graphics = new Gdiplus::Graphics(m_memDC);
     m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
     m_graphics->Clear(ColorFromColorRef(m_ds->palette()->color(Palette::Background)));
+
+    DWORD dwOldLayout = GetLayout(m_memDC);
+    Gdiplus::Matrix origMatrix;
+    m_graphics->GetTransform(&origMatrix);
+    if (dwOldLayout & LAYOUT_RTL) {
+        Gdiplus::Matrix rtlMatrix(-1.0f, 0.0f, 0.0f, 1.0f, float(m_rc->right + m_rc->left - 1), 0.0f);
+        m_graphics->SetTransform(&rtlMatrix);
+    }
 
     Gdiplus::Pen pen(ColorFromColorRef(m_ds->palette()->color(Palette::Primitive)), m_ds->metrics()->value(Metrics::PrimitiveWidth));
     m_graphics->DrawEllipse(&pen, x, y, m_ds->metrics()->value(Metrics::IconHeight) - 1, m_ds->metrics()->value(Metrics::IconHeight) - 1);
@@ -333,10 +332,13 @@ void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
     }    
     if (!text.empty()) {
         RECT rc;
-        SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth), m_rc->top, m_rc->right, m_rc->bottom);
-        LayeredDrawText(rc, text);
+        int offset = (dwOldLayout & LAYOUT_RTL) ? m_ds->metrics()->value(Metrics::IconWidth) : 0;
+        SetRect(&rc, m_rc->left + m_ds->metrics()->value(Metrics::IconWidth) - offset, m_rc->top, m_rc->right - offset, m_rc->bottom);
+        m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
+        m_graphics->SetTransform(&origMatrix);
+        LayeredDrawText(rc, text, hFont, dwOldLayout & LAYOUT_RTL);
     }
-    BitBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, SRCCOPY);
+    StretchBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, SRCCOPY);
 
     delete m_graphics;
     m_graphics = nullptr;
@@ -396,7 +398,7 @@ void DrawingEngine::DrawProgressBar(int progress, int pulse_pos)
         m_graphics->DrawPath(&pen, &ph);
     }
 
-    BitBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, SRCCOPY);
+    StretchBlt(m_hdc, m_rc->left, m_rc->top, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, m_memDC, 0, 0, m_rc->right - m_rc->left, m_rc->bottom - m_rc->top, SRCCOPY);
 
     delete m_graphics;
     m_graphics = nullptr;
@@ -408,15 +410,13 @@ void DrawingEngine::DrawProgressBar(int progress, int pulse_pos)
     m_memDC = nullptr;
 }
 
-void DrawingEngine::DrawText(const RECT &rc, const std::wstring &text, bool multiline) const
+void DrawingEngine::DrawText(const RECT &rc, const std::wstring &text, HFONT hFont, bool multiline) const
 {
-    HFONT hFont = CreateFontW(m_ds->metrics()->value(Metrics::FontHeight), m_ds->metrics()->value(Metrics::FontWidth), 0, 0, FW_NORMAL,
-                              0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, TEXT("Segoe UI"));
     HFONT hOldFont = (HFONT) SelectObject(m_hdc, hFont);
     SetBkMode(m_hdc, TRANSPARENT);
     SetTextColor(m_hdc, m_ds->palette()->color(Palette::Text));
     RECT _rc{rc.left + m_ds->metrics()->value(Metrics::TextMarginLeft), rc.top + m_ds->metrics()->value(Metrics::TextMarginTop),
-             rc.right + m_ds->metrics()->value(Metrics::TextMarginRight), rc.bottom + m_ds->metrics()->value(Metrics::TextMarginBottom)};
+             rc.right - m_ds->metrics()->value(Metrics::TextMarginRight), rc.bottom - m_ds->metrics()->value(Metrics::TextMarginBottom)};
     UINT fmt = multiline ? 0 : DT_SINGLELINE;
     UINT algn = m_ds->metrics()->value(Metrics::TextAlignment);
     if (algn & Metrics::AlignHLeft)
@@ -434,7 +434,6 @@ void DrawingEngine::DrawText(const RECT &rc, const std::wstring &text, bool mult
     ::DrawText(m_hdc, text.c_str(), text.length(), &_rc, fmt);
     SelectObject(m_hdc, hOldFont);
     SetBkMode(m_hdc, OPAQUE);
-    DeleteObject(hFont);
 }
 
 void DrawingEngine::End()
@@ -488,19 +487,16 @@ void DrawingEngine::End()
 //     m_graphics->FillPath(&brush, &ph);
 // }
 
-void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text) const
+void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text, HFONT hFont, bool rtl) const
 {
 //     Gdiplus::FontFamily fntFam(L"Segoe UI");
 //     Gdiplus::Font font(&fntFam, m_ds->metrics()->value(Metrics::FontHeight), Gdiplus::FontStyleRegular, Gdiplus::Unit::UnitPixel);
-    HFONT hFont = CreateFontW(m_ds->metrics()->value(Metrics::FontHeight), m_ds->metrics()->value(Metrics::FontWidth), 0, 0, FW_NORMAL,
-                              0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, TEXT("Segoe UI"));
     LOGFONTW logFont = {0};
     GetObject(hFont, sizeof(LOGFONTW), &logFont);
     Gdiplus::Font font(m_memDC, &logFont);
-    DeleteObject(hFont);
     Gdiplus::RectF rcF(rc.left + m_ds->metrics()->value(Metrics::TextMarginLeft), rc.top + m_ds->metrics()->value(Metrics::TextMarginTop),
-                       rc.right + m_ds->metrics()->value(Metrics::TextMarginRight) - rc.left - m_ds->metrics()->value(Metrics::TextMarginLeft),
-                       rc.bottom + m_ds->metrics()->value(Metrics::TextMarginBottom) - rc.top - m_ds->metrics()->value(Metrics::TextMarginTop));
+                       rc.right - m_ds->metrics()->value(Metrics::TextMarginRight) - rc.left - m_ds->metrics()->value(Metrics::TextMarginLeft),
+                       rc.bottom - m_ds->metrics()->value(Metrics::TextMarginBottom) - rc.top - m_ds->metrics()->value(Metrics::TextMarginTop));
     Gdiplus::StringAlignment h_algn, v_algn;
     UINT algn = m_ds->metrics()->value(Metrics::TextAlignment);
     if (algn & Metrics::AlignHLeft)
@@ -518,6 +514,8 @@ void DrawingEngine::LayeredDrawText(RECT &rc, const std::wstring &text) const
     Gdiplus::StringFormat strFmt;
     strFmt.SetAlignment(h_algn);
     strFmt.SetLineAlignment(v_algn);
+    if (rtl)
+        strFmt.SetFormatFlags(Gdiplus::StringFormatFlagsDirectionRightToLeft);
     Gdiplus::SolidBrush brush(ColorFromColorRef(m_ds->palette()->color(Palette::Text)));
     m_graphics->DrawString(text.c_str(), -1, &font, rcF, &strFmt, &brush);
 }

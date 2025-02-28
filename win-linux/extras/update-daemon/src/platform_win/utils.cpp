@@ -174,7 +174,7 @@ namespace NS_Utils
     {
         if (showError)
             str += L" " + GetLastErrorAsString();
-        wstring prod_name = _TR(VER_PRODUCTNAME_STR);
+        wstring prod_name = _TR(CAPTION_TEXT);
         wchar_t *title = const_cast<LPTSTR>(prod_name.c_str());
         if (isRunAsApp()) {
             MessageBox(NULL, str.c_str(), title, MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);

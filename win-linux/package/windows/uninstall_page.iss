@@ -21,6 +21,7 @@ ar_SA.UninstallPageLabel=اضغط إزالة التثبيت للاستمرار �
 sr_Latn_RS.UninstallPageLabel=Pritisnite Deinstaliraj da nastavite da deinstalacijom
 sr_Cyrl_RS.UninstallPageLabel=Притисните Деинсталирај да наставите да деинсталацијом
 he.UninstallPageLabel=לחץ על 'הסר התקנה' כדי להמשיך בתהליך הסרת ההתקנה.
+sq.UninstallPageLabel=Shtypni Çinstaloni për të vazhduar me çinstalimin.
 
 
 en.UninstallOptionClearData=Clear all user settings and application cached data
@@ -44,6 +45,7 @@ ar_SA.UninstallOptionClearData=مسح جميع بيانات المستخدم و�
 sr_Latn_RS.UninstallOptionClearData=Obriši sva korisnička podešavanja i keširane podatke aplikacije
 sr_Cyrl_RS.UninstallOptionClearData=Обриши сва корисничка подешавања и кеширане податке апликације
 he.UninstallOptionClearData=נקה את כל הגדרות המשתמש ונתוני המטמון של הייש
+sq.UninstallOptionClearData=Pastroni të gjitha cilësimet e përdoruesit dhe të dhënat e ruajtura të aplikacionit
 
 
 

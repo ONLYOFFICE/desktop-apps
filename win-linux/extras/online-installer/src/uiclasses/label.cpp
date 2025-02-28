@@ -6,7 +6,7 @@
 Label::Label(Widget *parent) :
     Widget(parent, ObjectType::WidgetType),
     m_hIcon(nullptr),
-    m_hMetaFile(nullptr),
+    m_hEmfBmp(nullptr),
     m_hBmp(nullptr),
     m_multiline(false)
 {
@@ -19,10 +19,8 @@ Label::~Label()
         DestroyIcon(m_hIcon);
         m_hIcon = nullptr;
     }
-    if (m_hMetaFile) {
-        //delete m_hMetaFile;
-        DeleteEnhMetaFile(m_hMetaFile);
-        m_hMetaFile = nullptr;
+    if (m_hEmfBmp) {
+        delete m_hEmfBmp, m_hEmfBmp = nullptr;
     }
     if (m_hBmp) {
         delete m_hBmp, m_hBmp = nullptr;
@@ -63,24 +61,19 @@ void Label::setIcon(int id, int w, int h)
 
 void Label::setEMFIcon(const std::wstring &path, int w, int h)
 {
-    if (m_hMetaFile) {
-        //delete m_hMetaFile;
-        DeleteEnhMetaFile(m_hMetaFile);
-        m_hMetaFile = nullptr;
+    if (m_hEmfBmp) {
+        delete m_hEmfBmp, m_hEmfBmp = nullptr;
     }
     metrics()->setMetrics(Metrics::IconWidth, w);
     metrics()->setMetrics(Metrics::IconHeight, h);
-    m_hMetaFile = GetEnhMetaFile(path.c_str());
-    //m_hMetaFile = new Metafile(path.c_str());
+    m_hEmfBmp = new Gdiplus::Bitmap(path.c_str());
     update();
 }
 
 void Label::setEMFIcon(int id, int w, int h)
 {
-    if (m_hMetaFile) {
-        //delete m_hMetaFile;
-        DeleteEnhMetaFile(m_hMetaFile);
-        m_hMetaFile = nullptr;
+    if (m_hEmfBmp) {
+        delete m_hEmfBmp, m_hEmfBmp = nullptr;
     }
     metrics()->setMetrics(Metrics::IconWidth, w);
     metrics()->setMetrics(Metrics::IconHeight, h);
@@ -89,8 +82,21 @@ void Label::setEMFIcon(int id, int w, int h)
         if (HGLOBAL hResData = LoadResource(hInst, hRes)) {
             if (LPVOID pData = LockResource(hResData)) {
                 DWORD dataSize = SizeofResource(hInst, hRes);
-                if (dataSize > 0)
-                    m_hMetaFile = SetEnhMetaFileBits(dataSize, (BYTE*)pData);
+                if (dataSize > 0) {
+                    if (HGLOBAL hGlobal = GlobalAlloc(GHND, dataSize)) {
+                        if (LPVOID pBuffer = GlobalLock(hGlobal)) {
+                            memcpy(pBuffer, pData, dataSize);
+                            IStream *pStream = nullptr;
+                            HRESULT hr = CreateStreamOnHGlobal(hGlobal, TRUE, &pStream);
+                            if (SUCCEEDED(hr)) {
+                                m_hEmfBmp = new Gdiplus::Bitmap(pStream);
+                                pStream->Release();
+                            }
+                            GlobalUnlock(hGlobal);
+                        }
+                        GlobalFree(hGlobal);
+                    }
+                }
             }
             FreeResource(hResData);
         }
@@ -155,10 +161,10 @@ bool Label::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
             engine()->DrawImage(m_hBmp);
         if (m_hIcon)
             engine()->DrawIcon(m_hIcon);
-        if (m_hMetaFile)
-            engine()->DrawEmfIcon(m_hMetaFile);
+        if (m_hEmfBmp)
+            engine()->DrawEmfIcon(m_hEmfBmp);
         if (!m_text.empty())
-            engine()->DrawText(rc, m_text, m_multiline);
+            engine()->DrawText(rc, m_text, m_hFont, m_multiline);
 
         engine()->End();
 

@@ -308,7 +308,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             GET_REGISTRY_USER(reg_user)
             if (reg_user.value("lockPortals", false).toBool()
 #ifdef Q_OS_WIN
-                    || !IsWindowsVistaOrGreater()
+                    || Utils::getWinVersion() <= Utils::WinVer::WinVista
 #endif
             )
                 sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
@@ -926,6 +926,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 open_opts.srctype = etNewFile;
                 open_opts.format = arg.rfind(L"cell") != wstring::npos ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                                     arg.rfind(L"slide") != wstring::npos ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX :
+                                    // arg.rfind(L"draw") != wstring::npos ? AVS_OFFICESTUDIO_FILE_DRAW_VSDX :
                                     arg.rfind(L"form") != wstring::npos ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
                             /*if ( line.rfind(L"word") != wstring::npos )*/ AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
 
@@ -1006,7 +1007,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         if ( open_in_new_window ) {
             bool isMaximized = false;
-            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts.wurl);
+            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts);
             open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, true);
             open_opts.parent_widget = COpenOptions::eWidgetType::window;
             if (CEditorWindow * editor_win = CEditorWindow::create(_start_rect, open_opts)) {
@@ -1021,7 +1022,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         } else {
             if ( !_app.m_pMainWindow ) {
                 _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-                _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+                _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
             } else
             if (!_app.m_pMainWindow->isVisible())
                 _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
@@ -1041,7 +1042,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     if ( !list_failed.empty() && !open_in_new_window ) {
         if ( !_app.m_pMainWindow ) {
             _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-            _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+            _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
         }
 
         for ( auto & o : list_failed ) {
@@ -1094,6 +1095,22 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 #ifdef _WIN32
     Association::instance().chekForAssociations(uid);
 #endif
+
+    if (uid > -1 && printData().printerCapabilitiesReady())
+        AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+
+    static bool check_printers = false;
+    if (!check_printers) {
+        check_printers = true;
+
+        printData().queryPrinterCapabilitiesAsync([=](const QString &json) {
+            // qDebug().noquote() << json;
+            for (int _uid : GetViewsId()) {
+                if (_uid > -1)
+                    AscAppManager::sendCommandTo(GetViewById(_uid), L"printer:config", json.toStdWString());
+            }
+        });
+    }
 }
 
 void CAscApplicationManagerWrapper::startApp()
@@ -1102,7 +1119,7 @@ void CAscApplicationManagerWrapper::startApp()
     GET_REGISTRY_USER(reg_user)
 
 //    QRect _start_rect = reg_user.value("position").toRect();
-    bool _is_maximized = reg_user.value("maximized", false).toBool();
+    bool _is_maximized = reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool();
 
 #if 0
     CMainWindow * _window = createMainWindow(_start_rect);
@@ -1387,7 +1404,7 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
         }
 
         _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-        _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+        _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
     }
 
     if ( !_app.m_pMainWindow->isVisible() )
@@ -2253,6 +2270,7 @@ QString CAscApplicationManagerWrapper::newFileName(const std::wstring& format)
     int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
                  format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                  format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                 // format == L"draw" ? AVS_OFFICESTUDIO_FILE_DRAW_VSDX :
                  format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
     return newFileName(_f);

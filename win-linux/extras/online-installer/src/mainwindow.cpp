@@ -20,13 +20,12 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#define _TR(str) Translator::tr(str).c_str()
-
 
 template <class T>
 static void setSelectorStyle(T *sel) // style for CheckBox and RadioButton
 {
     sel->metrics()->setMetrics(Metrics::TextMarginLeft, 6);
+    sel->metrics()->setMetrics(Metrics::TextMarginRight, 6);
     sel->metrics()->setMetrics(Metrics::PrimitiveRadius, 1);
     sel->metrics()->setMetrics(Metrics::AlternatePrimitiveWidth, 2);
     sel->palette()->setColor(Palette::Text, Palette::Disabled, 0x888888);
@@ -89,7 +88,7 @@ MainWindow::MainWindow(Widget *parent, const Rect &rc) :
     m_bar(nullptr),
     m_launchCheck(nullptr),
     m_updRadio(nullptr),
-    m_repRadio(nullptr),
+    // m_repRadio(nullptr),
     m_uninsRadio(nullptr),
     m_cancelBtn(nullptr),
     m_mode(Mode::Install),
@@ -177,11 +176,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::initInstallationMode(const std::wstring &url)
 {
+    m_is_checked = true;
     m_mode = Mode::Install;
     /* Image section*/
     Label *wlcLbl = new Label(m_cenPanel);
     wlcLbl->resize(282, 200);
-    wlcLbl->setImage(IDI_WELCOME, 282, 200);
+    wlcLbl->setEMFIcon(IDI_WELCOME, 282, 200);
     wlcLbl->palette()->setColor(Palette::Background, Palette::Normal, 0xfefefe);
     wlcLbl->setProperty(Widget::HSizeBehavior, Widget::Expanding);
     wlcLbl->setProperty(Widget::VSizeBehavior, Widget::Fixed);
@@ -189,15 +189,19 @@ void MainWindow::initInstallationMode(const std::wstring &url)
 
     /* Check box section*/
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_SILENT));
-    chkBox->setGeometry(m_cenPanel->size().width/2 - 43, 254, 180, 16);
+    chkBox->setChecked(m_is_checked);
     setSelectorStyle(chkBox);
+    chkBox->adjustSizeBasedOnContent();
+    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
 
     /* Comment section */
+    wstring warn_text = _TR(LABEL_WARN_CLOSE);
+    NS_Utils::Replace(warn_text, L"%1", _T(WINDOW_NAME));
     Label *comntLbl = new Label(m_cenPanel);
-    comntLbl->setText(_TR(LABEL_WARN_CLOSE), true);
+    comntLbl->setText(warn_text, true);
     comntLbl->setGeometry(0, m_cenPanel->size().height - 130, m_cenPanel->size().width, 48);
     setLabelStyle(comntLbl);
 
@@ -215,7 +219,7 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     });
 
     m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, instlBtn](int w, int h) {
-        chkBox->setGeometry(w/2 - 43, 254, 180, 16);
+        chkBox->move(w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         instlBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
@@ -302,12 +306,13 @@ void MainWindow::startInstall(const std::wstring &url)
             } else {
                 hide();
             }
-            if (!NS_File::runProcess(path, args)) {
+            DWORD status = NS_File::runProcess(path, args);
+            if (status != 0) {
                 if (!m_is_checked)
                     show();
                 m_bar->pulse(false);
                 m_bar->setProgress(0);
-                m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
+                m_comntInfoLbl->setText((status & ERROR_LAUNCH) ? _TR(LABEL_ERR_RUNNING) : _TR(LABEL_ERR_COMMON) + wstring(L" ") + std::to_wstring(status), true);
             } else {
                 if (m_is_checked) {
                     wstring app_path;
@@ -332,10 +337,12 @@ void MainWindow::startInstall(const std::wstring &url)
 void MainWindow::finishInstall(const std::wstring &app_path)
 {
     /* Check box section*/
-    m_is_checked = false;
+    m_is_checked = true;
     CheckBox *chkBox = new CheckBox(m_cenPanel, _TR(CHECK_LAUNCH));
-    chkBox->setGeometry(m_cenPanel->size().width/2 - 43, 254, 180, 16);
+    chkBox->setChecked(m_is_checked);
     setSelectorStyle(chkBox);
+    chkBox->adjustSizeBasedOnContent();
+    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -355,12 +362,12 @@ void MainWindow::finishInstall(const std::wstring &app_path)
     setButtonStyle(closeBtn);
     closeBtn->onClick([=]() {
         if (m_is_checked)
-            NS_File::runProcess(app_path + _T(APP_LAUNCH_NAME), L"", false);
+            NS_File::runProcess(L"explorer.exe", app_path + _T(APP_LAUNCH_NAME), false);
         close();
     });
 
     m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, closeBtn](int w, int h) {
-        chkBox->setGeometry(w/2 - 43, 254, 180, 16);
+        chkBox->move(w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         closeBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
@@ -371,46 +378,20 @@ void MainWindow::finishInstall(const std::wstring &app_path)
 
 void MainWindow::startUpdate()
 {
-    wstring tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
-    wstring url = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
-    wstring url_filename = L"DesktopEditors_" + m_arch;
-    url_filename.append(L"." + m_package);
-    NS_Utils::Replace(url, _T("<file>"), url_filename);
-
-    CDownloader *dnl = startDownload(url, tmp_path, [=]() {
-            m_bar->pulse(true);
-            wstring args = L"/c \"" + tmp_path;
-            args += (m_package == L"msi") ? L" /qn\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
-            if (!NS_File::runProcess(L"cmd", args, true)) {
-                m_bar->pulse(false);
-                m_bar->setProgress(0);
-                m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
-            } else {
-                m_bar->pulse(false);
-                m_bar->setProgress(100);
-                m_comntLbl->setText(_TR(LABEL_UPDATE_COMPL));
-                m_versionLbl->setText(fillInstalledVerInfo());
-                m_is_completed = true;
-            }
-        });
-
-    m_cancelBtn->onClick([=]() {
-        dnl->stop();
-    });
-}
-
-void MainWindow::startRepair()
-{
     wstring tmp_path;
     if (m_package == L"msi") {
-        wstring prodCode = NS_Utils::MsiProductCode(_T(WINDOW_NAME));
+        wstring prodCode = NS_Utils::MsiProductCode(_T(REG_UNINST_KEY));
+        if (prodCode.empty())
+            prodCode = NS_Utils::MsiProductCode(_T(REG_GROUP_KEY));
         if (prodCode.empty()) {
             m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
+            createCloseAndBackButtons();
             return;
         }
         wstring packageName =  NS_Utils::MsiGetProperty(prodCode.c_str(), INSTALLPROPERTY_PACKAGENAME);
         if (packageName.empty()) {
             m_comntInfoLbl->setText(_TR(LABEL_ERR_PACK_NAME), true);
+            createCloseAndBackButtons();
             return;
         }
         tmp_path = NS_File::toNativeSeparators(NS_File::tempPath() + _T("/") + packageName);
@@ -418,32 +399,25 @@ void MainWindow::startRepair()
         tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
     }
 
-    wstring url = L"https://github.com/%1/%2/releases/download/%3/%4";
-    {
-        wstring url_filename = L"DesktopEditors_" + m_arch;
-        url_filename.append(L"." + m_package);
-
-        wstring url_ver = L"v" + m_ver;
-        size_t pos = url_ver.find_last_of(L'.');
-        if (pos != std::wstring::npos)
-            url_ver = url_ver.substr(0, pos);
-
-        NS_Utils::Replace(url, L"%1", _T(REG_GROUP_KEY));
-        NS_Utils::Replace(url, L"%2", _T(APP_NAME));
-        NS_Utils::Replace(url, L"%3", url_ver);
-        NS_Utils::Replace(url, L"%4", url_filename);
-    }
+    wstring url = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
+    wstring url_filename = L"DesktopEditors_" + m_arch;
+    url_filename.append(L"." + m_package);
+    NS_Utils::Replace(url, _T("<file>"), url_filename);
 
     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
+            if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle())) {
+                m_bar->setProgress(0);
+                m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
+                return;
+            }
             m_bar->pulse(true);
-            wstring cmd = (m_package == L"msi") ? L"msiexec" : L"cmd",
-                args = (m_package == L"msi") ? L"/fvamus \"" : L"/c \"";
-                args += tmp_path;
-                args += (m_package == L"msi") ? L"\" /qn" : L" /VERYSILENT\"";
-            if (!NS_File::runProcess(cmd, args, true)) {
+            wstring args = L"/c \"" + tmp_path;
+            args += (m_package == L"msi") ? L" /qn /norestart\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
+            DWORD status = NS_File::runProcess(L"cmd", args, true);
+            if (status != 0) {
                 m_bar->pulse(false);
                 m_bar->setProgress(0);
-                m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
+                m_comntInfoLbl->setText((status & ERROR_LAUNCH) ? _TR(LABEL_ERR_RUNNING) : _TR(LABEL_ERR_COMMON) + wstring(L" ") + std::to_wstring(status), true);
             } else {
                 if (m_checkState & ClrDataCheck) {
                     wstring dataPath = NS_File::appDataPath();
@@ -457,7 +431,8 @@ void MainWindow::startRepair()
                 }
                 m_bar->pulse(false);
                 m_bar->setProgress(100);
-                m_comntLbl->setText(_TR(LABEL_REPAIR_COMPL));
+                m_comntLbl->setText(_TR(LABEL_UPDATE_COMPL));
+                m_versionLbl->setText(fillInstalledVerInfo());
                 m_is_completed = true;
             }
         });
@@ -467,14 +442,99 @@ void MainWindow::startRepair()
     });
 }
 
+// void MainWindow::startRepair()
+// {
+//     wstring tmp_path;
+//     if (m_package == L"msi") {
+//         wstring prodCode = NS_Utils::MsiProductCode(_T(REG_UNINST_KEY));
+//         if (prodCode.empty())
+//             prodCode = NS_Utils::MsiProductCode(_T(REG_GROUP_KEY));
+//         if (prodCode.empty()) {
+//             m_comntInfoLbl->setText(_TR(LABEL_ERR_PROD_CODE), true);
+//             createCloseAndBackButtons();
+//             return;
+//         }
+//         wstring packageName =  NS_Utils::MsiGetProperty(prodCode.c_str(), INSTALLPROPERTY_PACKAGENAME);
+//         if (packageName.empty()) {
+//             m_comntInfoLbl->setText(_TR(LABEL_ERR_PACK_NAME), true);
+//             createCloseAndBackButtons();
+//             return;
+//         }
+//         tmp_path = NS_File::toNativeSeparators(NS_File::tempPath() + _T("/") + packageName);
+//     } else {
+//         tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
+//     }
+
+//     wstring url = L"https://github.com/%1/%2/releases/download/%3/%4";
+//     {
+//         wstring url_filename = L"DesktopEditors_" + m_arch;
+//         url_filename.append(L"." + m_package);
+
+//         wstring url_ver = L"v" + m_ver;
+//         size_t pos = url_ver.find_last_of(L'.');
+//         if (pos != std::wstring::npos)
+//             url_ver = url_ver.substr(0, pos);
+
+//         NS_Utils::Replace(url, L"%1", _T(REG_GROUP_KEY));
+//         NS_Utils::Replace(url, L"%2", _T(APP_NAME));
+//         NS_Utils::Replace(url, L"%3", url_ver);
+//         NS_Utils::Replace(url, L"%4", url_filename);
+//     }
+
+//     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
+//             if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle())) {
+//                 m_bar->setProgress(0);
+//                 m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
+//                 return;
+//             }
+//             m_bar->pulse(true);
+//             wstring cmd = (m_package == L"msi") ? L"msiexec" : L"cmd",
+//                 args = (m_package == L"msi") ? L"/fvamus \"" : L"/c \"";
+//                 args += tmp_path;
+//                 args += (m_package == L"msi") ? L"\" /qn" : L" /VERYSILENT\"";
+//             DWORD status = NS_File::runProcess(cmd, args, true);
+//             if (status != 0) {
+//                 m_bar->pulse(false);
+//                 m_bar->setProgress(0);
+//                 m_comntInfoLbl->setText((status & ERROR_LAUNCH) ? _TR(LABEL_ERR_RUNNING) : _TR(LABEL_ERR_COMMON) + wstring(L" ") + std::to_wstring(status), true);
+//             } else {
+//                 if (m_checkState & ClrDataCheck) {
+//                     wstring dataPath = NS_File::appDataPath();
+//                     if (!dataPath.empty())
+//                         NS_File::removeDirRecursively(dataPath);
+//                 }
+//                 if (m_checkState & ClrStnCheck) {
+//                     wstring key(L"SOFTWARE\\");
+//                     key.append(_T(REG_GROUP_KEY));
+//                     SHDeleteKey(HKEY_CURRENT_USER, key.c_str());
+//                 }
+//                 m_bar->pulse(false);
+//                 m_bar->setProgress(100);
+//                 m_comntLbl->setText(_TR(LABEL_REPAIR_COMPL));
+//                 m_is_completed = true;
+//             }
+//         });
+
+//     m_cancelBtn->onClick([=]() {
+//         dnl->stop();
+//     });
+// }
+
 void MainWindow::startUninstall()
 {
     m_cancelBtn->setDisabled(true);
+    if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle())) {
+        m_bar->setProgress(0);
+        m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
+        createCloseAndBackButtons();
+        return;
+    }
     m_bar->pulse(true);
     wstring args = L"/c \"" + m_uninst_cmd;
     args += (m_package == L"msi") ? L" /qn\"" : L" /VERYSILENT\"";
     m_future = std::async(std::launch::async, [=]() {
-        if (!NS_File::runProcess(L"cmd", args, true)) {
+        DWORD status = NS_File::runProcess(L"cmd", args, true);
+        if (status != 0) {
             m_bar->pulse(false);
             m_bar->setProgress(0);
             m_comntInfoLbl->setText(_TR(LABEL_ERR_UNINST));
@@ -503,19 +563,21 @@ void MainWindow::createSelectionPage()
     m_is_completed = false;
     /* Check box section*/
     CheckBox *clrChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_DATA));
-    clrChkBox->setDisabled(!(m_checkState & RepairRadio));
+    clrChkBox->setDisabled(!(m_checkState & UpdateRadio));
     clrChkBox->setChecked(m_checkState & ClrDataCheck);
-    clrChkBox->setGeometry(79, 114, 450, 18);
     setSelectorStyle(clrChkBox);
+    clrChkBox->adjustSizeBasedOnContent();
+    clrChkBox->move(79, 80);
     clrChkBox->onClick([=]() {
         m_checkState = (m_checkState & ~ClrDataCheck) | (clrChkBox->isChecked() * ClrDataCheck);
     });
 
     CheckBox *stnChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_STNGS));
-    stnChkBox->setDisabled(!(m_checkState & RepairRadio));
+    stnChkBox->setDisabled(!(m_checkState & UpdateRadio));
     stnChkBox->setChecked(m_checkState & ClrStnCheck);
-    stnChkBox->setGeometry(79, 146, 450, 18);
     setSelectorStyle(stnChkBox);
+    stnChkBox->adjustSizeBasedOnContent();
+    stnChkBox->move(79, 112);
     stnChkBox->onClick([stnChkBox, this]() {
         m_checkState = (m_checkState & ~ClrStnCheck) | (stnChkBox->isChecked() * ClrStnCheck);
     });
@@ -523,8 +585,9 @@ void MainWindow::createSelectionPage()
     CheckBox *clrAllChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_ALL));
     clrAllChkBox->setDisabled(!(m_checkState & UninstRadio));
     clrAllChkBox->setChecked(m_checkState & ClrAllCheck);
-    clrAllChkBox->setGeometry(79, 216, 450, 18);
     setSelectorStyle(clrAllChkBox);
+    clrAllChkBox->adjustSizeBasedOnContent();
+    clrAllChkBox->move(79, 182);
     clrAllChkBox->onClick([clrAllChkBox, this]() {
         m_checkState = (m_checkState & ~ClrAllCheck) | (clrAllChkBox->isChecked() * ClrAllCheck);
     });
@@ -532,46 +595,49 @@ void MainWindow::createSelectionPage()
     /* Update radio button section*/
     m_updRadio = new RadioButton(m_cenPanel, _TR(RADIO_UPDATE));
     m_updRadio->setChecked(m_checkState & UpdateRadio);
-    m_updRadio->setGeometry(50, 48, 128, 18);
     setSelectorStyle(m_updRadio);
+    m_updRadio->adjustSizeBasedOnContent();
+    m_updRadio->move(50, 48);
     m_updRadio->onClick([=]() {
-        clrChkBox->setDisabled(true);
-        stnChkBox->setDisabled(true);
+        clrChkBox->setDisabled(false);
+        stnChkBox->setDisabled(false);
         clrAllChkBox->setDisabled(true);
-        if (m_repRadio->isChecked())
-            m_repRadio->setChecked(false);
+        // if (m_repRadio->isChecked())
+        //     m_repRadio->setChecked(false);
         if (m_uninsRadio->isChecked())
             m_uninsRadio->setChecked(false);
         m_checkState = (m_checkState | UpdateRadio) & ~(RepairRadio | UninstRadio);
     });
 
     /* Repair radio button section*/
-    m_repRadio = new RadioButton(m_cenPanel, _TR(RADIO_REPAIR));
-    m_repRadio->setChecked(m_checkState & RepairRadio);
-    m_repRadio->setGeometry(50, 82, 128, 18);
-    setSelectorStyle(m_repRadio);
-    m_repRadio->onClick([=]() {
-        clrChkBox->setDisabled(false);
-        stnChkBox->setDisabled(false);
-        clrAllChkBox->setDisabled(true);
-        if (m_updRadio->isChecked())
-            m_updRadio->setChecked(false);
-        if (m_uninsRadio->isChecked())
-            m_uninsRadio->setChecked(false);
-        m_checkState = (m_checkState | RepairRadio) & ~(UninstRadio | UpdateRadio);
-    });
+    // m_repRadio = new RadioButton(m_cenPanel, _TR(RADIO_REPAIR));
+    // m_repRadio->setChecked(m_checkState & RepairRadio);
+    // setSelectorStyle(m_repRadio);
+    // m_repRadio->adjustSizeBasedOnContent();
+    // m_repRadio->move(50, 82);
+    // m_repRadio->onClick([=]() {
+    //     clrChkBox->setDisabled(false);
+    //     stnChkBox->setDisabled(false);
+    //     clrAllChkBox->setDisabled(true);
+    //     if (m_updRadio->isChecked())
+    //         m_updRadio->setChecked(false);
+    //     if (m_uninsRadio->isChecked())
+    //         m_uninsRadio->setChecked(false);
+    //     m_checkState = (m_checkState | RepairRadio) & ~(UninstRadio | UpdateRadio);
+    // });
 
     /* Uninstall radio button section*/
     m_uninsRadio = new RadioButton(m_cenPanel, _TR(RADIO_UNINST));
     m_uninsRadio->setChecked(m_checkState & UninstRadio);
-    m_uninsRadio->setGeometry(50, 184, 128, 18);
     setSelectorStyle(m_uninsRadio);
+    m_uninsRadio->adjustSizeBasedOnContent();
+    m_uninsRadio->move(50, 150);
     m_uninsRadio->onClick([=]() {
         clrChkBox->setDisabled(true);
         stnChkBox->setDisabled(true);
         clrAllChkBox->setDisabled(false);
-        if (m_repRadio->isChecked())
-            m_repRadio->setChecked(false);
+        // if (m_repRadio->isChecked())
+        //     m_repRadio->setChecked(false);
         if (m_updRadio->isChecked())
             m_updRadio->setChecked(false);
         m_checkState = (m_checkState | UninstRadio) & ~(UpdateRadio | RepairRadio);
@@ -583,25 +649,28 @@ void MainWindow::createSelectionPage()
     applyBtn->setGeometry(m_cenPanel->size().width - 100 - 12, m_cenPanel->size().height - 28 - 12, 100, 28);
     setButtonStyle(applyBtn);
     applyBtn->onClick([=]() {
-        wstring msg = m_uninsRadio->isChecked() ? _TR(MSG_REMOVE) : m_repRadio->isChecked() ? _TR(MSG_REPAIR) : _TR(MSG_UPDATE);
+        wstring msg = m_uninsRadio->isChecked() ? _TR(MSG_REMOVE) : /*m_repRadio->isChecked() ? _TR(MSG_REPAIR) :*/ _TR(MSG_UPDATE);
         NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
-        if (IDOK == MessageBox(nativeWindowHandle(), msg.c_str(), _TR(CAPTION), MB_ICONWARNING | MB_OKCANCEL | MB_DEFBUTTON2)) {
+        if (IDOK == NS_Utils::ShowTaskDialog(nativeWindowHandle(), msg.c_str(), TD_WARNING_ICON)) {
+            if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle()))
+                return;
             m_cenPanel->disconnect(m_resize_conn);
             m_updRadio->close();
-            m_repRadio->close();
+            // m_repRadio->close();
             clrChkBox->close();
             stnChkBox->close();
             m_uninsRadio->close();
             clrAllChkBox->close();
             applyBtn->close();
-            msg = m_uninsRadio->isChecked() ? _TR(LABEL_UNINSTLING) : m_repRadio->isChecked() ? _TR(LABEL_REPAIRING) : _TR(LABEL_UPDATING);
+            msg = m_uninsRadio->isChecked() ? _TR(LABEL_UNINSTLING) : /*m_repRadio->isChecked() ? _TR(LABEL_REPAIRING) :*/ _TR(LABEL_UPDATING);
             createProgressPage(msg);
-            if (m_updRadio->isChecked() || m_repRadio->isChecked()) {
+            if (m_updRadio->isChecked() /*|| m_repRadio->isChecked()*/) {
                 /* Check box section*/
                 m_launchCheck = new CheckBox(m_cenPanel, _TR(CHECK_LAUNCH));
                 m_launchCheck->setChecked(m_checkState & LaunchCheck);
-                m_launchCheck->setGeometry(42, 100, 450, 18);
                 setSelectorStyle(m_launchCheck);
+                m_launchCheck->adjustSizeBasedOnContent();
+                m_launchCheck->move(42, 100);
                 m_launchCheck->onClick([this]() {
                     m_checkState = (m_checkState & ~LaunchCheck) | (m_launchCheck->isChecked() * LaunchCheck);
                 });
@@ -609,9 +678,9 @@ void MainWindow::createSelectionPage()
             if (m_uninsRadio->isChecked())
                 startUninstall();
             else
-            if (m_repRadio->isChecked())
-                startRepair();
-            else
+            // if (m_repRadio->isChecked())
+            //     startRepair();
+            // else
                 startUpdate();
         }
     });
@@ -619,7 +688,7 @@ void MainWindow::createSelectionPage()
         applyBtn->setGeometry(w - 100 - 12, h - 28 - 12, 100, 28);
     });
     m_updRadio->show();
-    m_repRadio->show();
+    // m_repRadio->show();
     clrChkBox->show();
     stnChkBox->show();
     m_uninsRadio->show();
@@ -704,7 +773,7 @@ void MainWindow::createCloseAndBackButtons()
             if (m_launchCheck && m_is_completed && (m_checkState & LaunchCheck)) {
                 wstring app_path;
                 if (NS_Utils::IsAppInstalled(app_path))
-                    NS_File::runProcess(app_path + _T(APP_LAUNCH_NAME), L"", false);
+                    NS_File::runProcess(L"explorer.exe", app_path + _T(APP_LAUNCH_NAME), false);
             }
             close();
         });

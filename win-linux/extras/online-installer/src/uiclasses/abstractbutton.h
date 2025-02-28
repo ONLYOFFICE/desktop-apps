@@ -12,6 +12,7 @@ public:
     virtual ~AbstractButton();
 
     void setText(const std::wstring &text);
+    void adjustSizeBasedOnContent();
 
     /* callback */
     int onClick(const FnVoidVoid &callback);

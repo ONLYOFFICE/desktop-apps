@@ -122,44 +122,22 @@ static GtkPageRange *get_page_ranges(GtkEntry *entry, gint *num_ranges)
     return NULL;
 }
 
-auto gtkPaperNameFromPageSize(PageSize page_size)->QString
+auto gtkPaperNameFromPageSize(const QSizeF &size)->QString
 {
-    switch (page_size) {
-    case PageSize::A0:
-        return "iso_a0";
-    case PageSize::A1:
-        return "iso_a1";
-    case PageSize::A2:
-        return "iso_a2";
-    case PageSize::A3:
-        return "iso_a3";
-    case PageSize::A4:
-        return "iso_a4";
-    case PageSize::A5:
-        return "iso_a5";
-    case PageSize::A6:
-        return "iso_a6";
-    case PageSize::B5:
-        return "ppd_EnvB5"; // "iso_b5" - not working
-    case PageSize::Tabloid:
-        return "na_ledger";
-    case PageSize::EnvelopeDL:
-        return "iso_dl";
-    case PageSize::Comm10E:
-        return "na_number-10";
-    case PageSize::SuperB:
-        return "na_super-b";
-//    case PageSize::TabloidExtra:
-//        return "na_ledger";
-    case PageSize::Letter:
-        return "na_letter";
-    case PageSize::Legal:
-        return "na_legal";
-    case PageSize::EnvelopeChou3:
-        return "jpn_chou3";
-    default:
-        return QPageSize::name((QPageSize::PageSizeId)page_size);
+    QString gtkPaperName;
+    constexpr double diff = 1.0;
+    GList *paper_sizes = gtk_paper_size_get_paper_sizes(FALSE);
+    for (GList *it = paper_sizes; it != nullptr; it = it->next) {
+        GtkPaperSize *psize = (GtkPaperSize*)it->data;
+        double width = gtk_paper_size_get_width(psize, GTK_UNIT_MM);
+        double height = gtk_paper_size_get_height(psize, GTK_UNIT_MM);
+        if (std::abs(size.width() - width) < diff && std::abs(size.height() - height) < diff) {
+            gtkPaperName = gtk_paper_size_get_name(psize);
+            break;
+        }
     }
+    g_list_free_full(paper_sizes, (GDestroyNotify)gtk_paper_size_free);
+    return gtkPaperName;
 }
 
 GtkPrintDialog::GtkPrintDialog(QPrinter *printer, QWidget *parent) :
@@ -345,8 +323,8 @@ QDialog::DialogCode GtkPrintDialog::exec()
         gtk_page_setup_set_bottom_margin(page_setup, bottom_in, unit);
 
         QPageSize ps = m_printer->pageLayout().pageSize();
-        QSize page_size = ps.size(QPageSize::Millimeter).toSize();
-        const QString paper_name = gtkPaperNameFromPageSize(m_printer->pageSize());
+        QSizeF page_size = ps.size(QPageSize::Millimeter);
+        const QString paper_name = gtkPaperNameFromPageSize(page_size);
         GtkPaperSize *psize = gtk_paper_size_new_custom(
                     paper_name.toUtf8().data(),
                     ps.name().toUtf8().data(),

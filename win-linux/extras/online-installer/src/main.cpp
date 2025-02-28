@@ -3,11 +3,11 @@
 #include <locale>
 #include "resource.h"
 #include "utils.h"
+#include "baseutils.h"
 #include "translator.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#define _TR(str) Translator::tr(str).c_str()
 #define WINDOW_SIZE Size(768, 480)
 
 
@@ -31,10 +31,16 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
         return 0;
     }
 
-    if (HWND hWnd = FindWindow(WINDOW_CLASS_NAME, NULL)) {
-        wstring msg(_TR(MSG_ERR_CLOSE_APP));
-        NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
+    if (Utils::getWinVersion() < Utils::Win7) {
+        wstring msg(_TR(MSG_ERR_SYSTEM));
+        NS_Utils::Replace(msg, L"%1", _TR(CAPTION));
         NS_Utils::ShowMessage(msg);
+        CloseHandle(hMutex);
+        return 0;
+    }
+
+    if (!NS_Utils::checkAndWaitForAppClosure()) {
+        CloseHandle(hMutex);
         return 0;
     }
 
@@ -49,6 +55,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
     }
 
     Application app(hInst, lpCmdLine, nCmdShow);
+    app.setFont(L"Segoe UI");
     if (NS_Utils::IsRtlLanguage(lcid))
         app.setLayoutDirection(LayoutDirection::RightToLeft);
     int scrWidth = GetSystemMetrics(SM_CXSCREEN);

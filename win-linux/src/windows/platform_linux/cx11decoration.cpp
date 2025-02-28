@@ -466,6 +466,7 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
                 XcbUtils::sendNativeFocusTo(wnd, 1);
 #endif
                 QApplication::postEvent(m_window, new QEvent(static_cast<QEvent::Type>(UM_ENDMOVE)));
+                m_window->activateWindow();
 //                QTimer::singleShot(25, [=]() {
 //                    if (m_window->size() == m_startSize)
 //                        QApplication::postEvent(m_window, new QEvent(QEvent::User));

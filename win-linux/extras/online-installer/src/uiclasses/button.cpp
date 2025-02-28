@@ -15,7 +15,7 @@ static bool isArrangingAllowed() {
 Button::Button(Widget *parent, const std::wstring &text) :
     AbstractButton(parent, text),
     m_hIcon(nullptr),
-    m_hMetaFile(nullptr),
+    m_hEmfBmp(nullptr),
     m_stockIcon(StockIcon::None),
     supportSnapLayouts(false),
     snapLayoutAllowed(false),
@@ -30,10 +30,8 @@ Button::~Button()
         DestroyIcon(m_hIcon);
         m_hIcon = nullptr;
     }
-    if (m_hMetaFile) {
-        //delete m_hMetaFile;
-        DeleteEnhMetaFile(m_hMetaFile);
-        m_hMetaFile = nullptr;
+    if (m_hEmfBmp) {
+        delete m_hEmfBmp, m_hEmfBmp = nullptr;
     }
 }
 
@@ -64,24 +62,19 @@ void Button::setIcon(int id, int w, int h)
 
 void Button::setEMFIcon(const std::wstring &path, int w, int h)
 {
-    if (m_hMetaFile) {
-        //delete m_hMetaFile;
-        DeleteEnhMetaFile(m_hMetaFile);
-        m_hMetaFile = nullptr;
+    if (m_hEmfBmp) {
+        delete m_hEmfBmp, m_hEmfBmp = nullptr;
     }
     metrics()->setMetrics(Metrics::IconWidth, w);
     metrics()->setMetrics(Metrics::IconHeight, h);
-    m_hMetaFile = GetEnhMetaFile(path.c_str());
-    //m_hMetaFile = new Metafile(path.c_str());
+    m_hEmfBmp = new Gdiplus::Bitmap(path.c_str());
     update();
 }
 
 void Button::setEMFIcon(int id, int w, int h)
 {
-    if (m_hMetaFile) {
-        //delete m_hMetaFile;
-        DeleteEnhMetaFile(m_hMetaFile);
-        m_hMetaFile = nullptr;
+    if (m_hEmfBmp) {
+        delete m_hEmfBmp, m_hEmfBmp = nullptr;
     }
     metrics()->setMetrics(Metrics::IconWidth, w);
     metrics()->setMetrics(Metrics::IconHeight, h);
@@ -90,8 +83,21 @@ void Button::setEMFIcon(int id, int w, int h)
         if (HGLOBAL hResData = LoadResource(hInst, hRes)) {
             if (LPVOID pData = LockResource(hResData)) {
                 DWORD dataSize = SizeofResource(hInst, hRes);
-                if (dataSize > 0)
-                    m_hMetaFile = SetEnhMetaFileBits(dataSize, (BYTE*)pData);
+                if (dataSize > 0) {
+                    if (HGLOBAL hGlobal = GlobalAlloc(GHND, dataSize)) {
+                        if (LPVOID pBuffer = GlobalLock(hGlobal)) {
+                            memcpy(pBuffer, pData, dataSize);
+                            IStream *pStream = nullptr;
+                            HRESULT hr = CreateStreamOnHGlobal(hGlobal, TRUE, &pStream);
+                            if (SUCCEEDED(hr)) {
+                                m_hEmfBmp = new Gdiplus::Bitmap(pStream);
+                                pStream->Release();
+                            }
+                            GlobalUnlock(hGlobal);
+                        }
+                        GlobalFree(hGlobal);
+                    }
+                }
             }
             FreeResource(hResData);
         }
@@ -134,10 +140,10 @@ bool Button::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
             engine()->DrawBorder();
         if (m_hIcon)
             engine()->DrawIcon(m_hIcon);
-        if (m_hMetaFile)
-            engine()->DrawEmfIcon(m_hMetaFile);
+        if (m_hEmfBmp)
+            engine()->DrawEmfIcon(m_hEmfBmp);
         if (!m_text.empty())
-            engine()->DrawText(rc, m_text);
+            engine()->DrawText(rc, m_text, m_hFont);
 
         if (m_stockIcon == StockIcon::CloseIcon)
             engine()->DrawStockCloseIcon();

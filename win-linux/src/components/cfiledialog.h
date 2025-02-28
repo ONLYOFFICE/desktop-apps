@@ -71,6 +71,7 @@ private:
     QString getFilter(const QString&) const;
     int getKey(const QString &value);
 //    QString joinFilters() const;
+    void checkForMimeTypes(QStringList &files, const QString &type);
     QString joinExtentions(const QString&) const;
     QString m_title;
     QString m_filters;

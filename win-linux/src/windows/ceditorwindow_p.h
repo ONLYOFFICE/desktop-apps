@@ -68,11 +68,13 @@ using namespace NSNetwork::NSFileTransport;
 auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     std::wstring c;
     switch (type) {
-    default: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
+    default: c = theme.value(CTheme::ColorRole::ecrWindowBackground); break;
     case AscEditorType::etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
     case AscEditorType::etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
     case AscEditorType::etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
+    case AscEditorType::etDocumentMasterForm:
     case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
+    case AscEditorType::etDraw: c = theme.value(CTheme::ColorRole::ecrTabDrawActive); break;
     }
     QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
 #ifdef __linux__
@@ -81,23 +83,25 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     return g_css.arg(QString::fromStdWString(c), GetColorQValueByRole(ecrTextNormal), GetColorQValueByRole(ecrTextPretty));
 }
 
-auto editor_color(AscEditorType type) -> QColor {
-    switch (type) {
-    case AscEditorType::etDocument: return GetColorByRole(ecrTabWordActive);
-    case AscEditorType::etPresentation: return GetColorByRole(ecrTabSlideActive);
-    case AscEditorType::etSpreadsheet: return GetColorByRole(ecrTabCellActive);
-    case AscEditorType::etPdf: return GetColorByRole(ecrTabViewerActive);
-    default: return GetColorByRole(ecrTabWordActive);
-    }
-}
+// auto editor_color(AscEditorType type) -> QColor {
+//     switch (type) {
+//     case AscEditorType::etDocument: return GetColorByRole(ecrTabWordActive);
+//     case AscEditorType::etPresentation: return GetColorByRole(ecrTabSlideActive);
+//     case AscEditorType::etSpreadsheet: return GetColorByRole(ecrTabCellActive);
+//     case AscEditorType::etPdf: return GetColorByRole(ecrTabViewerActive);
+//     case AscEditorType::etDraw: return GetColorByRole(ecrTabDrawActive);
+//     default: return GetColorByRole(ecrTabWordActive);
+//     }
+// }
 
 auto rounded_pixmap(const QPixmap &px, int size) -> QPixmap {
-    int diam = qMin(px.width(), px.height());
+    qreal diam = qMin(px.width(), px.height());
     QPixmap pxm(diam, diam);
     pxm.fill(Qt::transparent);
     QPainter p(&pxm);
+    p.setRenderHint(QPainter::Antialiasing);
     p.setBrush(QBrush(px));
-    p.drawEllipse(0, 0, diam, diam);
+    p.drawEllipse(QRectF(0.5, 0.5, diam - 1.0, diam - 1.0));
     p.end();
     return pxm.scaled(size, size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
@@ -501,8 +505,13 @@ public:
             background = GetColorValueByRole(ecrTabCellActive);
             border = background;
             break;
+        case AscEditorType::etDocumentMasterForm:
         case AscEditorType::etPdf:
             background = GetColorValueByRole(ecrTabViewerActive);
+            border = background;
+            break;
+        case AscEditorType::etDraw:
+            background = GetColorValueByRole(ecrTabDrawActive);
             border = background;
             break;
         default:
@@ -563,7 +572,7 @@ public:
                 window->hide();
             }
         } else {
-            if (!cancel)
+            if (!cancel && window->menu())
                 window->menu()->setSectionEnabled(CMenu::ActionShowInFolder, true);
             AscAppManager::cancelClose();
         }

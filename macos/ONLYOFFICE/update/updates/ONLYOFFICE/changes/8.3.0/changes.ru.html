@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>История изменений ONLYOFFICE</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 8.1.0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 8.3.0<span class="releasedate"> - {{DATE}}</span></h1>
+
+        <h2>New Features</h2>
+
+        <h4>All Editors</h4>
+        <ul>
+            <li>Added support for logical operations on shapes (unite, combine, fragment, intersect, subtract)</li>
+            <li>Added the <code>Opacity</code> option for images</li>
+            <li>Added the ability to reset Crop for images in the right panel and context menu</li>
+            <li>Added the interface translation into <code>Albanian</code> (sq-AL, Albanian (Albania))</li>
+            <li>Added new languages to the list of exceptions for text <code>AutoCorrect</code></li>
+            <li>Blocking dialogs that require the editor restart are replaced with notifications</li>
+            <li>Connection status notifications are moved from the status bar to the top of the editor</li>
+            <li>The <code>RTL Interface</code> option is hidden in the settings and automatically applied when selecting the corresponding language from the list</li>
+            <li>Added the context menu for documents in tabs and separate windows (Windows, Linux)</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Implemented support for `customXml` and `dataBinding`, when the content of the content control is binded to an element in a custom xml</li>
+            <li>When editing protected documents, the tools available for the selected part are activated</li>
+            <li>Added the ability to change the main direction of the paragraph</li>
+            <li>Add the support of the <code>HWP</code> and <code>HWPX</code> formats for opening in the editors</li>
+            <li>Added support for opening the <code>Pages</code> (.pages) file format</li>
+            <li>Added a setting for character-by-character comparing and merging documents</li>
+            <li>Implemented the ability to edit the complex field instruction in the context of the editor itself</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Added support for opening the <code>Numbers</code> (.numbers) file format</li>
+            <li>Added support for <code>Calculated items</code> for Pivot tables</li>
+            <li>Updated the appearance of the function wizard and argument descriptions</li>
+            <li>Added the weekdays/month/years options when autofilling cells</li>
+            <li>In the Advanced Settings, added the <code>Default sheet direction</code> option when creating a new sheet</li>
+            <li>In the External links window, added the option to automatically update external links</li>
+            <li>Added the feature to automatically detect a separator when opening CSV files</li>
+            <li>Added the ability to undo basic actions when co-editing</li>
+            <li>Added the <code>Show horizontal/vertical scroll bar</code> options to the Advanced Settings</li>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Added support for opening the <code>Keynote</code> (.key) file format</li>
+            <li>The Themes, Colors and Slide size tools are moved from the Home panel to the new <code>Design</code> tab</li>
+            <li>Added the <code>Rename Master/Layout</code> options to the slide context menu of the Slide Master mode</li>
+            <li>Added the <code>Hand/Select</code> buttons for switching the cursor type in the Slideshow mode</li>
+            <li>Added the <code>Start slideshow from the beginning</code> button to the Quick Access toolbar</li>
+            <li>Added the ability to draw on slides in the Slideshow/Presenter View modes</li>
+        </ul>
+        <h4>Forms</h4>
+        <ul>
+            <li>Increased the default size of the fixed text field</li>
+            <li>Changed logic for calculating the top indent for multi-line text fields with small height</li>
+        </ul>
+        <h4>PDF Editor</h4>
+        <ul>
+            <li>Added support for Stamp annotations</li>
+            <li>Improved processing of images cropped using shapes</li>
+            <li>Added support for gradients</li>
+            <li>Improved text recognition</li>
+            <li>Added the function to undo actions in the co-editing mode</li>
+            <li>Added the ability to select several pages on the thumbnail panel using Ctrl/Shift for group actions</li>
+            <li>Added the <code>Opacity</code> option for Highlight/Strikeout/Underline annotations</li>
+            <li>Added a quick panel to change color, add a comment or delete the Highlight/Strikeout/Underline annotation</li>
+        </ul>
+
+    </div>
+</body>
+</html>

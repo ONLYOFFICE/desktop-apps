@@ -1,5 +1,5 @@
 
-QT  += core gui widgets gui-private widgets-private core-private printsupport
+QT  += core gui widgets printsupport
 QT  += svg
 
 TEMPLATE = app
@@ -43,6 +43,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/pt_PT.ts \
                 ./langs/ro.ts \
                 ./langs/sl.ts \
+                ./langs/sq.ts \
                 ./langs/sv.ts \
                 ./langs/tr.ts \
                 ./langs/uk.ts \
@@ -186,7 +187,7 @@ PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 
-ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
 include($$CORE_ROOT_DIR/../desktop-sdk/ChromiumBasedEditors/videoplayerlib/videoplayerlib_deps.pri)
 
 core_linux {
@@ -239,7 +240,7 @@ core_linux {
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb
-    LIBS += -lX11 -lX11-xcb
+    LIBS += -lX11 -lX11-xcb -lcups
 
     cef_version_107 {
         LIBS += $$PWD/../../build_tools/tools/linux/sysroot/ubuntu14/libdbus-1.so.3
@@ -254,6 +255,8 @@ core_linux {
 }
 
 core_windows {
+    QT += printsupport-private
+
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
     CONFIG -= embed_manifest_exe

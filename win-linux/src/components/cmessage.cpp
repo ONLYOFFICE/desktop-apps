@@ -31,6 +31,7 @@
 */
 
 #include "components/cmessage.h"
+#include <QTextDocumentFragment>
 #include <QDialog>
 #include <QPushButton>
 #include <QFormLayout>
@@ -187,6 +188,7 @@ QtMsg::QtMsg(QWidget * p)
 //    m_message->setWordWrap(true);
     m_message->setProperty("class", "msg-report");
     m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(int(8*m_priv->dpiRatio)));
+    m_message->setTextFormat(Qt::PlainText);
 
     QFormLayout * _f_layout = new QFormLayout;
     _f_layout->addWidget(m_message);
@@ -347,7 +349,7 @@ int QtMsg::showMessage(QWidget *parent,
         dlg.setLayoutDirection(Qt::RightToLeft);
 #endif
     }
-    dlg.setText(msg);
+    dlg.setText(QTextDocumentFragment::fromHtml(msg).toPlainText());
     dlg.setIcon(msgType);
     if (msgBtns != MsgBtns::mbOk)
         dlg.setButtons(msgBtns);

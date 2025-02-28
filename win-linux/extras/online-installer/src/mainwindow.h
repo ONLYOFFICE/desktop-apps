@@ -29,7 +29,7 @@ private:
     void startInstall(const std::wstring &url);
     void finishInstall(const std::wstring &app_path);
     void startUpdate();
-    void startRepair();
+    // void startRepair();
     void startUninstall();
     void createSelectionPage();
     void createProgressPage(const std::wstring &text);
@@ -55,7 +55,7 @@ private:
     BoxLayout   *m_cenPanelVlut;
     CheckBox    *m_launchCheck;
     RadioButton *m_updRadio,
-                *m_repRadio,
+                // *m_repRadio,
                 *m_uninsRadio;
     Button      *m_cancelBtn;
     Mode m_mode;

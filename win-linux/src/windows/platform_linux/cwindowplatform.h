@@ -76,6 +76,7 @@ public:
 #endif
 
 protected:
+    void onWindowActivate(bool is_active);
     virtual bool event(QEvent *event) override;
     virtual void setScreenScalingFactor(double, bool resize = true) override;
     virtual void onMaximizeEvent() override;
@@ -87,7 +88,7 @@ protected:
     virtual void applyWindowState() override;
     virtual void saveWindowState(const QString &baseKey = "") override;
 #endif
-    virtual void onLayoutDirectionChanged() = 0;   
+    virtual void onLayoutDirectionChanged() = 0;
 
 private:
 #ifndef DONT_USE_GTK_MAINWINDOW

@@ -4,6 +4,7 @@
 #include "resource.h"
 #include "utils.h"
 #include <Windows.h>
+#include <codecvt>
 #include <cwctype>
 #include <algorithm>
 #include <sstream>
@@ -45,10 +46,8 @@ wstring getPrimaryLang(const wstring &lang, bool withScript = false)
 
 wstring StrToWStr(const string &str)
 {
-    size_t len = str.length(), outSize = 0;
-    wstring wstr(len, '\0');
-    mbstowcs_s(&outSize, &wstr[0], len + 1, str.c_str(), len);
-    return wstr.c_str();
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    return converter.from_bytes(str);
 }
 
 TranslationsMap Translator::translMap = TranslationsMap();
@@ -103,24 +102,26 @@ wstring Translator::tr(const char *str)
     if (is_translations_valid) {
         for (auto &strIdPair : translMap) {
             //LocaleMap locMap = strIdPair.second;
-            for (LocaleMap::const_iterator it = strIdPair.second.begin(); it != strIdPair.second.end(); ++it) {
+            // for (LocaleMap::const_iterator it = strIdPair.second.begin(); it != strIdPair.second.end(); ++it) {
                 //wcout << L"\n\n" << translatedStr << L"\n" << it->second;
-                if (it->second == translatedStr) {
+                if (strIdPair.first == translatedStr) {
                     if (strIdPair.second.find(langName) != strIdPair.second.end())
-                        translatedStr = strIdPair.second[langName];
+                        return strIdPair.second[langName];
                     else {
                         wstring primaryLangAndScript = getPrimaryLang(langName, true);
                         if (strIdPair.second.find(primaryLangAndScript) != strIdPair.second.end())
-                            translatedStr = strIdPair.second[primaryLangAndScript];
+                            return strIdPair.second[primaryLangAndScript];
                         else {
                             wstring primaryLang = getPrimaryLang(langName);
                             if (strIdPair.second.find(primaryLang) != strIdPair.second.end())
-                                translatedStr = strIdPair.second[primaryLang];
+                                return strIdPair.second[primaryLang];
                         }
                     }
+                    if (strIdPair.second.find(L"en") != strIdPair.second.end())
+                        return strIdPair.second[L"en"];
                     break;
                 }
-            }
+            // }
         }
     }
     return translatedStr;
