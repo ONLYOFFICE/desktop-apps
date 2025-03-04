@@ -132,6 +132,9 @@ void CEmlHandler::openEML(const std::string &from, const std::string &to, const 
 #ifdef __APPLE__
 
 #else
+# ifdef _WIN32
+        std::replace(tmp_name.begin(), tmp_name.end(), '\\', '/');
+# endif
         Utils::openUrl(QString::fromStdString(tmp_name));
 #endif
         pimpl->eml_paths.push(tmp_name);
