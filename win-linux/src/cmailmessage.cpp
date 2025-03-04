@@ -30,7 +30,7 @@
  *
 */
 
-#include "cemlhandler.h"
+#include "cmailmessage.h"
 #include <iomanip>
 #include <sstream>
 #include <fstream>
@@ -83,12 +83,12 @@ static bool writeFile(const std::string &filePath, const std::string &data)
     return false;
 }
 
-class CEmlHandler::CEmlHandlerPrivate
+class CMailMessage::CMailMessagePrivate
 {
 public:
-    CEmlHandlerPrivate()
+    CMailMessagePrivate()
     {}
-    ~CEmlHandlerPrivate()
+    ~CMailMessagePrivate()
     {
         while (!eml_paths.empty()) {
             std::remove(eml_paths.top().c_str());
@@ -99,22 +99,22 @@ public:
     std::stack<std::string> eml_paths;
 };
 
-CEmlHandler::CEmlHandler() :
-    pimpl(new CEmlHandlerPrivate)
+CMailMessage::CMailMessage() :
+    pimpl(new CMailMessagePrivate)
 {}
 
-CEmlHandler::~CEmlHandler()
+CMailMessage::~CMailMessage()
 {
     delete pimpl, pimpl = nullptr;
 }
 
-CEmlHandler &CEmlHandler::instance()
+CMailMessage &CMailMessage::instance()
 {
-    static CEmlHandler inst;
+    static CMailMessage inst;
     return inst;
 }
 
-void CEmlHandler::openEML(const std::string &from, const std::string &to, const std::string &subject, const std::string &msg)
+void CMailMessage::openEML(const std::string &from, const std::string &to, const std::string &subject, const std::string &msg)
 {
     std::ostringstream data;
     data << "From: " << from << "\n"
@@ -145,7 +145,7 @@ void CEmlHandler::openEML(const std::string &from, const std::string &to, const 
 }
 
 #ifdef _WIN32
-bool CEmlHandler::sendMapiMail(std::string to, std::string name, std::string subject, std::string msg)
+bool CMailMessage::sendMapiMail(std::string to, std::string name, std::string subject, std::string msg)
 {
     if (HMODULE lib = LoadLibrary(L"mapi32.dll")) {
         ULONG (WINAPI *_MAPISendMail)(LHANDLE, ULONG_PTR, MapiMessage*, FLAGS, ULONG);

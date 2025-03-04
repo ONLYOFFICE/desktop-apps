@@ -30,18 +30,18 @@
  *
 */
 
-#ifndef CEMLHANDLER_H
-#define CEMLHANDLER_H
+#ifndef CMAILMESSAGE_H
+#define CMAILMESSAGE_H
 
 #include <string>
 
 
-class CEmlHandler
+class CMailMessage
 {
 public:
-    CEmlHandler(const CEmlHandler&) = delete;
-    CEmlHandler& operator=(const CEmlHandler&) = delete;
-    static CEmlHandler& instance();
+    CMailMessage(const CMailMessage&) = delete;
+    CMailMessage& operator=(const CMailMessage&) = delete;
+    static CMailMessage& instance();
 
     void openEML(const std::string &from, const std::string &to, const std::string &subject, const std::string &msg);
 #ifdef _WIN32
@@ -49,11 +49,11 @@ public:
 #endif
 
 private:
-    CEmlHandler();
-    ~CEmlHandler();
+    CMailMessage();
+    ~CMailMessage();
 
-    class CEmlHandlerPrivate;
-    CEmlHandlerPrivate *pimpl = nullptr;
+    class CMailMessagePrivate;
+    CMailMessagePrivate *pimpl = nullptr;
 };
 
-#endif // CEMLHANDLER_H
+#endif // CMAILMESSAGE_H

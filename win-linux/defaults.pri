@@ -107,7 +107,7 @@ HEADERS += \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/ccefeventsgate.h \
     $$PWD/src/ceditortools.h \
-    $$PWD/src/cemlhandler.h \
+    $$PWD/src/cmailmessage.h \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/cappeventfilter.h \
@@ -149,7 +149,7 @@ SOURCES += \
     $$PWD/src/ctabundockevent.cpp \
     $$PWD/src/ccefeventsgate.cpp \
     $$PWD/src/ceditortools.cpp \
-    $$PWD/src/cemlhandler.cpp \
+    $$PWD/src/cmailmessage.cpp \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/cappeventfilter.cpp \
     $$PWD/src/iconfactory.cpp \
