@@ -40,6 +40,9 @@
 
 #else
 # include "utils.h"
+# ifdef _WIN32
+#  include <mapi.h>
+# endif
 #endif
 
 
@@ -140,3 +143,31 @@ void CEmlHandler::openEML(const std::string &from, const std::string &to, const 
         pimpl->eml_paths.push(tmp_name);
     }
 }
+
+#ifdef _WIN32
+bool CEmlHandler::sendMapiMail(std::string to, std::string name, std::string subject, std::string msg)
+{
+    if (HMODULE lib = LoadLibrary(L"mapi32.dll")) {
+        ULONG (WINAPI *_MAPISendMail)(LHANDLE, ULONG_PTR, MapiMessage*, FLAGS, ULONG);
+        *(FARPROC*)&_MAPISendMail = GetProcAddress(lib, "MAPISendMail");
+        if (_MAPISendMail) {
+            MapiRecipDesc recip[1] = { {0} };
+            recip[0].ulRecipClass = MAPI_TO;
+            recip[0].lpszAddress = &to[0];
+            recip[0].lpszName = &name[0];
+
+            MapiMessage mapiMsg = { 0 };
+            mapiMsg.lpszSubject = &subject[0];
+            mapiMsg.lpRecips = recip;
+            mapiMsg.nRecipCount = 1;
+            mapiMsg.lpszNoteText = &msg[0];
+            mapiMsg.ulReserved = CP_UTF8;
+
+            ULONG nSent = _MAPISendMail(NULL, (ULONG_PTR)HWND_DESKTOP, &mapiMsg, MAPI_LOGON_UI /*| MAPI_DIALOG*/, 0);
+            return (nSent == SUCCESS_SUCCESS || nSent == MAPI_E_USER_ABORT);
+        }
+        FreeLibrary(lib);
+    }
+    return false;
+}
+#endif

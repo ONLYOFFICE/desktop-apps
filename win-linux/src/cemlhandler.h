@@ -44,6 +44,9 @@ public:
     static CEmlHandler& instance();
 
     void openEML(const std::string &from, const std::string &to, const std::string &subject, const std::string &msg);
+#ifdef _WIN32
+    bool sendMapiMail(std::string to, std::string name, std::string subject, std::string msg);
+#endif
 
 private:
     CEmlHandler();
