@@ -68,6 +68,16 @@ static std::string getFormattedDate()
     return oss.str();
 }
 
+static std::string getTempFileName(const std::string &extension)
+{
+    static int id = 0;
+    char buff[L_tmpnam];
+    std::string tmp_name(std::tmpnam(buff));
+    tmp_name.append(std::to_string(++id));
+    tmp_name.append(extension);
+    return tmp_name;
+}
+
 static bool writeFile(const std::string &filePath, const std::string &data)
 {
     std::ofstream file(filePath, std::ios::out);
@@ -123,14 +133,10 @@ void CMailMessage::openEML(const std::string &from, const std::string &to, const
          << "Date: " << getFormattedDate() << "\n"
          << "X-Unsent: 1\n"
          << "MIME-Version: 1.0\n"
-         // << "Content-Type: text/plain; charset=UTF-8\n"
+         << "Content-Type: text/html; charset=UTF-8\n"
          << "\n" << msg << "\n";
 
-    static int id = 0;
-    char buff[L_tmpnam];
-    std::string tmp_name(std::tmpnam(buff));
-    tmp_name.append(std::to_string(++id));
-    tmp_name.append(".eml");
+    std::string tmp_name = getTempFileName(".eml");
     if (writeFile(tmp_name, data.str())) {
 #ifdef __APPLE__
 
@@ -151,19 +157,36 @@ bool CMailMessage::sendMapiMail(std::string to, std::string name, std::string su
         ULONG (WINAPI *_MAPISendMail)(LHANDLE, ULONG_PTR, MapiMessage*, FLAGS, ULONG);
         *(FARPROC*)&_MAPISendMail = GetProcAddress(lib, "MAPISendMail");
         if (_MAPISendMail) {
+            std::string tmp_name = getTempFileName(".html");
+            if (!writeFile(tmp_name, msg))
+                return false;
+            pimpl->eml_paths.push(tmp_name);
+
             MapiRecipDesc recip[1] = { {0} };
             recip[0].ulRecipClass = MAPI_TO;
             recip[0].lpszAddress = &to[0];
             recip[0].lpszName = &name[0];
 
+            std::string fileName = ""; // Forces HTML attachment to be rendered as email body
+
+            MapiFileDesc mapiFile[1] = { {0} };
+            mapiFile[0].nPosition = (ULONG)-1;
+            mapiFile[0].lpszPathName = &tmp_name[0];
+            mapiFile[0].lpszFileName = &fileName[0];
+
+            std::string msgType = "IPM.Note";
+
             MapiMessage mapiMsg = { 0 };
-            mapiMsg.lpszSubject = &subject[0];
+            mapiMsg.lpszMessageType = &msgType[0];
             mapiMsg.lpRecips = recip;
             mapiMsg.nRecipCount = 1;
-            mapiMsg.lpszNoteText = &msg[0];
+            mapiMsg.lpszSubject = &subject[0];
+            mapiMsg.lpszNoteText = NULL;
+            mapiMsg.lpFiles = mapiFile;
+            mapiMsg.nFileCount = 1;
             mapiMsg.ulReserved = CP_UTF8;
 
-            ULONG nSent = _MAPISendMail(NULL, (ULONG_PTR)HWND_DESKTOP, &mapiMsg, MAPI_LOGON_UI /*| MAPI_DIALOG*/, 0);
+            ULONG nSent = _MAPISendMail(NULL, (ULONG_PTR)HWND_DESKTOP, &mapiMsg, MAPI_LOGON_UI, 0);
             return (nSent == SUCCESS_SUCCESS || nSent == MAPI_E_USER_ABORT);
         }
         FreeLibrary(lib);
