@@ -124,10 +124,10 @@ CMailMessage &CMailMessage::instance()
     return inst;
 }
 
-void CMailMessage::openEML(const std::string &from, const std::string &to, const std::string &subject, const std::string &msg)
+void CMailMessage::openEML(const std::string &to, const std::string &subject, const std::string &msg)
 {
     std::ostringstream data;
-    data << "From: " << from << "\n"
+    data << "From: " << /*from <<*/ "\n"
          << "To: " << to << "\n"
          << "Subject: " << subject << "\n"
          << "Date: " << getFormattedDate() << "\n"
@@ -151,8 +151,9 @@ void CMailMessage::openEML(const std::string &from, const std::string &to, const
 }
 
 #ifdef _WIN32
-bool CMailMessage::sendMapiMail(std::string to, std::string name, std::string subject, std::string msg)
+bool CMailMessage::sendMailMAPI(std::string to, std::string subject, std::string msg)
 {
+    to.insert(0, "SMTP:");
     if (HMODULE lib = LoadLibrary(L"mapi32.dll")) {
         ULONG (WINAPI *_MAPISendMail)(LHANDLE, ULONG_PTR, MapiMessage*, FLAGS, ULONG);
         *(FARPROC*)&_MAPISendMail = GetProcAddress(lib, "MAPISendMail");
@@ -165,7 +166,7 @@ bool CMailMessage::sendMapiMail(std::string to, std::string name, std::string su
             MapiRecipDesc recip[1] = { {0} };
             recip[0].ulRecipClass = MAPI_TO;
             recip[0].lpszAddress = &to[0];
-            recip[0].lpszName = &name[0];
+            recip[0].lpszName = &to[0];
 
             std::string fileName = ""; // Forces HTML attachment to be rendered as email body
 
