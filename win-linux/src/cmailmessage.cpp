@@ -188,6 +188,7 @@ bool CMailMessage::sendMailMAPI(std::string to, std::string subject, std::string
             mapiMsg.ulReserved = CP_UTF8;
 
             ULONG nSent = _MAPISendMail(NULL, (ULONG_PTR)HWND_DESKTOP, &mapiMsg, MAPI_LOGON_UI, 0);
+            FreeLibrary(lib);
             return (nSent == SUCCESS_SUCCESS || nSent == MAPI_E_USER_ABORT);
         }
         FreeLibrary(lib);
