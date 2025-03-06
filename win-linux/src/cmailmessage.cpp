@@ -30,22 +30,25 @@
  *
 */
 
+// #define FORCE_USING_EML
 #include "cmailmessage.h"
-#include <iomanip>
-#include <sstream>
 #include <fstream>
 #include <ctime>
 #include <stack>
 #ifdef __APPLE__
 
 #else
-# include "utils.h"
-# ifdef _WIN32
+# if defined(_WIN32) && !defined(FORCE_USING_EML)
+#  include <Windows.h>
 #  include <mapi.h>
+# else
+#  include <iomanip>
+#  include <sstream>
+#  include "utils.h"
 # endif
 #endif
 
-
+#if !defined(_WIN32) || defined(FORCE_USING_EML)
 static std::string getFormattedDate()
 {
     std::time_t now = std::time(nullptr);
@@ -67,6 +70,7 @@ static std::string getFormattedDate()
         << std::setw(2) << std::setfill('0') << min;
     return oss.str();
 }
+#endif
 
 static std::string getTempFileName(const std::string &extension)
 {
@@ -100,13 +104,87 @@ public:
     {}
     ~CMailMessagePrivate()
     {
-        while (!eml_paths.empty()) {
-            std::remove(eml_paths.top().c_str());
-            eml_paths.pop();
+        while (!tmp_files.empty()) {
+            std::remove(tmp_files.top().c_str());
+            tmp_files.pop();
         }
     }
+#if defined(_WIN32) && !defined(FORCE_USING_EML)
+    bool sendMailMAPI(std::string to, std::string subject, std::string msg)
+    {
+        to.insert(0, "SMTP:");
+        if (HMODULE lib = LoadLibrary(L"mapi32.dll")) {
+            ULONG (WINAPI *_MAPISendMail)(LHANDLE, ULONG_PTR, MapiMessage*, FLAGS, ULONG);
+            *(FARPROC*)&_MAPISendMail = GetProcAddress(lib, "MAPISendMail");
+            if (_MAPISendMail) {
+                std::string tmp_name = getTempFileName(".html");
+                if (!writeFile(tmp_name, msg)) {
+                    FreeLibrary(lib);
+                    return false;
+                }
+                tmp_files.push(tmp_name);
 
-    std::stack<std::string> eml_paths;
+                MapiRecipDesc recip[1] = { {0} };
+                recip[0].ulRecipClass = MAPI_TO;
+                recip[0].lpszAddress = &to[0];
+                recip[0].lpszName = &to[0];
+
+                std::string fileName = ""; // Forces HTML attachment to be rendered as email body
+
+                MapiFileDesc mapiFile[1] = { {0} };
+                mapiFile[0].nPosition = (ULONG)-1;
+                mapiFile[0].lpszPathName = &tmp_name[0];
+                mapiFile[0].lpszFileName = &fileName[0];
+
+                std::string msgType = "IPM.Note";
+
+                MapiMessage mapiMsg = { 0 };
+                mapiMsg.lpszMessageType = &msgType[0];
+                mapiMsg.lpRecips = recip;
+                mapiMsg.nRecipCount = 1;
+                mapiMsg.lpszSubject = &subject[0];
+                mapiMsg.lpszNoteText = NULL;
+                mapiMsg.lpFiles = mapiFile;
+                mapiMsg.nFileCount = 1;
+                mapiMsg.ulReserved = CP_UTF8;
+
+                ULONG nSent = _MAPISendMail(NULL, (ULONG_PTR)HWND_DESKTOP, &mapiMsg, MAPI_LOGON_UI, 0);
+                FreeLibrary(lib);
+                return (nSent == SUCCESS_SUCCESS || nSent == MAPI_E_USER_ABORT);
+            }
+            FreeLibrary(lib);
+        }
+        return false;
+    }
+#else
+    void openEML(const std::string &to, const std::string &subject, const std::string &msg)
+    {
+        std::ostringstream data;
+        data << "From: " << /*from <<*/ "\n"
+             << "To: " << to << "\n"
+             << "Subject: " << subject << "\n"
+             << "Date: " << getFormattedDate() << "\n"
+             << "X-Unsent: 1\n"
+             << "MIME-Version: 1.0\n"
+             << "Content-Type: text/html; charset=UTF-8\n"
+             << "\n" << msg << "\n";
+
+        std::string tmp_name = getTempFileName(".eml");
+        if (writeFile(tmp_name, data.str())) {
+#ifdef __APPLE__
+
+#else
+# ifdef _WIN32
+            std::replace(tmp_name.begin(), tmp_name.end(), '\\', '/');
+# endif
+            Utils::openUrl(QString::fromStdString(tmp_name));
+#endif
+            tmp_files.push(tmp_name);
+        }
+    }
+#endif
+
+    std::stack<std::string> tmp_files;
 };
 
 CMailMessage::CMailMessage() :
@@ -124,75 +202,11 @@ CMailMessage &CMailMessage::instance()
     return inst;
 }
 
-void CMailMessage::openEML(const std::string &to, const std::string &subject, const std::string &msg)
+void CMailMessage::sendMail(const std::string &to, const std::string &subject, const std::string &msg)
 {
-    std::ostringstream data;
-    data << "From: " << /*from <<*/ "\n"
-         << "To: " << to << "\n"
-         << "Subject: " << subject << "\n"
-         << "Date: " << getFormattedDate() << "\n"
-         << "X-Unsent: 1\n"
-         << "MIME-Version: 1.0\n"
-         << "Content-Type: text/html; charset=UTF-8\n"
-         << "\n" << msg << "\n";
-
-    std::string tmp_name = getTempFileName(".eml");
-    if (writeFile(tmp_name, data.str())) {
-#ifdef __APPLE__
-
+#if defined(_WIN32) && !defined(FORCE_USING_EML)
+    pimpl->sendMailMAPI(to, subject, msg);
 #else
-# ifdef _WIN32
-        std::replace(tmp_name.begin(), tmp_name.end(), '\\', '/');
-# endif
-        Utils::openUrl(QString::fromStdString(tmp_name));
+    pimpl->openEML(to, subject, msg);
 #endif
-        pimpl->eml_paths.push(tmp_name);
-    }
 }
-
-#ifdef _WIN32
-bool CMailMessage::sendMailMAPI(std::string to, std::string subject, std::string msg)
-{
-    to.insert(0, "SMTP:");
-    if (HMODULE lib = LoadLibrary(L"mapi32.dll")) {
-        ULONG (WINAPI *_MAPISendMail)(LHANDLE, ULONG_PTR, MapiMessage*, FLAGS, ULONG);
-        *(FARPROC*)&_MAPISendMail = GetProcAddress(lib, "MAPISendMail");
-        if (_MAPISendMail) {
-            std::string tmp_name = getTempFileName(".html");
-            if (!writeFile(tmp_name, msg))
-                return false;
-            pimpl->eml_paths.push(tmp_name);
-
-            MapiRecipDesc recip[1] = { {0} };
-            recip[0].ulRecipClass = MAPI_TO;
-            recip[0].lpszAddress = &to[0];
-            recip[0].lpszName = &to[0];
-
-            std::string fileName = ""; // Forces HTML attachment to be rendered as email body
-
-            MapiFileDesc mapiFile[1] = { {0} };
-            mapiFile[0].nPosition = (ULONG)-1;
-            mapiFile[0].lpszPathName = &tmp_name[0];
-            mapiFile[0].lpszFileName = &fileName[0];
-
-            std::string msgType = "IPM.Note";
-
-            MapiMessage mapiMsg = { 0 };
-            mapiMsg.lpszMessageType = &msgType[0];
-            mapiMsg.lpRecips = recip;
-            mapiMsg.nRecipCount = 1;
-            mapiMsg.lpszSubject = &subject[0];
-            mapiMsg.lpszNoteText = NULL;
-            mapiMsg.lpFiles = mapiFile;
-            mapiMsg.nFileCount = 1;
-            mapiMsg.ulReserved = CP_UTF8;
-
-            ULONG nSent = _MAPISendMail(NULL, (ULONG_PTR)HWND_DESKTOP, &mapiMsg, MAPI_LOGON_UI, 0);
-            FreeLibrary(lib);
-            return (nSent == SUCCESS_SUCCESS || nSent == MAPI_E_USER_ABORT);
-        }
-        FreeLibrary(lib);
-    }
-    return false;
-}
-#endif

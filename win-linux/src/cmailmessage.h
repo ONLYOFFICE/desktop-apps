@@ -43,10 +43,7 @@ public:
     CMailMessage& operator=(const CMailMessage&) = delete;
     static CMailMessage& instance();
 
-    void openEML(const std::string &to, const std::string &subject, const std::string &msg);
-#ifdef _WIN32
-    bool sendMailMAPI(std::string to, std::string subject, std::string msg);
-#endif
+    void sendMail(const std::string &to, const std::string &subject, const std::string &msg);
 
 private:
     CMailMessage();
