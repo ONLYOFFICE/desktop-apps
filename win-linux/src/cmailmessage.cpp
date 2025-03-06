@@ -35,15 +35,15 @@
 #include <fstream>
 #include <ctime>
 #include <stack>
-#ifdef __APPLE__
-
+#if defined(_WIN32) && !defined(FORCE_USING_EML)
+# include <Windows.h>
+# include <mapi.h>
 #else
-# if defined(_WIN32) && !defined(FORCE_USING_EML)
-#  include <Windows.h>
-#  include <mapi.h>
+# include <iomanip>
+# include <sstream>
+# ifdef __APPLE__
+
 # else
-#  include <iomanip>
-#  include <sstream>
 #  include "utils.h"
 # endif
 #endif
