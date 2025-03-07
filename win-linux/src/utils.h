@@ -94,7 +94,7 @@ public:
     static std::wstring appUserName();
     static QString getAppCommonPath();
     static QRect getScreenGeometry(const QPoint&);
-    static void openUrl(const QString&);
+    static bool openUrl(const QString&);
     static void openFileLocation(const QString&);
     static QString getPortalName(const QString&);
     static double getScreenDpiRatio(int);

@@ -377,29 +377,31 @@ QString Utils::systemLocationCode()
 #endif
 }
 
-void Utils::openUrl(const QString& url)
+bool Utils::openUrl(const QString& url)
 {
 #ifdef __linux
+    int status = -1;
     QUrl _url(url);
     if ( _url.scheme() == "mailto" ) {
-        system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
+        status = system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
                             .arg(QString( _url.toEncoded() )).toUtf8());
     } else {
 		if (url.startsWith("xdg:")) {
 			// url is already encoded for xdg
 			std::wstring sUrlW = url.toStdWString().substr(4);
 			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " + U_TO_UTF8(sUrlW);
-			system(sCommand.c_str());
+            status = system(sCommand.c_str());
 		} else {
 			// xdg-open workingpath path
-			system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"")
+            status = system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"")
 			       .arg(QString( _url.toEncoded() )).toUtf8());
 
 
 		}
     }
+    return WIFEXITED(status) && WEXITSTATUS(status) == 0;
 #else
-    QDesktopServices::openUrl(QUrl(url));
+    return QDesktopServices::openUrl(QUrl(url));
 #endif
 }
 
