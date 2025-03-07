@@ -34,7 +34,7 @@
 #include <fstream>
 #include <ctime>
 #include <stack>
-#if defined(_WIN32) && !defined(FORCE_USING_EML)
+#ifdef WIN32_USING_MAPI
 # include <Windows.h>
 # include <shlwapi.h>
 # include <commctrl.h>
@@ -52,7 +52,7 @@
 # endif
 #endif
 
-#if defined(_WIN32) && !defined(FORCE_USING_EML)
+#ifdef WIN32_USING_MAPI
 static void regValue(HKEY rootKey, std::wstring &value)
 {
     HKEY hKey;
@@ -221,7 +221,7 @@ public:
             tmp_files.pop();
         }
     }
-#if defined(_WIN32) && !defined(FORCE_USING_EML)
+#ifdef WIN32_USING_MAPI
     bool sendMailMAPI(std::string to, std::string subject, std::string msg)
     {
         to.insert(0, "SMTP:");
@@ -315,7 +315,7 @@ CMailMessage &CMailMessage::instance()
     return inst;
 }
 
-#if defined(_WIN32) && !defined(FORCE_USING_EML)
+#ifdef WIN32_USING_MAPI
 int CMailMessage::checkMAPIClient()
 {
     if (!isMAPIClientAssigned()) {
@@ -338,7 +338,7 @@ int CMailMessage::checkMAPIClient()
 
 bool CMailMessage::sendMail(const std::string &to, const std::string &subject, const std::string &msg)
 {
-#if defined(_WIN32) && !defined(FORCE_USING_EML)
+#ifdef WIN32_USING_MAPI
     return pimpl->sendMailMAPI(to, subject, msg);
 #else
     return pimpl->openEML(to, subject, msg);

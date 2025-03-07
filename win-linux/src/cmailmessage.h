@@ -35,6 +35,9 @@
 
 #include <string>
 // #define FORCE_USING_EML
+#if defined(_WIN32) && !defined(FORCE_USING_EML)
+# define WIN32_USING_MAPI
+#endif
 
 class CMailMessage
 {
@@ -43,7 +46,7 @@ public:
     CMailMessage& operator=(const CMailMessage&) = delete;
     static CMailMessage& instance();
 
-#if defined(_WIN32) && !defined(FORCE_USING_EML)
+#ifdef WIN32_USING_MAPI
     enum MAPIResult {MAPIClientOK, MapiClientCancel, MAPIClientEmpty, MAPIClientError};
     int checkMAPIClient();
 #endif
