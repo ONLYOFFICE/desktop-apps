@@ -44,7 +44,7 @@ public:
     static CMailMessage& instance();
 
 #if defined(_WIN32) && !defined(FORCE_USING_EML)
-    enum Res {MAPIClientOK, MapiClientCancel, MAPIClientEmpty, MAPIClientError};
+    enum MAPIResult {MAPIClientOK, MapiClientCancel, MAPIClientEmpty, MAPIClientError};
     int checkMAPIClient();
 #endif
     bool sendMail(const std::string &to, const std::string &subject, const std::string &msg);
