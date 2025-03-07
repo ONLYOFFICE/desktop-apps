@@ -30,7 +30,6 @@
  *
 */
 
-// #define FORCE_USING_EML
 #include "cmailmessage.h"
 #include <fstream>
 #include <ctime>
@@ -41,8 +40,6 @@
 # include <commctrl.h>
 # include <mapi.h>
 # include "cascapplicationmanagerwrapper.h"
-# include "components/cmessage.h"
-# include "utils.h"
 # include "defines.h"
 # define REG_MAIL_CLIENTS "SOFTWARE\\Clients\\Mail"
 #else
@@ -318,25 +315,30 @@ CMailMessage &CMailMessage::instance()
     return inst;
 }
 
-bool CMailMessage::sendMail(const std::string &to, const std::string &subject, const std::string &msg)
-{
 #if defined(_WIN32) && !defined(FORCE_USING_EML)
+int CMailMessage::checkMAPIClient()
+{
     if (!isMAPIClientAssigned()) {
         std::vector<std::wstring> clients;
         getMailClients(clients);
         if (clients.empty()) {
-            CMessage::info(WindowHelper::activeWindow(), QObject::tr("No email clients found!"));
-            return false;
+            return MAPIClientEmpty;
         }
         auto client = selectClient(clients);
         if (client.empty()) {
-            return false;
+            return MapiClientCancel;
         }
         if (!assignMAPIClient(client)) {
-            CMessage::info(WindowHelper::activeWindow(), QObject::tr("Unable to assign mail client!"));
-            return false;
+            return MAPIClientError;
         }
     }
+    return MAPIClientOK;
+}
+#endif
+
+bool CMailMessage::sendMail(const std::string &to, const std::string &subject, const std::string &msg)
+{
+#if defined(_WIN32) && !defined(FORCE_USING_EML)
     return pimpl->sendMailMAPI(to, subject, msg);
 #else
     return pimpl->openEML(to, subject, msg);

@@ -34,7 +34,7 @@
 #define CMAILMESSAGE_H
 
 #include <string>
-
+// #define FORCE_USING_EML
 
 class CMailMessage
 {
@@ -43,6 +43,10 @@ public:
     CMailMessage& operator=(const CMailMessage&) = delete;
     static CMailMessage& instance();
 
+#if defined(_WIN32) && !defined(FORCE_USING_EML)
+    enum Res {MAPIClientOK, MapiClientCancel, MAPIClientEmpty, MAPIClientError};
+    int checkMAPIClient();
+#endif
     bool sendMail(const std::string &to, const std::string &subject, const std::string &msg);
 
 private:
