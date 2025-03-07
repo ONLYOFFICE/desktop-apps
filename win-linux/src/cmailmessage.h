@@ -43,7 +43,7 @@ public:
     CMailMessage& operator=(const CMailMessage&) = delete;
     static CMailMessage& instance();
 
-    void sendMail(const std::string &to, const std::string &subject, const std::string &msg);
+    bool sendMail(const std::string &to, const std::string &subject, const std::string &msg);
 
 private:
     CMailMessage();

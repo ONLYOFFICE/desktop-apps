@@ -272,7 +272,7 @@ public:
         return false;
     }
 #else
-    void openEML(const std::string &to, const std::string &subject, const std::string &msg)
+    bool openEML(const std::string &to, const std::string &subject, const std::string &msg)
     {
         std::ostringstream data;
         data << "From: " << /*from <<*/ "\n"
@@ -286,16 +286,17 @@ public:
 
         std::string tmp_name = getTempFileName(".eml");
         if (writeFile(tmp_name, data.str())) {
+            tmp_files.push(tmp_name);
 #ifdef __APPLE__
 
 #else
 # ifdef _WIN32
             std::replace(tmp_name.begin(), tmp_name.end(), '\\', '/');
 # endif
-            Utils::openUrl(QString::fromStdString(tmp_name));
+            return Utils::openUrl(QString::fromStdString(tmp_name));
 #endif
-            tmp_files.push(tmp_name);
         }
+        return false;
     }
 #endif
 
@@ -317,7 +318,7 @@ CMailMessage &CMailMessage::instance()
     return inst;
 }
 
-void CMailMessage::sendMail(const std::string &to, const std::string &subject, const std::string &msg)
+bool CMailMessage::sendMail(const std::string &to, const std::string &subject, const std::string &msg)
 {
 #if defined(_WIN32) && !defined(FORCE_USING_EML)
     if (!isMAPIClientAssigned()) {
@@ -325,19 +326,19 @@ void CMailMessage::sendMail(const std::string &to, const std::string &subject, c
         getMailClients(clients);
         if (clients.empty()) {
             CMessage::info(WindowHelper::activeWindow(), QObject::tr("No email clients found!"));
-            return;
+            return false;
         }
         auto client = selectClient(clients);
         if (client.empty()) {
-            return;
+            return false;
         }
         if (!assignMAPIClient(client)) {
             CMessage::info(WindowHelper::activeWindow(), QObject::tr("Unable to assign mail client!"));
-            return;
+            return false;
         }
     }
-    pimpl->sendMailMAPI(to, subject, msg);
+    return pimpl->sendMailMAPI(to, subject, msg);
 #else
-    pimpl->openEML(to, subject, msg);
+    return pimpl->openEML(to, subject, msg);
 #endif
 }
