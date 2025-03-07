@@ -37,7 +37,14 @@
 #include <stack>
 #if defined(_WIN32) && !defined(FORCE_USING_EML)
 # include <Windows.h>
+# include <shlwapi.h>
+# include <commctrl.h>
 # include <mapi.h>
+# include "cascapplicationmanagerwrapper.h"
+# include "components/cmessage.h"
+# include "utils.h"
+# include "defines.h"
+# define REG_MAIL_CLIENTS "SOFTWARE\\Clients\\Mail"
 #else
 # include <iomanip>
 # include <sstream>
@@ -48,7 +55,115 @@
 # endif
 #endif
 
-#if !defined(_WIN32) || defined(FORCE_USING_EML)
+#if defined(_WIN32) && !defined(FORCE_USING_EML)
+static void regValue(HKEY rootKey, std::wstring &value)
+{
+    HKEY hKey;
+    if (RegOpenKeyEx(rootKey, TEXT(REG_MAIL_CLIENTS), 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
+        DWORD type = REG_SZ, cbData = 0;
+        if (SHGetValue(hKey, L"", L"", &type, NULL, &cbData) == ERROR_SUCCESS) {
+            wchar_t *pvData = (wchar_t*)malloc(cbData);
+            if (SHGetValue(hKey, L"", L"", &type, (void*)pvData, &cbData) == ERROR_SUCCESS)
+                value.assign(pvData);
+            free(pvData);
+        }
+        RegCloseKey(hKey);
+    }
+}
+
+static bool isMAPIClientAssigned()
+{
+    std::wstring client;
+    regValue(HKEY_CURRENT_USER, client);
+    if (!client.empty())
+        return true;
+    regValue(HKEY_LOCAL_MACHINE, client);
+    return !client.empty();
+}
+
+static bool assignMAPIClient(const std::wstring &client)
+{
+    HKEY hKey;
+    if (RegOpenKeyEx(HKEY_CURRENT_USER, TEXT(REG_MAIL_CLIENTS), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
+        LSTATUS result = SHSetValue(hKey, L"", NULL, REG_SZ, (const BYTE*)client.c_str(), (DWORD)(client.length() + 1) * sizeof(WCHAR));
+        RegCloseKey(hKey);
+        return result == ERROR_SUCCESS;
+    }
+    return false;
+}
+
+static void getMailClients(std::vector<std::wstring> &clients)
+{
+    HKEY hKey;
+    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT(REG_MAIL_CLIENTS), 0, KEY_READ | KEY_ENUMERATE_SUB_KEYS, &hKey) == ERROR_SUCCESS) {
+        DWORD cSubKeys = 0, cbMaxSubKeyLen = 0;
+        if (RegQueryInfoKey(hKey, NULL, NULL, NULL, &cSubKeys, &cbMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL) == ERROR_SUCCESS) {
+            if (cSubKeys > 0 && cbMaxSubKeyLen > 0) {
+                WCHAR *lpSubKeyName = new WCHAR[cbMaxSubKeyLen + 1];
+                for (DWORD i = 0; i < cSubKeys; i++) {
+                    if (RegEnumKey(hKey, i, lpSubKeyName, cbMaxSubKeyLen + 1) == ERROR_SUCCESS) {
+                        if (lpSubKeyName[0] != '\0' && wcscmp(lpSubKeyName, L"Hotmail") != 0) {
+                            clients.emplace_back(lpSubKeyName);
+                        }
+                    }
+                }
+                delete[] lpSubKeyName;
+            }
+        }
+        RegCloseKey(hKey);
+    }
+}
+
+static std::wstring selectClient(std::vector<std::wstring> &clients)
+{
+    std::wstring caption = QString("  %1").arg(WINDOW_TITLE).toStdWString();
+    std::wstring mainText = QObject::tr("Select default email client", "CMailMessage").toStdWString();
+    std::wstring okBtnText = BTN_TEXT_OK.toStdWString();
+    std::wstring cancelBtnText = BTN_TEXT_CANCEL.toStdWString();
+
+    constexpr uint cButtons = 2;
+    TASKDIALOG_BUTTON pButtons[cButtons];
+    pButtons[0] = {IDOK, okBtnText.c_str()};
+    pButtons[1] = {IDCANCEL, cancelBtnText.c_str()};
+
+    TASKDIALOG_BUTTON *pRadioBtns = new TASKDIALOG_BUTTON[clients.size()];
+    constexpr int dfltRadioId = 0;
+    for (int i = 0; i < clients.size(); i++) {
+        pRadioBtns[i].nButtonID = dfltRadioId + i;
+        pRadioBtns[i].pszButtonText = clients[i].c_str();
+    }
+
+    TASKDIALOGCONFIG cfg = { 0 };
+    cfg.cbSize              = sizeof(cfg);
+    cfg.dwFlags             = TDF_POSITION_RELATIVE_TO_WINDOW |
+                              TDF_ALLOW_DIALOG_CANCELLATION |
+                              TDF_SIZE_TO_CONTENT;
+    if (AscAppManager::isRtlEnabled())
+        cfg.dwFlags |= TDF_RTL_LAYOUT;
+    cfg.hwndParent          = GetForegroundWindow();
+    cfg.hInstance           = GetModuleHandle(NULL);
+    cfg.pButtons            = pButtons;
+    cfg.cButtons            = cButtons;
+    cfg.nDefaultButton      = IDOK;
+    cfg.pszMainIcon         = TD_SHIELD_ICON;
+    cfg.pszWindowTitle      = caption.c_str();
+    cfg.pszMainInstruction  = mainText.c_str();
+    cfg.pszContent          = NULL;
+    cfg.pRadioButtons       = pRadioBtns;
+    cfg.cRadioButtons       = clients.size();
+    cfg.nDefaultRadioButton = dfltRadioId;
+
+    int result = 0, selRadio = 0;
+    TaskDialogIndirect(&cfg, &result, &selRadio, nullptr);
+    delete[] pRadioBtns;
+    if (result == IDOK) {
+        try {
+            return clients.at(selRadio);
+        } catch (...) {}
+    }
+    return L"";
+}
+#else
 static std::string getFormattedDate()
 {
     std::time_t now = std::time(nullptr);
@@ -205,6 +320,22 @@ CMailMessage &CMailMessage::instance()
 void CMailMessage::sendMail(const std::string &to, const std::string &subject, const std::string &msg)
 {
 #if defined(_WIN32) && !defined(FORCE_USING_EML)
+    if (!isMAPIClientAssigned()) {
+        std::vector<std::wstring> clients;
+        getMailClients(clients);
+        if (clients.empty()) {
+            CMessage::info(WindowHelper::activeWindow(), QObject::tr("No email clients found!"));
+            return;
+        }
+        auto client = selectClient(clients);
+        if (client.empty()) {
+            return;
+        }
+        if (!assignMAPIClient(client)) {
+            CMessage::info(WindowHelper::activeWindow(), QObject::tr("Unable to assign mail client!"));
+            return;
+        }
+    }
     pimpl->sendMailMAPI(to, subject, msg);
 #else
     pimpl->openEML(to, subject, msg);
