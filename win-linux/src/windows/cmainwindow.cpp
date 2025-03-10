@@ -220,6 +220,10 @@ void CMainWindow::applyTheme(const std::wstring& theme)
     m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
+        if ( _doc.isViewType(cvwtSimple) ) {
+            QJsonObject json{{"theme", QString::fromStdWString(theme)}, {"type", GetCurrentTheme().stype()}};
+            AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", Utils::stringifyJson(json).toStdWString());
+        } else
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
             AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
         }
