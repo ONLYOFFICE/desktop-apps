@@ -61,7 +61,7 @@ public:
     int paper_width = 0,
         paper_height = 0;
     QString size_preset;
-    QString printers_capabilities_json;
+    QJsonObject printers_capabilities_json;
     int sender_id = -1;
     int copies_count = 1;
     FnVoidStr m_query_callback = nullptr;
@@ -153,7 +153,7 @@ public:
         parseJsonOptions(data->get_Options());
     }
 
-    auto getPrintersCapabilitiesJson() const -> QString
+    auto getPrintersCapabilitiesJson() const -> QJsonObject
     {
         QJsonArray printersArray;
 #ifdef _WIN32
@@ -246,15 +246,15 @@ public:
 #endif
         QJsonObject rootObject;
         rootObject["printers"] = printersArray;
-        return QJsonDocument(rootObject).toJson(QJsonDocument::Compact);
+        return rootObject;
     }
 
 public slots:
-    void onPrinterCapabilitiesReady(QString json)
+    void onPrinterCapabilitiesReady(QJsonObject json)
     {
         printers_capabilities_json = json;
         if (m_query_callback)
-            m_query_callback(json);
+            m_query_callback(QJsonDocument(json).toJson(QJsonDocument::Compact));
     }
 };
 
@@ -292,7 +292,7 @@ auto CPrintData::printerInfo() const -> QPrinterInfo
             QPrinterInfo info{QPrinterInfo::printerInfo(last_printer_name)};
             if ( !info.isNull() )
                 return info;
-        } else return QPrinterInfo();
+        } /*else return QPrinterInfo()*/;
 
         return QPrinterInfo::defaultPrinter();
     }
@@ -411,15 +411,18 @@ bool CPrintData::printerCapabilitiesReady() const
 
 QString CPrintData::getPrinterCapabilitiesJson() const
 {
-    return m_priv->printers_capabilities_json;
+    if (!m_priv->printers_capabilities_json.isEmpty())
+        m_priv->printers_capabilities_json["current_printer"] = printerInfo().printerName();
+    return QJsonDocument(m_priv->printers_capabilities_json).toJson(QJsonDocument::Compact);
 }
 
 auto CPrintData::queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const -> void
 {
     m_priv->m_query_callback = callback;
     m_priv->m_future = std::async(std::launch::async, [=]() {
-        QString json = m_priv->getPrintersCapabilitiesJson();
-        QMetaObject::invokeMethod(m_priv, "onPrinterCapabilitiesReady", Qt::QueuedConnection, Q_ARG(QString, json));
+        QJsonObject json = m_priv->getPrintersCapabilitiesJson();
+        json["current_printer"] = printerInfo().printerName();
+        QMetaObject::invokeMethod(m_priv, "onPrinterCapabilitiesReady", Qt::QueuedConnection, Q_ARG(QJsonObject, json));
     });
 }
 
