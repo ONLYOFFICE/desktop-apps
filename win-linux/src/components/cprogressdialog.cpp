@@ -91,10 +91,8 @@ class CProgressDialog::CProgressDialogPrivate
 #pragma pop_macro("KeyPress")
 
 public:
-    CProgressDialogPrivate(QWidget *parent = nullptr) {
+    CProgressDialogPrivate(QWidget *parent, const QString &primaryText, const QString &secondaryText) {
         useNativeDialog = WindowHelper::useNativeDialog();
-        const QString primaryText = QObject::tr("Printing...", "CProgressDialog");
-        const QString secondaryText = QObject::tr("Document is preparing", "CProgressDialog");
         if (useNativeDialog) {
 #ifdef _WIN32
             parentHwnd = parent ? (HWND)parent->winId() : NULL;
@@ -191,6 +189,7 @@ public:
         }
     }
 
+    QString    progressText;
 #ifdef _WIN32
     IProgressDialog *winDlg = nullptr;
     HWND       parentHwnd = nullptr;
@@ -209,9 +208,9 @@ private:
 #endif
 };
 
-CProgressDialog::CProgressDialog(QWidget * parent)
+CProgressDialog::CProgressDialog(QWidget * parent, const QString &title, const QString &secondaryText)
     : QObject(parent),
-    pimpl(new CProgressDialogPrivate(parent))
+    pimpl(new CProgressDialogPrivate(parent, title, secondaryText))
 {}
 
 CProgressDialog::~CProgressDialog()
@@ -221,7 +220,7 @@ CProgressDialog::~CProgressDialog()
 
 void CProgressDialog::setProgress(int current, int count)
 {
-    QString line = tr("Document is printing: page %1 of %2").arg(QString::number(current), QString::number(count));
+    QString line = pimpl->progressText.arg(QString::number(current), QString::number(count));
     if (pimpl->useNativeDialog) {
 #ifdef _WIN32
         if (pimpl->winDlg) {
@@ -239,8 +238,9 @@ void CProgressDialog::setProgress(int current, int count)
     }
 }
 
-void CProgressDialog::startProgress()
+void CProgressDialog::startProgress(const QString &progressText)
 {
+    pimpl->progressText = progressText;
     if (pimpl->useNativeDialog) {
 #ifdef _WIN32
         if (pimpl->winDlg) {

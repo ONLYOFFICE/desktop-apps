@@ -52,8 +52,8 @@ namespace CEditorTools
     {
         if (!c.page_ranges->isEmpty()) {
             if ( c.context->BeginPaint() ) {
-                CProgressDialog _progress(c.parent);
-                _progress.startProgress();
+                CProgressDialog _progress(c.parent, QObject::tr("Printing...", "CProgressDialog"), QObject::tr("Document is preparing", "CProgressDialog"));
+                _progress.startProgress(QObject::tr("Document is printing: page %1 of %2", "CProgressDialog"));
 
                 CAscPrintPage * pData;
                 int curr = 1;

@@ -40,10 +40,10 @@ class CProgressDialog : public QObject
 {
     Q_OBJECT
 public:
-    explicit CProgressDialog(QWidget *parent = nullptr);
+    explicit CProgressDialog(QWidget *parent = nullptr, const QString &title = QString(), const QString &secondaryText = QString());
     ~CProgressDialog();
 
-    void startProgress();
+    void startProgress(const QString &progressText);
     void setProgress(int, int);
     bool isRejected();
 
