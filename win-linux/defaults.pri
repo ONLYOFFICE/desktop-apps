@@ -79,7 +79,7 @@ HEADERS += \
     $$PWD/src/components/cdownloadwidget.h \
     $$PWD/src/components/cpushbutton.h \
     $$PWD/src/components/cfiledialog.h \
-    $$PWD/src/components/cprintprogress.h \
+    $$PWD/src/components/cprogressdialog.h \
     $$PWD/src/components/ctabbar.h \
     $$PWD/src/components/cmessage.h \
     $$PWD/src/components/canimatedicon.h \
@@ -123,7 +123,7 @@ SOURCES += \
     $$PWD/src/components/cdownloadwidget.cpp \
     $$PWD/src/components/cpushbutton.cpp \
     $$PWD/src/components/cfiledialog.cpp \
-    $$PWD/src/components/cprintprogress.cpp \
+    $$PWD/src/components/cprogressdialog.cpp \
     $$PWD/src/components/ctabbar.cpp \
     $$PWD/src/components/cmessage.cpp \
     $$PWD/src/components/canimatedicon.cpp \

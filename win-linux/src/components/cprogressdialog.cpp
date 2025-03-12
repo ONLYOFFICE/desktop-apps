@@ -40,7 +40,7 @@
 # include <shlobj.h>
 # include <combaseapi.h>
 #endif
-#include "components/cprintprogress.h"
+#include "components/cprogressdialog.h"
 #include <QDialog>
 #include <QLabel>
 #include <QHBoxLayout>
@@ -68,7 +68,7 @@ static gboolean on_key_press(GtkWidget*, GdkEventKey *ev, gpointer) {
 }
 #endif
 
-class CPrintProgress::CPrintProgressPrivate
+class CProgressDialog::CProgressDialogPrivate
 {
 #pragma push_macro("KeyPress")
 #undef KeyPress
@@ -91,10 +91,10 @@ class CPrintProgress::CPrintProgressPrivate
 #pragma pop_macro("KeyPress")
 
 public:
-    CPrintProgressPrivate(QWidget *parent = nullptr) {
+    CProgressDialogPrivate(QWidget *parent = nullptr) {
         useNativeDialog = WindowHelper::useNativeDialog();
-        const QString primaryText = QObject::tr("Printing...", "CPrintProgress");
-        const QString secondaryText = QObject::tr("Document is preparing", "CPrintProgress");
+        const QString primaryText = QObject::tr("Printing...", "CProgressDialog");
+        const QString secondaryText = QObject::tr("Document is preparing", "CProgressDialog");
         if (useNativeDialog) {
 #ifdef _WIN32
             parentHwnd = parent ? (HWND)parent->winId() : NULL;
@@ -170,7 +170,7 @@ public:
         }
     }
 
-    ~CPrintProgressPrivate() {
+    ~CProgressDialogPrivate() {
         if (useNativeDialog) {
 #ifdef _WIN32
             if (winDlg) {
@@ -209,17 +209,17 @@ private:
 #endif
 };
 
-CPrintProgress::CPrintProgress(QWidget * parent)
+CProgressDialog::CProgressDialog(QWidget * parent)
     : QObject(parent),
-    pimpl(new CPrintProgressPrivate(parent))
+    pimpl(new CProgressDialogPrivate(parent))
 {}
 
-CPrintProgress::~CPrintProgress()
+CProgressDialog::~CProgressDialog()
 {
     delete pimpl, pimpl = nullptr;
 }
 
-void CPrintProgress::setProgress(int current, int count)
+void CProgressDialog::setProgress(int current, int count)
 {
     QString line = tr("Document is printing: page %1 of %2").arg(QString::number(current), QString::number(count));
     if (pimpl->useNativeDialog) {
@@ -239,7 +239,7 @@ void CPrintProgress::setProgress(int current, int count)
     }
 }
 
-void CPrintProgress::startProgress()
+void CProgressDialog::startProgress()
 {
     if (pimpl->useNativeDialog) {
 #ifdef _WIN32
@@ -277,7 +277,7 @@ void CPrintProgress::startProgress()
     }
 }
 
-bool CPrintProgress::isRejected()
+bool CProgressDialog::isRejected()
 {
     if (pimpl->useNativeDialog) {
 #ifdef _WIN32

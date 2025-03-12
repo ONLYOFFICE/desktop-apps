@@ -30,26 +30,26 @@
  *
 */
 
-#ifndef CPRINTPROGRESS_H
-#define CPRINTPROGRESS_H
+#ifndef CPROGRESSDIALOG_H
+#define CPROGRESSDIALOG_H
 
 #include <QWidget>
 
 
-class CPrintProgress : public QObject
+class CProgressDialog : public QObject
 {
     Q_OBJECT
 public:
-    explicit CPrintProgress(QWidget *parent = nullptr);
-    ~CPrintProgress();
+    explicit CProgressDialog(QWidget *parent = nullptr);
+    ~CProgressDialog();
 
     void startProgress();
     void setProgress(int, int);
     bool isRejected();
 
 private:
-    class CPrintProgressPrivate;
-    CPrintProgressPrivate *pimpl;
+    class CProgressDialogPrivate;
+    CProgressDialogPrivate *pimpl;
 };
 
-#endif // CPRINTPROGRESS_H
+#endif // CPROGRESSDIALOG_H

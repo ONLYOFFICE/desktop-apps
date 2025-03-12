@@ -32,7 +32,7 @@
 
 #include "ceditortools.h"
 #include "qascprinter.h"
-#include "components/cprintprogress.h"
+#include "components/cprogressdialog.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "components/cfiledialog.h"
 #include "defines.h"
@@ -52,7 +52,7 @@ namespace CEditorTools
     {
         if (!c.page_ranges->isEmpty()) {
             if ( c.context->BeginPaint() ) {
-                CPrintProgress _progress(c.parent);
+                CProgressDialog _progress(c.parent);
                 _progress.startProgress();
 
                 CAscPrintPage * pData;
