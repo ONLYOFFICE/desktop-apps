@@ -684,7 +684,7 @@ public:
                 dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
 
             int modal_res = QDialog::Accepted;
-            if ( AscAppManager::printData().isQuickPrint() ) {
+            if ( AscAppManager::printData().isQuickPrint() || !AscAppManager::printData().useSystemDialog() ) {
                 dialog->accept();
             } else modal_res = dialog->exec();
 

@@ -54,6 +54,7 @@ public:
     QPageLayout::Orientation page_orientation{QPageLayout::Portrait};
     QPrinter::DuplexMode duplex_mode{QPrinter::DuplexMode::DuplexNone};
     bool is_quick = false;
+    bool use_system_dialog = true;
     int page_from = 0,
         page_to = 0;
     int pages_count = -1,
@@ -76,6 +77,17 @@ public:
                 print_range = QPrintDialog::AllPages;
                 return true;
             }
+
+            if ( native.contains("printer") ) {
+                QString printerName = native["printer"].toString();
+                if ( !printerName.isEmpty() ) {
+                    QPrinterInfo info{QPrinterInfo::printerInfo(printerName)};
+                    if ( !info.isNull() )
+                        printer_info = info;
+                }
+            }
+
+            use_system_dialog = native.contains("usesystemdialog") ? native["usesystemdialog"].toBool() : true;
 
             if ( native.contains("pages") ) {
                 QString range = native["pages"].toString();
@@ -378,6 +390,11 @@ auto CPrintData::printRange() const -> QPrintDialog::PrintRange
 auto CPrintData::isQuickPrint() const -> bool
 {
     return m_priv->is_quick;
+}
+
+bool CPrintData::useSystemDialog() const
+{
+    return m_priv->use_system_dialog;
 }
 
 auto CPrintData::pagesCount() const -> int
