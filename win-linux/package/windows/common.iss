@@ -1007,6 +1007,10 @@ begin
         DelTree(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}', True, True, True);
     end;
 
+    if CheckCommandlineParam('/noassocheck') then begin
+      RegWriteStringValue(HKEY_CURRENT_USER, ExpandConstant('{#APP_REG_PATH}'), 'ignoreAssocMsg', 'true');
+    end;
+
   end else
   if CurStep = ssDone then begin
     // if not (gHWND = 0) then begin
