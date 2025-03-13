@@ -1105,9 +1105,17 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 
         printData().queryPrinterCapabilitiesAsync([=](const QString &json) {
             // qDebug().noquote() << json;
-            for (int _uid : GetViewsId()) {
-                if (_uid > -1)
-                    AscAppManager::sendCommandTo(GetViewById(_uid), L"printer:config", json.toStdWString());
+            if (mainWindow()) {
+                CAscTabWidget *tabs = mainWindow()->tabWidget();
+                for (int i = 0; i < tabs->count(); i++) {
+                    if (tabs->panel(i)->isReady())
+                        AscAppManager::sendCommandTo(tabs->panel(i)->cef(), L"printer:config", json.toStdWString());
+                }
+            }
+            foreach (auto ptr, m_vecEditors) {
+                CEditorWindow *e = reinterpret_cast<CEditorWindow*>(ptr);
+                if (e->mainView()->isReady())
+                    AscAppManager::sendCommandTo(e->mainView()->cef(), L"printer:config", json.toStdWString());
             }
         });
     }
