@@ -1407,7 +1407,7 @@ void CMainWindow::onDocumentPrint(void * opts)
                     Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
                 }
             } else {
-                if ( AscAppManager::printData().isQuickPrint() && !printer->outputFileName().isEmpty() ) {
+                if ( (AscAppManager::printData().isQuickPrint() || !AscAppManager::printData().useSystemDialog()) && !printer->outputFileName().isEmpty() ) {
                     info.setFile(printer->outputFileName());
                     if ( info.suffix() == "pdf" )
                         printer->setOutputFileName("");
