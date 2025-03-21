@@ -136,7 +136,10 @@
             panel_cloud;
         let local_templates,
             cloud_templates;
-
+        let _page_num = 0, 
+            isLoading = false, 
+            totalPages = null;
+    
         // TODO: for tests only. uncomment static url before release
         let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com';
         const _url_templates = `${test_url}/{0}?desktop=true`;
@@ -223,7 +226,7 @@
             });
 
             cloud_templates.events.click.attach((collection, model) => {
-                sdk.command('create:new', JSON.stringify({'template': {id:model.id, type:model.type, path: model.path}}));
+                window.sdk.openTemplate(model.path, model.name);
             });
 
             local_templates.empty();
@@ -249,11 +252,13 @@
             for (let i of data) {
                 const info = i['attributes']
                 const file_ext = info['form_exts']['data'][0]['attributes']['ext'];
-                icon_url = info.template_image?.data.attributes.formats.xxsmall;
+                icon_url =  info.template_image?.data?.attributes?.formats?.xxsmall?.url ||
+                info.template_image?.data?.attributes?.formats?.thumbnail?.url;
                 const item = {
-                    uid: info.id,
+                    uid: i.id,
                     name: info['name_form'],
                     descr: info['template_desc'],
+                    path: info.file_oform?.data[0].attributes.url,
                     type: utils.fileExtensionToFileFormat(file_ext),
                     icon: icon_url,
                 };
@@ -264,6 +269,39 @@
             }
         }
 
+        const loadTemplates = function() {
+            if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
+    
+            _page_num++;  
+            isLoading = true;
+    
+            const _url = `https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            // const _url = `https://oforms.onlyoffice.com/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            fetch(_url)
+                .then(r => r.json())
+                .then(d => {
+                    if (!!d.data) {
+                        _on_add_cloud_templates(d.data);
+    
+                        if (totalPages === null) {
+                            totalPages = d.meta.pagination.pageCount;
+                        }
+                    }
+                    isLoading = false;
+                })
+        };
+    
+        const Scroll = function() {
+            const $cloudPanel = $('section[panel=cloud]', this.view.$panel);
+            const scrollTop = $cloudPanel.scrollTop();
+            const scrollHeight = $cloudPanel[0].scrollHeight;
+            const clientHeight = $cloudPanel[0].clientHeight;
+    
+            if (scrollTop + clientHeight >= scrollHeight - 100) {
+                loadTemplates();
+            }
+        };
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -273,19 +311,6 @@
                     lang: utils.Lang.id,
                     page: 'templates',
                 });
-
-                const _page_num = 1;
-                const _url = `https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
-                // const _url = `https://oforms.onlyoffice.com/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
-                fetch(_url)
-                    .then(r => r.json())
-                    .then(d => {
-                        if (!!d.data) {
-                            console.log('fetch data', d)
-                            console.log('data pages', d.meta.pagination.page, 'of', d.meta.pagination.pageCount)
-                            _on_add_cloud_templates(d.data);
-                        }
-                    });
 
                 this.view.$panel.addClass('local');
                 $('.nav-item[data-value=local]', this.view.$panel).addClass('selected');
@@ -382,6 +407,10 @@
                 CommonEvents.on('lang:changed', (ol, nl) => {
                     _reload_templates(nl);
                 });
+
+                loadTemplates();
+                
+                $('section[panel=cloud]', this.view.$panel).on('scroll', Scroll.bind(this));
 
                 return this;
             }
