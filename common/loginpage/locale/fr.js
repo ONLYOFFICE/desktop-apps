@@ -38,7 +38,7 @@ l10n.fr = {
     errLoginAuth: 'Erreur lors de la requête d\'informations sur l\'utilisateur',
     errLoginPass: 'Vérifier le mot de passe',
     errLoginWrongPhone: 'Format de numéro de téléphone non valide',
-    pshPortal: 'URL du bureau cloud',
+    pshPortal: 'URL du bureau Cloud',
     pshEmail: 'e-mail',
     pshPass: 'mot de passe',
     pshPhone: 'numéro de téléphone',

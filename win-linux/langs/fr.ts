@@ -674,7 +674,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1576"/>
         <source>Sign Up</source>
-        <translation>Créer bureau de cloud</translation>
+        <translation>Créer bureau dans le Cloud</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1684"/>
