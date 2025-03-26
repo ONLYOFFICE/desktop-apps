@@ -115,4 +115,10 @@ l10n.en_GB = {
     settGpuUseMode: "Use graphics acceleration when available",
     tplPanelLocal: "Local",
     tplPanelCloud: "Cloud",
+    tplCategory: "Categories",
+    tplViewAll: "View all templates",
+    tplPDF: "PDF fillable forms",
+    tplDocument: "Document templates",
+    tplSpreadsheet: "Spreadsheet templates",
+    tplPresentation: "Presentation templates",
 }

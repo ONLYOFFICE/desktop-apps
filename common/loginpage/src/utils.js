@@ -241,7 +241,7 @@ utils.defines.links = {
 utils.formatToEditor = function(f) {
     if ( f > FILE_PRESENTATION && f < FILE_SPREADSHEET ) return 'slide'; else
     if ( f > FILE_SPREADSHEET && f < FILE_CROSSPLATFORM ) return 'cell'; else
-    if ( f > FILE_CROSSPLATFORM ) return 'pdf'; 
+    if ( f > FILE_CROSSPLATFORM || f === utils.defines.FileFormat.FILE_DOCUMENT_OFORM_PDF ) return 'pdf'; 
     else return 'word';
 }
 

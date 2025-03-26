@@ -93,6 +93,14 @@
                                         <div id='idx-local-tpls' class='table-templates list'></div>
                                     </div>
                                 </section>
+                                <div class='category-selector' panel='cloud'>
+                                    <div class='category-selector-heading'>
+                                        <h4 class='category-selector-title'>
+                                            ${_lang.tplCategory}:
+                                            <span class='category-caret'></span>
+                                        </h4>
+                                    </div>
+                                </div>
                                 <section class='themed-sroll' panel='cloud'>
                                     <div class='table-box flex-fill'>
                                         <div id='idx-cloud-tpls' class='table-templates list'></div>
@@ -121,7 +129,7 @@
                                 `<svg class="badge"><use xlink:href="#tpltype-${type}"></use></svg>`;
             const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
                                             `<div class="box"><img src="${info.icon}">${badge}</div>`
-            return `<div id="${info.uid}" class='item'>
+            return `<div id="${info.uid}" class='item' data-type="${type}">
                         <div class='icon'>
                             ${icon_el}
                         </div>
@@ -139,6 +147,10 @@
         let _page_num = 0, 
             isLoading = false, 
             totalPages = null;
+        let previousFilter = null,    
+            $caret,
+            currentFilter = 'view_all'; 
+                
     
         // TODO: for tests only. uncomment static url before release
         let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com';
@@ -227,8 +239,34 @@
 
             cloud_templates.events.click.attach((collection, model) => {
                 window.sdk.openTemplate(model.path, model.name);
+                $caret.removeClass('open');
             });
 
+            categories.events.itemclick.attach(async (action, event) => {
+                $caret.removeClass('open');
+                previousFilter = currentFilter; 
+                currentFilter = event;
+                
+                if (previousFilter !== currentFilter) {
+                    if (currentFilter === 'view_all') {
+                        cloud_templates.list.find('.item').remove();
+                        cloud_templates.items = [];
+                        _page_num = 0;
+                        totalPages = null;
+                        loadTemplates();
+                        return;
+                    }
+
+                    if (totalPages !== null && _page_num >= totalPages) {
+                        applyFilter();
+                    } else {
+                        loadAllPages();
+                    }
+
+                }
+
+            });
+            
             local_templates.empty();
             cloud_templates.empty();
         }
@@ -262,14 +300,47 @@
                     type: utils.fileExtensionToFileFormat(file_ext),
                     icon: icon_url,
                 };
-                const model = new FileTemplateModel(item);
-                cloud_templates.add(model);
-
-                console.log(++c, 'model', i.id, model.name);
+                if (!cloud_templates.items.some(template => template.uid === item.uid)) {
+                    const model = new FileTemplateModel(item);
+                    cloud_templates.add(model);
+                    console.log(++c, 'model', i.id, model.name);
+                }
+               
             }
         }
 
-        const loadTemplates = function() {
+        const categories = new Menu({
+            id: 'category-selector-dropdown',
+            prefix: 'category',
+            items: [
+                { caption: utils.Lang.tplViewAll, action: 'view_all' },
+                { caption: utils.Lang.tplPDF, action: 'pdf'},
+                { caption: utils.Lang.tplDocument, action: 'document' },
+                { caption: utils.Lang.tplSpreadsheet, action: 'spreadsheet'},
+                { caption: utils.Lang.tplPresentation, action: 'presentation'},
+            ]
+        });
+        categories.init(document.body); 
+        
+        const applyFilter = function() {
+            if (currentFilter === 'view_all') {
+                cloud_templates.list.find('.item').show();
+                return;
+            }
+            
+            const type = {
+                'pdf': 'pdf',
+                'document': 'word',
+                'spreadsheet': 'cell',
+                'presentation': 'slide'
+            };
+            
+            const typeShow = type[currentFilter];
+            cloud_templates.list.find('.item').hide()
+                .filter(`[data-type="${typeShow}"]`).show();
+        };
+        
+        const _loadTemplates = function() {
             if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
     
             _page_num++;  
@@ -280,15 +351,28 @@
             fetch(_url)
                 .then(r => r.json())
                 .then(d => {
-                    if (!!d.data) {
+                    isLoading = false;
+                    if (d.data) {
                         _on_add_cloud_templates(d.data);
-    
-                        if (totalPages === null) {
-                            totalPages = d.meta.pagination.pageCount;
+                        totalPages = d.meta.pagination.pageCount;
+                        
+                        if (currentFilter !== 'view_all' && _page_num < totalPages) {
+                            _loadTemplates();
+                        } else {
+                            applyFilter();
                         }
                     }
-                    isLoading = false;
-                })
+                });
+        };
+        
+        const loadTemplates = function() {
+            _loadTemplates();
+        };
+
+        const loadAllPages = function() {
+            if (isLoading) return;
+            _page_num = 0;
+            _loadTemplates();
         };
     
         const Scroll = function() {
@@ -310,6 +394,32 @@
                     parent: $('#frame')[0],
                     lang: utils.Lang.id,
                     page: 'templates',
+                }); 
+                
+                $caret = $('.category-caret');                
+                $('.category-selector-title').on('click', function(e) {
+                    e.stopPropagation();
+                    
+                    if (!$caret.hasClass('open')) {
+                        const offset = $(this).offset();
+                        const pos = {
+                            top: offset.top + $(this).outerHeight(),
+                            left: offset.left
+                        };
+                        
+                        categories.show(pos, {});
+                        $caret.addClass('open');
+                        
+                        const close = function(e) {
+                            if (!$(e.target).closest('.category-selector-title').length) {
+                                Menu.closeAll();
+                                $caret.removeClass('open');
+                                $(document).off('click', close);
+                            }
+                        };
+                        
+                        $(document).on('click', close);
+                    }
                 });
 
                 this.view.$panel.addClass('local');
