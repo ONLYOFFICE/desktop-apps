@@ -256,6 +256,8 @@
                         loadTemplates();
                         return;
                     }
+                    
+                    $('section[panel=cloud]', this.view.$panel).scrollTop(0);
 
                     if (totalPages !== null && _page_num >= totalPages) {
                         applyFilter();
@@ -290,8 +292,7 @@
             for (let i of data) {
                 const info = i['attributes']
                 const file_ext = info['form_exts']['data'][0]['attributes']['ext'];
-                icon_url =  info.template_image?.data?.attributes?.formats?.xxsmall?.url ||
-                info.template_image?.data?.attributes?.formats?.thumbnail?.url;
+                icon_url =  info.template_image?.data.attributes.formats.thumbnail.url;
                 const item = {
                     uid: i.id,
                     name: info['name_form'],
