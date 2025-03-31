@@ -45,6 +45,19 @@
 # include <cups/ppd.h>
 #endif
 
+
+static QString getFirstPrinterName(const QJsonObject &json)
+{
+    if (json.contains("printers")) {
+        QJsonArray jarr = json["printers"].toArray();
+        if (!jarr.isEmpty()) {
+            QJsonObject jobj = jarr.at(0).toObject();
+            return jobj["name"].toString();
+        }
+    }
+    return QString();
+}
+
 class CPrintData::CPrintDataPrivate : public QObject
 {
     Q_OBJECT
@@ -430,8 +443,12 @@ bool CPrintData::printerCapabilitiesReady() const
 
 QString CPrintData::getPrinterCapabilitiesJson() const
 {
-    if (!m_priv->printers_capabilities_json.isEmpty())
-        m_priv->printers_capabilities_json["current_printer"] = printerInfo().printerName();
+    if (!m_priv->printers_capabilities_json.isEmpty()) {
+        QString currentPrinterName = printerInfo().printerName();
+        if (currentPrinterName.isEmpty())
+            currentPrinterName = getFirstPrinterName(m_priv->printers_capabilities_json);
+        m_priv->printers_capabilities_json["current_printer"] = currentPrinterName;
+    }
     return QJsonDocument(m_priv->printers_capabilities_json).toJson(QJsonDocument::Compact);
 }
 
@@ -440,7 +457,10 @@ auto CPrintData::queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const 
     m_priv->m_query_callback = callback;
     m_priv->m_future = std::async(std::launch::async, [=]() {
         QJsonObject json = m_priv->getPrintersCapabilitiesJson();
-        json["current_printer"] = printerInfo().printerName();
+        QString currentPrinterName = printerInfo().printerName();
+        if (currentPrinterName.isEmpty())
+            currentPrinterName = getFirstPrinterName(json);
+        json["current_printer"] = currentPrinterName;
         QMetaObject::invokeMethod(m_priv, "onPrinterCapabilitiesReady", Qt::QueuedConnection, Q_ARG(QJsonObject, json));
     });
 }
