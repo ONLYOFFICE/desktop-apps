@@ -684,7 +684,7 @@ public:
                 dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
 
             int modal_res = QDialog::Accepted;
-            if ( AscAppManager::printData().isQuickPrint() ) {
+            if ( AscAppManager::printData().isQuickPrint() || !AscAppManager::printData().useSystemDialog() ) {
                 dialog->accept();
             } else modal_res = dialog->exec();
 
@@ -701,7 +701,7 @@ public:
                         Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
                     }
                 } else {
-                    if ( AscAppManager::printData().isQuickPrint() && !printer->outputFileName().isEmpty() ) {
+                    if ( (AscAppManager::printData().isQuickPrint() || !AscAppManager::printData().useSystemDialog()) && !printer->outputFileName().isEmpty() ) {
                         info.setFile(printer->outputFileName());
                         if ( info.suffix() == "pdf" )
                             printer->setOutputFileName("");
