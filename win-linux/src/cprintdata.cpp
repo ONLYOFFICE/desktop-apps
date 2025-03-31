@@ -224,6 +224,8 @@ public:
             for (int i = 0; i < num_dests; i++) {
                 cups_dest_t *dest = &dests[i];
                 const char *ppd = cupsGetPPD(dest->name);
+                if (!ppd)
+                    continue;
                 ppd_file_t *ppdF = ppdOpenFile(ppd);
                 bool duplex_supported = ppdFindOption(ppdF, "Duplex");
 
