@@ -330,14 +330,14 @@ void CSvcManager::init()
                     tstring ext = m_packageData->fileType == _T("iss") ? _T(".exe") : m_packageData->fileType == _T("msi") ? _T(".msi") : ARCHIVE_EXT;
                     m_pDownloader->downloadFile(m_packageData->packageUrl, generateTmpFileName(ext));
                 }
-                NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + params[1]);
+                NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + m_packageData->packageUrl);
                 break;
             }
             case MSG_RequestContentLenght: {
                 __GLOBAL_LOCK
                 if (m_pDownloader)
-                    m_pDownloader->queryContentLenght(params[1]);
-                NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + params[1]);
+                    m_pDownloader->queryContentLenght(m_packageData->packageUrl);
+                NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + m_packageData->packageUrl);
                 break;
             }
             case MSG_StopDownload: {

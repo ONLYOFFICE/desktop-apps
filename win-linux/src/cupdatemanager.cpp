@@ -820,7 +820,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &json)
                 m_packageData->isInstallable = root.value("isInstallable").toBool();
 
                 clearTempFiles(m_packageData->isInstallable && isSavedPackageValid() ? m_savedPackageData->fileName : "");
-                if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
+                if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght)) {
                     m_packageData->fileSize = "--";
                     onCheckFinished(false, true, m_packageData->version, "");
                 }
