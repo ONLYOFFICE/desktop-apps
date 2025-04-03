@@ -86,6 +86,23 @@ CDownloader::~CDownloader()
     delete pimpl, pimpl = nullptr;
 }
 
+bool CDownloader::isUrlAccessible(const string &url)
+{
+    if (url.empty())
+        return false;
+
+    CURLcode res = CURLE_FAILED_INIT;
+    if (CURL *curl = curl_easy_init()) {
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
+    return res == CURLE_OK;
+}
+
 void CDownloader::queryContentLenght(const string &url)
 {
     if (url.empty() || pimpl->m_lock)

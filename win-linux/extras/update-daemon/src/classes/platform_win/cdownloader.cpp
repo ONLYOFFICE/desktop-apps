@@ -195,6 +195,17 @@ CDownloader::~CDownloader()
     delete pimpl, pimpl = nullptr;
 }
 
+bool CDownloader::isUrlAccessible(const wstring &url)
+{
+    if (url.empty())
+        return false;
+
+    DWORD dwFileSize = 0;
+    Connection conn;
+    int hr = initConnection(url, dwFileSize, conn);
+    return hr == DNL_OK;
+}
+
 void CDownloader::queryContentLenght(const wstring &url)
 {
     if (url.empty() || pimpl->m_lock)
