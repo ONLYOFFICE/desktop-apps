@@ -1008,7 +1008,7 @@ begin
     end;
 
     if CheckCommandlineParam('/noassocheck') then begin
-      RegWriteStringValue(HKEY_CURRENT_USER, ExpandConstant('{#APP_REG_PATH}'), 'ignoreAssocMsg', 'true');
+      RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'ignoreAssocMsg', 'true');
     end;
 
   end else
