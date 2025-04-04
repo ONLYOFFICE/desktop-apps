@@ -146,6 +146,10 @@ int CEditorWindow::closeWindow()
     if ( _reply == MODAL_RESULT_YES ) {
         panel->data()->close();
         d_ptr.get()->onDocumentSave(panel->cef()->GetId());
+
+        AscEditorType editorType = panel->data()->contentType();
+        QString baseKey = "EditorsGeometry/" + QString::number(int(editorType)) + "/";
+        CWindowBase::saveWindowState(baseKey);
     }
 
     return _reply;
@@ -443,9 +447,6 @@ void CEditorWindow::onCloseEvent()
 {
     if ( m_pMainView ) {
         if ( closeWindow() == MODAL_RESULT_YES ) {
-            AscEditorType editorType = d_ptr->panel()->data()->contentType();
-            QString baseKey = (editorType == AscEditorType::etUndefined) ? "" : "EditorsGeometry/" + QString::number(int(editorType)) + "/";
-            CWindowBase::saveWindowState(baseKey);
             hide();
         }
     }
