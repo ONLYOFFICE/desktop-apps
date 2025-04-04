@@ -60,6 +60,7 @@ public:
     auto pageTo() const -> int;
     auto printRange() const -> QPrintDialog::PrintRange;
     auto isQuickPrint() const -> bool;
+    auto useSystemDialog() const -> bool;
     auto viewId() const -> int;
     auto copiesCount() const -> int;
     auto duplexMode() const -> QPrinter::DuplexMode;
