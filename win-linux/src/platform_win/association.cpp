@@ -134,8 +134,9 @@ void Association::AssociationPrivate::DialogSchedule::addToSchedule(const std::w
 
 Association::AssociationPrivate::AssociationPrivate() : m_pDialogSchedule(new DialogSchedule(this))
 {
+    GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
-    m_ignoreAssocMsg = reg_user.value("ignoreAssocMsg", false).toBool() || IsPackage(Portable);
+    m_ignoreAssocMsg = reg_system.value("ignoreAssocMsg", false).toBool() || reg_user.value("ignoreAssocMsg", false).toBool() || IsPackage(Portable);
     if (!m_ignoreAssocMsg)
         m_lastCheck = time_t(reg_user.value("lastAssocCheck", 0).toLongLong());
 
