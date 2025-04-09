@@ -852,6 +852,7 @@ CDownloader* MainWindow::startDownload(const std::wstring &install_type, const s
                 NS_File::removeFile(tmp_path);
 
                 invokeMethod([=]() {
+                    dnl->stop();
                     dnl->onProgress([=](int percent) {
                         m_bar->setProgress(percent);
                     });
