@@ -33,11 +33,9 @@ ifelse(M4_PACKAGE_EDITION, full,
 Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,Suggests: M4_PACKAGE_NAME-help
 ,)dnl
-Description: office suite
- M4_COMPANY_NAME M4_PRODUCT_NAME is a free office suite that combines text,
- spreadsheet and presentation editors allowing to create, view and edit
- documents without an Internet connection.
- It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx.
+Description: Desktop editors for text docs, spreadsheets, presentations, PDFs, and PDF forms.
+ Open-source office suite pack that comprises all the tools you need to
+ work offline with documents, spreadsheets, presentations, PDFs, and PDF forms.
 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 Package: M4_PACKAGE_NAME-help
