@@ -254,6 +254,8 @@ void CDownloader::start()
 void CDownloader::stop()
 {
     pimpl->m_run = false;
+    if (pimpl->m_future.valid())
+        pimpl->m_future.wait();
 }
 
 wstring CDownloader::GetFilePath()
