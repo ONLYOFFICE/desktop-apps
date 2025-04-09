@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <gdk/gdkx.h>
 #include <gtk/gtkunixprint.h>
+#include <cups/cups.h>
+#include <cups/ppd.h>
 #include "components/cmessage.h"
 
 #define PDF_PRINTER_NAME "Print to File"
@@ -120,6 +122,18 @@ static GtkPageRange *get_page_ranges(GtkEntry *entry, gint *num_ranges)
         return page_ranges;
     }
     return NULL;
+}
+
+static bool isOrientationSupported(const char *printerName) {
+    const char *ppd = cupsGetPPD(printerName);
+    if (!ppd)
+        return true;
+    if (ppd_file_t *ppdF = ppdOpenFile(ppd)) {
+        bool orientation_supported = ppdFindOption(ppdF, "Orientation");
+        ppdClose(ppdF);
+        return orientation_supported;
+    }
+    return true;
 }
 
 auto gtkPaperNameFromPageSize(const QSizeF &size)->QString
@@ -503,7 +517,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
                 QPrinter::Landscape
             };
             const int print_ornt = (int)orient;
-            m_printer->setOrientation((print_ornt == 0 || print_ornt == 2) ?
+            m_printer->setOrientation((print_ornt == 0 || print_ornt == 2 || !isOrientationSupported(m_printer->printerName().toLocal8Bit())) ?
                         orient_arr[0] : orient_arr[1]);
         }
         break;
