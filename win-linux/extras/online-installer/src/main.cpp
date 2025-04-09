@@ -44,15 +44,8 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
         return 0;
     }
 
-    wstring url_or_path, arch;
-    bool app_installed = NS_Utils::IsAppInstalled(url_or_path, &arch);
-    if (!app_installed) {
-        url_or_path = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
-        wstring url_filename = L"DesktopEditors_";
-        url_filename += NS_Utils::IsWin64() ? _T("x64") : _T("x86");
-        url_filename += _T(".exe");
-        NS_Utils::Replace(url_or_path, _T("<file>"), url_filename);
-    }
+    wstring path, arch;
+    bool app_installed = NS_Utils::IsAppInstalled(path, &arch);
 
     Application app(hInst, lpCmdLine, nCmdShow);
     app.setFont(L"Segoe UI");
@@ -67,7 +60,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
         app.exit(0);
     });
     if (!app_installed)
-        w.initInstallationMode(url_or_path);
+        w.initInstallationMode();
     else
         w.initControlMode(arch);
     w.showAll();
