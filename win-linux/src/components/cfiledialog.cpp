@@ -259,7 +259,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                         " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw *.xps *.oxps);;" +
 #endif
                     tr("Spreadsheets") + " (*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi *.key);;" +
+                    tr("Presentations") + " (*.pptx *.ppt *.odp *.odg *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi *.key);;" +
                     // tr("Visio diagram") + " (*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
