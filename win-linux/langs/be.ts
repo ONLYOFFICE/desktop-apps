@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1366"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1390"/>
         <source>Presenter View</source>
         <translation>Рэжым дакладчыка</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Захаваць як</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1907"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1931"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2239"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2241"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2263"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2265"/>
         <source>Document%1.docx</source>
         <translation>Дакумент%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2245"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2269"/>
         <source>Book%1.xlsx</source>
         <translation>Кніга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2247"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2271"/>
         <source>Presentation%1.pptx</source>
         <translation>Прэзентацыя%1.pptx</translation>
     </message>
@@ -50,7 +50,7 @@
     <name>CAscTabWidget</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="910"/>
-        <location filename="../src/components/asctabwidget.cpp" line="696"/>
+        <location filename="../src/components/asctabwidget.cpp" line="699"/>
         <source>Document</source>
         <translation>Адкрываецца...</translation>
     </message>
@@ -180,22 +180,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="157"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="159"/>
         <source>Open main window</source>
         <translation>Адкрыць галоўнае акно</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="581"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="584"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Каб працягнуць, дакумент трэба захаваць.&lt;br&gt;Захаваць дакумент?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="671"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="674"/>
         <source>Print Document</source>
         <translation>Друкаваць дакумент</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="880"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="883"/>
         <source>Document must be saved firstly.</source>
         <translation>Спачатку трэба захаваць дакумент.</translation>
     </message>
@@ -205,7 +205,7 @@
         <translation>%1  быў зменены.&lt;br&gt;Хочаце захаваць змены?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="409"/>
+        <location filename="../src/ceditortools.cpp" line="408"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Калі вы працягнеце захоўваць у гэтым фармаце, усе функцыі, акрамя тэксту, будуць страчаны.&lt;br&gt;Вы ўпэўнены, што хочаце працягнуць?</translation>
     </message>
@@ -213,12 +213,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="622"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="625"/>
         <source>There are no printers available</source>
         <translation>Няма даступных прынтараў</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="737"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="740"/>
         <source>There are no pages set to print.</source>
         <translation>Няма старонак для друку.</translation>
     </message>
@@ -226,7 +226,7 @@
 <context>
     <name>CFileDialogWrapper</name>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="64"/>
+        <location filename="../src/components/cfiledialog.cpp" line="68"/>
         <source>All files (*.*)</source>
         <translation>Усе файлы (*.*)</translation>
     </message>
@@ -239,12 +239,12 @@
         <translation type="vanished">Шаблон дакумента Word Open XML (*.dotx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="68"/>
+        <location filename="../src/components/cfiledialog.cpp" line="72"/>
         <source>DOC Document (*.doc)</source>
         <translation>Дакумент Word 97-2003 (*.doc)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="69"/>
+        <location filename="../src/components/cfiledialog.cpp" line="73"/>
         <source>ODT Document (*.odt)</source>
         <translation>Тэкставы файл OpenDocument (*.odt)</translation>
     </message>
@@ -253,37 +253,37 @@
         <translation type="vanished">Шаблон дакумента OpenDocument (*.ott)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="71"/>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>RTF File (*.rtf)</source>
         <translation>Багаты тэкставы дакумент (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="72"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>TXT File (*.txt)</source>
         <translation>Просты тэкст (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="73"/>
+        <location filename="../src/components/cfiledialog.cpp" line="77"/>
         <source>HTML File (*.html)</source>
         <translation>Файл HTML (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="74"/>
+        <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>MHT File (*.mht)</source>
         <translation>Файл архіва вэб-старонак (*.mht)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>EPUB File (*.epub)</source>
         <translation>Электронная публікацыя (*.epub)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
+        <location filename="../src/components/cfiledialog.cpp" line="80"/>
         <source>FB2 File (*.fb2)</source>
         <translation>Файл FictionBook (*.fb2)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="77"/>
+        <location filename="../src/components/cfiledialog.cpp" line="81"/>
         <source>MOBI File (*.mobi)</source>
         <translation>Электронная кніга mobipocket (*.mobi)</translation>
     </message>
@@ -292,17 +292,17 @@
         <translation type="vanished">Запаўняльная анлайн-форма ONLYOFFICE (*.oform)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
+        <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>DOCXF Document (*.docxf)</source>
         <translation>Шаблон формы ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="81"/>
+        <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>PPTX File (*.pptx)</source>
         <translation>Прэзентацыя Office Open XML (*.pptx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="82"/>
+        <location filename="../src/components/cfiledialog.cpp" line="86"/>
         <source>PPT File (*.ppt)</source>
         <translation>Прэзентацыя PowerPoint 97-2003 (*.ppt)</translation>
     </message>
@@ -311,7 +311,7 @@
         <translation type="vanished">Шаблон прэзентацыі PowerPoint Open XML (*.potx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="84"/>
+        <location filename="../src/components/cfiledialog.cpp" line="88"/>
         <source>ODP File (*.odp)</source>
         <translation>Прэзентацыя OpenDocument (*.odp)</translation>
     </message>
@@ -320,17 +320,17 @@
         <translation type="vanished">Шаблон прэзентацыі OpenDocument (*.otp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="86"/>
+        <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>PPSX File (*.ppsx)</source>
         <translation>Слайд-шоу Office Open XML (*.ppsx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="87"/>
+        <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
         <translation>Файл прэзентацыі з падтрымкай макрасаў (*.pptm)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="89"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>XLSX File (*.xlsx)</source>
         <translation>Электронная табліца Office Open XML (*.xlsx)</translation>
     </message>
@@ -339,12 +339,12 @@
         <translation type="vanished">Шаблон электроннай табліцы Excel Open XML (*.xltx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
+        <location filename="../src/components/cfiledialog.cpp" line="97"/>
         <source>XLS File (*.xls)</source>
         <translation>Электронная табліца Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="94"/>
+        <location filename="../src/components/cfiledialog.cpp" line="98"/>
         <source>ODS File (*.ods)</source>
         <translation>Электронная табліца OpenDocument (*.ods)</translation>
     </message>
@@ -353,199 +353,214 @@
         <translation type="vanished">Шаблон электроннай табліцы OpenDocument (*.ots)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="66"/>
+        <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
         <translation>Дакумент Office Open XML</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="70"/>
+        <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
         <translation>Шаблон дакумента OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="78"/>
+        <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
         <translation>Форма PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="85"/>
+        <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
         <translation>Шаблон прэзентацыі OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="91"/>
+        <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
         <translation>Шаблон электроннай табліцы з падтрымкай макрасаў</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="92"/>
+        <location filename="../src/components/cfiledialog.cpp" line="96"/>
         <source>XLSB File (*.xlsb)</source>
         <translation>Дакумент XLSB (*.xlsb)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="95"/>
+        <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
         <translation>Шаблон электроннай табліцы OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="96"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>CSV File (*.csv)</source>
         <translation>Значэнні, падзеленыя коскамі (*.csv)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="98"/>
+        <location filename="../src/components/cfiledialog.cpp" line="102"/>
         <source>PDF File (*.pdf)</source>
         <translation>Пераносны дакумент (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="99"/>
+        <location filename="../src/components/cfiledialog.cpp" line="103"/>
         <source>PDFA File (*.pdf)</source>
         <translation>Пераносны дакумент /A (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
+        <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>DJVU File (*.djvu)</source>
         <translation>Лічбавы дакумент (*.djvu)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="101"/>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>XPS File (*.xps)</source>
         <translation>Дакумент OpenXPS (*.xps)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="102"/>
+        <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>SVG Image (*.svg)</source>
         <translation>Выява SVG (*.svg)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="104"/>
+        <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
+        <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="106"/>
+        <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="107"/>
+        <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="108"/>
+        <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="109"/>
+        <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="111"/>
+        <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
         <translation>Выява JPG (*.jpg *.jpeg)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="112"/>
+        <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>PNG Image (*.png)</source>
         <translation>Выява PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="160"/>
+        <location filename="../src/components/cfiledialog.cpp" line="164"/>
         <source>Save As</source>
         <translation>Захаваць як</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="206"/>
+        <location filename="../src/components/cfiledialog.cpp" line="210"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 ужо існуе.&lt;br&gt;Хочаце замяніць?</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="232"/>
+        <location filename="../src/components/cfiledialog.cpp" line="236"/>
         <source>Word Document</source>
         <translation>Дакумент Word</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="235"/>
+        <location filename="../src/components/cfiledialog.cpp" line="239"/>
         <source>Excel Workbook</source>
         <translation>Табліца Excel</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="238"/>
+        <location filename="../src/components/cfiledialog.cpp" line="242"/>
         <source>PowerPoint Presentation</source>
         <translation>Прэзентацыя Powerpoint</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="241"/>
+        <location filename="../src/components/cfiledialog.cpp" line="245"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 Файл (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="251"/>
-        <location filename="../src/components/cfiledialog.cpp" line="350"/>
-        <location filename="../src/components/cfiledialog.cpp" line="374"/>
-        <location filename="../src/components/cfiledialog.cpp" line="376"/>
+        <location filename="../src/components/cfiledialog.cpp" line="255"/>
+        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="382"/>
+        <location filename="../src/components/cfiledialog.cpp" line="384"/>
         <source>Text documents</source>
         <translation>Тэкставыя дакументы</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="257"/>
-        <location filename="../src/components/cfiledialog.cpp" line="358"/>
-        <location filename="../src/components/cfiledialog.cpp" line="378"/>
+        <location filename="../src/components/cfiledialog.cpp" line="261"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="386"/>
         <source>Spreadsheets</source>
         <translation>Табліцы</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="258"/>
-        <location filename="../src/components/cfiledialog.cpp" line="366"/>
-        <location filename="../src/components/cfiledialog.cpp" line="379"/>
+        <location filename="../src/components/cfiledialog.cpp" line="262"/>
+        <location filename="../src/components/cfiledialog.cpp" line="374"/>
+        <location filename="../src/components/cfiledialog.cpp" line="387"/>
         <source>Presentations</source>
         <translation>Прэзентацыі</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="259"/>
-        <source>Visio diagram</source>
+        <location filename="../src/components/cfiledialog.cpp" line="507"/>
+        <source>Unknown image format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="260"/>
+        <location filename="../src/components/cfiledialog.cpp" line="508"/>
+        <source>Unknown video format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="509"/>
+        <source>Unknown audio format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="509"/>
+        <source>Unknown format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="264"/>
         <source>Web Page</source>
         <translation>Вэб-старонка</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="261"/>
+        <location filename="../src/components/cfiledialog.cpp" line="265"/>
         <source>Text files</source>
         <translation>Тэкставыя файлы</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
-        <location filename="../src/components/cfiledialog.cpp" line="263"/>
-        <location filename="../src/components/cfiledialog.cpp" line="381"/>
+        <location filename="../src/components/cfiledialog.cpp" line="267"/>
+        <location filename="../src/components/cfiledialog.cpp" line="389"/>
         <source>All supported files</source>
         <translation>Усе падтрымліваемыя файлы</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="212"/>
-        <location filename="../src/components/cfiledialog.cpp" line="90"/>
+        <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>Spreadsheet template</source>
         <translation>Шаблон электроннай табліцы Excel Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="215"/>
-        <location filename="../src/components/cfiledialog.cpp" line="83"/>
+        <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>Presentation template</source>
         <translation>Шаблон прэзентацыі PowerPoint Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="217"/>
-        <location filename="../src/components/cfiledialog.cpp" line="67"/>
+        <location filename="../src/components/cfiledialog.cpp" line="71"/>
         <source>Document template</source>
         <translation>Шаблон дакумента Word Open XML</translation>
     </message>
@@ -555,44 +570,44 @@
         <translation>Fitxer del tema</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="281"/>
+        <location filename="../src/components/cfiledialog.cpp" line="285"/>
         <source>Open Document</source>
         <translation>Адкрыць дакумент</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="311"/>
-        <location filename="../src/components/cfiledialog.cpp" line="321"/>
+        <location filename="../src/components/cfiledialog.cpp" line="315"/>
+        <location filename="../src/components/cfiledialog.cpp" line="327"/>
         <source>All Images</source>
         <translation>Усе выявы</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="313"/>
+        <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="323"/>
+        <location filename="../src/components/cfiledialog.cpp" line="329"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="332"/>
-        <location filename="../src/components/cfiledialog.cpp" line="341"/>
+        <location filename="../src/components/cfiledialog.cpp" line="340"/>
+        <location filename="../src/components/cfiledialog.cpp" line="349"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Файл убудовы (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="398"/>
+        <location filename="../src/components/cfiledialog.cpp" line="406"/>
         <source>Video file</source>
         <translation>Відэафайл</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="403"/>
+        <location filename="../src/components/cfiledialog.cpp" line="411"/>
         <source>Audio file</source>
         <translation>Аўдыяфайл</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="420"/>
+        <location filename="../src/components/cfiledialog.cpp" line="430"/>
         <source>Select Folder</source>
         <translation>Выбраць папку</translation>
     </message>
@@ -606,58 +621,58 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="303"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="302"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Адкрыта больш за адзін дакумент.&lt;br&gt;Усё роўна зачыніць акно?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="305"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="304"/>
         <source>Don&apos;t ask again.</source>
         <translation>Больш не пытацца.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="948"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="988"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="944"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="984"/>
         <source>File format not supported.</source>
         <translation>Фармат файла не падтрымліваецца.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="972"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="968"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1045"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1046"/>
         <source>Document must be saved firstly.</source>
         <translation>Спачатку трэба захаваць дакумент.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1206"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1210"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Каб працягнуць, дакумент трэба захаваць.&lt;br&gt;Захаваць дакумент?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1312"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1316"/>
         <source>There are no printers available</source>
         <translation>Няма даступных прынтараў</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1372"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1376"/>
         <source>Print Document</source>
         <translation>Друкаваць дакумент</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1438"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1442"/>
         <source>There are no pages set to print.</source>
         <translation>Няма старонак для друку.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1576"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1578"/>
         <source>Sign Up</source>
         <translation>Зарэгістравацца</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1684"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1685"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 быў зменены.&lt;br&gt;Захаваць змены?</translation>
     </message>
@@ -764,22 +779,47 @@
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="104"/>
+        <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>Check for updates</source>
         <translation>Праверыць наяўнасць абнаўленняў</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="96"/>
+        <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>Unable to check update: URL not defined.</source>
         <translation>Немагчыма праверыць абнаўленне: спасылка не вызначана.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="94"/>
+        <location filename="../src/cupdatemanager.cpp" line="80"/>
+        <source>Update failed: out of memory!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="81"/>
+        <source>Update failed: server connection error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="82"/>
+        <source>Update failed: wrong URL!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="83"/>
+        <source>Update failed: unable to create file!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="84"/>
+        <source>Update failed: network error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>To finish updating, restart app</source>
         <translation>Каб завяршыць абнаўленне, перазапусціце праграму</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="106"/>
+        <location filename="../src/cupdatemanager.cpp" line="107"/>
         <source>Restart</source>
         <translation>Перазапуціць</translation>
     </message>
@@ -789,12 +829,12 @@
         <translation>Праверка абнаўленняў...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="95"/>
+        <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>Updates are not allowed!</source>
         <translation>Абнаўленні забаронены!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="497"/>
+        <location filename="../src/cupdatemanager.cpp" line="498"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>Канфігурацыя гэтай  папкі не дазваляе яе абнаўляць! Назва папкі павінна быць: </translation>
     </message>
@@ -803,7 +843,7 @@
         <translation type="vanished">Падчас праверкі абнаўленняў адбылася памылка: служба абнаўлення не знойдзена!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="91"/>
+        <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Downloading new version %1 (%2%)</source>
         <translation>Спампоўка новай версіі %1 (%2%)</translation>
     </message>
@@ -812,22 +852,22 @@
         <translation type="vanished">Падчас загрузкі абнаўленняў адбылася памылка: служба абнаўлення не знойдзена!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="107"/>
+        <location filename="../src/cupdatemanager.cpp" line="108"/>
         <source>Cancel</source>
         <translation>Скасаваць</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="97"/>
+        <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation>Падчас загрузкі абнаўленняў адбылася памылка: пакетная спасылка пустая!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="102"/>
+        <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation>Памылка пакета абнаўлення: сума md5 не адпавядае арыгіналу.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="92"/>
+        <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update...</source>
         <translation>Падрыхтоўка абнаўлення...</translation>
     </message>
@@ -841,7 +881,7 @@
         <translation>Даступна абнаўленне (версія %1)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="105"/>
+        <location filename="../src/cupdatemanager.cpp" line="106"/>
         <source>Download update</source>
         <translation>Спампаваць абнаўленне</translation>
     </message>
@@ -856,29 +896,24 @@
         <translation>Пры распакаванні архіва адбылася памылка</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: out of memory!</source>
-        <translation>Памылка спампоўкі абнаўлення: не хапае памяці!</translation>
+        <translation type="vanished">Памылка спампоўкі абнаўлення: не хапае памяці!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: server connection error!</source>
-        <translation>Памылка спампоўкі абнаўлення: памылка падлучэння да сервера!</translation>
+        <translation type="vanished">Памылка спампоўкі абнаўлення: памылка падлучэння да сервера!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: wrong URL!</source>
-        <translation>Памылка спампоўкі абнаўлення: няправільная спасылка!</translation>
+        <translation type="vanished">Памылка спампоўкі абнаўлення: няправільная спасылка!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update download failed: unable to create file!</source>
-        <translation>Памылка спампоўкі абнаўлення: немагчыма стварыць файл!</translation>
+        <translation type="vanished">Памылка спампоўкі абнаўлення: немагчыма стварыць файл!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update download failed: network error!</source>
-        <translation>Памылка спампоўкі абнаўлення: памылка сеткі!</translation>
+        <translation type="vanished">Памылка спампоўкі абнаўлення: памылка сеткі!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
@@ -891,54 +926,59 @@
         <translation>Апошняя праверка праведзена %1</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="93"/>
+        <location filename="../src/cupdatemanager.cpp" line="91"/>
+        <source>Service update is available (version %1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>Preparing update (%1%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="98"/>
+        <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
         <translation>Адбылася памылка пры праверцы абнаўленняў: Сэрвіс абнаўленняў не ўстаноўлены або не працуе!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="99"/>
+        <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
         <translation>Адбылася памылка пры загрузцы абнаўленняў: Сэрвіс абнаўленняў не ўстаноўлены або не працуе!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="100"/>
+        <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
         <translation>Адбылася памылка падчас распакавання абнаўленняў: сэрвіс абнаўленняў не ўстаноўлены або не працуе!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="101"/>
+        <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Error opening JSON file.</source>
         <translation>Памылка адкрыцця файла JSON.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="886"/>
+        <location filename="../src/cupdatemanager.cpp" line="887"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="888"/>
+        <location filename="../src/cupdatemanager.cpp" line="889"/>
         <source>Update is available</source>
         <translation>Даступна абнаўленне</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="889"/>
-        <location filename="../src/cupdatemanager.cpp" line="918"/>
+        <location filename="../src/cupdatemanager.cpp" line="890"/>
+        <location filename="../src/cupdatemanager.cpp" line="919"/>
         <source>Current version</source>
         <translation>Бягучая версія</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="890"/>
-        <location filename="../src/cupdatemanager.cpp" line="919"/>
+        <location filename="../src/cupdatemanager.cpp" line="891"/>
+        <location filename="../src/cupdatemanager.cpp" line="920"/>
         <source>New version</source>
         <translation>Новая версія</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="920"/>
+        <location filename="../src/cupdatemanager.cpp" line="921"/>
         <source>To finish updating, restart the app</source>
         <translation>Каб завяршыць абнаўленне, перазапусціце прыкладанне</translation>
     </message>
@@ -947,12 +987,12 @@
         <translation type="vanished">Версія абнаўлення</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="885"/>
+        <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>Would you like to download update now?</source>
         <translation>Хочаце спампаваць абнаўленне зараз?</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="917"/>
+        <location filename="../src/cupdatemanager.cpp" line="918"/>
         <source>Update is ready to install</source>
         <translation>Абнаўленне гатова да ўсталёўкі</translation>
     </message>
@@ -964,13 +1004,13 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="253"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="1027"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="250"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1023"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="296"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="300"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Файл %1 не існуе або яго немагчыма адкрыць.</translation>
     </message>
@@ -991,7 +1031,7 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="936"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="932"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Доступ да файла &apos;%1&apos; забаронены!</translation>
     </message>
@@ -1065,53 +1105,53 @@
         <translation type="vanished">Адбылася памылка падчас старту ўстаноўкі абнаўленняў!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="751"/>
+        <location filename="../src/cupdatemanager.cpp" line="752"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="761"/>
+        <location filename="../src/cupdatemanager.cpp" line="762"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>Адбылася памылка пры старце замены файлаў: служба абнаўлення не знойдзена!</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="125"/>
+        <location filename="../src/defines.h" line="126"/>
         <source>Cancel</source>
         <translation>Скасаваць</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="126"/>
+        <location filename="../src/defines.h" line="127"/>
         <source>Yes</source>
         <translation>Так</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="127"/>
+        <location filename="../src/defines.h" line="128"/>
         <source>No</source>
         <translation>Не</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="200"/>
-        <location filename="../src/defines.h" line="128"/>
+        <location filename="../src/defines.h" line="129"/>
         <source>OK</source>
         <translation>Добра</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="129"/>
+        <location filename="../src/defines.h" line="130"/>
         <source>Skip</source>
         <translation>Прапусціць</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="130"/>
+        <location filename="../src/defines.h" line="131"/>
         <source>Buy Now</source>
         <translation>Купіць зараз</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="131"/>
+        <location filename="../src/defines.h" line="132"/>
         <source>Activate</source>
         <translation>Актываваць</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="132"/>
+        <location filename="../src/defines.h" line="133"/>
         <source>Continue</source>
         <translation>Працягнуць</translation>
     </message>
@@ -1145,18 +1185,18 @@
         <translation>МБ</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="546"/>
+        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="524"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
         <translation>Сінтаксіс для дыяпазону старонак няправільны.&lt;br&gt;Увядзіце адзін або некалькі дыяпазонаў старонак, напрыклад: 1-3,7,11.</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="586"/>
-        <location filename="../src/platform_win/printdialog.cpp" line="534"/>
+        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="564"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="563"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
         <translation>Вызначаны дыяпазон %1-%2 перавышае ліміты дакумента: максімальная колькасць старонак %3</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/printdialog.cpp" line="492"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="521"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
         <translation>Немагчыма адкрыць дыялог друку:&lt;br&gt;%1</translation>
     </message>
@@ -1179,22 +1219,22 @@
         <translation type="unfinished">&amp;Скасаваць</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/association.cpp" line="214"/>
+        <location filename="../src/platform_win/association.cpp" line="215"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/platform_win/association.cpp" line="216"/>
+        <location filename="../src/platform_win/association.cpp" line="217"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/platform_win/association.cpp" line="218"/>
+        <location filename="../src/platform_win/association.cpp" line="219"/>
         <source>Do not show this message again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/singleapplication.cpp" line="98"/>
+        <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
         <translation type="unfinished"></translation>
