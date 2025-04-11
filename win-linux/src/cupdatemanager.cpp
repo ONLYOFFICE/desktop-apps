@@ -77,11 +77,11 @@
 using std::vector;
 
 const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unpacking the archive"),
-           *SVC_TXT_ERR_DNL_OUT_MEM = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: out of memory!"),
-           *SVC_TXT_ERR_DNL_CONN    = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: server connection error!"),
-           *SVC_TXT_ERR_DNL_URL     = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: wrong URL!"),
-           *SVC_TXT_ERR_DNL_CREAT   = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: unable to create file!"),
-           *SVC_TXT_ERR_DNL_INET    = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: network error!"),
+           *SVC_TXT_ERR_DNL_OUT_MEM = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: out of memory!"),
+           *SVC_TXT_ERR_DNL_CONN    = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: server connection error!"),
+           *SVC_TXT_ERR_DNL_URL     = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: wrong URL!"),
+           *SVC_TXT_ERR_DNL_CREAT   = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: unable to create file!"),
+           *SVC_TXT_ERR_DNL_INET    = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: network error!"),
            *SVC_TXT_ERR_OTHER       = QT_TRANSLATE_NOOP("CUpdateManager", "A service error has occurred!"),
 
            *TXT_LAST_CHECK      = QT_TRANSLATE_NOOP("CUpdateManager", "Last check performed %1"),
