@@ -88,6 +88,7 @@ const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An er
            *TXT_UPDATED         = QT_TRANSLATE_NOOP("CUpdateManager", "Current version is up to date"),
            *TXT_CHECKING_UPD    = QT_TRANSLATE_NOOP("CUpdateManager", "Checking for updates..."),
            *TXT_AVAILABLE_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Update is available (version %1)"),
+           *TXT_AVAILABLE_SVC   = QT_TRANSLATE_NOOP("CUpdateManager", "Service update is available (version %1)"),
            *TXT_DOWNLOADING_UPD = QT_TRANSLATE_NOOP("CUpdateManager", "Downloading new version %1 (%2%)"),
            *TXT_PREPARING_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update..."),
            *TXT_UNZIP_UPD       = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update (%1%)"),
@@ -846,7 +847,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 //                return;
 //            } else
             if (!m_packageData->isInstallable) {
-                refreshStartPage({"lastcheck", {TXT_AVAILABLE_UPD, version}, BTN_TXT_CHECK, "check", "false"});
+                refreshStartPage({"lastcheck", {m_packageData->object == "svc" ? TXT_AVAILABLE_SVC : TXT_AVAILABLE_UPD, version}, BTN_TXT_CHECK, "check", "false"});
                 m_dialogSchedule->addToSchedule("showUpdateMessage");
                 return;
             }
@@ -861,7 +862,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
                     __UNLOCK
                     loadUpdates();
                 } else {
-                    refreshStartPage({"lastcheck", {TXT_AVAILABLE_UPD, version}, BTN_TXT_DOWNLOAD, "download", "false"});
+                    refreshStartPage({"lastcheck", {m_packageData->object == "svc" ? TXT_AVAILABLE_SVC : TXT_AVAILABLE_UPD, version}, BTN_TXT_DOWNLOAD, "download", "false"});
                     m_dialogSchedule->addToSchedule("showUpdateMessage");
                 }
                 break;
