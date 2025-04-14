@@ -322,9 +322,30 @@ copy_templates() {
   exit 0
 }
 
+RANDOM_STRING=$(od -An -N4 -i < /dev/urandom | md5sum | head -c 10)
+TMP_PATH=~/tmp/$RANDOM_STRING
+
 for arg in "$@"; do
   if [ "$arg" = "--new-document-templates" ]; then
     copy_templates
+  else
+    case "$arg" in
+      -*)
+        ;;
+      *)
+        # The Google Drive file will be copied to local drive first
+        case "$arg" in
+          *"/google-drive:"*)
+            ORIG_PATH="$arg"
+            NEW_PATH="$TMP_PATH/$(basename "$arg")"
+            mkdir -p "$TMP_PATH"
+            cp "$arg" "$NEW_PATH"
+            arg="$NEW_PATH"
+            ;;
+        esac
+        ;;
+    esac
+    ARGS="$ARGS$arg "
   fi
 done
 
@@ -334,4 +355,9 @@ export LD_LIBRARY_PATH=$DIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH},
 DIR_MV=/opt/M4_MEDIAVIEWER_PREFIX
 export LD_LIBRARY_PATH=$DIR:$DIR/converter:$DIR_MV$LDLPATH
 export VLC_PLUGIN_PATH=$DIR_MV/plugins)
-exec $DIR/DesktopEditors "$@"
+$DIR/DesktopEditors $ARGS
+
+if [ -n "$ORIG_PATH" ]; then
+  cp $NEW_PATH $ORIG_PATH
+  rm -r $TMP_PATH
+fi
