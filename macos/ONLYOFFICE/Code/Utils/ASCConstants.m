@@ -78,7 +78,7 @@
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi",@"key"];
+    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odg", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi",@"key"];
 }
 
 + (NSArray *)draws {
