@@ -333,9 +333,9 @@ for arg in "$@"; do
       -*)
         ;;
       *)
-        # The Google Drive file will be copied to local drive first
+        # The file from gvfs will be copied to local drive first
         case "$arg" in
-          *"/google-drive:"*)
+          "/run/user/1000/gvfs/"*)
             ORIG_PATH="$arg"
             NEW_PATH="$TMP_PATH/$(basename "$arg")"
             mkdir -p "$TMP_PATH"
@@ -355,9 +355,13 @@ export LD_LIBRARY_PATH=$DIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH},
 DIR_MV=/opt/M4_MEDIAVIEWER_PREFIX
 export LD_LIBRARY_PATH=$DIR:$DIR/converter:$DIR_MV$LDLPATH
 export VLC_PLUGIN_PATH=$DIR_MV/plugins)
-$DIR/DesktopEditors $ARGS
+if [ -n "$ARGS" ]; then
+  $DIR/DesktopEditors "$ARGS"
+else
+  $DIR/DesktopEditors
+fi
 
 if [ -n "$ORIG_PATH" ]; then
-  cp $NEW_PATH $ORIG_PATH
+  cp "$NEW_PATH" "$ORIG_PATH"
   rm -r $TMP_PATH
 fi
