@@ -51,7 +51,7 @@
 # define DESKTOP_FILE_NAME "onlyoffice-desktopeditors"
 #else
 # define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
-# define APP_REG_NAME  "ONLYOFFICE Editors"
+# define APP_REG_NAME  "ONLYOFFICE"
 # define REG_GROUP_KEY "ONLYOFFICE"
 # define REG_UNINST_KEY "ONLYOFFICE Desktop Editors"
 # define APP_MUTEX_NAME "TEAMLAB"
