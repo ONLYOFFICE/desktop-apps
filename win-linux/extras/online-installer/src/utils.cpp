@@ -142,7 +142,7 @@ namespace NS_Utils
             HRESULT (WINAPI *_TaskDialog)(HWND, HINSTANCE, PCWSTR, PCWSTR, PCWSTR, TASKDIALOG_COMMON_BUTTON_FLAGS, PCWSTR, int*);
             *(FARPROC*)&_TaskDialog = GetProcAddress(lib, "TaskDialog");
             if (_TaskDialog)
-                _TaskDialog(parent, GetModuleHandle(NULL), caption.c_str(), msg.c_str(), NULL, TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON, icon, &result);
+                _TaskDialog(parent, hInst, caption.c_str(), msg.c_str(), NULL, TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON, icon, &result);
             FreeLibrary(lib);
         }
 
