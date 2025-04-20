@@ -123,6 +123,18 @@ namespace NS_Utils
 
     int ShowTaskDialog(HWND parent, const wstring &msg, PCWSTR icon)
     {
+        HWND fakeParent = NULL;
+        HMODULE hInst = GetModuleHandle(NULL);
+        if (!parent) {
+            WNDCLASS wc = {0};
+            wc.lpfnWndProc   = DefWindowProc;
+            wc.hInstance     = hInst;
+            wc.lpszClassName = L"FakeWindowClass";
+            RegisterClass(&wc);
+            fakeParent = CreateWindowEx(0, wc.lpszClassName, L"", WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, NULL, NULL, hInst, NULL);
+            parent = fakeParent;
+        }
+
         int result = IDCANCEL;
         wstring caption(_T("    "));
         caption.append(_TR(CAPTION));
@@ -133,6 +145,9 @@ namespace NS_Utils
                 _TaskDialog(parent, GetModuleHandle(NULL), caption.c_str(), msg.c_str(), NULL, TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON, icon, &result);
             FreeLibrary(lib);
         }
+
+        if (fakeParent)
+            DestroyWindow(fakeParent);
         return result;
     }
 
