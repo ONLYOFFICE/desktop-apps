@@ -143,12 +143,12 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="175"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Allalaadimised</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="178"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Selge</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="259"/>
@@ -159,22 +159,22 @@
         <location filename="../src/components/cdownloadwidget.cpp" line="278"/>
         <location filename="../src/components/cdownloadwidget.cpp" line="387"/>
         <source>kBps</source>
-        <translation type="unfinished"></translation>
+        <translation>kBps</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="306"/>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Tühistatud</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="343"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Avatud</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="359"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuva kaustas</translation>
     </message>
 </context>
 <context>
@@ -512,22 +512,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tundmatu pildivorming.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tundmatu videovorming.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tundmatu helivorming.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tundmatu formaat.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="264"/>
@@ -583,7 +583,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="329"/>
@@ -618,7 +618,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
         <location filename="../src/windows/cmainwindow.cpp" line="623"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Peaaken</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="302"/>
@@ -690,47 +690,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Sule</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulge salvestatud</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulgege kõik</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuva kaustas</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Alustamiseks liikuge</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Liigu lõpuni</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Vabastage vahekaart akna külge</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Kinnita vahelehele</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Loo uus</translation>
     </message>
 </context>
 <context>
@@ -791,27 +791,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Värskendus ebaõnnestus: mälu on täis!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Värskendus ebaõnnestus: serveri ühenduse viga!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Värskendus ebaõnnestus: vale URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Värskendus ebaõnnestus: faili loomine ebaõnnestus!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Värskendus ebaõnnestus: võrgu viga!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -928,7 +928,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Teenuse värskendus on saadaval (versioon %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -1184,19 +1184,19 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Printimine...</translation>
+        <translation>Printimine...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Dokumendi ettevalmistamine</translation>
+        <translation>Dokumendi ettevalmistamine</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;Tühista</translation>
+        <translation>&amp;Tühista</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="215"/>

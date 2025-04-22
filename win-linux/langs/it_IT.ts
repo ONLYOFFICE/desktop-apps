@@ -532,22 +532,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato immagine sconosciuto.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato video sconosciuto.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato audio sconosciuto.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato sconosciuto.</translation>
     </message>
     <message>
         <source>Visio diagram</source>
@@ -823,27 +823,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento fallito: memoria esaurita!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento fallito: errore di connessione al server!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento fallito: URL errato!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento fallito: impossibile creare il file!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento fallito: errore di rete!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -964,7 +964,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento del servizio disponibile (versione %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>

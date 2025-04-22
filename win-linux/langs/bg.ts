@@ -436,32 +436,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Чертеж (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Макро-активиран чертеж (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Шаблон (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Макро-активиран шаблон (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Шаблон (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Макро-активиран шаблон (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -528,22 +528,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестен формат на изображението.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестен видео формат.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестен аудио формат.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неизвестен формат.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="264"/>
@@ -634,7 +634,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
         <location filename="../src/windows/cmainwindow.cpp" line="623"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Главен прозорец</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="302"/>
@@ -706,47 +706,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Затвори</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Затвори запазено</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Затвори всички</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Show in folder</source>
-        <translation type="unfinished">Покажи в папка</translation>
+        <translation>Покажи в папка</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Премести в началото</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Премести в края</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Откачи раздел от прозореца</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Закачи към раздела</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Създайте нов</translation>
     </message>
 </context>
 <context>
@@ -811,27 +811,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешна актуализация: няма памет!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешна актуализация: грешка при връзка със сървъра!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешна актуализация: грешен URL адрес!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешна актуализация: неуспешно създаване на файл!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешна актуализация: грешка в мрежата!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -948,7 +948,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Налична е актуализация на услугата (версия %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -1277,7 +1277,7 @@
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Има незапазени документи</translation>
     </message>
 </context>
 <context>

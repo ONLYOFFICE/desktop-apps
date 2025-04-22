@@ -532,22 +532,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format de imagine necunoscut.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format video necunoscut.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format audio necunoscut.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format necunoscut.</translation>
     </message>
     <message>
         <source>Visio diagram</source>
@@ -823,27 +823,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizare a eșuat: memoria insuficientă!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizare a eșuat: eroare de conectare la server!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizare a eșuat: adresa URL incorectă!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizare a eșuat: imposibil de creat fișierul!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizare a eșuat: eroare de rețea!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -964,7 +964,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizarea serviciului este disponibilă (versiunea %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>

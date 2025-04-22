@@ -436,32 +436,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Kresba Visio (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Kresba Visio s podporou maker (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Šablona Visio (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Šablona Visio s podporou maker (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Šablona Visio (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Šablona Visio s podporou maker (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -528,22 +528,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámý formát obrázku.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámý formát videa.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámý formát zvuku.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámý formát.</translation>
     </message>
     <message>
         <source>Visio diagram</source>
@@ -815,27 +815,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace se nezdařila: došla paměť!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace se nezdařila: chyba připojení k serveru!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace se nezdařila: nesprávná URL adresa!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace se nezdařila: nelze vytvořit soubor!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace se nezdařila: chyba sítě!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -952,7 +952,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace služby je k dispozici (verze %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>

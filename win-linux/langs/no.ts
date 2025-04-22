@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1931"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du må starte programmet på nytt for at innstillingene skal tre i kraft.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2263"/>
@@ -512,22 +512,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukjent bildeformat.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukjent videoformat.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukjent lydformat.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukjent format.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="264"/>
@@ -583,7 +583,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="329"/>
@@ -690,47 +690,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Lukk</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Lukk lagret</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Lukk alle</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Show in folder</source>
-        <translation type="unfinished">Vis i mappe</translation>
+        <translation>Vis i mappe</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytt for å starte</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytt til slutt</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Løsne fane til vindu</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Fest til fane</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Opprett ny</translation>
     </message>
 </context>
 <context>
@@ -791,27 +791,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdatering mislyktes: tom for minne!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdatering mislyktes: servertilkoblingsfeil!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdatering mislyktes: feil URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdatering mislyktes: kan ikke opprette fil!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdatering mislyktes: nettverksfeil!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -916,7 +916,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tjenesteoppdatering er tilgjengelig (versjon %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -1056,7 +1056,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="55"/>
         <source>Download update</source>
-        <translation type="unfinished">Last ned oppdatering</translation>
+        <translation>Last ned oppdatering</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="70"/>
@@ -1164,19 +1164,19 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Skriver ut...</translation>
+        <translation>Skriver ut...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Forbereder dokument</translation>
+        <translation>Forbereder dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="215"/>

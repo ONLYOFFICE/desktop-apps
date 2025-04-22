@@ -512,22 +512,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznan format slike.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznan video format.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznan zvočni format.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznana oblika.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="264"/>
@@ -618,7 +618,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
         <location filename="../src/windows/cmainwindow.cpp" line="623"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Glavno okno</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="302"/>
@@ -690,47 +690,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapri</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapri shranjeno</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapri vse</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Show in folder</source>
-        <translation type="unfinished">Prikaži v mapi</translation>
+        <translation>Prikaži v mapi</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Premakni se za začetek</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Premakni se na konec</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpni zavihek na okno</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripni na zavihek</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustvari novo</translation>
     </message>
 </context>
 <context>
@@ -791,27 +791,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodobitev ni uspela: premalo je pomnilnika!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodobitev ni uspela: napaka v povezavi s strežnikom!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodobitev ni uspela: napačen URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodobitev ni uspela: ni mogoče ustvariti datoteke!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Posodobitev ni uspela: omrežna napaka!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -928,7 +928,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Na voljo je posodobitev storitve (različica %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -1237,7 +1237,7 @@
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Obstajajo neshranjeni dokumenti</translation>
     </message>
 </context>
 <context>
