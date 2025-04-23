@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1931"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seadete jõustumiseks peate rakenduse taaskäivitama.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2263"/>
@@ -380,7 +380,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exceli binaarfail (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
@@ -420,32 +420,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio joonis (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio makro lubatud joonis (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio šabloon (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio makrotoega šabloon (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio mall (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio makro lubatud mall (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -527,7 +527,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation>Tundmatu formaat.</translation>
+        <translation>Tundmatu vorming.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="264"/>
@@ -710,12 +710,12 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation>Alustamiseks liikuge</translation>
+        <translation>Liikuge algusesse</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation>Liigu lõpuni</translation>
+        <translation>Liikuge lõpuni</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
@@ -933,7 +933,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Värskenduse ettevalmistamine (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
@@ -958,7 +958,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="887"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Praegune versioon ei toeta värskenduse otse installimist. Värskenduste installimiseks saate vajaliku paketi alla laadida ametlikult veebisaidilt.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="889"/>
@@ -1087,7 +1087,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="752"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Värskenduste installimise alustamisel ilmnes viga: värskendusteenust ei leitud!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="762"/>
@@ -1201,23 +1201,23 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="215"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas soovite muuta %1 oma laienduse %2 vaikerakenduseks?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="217"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kas soovite muuta %1 kõigi toetatud laienduste vaikerakenduseks?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="219"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ära seda sõnumit enam näita</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Seal on salvestamata dokumente</translation>
     </message>
 </context>
 <context>

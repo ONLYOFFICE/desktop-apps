@@ -694,12 +694,12 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation>Lëvizni për të filluar</translation>
+        <translation>Shkoni në krye</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation>Lëvizni në fund</translation>
+        <translation>Shko në fund</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>

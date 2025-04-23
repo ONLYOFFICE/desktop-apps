@@ -420,32 +420,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Малюнак Visio (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Малюнак з падтрымкай макрасаў Visio (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Трафарэт Visio (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Трафарэт Visio з падтрымкай макрасаў (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон Visio (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон Visio з падтрымкай макрасаў (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -527,7 +527,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation>Unknown format.</translation>
+        <translation>Невядомы фармат.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="264"/>
@@ -695,7 +695,7 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation>Закрыць захавана</translation>
+        <translation>Зачыніць захаваны</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
@@ -710,12 +710,12 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation>Перамясціць, каб пачаць</translation>
+        <translation>Перамясціць у пачатак</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation>Перайсці да канца</translation>
+        <translation>Перамясціць у канец</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
@@ -958,7 +958,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="887"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Бягучая версія не падтрымлівае ўсталяванне гэтага абнаўлення непасрэдна. Для ўстаноўкі абнаўленняў вы можаце спампаваць неабходны пакет з афіцыйнага сайта.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="889"/>
@@ -1107,7 +1107,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="752"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Адбылася памылка пры старце ўстаноўкі абнаўленняў: служба абнаўлення не знойдзена!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="762"/>
@@ -1221,23 +1221,23 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="215"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы жадаеце зрабіць %1 стандартнай праграмай для пашырэння: %2?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="217"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы жадаеце зрабіць %1 сваім стандартным дадаткам для ўсіх падтрымоўваных пашырэнняў?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="219"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Больш не паказваць гэта паведамленне</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Маюцца незахаваныя дакументы</translation>
     </message>
 </context>
 <context>

@@ -690,12 +690,12 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation>Kapalı</translation>
+        <translation>Kapat</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation>Kaydedildi kapat</translation>
+        <translation>Kaydedilenleri kapat</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
@@ -710,12 +710,12 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation>Başlamak için hareket et</translation>
+        <translation>Yukarıya gi</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation>Sona doğru hareket et</translation>
+        <translation>Sonuna atla</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>

@@ -380,7 +380,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel binærfil (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
@@ -420,32 +420,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio-tegning (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio  makroaktivert tegning (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio Stencil (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio makroaktivert sjablong (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio-mal (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio makroaktivert mal (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -618,7 +618,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
         <location filename="../src/windows/cmainwindow.cpp" line="623"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Hovedvindu</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="302"/>
@@ -710,12 +710,12 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation>Flytt for å starte</translation>
+        <translation>Gå til toppen</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation>Flytt til slutt</translation>
+        <translation>Gå til ende</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
@@ -921,7 +921,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbereder oppdatering (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
@@ -946,7 +946,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="887"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Den gjeldende versjonen støtter ikke installasjon av denne oppdateringen direkte. For å installere oppdateringer kan du laste ned den nødvendige pakken fra den offisielle nettsiden.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="889"/>
@@ -992,7 +992,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="300"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filen %1 kan ikke åpnes eller eksisterer ikke.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
@@ -1003,54 +1003,54 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML-fil (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
         <location filename="../src/windows/cmainwindow.cpp" line="932"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilgang til filen %1 er nektet!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="220"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesebeskyttet</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="44"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Hopp over denne versjonen</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="45"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="50"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>Minn meg på det senere</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="46"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>Installer oppdatering</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="47"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Start på nytt nå</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="54"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagre og installer nå</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
@@ -1062,17 +1062,17 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="70"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="103"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Versjonsmerknader</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="752"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppstod en feil under start av installasjonsoppdateringer: Oppdateringstjeneste ble ikke funnet!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="762"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppstod en feil under start av å erstatte filer: Oppdateringstjeneste ble ikke funnet!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="126"/>
@@ -1181,23 +1181,23 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="215"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vil du gjøre %1 til ditt standardprogram for utvidelse: %2?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="217"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vil du gjøre %1 til ditt standardprogram for alle støttede utvidelser?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="219"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke vis denne meldingen igjen</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Det er ulagrede dokumenter</translation>
     </message>
 </context>
 <context>

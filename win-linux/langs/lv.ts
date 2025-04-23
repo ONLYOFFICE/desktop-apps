@@ -710,12 +710,12 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation>Lai sāktu, pārvietojiet</translation>
+        <translation>Iet uz augšu</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation>Pārvietot līdz beigām</translation>
+        <translation>Iet līdz beigām</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
