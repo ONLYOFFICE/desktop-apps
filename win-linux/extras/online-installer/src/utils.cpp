@@ -118,7 +118,11 @@ namespace NS_Utils
             str += _T(" ") + GetLastErrorAsString();
         wstring caption(_T("    "));
         caption.append(_TR(CAPTION));
-        MessageBox(NULL, str.c_str(), caption.c_str(), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
+        LCID lcid = MAKELCID(GetUserDefaultUILanguage(), SORT_DEFAULT);
+        UINT flags = MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND;
+        if (IsRtlLanguage(lcid))
+            flags |= MB_RTLREADING;
+        MessageBox(NULL, str.c_str(), caption.c_str(), flags);
     }
 
     int ShowTaskDialog(HWND parent, const wstring &msg, PCWSTR icon)
