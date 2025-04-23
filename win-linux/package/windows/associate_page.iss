@@ -1863,8 +1863,8 @@ sr_Latn_RS.runOpenDefaultApps=Otvori podrazumevane aplikacije
 he.runOpenDefaultApps=פתח יישומי ברירת מחדל
 sq.runOpenDefaultApps=Hapni aplikacionet e paracaktuara
 
-[Run]
-Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
+;[Run]
+;Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
 
 [Registry]
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      Flags: uninsdeletekey
@@ -2052,8 +2052,8 @@ begin
   if createPage then begin
     associatePage := CreateCustomPage(wpSelectTasks, CustomMessage('AssociateCaption'), CustomMessage('AssociateDescription'));
 
-    GetWindowsVersionEx(version);
-    if version.Major < 10 then begin
+    //GetWindowsVersionEx(version);
+    //if version.Major < 10 then begin
       lblAudio          := TLabel.Create(associatePage);
       lblAudio.Parent   := associatePage.Surface;
       lblAudio.WordWrap := True;
@@ -2087,21 +2087,21 @@ begin
 
       ChlbAudio.Checked[1] := True;
       ChlbAudioClickCheck(ChlbAudio);
-    end else begin
-      labelDesc           := TNewStaticText.Create(associatePage);
-      labelDesc.Parent    := associatePage.Surface;
-      labelDesc.Width     := associatePage.SurfaceWidth;
-      labelDesc.WordWrap  := True;
-      labelDesc.Caption   := ExpandConstant('{cm:warnWin10FileAssociationDesc}');
+    //end else begin
+    //  labelDesc           := TNewStaticText.Create(associatePage);
+    //  labelDesc.Parent    := associatePage.Surface;
+    //  labelDesc.Width     := associatePage.SurfaceWidth;
+    //  labelDesc.WordWrap  := True;
+    //  labelDesc.Caption   := ExpandConstant('{cm:warnWin10FileAssociationDesc}');
 
-      labelPath           := TNewStaticText.Create(associatePage);
-      labelPath.Parent    := associatePage.Surface;
-      labelPath.Top       := labelDesc.Top + labelDesc.Height + ScaleY(8);
-      labelPath.Width     := associatePage.SurfaceWidth;
-      labelPath.WordWrap  := True;
-      labelPath.Caption   := ExpandConstant('{cm:warnWin10FileAssociationPath}');
-      labelPath.Font.Style := [fsBold];
-    end
+    //  labelPath           := TNewStaticText.Create(associatePage);
+    //  labelPath.Parent    := associatePage.Surface;
+    //  labelPath.Top       := labelDesc.Top + labelDesc.Height + ScaleY(8);
+    //  labelPath.Width     := associatePage.SurfaceWidth;
+    //  labelPath.WordWrap  := True;
+    //  labelPath.Caption   := ExpandConstant('{cm:warnWin10FileAssociationPath}');
+    //  labelPath.Font.Style := [fsBold];
+    //end
   end else begin
     associatePage := nil
   end;
@@ -2215,8 +2215,8 @@ end;
 
 procedure DoPostInstall();
 var
-  i: Integer;
-  ext, progId1, progId2: string;
+  i, errorCode: Integer;
+  ext, progId1, progId2, progId3, assocArg: string;
   argsArray: TArrayOfString;
   cleanExts, extensionInfo: TArrayOfString;
   version: TWindowsVersion;
@@ -2227,6 +2227,7 @@ begin
       initExtensions();
     end;
 
+    assocArg := '';
     GetWindowsVersionEx(version);
     for  i := 0 to GetArrayLength(AudioExts) - 1 do
     begin
@@ -2261,17 +2262,29 @@ begin
         if RegValueExists(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '') then
           RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', progId2);
 
-        if ((Length(progId2) <> 0) and (CompareText(progId2, argsArray[0]) <> 0)) or
+        if RegValueExists(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'ProgId') then
+          RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'ProgId', progId3);
+
+        if ((Length(progId3) <> 0) and (CompareText(progId3, argsArray[0]) <> 0)) or
+              ((Length(progId2) <> 0) and (CompareText(progId2, argsArray[0]) <> 0)) or
               ((Length(progId1) <> 0) and (CompareText(progId1, argsArray[0]) <> 0)) then
         begin
-          RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
-          RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', argsArray[0])
-          //RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', argsArray[0]);
+          if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 2)) then begin
+            assocArg := assocArg + '.' + ext + ':' + argsArray[0] + ';';
+          end else begin
+            RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
+            RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', argsArray[0])
+            //RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', argsArray[0]);
+          end;
         end;
       end else
       begin
         //RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0], '');
       end;
+    end;
+
+    if Length(assocArg) <> 0 then begin
+      ShellExecAsOriginalUser('', ExpandConstant('{app}\{#iconsExe}'), '--assoc ' + assocArg, '', SW_SHOW, ewNoWait, errorCode);
     end;
 
   AddToDefaultPrograms;
