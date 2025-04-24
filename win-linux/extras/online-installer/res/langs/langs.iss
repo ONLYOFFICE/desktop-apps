@@ -1314,6 +1314,7 @@ lv.RADIO_UNINST =Atinstalēt
 sq.RADIO_UNINST =Çinstaloni
 id.RADIO_UNINST =Uninstall
 sv.RADIO_UNINST =Avinstallera
+ar_SA.RADIO_UNINST =إلغاء التثبيت
 
 en.CHECK_SILENT =Silent Installation
 en_GB.CHECK_SILENT =Silent Installation
@@ -1378,6 +1379,7 @@ he.CHECK_LAUNCH =הפעל אפליקציה
 sq.CHECK_LAUNCH =Hapni aplikacionin
 id.CHECK_LAUNCH =Jalankan app
 sv.CHECK_LAUNCH =Starta app
+ar_SA.CHECK_LAUNCH =تشغيل التطبيق
 
 en.CHECK_CLR_DATA =Clear cached data
 en_GB.CHECK_CLR_DATA =Clear cached data
@@ -1397,6 +1399,7 @@ he.CHECK_CLR_DATA =נקה נתונים זמניים
 sq.CHECK_CLR_DATA =Pastroni të dhënat e memories së ruajtur
 id.CHECK_CLR_DATA =Hapus data cache
 sv.CHECK_CLR_DATA =Rensa cachelagrade data
+ar_SA.CHECK_CLR_DATA =مسح البيانات المخزنة مؤقتًا
 
 en.CHECK_CLR_STNGS =Clear user settings
 en_GB.CHECK_CLR_STNGS =Clear user settings
@@ -1416,6 +1419,7 @@ he.CHECK_CLR_STNGS =נקה הגדרות משתמש
 sq.CHECK_CLR_STNGS =Pastroni cilësimet e përdoruesit
 id.CHECK_CLR_STNGS =Hapus pengaturan user
 sv.CHECK_CLR_STNGS =Rensa användarinställningar
+ar_SA.CHECK_CLR_STNGS =مسح إعدادات المستخدم
 
 en.CHECK_CLR_ALL =Clear user settings and cached data
 en_GB.CHECK_CLR_ALL =Clear user settings and cached data
@@ -1435,3 +1439,4 @@ he.CHECK_CLR_ALL =נקה הגדרות משתמש ונתונים זמניים
 sq.CHECK_CLR_ALL =Pastroni cilësimet e përdoruesit dhe të dhënat e memories së ruajtur
 id.CHECK_CLR_ALL =Hapus pengaturan user dan data cache
 sv.CHECK_CLR_ALL =Rensa användarinställningar och cachelagrade data
+ar_SA.CHECK_CLR_ALL =مسح إعدادات المستخدم والبيانات المخزنة مؤقتًا
