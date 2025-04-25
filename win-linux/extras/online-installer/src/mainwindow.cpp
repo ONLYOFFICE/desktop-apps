@@ -411,8 +411,8 @@ void MainWindow::startUpdate()
                 return;
             }
             m_bar->pulse(true);
-            wstring args = L"/c \"" + tmp_path;
-            args += (m_package == L"msi") ? L" /qn /norestart\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
+            wstring args = L"/c call \"" + tmp_path;
+            args += (m_package == L"msi") ? L"\" /qn /norestart" : L"\" /UPDATE /VERYSILENT /NOLAUNCH";
             DWORD status = NS_File::runProcess(L"cmd", args, true);
             if (status != 0) {
                 m_bar->pulse(false);
