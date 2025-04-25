@@ -420,32 +420,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio joonis (*.vsdx)</translation>
+        <translation>Visio joonis</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio makro lubatud joonis (*.vsdm)</translation>
+        <translation>Visio makro lubatud joonis</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio šabloon (*.vssx)</translation>
+        <translation>Visio šabloon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio makrotoega šabloon (*.vssm)</translation>
+        <translation>Visio makrotoega šabloon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio mall (*.vstx)</translation>
+        <translation>Visio mall</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio makro lubatud mall (*.vstm)</translation>
+        <translation>Visio makro lubatud mall</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

@@ -420,32 +420,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Risba Visio (*.vsdx)</translation>
+        <translation>Risba Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Risba Visio z omogočenimi makri (*.vsdm)</translation>
+        <translation>Risba Visio z omogočenimi makri</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio Stencil (*.vssx)</translation>
+        <translation>Visio Stencil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Šablona Visio z omogočenimi makri (*.vssm)</translation>
+        <translation>Šablona Visio z omogočenimi makri</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Predloga Visio (*.vstx)</translation>
+        <translation>Predloga Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Predloga Visio z omogočenimi makri (*.vstm)</translation>
+        <translation>Predloga Visio z omogočenimi makri</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

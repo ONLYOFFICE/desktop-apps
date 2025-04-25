@@ -440,32 +440,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Dibujo de Visio (*.vsdx)</translation>
+        <translation>Dibujo de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Dibujo habilitado para macros de Visio (*.vsdm)</translation>
+        <translation>Dibujo habilitado para macros de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Galería de símbolos de Visio (*.vssx)</translation>
+        <translation>Galería de símbolos de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Galería de símbolos habilitada para macros de Visio (*.vssm)</translation>
+        <translation>Galería de símbolos habilitada para macros de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Plantilla de Visio (*.vstx)</translation>
+        <translation>Plantilla de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Plantilla habilitada para macros de Visio (*.vstm)</translation>
+        <translation>Plantilla habilitada para macros de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

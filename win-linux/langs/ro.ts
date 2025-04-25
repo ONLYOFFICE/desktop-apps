@@ -440,32 +440,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Desen Visio (*.vsdx)</translation>
+        <translation>Desen Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Desen Visio activat pentru macrocomandă (*.vsdm)</translation>
+        <translation>Desen Visio activat pentru macrocomandă</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Tipar Visio (*.vssx)</translation>
+        <translation>Tipar Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Tipar Visio activat pentru macrocomandă (*.vssm)</translation>
+        <translation>Tipar Visio activat pentru macrocomandă</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Șablon Visio (*.vstx)</translation>
+        <translation>Șablon Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Șablon Visio activat pentru macrocomandă (*.vstm)</translation>
+        <translation>Șablon Visio activat pentru macrocomandă</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

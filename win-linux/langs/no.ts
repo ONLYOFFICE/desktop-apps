@@ -420,32 +420,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio-tegning (*.vsdx)</translation>
+        <translation>Visio-tegning</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio  makroaktivert tegning (*.vsdm)</translation>
+        <translation>Visio  makroaktivert tegning</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio Stencil (*.vssx)</translation>
+        <translation>Visio Stencil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio makroaktivert sjablong (*.vssm)</translation>
+        <translation>Visio makroaktivert sjablong</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio-mal (*.vstx)</translation>
+        <translation>Visio-mal</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio makroaktivert mal (*.vstm)</translation>
+        <translation>Visio makroaktivert mal</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

@@ -440,32 +440,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio 図面 (*.vsdx)</translation>
+        <translation>Visio 図面</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio マクロ対応図面 (*.vsdm)</translation>
+        <translation>Visio マクロ対応図面</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio ステンシル (*.vssx)</translation>
+        <translation>Visio ステンシル</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio マクロ対応ステンシル (*.vssm)</translation>
+        <translation>Visio マクロ対応ステンシル</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio テンプレート (*.vstx)</translation>
+        <translation>Visio テンプレート</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio マクロ対応テンプレート (*.vstm)</translation>
+        <translation>Visio マクロ対応テンプレート</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

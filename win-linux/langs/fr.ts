@@ -440,32 +440,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Dessin Visio (*.vsdx)</translation>
+        <translation>Dessin Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Dessin Visio prenant en charge les macros (*.vsdm)</translation>
+        <translation>Dessin Visio prenant en charge les macros</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Gabarit Visio (*.vssx)</translation>
+        <translation>Gabarit Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Gabarit Visio prenant en charge les macros (*.vssm)</translation>
+        <translation>Gabarit Visio prenant en charge les macros</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Modèle Visio (*.vstx)</translation>
+        <translation>Modèle Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Modèle Visio prenant en charge les macros (*.vstm)</translation>
+        <translation>Modèle Visio prenant en charge les macros</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

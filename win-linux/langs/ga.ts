@@ -439,32 +439,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Líníocht Visio (*.vsdx)</translation>
+        <translation>Líníocht Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Líníocht Macra-chuasaithe Visio (*.vsdm)</translation>
+        <translation>Líníocht Macra-chuasaithe Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Stionsal Visio (*.vssx)</translation>
+        <translation>Stionsal Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Stionsal Macra-chumasaithe Visio (*.vssm)</translation>
+        <translation>Stionsal Macra-chumasaithe Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Teimpléad Visio (*.vstx)</translation>
+        <translation>Teimpléad Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Teimpléad Macra-cumasaithe Visio (*.vstm)</translation>
+        <translation>Teimpléad Macra-cumasaithe Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>

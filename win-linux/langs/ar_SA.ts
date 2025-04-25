@@ -412,32 +412,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>رسم مرئي (*.vsdx)</translation>
+        <translation>رسم مرئي</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>الرسم الممكّن بالماكرو في Visio (*.vsdm)</translation>
+        <translation>الرسم الممكّن بالماكرو في Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>استنسل فيسيو (*.vssx)</translation>
+        <translation>استنسل فيسيو</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>استنسل Visio الممكّن للماكرو (*.vssm)</translation>
+        <translation>استنسل Visio الممكّن للماكرو</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>قالب Visio (*.vstx)</translation>
+        <translation>قالب Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>قالب Visio الممكّن للماكرو (*.vstm)</translation>
+        <translation>قالب Visio الممكّن للماكرو</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
