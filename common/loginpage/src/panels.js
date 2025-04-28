@@ -32,8 +32,61 @@
 
 'use strict';
 $(document).ready(function() {
+    const l = {
+        actMain: 'Home',
+    };
+    const _toolmenu_tpl = `
+            <div class="main-column col-left tool-menu">
+              <li class="menu-item">
+                <a action="recents">
+                    <svg class="icon" data-iconname="home" data-precls="tool-icon">
+                        <use href="#home"></use>
+                    </svg>
+                    <span class="text" l10n>${l.actMain}</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="open">
+                    <svg class="icon" data-iconname="folder" data-precls="tool-icon">
+                        <use href="#folder"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actOpenLocal}</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a l10n action="templates">
+                    <svg class="icon" data-iconname="tpls" data-precls="tool-icon">
+                        <use href="#tpls"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actTemplates}</span>
+                </a>
+              </li>
+              <li class="menu-item separator"></li>
+              <section id="idx-sidebar-portals">
+              </section>
+              <li class="menu-item devider"></li>
+              <li class="menu-item">
+                  <a action="settings">
+                      <svg class="icon" data-iconname="settings" data-precls="tool-icon">
+                          <use href="#settings"></use>
+                      </svg>
+                      <span class="text" l10n>${utils.Lang.actSettings}</span>
+                  </a>
+              </li>
+              <li class="menu-item">
+                  <a action="about">
+                      <svg class="icon" data-iconname="about" data-precls="tool-icon">
+                          <use href="#about"></use>
+                      </svg>
+                      <span class="text" l10n>${utils.Lang.actAbout}</span>
+                  </a>
+              </li>
+            </div>
+            <div class="main-column col-center after-left">
+            </div>`;
+    $('#placeholder').html(_toolmenu_tpl);
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
-    $('.tool-quick-menu .menu-item a').click(onNewFileClick);
+    // $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     if ( window.utils.isWinXp ) {
         $('a[action] use').each((i, e) => {

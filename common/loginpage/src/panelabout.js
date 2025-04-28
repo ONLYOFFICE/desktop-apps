@@ -52,7 +52,8 @@
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         // args.itemindex = 3;
-        args.itemtext = _lang.actAbout;
+        // args.itemtext = _lang.actAbout;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };

@@ -100,7 +100,8 @@
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
-        args.itemtext = _lang.actTemplates;
+        // args.itemtext = _lang.actTemplates;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };

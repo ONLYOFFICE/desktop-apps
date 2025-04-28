@@ -85,7 +85,8 @@
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
-        args.itemtext = _lang.actRecentFiles;
+        // args.itemtext = _lang.actRecentFiles;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };

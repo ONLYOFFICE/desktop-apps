@@ -73,7 +73,8 @@
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 1;
-        args.itemtext = _lang.actOpenLocal
+        // args.itemtext = _lang.actOpenLocal
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };
