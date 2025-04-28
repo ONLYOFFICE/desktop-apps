@@ -1,12 +1,13 @@
 
 :root {
-    --background-normal: #fff;
+    --background-normal: #f9f9f9;
     --background-tabbar: #f7f7f7;
     /*--background-button: #fff;*/
     --background-accent-button: #3483db;
     --background-primary-button: #444;
     --background-scrim: fade(#000, 20%);
     --background-scroll-thumb: #e0e0e0;
+    --background-action-panel: #fff;
 
     --highlight-button-hover: #e0e0e0;
     --highlight-button-pressed: #ccc;
@@ -19,12 +20,15 @@
     --highlight-text-select: #3494fb;
     --highlight-scroll-thumb-hover: #ccc;
     --highlight-scroll-track-hover: fade(#000, 3%);
+    --highlight-sidebar-item-pressed: #fff;
 
     --border-tabbar: #cbcbcb;
     --border-divider: #dfdfdf;
     --border-regular-control: #c0c0c0;
     --border-control-focus: #848484;
     --border-error: #f62211;
+    --border-sidebar: var(--background-normal)
+    --border-sidebar-item: transparent;
 
     --text-normal: fade(#000, 80%);
     --text-normal-pressed: fade(#000, 80%);
@@ -39,6 +43,8 @@
 
     --disabled-element-opacity: .4;
     --theme-inverted-image-filter: none;
+
+    --shadow-sidebar-item-pressed: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
 }
 
 @background-normal: var(--background-normal);
@@ -48,6 +54,7 @@
 @background-primary-button: var(--background-primary-button);
 @background-scrim: var(--background-scrim);
 @background-scroll-thumb: var(--background-scroll-thumb);
+@background-action-panel: var(--background-action-panel);
 
 @highlight-button-hover: var(--highlight-button-hover);
 @highlight-button-pressed: var(--highlight-button-pressed);
@@ -60,12 +67,15 @@
 @highlight-text-select: var(--highlight-text-select);
 @highlight-scroll-thumb-hover: var(--highlight-scroll-thumb-hover);
 @highlight-scroll-track-hover: var(--highlight-scroll-track-hover);
+@highlight-sidebar-item-pressed: var(--highlight-sidebar-item-pressed);
 
 @border-tabbar: var(--border-tabbar);
 @border-divider: var(--border-divider);
 @border-regular-control: var(--border-regular-control);
 @border-control-focus: var(--border-control-focus);
 @border-error: var(--border-error);
+@border-sidebar: var(--border-sidebar);
+@border-sidebar-item: var(--border-sidebar-item);
 
 @text-normal: var(--text-normal);
 @text-normal-pressed: var(--text-normal-pressed);
