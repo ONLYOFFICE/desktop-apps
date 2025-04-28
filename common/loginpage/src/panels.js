@@ -112,18 +112,13 @@ $(document).ready(function() {
         window.app.controller.portals = (new ControllerPortals({})).init();
     !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
-    $('h3.createnew').text(utils.Lang.actCreateNew);
-    $('a[action="new:docx"] > .text').text(utils.Lang.newDoc);
-    $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
-    $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
-    $('a[action="new:form"] > .text').text(utils.Lang.newForm);
+    // if (!localStorage.welcome) {
+    //     app.controller.welcome = (new ControllerWelcome).init();
+    //     selectAction('welcome');
 
-    if (!localStorage.welcome) {
-        app.controller.welcome = (new ControllerWelcome).init();
-        selectAction('welcome');
-
-        localStorage.setItem('welcome', 'have been');
-    } else {
+    //     localStorage.setItem('welcome', 'have been');
+    // } else
+    {
         if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
             selectAction(utils.inParams.panel);
         else selectAction('recents');
@@ -231,13 +226,13 @@ var Scroll_offset = '16px';
         replaceIcons(!e.target.matches);
     });
 
-    replaceIcons(!mql.matches);
+    // replaceIcons(!mql.matches);
 }
 
 function replaceIcons(usesvg) {
     if ( usesvg ) {
     } else {
-        $('svg.icon', $('.tool-quick-menu')).each((i, el) => {
+        $('.tool-menu svg.icon').each((i, el) => {
             el = $(el);
             const p = el.parent();
             if ( $('i.icon', p).length == 0 ) {
