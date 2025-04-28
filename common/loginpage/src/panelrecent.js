@@ -40,7 +40,7 @@
     var ControllerRecent = function(args={}) {
         args.caption = 'Recent files';
         args.action =
-        this.action = "recent";
+        this.action = "recents";
         this.view = new ViewRecent(args);
     };
 

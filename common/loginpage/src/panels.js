@@ -126,7 +126,7 @@ $(document).ready(function() {
     } else {
         if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
             selectAction(utils.inParams.panel);
-        else selectAction('recent');
+        else selectAction('recents');
     }
 
     $('#placeholder').on('click', '.newportal', function(){
