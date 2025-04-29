@@ -134,7 +134,8 @@ static BOOL uiLayoutDirectionRTL = NO;
         @"si-LK": @{@"name": @"සිංහල", @"enname": @"Sinhala (Sri Lanka)"},
         @"ar-SA": @{@"name": @"اَلْعَرَبِيَّة", @"enname": @"Arabic"},
         @"sq-AL": @{@"name": @"Shqip", @"enname": @"Albanian"},
-        @"he-IL": @{@"name": @"עברית", @"enname": @"Hebrew"}
+        @"he-IL": @{@"name": @"עברית", @"enname": @"Hebrew"},
+        @"ur-PK": @{@"name": @"اردو", @"enname": @"Urdu"}
     };
 }
 
