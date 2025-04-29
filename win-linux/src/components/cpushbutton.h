@@ -34,9 +34,10 @@
 #define CPUSHBUTTON_H
 
 #include <QPushButton>
-#include <QSvgRenderer>
-#include <QVariantAnimation>
 
+
+class QSvgRenderer;
+class QVariantAnimation;
 class CPushButton : public QPushButton
 {
     Q_OBJECT

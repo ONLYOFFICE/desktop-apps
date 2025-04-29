@@ -32,6 +32,8 @@
 
 #include "components/cpushbutton.h"
 #include <QPainter>
+#include <QSvgRenderer>
+#include <QVariantAnimation>
 
 #define ANIMATION_MS 2500
 
