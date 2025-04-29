@@ -61,6 +61,7 @@
 #include "components/celipsislabel.h"
 
 
+class CPushButton;
 class CWindowBase : public QMainWindow
 {
 public:
@@ -81,7 +82,7 @@ protected:
         Btn_Minimize, Btn_Maximize, Btn_Close
     };
 
-    QPushButton* createToolButton(QWidget * parent, const QString& name);
+    CPushButton* createToolButton(QWidget * parent, const QString& name);
     QWidget* createTopPanel(QWidget *parent);
     void saveWindowState(const QString &baseKey = "");
     void moveToPrimaryScreen();
@@ -95,7 +96,7 @@ protected:
     virtual void onCloseEvent();
     virtual void focus();
 
-    QVector<QPushButton*> m_pTopButtons;
+    QVector<CPushButton*> m_pTopButtons;
     CElipsisLabel *m_labelTitle = nullptr;
     QWidget       *m_pMainPanel = nullptr,
                   *m_boxTitleBtns = nullptr,

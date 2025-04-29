@@ -46,13 +46,19 @@ public:
     ~CPushButton();
     void setAnimatedIcon(const QString &path);
     void setStaticIcon(const QString &path);
+    void setFaded(bool);
     bool isStarted();
+
+protected:
+    bool event(QEvent*);
 
 private:
     void releaseSvg();
     void onSvgRepaint(double);
+    void setOpacity(double);
     QVariantAnimation * m_animation = nullptr;
     QSvgRenderer *m_renderer = nullptr;
+    bool m_faded = false;
 };
 
 #endif // CPUSHBUTTON_H
