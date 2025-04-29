@@ -43,6 +43,7 @@ sv.CAPTION =ONLYOFFICE onlineinstallationsprogram
 sr_Cyrl_RS.CAPTION =ONLYOFFICE Онлајн Инсталатер
 he.CAPTION_TEXT =תוכנת ההתקנה המקוונת של ONLYOFFICE
 sq.CAPTION =Instaluesi i ONLYOFFICE Onlie
+ur.CAPTION =ONLYOFFICE آن لائن انسٹالر
 
 en.MSG_ERR_SYSTEM =The current version of the operating system is not supported. %1 requires Microsoft Windows 7 or newer.
 ru.MSG_ERR_SYSTEM =Текущая версия операционной системы не поддерживается. Для работы %1 требуется Microsoft Windows 7 или более новая версия.
@@ -53,6 +54,7 @@ es.MSG_ERR_SYSTEM =La versión actual del sistema operativo no es compatible. %1
 it.MSG_ERR_SYSTEM =La versione attuale del sistema operativo non è supportata. %1 richiede Microsoft Windows 7 o una versione più recente.
 ja.MSG_ERR_SYSTEM =現在のオペレーティング・システムのバージョンはサポートされていません。%1には Microsoft Windows 7 以降が必要です。
 zh_CN.MSG_ERR_SYSTEM =当前操作系统版本不受支持。%1 仅适用于 Microsoft Windows 7 或更高版本。
+ur.MSG_ERR_SYSTEM =آپریٹنگ سسٹم کا موجودہ ورژن تعاون یافتہ نہیں ہے۔ %1 کو Microsoft Windows 7 یا جدید تر درکار ہے۔
 
 en.MSG_ERR_ALREADY_RUNNING =The application is already running.
 en_GB.MSG_ERR_ALREADY_RUNNING =The application is already running.
@@ -98,6 +100,7 @@ sv.MSG_ERR_ALREADY_RUNNING =Applikationen körs redan.
 sr_Cyrl_RS.MSG_ERR_ALREADY_RUNNING =Апликација већ ради.
 he.MSG_ERR_ALREADY_RUNNING =היישום כבר פועל.
 sq.MSG_ERR_ALREADY_RUNNING =Aplikacioni tashmë po funksionon.
+ur.MSG_ERR_ALREADY_RUNNING =ایپلیکیشن پہلے ہی چل رہی ہے۔
 
 en.MSG_ERR_TRY_CLOSE_APP =Setup has detected that %1 is currently running. It'll be closed automatically.
 ru.MSG_ERR_TRY_CLOSE_APP =Обнаружен запущенный экземпляр %1. Он будет закрыт автоматически.
@@ -142,6 +145,7 @@ lv.MSG_ERR_CLOSE_APP =Sistēma ir konstatējusi, ka pašlaik darbojas programma 
 sq.MSG_ERR_CLOSE_APP =Konfigurimi ka zbuluar se %1 po ekzekutohet aktualisht. Ju lutem mbyllni të gjitha rastet e tij.
 id.MSG_ERR_CLOSE_APP =Setup mendeteksi %1 sedang berjalan. Mohon untuk ditutup.
 sv.MSG_ERR_CLOSE_APP =Installationsprogrammet har upptäckt att %1 körs. Stäng alla instanser av programmet.
+ur.MSG_ERR_CLOSE_APP =سیٹ اپ نے پتہ لگایا ہے کہ فی الحال %1 چل رہا ہے۔ براہ کرم اس کی تمام مثالیں بند کریں۔
 
 en.MSG_REMOVE =This will remove %1 and its components.
 en_GB.MSG_REMOVE =This will remove %1 and its components.
@@ -176,6 +180,7 @@ lv.MSG_REMOVE =Tādējādi %1 un tās sastāvdaļas tiks dzēstas.
 sq.MSG_REMOVE =Kjo do të heqë %1 dhe përbërësit e tij.
 id.MSG_REMOVE =Ini akan menghapus %1 beserta komponennya.
 sv.MSG_REMOVE =Detta tar bort %1 och dess komponenter.
+ur.MSG_REMOVE =یہ %1 اور اس کے اجزاء کو ہٹا دے گا۔
 
 en.MSG_REPAIR =This will repair the current version of %1.
 en_GB.MSG_REPAIR =This will repair the current version of %1.
@@ -210,6 +215,7 @@ lv.MSG_REPAIR =Tādējādi pašreizējā %1 versija tiks salabota.
 sq.MSG_REPAIR =Kjo do të riparojë versionin aktual të %1.
 id.MSG_REPAIR =Ini akan memperbaiki versi terbaru %1.
 sv.MSG_REPAIR =Detta reparerar den aktuella versionen av %1.
+ur.MSG_REPAIR =یہ %1 کے موجودہ ورژن کو ٹھیک کر دے گا۔
 
 en.MSG_UPDATE =This will update %1 to the latest version available.
 en_GB.MSG_UPDATE =This will update %1 to the latest version available.
@@ -244,6 +250,7 @@ lv.MSG_UPDATE =Tādējādi %1 tiks atjaunināta uz jaunāko pieejamo versiju.
 sq.MSG_UPDATE =Kjo do të përditësojë %1 në versionin më të fundit të disponueshëm.
 id.MSG_UPDATE =Ini akan melakukan update %1 ke versi terbaru yang tersedia.
 sv.MSG_UPDATE =Detta uppdaterar %1 till den senaste tillgängliga versionen.
+ur.MSG_UPDATE =یہ %1 کو دستیاب تازہ ترین ورژن میں اپ ڈیٹ کر دے گا۔
 
 en.LABEL_DOWNLOAD =Downloading
 en_GB.LABEL_DOWNLOAD =Downloading
@@ -278,6 +285,7 @@ lv.LABEL_DOWNLOAD =Lejupielādē
 sq.LABEL_DOWNLOAD =Po shkarkohet
 id.LABEL_DOWNLOAD =Mendownload
 sv.LABEL_DOWNLOAD =Hämtar
+ur.LABEL_DOWNLOAD =ڈاؤن لوڈ ہو رہا ہے۔
 
 en.LABEL_INSTALL =Installing
 en_GB.LABEL_INSTALL =Installing
@@ -312,6 +320,7 @@ lv.LABEL_INSTALL =Instalē
 sq.LABEL_INSTALL =Po instalohet
 id.LABEL_INSTALL =Menginstall
 sv.LABEL_INSTALL =Installerar
+ur.LABEL_INSTALL =انسٹال کرنا
 
 en.LABEL_UPDATING =Updating
 en_GB.LABEL_UPDATING =Updating
@@ -346,6 +355,7 @@ lv.LABEL_UPDATING =Atjaunina
 sq.LABEL_UPDATING =Po përditësohet
 id.LABEL_UPDATING =Mengupdate
 sv.LABEL_UPDATING =Uppdaterar
+ur.LABEL_UPDATING =اپ ڈیٹ کر رہا ہے۔
 
 en.LABEL_REPAIRING =Repairing
 en_GB.LABEL_REPAIRING =Repairing
@@ -380,6 +390,7 @@ lv.LABEL_REPAIRING =Labo
 sq.LABEL_REPAIRING =Po riparohet
 id.LABEL_REPAIRING =Memperbaiki
 sv.LABEL_REPAIRING =Reparerar
+ur.LABEL_REPAIRING =مرمت کرنا
 
 en.LABEL_UNINSTLING =Uninstalling
 en_GB.LABEL_UNINSTLING =Uninstalling
@@ -414,6 +425,7 @@ lv.LABEL_UNINSTLING =Atinstalē
 sq.LABEL_UNINSTLING =Po çinstalohet
 id.LABEL_UNINSTLING =Menghapus
 sv.LABEL_UNINSTLING =Avinstallerar
+ur.LABEL_UNINSTLING =ان انسٹال کرنا
 
 en.LABEL_UPDATE_COMPL =Update complete!
 en_GB.LABEL_UPDATE_COMPL =Update complete!
@@ -448,6 +460,7 @@ lv.LABEL_UPDATE_COMPL =Atjaunināšana pabeigta!
 sq.LABEL_UPDATE_COMPL =Përditësimi përfundoj!
 id.LABEL_UPDATE_COMPL =Update selesai!
 sv.LABEL_UPDATE_COMPL =Uppdatering slutförd!
+ur.LABEL_UPDATE_COMPL =اپ ڈیٹ مکمل!
 
 en.LABEL_REPAIR_COMPL =Repairing completed!
 en_GB.LABEL_REPAIR_COMPL =Repairing completed!
@@ -482,6 +495,7 @@ lv.LABEL_REPAIR_COMPL =Labošana pabeigta!
 sq.LABEL_REPAIR_COMPL =Riparimi përfundoj!
 id.LABEL_REPAIR_COMPL =Perbaikan selesai!
 sv.LABEL_REPAIR_COMPL =Reparation slutförd!
+ur.LABEL_REPAIR_COMPL =مرمت مکمل!
 
 en.LABEL_UNINST_COMPL =Uninstalling completed!
 en_GB.LABEL_UNINST_COMPL =Uninstalling completed!
@@ -516,6 +530,7 @@ lv.LABEL_UNINST_COMPL =Atinstalēšana pabeigta!
 sq.LABEL_UNINST_COMPL =Çinstalimi përfundoj!
 id.LABEL_UNINST_COMPL =Uninstall selesai!
 sv.LABEL_UNINST_COMPL =Avinstallation slutförd!
+ur.LABEL_UNINST_COMPL =اَن انسٹال کرنا مکمل ہو گیا!
 
 en.LABEL_VERSION =%1 %2 (%3 %4) is installed
 en_GB.LABEL_VERSION =%1 %2 (%3 %4) is installed
@@ -550,6 +565,7 @@ lv.LABEL_VERSION =%1 %2 (%3 %4) ir instalēts
 sq.LABEL_VERSION =%1 %2 (%3 %4) është instaluar
 id.LABEL_VERSION =%1 %2 (%3 %4) sudah terinstall
 sv.LABEL_VERSION =%1 %2 (%3 %4) är installerad
+ur.LABEL_VERSION =%1 %2 (%3 %4) انسٹال ہے۔
 
 en.LABEL_UNKN_VER =unknown version
 en_GB.LABEL_UNKN_VER =unknown version
@@ -584,6 +600,7 @@ lv.LABEL_UNKN_VER =nezināma versija
 sq.LABEL_UNKN_VER =version i panjohur
 id.LABEL_UNKN_VER =versi tidak dikenal
 sv.LABEL_UNKN_VER =okänd version
+ur.LABEL_UNKN_VER =نامعلوم ورژن
 
 en.LABEL_UNKN_PACK =unknown package
 en_GB.LABEL_UNKN_PACK =unknown package
@@ -618,6 +635,7 @@ lv.LABEL_UNKN_PACK =nezināma pakotne
 sq.LABEL_UNKN_PACK =paketë e panjohur
 id.LABEL_UNKN_PACK =paket tidak dikenal
 sv.LABEL_UNKN_PACK =okänt paket
+ur.LABEL_UNKN_PACK =نامعلوم پیکج
 
 en.LABEL_NO_OPTIONS =No additional options available.
 en_GB.LABEL_NO_OPTIONS =No additional options available.
@@ -652,6 +670,7 @@ lv.LABEL_NO_OPTIONS =Papildu opcijas nav pieejamas.
 sq.LABEL_NO_OPTIONS =Nuk ka opsione shtesë të disponueshme.
 id.LABEL_NO_OPTIONS =Tidak ada opsi tambahan yang tersedia.
 sv.LABEL_NO_OPTIONS =Inga ytterligare alternativ tillgängliga.
+ur.LABEL_NO_OPTIONS =کوئی اضافی اختیارات دستیاب نہیں ہیں۔
 
 en.LABEL_NO_VER_AVAIL =No version available
 en_GB.LABEL_NO_VER_AVAIL =No version available
@@ -686,6 +705,7 @@ lv.LABEL_NO_VER_AVAIL =Versijas nav pieejamas
 sq.LABEL_NO_VER_AVAIL =Asnjë version i disponueshëm
 id.LABEL_NO_VER_AVAIL =Tidak ada versi yang tersedia
 sv.LABEL_NO_VER_AVAIL =Ingen version tillgänglig
+ur.LABEL_NO_VER_AVAIL =کوئی ورژن دستیاب نہیں ہے۔
 
 en.LABEL_WARN_CLOSE =This will install %1 on your computer.\nIt is recommended that you close all other applications before continuing.
 en_GB.LABEL_WARN_CLOSE =This will install %1 on your computer.\nIt is recommended that you close all other applications before continuing.
@@ -720,6 +740,7 @@ lv.LABEL_WARN_CLOSE =Tādējādi datorā tiks instalēta programma %1.\nPirms tu
 sq.LABEL_WARN_CLOSE =Kjo do të instalojë %1 në kompjuterin tuaj.\nRekomandohet që të mbyllni të gjitha aplikacionet e tjera përpara se të vazhdoni.
 id.LABEL_WARN_CLOSE =Ini akan menjalankan instalasi %1 di komputer Anda.\nDirekomendasikan untuk menutup semua aplikasi sebelum melanjutkan.
 sv.LABEL_WARN_CLOSE =Detta installerar %1 på din dator.\nDet rekommenderas att du stänger alla andra program innan du fortsätter.
+ur.LABEL_WARN_CLOSE =یہ آپ کے کمپیوٹر پر %1 انسٹال کر دے گا۔\nیہ تجویز کی جاتی ہے کہ آپ جاری رکھنے سے پہلے دیگر تمام ایپلیکیشنز کو بند کر دیں۔
 
 en.LABEL_ALMOST_DONE =Just a bit more and we're done
 en_GB.LABEL_ALMOST_DONE =Just a bit more and we're done
@@ -754,6 +775,7 @@ lv.LABEL_ALMOST_DONE =Vēl tikai nedaudz un viss būs pabeigts
 sq.LABEL_ALMOST_DONE =Edhe pak dhe kemi mbaruar
 id.LABEL_ALMOST_DONE =Sedikit lagi dan kita akan selesai
 sv.LABEL_ALMOST_DONE =Bara lite till så är vi klara
+ur.LABEL_ALMOST_DONE =بس تھوڑا سا اور اور ہم کر چکے ہیں۔
 
 en.LABEL_INSTALL_COMPL =%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box.
 en_GB.LABEL_INSTALL_COMPL =%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box.
@@ -788,6 +810,7 @@ lv.LABEL_INSTALL_COMPL =%1 ir veiksmīgi instalēta jūsu datorā.\nLai palaistu
 sq.LABEL_INSTALL_COMPL =%1 është instaluar me sukses në kompjuterin tuaj.\nPër të ekzekutuar aplikacionin pas mbylljes së këtir instaluesi, zgjidhni kutinë e kontrollit.
 id.LABEL_INSTALL_COMPL =%1 berhasil terpasang ke komputer Anda.\nSetelah menutup installer, centang kotak untuk menjalankan aplikasi.
 sv.LABEL_INSTALL_COMPL =%1 har installerats framgångsrikt på din dator.\nOm du vill köra programmet efter att du har stängt det här installationsprogrammet markerar du kryssrutan.
+ur.LABEL_INSTALL_COMPL =آپ کے کمپیوٹر پر %1 کامیابی کے ساتھ انسٹال ہو گیا ہے۔\nاس انسٹالر کو بند کرنے کے بعد ایپلیکیشن چلانے کے لیے، چیک باکس کو منتخب کریں۔
 
 en.LABEL_ERR_PROD_CODE =Error while retrieving product code.
 en_GB.LABEL_ERR_PROD_CODE =Error while retrieving product code.
@@ -822,6 +845,7 @@ lv.LABEL_ERR_PROD_CODE =Kļūda produkta koda izgūšanas laikā.
 sq.LABEL_ERR_PROD_CODE =Gabim gjatë marrjes së kodit të produktit.
 id.LABEL_ERR_PROD_CODE =Kesalahan saat mengakses kode produk.
 sv.LABEL_ERR_PROD_CODE =Fel vid hämtning av produktkod.
+ur.LABEL_ERR_PROD_CODE =پروڈکٹ کوڈ بازیافت کرتے وقت خرابی۔
 
 en.LABEL_ERR_PACK_NAME =Error while retrieving package name.
 en_GB.LABEL_ERR_PACK_NAME =Error while retrieving package name.
@@ -856,6 +880,7 @@ lv.LABEL_ERR_PACK_NAME =Kļūda pakotnes nosaukuma izgūšanas laikā.
 sq.LABEL_ERR_PACK_NAME =Gabim gjatë marrjes së emrit të paketës.
 id.LABEL_ERR_PACK_NAME =Kesalahan saat mengakses nama paket.
 sv.LABEL_ERR_PACK_NAME =Fel vid hämtning av paketnamn.
+ur.LABEL_ERR_PACK_NAME =پیکیج کا نام بازیافت کرتے وقت خرابی۔
 
 en.LABEL_ERR_INSTALL =An error occurred during installation.
 en_GB.LABEL_ERR_INSTALL =An error occurred during installation.
@@ -890,6 +915,7 @@ lv.LABEL_ERR_INSTALL =Instalēšanas laikā notika kļūda.
 sq.LABEL_ERR_INSTALL =Ndodhi një gabim gjatë instalimit.
 id.LABEL_ERR_INSTALL =Ada kesalahan saat instalasi.
 sv.LABEL_ERR_INSTALL =Ett fel uppstod under installationen.
+ur.LABEL_ERR_INSTALL =تنصیب کے دوران ایک خرابی پیش آگئی۔
 
 en.LABEL_ERR_UNINST =An error occurred during uninstalling.
 en_GB.LABEL_ERR_UNINST =An error occurred during uninstalling.
@@ -924,6 +950,7 @@ lv.LABEL_ERR_UNINST =Atinstalēšanas laikā notika kļūda.
 sq.LABEL_ERR_UNINST =Ndodhi një gabim gjatë çinstalimit.
 id.LABEL_ERR_UNINST =Ada kesalahan saat uninstall.
 sv.LABEL_ERR_UNINST =Ett fel uppstod under avinstallationen.
+ur.LABEL_ERR_UNINST =ان انسٹال کرنے کے دوران ایک خرابی پیش آگئی۔
 
 en.LABEL_ERR_COMMON =An error occurred:
 en_GB.LABEL_ERR_COMMON =An error occurred:
@@ -958,6 +985,7 @@ lv.LABEL_ERR_COMMON =Notika kļūda:
 sq.LABEL_ERR_COMMON =Një gabim ka ndodhur:
 id.LABEL_ERR_COMMON =Ada kesalahan:
 sv.LABEL_ERR_COMMON =Ett fel uppstod:
+ur.LABEL_ERR_COMMON =ایک خرابی پیش آگئی:
 
 en.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
 en_GB.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
@@ -1002,6 +1030,7 @@ sv.LABEL_ERR_RUNNING =Ett fel inträffade vid körning av paketet.\nFörsök sta
 sr_Cyrl_RS.LABEL_ERR_RUNNING =Дошло је до грешке приликом покретања пакета.\nМолимо покушајте да рестартујете апликацију касније.
 he.LABEL_ERR_RUNNING =אירעה שגיאה בעת הפעלת החבילה.\nאנא נסה להפעיל מחדש את היישום מאוחר יותר.
 sq.LABEL_ERR_RUNNING =Ndodhi një gabim gjatë ekzekutimit të paketës.\nJu lutem, provoni ta rinisni aplikacionin më vonë.
+ur.LABEL_ERR_RUNNING =پیکیج چلاتے وقت ایک خرابی پیش آگئی۔\nبراہ کرم بعد میں ایپ کو دوبارہ شروع کرنے کی کوشش کریں۔
 
 en.LABEL_ERR_CANCELLED =Cancelled!
 en_GB.LABEL_ERR_CANCELLED =Cancelled!
@@ -1034,6 +1063,7 @@ lv.LABEL_ERR_CANCELLED =Atcelts!
 sq.LABEL_ERR_CANCELLED =Anuluar!
 id.LABEL_ERR_CANCELLED =Dibatalkan!
 sv.LABEL_ERR_CANCELLED =Avbrutet!
+ur.LABEL_ERR_CANCELLED =منسوخ کر دیا گیا!
 
 en.BUTTON_INSTALL =Install
 en_GB.BUTTON_INSTALL =Install
@@ -1067,6 +1097,7 @@ lv.BUTTON_INSTALL =Instalēt
 sq.BUTTON_INSTALL =Instaloni
 id.BUTTON_INSTALL =Install
 sv.BUTTON_INSTALL =Installera
+ur.BUTTON_INSTALL =انسٹال کریں۔
 
 en.BUTTON_CANCEL =Cancel
 en_GB.BUTTON_CANCEL =Cancel
@@ -1112,6 +1143,7 @@ sv.BUTTON_CANCEL =Avbryt
 sr_Cyrl_RS.BUTTON_CANCEL =Откажи
 he.BUTTON_CANCEL =ביטול
 sq.BUTTON_CANCEL =Anuloni
+ur.BUTTON_CANCEL =منسوخ کریں۔
 
 en.BUTTON_APPLY =Apply
 en_GB.BUTTON_APPLY =Apply
@@ -1146,6 +1178,7 @@ lv.BUTTON_APPLY =Piemērot
 sq.BUTTON_APPLY =Aplikoni
 id.BUTTON_APPLY =Terapkan
 sv.BUTTON_APPLY =Verkställ
+ur.BUTTON_APPLY =لگائیں
 
 en.BUTTON_CLOSE =Close
 en_GB.BUTTON_CLOSE =Close
@@ -1180,6 +1213,7 @@ lv.BUTTON_CLOSE =Aizvērt
 sq.BUTTON_CLOSE =Mbyllni
 id.BUTTON_CLOSE =Tutup
 sv.BUTTON_CLOSE =Stäng
+ur.BUTTON_CLOSE =بند
 
 en.BUTTON_BACK =Back
 en_GB.BUTTON_BACK =Back
@@ -1214,6 +1248,7 @@ lv.BUTTON_BACK =Atpakaļ
 sq.BUTTON_BACK =Mbrapa
 id.BUTTON_BACK =Kembali
 sv.BUTTON_BACK =Tillbaka
+ur.BUTTON_BACK =پیچھے
 
 en.RADIO_UPDATE =Update/Repair
 en_GB.RADIO_UPDATE =Update/Repair
@@ -1248,6 +1283,7 @@ lv.RADIO_UPDATE =Atjaunināt/Remonts
 sq.RADIO_UPDATE =Përditësim/Riparim
 id.RADIO_UPDATE =Update/Perbaiki
 sv.RADIO_UPDATE =Uppdatera/Reparera
+ur.RADIO_UPDATE =اپ ڈیٹ کریں۔
 
 en.RADIO_REPAIR =Repair
 en_GB.RADIO_REPAIR =Repair
@@ -1281,6 +1317,7 @@ lv.RADIO_REPAIR =Remonts
 sq.RADIO_REPAIR =Riparim
 id.RADIO_REPAIR =Perbaiki
 sv.RADIO_REPAIR =Reparera
+ur.RADIO_REPAIR =مرمت
 
 en.RADIO_UNINST =Uninstall
 en_GB.RADIO_UNINST =Uninstall
@@ -1314,6 +1351,7 @@ lv.RADIO_UNINST =Atinstalēt
 sq.RADIO_UNINST =Çinstaloni
 id.RADIO_UNINST =Uninstall
 sv.RADIO_UNINST =Avinstallera
+ur.RADIO_UNINST =ان انسٹال کریں۔
 ar_SA.RADIO_UNINST =إلغاء التثبيت
 be.RADIO_UNINST =Выдаленне
 ca.RADIO_UNINST =Desinstal·la
@@ -1371,6 +1409,7 @@ sv.CHECK_SILENT =Obevakad installation
 sr_Cyrl_RS.CHECK_SILENT =Тиха инсталација
 he.CHECK_SILENT =התקנה שקטה
 sq.CHECK_SILENT =Silent Installation
+ur.CHECK_SILENT =خاموش تنصیب
 
 en.CHECK_LAUNCH =Launch app
 en_GB.CHECK_LAUNCH =Launch app
@@ -1391,6 +1430,7 @@ sq.CHECK_LAUNCH =Hapni aplikacionin
 id.CHECK_LAUNCH =Jalankan app
 sv.CHECK_LAUNCH =Starta app
 ar_SA.CHECK_LAUNCH =تشغيل التطبيق
+ur.CHECK_LAUNCH =ایپ لانچ کریں۔
 
 en.CHECK_CLR_DATA =Clear cached data
 en_GB.CHECK_CLR_DATA =Clear cached data
@@ -1408,6 +1448,7 @@ sr_Latn_RS.CHECK_CLR_DATA =Obriši keširane podatke
 sr_Cyrl_RS.CHECK_CLR_DATA =Обриши кеширане податке
 he.CHECK_CLR_DATA =נקה נתונים זמניים
 sq.CHECK_CLR_DATA =Pastroni të dhënat e memories së ruajtur
+ur.CHECK_CLR_DATA =کیش شدہ ڈیٹا کو صاف کریں۔
 id.CHECK_CLR_DATA =Hapus data cache
 sv.CHECK_CLR_DATA =Rensa cachelagrade data
 ar_SA.CHECK_CLR_DATA =مسح البيانات المخزنة مؤقتًا
@@ -1446,6 +1487,7 @@ he.CHECK_CLR_STNGS =נקה הגדרות משתמש
 sq.CHECK_CLR_STNGS =Pastroni cilësimet e përdoruesit
 id.CHECK_CLR_STNGS =Hapus pengaturan user
 sv.CHECK_CLR_STNGS =Rensa användarinställningar
+ur.CHECK_CLR_STNGS =صارف کی ترتیبات کو صاف کریں۔
 ar_SA.CHECK_CLR_STNGS =مسح إعدادات المستخدم
 be.CHECK_CLR_STNGS =Ачысціць налады карыстальніка
 bg.CHECK_CLR_STNGS =Изчистете настройките на потребителя
@@ -1482,6 +1524,7 @@ he.CHECK_CLR_ALL =נקה הגדרות משתמש ונתונים זמניים
 sq.CHECK_CLR_ALL =Pastroni cilësimet e përdoruesit dhe të dhënat e memories së ruajtur
 id.CHECK_CLR_ALL =Hapus pengaturan user dan data cache
 sv.CHECK_CLR_ALL =Rensa användarinställningar och cachelagrade data
+ur.CHECK_CLR_ALL =صارف کی ترتیبات اور کیشڈ ڈیٹا کو صاف کریں۔
 ar_SA.CHECK_CLR_ALL =مسح إعدادات المستخدم والبيانات المخزنة مؤقتًا
 be.CHECK_CLR_ALL =Ачысціць карыстальніцкія налады і кэшаваныя даныя
 bg.CHECK_CLR_ALL =Изчистете настройките на потребителя и кешираните данни
