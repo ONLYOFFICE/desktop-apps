@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1931"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ní mór duit an feidhmchlár a atosú chun go dtiocfaidh na socruithe i bhfeidhm.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2263"/>
@@ -220,7 +220,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="740"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl aon leathanach leagtha síos le priontáil.</translation>
     </message>
 </context>
 <context>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="430"/>
@@ -424,7 +424,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhad dénártha Excel (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
@@ -439,32 +439,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Líníocht Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Líníocht Macra-chuasaithe Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Stionsal Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Stionsal Macra-chumasaithe Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Teimpléad Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Teimpléad Macra-cumasaithe Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
@@ -526,22 +526,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formáid íomhá anaithnid.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formáid físeán anaithnid.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formáid fuaime anaithnid.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Formáid anaithnid.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="264"/>
@@ -581,7 +581,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="238"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhad téama</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="285"/>
@@ -622,7 +622,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
         <location filename="../src/windows/cmainwindow.cpp" line="623"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Príomhfhuinneog</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="302"/>
@@ -668,7 +668,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1442"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Níl aon leathanaigh socraithe le priontáil.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1578"/>
@@ -694,47 +694,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="372"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Dún</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="373"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Dún shábháil</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>Dún go léir</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Show in folder</source>
-        <translation type="unfinished">Taispeáin san fhillteán é</translation>
+        <translation>Taispeáin san fhillteán é</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Bog chun tosú</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Bog go deireadh</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>Díphionnáil an táb go dtí an fhuinneog</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Bioráin go cluaisín</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>Nua a chruthú</translation>
     </message>
 </context>
 <context>
@@ -795,27 +795,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Theip ar an nuashonrú: as cuimhne!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Theip ar an nuashonrú: earráid le nasc an fhreastalaí!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Theip ar an nuashonrú: URL mícheart!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Theip ar an nuashonrú: ní féidir an comhad a chruthú!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Theip ar an nuashonrú: earráid líonra!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -932,27 +932,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá nuashonrú seirbhíse ar fáil (leagan %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuashonrú (%1%) á ullmhú</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus nuashonruithe seiceála: níl an tseirbhís nuashonraithe suiteáilte nó níl sí ag rith!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus nuashonruithe á luchtú: níl an tseirbhís nuashonraithe suiteáilte nó níl sí ag rith!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus nuashonruithe unzip: níl an tseirbhís nuashonraithe suiteáilte nó níl sí ag rith!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
@@ -962,7 +962,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="887"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ní thacaíonn an leagan reatha leis an nuashonrú seo a shuiteáil go díreach. Chun nuashonruithe a shuiteáil, is féidir leat an pacáiste riachtanach a íoslódáil ón láithreán gréasáin oifigiúil.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="889"/>
@@ -979,12 +979,12 @@
         <location filename="../src/cupdatemanager.cpp" line="891"/>
         <location filename="../src/cupdatemanager.cpp" line="920"/>
         <source>New version</source>
-        <translation type="unfinished"></translation>
+        <translation>Leagan nua</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="921"/>
         <source>To finish updating, restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>Chun an nuashonrú a chríochnú, atosaigh an aip</translation>
     </message>
     <message>
         <source>Update version</source>
@@ -1062,13 +1062,13 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="47"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>Níos déanaí</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Atosaigh anois</translation>
     </message>
     <message>
         <source>Install later</source>
@@ -1107,7 +1107,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="752"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Tharla earráid agus nuashonruithe á shuiteáil: níor aimsíodh an tseirbhís nuashonraithe!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="762"/>
@@ -1167,77 +1167,77 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="383"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá comhad %1 lódáilte cheana. Ionadaigh é?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>kB</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="524"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tá na comhréireanna don raon leathanaigh neamhbhailí.&lt;br&gt;Cuir isteach raon leathanach amháin nó níos mó, mar shampla: 1-3,7,11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="564"/>
         <location filename="../src/platform_win/printdialog.cpp" line="563"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Sáraíonn raon sonraithe %1-%2 teorainneacha cáipéise: is é %3 an t-uaslíon leathanach</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="521"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ní féidir dialóg priontála a oscailt:&lt;br&gt;%1</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Priontáil...</translation>
+        <translation>Priontáil...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Doiciméad a ullmhú</translation>
+        <translation>Doiciméad a ullmhú</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="160"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;Cealaigh</translation>
+        <translation>&amp;Cealaigh</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="215"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat %1 a dhéanamh mar d&apos;fheidhmchlár réamhshocraithe le haghaidh iarmhír: %2?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="217"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>An bhfuil fonn ort %1 a dhéanamh mar d&apos;fheidhmchlár réamhshocraithe le haghaidh gach eisínteachta a dtacaítear leis?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="219"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ná taispeáin an teachtaireacht seo arís</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tá doiciméid nach bhfuil sábháilte</translation>
     </message>
 </context>
 <context>
