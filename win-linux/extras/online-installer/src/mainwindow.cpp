@@ -192,7 +192,8 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     chkBox->setChecked(m_is_checked);
     setSelectorStyle(chkBox);
     chkBox->adjustSizeBasedOnContent();
-    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
+    int chkMargin = 2 + (chkBox->metrics()->value(Metrics::IconWidth) + chkBox->metrics()->value(Metrics::TextMarginLeft))/2;
+    chkBox->move(chkMargin + m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -218,8 +219,8 @@ void MainWindow::initInstallationMode(const std::wstring &url)
         startInstall(url);
     });
 
-    m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, instlBtn](int w, int h) {
-        chkBox->move(w/2 - chkBox->size().width/2, 254);
+    m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, instlBtn, chkMargin](int w, int h) {
+        chkBox->move(chkMargin + w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         instlBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
@@ -342,7 +343,8 @@ void MainWindow::finishInstall(const std::wstring &app_path)
     chkBox->setChecked(m_is_checked);
     setSelectorStyle(chkBox);
     chkBox->adjustSizeBasedOnContent();
-    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
+    int chkMargin = 2 + (chkBox->metrics()->value(Metrics::IconWidth) + chkBox->metrics()->value(Metrics::TextMarginLeft))/2;
+    chkBox->move(chkMargin + m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -366,8 +368,8 @@ void MainWindow::finishInstall(const std::wstring &app_path)
         close();
     });
 
-    m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, closeBtn](int w, int h) {
-        chkBox->move(w/2 - chkBox->size().width/2, 254);
+    m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, closeBtn, chkMargin](int w, int h) {
+        chkBox->move(chkMargin + w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         closeBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
