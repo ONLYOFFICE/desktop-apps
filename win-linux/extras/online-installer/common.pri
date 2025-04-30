@@ -22,6 +22,8 @@ HEADERS += $$PWD/src/version.h \
            $$PWD/src/mainwindow.h \
            $$PWD/src/cdownloader.h \
            $$PWD/src/translator.h \
+           $$PWD/src/cjson_p.h \
+           $$PWD/src/cjson.h \
            $$PWD/src/utils.h \
            $$UICLASSES/commondefines.h \
            $$UICLASSES/baseutils.h \
@@ -49,6 +51,7 @@ SOURCES += $$PWD/src/main.cpp \
            $$PWD/src/mainwindow.cpp \
            $$PWD/src/cdownloader.cpp \
            $$PWD/src/translator.cpp \
+           $$PWD/src/cjson.cpp \
            $$PWD/src/utils.cpp \
            $$UICLASSES/baseutils.cpp \
            $$UICLASSES/common.cpp \
