@@ -84,9 +84,15 @@ static DWORD initConnection(const wstring &url, DWORD &dwFileSize, Connection &c
     if (!WinHttpReceiveResponse(conn.hRequest, NULL))
         return GetLastError();
 
-    DWORD dwSize = sizeof(DWORD);
-    if (!WinHttpQueryHeaders(conn.hRequest, WINHTTP_QUERY_CONTENT_LENGTH | WINHTTP_QUERY_FLAG_NUMBER, NULL, &dwFileSize, &dwSize, WINHTTP_NO_HEADER_INDEX))
+    DWORD dwStatusCode = 0, dwSize = sizeof(DWORD);
+    if (!WinHttpQueryHeaders(conn.hRequest, WINHTTP_QUERY_STATUS_CODE | WINHTTP_QUERY_FLAG_NUMBER, NULL, &dwStatusCode, &dwSize, WINHTTP_NO_HEADER_INDEX))
         return GetLastError();
+
+    if (dwStatusCode >= HTTP_STATUS_BAD_REQUEST)
+        return ERROR_BAD_FORMAT;
+
+    if (!WinHttpQueryHeaders(conn.hRequest, WINHTTP_QUERY_CONTENT_LENGTH | WINHTTP_QUERY_FLAG_NUMBER, NULL, &dwFileSize, &dwSize, WINHTTP_NO_HEADER_INDEX))
+        dwFileSize = 0;
 
     return ERROR_SUCCESS;
 }
@@ -237,6 +243,8 @@ void CDownloader::start()
 void CDownloader::stop()
 {
     pimpl->m_run = false;
+    if (pimpl->m_future.valid())
+        pimpl->m_future.wait();
 }
 
 wstring CDownloader::GetFilePath()
