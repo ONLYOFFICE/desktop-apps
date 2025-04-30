@@ -135,7 +135,12 @@ namespace NS_Utils
             wc.hInstance     = hInst;
             wc.lpszClassName = L"FakeWindowClass";
             RegisterClass(&wc);
-            fakeParent = CreateWindowEx(0, wc.lpszClassName, L"", WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, NULL, NULL, hInst, NULL);
+            fakeParent = CreateWindowEx(0, wc.lpszClassName, _TR(CAPTION), WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, NULL, NULL, hInst, NULL);
+            HICON hIcon = (HICON)LoadImage(hInst, MAKEINTRESOURCE(IDI_MAINICON), IMAGE_ICON, 96, 96, LR_DEFAULTCOLOR | LR_SHARED);
+            SendMessage(fakeParent, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+            SendMessage(fakeParent, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+            ShowWindow(fakeParent, SW_SHOWMINIMIZED);
+            UpdateWindow(fakeParent);
             parent = fakeParent;
         }
 
