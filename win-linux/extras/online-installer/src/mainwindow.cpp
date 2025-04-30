@@ -842,6 +842,11 @@ CDownloader* MainWindow::startDownload(const std::wstring &install_type, const s
 #endif
                 JsonObject package_type = win.value(install_type).toObject();
                 tstring url = package_type.value(_T("url")).toTString();
+                tstring url2 = package_type.value(_T("url2")).toTString();
+                NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
+                if ((url.empty() || !dnl->isUrlAccessible(url)) && !url2.empty())
+                    url = url2;
+
                 // tstring hash = package_type.value(_T("md5")).toTString();
                 // std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                 NS_File::removeFile(tmp_path);
