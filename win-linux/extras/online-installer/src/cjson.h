@@ -30,42 +30,67 @@
  *
  */
 
-#ifndef CDOWNLOADER_H
-#define CDOWNLOADER_H
+#ifndef CJSON_H
+#define CJSON_H
 
 #include <string>
-#include <functional>
+#ifdef _WIN32
+# include <tchar.h>
+# define tstring std::wstring
+#else
+# define _T(str) str
+# define tstring std::string
+#endif
 
-typedef unsigned long ulong;
-typedef std::function<void(int)> FnVoidInt;
-typedef std::function<void(ulong)> FnVoidUl;
-typedef std::function<void(ulong,ulong)> FnVoidUlUl;
+class JsonObject;
+class JsonObjectPrivate;
+class JsonValuePrivate;
+class JsonDocumentPrivate;
 
-using std::wstring;
-
-
-class CDownloaderPrivate;
-
-class CDownloader
+class JsonValue
 {
 public:
-    CDownloader();
-    ~CDownloader();
+    JsonValue();
+    JsonValue(const JsonValue&);
+    ~JsonValue();
 
-    bool isUrlAccessible(const wstring &url);
-    void queryContentLenght(const wstring &url);
-    void downloadFile(const wstring &url, const wstring &filePath);
-    void start();
-    void stop();
-    wstring GetFilePath();
-
-    /* callback */
-    void onQueryResponse(FnVoidUlUl callback);
-    void onComplete(FnVoidUl callback);
-    void onProgress(FnVoidInt callback);
+    JsonValue& operator=(const JsonValue&);
+    JsonObject toObject();
+    tstring toTString();
 
 private:
-    CDownloaderPrivate *pimpl = nullptr;
+    friend class JsonObject;
+    JsonValuePrivate *pimpl;
 };
 
-#endif // CDOWNLOADER_H
+class JsonObject
+{
+public:
+    JsonObject();
+    JsonObject(const JsonObject&);
+    ~JsonObject();
+
+    JsonObject& operator=(const JsonObject&);
+    JsonValue value(const tstring&);
+    bool contains(const tstring&);
+
+private:
+    friend class JsonDocument;
+    friend class JsonValue;
+    JsonObjectPrivate *pimpl;
+};
+
+class JsonDocument
+{
+public:
+    JsonDocument(const tstring&);
+    ~JsonDocument();
+
+    JsonObject object();
+
+private:
+    JsonDocument();
+    JsonDocumentPrivate *pimpl;
+};
+
+#endif // CJSON_H

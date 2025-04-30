@@ -356,6 +356,21 @@ namespace NS_File
 //        return false;
 //    }
 
+    bool readFile(const wstring &filePath, list<wstring> &linesList)
+    {
+        std::wifstream file(filePath.c_str(), std::ios_base::in);
+        if (!file.is_open()) {
+            NS_Logger::WriteLog(L"An error occurred while opening: " + filePath);
+            return false;
+        }
+        wstring line;
+        while (std::getline(file, line))
+            linesList.push_back(line);
+
+        file.close();
+        return true;
+    }
+
     bool fileExists(const wstring &filePath)
     {
         DWORD attr = ::GetFileAttributes(filePath.c_str());
