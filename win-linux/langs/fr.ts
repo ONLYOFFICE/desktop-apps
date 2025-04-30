@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1931"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>Il est nécessaire de redémarrer l&apos;application pour que les paramètres soient pris en compte. Redémarrer maintenant ?</translation>
+        <translation>Vous devez redémarrer l&apos;application pour que les paramètres soient pris en compte. Redémarrer maintenant ?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2263"/>
@@ -47,15 +47,15 @@
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation type="vanished">La nouvelle version de %1 est disponible !</translation>
+        <translation type="vanished">Une nouvelle version de %1 est disponible !</translation>
     </message>
     <message>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="vanished">%1 %2 est disponible (vous avez %3). Voulez-vous le télécharger maintenant ?</translation>
+        <translation type="vanished">%1 %2 est disponible (vous avez %3). Voulez-vous la télécharger maintenant ?</translation>
     </message>
     <message>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="vanished">%1 %2 est téléchargé (vous avez %3). Voulez-vous l&apos;installer maintenant ?</translation>
+        <translation type="vanished">%1 %2 est téléchargée (vous avez %3). Voulez-vous l&apos;installer maintenant ?</translation>
     </message>
     <message>
         <source>Do you want to install a new version %1 of the program?</source>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation>sélectionnez le fichier de clé...</translation>
+        <translation>sélectionnez le fichier clé...</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="108"/>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="674"/>
         <source>Print Document</source>
-        <translation>Imprimer document</translation>
+        <translation>Imprimer le document</translation>
     </message>
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="883"/>
@@ -218,7 +218,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow.cpp" line="126"/>
         <source>%1 has been changed. Save changes?</source>
-        <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
+        <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les modifications ?</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="408"/>
@@ -647,7 +647,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="302"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation>Plus d&apos;un document est ouvert.&lt;br&gt;Fermer de toute façon la fenêtre ?</translation>
+        <translation>Plus d&apos;un document est ouvert.&lt;br&gt;Fermer quand même la fenêtre ?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="304"/>
@@ -693,7 +693,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1578"/>
         <source>Sign Up</source>
-        <translation>Créer bureau de cloud</translation>
+        <translation>Créer bureau dans le Cloud</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1685"/>
@@ -706,7 +706,7 @@
     <message>
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
-        <translation>Sous licence de</translation>
+        <translation>Sous licence</translation>
     </message>
 </context>
 <context>
@@ -991,7 +991,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="889"/>
         <source>Update is available</source>
-        <translation>La mise à jour est disponible</translation>
+        <translation>Une mise à jour est disponible</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="890"/>
