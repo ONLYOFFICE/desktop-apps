@@ -289,6 +289,16 @@ li.menu-item {
     }
 }
 
+.sidebar-block-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar-block-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .menu-bottom-block {
     padding: 0;
     opacity: 75%;
@@ -423,6 +433,7 @@ li.menu-item {
     }
 }
 
+#idx-sidebar-portals,
 #box-portals {
     display: none;
 
@@ -1496,5 +1507,17 @@ li.menu-item {
 .dropdown-menu {
     .divider {
         background-color: @border-divider;
+    }
+}
+
+#idx-sidebar-portals {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .table-files {
+        td {
+            border: 0 none;
+        }
     }
 }

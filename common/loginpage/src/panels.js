@@ -62,7 +62,7 @@ $(document).ready(function() {
                 </a>
               </li>
               <li class="menu-item separator"></li>
-              <section id="idx-sidebar-portals">
+              <section id="idx-sidebar-portals" class="connect">
               </section>
               <li class="menu-item devider"></li>
               <li class="menu-item">
@@ -85,6 +85,7 @@ $(document).ready(function() {
             <div class="main-column col-center after-left">
             </div>`;
     $('#placeholder').html(_toolmenu_tpl);
+
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     // $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
@@ -108,8 +109,12 @@ $(document).ready(function() {
     window.app.controller.folders = (new ControllerFolders).init();
     window.app.controller.about = (new ControllerAbout).init();
     window.app.controller.settings = (new ControllerSettings).init();
+
     if (!!window.ControllerPortals)
-        window.app.controller.portals = (new ControllerPortals({})).init();
+        window.app.controller.portals = (new ControllerPortals({
+            placeholder: '#idx-sidebar-portals',
+        })).init();
+
     !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
     // if (!localStorage.welcome) {

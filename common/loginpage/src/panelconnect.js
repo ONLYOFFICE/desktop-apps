@@ -72,106 +72,115 @@
 
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
-        var _html_empty_panel_with_carousel =
-                        `<div id="box-empty-portals" class="empty flex-center offcet-center">
-                            <section class="center-box">
-                              <h3 class="empty-title" l10n style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
-                              <div class='carousel'>
-                                <figure class='carousel__slidebox'>
-                                    <div class='carousel__slide'>
-                                        <p class='carousel__slide__text title' l10n>${_lang.emptySlide1Title}</p>
-                                        <p class='carousel__slide__text descr' l10n>${_lang.emptySlide1Text}</p>
-                                        <svg class='carousel__slide__img'>
-                                            <use xlink:href='#connect1' data-src='connect1'>
-                                        </svg>
-                                    </div>
-                                    <div class='carousel__slide'>
-                                        <p class='carousel__slide__text title' l10n>${_lang.emptySlide2Title}</p>
-                                        <p class='carousel__slide__text descr' l10n>${_lang.emptySlide2Text}</p>
-                                        <svg class='carousel__slide__img'>
-                                            <use xlink:href='#connect2' data-src='connect2'>
-                                        </svg>
-                                    </div>
-                                    <div class='carousel__slide active'>
-                                        <p class='carousel__slide__text title' l10n>${_lang.emptySlide3Title}</p>
-                                        <p class='carousel__slide__text descr' l10n>${_lang.emptySlide3Text}</p>
-                                        <svg class='carousel__slide__img'>
-                                            <use xlink:href='#connect3' data-src='connect3'>
-                                        </svg>
-                                    </div>
-                                </figure>
-                                <nav class='carousel__scrolls'>
-                                    <div class='carousel__scroll__btn prev' value='prev'></div>
-                                    <div class='carousel__scroll__btn next' value='next'></div>
-                                </nav>
-                              </div>
-                              <div class="tools-connect">
-                                <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
-                                <section class="link-connect">
-                                  <label l10n>${_lang.textHavePortal}</label><a class="login link" l10n href="#">${_lang.btnConnect}</a>
-                                </section>
-                              </div>
-                            </section>
-                        </div>`;
+        // var _html_empty_panel_with_carousel =
+        //                 `<div id="box-empty-portals" class="empty flex-center offcet-center">
+        //                     <section class="center-box">
+        //                       <h3 class="empty-title" l10n style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
+        //                       <div class='carousel'>
+        //                         <figure class='carousel__slidebox'>
+        //                             <div class='carousel__slide'>
+        //                                 <p class='carousel__slide__text title' l10n>${_lang.emptySlide1Title}</p>
+        //                                 <p class='carousel__slide__text descr' l10n>${_lang.emptySlide1Text}</p>
+        //                                 <svg class='carousel__slide__img'>
+        //                                     <use xlink:href='#connect1' data-src='connect1'>
+        //                                 </svg>
+        //                             </div>
+        //                             <div class='carousel__slide'>
+        //                                 <p class='carousel__slide__text title' l10n>${_lang.emptySlide2Title}</p>
+        //                                 <p class='carousel__slide__text descr' l10n>${_lang.emptySlide2Text}</p>
+        //                                 <svg class='carousel__slide__img'>
+        //                                     <use xlink:href='#connect2' data-src='connect2'>
+        //                                 </svg>
+        //                             </div>
+        //                             <div class='carousel__slide active'>
+        //                                 <p class='carousel__slide__text title' l10n>${_lang.emptySlide3Title}</p>
+        //                                 <p class='carousel__slide__text descr' l10n>${_lang.emptySlide3Text}</p>
+        //                                 <svg class='carousel__slide__img'>
+        //                                     <use xlink:href='#connect3' data-src='connect3'>
+        //                                 </svg>
+        //                             </div>
+        //                         </figure>
+        //                         <nav class='carousel__scrolls'>
+        //                             <div class='carousel__scroll__btn prev' value='prev'></div>
+        //                             <div class='carousel__scroll__btn next' value='next'></div>
+        //                         </nav>
+        //                       </div>
+        //                       <div class="tools-connect">
+        //                         <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
+        //                         <section class="link-connect">
+        //                           <label l10n>${_lang.textHavePortal}</label><a class="login link" l10n href="#">${_lang.btnConnect}</a>
+        //                         </section>
+        //                       </div>
+        //                     </section>
+        //                 </div>`;
 
-        var _html_empty_panel_with_providers =
-                            `<div id="box-empty-portals" class="empty flex-center">
-                                <section id='connect-empty-var-2'>
-                                    <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
-                                    <h4 class='text-description' style='margin-bottom:50px;' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
-                                    <section class='tools-connect2'>
-                                        <div id='box-providers-premium-button' />
-                                        <div id="box-providers-buttons" style='font-size:0;' />
-                                    </section>
-                                    <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
-                                    <div class="tools-connect">
-                                        <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
-                                        <section class="link-connect">
-                                            <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
-                                        </section>
-                                    </div>
-                                </section>
-                            </div>`;
+        // var _html_empty_panel_with_providers =
+        //                     `<div id="box-empty-portals" class="empty flex-center">
+        //                         <section id='connect-empty-var-2'>
+        //                             <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
+        //                             <h4 class='text-description' style='margin-bottom:50px;' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
+        //                             <section class='tools-connect2'>
+        //                                 <div id='box-providers-premium-button' />
+        //                                 <div id="box-providers-buttons" style='font-size:0;' />
+        //                             </section>
+        //                             <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
+        //                             <div class="tools-connect">
+        //                                 <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
+        //                                 <section class="link-connect">
+        //                                     <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
+        //                                 </section>
+        //                             </div>
+        //                         </section>
+        //                     </div>`;
 
-        var _html = `<div ${args.id} class="action-panel ${args.action}">
-                      ${config.portals.checklist.length > 1 ? _html_empty_panel_with_providers : _html_empty_panel_with_carousel}
-                      <div id="box-portals">
-                        <div class="flexbox">
-                          <h3 class="table-caption" l10n>${_lang.portalListTitle}</h3>
-                          <div class="table-box flex-fill"><table class="table-files list"></table></div>
-                          <div class="lst-tools">
-                            <button id="btn-addportal" class="btn btn--primary login" l10n>${_lang.btnAddPortal}</button>
-                          </div>
-                        </div>
-                      </div>
+        // var _html = `<div ${args.id} class="action-panel ${args.action}">
+        //               ${config.portals.checklist.length > 1 ? _html_empty_panel_with_providers : _html_empty_panel_with_carousel}
+        //               <div id="box-portals">
+        //                 <div class="flexbox">
+        //                   <h3 class="table-caption" l10n>${_lang.portalListTitle}</h3>
+        //                   <div class="table-box flex-fill"><table class="table-files list"></table></div>
+        //                   <div class="lst-tools">
+        //                     <button id="btn-addportal" class="btn btn--primary login" l10n>${_lang.btnAddPortal}</button>
+        //                   </div>
+        //                 </div>
+        //               </div>
+        //             </div>`;
+
+        this.tpl_sidebar =
+                    `<div class="sidebar-block-title">
+                        <span>Clouds</span>
+                        <span class='login'>+</span>
+                    </div>
+                    <div class="sidebar-block-content flexbox">
+                        <div class="table-box flex-fill"><table class="table-files list"></table></div>
                     </div>`;
 
-        if ( config.portals.checklist.length ) {
-            const provider_button_template = (provider, name, icons) => {
-                                                const icon_light = icons ? icons.themeLight.buttonLogo : '',
-                                                        icon_dark = icons ? icons.themeDark.buttonLogo : '';
-                                                const button_el = `<img class='icon icon__light' src='${relpath}/providers/${provider}/${icon_light}'></img>
-                                                                    <img class='icon icon__dark' src='${relpath}/providers/${provider}/${icon_dark}'></img>`;
-                                                return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
-                                                            ${!!icons ? button_el : name}
-                                                        </button>`;
-                                            }
+        // if ( config.portals.checklist.length ) {
+        //     const provider_button_template = (provider, name, icons) => {
+        //                                         const icon_light = icons ? icons.themeLight.buttonLogo : '',
+        //                                                 icon_dark = icons ? icons.themeDark.buttonLogo : '';
+        //                                         const button_el = `<img class='icon icon__light' src='${relpath}/providers/${provider}/${icon_light}'></img>
+        //                                                             <img class='icon icon__dark' src='${relpath}/providers/${provider}/${icon_dark}'></img>`;
+        //                                         return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
+        //                                                     ${!!icons ? button_el : name}
+        //                                                 </button>`;
+        //                                     }
 
-            _html = $(_html);
-            let $box = $('<div />');
-            config.portals.checklist.forEach(item => {
-                if ( !!item.icons && !!item.icons.themeLight ) {
-                    const btn = provider_button_template(item.provider, item.name, item.icons);
+        //     _html = $(_html);
+        //     let $box = $('<div />');
+        //     config.portals.checklist.forEach(item => {
+        //         if ( !!item.icons && !!item.icons.themeLight ) {
+        //             const btn = provider_button_template(item.provider, item.name, item.icons);
 
-                    item.provider != 'onlyoffice' ? $box.append(btn) :
-                            _html.find('#box-providers-premium-button').append(btn);
-                }
-            });
+        //             item.provider != 'onlyoffice' ? $box.append(btn) :
+        //                     _html.find('#box-providers-premium-button').append(btn);
+        //         }
+        //     });
 
-            _html.find('#box-providers-buttons').append($box.children());
-        }
+        //     _html.find('#box-providers-buttons').append($box.children());
+        // }
 
-        args.tplPage = _html;
+        // args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 2;
@@ -187,10 +196,14 @@
 
     utils.fn.extend(ViewPortals.prototype, {
         render: function() {
-            baseView.prototype.render.apply(this, arguments);
+            // baseView.prototype.render.apply(this, arguments);
 
-            this.$panelNoPortals = this.$panel.find('#box-empty-portals');
-            this.$panelPortalList = this.$panel.find('#box-portals');
+            const $placeholder = $(this.opts.placeholder);
+            $placeholder.html(this.tpl_sidebar);
+
+            // this.$panelNoPortals = this.$panel.find('#box-empty-portals');
+            // this.$panelPortalList = this.$panel.find('#box-portals');
+            this.$sidebarPortalList = $(this.opts.placeholder);
         },
         portaltemplate: function(info, edit) {
             let _row = `<td class="row-cell cicon">
@@ -222,11 +235,11 @@
             return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
         },
         onscale: function (pasteSvg) {
-            $('button.logout',this.$panelPortalList).each(function (){
-                let elm = $(this);
-                if(pasteSvg && !elm.find('svg').length)
-                    elm.append($('<svg class = "icon"><use xlink:href="#logout"></use></svg>'));
-            });
+            // $('button.logout',this.$panelPortalList).each(function (){
+            //     let elm = $(this);
+            //     if(pasteSvg && !elm.find('svg').length)
+            //         elm.append($('<svg class = "icon"><use xlink:href="#logout"></use></svg>'));
+            // });
         }
     });
 
@@ -313,17 +326,17 @@
 
                 window.sdk && window.sdk.checkAuth && window.sdk.checkAuth(auth_arr);
 
-                this.view.$panelNoPortals.hide();
-                this.view.$panelPortalList.show();
+                // this.view.$panelNoPortals.hide();
+                // this.view.$panelPortalList.show();
             } else {
-                this.view.$panelNoPortals.show();
-                this.view.$panelPortalList.hide();
+                // this.view.$panelNoPortals.show();
+                // this.view.$panelPortalList.hide();
             }
         };
 
         var _init_collection = function() {
                 collection = new Collection({
-                    view: this.view.$panelPortalList,
+                    view: this.view.$sidebarPortalList,
                     list: '.table-files.list'
                 });
 
@@ -353,11 +366,12 @@
 
                 collection.events.changed.attach((collection, model, value) => {
                     if ( !!value ) {
-                        if ( value.logged != undefined )
-                            this.view.$panelPortalList.find('#' + model.uid)[model.logged?'addClass':'removeClass']('logged');
+                        if ( value.logged != undefined ) {
+                            this.view.$sidebarPortalList.find('#' + model.uid)[model.logged?'addClass':'removeClass']('logged');
+                        }
                         else
                         if ( value.user ) {
-                            let el = this.view.$panelPortalList.find('#' + model.uid);
+                            let el = this.view.$sidebarPortalList.find('#' + model.uid);
                             el.html(
                                 $(this.view.portaltemplate({
                                     portal: model.name,
@@ -368,8 +382,8 @@
                                     email: model.email}, true)));
                         } else
                         if ( value.removed != undefined ) {
-                            value.removed ? $('#' + model.uid, this.view.$panelPortalList).addClass('lost') :
-                                    $('#' + model.uid, this.view.$panelPortalList).removeClass('lost');
+                            value.removed ? $('#' + model.uid, this.view.$sidebarPortalList).addClass('lost') :
+                                    $('#' + model.uid, this.view.$sidebarPortalList).removeClass('lost');
                         }
                     }
                 });
@@ -437,7 +451,7 @@
                             .then(data => {
                                 data.status == 'success' && _is_logged && model.set('logged', true); 
                             }, error => {
-                                $('#' + model.uid, this.view.$panelPortalList).toggleClass('unavail', true);
+                                $('#' + model.uid, this.view.$sidebarPortalList).toggleClass('unavail', true);
                             });
                 }
             };
@@ -589,35 +603,35 @@
             else carousel.$items.eq(_pre_index).removeClass('migrate pre-active active pro-active').addClass('pre-active');
         };
 
-        function _initCarousel() {
-            let _$panel = this.view.$panelNoPortals;
-            carousel.$items = _$panel.find('.carousel__slide');
-            let _activeindex = carousel.$items.filter('.active').index();
+        // function _initCarousel() {
+        //     let _$panel = this.view.$panelNoPortals;
+        //     carousel.$items = _$panel.find('.carousel__slide');
+        //     let _activeindex = carousel.$items.filter('.active').index();
 
-            if ( !(navigator.userAgent.indexOf("Windows NT 5.") < 0) ||
-                    !(navigator.userAgent.indexOf("Windows NT 6.0") < 0) )
-            {
-                $('.carousel', _$panel).addClass('winxp');
-            }
+        //     if ( !(navigator.userAgent.indexOf("Windows NT 5.") < 0) ||
+        //             !(navigator.userAgent.indexOf("Windows NT 6.0") < 0) )
+        //     {
+        //         $('.carousel', _$panel).addClass('winxp');
+        //     }
 
-            let _pre_index = _activeindex - 1,
-                _pro_index = _activeindex + 1;
+        //     let _pre_index = _activeindex - 1,
+        //         _pro_index = _activeindex + 1;
 
-            if ( _pre_index < 0 ) _pre_index = carousel.$items.length - 1;
-            if ( _pro_index > carousel.$items.length - 1 ) _pro_index = 0;
-            carousel.$items.eq(_pre_index).addClass('pre-active');
-            carousel.$items.eq(_pro_index).addClass('pro-active');
+        //     if ( _pre_index < 0 ) _pre_index = carousel.$items.length - 1;
+        //     if ( _pro_index > carousel.$items.length - 1 ) _pro_index = 0;
+        //     carousel.$items.eq(_pre_index).addClass('pre-active');
+        //     carousel.$items.eq(_pro_index).addClass('pro-active');
 
-            _$panel.find('.carousel__scrolls > .carousel__scroll__btn')
-                .on('click', e => {
-                    _scrollCarousel(e.target.getAttribute('value'));
-                });
+        //     _$panel.find('.carousel__scrolls > .carousel__scroll__btn')
+        //         .on('click', e => {
+        //             _scrollCarousel(e.target.getAttribute('value'));
+        //         });
 
-            _on_theme_changed(localStorage.getItem('ui-theme-id'));
-        };
+        //     _on_theme_changed(localStorage.getItem('ui-theme-id'));
+        // };
 
         function _on_lang_changed(ol,nl) {
-            $('.btn-quick.logout',this.$panelPortalList).attr('tooltip',utils.Lang.menuLogout);
+            // $('.btn-quick.logout',this.$panelPortalList).attr('tooltip',utils.Lang.menuLogout);
         };
 
         function _on_theme_changed(name, type) {
@@ -667,8 +681,8 @@
 
                 _init_collection.call(this);
                 _update_portals.call(this);
-                _init_ppmenu.call(this);
-                _initCarousel.call(this);
+                // _init_ppmenu.call(this);
+                // _initCarousel.call(this);
 
                 $('body').on('click', '.login', e=>{
                     let _data = $(e.currentTarget).data();
