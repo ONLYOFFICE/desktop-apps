@@ -152,7 +152,7 @@
                 if (!this.view) {
                     this.view = new ViewAbout(args);
                     this.view.render();
-                    this.view.$menuitem.removeClass('extra');
+                    // this.view.$menuitem.removeClass('extra');
                     this.view.$panel.append(this.view.paneltemplate(args));
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
