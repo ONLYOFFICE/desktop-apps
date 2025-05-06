@@ -149,7 +149,7 @@
         this.tpl_sidebar =
                     `<div class="sidebar-block-title">
                         <span>Clouds</span>
-                        <span class='login'>+</span>
+                        <span class='btn login'>+</span>
                     </div>
                     <div class="sidebar-block-content flexbox">
                         <div class="table-box flex-fill"><table class="table-files list"></table></div>

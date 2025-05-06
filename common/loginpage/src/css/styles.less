@@ -274,8 +274,7 @@ li.menu-item {
     }
 
     svg.icon:not(.icon-colored) {
-        /*fill: @icon-sidebar;*/
-        fill: #f0f;
+        fill: @icon-sidebar;
     }
 
     > li.menu-item.separator {
@@ -292,6 +291,9 @@ li.menu-item {
 .sidebar-block-title {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    font-size: 15px;
 }
 
 .sidebar-block-content {
@@ -795,7 +797,7 @@ li.menu-item {
     }
 
     .primary {
-        font-size: 15px;
+        font-size: 14px;
         color: @text-normal;
     }
 
@@ -1519,5 +1521,10 @@ li.menu-item {
         td {
             border: 0 none;
         }
+    }
+
+    .btn.login {
+        cursor: pointer;
+        width: 14px;
     }
 }
