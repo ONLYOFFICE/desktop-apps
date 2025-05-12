@@ -85,14 +85,28 @@
                                     <div id='idx-nav-templates'>
                                         <a data-value='local' class='nav-item' l10n>${_lang.tplPanelLocal}</a>
                                         <a data-value='cloud' class='nav-item' l10n>${_lang.tplPanelCloud}</a>
+                                        <a data-value='test' class='nav-item' l10n>Cloud old</a>
                                     </div>
                                 </div>
                                 <section class='themed-sroll' panel='local'>
                                     <div class='table-box flex-fill'>
-                                        <div class='table-templates list'></div>
+                                        <div id='idx-local-tpls' class='table-templates list'></div>
                                     </div>
                                 </section>
-                                <section panel='cloud'>${this.emptyPanelContent}</section>
+                                <div class='category-selector' panel='cloud'>
+                                    <div class='category-selector-heading'>
+                                        <h4 class='category-selector-title'>
+                                            ${_lang.tplCategory}:
+                                            <span class='category-caret'></span>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <section class='themed-sroll' panel='cloud'>
+                                    <div class='table-box flex-fill'>
+                                        <div id='idx-cloud-tpls' class='table-templates list'></div>
+                                    </div>
+                                </section>
+                                <section panel='test'>${this.emptyPanelContent}</section>
                             </div>
                     </div>`;
 
@@ -116,7 +130,7 @@
                                 `<svg class="badge"><use xlink:href="#tpltype-${type}"></use></svg>`;
             const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
                                             `<div class="box"><img src="${info.icon}">${badge}</div>`
-            return `<div id="${info.uid}" class='item'>
+            return `<div id="${info.uid}" class='item' data-type="${type}">
                         <div class='icon'>
                             ${icon_el}
                         </div>
@@ -129,8 +143,16 @@
         let iframe;
         let panel_local,
             panel_cloud;
-        let templates;
-
+        let local_templates,
+            cloud_templates;
+        let _page_num = 0, 
+            isLoading = false, 
+            totalPages = null;
+        let previousFilter = null,    
+            $caret,
+            currentFilter = 'view_all'; 
+                
+    
         // TODO: for tests only. uncomment static url before release
         let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com';
         const _url_templates = `${test_url}/{0}?desktop=true`;
@@ -160,57 +182,211 @@
             const $item = $(e.target);
             $item.addClass('selected');
 
-            this.view.$panel.removeClass('local cloud').addClass($item.data('value'));
+            const panel = $item.data('value');
+            $('[panel]', this.view.$panel).hide();
+            $(`[panel=${panel}]`, this.view.$panel).show();
+
+            this.view.$panel.removeClass('local cloud test').addClass($item.data('value'));
         }
 
 
         function _init_collection() {
-            templates = new Collection({
+            local_templates = new Collection({
                 view: $('section[panel=local]', this.view.$panel),
-                list: $('.table-templates.list', this.view.$panel),
+                list: $('#idx-local-tpls', this.view.$panel),
             });
 
-            templates.events.erased.attach(collection => {
+            local_templates.events.erased.attach(collection => {
                 collection.list.parent().addClass('empty');
             });
 
-            templates.events.inserted.attach((collection, model) => {
+            local_templates.events.inserted.attach((collection, model) => {
                 let $item = this.view.listitemtemplate(model);
 
                 collection.list.append($item);
                 collection.list.parent().removeClass('empty');
             });
 
-            templates.events.click.attach((collection, model) => {
+            local_templates.events.click.attach((collection, model) => {
                 sdk.command('create:new', JSON.stringify({'template': {id:model.id, type:model.type, path: model.path}}));
             });
 
-            templates.events.contextmenu.attach(function(collection, model, e){
+            local_templates.events.contextmenu.attach(function(collection, model, e){
                 // ppmenu.actionlist = 'recent';
                 // ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
                 // ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
-            templates.events.changed.attach(function(collection, model){
+            local_templates.events.changed.attach(function(collection, model){
                 // let $el = collection.list.find('#' + model.uid);
                 // if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
             });
 
-            templates.empty();
+            cloud_templates = new Collection({
+                view: $('section[panel=local]', this.view.$panel),
+                list: $('#idx-cloud-tpls', this.view.$panel),
+            });
+
+            cloud_templates.events.erased.attach(collection => {
+                collection.list.parent().addClass('empty');
+            });
+
+            cloud_templates.events.inserted.attach((collection, model) => {
+                let $item = this.view.listitemtemplate(model);
+
+                collection.list.append($item);
+                collection.list.parent().removeClass('empty');
+            });
+
+            cloud_templates.events.click.attach((collection, model) => {
+                window.sdk.openTemplate(model.path, model.name);
+                $caret.removeClass('open');
+            });
+
+            categories.events.itemclick.attach(async (action, event) => {
+                $caret.removeClass('open');
+                previousFilter = currentFilter; 
+                currentFilter = event;
+                
+                if (previousFilter !== currentFilter) {
+                    if (currentFilter === 'view_all') {
+                        cloud_templates.list.find('.item').remove();
+                        cloud_templates.items = [];
+                        _page_num = 0;
+                        totalPages = null;
+                        loadTemplates();
+                        return;
+                    }
+                    
+                    $('section[panel=cloud]', this.view.$panel).scrollTop(0);
+
+                    if (totalPages !== null && _page_num >= totalPages) {
+                        applyFilter();
+                    } else {
+                        loadAllPages();
+                    }
+
+                }
+
+            });
+            
+            local_templates.empty();
+            cloud_templates.empty();
         }
 
         const _on_update_template = function(index) {
 
         }
 
-        const _on_add_templates = function(tmpls) {
-            templates.empty();
+        const _on_add_local_templates = function(tmpls) {
+            local_templates.empty();
             for (let item of tmpls) {
                 var model = new FileTemplateModel(item);
 
-                templates.add(model);
+                local_templates.add(model);
             }
         }
+
+        const _on_add_cloud_templates = function(data) {
+            let c = 0,
+                icon_url;
+            for (let i of data) {
+                const info = i['attributes']
+                const file_ext = info['form_exts']['data'][0]['attributes']['ext'];
+                icon_url =  info.template_image?.data.attributes.formats.thumbnail.url;
+                const item = {
+                    uid: i.id,
+                    name: info['name_form'],
+                    descr: info['template_desc'],
+                    path: info.file_oform?.data[0].attributes.url,
+                    type: utils.fileExtensionToFileFormat(file_ext),
+                    icon: icon_url,
+                };
+                if (!cloud_templates.items.some(template => template.uid === item.uid)) {
+                    const model = new FileTemplateModel(item);
+                    cloud_templates.add(model);
+                    console.log(++c, 'model', i.id, model.name);
+                }
+               
+            }
+        }
+
+        const categories = new Menu({
+            id: 'category-selector-dropdown',
+            prefix: 'category',
+            items: [
+                { caption: utils.Lang.tplViewAll, action: 'view_all' },
+                { caption: utils.Lang.tplPDF, action: 'pdf'},
+                { caption: utils.Lang.tplDocument, action: 'document' },
+                { caption: utils.Lang.tplSpreadsheet, action: 'spreadsheet'},
+                { caption: utils.Lang.tplPresentation, action: 'presentation'},
+            ]
+        });
+        categories.init(document.body); 
+        
+        const applyFilter = function() {
+            if (currentFilter === 'view_all') {
+                cloud_templates.list.find('.item').show();
+                return;
+            }
+            
+            const type = {
+                'pdf': 'pdf',
+                'document': 'word',
+                'spreadsheet': 'cell',
+                'presentation': 'slide'
+            };
+            
+            const typeShow = type[currentFilter];
+            cloud_templates.list.find('.item').hide()
+                .filter(`[data-type="${typeShow}"]`).show();
+        };
+        
+        const _loadTemplates = function() {
+            if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
+    
+            _page_num++;  
+            isLoading = true;
+    
+            const _url = `https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            // const _url = `https://oforms.onlyoffice.com/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            fetch(_url)
+                .then(r => r.json())
+                .then(d => {
+                    isLoading = false;
+                    if (d.data) {
+                        _on_add_cloud_templates(d.data);
+                        totalPages = d.meta.pagination.pageCount;
+                        
+                        if (currentFilter !== 'view_all' && _page_num < totalPages) {
+                            _loadTemplates();
+                        } else {
+                            applyFilter();
+                        }
+                    }
+                });
+        };
+        
+        const loadTemplates = function() {
+            _loadTemplates();
+        };
+
+        const loadAllPages = function() {
+            if (isLoading) return;
+            _page_num = 0;
+            _loadTemplates();
+        };
+    
+        const Scroll = function() {
+            const $cloudPanel = $('section[panel=cloud]', this.view.$panel);
+            const scrollTop = $cloudPanel.scrollTop();
+            const scrollHeight = $cloudPanel[0].scrollHeight;
+            const clientHeight = $cloudPanel[0].clientHeight;
+    
+            if (scrollTop + clientHeight >= scrollHeight - 100) {
+                loadTemplates();
+            }
+        };
 
         return {
             init: function() {
@@ -220,10 +396,38 @@
                     parent: $('#frame')[0],
                     lang: utils.Lang.id,
                     page: 'templates',
+                }); 
+                
+                $caret = $('.category-caret');                
+                $('.category-selector-title').on('click', function(e) {
+                    e.stopPropagation();
+                    
+                    if (!$caret.hasClass('open')) {
+                        const offset = $(this).offset();
+                        const pos = {
+                            top: offset.top + $(this).outerHeight(),
+                            left: offset.left
+                        };
+                        
+                        categories.show(pos, {});
+                        $caret.addClass('open');
+                        
+                        const close = function(e) {
+                            if (!$(e.target).closest('.category-selector-title').length) {
+                                Menu.closeAll();
+                                $caret.removeClass('open');
+                                $(document).off('click', close);
+                            }
+                        };
+                        
+                        $(document).on('click', close);
+                    }
                 });
 
                 this.view.$panel.addClass('local');
                 $('.nav-item[data-value=local]', this.view.$panel).addClass('selected');
+                $('[panel]', this.view.$panel).hide();
+                $(`[panel=local]`, this.view.$panel).show();
 
                 if ( window.utils.isWinXp ) {
                     $('#idx-nav-templates', this.view.$panel).hide();
@@ -298,7 +502,7 @@
 
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 window.sdk.on('onupdatetemplate', _on_update_template.bind(this));
-                window.sdk.on('onaddtemplates', _on_add_templates.bind(this));
+                window.sdk.on('onaddtemplates', _on_add_local_templates.bind(this));
 
                 _init_collection.call(this);
 
@@ -315,6 +519,10 @@
                 CommonEvents.on('lang:changed', (ol, nl) => {
                     _reload_templates(nl);
                 });
+
+                loadTemplates();
+                
+                $('section[panel=cloud]', this.view.$panel).on('scroll', Scroll.bind(this));
 
                 return this;
             }
