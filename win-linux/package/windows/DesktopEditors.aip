@@ -33,6 +33,7 @@
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA" ValueLocId="-"/>
     <ROW Property="MsiLogging" MultiBuildValue="MsiBuild64:vp#MsiBuild32:vp"/>
+    <ROW Property="NOASSOCHECK" Value="0" ValueLocId="-"/>
     <ROW Property="NewDocument" Value="New document"/>
     <ROW Property="NewForm" Value="New PDF Form"/>
     <ROW Property="NewPresentation" Value="New presentation"/>
@@ -403,6 +404,7 @@
     <ROW Component="c_reg_progid" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="reg_progid"/>
     <ROW Component="c_reg_protocol" ComponentId="{C28686D3-D274-4005-93D2-EC95B27607E3}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_PROTOCOL = 1" KeyPath="reg_protocol"/>
     <ROW Component="c_reg_sw_app" ComponentId="{86375F1D-EF9C-44F1-B331-7545DA000717}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_company"/>
+    <ROW Component="c_reg_sw_app_ignoreassocmsg" ComponentId="{432F3706-2A40-4FC8-B304-2F0856EAEDAC}" Directory_="APPDIR" Attributes="260" Condition="NOASSOCHECK = 1" KeyPath="reg_sw_app_ignoreassocmsg"/>
     <ROW Component="c_reg_sw_registeredapps" ComponentId="{2637A7F2-DBD3-45D4-AE10-ADD61BFC4414}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_registeredapps"/>
     <ROW Component="c_reg_ua_cap__protocol" ComponentId="{CA2760F1-FCC1-40EE-A062-CE77301F668D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_ua_cap__protocol"/>
   </COMPONENT>
@@ -1360,6 +1362,7 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__pages"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__numbers"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__key"/>
+    <ROW Feature_="Registry" Component_="c_reg_sw_app_ignoreassocmsg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="i_desktopeditors" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
@@ -2349,6 +2352,7 @@
     <ROW Registry="reg_sw_app_cap_fileassociations" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\FileAssociations" Name="\"/>
     <ROW Registry="reg_sw_app_cap_urlassociations" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\URLAssociations" Name="\"/>
     <ROW Registry="reg_sw_app_checkforupdates" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="CheckForUpdates" Value="#[UPDATE_SERVICE]" Component_="c_reg_sw_app" ValueLocId="-" VirtualValue="#"/>
+    <ROW Registry="reg_sw_app_ignoreassocmsg" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="ignoreAssocMsg" Value="true" Component_="c_reg_sw_app_ignoreassocmsg"/>
     <ROW Registry="reg_sw_app_locale" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="locale" Value="[LOCALE]" Component_="c_reg_sw_app"/>
     <ROW Registry="reg_sw_app_version" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="Version" Value="[ProductVersion]" Component_="c_reg_sw_app"/>
     <ROW Registry="reg_sw_company" Root="-1" Key="Software\[CompanyPath]" Name="+" Component_="c_reg_sw_app"/>

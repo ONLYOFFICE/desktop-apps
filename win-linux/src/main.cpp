@@ -56,6 +56,9 @@ int main( int argc, char *argv[] )
     Utils::setAppUserModelId();
     WCHAR * cm_line = GetCommandLine();
     InputArgs::init(cm_line);
+    if ( InputArgs::contains(L"--assoc") ) {
+        return 0;
+    }
 #else
     qputenv("QT_QPA_PLATFORM", "xcb");
     qputenv("GDK_BACKEND", "x11");

@@ -1,7 +1,7 @@
 Name: %{_package_name}
 Version: %{_product_version}
 Release: %{_build_number}
-Summary: Office suite
+Summary: Desktop editors for text docs, spreadsheets, presentations, PDFs, and PDF forms.
 License: AGPLv3
 Group: Applications/Office
 URL: %{_publisher_url}
@@ -11,10 +11,8 @@ AutoReq: no
 AutoProv: no
 
 %description
-%{_company_name} %{_product_name} is a free office suite that combines text,
-spreadsheet and presentation editors allowing to create, view and edit
-documents without an Internet connection.
-It is fully compatible with Office Open XML formats: .docx, .xlsx, .pptx.
+Open-source office suite pack that comprises all the tools you need to
+work offline with documents, spreadsheets, presentations, PDFs, and PDF forms.
 
 %if "%{_company_name}" == "ONLYOFFICE"
 %package help

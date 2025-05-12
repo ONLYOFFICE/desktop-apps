@@ -35,7 +35,6 @@
 #include "defines.h"
 #include "utils.h"
 #include <QTimer>
-#include <QGraphicsOpacityEffect>
 #include <QPainter>
 #include <QX11Info>
 #include <xcb/xcb.h>
@@ -112,12 +111,7 @@ void CWindowPlatform::adjustGeometry()
 void CWindowPlatform::onWindowActivate(bool is_active)
 {
     for (auto *btn : m_pTopButtons) {
-        QGraphicsOpacityEffect *efct = qobject_cast<QGraphicsOpacityEffect*>(btn->graphicsEffect());
-        if (!efct) {
-            efct = new QGraphicsOpacityEffect(btn);
-            btn->setGraphicsEffect(efct);
-        }
-        efct->setOpacity(is_active ? 1.0 : 0.6);
+        btn->setFaded(!is_active);
     }
 }
 

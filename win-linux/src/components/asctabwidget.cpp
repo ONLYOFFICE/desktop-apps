@@ -515,7 +515,7 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
             break;
         default:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabDefaultActiveBackground));
-            m_pBar->setTabThemeType(tabindex, /*ui_theme.isDark() ? CTabBar::DarkTab :*/ CTabBar::LightTab);
+            m_pBar->setTabThemeType(tabindex, ui_theme.isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
         }
 
         switch ( tab_type ) {

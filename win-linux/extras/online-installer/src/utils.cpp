@@ -118,11 +118,32 @@ namespace NS_Utils
             str += _T(" ") + GetLastErrorAsString();
         wstring caption(_T("    "));
         caption.append(_TR(CAPTION));
-        MessageBox(NULL, str.c_str(), caption.c_str(), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
+        LCID lcid = MAKELCID(GetUserDefaultUILanguage(), SORT_DEFAULT);
+        UINT flags = MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND;
+        if (IsRtlLanguage(lcid))
+            flags |= MB_RTLREADING;
+        MessageBox(NULL, str.c_str(), caption.c_str(), flags);
     }
 
     int ShowTaskDialog(HWND parent, const wstring &msg, PCWSTR icon)
     {
+        HWND fakeParent = NULL;
+        HMODULE hInst = GetModuleHandle(NULL);
+        if (!parent) {
+            WNDCLASS wc = {0};
+            wc.lpfnWndProc   = DefWindowProc;
+            wc.hInstance     = hInst;
+            wc.lpszClassName = L"FakeWindowClass";
+            RegisterClass(&wc);
+            fakeParent = CreateWindowEx(0, wc.lpszClassName, _TR(CAPTION), WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, NULL, NULL, hInst, NULL);
+            HICON hIcon = (HICON)LoadImage(hInst, MAKEINTRESOURCE(IDI_MAINICON), IMAGE_ICON, 96, 96, LR_DEFAULTCOLOR | LR_SHARED);
+            SendMessage(fakeParent, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+            SendMessage(fakeParent, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+            ShowWindow(fakeParent, SW_SHOWMINIMIZED);
+            UpdateWindow(fakeParent);
+            parent = fakeParent;
+        }
+
         int result = IDCANCEL;
         wstring caption(_T("    "));
         caption.append(_TR(CAPTION));
@@ -130,9 +151,12 @@ namespace NS_Utils
             HRESULT (WINAPI *_TaskDialog)(HWND, HINSTANCE, PCWSTR, PCWSTR, PCWSTR, TASKDIALOG_COMMON_BUTTON_FLAGS, PCWSTR, int*);
             *(FARPROC*)&_TaskDialog = GetProcAddress(lib, "TaskDialog");
             if (_TaskDialog)
-                _TaskDialog(parent, GetModuleHandle(NULL), caption.c_str(), msg.c_str(), NULL, TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON, icon, &result);
+                _TaskDialog(parent, hInst, caption.c_str(), msg.c_str(), NULL, TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON, icon, &result);
             FreeLibrary(lib);
         }
+
+        if (fakeParent)
+            DestroyWindow(fakeParent);
         return result;
     }
 
@@ -199,7 +223,7 @@ namespace NS_Utils
             accept = (IDOK == NS_Utils::ShowTaskDialog(parent, msg.c_str(), TD_INFORMATION_ICON));
             if (accept) {
                 PostMessage(app_hwnd, UM_INSTALL_UPDATE, 0, 0);
-                Sleep(1000);
+                Sleep(3000);
                 while(true) {
                     if ((app_hwnd = FindWindow(WINDOW_CLASS_NAME, NULL)) != nullptr) {
                         wstring msg(_TR(MSG_ERR_CLOSE_APP));
@@ -336,6 +360,21 @@ namespace NS_File
 //        CloseHandle(snapShot);
 //        return false;
 //    }
+
+    bool readFile(const wstring &filePath, list<wstring> &linesList)
+    {
+        std::wifstream file(filePath.c_str(), std::ios_base::in);
+        if (!file.is_open()) {
+            NS_Logger::WriteLog(L"An error occurred while opening: " + filePath);
+            return false;
+        }
+        wstring line;
+        while (std::getline(file, line))
+            linesList.push_back(line);
+
+        file.close();
+        return true;
+    }
 
     bool fileExists(const wstring &filePath)
     {

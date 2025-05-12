@@ -45,6 +45,19 @@
 # include <cups/ppd.h>
 #endif
 
+
+static QString getFirstPrinterName(const QJsonObject &json)
+{
+    if (json.contains("printers")) {
+        QJsonArray jarr = json["printers"].toArray();
+        if (!jarr.isEmpty()) {
+            QJsonObject jobj = jarr.at(0).toObject();
+            return jobj["name"].toString();
+        }
+    }
+    return QString();
+}
+
 class CPrintData::CPrintDataPrivate : public QObject
 {
     Q_OBJECT
@@ -54,6 +67,7 @@ public:
     QPageLayout::Orientation page_orientation{QPageLayout::Portrait};
     QPrinter::DuplexMode duplex_mode{QPrinter::DuplexMode::DuplexNone};
     bool is_quick = false;
+    bool use_system_dialog = true;
     int page_from = 0,
         page_to = 0;
     int pages_count = -1,
@@ -76,6 +90,17 @@ public:
                 print_range = QPrintDialog::AllPages;
                 return true;
             }
+
+            if ( native.contains("printer") ) {
+                QString printerName = native["printer"].toString();
+                if ( !printerName.isEmpty() ) {
+                    QPrinterInfo info{QPrinterInfo::printerInfo(printerName)};
+                    if ( !info.isNull() )
+                        printer_info = info;
+                }
+            }
+
+            use_system_dialog = native.contains("usesystemdialog") ? native["usesystemdialog"].toBool() : true;
 
             if ( native.contains("pages") ) {
                 QString range = native["pages"].toString();
@@ -180,7 +205,7 @@ public:
                     int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, paperNames.data(), NULL);
                     if (res == paperNamesCount)
                         paperNamesSuccess = true;
-                }                
+                }
                 int paperSizeCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERSIZE, NULL, NULL);
                 if (paperSizeCount > 0) {
                     paperSize.assign(paperSizeCount, {0, 0});
@@ -212,6 +237,8 @@ public:
             for (int i = 0; i < num_dests; i++) {
                 cups_dest_t *dest = &dests[i];
                 const char *ppd = cupsGetPPD(dest->name);
+                if (!ppd)
+                    continue;
                 ppd_file_t *ppdF = ppdOpenFile(ppd);
                 bool duplex_supported = ppdFindOption(ppdF, "Duplex");
 
@@ -380,6 +407,11 @@ auto CPrintData::isQuickPrint() const -> bool
     return m_priv->is_quick;
 }
 
+bool CPrintData::useSystemDialog() const
+{
+    return m_priv->use_system_dialog;
+}
+
 auto CPrintData::pagesCount() const -> int
 {
     return m_priv->pages_count;
@@ -411,8 +443,12 @@ bool CPrintData::printerCapabilitiesReady() const
 
 QString CPrintData::getPrinterCapabilitiesJson() const
 {
-    if (!m_priv->printers_capabilities_json.isEmpty())
-        m_priv->printers_capabilities_json["current_printer"] = printerInfo().printerName();
+    if (!m_priv->printers_capabilities_json.isEmpty()) {
+        QString currentPrinterName = printerInfo().printerName();
+        if (currentPrinterName.isEmpty())
+            currentPrinterName = getFirstPrinterName(m_priv->printers_capabilities_json);
+        m_priv->printers_capabilities_json["current_printer"] = currentPrinterName;
+    }
     return QJsonDocument(m_priv->printers_capabilities_json).toJson(QJsonDocument::Compact);
 }
 
@@ -421,7 +457,10 @@ auto CPrintData::queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const 
     m_priv->m_query_callback = callback;
     m_priv->m_future = std::async(std::launch::async, [=]() {
         QJsonObject json = m_priv->getPrintersCapabilitiesJson();
-        json["current_printer"] = printerInfo().printerName();
+        QString currentPrinterName = printerInfo().printerName();
+        if (currentPrinterName.isEmpty())
+            currentPrinterName = getFirstPrinterName(json);
+        json["current_printer"] = currentPrinterName;
         QMetaObject::invokeMethod(m_priv, "onPrinterCapabilitiesReady", Qt::QueuedConnection, Q_ARG(QJsonObject, json));
     });
 }

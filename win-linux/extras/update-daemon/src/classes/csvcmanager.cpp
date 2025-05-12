@@ -330,14 +330,14 @@ void CSvcManager::init()
                     tstring ext = m_packageData->fileType == _T("iss") ? _T(".exe") : m_packageData->fileType == _T("msi") ? _T(".msi") : ARCHIVE_EXT;
                     m_pDownloader->downloadFile(m_packageData->packageUrl, generateTmpFileName(ext));
                 }
-                NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + params[1]);
+                NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + m_packageData->packageUrl);
                 break;
             }
             case MSG_RequestContentLenght: {
                 __GLOBAL_LOCK
                 if (m_pDownloader)
-                    m_pDownloader->queryContentLenght(params[1]);
-                NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + params[1]);
+                    m_pDownloader->queryContentLenght(m_packageData->packageUrl);
+                NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + m_packageData->packageUrl);
                 break;
             }
             case MSG_StopDownload: {
@@ -469,6 +469,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
     if (error == 0) {
         switch (m_downloadMode) {
         case Mode::CHECK_UPDATES: {
+            __GLOBAL_LOCK // isUrlAccessible may take a long time to execute
             tstring out_json;
             list<tstring> lst;
             if (NS_File::readFile(filePath, lst)) {
@@ -511,7 +512,10 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                         }
                     }
 #endif
-                    m_packageData->packageUrl = package_type.value(_T("url")).toTString();
+                    tstring url = package_type.value(_T("url")).toTString();
+                    tstring url2 = package_type.value(_T("url2")).toTString();
+                    NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
+                    m_packageData->packageUrl = ((url.empty() || !m_pDownloader->isUrlAccessible(url)) && !url2.empty()) ? url2 : url;
                     tstring hash = package_type.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
@@ -531,7 +535,10 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     m_packageData->version = svc_version;
                     m_packageData->fileType = _T("archive");
                     JsonObject package_type = win.value(_T("serviceArchive")).toObject();
-                    m_packageData->packageUrl = package_type.value(_T("url")).toTString();
+                    tstring url = package_type.value(_T("url")).toTString();
+                    tstring url2 = package_type.value(_T("url2")).toTString();
+                    NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
+                    m_packageData->packageUrl = ((url.empty() || !m_pDownloader->isUrlAccessible(url)) && !url2.empty()) ? url2 : url;
                     tstring hash = package_type.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
@@ -557,6 +564,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
             } else {
                 // read error
             }
+            __UNLOCK
             m_socket->sendMessage(MSG_LoadCheckFinished, out_json);
             break;
         }

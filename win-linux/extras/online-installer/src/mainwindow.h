@@ -19,14 +19,14 @@ public:
     MainWindow(Widget *parent, const Rect &rc);
     ~MainWindow();
 
-    void initInstallationMode(const std::wstring &url);
+    void initInstallationMode();
     void initControlMode(const std::wstring &arch);
 
 protected:
     virtual bool event(UINT, WPARAM, LPARAM, LRESULT*) override;
 
 private:
-    void startInstall(const std::wstring &url);
+    void startInstall();
     void finishInstall(const std::wstring &app_path);
     void startUpdate();
     // void startRepair();
@@ -36,7 +36,7 @@ private:
     void createCloseButton();
     void createCloseAndBackButtons();
     std::wstring fillInstalledVerInfo();
-    CDownloader* startDownload(const std::wstring &url, const std::wstring &path, const std::function<void()> &onComplete);
+    CDownloader* startDownload(const std::wstring &install_type, const std::wstring &arch, const std::wstring &path, const std::function<void()> &onComplete);
     template<typename Fn, typename... Args>
     void invokeMethod(Fn&& fn, Args&&... args);
 

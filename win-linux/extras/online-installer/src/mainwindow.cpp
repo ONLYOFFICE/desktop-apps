@@ -14,9 +14,11 @@
 #include "translator.h"
 #include "cdownloader.h"
 #include "baseutils.h"
+#include "cjson.h"
 #include <Msi.h>
 #include <ShlObj.h>
 #include <Shlwapi.h>
+#include <numeric>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
@@ -174,7 +176,7 @@ MainWindow::~MainWindow()
         m_future.wait();
 }
 
-void MainWindow::initInstallationMode(const std::wstring &url)
+void MainWindow::initInstallationMode()
 {
     m_is_checked = true;
     m_mode = Mode::Install;
@@ -192,7 +194,8 @@ void MainWindow::initInstallationMode(const std::wstring &url)
     chkBox->setChecked(m_is_checked);
     setSelectorStyle(chkBox);
     chkBox->adjustSizeBasedOnContent();
-    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
+    int chkMargin = 2 + (chkBox->metrics()->value(Metrics::IconWidth) + chkBox->metrics()->value(Metrics::TextMarginLeft))/2;
+    chkBox->move(chkMargin + m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -215,11 +218,11 @@ void MainWindow::initInstallationMode(const std::wstring &url)
         chkBox->close();
         comntLbl->close();
         instlBtn->close();
-        startInstall(url);
+        startInstall();
     });
 
-    m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, instlBtn](int w, int h) {
-        chkBox->move(w/2 - chkBox->size().width/2, 254);
+    m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, instlBtn, chkMargin](int w, int h) {
+        chkBox->move(chkMargin + w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         instlBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
@@ -266,7 +269,7 @@ bool MainWindow::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
     return Window::event(msg, wParam, lParam, result);
 }
 
-void MainWindow::startInstall(const std::wstring &url)
+void MainWindow::startInstall()
 {
     /* Comment section */
     m_comntLbl = new Label(m_cenPanel);
@@ -297,7 +300,7 @@ void MainWindow::startInstall(const std::wstring &url)
     m_bar->show();
 
     wstring path = NS_File::generateTmpFileName(L".exe");
-    startDownload(url, path, [=]() {
+    startDownload(L"iss", NS_Utils::IsWin64() ? _T("x64") : _T("x86"), path, [=]() {
             wstring args;
             if (m_is_checked) {
                 args = _T("/VERYSILENT");
@@ -342,7 +345,8 @@ void MainWindow::finishInstall(const std::wstring &app_path)
     chkBox->setChecked(m_is_checked);
     setSelectorStyle(chkBox);
     chkBox->adjustSizeBasedOnContent();
-    chkBox->move(m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
+    int chkMargin = 2 + (chkBox->metrics()->value(Metrics::IconWidth) + chkBox->metrics()->value(Metrics::TextMarginLeft))/2;
+    chkBox->move(chkMargin + m_cenPanel->size().width/2 - chkBox->size().width/2, 254);
     chkBox->onClick([chkBox, this]() {
         m_is_checked = chkBox->isChecked();
     });
@@ -366,8 +370,8 @@ void MainWindow::finishInstall(const std::wstring &app_path)
         close();
     });
 
-    m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, closeBtn](int w, int h) {
-        chkBox->move(w/2 - chkBox->size().width/2, 254);
+    m_resize_conn = m_cenPanel->onResize([chkBox, comntLbl, closeBtn, chkMargin](int w, int h) {
+        chkBox->move(chkMargin + w/2 - chkBox->size().width/2, 254);
         comntLbl->setGeometry(0, h - 130, w, 48);
         closeBtn->setGeometry(w/2 - 50, h - 76, 100, 28);
     });
@@ -399,20 +403,15 @@ void MainWindow::startUpdate()
         tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L"." + m_package));
     }
 
-    wstring url = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
-    wstring url_filename = L"DesktopEditors_" + m_arch;
-    url_filename.append(L"." + m_package);
-    NS_Utils::Replace(url, _T("<file>"), url_filename);
-
-    CDownloader *dnl = startDownload(url, tmp_path, [=]() {
+    CDownloader *dnl = startDownload(m_package == L"msi" ? L"msi" : L"iss", m_arch, tmp_path, [=]() {
             if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle())) {
                 m_bar->setProgress(0);
                 m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
                 return;
             }
             m_bar->pulse(true);
-            wstring args = L"/c \"" + tmp_path;
-            args += (m_package == L"msi") ? L" /qn /norestart\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
+            wstring args = L"/c call \"" + tmp_path;
+            args += (m_package == L"msi") ? L"\" /qn /norestart" : L"\" /UPDATE /VERYSILENT /NOLAUNCH";
             DWORD status = NS_File::runProcess(L"cmd", args, true);
             if (status != 0) {
                 m_bar->pulse(false);
@@ -481,7 +480,7 @@ void MainWindow::startUpdate()
 //         NS_Utils::Replace(url, L"%4", url_filename);
 //     }
 
-//     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
+//     CDownloader *dnl = startDownload(m_package == L"msi" ? L"msi" : L"iss", m_arch, tmp_path, [=]() {
 //             if (!NS_Utils::checkAndWaitForAppClosure(nativeWindowHandle())) {
 //                 m_bar->setProgress(0);
 //                 m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
@@ -823,35 +822,84 @@ wstring MainWindow::fillInstalledVerInfo()
     return text;
 }
 
-CDownloader* MainWindow::startDownload(const std::wstring &url, const std::wstring &path, const std::function<void()> &onComplete)
+CDownloader* MainWindow::startDownload(const std::wstring &install_type, const std::wstring &arch, const std::wstring &path, const std::function<void()> &onComplete)
 {
+    wstring appcast_url = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
+    wstring tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L".json"));
     CDownloader *dnl = new CDownloader();
-    dnl->onProgress([=](int percent) {
-        m_bar->setProgress(percent);
-    });
     dnl->onComplete([=](ulong error) {
-        if (m_mode == Mode::Control)
-            m_cancelBtn->setDisabled(true);
         if (error == ERROR_SUCCESS) {
-            if (NS_File::verifyEmbeddedSignature(path)) {
-                onComplete();
+            list<tstring> lst;
+            if (NS_File::readFile(tmp_path, lst)) {
+                tstring json = std::accumulate(lst.begin(), lst.end(), tstring());
+                JsonDocument doc(json);
+                JsonObject root = doc.object();
+
+                // tstring version = root.value(_T("version")).toTString();
+                JsonObject package = root.value(_T("package")).toObject();
+#ifdef _WIN32
+                JsonObject win = package.value(arch == _T("x64") ? _T("win_64") : _T("win_32")).toObject();
+#else
+                JsonObject win = package.value(_T("linux_64")).toObject();
+#endif
+                JsonObject package_type = win.value(install_type).toObject();
+                tstring url = package_type.value(_T("url")).toTString();
+                tstring url2 = package_type.value(_T("url2")).toTString();
+                NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
+                if ((url.empty() || !dnl->isUrlAccessible(url)) && !url2.empty())
+                    url = url2;
+
+                // tstring hash = package_type.value(_T("md5")).toTString();
+                // std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
+                NS_File::removeFile(tmp_path);
+
+                invokeMethod([=]() {
+                    dnl->stop();
+                    dnl->onProgress([=](int percent) {
+                        m_bar->setProgress(percent);
+                    });
+                    dnl->onComplete([=](ulong error) {
+                        if (m_mode == Mode::Control)
+                            m_cancelBtn->setDisabled(true);
+                        if (error == ERROR_SUCCESS) {
+                            if (NS_File::verifyEmbeddedSignature(path)) {
+                                onComplete();
+                            } else {
+                                m_bar->setProgress(0);
+                                m_comntInfoLbl->setText(_TR(LABEL_NO_VER_AVAIL), true);
+                            }
+                            if (NS_File::fileExists(path))
+                                NS_File::removeFile(path);
+                        } else
+                        if (error == ERROR_CANCELLED) {
+                            m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
+                        } else {
+                            m_comntInfoLbl->setText(NS_Utils::GetLastErrorAsString(error), true);
+                        }
+
+                        if (m_mode == Mode::Control)
+                            createCloseAndBackButtons();
+                    });
+                    dnl->downloadFile(url, path);
+                });
             } else {
-                m_bar->setProgress(0);
-                m_comntInfoLbl->setText(_TR(LABEL_NO_VER_AVAIL), true);
+                NS_File::removeFile(tmp_path);
+                m_comntInfoLbl->setText(_TR(LABEL_ERR_COMMON), true);
+                if (m_mode == Mode::Control)
+                    createCloseAndBackButtons();
             }
-            if (NS_File::fileExists(path))
-                NS_File::removeFile(path);
         } else
         if (error == ERROR_CANCELLED) {
             m_comntInfoLbl->setText(_TR(LABEL_ERR_CANCELLED), true);
+            if (m_mode == Mode::Control)
+                createCloseAndBackButtons();
         } else {
             m_comntInfoLbl->setText(NS_Utils::GetLastErrorAsString(error), true);
+            if (m_mode == Mode::Control)
+                createCloseAndBackButtons();
         }
-
-        if (m_mode == Mode::Control)
-            createCloseAndBackButtons();
     });
-    dnl->downloadFile(url, path);
+    dnl->downloadFile(appcast_url, tmp_path);
     onAboutToDestroy([=]() {
         delete dnl;
     });

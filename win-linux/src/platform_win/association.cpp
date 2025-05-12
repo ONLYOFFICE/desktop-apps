@@ -134,8 +134,9 @@ void Association::AssociationPrivate::DialogSchedule::addToSchedule(const std::w
 
 Association::AssociationPrivate::AssociationPrivate() : m_pDialogSchedule(new DialogSchedule(this))
 {
+    GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
-    m_ignoreAssocMsg = reg_user.value("ignoreAssocMsg", false).toBool() || IsPackage(Portable);
+    m_ignoreAssocMsg = reg_system.value("ignoreAssocMsg", false).toBool() || reg_user.value("ignoreAssocMsg", false).toBool() || IsPackage(Portable);
     if (!m_ignoreAssocMsg)
         m_lastCheck = time_t(reg_user.value("lastAssocCheck", 0).toLongLong());
 
@@ -222,6 +223,8 @@ void Association::AssociationPrivate::tryProposeAssociation(QWidget *parent, con
         }
 
         if (res == MODAL_RESULT_YES) {
+            associate(unassocFileExts);
+            return;
             if (Utils::getWinVersion() >= Utils::WinVer::Win10) {
                 ShellExecute(NULL, L"open", L"ms-settings:defaultapps", NULL, NULL, SW_SHOWNORMAL);
 
@@ -275,6 +278,39 @@ void Association::AssociationPrivate::associate(const std::vector<std::wstring> 
     }
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
 #else
+    if (Utils::getWinVersion() > Utils::WinVer::Win7) {
+        std::wstring args(L"--assoc \"");
+        for (const auto &ext : unassocFileExts) {
+            auto it = m_extMap.find(ext);
+            if (it != m_extMap.end()) {
+                args.append(it->first);
+                args.append(L":");
+                args.append(it->second);
+                args.append(L";");
+            }
+        }
+        args.append(L"\"");
+
+        QString appPath = qApp->applicationDirPath();
+        appPath += "/" + QString(REG_APP_NAME);
+        std::wstring path = appPath.toStdWString();
+
+        SHELLEXECUTEINFO shExInfo = {0};
+        shExInfo.cbSize = sizeof(shExInfo);
+        shExInfo.fMask = SEE_MASK_NOCLOSEPROCESS | SEE_MASK_NO_CONSOLE | SEE_MASK_FLAG_NO_UI;
+        shExInfo.hwnd = NULL;
+        shExInfo.lpVerb = L"open";
+        shExInfo.lpFile = path.c_str();
+        shExInfo.lpParameters = args.c_str();
+        shExInfo.lpDirectory = NULL;
+        shExInfo.nShow = SW_HIDE;
+        shExInfo.hInstApp = NULL;
+        if (ShellExecuteEx(&shExInfo)) {
+            CloseHandle(shExInfo.hProcess);
+        }
+        return;
+    }
+
     HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
     if (SUCCEEDED(hr)) {
         IApplicationAssociationRegistration *pAr;
