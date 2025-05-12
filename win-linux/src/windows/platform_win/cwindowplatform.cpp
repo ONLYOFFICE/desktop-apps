@@ -36,7 +36,6 @@
 #include "utils.h"
 #include <QTimer>
 #include <QDesktopWidget>
-#include <QGraphicsOpacityEffect>
 #include <QWindow>
 #include <QScreen>
 #include <QJsonObject>
@@ -333,12 +332,7 @@ bool CWindowPlatform::isSessionInProgress()
 void CWindowPlatform::onWindowActivate(bool is_active)
 {
     for (auto *btn : m_pTopButtons) {
-        QGraphicsOpacityEffect *efct = qobject_cast<QGraphicsOpacityEffect*>(btn->graphicsEffect());
-        if (!efct) {
-            efct = new QGraphicsOpacityEffect(btn);
-            btn->setGraphicsEffect(efct);
-        }
-        efct->setOpacity(is_active ? 1.0 : 0.5);
+        btn->setFaded(!is_active);
     }
 }
 
