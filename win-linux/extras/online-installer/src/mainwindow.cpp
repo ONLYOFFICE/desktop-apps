@@ -410,6 +410,7 @@ void MainWindow::startUpdate()
                 return;
             }
             m_bar->pulse(true);
+            m_comntLbl->setText(_TR(LABEL_UPDATING));
             wstring args = L"/c call \"" + tmp_path;
             args += (m_package == L"msi") ? L"\" /qn /norestart" : L"\" /UPDATE /VERYSILENT /NOLAUNCH";
             DWORD status = NS_File::runProcess(L"cmd", args, true);
@@ -661,7 +662,7 @@ void MainWindow::createSelectionPage()
             m_uninsRadio->close();
             clrAllChkBox->close();
             applyBtn->close();
-            msg = m_uninsRadio->isChecked() ? _TR(LABEL_UNINSTLING) : /*m_repRadio->isChecked() ? _TR(LABEL_REPAIRING) :*/ _TR(LABEL_UPDATING);
+            msg = m_uninsRadio->isChecked() ? _TR(LABEL_UNINSTLING) : /*m_repRadio->isChecked() ? _TR(LABEL_REPAIRING) :*/ _TR(LABEL_DOWNLOAD);
             createProgressPage(msg);
             if (m_updRadio->isChecked() /*|| m_repRadio->isChecked()*/) {
                 /* Check box section*/
