@@ -365,7 +365,7 @@ namespace NS_File
     {
         std::wifstream file(filePath.c_str(), std::ios_base::in);
         if (!file.is_open()) {
-            NS_Logger::WriteLog(L"An error occurred while opening: " + filePath);
+            NS_Logger::WriteLog(L"An error occurred while opening:\n" + filePath);
             return false;
         }
         wstring line;

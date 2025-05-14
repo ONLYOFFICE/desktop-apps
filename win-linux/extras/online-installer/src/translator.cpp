@@ -28,7 +28,7 @@ bool isValidLocaleCharacter(wchar_t c)
 wstring getPrimaryLang(const wstring &lang, bool withScript = false)
 {
     if (lang.empty()) {
-        NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
+        NS_Logger::WriteLog(_T("An error occurred:\n") + wstring(_T(__FUNCTION__)));
         return L"en";
     }
     std::wistringstream iss(lang);
@@ -40,7 +40,7 @@ wstring getPrimaryLang(const wstring &lang, bool withScript = false)
         std::getline(iss, script, L'_');
         return (script.length() == 4) ? primlang + L"_" + script : primlang;
     }
-    NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
+    NS_Logger::WriteLog(_T("An error occurred:\n") + wstring(_T(__FUNCTION__)));
     return L"en";
 }
 
@@ -63,7 +63,7 @@ Translator::Translator(unsigned long langId, int resourceId)
     } else
         NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
 
-    NS_Logger::WriteLog(_T("Current locale: ") + langName);
+    NS_Logger::WriteLog(_T("\nCurrent locale:\n") + langName);
 
     HMODULE hInst = GetModuleHandle(NULL);
     if (HRSRC hRes = FindResource(hInst, MAKEINTRESOURCE(resourceId), RT_RCDATA)) {
@@ -86,7 +86,7 @@ Translator::Translator(unsigned long langId, int resourceId)
     if (!translations.empty()) {
         parseTranslations();
         if (!is_translations_valid)
-            NS_Logger::WriteLog(_T("Cannot parse translations, error in string: ") + error_substr + L" <---");
+            NS_Logger::WriteLog(_T("Cannot parse translations, error in string:\n") + error_substr + L" <---");
     } else
         NS_Logger::WriteLog(_T("Error: translations is empty."));
 }
