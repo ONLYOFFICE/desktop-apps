@@ -43,7 +43,7 @@ using std::to_wstring;
 using std::list;
 
 #define ERROR_LAUNCH 0x20000000
-#define DEFAULT_ERROR_MESSAGE _T("An error occurred: ") + \
+#define DEFAULT_ERROR_MESSAGE _T("An error occurred:\n") + \
     wstring(_T(__FUNCTION__)) + _T(" Line: ") + to_wstring(__LINE__)
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
     _T(" ") + NS_Utils::GetLastErrorAsString()
