@@ -38,7 +38,7 @@
 #include <QJsonObject>
 #include <QRegularExpression>
 #include <QSettings>
-#include <future>
+#include <thread>
 #include <cmath>
 #ifdef __linux__
 # include <cups/cups.h>
@@ -79,7 +79,6 @@ public:
     int sender_id = -1;
     int copies_count = 1;
     FnVoidStr m_query_callback = nullptr;
-    std::future<void> m_future;
 
     auto parseJsonOptions(const std::wstring& json) -> bool {
         QJsonObject jsonOptions = Utils::parseJsonString(json);
@@ -292,8 +291,6 @@ CPrintData::CPrintData()
 
 CPrintData::~CPrintData()
 {
-    if (m_priv->m_future.valid())
-        m_priv->m_future.wait();
     delete m_priv, m_priv = nullptr;
 }
 
@@ -454,14 +451,14 @@ QString CPrintData::getPrinterCapabilitiesJson() const
 auto CPrintData::queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const -> void
 {
     m_priv->m_query_callback = callback;
-    m_priv->m_future = std::async(std::launch::async, [=]() {
+    std::thread([=]() {
         QJsonObject json = m_priv->getPrintersCapabilitiesJson();
         QString currentPrinterName = printerInfo().printerName();
         if (currentPrinterName.isEmpty())
             currentPrinterName = getFirstPrinterName(json);
         json["current_printer"] = currentPrinterName;
         QMetaObject::invokeMethod(m_priv, "onPrinterCapabilitiesReady", Qt::QueuedConnection, Q_ARG(QJsonObject, json));
-    });
+    }).detach();
 }
 
 #include "cprintdata.moc"
