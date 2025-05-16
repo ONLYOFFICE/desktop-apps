@@ -183,13 +183,12 @@ public:
         QJsonArray printersArray;
 #ifdef _WIN32
         DWORD need = 0, ret = 0;
-        EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, nullptr, 0, &need, &ret);
+        EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 4, nullptr, 0, &need, &ret);
         std::vector<BYTE> buf(need);
-        if (EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 2, buf.data(), need, &need, &ret)) {
-            PRINTER_INFO_2 *printers = reinterpret_cast<PRINTER_INFO_2*>(buf.data());
+        if (EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 4, buf.data(), need, &need, &ret)) {
+            PRINTER_INFO_4 *printers = reinterpret_cast<PRINTER_INFO_4*>(buf.data());
             for (DWORD i = 0; i < ret; ++i) {
-                LPDEVMODE pDevMode = printers[i].pDevMode;
-                bool duplex_supported = (pDevMode && (pDevMode->dmFields & DM_DUPLEX));
+                bool duplex_supported = (DeviceCapabilities(printers[i].pPrinterName, NULL, DC_DUPLEX, NULL, NULL) == 1);
 
                 QJsonObject printerObject;
                 printerObject["name"] = QString::fromWCharArray(printers[i].pPrinterName);
@@ -199,17 +198,17 @@ public:
                 bool paperNamesSuccess = false, paperSizeSuccess = false;
                 std::vector<WCHAR> paperNames;
                 std::vector<POINT> paperSize;
-                int paperNamesCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, NULL, NULL);
+                int paperNamesCount = DeviceCapabilities(printers[i].pPrinterName, NULL, DC_PAPERNAMES, NULL, NULL);
                 if (paperNamesCount > 0) {
                     paperNames.assign(paperNamesCount * PAPER_NAME_LENGTH, L'\0');
-                    int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERNAMES, paperNames.data(), NULL);
+                    int res = DeviceCapabilities(printers[i].pPrinterName, NULL, DC_PAPERNAMES, paperNames.data(), NULL);
                     if (res == paperNamesCount)
                         paperNamesSuccess = true;
                 }                
-                int paperSizeCount = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERSIZE, NULL, NULL);
+                int paperSizeCount = DeviceCapabilities(printers[i].pPrinterName, NULL, DC_PAPERSIZE, NULL, NULL);
                 if (paperSizeCount > 0) {
                     paperSize.assign(paperSizeCount, {0, 0});
-                    int res = DeviceCapabilities(printers[i].pPrinterName, printers[i].pPortName, DC_PAPERSIZE, (LPWSTR)paperSize.data(), NULL);
+                    int res = DeviceCapabilities(printers[i].pPrinterName, NULL, DC_PAPERSIZE, (LPWSTR)paperSize.data(), NULL);
                     if (res == paperSizeCount)
                         paperSizeSuccess = true;
                 }
