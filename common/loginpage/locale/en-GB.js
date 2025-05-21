@@ -117,8 +117,9 @@ l10n.en_GB = {
     tplPanelCloud: "Cloud",
     tplCategory: "Categories",
     tplViewAll: "View all templates",
-    tplPDF: "PDF fillable forms",
-    tplDocument: "Document templates",
-    tplSpreadsheet: "Spreadsheet templates",
-    tplPresentation: "Presentation templates",
+    tplPDF: "PDF",
+    tplDocument: "Documents",
+    tplSpreadsheet: "Spreadsheet",
+    tplPresentation: "Presentations",
+
 }

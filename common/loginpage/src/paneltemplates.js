@@ -59,19 +59,6 @@
 
     window.ControllerTemplates = ControllerTemplates;
 
-    function createIframe(config) {
-        var iframe = document.createElement("iframe");
-
-        iframe.width = "100%";
-        iframe.height = "100%";
-        iframe.align = "top";
-        iframe.frameBorder = 0;
-        // iframe.name = "frameEditor";
-        iframe.allowFullscreen = true;
-
-        return iframe;
-    }
-
     var ViewTemplates = function(args) {
         var _lang = utils.Lang;
 
@@ -80,35 +67,20 @@
 
         const _html = `<div class='action-panel ${args.action}'>
                             <div class='flexbox content-box'>
-                                <div class='lr-flex'>
-                                    <h3 class='table-caption' l10n>${_lang.actTemplates}</h3>
-                                    <div id='idx-nav-templates'>
-                                        <a data-value='local' class='nav-item' l10n>${_lang.tplPanelLocal}</a>
-                                        <a data-value='cloud' class='nav-item' l10n>${_lang.tplPanelCloud}</a>
-                                        <a data-value='test' class='nav-item' l10n>Cloud old</a>
-                                    </div>
+                                <h3 class='table-caption' l10n>${_lang.actTemplates}</h3>
+                                <div id='idx-nav-templates'>
+                                    <a data-value='Documents' class='nav-item selected' l10n>${_lang.tplDocument}</a>
+                                    <a data-value='Spreadsheet' class='nav-item' l10n>${_lang.tplSpreadsheet}</a>
+                                    <a data-value='Presentations' class='nav-item' l10n>${_lang.tplPresentation}</a>
+                                    <a data-value='PDF' class='nav-item' l10n>${_lang.tplPDF}</a>
                                 </div>
-                                <section class='themed-sroll' panel='local'>
+                                <section class='themed-sroll' panel='all'>
                                     <div class='table-box flex-fill'>
-                                        <div id='idx-local-tpls' class='table-templates list'></div>
+                                        <div class='table-templates list' id='idx-templates'></div>
                                     </div>
                                 </section>
-                                <div class='category-selector' panel='cloud'>
-                                    <div class='category-selector-heading'>
-                                        <h4 class='category-selector-title'>
-                                            ${_lang.tplCategory}:
-                                            <span class='category-caret'></span>
-                                        </h4>
-                                    </div>
-                                </div>
-                                <section class='themed-sroll' panel='cloud'>
-                                    <div class='table-box flex-fill'>
-                                        <div id='idx-cloud-tpls' class='table-templates list'></div>
-                                    </div>
-                                </section>
-                                <section panel='test'>${this.emptyPanelContent}</section>
                             </div>
-                    </div>`;
+                        </div>`;
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -128,28 +100,27 @@
             const type = utils.formatToEditor(info.type);
             const badge = !this.svgicons ? `<i class="badge ${type}"></i>` : 
                                 `<svg class="badge"><use xlink:href="#tpltype-${type}"></use></svg>`;
-            const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
-                                            `<div class="box"><img src="${info.icon}">${badge}</div>`
+            const cloudIcon = info.isCloud ? `<div class="cloud-icon"></div>` : "";                    
+            const icon_el = info.icon
+                ? `<img src="${info.icon}" alt="${info.name}" />`
+                : `<svg class="fallback-icon"><use xlink:href="#template-item"></use></svg>`;
             return `<div id="${info.uid}" class='item' data-type="${type}">
-                        <div class='icon'>
+                        <div class="thumb-wrapper">
                             ${icon_el}
                         </div>
-                        <span class='title'>${info.name}</span>
+                        <div class="card">
+                            <div class="badge-wrapper">${badge}</div>
+                            <div class="title">${info.name}</div>
+                            ${cloudIcon}
+                        </div>
                     </div>`;
         }
     });
 
     utils.fn.extend(ControllerTemplates.prototype, (function() {
-        let iframe;
-        let panel_local,
-            panel_cloud;
-        let local_templates,
-            cloud_templates;
         let _page_num = 0, 
             isLoading = false, 
-            totalPages = null;
-        let previousFilter = null,    
-            $caret,
+            totalPages = null,
             currentFilter = 'view_all'; 
                 
     
@@ -158,233 +129,180 @@
         const _url_templates = `${test_url}/{0}?desktop=true`;
         // const _url_templates = "https://oforms.onlyoffice.com/{0}?desktop=true";
 
-        const _create_and_inject_iframe = () => {
-            const re = /(theme-(?!type)[\w-]+)/.exec(document.body.className);
-            const theme_id = re ? re[1] : 'theme-light';
-
-            const iframe = createIframe({});
-            iframe.src = `${_url_templates.replace('{0}',utils.Lang.id.substring(0,2))}&theme=${theme_id}`;
-
-            const target = document.getElementById("frame");
-            target.parentNode && target.parentNode.replaceChild(iframe, target);
-            return iframe;
-        }
-
-        const _remove_frame = content => {
-            if ( !!iframe ) {
-                iframe.parentElement.innerHTML = content;
-                iframe = null;
-            }
-        }
-
         const _on_nav_item_click = function(e) {
             $('.nav-item', this.view.$panel).removeClass('selected');
             const $item = $(e.target);
             $item.addClass('selected');
 
             const panel = $item.data('value');
-            $('[panel]', this.view.$panel).hide();
-            $(`[panel=${panel}]`, this.view.$panel).show();
 
-            this.view.$panel.removeClass('local cloud test').addClass($item.data('value'));
-        }
+            this.view.$panel.removeClass('Documents Spreadsheet Presentations PDF').addClass(panel);
+
+            applyFilter(this.view.$panel);
+        };
 
 
         function _init_collection() {
-            local_templates = new Collection({
-                view: $('section[panel=local]', this.view.$panel),
-                list: $('#idx-local-tpls', this.view.$panel),
+           this.templates = new Collection({
+                view: $('section[panel=all]', this.view.$panel),
+                list: $('#idx-templates', this.view.$panel),
             });
 
-            local_templates.events.erased.attach(collection => {
-                collection.list.parent().addClass('empty');
-            });
+            const setupCollection = (collection) => {
+                collection.events.erased.attach(() => {
+                    collection.list.parent().addClass('empty');
+                });
 
-            local_templates.events.inserted.attach((collection, model) => {
-                let $item = this.view.listitemtemplate(model);
+                collection.events.inserted.attach((col, model) => {
+                    const $item = $(this.view.listitemtemplate(model));
+                    col.list.append($item);
+                    col.list.parent().removeClass('empty');
+                    applyFilter(this.view.$panel);
+                });
 
-                collection.list.append($item);
-                collection.list.parent().removeClass('empty');
-            });
-
-            local_templates.events.click.attach((collection, model) => {
-                sdk.command('create:new', JSON.stringify({'template': {id:model.id, type:model.type, path: model.path}}));
-            });
-
-            local_templates.events.contextmenu.attach(function(collection, model, e){
-                // ppmenu.actionlist = 'recent';
-                // ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
-                // ppmenu.show({left: e.clientX, top: e.clientY}, model);
-            });
-
-            local_templates.events.changed.attach(function(collection, model){
-                // let $el = collection.list.find('#' + model.uid);
-                // if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
-            });
-
-            cloud_templates = new Collection({
-                view: $('section[panel=local]', this.view.$panel),
-                list: $('#idx-cloud-tpls', this.view.$panel),
-            });
-
-            cloud_templates.events.erased.attach(collection => {
-                collection.list.parent().addClass('empty');
-            });
-
-            cloud_templates.events.inserted.attach((collection, model) => {
-                let $item = this.view.listitemtemplate(model);
-
-                collection.list.append($item);
-                collection.list.parent().removeClass('empty');
-            });
-
-            cloud_templates.events.click.attach((collection, model) => {
-                window.sdk.openTemplate(model.path, model.name);
-                $caret.removeClass('open');
-            });
-
-            categories.events.itemclick.attach(async (action, event) => {
-                $caret.removeClass('open');
-                previousFilter = currentFilter; 
-                currentFilter = event;
-                
-                if (previousFilter !== currentFilter) {
-                    if (currentFilter === 'view_all') {
-                        cloud_templates.list.find('.item').remove();
-                        cloud_templates.items = [];
-                        _page_num = 0;
-                        totalPages = null;
-                        loadTemplates();
-                        return;
-                    }
-                    
-                    $('section[panel=cloud]', this.view.$panel).scrollTop(0);
-
-                    if (totalPages !== null && _page_num >= totalPages) {
-                        applyFilter();
+                collection.events.click.attach((col, model) => {
+                    if (model.isCloud) {
+                        window.sdk.openTemplate(model.path, model.name);
                     } else {
-                        loadAllPages();
+                        sdk.command('create:new', JSON.stringify({
+                            template: {
+                                id: model.id,
+                                type: model.type,
+                                path: model.path
+                            }
+                        }));
                     }
-
-                }
-
-            });
-            
-            local_templates.empty();
-            cloud_templates.empty();
-        }
-
-        const _on_update_template = function(index) {
-
+                });
+            };
+            setupCollection(this.templates);
         }
 
         const _on_add_local_templates = function(tmpls) {
-            local_templates.empty();
+            console.log('Received local templates:', tmpls);
             for (let item of tmpls) {
-                var model = new FileTemplateModel(item);
-
-                local_templates.add(model);
+                const model = new FileTemplateModel(item);
+                const type = utils.formatToEditor(item.type);
+                
+                switch(type) {
+                    case 'word':
+                        this.templates.add(model);
+                        break;
+                    case 'cell':
+                        this.templates.add(model);
+                        break;
+                    case 'slide':
+                        this.templates.add(model);
+                        break;
+                    case 'pdf':
+                        this.templates.add(model);
+                        break;
+                }
             }
-        }
+        };
 
         const _on_add_cloud_templates = function(data) {
-            let c = 0,
-                icon_url;
             for (let i of data) {
                 const info = i['attributes']
                 const file_ext = info['form_exts']['data'][0]['attributes']['ext'];
-                icon_url =  info.template_image?.data.attributes.formats.thumbnail.url;
                 const item = {
                     uid: i.id,
                     name: info['name_form'],
                     descr: info['template_desc'],
                     path: info.file_oform?.data[0].attributes.url,
                     type: utils.fileExtensionToFileFormat(file_ext),
-                    icon: icon_url,
+                    icon: info.template_image?.data.attributes.formats.thumbnail.url,
+                    isCloud: true,
                 };
-                if (!cloud_templates.items.some(template => template.uid === item.uid)) {
+                if (!this.templates.items.some(template => template.uid === item.uid)) {
                     const model = new FileTemplateModel(item);
-                    cloud_templates.add(model);
-                    console.log(++c, 'model', i.id, model.name);
+                    this.templates.add(model);
                 }
                
             }
         }
-
-        const categories = new Menu({
-            id: 'category-selector-dropdown',
-            prefix: 'category',
-            items: [
-                { caption: utils.Lang.tplViewAll, action: 'view_all' },
-                { caption: utils.Lang.tplPDF, action: 'pdf'},
-                { caption: utils.Lang.tplDocument, action: 'document' },
-                { caption: utils.Lang.tplSpreadsheet, action: 'spreadsheet'},
-                { caption: utils.Lang.tplPresentation, action: 'presentation'},
-            ]
-        });
-        categories.init(document.body); 
         
-        const applyFilter = function() {
-            if (currentFilter === 'view_all') {
-                cloud_templates.list.find('.item').show();
-                return;
-            }
-            
+        const applyFilter = function($panel) {
             const type = {
-                'pdf': 'pdf',
-                'document': 'word',
-                'spreadsheet': 'cell',
-                'presentation': 'slide'
+                'Documents': 'word',
+                'Spreadsheet': 'cell',
+                'Presentations': 'slide',
+                'PDF': 'pdf'
             };
-            
-            const typeShow = type[currentFilter];
-            cloud_templates.list.find('.item').hide()
-                .filter(`[data-type="${typeShow}"]`).show();
+
+            const selectedType = type[$('.nav-item.selected', $panel).data('value')];
+
+            $('.table-templates.list .item', $panel).each(function () {
+                const $item = $(this);
+                $item.css('display', $item.data('type') === selectedType ? 'flex' : 'none');
+            });
         };
         
-        const _loadTemplates = function() {
+       const _loadTemplates = function() {
             if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
-    
+
             _page_num++;  
             isLoading = true;
-    
+            console.log(`Loading cloud templates page ${_page_num}`);
+
             const _url = `https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
-            // const _url = `https://oforms.onlyoffice.com/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
             fetch(_url)
-                .then(r => r.json())
+                .then(r => {
+                    if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
+                    return r.json();
+                })
                 .then(d => {
+                    if (!d.data) throw new Error("No data in response");
+                    
                     isLoading = false;
-                    if (d.data) {
-                        _on_add_cloud_templates(d.data);
-                        totalPages = d.meta.pagination.pageCount;
-                        
-                        if (currentFilter !== 'view_all' && _page_num < totalPages) {
-                            _loadTemplates();
-                        } else {
-                            applyFilter();
-                        }
-                    }
+                    _on_add_cloud_templates.call(this, d.data);
+                    totalPages = d.meta.pagination.pageCount;
+                    
+                    if (currentFilter !== 'view_all' && _page_num < totalPages) {
+                        _loadTemplates.call(this);
+                    } 
+                })
+                .catch(error => {
+                    isLoading = false;
+                    console.error('Error loading cloud templates:', error);
                 });
         };
-        
         const loadTemplates = function() {
-            _loadTemplates();
+            if (_page_num === 0) {
+                this.templates.empty(); 
+            }
+            _loadTemplates.call(this);
         };
 
         const loadAllPages = function() {
             if (isLoading) return;
+
             _page_num = 0;
-            _loadTemplates();
+
+            const self = this;
+
+            const loadNext = () => {
+                if (_page_num < totalPages || totalPages === null) {
+                    _loadTemplates.call(self);
+                    setTimeout(loadNext, 150); 
+                }
+            };
+
+            loadNext(); 
         };
     
         const Scroll = function() {
-            const $cloudPanel = $('section[panel=cloud]', this.view.$panel);
+            const currentPanel = $('.nav-item.selected').data('value');
+            const $cloudPanel = $('#idx-templates', this.view.$panel);
+            $cloudPanel.on('scroll', Scroll.bind(this));
+
+            if (!$cloudPanel.length) return;
+
             const scrollTop = $cloudPanel.scrollTop();
             const scrollHeight = $cloudPanel[0].scrollHeight;
             const clientHeight = $cloudPanel[0].clientHeight;
-    
+
             if (scrollTop + clientHeight >= scrollHeight - 100) {
-                loadTemplates();
+                loadTemplates.call(this);
             }
         };
 
@@ -392,85 +310,17 @@
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
-                errorBox.render({
-                    parent: $('#frame')[0],
-                    lang: utils.Lang.id,
-                    page: 'templates',
-                }); 
-                
-                $caret = $('.category-caret');                
-                $('.category-selector-title').on('click', function(e) {
-                    e.stopPropagation();
-                    
-                    if (!$caret.hasClass('open')) {
-                        const offset = $(this).offset();
-                        const pos = {
-                            top: offset.top + $(this).outerHeight(),
-                            left: offset.left
-                        };
-                        
-                        categories.show(pos, {});
-                        $caret.addClass('open');
-                        
-                        const close = function(e) {
-                            if (!$(e.target).closest('.category-selector-title').length) {
-                                Menu.closeAll();
-                                $caret.removeClass('open');
-                                $(document).off('click', close);
-                            }
-                        };
-                        
-                        $(document).on('click', close);
-                    }
-                });
 
-                this.view.$panel.addClass('local');
-                $('.nav-item[data-value=local]', this.view.$panel).addClass('selected');
-                $('[panel]', this.view.$panel).hide();
-                $(`[panel=local]`, this.view.$panel).show();
+                _init_collection.call(this);
+
+                this.view.$panel.addClass('Documents');
+                $('.table-templates.list .item', this.view.$panel).hide();
+                $('.table-templates.list .item[data-type="word"]', this.view.$panel).show();
 
                 if ( window.utils.isWinXp ) {
                     $('#idx-nav-templates', this.view.$panel).hide();
                     this.view.$panel.addClass('win_xp');
-                } else {
-                    const _check_url_avail = () => {
-                        if ( !iframe ) {
-                            fetch(_url_templates.replace('{0}', 'en'), {mode: 'no-cors'}).
-                                then(r => {
-                                    if ( r.status == 200 || r.type == 'opaque' ) {
-                                        iframe = _create_and_inject_iframe();
-                                    }
-                                }).
-                                catch(e => console.error('error on check templates url', e));
-                        }
-                    }
-
-                    _check_url_avail();
-
-                    CommonEvents.on('panel:show', panel => {
-                        if ( !iframe && panel == this.action ) {
-                            _check_url_avail();
-                        }
-                    });
-
-                    CommonEvents.on('lang:changed', (old, newlang) => {
-                        window.errorBox.translate(newlang);
-
-                        if ( !!iframe ) {
-                            // iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
-                            _remove_frame(this.view.emptyPanelContent);
-                            _check_url_avail();
-                        }
-                    });
-
-                    CommonEvents.on('theme:changed', (theme, type) => {
-                        if ( !!iframe ) {
-                            // iframe.contentWindow.postMessage(JSON.stringify({theme: {name: theme, type: type}}));
-                            _remove_frame(this.view.emptyPanelContent);
-                            _check_url_avail();
-                        }
-                    });
-                }
+                } 
 
                 // if ( !!localStorage.templatespanel ) {
                     // let iframe;
@@ -501,10 +351,9 @@
                 });
 
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
-                window.sdk.on('onupdatetemplate', _on_update_template.bind(this));
+                _on_nav_item_click.call(this, { target: $('.nav-item.selected', this.view.$panel) });
+            
                 window.sdk.on('onaddtemplates', _on_add_local_templates.bind(this));
-
-                _init_collection.call(this);
 
                 const _reload_templates = l => {
                     let ls = [l];
@@ -520,9 +369,11 @@
                     _reload_templates(nl);
                 });
 
-                loadTemplates();
-                
-                $('section[panel=cloud]', this.view.$panel).on('scroll', Scroll.bind(this));
+                loadAllPages.call(this);
+
+                ['Documents', 'Spreadsheet', 'Presentations', 'PDF'].forEach(panel => {
+                    $(`section[panel=${panel}]`, this.view.$panel).on('scroll', Scroll.bind(this));
+                });
 
                 return this;
             }
