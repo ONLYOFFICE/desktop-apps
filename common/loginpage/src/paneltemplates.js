@@ -103,9 +103,9 @@
             const cloudIcon = info.isCloud ? `<div class="cloud-icon"></div>` : "";                    
             const icon_el = info.icon
                 ? `<img src="${info.icon}" alt="${info.name}" />`
-                : `<svg class="fallback-icon"><use xlink:href="#template-item"></use></svg>`;
+                : '';
             return `<div id="${info.uid}" class='item' data-type="${type}">
-                        <div class="thumb-wrapper">
+                        <div class="wrapper">
                             ${icon_el}
                         </div>
                         <div class="card">
@@ -120,8 +120,7 @@
     utils.fn.extend(ControllerTemplates.prototype, (function() {
         let _page_num = 0, 
             isLoading = false, 
-            totalPages = null,
-            currentFilter = 'view_all'; 
+            totalPages = null; 
                 
     
         // TODO: for tests only. uncomment static url before release
@@ -237,40 +236,26 @@
             });
         };
         
-       const _loadTemplates = function() {
+        const _loadTemplates = function() {
             if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
 
             _page_num++;  
             isLoading = true;
-            console.log(`Loading cloud templates page ${_page_num}`);
 
             const _url = `https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
             fetch(_url)
-                .then(r => {
-                    if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
-                    return r.json();
-                })
+                .then(r => r.json())
                 .then(d => {
-                    if (!d.data) throw new Error("No data in response");
-                    
-                    isLoading = false;
-                    _on_add_cloud_templates.call(this, d.data);
-                    totalPages = d.meta.pagination.pageCount;
-                    
-                    if (currentFilter !== 'view_all' && _page_num < totalPages) {
-                        _loadTemplates.call(this);
-                    } 
+                     if (d.data) {
+                        isLoading = false;
+                        _on_add_cloud_templates.call(this, d.data);
+                        totalPages = d.meta.pagination.pageCount;
+                        
+                        if (_page_num < totalPages) {
+                            _loadTemplates.call(this);
+                        } 
+                     }
                 })
-                .catch(error => {
-                    isLoading = false;
-                    console.error('Error loading cloud templates:', error);
-                });
-        };
-        const loadTemplates = function() {
-            if (_page_num === 0) {
-                this.templates.empty(); 
-            }
-            _loadTemplates.call(this);
         };
 
         const loadAllPages = function() {
@@ -290,22 +275,6 @@
             loadNext(); 
         };
     
-        const Scroll = function() {
-            const currentPanel = $('.nav-item.selected').data('value');
-            const $cloudPanel = $('#idx-templates', this.view.$panel);
-            $cloudPanel.on('scroll', Scroll.bind(this));
-
-            if (!$cloudPanel.length) return;
-
-            const scrollTop = $cloudPanel.scrollTop();
-            const scrollHeight = $cloudPanel[0].scrollHeight;
-            const clientHeight = $cloudPanel[0].clientHeight;
-
-            if (scrollTop + clientHeight >= scrollHeight - 100) {
-                loadTemplates.call(this);
-            }
-        };
-
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -313,33 +282,10 @@
 
                 _init_collection.call(this);
 
-                this.view.$panel.addClass('Documents');
-                $('.table-templates.list .item', this.view.$panel).hide();
-                $('.table-templates.list .item[data-type="word"]', this.view.$panel).show();
-
                 if ( window.utils.isWinXp ) {
                     $('#idx-nav-templates', this.view.$panel).hide();
                     this.view.$panel.addClass('win_xp');
                 } 
-
-                // if ( !!localStorage.templatespanel ) {
-                    // let iframe;
-                    // if ( navigator.onLine ) {
-                    //     iframe = _create_and_inject_iframe();
-                    // } else {
-                    //     CommonEvents.on('panel:show', panel => {
-                    //         if ( !iframe && panel == this.action && navigator.onLine) {
-                    //             iframe = _create_and_inject_iframe();
-                    //         }
-                    //     });
-                    // }
-                // } else {
-                //     this.view.$menuitem.find('> a').click(e => {
-                //         window.sdk.command("open:template", 'external');
-                //         e.preventDefault();
-                //         e.stopPropagation();
-                //     });
-                // }
 
                 const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
                                             "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
@@ -370,10 +316,6 @@
                 });
 
                 loadAllPages.call(this);
-
-                ['Documents', 'Spreadsheet', 'Presentations', 'PDF'].forEach(panel => {
-                    $(`section[panel=${panel}]`, this.view.$panel).on('scroll', Scroll.bind(this));
-                });
 
                 return this;
             }
