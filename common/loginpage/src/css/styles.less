@@ -36,6 +36,11 @@ button {
   z-index: -1;
 }
 
+.text-normal {
+  font-size: 14px;
+  line-height: 20px;
+}
+
 #wrap {
   overflow: auto;
   -webkit-user-select: none;
@@ -1612,5 +1617,140 @@ li.menu-item {
   .btn.login {
     cursor: pointer;
     width: 14px;
+  }
+}
+
+.file-list-title {
+  text-align: left;
+  padding-left: 16px;
+  padding-right: 56px;
+  margin-bottom: 24px;
+
+  h3 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+}
+
+.file-list-head, .file-list-body .row {
+  display: grid;
+  grid-template-columns: 264px 248px 156px;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 56px;
+}
+
+.file-list-head {
+  margin-bottom: 4px;
+  font-weight: 600;
+
+  .col-name, .col-location {
+    text-align: left;
+  }
+
+  .col-date {
+    text-align: right;
+  }
+}
+
+.file-list-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .row {
+    position: relative;
+    border-radius: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    .col-name, .col-location, .col-date {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .col-name {
+      height: 32px;
+      gap: 0;
+
+      .icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 8px;
+      }
+
+      .ext {
+        color: @text-secondary;
+      }
+    }
+
+    .col-location, .col-date {
+      height: 24px;
+    }
+
+    .col-date {
+      justify-content: flex-end;
+    }
+
+    .col-more {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 16px;
+      opacity: 0;
+      display: flex;
+      align-items: center;
+
+      button {
+        color: @icon-normal;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        border-radius: 2px;
+        background: transparent;
+        align-items: center;
+
+        &:active {
+          background: color-mix(in srgb, @icon-normal, 15%, transparent); // 555F65 15%
+          color: @icon-normal;
+        }
+
+        .icon {
+          opacity: 0.5;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &:nth-child(even) {
+      background-color: @background-normal-light;
+    }
+
+    &:hover:not(.unavail) {
+      .col-more {
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      background-color: @highlight-button-hover;
+    }
+
+    &:active {
+      background-color: @highlight-button-pressed;
+    }
   }
 }

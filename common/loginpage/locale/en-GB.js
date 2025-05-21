@@ -121,4 +121,7 @@ l10n.en_GB = {
     tplDocument: "Document templates",
     tplSpreadsheet: "Spreadsheet templates",
     tplPresentation: "Presentation templates",
+    fileName: "File name",
+    location: 'Location',
+    lastOpened: 'Last opened'
 }

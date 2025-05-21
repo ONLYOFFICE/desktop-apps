@@ -1,6 +1,7 @@
 
 :root {
-    --background-normal: #f9f9f9;
+    --background-normal: #fff;
+    --background-normal-element-light: #f9f9f9;
     --background-tabbar: #f7f7f7;
     /*--background-button: #fff;*/
     --background-accent-button: #3483db;
@@ -27,7 +28,7 @@
     --border-regular-control: #c0c0c0;
     --border-control-focus: #848484;
     --border-error: #f62211;
-    --border-sidebar: var(--background-normal)
+    --border-sidebar: var(--background-normal);
     --border-sidebar-item: transparent;
 
     --text-normal: fade(#000, 80%);
@@ -49,6 +50,7 @@
 }
 
 @background-normal: var(--background-normal);
+@background-normal-light: var(--background-normal-element-light);
 @background-tabbar: var(--background-tabbar);
 @background-button: var(--background-button,#fff);
 @background-accent-button: var(--background-accent-button);

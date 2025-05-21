@@ -56,21 +56,38 @@
                       <div class="recent-panel-container">
                         <div id="box-recovery" class="flex-item">
                           <div class="flexbox">
-                            <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
-                            <div class="table-box flex-fill">
-                              <table id="tbl-filesrcv" class="table-files list"></table>
-                            </div>
+                              <div>
+                                  <div class="file-list-title">
+                                        <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                                   </div>
+                                  <div class="file-list-head text-normal">
+                                    <div class="col-name" l10n>${_lang.fileName}</div>
+                                    <div class="col-location" l10n>${_lang.location}</div>
+                                    <div class="col-date" l10n>${_lang.lastOpened}</div>
+                                  </div>
+                                  <div class="file-list-body"></div>
+                              </div>
                           </div>
                         </div>
+
                         <div id="box-recent" class="flex-item flex-fill">
                           <div class="flexbox">
                             <div style="display:none;">
-                              <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
+                              <h3 class="file-list-title" l10n>${_lang.listRecentFileTitle}</h3>
                               <input type="text" id="idx-recent-filter" style="display:none;">
                             </div>
-                            <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
                             <div class="table-box flex-fill">
-                              <table class="table-files list"></table>
+                              <div>
+                                  <div class="file-list-title">
+                                        <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                                   </div>
+                                  <div class="file-list-head text-normal">
+                                    <div class="col-name" l10n>${_lang.fileName}</div>
+                                    <div class="col-location" l10n>${_lang.location}</div>
+                                    <div class="col-date" l10n>${_lang.lastOpened}</div>
+                                  </div>
+                                  <div class="file-list-body"></div>
+                              </div>
                               <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>
                                   ${isSvgIcons? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>':''}
                                   ${_lang.textNoFiles}
@@ -106,26 +123,53 @@
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted == undefined && (info.crypted = false);
+            const dotIndex = info.name.lastIndexOf('.');
+            if (dotIndex !== -1) {
+                info.ext = info.name.substring(dotIndex);
+                info.name = info.name.substring(0, dotIndex);
+            } else {
+                info.ext = '';
+            }
 
-            var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
-                          <td class="row-cell cicon">
-                            <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
-                        ${!isSvgIcons ?'':
-                            `<svg class = "icon ${info.type=='folder'?'folder':''}">
-                                <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
-                            </svg>
-                            ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
-                        }                            
-                          </td>
-                          <td class="row-cell cname">
-                            <p class="name primary">${info.name}</p>
-                            <p class="descr minor">${info.descr}</p>
-                          </td>`;
+            let _tpl = `<div ${id} class="row text-normal">
+<div class="col-name">
+    <div class="icon">
+        <i class="icon ${info.type == 'folder' ? 'img-el folder' : `img-format ${info.format}`}" />
+        ${!isSvgIcons ? ''
+                : `<svg class = "icon ${info.type == 'folder' ? 'folder' : ''}"> <use xlink:href="#${info.type == 'folder' ? 'folder-small' : `${info.format}`}"></use></svg>
+                ${info.crypted ? '<svg class = "shield"> <use xlink:href="#shield"></use></svg>' : ''}`}
+    </div>
+    <p class="name">${info.name}</p>
+    <span class="ext">${info.ext}</span>
+</div>
+<div class="col-location">
+    ${info.descr}
+</div>
+`;
 
-            if (info.type != 'folder')
-                _tpl += `<td class="row-cell cdate minor">${info.date}</td>`;
+//             var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
+//
+//                           <td class="row-cell cname">
+//                             <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
+//                         ${!isSvgIcons ?'':
+//                 `<svg class = "icon ${info.type=='folder'?'folder':''}">
+//                                 <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
+//                             </svg>
+//                             ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
+//             }
+//                             <p class="name">${info.name}<span class="ext">${info.ext}</span></p>
+//                           </td>
+//                           <td class="row-cell cloc">
+//                             <p>${info.descr}</p>
+//                           </td>>
+// `;
 
-            return _tpl;
+            if (info.type !== 'folder') {
+                _tpl += `<div class="col-date"><p>${info.date}</p></div>`;
+                _tpl += `<div class="col-more"><button id="${info.uid}-more-btn"><svg class="icon"><use xlink:href="#more"/></svg>${!isSvgIcons ? '<i class="icon tool-icon more"></i>' : ''}</button></div>`;
+            }
+
+            return _tpl + '</div>';
         },
         onscale: function (pasteSvg) {
             let elm,icoName, elmIcon, parent,
@@ -134,6 +178,8 @@
 
             if(pasteSvg && !emptylist.find('svg').length)
                 emptylist.prepend($('<svg class = "icon"><use xlink:href="#folder-big"></use></svg>'));
+
+            // todo: rewrite cicon rescale
 
             $('#box-recent .cicon').each(function () {
                  elm = $(this);
@@ -253,13 +299,21 @@
             this.view.updateListSize();
         };
 
+        function addContextMenuEventListener(collection, model, view) {
+            $(`#${model.uid}-more-btn`, view).click((e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                collection.events.contextmenu.notify(model, e);
+            })
+        }
+
         function _init_collections() {
             let _cl_rcbox = this.view.$boxRecent,
                 _cl_rvbox = this.view.$boxRecovery;
 
             collectionRecents = new Collection({
                 view: _cl_rcbox,
-                list: _cl_rcbox.find('.table-files.list')
+                list: _cl_rcbox.find('.file-list-body')
             });
 
             collectionRecents.events.erased.attach(collection => {
@@ -270,6 +324,9 @@
                 let $item = this.view.listitemtemplate(model);
 
                 collection.list.append($item);
+
+                addContextMenuEventListener(collection, model, this.view.$panel);
+
                 collection.list.parent().removeClass('empty');
             });
 
@@ -299,10 +356,11 @@
 
             collectionRecovers = new Collection({
                 view: _cl_rvbox,
-                list: _cl_rvbox.find('.table-files.list')
+                list: _cl_rvbox.find('.file-list-body')
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
+                addContextMenuEventListener(collection, model, this.view.$panel);
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
