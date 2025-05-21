@@ -1387,9 +1387,10 @@ li.menu-item {
         border-radius: 4px;
         overflow: hidden;
         background: #fff;
+        @bage-size: 16px;
 
         &:hover {
-            background-color: @highlight-button-hover;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
             .thumb-wrapper {
@@ -1429,26 +1430,26 @@ li.menu-item {
                     align-items: center;
 
                     .badge {
-                        width: 16px;
-                        height: 16px;
+                        width: @bage-size;
+                        height: @bage-size;
 
                     }
                     i.badge {
-                        background: -webkit-image-set(data-uri('../res/img/tpltype@1.25x.png') 1.25x,
-                                data-uri('../res/img/tpltype@1.5x.png') 1.5x, data-uri('../res/img/tpltype@1.75x.png') 1.75x) no-repeat;
+                        background: -webkit-image-set(data-uri('../../res/img/tpltype@1.25x.png') 1.25x,
+                                data-uri('../../res/img/tpltype@1.5x.png') 1.5x, data-uri('../../res/img/tpltype@1.75x.png') 1.75x) no-repeat;
                         background-size: 16px auto;
 
                         &.word {
         /*                    background-position-y: -@badge-size*0;*/
                         }
                         &.slide {
-                            background-position-y: -16px*1;
+                            background-position-y: -@bage-size*1;
                         }
                         &.cell {
-                            background-position-y: -16px*2;
+                            background-position-y: -@bage-size*2;
                         }
                         &.pdf {
-                            background-position-y: -16px*3;
+                            background-position-y: -@bage-size*3;
                         }
                     }
                 }
@@ -1456,7 +1457,7 @@ li.menu-item {
 
             .title {
                 flex: 1;
-                margin-left: 8px;
+                padding: 0 8px;
                 font-size: 13px;
                 font-weight: normal;
                 color: @text-normal;
@@ -1468,7 +1469,7 @@ li.menu-item {
             .cloud-icon {
                 width: 16px;
                 height: 16px;
-                background: url('../res/img/cloud-icon.svg') no-repeat center;
+                background: -webkit-image-set( data-uri('../../res/img/cloud-icon@1.25x.png') 1.25x, data-uri('../../res/img/cloud-icon@1.5x.png') 1.5x, data-uri('../../res/img/cloud-icon@1.75x.png') 1.75x) no-repeat;
                 background-size: contain;
             }
     } 
