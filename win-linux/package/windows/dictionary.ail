@@ -32,11 +32,13 @@
     <STRING lang="ru" value="[ProductName] [Setup]"/>
     <STRING lang="sk" value="[ProductName] [Setup]"/>
     <STRING lang="sl" value="[Setup] [ProductName]"/>
+    <STRING lang="sq" value="[Setup] të [ProductName]"/>
     <STRING lang="sr_SP_Cyrillic" value="[ProductName] [Setup]"/>
     <STRING lang="sr_SP_Latin" value="[ProductName] [Setup]"/>
     <STRING lang="sv" value="[ProductName] [Setup]"/>
     <STRING lang="tr" value="[ProductName] [Setup]"/>
     <STRING lang="uk" value="[ProductName] [Setup]"/>
+    <STRING lang="ur" value="[ProductName] [Setup]"/>
     <STRING lang="vi" value="[ProductName] [Setup]"/>
     <STRING lang="zh" value="[ProductName] [Setup]"/>
     <STRING lang="zh_TW" value="[ProductName] [Setup]"/>
@@ -83,11 +85,13 @@
     <STRING lang="ru" value="Бесплатный десктопный офисный пакет для редактирования документов и совместной работы"/>
     <STRING lang="sk" value="Bezplatná balík kancelárskych programov na úpravu dokumentov a spoluprácu"/>
     <STRING lang="sl" value="Brezplačen paket za namizje za urejanje dokumentov in sodelovanje z drugimi"/>
+    <STRING lang="sq" value="Pako falas për zyrën në desktop për redaktimin dhe bashkëpunimin në dokumente"/>
     <STRING lang="sr_SP_Cyrillic" value="Бесплатни десктоп офис пакет за уређивање докумената и сарадњу"/>
     <STRING lang="sr_SP_Latin" value="Besplatni desktop ofis paket za uređivanje dokumenata i saradnju"/>
     <STRING lang="sv" value="Gratis stationär kontorssvit för dokumentredigering och samarbete"/>
     <STRING lang="tr" value="Belge düzenleme ve işbirliği için ücretsiz masaüstü ofis program paketi"/>
     <STRING lang="uk" value="Безкоштовний пакет настільних офісних програм для редагування документів та спільної роботи"/>
+    <STRING lang="ur" value="دستاویز میں ترمیم اور تعاون کے لیے مفت ڈیسک ٹاپ آفس سویٹ"/>
     <STRING lang="vi" value="Bộ công cụ văn phòng dành cho máy tính miễn phí để chỉnh sửa tài liệu và cùng làm việc"/>
     <STRING lang="zh" value="用于文档编辑和协作的免费桌面办公套件"/>
     <STRING lang="zh_TW" value="使用於檔案編輯和協作的免費桌面辦公套件"/>
@@ -123,11 +127,13 @@
     <STRING lang="ru" value="ru-RU"/>
     <STRING lang="sk" value="sk-SK"/>
     <STRING lang="sl" value="sl-SI"/>
+    <STRING lang="sq" value="sq-AL"/>
     <STRING lang="sr_SP_Cyrillic" value="sr-Cyrl-RS"/>
     <STRING lang="sr_SP_Latin" value="sr-Latn-RS"/>
     <STRING lang="sv" value="sv-SE"/>
     <STRING lang="tr" value="tr-TR"/>
     <STRING lang="uk" value="uk-UA"/>
+    <STRING lang="ur" value="ur-PK"/>
     <STRING lang="vi" value="vi-VN"/>
     <STRING lang="zh" value="zh-CN"/>
     <STRING lang="zh_TW" value="zh-TW"/>
@@ -163,11 +169,13 @@
     <STRING lang="ru" value="Уже установлена другая версия приложения, несовместимая с этой установкой. Пожалуйста, сначала удалите текущую версию или загрузите правильную версию для установки."/>
     <STRING lang="sk" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="sl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="sq" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="sr_SP_Cyrillic" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="sr_SP_Latin" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="sv" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="tr" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="uk" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ur" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="vi" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="zh" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="zh_TW" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
@@ -203,11 +211,13 @@
     <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новая_PDF-форма"/>
     <STRING lang="sk" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Novi_PDF_obrazec"/>
+    <STRING lang="sq" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="sr_SP_Cyrillic" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="sr_SP_Latin" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="sv" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="tr" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="uk" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
+    <STRING lang="ur" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="vi" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="zh" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <STRING lang="zh_TW" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
@@ -243,11 +253,13 @@
     <STRING lang="ru" value="ru-RU"/>
     <STRING lang="sk" value="sk-SK"/>
     <STRING lang="sl" value="sl-SI"/>
+    <STRING lang="sq" value="sq-AL"/>
     <STRING lang="sr_SP_Cyrillic" value="sr-Cyrl-RS"/>
     <STRING lang="sr_SP_Latin" value="sr-Latn-RS"/>
     <STRING lang="sv" value="sv-SE"/>
     <STRING lang="tr" value="tr-TR"/>
     <STRING lang="uk" value="uk-UA"/>
+    <STRING lang="ur" value="ur-PK"/>
     <STRING lang="vi" value="vi-VN"/>
     <STRING lang="zh" value="zh-CN"/>
     <STRING lang="zh_TW" value="zh-TW"/>
@@ -283,11 +295,13 @@
     <STRING lang="ru" value="Новый документ"/>
     <STRING lang="sk" value="Nový dokument"/>
     <STRING lang="sl" value="Nov dokument"/>
+    <STRING lang="sq" value="Dokument i ri"/>
     <STRING lang="sr_SP_Cyrillic" value="Нови документ"/>
     <STRING lang="sr_SP_Latin" value="Novi dokument"/>
     <STRING lang="sv" value="Nytt dokument"/>
     <STRING lang="tr" value="Yeni Belge"/>
     <STRING lang="uk" value="Новий документ"/>
+    <STRING lang="ur" value="نئی دستاویز"/>
     <STRING lang="vi" value="Tài liệu mới"/>
     <STRING lang="zh" value="新建文档"/>
     <STRING lang="zh_TW" value="新文件"/>
@@ -323,11 +337,13 @@
     <STRING lang="ru" value="Новая PDF-форма"/>
     <STRING lang="sk" value="Nový formulár PDF"/>
     <STRING lang="sl" value="Novi PDF obrazec"/>
+    <STRING lang="sq" value="Format PDF i ri"/>
     <STRING lang="sr_SP_Cyrillic" value="Нови PDF формулар"/>
     <STRING lang="sr_SP_Latin" value="Novi PDF formular"/>
     <STRING lang="sv" value="Nytt PDF-formulär"/>
     <STRING lang="tr" value="Yeni PDF Formu"/>
     <STRING lang="uk" value="Нова PDF-форма"/>
+    <STRING lang="ur" value="نیا پی ڈی ایف فارم"/>
     <STRING lang="vi" value="Bảng tính mới"/>
     <STRING lang="zh" value="新建 PDF 表单"/>
     <STRING lang="zh_TW" value="新的 PDF 表格"/>
@@ -363,11 +379,13 @@
     <STRING lang="ru" value="Новая презентация"/>
     <STRING lang="sk" value="Nová prezentácia"/>
     <STRING lang="sl" value="Nova predstavitev"/>
+    <STRING lang="sq" value="Prezantim i ri"/>
     <STRING lang="sr_SP_Cyrillic" value="Нова презентација"/>
     <STRING lang="sr_SP_Latin" value="Nova prezentacija"/>
     <STRING lang="sv" value="Ny presentation"/>
     <STRING lang="tr" value="Yeni Sunum"/>
     <STRING lang="uk" value="Нова презентація"/>
+    <STRING lang="ur" value="نئی پیشکش"/>
     <STRING lang="vi" value="Bản trình chiếu mới"/>
     <STRING lang="zh" value="新建幻灯片"/>
     <STRING lang="zh_TW" value="新簡報"/>
@@ -403,11 +421,13 @@
     <STRING lang="ru" value="Новая таблица"/>
     <STRING lang="sk" value="Nová tabuľka"/>
     <STRING lang="sl" value="Nova razpredelnica"/>
+    <STRING lang="sq" value="Fletëllogaritëse e re"/>
     <STRING lang="sr_SP_Cyrillic" value="Нова прорачунска табела"/>
     <STRING lang="sr_SP_Latin" value="Nova proračunska tabela"/>
     <STRING lang="sv" value="Nytt kalkylblad"/>
     <STRING lang="tr" value="Yeni Hesap Tablosu"/>
     <STRING lang="uk" value="Нова таблиця"/>
+    <STRING lang="ur" value="نئی اسپریڈشیٹ"/>
     <STRING lang="vi" value="Mẫu PDF mới"/>
     <STRING lang="zh" value="新建表格"/>
     <STRING lang="zh_TW" value="新試算表"/>
@@ -443,11 +463,13 @@
     <STRING lang="ru" value="Сервис обновлений [|AppName]"/>
     <STRING lang="sk" value="Služba aktualizácie [|AppName]"/>
     <STRING lang="sl" value="Storitev za posodobitev [|AppName]"/>
+    <STRING lang="sq" value="Shërbimi i përditësimit për [|AppName]"/>
     <STRING lang="sr_SP_Cyrillic" value="Ажурирај услугу за [|AppName]"/>
     <STRING lang="sr_SP_Latin" value="Ažuriraj uslugu za [|AppName]"/>
     <STRING lang="sv" value="Update service for [|AppName]"/>
     <STRING lang="tr" value="[|AppName] için hizmet güncellemesi"/>
     <STRING lang="uk" value="Сервіс для оновлення [|AppName]"/>
+    <STRING lang="ur" value="[|AppName] کے لیے سروس اپ ڈیٹ کریں"/>
     <STRING lang="vi" value="Dịch vụ cập nhật [|AppName]"/>
     <STRING lang="zh" value="Update service for [|AppName]"/>
     <STRING lang="zh_TW" value="Update service for [|AppName]"/>
@@ -483,11 +505,13 @@
     <STRING lang="ru" value="Снять выделение"/>
     <STRING lang="sk" value="Deselect All"/>
     <STRING lang="sl" value="Počistite vse"/>
+    <STRING lang="sq" value="Deselect All"/>
     <STRING lang="sr_SP_Cyrillic" value="Deselect All"/>
     <STRING lang="sr_SP_Latin" value="Deselect All"/>
     <STRING lang="sv" value="Deselect All"/>
     <STRING lang="tr" value="Deselect All"/>
     <STRING lang="uk" value="Deselect All"/>
+    <STRING lang="ur" value="Deselect All"/>
     <STRING lang="vi" value="Deselect All"/>
     <STRING lang="zh" value="Deselect All"/>
     <STRING lang="zh_TW" value="Deselect All"/>
@@ -523,11 +547,13 @@
     <STRING lang="ru" value="Выбрать все"/>
     <STRING lang="sk" value="Select All"/>
     <STRING lang="sl" value="Izberite vse"/>
+    <STRING lang="sq" value="Select All"/>
     <STRING lang="sr_SP_Cyrillic" value="Select All"/>
     <STRING lang="sr_SP_Latin" value="Select All"/>
     <STRING lang="sv" value="Select All"/>
     <STRING lang="tr" value="Select All"/>
     <STRING lang="uk" value="Select All"/>
+    <STRING lang="ur" value="Select All"/>
     <STRING lang="vi" value="Select All"/>
     <STRING lang="zh" value="Select All"/>
     <STRING lang="zh_TW" value="Select All"/>
