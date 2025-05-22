@@ -241,6 +241,7 @@ public:
             {"theme-dark", ":/themes/theme-dark.json"},
             {"theme-contrast-dark", ":/themes/theme-contrast-dark.json"},
             {"theme-gray", ":/themes/theme-gray.json"},
+            {"theme-white", ":/themes/theme-white.json"},
         };
 
         GET_REGISTRY_USER(_reg_user);
