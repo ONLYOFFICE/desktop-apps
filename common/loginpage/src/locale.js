@@ -122,6 +122,7 @@ l10n.en = {
     settOptThemeClassicLight: 'Classic Light',
     settOptThemeDark: 'Dark',
     settOptThemeGray: 'Gray',
+    settOptThemeWhite: 'White',
     settOptLaunchMode: 'Open file',
     settOptLaunchInTab: 'In its own tab',
     settOptLaunchInWindow: 'In its own window',

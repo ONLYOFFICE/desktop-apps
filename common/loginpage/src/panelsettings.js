@@ -68,6 +68,10 @@
             text: utils.Lang.settOptThemeGray,
             type: 'light',
         },
+        'theme-white': {
+            text: 'White'/*utils.Lang.settOptThemeGray*/,
+            type: 'light',
+        },
     }
 
     const nativevars = window.RendererProcessVariable;
