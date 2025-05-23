@@ -121,5 +121,9 @@ l10n.en_GB = {
     tplDocument: "Documents",
     tplSpreadsheet: "Spreadsheet",
     tplPresentation: "Presentations",
+    tplSearch: "Search for templates",
+    tplSearchResult: "Results for",
+    tplNoResultsTitle: "Nothing found",
+    tplNoResultsText: "No results matching your query could be found",
 
 }

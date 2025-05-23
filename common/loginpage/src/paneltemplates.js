@@ -67,12 +67,25 @@
 
         const _html = `<div class='action-panel ${args.action}'>
                             <div class='flexbox content-box'>
-                                <h3 class='table-caption' l10n>${_lang.actTemplates}</h3>
+                                <div class='lr-flex'>
+                                    <h3 class='table-caption' l10n>${_lang.actTemplates}</h3>
+                                    <div class="search-container">
+                                        <span class="search-icon"></span>
+                                        <input type="text" id="template-search" placeholder="${_lang.tplSearch}">
+                                        <span class="clear-icon" id="template-clear" style="display: none;"></span>
+                                    </div>
+                                </div>
                                 <div id='idx-nav-templates'>
                                     <a data-value='Documents' class='nav-item selected' l10n>${_lang.tplDocument}</a>
                                     <a data-value='Spreadsheet' class='nav-item' l10n>${_lang.tplSpreadsheet}</a>
                                     <a data-value='Presentations' class='nav-item' l10n>${_lang.tplPresentation}</a>
                                     <a data-value='PDF' class='nav-item' l10n>${_lang.tplPDF}</a>
+                                </div>
+                                <div id="search-result" class="search-result" style="display: none;"></div>
+                                    <div id="search-no-results" class="search-no-results" style="display: none;">
+                                    <span class="no-results-icon"></span>
+                                    <p class="no-results-title">${_lang.tplNoResultsTitle}</p>
+                                    <p class="no-results-text">${_lang.tplNoResultsText}</p> 
                                 </div>
                                 <section class='themed-sroll' panel='all'>
                                     <div class='table-box flex-fill'>
@@ -138,6 +151,7 @@
             this.view.$panel.removeClass('Documents Spreadsheet Presentations PDF').addClass(panel);
 
             applyFilter(this.view.$panel);
+            $('.themed-sroll', this.view.$panel).scrollTop(0);
         };
 
 
@@ -177,63 +191,59 @@
         }
 
         const _on_add_local_templates = function(tmpls) {
-            console.log('Received local templates:', tmpls);
-            for (let item of tmpls) {
-                const model = new FileTemplateModel(item);
+            tmpls.forEach(item => {
                 const type = utils.formatToEditor(item.type);
-                
-                switch(type) {
-                    case 'word':
-                        this.templates.add(model);
-                        break;
-                    case 'cell':
-                        this.templates.add(model);
-                        break;
-                    case 'slide':
-                        this.templates.add(model);
-                        break;
-                    case 'pdf':
-                        this.templates.add(model);
-                        break;
+                if (['word', 'cell', 'slide', 'pdf'].includes(type)) {
+                    this.templates.add(new FileTemplateModel(item));
                 }
-            }
-        };
+            });
+        }
 
         const _on_add_cloud_templates = function(data) {
-            for (let i of data) {
-                const info = i['attributes']
-                const file_ext = info['form_exts']['data'][0]['attributes']['ext'];
-                const item = {
-                    uid: i.id,
-                    name: info['name_form'],
-                    descr: info['template_desc'],
-                    path: info.file_oform?.data[0].attributes.url,
-                    type: utils.fileExtensionToFileFormat(file_ext),
-                    icon: info.template_image?.data.attributes.formats.thumbnail.url,
-                    isCloud: true,
-                };
-                if (!this.templates.items.some(template => template.uid === item.uid)) {
-                    const model = new FileTemplateModel(item);
-                    this.templates.add(model);
+            data.forEach(i => {
+                const info = i['attributes'],
+                    file_ext = info['form_exts']['data'][0]['attributes']['ext'],
+                    id = i.id;
+                if (!this.templates.items.some(t => t.uid === id)) {
+                    this.templates.add(new FileTemplateModel({    
+                        uid: id,
+                        name: info['name_form'],
+                        descr: info['template_desc'],
+                        path: info.file_oform?.data[0].attributes.url,
+                        type: utils.fileExtensionToFileFormat(file_ext),
+                        icon: info.template_image?.data.attributes.formats.thumbnail.url,
+                        isCloud: true,
+                    }));
                 }
-               
-            }
+            });
         }
         
         const applyFilter = function($panel) {
-            const type = {
+            const selectedType = {
                 'Documents': 'word',
                 'Spreadsheet': 'cell',
                 'Presentations': 'slide',
                 'PDF': 'pdf'
-            };
+            }[$('.nav-item.selected', $panel).data('value')];
 
-            const selectedType = type[$('.nav-item.selected', $panel).data('value')];
+            const search = $('#template-search').val() || '';
+            const searchСomparison = search.toLowerCase();
+            let matchCount = 0;
 
             $('.table-templates.list .item', $panel).each(function () {
                 const $item = $(this);
-                $item.css('display', $item.data('type') === selectedType ? 'flex' : 'none');
+                const type = $item.data('type');
+                const title = $item.find('.title').text().toLowerCase();
+
+                const isMatch = searchСomparison ? title.includes(searchСomparison) : type === selectedType;
+
+                $item.toggle(isMatch);
+                if (isMatch) matchCount++;
             });
+
+            $('#search-result', $panel).toggle(!!searchСomparison).text(`${utils.Lang.tplSearchResult} "${search}"`);
+            $('#idx-nav-templates', $panel).toggle(!searchСomparison);
+            $('#search-no-results', $panel).toggle(matchCount === 0);
         };
         
         const _loadTemplates = function() {
@@ -246,8 +256,8 @@
             fetch(_url)
                 .then(r => r.json())
                 .then(d => {
-                     if (d.data) {
-                        isLoading = false;
+                    isLoading = false;
+                    if (d.data) {
                         _on_add_cloud_templates.call(this, d.data);
                         totalPages = d.meta.pagination.pageCount;
                         
@@ -262,9 +272,7 @@
             if (isLoading) return;
 
             _page_num = 0;
-
             const self = this;
-
             const loadNext = () => {
                 if (_page_num < totalPages || totalPages === null) {
                     _loadTemplates.call(self);
@@ -298,6 +306,14 @@
 
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 _on_nav_item_click.call(this, { target: $('.nav-item.selected', this.view.$panel) });
+                $('#template-search', this.view.$panel).on('input', () => {
+                    applyFilter(this.view.$panel);
+                    $('#template-clear', this.view.$panel).toggle($('#template-search', this.view.$panel).val().length > 0);
+                });
+
+                $('#template-clear', this.view.$panel).on('click', () => {
+                    $('#template-search', this.view.$panel).val('').trigger('input');
+                });
             
                 window.sdk.on('onaddtemplates', _on_add_local_templates.bind(this));
 
