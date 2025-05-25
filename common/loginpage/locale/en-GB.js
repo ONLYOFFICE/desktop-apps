@@ -123,5 +123,9 @@ l10n.en_GB = {
     tplPresentation: "Presentation templates",
     fileName: "File name",
     location: 'Location',
-    lastOpened: 'Last opened'
+    lastOpened: 'Last opened',
+    areaCreateFile:'Create',
+    areaOpenFile:'Open file',
+    labelDropFile: 'Drag you files here or',
+    labelSelectFile: 'Select file',
 }

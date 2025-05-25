@@ -400,6 +400,8 @@ input[type="radio"] {
     }
 
     .menu-icon {
+        // todo: rtl support
+
         display: inline-block;
         width: 16px;
         height: 16px;
@@ -525,4 +527,18 @@ input[type="radio"] {
     color: @text-normal;
     cursor: pointer;
     font-size: 14px;
+}
+
+// Drag and drop zone
+.dnd-zone {
+    display: grid;
+    place-items: center;
+    padding: 56px 340px;
+    border-radius: 12px;
+    border: 1px dashed @border-regular-control;
+
+    .content {
+        p { margin: 0; }
+        button { margin-top: 12px; }
+    }
 }

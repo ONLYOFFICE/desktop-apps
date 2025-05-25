@@ -125,21 +125,23 @@
                 info.ext = '';
             }
 
-            let _tpl = `<div ${id} class="row text-normal">
-<div class="col-name">
-    <div class="icon">
-        <i class="icon ${info.type == 'folder' ? 'img-el folder' : `img-format ${info.format}`}" />
-        ${!isSvgIcons ? ''
-                : `<svg class = "icon ${info.type == 'folder' ? 'folder' : ''}"> <use xlink:href="#${info.type == 'folder' ? 'folder-small' : `${info.format}`}"></use></svg>
+            //language=HTML
+            let _tpl = `
+                <div ${id} class="row text-normal">
+                    <div class="col-name">
+                        <div class="icon">
+                            <i class="icon ${info.type == 'folder' ? 'img-el folder' : `img-format ${info.format}`}"/>
+                            ${!isSvgIcons ? ''
+                                : `<svg class = "icon ${info.type == 'folder' ? 'folder' : ''}"> <use xlink:href="#${info.type == 'folder' ? 'folder-small' : `${info.format}`}"></use></svg>
                 ${info.crypted ? '<svg class = "shield"> <use xlink:href="#shield"></use></svg>' : ''}`}
-    </div>
-    <p class="name">${info.name}</p>
-    <span class="ext">${info.ext}</span>
-</div>
-<div class="col-location">
-    ${info.descr}
-</div>
-`;
+                        </div>
+                        <p class="name">${info.name}</p>
+                        <span class="ext">${info.ext}</span>
+                    </div>
+                    <div class="col-location">
+                        ${info.descr}
+                    </div>
+            `;
 
 //             var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
 //
@@ -201,13 +203,7 @@
                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
 
                 });
-        },
-        updateListSize: function() {
-            const hasRecoveryScroll = this.$tableBoxRecovery.scrollHeight > this.$tableBoxRecovery.clientHeight;
-            const hasRecentScroll = this.$tableBoxRecent.scrollHeight > this.$tableBoxRecent.clientHeight;
-
-            this.$panelContainer.css('grid-template-rows', hasRecoveryScroll || hasRecentScroll ? '' : 'auto 1fr');
-        },
+        }
     });
 
     window.ControllerRecent = ControllerRecent;
@@ -265,8 +261,6 @@
             } else {
                 this.rawRecents = undefined;
             }
-
-            this.view.updateListSize();
         };
 
         var _on_recents = function(params) {
@@ -290,7 +284,6 @@
             }
 
             this.view.$boxRecovery[collectionRecovers.size() > 0 ? 'show' : 'hide']();
-            this.view.updateListSize();
         };
 
         function addContextMenuEventListener(collection, model, view) {
@@ -471,9 +464,6 @@
                     }
                 });
 
-                $(window).resize(()=>{
-                    this.view.updateListSize();
-                });
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
                     if ( data.type == 'fileid' ) {
