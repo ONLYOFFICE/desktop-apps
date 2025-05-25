@@ -351,7 +351,9 @@ li.menu-item {
 .action-panel {
   display: none;
   height: 100%;
-  padding: 40px;
+  padding-block: 40px;
+  margin-inline: auto;
+  max-width: 1680px;
   /*min-width: 664px;*/
   background-color: @background-action-panel;
 
@@ -1749,7 +1751,7 @@ li.menu-item {
       background-color: @highlight-button-hover;
     }
 
-    &:active {
+    &:active, &[data-active] {
       background-color: @highlight-button-pressed;
     }
   }

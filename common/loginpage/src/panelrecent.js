@@ -46,59 +46,53 @@
 
     ControllerRecent.prototype = Object.create(baseController.prototype);
     ControllerRecent.prototype.constructor = ControllerRecent;
-    var isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
+    const isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio === 1;
     var ViewRecent = function(args) {
         var _lang = utils.Lang;
 
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
-        let _html = `<div class="action-panel ${args.action}">
-                      <div class="recent-panel-container">
-                        <div id="box-recovery" class="flex-item">
-                          <div class="flexbox">
-                              <div>
-                                  <div class="file-list-title">
-                                        <h3 l10n>${_lang.listRecoveryTitle}</h3>
-                                   </div>
-                                  <div class="file-list-head text-normal">
+        //language=HTML
+        args.tplPage = `
+            <div class="action-panel ${args.action}">
+                <div class="recent-panel-container">
+                    <div id="box-recovery">
+                        <div class="file-list-title">
+                            <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                        </div>
+                        <div class="file-list-head text-normal">
+                            <div class="col-name" l10n>${_lang.fileName}</div>
+                            <div class="col-location" l10n>${_lang.location}</div>
+                            <div class="col-date" l10n>${_lang.lastOpened}</div>
+                        </div>
+                        <div class="file-list-body"></div>
+                    </div>
+                    
+                    <div id="box-recent" class="flex-item flex-fill">
+                        <div style="display:none;">
+                            <h3 class="file-list-title" l10n>${_lang.listRecentFileTitle}</h3>
+                            <input type="text" id="idx-recent-filter" style="display:none;">
+                        </div>
+                        <div class="table-box flex-fill">
+                            <div>
+                                <div class="file-list-title">
+                                    <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                                </div>
+                                <div class="file-list-head text-normal">
                                     <div class="col-name" l10n>${_lang.fileName}</div>
                                     <div class="col-location" l10n>${_lang.location}</div>
                                     <div class="col-date" l10n>${_lang.lastOpened}</div>
-                                  </div>
-                                  <div class="file-list-body"></div>
-                              </div>
-                          </div>
-                        </div>
-
-                        <div id="box-recent" class="flex-item flex-fill">
-                          <div class="flexbox">
-                            <div style="display:none;">
-                              <h3 class="file-list-title" l10n>${_lang.listRecentFileTitle}</h3>
-                              <input type="text" id="idx-recent-filter" style="display:none;">
+                                </div>
+                                <div class="file-list-body"></div>
                             </div>
-                            <div class="table-box flex-fill">
-                              <div>
-                                  <div class="file-list-title">
-                                        <h3 l10n>${_lang.listRecentFileTitle}</h3>
-                                   </div>
-                                  <div class="file-list-head text-normal">
-                                    <div class="col-name" l10n>${_lang.fileName}</div>
-                                    <div class="col-location" l10n>${_lang.location}</div>
-                                    <div class="col-date" l10n>${_lang.lastOpened}</div>
-                                  </div>
-                                  <div class="file-list-body"></div>
-                              </div>
-                              <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>
-                                  ${isSvgIcons? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>':''}
-                                  ${_lang.textNoFiles}
-                              </h4>
-                            </div>
-                          </div>
+                            <h4 class="text-emptylist${isSvgIcons ? '-svg' : ''} img-before-el" l10n>
+                                ${isSvgIcons ? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>' : ''}
+                                ${_lang.textNoFiles}
+                            </h4>
                         </div>
-                      </div>
-                    </div>`;
-
-        args.tplPage = _html;
+                    </div>
+                </div>
+            </div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
@@ -122,7 +116,7 @@
         },
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
-            info.crypted == undefined && (info.crypted = false);
+            info.crypted === undefined && (info.crypted = false);
             const dotIndex = info.name.lastIndexOf('.');
             if (dotIndex !== -1) {
                 info.ext = info.name.substring(dotIndex);
@@ -301,7 +295,6 @@
 
         function addContextMenuEventListener(collection, model, view) {
             $(`#${model.uid}-more-btn`, view).click((e) => {
-                e.preventDefault();
                 e.stopPropagation();
                 collection.events.contextmenu.notify(model, e);
             })
@@ -376,19 +369,13 @@
             ppmenu = new Menu({
                 id: 'pp-menu-files',
                 bottomlimitoffset: 10,
-                items: [{
-                    caption: utils.Lang.menuFileOpen,
-                    action: 'files:open'
-                },{
-                    caption: utils.Lang.menuFileExplore,
-                    action: 'files:explore'
-                },{
-                    caption: utils.Lang.menuRemoveModel,
-                    action: 'files:forget'
-                },{
-                    caption: utils.Lang.menuClear,
-                    action: 'files:clear'
-                }]
+                items: [
+                    { caption: utils.Lang.menuFileOpen, action: 'files:open' , icon: '#folder'}, // todo: icon
+                    { caption: utils.Lang.menuFileExplore, action: 'files:explore', icon: '#folder' }, // todo: icon
+                    { caption: utils.Lang.menuRemoveModel, action: 'files:forget', icon: '#folder' }, // todo: icon
+                    { caption: '--' },
+                    { caption: utils.Lang.menuClear, action: 'files:clear', variant: 'negative' }
+                ]
             });
 
             ppmenu.init('#placeholder');

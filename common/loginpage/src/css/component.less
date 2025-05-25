@@ -392,10 +392,38 @@ input[type="radio"] {
 .dropdown-menu {
     background-color: @background-normal;
     border: @scaled-one-px solid @border-regular-control;
+    border-radius: 8px;
+    padding-block: 8px;
+
+    .divider {
+        margin: 4px 0;
+    }
+
+    .menu-icon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        vertical-align: middle;
+
+        &svg {
+            fill: currentColor;
+        }
+
+        &.icon {
+            font-size: 14px;
+            text-align: center;
+        }
+    }
 
     li > a {
+        display: flex;
+        align-items: center;
         cursor: pointer;
-        font-size: 13px;
+        padding: 4px 20px 4px 36px;
+        height: 32px;
+        font-size: 14px;
+        line-height: 20px;
         color: @text-normal;
 
         &:hover, &:focus {
@@ -407,6 +435,18 @@ input[type="radio"] {
         & small {
             color: @text-secondary;
         }
+
+        .menu-icon + * {
+            flex: 1;
+        }
+
+        &[data-variant=negative] {
+            color: @text-negative;
+        }
+    }
+
+    li > a:has(.menu-icon) {
+        padding-left: 8px;
     }
 
     > .active > a {
@@ -430,6 +470,10 @@ input[type="radio"] {
         &:hover {
             cursor: default;
             color: @text-normal;
+        }
+
+        .menu-icon {
+            opacity: 0.5;
         }
     }
 }
