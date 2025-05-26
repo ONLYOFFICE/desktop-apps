@@ -125,6 +125,24 @@ Menu.prototype.show = function(pos, data) {
     Menu.opened = true;
 };
 
+Menu.prototype.showUnderElem = function(el, data) {
+    $('.menu-container').removeClass('open');
+    let $el = $('#'+this.id);
+    const $rel = $(el);
+
+    // const $rel.width();
+    const pos = $rel.position();
+    pos.top += $rel.height() + 2;
+
+    const $dd = $el.find('.dropdown-menu');
+    pos.left -= $dd.outerWidth() - $rel.outerWidth();
+
+    $el.css(pos);
+    $dd.dropdown('toggle');
+    this.contextdata = data;
+    Menu.opened = true;
+};
+
 Menu.prototype.disableItem = function(action, disable) {
     for (let item of this.items) {
         if (item.action == action) {
