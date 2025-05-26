@@ -215,8 +215,8 @@
                         </td>
                         <td class="cell-tools">
                             <div class="hlayout">
-                                <button class="btn-quick logout" tooltip="${utils.Lang.menuLogout}">
-                                    ${isSvgIcons? `<svg class = "icon"><use xlink:href="#logout"></use></svg>` : ''}
+                                <button class="btn-quick more">
+                                    ${isSvgIcons? `<svg class = "icon"><use xlink:href="#more"></use></svg>` : ''}
                                     <i class="icon img-el theme-inverted" />
                                 </button>
                             </span>
@@ -367,7 +367,7 @@
                 collection.events.changed.attach((collection, model, value) => {
                     if ( !!value ) {
                         if ( value.logged != undefined ) {
-                            this.view.$sidebarPortalList.find('#' + model.uid)[model.logged?'addClass':'removeClass']('logged');
+                            // this.view.$sidebarPortalList.find('#' + model.uid)[model.logged?'addClass':'removeClass']('logged');
                         }
                         else
                         if ( value.user ) {
@@ -400,8 +400,20 @@
                         elid: model.uid
                     }));
                     
-                    $item.find('.logout').click(model, e => {
-                        _do_logout(e.data);
+
+                    $item.find('.more').click(model, e => {
+                        if ( ppmenu.contextdata ) {
+                            const m = ppmenu.contextdata;
+                            if ( m.uid != model.uid )
+                                Menu.closeAll();
+                        }
+
+                        if ( !Menu.opened ) {
+                            ppmenu.disableItem('portal:logout', !model.logged);
+                            ppmenu.showUnderElem(e.currentTarget, model);
+                        } else {
+                            Menu.closeAll();
+                        }
 
                         e.stopPropagation && e.stopPropagation();
                         return false;
@@ -681,7 +693,7 @@
 
                 _init_collection.call(this);
                 _update_portals.call(this);
-                // _init_ppmenu.call(this);
+                _init_ppmenu.call(this);
                 // _initCarousel.call(this);
 
                 $('body').on('click', '.login', e=>{

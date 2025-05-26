@@ -476,7 +476,7 @@ li.menu-item {
         }
     }
 
-    .logout {
+    .cell-tools .btn-quick {
         width: 24px;
         height: 24px;
         padding: 0;
@@ -496,10 +496,11 @@ li.menu-item {
 
         &:hover {
             opacity: 1;
+            background-color: @highlight-button-pressed;
         }
     }
 
-    tr:not(.logged) {
+    tr:not(:hover) {
         .cell-tools > div, td > span {
             display: none;
         }
