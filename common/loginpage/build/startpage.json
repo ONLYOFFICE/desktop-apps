@@ -55,7 +55,7 @@
         },
         "less": {
             "files": [{
-                "src": "../src/styles.less",
+                "src": "../src/css/styles.less",
                 "dest": "../deploy/styles.css"
             },{
                 "src": "../src/css/rtl.less",
