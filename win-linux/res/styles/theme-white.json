@@ -2,11 +2,11 @@
     "id": "theme-white",
     "type": "light",
     "values": {
-        "brand-word": "#f9f9f9",
-        "brand-slide": "#f9f9f9",
-        "brand-cell": "#f9f9f9",
-        "brand-pdf": "#f9f9f9",
-        "brand-draw": "#f9f9f9",
+        "brand-word": "#f3f3f3",
+        "brand-slide": "#f3f3f3",
+        "brand-cell": "#f3f3f3",
+        "brand-pdf": "#f3f3f3",
+        "brand-draw": "#f3f3f3",
 
         "window-background": "#eaeaea",
         "window-border": "#d9d9d9",
