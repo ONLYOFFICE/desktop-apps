@@ -400,8 +400,6 @@ input[type="radio"] {
     }
 
     .menu-icon {
-        // todo: rtl support
-
         display: inline-block;
         width: 16px;
         height: 16px;
@@ -415,6 +413,11 @@ input[type="radio"] {
         &.icon {
             font-size: 14px;
             text-align: center;
+        }
+
+        .rtl & {
+            margin-right: 0;
+            margin-left: 8px;
         }
     }
 
@@ -446,10 +449,19 @@ input[type="radio"] {
         &[data-variant=negative] {
             color: @text-negative;
         }
+
+        .rtl & {
+            padding: 4px 36px 4px 20px;
+        }
     }
 
     li > a:has(.menu-icon) {
         padding-left: 8px;
+
+        .rtl & {
+            padding-left: 0;
+            padding-right: 8px;
+        }
     }
 
     > .active > a {
