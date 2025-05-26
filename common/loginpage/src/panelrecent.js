@@ -56,6 +56,8 @@
         args.tplPage = `
             <div class="action-panel ${args.action}">
                 <div class="recent-panel-container">
+                    <section id="area-document-creation-grid"></section>
+                    
                     <div id="box-recovery">
                         <div class="file-list-title">
                             <h3 l10n>${_lang.listRecoveryTitle}</h3>
@@ -478,6 +480,56 @@
                     if ( Menu.opened )
                         Menu.closeAll();
                 });
+
+                const docGrid = new DocumentCreationGrid({
+                    documentTypes: [
+                        {
+                            id: 'docx',
+                            title: utils.Lang.tplDocument,
+                            formatLabel: {
+                                value: 'DOCX',
+                                gradientColorStart: '#4298C5',
+                                gradientColorEnd: '#2D84B2',
+                            },
+                            icon: '#docx-big',
+                        },
+                        {
+                            id: 'xlsx',
+                            title: utils.Lang.tplSpreadsheet,
+                            formatLabel: {
+                                value: 'XLSX',
+                                gradientColorStart: '#5BB514',
+                                gradientColorEnd: '#318C2B',
+                            },
+                            icon: '#xlsx-big',
+                        },
+                        {
+                            id: 'pptx',
+                            title: utils.Lang.tplPresentation,
+                            formatLabel: {
+                                value: 'PPTX',
+                                gradientColorStart: '#F4893A',
+                                gradientColorEnd: '#DE7341',
+                            },
+                            icon: '#pptx-big',
+                        },
+                        {
+                            id: 'pdf',
+                            title: utils.Lang.tplPDF,
+                            formatLabel: {
+                                value: 'PDF',
+                                gradientColorStart: '#F36653',
+                                gradientColorEnd: '#D2402D',
+                            },
+                            icon: '#pdf-big',
+                        }
+                    ],
+                    onDocumentSelect: (docType, selectedDoc, element) => {
+                        console.log(docType);
+                    }
+                });
+
+                docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 
                 $('#idx-recent-filter', this.view.$panel).on('input', _on_filter_recents.bind(this));
 

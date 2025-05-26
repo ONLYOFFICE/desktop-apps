@@ -73,6 +73,7 @@
                     ,"../src/menu.js"
                     ,"../src/base.js"
                     ,"../src/dnd-file-zone.js"
+                    ,"../src/document-creation-grid.js"
                     ,"../deploy/noconnect.js"
                     ,"../src/paneltemplates.js"
                     ,"../src/panelrecent.js"

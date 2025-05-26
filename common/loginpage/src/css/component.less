@@ -421,6 +421,7 @@ input[type="radio"] {
     li > a {
         display: flex;
         align-items: center;
+        gap: 4px;
         cursor: pointer;
         padding: 4px 20px 4px 36px;
         height: 32px;
@@ -540,5 +541,64 @@ input[type="radio"] {
     .content {
         p { margin: 0; }
         button { margin-top: 12px; }
+    }
+}
+
+// Document creation grid
+
+.document-creation-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding-inline: 104px 112px;
+}
+
+.document-creation-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    position: relative;
+    width: 192px;
+    height: 196px;
+    padding: 24px 16px 16px;
+
+    border-radius: 8px;
+    background: #F3F3F3;
+
+    .format-label {
+        position: absolute;
+        top: 14px;
+        left: 10px;
+        padding: 4px 6px 6px;
+        border-radius: 6px;
+        background: conic-gradient(from 225deg at 50% 50%, var(--format-bg-start) 0deg, var(--format-bg-end) 360deg);
+
+        span {
+            color: @background-normal;
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 700;
+        }
+
+        .rtl & {
+            left: unset;
+            right: 10px
+        }
+    }
+
+    .icon {
+        width: 108px;
+        height: 100px;
+
+        // todo: support shadow for icons: box-shadow: 0px 1px 2px 0px #0000004D;
+    }
+
+    .title {
+        .text-normal();
     }
 }
