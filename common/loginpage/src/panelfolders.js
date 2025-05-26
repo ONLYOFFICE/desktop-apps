@@ -99,13 +99,13 @@
                         return false;
                     });
 
-                    // $listRecentDirs.append($item);
+                    $listRecentDirs.append($item);
                 }
             }
 
             if ($listRecentDirs.length) {
                 this.dndZone.hide();
-                // $('#btn-openlocal').show();
+                $('#btn-openlocal').show();
             }
         };
 

@@ -1,7 +1,7 @@
 window.DnDFileZone = function () {
 	"use strict";
 
-	let $el;
+	let $el, $parent;
 
 	//language=HTML
 	const _template = `
@@ -15,11 +15,10 @@ window.DnDFileZone = function () {
 
 	return {
 		render: function (parentElement) {
-			$el = parentElement.append(_template).find('.drag-and-drop-zone');
+			$parent = parentElement;
+			$el = $parent.append(_template).find('.dnd-zone');
 
-			const $openLink = $el.find('a');
-
-			$openLink.bind('click', function () {
+			$el.find('a').bind('click', function () {
 				openFile(OPEN_FILE_FOLDER, '');
 			});
 		},
@@ -27,10 +26,10 @@ window.DnDFileZone = function () {
 			$el.remove();
 		},
 		hide: function () {
-			$el.hide()
+			$parent.hide()
 		},
 		show: function () {
-			$el.show()
+			$parent.show()
 		}
 	}
 };
