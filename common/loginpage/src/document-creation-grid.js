@@ -1,41 +1,34 @@
 "use strict";
 
 /**
- * Document Creation Grid Component
- * Renders a grid of document type cards for creating new documents
+ * Document Creation Grid - Shows cards for creating new documents
  *
- * @param {Object} config - Configuration object
- * @param {Array<DocumentType>} config.documentTypes - Array of document types to display
- * @param {Function} [config.onDocumentSelect] - Callback function when document is selected
+ * @param {Object} config
+ * @param {Array} config.documentTypes - Document types to show
+ * @param {Function} config.onDocumentSelect - Called when user selects a document
  *
- * @typedef {Object} DocumentType
- * @property {string} id - Unique identifier for the document type
- * @property {string} title - Display title for the document
- * @property {string} format - Format label (e.g., 'PDF', 'DOCX')
- * @property {string} icon - CSS class name for the icon
- * @property {string} [color] - Text color for the format label
- * @property {string} [bgColor] - Background color for the card
- *
- * @returns {Object} Component instance with render and control methods
+ * Document Type Object:
+ * - id: unique identifier
+ * - title: display name
+ * - formatLabel: { value, gradientColorStart, gradientColorEnd }
+ * - icon: icon reference (e.g., '#docx-big')
  *
  * @example
- * const docGrid = window.DocumentCreationGrid({
+ * const docGrid = new DocumentCreationGrid({
  *   documentTypes: [
  *     {
- *       id: 'pdf',
- *       title: 'PDF Document',
- *       format: 'PDF',
- *       icon: 'icon-pdf',
- *       color: '#E53E3E',
- *       bgColor: '#FED7D7'
+ *       id: 'docx',
+ *       title: 'Word Document',
+ *       formatLabel: {
+ *         value: 'DOCX',
+ *         gradientColorStart: '#4298C5',
+ *         gradientColorEnd: '#2D84B2'
+ *       },
+ *       icon: '#docx-big'
  *     }
  *   ],
- *   onDocumentSelect: (docType) => {
- *     console.log('Selected:', docType);
- *   }
+ *   onDocumentSelect: (docType) => console.log(docType)
  * });
- *
- * docGrid.render(document.getElementById('container'));
  */
 window.DocumentCreationGrid = function (config = {}) {
 	const {
@@ -45,7 +38,6 @@ window.DocumentCreationGrid = function (config = {}) {
 
 
 	let $el, $parent;
-	let currentInstance = null;
 
 	/**
 	 * Global handler for document selection
@@ -53,7 +45,6 @@ window.DocumentCreationGrid = function (config = {}) {
 	 * @param {HTMLElement} element - Clicked element
 	 */
 	window.DocumentCreationGrid.handleDocumentSelect = function (docType, element) {
-		// Find the document type object
 		const selectedDoc = documentTypes.find(doc => doc.id === docType);
 
 		if (!selectedDoc) {
@@ -61,28 +52,15 @@ window.DocumentCreationGrid = function (config = {}) {
 			return;
 		}
 
-		// Emit custom event
-		const event = new CustomEvent('documentTypeSelected', {
-			detail: {
-				type: docType,
-				document: selectedDoc,
-				element: element
-			}
-		});
-		document.dispatchEvent(event);
-
-		// Call provided callback
 		if (onDocumentSelect && typeof onDocumentSelect === 'function') {
 			onDocumentSelect(docType, selectedDoc, element);
 		}
-
-		console.log('Selected document type:', docType, selectedDoc);
 	};
 
 	return {
 		/**
 		 * Renders the component in the specified parent element
-		 * @param {HTMLElement} parentElement - Parent element to render the component in
+		 * @param {jquery} parentElement - Parent element to render the component in
 		 */
 		render: (parentElement) => {
 			if (!parentElement) {
@@ -111,17 +89,5 @@ window.DocumentCreationGrid = function (config = {}) {
 			$parent = parentElement;
 			$el = $parent.append(_template).find('.document-creation-grid');
 		},
-
-		/**
-		 * Destroys the component and cleans up DOM
-		 */
-		destroy: () => {
-			if (currentInstance && $parent) {
-				$parent.removeChild(currentInstance);
-			}
-			$el = null;
-			$parent = null;
-			currentInstance = null;
-		}
 	};
 };

@@ -127,6 +127,8 @@
                 info.ext = '';
             }
 
+            // todo: crypted icon
+
             //language=HTML
             let _tpl = `
                 <div ${id} class="row text-normal">
@@ -141,26 +143,10 @@
                         <span class="ext">${info.ext}</span>
                     </div>
                     <div class="col-location">
+<!--              todo: icon here          -->
                         ${info.descr}
                     </div>
             `;
-
-//             var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
-//
-//                           <td class="row-cell cname">
-//                             <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
-//                         ${!isSvgIcons ?'':
-//                 `<svg class = "icon ${info.type=='folder'?'folder':''}">
-//                                 <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
-//                             </svg>
-//                             ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
-//             }
-//                             <p class="name">${info.name}<span class="ext">${info.ext}</span></p>
-//                           </td>
-//                           <td class="row-cell cloc">
-//                             <p>${info.descr}</p>
-//                           </td>>
-// `;
 
             if (info.type !== 'folder') {
                 _tpl += `<div class="col-date"><p>${info.date}</p></div>`;
@@ -484,7 +470,7 @@
                 const docGrid = new DocumentCreationGrid({
                     documentTypes: [
                         {
-                            id: 'docx',
+                            id: 'word',
                             title: utils.Lang.tplDocument,
                             formatLabel: {
                                 value: 'DOCX',
@@ -494,7 +480,7 @@
                             icon: '#docx-big',
                         },
                         {
-                            id: 'xlsx',
+                            id: 'cell',
                             title: utils.Lang.tplSpreadsheet,
                             formatLabel: {
                                 value: 'XLSX',
@@ -504,7 +490,7 @@
                             icon: '#xlsx-big',
                         },
                         {
-                            id: 'pptx',
+                            id: 'slide',
                             title: utils.Lang.tplPresentation,
                             formatLabel: {
                                 value: 'PPTX',
@@ -514,7 +500,7 @@
                             icon: '#pptx-big',
                         },
                         {
-                            id: 'pdf',
+                            id: 'form',
                             title: utils.Lang.tplPDF,
                             formatLabel: {
                                 value: 'PDF',
@@ -524,8 +510,9 @@
                             icon: '#pdf-big',
                         }
                     ],
-                    onDocumentSelect: (docType, selectedDoc, element) => {
-                        console.log(docType);
+                    onDocumentSelect: (docType) => {
+                        console.log(docType)
+                        window.sdk.command("create:new", docType);
                     }
                 });
 

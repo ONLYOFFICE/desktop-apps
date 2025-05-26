@@ -561,9 +561,12 @@ input[type="radio"] {
 .document-creation-grid {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 32px;
-    padding-inline: 104px 112px;
+
+    @media(min-width: 1280px) {
+        padding-inline: 104px 112px;
+        justify-content: center;
+    }
 }
 
 .document-creation-item {
@@ -580,7 +583,11 @@ input[type="radio"] {
     padding: 24px 16px 16px;
 
     border-radius: 8px;
-    background: #F3F3F3;
+    background: @background-normal-element; // #F3F3F3 ?
+
+    &:hover {
+        background: @highlight-button-hover;
+    }
 
     .format-label {
         position: absolute;
