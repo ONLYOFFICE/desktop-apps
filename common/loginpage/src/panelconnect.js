@@ -207,7 +207,9 @@
         },
         portaltemplate: function(info, edit) {
             let _row = `<td class="row-cell cicon">
-                            <svg class='icon'><use href='#${info.iconid}'></svg>
+                            <div class="icon-box">
+                                <svg class='icon'><use href='#${info.iconid}'></svg>
+                            </div>
                         </td>
                         <td class="row-cell">
                             <p class="cportal primary">${utils.skipUrlProtocol(info.portal)}</p>
