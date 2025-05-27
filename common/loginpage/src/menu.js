@@ -120,7 +120,7 @@ Menu.prototype.showUnderElem = function(el, data) {
     pos.top += $rel.height() + 2;
 
     const $dd = $el.find('.dropdown-menu');
-    pos.left -= $dd.outerWidth() - $rel.outerWidth();
+    // pos.left -= $dd.outerWidth() - $rel.outerWidth();
 
     $el.css(pos);
     $dd.dropdown('toggle');
