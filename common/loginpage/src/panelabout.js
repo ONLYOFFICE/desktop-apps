@@ -150,7 +150,6 @@
                 if (!this.view) {
                     this.view = new ViewAbout(args);
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
-
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
                 } else {
@@ -182,7 +181,7 @@
                     this.view.$body.find('#idx-update-cnt')[this.updates?'show':'hide']();
 
                     if ( this.updates ) {
-                        const $btn = $('#idx-update-btnaction')
+                        const $btn = this.view.$body.find('#idx-update-btnaction');
                         $btn.click(e => {
                             sdk.execCommand('updates:action', $btn.data('action'));
                         });
@@ -237,7 +236,7 @@
                 }
 
                 if ( info.icon ) {
-                    const $icon = $('#idx-update-status-icon', this.view.$panel);
+                    const $icon = $('#idx-update-status-icon', this.view.$body);
 
                     let icon_id;
                     switch (info.icon) {
