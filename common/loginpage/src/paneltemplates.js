@@ -72,7 +72,7 @@
                                     <div class="search-container">
                                         <span class="search-icon"></span>
                                         <input type="text" id="template-search" placeholder="${_lang.tplSearch}">
-                                        <span class="clear-icon" id="template-clear" style="display: none;"></span>
+                                        <span class="tool close" id="template-clear" style="display: none;"></span>
                                     </div>
                                 </div>
                                 <div id='idx-nav-templates'>
@@ -111,8 +111,7 @@
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
             const type = utils.formatToEditor(info.type);
-            const badge = !this.svgicons ? `<i class="badge ${type}"></i>` : 
-                                `<svg class="badge"><use xlink:href="#tpltype-${type}"></use></svg>`;
+            const badge = `<i class="badge ${type}"></i>`;
             const cloudIcon = info.isCloud ? `<div class="cloud-icon"></div>` : "";                    
             const icon_el = info.icon
                 ? `<img src="${info.icon}" alt="${info.name}" />`
