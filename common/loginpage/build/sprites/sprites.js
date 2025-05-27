@@ -138,6 +138,32 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 }
             },
+            toolicons: {
+                src: [`${_path}res/img/toolicons/1x/*.svg`],
+                dest: `${_path}res/img/`,
+                options: {
+                    mode: {
+                        symbol: {
+                            inline: true,
+                            dest: './generated',
+                            sprite: `toolicons.svg`,
+                        },
+                    },
+                }
+            },
+            toolicons20: {
+                src: [`${_path}res/img/toolicons20/1x/*.svg`],
+                dest: `${_path}res/img/`,
+                options: {
+                    mode: {
+                        symbol: {
+                            inline: true,
+                            dest: './generated',
+                            sprite: `toolicons20.svg`,
+                        },
+                    },
+                }
+            },
         },
         sprite: {
             'toolicon1.5x': configTemplate({
