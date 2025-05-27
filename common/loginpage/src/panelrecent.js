@@ -52,12 +52,28 @@
 
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
+        // localStorage.removeItem('welcomeBanner');
+
+		//language=HTML
+		const welcomeBannerTemplate = !localStorage.getItem('welcomeBanner') ? `
+            <div id="area-welcome">
+                <h2 l10n>${_lang.welWelcome}</h2>
+                <p l10n class="text-normal">${_lang.welDescr}</p>
+                <p l10n class="text-normal">${_lang.welNeedHelp}</p>
+            </div>` : '';
+
         //language=HTML
         args.tplPage = `
             <div class="action-panel ${args.action}">
                 <div class="recent-panel-container">
-                    <section id="area-document-creation-grid"></section>
+                    <div>
+                        <h1 l10n>${_lang.welWelcome}</h1>
+                    </div>
                     
+                    <section id="area-document-creation-grid"></section>
+                    ${welcomeBannerTemplate}
+                    <section id="area-dnd-file"></section>
+
                     <div id="box-recovery">
                         <div class="file-list-title">
                             <h3 l10n>${_lang.listRecoveryTitle}</h3>
@@ -69,29 +85,22 @@
                         </div>
                         <div class="file-list-body"></div>
                     </div>
+
+                    <div id="box-recent">
+                        <div class="file-list-title">
+                            <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                        </div>
+                        <div class="file-list-head text-normal">
+                            <div class="col-name" l10n>${_lang.fileName}</div>
+                            <div class="col-location" l10n>${_lang.location}</div>
+                            <div class="col-date" l10n>${_lang.lastOpened}</div>
+                        </div>
+                        <div class="file-list-body"></div>
+                    </div>
                     
-                    <div id="box-recent" class="flex-item flex-fill">
-                        <div style="display:none;">
-                            <h3 class="file-list-title" l10n>${_lang.listRecentFileTitle}</h3>
-                            <input type="text" id="idx-recent-filter" style="display:none;">
-                        </div>
-                        <div class="table-box flex-fill">
-                            <div>
-                                <div class="file-list-title">
-                                    <h3 l10n>${_lang.listRecentFileTitle}</h3>
-                                </div>
-                                <div class="file-list-head text-normal">
-                                    <div class="col-name" l10n>${_lang.fileName}</div>
-                                    <div class="col-location" l10n>${_lang.location}</div>
-                                    <div class="col-date" l10n>${_lang.lastOpened}</div>
-                                </div>
-                                <div class="file-list-body"></div>
-                            </div>
-                            <h4 class="text-emptylist${isSvgIcons ? '-svg' : ''} img-before-el" l10n>
-                                ${isSvgIcons ? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>' : ''}
-                                ${_lang.textNoFiles}
-                            </h4>
-                        </div>
+                    <div class="gradient-bottom-bar">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
                     </div>
                 </div>
             </div>`;
@@ -109,6 +118,10 @@
     utils.fn.extend(ViewRecent.prototype, {
         render: function() {
             baseView.prototype.render.apply(this, arguments);
+
+            if (!localStorage.getItem('welcomeBanner')) {
+                localStorage.setItem('welcomeBanner', '0');
+            }
 
             this.$boxRecovery = this.$panel.find('#box-recovery');
             this.$boxRecent = this.$panel.find('#box-recent');
@@ -156,7 +169,7 @@
             return _tpl + '</div>';
         },
         onscale: function (pasteSvg) {
-            let elm,icoName, elmIcon, parent,
+            let elm,icoName, parent,
                 emptylist = $('[class*="text-emptylist"]', '#box-recent');
             emptylist.toggleClass('text-emptylist text-emptylist-svg');
 
@@ -214,7 +227,7 @@
         let ppmenu;
         const ITEMS_LOAD_RANGE = 40;
 
-        const _add_recent_block = function() {
+        const _add_recent_block = function () {
             if ( !this.rawRecents || !Object.keys(this.rawRecents).length ) return;
 
             const _raw_block = this.rawRecents.slice(this.recentIndex, this.recentIndex + ITEMS_LOAD_RANGE);
@@ -249,6 +262,12 @@
             } else {
                 this.rawRecents = undefined;
             }
+
+            this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
+
+            if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
+                this.dndZone.hide();
+            }
         };
 
         var _on_recents = function(params) {
@@ -271,7 +290,11 @@
                 collectionRecovers.add( new FileModel(item) );
             }
 
-            this.view.$boxRecovery[collectionRecovers.size() > 0 ? 'show' : 'hide']();
+            this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
+
+            if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
+                this.dndZone.hide();
+            }
         };
 
         function addContextMenuEventListener(collection, model, view) {
@@ -351,9 +374,9 @@
                 id: 'pp-menu-files',
                 bottomlimitoffset: 10,
                 items: [
-                    { caption: utils.Lang.menuFileOpen, action: 'files:open' , icon: '#folder'}, // todo: icon
-                    { caption: utils.Lang.menuFileExplore, action: 'files:explore', icon: '#folder' }, // todo: icon
-                    { caption: utils.Lang.menuRemoveModel, action: 'files:forget', icon: '#folder' }, // todo: icon
+                    { caption: utils.Lang.menuFileOpen, action: 'files:open' , icon: '#folder'},
+                    { caption: utils.Lang.menuFileExplore, action: 'files:explore', icon: '#gofolder' },
+                    { caption: utils.Lang.menuRemoveModel, action: 'files:forget', icon: '#remove' },
                     { caption: '--' },
                     { caption: utils.Lang.menuClear, action: 'files:clear', variant: 'negative' }
                 ]
@@ -389,6 +412,7 @@
             }
         };
 
+        // note: search function
         function _on_filter_recents(e) {
             console.log('on recents filter', e.target.value)
 
@@ -466,6 +490,9 @@
                     if ( Menu.opened )
                         Menu.closeAll();
                 });
+
+                this.dndZone = new DnDFileZone();
+                this.dndZone.render(this.view.$panel.find("#area-dnd-file"));
 
                 const docGrid = new DocumentCreationGrid({
                     documentTypes: [
