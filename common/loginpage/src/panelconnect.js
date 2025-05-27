@@ -149,7 +149,10 @@
         this.tpl_sidebar =
                     `<div class="sidebar-block-title">
                         <span>Clouds</span>
-                        <span class='btn login'>+</span>
+                        <button class="btn-quick login">
+                            ${isSvgIcons? `<svg class = "icon"><use xlink:href="#plus"></use></svg>` : ''}
+                                <i class="icon icon-plus img-el" />
+                        </button>
                     </div>
                     <div class="sidebar-block-content flexbox">
                         <div class="table-box flex-fill"><table class="table-files list"></table></div>
