@@ -39,25 +39,31 @@ $(document).ready(function() {
             <div class="main-column col-left tool-menu">
               <li class="menu-item">
                 <a action="recents">
-                    <svg class="icon" data-iconname="home" data-precls="tool-icon">
-                        <use href="#home"></use>
-                    </svg>
+                    <div class="icon-box">
+                        <svg class="icon" data-iconname="home" data-precls="tool-icon">
+                            <use href="#home"></use>
+                        </svg>
+                    </div>
                     <span class="text" l10n>${l.actMain}</span>
                 </a>
               </li>
               <li class="menu-item">
                 <a action="open">
-                    <svg class="icon" data-iconname="folder" data-precls="tool-icon">
-                        <use href="#folder"></use>
-                    </svg>
+                    <div class="icon-box">
+                        <svg class="icon" data-iconname="folder" data-precls="tool-icon">
+                            <use href="#folder"></use>
+                        </svg>
+                    </div>
                     <span class="text" l10n>${utils.Lang.actOpenLocal}</span>
                 </a>
               </li>
               <li class="menu-item">
                 <a l10n action="templates">
-                    <svg class="icon" data-iconname="tpls" data-precls="tool-icon">
-                        <use href="#tpls"></use>
-                    </svg>
+                    <div class="icon-box">
+                        <svg class="icon" data-iconname="templates" data-precls="tool-icon">
+                            <use href="#templates"></use>
+                        </svg>
+                    </div>
                     <span class="text" l10n>${utils.Lang.actTemplates}</span>
                 </a>
               </li>
@@ -67,18 +73,22 @@ $(document).ready(function() {
               <li class="menu-item devider"></li>
               <li class="menu-item">
                   <a action="settings">
+                    <div class="icon-box">
                       <svg class="icon" data-iconname="settings" data-precls="tool-icon">
                           <use href="#settings"></use>
                       </svg>
-                      <span class="text" l10n>${utils.Lang.actSettings}</span>
+                    </div>
+                    <span class="text" l10n>${utils.Lang.actSettings}</span>
                   </a>
               </li>
               <li class="menu-item">
                   <a action="about">
+                    <div class="icon-box">
                       <svg class="icon" data-iconname="about" data-precls="tool-icon">
                           <use href="#about"></use>
                       </svg>
-                      <span class="text" l10n>${utils.Lang.actAbout}</span>
+                    </div>
+                    <span class="text" l10n>${utils.Lang.actAbout}</span>
                   </a>
               </li>
             </div>

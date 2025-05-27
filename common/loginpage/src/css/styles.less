@@ -234,7 +234,7 @@ li.menu-item {
 
     > li.menu-item:not(.separator):not(.devider) {
         transition: background-color 300ms ease-out;
-        border-radius: 8px;
+        border-radius: @border-radius-sidebar-item;
 
         &:hover {
             background-color: @highlight-button-hover;
@@ -257,6 +257,7 @@ li.menu-item {
             display: flex;
             align-items: center;
             gap: 8px;
+            height: 48px;
 
             .icon {
 /*                width: @new-doc-icon-width;*/
@@ -275,7 +276,15 @@ li.menu-item {
     }
 
     svg.icon:not(.icon-colored) {
-        fill: @icon-sidebar;
+        fill: @icon-normal;
+    }
+
+    a[action] {
+        svg.icon:not(.icon-colored) {
+            fill: @background-normal;
+            stroke: @icon-normal;
+            stroke-width: 1px;
+        }
     }
 
     > li.menu-item.separator {
@@ -483,10 +492,10 @@ li.menu-item {
         opacity: .8;
         background-color: transparent;
         svg.icon {
-            fill: #5a5a5a;
-            .theme-type-dark & {
-                fill: #a5a5a5;
-            }
+            /*fill: #5a5a5a;*/
+            /*.theme-type-dark & {*/
+                /*fill: #a5a5a5;*/
+            /*}*/
         }
         .icon {
             width: 24px;
@@ -506,10 +515,10 @@ li.menu-item {
         }
     }
 
-    .icon {
-        width: 36px;
-        height: 36px;
-    }
+    /*.icon {*/
+        /*width: 36px;*/
+        /*height: 36px;*/
+    /*}*/
 }
 
 .lst-tools {
@@ -1639,6 +1648,19 @@ li.menu-item {
     }
 }
 
+.tool-menu .menu-item,
+    #idx-sidebar-portals .row-cell.cicon
+{
+            .icon-box {
+                width: 32px;
+                height: 32px;
+                padding: 3px;
+                border: 1px solid @border-divider;
+                border-radius: @border-radius-sidebar-item-icon;
+                background-color: @background-normal;
+            }
+}
+
 #idx-sidebar-portals {
     overflow: hidden;
     display: flex;
@@ -1653,5 +1675,28 @@ li.menu-item {
     .btn.login {
         cursor: pointer;
         width: 14px;
+    }
+
+    td {
+        &:first-child {
+            border-top-left-radius: @border-radius-sidebar-item;
+            border-bottom-left-radius: @border-radius-sidebar-item;
+        }
+
+        &:last-child {
+            border-top-right-radius: @border-radius-sidebar-item;
+            border-bottom-right-radius: @border-radius-sidebar-item;
+        }
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .row-cell.cicon {
+        .icon-box {
+            padding: 1px;
+        }
     }
 }
