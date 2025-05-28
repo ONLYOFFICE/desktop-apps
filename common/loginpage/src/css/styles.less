@@ -1335,7 +1335,7 @@ li.menu-item {
     #idx-nav-templates {
         padding-top: 12px;
         text-align: left;
-        border-bottom: var(--scaled-one-px, 1px) solid var(--border-divider);
+        border-bottom: @scaled-one-px solid @border-divider;
         .rtl & {
             text-align: right;
             direction: ltr;
@@ -1389,9 +1389,10 @@ li.menu-item {
             padding: 8px 32px 8px 32px;
             font-size: 14px;
             border-radius: 8px;
-            border: var(--scaled-one-px, 1px) solid var(--border-divider);
+            border: @scaled-one-px solid @border-divider;
             position: relative;
             outline: none;
+            background: @background-normal;
         }
     }
     .search-icon {
@@ -1479,7 +1480,7 @@ li.menu-item {
                 right: 6px;
                 bottom: 0;
                 height: 3px;
-                background-color:#4A87E7;
+                background-color: @highlight-toolbar-tab-underline-document;
                 border-radius: 2px;
                 .rtl & {
                     left: 6px;
@@ -1494,7 +1495,7 @@ li.menu-item {
         width: 220px;
         display: flex;
         flex-direction: column;
-        border: 1px solid var(--border-divider);
+        border: @scaled-one-px solid @border-divider;
         border-radius: 8px;
         overflow: hidden;
 
@@ -1505,11 +1506,11 @@ li.menu-item {
             .wrapper {
                 width: 220px;
                 height: 140px;
-                border-bottom: 1px solid var(--border-divider);
+                border-bottom: @scaled-one-px solid @border-divider;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: #fafafa;
+                background: @background-tabbar;
             }
 
             img, svg {
@@ -1589,8 +1590,6 @@ li.menu-item {
 }
 
 #idx-update-cnt {
-    background-color: @background-tabbar;
-    border-radius: 5px;
     padding-top: 20px;
 
     .status-field {
@@ -1654,6 +1653,13 @@ li.menu-item {
     .ver-copyright {
         margin-top:  5px;
         color: @text-tertiary;
+        display: flex;
+        .copyright-label {
+            margin-right: 5px;
+            .rtl & {
+                margin-left: 5px;
+            }
+        }
     }
 }
 
