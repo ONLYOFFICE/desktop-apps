@@ -1152,14 +1152,11 @@ li.menu-item {
 
 }
 
-#wrap,
-#options-wrap,
 .main-column,
 .action-panel,
-.content-box,
-.dropdown-menu .inner,
-.table-box {
-  &::-webkit-scrollbar-track {
+*
+{
+    ::-webkit-scrollbar-track {
     background-color: @background-normal;
 
     &:hover {
@@ -1167,7 +1164,7 @@ li.menu-item {
     }
   }
 
-  &::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb {
     background-color: @background-scroll-thumb;
 
     &:hover {
