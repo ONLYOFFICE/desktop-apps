@@ -73,9 +73,8 @@
                     <section id="area-document-creation-grid"></section>
                     ${welcomeBannerTemplate}
                     <section id="area-dnd-file"></section>
-
-                    <div class="files">
-                        <div id="box-recovery">
+                    
+                    <div id="box-recovery">
                         <div class="file-list-title">
                             <h3 l10n>${_lang.listRecoveryTitle}</h3>
                         </div>
@@ -204,7 +203,32 @@
                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
 
                 });
-        }
+        },
+        updateListSize: function () {
+            const windowBottom = $(window).height();
+
+            // Recovery
+            const $headRecovery = this.$boxRecovery.find('.file-list-head');
+            const $bodyRecovery = this.$boxRecovery.find('.file-list-body');
+
+            if ($headRecovery.length && $bodyRecovery.length) {
+                const headBottomRecovery = $headRecovery.offset().top + $headRecovery.outerHeight(true);
+                const availableRecovery = windowBottom - headBottomRecovery - 20;
+
+                $bodyRecovery.css({ 'max-height': availableRecovery > 0 ? availableRecovery + 'px' : '0px' });
+            }
+
+            // Recent
+            const $headRecent = this.$boxRecent.find('.file-list-head');
+            const $bodyRecent = this.$boxRecent.find('.file-list-body');
+
+            if ($headRecent.length && $bodyRecent.length) {
+                const headBottomRecent = $headRecent.offset().top + $headRecent.outerHeight(true);
+                const availableRecent = windowBottom - headBottomRecent - 20;
+
+                $bodyRecent.css({ 'max-height': availableRecent > 0 ? availableRecent + 'px' : '0px' });
+            }
+        },
     });
 
     window.ControllerRecent = ControllerRecent;
@@ -264,6 +288,7 @@
             }
 
             this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
+            requestAnimationFrame(() => this.view.updateListSize());
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
                 this.dndZone.hide();
@@ -291,6 +316,7 @@
             }
 
             this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
+            requestAnimationFrame(() => this.view.updateListSize());
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
                 this.dndZone.hide();
@@ -475,6 +501,8 @@
                         this.appready = true;
                     }
                 });
+
+                $(window).resize(() => requestAnimationFrame(() => this.view.updateListSize()));
 
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
