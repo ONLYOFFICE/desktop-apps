@@ -70,7 +70,11 @@
                                 <div class='lr-flex'>
                                     <h3 class='table-caption' l10n>${_lang.actTemplates}</h3>
                                     <div class="search-container">
-                                        <span class="search-icon"></span>
+                                        <div class="icon-box">
+                                            <svg class="icon search-icon" data-iconname="search" data-precls="tool-icon">
+                                                <use href="#search"></use>
+                                            </svg>
+                                        </div>
                                         <input type="text" id="template-search" placeholder="${_lang.tplSearch}">
                                         <span class="tool close" id="template-clear" style="display: none;"></span>
                                     </div>
@@ -83,7 +87,11 @@
                                 </div>
                                 <div id="search-result" class="search-result" style="display: none;"></div>
                                     <div id="search-no-results" class="search-no-results" style="display: none;">
-                                    <span class="no-results-icon"></span>
+                                    <div class="icon-box">
+                                        <svg class="icon nothing-found-light-icon" data-iconname="nothing-found-light" data-precls="tool-icon">
+                                            <use href="#nothing-found-light"></use>
+                                        </svg>
+                                    </div>
                                     <p class="no-results-title">${_lang.tplNoResultsTitle}</p>
                                     <p class="no-results-text">${_lang.tplNoResultsText}</p> 
                                 </div>
@@ -112,7 +120,12 @@
         listitemtemplate: function(info) {
             const type = utils.formatToEditor(info.type);
             const badge = `<i class="badge ${type}"></i>`;
-            const cloudIcon = info.isCloud ? `<div class="cloud-icon"></div>` : "";                    
+            const cloudIcon = info.isCloud ? `<svg class="icon cloud-icon" data-iconname="location-cloud" data-precls="tool-icon">
+                                                <use href="#location-cloud"></use>
+                                              </svg>` : 
+                                              `<svg class="icon cloud-icon" data-iconname="location-local" data-precls="tool-icon">
+                                                <use href="#location-local"></use>
+                                              </svg>`;                    
             const icon_el = info.icon
                 ? `<img src="${info.icon}" alt="${info.name}" />`
                 : '';
