@@ -621,17 +621,38 @@ li.menu-item {
 
 .recent-panel-container {
   display: grid;
-  grid-auto-rows: max-content;
-  gap: 40px;
+  grid-template-rows: max-content max-content max-content max-content 1fr;
+  //grid-template-rows: 42px 208px 86px 182px 1fr;
+  grid-template-areas: 'search' 'template' 'welcome' 'dnd-zone' 'files';
+  //gap: 40px;
   position: relative;
   height: 100%;
   padding-inline: 32px;
   max-width: 1680px;
   margin-inline: auto;
   margin-bottom: -40px;
+  overflow: hidden;
 
-  h1 {
-    margin: 0;
+  .search-bar {
+    grid-area: search;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .files {
+    margin-top: 40px;
+    grid-area: files;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    overflow-y: auto;
+  }
+
+  #area-dnd-file {
+    margin-top: 40px;
+    grid-area: dnd-zone;
   }
 }
 
@@ -659,6 +680,8 @@ li.menu-item {
 }
 
 #area-document-creation-grid {
+  grid-area: template;
+  margin-top: 40px;
   padding: 12px 16px 0; // 16px inner + outer 32px
   overflow-x: auto;
 
@@ -677,6 +700,7 @@ li.menu-item {
 }
 
 #area-welcome {
+  margin-top: 40px;
   margin-inline: auto;
 
   text-align: center;
@@ -692,7 +716,6 @@ li.menu-item {
 #box-recent, #box-recovery {
   display: none;
   flex-direction: column;
-  overflow: hidden;
 }
 
 #box-recent {

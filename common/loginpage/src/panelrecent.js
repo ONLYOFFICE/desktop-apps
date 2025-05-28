@@ -52,10 +52,10 @@
 
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
-        // localStorage.removeItem('welcomeBanner');
+        // localStorage.removeItem('welcome');
 
 		//language=HTML
-		const welcomeBannerTemplate = !localStorage.getItem('welcomeBanner') ? `
+		const welcomeBannerTemplate = !localStorage.getItem('welcome') ? `
             <div id="area-welcome">
                 <h2 l10n>${_lang.welWelcome}</h2>
                 <p l10n class="text-normal">${_lang.welDescr}</p>
@@ -66,7 +66,7 @@
         args.tplPage = `
             <div class="action-panel ${args.action}">
                 <div class="recent-panel-container">
-                    <div>
+                    <div class="search-bar">
                         <h1 l10n>${_lang.welWelcome}</h1>
                     </div>
                     
@@ -74,7 +74,8 @@
                     ${welcomeBannerTemplate}
                     <section id="area-dnd-file"></section>
 
-                    <div id="box-recovery">
+                    <div class="files">
+                        <div id="box-recovery">
                         <div class="file-list-title">
                             <h3 l10n>${_lang.listRecoveryTitle}</h3>
                         </div>
@@ -96,6 +97,7 @@
                             <div class="col-date" l10n>${_lang.lastOpened}</div>
                         </div>
                         <div class="file-list-body"></div>
+                    </div>
                     </div>
                     
                     <div class="gradient-bottom-bar">
@@ -119,15 +121,13 @@
         render: function() {
             baseView.prototype.render.apply(this, arguments);
 
-            if (!localStorage.getItem('welcomeBanner')) {
-                localStorage.setItem('welcomeBanner', '0');
+            if (!localStorage.getItem('welcome')) {
+                localStorage.setItem('welcome', '0');
             }
 
             this.$boxRecovery = this.$panel.find('#box-recovery');
             this.$boxRecent = this.$panel.find('#box-recent');
             this.$panelContainer = this.$panel.find('.recent-panel-container');
-            this.$tableBoxRecovery = this.$boxRecovery.find('.table-box').get(0);
-            this.$tableBoxRecent = this.$boxRecent.find('.table-box').get(0);
         },
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
