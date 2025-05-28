@@ -242,6 +242,7 @@ public:
             {"theme-contrast-dark", ":/themes/theme-contrast-dark.json"},
             {"theme-gray", ":/themes/theme-gray.json"},
             {"theme-white", ":/themes/theme-white.json"},
+            {"theme-night", ":/themes/theme-night.json"},
         };
 
         GET_REGISTRY_USER(_reg_user);
