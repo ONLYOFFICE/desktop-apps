@@ -98,11 +98,6 @@
                         <div class="file-list-body"></div>
                     </div>
                     </div>
-                    
-                    <div class="gradient-bottom-bar">
-                        <div class="top"></div>
-                        <div class="bottom"></div>
-                    </div>
                 </div>
             </div>`;
         args.menu = '.main-column.tool-menu';
@@ -326,7 +321,7 @@
         function addContextMenuEventListener(collection, model, view) {
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
-                collection.events.contextmenu.notify(model, e);
+                ppmenu.showUnderElem(e.currentTarget, model, 'right');
             })
         }
 

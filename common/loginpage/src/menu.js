@@ -125,17 +125,18 @@ Menu.prototype.show = function(pos, data) {
     Menu.opened = true;
 };
 
-Menu.prototype.showUnderElem = function(el, data) {
+Menu.prototype.showUnderElem = function(el, data, align) {
     $('.menu-container').removeClass('open');
     let $el = $('#'+this.id);
     const $rel = $(el);
 
     // const $rel.width();
-    const pos = $rel.position();
+    const pos = $rel.offset();
     pos.top += $rel.height() + 2;
 
     const $dd = $el.find('.dropdown-menu');
-    // pos.left -= $dd.outerWidth() - $rel.outerWidth();
+    if ( align == 'right' )
+        pos.left -= $dd.outerWidth() - $rel.outerWidth();
 
     $el.css(pos);
     $dd.dropdown('toggle');
