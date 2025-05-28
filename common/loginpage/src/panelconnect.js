@@ -148,7 +148,7 @@
 
         this.tpl_sidebar =
                     `<div class="sidebar-block-title">
-                        <span>Clouds</span>
+                        <span>${_lang.actClouds}</span>
                         <button class="btn-quick login">
                             ${isSvgIcons? `<svg class = "icon"><use xlink:href="#plus"></use></svg>` : ''}
                                 <i class="icon icon-plus img-el" />

@@ -90,6 +90,7 @@ l10n.en = {
     actAbout: 'About',
     actSettings: 'Settings',
     actTemplates: 'Templates',
+    actClouds: 'Clouds',
     licKeyHolder: 'input activation key',
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
