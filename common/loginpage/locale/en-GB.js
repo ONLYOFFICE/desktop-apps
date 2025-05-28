@@ -1,6 +1,7 @@
 l10n.en_GB = {
-    welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
-    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welWelcome: 'Welcome to ONLYOFFICE!',
+    welDescr: 'Create, edit, and collaborate on documents, spreadsheets, presentations, and PDFs — all in one place.<br/>Powerful tools for documents, spreadsheets, and slides PDF editing, forms, and conversion Real-time cloud collaboration',
+    welNeedHelp: 'Need help? Visit our <a href="https://helpcenter.onlyoffice.com/">Help Center</a>.',
     btnConnect: 'Connect now',
     textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
@@ -126,5 +127,9 @@ l10n.en_GB = {
     tplSearchResult: "Results for",
     tplNoResultsTitle: "Nothing found",
     tplNoResultsText: "No results matching your query could be found",
-
+    fileName: "File name",
+    location: 'Location',
+    lastOpened: 'Last opened',
+    labelDropFile: 'Drag you files here or',
+    labelSelectFile: 'Select file',
 }

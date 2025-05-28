@@ -115,4 +115,7 @@ l10n.ru = {
     settGpuUseMode: "Использовать графическое ускорение, если оно доступно",
     tplPanelLocal: "Локальные",
     tplPanelCloud: "Облачные",
+    fileName: "Имя файла",
+    location: "Расположение",
+    lastOpened: "Последнее открытие"
 }

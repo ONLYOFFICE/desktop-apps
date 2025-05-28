@@ -52,18 +52,33 @@ Menu.prototype.init = function(parent) {
     var $container = $(_tpl_.replace(/\%id/, this.id)).appendTo(parent);
     var $list = $container.find('ul');
 
-    var _tpl_item_ = '<li><a id="%id" class="dd-item" tabindex="-1" type="menuitem" l10n>%caption</a></li>',
+    var _tpl_item_ = '<li><a id="%id" class="dd-item" tabindex="-1" type="menuitem" l10n>%icon%caption</a></li>',
         _tpl_divider_ = '<li class="divider"></li>';
+
     this.items.forEach(function(item) {
         let $item;
 
         !item.id && (item.id = me.prefix + ++nCounter);
-        if (item.caption == '--')
+        if (item.caption === '--') {
             $item = $(_tpl_divider_);
-        else {
+        } else {
+            let iconHtml = '';
+            if (item.icon) {
+                if (item.icon.startsWith('#')) {
+                    iconHtml = `<svg class="menu-icon"><use xlink:href="${item.icon}"></use></svg>`;
+                } else {
+                    iconHtml = `<i class="menu-icon ${item.icon}"></i>`;
+                }
+            }
+
             $item = $(_tpl_item_
                 .replace(/%caption/, item.caption)
-                .replace(/%id/, item.id));
+                .replace(/%id/, item.id)
+                .replace(/%icon/, iconHtml));
+
+            if (item.variant) {
+                $item.find('a').attr('data-variant', item.variant);
+            }
 
             $item.on('click', {'action': item.action}, function(e) {
                 if ( !e.target.hasAttribute('disabled') )

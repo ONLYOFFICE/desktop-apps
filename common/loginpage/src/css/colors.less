@@ -1,6 +1,8 @@
 
 :root {
-    --background-normal: #f9f9f9;
+    --background-normal: #fff;
+    --background-normal-element: #f3f3f3;
+    --background-normal-element-light: #f9f9f9;
     --background-tabbar: #f7f7f7;
     /*--background-button: #fff;*/
     --background-accent-button: #3483db;
@@ -28,7 +30,7 @@
     --border-regular-control: #c0c0c0;
     --border-control-focus: #848484;
     --border-error: #f62211;
-    --border-sidebar: var(--background-normal)
+    --border-sidebar: var(--background-normal);
     --border-sidebar-item: transparent;
     --border-radius-sidebar-item: 8px;
     --border-radius-sidebar-item-icon: 6px;
@@ -40,6 +42,7 @@
     --text-link: #445799;
     --text-inverse: #fff;
     --text-contrast-background: #fff;
+    --text-negative: #991B1B;
 
     --icon-normal: fade(#000, 80%);
     --icon-success: #090;
@@ -51,6 +54,8 @@
 }
 
 @background-normal: var(--background-normal);
+@background-normal-element: var(--background-normal-element);
+@background-normal-element-light: var(--background-normal-element-light);
 @background-tabbar: var(--background-tabbar);
 @background-button: var(--background-button,#fff);
 @background-accent-button: var(--background-accent-button);
@@ -90,6 +95,7 @@
 @text-link: var(--text-link);
 @text-inverse: var(--text-inverse);
 @text-contrast-background: var(--text-contrast-background);
+@text-negative: var(--text-negative);
 
 @icon-normal: var(--icon-normal);
 @icon-success: var(--icon-success);
