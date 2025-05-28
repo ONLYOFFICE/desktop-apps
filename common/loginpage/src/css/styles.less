@@ -242,7 +242,7 @@ li.menu-item {
 
   > li.menu-item:not(.separator):not(.devider) {
     transition: background-color 300ms ease-out;
-    border-radius: 8px;
+    border-radius: @border-radius-sidebar-item;
 
     &:hover {
       background-color: @highlight-button-hover;
@@ -265,6 +265,7 @@ li.menu-item {
       display: flex;
       align-items: center;
       gap: 8px;
+            height: 48px;
 
       .icon {
         /*                width: @new-doc-icon-width;*/
@@ -283,7 +284,15 @@ li.menu-item {
   }
 
   svg.icon:not(.icon-colored) {
-    fill: @icon-sidebar;
+    fill: @icon-normal;
+    }
+
+    a[action] {
+        svg.icon:not(.icon-colored) {
+            fill: @background-normal;
+            stroke: @icon-normal;
+            stroke-width: 1px;
+        }
   }
 
   > li.menu-item.separator {
@@ -303,6 +312,7 @@ li.menu-item {
   margin-bottom: 15px;
   padding: 0 10px;
   font-size: 15px;
+    color: @text-normal;
 }
 
 .sidebar-block-content {
@@ -739,26 +749,25 @@ li.menu-item {
     }
   }
 
-  .cell-tools .btn-quick {
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    opacity: .8;
-    background-color: transparent;
+    .btn-quick {
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        opacity: .8;
+        background-color: transparent;
+        svg.icon {
+            /*fill: #5a5a5a;*/
+            /*.theme-type-dark & {*/
+                /*fill: #a5a5a5;*/
+            /*}*/
 
-    svg.icon {
-      fill: #5a5a5a;
-
-      .theme-type-dark & {
-        fill: #a5a5a5;
-      }
-    }
-
-    .icon {
-      width: 24px;
-      height: 24px;
-      background-position: -86px -48px;
-    }
+            stroke: @icon-normal;
+        }
+        .icon {
+            width: 24px;
+            height: 24px;
+            background-position: -86px -48px;
+        }
 
     &:hover {
       opacity: 1;
@@ -771,10 +780,10 @@ li.menu-item {
     }
   }
 
-  .icon {
-    width: 36px;
-    height: 36px;
-  }
+  /*.icon {*/
+    /*width: 36px;*/
+    /*height: 36px;*/
+  /*}*/
 }
 
 .lst-tools {
@@ -1635,7 +1644,7 @@ li.menu-item {
   #idx-nav-templates {
         padding-top: 12px;
         text-align: left;
-        border-bottom: var(--scaled-one-px, 1px) solid var(--border-divider);
+        border-bottom: @scaled-one-px solid @border-divider;
         .rtl & {
             text-align: right;
             direction: ltr;
@@ -1689,9 +1698,11 @@ li.menu-item {
             padding: 8px 32px 8px 32px;
             font-size: 14px;
             border-radius: 8px;
-    border: var(--scaled-one-px, 1px) solid var(--border-divider);
+    border: @scaled-one-px solid @border-divider;
             position: relative;
             outline: none;
+            color: @text-normal;
+            background: @background-normal;
         }
     }
     .search-icon {
@@ -1710,20 +1721,42 @@ li.menu-item {
         }
     }
 
-    .clear-icon {
+    .tool.close {
         position: absolute;
         top: 50%;
         right: 10px;
         transform: translateY(-50%);
         width: 16px;
         height: 16px;
-        background: no-repeat ;
+        background: none;
         background-size: contain;
         cursor: pointer;
         z-index: 2;
         .rtl & {
             right: auto;
             left: 10px;
+        }
+
+         &:before, &:after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: @icon-normal;
+            opacity: .7;
+
+            transition: transform .3s opacity .2s;
+        }
+
+        &:before {
+            transform: rotate(45deg);
+        }
+
+        &:after {
+            transform: rotate(-45deg);
         }
     }
 
@@ -1757,7 +1790,7 @@ li.menu-item {
                 right: 6px;
                 bottom: 0;
                 height: 3px;
-                background-color:#4A87E7;
+                background-color: @highlight-toolbar-tab-underline-document;
     border-radius: 2px;
                 .rtl & {
     left: 6px;
@@ -1773,7 +1806,7 @@ li.menu-item {
     width: 220px;
     display: flex;
     flex-direction: column;
-border: 1px solid var(--border-divider);
+border: @scaled-one-px solid @border-divider;
     border-radius: 8px;
       overflow: hidden;
       &:hover {
@@ -1783,11 +1816,11 @@ border: 1px solid var(--border-divider);
             .wrapper {
                 width: 220px;
       height: 140px;
-                border-bottom: 1px solid var(--border-divider);
+                border-bottom: @scaled-one-px solid @border-divider;
       display: flex;
       align-items: center;
       justify-content: center;
-                background: #fafafa;
+                background: @background-tabbar;
     }
 
     img, svg {
@@ -1867,49 +1900,27 @@ border: 1px solid var(--border-divider);
 }
 
 #idx-update-cnt {
-  background-color: @background-tabbar;
-  border-radius: 5px;
-  padding: 20px 30px;
-  margin: 25px 0;
-  max-width: 800px;
+
+  padding-top: 20px;
 
   .status-field {
-    height: 40px;
+    height: 30px;
 
     &:first-child {
-      margin-bottom: 20px;
+      //margin-bottom: 20px;
     }
   }
 
-  #idx-update-status-icon {
-    min-width: 28px;
-    width: 28px;
-    height: 28px;
-    /*        display: block;*/
-    margin-right: 8px;
-
-    &[data-icon=success] {
-      fill: #95C038;
+  #idx-update-status-text {
+        font-size: 14px;
+    }
     }
 
-    &[data-icon=error] {
-      fill: #FF6F3D;
-    }
-
-    &[data-icon=load], &[data-icon=lastcheck] {
-      fill: #5DC0E8;
-    }
-
-    &[data-icon=load] {
-      animation: rotate 1.5s linear infinite;
-    }
-
-    @keyframes rotate {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  }
+    #idx-update-btnaction {
+      height: 32px;
+        width: 137px;
+      padding: 0px;
+    border-radius: 4px;
 }
 
 #idx-about-cut-logo {
@@ -1927,7 +1938,8 @@ border: 1px solid var(--border-divider);
 }
 
 #idx-about-version {
-  margin: 4px 0 -4px;
+  font-size: 14px;
+    margin: -4px 0;
 }
 
 #idx-btn-addtheme {
@@ -1940,7 +1952,26 @@ border: 1px solid var(--border-divider);
 }
 
 .about-field {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+#idx-ver-edition {
+    margin-top: 20px
+}
+
+.box-copyright {
+    font-size: 14px;
+    .ver-copyright {
+        margin-top:  5px;
+        color: @text-tertiary;
+        display: flex;
+        .copyright-label {
+            margin-right: 5px;
+            .rtl & {
+                margin-left: 5px;
+            }
+        }
+    }
 }
 
 .hidden {
@@ -1953,10 +1984,24 @@ border: 1px solid var(--border-divider);
   }
 }
 
+.tool-menu .menu-item,
+    #idx-sidebar-portals .row-cell.cicon
+{
+            .icon-box {
+                width: 32px;
+                height: 32px;
+                padding: 3px;
+                border: 1px solid @border-divider;
+                border-radius: @border-radius-sidebar-item-icon;
+                background-color: @background-normal;
+            }
+}
+
 #idx-sidebar-portals {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+    margin-top: 10px;
 
   .table-files {
     td {
@@ -1968,4 +2013,36 @@ border: 1px solid var(--border-divider);
     cursor: pointer;
     width: 14px;
   }
+
+    td {
+        &:first-child {
+            border-top-left-radius: @border-radius-sidebar-item;
+            border-bottom-left-radius: @border-radius-sidebar-item;
+        }
+
+        &:last-child {
+            border-top-right-radius: @border-radius-sidebar-item;
+            border-bottom-right-radius: @border-radius-sidebar-item;
+        }
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .row-cell.cicon {
+        .icon-box {
+            padding: 1px;
+        }
+    }
+
+    button.login {
+        padding: 2px;
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
 }
