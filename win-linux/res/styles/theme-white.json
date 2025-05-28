@@ -18,7 +18,8 @@
         "tool-button-background": "#eaeaea",
         "tool-button-hover-background": "#cecece",
         "tool-button-pressed-background": "#b7b7b7",
-        "tool-button-active-background": "#fff",
+        "tool-button-active-background1": "#fff",
+        "tool-button-active-background": "#f3f3f3",
 
         "download-widget-background": "#fff",
         "download-widget-border": "#d9d9d9",

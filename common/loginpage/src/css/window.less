@@ -48,6 +48,28 @@ dialog {
         }
     }
 
+    &.dlg-about {
+        border-radius: 8px;
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 16px 16px 32px;
+            border-bottom: none;
+            background: none;
+        }
+
+        .body {
+            padding: 0px 30px 28px;
+        }
+
+        .separator {
+            padding-top: 5px;
+            border-bottom: @scaled-one-px solid @border-divider;
+        }
+    }
+
     .body {
         /*position: absolute;*/
         width: 100%;

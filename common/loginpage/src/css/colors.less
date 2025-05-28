@@ -1,12 +1,16 @@
 
 :root {
-    --background-normal: #fff;
+    --background-normal: #F3F3F3;
+    --background-normal-element: #f3f3f3;
+    --background-normal-element-light: #f9f9f9;
     --background-tabbar: #f7f7f7;
     /*--background-button: #fff;*/
     --background-accent-button: #3483db;
     --background-primary-button: #444;
     --background-scrim: fade(#000, 20%);
     --background-scroll-thumb: #e0e0e0;
+    --background-action-panel: #fff;
+    --background-icon-normal: #fff;
 
     --highlight-button-hover: #e0e0e0;
     --highlight-button-pressed: #ccc;
@@ -19,12 +23,18 @@
     --highlight-text-select: #3494fb;
     --highlight-scroll-thumb-hover: #ccc;
     --highlight-scroll-track-hover: fade(#000, 3%);
+    --highlight-sidebar-item-pressed: #fff;
+    --highlight-toolbar-tab-underline-document: #4A87E7;
 
     --border-tabbar: #cbcbcb;
     --border-divider: #dfdfdf;
     --border-regular-control: #c0c0c0;
     --border-control-focus: #848484;
     --border-error: #f62211;
+    --border-sidebar: var(--background-normal);
+    --border-sidebar-item: transparent;
+    --border-radius-sidebar-item: 8px;
+    --border-radius-sidebar-item-icon: 6px;
 
     --text-normal: fade(#000, 80%);
     --text-normal-pressed: fade(#000, 80%);
@@ -33,21 +43,28 @@
     --text-link: #445799;
     --text-inverse: #fff;
     --text-contrast-background: #fff;
+    --text-negative: #991B1B;
 
     --icon-normal: fade(#000, 80%);
     --icon-success: #090;
 
     --disabled-element-opacity: .4;
     --theme-inverted-image-filter: none;
+
+    --shadow-sidebar-item-pressed: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
 }
 
 @background-normal: var(--background-normal);
+@background-normal-element: var(--background-normal-element);
+@background-normal-element-light: var(--background-normal-element-light);
 @background-tabbar: var(--background-tabbar);
 @background-button: var(--background-button,#fff);
 @background-accent-button: var(--background-accent-button);
 @background-primary-button: var(--background-primary-button);
 @background-scrim: var(--background-scrim);
 @background-scroll-thumb: var(--background-scroll-thumb);
+@background-action-panel: var(--background-action-panel);
+@background-icon-normal: var(--background-icon-normal);
 
 @highlight-button-hover: var(--highlight-button-hover);
 @highlight-button-pressed: var(--highlight-button-pressed);
@@ -60,12 +77,18 @@
 @highlight-text-select: var(--highlight-text-select);
 @highlight-scroll-thumb-hover: var(--highlight-scroll-thumb-hover);
 @highlight-scroll-track-hover: var(--highlight-scroll-track-hover);
+@highlight-sidebar-item-pressed: var(--highlight-sidebar-item-pressed);
+@highlight-toolbar-tab-underline-document: var(--highlight-toolbar-tab-underline-document);
 
 @border-tabbar: var(--border-tabbar);
 @border-divider: var(--border-divider);
 @border-regular-control: var(--border-regular-control);
 @border-control-focus: var(--border-control-focus);
 @border-error: var(--border-error);
+@border-sidebar: var(--border-sidebar);
+@border-sidebar-item: var(--border-sidebar-item);
+@border-radius-sidebar-item: var(--border-radius-sidebar-item);
+@border-radius-sidebar-item-icon: var(--border-radius-sidebar-item-icon);
 
 @text-normal: var(--text-normal);
 @text-normal-pressed: var(--text-normal-pressed);
@@ -74,6 +97,7 @@
 @text-link: var(--text-link);
 @text-inverse: var(--text-inverse);
 @text-contrast-background: var(--text-contrast-background);
+@text-negative: var(--text-negative);
 
 @icon-normal: var(--icon-normal);
 @icon-success: var(--icon-success);

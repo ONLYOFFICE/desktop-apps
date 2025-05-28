@@ -40,52 +40,71 @@
     var ControllerRecent = function(args={}) {
         args.caption = 'Recent files';
         args.action =
-        this.action = "recent";
+        this.action = "recents";
         this.view = new ViewRecent(args);
     };
 
     ControllerRecent.prototype = Object.create(baseController.prototype);
     ControllerRecent.prototype.constructor = ControllerRecent;
-    var isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
+    const isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio === 1;
     var ViewRecent = function(args) {
         var _lang = utils.Lang;
 
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
-        let _html = `<div class="action-panel ${args.action}">
-                      <div class="recent-panel-container">
-                        <div id="box-recovery" class="flex-item">
-                          <div class="flexbox">
-                            <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
-                            <div class="table-box flex-fill">
-                              <table id="tbl-filesrcv" class="table-files list"></table>
-                            </div>
-                          </div>
-                        </div>
-                        <div id="box-recent" class="flex-item flex-fill">
-                          <div class="flexbox">
-                            <div style="display:none;">
-                              <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
-                              <input type="text" id="idx-recent-filter" style="display:none;">
-                            </div>
-                            <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
-                            <div class="table-box flex-fill">
-                              <table class="table-files list"></table>
-                              <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>
-                                  ${isSvgIcons? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>':''}
-                                  ${_lang.textNoFiles}
-                              </h4>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>`;
+        // localStorage.removeItem('welcome');
 
-        args.tplPage = _html;
+		//language=HTML
+		const welcomeBannerTemplate = !localStorage.getItem('welcome') ? `
+            <div id="area-welcome">
+                <h2 l10n>${_lang.welWelcome}</h2>
+                <p l10n class="text-normal">${_lang.welDescr}</p>
+                <p l10n class="text-normal">${_lang.welNeedHelp}</p>
+            </div>` : '';
+
+        //language=HTML
+        args.tplPage = `
+            <div class="action-panel ${args.action}">
+                <div class="recent-panel-container">
+                    <div class="search-bar">
+                        <h1 l10n>${_lang.welWelcome}</h1>
+                    </div>
+                    
+                    <section id="area-document-creation-grid"></section>
+                    ${welcomeBannerTemplate}
+                    <section id="area-dnd-file"></section>
+                    
+                    <div id="box-recovery">
+                        <div class="file-list-title">
+                            <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                        </div>
+                        <div class="file-list-head text-normal">
+                            <div class="col-name" l10n>${_lang.fileName}</div>
+                            <div class="col-location" l10n>${_lang.location}</div>
+                            <div class="col-date" l10n>${_lang.lastOpened}</div>
+                        </div>
+                        <div class="file-list-body"></div>
+                    </div>
+
+                    <div id="box-recent">
+                        <div class="file-list-title">
+                            <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                        </div>
+                        <div class="file-list-head text-normal">
+                            <div class="col-name" l10n>${_lang.fileName}</div>
+                            <div class="col-location" l10n>${_lang.location}</div>
+                            <div class="col-date" l10n>${_lang.lastOpened}</div>
+                        </div>
+                        <div class="file-list-body"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
-        args.itemtext = _lang.actRecentFiles;
+        // args.itemtext = _lang.actRecentFiles;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -96,43 +115,62 @@
         render: function() {
             baseView.prototype.render.apply(this, arguments);
 
+            if (!localStorage.getItem('welcome')) {
+                localStorage.setItem('welcome', '0');
+            }
+
             this.$boxRecovery = this.$panel.find('#box-recovery');
             this.$boxRecent = this.$panel.find('#box-recent');
             this.$panelContainer = this.$panel.find('.recent-panel-container');
-            this.$tableBoxRecovery = this.$boxRecovery.find('.table-box').get(0);
-            this.$tableBoxRecent = this.$boxRecent.find('.table-box').get(0);
         },
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
-            info.crypted == undefined && (info.crypted = false);
+            info.crypted === undefined && (info.crypted = false);
+            const dotIndex = info.name.lastIndexOf('.');
+            if (dotIndex !== -1) {
+                info.ext = info.name.substring(dotIndex);
+                info.name = info.name.substring(0, dotIndex);
+            } else {
+                info.ext = '';
+            }
 
-            var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
-                          <td class="row-cell cicon">
-                            <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
-                        ${!isSvgIcons ?'':
-                            `<svg class = "icon ${info.type=='folder'?'folder':''}">
-                                <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
-                            </svg>
-                            ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
-                        }                            
-                          </td>
-                          <td class="row-cell cname">
-                            <p class="name primary">${info.name}</p>
-                            <p class="descr minor">${info.descr}</p>
-                          </td>`;
+            // todo: crypted icon
 
-            if (info.type != 'folder')
-                _tpl += `<td class="row-cell cdate minor">${info.date}</td>`;
+            //language=HTML
+            let _tpl = `
+                <div ${id} class="row text-normal">
+                    <div class="col-name">
+                        <div class="icon">
+                            <i class="icon ${info.type == 'folder' ? 'img-el folder' : `img-format ${info.format}`}"/>
+                            ${!isSvgIcons ? ''
+                                : `<svg class = "icon ${info.type == 'folder' ? 'folder' : ''}"> <use xlink:href="#${info.type == 'folder' ? 'folder-small' : `${info.format}`}"></use></svg>
+                ${info.crypted ? '<svg class = "shield"> <use xlink:href="#shield"></use></svg>' : ''}`}
+                        </div>
+                        <p class="name">${info.name}</p>
+                        <span class="ext">${info.ext}</span>
+                    </div>
+                    <div class="col-location">
+<!--              todo: icon here          -->
+                        ${info.descr}
+                    </div>
+            `;
 
-            return _tpl;
+            if (info.type !== 'folder') {
+                _tpl += `<div class="col-date"><p>${info.date}</p></div>`;
+                _tpl += `<div class="col-more"><button id="${info.uid}-more-btn"><svg class="icon"><use xlink:href="#more"/></svg>${!isSvgIcons ? '<i class="icon tool-icon more"></i>' : ''}</button></div>`;
+            }
+
+            return _tpl + '</div>';
         },
         onscale: function (pasteSvg) {
-            let elm,icoName, elmIcon, parent,
+            let elm,icoName, parent,
                 emptylist = $('[class*="text-emptylist"]', '#box-recent');
             emptylist.toggleClass('text-emptylist text-emptylist-svg');
 
             if(pasteSvg && !emptylist.find('svg').length)
                 emptylist.prepend($('<svg class = "icon"><use xlink:href="#folder-big"></use></svg>'));
+
+            // todo: rewrite cicon rescale
 
             $('#box-recent .cicon').each(function () {
                  elm = $(this);
@@ -161,11 +199,30 @@
 
                 });
         },
-        updateListSize: function() {
-            const hasRecoveryScroll = this.$tableBoxRecovery.scrollHeight > this.$tableBoxRecovery.clientHeight;
-            const hasRecentScroll = this.$tableBoxRecent.scrollHeight > this.$tableBoxRecent.clientHeight;
+        updateListSize: function () {
+            const windowBottom = $(window).height();
 
-            this.$panelContainer.css('grid-template-rows', hasRecoveryScroll || hasRecentScroll ? '' : 'auto 1fr');
+            // Recovery
+            const $headRecovery = this.$boxRecovery.find('.file-list-head');
+            const $bodyRecovery = this.$boxRecovery.find('.file-list-body');
+
+            if ($headRecovery.length && $bodyRecovery.length) {
+                const headBottomRecovery = $headRecovery.offset().top + $headRecovery.outerHeight(true);
+                const availableRecovery = windowBottom - headBottomRecovery - 20;
+
+                $bodyRecovery.css({ 'max-height': availableRecovery > 0 ? availableRecovery + 'px' : '0px' });
+            }
+
+            // Recent
+            const $headRecent = this.$boxRecent.find('.file-list-head');
+            const $bodyRecent = this.$boxRecent.find('.file-list-body');
+
+            if ($headRecent.length && $bodyRecent.length) {
+                const headBottomRecent = $headRecent.offset().top + $headRecent.outerHeight(true);
+                const availableRecent = windowBottom - headBottomRecent - 20;
+
+                $bodyRecent.css({ 'max-height': availableRecent > 0 ? availableRecent + 'px' : '0px' });
+            }
         },
     });
 
@@ -189,7 +246,7 @@
         let ppmenu;
         const ITEMS_LOAD_RANGE = 40;
 
-        const _add_recent_block = function() {
+        const _add_recent_block = function () {
             if ( !this.rawRecents || !Object.keys(this.rawRecents).length ) return;
 
             const _raw_block = this.rawRecents.slice(this.recentIndex, this.recentIndex + ITEMS_LOAD_RANGE);
@@ -225,7 +282,12 @@
                 this.rawRecents = undefined;
             }
 
-            this.view.updateListSize();
+            this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
+            requestAnimationFrame(() => this.view.updateListSize());
+
+            if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
+                this.dndZone.hide();
+            }
         };
 
         var _on_recents = function(params) {
@@ -248,9 +310,20 @@
                 collectionRecovers.add( new FileModel(item) );
             }
 
-            this.view.$boxRecovery[collectionRecovers.size() > 0 ? 'show' : 'hide']();
-            this.view.updateListSize();
+            this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
+            requestAnimationFrame(() => this.view.updateListSize());
+
+            if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
+                this.dndZone.hide();
+            }
         };
+
+        function addContextMenuEventListener(collection, model, view) {
+            $(`#${model.uid}-more-btn`, view).click((e) => {
+                e.stopPropagation();
+                ppmenu.showUnderElem(e.currentTarget, model, 'right');
+            })
+        }
 
         function _init_collections() {
             let _cl_rcbox = this.view.$boxRecent,
@@ -258,7 +331,7 @@
 
             collectionRecents = new Collection({
                 view: _cl_rcbox,
-                list: _cl_rcbox.find('.table-files.list')
+                list: _cl_rcbox.find('.file-list-body')
             });
 
             collectionRecents.events.erased.attach(collection => {
@@ -269,6 +342,9 @@
                 let $item = this.view.listitemtemplate(model);
 
                 collection.list.append($item);
+
+                addContextMenuEventListener(collection, model, this.view.$panel);
+
                 collection.list.parent().removeClass('empty');
             });
 
@@ -298,10 +374,11 @@
 
             collectionRecovers = new Collection({
                 view: _cl_rvbox,
-                list: _cl_rvbox.find('.table-files.list')
+                list: _cl_rvbox.find('.file-list-body')
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
+                addContextMenuEventListener(collection, model, this.view.$panel);
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
@@ -317,19 +394,13 @@
             ppmenu = new Menu({
                 id: 'pp-menu-files',
                 bottomlimitoffset: 10,
-                items: [{
-                    caption: utils.Lang.menuFileOpen,
-                    action: 'files:open'
-                },{
-                    caption: utils.Lang.menuFileExplore,
-                    action: 'files:explore'
-                },{
-                    caption: utils.Lang.menuRemoveModel,
-                    action: 'files:forget'
-                },{
-                    caption: utils.Lang.menuClear,
-                    action: 'files:clear'
-                }]
+                items: [
+                    { caption: utils.Lang.menuFileOpen, action: 'files:open' , icon: '#folder'},
+                    { caption: utils.Lang.menuFileExplore, action: 'files:explore', icon: '#gofolder' },
+                    { caption: utils.Lang.menuRemoveModel, action: 'files:forget', icon: '#remove' },
+                    { caption: '--' },
+                    { caption: utils.Lang.menuClear, action: 'files:clear', variant: 'negative' }
+                ]
             });
 
             ppmenu.init('#placeholder');
@@ -362,6 +433,7 @@
             }
         };
 
+        // note: search function
         function _on_filter_recents(e) {
             console.log('on recents filter', e.target.value)
 
@@ -425,9 +497,8 @@
                     }
                 });
 
-                $(window).resize(()=>{
-                    this.view.updateListSize();
-                });
+                $(window).resize(() => requestAnimationFrame(() => this.view.updateListSize()));
+
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
                     if ( data.type == 'fileid' ) {
@@ -442,6 +513,60 @@
                     if ( Menu.opened )
                         Menu.closeAll();
                 });
+
+                this.dndZone = new DnDFileZone();
+                this.dndZone.render(this.view.$panel.find("#area-dnd-file"));
+
+                const docGrid = new DocumentCreationGrid({
+                    documentTypes: [
+                        {
+                            id: 'word',
+                            title: utils.Lang.tplDocument,
+                            formatLabel: {
+                                value: 'DOCX',
+                                gradientColorStart: '#4298C5',
+                                gradientColorEnd: '#2D84B2',
+                            },
+                            icon: '#docx-big',
+                        },
+                        {
+                            id: 'cell',
+                            title: utils.Lang.tplSpreadsheet,
+                            formatLabel: {
+                                value: 'XLSX',
+                                gradientColorStart: '#5BB514',
+                                gradientColorEnd: '#318C2B',
+                            },
+                            icon: '#xlsx-big',
+                        },
+                        {
+                            id: 'slide',
+                            title: utils.Lang.tplPresentation,
+                            formatLabel: {
+                                value: 'PPTX',
+                                gradientColorStart: '#F4893A',
+                                gradientColorEnd: '#DE7341',
+                            },
+                            icon: '#pptx-big',
+                        },
+                        {
+                            id: 'form',
+                            title: utils.Lang.tplPDF,
+                            formatLabel: {
+                                value: 'PDF',
+                                gradientColorStart: '#F36653',
+                                gradientColorEnd: '#D2402D',
+                            },
+                            icon: '#pdf-big',
+                        }
+                    ],
+                    onDocumentSelect: (docType) => {
+                        console.log(docType)
+                        window.sdk.command("create:new", docType);
+                    }
+                });
+
+                docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 
                 $('#idx-recent-filter', this.view.$panel).on('input', _on_filter_recents.bind(this));
 
