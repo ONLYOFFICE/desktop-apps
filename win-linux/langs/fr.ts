@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1931"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>Il est nécessaire de redémarrer l&apos;application pour que les paramètres soient pris en compte. Redémarrer maintenant ?</translation>
+        <translation>Vous devez redémarrer l&apos;application pour que les paramètres soient pris en compte. Redémarrer maintenant ?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2263"/>
@@ -47,15 +47,15 @@
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation type="vanished">La nouvelle version de %1 est disponible !</translation>
+        <translation type="vanished">Une nouvelle version de %1 est disponible !</translation>
     </message>
     <message>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="vanished">%1 %2 est disponible (vous avez %3). Voulez-vous le télécharger maintenant ?</translation>
+        <translation type="vanished">%1 %2 est disponible (vous avez %3). Voulez-vous la télécharger maintenant ?</translation>
     </message>
     <message>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="vanished">%1 %2 est téléchargé (vous avez %3). Voulez-vous l&apos;installer maintenant ?</translation>
+        <translation type="vanished">%1 %2 est téléchargée (vous avez %3). Voulez-vous l&apos;installer maintenant ?</translation>
     </message>
     <message>
         <source>Do you want to install a new version %1 of the program?</source>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation>sélectionnez le fichier de clé...</translation>
+        <translation>sélectionnez le fichier clé...</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="108"/>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="674"/>
         <source>Print Document</source>
-        <translation>Imprimer document</translation>
+        <translation>Imprimer le document</translation>
     </message>
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="883"/>
@@ -218,7 +218,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow.cpp" line="126"/>
         <source>%1 has been changed. Save changes?</source>
-        <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
+        <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les modifications ?</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="408"/>
@@ -440,32 +440,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Dessin Visio (*.vsdx)</translation>
+        <translation>Dessin Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Dessin Visio prenant en charge les macros (*.vsdm)</translation>
+        <translation>Dessin Visio prenant en charge les macros</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Gabarit Visio (*.vssx)</translation>
+        <translation>Gabarit Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Gabarit Visio prenant en charge les macros (*.vssm)</translation>
+        <translation>Gabarit Visio prenant en charge les macros</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Modèle Visio (*.vstx)</translation>
+        <translation>Modèle Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Modèle Visio prenant en charge les macros (*.vstm)</translation>
+        <translation>Modèle Visio prenant en charge les macros</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -532,22 +532,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format d&apos;image inconnu.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="508"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format vidéo inconnu.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format audio inconnu.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="509"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format inconnu.</translation>
     </message>
     <message>
         <source>Visio diagram</source>
@@ -647,7 +647,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="302"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation>Plus d&apos;un document est ouvert.&lt;br&gt;Fermer de toute façon la fenêtre ?</translation>
+        <translation>Plus d&apos;un document est ouvert.&lt;br&gt;Fermer quand même la fenêtre ?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="304"/>
@@ -693,7 +693,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1578"/>
         <source>Sign Up</source>
-        <translation>Créer bureau de cloud</translation>
+        <translation>Créer bureau dans le Cloud</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1685"/>
@@ -706,7 +706,7 @@
     <message>
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
-        <translation>Sous licence de</translation>
+        <translation>Sous licence</translation>
     </message>
 </context>
 <context>
@@ -819,27 +819,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>La mise à jour a échoué : manque de mémoire !</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>La mise à jour a échoué : erreur de connexion au serveur !</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>La mise à jour a échoué : URL incorrecte !</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>La mise à jour a échoué : impossible de créer un fichier !</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>La mise à jour a échoué : erreur de connexion au réseau !</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -956,7 +956,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>La mise à jour du service est disponible (version %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -991,7 +991,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="889"/>
         <source>Update is available</source>
-        <translation>La mise à jour est disponible</translation>
+        <translation>Une mise à jour est disponible</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="890"/>

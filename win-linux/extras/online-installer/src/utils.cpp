@@ -135,7 +135,12 @@ namespace NS_Utils
             wc.hInstance     = hInst;
             wc.lpszClassName = L"FakeWindowClass";
             RegisterClass(&wc);
-            fakeParent = CreateWindowEx(0, wc.lpszClassName, L"", WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, NULL, NULL, hInst, NULL);
+            fakeParent = CreateWindowEx(0, wc.lpszClassName, _TR(CAPTION), WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, NULL, NULL, hInst, NULL);
+            HICON hIcon = (HICON)LoadImage(hInst, MAKEINTRESOURCE(IDI_MAINICON), IMAGE_ICON, 96, 96, LR_DEFAULTCOLOR | LR_SHARED);
+            SendMessage(fakeParent, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+            SendMessage(fakeParent, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+            ShowWindow(fakeParent, SW_SHOWMINIMIZED);
+            UpdateWindow(fakeParent);
             parent = fakeParent;
         }
 
@@ -218,7 +223,7 @@ namespace NS_Utils
             accept = (IDOK == NS_Utils::ShowTaskDialog(parent, msg.c_str(), TD_INFORMATION_ICON));
             if (accept) {
                 PostMessage(app_hwnd, UM_INSTALL_UPDATE, 0, 0);
-                Sleep(1000);
+                Sleep(3000);
                 while(true) {
                     if ((app_hwnd = FindWindow(WINDOW_CLASS_NAME, NULL)) != nullptr) {
                         wstring msg(_TR(MSG_ERR_CLOSE_APP));
@@ -355,6 +360,21 @@ namespace NS_File
 //        CloseHandle(snapShot);
 //        return false;
 //    }
+
+    bool readFile(const wstring &filePath, list<wstring> &linesList)
+    {
+        std::wifstream file(filePath.c_str(), std::ios_base::in);
+        if (!file.is_open()) {
+            NS_Logger::WriteLog(L"An error occurred while opening:\n" + filePath);
+            return false;
+        }
+        wstring line;
+        while (std::getline(file, line))
+            linesList.push_back(line);
+
+        file.close();
+        return true;
+    }
 
     bool fileExists(const wstring &filePath)
     {

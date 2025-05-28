@@ -22,7 +22,7 @@
 #define REGISTRY_THEME_KEY "UITheme"
 #define REGISTRY_THEME_KEY_7_2 "UITheme2"
 #define THEME_DEFAULT_DARK_ID "theme-dark"
-#define THEME_DEFAULT_LIGHT_ID "theme-classic-light"
+#define THEME_DEFAULT_LIGHT_ID "theme-white"
 #define THEME_ID_SYSTEM "theme-system"
 
 namespace NSTheme {
@@ -241,6 +241,7 @@ public:
             {"theme-dark", ":/themes/theme-dark.json"},
             {"theme-contrast-dark", ":/themes/theme-contrast-dark.json"},
             {"theme-gray", ":/themes/theme-gray.json"},
+            {"theme-white", ":/themes/theme-white.json"},
         };
 
         GET_REGISTRY_USER(_reg_user);

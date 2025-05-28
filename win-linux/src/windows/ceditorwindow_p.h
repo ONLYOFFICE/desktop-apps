@@ -495,31 +495,30 @@ public:
         switch (panel()->data()->contentType()) {
         case AscEditorType::etDocument:
             background = GetColorValueByRole(ecrTabWordActive);
-            border = background;
+            // border = background;
             break;
         case AscEditorType::etPresentation:
             background = GetColorValueByRole(ecrTabSlideActive);
-            border = background;
+            // border = background;
             break;
         case AscEditorType::etSpreadsheet:
             background = GetColorValueByRole(ecrTabCellActive);
-            border = background;
+            // border = background;
             break;
         case AscEditorType::etDocumentMasterForm:
         case AscEditorType::etPdf:
             background = GetColorValueByRole(ecrTabViewerActive);
-            border = background;
+            // border = background;
             break;
         case AscEditorType::etDraw:
             background = GetColorValueByRole(ecrTabDrawActive);
-            border = background;
+            // border = background;
             break;
         default:
             background = GetColorValueByRole(ecrWindowBackground);
-            border = GetColorValueByRole(ecrWindowBorder);
+            // border = GetColorValueByRole(ecrWindowBorder);
         }
-        if (GetCurrentTheme().id() == L"theme-gray")
-            border = GetColorValueByRole(ecrWindowBorder);
+        border = GetColorValueByRole(ecrWindowBorder);
 
         window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)), window->isActiveWindow());
     }

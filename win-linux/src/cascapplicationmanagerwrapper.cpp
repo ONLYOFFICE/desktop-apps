@@ -1330,6 +1330,14 @@ void CAscApplicationManagerWrapper::initializeApp()
     EditorJSVariables::setVariable("rtl", _is_rtl ? "yes" : "no");
 
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
+
+    std::vector<std::pair<std::string, std::string>> layouts = _app.GetKeyboardLayoutList();
+    QJsonObject kbLangs;
+    for (const auto &lut : layouts) {
+        kbLangs.insert(QString::fromStdString(lut.first), QString::fromStdString(lut.second));
+    }
+    QJsonObject _ls_ = {{"langs", kbLangs}};
+    EditorJSVariables::applyVariable("keyboard", _ls_);
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())},

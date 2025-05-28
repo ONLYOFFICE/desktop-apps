@@ -118,7 +118,7 @@
 }
 
 + (NSString*)defaultThemeId:(BOOL)isdark {
-    return isdark ? uiThemeDark : uiThemeClassicLight;
+    return isdark ? uiThemeDark : uiThemeWhite;
 }
 
 + (NSColor*)currentThemeColor:(NSString*)name {
@@ -131,6 +131,7 @@
 
     if ([name isEqualToString:tabActiveTextColor]) {
         if ( [theme isEqualToString:uiThemeGray] ) return UIColorFromRGB(0x444);
+        else if ( [theme isEqualToString:uiThemeWhite] ) return UIColorFromRGB(0x444);
         else return NSColor.whiteColor;
     } else if ([name isEqualToString:btnPortalActiveBackgroundColor]) {
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x333333);
@@ -144,6 +145,7 @@
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x2a2a2a);
         else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);
         else if ( [theme isEqualToString:uiThemeGray] ) return UIColorFromRGB(0xf7f7f7);
+        else if ( [theme isEqualToString:uiThemeWhite] ) return UIColorFromRGB(0xf3f3f3);
         else {
             if ([name isEqualToString:tabWordActiveBackgroundColor]) {
                return [NSColor brendDocumentEditor];

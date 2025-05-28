@@ -263,6 +263,7 @@ private:
 //        ,{"lt-LT", "Lietuvių kalba"}
         ,{"be-BY", {"Беларуская мова", "Belarusian"}}
         ,{"uk-UA", {"Украї́нська мо́ва", "Ukrainian"}}
+        ,{"ur-PK", {"اردو", "Urdu"}}
         ,{"lo-LA", {"ພາສາລາວ", "Lao"}}
         ,{"gl-ES", {"Galego", "Galego"}}
         ,{"si-LK", {"සිංහල", "Sinhala (Sri Lanka)"}}

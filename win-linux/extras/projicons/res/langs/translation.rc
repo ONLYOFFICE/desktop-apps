@@ -758,3 +758,21 @@ BEGIN
     IDS_JUMP_XLSX  "Fletëllogaritëse e re"
     IDS_JUMP_PPTX  "Prezantim i ri"
 END
+
+LANGUAGE LANG_URDU, SUBLANG_DEFAULT
+STRINGTABLE
+BEGIN
+    IDS_DOCX  "آفس اوپن XML دستاویز"
+    IDS_XLSX  "آفس اوپن XML اسپریڈشیٹ"
+    IDS_PPTX  "آفس اوپن XML پریزنٹیشن"
+    IDS_PDF   "پی ڈی ایف فارم"
+
+    IDS_NEW_DOCX  "نیا آفس اوپن XML دستاویز"
+    IDS_NEW_XLSX  "نیا آفس اوپن XML اسپریڈشیٹ"
+    IDS_NEW_PPTX "نیا آفس اوپن XML پریزنٹیشن"
+    IDS_NEW_PDF   "نیا پی ڈی ایف فارم"
+
+    IDS_JUMP_DOCX  "نئی دستاویز"
+    IDS_JUMP_XLSX  "نئی اسپریڈشیٹ"
+    IDS_JUMP_PPTX  "نئی پیشکش"
+END
