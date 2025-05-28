@@ -497,7 +497,7 @@ li.menu-item {
 .action-panel {
   display: none;
   height: 100%;
-  padding-block: 40px;
+  padding: 40px;
   background-color: @background-action-panel;
 
   > label {
@@ -544,8 +544,12 @@ li.menu-item {
     }
 
     #box-open-acts {
-      text-align: left;
-      padding: 16px;
+        text-align: left;
+        padding: 16px;
+        #btn-openlocal {
+            border-radius: 4px;
+            background: @background-accent-button;
+        } 
     }
 
     #area-dnd-file {
@@ -1622,23 +1626,23 @@ li.menu-item {
 
 
 .templates {
-.table-caption {
+    .table-caption {
         font-size: 20px;
         font-weight: bold;
     }  #frame {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
 
-  section {
-    height: 100%;
-    overflow-y: auto;
-  }
+    section {
+        height: 100%;
+        overflow-y: auto;
+    }
 
-  #idx-nav-templates {
+    #idx-nav-templates {
         padding-top: 12px;
         text-align: left;
         border-bottom: @scaled-one-px solid @border-divider;
@@ -1665,10 +1669,8 @@ li.menu-item {
             justify-content: center;
             margin-top: 40px;
 
-        .no-results-icon {
-            width: 120px;
-            height: 120px;
-            margin: 24px 0 12px;
+        .nothing-found-light-icon {
+            margin-top: 24px;
         }
 
         .no-results-title {
@@ -1692,10 +1694,10 @@ li.menu-item {
 
         #template-search {
             width: 100%;
-            padding: 8px 32px 8px 32px;
+            padding: 8px 32px 8px 36px;
             font-size: 14px;
             border-radius: 8px;
-    border: @scaled-one-px solid @border-divider;
+            border: @scaled-one-px solid @border-divider;
             position: relative;
             outline: none;
             color: @text-normal;
@@ -1704,11 +1706,11 @@ li.menu-item {
     }
     .search-icon {
         position: absolute;
-        top: 50%;
+        top: 55%;
         left: 10px;
         transform: translateY(-50%);
-        width: 16px;
-        height: 16px;
+        width: 24px;
+        height: 24px;
         background: no-repeat;
         background-size: contain;
         z-index: 2;
@@ -1758,10 +1760,11 @@ li.menu-item {
     }
 
     .nav-item {
-    padding: 8px 10px 8px 4px;
+        padding: 8px 10px 8px 4px;
         cursor: pointer;
         color: @text-normal;
         font-size: 14px;
+        text-align: center;
         font-weight: normal;
         display: inline-block;
         position: relative;
@@ -1769,7 +1772,7 @@ li.menu-item {
             padding: 8px 4px 8px 10px;
         }
 
-    &::before {
+        &::before {
             content: attr(data-value);
             font-weight: bold;
             height: 0;
@@ -1779,7 +1782,7 @@ li.menu-item {
         }
 
         &.selected {
-      font-weight: bold;
+            font-weight: bold;
             &::after {
                 content: '';
                 position: absolute;
@@ -1788,41 +1791,39 @@ li.menu-item {
                 bottom: 0;
                 height: 3px;
                 background-color: @highlight-toolbar-tab-underline-document;
-    border-radius: 2px;
+                border-radius: 2px;
                 .rtl & {
-    left: 6px;
-      right: 0px;
+                    left: 6px;
+                    right: 0px;
                 }
             }
+        }
     }
-  }
 
-  .item {
-
-    cursor: pointer;
-    width: 220px;
-    display: flex;
-    flex-direction: column;
-border: @scaled-one-px solid @border-divider;
-    border-radius: 8px;
-      overflow: hidden;
-      &:hover {
+    .item {
+        cursor: pointer;
+        width: 220px;
+        display: flex;
+        flex-direction: column;
+        border: @scaled-one-px solid @border-divider;
+        border-radius: 8px;
+        overflow: hidden;
+        &:hover {
             box-shadow: 0 2px 6px @highlight-button-hover;
         }
-
             .wrapper {
                 width: 220px;
-      height: 140px;
+                height: 140px;
                 border-bottom: @scaled-one-px solid @border-divider;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 background: @background-tabbar;
-    }
+            }
 
-    img, svg {
+            img, svg {
                 max-width: 100%;
-      max-height: 100%;
+                max-height: 100%;
             }
 
             .card {
@@ -1858,8 +1859,8 @@ border: @scaled-one-px solid @border-divider;
                 }
             }
 
-    .title {
-      flex: 1;
+            .title {
+                flex: 1;
                 padding: 0 8px;
                 font-size: 14px;
                 color: @text-normal;
@@ -1871,52 +1872,50 @@ border: @scaled-one-px solid @border-divider;
             .cloud-icon {
                 width: 16px;
                 height: 16px;
-                background: -webkit-image-set( data-uri('../../res/img/cloud-icon@1.25x.png') 1.25x, data-uri('../../res/img/cloud-icon@1.5x.png') 1.5x, data-uri('../../res/img/cloud-icon@1.75x.png') 1.75x) no-repeat;
                 background-size: contain;
+            }
     }
-  }
 
-  .table-templates.list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  padding: 10px;
+    .table-templates.list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 10px;
     }
-  &.win_xp {
-    .icon {
-      .box {
-        left: 0;
-        transform: none;
-      }
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    &.win_xp {
+        .icon {
+            .box {
+                left: 0;
+                transform: none;
+            }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
   }
 }
 
 #idx-update-cnt {
 
-  padding-top: 20px;
+    padding-top: 20px;
 
-  .status-field {
-    height: 30px;
+    .status-field {
+        height: 30px;
 
-    &:first-child {
-      //margin-bottom: 20px;
+        &:first-child {
+        //margin-bottom: 20px;
+        }
     }
-  }
 
-  #idx-update-status-text {
+    #idx-update-status-text {
         font-size: 14px;
     }
-    }
+}
 
-    #idx-update-btnaction {
-      height: 32px;
-        width: 137px;
-      padding: 0px;
+#idx-update-btnaction {
+    height: 32px;
+    width: 137px;
+    padding: 0px;
     border-radius: 4px;
 }
 
