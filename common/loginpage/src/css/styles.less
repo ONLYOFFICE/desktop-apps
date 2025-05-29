@@ -523,6 +523,7 @@ li.menu-item {
   }
 
   &.recents {
+    padding: 40px 0;
   }
 
   &.templates {
@@ -533,7 +534,10 @@ li.menu-item {
   &.open {
     .file-list-body .row {
       justify-content: normal;
-      gap: clamp(10px, 1vw, 104px);
+      gap: clamp(10px, 6vw, 104px);
+      > div {
+            min-width: 30px; 
+        }
     }
 
     .file-list-title {
