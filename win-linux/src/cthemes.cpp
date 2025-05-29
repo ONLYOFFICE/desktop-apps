@@ -20,7 +20,7 @@
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
 #define REGISTRY_THEME_KEY "UITheme"
-#define REGISTRY_THEME_KEY_7_2 "UITheme2"
+// #define REGISTRY_THEME_KEY_7_2 "UITheme2"
 #define THEME_DEFAULT_DARK_ID "theme-night"
 #define THEME_DEFAULT_LIGHT_ID "theme-white"
 #define THEME_ID_SYSTEM "theme-system"
@@ -250,8 +250,8 @@ public:
         QString user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_ID_SYSTEM).toString();
 
         /* TODO: remove for ver 7.3. for compatibility with ver 7.1 only */
-        if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
-            user_theme = _reg_user.value(REGISTRY_THEME_KEY_7_2, THEME_ID_SYSTEM).toString();
+        // if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
+        //     user_theme = _reg_user.value(REGISTRY_THEME_KEY_7_2, THEME_ID_SYSTEM).toString();
 
 #ifdef Q_OS_WIN
         QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
@@ -607,8 +607,8 @@ auto CThemes::setCurrentTheme(const std::wstring& name) -> void
         else _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
 
         // TODO: remove after ver 7.5. back to keep theme id in REGISTRY_THEME_KEY
-        if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
-            _reg_user.remove(REGISTRY_THEME_KEY_7_2);
+        // if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
+        //     _reg_user.remove(REGISTRY_THEME_KEY_7_2);
 
     }
 }
