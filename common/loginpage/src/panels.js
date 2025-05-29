@@ -175,6 +175,11 @@ $(document).ready(function() {
         } 
     }, 50);
 
+    $('.scrollable').on('scroll', e => {
+        if ( window.Menu && Menu.opened ) {
+            Menu.closeAll();
+        }
+    });
 });
 
 function onActionClick(e) {

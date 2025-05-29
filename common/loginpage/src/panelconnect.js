@@ -154,7 +154,7 @@
                                 <i class="icon icon-plus img-el" />
                         </button>
                     </div>
-                    <div class="sidebar-block-content flexbox">
+                    <div class="sidebar-block-content flexbox scrollable">
                         <div class="table-box flex-fill"><table class="table-files list"></table></div>
                     </div>`;
 

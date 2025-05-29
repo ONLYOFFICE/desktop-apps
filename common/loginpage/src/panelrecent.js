@@ -83,7 +83,7 @@
                             <div class="col-location" l10n>${_lang.location}</div>
                             <div class="col-date" l10n>${_lang.lastOpened}</div>
                         </div>
-                        <div class="file-list-body"></div>
+                        <div class="file-list-body scrollable"></div>
                     </div>
 
                     <div id="box-recent">
@@ -95,7 +95,7 @@
                             <div class="col-location" l10n>${_lang.location}</div>
                             <div class="col-date" l10n>${_lang.lastOpened}</div>
                         </div>
-                        <div class="file-list-body"></div>
+                        <div class="file-list-body scrollable"></div>
                     </div>
                     </div>
                 </div>
