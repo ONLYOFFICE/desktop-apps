@@ -11,6 +11,7 @@
 @import 'colors_classic';
 @import 'colors_dark';
 @import 'colors_contrast_dark';
+@import 'colors_night';
 @import 'variables';
 @import 'component';
 @import 'window';
@@ -74,7 +75,6 @@ button {
 h3, caption {
   font-weight: 100;
   font-size: 24px;
-  color: @text-normal;
 }
 
 h4 {
@@ -464,6 +464,9 @@ li.menu-item {
           &:hover {
             opacity: 1;
           }
+
+          fill: @background-icon-normal;
+          stroke: @icon-normal;
         }
       }
 
@@ -635,6 +638,7 @@ li.menu-item {
   margin-inline: auto;
   margin-bottom: -40px;
   overflow: hidden;
+  color: @text-normal;
 
   .search-bar {
     h1 {
