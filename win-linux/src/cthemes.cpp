@@ -21,7 +21,7 @@
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
 #define REGISTRY_THEME_KEY "UITheme"
 #define REGISTRY_THEME_KEY_7_2 "UITheme2"
-#define THEME_DEFAULT_DARK_ID "theme-dark"
+#define THEME_DEFAULT_DARK_ID "theme-night"
 #define THEME_DEFAULT_LIGHT_ID "theme-white"
 #define THEME_ID_SYSTEM "theme-system"
 
@@ -242,6 +242,7 @@ public:
             {"theme-contrast-dark", ":/themes/theme-contrast-dark.json"},
             {"theme-gray", ":/themes/theme-gray.json"},
             {"theme-white", ":/themes/theme-white.json"},
+            {"theme-night", ":/themes/theme-night.json"},
         };
 
         GET_REGISTRY_USER(_reg_user);

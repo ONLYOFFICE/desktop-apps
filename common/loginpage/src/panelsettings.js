@@ -40,8 +40,8 @@
     const THEME_TYPE_DARK = 'dark';
     const THEME_TYPE_SYSTEM = 'system';
 
-    const THEME_ID_DEFAULT_LIGHT = 'theme-classic-light';
-    const THEME_ID_DEFAULT_DARK = 'theme-dark';
+    const THEME_ID_DEFAULT_LIGHT = 'theme-white';
+    const THEME_ID_DEFAULT_DARK = 'theme-night';
 
     const themes_map = {
         'theme-system': {
@@ -71,6 +71,10 @@
         'theme-white': {
             text: 'White'/*utils.Lang.settOptThemeGray*/,
             type: 'light',
+        },
+        'theme-night': {
+            text: 'Night'/*utils.Lang.settOptThemeGray*/,
+            type: 'dark',
         },
     }
 
@@ -331,6 +335,9 @@
 
             const theme_id = uitheme.relevant_theme_id();
             if ( !$("body").hasClass(theme_id) ) {
+                if ( !type && themes_map[id] )
+                    type = themes_map[id].type;
+
                 const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(theme_id)) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
                 document.body.className = `${_cls?_cls+' ':''}${theme_id} ${_type}`;
