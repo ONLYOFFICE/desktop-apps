@@ -346,14 +346,14 @@ li.menu-item {
 .file-list-head, .file-list-body .row {
   display: grid;
   gap: 8px;
-  grid-template-columns: 264px 248px 156px;
+  grid-template-columns: minmax(160px, 264px) minmax(140px, 248px) minmax(100px, 156px);
   align-items: center;
   justify-content: space-between;
   padding-left: 16px;
   padding-right: 56px;
 
   @media (max-width: 1054px) {
-    grid-template-columns: 264px 156px;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -366,12 +366,6 @@ li.menu-item {
 
     .rtl & {
       text-align: right;
-    }
-  }
-
-  .col-location {
-    @media (max-width: 1054px) {
-      display: none;
     }
   }
 
@@ -396,15 +390,17 @@ li.menu-item {
     padding-top: 8px;
     padding-bottom: 8px;
 
-    .col-name, .col-location, .col-date {
+    .col-name, .col-date {
       display: flex;
       align-items: center;
       gap: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .col-name {
       height: 32px;
-      gap: 0;
 
       .icon {
         width: 32px;
@@ -425,9 +421,12 @@ li.menu-item {
 
     .col-location {
       height: 24px;
-
-      @media (max-width: 1054px) {
-        display: none;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      .rtl & {
+        text-align: right;
       }
     }
 
@@ -524,6 +523,7 @@ li.menu-item {
   }
 
   &.recents {
+    padding: 40px 0;
   }
 
   &.templates {
@@ -534,8 +534,10 @@ li.menu-item {
   &.open {
     .file-list-body .row {
       justify-content: normal;
-      gap: 104px;
-      grid-template-columns: 264px 240px;
+      gap: clamp(10px, 6vw, 104px);
+      > div {
+            min-width: 30px; 
+        }
     }
 
     .file-list-title {
@@ -649,7 +651,10 @@ li.menu-item {
 
 .open-panel-container {
   .recent-panel-container();
-  gap: 8px;
+   padding: initial;
+   grid-template-rows: auto 1fr auto;
+   overflow-y: auto;
+   gap: 8px;
 }
 
 #area-document-creation-grid {
@@ -1712,7 +1717,7 @@ li.menu-item {
 
     .tool.close {
         position: absolute;
-        top: 50%;
+        top: 55%;
         right: 10px;
         transform: translateY(-50%);
         width: 16px;
