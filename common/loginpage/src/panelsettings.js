@@ -334,6 +334,9 @@
 
             const theme_id = uitheme.relevant_theme_id();
             if ( !$("body").hasClass(theme_id) ) {
+                if ( !type && themes_map[id] )
+                    type = themes_map[id].type;
+
                 const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(theme_id)) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
                 document.body.className = `${_cls?_cls+' ':''}${theme_id} ${_type}`;
