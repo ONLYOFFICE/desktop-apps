@@ -89,7 +89,8 @@
                                     <div id="search-no-results" class="search-no-results" style="display: none;">
                                     <div class="icon-box">
                                         <svg class="icon nothing-found-light-icon" data-iconname="nothing-found-light" data-precls="tool-icon">
-                                            <use href="#nothing-found-light"></use>
+                                            <use id="idx-nothing-found-light" href="#nothing-found-light"></use>
+                                            <use id="idx-nothing-found-dark" href="#nothing-found-dark"></use>
                                         </svg>
                                     </div>
                                     <p class="no-results-title">${_lang.tplNoResultsTitle}</p>
