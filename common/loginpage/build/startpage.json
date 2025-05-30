@@ -85,6 +85,7 @@
                     ,"../src/panelexternal.js"
                     ,"../src/dialogconnect.min.js"
                     ,"../src/panels.js"
+                    ,"../src/about-dialog.js"
                 ],
                 "dest": "../deploy/build.js"
             }

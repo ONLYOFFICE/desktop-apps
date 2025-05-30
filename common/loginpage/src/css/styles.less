@@ -1670,6 +1670,20 @@ li.menu-item {
 
         .nothing-found-light-icon {
             margin-top: 24px;
+
+            .theme-type-dark & {
+                #idx-nothing-found-light {
+                display: none;
+                }
+
+                #idx-nothing-found-dark{
+                display: block;
+                }
+            }
+
+            #idx-nothing-found-dark {
+                display: none;
+            }     
         }
 
         .no-results-title {
