@@ -10,7 +10,7 @@
     --background-scrim: fade(#000, 20%);
     --background-scroll-thumb: #e0e0e0;
     --background-action-panel: #fff;
-    --background-icon-normal: #fff;
+    --background-icon-normal: transparent;
 
     --highlight-button-hover: #e0e0e0;
     --highlight-button-pressed: #ccc;
@@ -33,6 +33,7 @@
     --border-error: #f62211;
     --border-sidebar: #cbcbcb;
     --border-sidebar-item: transparent;
+    --border-sidebar-icon: transparent;
     --border-radius-sidebar-item: 8px;
     --border-radius-sidebar-item-icon: 6px;
     --border-radius-list-files-item: 0;
@@ -89,6 +90,8 @@
 @border-error: var(--border-error);
 @border-sidebar: var(--border-sidebar);
 @border-sidebar-item: var(--border-sidebar-item);
+@border-sidebar-icon: var(--border-sidebar-icon, transparent);
+
 @border-radius-sidebar-item: var(--border-radius-sidebar-item);
 @border-radius-sidebar-item-icon: var(--border-radius-sidebar-item-icon);
 @border-radius-list-files-item: var(--border-radius-list-files-item, 0);
