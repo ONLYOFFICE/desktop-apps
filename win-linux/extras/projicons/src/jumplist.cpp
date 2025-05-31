@@ -106,7 +106,7 @@ HRESULT _AddTasksToList(ICustomDestinationList *pcdl, const QStringList &list)
     HRESULT hr = CoCreateInstance(CLSID_EnumerableObjectCollection, NULL, CLSCTX_INPROC, IID_PPV_ARGS(&poc));
     if (SUCCEEDED(hr))
     {
-        PCWSTR args[] = {
+        PCWSTR args[MAX_TASK_NUM] = {
             L"--new:word",
             L"--new:cell",
             L"--new:slide",
