@@ -1,7 +1,7 @@
 
 :root {
-    --background-normal: #F3F3F3;
-    --background-normal-element: #f3f3f3;
+    --background-normal: #fff;
+    --background-normal-element: #fff;
     --background-normal-element-light: #f9f9f9;
     --background-tabbar: #f7f7f7;
     /*--background-button: #fff;*/
@@ -23,7 +23,7 @@
     --highlight-text-select: #3494fb;
     --highlight-scroll-thumb-hover: #ccc;
     --highlight-scroll-track-hover: fade(#000, 3%);
-    --highlight-sidebar-item-pressed: #fff;
+    --highlight-sidebar-item-pressed: #ccc;
     --highlight-toolbar-tab-underline-document: #4A87E7;
 
     --border-tabbar: #cbcbcb;
@@ -31,10 +31,11 @@
     --border-regular-control: #c0c0c0;
     --border-control-focus: #848484;
     --border-error: #f62211;
-    --border-sidebar: var(--background-normal);
+    --border-sidebar: #cbcbcb;
     --border-sidebar-item: transparent;
     --border-radius-sidebar-item: 8px;
     --border-radius-sidebar-item-icon: 6px;
+    --border-radius-list-files-item: 0;
 
     --text-normal: fade(#000, 80%);
     --text-normal-pressed: fade(#000, 80%);
@@ -51,7 +52,8 @@
     --disabled-element-opacity: .4;
     --theme-inverted-image-filter: none;
 
-    --shadow-sidebar-item-pressed: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    --shadow-sidebar-item-pressed: 0 none;
+    --layout-list-items-gap: 0;
 }
 
 @background-normal: var(--background-normal);
@@ -89,6 +91,8 @@
 @border-sidebar-item: var(--border-sidebar-item);
 @border-radius-sidebar-item: var(--border-radius-sidebar-item);
 @border-radius-sidebar-item-icon: var(--border-radius-sidebar-item-icon);
+@border-radius-list-files-item: var(--border-radius-list-files-item, 0);
+
 
 @text-normal: var(--text-normal);
 @text-normal-pressed: var(--text-normal-pressed);
@@ -104,3 +108,4 @@
 
 @disabled-element-opacity: var(--disabled-element-opacity);
 @theme-inverted-image-filter: var(--theme-inverted-image-filter);
+@layout-list-items-gap: var(--layout-list-items-gap, 0);

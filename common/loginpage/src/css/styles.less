@@ -12,6 +12,8 @@
 @import 'colors_dark';
 @import 'colors_contrast_dark';
 @import 'colors_night';
+@import 'colors_white';
+@import 'colors_gray';
 @import 'variables';
 @import 'component';
 @import 'window';
@@ -381,12 +383,12 @@ li.menu-item {
 .file-list-body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: @layout-list-items-gap;
   overflow-y: auto;
 
   .row {
     position: relative;
-    border-radius: 4px;
+    border-radius: @border-radius-list-files-item;
     padding-top: 8px;
     padding-bottom: 8px;
 
@@ -501,6 +503,7 @@ li.menu-item {
   height: 100%;
   padding: 40px;
   background-color: @background-action-panel;
+  color: @text-normal;
 
   > label {
     position: absolute;
@@ -550,10 +553,10 @@ li.menu-item {
     #box-open-acts {
         text-align: left;
         padding: 16px;
-        #btn-openlocal {
-            border-radius: 4px;
-            background: @background-accent-button;
-        } 
+        /*#btn-openlocal {*/
+            /*border-radius: 4px;*/
+            /*background: @background-accent-button;*/
+        /*} */
     }
 
     #area-dnd-file {
