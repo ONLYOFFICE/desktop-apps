@@ -8,8 +8,7 @@
         "brand-pdf": "#aa5252",
         "brand-draw": "#444796",
 
-        "window-background1": "#f1f1f1",
-        "window-background": "#e4e4e4",
+        "window-background": "#f5f5f5",
         "window-border": "#888",
 
         "text-normal": "#444",
@@ -20,7 +19,7 @@
         "tool-button-hover-background": "#cecece",
         "tool-button-pressed-background": "#b7b7b7",
         "tool-button-active-background1": "#fff",
-        "tool-button-active-background": "#f3f3f3",
+        "tool-button-active-background": "#fff",
 
         "download-widget-background": "#fff",
         "download-widget-border": "#d1d1d1",
