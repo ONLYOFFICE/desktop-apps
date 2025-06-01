@@ -221,8 +221,10 @@
                         <td class="cell-tools">
                             <div class="hlayout">
                                 <button class="btn-quick more">
-                                    ${isSvgIcons? `<svg class = "icon"><use xlink:href="#more"></use></svg>` : ''}
-                                    <i class="icon img-el theme-inverted" />
+                                    <svg class = "icon" data-precls="tool-icon" data-iconname="more">
+                                        <use xlink:href="#more"></use>
+                                    </svg>
+                                    ${!isSvgIcons ? `<i class="icon tool-icon more" />` : ''}
                                 </button>
                             </span>
                         </td>`;
@@ -240,11 +242,13 @@
             return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
         },
         onscale: function (pasteSvg) {
-            // $('button.logout',this.$panelPortalList).each(function (){
-            //     let elm = $(this);
-            //     if(pasteSvg && !elm.find('svg').length)
-            //         elm.append($('<svg class = "icon"><use xlink:href="#logout"></use></svg>'));
-            // });
+            // if ( !pasteSvg ) {
+            //     $('button .icon.more',this.$panelPortalList).each(function (){
+            //         let elm = $(this);
+            //         if( !elm.find('i.icon').length )
+            //             elm.append($('<i class="icon tool-icon more" />'));
+            //     });
+            // }
         }
     });
 

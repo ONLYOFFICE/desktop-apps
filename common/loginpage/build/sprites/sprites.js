@@ -17,7 +17,7 @@ module.exports = (grunt, rootpathprefix) => {
             src: [`${_res_root}/${_icons_dir}/*.png`],
             dest: `${_res_root}/generated/${_dest_name}`,
             destCss: `${_res_root}/../../src/css/${opts.spritename}@${opts.scale}.less`,
-            imgPath: `../res/img/generated/${_dest_name}`,
+            imgPath: `../../res/img/generated/${_dest_name}`,
             cssTemplate: `${_res_root}/${_icons_dir}/.css.handlebars`,
             algorithm: 'top-down',
             cssHandlebarsHelpers: helpers

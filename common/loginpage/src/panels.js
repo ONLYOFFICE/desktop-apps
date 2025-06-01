@@ -180,6 +180,17 @@ $(document).ready(function() {
             Menu.closeAll();
         }
     });
+
+    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+
+    const mql = window.matchMedia(mq);
+    mql.addEventListener('change', e => {
+        CommonEvents.fire("icons:svg", [!e.target.matches]);
+        replaceIcons(!e.target.matches);
+    });
+
+    replaceIcons(!mql.matches);
 });
 
 function onActionClick(e) {
@@ -243,14 +254,14 @@ var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
 
 {
-    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
-                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+    // const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+    //                             "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
 
-    const mql = window.matchMedia(mq);
-    mql.addEventListener('change', e => {
-        CommonEvents.fire("icons:svg", [!e.target.matches]);
-        replaceIcons(!e.target.matches);
-    });
+    // const mql = window.matchMedia(mq);
+    // mql.addEventListener('change', e => {
+    //     CommonEvents.fire("icons:svg", [!e.target.matches]);
+    //     replaceIcons(!e.target.matches);
+    // });
 
     // replaceIcons(!mql.matches);
 }

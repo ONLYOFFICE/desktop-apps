@@ -18,6 +18,12 @@
 @import 'component';
 @import 'window';
 @import 'loader';
+@import 'toolicons@1.25x';
+@import 'toolicons@1.5x';
+@import 'toolicons@1.75x';
+@import 'toolicons20@1.5x.less';
+@import 'toolicons20@1.25x.less';
+@import 'toolicons20@1.75x.less';
 
 * {
   box-sizing: border-box;
@@ -258,7 +264,7 @@ li.menu-item {
       background: @highlight-sidebar-item-pressed;
       outline: 1px solid @border-sidebar-item;
       outline-offset: -1px;
-      font-weight: 500;
+      font-weight: @action-active-font-weight;
       box-shadow: var(--shadow-sidebar-item-pressed);
     }
 
@@ -306,6 +312,21 @@ li.menu-item {
   > li.menu-item.devider {
     flex-grow: 1;
   }
+}
+
+.tool-icon {
+    width: 24px;
+    height: 24px;
+
+    .theme-type-dark & {
+        background-position-x: 24px;
+    }
+}
+
+.tool-icon__20 {
+    .theme-type-dark & {
+        background-position-x: 20px;
+    }
 }
 
 .sidebar-block-title {
@@ -769,11 +790,11 @@ li.menu-item {
 
             stroke: @icon-normal;
         }
-        .icon {
-            width: 24px;
-            height: 24px;
-            background-position: -86px -48px;
-        }
+        /*.icon {*/
+            /*width: 24px;*/
+            /*height: 24px;*/
+            /*background-position: -86px -48px;*/
+        /*}*/
 
     &:hover {
       opacity: 1;
@@ -873,8 +894,8 @@ li.menu-item {
 
   .icon {
     float: left;
-    width: 24px;
-    height: 30px;
+    /*width: 24px;*/
+    /*height: 30px;*/
     position: relative;
 
     &.docx {
@@ -2038,7 +2059,7 @@ li.menu-item {
         }
     }
 
-    .icon {
+    .cicon .icon {
         width: 28px;
         height: 28px;
     }
