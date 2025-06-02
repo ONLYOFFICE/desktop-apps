@@ -2,11 +2,11 @@
     "id": "theme-night",
     "type": "dark",
     "values": {
-        "brand-word": "#2a2a2a",
-        "brand-slide": "#2a2a2a",
-        "brand-cell": "#2a2a2a",
-        "brand-pdf": "#2a2a2a",
-        "brand-draw": "#2a2a2a",
+        "brand-word": "#222222",
+        "brand-slide": "#222222",
+        "brand-cell": "#222222",
+        "brand-pdf": "#222222",
+        "brand-draw": "#222222",
 
         "window-background": "#404040",
         "window-border": "#616161",
