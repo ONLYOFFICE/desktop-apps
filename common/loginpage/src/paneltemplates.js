@@ -127,9 +127,8 @@
                                               `<svg class="icon cloud-icon" data-iconname="location-local" data-precls="tool-icon">
                                                 <use href="#location-local"></use>
                                               </svg>`;                    
-            const icon_el = info.icon
-                ? `<img src="${info.icon}" alt="${info.name}" />`
-                : '';
+            const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
+                                         `<div class="box"><img src="${info.icon}">${badge}</div>`;
             return `<div id="${info.uid}" class='item' data-type="${type}">
                         <div class="wrapper">
                             ${icon_el}
@@ -181,7 +180,11 @@
 
                 collection.events.inserted.attach((col, model) => {
                     const $item = $(this.view.listitemtemplate(model));
-                    col.list.append($item);
+                    if (!model.isCloud) {
+                        col.list.prepend($item); 
+                    } else {
+                        col.list.append($item);
+                    }
                     col.list.parent().removeClass('empty');
                     applyFilter(this.view.$panel);
                 });
@@ -203,14 +206,26 @@
             setupCollection(this.templates);
         }
 
-        const _on_add_local_templates = function(tmpls) {
-            tmpls.forEach(item => {
-                const type = utils.formatToEditor(item.type);
-                if (['word', 'cell', 'slide', 'pdf'].includes(type)) {
-                    this.templates.add(new FileTemplateModel(item));
-                }
+        Collection.prototype.emptyLocal = function() {
+            const cloudItems = this.items.filter(item => item.isCloud);
+            this.empty();
+            cloudItems.forEach(item => {
+                this.add(item);
             });
-        }
+        };
+
+        const _on_add_local_templates = function(tmpls) {
+            this.templates.emptyLocal();
+
+            [...tmpls]
+                .reverse()
+                .forEach(item => {
+                    const type = utils.formatToEditor(item.type);
+                    if (['word', 'cell', 'slide', 'pdf'].includes(type)) {
+                        this.templates.add(new FileTemplateModel(item));
+                    }
+                });
+        };
 
         const _on_add_cloud_templates = function(data) {
             data.forEach(i => {
