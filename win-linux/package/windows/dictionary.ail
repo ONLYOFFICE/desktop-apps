@@ -180,48 +180,6 @@
     <STRING lang="zh" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <STRING lang="zh_TW" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
   </ENTRY>
-  <ENTRY id="Property.JUMP_LIST_ARG">
-    <STRING lang="en" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="ar" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="be" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="bg" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="ca" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nový_PDF_formulář"/>
-    <STRING lang="da" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neues_PDF-Formular"/>
-    <STRING lang="el" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="en_GB" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nuevo_formulario_PDF"/>
-    <STRING lang="fi" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_formulaire_PDF"/>
-    <STRING lang="gl" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="he" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="hu" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="id" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="it" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいPDFフォーム"/>
-    <STRING lang="ko" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="lv" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="nb" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="nl" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="pl" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="pt" value="Novo_documento Nova_folha_de_cálculo Nova_apresentação Novo_formulário_PDF"/>
-    <STRING lang="pt_BR" value="Novo_documento Nova_planilha Nova_apresentação Novo_formulário_PDF"/>
-    <STRING lang="ro" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новая_PDF-форма"/>
-    <STRING lang="sk" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Novi_PDF_obrazec"/>
-    <STRING lang="sq" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="sr_SP_Cyrillic" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="sr_SP_Latin" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="sv" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="tr" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="uk" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="ur" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="vi" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="zh" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <STRING lang="zh_TW" value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-  </ENTRY>
   <ENTRY id="Property.LOCALE">
     <STRING lang="en" value="en-US"/>
     <STRING lang="ar" value="ar-SA"/>

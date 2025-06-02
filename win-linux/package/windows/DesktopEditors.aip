@@ -28,7 +28,6 @@
     <ROW Property="ExtPfx" Value="ASC" ValueLocId="-"/>
     <ROW Property="FORMS" Value="1" ValueLocId="-"/>
     <ROW Property="IncompatibleVersion_ErrorText" Value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <ROW Property="JUMP_LIST_ARG" Value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <ROW Property="LOCALE" Value="en-US"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA" ValueLocId="-"/>
@@ -1076,7 +1075,7 @@
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_VerifyPrePrereq" Type="1" Source="Prereq.dll" Target="VerifyPrePrereq"/>
-    <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list [JUMP_LIST_ARG]"/>
+    <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list &quot;@[#DesktopEditors.exe],-1200;@[#DesktopEditors.exe],-1201;@[#DesktopEditors.exe],-1202;@[#DesktopEditors.exe],-1103&quot;"/>
     <ROW Action="IncompatibleVersion" Type="19" Target="[IncompatibleVersion_ErrorText]"/>
     <ROW Action="RemoveJumpList" Type="210" Source="DesktopEditors.exe" Target="--remove-jump-list"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][CompanyPath]\[DesktopPath]#MsiBuild32:[ProgramFilesFolder][CompanyPath]\[DesktopPath]"/>
