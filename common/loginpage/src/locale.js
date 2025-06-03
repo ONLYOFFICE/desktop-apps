@@ -148,6 +148,10 @@ l10n.en = {
     settOptDescAUpdateSilent: "Download and install update in background",
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
     settGpuUseMode: "Use graphics acceleration when available",
+    tplPDF: "PDF",
+    tplDocument: "Documents",
+    tplSpreadsheet: "Spreadsheet",
+    tplPresentation: "Presentations",
     tplPanelLocal: "Local",
     tplPanelCloud: "Cloud",
 }
