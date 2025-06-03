@@ -115,8 +115,6 @@ l10n.en_GB = {
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
     settRtlMode: "RTL Interface",
     settGpuUseMode: "Use graphics acceleration when available",
-    tplPanelLocal: "Local",
-    tplPanelCloud: "Cloud",
     tplCategory: "Categories",
     tplViewAll: "View all templates",
     tplPDF: "PDF",

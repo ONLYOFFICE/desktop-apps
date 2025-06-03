@@ -152,8 +152,6 @@ l10n.en = {
     tplDocument: "Documents",
     tplSpreadsheet: "Spreadsheet",
     tplPresentation: "Presentations",
-    tplPanelLocal: "Local",
-    tplPanelCloud: "Cloud",
 }
 
 
