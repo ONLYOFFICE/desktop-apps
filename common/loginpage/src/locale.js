@@ -152,6 +152,9 @@ l10n.en = {
     tplDocument: "Documents",
     tplSpreadsheet: "Spreadsheet",
     tplPresentation: "Presentations",
+    colFileName: "File name",
+    colLocation: 'Location',
+    colLastOpened: 'Last opened',
 }
 
 

@@ -79,9 +79,9 @@
                             <h3 l10n>${_lang.listRecoveryTitle}</h3>
                         </div>
                         <div class="file-list-head text-normal">
-                            <div class="col-name" l10n>${_lang.fileName}</div>
-                            <div class="col-location" l10n>${_lang.location}</div>
-                            <div class="col-date" l10n>${_lang.lastOpened}</div>
+                            <div class="col-name" l10n>${_lang.colFileName}</div>
+                            <div class="col-location" l10n>${_lang.colLocation}</div>
+                            <div class="col-date" l10n>${_lang.colLastOpened}</div>
                         </div>
                         <div class="file-list-body scrollable"></div>
                     </div>
@@ -91,9 +91,9 @@
                             <h3 l10n>${_lang.listRecentFileTitle}</h3>
                         </div>
                         <div class="file-list-head text-normal">
-                            <div class="col-name" l10n>${_lang.fileName}</div>
-                            <div class="col-location" l10n>${_lang.location}</div>
-                            <div class="col-date" l10n>${_lang.lastOpened}</div>
+                            <div class="col-name" l10n>${_lang.colFileName}</div>
+                            <div class="col-location" l10n>${_lang.colLocation}</div>
+                            <div class="col-date" l10n>${_lang.colLastOpened}</div>
                         </div>
                         <div class="file-list-body scrollable"></div>
                     </div>

@@ -125,9 +125,9 @@ l10n.en_GB = {
     tplSearchResult: "Results for",
     tplNoResultsTitle: "Nothing found",
     tplNoResultsText: "No results matching your query could be found",
-    fileName: "File name",
-    location: 'Location',
-    lastOpened: 'Last opened',
+    colFileName: "File name",
+    colLocation: 'Location',
+    colLastOpened: 'Last opened',
     labelDropFile: 'Drag you files here or',
     labelSelectFile: 'Select file',
 }
