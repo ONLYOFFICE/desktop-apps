@@ -32,9 +32,6 @@
 
 'use strict';
 $(document).ready(function() {
-    const l = {
-        actMain: 'Home',
-    };
     const _toolmenu_tpl = `
             <div class="main-column col-left tool-menu">
               <li class="menu-item">
@@ -44,7 +41,7 @@ $(document).ready(function() {
                             <use href="#home"></use>
                         </svg>
                     </div>
-                    <span class="text" l10n>${l.actMain}</span>
+                    <span class="text" l10n>${utils.Lang.actHome}</span>
                 </a>
               </li>
               <li class="menu-item">

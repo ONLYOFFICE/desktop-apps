@@ -69,11 +69,11 @@
             type: 'light',
         },
         'theme-white': {
-            text: 'White'/*utils.Lang.settOptThemeGray*/,
+            text: utils.Lang.settOptThemeWhite,
             type: 'light',
         },
         'theme-night': {
-            text: 'Night'/*utils.Lang.settOptThemeGray*/,
+            text: utils.Lang.settOptThemeNight || 'Night',
             type: 'dark',
         },
     }
