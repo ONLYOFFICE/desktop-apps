@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="22.0" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="22.6" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_APP_FILE" Value="[#DesktopEditors.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
@@ -579,8 +579,11 @@
     <ROW Action="AI_DownloadPrereq" Description="Downloading prerequisite software" DescriptionLocId="ActionText.Description.AI_DownloadPrereq" Template="Downloading [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_DownloadPrereq"/>
     <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
     <ROW Action="AI_ExtractPrereq" Description="Extracting prerequisite software" DescriptionLocId="ActionText.Description.AI_ExtractPrereq" Template="Extracting [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_ExtractPrereq"/>
+    <ROW Action="AI_InstallPostPrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
     <ROW Action="AI_InstallPrePrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
+    <ROW Action="AI_InstallPrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
     <ROW Action="AI_VerifyPrePrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
+    <ROW Action="AI_VerifyPrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
     <ROW Property="AI_SHORTCUTSREG" Signature_="AI_ShRegOptionUser"/>
@@ -1035,6 +1038,10 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_CSV]" Argument="{}" Condition="AI_INSTALL" Ordering="42"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_TXT]" Argument="{}" Condition="AI_INSTALL" Ordering="43"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCXF]" Argument="{}" Condition="AI_INSTALL" Ordering="44"/>
+    <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_RollbackPrereq" Condition="1" Ordering="105"/>
+    <ROW Dialog_="ExitDialog" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="303"/>
+    <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="106"/>
+    <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="103"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="c_dir_app" ManualDelete="true"/>
@@ -1044,6 +1051,7 @@
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_CleanPrePrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
+    <ROW Action="AI_CleanPrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_DEL_EMPTY_SHORTCUTDIR" Target="[SHORTCUTDIR]"/>
     <ROW Action="AI_DELETE_SHORTCUTS" Type="1" Source="aicustact.dll" Target="DeleteShortcuts"/>
     <ROW Action="AI_DEL_EMPTY_SHORTCUTDIR" Type="3073" Source="aicustact.dll" Target="DeleteEmptyDirectory" AdditionalSeq="AI_DATA_SETTER"/>
@@ -1062,19 +1070,78 @@
     <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
     <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
     <ROW Action="AI_InstallPrePrerequisite" Type="65" Source="Prereq.dll" Target="InstallPrePrereq"/>
+    <ROW Action="AI_InstallPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPrereq"/>
     <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="LaunchApp"/>
+    <ROW Action="AI_MigrateInstallerProps" Type="1" Source="aicustact.dll" Target="MigrateInstallerProps"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_RemoveExternalUIStub" Type="1" Source="ExternalUICleaner.dll" Target="RemoveExternalUIStub"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_ResolvePropertyBaseFolder" Type="1" Source="aicustact.dll" Target="ResolvePropertyBaseFolder" WithoutSeq="true"/>
     <ROW Action="AI_RestartElevated" Type="1" Source="aicustact.dll" Target="RestartElevated"/>
+    <ROW Action="AI_RestoreInstallerProps" Type="1" Source="aicustact.dll" Target="RestoreInstallerProps" WithoutSeq="true"/>
     <ROW Action="AI_RollbackPrePrereq" Type="65" Source="Prereq.dll" Target="RollbackPrePrereq" WithoutSeq="true"/>
+    <ROW Action="AI_RollbackPrereq" Type="65" Source="Prereq.dll" Target="RollbackPrereq" WithoutSeq="true"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_VerifyPrePrereq" Type="1" Source="Prereq.dll" Target="VerifyPrePrereq"/>
+    <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
+    <ROW Action="Assoc__csv" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.csv:[ExtPfx].Csv&quot;"/>
+    <ROW Action="Assoc__djvu" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.djvu:[ExtPfx].DjVu&quot;"/>
+    <ROW Action="Assoc__doc" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.doc:[ExtPfx].Document.1&quot;"/>
+    <ROW Action="Assoc__docm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.docm:[ExtPfx].Docm&quot;"/>
+    <ROW Action="Assoc__docx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.docx:[ExtPfx].Document.12&quot;"/>
+    <ROW Action="Assoc__docxf" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.docxf:[ExtPfx].Docxf&quot;"/>
+    <ROW Action="Assoc__dot" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.dot:[ExtPfx].Dot&quot;"/>
+    <ROW Action="Assoc__dotm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.dotm:[ExtPfx].Dotm&quot;"/>
+    <ROW Action="Assoc__dotx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.dotx:[ExtPfx].Dotx&quot;"/>
+    <ROW Action="Assoc__epub" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.epub:[ExtPfx].Epub&quot;"/>
+    <ROW Action="Assoc__fb2" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.fb2:[ExtPfx].Fb2&quot;"/>
+    <ROW Action="Assoc__fodp" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.fodp:[ExtPfx].Fodp&quot;"/>
+    <ROW Action="Assoc__fods" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.fods:[ExtPfx].Fods&quot;"/>
+    <ROW Action="Assoc__fodt" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.fodt:[ExtPfx].Fodt&quot;"/>
+    <ROW Action="Assoc__html" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.html:[ExtPfx].Html&quot;"/>
+    <ROW Action="Assoc__key" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.key:[ExtPfx].Key&quot;"/>
+    <ROW Action="Assoc__numbers" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.numbers:[ExtPfx].Numbers&quot;"/>
+    <ROW Action="Assoc__odp" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.odp:[ExtPfx].Show.2&quot;"/>
+    <ROW Action="Assoc__ods" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.ods:[ExtPfx].Sheet.2&quot;"/>
+    <ROW Action="Assoc__odt" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.odt:[ExtPfx].Document.2&quot;"/>
+    <ROW Action="Assoc__otp" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.otp:[ExtPfx].Otp&quot;"/>
+    <ROW Action="Assoc__ots" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.ots:[ExtPfx].Ots&quot;"/>
+    <ROW Action="Assoc__ott" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.ott:[ExtPfx].Ott&quot;"/>
+    <ROW Action="Assoc__oxps" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.oxps:[ExtPfx].Oxps&quot;"/>
+    <ROW Action="Assoc__pages" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.pages:[ExtPfx].Pages&quot;"/>
+    <ROW Action="Assoc__pdf" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.pdf:[ExtPfx].Pdf&quot;"/>
+    <ROW Action="Assoc__pot" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.pot:[ExtPfx].Pot&quot;"/>
+    <ROW Action="Assoc__potm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.potm:[ExtPfx].Potm&quot;"/>
+    <ROW Action="Assoc__potx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.potx:[ExtPfx].Potx&quot;"/>
+    <ROW Action="Assoc__pps" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.pps:[ExtPfx].SlideShow.1&quot;"/>
+    <ROW Action="Assoc__ppsm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.ppsm:[ExtPfx].Ppsm&quot;"/>
+    <ROW Action="Assoc__ppsx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.ppsx:[ExtPfx].SlideShow.12&quot;"/>
+    <ROW Action="Assoc__ppt" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.ppt:[ExtPfx].Show.1&quot;"/>
+    <ROW Action="Assoc__pptm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.pptm:[ExtPfx].Pptm&quot;"/>
+    <ROW Action="Assoc__pptx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.pptx:[ExtPfx].Show.12&quot;"/>
+    <ROW Action="Assoc__rtf" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.rtf:[ExtPfx].Rtf&quot;"/>
+    <ROW Action="Assoc__txt" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.txt:[ExtPfx].Txt&quot;"/>
+    <ROW Action="Assoc__vsdm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.vsdm:[ExtPfx].Vsdm&quot;"/>
+    <ROW Action="Assoc__vsdx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.vsdx:[ExtPfx].Vsdx&quot;"/>
+    <ROW Action="Assoc__vssm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.vssm:[ExtPfx].Vssm&quot;"/>
+    <ROW Action="Assoc__vssx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.vssx:[ExtPfx].Vssx&quot;"/>
+    <ROW Action="Assoc__vstm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.vstm:[ExtPfx].Vstm&quot;"/>
+    <ROW Action="Assoc__vstx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.vstx:[ExtPfx].Vstx&quot;"/>
+    <ROW Action="Assoc__xls" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xls:[ExtPfx].Sheet.1&quot;"/>
+    <ROW Action="Assoc__xlsb" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xlsb:[ExtPfx].Xlsb&quot;"/>
+    <ROW Action="Assoc__xlsm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xlsm:[ExtPfx].Xlsm&quot;"/>
+    <ROW Action="Assoc__xlsx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xlsx:[ExtPfx].Sheet.12&quot;"/>
+    <ROW Action="Assoc__xlt" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xlt:[ExtPfx].Xlt&quot;"/>
+    <ROW Action="Assoc__xltm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xltm:[ExtPfx].Xltm&quot;"/>
+    <ROW Action="Assoc__xltx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xltx:[ExtPfx].Xltx&quot;"/>
+    <ROW Action="Assoc__xml" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xml:[ExtPfx].Xml&quot;"/>
+    <ROW Action="Assoc__xps" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xps:[ExtPfx].Xps&quot;"/>
     <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list &quot;@[#DesktopEditors.exe],-1200;@[#DesktopEditors.exe],-1201;@[#DesktopEditors.exe],-1202;@[#DesktopEditors.exe],-1103&quot;"/>
     <ROW Action="IncompatibleVersion" Type="19" Target="[IncompatibleVersion_ErrorText]"/>
     <ROW Action="RemoveJumpList" Type="210" Source="DesktopEditors.exe" Target="--remove-jump-list"/>
@@ -1397,6 +1464,60 @@
     <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="MsiBuild64;MsiBuild32"/>
     <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6597" Builds="MsiBuild64;MsiBuild32"/>
     <ROW Action="AI_DETECT_WINTHEME" Condition="(VersionNT &gt;= 603)" Sequence="54" MsiKey="AI_DETECT_WINTHEME"/>
+    <ROW Action="AI_MigrateInstallerProps" Condition="SETUPEXEDIR AND ((UILevel = 2) OR (UILevel = 3))" Sequence="6599"/>
+    <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
+    <ROW Action="Assoc__csv" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_CSV = 3 )" Sequence="6603"/>
+    <ROW Action="Assoc__djvu" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DJVU = 3 )" Sequence="6604"/>
+    <ROW Action="Assoc__doc" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOC = 3 )" Sequence="6605"/>
+    <ROW Action="Assoc__docm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOCM = 3 )" Sequence="6606"/>
+    <ROW Action="Assoc__docx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOCX = 3 )" Sequence="6607"/>
+    <ROW Action="Assoc__docxf" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOCXF = 3 )" Sequence="6608"/>
+    <ROW Action="Assoc__dot" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOT = 3 )" Sequence="6609"/>
+    <ROW Action="Assoc__dotm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOTM = 3 )" Sequence="6610"/>
+    <ROW Action="Assoc__dotx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOTX = 3 )" Sequence="6611"/>
+    <ROW Action="Assoc__epub" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_EPUB = 3 )" Sequence="6612"/>
+    <ROW Action="Assoc__fb2" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_FB2 = 3 )" Sequence="6613"/>
+    <ROW Action="Assoc__fodp" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_FODP = 3 )" Sequence="6614"/>
+    <ROW Action="Assoc__fods" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_FODS = 3 )" Sequence="6615"/>
+    <ROW Action="Assoc__fodt" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_FODT = 3 )" Sequence="6616"/>
+    <ROW Action="Assoc__html" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_HTML = 3 )" Sequence="6617"/>
+    <ROW Action="Assoc__key" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_KEY = 3 )" Sequence="6618"/>
+    <ROW Action="Assoc__numbers" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_NUMBERS = 3 )" Sequence="6619"/>
+    <ROW Action="Assoc__odp" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_ODP = 3 )" Sequence="6620"/>
+    <ROW Action="Assoc__ods" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_ODS = 3 )" Sequence="6621"/>
+    <ROW Action="Assoc__odt" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_ODT = 3 )" Sequence="6622"/>
+    <ROW Action="Assoc__otp" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_OTP = 3 )" Sequence="6623"/>
+    <ROW Action="Assoc__ots" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_OTS = 3 )" Sequence="6624"/>
+    <ROW Action="Assoc__ott" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_OTT = 3 )" Sequence="6625"/>
+    <ROW Action="Assoc__oxps" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_OXPS = 3 )" Sequence="6626"/>
+    <ROW Action="Assoc__pages" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_PAGES = 3 )" Sequence="6627"/>
+    <ROW Action="Assoc__pdf" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_PDF = 3 )" Sequence="6628"/>
+    <ROW Action="Assoc__pot" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_POT = 3 )" Sequence="6629"/>
+    <ROW Action="Assoc__potm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_POTM = 3 )" Sequence="6630"/>
+    <ROW Action="Assoc__potx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_POTX = 3 )" Sequence="6631"/>
+    <ROW Action="Assoc__pps" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_PPS = 3 )" Sequence="6632"/>
+    <ROW Action="Assoc__ppsm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_PPSM = 3 )" Sequence="6633"/>
+    <ROW Action="Assoc__ppsx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_PPSX = 3 )" Sequence="6634"/>
+    <ROW Action="Assoc__ppt" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_PPT = 3 )" Sequence="6635"/>
+    <ROW Action="Assoc__pptm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_PPTM = 3 )" Sequence="6636"/>
+    <ROW Action="Assoc__pptx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_PPTX = 3 )" Sequence="6637"/>
+    <ROW Action="Assoc__rtf" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_RTF = 3 )" Sequence="6638"/>
+    <ROW Action="Assoc__txt" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_TXT = 3 )" Sequence="6639"/>
+    <ROW Action="Assoc__vsdm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_VSDM = 3 )" Sequence="6640"/>
+    <ROW Action="Assoc__vsdx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_VSDX = 3 )" Sequence="6641"/>
+    <ROW Action="Assoc__vssm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_VSSM = 3 )" Sequence="6642"/>
+    <ROW Action="Assoc__vssx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_VSSX = 3 )" Sequence="6643"/>
+    <ROW Action="Assoc__vstm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_VSTM = 3 )" Sequence="6644"/>
+    <ROW Action="Assoc__vstx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_VSTX = 3 )" Sequence="6645"/>
+    <ROW Action="Assoc__xls" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XLS = 3 )" Sequence="6646"/>
+    <ROW Action="Assoc__xlsb" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XLSB = 3 )" Sequence="6647"/>
+    <ROW Action="Assoc__xlsm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XLSM = 3 )" Sequence="6648"/>
+    <ROW Action="Assoc__xlsx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XLSX = 3 )" Sequence="6649"/>
+    <ROW Action="Assoc__xlt" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XLT = 3 )" Sequence="6650"/>
+    <ROW Action="Assoc__xltm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XLTM = 3 )" Sequence="6651"/>
+    <ROW Action="Assoc__xltx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XLTX = 3 )" Sequence="6652"/>
+    <ROW Action="Assoc__xml" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XML = 3 )" Sequence="6653"/>
+    <ROW Action="Assoc__xps" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_XPS = 3 )" Sequence="6654"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
@@ -1410,6 +1531,11 @@
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
     <ROW Action="AI_InstallPrePrerequisite" Condition="Installed" Sequence="1296"/>
     <ROW Action="IncompatibleVersion" Condition="( NOT Installed ) AND ( (SEARCH_REG_ADVINST_64 AND Arch &lt;&gt; &quot;x64&quot;) OR (SEARCH_REG_ADVINST_32 AND Arch &lt;&gt; &quot;x86&quot;) OR SEARCH_REG_INNO_64 OR SEARCH_REG_INNO_32 )" Sequence="201"/>
+    <ROW Action="AI_DownloadPrereq" Sequence="1297"/>
+    <ROW Action="AI_ExtractPrereq" Sequence="1298"/>
+    <ROW Action="AI_InstallPrerequisite" Sequence="1299"/>
+    <ROW Action="AI_InstallPostPrerequisite" Sequence="1301"/>
+    <ROW Action="AI_CleanPrereq" Sequence="1302"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="MsiBuild64"/>
