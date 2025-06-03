@@ -357,9 +357,10 @@ public:
     auto bringEditorToFront(int viewid) -> void
     {
         CEditorWindow * editor = m_appmanager.editorWindowFromViewId(viewid);
-        if ( editor )
-            editor->bringToTop();
-        else m_appmanager.mainWindow()->selectView(viewid);
+        if ( editor  ) {
+            if (!editor->isSlideshowMode())
+                editor->bringToTop();
+        } else m_appmanager.mainWindow()->selectView(viewid);
     }
 
     auto bringEditorToFront(const QString& url) -> bool
@@ -369,18 +370,22 @@ public:
         if ( _view ) {
             int _view_id = _view->GetId();
 
-            if ( mainWindow() && mainWindow()->holdUid(_view_id) ) {
-                mainWindow()->bringToTop();
-                mainWindow()->selectView(_view_id);
+            if ( mainWindow() && (mainWindow()->slideshowHoldView(_view_id) || mainWindow()->holdUid(_view_id)) ) {
+                if (!mainWindow()->isSlideshowMode()) {
+                    mainWindow()->bringToTop();
+                    mainWindow()->selectView(_view_id);
+                }
                 return true;
             } else
                 _editor = m_appmanager.editorWindowFromViewId(_view_id);
         } else {
             QString _n_url = Utils::replaceBackslash(url);
 
-            if ( mainWindow() && mainWindow()->holdUrl(_n_url, etLocalFile) ) {
-                mainWindow()->bringToTop();
-                mainWindow()->selectView(_n_url);
+            if ( mainWindow() && (mainWindow()->slideshowHoldUrl(_n_url, etLocalFile) || mainWindow()->holdUrl(_n_url, etLocalFile)) ) {
+                if (!mainWindow()->isSlideshowMode()) {
+                    mainWindow()->bringToTop();
+                    mainWindow()->selectView(_n_url);
+                }
                 return true;
             } else {
                 _editor = m_appmanager.editorWindowFromUrl(_n_url);
@@ -388,7 +393,8 @@ public:
         }
 
         if ( _editor ) {
-            _editor->bringToTop();
+            if (!_editor->isSlideshowMode())
+                _editor->bringToTop();
             return true;
         }
 
