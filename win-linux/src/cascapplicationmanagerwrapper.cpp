@@ -1425,8 +1425,10 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
         _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
     }
 
-    if ( !_app.m_pMainWindow->isVisible() )
+    if ( !_app.m_pMainWindow->isVisible() ) {
+        _app.m_pMainWindow->onFullScreen(-1, false);
         _app.m_pMainWindow->show(mainWindow()->isMaximized());
+    }
 
 //    _app.m_pMainWindow->bringToTop();
     QTimer::singleShot(0, &_app, [](){
