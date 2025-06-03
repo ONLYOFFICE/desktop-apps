@@ -237,9 +237,9 @@
                         uid: id,
                         name: info['name_form'],
                         descr: info['template_desc'],
-                        path: info.file_oform?.data[0].attributes.url,
+                        path: info.file_oform ? info.file_oform.data[0].attributes.url : undefined,
                         type: utils.fileExtensionToFileFormat(file_ext),
-                        icon: info.template_image?.data.attributes.formats.thumbnail.url,
+                        icon: info.template_image ? info.template_image.data.attributes.formats.thumbnail.url : undefined,
                         isCloud: true,
                     }));
                 }
