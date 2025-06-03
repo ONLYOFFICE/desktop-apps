@@ -1426,7 +1426,8 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
     }
 
     if ( !_app.m_pMainWindow->isVisible() ) {
-        _app.m_pMainWindow->onFullScreen(-1, false);
+        if (_app.m_pMainWindow->isSlideshowMode())
+            _app.m_pMainWindow->onFullScreen(-1, false);
         _app.m_pMainWindow->show(mainWindow()->isMaximized());
     }
 
