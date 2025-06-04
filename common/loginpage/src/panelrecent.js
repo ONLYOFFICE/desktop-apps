@@ -324,7 +324,7 @@
         function addContextMenuEventListener(collection, model, view) {
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
-                ppmenu.showUnderElem(e.currentTarget, model, 'right');
+                ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
             })
         }
 

@@ -425,7 +425,6 @@ li.menu-item {
     .col-name, .col-date {
       display: flex;
       align-items: center;
-      gap: 8px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -444,6 +443,11 @@ li.menu-item {
         overflow: hidden;
         text-overflow: ellipsis;
         margin-left: 8px;
+
+        .rtl & {
+          margin-left: 0;
+          margin-right: 8px;
+        }
       }
 
       .ext {
@@ -503,7 +507,7 @@ li.menu-item {
       }
 
       .rtl & {
-        right: 0;
+        right: unset;
         left: 16px;
       }
     }
