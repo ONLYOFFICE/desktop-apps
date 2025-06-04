@@ -783,6 +783,10 @@ li.menu-item {
       padding: 0 0 0 10px;
       text-align: center;
       width: 55px;
+
+      .rtl & {
+        padding: 0 10px 0 0;
+      }
     }
 
     .cell-tools {
@@ -2073,6 +2077,21 @@ li.menu-item {
             border-top-right-radius: @border-radius-sidebar-item;
             border-bottom-right-radius: @border-radius-sidebar-item;
         }
+
+        .rtl & {
+            border-radius: 0;
+
+            &:first-child {
+                border-top-right-radius: @border-radius-sidebar-item;
+                border-bottom-right-radius: @border-radius-sidebar-item;
+            }
+
+            &:last-child {
+                border-top-left-radius: @border-radius-sidebar-item;
+                border-bottom-left-radius: @border-radius-sidebar-item;
+            }
+        }
+
     }
 
     .cicon .icon {
