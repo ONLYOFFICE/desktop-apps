@@ -1156,6 +1156,15 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             fsWidget = qobject_cast<CTabPanel *>(m_dataFullScreen->widget());
             widget(index)->layout()->addWidget(fsWidget);
 
+			// TODO: remove after switching to libVLC libraries on Linux
+#ifdef _LINUX
+			QCefView* cef_media_view = this->findChild<QCefView*>();
+			if (cef_media_view)
+			{
+				cef_media_view->OnMediaEnd();
+			}
+#endif
+
             RELEASEOBJECT(m_dataFullScreen->parent)
             RELEASEOBJECT(m_dataFullScreen)
 //            updateGeometry();
