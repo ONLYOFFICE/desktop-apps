@@ -785,6 +785,11 @@ public:
         }
     }
 
+    bool isSlideshowMode() const
+    {
+        return fs_parent != nullptr;
+    }
+
     void onFullScreen(bool apply)
     {
         if ( apply == isFullScreen ) return;

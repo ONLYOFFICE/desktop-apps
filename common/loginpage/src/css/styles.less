@@ -357,6 +357,11 @@ li.menu-item {
   padding-left: 16px;
   padding-right: 56px;
   margin-bottom: 26px;
+  .rtl & {
+    text-align: right;
+    padding-left: 56px;
+    padding-right: 16px;
+  }
 
   h3 {
     margin: 0;
@@ -374,6 +379,10 @@ li.menu-item {
   justify-content: space-between;
   padding-left: 16px;
   padding-right: 56px;
+  .rtl & {
+    padding-left: 56px;
+    padding-right: 16px;
+  }
 
   @media (max-width: 1054px) {
     grid-template-columns: 1fr 1fr 1fr;
@@ -578,6 +587,9 @@ li.menu-item {
             /*border-radius: 4px;*/
             /*background: @background-accent-button;*/
         /*} */
+        .rtl & {
+          text-align: right;
+        }
     }
 
     #area-dnd-file {
@@ -684,6 +696,9 @@ li.menu-item {
    padding: initial;
    overflow-y: auto;
    gap: 8px;
+    .file-list-body {
+      overflow-x: hidden;
+    }
 }
 
 #area-document-creation-grid {
@@ -1673,7 +1688,6 @@ li.menu-item {
         border-bottom: @scaled-one-px solid @border-divider;
         .rtl & {
             text-align: right;
-            direction: ltr;
         }
     }
 
