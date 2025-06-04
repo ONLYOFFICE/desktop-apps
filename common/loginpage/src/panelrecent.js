@@ -141,10 +141,13 @@
                 <div ${id} class="row text-normal">
                     <div class="col-name">
                         <div class="icon">
-                            <i class="icon ${info.type == 'folder' ? 'img-el folder' : `img-format ${info.format}`}"/>
-                            ${!isSvgIcons ? ''
-                                : `<svg class = "icon ${info.type == 'folder' ? 'folder' : ''}"> <use xlink:href="#${info.type == 'folder' ? 'folder-small' : `${info.format}`}"></use></svg>
-                ${info.crypted ? '<svg class = "shield"> <use xlink:href="#shield"></use></svg>' : ''}`}
+                            <svg class="icon" data-iconname="${info.type == 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
+                                <use xlink:href="#${info.type == 'folder' ? 'folder-small' : info.format}"></use>
+                            </svg>
+                            ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
+                                                <use xlink:href="#shield"></use>
+                                              </svg>` : ''}
+                            ${!isSvgIcons ? `<i class="icon tool-icon ${info.type == 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
                         </div>
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
