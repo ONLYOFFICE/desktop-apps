@@ -172,6 +172,11 @@ bool CEditorWindow::holdView(const std::wstring& portal) const
     return Utils::normalizeAppProtocolUrl(url).find(Utils::normalizeAppProtocolUrl(portal)) != std::wstring::npos;
 }
 
+bool CEditorWindow::isSlideshowMode() const
+{
+    return d_ptr->isSlideshowMode();
+}
+
 void CEditorWindow::undock(bool maximized)
 {
     if (isCustomWindowStyle()) {
