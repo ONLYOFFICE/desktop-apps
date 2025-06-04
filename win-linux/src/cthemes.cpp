@@ -22,7 +22,11 @@
 #define REGISTRY_THEME_KEY "UITheme"
 // #define REGISTRY_THEME_KEY_7_2 "UITheme2"
 #define THEME_DEFAULT_DARK_ID "theme-night"
-#define THEME_DEFAULT_LIGHT_ID "theme-white"
+#if !defined(__OS_WIN_XP)
+# define THEME_DEFAULT_LIGHT_ID "theme-white"
+#else
+# define THEME_DEFAULT_LIGHT_ID "theme-classic-light"
+#endif
 #define THEME_ID_SYSTEM "theme-system"
 
 namespace NSTheme {
