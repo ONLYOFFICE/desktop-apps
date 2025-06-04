@@ -73,7 +73,7 @@
             type: 'light',
         },
         'theme-night': {
-            text: utils.Lang.settOptThemeNight || 'Night',
+            text: utils.Lang.settOptThemeNight,
             type: 'dark',
         },
     }
