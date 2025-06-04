@@ -36,6 +36,7 @@ var Menu = function(args) {
     this.config = Object.assign({}, args);
     this.id = args.id;
     this.items = args.items;
+    this.className = args.className;
 
     this.prefix = args.prefix || 'asc-gen';
     this.events = {};
@@ -44,10 +45,13 @@ var Menu = function(args) {
 
 Menu.prototype.init = function(parent) {
     var me = this;
-    var _tpl_ = '<div id="%id" class="menu-container">'+
-                    '<div class="dropdown-toggle" data-toggle="dropdown"></div>'+
-                    '<ul class="dropdown-menu" role="menu">' +
-                    '</ul></div>';
+
+    //language=HTML
+    var _tpl_ = `
+        <div id="%id" class="menu-container">
+            <div class="dropdown-toggle" data-toggle="dropdown"></div>
+            <ul class="dropdown-menu ${this.className ?? ''}" role="menu"></ul>
+        </div>`;
 
     var $container = $(_tpl_.replace(/\%id/, this.id)).appendTo(parent);
     var $list = $container.find('ul');
