@@ -800,7 +800,7 @@ li.menu-item {
     }
   }
 
-    .btn-quick {
+  .btn-quick {
         width: 24px;
         height: 24px;
         padding: 0;
@@ -823,7 +823,13 @@ li.menu-item {
 
     &:hover {
       opacity: 1;
-    background-color: @highlight-button-pressed;}
+      background-color: @highlight-button-hover;
+    }
+
+    &:active {
+      opacity: 1;
+      background-color: @highlight-button-pressed;
+    }
   }
 
   tr:not(:hover) {
