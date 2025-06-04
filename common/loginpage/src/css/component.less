@@ -425,8 +425,7 @@ input[type="radio"] {
         align-items: center;
         gap: 4px;
         cursor: pointer;
-        padding: 4px 20px 4px 32px;
-        height: 32px;
+        padding: 6px 15px;
         font-size: 14px;
         line-height: 20px;
         color: @text-normal;
@@ -448,9 +447,17 @@ input[type="radio"] {
         &[data-variant=negative] {
             color: @text-negative;
         }
+    }
 
-        .rtl & {
-            padding: 4px 32px 4px 20px;
+    &.with-icons {
+        li > a {
+            padding-left: 32px;
+            padding-right: 20px;
+
+            .rtl & {
+                padding-left: 20px;
+                padding-right: 32px;
+            }
         }
     }
 

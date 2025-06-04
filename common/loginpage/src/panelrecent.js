@@ -396,6 +396,7 @@
         function _init_ppmenu() {
             ppmenu = new Menu({
                 id: 'pp-menu-files',
+                className: 'with-icons',
                 bottomlimitoffset: 10,
                 items: [
                     { caption: utils.Lang.menuFileOpen, action: 'files:open' , icon: '#folder'},
