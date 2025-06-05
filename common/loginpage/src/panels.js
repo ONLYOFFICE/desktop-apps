@@ -78,7 +78,7 @@ $(document).ready(function() {
                     <span class="text" l10n>${utils.Lang.actSettings}</span>
                   </a>
               </li>
-              <li class="menu-item">
+              <li class="menu-item hidden">
                   <a action="about">
                     <div class="icon-box">
                       <svg class="icon" data-iconname="about" data-precls="tool-icon">
@@ -324,6 +324,9 @@ window.sdk.on('on_native_message', function(cmd, param) {
     } else
     if (/app\:ready/.test(cmd)) {
         setLoaderVisible(false);
+    } else
+    if (/app\:version/.test(cmd)) {
+        $('.tool-menu a[action=about]').parent().removeClass('hidden');
     }
     
     console.log(cmd, param);
