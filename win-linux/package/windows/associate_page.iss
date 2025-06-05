@@ -2194,10 +2194,10 @@ begin
     //if version.Major < 10 then begin
       lblAudio          := TLabel.Create(associatePage);
       lblAudio.Parent   := associatePage.Surface;
-      lblAudio.WordWrap := True;
       lblAudio.Caption  := ExpandConstant('{cm:AssociateAudio}');
       lblAudio.AutoSize := True;
       lblAudio.Width    := associatePage.SurfaceWidth;
+      lblAudio.WordWrap := True;
       lblAudio.Left     := 0;
       lblAudio.Top      := 0;
 
