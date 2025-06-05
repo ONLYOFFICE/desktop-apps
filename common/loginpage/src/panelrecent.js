@@ -160,7 +160,12 @@
 
             if (info.type !== 'folder') {
                 _tpl += `<div class="col-date"><p>${info.date}</p></div>`;
-                _tpl += `<div class="col-more"><button id="${info.uid}-more-btn"><svg class="icon"><use xlink:href="#more"/></svg>${!isSvgIcons ? '<i class="icon tool-icon more"></i>' : ''}</button></div>`;
+                _tpl += `<div class="col-more">
+                            <button id="${info.uid}-more-btn" class="btn-quick more">
+                                <svg class="icon"><use xlink:href="#more"/></svg>
+                                ${!isSvgIcons ? '<i class="icon tool-icon more"></i>' : ''}
+                            </button>
+                        </div>`;
             }
 
             return _tpl + '</div>';

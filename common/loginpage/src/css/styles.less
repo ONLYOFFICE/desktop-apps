@@ -482,11 +482,7 @@ li.menu-item {
 
       button {
         color: @icon-normal;
-        width: 24px;
-        height: 24px;
         padding: 0;
-        border-radius: 2px;
-        background: transparent;
         align-items: center;
 
         &:active {
@@ -754,6 +750,20 @@ li.menu-item {
   }
 }
 
+.btn-quick {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 2px;
+
+  svg.icon {
+    fill: @background-icon-normal;
+
+    stroke: @icon-normal;
+    color: @icon-normal;
+  }
+}
+
 #idx-sidebar-portals,
 #box-portals {
   display: none;
@@ -800,36 +810,21 @@ li.menu-item {
     }
   }
 
-  .btn-quick {
-        width: 24px;
-        height: 24px;
-        padding: 0;
+  .sidebar-block-title {
+    .btn-quick {
         opacity: .8;
         background-color: transparent;
-        svg.icon {
-            fill: @background-icon-normal;
-            /*.theme-type-dark & {*/
-                /*fill: #a5a5a5;*/
-            /*}*/
 
-            stroke: @icon-normal;
-            color: @icon-normal;
+        &:hover {
+          opacity: 1;
+          background-color: @highlight-button-hover;
         }
-        /*.icon {*/
-            /*width: 24px;*/
-            /*height: 24px;*/
-            /*background-position: -86px -48px;*/
-        /*}*/
 
-    &:hover {
-      opacity: 1;
-      background-color: @highlight-button-hover;
-    }
-
-    &:active {
-      opacity: 1;
-      background-color: @highlight-button-pressed;
-    }
+        &:active {
+          opacity: 1;
+          background-color: @highlight-button-pressed;
+        }
+      }
   }
 
   tr:not(:hover) {
@@ -851,6 +846,22 @@ li.menu-item {
 
 .format-from-index(@index) {
   background-position: -24px*@index 0;
+}
+
+.file-list-body,
+.table-files {
+  .btn-quick {
+    margin: 0 5px;
+    background-color: transparent;
+
+    &:hover {
+      background-color: @highlight-button-pressed;
+    }
+
+    &:active {
+      background-color: @highlight-button-pressed-hover;
+    }
+  }
 }
 
 .table-files {
@@ -1171,10 +1182,6 @@ li.menu-item {
       text-overflow: ellipsis;
       overflow: hidden;
     }
-  }
-
-  .btn-quick {
-    margin: 0 5px;
   }
 
   .primary {
