@@ -151,7 +151,7 @@ l10n.en = {
     settGpuUseMode: "Use graphics acceleration when available",
     tplPDF: "PDF",
     tplDocument: "Documents",
-    tplSpreadsheet: "Spreadsheet",
+    tplSpreadsheet: "Spreadsheets",
     tplPresentation: "Presentations",
     colFileName: "File name",
     colLocation: 'Location',
