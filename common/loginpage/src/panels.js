@@ -92,6 +92,9 @@ $(document).ready(function() {
             <div class="main-column col-center after-left">
             </div>`;
     $('#placeholder').html(_toolmenu_tpl);
+    if (window.utils.isWinXp) {
+        $('#placeholder .menu-item').addClass('win_xp');
+    }
 
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     // $('.tool-quick-menu .menu-item a').click(onNewFileClick);

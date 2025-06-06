@@ -477,6 +477,10 @@
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
 
+                if ( window.utils.isWinXp ) {
+                    this.view.$panel.find('.recent-panel-container').addClass('win_xp');
+                } 
+
                 window.sdk.on('onupdaterecents', _on_recents.bind(this));
                 window.sdk.on('onupdaterecovers', _on_recovers.bind(this));
                 window.sdk.on('on_native_message', (cmd, param)=>{
