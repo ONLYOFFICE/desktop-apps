@@ -3,7 +3,6 @@
 
 dialog {
     visibility: hidden;
-    overflow: hidden;
     transform: scale(0.8);
     transition: all 200ms;
     &.scaled {
@@ -17,7 +16,7 @@ dialog {
     border-radius: 5px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     border: @scaled-one-px solid @border-tabbar;
-    overflow-y: visibile;
+    overflow: visible;
 
     &::backdrop {
         background-color: rgba(255,255,255,0.4);
