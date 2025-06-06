@@ -430,7 +430,7 @@ Máme pre vás špeciálnu ponuku.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Nový formulár PDF</target>
+        <target>Nový PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
