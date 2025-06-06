@@ -320,7 +320,6 @@
 
                 if ( window.utils.isWinXp ) {
                     $('#idx-nav-templates', this.view.$panel).hide();
-                    this.view.$panel.addClass('win_xp');
                 } 
 
                 const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +

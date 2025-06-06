@@ -688,7 +688,7 @@ li.menu-item {
     gap: 40px;
   }
 
-  &.win_xp {
+  .win_xp & {
     display: block;
     padding-left: 32px;
     padding-right: 32px;
@@ -753,7 +753,7 @@ li.menu-item {
       overflow-x: hidden;
     }
 
-  &.win_xp {
+  .win_xp & {
    display: flex;
    padding: initial;
    .file-list-body  {
@@ -2022,7 +2022,8 @@ li.menu-item {
         gap: 16px;
         padding: 10px;
     }
-    &.win_xp {
+
+    .win_xp & {
         .icon {
             .box {
                 left: 0;
@@ -2035,26 +2036,25 @@ li.menu-item {
   }
 }
 
-.action-panel.templates{
-  &.win_xp {
-    .table-templates.list {
-      > * {
-        margin: 8px; 
+.win_xp {
+  .action-panel.templates {
+      .table-templates.list {
+        > * {
+          margin: 8px; 
+        }
       }
-    }
-    .item {
-      .wrapper {
-        overflow: hidden;
-      }
-    }
-  }
-}
 
-.menu-item {
-  &.win_xp {
-    .text {
-      margin-left: 8px;
-    }
+      .item {
+        .wrapper {
+          overflow: hidden;
+        }
+      }
+  }
+
+  .menu-item {
+      .text {
+        margin-left: 8px;
+      }
   }
 }
 

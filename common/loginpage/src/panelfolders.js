@@ -115,10 +115,6 @@
 
                 this.view.render();
 
-                if ( window.utils.isWinXp ) {
-                    this.view.$panel.find('.open-panel-container').addClass('win_xp');
-                } 
-
                 this.dndZone = new DnDFileZone();
                 this.dndZone.render(this.view.$panel.find("#area-dnd-file"));
 
