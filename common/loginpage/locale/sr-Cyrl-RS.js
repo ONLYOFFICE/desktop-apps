@@ -48,7 +48,7 @@ l10n.sr_Cyrl_RS = {
     newDoc: 'Документ',
     newXlsx: 'Прорачунска табела',
     newPptx: 'Презентација',
-    newForm: 'Шаблон формулара',
+    newForm: 'PDF',
     actCreateNew: 'Креирај нови',
     actRecentFiles: 'Скорији фајлови',
     actOpenLocal: 'Отвори локални фајл',

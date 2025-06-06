@@ -48,7 +48,7 @@ l10n.sk = {
     newDoc: 'Dokument',
     newXlsx: 'Tabuľka',
     newPptx: 'Prezentácia',
-    newForm: 'Formulár PDF',
+    newForm: 'PDF',
     actCreateNew: 'Vytvoriť nový',
     actRecentFiles: 'Nedávne súbory',
     actOpenLocal: 'Otvoriť lokálny súbor',

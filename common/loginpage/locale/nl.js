@@ -48,7 +48,7 @@
     newDoc: 'Document',
     newXlsx: 'Spreadsheet',
     newPptx: 'Presentatie',
-    newForm: 'PDF-formulier',
+    newForm: 'PDF',
     actCreateNew: 'Maak nieuwe aan',
     actRecentFiles: 'Recente bestanden',
     actOpenLocal: 'Open lokaal bestand',

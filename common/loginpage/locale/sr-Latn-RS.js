@@ -48,7 +48,7 @@ l10n.sr_Latn_RS = {
     newDoc: 'Dokument',
     newXlsx: 'Proračunska tabela',
     newPptx: 'Prezentacija',
-    newForm: 'Šablon formulara',
+    newForm: 'PDF',
     actCreateNew: 'Kreiraj novi',
     actRecentFiles: 'Skoriji fajlovi',
     actOpenLocal: 'Otvori lokalni fajl',

@@ -48,7 +48,7 @@ l10n.tr = {
     newDoc: 'Belge',
     newXlsx: 'Tablo',
     newPptx: 'Sunum',
-    newForm: 'PDF formu',
+    newForm: 'PDF',
     actCreateNew: 'Yeni oluştur',
     actRecentFiles: 'Son dosyalar',
     actOpenLocal: 'Yerel dosya aç',

@@ -49,7 +49,7 @@ l10n.en_GB = {
     newDoc: 'Document',
     newXlsx: 'Spreadsheet',
     newPptx: 'Presentation',
-    newForm: 'PDF Form',
+    newForm: 'PDF',
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',

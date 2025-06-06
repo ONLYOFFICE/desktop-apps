@@ -48,7 +48,7 @@ l10n.de = {
     newDoc: 'Dokument',
     newXlsx: 'Arbeitsmappe',
     newPptx: 'Präsentation',
-    newForm: 'PDF-Formular',
+    newForm: 'PDF',
     actCreateNew: 'Neu erstellen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
