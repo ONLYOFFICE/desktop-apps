@@ -119,7 +119,7 @@ l10n.hy = {
     tplPDF: "PDF",
     tplDocument: "Փաստաթղթեր",
     tplSpreadsheet: "Աղյուսակներ",
-    tplPresentation: "Շնորհանդեսներ",
+    tplPresentation: "Ներկայացումներ",
     colFileName: "Նիշքի անուն",
     colLocation: 'Տեղ',
     colLastOpened: 'Վերջին բացվածը',

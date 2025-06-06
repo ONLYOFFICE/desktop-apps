@@ -116,7 +116,7 @@ l10n.en_GB = {
     settOptDescAUpdateSilent: "Download and install update in background",
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
     settGpuUseMode: "Use graphics acceleration when available",
-    tplPDF: "PDF",
+    tplPDF: "PDFs",
     tplDocument: "Documents",
     tplSpreadsheet: "Spreadsheets",
     tplPresentation: "Presentations",
