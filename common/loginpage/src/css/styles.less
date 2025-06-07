@@ -353,10 +353,14 @@ li.menu-item {
 }
 
 .file-list-title {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--background-action-panel);
   text-align: left;
-  padding-left: 16px;
-  padding-right: 56px;
-  margin-bottom: 26px;
+  padding: 4px 56px 26px 16px;
+  margin-top: -4px;
+
   .rtl & {
     text-align: right;
     padding-left: 56px;
@@ -390,7 +394,11 @@ li.menu-item {
 }
 
 .file-list-head {
-  margin-bottom: 4px;
+  position: sticky;
+  top: 54px;
+  z-index: 1;
+  background-color: var(--background-action-panel);
+  padding-bottom: 4px;
   font-weight: 600;
 
   .col-name, .col-location {
@@ -414,7 +422,6 @@ li.menu-item {
   display: flex;
   flex-direction: column;
   gap: @layout-list-items-gap;
-  overflow-y: auto;
 
   .row {
     position: relative;
@@ -559,7 +566,8 @@ li.menu-item {
   }
 
   &.recents {
-    padding: 40px 0;
+    //padding: 40px 0;
+    padding: 0;
   }
 
   &.templates {
@@ -673,10 +681,12 @@ li.menu-item {
   max-width: 1680px;
   margin-inline: auto;
   margin-bottom: -40px;
-  overflow: hidden;
+  overflow-y: auto;
   color: @text-normal;
 
   .search-bar {
+    margin-top: 40px;
+
     h1 {
       margin: 0;
     }
