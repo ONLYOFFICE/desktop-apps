@@ -291,7 +291,7 @@
             }
 
             this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
-            requestAnimationFrame(() => this.view.updateListSize());
+            // requestAnimationFrame(() => this.view.updateListSize());
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
                 this.dndZone.hide();
@@ -319,7 +319,7 @@
             }
 
             this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
-            requestAnimationFrame(() => this.view.updateListSize());
+            // requestAnimationFrame(() => this.view.updateListSize());
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
                 this.dndZone.hide();
@@ -506,7 +506,7 @@
                     }
                 });
 
-                $(window).resize(() => requestAnimationFrame(() => this.view.updateListSize()));
+                // $(window).resize(() => requestAnimationFrame(() => this.view.updateListSize()));
 
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
