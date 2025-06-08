@@ -100,6 +100,7 @@
                                 ${_opts.edition}
                                 <a class="ver-checkupdate link hidden" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a>
                                 <div class="about-field"><a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a></div>
+                                <a class="ver-site link about-field" target="popup" href="${_opts.link}">${_opts.site}</a>
                                 <div class="ver-copyright about-field">${_opts.rights}</div> 
                             </div>                    
                         </div>`+
