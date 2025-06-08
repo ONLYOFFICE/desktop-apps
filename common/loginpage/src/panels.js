@@ -97,7 +97,7 @@ $(document).ready(function() {
     // $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     if ( window.utils.isWinXp ) {
-        document.body.addClass('win_xp');
+        $(document.body).addClass('win_xp');
         $('a[action] use').each((i, e) => {
             const _attr_href = e.getAttribute('href');
             if ( !!_attr_href ) {
