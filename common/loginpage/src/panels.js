@@ -235,6 +235,12 @@ function selectAction(action) {
 };
 
 function hideAction(action, hide) {
+    if ( action == 'connect' ) {
+        hide ? $('#idx-sidebar-portals').hide() :
+                $('#idx-sidebar-portals').show();
+        return;
+    }
+
     var mitem = $('.tool-menu a[action='+action+']').parent();
     mitem.removeClass('extra')[hide===false?'show':'hide']();
     $('.action-panel.' + action)[hide===false?'show':'hide']();
