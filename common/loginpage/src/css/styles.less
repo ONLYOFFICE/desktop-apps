@@ -2091,8 +2091,39 @@ li.menu-item {
         }
     }
 
+    .status-field.hbox {
+      padding-bottom: 10px;
+    }
+
     #idx-update-status-text {
         font-size: 14px;
+    }
+
+    #idx-update-status-icon {
+        min-width: 28px;
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+
+        &[data-icon=success] {
+            fill: #95C038;
+        }
+        &[data-icon=error] {
+            fill: #FF6F3D;
+        }
+        &[data-icon=load], &[data-icon=lastcheck] {
+            fill: #5DC0E8;
+        }
+
+        &[data-icon=load] {
+            animation: rotate 1.5s linear infinite;
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
     }
 }
 

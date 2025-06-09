@@ -72,13 +72,16 @@
 
         var _lang = utils.Lang;
         const _updates_status = `<section id="idx-update-cnt">
-                                        <div class="status-field">
-                                            <label id="idx-update-status-text"></label>
-                                        </div>
-                                        <div class="status-field">
-                                            <button id="idx-update-btnaction" class="btn btn--landing"></button>
-                                        </div>
-                                    </section>`;
+                                    <div class="status-field hbox">
+                                        <svg class="icon" id="idx-update-status-icon">
+                                            <use href=""></use>
+                                        </svg>
+                                        <label id="idx-update-status-text"></label>
+                                    </div>
+                                    <div class="status-field">
+                                        <button id="idx-update-btnaction" class="btn btn--landing"></button>
+                                    </div>
+                                </section>`;
         let _html = `<div class="flexbox">
                         <div class="box-ver">
                             <section class="hbox">
