@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>PDF (*.pdf)</translation>
+        <translation>PDF 表单 (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
