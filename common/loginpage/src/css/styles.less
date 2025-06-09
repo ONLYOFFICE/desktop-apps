@@ -1965,7 +1965,10 @@ li.menu-item {
         border-radius: 8px;
         overflow: hidden;
         &:hover {
-            box-shadow: 0 2px 6px @highlight-button-hover;
+              box-shadow: 0 2px 6px @highlight-button-pressed-hover;
+            .theme-type-dark & {
+              box-shadow: var(--shadow-sidebar-item-pressed);
+            }
         }
             .wrapper {
                 width: 220px;
@@ -2034,8 +2037,11 @@ li.menu-item {
     .table-templates.list {
         display: flex;
         flex-wrap: wrap;
-        gap: 16px;
-        padding: 10px;
+        gap: 22px;
+        padding: 24px 10px 0 0;
+        .rtl & {
+          padding: 24px 0 0 10px;
+        }
     }
 
     .win_xp & {

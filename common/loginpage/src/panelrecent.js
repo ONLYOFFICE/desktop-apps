@@ -530,7 +530,7 @@
                     documentTypes: [
                         {
                             id: 'word',
-                            title: utils.Lang.tplDocument,
+                            title: utils.Lang.newDoc,
                             formatLabel: {
                                 value: 'DOCX',
                                 gradientColorStart: '#4298C5',
@@ -540,7 +540,7 @@
                         },
                         {
                             id: 'cell',
-                            title: utils.Lang.tplSpreadsheet,
+                            title: utils.Lang.newXlsx,
                             formatLabel: {
                                 value: 'XLSX',
                                 gradientColorStart: '#5BB514',
@@ -550,7 +550,7 @@
                         },
                         {
                             id: 'slide',
-                            title: utils.Lang.tplPresentation,
+                            title: utils.Lang.newPptx,
                             formatLabel: {
                                 value: 'PPTX',
                                 gradientColorStart: '#F4893A',
@@ -560,7 +560,7 @@
                         },
                         {
                             id: 'form',
-                            title: utils.Lang.tplPDF,
+                            title: utils.Lang.newForm,
                             formatLabel: {
                                 value: 'PDF',
                                 gradientColorStart: '#F36653',
