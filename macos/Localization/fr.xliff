@@ -503,7 +503,7 @@ Nous vous proposons une offre spéciale.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Nouveau formulaire PDF</target>
+        <target>Nouveau PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

@@ -48,7 +48,7 @@ l10n.ro = {
     newDoc: 'Document',
     newXlsx: 'Foaie de calcul',
     newPptx: 'Prezentare',
-    newForm: 'Formular PDF',
+    newForm: 'PDF',
     actCreateNew: 'Creare nou',
     actRecentFiles: 'Fișierele recente',
     actOpenLocal: 'Deschidere fișier local',

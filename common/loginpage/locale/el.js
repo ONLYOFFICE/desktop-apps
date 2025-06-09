@@ -48,7 +48,7 @@ l10n.el = {
     newDoc: 'Έγγραφο',
     newXlsx: 'Υπολογιστικό φύλλο',
     newPptx: 'Παρουσίαση',
-    newForm: 'Φόρμα PDF',
+    newForm: 'PDF',
     actCreateNew: 'Δημιουργία νέου',
     actRecentFiles: 'Πρόσφατα αρχεία',
     actOpenLocal: 'Άνοιγμα τοπικού αρχείου',

@@ -48,7 +48,7 @@ l10n.ar_SA = {
     newDoc: 'مستند',
     newXlsx: 'جدول بياني',
     newPptx: 'عرض تقديمي',
-    newForm: 'نموذج PDF',
+    newForm: 'PDF',
     actCreateNew: 'إنشاء جديد',
     actRecentFiles: 'الملفات المستجدّة',
     actOpenLocal: 'فتح الملف المحلي',

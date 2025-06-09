@@ -453,7 +453,7 @@ Imamo posebnu ponudu za vas.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Novi PDF obrazac</target>
+        <target>Novi PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

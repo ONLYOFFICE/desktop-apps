@@ -48,7 +48,7 @@ l10n.pl = {
     newDoc: 'Dokument',
     newXlsx: 'Arkusz Kalkulacyjny',
     newPptx: 'Prezentacja',
-    newForm: 'Formularz PDF',
+    newForm: 'PDF',
     actCreateNew: 'Utwórz nowy',
     actRecentFiles: 'Ostatnie pliki',
     actOpenLocal: 'Otwórz plik lokalny',

@@ -48,7 +48,7 @@ l10n.da = {
     newDoc: 'Dokument',
     newXlsx: 'Regneark',
     newPptx: 'Præsentation',
-    newForm: 'PDF-formular',
+    newForm: 'PDF',
     actCreateNew: 'Opret ny',
     actRecentFiles: 'Seneste filer',
     actOpenLocal: 'Åben lokal fil',

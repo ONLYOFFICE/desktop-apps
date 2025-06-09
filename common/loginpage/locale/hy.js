@@ -48,7 +48,7 @@ l10n.hy = {
     newDoc: 'ՓԱՍՏԱԹՈՒՂԹ',
     newXlsx: 'ԱՂՅՈՒՍԱԿ',
     newPptx: 'ՇՆՈՐՀԱՆԴԵՍ',
-    newForm: 'PDF Ձև',
+    newForm: 'PDF',
     actCreateNew: 'Ստեղծել նորը',
     actRecentFiles: 'Ամենանոր ֆայլերը',
     actOpenLocal: 'Բացել լոկալ ֆայլը',

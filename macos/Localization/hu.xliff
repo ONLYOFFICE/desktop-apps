@@ -453,7 +453,7 @@ Van egy speciális ajánlatunk az Ön számára.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Új PDF űrlap</target>
+        <target>Új PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

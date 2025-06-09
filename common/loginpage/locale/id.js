@@ -48,7 +48,7 @@ l10n.id = {
     newDoc: 'Dokumen',
     newXlsx: 'Lembar bentang',
     newPptx: 'Presentasi',
-    newForm: 'Formulir PDF',
+    newForm: 'PDF',
     actCreateNew: 'Buat baru',
     actRecentFiles: 'File terbaru',
     actOpenLocal: 'Buka file lokal',

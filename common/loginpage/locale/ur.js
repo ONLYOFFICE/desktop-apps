@@ -48,7 +48,7 @@ l10n.ur = {
     newDoc: 'دستاویز',
     newXlsx: 'اسپریڈشیٹ',
     newPptx: 'پریزنٹیشن',
-    newForm: 'پی ڈی ایف فارم',
+    newForm: 'پی ڈی ایف',
     actCreateNew: 'نیا بنائیں',
     actRecentFiles: 'حالیہ فائلیں',
     actOpenLocal: 'لوکل فائل کھولیں',

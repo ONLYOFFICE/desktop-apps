@@ -48,7 +48,7 @@ l10n.he = {
     newDoc: 'מסמך',
     newXlsx: 'גיליון אלקטרוני',
     newPptx: 'מצגת',
-    newForm: 'טופס PDF',
+    newForm: 'PDF',
     actCreateNew: 'צור חדש',
     actRecentFiles: 'קבצים אחרונים',
     actOpenLocal: 'פתח קובץ מקומי',
