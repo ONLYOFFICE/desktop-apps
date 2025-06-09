@@ -2034,8 +2034,11 @@ li.menu-item {
     .table-templates.list {
         display: flex;
         flex-wrap: wrap;
-        gap: 16px;
-        padding: 10px;
+        gap: 22px;
+        padding: 24px 10px 0 0;
+        .rtl & {
+          padding: 24px 0 0 10px;
+        }
     }
 
     .win_xp & {
