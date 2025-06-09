@@ -135,7 +135,7 @@
 
     uitheme.relevant_theme_id = function () {
         if ( this.is_theme_system() )
-            return this.is_system_theme_dark() ? 'theme-dark' : 'theme-classic-light';
+            return this.get_default_theme_for_type(this.is_system_theme_dark() ? THEME_TYPE_DARK : THEME_TYPE_LIGHT);
         return this.id;
     }
 
