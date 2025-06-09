@@ -1965,7 +1965,10 @@ li.menu-item {
         border-radius: 8px;
         overflow: hidden;
         &:hover {
-            box-shadow: 0 2px 6px @highlight-button-hover;
+              box-shadow: 0 2px 6px @highlight-button-pressed-hover;
+            .theme-type-dark & {
+              box-shadow: var(--shadow-sidebar-item-pressed);
+            }
         }
             .wrapper {
                 width: 220px;
