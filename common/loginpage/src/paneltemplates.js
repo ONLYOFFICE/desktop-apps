@@ -146,12 +146,6 @@
         let _page_num = 0, 
             isLoading = false, 
             totalPages = null; 
-                
-    
-        // TODO: for tests only. uncomment static url before release
-        let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com';
-        const _url_templates = `${test_url}/{0}?desktop=true`;
-        // const _url_templates = "https://oforms.onlyoffice.com/{0}?desktop=true";
 
         const _on_nav_item_click = function(e) {
             $('.nav-item', this.view.$panel).removeClass('selected');
@@ -280,7 +274,8 @@
             _page_num++;  
             isLoading = true;
 
-            const _url = `https://oforms.teamlab.info/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com'; // https://oforms.teamlab.info
+            const _url = `{_domain}/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
             fetch(_url)
                 .then(r => r.json())
                 .then(d => {
