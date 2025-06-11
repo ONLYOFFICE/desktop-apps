@@ -275,7 +275,7 @@
             isLoading = true;
 
             const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com'; // https://oforms.teamlab.info
-            const _url = `{_domain}/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
             fetch(_url)
                 .then(r => r.json())
                 .then(d => {
