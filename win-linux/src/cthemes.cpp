@@ -251,7 +251,11 @@ public:
 
         GET_REGISTRY_USER(_reg_user);
 
+#if !defined(__OS_WIN_XP)
         QString user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_ID_SYSTEM).toString();
+#else
+        QString user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_DEFAULT_LIGHT_ID).toString();
+#endif
 
         /* TODO: remove for ver 7.3. for compatibility with ver 7.1 only */
         // if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
@@ -307,7 +311,11 @@ public:
             }
         } else
         if ( rc_themes.find(user_theme) == rc_themes.end() || !current->fromFile(rc_themes.at(user_theme)) ) {
+#if !defined(__OS_WIN_XP)
             user_theme = THEME_ID_SYSTEM;
+#else
+            user_theme = THEME_DEFAULT_LIGHT_ID;
+#endif
         }
 
         if ( user_theme == THEME_ID_SYSTEM ) {
