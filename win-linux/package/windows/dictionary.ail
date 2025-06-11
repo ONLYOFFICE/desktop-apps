@@ -265,46 +265,46 @@
     <STRING lang="zh_TW" value="新文件"/>
   </ENTRY>
   <ENTRY id="Property.NewForm">
-    <STRING lang="en" value="New PDF Form"/>
-    <STRING lang="ar" value="نموذج PDF جديد"/>
-    <STRING lang="be" value="Новая электронная табліца"/>
+    <STRING lang="en" value="New PDF"/>
+    <STRING lang="ar" value="PDF جديد"/>
+    <STRING lang="be" value="Новы PDF"/>
     <STRING lang="bg" value="Нов PDF формуляр"/>
-    <STRING lang="ca" value="Nou formulari PDF"/>
-    <STRING lang="cs" value="Nový PDF formulář"/>
-    <STRING lang="da" value="Ny PDF-formular"/>
-    <STRING lang="de" value="Neues PDF-Formular"/>
-    <STRING lang="el" value="Νέα φόρμα PDF"/>
-    <STRING lang="en_GB" value="New PDF Form"/>
-    <STRING lang="es" value="Nuevo formulario PDF"/>
-    <STRING lang="fi" value="Uusi PDF-lomake"/>
-    <STRING lang="fr" value="Nouveau formulaire PDF"/>
-    <STRING lang="gl" value="Nova folla de cálculo"/>
-    <STRING lang="he" value="טופס PDF חדש"/>
-    <STRING lang="hu" value="Új PDF űrlap"/>
-    <STRING lang="id" value="Formulir PDF baru"/>
-    <STRING lang="it" value="Nuovo modulo PDF"/>
-    <STRING lang="ja" value="新しいPDFフォーム"/>
-    <STRING lang="ko" value="새로운 PDF 양식"/>
-    <STRING lang="lv" value="Jauna tabula"/>
-    <STRING lang="nb" value="Nytt PDF-skjema"/>
-    <STRING lang="nl" value="Nieuw PDF-formulier"/>
-    <STRING lang="pl" value="Nowy formularz PDF"/>
-    <STRING lang="pt" value="Novo formulário PDF"/>
-    <STRING lang="pt_BR" value="Novo formulário PDF"/>
-    <STRING lang="ro" value="Foaie de calcul nouă"/>
-    <STRING lang="ru" value="Новая PDF-форма"/>
-    <STRING lang="sk" value="Nový formulár PDF"/>
-    <STRING lang="sl" value="Novi PDF obrazec"/>
-    <STRING lang="sq" value="Format PDF i ri"/>
-    <STRING lang="sr_SP_Cyrillic" value="Нови PDF формулар"/>
-    <STRING lang="sr_SP_Latin" value="Novi PDF formular"/>
-    <STRING lang="sv" value="Nytt PDF-formulär"/>
-    <STRING lang="tr" value="Yeni PDF Formu"/>
-    <STRING lang="uk" value="Нова PDF-форма"/>
-    <STRING lang="ur" value="نیا پی ڈی ایف فارم"/>
-    <STRING lang="vi" value="Bảng tính mới"/>
-    <STRING lang="zh" value="新建 PDF 表单"/>
-    <STRING lang="zh_TW" value="新的 PDF 表格"/>
+    <STRING lang="ca" value="Nou PDF"/>
+    <STRING lang="cs" value="Nový PDF"/>
+    <STRING lang="da" value="Ny PDF"/>
+    <STRING lang="de" value="Neues PDF"/>
+    <STRING lang="el" value="Νέο PDF"/>
+    <STRING lang="en_GB" value="New PDF"/>
+    <STRING lang="es" value="Nuevo PDF"/>
+    <STRING lang="fi" value="Uusi PDF"/>
+    <STRING lang="fr" value="Nouveau PDF"/>
+    <STRING lang="gl" value="Novo PDF"/>
+    <STRING lang="he" value="PDF חדש"/>
+    <STRING lang="hu" value="Új PDF"/>
+    <STRING lang="id" value="PDF baru"/>
+    <STRING lang="it" value="Nuovo PDF"/>
+    <STRING lang="ja" value="新しいPDF"/>
+    <STRING lang="ko" value="새로운 PDF"/>
+    <STRING lang="lv" value="Jauns PDF"/>
+    <STRING lang="nb" value="Ny PDF"/>
+    <STRING lang="nl" value="Nieuw PDF"/>
+    <STRING lang="pl" value="Nowy PDF"/>
+    <STRING lang="pt" value="Novo PDF"/>
+    <STRING lang="pt_BR" value="Novo PDF"/>
+    <STRING lang="ro" value="PDF nou"/>
+    <STRING lang="ru" value="Новый PDF"/>
+    <STRING lang="sk" value="Nový PDF"/>
+    <STRING lang="sl" value="Novi PDF"/>
+    <STRING lang="sq" value="PDF i ri"/>
+    <STRING lang="sr_SP_Cyrillic" value="Нови PDF"/>
+    <STRING lang="sr_SP_Latin" value="Novi PDF"/>
+    <STRING lang="sv" value="Nytt PDF"/>
+    <STRING lang="tr" value="Yeni PDF"/>
+    <STRING lang="uk" value="Нова PDF"/>
+    <STRING lang="ur" value="نیا پی ڈی ایف"/>
+    <STRING lang="vi" value="PDF mới"/>
+    <STRING lang="zh" value="新建 PDF"/>
+    <STRING lang="zh_TW" value="新的 PDF"/>
   </ENTRY>
   <ENTRY id="Property.NewPresentation">
     <STRING lang="en" value="New presentation"/>
@@ -351,7 +351,7 @@
   <ENTRY id="Property.NewSpreadsheet">
     <STRING lang="en" value="New spreadsheet"/>
     <STRING lang="ar" value="جدول بياني جديد"/>
-    <STRING lang="be" value="Новая форма PDF"/>
+    <STRING lang="be" value="Новая электронная табліца"/>
     <STRING lang="bg" value="Нова електронна таблица"/>
     <STRING lang="ca" value="Nou full de càlcul"/>
     <STRING lang="cs" value="Nový sešit"/>
@@ -362,20 +362,20 @@
     <STRING lang="es" value="Nueva Hoja de Cálculo"/>
     <STRING lang="fi" value="Uusi laskentataulukko"/>
     <STRING lang="fr" value="Nouvelle feuille de calcul"/>
-    <STRING lang="gl" value="Novo formulario PDF"/>
+    <STRING lang="gl" value="Nova folla de cálculo"/>
     <STRING lang="he" value="גיליון אלקטרוני חדש"/>
     <STRING lang="hu" value="Új táblázat"/>
     <STRING lang="id" value="Lembar kerja baru"/>
     <STRING lang="it" value="Nuovo foglio elettronico"/>
     <STRING lang="ja" value="新しいスプレッドシート"/>
     <STRING lang="ko" value="새로운 스프레드 시트"/>
-    <STRING lang="lv" value="Jauna PDF veidlapa"/>
+    <STRING lang="lv" value="Jauna izklājlapa"/>
     <STRING lang="nb" value="Nytt regneark"/>
     <STRING lang="nl" value="Nieuw werkblad"/>
     <STRING lang="pl" value="Nowy arkusz kalkulacyjny"/>
     <STRING lang="pt" value="Nova folha de cálculo"/>
     <STRING lang="pt_BR" value="Nova planilha"/>
-    <STRING lang="ro" value="Formular PDF nou"/>
+    <STRING lang="ro" value="Foaie de calcul nouă"/>
     <STRING lang="ru" value="Новая таблица"/>
     <STRING lang="sk" value="Nová tabuľka"/>
     <STRING lang="sl" value="Nova razpredelnica"/>
@@ -386,7 +386,7 @@
     <STRING lang="tr" value="Yeni Hesap Tablosu"/>
     <STRING lang="uk" value="Нова таблиця"/>
     <STRING lang="ur" value="نئی اسپریڈشیٹ"/>
-    <STRING lang="vi" value="Mẫu PDF mới"/>
+    <STRING lang="vi" value="Bảng tính mới"/>
     <STRING lang="zh" value="新建表格"/>
     <STRING lang="zh_TW" value="新試算表"/>
   </ENTRY>
