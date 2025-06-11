@@ -141,13 +141,13 @@
                 <div ${id} class="row text-normal">
                     <div class="col-name">
                         <div class="icon">
-                            <svg class="icon" data-iconname="${info.type == 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
-                                <use xlink:href="#${info.type == 'folder' ? 'folder-small' : info.format}"></use>
+                            <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
+                                <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
                             </svg>
                             ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
                                                 <use xlink:href="#shield"></use>
                                               </svg>` : ''}
-                            ${!isSvgIcons ? `<i class="icon tool-icon ${info.type == 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
+                            ${!isSvgIcons ? `<i class="icon tool-icon ${info.type === 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
                         </div>
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
@@ -290,7 +290,7 @@
                 this.rawRecents = undefined;
             }
 
-            this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
+            // this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
             // requestAnimationFrame(() => this.view.updateListSize());
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
@@ -421,19 +421,33 @@
                 menu.actionlist == 'recent' ?
                     openFile(OPEN_FILE_RECENT, data) :
                     openFile(OPEN_FILE_RECOVERY, data);
-            } else
-            if (/\:clear/.test(action)) {
-                menu.actionlist == 'recent' ?
-                    window.sdk.LocalFileRemoveAllRecents() :
+            } else if (/\:clear/.test(action)) {
+                if (menu.actionlist === 'recent') {
+                    window.sdk.LocalFileRemoveAllRecents();
+                    if (collectionRecovers.size() === 0) {
+                        this.dndZone.show();
+                    }
+                } else {
                     window.sdk.LocalFileRemoveAllRecovers();
+                    if (collectionRecents.size() === 0) {
+                        this.dndZone.show();
+                    }
+                }
             } else
             if (/\:forget/.test(action)) {
                 $('#' + data.uid, this.view.$panel).addClass('lost');
-                setTimeout(e => {
-                    menu.actionlist == 'recent' ?
-                        window.sdk.LocalFileRemoveRecent(parseInt(data.fileid)) :
-                        window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));}
-                , 300); // 300ms - duration of item's 'collapse' transition
+
+                if (menu.actionlist === 'recent') {
+                    window.sdk.LocalFileRemoveRecent(parseInt(data.fileid));
+                    if (collectionRecovers.size() === 0) {
+                        this.dndZone.show();
+                    }
+                } else {
+                    window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));
+                    if (collectionRecents.size() === 0) {
+                        this.dndZone.show();
+                    }
+                }
             } else
             if (/\:explore/.test(action)) {
                 if (menu.actionlist == 'recent') {
@@ -516,11 +530,6 @@
                     }
 
                     console.log('portal authorized');
-                });
-
-                $('#box-recent .table-box').scroll(e => {
-                    if ( Menu.opened )
-                        Menu.closeAll();
                 });
 
                 this.dndZone = new DnDFileZone();
