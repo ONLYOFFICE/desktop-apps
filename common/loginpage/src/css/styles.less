@@ -821,7 +821,12 @@ li.menu-item {
 }
 
 #box-recent {
+  display: flex;
   padding-bottom: 32px;
+
+  &.empty {
+    display: none;
+  }
 }
 
 #box-recovery {
