@@ -335,8 +335,8 @@
 
             const theme_id = uitheme.relevant_theme_id();
             if ( !$("body").hasClass(theme_id) ) {
-                if ( !type && themes_map[id] )
-                    type = themes_map[id].type;
+                if ( !type && themes_map[theme_id] )
+                    type = themes_map[theme_id].type;
 
                 const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(theme_id)) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
@@ -632,7 +632,7 @@
                                 }
                             }
                         }
-                        _apply_theme(!!appSettings.uitheme ? appSettings.uitheme : 'theme-classic-light');
+                        _apply_theme(!!appSettings.uitheme ? appSettings.uitheme : THEME_ID_DEFAULT_LIGHT);
 
                         if ( appSettings.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
