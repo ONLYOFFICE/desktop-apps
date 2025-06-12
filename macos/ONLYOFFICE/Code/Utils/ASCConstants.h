@@ -70,6 +70,7 @@ static NSString * const uiThemeContrastDark               = @"theme-contrast-dar
 static NSString * const uiThemeSystem                     = @"theme-system";
 static NSString * const uiThemeGray                       = @"theme-gray";
 static NSString * const uiThemeWhite                      = @"theme-white";
+static NSString * const uiThemeNight                      = @"theme-night";
 
 // Custom schemes
 static NSString * const kSchemeApp                          = @"oo-office";

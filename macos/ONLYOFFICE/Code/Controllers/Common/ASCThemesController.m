@@ -114,11 +114,11 @@
     NSString * theme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
     if ([uiThemeSystem isEqualToString:theme]) {
         return [self isSystemDarkMode];
-    } else return [uiThemeDark isEqualToString:theme] || [uiThemeContrastDark isEqualToString:theme];
+    } else return [uiThemeDark isEqualToString:theme] || [uiThemeContrastDark isEqualToString:theme] || [uiThemeNight isEqualToString:theme];
 }
 
 + (NSString*)defaultThemeId:(BOOL)isdark {
-    return isdark ? uiThemeDark : uiThemeWhite;
+    return isdark ? uiThemeNight : uiThemeWhite;
 }
 
 + (NSColor*)currentThemeColor:(NSString*)name {
@@ -136,6 +136,8 @@
     } else if ([name isEqualToString:btnPortalActiveBackgroundColor]) {
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x333333);
         else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);
+        else if ( [theme isEqualToString:uiThemeWhite] ) return UIColorFromRGB(0xf3f3f3);
+        else if ( [theme isEqualToString:uiThemeNight] ) return UIColorFromRGB(0x333333);
         else {
             if ( @available(macOS 10.13, *) )
                 return [NSColor colorNamed:@"tab-portal-activeColor"];
@@ -144,6 +146,7 @@
     } else {
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x2a2a2a);
         else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);
+        else if ( [theme isEqualToString:uiThemeNight] ) return UIColorFromRGB(0x222222);
         else if ( [theme isEqualToString:uiThemeGray] ) return UIColorFromRGB(0xf7f7f7);
         else if ( [theme isEqualToString:uiThemeWhite] ) return UIColorFromRGB(0xf3f3f3);
         else {
