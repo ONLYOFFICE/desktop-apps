@@ -86,6 +86,7 @@
                     ,"../src/dialogconnect.min.js"
                     ,"../src/panels.js"
                     ,"../src/about-dialog.js"
+                    ,"../src/dialogconnect-intro"
                 ],
                 "dest": "../deploy/build.js"
             }

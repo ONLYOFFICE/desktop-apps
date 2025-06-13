@@ -114,24 +114,24 @@
         //                     </section>
         //                 </div>`;
 
-        // var _html_empty_panel_with_providers =
-        //                     `<div id="box-empty-portals" class="empty flex-center">
-        //                         <section id='connect-empty-var-2'>
-        //                             <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
-        //                             <h4 class='text-description' style='margin-bottom:50px;' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
-        //                             <section class='tools-connect2'>
-        //                                 <div id='box-providers-premium-button' />
-        //                                 <div id="box-providers-buttons" style='font-size:0;' />
-        //                             </section>
-        //                             <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
-        //                             <div class="tools-connect">
-        //                                 <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
-        //                                 <section class="link-connect">
-        //                                     <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
-        //                                 </section>
-        //                             </div>
-        //                         </section>
-        //                     </div>`;
+        var _html_empty_panel_with_providers =
+                            `<div id="box-empty-portals" class="empty flex-center">
+                                <section id='connect-empty-var-2'>
+                                    <!--h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3-->
+                                    <h4 class='text-description' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
+                                    <section class='tools-connect2 connect'>
+                                        <div id='box-providers-premium-button' />
+                                        <div id="box-providers-buttons" style='font-size:0;' />
+                                    </section>
+                                    <h4 class='text-description separate-top' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
+                                    <div class="tools-connect">
+                                        <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
+                                        <section class="link-connect">
+                                            <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
+                                        </section>
+                                    </div>
+                                </section>
+                            </div>`;
 
         // var _html = `<div ${args.id} class="action-panel ${args.action}">
         //               ${config.portals.checklist.length > 1 ? _html_empty_panel_with_providers : _html_empty_panel_with_carousel}
@@ -158,30 +158,30 @@
                         <div class="table-box flex-fill"><table class="table-files list"></table></div>
                     </div>`;
 
-        // if ( config.portals.checklist.length ) {
-        //     const provider_button_template = (provider, name, icons) => {
-        //                                         const icon_light = icons ? icons.themeLight.buttonLogo : '',
-        //                                                 icon_dark = icons ? icons.themeDark.buttonLogo : '';
-        //                                         const button_el = `<img class='icon icon__light' src='${relpath}/providers/${provider}/${icon_light}'></img>
-        //                                                             <img class='icon icon__dark' src='${relpath}/providers/${provider}/${icon_dark}'></img>`;
-        //                                         return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
-        //                                                     ${!!icons ? button_el : name}
-        //                                                 </button>`;
-        //                                     }
+        if ( config.portals.checklist.length ) {
+            const provider_button_template = (provider, name, icons) => {
+                                                const icon_light = icons ? icons.themeLight.buttonLogo : '',
+                                                        icon_dark = icons ? icons.themeDark.buttonLogo : '';
+                                                const button_el = `<img class='icon icon__light' src='${relpath}/providers/${provider}/${icon_light}'></img>
+                                                                    <img class='icon icon__dark' src='${relpath}/providers/${provider}/${icon_dark}'></img>`;
+                                                return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
+                                                            ${!!icons ? button_el : name}
+                                                        </button>`;
+                                            }
 
-        //     _html = $(_html);
-        //     let $box = $('<div />');
-        //     config.portals.checklist.forEach(item => {
-        //         if ( !!item.icons && !!item.icons.themeLight ) {
-        //             const btn = provider_button_template(item.provider, item.name, item.icons);
+           this.html_empty_panel = $(_html_empty_panel_with_providers);
+            let $box = $('<div />');
+            config.portals.checklist.forEach(item => {
+                if ( !!item.icons && !!item.icons.themeLight ) {
+                    const btn = provider_button_template(item.provider, item.name, item.icons);
 
-        //             item.provider != 'onlyoffice' ? $box.append(btn) :
-        //                     _html.find('#box-providers-premium-button').append(btn);
-        //         }
-        //     });
+                    item.provider != 'onlyoffice' ? $box.append(btn) :
+                            this.html_empty_panel.find('#box-providers-premium-button').append(btn);
+                }
+            });
 
-        //     _html.find('#box-providers-buttons').append($box.children());
-        // }
+            this.html_empty_panel.find('#box-providers-buttons').append($box.children());
+        }
 
         // args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -706,8 +706,18 @@
                 // _initCarousel.call(this);
 
                 $('body').on('click', '.login', e=>{
-                    let _data = $(e.currentTarget).data();
-                    !_data ? _do_connect.call(this) : _do_connect.call(this, {provider:_data.cprov});
+                    var portals = PortalsStore.portals();
+                    if (portals.length) {
+                        let _data = $(e.currentTarget).data();
+                        !_data ? _do_connect.call(this) : _do_connect.call(this, {provider:_data.cprov});
+                    } else { 
+                        new DialogConnectIntro({
+                            bodyTemplate: this.view.html_empty_panel,
+                            onConnect: (e, provider) => {
+                                _do_connect.call(this, provider ? {provider} : {});
+                            }
+                    }).show();
+                    }
                 });
 
                 window.CommonEvents.on('portal:create', _on_create_portal);

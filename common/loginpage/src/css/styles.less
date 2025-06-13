@@ -1772,6 +1772,86 @@ li.menu-item {
   }
 }
 
+.empty {
+  .text-description {
+    font-size: 14px;
+    color: @text-secondary;
+    margin: 0;
+  }
+
+  .btn--landing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto 10px auto;
+  }
+
+  .link-connect {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    color: @text-secondary;
+    padding: 5px 0 10px;
+    .login, .link {
+      color: @text-link;
+    }
+  }
+
+  .separate-top {
+    margin-top: 10px;
+    padding-top: 30px;
+    border-top: @scaled-one-px solid @border-divider;
+  }
+
+  .tools-connect2 {
+    padding-top: 20px;
+  }
+
+  #box-providers-premium-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  #box-providers-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+    margin: -5px auto 0;
+    max-width: 360px;
+
+    .btn.btn--big.btn--svg.login {
+      margin: 7px;
+      padding: 0;
+    }
+  }
+
+  #box-providers-premium-button {
+    .btn.btn--big.btn--svg.login {
+      width: 330px;
+      height: 48px;
+    }
+  }
+
+  .btn.btn--big.btn--svg.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: @scaled-one-px solid @border-regular-control;
+    background-color: var(--background-normal);
+    width: 158px;
+    height: 42px;
+  }
+
+  .connect button[data-cprov] {
+    margin: initial;
+  }
+
+  .connect button[data-cprov] img.icon {
+    height: initial;
+    width: initial;
+  }
+}
 
 .templates {
     .table-caption {
