@@ -151,7 +151,7 @@
                         <span>${_lang.actClouds}</span>
                         <button class="btn-quick login">
                             ${isSvgIcons? `<svg class = "icon"><use xlink:href="#plus"></use></svg>` : ''}
-                                <i class="icon icon-plus img-el" />
+                                <i class="icon tool-icon__20 plus" />
                         </button>
                     </div>
                     <div class="sidebar-block-content flexbox scrollable">

@@ -440,6 +440,8 @@ utils.fn.decodeHtml = function(str) {
 }
 
 utils.fn.getToolMenuItemOrder = function(item) {
+    return { item: $('.menu-item a[action=settings]').parent(), after: false };
+
     let $item = $(item);
 
     let _action = $item.find('[action]').attr('action'),
