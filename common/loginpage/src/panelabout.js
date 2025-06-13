@@ -152,6 +152,7 @@
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
+                    this.view.$dialog.setBody(this.view.$body)
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
                         $('#idx-ver-edition').html(args.opts.edition);
@@ -254,7 +255,7 @@
                     const $button = $('#idx-update-btnaction', this.view.$body);
                     if ( info.button.text ) {
                         $button.text(info.button.text);
-                        $button.attr("data-action", info.button.action);
+                        $button.data("action", info.button.action);
                     }
 
                     if ( info.button.lock ) {
@@ -274,7 +275,6 @@
         const onPanelShow = function(panel) {
             if (panel === this.action) {
                 this.view.$dialog.show();
-                this.view.$dialog.setBody(this.view.$body);
             }
         }
 
@@ -293,11 +293,6 @@
                 } else sdk.GetLocalFeatures = e => false;
 
                 CommonEvents.on('panel:show', onPanelShow.bind(this));
-
-                $(document).off('click', '#idx-update-btnaction').on('click', '#idx-update-btnaction', function() {
-                    const action = $(this).attr('data-action');
-                    if (action) sdk.execCommand('updates:action', action);
-                });
 
                 return this;
             },
