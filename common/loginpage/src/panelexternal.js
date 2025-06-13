@@ -49,6 +49,7 @@
 
     var ViewCustomPanel = function(args) {
         var _lang = utils.Lang;
+        const isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio === 1;
 
         let _html = `<div class="action-panel style--free ${args.action}">
                       <div class="flexbox">
@@ -59,8 +60,21 @@
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemindex = 3;
-        args.itemtext = args.itemtext;
+        // args.itemindex = 3;
+        // args.itemtext = args.itemtext;
+        args.tplItem = `
+              <li class="menu-item">
+                <a action="${args.action}">
+                    <div class="icon-box">
+                        <svg class="icon" data-iconname="plugin" data-precls="tool-icon">
+                            <use href="#plugin"></use>
+                        </svg>
+                        ${!isSvgIcons ? '<i class="icon tool-icon plugin"></i>`' : ''}
+                    </div>
+                    <span class="text" l10n>${args.itemtext}</span>
+                </a>
+              </li>
+        `;
 
         baseView.prototype.constructor.call(this, args);
     };
