@@ -66,7 +66,7 @@
         args.tplPage = `
             <div class="action-panel ${args.action}">
                 <div class="recent-panel-container">
-                    <div class="search-bar">
+                    <div class="search-bar hidden">
                         <h1 l10n>${_lang.welWelcome}</h1>
                     </div>
                     

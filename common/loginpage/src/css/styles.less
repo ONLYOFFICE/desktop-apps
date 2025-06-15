@@ -569,8 +569,8 @@ li.menu-item {
   }
 
   &.recents {
-    //padding: 40px 0;
-    padding: 0;
+    padding: 32px 0;
+    /*padding: 0;*/
   }
 
   &.templates {
@@ -836,6 +836,12 @@ li.menu-item {
   .file-list-body, .file-list-head {
     .col-location, .col-date {
       display: none;
+    }
+  }
+
+  .file-list-body {
+    .row {
+      grid-template-columns: auto;
     }
   }
 }
