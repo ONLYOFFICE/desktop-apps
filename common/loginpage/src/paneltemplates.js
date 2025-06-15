@@ -81,9 +81,9 @@
                                 </div>
                                 <div id='idx-nav-templates'>
                                     <a data-value='Documents' class='nav-item selected' l10n>${_lang.tplDocument}</a>
-                                    <a data-value='Spreadsheet' class='nav-item' l10n>${_lang.tplSpreadsheet}</a>
+                                    <a data-value='Spreadsheets' class='nav-item' l10n>${_lang.tplSpreadsheet}</a>
                                     <a data-value='Presentations' class='nav-item' l10n>${_lang.tplPresentation}</a>
-                                    <a data-value='PDF' class='nav-item' l10n>${_lang.tplPDF}</a>
+                                    <a data-value='PDFs' class='nav-item' l10n>${_lang.tplPDF}</a>
                                 </div>
                                 <div id="search-result" class="search-result" style="display: none;"></div>
                                     <div id="search-no-results" class="search-no-results" style="display: none;">
@@ -154,7 +154,7 @@
 
             const panel = $item.data('value');
 
-            this.view.$panel.removeClass('Documents Spreadsheet Presentations PDF').addClass(panel);
+            this.view.$panel.removeClass('Documents Spreadsheets Presentations PDFs').addClass(panel);
 
             applyFilter(this.view.$panel);
             $('.themed-sroll', this.view.$panel).scrollTop(0);
@@ -243,9 +243,9 @@
         const applyFilter = function($panel) {
             const selectedType = {
                 'Documents': 'word',
-                'Spreadsheet': 'cell',
+                'Spreadsheets': 'cell',
                 'Presentations': 'slide',
-                'PDF': 'pdf'
+                'PDFs': 'pdf'
             }[$('.nav-item.selected', $panel).data('value')];
 
             const search = $('#template-search').val() || '';
