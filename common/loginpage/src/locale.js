@@ -34,6 +34,7 @@ var l10n = l10n || {};
 l10n.en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Need help? Visit our <a class="link" href="https://helpcenter.onlyoffice.com/" target="popup">Help Center</a>.',
     btnConnect: 'Connect now',
     textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
@@ -153,9 +154,15 @@ l10n.en = {
     tplDocument: "Documents",
     tplSpreadsheet: "Spreadsheets",
     tplPresentation: "Presentations",
+    tplSearch: "Search for templates",
+    tplSearchResult: "Results for",
+    tplNoResultsTitle: "Nothing found",
+    tplNoResultsText: "No results matching your query could be found",
     colFileName: "File name",
     colLocation: 'Location',
     colLastOpened: 'Last opened',
+    labelDropFile: 'Drag you files here or',
+    labelSelectFile: 'Select file',
 }
 
 
