@@ -223,8 +223,10 @@
 
         const _on_add_cloud_templates = function(data) {
             data.forEach(i => {
-                const info = i['attributes'],
-                    file_ext = info['form_exts']['data'][0]['attributes']['ext'],
+                const info = i['attributes'];
+                if ( !info['form_exts']['data'].length ) return;
+
+                const file_ext = info['form_exts']['data'][0]['attributes']['ext'],
                     id = i.id;
                 if (!this.templates.items.some(t => t.uid === id)) {
                     this.templates.add(new FileTemplateModel({    
