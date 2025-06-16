@@ -182,7 +182,7 @@ auto restartService()->void
     std::list<wstring> batch = {
         L"@chcp 65001>nul",
         L"@echo off",
-        wstring(L"SC STOP ") + L"\"" + TEXT(VER_PRODUCTNAME_STR) + L"\"",
+        wstring(L"NET STOP ") + L"\"" + TEXT(VER_PRODUCTNAME_STR) + L"\"",
         wstring(L"SC START ") + L"\"" +  TEXT(VER_PRODUCTNAME_STR) + L"\"" + args,
         L"del /F /Q \"%~dp0~updatesvc.exe\"",
         L"exit"
