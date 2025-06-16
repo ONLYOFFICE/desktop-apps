@@ -576,7 +576,7 @@ namespace NS_File
     wstring tempPath()
     {
         if (NS_Utils::isRunAsApp()) {
-            WCHAR buff[MAX_PATH + 1] = {0};
+            WCHAR buff[MAX_PATH + 2] = {0};
             DWORD res = ::GetTempPath(MAX_PATH + 1, buff);
             if (res != 0) {
                 buff[res - 1] = '\0';
