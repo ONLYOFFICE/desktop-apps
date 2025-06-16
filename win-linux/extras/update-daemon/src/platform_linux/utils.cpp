@@ -613,7 +613,7 @@ namespace NS_Logger
             if (!file.is_open()) {
                 return;
             }
-            file << log << std::endl;
+            file << log << string("\n") << std::endl;
             file.close();
         }
         if (showMessage)
