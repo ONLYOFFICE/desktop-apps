@@ -153,6 +153,17 @@ namespace NS_Utils
         return L"";
     }
 
+    wstring cmdArgsAsString()
+    {
+        if (cmd_args.empty())
+            return L"";
+        wstring args = cmd_args[0];
+        for (size_t i = 1; i < cmd_args.size(); ++i) {
+            args += L" " + cmd_args[i];
+        }
+        return args;
+    }
+
     wstring GetLastErrorAsString()
     {
         DWORD errID = ::GetLastError();
