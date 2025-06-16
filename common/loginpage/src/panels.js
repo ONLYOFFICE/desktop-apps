@@ -32,10 +32,72 @@
 
 'use strict';
 $(document).ready(function() {
+    const _toolmenu_tpl = `
+            <div class="main-column col-left tool-menu">
+              <li class="menu-item">
+                <a action="recents">
+                    <div class="icon-box">
+                        <svg class="icon" data-iconname="home" data-precls="tool-icon">
+                            <use href="#home"></use>
+                        </svg>
+                    </div>
+                    <span class="text" l10n>${utils.Lang.actHome}</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="open">
+                    <div class="icon-box">
+                        <svg class="icon" data-iconname="folder" data-precls="tool-icon">
+                            <use href="#folder"></use>
+                        </svg>
+                    </div>
+                    <span class="text" l10n>${utils.Lang.actOpenLocal}</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a l10n action="templates">
+                    <div class="icon-box">
+                        <svg class="icon" data-iconname="templates" data-precls="tool-icon">
+                            <use href="#templates"></use>
+                        </svg>
+                    </div>
+                    <span class="text" l10n>${utils.Lang.actTemplates}</span>
+                </a>
+              </li>
+              <li class="menu-item separator"></li>
+              <section id="idx-sidebar-portals" class="connect">
+              </section>
+              <li class="menu-item devider"></li>
+              <li class="menu-item">
+                  <a action="settings">
+                    <div class="icon-box">
+                      <svg class="icon" data-iconname="settings" data-precls="tool-icon">
+                          <use href="#settings"></use>
+                      </svg>
+                    </div>
+                    <span class="text" l10n>${utils.Lang.actSettings}</span>
+                  </a>
+              </li>
+              <li class="menu-item hidden">
+                  <a action="about">
+                    <div class="icon-box">
+                      <svg class="icon" data-iconname="about" data-precls="tool-icon">
+                          <use href="#about"></use>
+                      </svg>
+                    </div>
+                    <span class="text" l10n>${utils.Lang.actAbout}</span>
+                  </a>
+              </li>
+            </div>
+            <div class="main-column col-center after-left">
+            </div>`;
+    $('#placeholder').html(_toolmenu_tpl);
+
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
-    $('.tool-quick-menu .menu-item a').click(onNewFileClick);
+    // $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     if ( window.utils.isWinXp ) {
+        $(document.body).addClass('win_xp');
         $('a[action] use').each((i, e) => {
             const _attr_href = e.getAttribute('href');
             if ( !!_attr_href ) {
@@ -55,25 +117,24 @@ $(document).ready(function() {
     window.app.controller.folders = (new ControllerFolders).init();
     window.app.controller.about = (new ControllerAbout).init();
     window.app.controller.settings = (new ControllerSettings).init();
+
     if (!!window.ControllerPortals)
-        window.app.controller.portals = (new ControllerPortals({})).init();
+        window.app.controller.portals = (new ControllerPortals({
+            placeholder: '#idx-sidebar-portals',
+        })).init();
+
     !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
-    $('h3.createnew').text(utils.Lang.actCreateNew);
-    $('a[action="new:docx"] > .text').text(utils.Lang.newDoc);
-    $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
-    $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
-    $('a[action="new:form"] > .text').text(utils.Lang.newForm);
+    // if (!localStorage.welcome) {
+    //     app.controller.welcome = (new ControllerWelcome).init();
+    //     selectAction('welcome');
 
-    if (!localStorage.welcome) {
-        app.controller.welcome = (new ControllerWelcome).init();
-        selectAction('welcome');
-
-        localStorage.setItem('welcome', 'have been');
-    } else {
+    //     localStorage.setItem('welcome', 'have been');
+    // } else
+    {
         if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
             selectAction(utils.inParams.panel);
-        else selectAction('recent');
+        else selectAction('recents');
     }
 
     $('#placeholder').on('click', '.newportal', function(){
@@ -112,6 +173,22 @@ $(document).ready(function() {
         } 
     }, 50);
 
+    $('.scrollable').on('scroll', e => {
+        if ( window.Menu && Menu.opened ) {
+            Menu.closeAll();
+        }
+    });
+
+    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+
+    const mql = window.matchMedia(mq);
+    mql.addEventListener('change', e => {
+        CommonEvents.fire("icons:svg", [!e.target.matches]);
+        replaceIcons(!e.target.matches);
+    });
+
+    replaceIcons(!mql.matches);
 });
 
 function onActionClick(e) {
@@ -126,6 +203,9 @@ function onActionClick(e) {
     {
         openFile(OPEN_FILE_FOLDER, '');
     } else {
+        if (action === 'about') {
+            return CommonEvents.fire('panel:show', [action]);
+        }
         $('.tool-menu > .menu-item').removeClass('selected');
         $el.parent().addClass('selected');
         $('.action-panel').hide();
@@ -143,6 +223,9 @@ function onActionClick(e) {
 function selectAction(action) {
     if ( !$(`.action-panel.${action}`).length ) return;
 
+    if (action === 'about') {
+            return CommonEvents.fire('panel:show', [action]);
+    }
     $('.tool-menu > .menu-item').removeClass('selected');
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
     $('.action-panel').hide();
@@ -152,6 +235,12 @@ function selectAction(action) {
 };
 
 function hideAction(action, hide) {
+    if ( action == 'connect' ) {
+        hide ? $('#idx-sidebar-portals').hide() :
+                $('#idx-sidebar-portals').show();
+        return;
+    }
+
     var mitem = $('.tool-menu a[action='+action+']').parent();
     mitem.removeClass('extra')[hide===false?'show':'hide']();
     $('.action-panel.' + action)[hide===false?'show':'hide']();
@@ -169,22 +258,22 @@ var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
 
 {
-    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
-                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+    // const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+    //                             "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
 
-    const mql = window.matchMedia(mq);
-    mql.addEventListener('change', e => {
-        CommonEvents.fire("icons:svg", [!e.target.matches]);
-        replaceIcons(!e.target.matches);
-    });
+    // const mql = window.matchMedia(mq);
+    // mql.addEventListener('change', e => {
+    //     CommonEvents.fire("icons:svg", [!e.target.matches]);
+    //     replaceIcons(!e.target.matches);
+    // });
 
-    replaceIcons(!mql.matches);
+    // replaceIcons(!mql.matches);
 }
 
 function replaceIcons(usesvg) {
     if ( usesvg ) {
     } else {
-        $('svg.icon', $('.tool-quick-menu')).each((i, el) => {
+        $('.tool-menu svg.icon').each((i, el) => {
             el = $(el);
             const p = el.parent();
             if ( $('i.icon', p).length == 0 ) {
@@ -242,6 +331,9 @@ window.sdk.on('on_native_message', function(cmd, param) {
     } else
     if (/app\:ready/.test(cmd)) {
         setLoaderVisible(false);
+    } else
+    if (/app\:version/.test(cmd)) {
+        $('.tool-menu a[action=about]').parent().removeClass('hidden');
     }
     
     console.log(cmd, param);

@@ -478,7 +478,7 @@ Kami memiliki penawaran spesial untuk Anda.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Formulir PDF baru</target>
+        <target>PDF baru</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

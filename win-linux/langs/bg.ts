@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1390"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1400"/>
         <source>Presenter View</source>
         <translation>Изглед на водещия</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Запази като</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1931"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1944"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation>За да влязат в сила настройките, трябва да рестартирате приложението.</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2263"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2265"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2276"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2278"/>
         <source>Document%1.docx</source>
         <translation>Документ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2269"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2282"/>
         <source>Book%1.xlsx</source>
         <translation>Книга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2271"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2284"/>
         <source>Presentation%1.pptx</source>
         <translation>Презентация%1.pptx</translation>
     </message>
@@ -66,7 +66,7 @@
     <name>CAscTabWidget</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="910"/>
-        <location filename="../src/components/asctabwidget.cpp" line="699"/>
+        <location filename="../src/components/asctabwidget.cpp" line="705"/>
         <source>Document</source>
         <translation>Отваряне…</translation>
     </message>
@@ -201,17 +201,17 @@
         <translation>Отвори главен прозорец</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="584"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="583"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Документът трябва да бъде запазен, за да продължите.&lt;br&gt;Запазвате ли документа?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="674"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="673"/>
         <source>Print Document</source>
         <translation>Принтирай документ</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="883"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="887"/>
         <source>Document must be saved firstly.</source>
         <translation>Документът първо трябва да бъде запазен.</translation>
     </message>
@@ -229,12 +229,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="625"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="624"/>
         <source>There are no printers available</source>
         <translation>Няма налични принтери</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="740"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="739"/>
         <source>There are no pages set to print.</source>
         <translation>Няма зададени за принтиране страници.</translation>
     </message>
@@ -526,6 +526,11 @@
         <translation>Презентации</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="263"/>
+        <source>Visio diagram</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/components/cfiledialog.cpp" line="507"/>
         <source>Unknown image format.</source>
         <translation>Неизвестен формат на изображението.</translation>
@@ -632,63 +637,63 @@
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="623"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="633"/>
         <source>Main Window</source>
         <translation>Главен прозорец</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="302"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="312"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Отворени са повече от един документ.&lt;br&gt;Затваряне на прозореца въпреки това?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="304"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="314"/>
         <source>Don&apos;t ask again.</source>
         <translation>Не питай повторно.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="944"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="984"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="954"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="994"/>
         <source>File format not supported.</source>
         <translation>Форматът на файла не се поддържа.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="968"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="978"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 не е наличен. Може да е преименуван, преместен или изтрит.&lt;br&gt;Искате ли да премахнете файла от списъка?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1046"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1056"/>
         <source>Document must be saved firstly.</source>
         <translation>Документът първо трябва да бъде запазен.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1210"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1220"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Документът трябва да бъде запазен, за да продължите.&lt;br&gt;Запазвате ли документа?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1316"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>There are no printers available</source>
         <translation>Няма налични принтери</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1376"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1386"/>
         <source>Print Document</source>
         <translation>Принтирай документ</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1442"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1452"/>
         <source>There are no pages set to print.</source>
         <translation>Няма зададени за принтиране страници.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1578"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1588"/>
         <source>Sign Up</source>
         <translation>Създай портал</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1685"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1695"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 бе модифициран.&lt;br&gt;Искате ли да запазите промените?</translation>
     </message>
@@ -1037,7 +1042,7 @@
     <name>QObject</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="250"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="1023"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1033"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 не е наличен. Може да е преименуван, преместен или изтрит.&lt;br&gt;Искате ли да премахнете файла от списъка?</translation>
     </message>
@@ -1067,7 +1072,7 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="932"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="942"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Достъпът до файл &apos;%1&apos; е отказан!</translation>
     </message>

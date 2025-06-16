@@ -48,7 +48,7 @@ l10n.sq = {
     newDoc: 'Dokument',
     newXlsx: 'Fletëllogaritëse',
     newPptx: 'Prezantim',
-    newForm: 'Form PDF',
+    newForm: 'PDF',
     actCreateNew: 'Krijoni një të re',
     actRecentFiles: 'Skedarët e fundit',
     actOpenLocal: 'Hapni skedarin lokal',

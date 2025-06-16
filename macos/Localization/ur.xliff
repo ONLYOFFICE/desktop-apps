@@ -503,7 +503,7 @@ We have a special offer for you.</source>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target state="translated">نئی اسپریڈشیٹ</target>
+        <target state="translated">نیا پی ڈی ایف</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

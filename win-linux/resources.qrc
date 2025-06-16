@@ -242,5 +242,7 @@
         <file alias="theme-dark.json">res/styles/theme-dark.json</file>
         <file alias="theme-contrast-dark.json">res/styles/theme-contrast-dark.json</file>
         <file alias="theme-gray.json">res/styles/theme-gray.json</file>
+        <file alias="theme-white.json">res/styles/theme-white.json</file>
+        <file alias="theme-night.json">res/styles/theme-night.json</file>
     </qresource>
 </RCC>

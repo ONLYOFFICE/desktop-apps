@@ -3,7 +3,6 @@
 
 dialog {
     visibility: hidden;
-    overflow: hidden;
     transform: scale(0.8);
     transition: all 200ms;
     &.scaled {
@@ -17,7 +16,7 @@ dialog {
     border-radius: 5px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     border: @scaled-one-px solid @border-tabbar;
-    overflow-y: visibile;
+    overflow: visible;
 
     &::backdrop {
         background-color: rgba(255,255,255,0.4);
@@ -45,6 +44,28 @@ dialog {
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
+        }
+    }
+
+    &.dlg-about {
+        border-radius: 8px;
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 16px 16px 32px;
+            border-bottom: none;
+            background: none;
+        }
+
+        .body {
+            padding: 0px 30px 28px;
+        }
+
+        .separator {
+            padding-top: 5px;
+            border-bottom: @scaled-one-px solid @border-divider;
         }
     }
 

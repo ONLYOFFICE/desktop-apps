@@ -36,6 +36,7 @@ var Menu = function(args) {
     this.config = Object.assign({}, args);
     this.id = args.id;
     this.items = args.items;
+    this.className = args.className;
 
     this.prefix = args.prefix || 'asc-gen';
     this.events = {};
@@ -44,26 +45,44 @@ var Menu = function(args) {
 
 Menu.prototype.init = function(parent) {
     var me = this;
-    var _tpl_ = '<div id="%id" class="menu-container">'+
-                    '<div class="dropdown-toggle" data-toggle="dropdown"></div>'+
-                    '<ul class="dropdown-menu" role="menu">' +
-                    '</ul></div>';
+
+    //language=HTML
+    var _tpl_ = `
+        <div id="%id" class="menu-container">
+            <div class="dropdown-toggle" data-toggle="dropdown"></div>
+            <ul class="dropdown-menu ${this.className || ''}" role="menu"></ul>
+        </div>`;
 
     var $container = $(_tpl_.replace(/\%id/, this.id)).appendTo(parent);
     var $list = $container.find('ul');
 
-    var _tpl_item_ = '<li><a id="%id" class="dd-item" tabindex="-1" type="menuitem" l10n>%caption</a></li>',
+    var _tpl_item_ = '<li><a id="%id" class="dd-item" tabindex="-1" type="menuitem" l10n>%icon%caption</a></li>',
         _tpl_divider_ = '<li class="divider"></li>';
+
     this.items.forEach(function(item) {
         let $item;
 
         !item.id && (item.id = me.prefix + ++nCounter);
-        if (item.caption == '--')
+        if (item.caption === '--') {
             $item = $(_tpl_divider_);
-        else {
+        } else {
+            let iconHtml = '';
+            if (item.icon) {
+                if (item.icon.startsWith('#')) {
+                    iconHtml = `<svg class="menu-icon"><use xlink:href="${item.icon}"></use></svg>`;
+                } else {
+                    iconHtml = `<i class="menu-icon ${item.icon}"></i>`;
+                }
+            }
+
             $item = $(_tpl_item_
                 .replace(/%caption/, item.caption)
-                .replace(/%id/, item.id));
+                .replace(/%id/, item.id)
+                .replace(/%icon/, iconHtml));
+
+            if (item.variant) {
+                $item.find('a').attr('data-variant', item.variant);
+            }
 
             $item.on('click', {'action': item.action}, function(e) {
                 if ( !e.target.hasAttribute('disabled') )
@@ -103,6 +122,25 @@ Menu.prototype.show = function(pos, data) {
     if (!!_top && _top > _blimit) {
         pos.top -= (_top - _blimit + 4);
     }
+
+    $el.css(pos);
+    $dd.dropdown('toggle');
+    this.contextdata = data;
+    Menu.opened = true;
+};
+
+Menu.prototype.showUnderElem = function(el, data, align) {
+    $('.menu-container').removeClass('open');
+    let $el = $('#'+this.id);
+    const $rel = $(el);
+
+    // const $rel.width();
+    const pos = $rel.offset();
+    pos.top += $rel.height() + 2;
+
+    const $dd = $el.find('.dropdown-menu');
+    if ( align == 'right' )
+        pos.left -= $dd.outerWidth() - $rel.outerWidth();
 
     $el.css(pos);
     $dd.dropdown('toggle');

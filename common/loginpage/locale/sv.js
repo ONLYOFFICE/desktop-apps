@@ -48,7 +48,7 @@ l10n.sv = {
     newDoc: 'Dokument',
     newXlsx: 'Kalkylblad',
     newPptx: 'Presentation',
-    newForm: 'PDF-formulär',
+    newForm: 'PDF',
     actCreateNew: 'Skapa ny',
     actRecentFiles: 'Senaste filer',
     actOpenLocal: 'Öppna lokal fil',

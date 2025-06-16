@@ -48,7 +48,7 @@ l10n.si = {
     newDoc: 'ලේඛනයක්',
     newXlsx: 'පැතුරුම්පතක්',
     newPptx: 'සමර්පණයක්',
-    newForm: 'PDF පෝරමය',
+    newForm: 'PDF',
     actCreateNew: 'අළුතින් සාදන්න',
     actRecentFiles: 'මෑත ගොනු',
     actOpenLocal: 'ස්ථානීය ගොනුවක් අරින්න',

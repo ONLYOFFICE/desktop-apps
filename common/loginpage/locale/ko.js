@@ -48,7 +48,7 @@ l10n.ko = {
     newDoc: '문서',
     newXlsx: '스프레드시트',
     newPptx: '프레젠테이션',
-    newForm: 'PDF 양식',
+    newForm: 'PDF',
     actCreateNew: '신규 생성',
     actRecentFiles: '최근 파일',
     actOpenLocal: '로컬 파일 열기',

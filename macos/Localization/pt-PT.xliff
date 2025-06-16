@@ -431,7 +431,7 @@ Nós temos uma oferta especial para si.</target>
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Novo formulário PDF</target>
+        <target>Novo PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

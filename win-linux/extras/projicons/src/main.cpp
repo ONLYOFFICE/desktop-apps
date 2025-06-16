@@ -63,13 +63,11 @@ int main(int argc, char *argv[])
     QStringList _cmdArgs(QCoreApplication::arguments().mid(1));
 #ifndef __OS_WIN_XP
     if (_cmdArgs.contains("--create-jump-list")) {
-        QStringList defaultTitles = {
-            "New document",
-            "New spreadsheet",
-            "New presentation",
-            "New PDF form"
-        };
-        CreateJumpList(_cmdArgs.size() > MIN_TASK_NUM ? _cmdArgs.mid(1) : defaultTitles);
+        if (_cmdArgs.size() > 1) {
+            QStringList list = _cmdArgs.at(1).split(';', Qt::SkipEmptyParts);
+            if (!list.isEmpty())
+                CreateJumpList(list);
+        }
         return 0;
     } else
     if (_cmdArgs.contains("--remove-jump-list")) {

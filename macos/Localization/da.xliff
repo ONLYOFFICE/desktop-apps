@@ -453,7 +453,7 @@ Vi har et specielt tilbud til dig.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Ny PDF-formular</target>
+        <target>Nyt PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

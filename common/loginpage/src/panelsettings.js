@@ -40,8 +40,8 @@
     const THEME_TYPE_DARK = 'dark';
     const THEME_TYPE_SYSTEM = 'system';
 
-    const THEME_ID_DEFAULT_LIGHT = 'theme-classic-light';
-    const THEME_ID_DEFAULT_DARK = 'theme-dark';
+    const THEME_ID_DEFAULT_LIGHT = 'theme-white';
+    const THEME_ID_DEFAULT_DARK = 'theme-night';
 
     const themes_map = {
         'theme-system': {
@@ -67,6 +67,14 @@
         'theme-gray': {
             text: utils.Lang.settOptThemeGray,
             type: 'light',
+        },
+        'theme-white': {
+            text: utils.Lang.settOptThemeWhite,
+            type: 'light',
+        },
+        'theme-night': {
+            text: utils.Lang.settOptThemeNight,
+            type: 'dark',
         },
     }
 
@@ -127,7 +135,7 @@
 
     uitheme.relevant_theme_id = function () {
         if ( this.is_theme_system() )
-            return this.is_system_theme_dark() ? 'theme-dark' : 'theme-classic-light';
+            return this.get_default_theme_for_type(this.is_system_theme_dark() ? THEME_TYPE_DARK : THEME_TYPE_LIGHT);
         return this.id;
     }
 
@@ -290,7 +298,8 @@
         args.itemcls = 'bottom';
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemtext = _lang.actSettings;
+        // args.itemtext = _lang.actSettings;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -326,6 +335,9 @@
 
             const theme_id = uitheme.relevant_theme_id();
             if ( !$("body").hasClass(theme_id) ) {
+                if ( !type && themes_map[theme_id] )
+                    type = themes_map[theme_id].type;
+
                 const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(theme_id)) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
                 document.body.className = `${_cls?_cls+' ':''}${theme_id} ${_type}`;
@@ -620,7 +632,7 @@
                                 }
                             }
                         }
-                        _apply_theme(!!appSettings.uitheme ? appSettings.uitheme : 'theme-classic-light');
+                        _apply_theme(!!appSettings.uitheme ? appSettings.uitheme : THEME_ID_DEFAULT_LIGHT);
 
                         if ( appSettings.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))

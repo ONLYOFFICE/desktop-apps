@@ -1064,6 +1064,7 @@ sq.LABEL_ERR_CANCELLED =Anuluar!
 id.LABEL_ERR_CANCELLED =Dibatalkan!
 sv.LABEL_ERR_CANCELLED =Avbrutet!
 ur.LABEL_ERR_CANCELLED =منسوخ کر دیا گیا!
+ar_SA.LABEL_ERR_CANCELLED =ألغيت!
 
 en.BUTTON_INSTALL =Install
 en_GB.BUTTON_INSTALL =Install
@@ -1098,6 +1099,7 @@ sq.BUTTON_INSTALL =Instaloni
 id.BUTTON_INSTALL =Install
 sv.BUTTON_INSTALL =Installera
 ur.BUTTON_INSTALL =انسٹال کریں۔
+ar_SA.BUTTON_INSTALL =يثبت
 
 en.BUTTON_CANCEL =Cancel
 en_GB.BUTTON_CANCEL =Cancel

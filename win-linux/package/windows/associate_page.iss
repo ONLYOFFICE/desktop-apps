@@ -1746,55 +1746,55 @@ sq.jumpPPTX =Prezantim i ri
 ur.jumpPPTX =نئی پیشکش
 #endif
 
-en.jumpDOCXF =New PDF Form
-en_GB.jumpDOCXF =New PDF Form
-ar_SA.jumpDOCXF =نموذج PDF جديد
-bg.jumpDOCXF =Нов PDF формуляр
-ca.jumpDOCXF =Nou formulari PDF
-cs.jumpDOCXF =Nový PDF formulář
-el.jumpDOCXF =Νέα φόρμα PDF
-;et.jumpDOCXF =Uus PDF vorm
-fi.jumpDOCXF =Uusi PDF-lomake
-;lt.jumpDOCXF =Nauja PDF forma
-lo.jumpDOCXF =ແບບຟອມ PDF ໃໝ່
-nl.jumpDOCXF =Nieuw PDF-formulier
-ru.jumpDOCXF =Новая PDF-форма
-de.jumpDOCXF =Neues PDF-Formular
-fr.jumpDOCXF =Nouveau formulaire PDF
-es.jumpDOCXF =Nuevo formulario PDF
-id.jumpDOCXF =Formulir PDF baru
-it_IT.jumpDOCXF =Nuovo modulo PDF
-pt_BR.jumpDOCXF =Novo formulário PDF
-pt_PT.jumpDOCXF =Novo formulário PDF
-pl.jumpDOCXF =Nowy formularz PDF
-ro.jumpDOCXF =Formular PDF nou
-sk.jumpDOCXF =Nový formulár PDF
-sl.jumpDOCXF =Novi PDF obrazec
-sv.jumpDOCXF =Nytt PDF-formulär
-tr.jumpDOCXF =Yeni PDF Formu
-vi.jumpDOCXF =Mẫu PDF mới
-zh_CN.jumpDOCXF =新建 PDF 表单
-hy_AM.jumpDOCXF =Նոր PDF Ֆորմ
-;hr.jumpDOCXF =Novi PDF obrazac
-da.jumpDOCXF =Ny PDF-formular
-;hi.jumpDOCXF =नया पीडीएफ फॉर्म
-hu.jumpDOCXF =Új PDF űrlap
-;ga_IE.jumpDOCXF =Foirm PDF nua
-ja.jumpDOCXF =新しいPDFフォーム
-ko.jumpDOCXF =새로운 PDF 양식
-lv.jumpDOCXF =Jauna PDF veidlapa
-no.jumpDOCXF =Nytt PDF-skjema
-uk.jumpDOCXF =Нова PDF-форма
-be.jumpDOCXF =Новая форма PDF
-gl.jumpDOCXF =Novo formulario PDF
-si.jumpDOCXF =නව PDF පෝරමය
-zh_TW.jumpDOCXF =新的 PDF 表格
-sr_Latn_RS.jumpDOCXF =Novi PDF formular
-sr_Cyrl_RS.jumpDOCXF =Нови PDF формулар
-he.jumpDOCXF =טופס PDF חדש
-sq.jumpDOCXF =Format PDF i ri
+en.jumpDOCXF =New PDF
+en_GB.jumpDOCXF =New PDF
+ar_SA.jumpDOCXF =PDF جديد
+bg.jumpDOCXF =Нов PDF
+ca.jumpDOCXF =Nou PDF
+cs.jumpDOCXF =Nový PDF
+el.jumpDOCXF =Νέο PDF
+;et.jumpDOCXF =Uus PDF
+fi.jumpDOCXF =Uusi PDF
+;lt.jumpDOCXF =Naujas PDF
+lo.jumpDOCXF =PDF ໃໝ່
+nl.jumpDOCXF =Nieuw PDF
+ru.jumpDOCXF =Новый PDF
+de.jumpDOCXF =Neues PDF
+fr.jumpDOCXF =Nouveau PDF
+es.jumpDOCXF =Nuevo PDF
+id.jumpDOCXF =PDF baru
+it_IT.jumpDOCXF =Nuovo PDF
+pt_BR.jumpDOCXF =Novo PDF
+pt_PT.jumpDOCXF =Novo PDF
+pl.jumpDOCXF =Nowy PDF
+ro.jumpDOCXF =PDF nou
+sk.jumpDOCXF =Nový PDF
+sl.jumpDOCXF =Novi PDF
+sv.jumpDOCXF =Nytt PDF
+tr.jumpDOCXF =Yeni PDF
+vi.jumpDOCXF =PDF mới
+zh_CN.jumpDOCXF =新建 PDF
+hy_AM.jumpDOCXF =Նոր PDF
+;hr.jumpDOCXF =Novi PDF
+da.jumpDOCXF =Nyt PDF
+;hi.jumpDOCXF =नया पीडीएफ
+hu.jumpDOCXF =Új PDF
+;ga_IE.jumpDOCXF =PDF nua
+ja.jumpDOCXF =新しいPDF
+ko.jumpDOCXF =새로운 PDF
+lv.jumpDOCXF =Jauns PDF
+no.jumpDOCXF =Ny PDF
+uk.jumpDOCXF =Новий PDF
+be.jumpDOCXF =Новы PDF
+gl.jumpDOCXF =Novo PDF
+si.jumpDOCXF =නව PDF
+zh_TW.jumpDOCXF =新的 PDF
+sr_Latn_RS.jumpDOCXF =Novi PDF
+sr_Cyrl_RS.jumpDOCXF =Нови PDF
+he.jumpDOCXF =PDF חדש
+sq.jumpDOCXF =PDF i ri
 #if Ver >= EncodeVer(6,1,1)
-ur.jumpDOCXF =نیا پی ڈی ایف فارم
+ur.jumpDOCXF =نیا پی ڈی ایف 
 #endif
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
@@ -2001,8 +2001,8 @@ sq.runOpenDefaultApps=Hapni aplikacionet e paracaktuara
 ur.runOpenDefaultApps=ڈیفالٹ ایپس کھولیں۔
 #endif
 
-[Run]
-Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
+;[Run]
+;Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
 
 [Registry]
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      Flags: uninsdeletekey
@@ -2190,14 +2190,14 @@ begin
   if createPage then begin
     associatePage := CreateCustomPage(wpSelectTasks, CustomMessage('AssociateCaption'), CustomMessage('AssociateDescription'));
 
-    GetWindowsVersionEx(version);
-    if version.Major < 10 then begin
+    //GetWindowsVersionEx(version);
+    //if version.Major < 10 then begin
       lblAudio          := TLabel.Create(associatePage);
       lblAudio.Parent   := associatePage.Surface;
-      lblAudio.WordWrap := True;
       lblAudio.Caption  := ExpandConstant('{cm:AssociateAudio}');
       lblAudio.AutoSize := True;
       lblAudio.Width    := associatePage.SurfaceWidth;
+      lblAudio.WordWrap := True;
       lblAudio.Left     := 0;
       lblAudio.Top      := 0;
 
@@ -2225,21 +2225,21 @@ begin
 
       ChlbAudio.Checked[1] := True;
       ChlbAudioClickCheck(ChlbAudio);
-    end else begin
-      labelDesc           := TNewStaticText.Create(associatePage);
-      labelDesc.Parent    := associatePage.Surface;
-      labelDesc.Width     := associatePage.SurfaceWidth;
-      labelDesc.WordWrap  := True;
-      labelDesc.Caption   := ExpandConstant('{cm:warnWin10FileAssociationDesc}');
+    //end else begin
+    //  labelDesc           := TNewStaticText.Create(associatePage);
+    //  labelDesc.Parent    := associatePage.Surface;
+    //  labelDesc.Width     := associatePage.SurfaceWidth;
+    //  labelDesc.WordWrap  := True;
+    //  labelDesc.Caption   := ExpandConstant('{cm:warnWin10FileAssociationDesc}');
 
-      labelPath           := TNewStaticText.Create(associatePage);
-      labelPath.Parent    := associatePage.Surface;
-      labelPath.Top       := labelDesc.Top + labelDesc.Height + ScaleY(8);
-      labelPath.Width     := associatePage.SurfaceWidth;
-      labelPath.WordWrap  := True;
-      labelPath.Caption   := ExpandConstant('{cm:warnWin10FileAssociationPath}');
-      labelPath.Font.Style := [fsBold];
-    end
+    //  labelPath           := TNewStaticText.Create(associatePage);
+    //  labelPath.Parent    := associatePage.Surface;
+    //  labelPath.Top       := labelDesc.Top + labelDesc.Height + ScaleY(8);
+    //  labelPath.Width     := associatePage.SurfaceWidth;
+    //  labelPath.WordWrap  := True;
+    //  labelPath.Caption   := ExpandConstant('{cm:warnWin10FileAssociationPath}');
+    //  labelPath.Font.Style := [fsBold];
+    //end
   end else begin
     associatePage := nil
   end;
@@ -2353,8 +2353,8 @@ end;
 
 procedure DoPostInstall();
 var
-  i: Integer;
-  ext, progId1, progId2: string;
+  i, errorCode: Integer;
+  ext, progId1, progId2, progId3, assocArg: string;
   argsArray: TArrayOfString;
   cleanExts, extensionInfo: TArrayOfString;
   version: TWindowsVersion;
@@ -2365,6 +2365,7 @@ begin
       initExtensions();
     end;
 
+    assocArg := '';
     GetWindowsVersionEx(version);
     for  i := 0 to GetArrayLength(AudioExts) - 1 do
     begin
@@ -2399,17 +2400,29 @@ begin
         if RegValueExists(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '') then
           RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', progId2);
 
-        if ((Length(progId2) <> 0) and (CompareText(progId2, argsArray[0]) <> 0)) or
+        if RegValueExists(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'ProgId') then
+          RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'ProgId', progId3);
+
+        if ((Length(progId3) <> 0) and (CompareText(progId3, argsArray[0]) <> 0)) or
+              ((Length(progId2) <> 0) and (CompareText(progId2, argsArray[0]) <> 0)) or
               ((Length(progId1) <> 0) and (CompareText(progId1, argsArray[0]) <> 0)) then
         begin
-          RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
-          RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', argsArray[0])
-          //RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', argsArray[0]);
+          if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 2)) then begin
+            assocArg := assocArg + '.' + ext + ':' + argsArray[0] + ';';
+          end else begin
+            RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
+            RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', argsArray[0])
+            //RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', argsArray[0]);
+          end;
         end;
       end else
       begin
         //RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0], '');
       end;
+    end;
+
+    if Length(assocArg) <> 0 then begin
+      ShellExecAsOriginalUser('', ExpandConstant('{app}\{#iconsExe}'), '--assoc ' + assocArg, '', SW_SHOW, ewNoWait, errorCode);
     end;
 
   AddToDefaultPrograms;

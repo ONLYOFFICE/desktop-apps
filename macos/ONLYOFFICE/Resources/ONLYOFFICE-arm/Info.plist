@@ -571,6 +571,18 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>vstx</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-vsdx</string>
+			<key>CFBundleTypeName</key>
+			<string>Microsoft Visio Template File (.vstx)</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>hwpx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>

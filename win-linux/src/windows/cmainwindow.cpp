@@ -213,6 +213,16 @@ bool CMainWindow::holdView(int id) const
     return holdUid(id);
 }
 
+bool CMainWindow::slideshowHoldView(int id) const
+{
+    return m_pTabs->slideshowHoldView(id);
+}
+
+bool CMainWindow::isSlideshowMode() const
+{
+    return m_pTabs->fullScreenWidget() != nullptr;
+}
+
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
@@ -1709,6 +1719,17 @@ bool CMainWindow::holdUrl(const QString& url, AscEditorType type) const
     } else
     if (type == etLocalFile) {
         return !(m_pTabs->tabIndexByUrl(url) < 0);
+    }
+    return false;
+}
+
+bool CMainWindow::slideshowHoldUrl(const QString &url, AscEditorType type) const
+{
+    if (type == etPortal) {
+        return m_pTabs->slideshowHoldViewByTitle(Utils::getPortalName(url), etPortal);
+    } else
+    if (type == etLocalFile) {
+        return m_pTabs->slideshowHoldViewByUrl(url);
     }
     return false;
 }

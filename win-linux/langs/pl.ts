@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1390"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1400"/>
         <source>Presenter View</source>
         <translation>Widok Prezentera</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Zapisz jako</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1931"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1944"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation>Należy ponownie uruchomić aplikację, aby ustawienia zaczęły obowiązywać.</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2263"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2265"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2276"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2278"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2269"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2282"/>
         <source>Book%1.xlsx</source>
         <translation>Skoroszyt%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2271"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2284"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentacja%1.pptx</translation>
     </message>
@@ -50,7 +50,7 @@
     <name>CAscTabWidget</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="910"/>
-        <location filename="../src/components/asctabwidget.cpp" line="699"/>
+        <location filename="../src/components/asctabwidget.cpp" line="705"/>
         <source>Document</source>
         <translation>Otwieranie...</translation>
     </message>
@@ -185,17 +185,17 @@
         <translation>Otwórz okno główne</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="584"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="583"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokument musi być zapisany, aby kontynuować.&lt;br&gt;Zapisać dokument?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="674"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="673"/>
         <source>Print Document</source>
         <translation>Drukuj dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="883"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="887"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument musi być najpierw zapisany.</translation>
     </message>
@@ -213,12 +213,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="625"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="624"/>
         <source>There are no printers available</source>
         <translation>Brak dostępnych drukarek</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="740"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="739"/>
         <source>There are no pages set to print.</source>
         <translation>Brak stron do wydrukowania.</translation>
     </message>
@@ -530,8 +530,9 @@
         <translation>Format nieznany.</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="263"/>
         <source>Visio diagram</source>
-        <translation type="vanished">Diagram Visio</translation>
+        <translation>Diagram Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="264"/>
@@ -620,63 +621,63 @@
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="87"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="623"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="633"/>
         <source>Main Window</source>
         <translation>Okno główne</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="302"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="312"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Masz więcej niż jeden otwarty dokument. &lt;br&gt;Nadal chcesz zamknąć okno?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="304"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="314"/>
         <source>Don&apos;t ask again.</source>
         <translation>Nie pytaj ponownie.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="944"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="984"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="954"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="994"/>
         <source>File format not supported.</source>
         <translation>Nieobsługiwany format pliku.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="968"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="978"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 jest niedostępny. Został przeniesiony, usunięty lub zmieniono jego nazwę.&lt;br&gt;Czy chcesz usunąć plik z listy?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1046"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1056"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument musi być najpierw zapisany.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1210"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1220"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokument musi być zapisany, aby kontynuować.&lt;br&gt;Zapisać dokument?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1316"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>There are no printers available</source>
         <translation>Brak dostępnych drukarek</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1376"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1386"/>
         <source>Print Document</source>
         <translation>Drukuj dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1442"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1452"/>
         <source>There are no pages set to print.</source>
         <translation>Brak stron do wydrukowania.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1578"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1588"/>
         <source>Sign Up</source>
         <translation>Utwórz pakiet w chmurze</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1685"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1695"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 został zmieniony.&lt;br&gt;Czy chcesz zapisać zmiany?</translation>
     </message>
@@ -1001,7 +1002,7 @@
     <name>QObject</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="250"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="1023"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1033"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 jest niedostępny. Został przeniesiony, usunięty lub zmieniono jego nazwę.&lt;br&gt;Czy chcesz usunąć plik z listy?</translation>
     </message>
@@ -1027,7 +1028,7 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="932"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="942"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Odmowa dostępu do pliku &apos;%1&apos;!</translation>
     </message>

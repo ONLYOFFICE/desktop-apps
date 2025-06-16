@@ -410,6 +410,7 @@ void MainWindow::startUpdate()
                 return;
             }
             m_bar->pulse(true);
+            m_comntLbl->setText(_TR(LABEL_UPDATING));
             wstring args = L"/c call \"" + tmp_path;
             args += (m_package == L"msi") ? L"\" /qn /norestart" : L"\" /UPDATE /VERYSILENT /NOLAUNCH";
             DWORD status = NS_File::runProcess(L"cmd", args, true);
@@ -661,7 +662,7 @@ void MainWindow::createSelectionPage()
             m_uninsRadio->close();
             clrAllChkBox->close();
             applyBtn->close();
-            msg = m_uninsRadio->isChecked() ? _TR(LABEL_UNINSTLING) : /*m_repRadio->isChecked() ? _TR(LABEL_REPAIRING) :*/ _TR(LABEL_UPDATING);
+            msg = m_uninsRadio->isChecked() ? _TR(LABEL_UNINSTLING) : /*m_repRadio->isChecked() ? _TR(LABEL_REPAIRING) :*/ _TR(LABEL_DOWNLOAD);
             createProgressPage(msg);
             if (m_updRadio->isChecked() /*|| m_repRadio->isChecked()*/) {
                 /* Check box section*/
@@ -826,6 +827,7 @@ CDownloader* MainWindow::startDownload(const std::wstring &install_type, const s
 {
     wstring appcast_url = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
     wstring tmp_path = NS_File::toNativeSeparators(NS_File::generateTmpFileName(L".json"));
+    NS_Logger::WriteLog(_T("\nAppcast URL:\n") + appcast_url);
     CDownloader *dnl = new CDownloader();
     dnl->onComplete([=](ulong error) {
         if (error == ERROR_SUCCESS) {
@@ -845,10 +847,10 @@ CDownloader* MainWindow::startDownload(const std::wstring &install_type, const s
                 JsonObject package_type = win.value(install_type).toObject();
                 tstring url = package_type.value(_T("url")).toTString();
                 tstring url2 = package_type.value(_T("url2")).toTString();
-                NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
+                NS_Logger::WriteLog(_T("\nPrimary package URL:\n") + url + _T("\nSecondary package URL:\n") + url2);
                 if ((url.empty() || !dnl->isUrlAccessible(url)) && !url2.empty())
                     url = url2;
-
+                NS_Logger::WriteLog(_T("\nDownload from URL:\n") + url);
                 // tstring hash = package_type.value(_T("md5")).toTString();
                 // std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                 NS_File::removeFile(tmp_path);

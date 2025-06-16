@@ -48,7 +48,7 @@ l10n.et = {
     newDoc: 'Dokument',
     newXlsx: 'Arvutustabel',
     newPptx: 'Esitlus',
-    newForm: 'PDF vorm',
+    newForm: 'PDF',
     actCreateNew: 'Loo uus',
     actRecentFiles: 'Hiljutised failid',
     actOpenLocal: 'Ava kohalik fail',

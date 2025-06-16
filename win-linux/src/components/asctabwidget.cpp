@@ -639,7 +639,10 @@ int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
 {
     const CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
-        doc = panel(i)->data();
+        CTabPanel *cefpanel = panel(i);
+        if (!cefpanel)
+            continue;
+        doc = cefpanel->data();
 
         if (doc && doc->contentType() == et)
             if (doc->title() == t ||
@@ -678,7 +681,10 @@ int CAscTabWidget::tabIndexByUrl(const wstring& url)
     } else {       
         const CAscTabData * doc;
         for (int i(count()); !(--i < 0);) {
-            doc = panel(i)->data();
+            CTabPanel *cefpanel = panel(i);
+            if (!cefpanel)
+                continue;
+            doc = cefpanel->data();
 
             if (doc && Utils::normalizeAppProtocolUrl(doc->url()).compare(Utils::normalizeAppProtocolUrl(url)) == 0)
                 return i;
@@ -1042,6 +1048,47 @@ bool CAscTabWidget::isLocalByIndex(int index)
     return indexIsValid(index) ? panel(index)->data()->isLocal() : true;
 }
 
+bool CAscTabWidget::slideshowHoldView(int id) const
+{
+    CTabPanel *cefpanel = nullptr;
+    if (m_dataFullScreen && (cefpanel = qobject_cast<CTabPanel*>(m_dataFullScreen->widget())) != nullptr) {
+        if (cefpanel->cef()->GetId() == id)
+            return true;
+    }
+    return false;
+}
+
+bool CAscTabWidget::slideshowHoldViewByTitle(const QString &title, AscEditorType type) const
+{
+
+    CTabPanel *cefpanel = nullptr;
+    if (m_dataFullScreen && (cefpanel = qobject_cast<CTabPanel*>(m_dataFullScreen->widget())) != nullptr) {
+        CAscTabData *doc = cefpanel->data();
+        if (doc && doc->contentType() == type) {
+            if (doc->title() == title || (type == etPortal && doc->title().contains(title)))
+                return true;
+        }
+    }
+    return false;
+}
+
+bool CAscTabWidget::slideshowHoldViewByUrl(const QString &url) const
+{
+    std::wstring _url = url.toStdWString();
+    CCefView * view = AscAppManager::getInstance().GetViewByUrl(_url);
+    if ( view ) {
+        return slideshowHoldView(view->GetId());
+    } else {
+        CTabPanel *cefpanel = nullptr;
+        if (m_dataFullScreen && (cefpanel = qobject_cast<CTabPanel*>(m_dataFullScreen->widget())) != nullptr) {
+            CAscTabData *doc = cefpanel->data();
+            if (doc && Utils::normalizeAppProtocolUrl(doc->url()).compare(Utils::normalizeAppProtocolUrl(_url)) == 0)
+                return true;
+        }
+    }
+    return false;
+}
+
 bool CAscTabWidget::closedByIndex(int index)
 {
     return indexIsValid(index) ? panel(index)->data()->closed() : true;
@@ -1155,6 +1202,15 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             int index = m_dataFullScreen->tabindex();
             fsWidget = qobject_cast<CTabPanel *>(m_dataFullScreen->widget());
             widget(index)->layout()->addWidget(fsWidget);
+
+			// TODO: remove after switching to libVLC libraries on Linux
+#ifdef _LINUX
+			QCefView* cef_media_view = this->findChild<QCefView*>();
+			if (cef_media_view)
+			{
+				cef_media_view->OnMediaEnd();
+			}
+#endif
 
             RELEASEOBJECT(m_dataFullScreen->parent)
             RELEASEOBJECT(m_dataFullScreen)

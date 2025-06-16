@@ -8,7 +8,7 @@
         "brand-pdf": "#1e1e1e",
         "brand-draw": "1e1e1e",
 
-        "window-background": "#2a2a2a",
+        "window-background": "#181818",
         "window-border": "#616161",
 
         "text-normal": "#e8e8e8",
@@ -18,7 +18,7 @@
         "tool-button-background": "#2a2a2a",
         "tool-button-hover-background": "#424242",
         "tool-button-pressed-background": "#666666",
-        "tool-button-active-background": "#1e1e1e",
+        "tool-button-active-background": "#2a2a2a",
 
         "download-widget-background": "#2a2a2a",
         "download-widget-border": "#666666",
