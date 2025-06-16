@@ -718,7 +718,7 @@ namespace NS_Logger
     void WriteLog(const wstring &log, bool showMessage)
     {
         if (allow_write_log) {
-            wstring filpPath(NS_File::appPath() + L"/service_log.txt");
+            wstring filpPath(NS_File::tempPath() + L"/oo_service_log.txt");
             std::wofstream file(filpPath.c_str(), std::ios::app);
             if (!file.is_open()) {
                 return;
