@@ -1600,6 +1600,42 @@
 
 - (void)onCEFEditorDocumentReady:(NSNotification *)notification {
     //
+    if (notification && notification.userInfo) {
+        NSArray * printers = [NSPrinter printerNames];
+
+        if ([printers count] != 0) {
+            NSMutableArray * arr = [NSMutableArray array];
+
+            for (NSString * printerName in printers) {
+                [arr addObject:@{@"name": printerName}];
+            }
+
+            id info = notification.userInfo;
+            if (NSString * viewId = info[@"viewId"]) {
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+                int cefViewId = [viewId intValue];
+                CCefView * cef = appManager->GetViewById(cefViewId);
+                if (cef && cef->GetType() == cvwtEditor) {
+                    NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary:
+                                                  @{
+                                                    @"current_printer": arr[0],
+                                                    @"printers": arr
+                                                    }];
+
+                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_FrameName(L"frameEditor");
+                    pCommand->put_Command(L"printer:config");
+                    pCommand->put_Param([[json jsonString] stdwstring]);
+
+                    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent->m_pData = pCommand;
+
+                    cef->Apply(pEvent);
+                }
+            }
+        }
+    }
 }
 
 - (void)onCEFEditorAppReady:(NSNotification *)notification {
