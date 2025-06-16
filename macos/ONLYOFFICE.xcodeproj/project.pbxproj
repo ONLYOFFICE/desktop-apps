@@ -92,7 +92,6 @@
 		5AFA1CF2277A6D4C00619952 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
 		5AFA1CF3277A6DA600619952 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
 		5AFA1CF4277A6DF100619952 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
-		BE59EE352B962B0400F12D5D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE59EE332B9627D500F12D5D /* AVFoundation.framework */; };
 		BE6251BA22BD089100656116 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = BE6251B922BD089100656116 /* dictionaries */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
@@ -904,7 +903,6 @@
 		5ACC12842BC033080089A585 /* file-xlsb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsb.icns"; sourceTree = "<group>"; };
 		5AD24E292902AE3C00748926 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		BE59EE322B9623FF00F12D5D /* mac_cefviewmedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefviewmedia.h; sourceTree = "<group>"; };
-		BE59EE332B9627D500F12D5D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
@@ -1242,7 +1240,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE59EE352B962B0400F12D5D /* AVFoundation.framework in Frameworks */,
 				FCB4C70126DD018B0012C20D /* WebKit.framework in Frameworks */,
 				FCB4C78D26DE3CBB0012C20D /* libascdocumentscore.dylib in Frameworks */,
 				5AD24E2A2902AE3C00748926 /* Sparkle.framework in Frameworks */,
@@ -1780,7 +1777,6 @@
 			isa = PBXGroup;
 			children = (
 				5A02294C2CB9C0410011C6EC /* QuickLookUI.framework */,
-				BE59EE332B9627D500F12D5D /* AVFoundation.framework */,
 				FCB4C78A26DE3CBB0012C20D /* libascdocumentscore.dylib */,
 				FCB4C78926DE3CBB0012C20D /* libooxmlsignature.dylib */,
 			);
