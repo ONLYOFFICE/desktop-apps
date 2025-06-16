@@ -173,14 +173,39 @@
                 });
 
                 collection.events.inserted.attach((col, model) => {
-                    const $item = $(this.view.listitemtemplate(model));
-                    if (!model.isCloud) {
+                    let $item, isprepend = false;
+                    if ( model instanceof Array ) {
+                        const items = model;
+                        $item = [], isprepend = true;
+                        items.forEach(m => {
+                            $item.push($(this.view.listitemtemplate(m)));
+                        });
+                    } else {
+                        $item = $(this.view.listitemtemplate(model));
+                    }
+
+                    if ( isprepend === true ) {
                         col.list.prepend($item); 
                     } else {
                         col.list.append($item);
                     }
                     col.list.parent().removeClass('empty');
                     applyFilter(this.view.$panel);
+                });
+
+                collection.events.reset.attach((col, models) => {
+                    let elms = [];
+                    models.forEach(m => {
+                        const $item = $(this.view.listitemtemplate(m));
+                        elms.push($item);
+                    });
+
+                    if ( elms.length ) {
+                        col.list.prepend(elms);
+                        col.list.parent().removeClass('empty');
+
+                        applyFilter(this.view.$panel);
+                    }
                 });
 
                 collection.events.click.attach((col, model) => {
@@ -201,24 +226,54 @@
         }
 
         Collection.prototype.emptyLocal = function() {
-            const cloudItems = this.items.filter(item => item.isCloud);
-            this.empty();
-            cloudItems.forEach(item => {
-                this.add(item);
-            });
+            // const cloudItems = this.items.filter(item => item.isCloud);
+            // this.empty();
+            // cloudItems.forEach(item => {
+            //     this.add(item);
+            // });
+
+            this.items.forEach(m => {
+                    if ( !m.isCloud ) {
+                        const el = document.getElementById(m.uid);
+                        if ( el ) el.remove();
+                    }
+                });
+
+            const cloud_items = this.items.filter(item => item.isCloud);
+            this.items = cloud_items;
         };
 
         const _on_add_local_templates = function(tmpls) {
-            this.templates.emptyLocal();
+            const _func_ = () => {
+                this.templates.emptyLocal();
 
-            [...tmpls]
-                .reverse()
-                .forEach(item => {
-                    const type = utils.formatToEditor(item.type);
-                    if (['word', 'cell', 'slide', 'pdf'].includes(type)) {
-                        this.templates.add(new FileTemplateModel(item));
-                    }
-                });
+                let items = [];
+                // [...tmpls]
+                    // .reverse()
+                (this.tmpls || tmpls)
+                    .forEach(item => {
+                        const type = utils.formatToEditor(item.type);
+                        if (['word', 'cell', 'slide', 'pdf'].includes(type)) {
+                            // this.templates.add(new FileTemplateModel(item));
+                            items.push(new FileTemplateModel(item));
+                        }
+                    });
+
+                this.templates.add(items);
+            };
+
+            // if ( this.timer_id )
+            //     this.tmpls = tmpls;
+            // else {
+            //     this.timer_id = setTimeout(e => {
+            //         this.timer_id = undefined;
+            //         _func_();
+
+            //         delete this.tmpls;
+            //     }, 2000);
+
+                _func_();
+            // }
         };
 
         const _on_add_cloud_templates = function(data) {
