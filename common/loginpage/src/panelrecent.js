@@ -327,9 +327,10 @@
             }
         };
 
-        function addContextMenuEventListener(collection, model, view) {
+        function addContextMenuEventListener(collection, model, view, actionList) {
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
+                ppmenu.actionlist = actionList;
                 ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
             })
         }
@@ -352,7 +353,7 @@
 
                 collection.list.append($item);
 
-                addContextMenuEventListener(collection, model, this.view.$panel);
+                addContextMenuEventListener(collection, model, this.view.$panel, 'recent');
 
                 collection.list.parent().removeClass('empty');
             });
@@ -387,7 +388,7 @@
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
-                addContextMenuEventListener(collection, model, this.view.$panel);
+                addContextMenuEventListener(collection, model, this.view.$panel, 'recovery');
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
