@@ -1617,9 +1617,10 @@
                 int cefViewId = [viewId intValue];
                 CCefView * cef = appManager->GetViewById(cefViewId);
                 if (cef && cef->GetType() == cvwtEditor) {
+                    NSString * def_printer_name = arr[0][@"name"];
                     NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary:
                                                   @{
-                                                    @"current_printer": arr[0],
+                                                    @"current_printer": def_printer_name,
                                                     @"printers": arr
                                                     }];
 
