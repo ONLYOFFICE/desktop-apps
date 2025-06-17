@@ -110,9 +110,9 @@ Collection.prototype.add = function(item, suppressevent) {
         // if ( !(suppressevent === true) )
         //     this.events.inserted.notify(m);
 
-        $('#' + m.uid).off('click contextmenu')
-                        .on('click', m, this.on_item_click)
-                        .on('contextmenu', m, this.on_item_ctxmenu);
+        // $('#' + m.uid).off('click contextmenu')
+        //                 .on('click', m, this.on_item_click)
+        //                 .on('contextmenu', m, this.on_item_ctxmenu);
     }
 
     if ( item instanceof Array ) {
@@ -121,13 +121,23 @@ Collection.prototype.add = function(item, suppressevent) {
             _add_model(i, true);
         });
 
-        if ( !(suppressevent === true) )
-            this.events.inserted.notify(items);
+        // if ( !(suppressevent === true) )
+        this.events.inserted.notify(items);
+
+        items.forEach(i => {
+            $('#' + i.uid).off('click contextmenu')
+                            .on('click', i, this.on_item_click)
+                            .on('contextmenu', i, this.on_item_ctxmenu);
+        });
     } else {
         _add_model(item)
 
-        if ( !(suppressevent === true) )
-            this.events.inserted.notify(item);
+        // if ( !(suppressevent === true) )
+        this.events.inserted.notify(item);
+
+        $('#' + item.uid).off('click contextmenu')
+                        .on('click', item, this.on_item_click)
+                        .on('contextmenu', item, this.on_item_ctxmenu);
     }
 };
 
