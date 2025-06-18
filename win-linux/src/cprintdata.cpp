@@ -31,6 +31,7 @@
 */
 
 #include "cprintdata.h"
+#include "cascapplicationmanagerwrapper.h"
 #include "utils.h"
 #include "defines.h"
 #include <QJsonDocument>
@@ -45,6 +46,19 @@
 # include <cups/ppd.h>
 #endif
 
+static bool jsonArrayContainsPrinterName(const QJsonArray &array, const QString &name, QJsonObject &printerObject)
+{
+    for (const QJsonValue &value : array) {
+        if (value.isObject()) {
+            QJsonObject obj = value.toObject();
+            if (obj.contains("name") && obj.value("name").toString() == name) {
+                printerObject = obj;
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 static QString getFirstPrinterName(const QJsonObject &json)
 {
@@ -179,7 +193,18 @@ public:
 
     auto getPrintersCapabilitiesJson() const -> QJsonObject
     {
-        QJsonArray printersArray;
+        bool needUpdateCache = false;
+        QJsonArray printersArray, cachedPrintersArray;
+        const AscAppManager &app = AscAppManager::getInstance();
+        std::wstring user_data_path = app.m_oSettings.app_data_path;
+        const QString printers_cache = QString::fromStdWString(user_data_path.append(L"/printers.cache"));
+        if (QFile::exists(printers_cache)) {
+            QJsonObject cache = Utils::parseJsonFile(printers_cache);
+            if (!cache.isEmpty() && cache.contains("printers")) {
+                cachedPrintersArray = cache["printers"].toArray();
+            }
+        }
+
 #ifdef _WIN32
         DWORD need = 0, ret = 0;
         EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 4, nullptr, 0, &need, &ret);
@@ -187,9 +212,17 @@ public:
         if (EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 4, buf.data(), need, &need, &ret)) {
             PRINTER_INFO_4 *printers = reinterpret_cast<PRINTER_INFO_4*>(buf.data());
             for (DWORD i = 0; i < ret; ++i) {
+                QJsonObject printerObject;
+                if (jsonArrayContainsPrinterName(cachedPrintersArray, QString::fromWCharArray(printers[i].pPrinterName), printerObject)) {
+                    printersArray.append(printerObject);
+                    continue;
+                } else {
+                    if (!needUpdateCache)
+                        needUpdateCache = true;
+                }
+
                 bool duplex_supported = (DeviceCapabilities(printers[i].pPrinterName, NULL, DC_DUPLEX, NULL, NULL) == 1);
 
-                QJsonObject printerObject;
                 printerObject["name"] = QString::fromWCharArray(printers[i].pPrinterName);
                 printerObject["duplex_supported"] = duplex_supported;
 
@@ -237,10 +270,18 @@ public:
                 const char *ppd = cupsGetPPD(dest->name);
                 if (!ppd)
                     continue;
+                QJsonObject printerObject;
+                if (jsonArrayContainsPrinterName(cachedPrintersArray, QString::fromUtf8(dest->name), printerObject)) {
+                    printersArray.append(printerObject);
+                    continue;
+                } else {
+                    if (!needUpdateCache)
+                        needUpdateCache = true;
+                }
+
                 ppd_file_t *ppdF = ppdOpenFile(ppd);
                 bool duplex_supported = ppdFindOption(ppdF, "Duplex");
 
-                QJsonObject printerObject;
                 printerObject["name"] = QString::fromUtf8(dest->name);
                 printerObject["duplex_supported"] = duplex_supported;
 
@@ -271,6 +312,10 @@ public:
 #endif
         QJsonObject rootObject;
         rootObject["printers"] = printersArray;
+        if (needUpdateCache) {
+            const QByteArray json = QJsonDocument(rootObject).toJson(QJsonDocument::Compact);
+            Utils::writeFile(printers_cache, json);
+        }
         return rootObject;
     }
 
