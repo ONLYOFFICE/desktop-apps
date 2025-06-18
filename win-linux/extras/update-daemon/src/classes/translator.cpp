@@ -132,28 +132,21 @@ tstring Translator::tr(const char *str)
     tstring translatedStr = str;
 #endif
     if (is_translations_valid) {
-        for (auto &strIdPair : translMap) {
-            //LocaleMap locMap = strIdPair.second;
-            // for (LocaleMap::const_iterator it = strIdPair.second.begin(); it != strIdPair.second.end(); ++it) {
-                //wcout << L"\n\n" << translatedStr << L"\n" << it->second;
-                if (strIdPair.first == translatedStr) {
-                    if (strIdPair.second.find(langName) != strIdPair.second.end())
-                        return strIdPair.second[langName];
-                    else {
-                        tstring primaryLangAndScript = getPrimaryLang(langName, true);
-                        if (strIdPair.second.find(primaryLangAndScript) != strIdPair.second.end())
-                            return strIdPair.second[primaryLangAndScript];
-                        else {
-                            tstring primaryLang = getPrimaryLang(langName);
-                            if (strIdPair.second.find(primaryLang) != strIdPair.second.end())
-                                return strIdPair.second[primaryLang];
-                        }
+        auto it = translMap.find(translatedStr);
+        if (it != translMap.end()) {
+            LocaleMap &lcmap = it->second;
+            auto lc_it = lcmap.find(langName);
+            if (lc_it == lcmap.end()) {
+                tstring primaryLangAndScript = getPrimaryLang(langName, true);
+                if ((lc_it = lcmap.find(primaryLangAndScript)) == lcmap.end()) {
+                    tstring primaryLang = getPrimaryLang(langName);
+                    if ((lc_it = lcmap.find(primaryLang)) == lcmap.end()) {
+                        lc_it = lcmap.find(_T("en"));
                     }
-                    if (strIdPair.second.find(_T("en")) != strIdPair.second.end())
-                        return strIdPair.second[_T("en")];
-                    break;
                 }
-            // }
+            }
+            if (lc_it != lcmap.end())
+                return lc_it->second;
         }
     }
     return translatedStr;
