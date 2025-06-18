@@ -133,17 +133,12 @@ Translator::~Translator()
 
 }
 
-tstring Translator::tr(const char *str)
+tstring Translator::tr(const tchar *str) const
 {
-#ifdef _WIN32
-    tstring translatedStr = StrToWStr(str);
-#else
-    tstring translatedStr = str;
-#endif
     if (is_translations_valid) {
-        auto it = translMap.find(translatedStr);
+        auto it = translMap.find(str);
         if (it != translMap.end()) {
-            LocaleMap &lcmap = it->second;
+            const LocaleMap &lcmap = it->second;
             auto lc_it = lcmap.find(langName);
             if (lc_it == lcmap.end()) {
                 tstring primaryLangAndScript = getPrimaryLang(langName, true);
@@ -158,7 +153,7 @@ tstring Translator::tr(const char *str)
                 return lc_it->second;
         }
     }
-    return translatedStr;
+    return str;
 }
 
 void Translator::setLanguage(const tstring &lang)

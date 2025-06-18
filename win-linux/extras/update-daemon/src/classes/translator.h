@@ -13,7 +13,7 @@
 # define tstring std::string
 #endif
 
-#define _TR(str) Translator::instance().tr(#str)
+#define _TR(str) Translator::instance().tr(_T(#str))
 
 using std::unordered_map;
 
@@ -33,7 +33,7 @@ public:
 #else
     void init(const tstring &lang, const char *resourcePath);
 #endif
-    tstring tr(const char*);
+    tstring tr(const tchar*) const;
     void setLanguage(const tstring &lang);
 
 private:
