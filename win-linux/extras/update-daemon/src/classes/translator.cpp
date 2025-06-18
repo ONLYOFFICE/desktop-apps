@@ -1,5 +1,6 @@
 #include "translator.h"
 #include <sstream>
+#include <algorithm>
 #ifdef _WIN32
 # include "platform_win/resource.h"
 # include "platform_win/utils.h"
@@ -111,6 +112,7 @@ void Translator::init(const tstring &lang, const char *resourcePath)
 #endif
 {
     langName = lang;
+    std::replace(langName.begin(), langName.end(), '-', '_');
     NS_Logger::WriteLog(_T("Current locale: ") + langName);
 
     is_translations_valid = false;
@@ -285,5 +287,6 @@ tstring Translator::tr(const tchar *str) const
 void Translator::setLanguage(const tstring &lang)
 {
     langName = lang;
+    std::replace(langName.begin(), langName.end(), '-', '_');
     NS_Logger::WriteLog(_T("Current locale: ") + langName);
 }
