@@ -48,7 +48,7 @@ l10n.no = {
     newDoc: 'Dokument',
     newXlsx: 'Regneark',
     newPptx: 'Presentasjon',
-    newForm: 'PDF-skjema',
+    newForm: 'PDF',
     actCreateNew: 'Opprett ny',
     actRecentFiles: 'Nylig brukte filer',
     actOpenLocal: 'Åpne lokal fil',

@@ -77,17 +77,18 @@
 using std::vector;
 
 const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unpacking the archive"),
-           *SVC_TXT_ERR_DNL_OUT_MEM = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: out of memory!"),
-           *SVC_TXT_ERR_DNL_CONN    = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: server connection error!"),
-           *SVC_TXT_ERR_DNL_URL     = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: wrong URL!"),
-           *SVC_TXT_ERR_DNL_CREAT   = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: unable to create file!"),
-           *SVC_TXT_ERR_DNL_INET    = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: network error!"),
+           *SVC_TXT_ERR_DNL_OUT_MEM = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: out of memory!"),
+           *SVC_TXT_ERR_DNL_CONN    = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: server connection error!"),
+           *SVC_TXT_ERR_DNL_URL     = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: wrong URL!"),
+           *SVC_TXT_ERR_DNL_CREAT   = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: unable to create file!"),
+           *SVC_TXT_ERR_DNL_INET    = QT_TRANSLATE_NOOP("CUpdateManager", "Update failed: network error!"),
            *SVC_TXT_ERR_OTHER       = QT_TRANSLATE_NOOP("CUpdateManager", "A service error has occurred!"),
 
            *TXT_LAST_CHECK      = QT_TRANSLATE_NOOP("CUpdateManager", "Last check performed %1"),
            *TXT_UPDATED         = QT_TRANSLATE_NOOP("CUpdateManager", "Current version is up to date"),
            *TXT_CHECKING_UPD    = QT_TRANSLATE_NOOP("CUpdateManager", "Checking for updates..."),
            *TXT_AVAILABLE_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Update is available (version %1)"),
+           *TXT_AVAILABLE_SVC   = QT_TRANSLATE_NOOP("CUpdateManager", "Service update is available (version %1)"),
            *TXT_DOWNLOADING_UPD = QT_TRANSLATE_NOOP("CUpdateManager", "Downloading new version %1 (%2%)"),
            *TXT_PREPARING_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update..."),
            *TXT_UNZIP_UPD       = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update (%1%)"),
@@ -820,7 +821,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &json)
                 m_packageData->isInstallable = root.value("isInstallable").toBool();
 
                 clearTempFiles(m_packageData->isInstallable && isSavedPackageValid() ? m_savedPackageData->fileName : "");
-                if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
+                if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght)) {
                     m_packageData->fileSize = "--";
                     onCheckFinished(false, true, m_packageData->version, "");
                 }
@@ -846,7 +847,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 //                return;
 //            } else
             if (!m_packageData->isInstallable) {
-                refreshStartPage({"lastcheck", {TXT_AVAILABLE_UPD, version}, BTN_TXT_CHECK, "check", "false"});
+                refreshStartPage({"lastcheck", {m_packageData->object == "svc" ? TXT_AVAILABLE_SVC : TXT_AVAILABLE_UPD, version}, BTN_TXT_CHECK, "check", "false"});
                 m_dialogSchedule->addToSchedule("showUpdateMessage");
                 return;
             }
@@ -861,7 +862,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
                     __UNLOCK
                     loadUpdates();
                 } else {
-                    refreshStartPage({"lastcheck", {TXT_AVAILABLE_UPD, version}, BTN_TXT_DOWNLOAD, "download", "false"});
+                    refreshStartPage({"lastcheck", {m_packageData->object == "svc" ? TXT_AVAILABLE_SVC : TXT_AVAILABLE_UPD, version}, BTN_TXT_DOWNLOAD, "download", "false"});
                     m_dialogSchedule->addToSchedule("showUpdateMessage");
                 }
                 break;

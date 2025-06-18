@@ -166,6 +166,9 @@ Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl; LicenseF
 Name: en_GB; MessagesFile: compiler:Languages\EnglishBritish.isl; LicenseFile: {#sLicenseFile};
 Name: he; MessagesFile: compiler:Languages\Hebrew.isl; LicenseFile: {#sLicenseFile};
 Name: sq; MessagesFile: compiler:Languages\Albanian.isl; LicenseFile: {#sLicenseFile};
+#if Ver >= EncodeVer(6,1,1)
+Name: ur; MessagesFile: compiler:Languages\Urdu.isl; LicenseFile: {#sLicenseFile};
+#endif
 
 [LangOptions]
 en.LanguageName=English (United States)
@@ -221,6 +224,9 @@ ar_SA.AppLocale =ar-SA
 sr_Latn_RS.AppLocale =sr-Latn-RS
 sr_Cyrl_RS.AppLocale =sr-Cyrl-RS
 sq.AppLocale =sq-AL
+#if Ver >= EncodeVer(6,1,1)
+ur.AppLocale =ur-PK
+#endif
 ;======================================================================================================
 en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
 en_GB.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
@@ -234,6 +240,9 @@ ja.PrevVer=旧バージョンの{#sAppName}が検出されました。「OK」�
 es.PrevVer=Se ha detectado la versión anterior de {#sAppName}. Por favor, haga clic en el botón 'OK' para desinstalarla, o en 'Cancelar' para salir de la instalación.
 de.PrevVer=Die vorherige Version von {#sAppName} wurde erkannt. Bitte klicken Sie auf 'OK', um sie zu deinstallieren, oder auf 'Abbrechen', um das Setup zu beenden.
 sq.PrevVer=Versioni i mëparshëm i {#sAppName} u zbulua, ju lutemi klikoni butonin 'OK' për ta çinstaluar, ose 'Anulo' për të lënë konfigurimin.
+#if Ver >= EncodeVer(6,1,1)
+ur.PrevVer={#sAppName} کے پچھلے ورژن کا پتہ چلا، براہ کرم اسے اَن انسٹال کرنے کے لیے 'OK' بٹن پر کلک کریں، یا سیٹ اپ چھوڑنے کے لیے 'منسوخ کریں' پر کلک کریں۔
+#endif
 ;======================================================================================================
 en.Launch =Launch %1
 en_GB.Launch =Launch %1
@@ -282,6 +291,9 @@ sr_Latn_RS.Launch =Lansiraj %1
 sr_Cyrl_RS.Launch =Лансирај %1
 he.Launch =הפעל את %1
 sq.Launch =Lanso %1
+#if Ver >= EncodeVer(6,1,1)
+ur.Launch =%1 لانچ کریں۔
+#endif
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 en_GB.CreateDesktopIcon =Create %1 &desktop icon
@@ -330,6 +342,9 @@ sr_Latn_RS.CreateDesktopIcon =Kreiraj %1 &desktop ikonicu
 sr_Cyrl_RS.CreateDesktopIcon =Креирај %1 &десктоп иконицу
 he.CreateDesktopIcon =צור סמל &שולחן עבודה עבור %1
 sq.CreateDesktopIcon =Krijoni %1 dhe ikonën në desktop
+#if Ver >= EncodeVer(6,1,1)
+ur.CreateDesktopIcon =%1 اور ڈیسک ٹاپ آئیکن بنائیں
+#endif
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 en_GB.InstallAdditionalComponents =Installing additional system components. Please wait...
@@ -378,6 +393,9 @@ sr_Latn_RS.InstallAdditionalComponents =Instaliranje dodatnih sistemskih kompone
 sr_Cyrl_RS.InstallAdditionalComponents =Инсталирање додатних системских компоненти. Молимо сачекајте...
 he.InstallAdditionalComponents =מתקין רכיבי מערכת נוספים. אנא המתן...
 sq.InstallAdditionalComponents =Po instalohen komponentë shtesë të sistemit. Ju lutem prisni...
+#if Ver >= EncodeVer(6,1,1)
+ur.InstallAdditionalComponents =سسٹم کے اضافی اجزاء کی تنصیب۔ برائے مہربانی انتظار کریں...
+#endif
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 en_GB.AdditionalTasks =Tasks:
@@ -426,6 +444,9 @@ sr_Latn_RS.AdditionalTasks =Zadaci:
 sr_Cyrl_RS.AdditionalTasks =Задаци:
 he.AdditionalTasks =משימות:
 sq.AdditionalTasks =Detyrat:
+#if Ver >= EncodeVer(6,1,1)
+ur.AdditionalTasks =کام:
+#endif
 ;======================================================================================================
 en.Uninstall =Uninstall
 en_GB.Uninstall =Uninstall
@@ -473,7 +494,10 @@ zh_TW.Uninstall =解除安裝
 sr_Latn_RS.Uninstall =Deinstaliraj
 sr_Cyrl_RS.Uninstall =Деинсталирај
 he.Uninstall =הסר התקנה
-sq.Uninstall ==Çinstaloni
+sq.Uninstall =Çinstaloni
+#if Ver >= EncodeVer(6,1,1)
+ur.Uninstall =ان انسٹال کریں۔
+#endif
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 en_GB.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
@@ -522,6 +546,9 @@ sr_Latn_RS.WarningWrongArchitecture =Pokušavate da instalirate %1-bit aplikacij
 sr_Cyrl_RS.WarningWrongArchitecture =Покушавате да инсталирате %1-бит апликација верзију преко %2-бит инсталиране верзије. Молимо прво деинсталирајте претходну верзију или преузмите тачну верзију за инсталацију.
 he.WarningWrongArchitecture =אתה מנסה להתקין את גרסת היישום %1-סיביות על גבי גרסת %2-סיביות מותקנת. אנא הסר תחילה את הגרסה הקודמת או הורד את הגרסה הנכונה להתקנה.
 sq.WarningWrongArchitecture =Ju po përpiqeni të instaloni versionin e aplikacionit %1-bit mbi versionin %2-bit të instaluar. Ju lutem çinstaloni fillimisht versionin e mëparshëm ose shkarkoni versionin e duhur për instalim.
+#if Ver >= EncodeVer(6,1,1)
+ur.WarningWrongArchitecture =آپ انسٹال کردہ %2 بٹ ورژن پر %1-bit ایپلیکیشن ورژن انسٹال کرنے کی کوشش کر رہے ہیں۔ براہ کرم پہلے پچھلے ورژن کو ان انسٹال کریں یا انسٹالیشن کے لیے صحیح ورژن ڈاؤن لوڈ کریں۔
+#endif
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -571,6 +598,9 @@ sr_Latn_RS.UpdateAppRunning=Setup je detektovao da %1 se trenutno izvršava.%n%n
 sr_Cyrl_RS.UpdateAppRunning =Сетуп је детектовао да %1 се тренутно извршава.%n%nБиће затворено аутоматски. Кликните ОК да наставите, или Откажи да изађете.
 he.UpdateAppRunning=תוכנית ההתקנה זיהתה ש-%1 פועלת כרגע.%n%nהיא תיסגר אוטומטית. לחץ על אישור כדי להמשיך, או ביטול כדי לצאת.
 sq.UpdateAppRunning=Konfigurimi ka zbuluar se %1 po ekzekutohet aktualisht.%n%nDo të mbyllet automatikisht. Klikoni OK për të vazhduar, ose Anulo për të dalë.
+#if Ver >= EncodeVer(6,1,1)
+ur.UpdateAppRunning=سیٹ اپ کو پتہ چلا ہے کہ فی الحال %1 چل رہا ہے۔ %n%nیہ خود بخود بند ہو جائے گا۔ جاری رکھنے کے لیے ٹھیک ہے، یا باہر نکلنے کے لیے منسوخ پر کلک کریں۔
+#endif
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 en_GB.WarningClearAppData =Do you want to clear the user settings and application cached data?
@@ -619,6 +649,9 @@ sr_Latn_RS.WarningClearAppData =Da li želite da obrišete korisničke postavke 
 sr_Cyrl_RS.WarningClearAppData =Да ли желите да обришете корисничке поставке и кеширане податке апликације?
 he.WarningClearAppData =האם ברצונך לנקות את הגדרות המשתמש ונתוני המטמון של היישום?
 sq.WarningClearAppData =Dëshironi të pastroni cilësimet e përdoruesit dhe të dhënat e memories së aplikacionit?
+#if Ver >= EncodeVer(6,1,1)
+ur.WarningClearAppData =کیا آپ صارف کی ترتیبات اور ایپلیکیشن کیشڈ ڈیٹا کو صاف کرنا چاہتے ہیں؟
+#endif
 ;======================================================================================================
 
 
@@ -649,6 +682,9 @@ sq.WarningClearAppData =Dëshironi të pastroni cilësimet e përdoruesit dhe t�
 ;sr_Cyrl_RS.AssociateDescription =Повежи врсте офис фајл докумената са %1
 he.AssociateDescription =שייך סוגי קבצי מסמכי משרד ל-%1
 ;sq.AssociateDescription =Shoqëroni llojet e skedarëve të dokumentit të zyrës me %1
+#if Ver >= EncodeVer(6,1,1)
+;ur.AssociateDescription =آفس دستاویز فائل کی اقسام کو %1 کے ساتھ منسلک کریں۔
+#endif
 ;======================================================================================================
 en.UpdateService =Update service for {#sAppName}
 en_GB.UpdateService =Update service for {#sAppName}
@@ -678,6 +714,9 @@ hy_AM.UpdateService =Թարմացրեք ծառայությունը {#sAppName}-�
 sr_Cyrl_RS.UpdateService =Ажурирај услугу за {#sAppName}
 he.UpdateService =שירות עדכון עבור {#sAppName}
 sq.UpdateService =Shërbimi i përditësimit për {#sAppName}
+#if Ver >= EncodeVer(6,1,1)
+ur.UpdateService ={#sAppName} کے لیے سروس اپ ڈیٹ کریں
+#endif
 
 [Code]
 const
@@ -932,14 +971,11 @@ begin
     DoPostInstall();
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200;@{app}\{#iconsExe},-1201;@{app}\{#iconsExe},-1202');
 #ifdef _ONLYOFFICE
-      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200+@{app}\{#iconsExe},-1201+@{app}\{#iconsExe},-1202+@{app}\{#iconsExe},-1103');
-#else
-      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200+@{app}\{#iconsExe},-1201+@{app}\{#iconsExe},-1202');
+      translateArgs := translateArgs + ExpandConstant(';@{app}\{#iconsExe},-1103');
 #endif
-      StringChangeEx(translateArgs, ' ', '_', True);
-      StringChangeEx(translateArgs, '+', ' ', True);
-      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list "' + translateArgs + '"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
       if CheckCommandlineParam('/noupdates') then begin
         RegWriteDWordValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'CheckForUpdates', 0);
       end else
@@ -966,6 +1002,10 @@ begin
     if CheckCommandlineParam('/disableplugins') then begin
       if DirExists(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}') then
         DelTree(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}', True, True, True);
+    end;
+
+    if CheckCommandlineParam('/noassocheck') then begin
+      RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'ignoreAssocMsg', 'true');
     end;
 
   end else

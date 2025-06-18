@@ -329,6 +329,13 @@ bool CWindowPlatform::isSessionInProgress()
     return m_isSessionInProgress;
 }
 
+void CWindowPlatform::onWindowActivate(bool is_active)
+{
+    for (auto *btn : m_pTopButtons) {
+        btn->setFaded(!is_active);
+    }
+}
+
 bool CWindowPlatform::event(QEvent * event)
 {
     if (event->type() == QEvent::LayoutDirectionChange) {
@@ -636,6 +643,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_NCACTIVATE: {
         if (m_borderless) {
+            onWindowActivate(LOWORD(msg->wParam));
             if (Utils::getWinVersion() > WinVer::WinXP && Utils::getWinVersion() < WinVer::Win10) {
                 // Prevent drawing of inactive system frame (needs ~WS_CAPTION or temporary ~WS_VISIBLE to work)
                 *result = DefWindowProc(msg->hwnd, WM_NCACTIVATE, msg->wParam, -1);

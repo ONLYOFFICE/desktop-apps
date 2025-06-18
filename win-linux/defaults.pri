@@ -1,5 +1,5 @@
 
-QT  += core gui widgets gui-private widgets-private core-private printsupport
+QT  += core gui widgets printsupport
 QT  += svg
 
 TEMPLATE = app
@@ -47,6 +47,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/sv.ts \
                 ./langs/tr.ts \
                 ./langs/uk.ts \
+                ./langs/ur.ts \
                 ./langs/vi.ts \
                 ./langs/be.ts \
                 ./langs/zh_TW.ts \
@@ -233,7 +234,7 @@ core_linux {
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb
-    LIBS += -lX11 -lX11-xcb
+    LIBS += -lX11 -lX11-xcb -lcups
 
     cef_version_107 {
         LIBS += $$PWD/../../build_tools/tools/linux/sysroot/ubuntu14/libdbus-1.so.3
@@ -248,6 +249,8 @@ core_linux {
 }
 
 core_windows {
+    QT += printsupport-private
+
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
     CONFIG -= embed_manifest_exe
@@ -305,6 +308,7 @@ core_windows {
             -lcredui \
             -lnetapi32 \
             -lcomctl32 \
+            -lnetapi32 \
             -lrpcrt4
 #            -lOpenGL32
 

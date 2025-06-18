@@ -10,6 +10,7 @@ public:
     ApplicationPrivate();
     ~ApplicationPrivate();
 
+    std::wstring font;
     ULONG_PTR gdi_token;
     HINSTANCE hInstance;
     LayoutDirection layoutDirection;
@@ -103,6 +104,16 @@ HINSTANCE Application::moduleHandle()
 void Application::setLayoutDirection(LayoutDirection layoutDirection)
 {
     d_ptr->layoutDirection = layoutDirection;
+}
+
+void Application::setFont(const std::wstring &font) const
+{
+    d_ptr->font = font;
+}
+
+std::wstring Application::font() const
+{
+    return d_ptr->font;
 }
 
 Application::~Application()

@@ -1,5 +1,7 @@
 #include "abstractbutton.h"
 #include "palette.h"
+#include "metrics.h"
+#include <gdiplus.h>
 
 
 AbstractButton::AbstractButton(Widget *parent, const std::wstring &text) :
@@ -18,6 +20,21 @@ void AbstractButton::setText(const std::wstring &text)
 {
     m_text = text;
     update();
+}
+
+void AbstractButton::adjustSizeBasedOnContent()
+{
+    HDC hdc = GetDC(nativeWindowHandle());
+    Gdiplus::Graphics gr(hdc);
+    LOGFONTW logFont = {0};
+    GetObject(m_hFont, sizeof(LOGFONTW), &logFont);
+    Gdiplus::Font font(hdc, &logFont);
+    Gdiplus::RectF lutRc, boxRc;
+    gr.MeasureString(m_text.c_str(), m_text.length(), &font, lutRc, &boxRc);
+    ReleaseDC(nativeWindowHandle(), hdc);
+    int w = boxRc.Width + 2*metrics()->value(Metrics::IconWidth) + metrics()->value(Metrics::TextMarginLeft) + metrics()->value(Metrics::TextMarginRight);
+    int h = max(boxRc.Height + metrics()->value(Metrics::TextMarginTop) + metrics()->value(Metrics::TextMarginBottom), metrics()->value(Metrics::IconHeight));
+    resize(w, h);
 }
 
 int AbstractButton::onClick(const FnVoidVoid &callback)

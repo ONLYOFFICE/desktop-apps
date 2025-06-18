@@ -158,7 +158,6 @@ int CMainWindow::attachEditor(QWidget * panel, int index)
     if ( !(_index < 0) ) {
         tabWidget()->setCurrentIndex(_index);
         toggleButtonMain(false);
-        setTabMenu(_index, qobject_cast<CTabPanel*>(panel));
     }
     return _index;
 }
@@ -212,6 +211,16 @@ bool CMainWindow::canPinTabAtPoint(const QPoint& pt)
 bool CMainWindow::holdView(int id) const
 {
     return holdUid(id);
+}
+
+bool CMainWindow::slideshowHoldView(int id) const
+{
+    return m_pTabs->slideshowHoldView(id);
+}
+
+bool CMainWindow::isSlideshowMode() const
+{
+    return m_pTabs->fullScreenWidget() != nullptr;
 }
 
 void CMainWindow::applyTheme(const std::wstring& theme)
@@ -491,6 +500,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)), Qt::QueuedConnection);
     connect(pTabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
+    connect(pTabBar, &CTabBar::tabMenuRequested, this, &CMainWindow::setTabMenu);
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, 1));
     connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, -1));
     m_pTabs->setPalette(palette);
@@ -727,12 +737,16 @@ int CMainWindow::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainWindow::setTabMenu(int index, CTabPanel *panel)
+void CMainWindow::setTabMenu(int index, const QPoint &pos)
 {
+    CTabPanel *panel = m_pTabs->panel(index);
     CMenu *menu = new CMenu(m_pTabs->tabBar()->tabAtIndex(index));
+    connect(menu, &CMenu::wasHidden, this, [=]() {
+        m_pTabs->tabBar()->setTabMenu(index, nullptr);
+    });
     QAction* actClose = menu->addSection(CMenu::ActionClose);
     connect(actClose, &QAction::triggered, this, [=]() {
-            onTabCloseRequest(m_pTabs->tabBar()->tabMenuIndex(menu));
+            onTabCloseRequest(index);
             Utils::processMoreEvents();
         }, Qt::QueuedConnection);
 
@@ -758,14 +772,12 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
             }
         }, Qt::QueuedConnection);
 
-    if (panel) {
+    if (panel && panel->data()->isViewType(cvwtEditor)) {
         menu->addSeparator();
         QAction *actShowInFolder = menu->addSection(CMenu::ActionShowInFolder);
         actShowInFolder->setIcon(IconFactory::icon(IconFactory::Browse, SMALL_ICON * m_dpiRatio));
         actShowInFolder->setEnabled(panel->data()->isLocal() && !panel->data()->url().empty());
         connect(actShowInFolder, &QAction::triggered, this, [=]() {
-                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
-                if (CTabPanel *panel = m_pTabs->panel(index))
                     Utils::openFileLocation(QString::fromStdWString(panel->data()->url()));
             }, Qt::QueuedConnection);
     }
@@ -774,7 +786,6 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
     QAction *actMoveToStart = menu->addSection(CMenu::ActionMoveToStart);
     // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
     connect(actMoveToStart, &QAction::triggered, this, [=]() {
-            int index = m_pTabs->tabBar()->tabMenuIndex(menu);
             int destIndex = AscAppManager::isRtlEnabled() ? m_pTabs->count() - 1 : 0;
             if (m_pTabs->count() > 1 && index != destIndex)
                 m_pTabs->tabBar()->moveTab(index, destIndex);
@@ -783,19 +794,15 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
     QAction *actMoveToEnd = menu->addSection(CMenu::ActionMoveToEnd);
     // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
     connect(actMoveToEnd, &QAction::triggered, this, [=]() {
-            int index = m_pTabs->tabBar()->tabMenuIndex(menu);
             int destIndex = AscAppManager::isRtlEnabled() ? 0 : m_pTabs->count() - 1;
             if (m_pTabs->count() > 1 && index != destIndex)
                 m_pTabs->tabBar()->moveTab(index, destIndex);
         }, Qt::QueuedConnection);
 
-    if (panel) {
+    if (panel && panel->data()->isViewType(cvwtEditor)) {
         QAction *actUnpinTab = menu->addSection(CMenu::ActionUnpinTab);
         // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
         connect(actUnpinTab, &QAction::triggered, this, [=]() {
-                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
-                CTabPanel *panel = m_pTabs->panel(index);
-                if (panel && panel->data()->viewType() == cvwtEditor) {
                     CTabUndockEvent event(index);
                     QObject *obj = qobject_cast<QObject*>(&AscAppManager::getInstance());
                     if (QApplication::sendEvent(obj, &event) && event.isAccepted()) {
@@ -806,7 +813,6 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
                             m_pTabs->tabBar()->removeTab(index);
                         });
                     }
-                }
             }, Qt::QueuedConnection);
         menu->addSeparator();
 
@@ -817,8 +823,7 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
                                                       etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf /*||
                                                       etype == AscEditorType::etDraw*/));
         connect(actCreateNew, &QAction::triggered, this, [=]() {
-                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
-                AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
+                AscEditorType etype = panel->data()->contentType();
                 std::wstring cmd = etype == AscEditorType::etDocument ? L"--new:word" :
                                        etype == AscEditorType::etPresentation ? L"--new:slide" :
                                        etype == AscEditorType::etSpreadsheet ? L"--new:cell" :
@@ -829,6 +834,7 @@ void CMainWindow::setTabMenu(int index, CTabPanel *panel)
             }, Qt::QueuedConnection);
     }
     m_pTabs->tabBar()->setTabMenu(index, menu);
+    menu->exec(pos);
 }
 
 void CMainWindow::onPortalLogout(std::wstring wjson)
@@ -1028,6 +1034,11 @@ void CMainWindow::onLocalFileLocation(QString path)
                                                 MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if ( res == MODAL_RESULT_YES )
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
+            else
+            if ( res == MODAL_RESULT_NO ) {
+                int uid = objRoot["hash"].toInt();
+                AscAppManager::getInstance().onFileChecked(_info.fileName(), uid, false);
+            }
         }
     }
 }
@@ -1193,9 +1204,8 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
                     m_pTabs->closeEditorByIndex(_i);
                 }
             else {
-                CMenu * _menu = m_pTabs->tabBar()->tabMenu(_i);
-                if ( _menu )
-                    _menu->setSectionEnabled(CMenu::ActionShowInFolder, true);
+                if (CMenu *menu = m_pTabs->tabBar()->tabMenu(_i))
+                    menu->setSectionEnabled(CMenu::ActionShowInFolder, true);
             }
         } else {
             m_pTabs->cancelDocumentSaving(_i);
@@ -1385,7 +1395,7 @@ void CMainWindow::onDocumentPrint(void * opts)
             dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
 
         int modal_res = QDialog::Accepted;
-        if ( AscAppManager::printData().isQuickPrint() ) {
+        if ( AscAppManager::printData().isQuickPrint() || !AscAppManager::printData().useSystemDialog() ) {
             dialog->accept();
         } else modal_res = dialog->exec();
         PROCESSEVENTS();
@@ -1403,7 +1413,7 @@ void CMainWindow::onDocumentPrint(void * opts)
                     Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
                 }
             } else {
-                if ( AscAppManager::printData().isQuickPrint() && !printer->outputFileName().isEmpty() ) {
+                if ( (AscAppManager::printData().isQuickPrint() || !AscAppManager::printData().useSystemDialog()) && !printer->outputFileName().isEmpty() ) {
                     info.setFile(printer->outputFileName());
                     if ( info.suffix() == "pdf" )
                         printer->setOutputFileName("");
@@ -1541,7 +1551,6 @@ void CMainWindow::onPortalOpen(QString json)
             if (!(res < 0)) {
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);
-                setTabMenu(res);
             }
 
             QString _title = objRoot["title"].toString();
@@ -1566,7 +1575,6 @@ void CMainWindow::onPortalNew(QString in)
             m_pTabs->applyDocumentChanging(_uid, _name, _domain);
             m_pTabs->applyDocumentChanging(_uid, int(etPortal));
             onTabChanged(m_pTabs->currentIndex());
-            setTabMenu(_tab_index);
         }
     }
 }
@@ -1581,7 +1589,6 @@ void CMainWindow::onPortalCreate()
     if (!(res < 0)) {
         toggleButtonMain(false, true);
         m_pTabs->setCurrentIndex(res);
-        setTabMenu(res);
     }
 }
 
@@ -1601,7 +1608,6 @@ void CMainWindow::onOutsideAuth(QString json)
         if (!(_tab_index < 0)) {
             m_pTabs->setCurrentIndex(_tab_index);
             toggleButtonMain(false, true);
-            setTabMenu(_tab_index);
         }
     }
 }
@@ -1628,6 +1634,7 @@ void CMainWindow::onErrorPage(int id, const std::wstring& action)
     if ( view && cvwtEditor == view->GetType() && action.compare(L"open") == 0 ) {
         int ind = m_pTabs->tabIndexByView(id);
         m_pTabs->panel(ind)->data()->setHasError();
+        m_pTabs->tabBar()->setTabLoading(ind, false);
     }
 }
 
@@ -1708,6 +1715,17 @@ bool CMainWindow::holdUrl(const QString& url, AscEditorType type) const
     } else
     if (type == etLocalFile) {
         return !(m_pTabs->tabIndexByUrl(url) < 0);
+    }
+    return false;
+}
+
+bool CMainWindow::slideshowHoldUrl(const QString &url, AscEditorType type) const
+{
+    if (type == etPortal) {
+        return m_pTabs->slideshowHoldViewByTitle(Utils::getPortalName(url), etPortal);
+    } else
+    if (type == etLocalFile) {
+        return m_pTabs->slideshowHoldViewByUrl(url);
     }
     return false;
 }

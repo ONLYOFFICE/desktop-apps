@@ -51,7 +51,7 @@
 # define DESKTOP_FILE_NAME "onlyoffice-desktopeditors"
 #else
 # define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
-# define APP_REG_NAME  "ONLYOFFICE Editors"
+# define APP_REG_NAME  "ONLYOFFICE"
 # define REG_GROUP_KEY "ONLYOFFICE"
 # define REG_UNINST_KEY "ONLYOFFICE Desktop Editors"
 # define APP_MUTEX_NAME "TEAMLAB"
@@ -66,6 +66,7 @@
 #define APP_DEFAULT_SYSTEM_LOCALE 1
 #define APP_USER_MODEL_ID "ASC.Documents.5"
 #define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"
+#define APP_PROTOCOL "oo-office"
 #define FILE_PREFIX "onlyoffice_"
 
 #define URL_SITE                "http://www.onlyoffice.com"

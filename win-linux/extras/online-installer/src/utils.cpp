@@ -45,7 +45,6 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#define _TR(str) Translator::tr(str).c_str()
 #define APP_REG_PATH "\\" REG_GROUP_KEY "\\" REG_APP_NAME
 #define BIT123_LAYOUTRTL 0x08000000
 #ifndef LOCALE_IREADINGLAYOUT
@@ -119,7 +118,46 @@ namespace NS_Utils
             str += _T(" ") + GetLastErrorAsString();
         wstring caption(_T("    "));
         caption.append(_TR(CAPTION));
-        MessageBox(NULL, str.c_str(), caption.c_str(), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
+        LCID lcid = MAKELCID(GetUserDefaultUILanguage(), SORT_DEFAULT);
+        UINT flags = MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND;
+        if (IsRtlLanguage(lcid))
+            flags |= MB_RTLREADING;
+        MessageBox(NULL, str.c_str(), caption.c_str(), flags);
+    }
+
+    int ShowTaskDialog(HWND parent, const wstring &msg, PCWSTR icon)
+    {
+        HWND fakeParent = NULL;
+        HMODULE hInst = GetModuleHandle(NULL);
+        if (!parent) {
+            WNDCLASS wc = {0};
+            wc.lpfnWndProc   = DefWindowProc;
+            wc.hInstance     = hInst;
+            wc.lpszClassName = L"FakeWindowClass";
+            RegisterClass(&wc);
+            fakeParent = CreateWindowEx(0, wc.lpszClassName, _TR(CAPTION), WS_OVERLAPPEDWINDOW, 0, 0, 0, 0, NULL, NULL, hInst, NULL);
+            HICON hIcon = (HICON)LoadImage(hInst, MAKEINTRESOURCE(IDI_MAINICON), IMAGE_ICON, 96, 96, LR_DEFAULTCOLOR | LR_SHARED);
+            SendMessage(fakeParent, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+            SendMessage(fakeParent, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+            ShowWindow(fakeParent, SW_SHOWMINIMIZED);
+            UpdateWindow(fakeParent);
+            parent = fakeParent;
+        }
+
+        int result = IDCANCEL;
+        wstring caption(_T("    "));
+        caption.append(_TR(CAPTION));
+        if (HMODULE lib = LoadLibrary(L"Comctl32")) {
+            HRESULT (WINAPI *_TaskDialog)(HWND, HINSTANCE, PCWSTR, PCWSTR, PCWSTR, TASKDIALOG_COMMON_BUTTON_FLAGS, PCWSTR, int*);
+            *(FARPROC*)&_TaskDialog = GetProcAddress(lib, "TaskDialog");
+            if (_TaskDialog)
+                _TaskDialog(parent, hInst, caption.c_str(), msg.c_str(), NULL, TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON, icon, &result);
+            FreeLibrary(lib);
+        }
+
+        if (fakeParent)
+            DestroyWindow(fakeParent);
+        return result;
     }
 
     bool IsRtlLanguage(unsigned long lcid)
@@ -160,7 +198,9 @@ namespace NS_Utils
         subkey += _T(APP_REG_PATH);
         for (auto &flag : flags) {
             RegQueryStringValue(HKEY_LOCAL_MACHINE, subkey.c_str(), flag, L"AppPath", path);
-            if (!path.empty() /*&& NS_File::fileExists(path + _T(APP_LAUNCH_NAME))*/) {
+            if (!path.empty() && (path.back() == L'\\' || path.back() == L'/'))
+                path.pop_back();
+            if (!path.empty() /*&& NS_File::fileExists(path + _T(APP_LAUNCH_NAME))*/) {                    
                 if (arch) {
 #ifdef _WIN64
                     *arch = (flag == 0) ? L"x64" : L"x86";
@@ -172,6 +212,34 @@ namespace NS_Utils
             }
         }
         return false;
+    }
+
+    bool checkAndWaitForAppClosure(HWND parent)
+    {
+        bool accept = true;
+        if (HWND app_hwnd = FindWindow(WINDOW_CLASS_NAME, NULL)) {
+            wstring msg(_TR(MSG_ERR_TRY_CLOSE_APP));
+            NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
+            accept = (IDOK == NS_Utils::ShowTaskDialog(parent, msg.c_str(), TD_INFORMATION_ICON));
+            if (accept) {
+                PostMessage(app_hwnd, UM_INSTALL_UPDATE, 0, 0);
+                Sleep(3000);
+                while(true) {
+                    if ((app_hwnd = FindWindow(WINDOW_CLASS_NAME, NULL)) != nullptr) {
+                        wstring msg(_TR(MSG_ERR_CLOSE_APP));
+                        NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
+                        int result = NS_Utils::ShowTaskDialog(parent, msg.c_str(), TD_WARNING_ICON);
+                        if (result != IDOK) {
+                            accept = false;
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return accept;
     }
 
     void InstalledVerInfo(LPCWSTR value, wstring &name, wstring &arch)
@@ -247,7 +315,7 @@ namespace NS_Utils
 
 namespace NS_File
 {
-    bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin, bool wait)
+    DWORD runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin, bool wait)
     {
         SHELLEXECUTEINFO shExInfo = {0};
         shExInfo.cbSize = sizeof(shExInfo);
@@ -260,12 +328,13 @@ namespace NS_File
         shExInfo.nShow = SW_HIDE;
         shExInfo.hInstApp = NULL;
         if (ShellExecuteEx(&shExInfo)) {
-            if (wait)
-                WaitForSingleObject(shExInfo.hProcess, INFINITE);
+            DWORD exitCode = 0;
+            if (wait && (WaitForSingleObject(shExInfo.hProcess, INFINITE) == WAIT_FAILED || !GetExitCodeProcess(shExInfo.hProcess, &exitCode)))
+                exitCode = GetLastError();
             CloseHandle(shExInfo.hProcess);
-            return true;
+            return exitCode;
         }
-        return false;
+        return GetLastError() | ERROR_LAUNCH;
     }
 
 //    bool isProcessRunning(const wstring &fileName)
@@ -291,6 +360,21 @@ namespace NS_File
 //        CloseHandle(snapShot);
 //        return false;
 //    }
+
+    bool readFile(const wstring &filePath, list<wstring> &linesList)
+    {
+        std::wifstream file(filePath.c_str(), std::ios_base::in);
+        if (!file.is_open()) {
+            NS_Logger::WriteLog(L"An error occurred while opening:\n" + filePath);
+            return false;
+        }
+        wstring line;
+        while (std::getline(file, line))
+            linesList.push_back(line);
+
+        file.close();
+        return true;
+    }
 
     bool fileExists(const wstring &filePath)
     {

@@ -164,7 +164,7 @@ bool Label::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
         if (m_hEmfBmp)
             engine()->DrawEmfIcon(m_hEmfBmp);
         if (!m_text.empty())
-            engine()->DrawText(rc, m_text, m_multiline);
+            engine()->DrawText(rc, m_text, m_hFont, m_multiline);
 
         engine()->End();
 

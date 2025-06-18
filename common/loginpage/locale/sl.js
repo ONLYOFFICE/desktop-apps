@@ -48,7 +48,7 @@ l10n.sl = {
     newDoc: 'Dokument',
     newXlsx: 'Preglednica',
     newPptx: 'Predstavitev',
-    newForm: 'PDF obrazec',
+    newForm: 'PDF',
     actCreateNew: 'Ustvari nov',
     actRecentFiles: 'Nedavne datoteke',
     actOpenLocal: 'Odpri lokalno datoteko',

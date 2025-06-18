@@ -22,6 +22,8 @@ HEADERS += $$PWD/src/version.h \
            $$PWD/src/mainwindow.h \
            $$PWD/src/cdownloader.h \
            $$PWD/src/translator.h \
+           $$PWD/src/cjson_p.h \
+           $$PWD/src/cjson.h \
            $$PWD/src/utils.h \
            $$UICLASSES/commondefines.h \
            $$UICLASSES/baseutils.h \
@@ -49,6 +51,7 @@ SOURCES += $$PWD/src/main.cpp \
            $$PWD/src/mainwindow.cpp \
            $$PWD/src/cdownloader.cpp \
            $$PWD/src/translator.cpp \
+           $$PWD/src/cjson.cpp \
            $$PWD/src/utils.cpp \
            $$UICLASSES/baseutils.cpp \
            $$UICLASSES/common.cpp \
@@ -74,7 +77,7 @@ SOURCES += $$PWD/src/main.cpp \
 OTHER_FILES += $$PWD/res/version.rc \
                $$PWD/res/manifest/online-installer.exe.manifest
 
-ENV_PRODUCT_VERSION = "1.0.0" # $$(PRODUCT_VERSION)
+ENV_PRODUCT_VERSION = "2.0.0" # $$(PRODUCT_VERSION)
 !isEmpty(ENV_PRODUCT_VERSION) {
     FULL_PRODUCT_VERSION = $${ENV_PRODUCT_VERSION}.$$(BUILD_NUMBER)
     DEFINES += VER_PRODUCT_VERSION=$$FULL_PRODUCT_VERSION \

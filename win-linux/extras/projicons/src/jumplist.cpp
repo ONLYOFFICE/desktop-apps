@@ -99,14 +99,14 @@ HRESULT _CreateShellLink(PCWSTR pszArguments, PCWSTR pszTitle, IShellLink **ppsl
     return hr;
 }
 
-HRESULT _AddTasksToList(ICustomDestinationList *pcdl, QStringList list)
+HRESULT _AddTasksToList(ICustomDestinationList *pcdl, const QStringList &list)
 {
     pcdl->AppendKnownCategory(KDC_RECENT);
     IObjectCollection *poc;
     HRESULT hr = CoCreateInstance(CLSID_EnumerableObjectCollection, NULL, CLSCTX_INPROC, IID_PPV_ARGS(&poc));
     if (SUCCEEDED(hr))
     {
-        PCWSTR args[] = {
+        PCWSTR args[MAX_TASK_NUM] = {
             L"--new:word",
             L"--new:cell",
             L"--new:slide",
@@ -115,7 +115,7 @@ HRESULT _AddTasksToList(ICustomDestinationList *pcdl, QStringList list)
 
         IShellLink * psl;
         for (int i = 0; i < MAX_TASK_NUM && i < list.size(); i++) {
-            hr = _CreateShellLink(args[i], list[i].replace('_', ' ').toStdWString().c_str(), &psl, i);
+            hr = _CreateShellLink(args[i], list[i].toStdWString().c_str(), &psl, i);
             if (SUCCEEDED(hr))
             {
                 hr = poc->AddObject(psl);

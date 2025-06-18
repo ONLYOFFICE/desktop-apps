@@ -48,7 +48,7 @@ l10n.ga = {
     newDoc: 'Doiciméad',
     newXlsx: 'Scarbhileog',
     newPptx: 'Cur i láthair',
-    newForm: 'Foirm PDF',
+    newForm: 'PDF',
     actCreateNew: 'nua a chruthú',
     actRecentFiles: 'Comhaid le déanaí',
     actOpenLocal: 'Oscail comhad áitiúil',

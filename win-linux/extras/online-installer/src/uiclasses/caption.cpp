@@ -37,7 +37,7 @@ bool Caption::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
         if (metrics()->value(Metrics::BorderWidth) != 0)
             engine()->DrawBorder();
         if (!m_title.empty())
-            engine()->DrawText(rc, m_title);
+            engine()->DrawText(rc, m_title, m_hFont);
 
         engine()->End();
 

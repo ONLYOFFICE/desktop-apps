@@ -932,7 +932,8 @@ void CTabBar::setTabMenu(int index, CMenu *menu)
     if (tab->menu)
         delete tab->menu;
     tab->menu = menu;
-    menu->setObjectName("tabMenu");
+    if (menu)
+        menu->setObjectName("tabMenu");
 }
 
 //void CTabBar::setTabData(int index, const QVariant &data)
@@ -994,10 +995,13 @@ void CTabBar::setUseTabCustomPalette(int index, bool use)
     }
 }
 
-void CTabBar::setTabLoading(int index, bool start)
+void CTabBar::setTabLoading(int index, bool start, const QString& theme)
 {
-    if (!start) {
-        if (CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index))
+    if (CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index)) {
+        if (start) {
+            if (!icon->isStarted() )
+                icon->startSvg(":/tabbar/icons/loader.svg", theme);
+        } else
             icon->stop();
     }
 }
@@ -1014,13 +1018,6 @@ void CTabBar::setTabThemeIcons(int index, const std::pair<QString, QString> & ic
     if ( d->indexIsValid(index) ) {
         d->tabList[index]->setThemeIcons(icons);
     }
-}
-
-void CTabBar::tabStartLoading(int index, const QString& theme)
-{
-    CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index);
-    if (icon && !icon->isStarted() )
-        icon->startSvg(":/tabbar/icons/loader.svg", theme);
 }
 
 void CTabBar::polish()
@@ -1086,17 +1083,6 @@ QWidget *CTabBar::tabButton(int index) const
 CMenu *CTabBar::tabMenu(int index) const
 {
     return d->indexIsValid(index) ? d->tabList[index]->menu : nullptr;
-}
-
-int CTabBar::tabMenuIndex(CMenu *menu) const
-{
-    if (menu) {
-        for (int i = 0; i < d->tabList.size(); i++) {
-            if (d->tabList[i]->menu == menu)
-                return d->tabList[i]->index;
-        }
-    }
-    return -1;
 }
 
 //QVariant CTabBar::tabData(int index) const
@@ -1294,13 +1280,11 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             QContextMenuEvent* cm_event = static_cast<QContextMenuEvent*>(event);
             for (int i = 0; i < d->tabList.size(); i++) {
                 if (d->_tabRect(i).contains(cm_event->pos())) {
-                    if (d->tabList[i]->menu) {
                         QPoint pos = d->tabArea->mapToGlobal(cm_event->pos());
                         SKIP_EVENTS_QUEUE([=]() {
-                            d->tabList[i]->menu->exec(pos);
+                            emit tabMenuRequested(i, pos);
                         });
                         return true;
-                    }
                 }
             }
             break;

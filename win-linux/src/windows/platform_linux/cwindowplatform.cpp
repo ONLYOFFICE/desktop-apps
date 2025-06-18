@@ -108,6 +108,13 @@ void CWindowPlatform::adjustGeometry()
 
 /** Protected **/
 
+void CWindowPlatform::onWindowActivate(bool is_active)
+{
+    for (auto *btn : m_pTopButtons) {
+        btn->setFaded(!is_active);
+    }
+}
+
 void CWindowPlatform::onMinimizeEvent()
 {
     CX11Decoration::setMinimized();
@@ -129,6 +136,13 @@ bool CWindowPlatform::event(QEvent * event)
             m_pMainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
             onLayoutDirectionChanged();
         }
+    } else
+    if (event->type() == QEvent::WindowActivate) {
+        onWindowActivate(true);
+    }
+    else
+    if (event->type() == QEvent::WindowDeactivate) {
+        onWindowActivate(false);
     }
     return CWindowBase::event(event);
 }

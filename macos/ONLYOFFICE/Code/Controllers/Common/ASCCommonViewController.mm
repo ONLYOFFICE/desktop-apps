@@ -1124,7 +1124,7 @@
         [filter addObjectsFromArray:[ASCConstants documents]];
         [filter addObjectsFromArray:[ASCConstants spreadsheets]];
         [filter addObjectsFromArray:[ASCConstants presentations]];
-//        [filter addObjectsFromArray:[ASCConstants draws]];
+        [filter addObjectsFromArray:[ASCConstants draws]];
         
         openPanel.canChooseDirectories = NO;
         openPanel.allowsMultipleSelection = NO;
@@ -1600,6 +1600,43 @@
 
 - (void)onCEFEditorDocumentReady:(NSNotification *)notification {
     //
+    if (notification && notification.userInfo) {
+        NSArray * printers = [NSPrinter printerNames];
+
+        if ([printers count] != 0) {
+            NSMutableArray * arr = [NSMutableArray array];
+
+            for (NSString * printerName in printers) {
+                [arr addObject:@{@"name": printerName}];
+            }
+
+            id info = notification.userInfo;
+            if (NSString * viewId = info[@"viewId"]) {
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+                int cefViewId = [viewId intValue];
+                CCefView * cef = appManager->GetViewById(cefViewId);
+                if (cef && cef->GetType() == cvwtEditor) {
+                    NSString * def_printer_name = arr[0][@"name"];
+                    NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary:
+                                                  @{
+                                                    @"current_printer": def_printer_name,
+                                                    @"printers": arr
+                                                    }];
+
+                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_FrameName(L"frameEditor");
+                    pCommand->put_Command(L"printer:config");
+                    pCommand->put_Param([[json jsonString] stdwstring]);
+
+                    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent->m_pData = pCommand;
+
+                    cef->Apply(pEvent);
+                }
+            }
+        }
+    }
 }
 
 - (void)onCEFEditorAppReady:(NSNotification *)notification {

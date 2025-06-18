@@ -70,7 +70,7 @@
 + (NSArray *)documents {
     return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dot", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
              @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
-             @"fb2", @"oform", @"sxw", @"stw", @"md", @"pages", @"hwp", @"hwpx"];
+             @"fb2", @"oform", @"sxw", @"stw", @"md", @"pages", @"hwp", @"hwpx", @"md"];
 }
 
 + (NSArray *)spreadsheets {
@@ -78,7 +78,7 @@
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi",@"key"];
+    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odg", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi",@"key"];
 }
 
 + (NSArray *)draws {

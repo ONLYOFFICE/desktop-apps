@@ -49,6 +49,7 @@ public:
     virtual void adjustGeometry() final;
 
 protected:
+    void onWindowActivate(bool is_active);
     virtual void onMinimizeEvent() override;
     virtual bool event(QEvent *event) override;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;

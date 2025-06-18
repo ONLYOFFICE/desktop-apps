@@ -53,11 +53,13 @@ $LanguageCodes = @(
     1049, # ru              Russian
     1051, # sk              Slovak
     1060, # sl              Slovenian
+    1052, # sq              Albanian
     3098, # sr_SP_Cyrillic  Serbian (Cyrillic)
     2074, # sr_SP_Latin     Serbian (Latin)
     1053, # sv              Swedish
     1055, # tr              Turkish
     1058, # uk              Ukrainian
+    1056, # ur              Urdu
     1066, # vi              Vietnamese
     2052, # zh              Chinese (Simplified)
     1028  # zh_TW           Chinese (Traditional)

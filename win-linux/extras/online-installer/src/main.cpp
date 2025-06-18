@@ -8,7 +8,6 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#define _TR(str) Translator::tr(str).c_str()
 #define WINDOW_SIZE Size(768, 480)
 
 
@@ -40,27 +39,18 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
         return 0;
     }
 
-    if (HWND hWnd = FindWindow(WINDOW_CLASS_NAME, NULL)) {
-        wstring msg(_TR(MSG_ERR_CLOSE_APP));
-        NS_Utils::Replace(msg, L"%1", _T(WINDOW_NAME));
-        NS_Utils::ShowMessage(msg);
+    if (!NS_Utils::checkAndWaitForAppClosure()) {
         CloseHandle(hMutex);
         return 0;
     }
 
-    wstring url_or_path, arch;
-    bool app_installed = NS_Utils::IsAppInstalled(url_or_path, &arch);
-    if (!app_installed) {
-        url_or_path = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_INSTALL_DEV) : _T(URL_INSTALL);
-        wstring url_filename = L"DesktopEditors_";
-        url_filename += NS_Utils::IsWin64() ? _T("x64") : _T("x86");
-        url_filename += _T(".exe");
-        NS_Utils::Replace(url_or_path, _T("<file>"), url_filename);
-    }
+    wstring path, arch;
+    bool app_installed = NS_Utils::IsAppInstalled(path, &arch);
 
     Application app(hInst, lpCmdLine, nCmdShow);
-    // if (NS_Utils::IsRtlLanguage(lcid))
-    //     app.setLayoutDirection(LayoutDirection::RightToLeft);
+    app.setFont(L"Segoe UI");
+    if (NS_Utils::IsRtlLanguage(lcid))
+        app.setLayoutDirection(LayoutDirection::RightToLeft);
     int scrWidth = GetSystemMetrics(SM_CXSCREEN);
     int scrHeight = GetSystemMetrics(SM_CYSCREEN);
     int x = (scrWidth - WINDOW_SIZE.width) / 2;
@@ -70,7 +60,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
         app.exit(0);
     });
     if (!app_installed)
-        w.initInstallationMode(url_or_path);
+        w.initInstallationMode();
     else
         w.initControlMode(arch);
     w.showAll();

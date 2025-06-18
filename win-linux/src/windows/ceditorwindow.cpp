@@ -146,6 +146,10 @@ int CEditorWindow::closeWindow()
     if ( _reply == MODAL_RESULT_YES ) {
         panel->data()->close();
         d_ptr.get()->onDocumentSave(panel->cef()->GetId());
+
+        AscEditorType editorType = panel->data()->contentType();
+        QString baseKey = "EditorsGeometry/" + QString::number(int(editorType)) + "/";
+        CWindowBase::saveWindowState(baseKey);
     }
 
     return _reply;
@@ -164,7 +168,13 @@ bool CEditorWindow::modified() const
 
 bool CEditorWindow::holdView(const std::wstring& portal) const
 {
-    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
+    auto url = qobject_cast<CTabPanel*>(m_pMainView)->data()->url();
+    return Utils::normalizeAppProtocolUrl(url).find(Utils::normalizeAppProtocolUrl(portal)) != std::wstring::npos;
+}
+
+bool CEditorWindow::isSlideshowMode() const
+{
+    return d_ptr->isSlideshowMode();
 }
 
 void CEditorWindow::undock(bool maximized)
@@ -232,7 +242,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         }
 
         d_ptr->customizeTitleLabel();
-        setMenu();
     } else {
 //        QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
 //        gradient.setColorAt(0, QColor("#eee"));
@@ -308,6 +317,10 @@ void CEditorWindow::init(CTabPanel *panel)
 void CEditorWindow::setMenu()
 {
     m_pMenu = new CMenu(m_boxTitleBtns);
+    connect(m_pMenu, &CMenu::wasHidden, this, [=]() {
+        m_pMenu->deleteLater();
+        m_pMenu = nullptr;
+    });
     QAction* actClose = m_pMenu->addSection(CMenu::ActionClose);
     connect(actClose, &QAction::triggered, this, [=]() {
             onCloseEvent();
@@ -439,9 +452,6 @@ void CEditorWindow::onCloseEvent()
 {
     if ( m_pMainView ) {
         if ( closeWindow() == MODAL_RESULT_YES ) {
-            AscEditorType editorType = d_ptr->panel()->data()->contentType();
-            QString baseKey = (editorType == AscEditorType::etUndefined) ? "" : "EditorsGeometry/" + QString::number(int(editorType)) + "/";
-            CWindowBase::saveWindowState(baseKey);
             hide();
         }
     }
@@ -475,17 +485,16 @@ bool CEditorWindow::event(QEvent * event)
     }
     else
     if (event->type() == QEvent::ContextMenu) {
-        if (m_pMenu) {
             QContextMenuEvent* cm_event = static_cast<QContextMenuEvent*>(event);
             QPoint pos = mapToGlobal(cm_event->pos());
             QWidget *wgt = qApp->widgetAt(pos);
             if (wgt && (wgt == m_labelTitle || wgt->objectName() == "boxtitlelabel")) {
                 SKIP_EVENTS_QUEUE([=]() {
+                    setMenu();
                     m_pMenu->exec(pos);
                 });
                 return true;
             }
-        }
     } else
     if (event->type() == UM_ENDMOVE) {
         if (CMainWindow *w = AscAppManager::mainWindow())

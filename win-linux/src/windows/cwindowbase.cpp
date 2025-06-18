@@ -33,6 +33,7 @@
 #include "windows/cwindowbase.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "components/ctooltip.h"
+#include "components/cpushbutton.h"
 #include "utils.h"
 #include "defines.h"
 #ifdef _WIN32
@@ -88,8 +89,10 @@ CWindowBase::~CWindowBase()
 
 QRect CWindowBase::startRect(const QRect &rc, double &dpi)
 {
-    dpi = Utils::getScreenDpiRatio(rc.isEmpty() ? qApp->primaryScreen()->geometry().topLeft() : rc.topLeft());
-    QRect def_rc = QRect(QPoint(100, 100) * dpi, MAIN_WINDOW_DEFAULT_SIZE * dpi),
+    QRect prim_scr_rc = qApp->primaryScreen()->availableGeometry();
+    dpi = Utils::getScreenDpiRatio(rc.isEmpty() ? prim_scr_rc.topLeft() : rc.topLeft());
+    QSize def_size = MAIN_WINDOW_DEFAULT_SIZE * dpi;
+    QRect def_rc = QRect(prim_scr_rc.center() - QPoint(def_size.width()/2, def_size.height()/2), def_size),
           out_rc = rc.isEmpty() ? def_rc : rc,
           scr_rc = Utils::getScreenGeometry(out_rc.topLeft());
     return scr_rc.intersects(out_rc) ? scr_rc.intersected(out_rc) : def_rc;
@@ -136,9 +139,9 @@ void CWindowBase::applyTheme(const std::wstring& theme)
 
 /** Protected **/
 
-QPushButton* CWindowBase::createToolButton(QWidget * parent, const QString& name)
+CPushButton* CWindowBase::createToolButton(QWidget * parent, const QString& name)
 {
-    QPushButton * btn = new QPushButton(parent);
+    CPushButton * btn = new CPushButton(parent);
     btn->setObjectName(name);
     btn->setProperty("class", "normal");
     btn->setProperty("act", "tool");
@@ -176,7 +179,7 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
             [=]{onMinimizeEvent();}, [=]{onMaximizeEvent();}, [=]{onCloseEvent();}};
         m_pTopButtons.clear();
         for (int i = 0; i < 3; i++) {
-            QPushButton *btn = createToolButton(_boxTitleBtns, names[i]);
+            CPushButton *btn = createToolButton(_boxTitleBtns, names[i]);
             QObject::connect(btn, &QPushButton::clicked, btn_methods[i]);
             m_pTopButtons.push_back(btn);
             layoutBtns->addWidget(btn);

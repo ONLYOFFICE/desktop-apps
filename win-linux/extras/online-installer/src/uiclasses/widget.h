@@ -38,6 +38,7 @@ public:
     void size(int*, int*);
     void setWindowTitle(const std::wstring &title);
     void setProperty(Properties, int);
+    void setFont(const std::wstring &font);
     void show();
     void hide();
     void repaint();
@@ -61,11 +62,11 @@ public:
 
 protected:
     friend class Application;
-    Widget(Widget *parent, HWND);
-    Widget(Widget *parent, ObjectType type, const Rect &rc = Rect(CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT));
+    Widget(Widget *parent, ObjectType type, HWND hWnd = nullptr, const Rect &rc = Rect(CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT));
     virtual bool event(UINT, WPARAM, LPARAM, LRESULT*);
 
     HWND         m_hWnd;
+    HFONT        m_hFont;
     Layout      *m_layout;
     std::wstring m_title;
     bool         m_disabled;

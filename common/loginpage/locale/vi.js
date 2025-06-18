@@ -48,7 +48,7 @@ l10n.vi = {
     newDoc: 'Văn bản',
     newXlsx: 'Bảng tính',
     newPptx: 'Trình chiếu',
-    newForm: 'Mẫu PDF',
+    newForm: 'PDF',
     actCreateNew: 'Tạo mới',
     actRecentFiles: 'Những tập tin gần đây',
     actOpenLocal: 'Mở tập tin cục bộ',

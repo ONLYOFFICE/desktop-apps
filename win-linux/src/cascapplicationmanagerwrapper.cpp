@@ -1007,7 +1007,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         if ( open_in_new_window ) {
             bool isMaximized = false;
-            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts.wurl);
+            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts);
             open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, true);
             open_opts.parent_widget = COpenOptions::eWidgetType::window;
             if (CEditorWindow * editor_win = CEditorWindow::create(_start_rect, open_opts)) {
@@ -1022,9 +1022,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         } else {
             if ( !_app.m_pMainWindow ) {
                 _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-                _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+                _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
             } else
-            if (!_app.m_pMainWindow->isVisible())
+            if (!_app.m_pMainWindow->isVisible() && !_app.m_pMainWindow->isSlideshowMode())
                 _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
 
             open_opts.panel_size = _app.m_pMainWindow->contentSize();
@@ -1032,9 +1032,11 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             if (CTabPanel * panel = CEditorTools::createEditorPanel(open_opts, _app.m_pMainWindow)) {
                 _app.mainWindow()->attachEditor(panel);
 
-                QTimer::singleShot(100, &_app, [&]{
-                    _app.mainWindow()->bringToTop();
-                });
+                if (!_app.m_pMainWindow->isSlideshowMode()) {
+                    QTimer::singleShot(100, &_app, [&]{
+                        _app.mainWindow()->bringToTop();
+                    });
+                }
             }
         }
     }
@@ -1042,7 +1044,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     if ( !list_failed.empty() && !open_in_new_window ) {
         if ( !_app.m_pMainWindow ) {
             _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-            _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+            _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
         }
 
         for ( auto & o : list_failed ) {
@@ -1095,6 +1097,30 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 #ifdef _WIN32
     Association::instance().chekForAssociations(uid);
 #endif
+
+    if (uid > -1 && printData().printerCapabilitiesReady())
+        AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+
+    static bool check_printers = false;
+    if (!check_printers) {
+        check_printers = true;
+
+        printData().queryPrinterCapabilitiesAsync([=](const QString &json) {
+            // qDebug().noquote() << json;
+            if (mainWindow()) {
+                CAscTabWidget *tabs = mainWindow()->tabWidget();
+                for (int i = 0; i < tabs->count(); i++) {
+                    if (tabs->panel(i)->isReady())
+                        AscAppManager::sendCommandTo(tabs->panel(i)->cef(), L"printer:config", json.toStdWString());
+                }
+            }
+            foreach (auto ptr, m_vecEditors) {
+                CEditorWindow *e = reinterpret_cast<CEditorWindow*>(ptr);
+                if (e->mainView()->isReady())
+                    AscAppManager::sendCommandTo(e->mainView()->cef(), L"printer:config", json.toStdWString());
+            }
+        });
+    }
 }
 
 void CAscApplicationManagerWrapper::startApp()
@@ -1103,7 +1129,7 @@ void CAscApplicationManagerWrapper::startApp()
     GET_REGISTRY_USER(reg_user)
 
 //    QRect _start_rect = reg_user.value("position").toRect();
-    bool _is_maximized = reg_user.value("maximized", false).toBool();
+    bool _is_maximized = reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool();
 
 #if 0
     CMainWindow * _window = createMainWindow(_start_rect);
@@ -1306,6 +1332,14 @@ void CAscApplicationManagerWrapper::initializeApp()
     EditorJSVariables::setVariable("rtl", _is_rtl ? "yes" : "no");
 
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
+
+    std::vector<std::pair<std::string, std::string>> layouts = _app.GetKeyboardLayoutList();
+    QJsonObject kbLangs;
+    for (const auto &lut : layouts) {
+        kbLangs.insert(QString::fromStdString(lut.first), QString::fromStdString(lut.second));
+    }
+    QJsonObject _ls_ = {{"langs", kbLangs}};
+    EditorJSVariables::applyVariable("keyboard", _ls_);
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())},
@@ -1388,11 +1422,14 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
         }
 
         _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-        _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+        _app.m_pMainWindow->show(reg_user.value("maximized", WindowHelper::defaultWindowMaximizeState()).toBool());
     }
 
-    if ( !_app.m_pMainWindow->isVisible() )
+    if ( !_app.m_pMainWindow->isVisible() ) {
+        if (_app.m_pMainWindow->isSlideshowMode())
+            _app.m_pMainWindow->onFullScreen(-1, false);
         _app.m_pMainWindow->show(mainWindow()->isMaximized());
+    }
 
 //    _app.m_pMainWindow->bringToTop();
     QTimer::singleShot(0, &_app, [](){
