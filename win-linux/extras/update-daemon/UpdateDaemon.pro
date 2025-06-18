@@ -4,7 +4,7 @@ include(common.pri)
 
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 DEFINES += APP_ICON_PATH=\"./icons/desktopeditors.ico\"
-DEFINES += APP_LANG_PATH=\"./langs/langs.isl\"
+DEFINES += APP_LANG_PATH=\"./langs/langs.bin\"
 
 ENV_URL_APPCAST_MAIN = $$(DESKTOP_URL_UPDATES_MAIN_CHANNEL)
 !isEmpty(ENV_URL_APPCAST_MAIN) {

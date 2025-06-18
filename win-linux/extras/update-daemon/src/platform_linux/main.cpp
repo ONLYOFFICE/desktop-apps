@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
             if (NS_Utils::cmdArgContains("--log"))
                 NS_Logger::AllowWriteLog();
             std::locale::global(std::locale(""));
-            Translator::instance().init(NS_Utils::GetAppLanguage(), "/langs/langs.isl");
+            Translator::instance().init(NS_Utils::GetAppLanguage(), "/langs/langs.bin");
             CSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;

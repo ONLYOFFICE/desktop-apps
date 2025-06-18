@@ -40,11 +40,7 @@ private:
     Translator();
     ~Translator();
 
-    void parseTranslations();
-
     TranslationsMap translMap;
-    tstring        translations,
-                   error_substr;
     tstring langName;
     bool    is_translations_valid;
 
