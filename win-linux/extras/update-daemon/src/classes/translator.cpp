@@ -61,14 +61,23 @@ wstring StrToWStr(const string &str)
 }
 #endif
 
-TranslationsMap Translator::translMap = TranslationsMap();
-tstring Translator::langName = _T("en");
-bool Translator::is_translations_valid = false;
+Translator::Translator() :
+    langName(_T("en")),
+    is_translations_valid(false)
+{
+
+}
+
+Translator& Translator::instance()
+{
+    static Translator inst;
+    return inst;
+}
 
 #ifdef _WIN32
-Translator::Translator(const tstring &lang, int resourceId)
+void Translator::init(const tstring &lang, int resourceId)
 #else
-Translator::Translator(const tstring &lang, const char *resourcePath)
+void Translator::init(const tstring &lang, const char *resourcePath)
 #endif
 {
     langName = lang;
