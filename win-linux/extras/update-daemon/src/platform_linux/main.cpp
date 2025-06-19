@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
                 NS_Logger::WriteLog(gSvcVersion);
             }
             std::locale::global(std::locale(""));
-            Translator lang(NS_Utils::GetAppLanguage(), "/langs/langs.iss");
+            Translator::instance().init(NS_Utils::GetAppLanguage(), "/langs/langs.bin");
             CSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;
