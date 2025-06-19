@@ -87,7 +87,7 @@ public:
                 if (pCefEvent) {
                     senderId = pCefEvent->get_SenderId();
                 }
-                
+
                 switch (pEvent->m_nType) {
                     case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
                         NSEditorApi::CAscCreateTab *pData = (NSEditorApi::CAscCreateTab*)pEvent->m_pData;
@@ -361,27 +361,16 @@ public:
                         break;
                     }
 
-					case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START:
-					case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_END: {
-						NSLog(@"MEDIA EVENT: %d", pEvent->m_nType);
-						CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-						CCefView * pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
-						
+					case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_PLAYER_COMMAND: {
+						CAscApplicationManager* appManager = [NSAscApplicationWorker getAppManager];
+						CCefView* pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
 						if (pCefView)
 						{
 							CCefViewWidgetImpl* pWidgetImpl = pCefView->GetWidgetImpl();
-
 							if (pWidgetImpl)
 							{
 								CCefViewMedia* pCefViewMedia = static_cast<CCefViewMedia*>(pWidgetImpl);
-								if (pEvent->m_nType == ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START)
-								{
-									pCefViewMedia->OnMediaStart(static_cast<NSEditorApi::CAscExternalMedia*>(pEvent->m_pData));
-								}
-								else
-								{
-									pCefViewMedia->OnMediaEnd();
-								}
+								pCefViewMedia->OnMediaPlayerCommand(static_cast<NSEditorApi::CAscExternalMediaPlayerCommand*>(pEvent->m_pData));
 							}
 						}
 
