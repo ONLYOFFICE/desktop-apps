@@ -381,7 +381,7 @@ void CSvcManager::init()
                 break;
 
             case MSG_SetLanguage:
-                Translator::setLanguage(params[1]);
+                Translator::instance().setLanguage(params[1]);
                 break;
 
             default:

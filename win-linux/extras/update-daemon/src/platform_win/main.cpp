@@ -102,7 +102,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
             if (NS_Utils::cmdArgContains(_T("--log")))
                 NS_Logger::AllowWriteLog();
             std::locale::global(std::locale(""));
-            Translator lang(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
+            Translator::instance().init(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
             CSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;
@@ -144,7 +144,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
     }
 
     std::locale::global(std::locale(""));
-    Translator lang(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
+    Translator::instance().init(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
     SERVICE_TABLE_ENTRY DispatchTable[] =
     {
         {(LPTSTR)SERVICE_NAME, (LPSERVICE_MAIN_FUNCTION)SvcMain},
