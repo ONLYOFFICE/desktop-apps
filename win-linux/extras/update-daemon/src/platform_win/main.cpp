@@ -44,6 +44,7 @@
 SERVICE_STATUS          gSvcStatus;
 SERVICE_STATUS_HANDLE   gSvcStatusHandle;
 HANDLE                  gSvcStopEvent = NULL;
+static const WCHAR      gSvcVersion[] = _T("Service version: " VER_STRING);
 
 
 VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv);
@@ -99,8 +100,10 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
         if (lstrcmpi(argv[1], _T("--run-as-app")) == 0) {
             NS_Utils::setRunAsApp();
             NS_Utils::parseCmdArgs(argc, argv);
-            if (NS_Utils::cmdArgContains(_T("--log")))
+            if (NS_Utils::cmdArgContains(_T("--log"))) {
                 NS_Logger::AllowWriteLog();
+                NS_Logger::WriteLog(gSvcVersion);
+            }
             std::locale::global(std::locale(""));
             Translator::instance().init(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
             CSocket socket(0, INSTANCE_SVC_PORT);
@@ -162,8 +165,10 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
 VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv)
 {
     NS_Utils::parseCmdArgs(argc, argv);
-    if (NS_Utils::cmdArgContains(_T("--log")))
+    if (NS_Utils::cmdArgContains(_T("--log"))) {
         NS_Logger::AllowWriteLog();
+        NS_Logger::WriteLog(gSvcVersion);
+    }
 
     gSvcStatusHandle = RegisterServiceCtrlHandler(SERVICE_NAME, SvcCtrlHandler);
     if (gSvcStatusHandle == NULL) {

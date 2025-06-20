@@ -175,11 +175,15 @@ auto restartService()->void
         return;
     }
 
+    wstring args = NS_Utils::cmdArgsAsString();
+    if (!args.empty())
+        args.insert(0, 1, L' ');
+
     std::list<wstring> batch = {
         L"@chcp 65001>nul",
         L"@echo off",
         wstring(L"NET STOP ") + L"\"" + TEXT(VER_PRODUCTNAME_STR) + L"\"",
-        wstring(L"NET START ") + L"\"" +  TEXT(VER_PRODUCTNAME_STR) + L"\"",
+        wstring(L"SC START ") + L"\"" +  TEXT(VER_PRODUCTNAME_STR) + L"\"" + args,
         L"del /F /Q \"%~dp0~updatesvc.exe\"",
         L"exit"
     };
