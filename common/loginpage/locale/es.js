@@ -120,7 +120,13 @@ l10n.es = {
     tplDocument: "Documentos",
     tplSpreadsheet: "Hojas de cálculo",
     tplPresentation: "Presentaciones",
+    tplSearch: "Buscar plantillas",
+    tplSearchResult: "Resultados para",
+    tplNoResultsTitle: "No se ha encontrado nada",
+    tplNoResultsText: "No se han encontrado resultados que coincidan con su búsqueda",
     colFileName: "Nombre de archivo",
     colLocation: 'Ubicación',
     colLastOpened: 'Última apertura',
+    labelDropFile: 'Arrastre los archivos aquí o',
+    labelSelectFile: 'Seleccione el archivo',
 }
