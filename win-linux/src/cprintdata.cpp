@@ -272,6 +272,11 @@ public:
                 const char *ppd = cupsGetPPD(dest->name);
                 if (!ppd)
                     continue;
+                ppd_file_t *ppdF = ppdOpenFile(ppd);
+                if (!ppdF) {
+                    unlink(ppd);
+                    continue;
+                }
                 QJsonObject printerObject;
                 if (jsonArrayContainsPrinterName(cachedPrintersArray, QString::fromUtf8(dest->name), printerObject)) {
                     printersArray.append(printerObject);
@@ -281,7 +286,6 @@ public:
                         needUpdateCache = true;
                 }
 
-                ppd_file_t *ppdF = ppdOpenFile(ppd);
                 bool duplex_supported = ppdFindOption(ppdF, "Duplex");
 
                 printerObject["name"] = QString::fromUtf8(dest->name);
@@ -317,6 +321,7 @@ public:
                 }
                 printersArray.append(printerObject);
                 ppdClose(ppdF);
+                unlink(ppd);
             }
             cupsFreeDests(num_dests, dests);
         }
