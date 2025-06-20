@@ -433,6 +433,18 @@
 
                 collection.events.click.attach((collection, model)=>{
                     _on_context_menu(undefined, 'portal:open', model);
+
+                    // TODO: doubful variant to check portal availability on click instead of on launch
+                    if ( model.get('exists') === undefined )
+                        (new DialogConnect).portalexists(model.path, model.provider)
+                                .then(data => {
+                                    model.set('exists', true)
+                                    // data.status == 'success' && _is_logged && model.set('logged', true); 
+                                }, error => {
+                                    $('#' + model.uid, this.view.$sidebarPortalList).toggleClass('unavail', true);
+                                    model.set('logged', false)
+                                    model.set('exists', false)
+                                });
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
@@ -465,15 +477,17 @@
                 let model = collection.find('name', i);
 
                 if (model) {
-                    model.set('logged', false)
+                    // TODO: doubful variant to check portal availability on click instead of on launch
+                    model.set('logged', obj[i].length > 0)
 
-                    const _is_logged = obj[i].length > 0;
-                    (new DialogConnect).portalexists(model.path, model.provider)
-                            .then(data => {
-                                data.status == 'success' && _is_logged && model.set('logged', true); 
-                            }, error => {
-                                $('#' + model.uid, this.view.$sidebarPortalList).toggleClass('unavail', true);
-                            });
+                    // model.set('logged', false)
+                    // const _is_logged = obj[i].length > 0;
+                    // (new DialogConnect).portalexists(model.path, model.provider)
+                    //         .then(data => {
+                    //             data.status == 'success' && _is_logged && model.set('logged', true); 
+                    //         }, error => {
+                    //             $('#' + model.uid, this.view.$sidebarPortalList).toggleClass('unavail', true);
+                    //         });
                 }
             };
         };
