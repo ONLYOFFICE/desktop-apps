@@ -135,12 +135,12 @@
         else return NSColor.whiteColor;
     } else if ([name isEqualToString:btnPortalActiveBackgroundColor]) {
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x404040);
-        else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0xa2a2a);
+        else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x2a2a2a);
         else if ( [theme isEqualToString:uiThemeLight] ) return UIColorFromRGB(0xf7f7f7);
         else if ( [theme isEqualToString:uiThemeClassicLight] ) return UIColorFromRGB(0xf7f7f7);
         else if ( [theme isEqualToString:uiThemeGray] ) return UIColorFromRGB(0xf7f7f7);
         else if ( [theme isEqualToString:uiThemeWhite] ) return UIColorFromRGB(0xf3f3f3);
-        else if ( [theme isEqualToString:uiThemeNight] ) return UIColorFromRGB(0x333333);
+        else if ( [theme isEqualToString:uiThemeNight] ) return UIColorFromRGB(0x222222);
         else {
             if ( @available(macOS 10.13, *) )
                 return [NSColor colorNamed:@"tab-portal-activeColor"];
