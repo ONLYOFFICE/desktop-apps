@@ -120,7 +120,13 @@ l10n.zh_CN = {
     tplDocument: "文档",
     tplSpreadsheet: "表格",
     tplPresentation: "演示文稿",
+    tplSearch: "搜索模板",
+    tplSearchResult: "搜索：",
+    tplNoResultsTitle: "未找到结果",
+    tplNoResultsText: "未找到相关结果",
     colFileName: "文件名",
     colLocation: '位置',
     colLastOpened: '最近文档',
+    labelDropFile: '将文件拖拽到此处，或',
+    labelSelectFile: '选择文件',
 }

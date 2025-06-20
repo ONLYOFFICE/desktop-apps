@@ -120,7 +120,13 @@ l10n.ru = {
     tplDocument: "Документы",
     tplSpreadsheet: "Таблицы",
     tplPresentation: "Презентации",
+    tplSearch: "Поиск шаблонов",
+    tplSearchResult: "Результаты для",
+    tplNoResultsTitle: "Ничего не найдено",
+    tplNoResultsText: "Результатов, соответствующих вашему запросу, не найдено",
     fileName: "Имя файла",
     location: "Расположение",
-    lastOpened: "Последнее открытие"
+    lastOpened: "Последнее открытие",
+    labelDropFile: 'Перетащите файлы сюда или',
+    labelSelectFile: 'Выберите файл',
 }
