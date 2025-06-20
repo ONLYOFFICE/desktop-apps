@@ -222,9 +222,11 @@ public:
                 }
 
                 bool duplex_supported = (DeviceCapabilities(printers[i].pPrinterName, NULL, DC_DUPLEX, NULL, NULL) == 1);
+                bool color_supported = (DeviceCapabilities(printers[i].pPrinterName, NULL, DC_COLORDEVICE, NULL, NULL) == 1);
 
                 printerObject["name"] = QString::fromWCharArray(printers[i].pPrinterName);
                 printerObject["duplex_supported"] = duplex_supported;
+                printerObject["color_supported"] = color_supported;
 
                 constexpr int PAPER_NAME_LENGTH = 64;
                 bool paperNamesSuccess = false, paperSizeSuccess = false;
@@ -284,9 +286,18 @@ public:
 
                 printerObject["name"] = QString::fromUtf8(dest->name);
                 printerObject["duplex_supported"] = duplex_supported;
+                printerObject["color_supported"] = false;
 
                 ppd_option_t *option = ppdFirstOption(ppdF);
                 while (option) {
+                    if (strcmp(option->keyword, "ColorModel") == 0) {
+                        for (int j = 0; j < option->num_choices; j++) {
+                            if (strcmp(option->choices[j].choice, "Gray") != 0) {
+                                printerObject["color_supported"] = true;
+                                break;
+                            }
+                        }
+                    } else
                     if (strcmp(option->keyword, "PageSize") == 0) {
                         QJsonArray paperArray;
                         for (int j = 0; j < option->num_choices; j++) {

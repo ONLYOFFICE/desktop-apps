@@ -74,29 +74,30 @@
                     ${welcomeBannerTemplate}
                     <section id="area-dnd-file"></section>
                     
-                    <div id="box-recovery">
-                        <div class="file-list-title">
-                            <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                    <div id="box-container">
+                        <div id="box-recovery">
+                            <div class="file-list-title">
+                                <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                            </div>
+                            <div class="file-list-head text-normal">
+                                <div class="col-name" l10n>${_lang.colFileName}</div>
+                                <div class="col-location" l10n>${_lang.colLocation}</div>
+                                <div class="col-date" l10n>${_lang.colLastOpened}</div>
+                            </div>
+                            <div class="file-list-body scrollable"></div>
                         </div>
-                        <div class="file-list-head text-normal">
-                            <div class="col-name" l10n>${_lang.colFileName}</div>
-                            <div class="col-location" l10n>${_lang.colLocation}</div>
-                            <div class="col-date" l10n>${_lang.colLastOpened}</div>
-                        </div>
-                        <div class="file-list-body scrollable"></div>
-                    </div>
 
-                    <div id="box-recent">
-                        <div class="file-list-title">
-                            <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                        <div id="box-recent">
+                            <div class="file-list-title">
+                                <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                            </div>
+                            <div class="file-list-head text-normal">
+                                <div class="col-name" l10n>${_lang.colFileName}</div>
+                                <div class="col-location" l10n>${_lang.colLocation}</div>
+                                <div class="col-date" l10n>${_lang.colLastOpened}</div>
+                            </div>
+                            <div class="file-list-body scrollable"></div>
                         </div>
-                        <div class="file-list-head text-normal">
-                            <div class="col-name" l10n>${_lang.colFileName}</div>
-                            <div class="col-location" l10n>${_lang.colLocation}</div>
-                            <div class="col-date" l10n>${_lang.colLastOpened}</div>
-                        </div>
-                        <div class="file-list-body scrollable"></div>
-                    </div>
                     </div>
                 </div>
             </div>`;
