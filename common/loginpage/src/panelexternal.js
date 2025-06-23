@@ -69,7 +69,7 @@
                         <svg class="icon" data-iconname="plugin" data-precls="tool-icon">
                             <use href="#plugin"></use>
                         </svg>
-                        ${!isSvgIcons ? '<i class="icon tool-icon plugin"></i>`' : ''}
+                        ${!isSvgIcons ? '<i class="icon tool-icon plugin"></i>' : ''}
                     </div>
                     <span class="text" l10n>${args.itemtext}</span>
                 </a>
