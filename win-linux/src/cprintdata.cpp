@@ -240,6 +240,10 @@ public:
                 if (!ppd)
                     continue;
                 ppd_file_t *ppdF = ppdOpenFile(ppd);
+                if (!ppdF) {
+                    unlink(ppd);
+                    continue;
+                }
                 bool duplex_supported = ppdFindOption(ppdF, "Duplex");
 
                 QJsonObject printerObject;
@@ -276,6 +280,7 @@ public:
                 }
                 printersArray.append(printerObject);
                 ppdClose(ppdF);
+                unlink(ppd);
             }
             cupsFreeDests(num_dests, dests);
         }
