@@ -161,7 +161,7 @@ l10n.en = {
     colFileName: "File name",
     colLocation: 'Location',
     colLastOpened: 'Last opened',
-    labelDropFile: 'Drag you files here or',
+    labelDropFile: 'Drag your files here or',
     labelSelectFile: 'Select file',
 }
 

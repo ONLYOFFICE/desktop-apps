@@ -120,7 +120,13 @@ l10n.sr_Latn_RS = {
     tplDocument: "Dokumenti",
     tplSpreadsheet: "Proračunske tabele",
     tplPresentation: "Prezentacije",
+    tplSearch: "Pretraži šablone",
+    tplSearchResult: "Rezultati za",
+    tplNoResultsTitle: "Ništa nije pronađeno",
+    tplNoResultsText: "Nema rezultata koji odgovaraju vašem upitu",
     colFileName: "Naziv fajla",
     colLocation: 'Lokacija',
     colLastOpened: 'Poslednje otvoreno',
+    labelDropFile: 'Prevucite fajlove ovde ili',
+    labelSelectFile: 'Izaberite fajl',
 }

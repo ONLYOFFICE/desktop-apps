@@ -120,7 +120,13 @@ l10n.sr_Cyrl_RS = {
     tplDocument: "Документи",
     tplSpreadsheet: "Прорачунске табеле",
     tplPresentation: "Презентације",
+    tplSearch: "Претражи шаблоне",
+    tplSearchResult: "Резултати за",
+    tplNoResultsTitle: "Ништа није пронађено",
+    tplNoResultsText: "Нема резултата који одговарају вашем упиту",
     colFileName: "Назив фајла",
     colLocation: 'Локација',
     colLastOpened: 'Последње отворено',
+    labelDropFile: 'Преувлачите фајлове овде или',
+    labelSelectFile: 'Изаберите фајл',
 }
