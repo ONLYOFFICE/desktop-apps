@@ -86,7 +86,7 @@ public:
     auto isSystem() const -> bool;
 
 private:
-    CTheme(const QString& id = QString());
+    CTheme(const QString& path = QString());
     ~CTheme();
 
     class CThemePrivate;

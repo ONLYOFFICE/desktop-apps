@@ -922,7 +922,7 @@ void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
             else m_pTabs->setTabTheme(index, "light", "#fff");
         } else {
             QJsonParseError jerror;
-            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toLatin1(), &jerror);
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toUtf8(), &jerror);
 
             if( jerror.error == QJsonParseError::NoError ) {
                 QJsonObject objRoot = jdoc.object();
