@@ -44,8 +44,8 @@
 
 #define DECL_VERSION __attribute__((section(".version_info"), unused))
 
-volatile static const char DECL_VERSION version[] = VER_STRING;
-static const char gSvcVersion[] = "Service version: " VER_STRING;
+volatile static const char DECL_VERSION version[] = VER_FILEVERSION_STR;
+static const char gSvcVersion[] = "Service version: " VER_FILEVERSION_STR;
 
 void strToNum(const char *str, int &num)
 {

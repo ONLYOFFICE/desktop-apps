@@ -44,7 +44,7 @@
 SERVICE_STATUS          gSvcStatus;
 SERVICE_STATUS_HANDLE   gSvcStatusHandle;
 HANDLE                  gSvcStopEvent = NULL;
-static const WCHAR      gSvcVersion[] = _T("Service version: " VER_STRING);
+static const WCHAR      gSvcVersion[] = _T("Service version: " VER_FILEVERSION_STR);
 
 
 VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv);
