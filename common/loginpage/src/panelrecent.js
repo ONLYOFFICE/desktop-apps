@@ -483,6 +483,22 @@
             }
         }
 
+        function _updateLang() {
+            const langMapping = {
+                'word': utils.Lang.newDoc,
+                'cell': utils.Lang.newXlsx,
+                'slide': utils.Lang.newPptx,
+                'form': utils.Lang.newForm
+            };
+
+            for (const [docId, text] of Object.entries(langMapping)) {
+                const titleEl = this.view.$panel.find(`.document-creation-item[data-id="${docId}"] .title`);
+                if (titleEl.length && titleEl.text() !== text) {
+                    titleEl.text(text);
+                }
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -593,6 +609,7 @@
                 docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 
                 $('#idx-recent-filter', this.view.$panel).on('input', _on_filter_recents.bind(this));
+                CommonEvents.on('lang:changed', _updateLang.bind(this));
 
                 return this;
             },

@@ -158,7 +158,7 @@
                     this.view.$dialog.setBody(this.view.$body)
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
-                        $('#idx-ver-edition').html(args.opts.edition);
+                        $('#idx-ver-edition', this.view.$body).html(args.opts.edition);
                     }
                 }
 
@@ -277,7 +277,8 @@
 
         const onPanelShow = function(panel) {
             if (panel === this.action) {
-                this.view.$dialog.show();
+                var opts = this.view.opts.itemtext;
+                this.view.$dialog.show(opts);
             }
         }
 
