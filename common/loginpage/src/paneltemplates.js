@@ -127,8 +127,11 @@
                                               `<svg class="icon cloud-icon" data-iconname="location-local" data-precls="tool-icon">
                                                 <use href="#location-local"></use>
                                               </svg>`;                    
-            const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
-                                         `<div class="box"><img src="${info.icon}">${badge}</div>`;
+
+            const icon_el = !info.icon ? `<svg class='icon icon--default'><use xlink:href='#template-item'></use></svg>
+                                            <div class="box"><img>${badge}</div>` :
+                                            `<div class="box"><img src="${info.icon}">${badge}</div>`;
+
             return `<div id="${info.uid}" class='item' data-type="${type}">
                         <div class="wrapper">
                             ${icon_el}
@@ -176,7 +179,7 @@
                     let $item, isprepend = false;
                     if ( model instanceof Array ) {
                         const items = model;
-                        $item = [], isprepend = true;
+                        $item = [], isprepend = !items[0].isCloud;
                         items.forEach(m => {
                             $item.push($(this.view.listitemtemplate(m)));
                         });
@@ -221,6 +224,14 @@
                         }));
                     }
                 });
+
+                collection.events.changed.attach((collection, m, v) => {
+                    if ( v && v.icon ) {
+                        const $el = $(`#${m.uid}`, collection.list);
+                        $el.find('svg.icon--default').hide();
+                        $el.find('.box img').attr('src', m.icon);
+                    }
+                });
             };
             setupCollection(this.templates);
         }
@@ -245,7 +256,7 @@
 
         const _on_add_local_templates = function(tmpls) {
             const _func_ = () => {
-                this.templates.emptyLocal();
+                // this.templates.emptyLocal();
 
                 let items = [];
                 // [...tmpls]
@@ -255,11 +266,20 @@
                         const type = utils.formatToEditor(item.type);
                         if (['word', 'cell', 'slide', 'pdf'].includes(type)) {
                             // this.templates.add(new FileTemplateModel(item));
-                            items.push(new FileTemplateModel(item));
+
+                            const m = this.templates.find('path', item.path);
+                            if ( !m ) {
+                                items.push(new FileTemplateModel(item));
+                            } else {
+                                if ( !m.icon && item.icon ) {
+                                    m.set('icon', item.icon);
+                                }
+                            }
                         }
                     });
 
-                this.templates.add(items);
+                if ( items.length )
+                    this.templates.add(items);
             };
 
             // if ( this.timer_id )
@@ -277,6 +297,7 @@
         };
 
         const _on_add_cloud_templates = function(data) {
+            let items = [];
             data.forEach(i => {
                 const info = i['attributes'];
                 if ( !info['form_exts']['data'].length ) return;
@@ -284,7 +305,8 @@
                 const file_ext = info['form_exts']['data'][0]['attributes']['ext'],
                     id = i.id;
                 if (!this.templates.items.some(t => t.uid === id)) {
-                    this.templates.add(new FileTemplateModel({    
+
+                    const m = new FileTemplateModel({
                         uid: id,
                         name: info['name_form'],
                         descr: info['template_desc'],
@@ -292,9 +314,15 @@
                         type: utils.fileExtensionToFileFormat(file_ext),
                         icon: info.template_image ? info.template_image.data.attributes.formats.thumbnail.url : undefined,
                         isCloud: true,
-                    }));
+                    });
+
+                    items.push(m);
+                    // this.templates.add(m);
                 }
             });
+
+            if ( items.length )
+                this.templates.add(items);
         }
         
         const applyFilter = function($panel) {
