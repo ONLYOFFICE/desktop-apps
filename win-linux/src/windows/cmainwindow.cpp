@@ -916,6 +916,12 @@ void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
         if (index < 0 || m_pTabs->panel(index)->data()->isViewType(cvwtEditor))
             return;
 
+        const QString id = QString::fromStdWString(json);
+        CTheme tm = AscAppManager::themes().localFromId(id);
+        if (tm.isValid()) {
+            const QString color = QString::fromStdWString(tm.value(CTheme::ColorRole::ecrTabSimpleActiveBackground));
+            m_pTabs->setTabTheme(index, tm.isDark() ? "dark" : "light", color);
+        } else
         if ( json.rfind(L"default-", 0) == 0 ) {
             if ( json.compare(L"default-dark") == 0 )
                 m_pTabs->setTabTheme(index, "dark", "#333");

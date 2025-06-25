@@ -71,6 +71,13 @@ public:
         , ecrTabThemeType
     };
 
+    CTheme(const CTheme &other);
+    CTheme(CTheme &&other) noexcept;
+    ~CTheme();
+
+    CTheme& operator=(const CTheme&);
+    CTheme& operator=(CTheme&&) noexcept;
+
     auto fromFile(const QString&) -> bool;
     auto fromJson(const QString&) -> bool;
 
@@ -84,10 +91,10 @@ public:
     auto value(ColorRole, const std::wstring& def = L"") const -> std::wstring;
     auto isDark() const -> bool;
     auto isSystem() const -> bool;
+    auto isValid() const -> bool;
 
 private:
     CTheme(const QString& path = QString());
-    ~CTheme();
 
     class CThemePrivate;
     CThemePrivate * m_priv = nullptr;
@@ -104,6 +111,7 @@ public:
     auto current() -> const CTheme&;
     auto defaultDark() -> const CTheme&;
     auto defaultLight() -> const CTheme&;
+    auto localFromId(const QString &id) const -> CTheme;
 
 //    auto addLocalTheme(const std::wstring&) -> bool;
     auto addLocalTheme(QJsonObject&, const QString& filepath) -> bool;
