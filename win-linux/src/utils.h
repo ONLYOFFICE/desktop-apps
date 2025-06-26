@@ -156,6 +156,8 @@ namespace WindowHelper {
         UNITY = 0,
         GNOME,
         KDE,
+        XFCE,
+        CINNAMON,
         OTHER
     };
     auto getEnvInfo() -> int;
