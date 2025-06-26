@@ -353,14 +353,17 @@
             $('#search-no-results', $panel).toggle(matchCount === 0);
         };
         
-        const _loadTemplates = function() {
+        const _loadTemplates = function(language) {
+            const Langs = ['en', 'fr', 'de', 'es', 'pt', 'it', 'ja', 'zh', 'ar'];
+            const shortLang = language ? language.split('_')[0].toLowerCase() : 'en';
+            const locale = Langs.includes(shortLang) ? shortLang : 'en';
             if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
 
             _page_num++;  
             isLoading = true;
 
             const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com'; // https://oforms.teamlab.info
-            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=${locale}&pagination[page]=${_page_num}`;
             fetch(_url)
                 .then(r => r.json())
                 .then(d => {
@@ -370,7 +373,7 @@
                         totalPages = d.meta.pagination.pageCount;
                         
                         if (_page_num < totalPages) {
-                            _loadTemplates.call(this);
+                            _loadTemplates.call(this, language);
                         } 
                      }
                 })
@@ -383,12 +386,19 @@
             const self = this;
             const loadNext = () => {
                 if (_page_num < totalPages || totalPages === null) {
-                    _loadTemplates.call(self);
+                    _loadTemplates.call(self,  utils.Lang.id);
                     setTimeout(loadNext, 150); 
                 }
             };
 
             loadNext(); 
+        };
+
+        const _resetPagination = function() {
+            isLoading = false;
+            totalPages = null;
+            _page_num = 0;
+            this.templates.empty();
         };
     
         return {
@@ -435,7 +445,9 @@
                 _reload_templates(utils.Lang.id);
 
                 CommonEvents.on('lang:changed', (ol, nl) => {
+                    _resetPagination.call(this);  
                     _reload_templates(nl);
+                    _loadTemplates.call(this, nl);
                 });
 
                 loadAllPages.call(this);
