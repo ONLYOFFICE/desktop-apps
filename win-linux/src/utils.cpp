@@ -989,6 +989,12 @@ namespace WindowHelper {
             else
             if (env.indexOf("KDE") != -1)
                 desktop_env = KDE;
+            else
+            if (env.indexOf("XFCE") != -1)
+                desktop_env = XFCE;
+            else
+            if (env.indexOf("Cinnamon") != -1)
+                desktop_env = CINNAMON;
             else desktop_env = OTHER;
         }
         return desktop_env;
