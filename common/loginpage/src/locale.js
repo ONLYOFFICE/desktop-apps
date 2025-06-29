@@ -242,7 +242,13 @@ function changelang(lang) {
 };
 
 function is_lang_rtl(code) {
-    return code.startsWith('ar') || code.startsWith('he');
+    const langs = ['ar', 'he', 'ur'];
+    for (const l of langs) {
+        if (code.startsWith(l))
+            return true;
+    }
+
+    return false;
 }
 
 +function mixLocale(lang) {
