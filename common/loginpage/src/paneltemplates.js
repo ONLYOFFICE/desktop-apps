@@ -374,6 +374,12 @@
                         } 
                      }
                 })
+                .catch (function (err) {
+                    console.error(err);
+                    if (window.utils.isWinXp) {
+                        console.warn(utils.Lang.tplErrorTLS) 
+                    }  
+                })
         };
 
         const loadAllPages = function() {
