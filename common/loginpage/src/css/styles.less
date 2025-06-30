@@ -385,9 +385,9 @@ li.menu-item {
   align-items: center;
   justify-content: space-between;
   padding-left: 16px;
-  padding-right: 56px;
+  padding-right: 88px;
   .rtl & {
-    padding-left: 56px;
+    padding-left: 88px;
     padding-right: 16px;
   }
 
@@ -481,7 +481,7 @@ li.menu-item {
       justify-content: flex-end;
     }
 
-    .col-more {
+    .col-more, .col-pin {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -523,7 +523,7 @@ li.menu-item {
     }
 
     &:hover:not(.unavail) {
-      .col-more {
+      .col-more, .col-pin {
         opacity: 1;
       }
     }
@@ -534,6 +534,22 @@ li.menu-item {
 
     &:active, &[data-active] {
       background-color: @highlight-button-pressed;
+    }
+
+    .col-pin {
+      right: 44px;
+
+      .rtl & {
+        right: unset;
+        left: 44px;
+      }
+    }
+
+    &.pinned .col-pin {
+      opacity: 1;
+      .icon {
+        opacity: 1;
+      }
     }
   }
 }
@@ -844,7 +860,7 @@ li.menu-item {
 
 #box-recovery {
   .file-list-body, .file-list-head {
-    .col-location, .col-date {
+    .col-location, .col-date, .col-pin {
       display: none;
     }
   }

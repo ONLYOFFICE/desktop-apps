@@ -160,13 +160,31 @@
             `;
 
             if (info.type !== 'folder') {
-                _tpl += `<div class="col-date"><p>${info.date}</p></div>`;
-                _tpl += `<div class="col-more">
-                            <button id="${info.uid}-more-btn" class="btn-quick more">
-                                <svg class="icon"><use xlink:href="#more"/></svg>
-                                ${!isSvgIcons ? '<i class="icon tool-icon more"></i>' : ''}
-                            </button>
-                        </div>`;
+                //language=HTML
+                _tpl += `
+                    <div class="col-date"><p>${info.date}</p></div>`;
+
+                //language=HTML
+                _tpl += `
+                    <div class="col-pin">
+                        <button id="${info.uid}-pin-btn" class="btn-quick">
+                            <svg class="icon">
+                                <use xlink:href="#pin"/>
+                            </svg>
+                            ${!isSvgIcons ? '<i class="icon tool-icon pin"></i>' : ''}
+                        </button>
+                    </div>`;
+
+                //language=HTML
+                _tpl += `
+                    <div class="col-more">
+                        <button id="${info.uid}-more-btn" class="btn-quick more">
+                            <svg class="icon">
+                                <use xlink:href="#more"/>
+                            </svg>
+                            ${!isSvgIcons ? '<i class="icon tool-icon more"></i>' : ''}
+                        </button>
+                    </div>`;
             }
 
             return _tpl + '</div>';
@@ -178,8 +196,6 @@
 
             if(pasteSvg && !emptylist.find('svg').length)
                 emptylist.prepend($('<svg class = "icon"><use xlink:href="#folder-big"></use></svg>'));
-
-            // todo: rewrite cicon rescale
 
             $('#box-recent .cicon').each(function () {
                  elm = $(this);
@@ -207,32 +223,7 @@
                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
 
                 });
-        },
-        updateListSize: function () {
-            const windowBottom = $(window).height();
-
-            // Recovery
-            const $headRecovery = this.$boxRecovery.find('.file-list-head');
-            const $bodyRecovery = this.$boxRecovery.find('.file-list-body');
-
-            if ($headRecovery.length && $bodyRecovery.length) {
-                const headBottomRecovery = $headRecovery.offset().top + $headRecovery.outerHeight(true);
-                const availableRecovery = windowBottom - headBottomRecovery - 20;
-
-                $bodyRecovery.css({ 'max-height': availableRecovery > 0 ? availableRecovery + 'px' : '0px' });
-            }
-
-            // Recent
-            const $headRecent = this.$boxRecent.find('.file-list-head');
-            const $bodyRecent = this.$boxRecent.find('.file-list-body');
-
-            if ($headRecent.length && $bodyRecent.length) {
-                const headBottomRecent = $headRecent.offset().top + $headRecent.outerHeight(true);
-                const availableRecent = windowBottom - headBottomRecent - 20;
-
-                $bodyRecent.css({ 'max-height': availableRecent > 0 ? availableRecent + 'px' : '0px' });
-            }
-        },
+        }
     });
 
     window.ControllerRecent = ControllerRecent;
@@ -267,6 +258,10 @@
                 var model = new FileModel(item);
                 model.set('hash', item.path.hashCode());
 
+                // if (model.uid ==="asc-gen49") { // fixme: debug
+                //     model.set('pinned', true)
+                // }
+
                 if ( !!this.rawRecents ) {
                     collectionRecents.add(model);
                     _check_block[model.get('hash')] = item.path;
@@ -282,7 +277,7 @@
                 Object.assign(this.check_list, _check_block);
             }
 
-            if ( _new_items_count == ITEMS_LOAD_RANGE ) {
+            if (_new_items_count === ITEMS_LOAD_RANGE) {
                 setTimeout(e => {
                     this.recentIndex += ITEMS_LOAD_RANGE;
                     _add_recent_block.call(this);
@@ -292,7 +287,6 @@
             }
 
             // this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
-            // requestAnimationFrame(() => this.view.updateListSize());
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
                 this.dndZone.hide();
@@ -320,7 +314,6 @@
             }
 
             this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
-            // requestAnimationFrame(() => this.view.updateListSize());
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
                 this.dndZone.hide();
@@ -328,11 +321,46 @@
         };
 
         function addContextMenuEventListener(collection, model, view, actionList) {
+            $(`#${model.uid}-pin-btn`, view).click((e) => {
+                e.stopPropagation();
+                model.set('pinned', !model.pinned);
+            })
+
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
+
+                if (Menu.opened) {
+                    Menu.closeAll();
+                    return;
+                }
+
                 ppmenu.actionlist = actionList;
+                if (actionList === 'recovery') {
+                    ppmenu.hideItem('files:explore', true);
+                    ppmenu.hideItem('files:pin', true);
+                    ppmenu.hideItem('files:unpin', true);
+                } else {
+                    ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
+                    ppmenu.hideItem(model.pinned ? 'files:pin' : 'files:unpin', true);
+                    ppmenu.hideItem(model.pinned ? 'files:unpin' : 'files:pin', false);
+                }
+
                 ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
             })
+        }
+
+        function handlePin(collection, model) {
+            let $el = $('#' + model.uid, collection.list);
+            if ($el.length) {
+                const $pinned = collection.list.children('.row.pinned');
+                if ($pinned.length) {
+                    $el.insertAfter($pinned.last());
+                } else {
+                    $el.prependTo(collection.list);
+                }
+
+                $el[model.pinned ? 'addClass' : 'removeClass']('pinned');
+            }
         }
 
         function _init_collections() {
@@ -349,9 +377,18 @@
             });
 
             collectionRecents.events.inserted.attach((collection, model) => {
-                let $item = this.view.listitemtemplate(model);
+                let $item = $(this.view.listitemtemplate(model));
 
-                collection.list.append($item);
+                // collection.list.append($item);
+
+                const $pinned = collection.list.children('.row.pinned');
+                if ($pinned.length) {
+                    $item.insertAfter($pinned.last());
+                } else {
+                    $item.prependTo(collection.list);
+                }
+
+                $item[model.pinned ? 'addClass' : 'removeClass']('pinned');
 
                 addContextMenuEventListener(collection, model, this.view.$panel, 'recent');
 
@@ -370,12 +407,20 @@
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
                 ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
+                ppmenu.hideItem(model.pinned ? 'files:pin' : 'files:unpin', true);
+                ppmenu.hideItem(model.pinned ? 'files:unpin' : 'files:pin', false);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
-            collectionRecents.events.changed.attach(function(collection, model){
+            collectionRecents.events.changed.attach(function(collection, model, property){
                 let $el = collection.list.find('#' + model.uid);
-                if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                if ($el) {
+                    $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                    if (property['pinned'] !== undefined) {
+                        handlePin(collection, model);
+                        sdk.setRecentFilePinned(model.get('fileid'), property['pinned']);
+                    }
+                }
             });
 
             collectionRecents.empty();
@@ -396,6 +441,8 @@
             collectionRecovers.events.contextmenu.attach((collection, model, e)=>{
                 ppmenu.actionlist = 'recovery';
                 ppmenu.hideItem('files:explore', true);
+                ppmenu.hideItem('files:pin', true);
+                ppmenu.hideItem('files:unpin', true);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
         };
@@ -407,6 +454,8 @@
                 bottomlimitoffset: 10,
                 items: [
                     { caption: utils.Lang.menuFileOpen, action: 'files:open' , icon: '#folder'},
+                    { caption: utils.Lang.menuFilePin, action: 'files:pin' , icon: '#pin20'},
+                    { caption: utils.Lang.menuFileUnpin, action: 'files:unpin' , icon: '#unpin20'},
                     { caption: utils.Lang.menuFileExplore, action: 'files:explore', icon: '#gofolder' },
                     { caption: utils.Lang.menuRemoveModel, action: 'files:forget', icon: '#remove' },
                     { caption: '--' },
@@ -423,6 +472,10 @@
                 menu.actionlist == 'recent' ?
                     openFile(OPEN_FILE_RECENT, data) :
                     openFile(OPEN_FILE_RECOVERY, data);
+            } else if (/\:pin/.test(action)) {
+                collectionRecents.find('uid', data.uid)?.set('pinned', true);
+            } else if (/\:unpin/.test(action)) {
+                collectionRecents.find('uid', data.uid)?.set('unpinned', true);
             } else if (/\:clear/.test(action)) {
                 if (menu.actionlist === 'recent') {
                     window.sdk.LocalFileRemoveAllRecents();
@@ -522,8 +575,6 @@
                     }
                 });
 
-                // $(window).resize(() => requestAnimationFrame(() => this.view.updateListSize()));
-
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
                     if ( data.type == 'fileid' ) {
@@ -585,7 +636,6 @@
                         }
                     ],
                     onDocumentSelect: (docType) => {
-                        console.log(docType)
                         window.sdk.command("create:new", docType);
                     }
                 });
