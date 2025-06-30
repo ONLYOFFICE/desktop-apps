@@ -155,8 +155,10 @@ SOURCES += \
     $$PWD/src/cthemes.cpp
 
 updmodule:!build_xp {
-    HEADERS += $$PWD/src/cupdatemanager.h
-    SOURCES += $$PWD/src/cupdatemanager.cpp
+    HEADERS += $$PWD/src/cupdatemanager.h \
+               $$PWD/src/components/cnotification.h
+    SOURCES += $$PWD/src/cupdatemanager.cpp \
+               $$PWD/src/components/cnotification.cpp
 }
 
 RESOURCES += $$PWD/resources.qrc
@@ -228,8 +230,10 @@ core_linux {
                 $$PWD/extras/update-daemon/src/classes/csocket.cpp
 
     updmodule {
+        QT += dbus
         HEADERS += $$PWD/src/platform_linux/updatedialog.h
         SOURCES += $$PWD/src/platform_linux/updatedialog.cpp
+        PKGCONFIG += libnotify
     }
 
     CONFIG += link_pkgconfig
@@ -277,8 +281,10 @@ core_windows {
     updmodule:!build_xp {
         INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
         HEADERS += $$PWD/src/platform_win/updatedialog.h \
+                   $$PWD/src/platform_win/wintoastlib.h \
                    $$PWD/extras/update-daemon/src/classes/csocket.h
         SOURCES += $$PWD/src/platform_win/updatedialog.cpp \
+                   $$PWD/src/platform_win/wintoastlib.cpp \
                    $$PWD/extras/update-daemon/src/classes/csocket.cpp
     }
 

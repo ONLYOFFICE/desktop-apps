@@ -330,6 +330,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #ifdef _UPDMODULE
         if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {   // params: check, download, install, abort
             if (m_pUpdateManager) {
+                CNotification::instance().clear();
                 const QString params = QString::fromStdWString(pData->get_Param());
                 if (params == "check") {
                     m_pUpdateManager->checkUpdates(true);
