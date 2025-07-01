@@ -366,14 +366,14 @@
                 .then(r => r.json())
                 .then(d => {
                     isLoading = false;
-                    if (d.data.length > 0) {
+                    if (d.data && d.data.length > 0) {
                         _on_add_cloud_templates.call(this, d.data);
                         totalPages = d.meta.pagination.pageCount;
                         
                         if (_page_num < totalPages) {
                             _loadTemplates.call(this, nl);
                         } 
-                    } else if (d.data.length === 0 && locale !== 'en') {
+                    } else if (d.data && d.data.length === 0 && locale !== 'en') {
                         _resetPagination.call(this); 
                         _loadTemplates.call(this, 'en'); 
                     }
