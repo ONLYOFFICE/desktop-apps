@@ -277,8 +277,7 @@
 
         const onPanelShow = function(panel) {
             if (panel === this.action) {
-                var opts = this.view.opts.itemtext;
-                this.view.$dialog.show(opts);
+                this.view.$dialog.show();
             }
         }
 
