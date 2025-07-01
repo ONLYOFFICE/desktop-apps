@@ -215,7 +215,7 @@
                             </div>
                         </td>
                         <td class="row-cell">
-                            <p class="cportal primary">${utils.skipUrlProtocol(info.portal)}</p>
+                            <p class="cportal primary" title="${info.portal}">${utils.skipUrlProtocol(info.portal)}</p>
                             <p class="cuser minor">${info.user}${info.email.length && (' (' + info.email + ')') || ''}</p>
                         </td>
                         <td class="cell-tools">
@@ -383,7 +383,7 @@
                             let el = this.view.$sidebarPortalList.find('#' + model.uid);
                             el.html(
                                 $(this.view.portaltemplate({
-                                    portal: model.name,
+                                    portal: model.path,
                                     iconid: _create_icon_id(model.provider),
                                     iconsrc: _get_icon_scr(model.provider),
                                     themeicons: _get_theme_icons(model.provider),
@@ -400,7 +400,7 @@
                 collection.events.inserted.attach((collection, model) => {
                     let $listPortals = collection.view.find('.table-files.list');
                     let $item = $(this.view.portaltemplate({
-                        portal: model.name,
+                        portal: model.path,
                         iconid: _create_icon_id(model.provider),
                         iconsrc: _get_icon_scr(model.provider),
                         themeicons: _get_theme_icons(model.provider),
