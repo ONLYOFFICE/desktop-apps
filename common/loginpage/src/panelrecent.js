@@ -140,7 +140,7 @@
             //language=HTML
             let _tpl = `
                 <div ${id} class="row text-normal">
-                    <div class="col-name">
+                    <div class="col-name" title="${info.name}">
                         <div class="icon">
                             <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
                                 <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
@@ -153,7 +153,7 @@
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
                     </div>
-                    <div class="col-location">
+                    <div class="col-location" title="${info.descr}">
 <!--              todo: icon here          -->
                         ${info.descr}
                     </div>
@@ -585,7 +585,6 @@
                         }
                     ],
                     onDocumentSelect: (docType) => {
-                        console.log(docType)
                         window.sdk.command("create:new", docType);
                     }
                 });
