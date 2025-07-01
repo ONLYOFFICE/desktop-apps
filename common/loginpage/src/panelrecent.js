@@ -128,6 +128,7 @@
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted === undefined && (info.crypted = false);
             const dotIndex = info.name.lastIndexOf('.');
+            const fullName = info.name;
             if (dotIndex !== -1) {
                 info.ext = info.name.substring(dotIndex);
                 info.name = info.name.substring(0, dotIndex);
@@ -140,7 +141,7 @@
             //language=HTML
             let _tpl = `
                 <div ${id} class="row text-normal">
-                    <div class="col-name" title="${info.name}">
+                    <div class="col-name" title="${fullName}">
                         <div class="icon">
                             <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
                                 <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
