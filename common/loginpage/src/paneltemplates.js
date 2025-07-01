@@ -353,10 +353,8 @@
             $('#search-no-results', $panel).toggle(matchCount === 0);
         };
         
-        const _loadTemplates = function(language) {
-            const Langs = ['en', 'fr', 'de', 'es', 'pt', 'it', 'ja', 'zh', 'ar'];
-            const shortLang = language ? language.split('_')[0].toLowerCase() : 'en';
-            const locale = Langs.includes(shortLang) ? shortLang : 'en';
+        const _loadTemplates = function(nl) {
+            const locale = nl ? nl.split('_')[0].toLowerCase() : 'en';
             if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
 
             _page_num++;  
@@ -368,14 +366,17 @@
                 .then(r => r.json())
                 .then(d => {
                     isLoading = false;
-                    if (d.data) {
+                    if (d.data.length > 0) {
                         _on_add_cloud_templates.call(this, d.data);
                         totalPages = d.meta.pagination.pageCount;
                         
                         if (_page_num < totalPages) {
-                            _loadTemplates.call(this, language);
+                            _loadTemplates.call(this, nl);
                         } 
-                     }
+                    } else if (d.data.length === 0 && locale !== 'en') {
+                        _resetPagination.call(this); 
+                        _loadTemplates.call(this, 'en'); 
+                    }
                 })
         };
 
