@@ -483,22 +483,6 @@
             }
         }
 
-        function _updateLang() {
-            const langMapping = {
-                'word': utils.Lang.newDoc,
-                'cell': utils.Lang.newXlsx,
-                'slide': utils.Lang.newPptx,
-                'form': utils.Lang.newForm
-            };
-
-            for (const [docId, text] of Object.entries(langMapping)) {
-                const titleEl = this.view.$panel.find(`.document-creation-item[data-id="${docId}"] .title`);
-                if (titleEl.length && titleEl.text() !== text) {
-                    titleEl.text(text);
-                }
-            }
-        }
-
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -557,7 +541,7 @@
                     documentTypes: [
                         {
                             id: 'word',
-                            title: utils.Lang.newDoc,
+                            title: `<span class="text" l10n>${utils.Lang.newDoc}</span>`,
                             formatLabel: {
                                 value: 'DOCX',
                                 gradientColorStart: '#4298C5',
@@ -568,7 +552,7 @@
                         },
                         {
                             id: 'cell',
-                            title: utils.Lang.newXlsx,
+                            title: `<span class="text" l10n>${utils.Lang.newXlsx}</span>`,
                             formatLabel: {
                                 value: 'XLSX',
                                 gradientColorStart: '#5BB514',
@@ -579,7 +563,7 @@
                         },
                         {
                             id: 'slide',
-                            title: utils.Lang.newPptx,
+                            title: `<span class="text" l10n>${utils.Lang.newPptx}</span>`,
                             formatLabel: {
                                 value: 'PPTX',
                                 gradientColorStart: '#F4893A',
@@ -590,7 +574,7 @@
                         },
                         {
                             id: 'form',
-                            title: utils.Lang.newForm,
+                            title: `<span class="text" l10n>${utils.Lang.newForm}</span>`,
                             formatLabel: {
                                 value: 'PDF',
                                 gradientColorStart: '#F36653',
@@ -609,7 +593,6 @@
                 docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 
                 $('#idx-recent-filter', this.view.$panel).on('input', _on_filter_recents.bind(this));
-                CommonEvents.on('lang:changed', _updateLang.bind(this));
 
                 return this;
             },
