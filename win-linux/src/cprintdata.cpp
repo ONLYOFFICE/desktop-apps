@@ -45,6 +45,48 @@
 # include <cups/ppd.h>
 #endif
 
+#ifdef _WIN32
+static QString getDriverName(LPWSTR printerName)
+{
+    QString name;
+    HANDLE hPrinter = nullptr;
+    if (!OpenPrinter(printerName, &hPrinter, nullptr)) {
+        return name;
+    }
+    DWORD needed = 0;
+    GetPrinterDriver(hPrinter, nullptr, 1, nullptr, 0, &needed);
+    if (GetLastError() != ERROR_INSUFFICIENT_BUFFER) {
+        ClosePrinter(hPrinter);
+        return name;
+    }
+    std::vector<BYTE> buf(needed);
+    if (!GetPrinterDriver(hPrinter, nullptr, 1, buf.data(), needed, &needed)) {
+        ClosePrinter(hPrinter);
+        return name;
+    }
+    DRIVER_INFO_1 *info = reinterpret_cast<DRIVER_INFO_1*>(buf.data());
+    if (info->pName)
+        name =  QString::fromWCharArray(info->pName);
+    ClosePrinter(hPrinter);
+    return name;
+}
+#endif
+
+static bool jsonArrayContainsDriverName(const QJsonArray &array, const QString &name, QJsonObject &printerObject)
+{
+    if (name.isEmpty())
+        return false;
+    for (const QJsonValue &value : array) {
+        if (value.isObject()) {
+            QJsonObject obj = value.toObject();
+            if (obj.contains("driver") && obj.value("driver").toString() == name) {
+                printerObject = obj;
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 static QString getFirstPrinterName(const QJsonObject &json)
 {
@@ -75,6 +117,7 @@ public:
     int paper_width = 0,
         paper_height = 0;
     QString size_preset;
+    std::wstring app_data_path;
     QJsonObject printers_capabilities_json;
     int sender_id = -1;
     int copies_count = 1;
@@ -179,7 +222,17 @@ public:
 
     auto getPrintersCapabilitiesJson() const -> QJsonObject
     {
-        QJsonArray printersArray;
+        bool needUpdateCache = false;
+        QJsonArray printersArray, cachedPrintersArray;
+        std::wstring user_data_path = app_data_path;
+        const QString printers_cache = QString::fromStdWString(user_data_path.append(L"/printers.cache"));
+        if (QFile::exists(printers_cache)) {
+            QJsonObject cache = Utils::parseJsonFile(printers_cache);
+            if (!cache.isEmpty() && cache.contains("printers")) {
+                cachedPrintersArray = cache["printers"].toArray();
+            }
+        }
+
 #ifdef _WIN32
         DWORD need = 0, ret = 0;
         EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 4, nullptr, 0, &need, &ret);
@@ -187,10 +240,21 @@ public:
         if (EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, nullptr, 4, buf.data(), need, &need, &ret)) {
             PRINTER_INFO_4 *printers = reinterpret_cast<PRINTER_INFO_4*>(buf.data());
             for (DWORD i = 0; i < ret; ++i) {
+                QJsonObject printerObject;
+                const QString driverName = getDriverName(printers[i].pPrinterName);
+                if (jsonArrayContainsDriverName(cachedPrintersArray, driverName, printerObject)) {
+                    printerObject["name"] = QString::fromWCharArray(printers[i].pPrinterName);
+                    printersArray.append(printerObject);
+                    continue;
+                } else {
+                    if (!needUpdateCache)
+                        needUpdateCache = true;
+                }
+
                 bool duplex_supported = (DeviceCapabilities(printers[i].pPrinterName, NULL, DC_DUPLEX, NULL, NULL) == 1);
                 bool color_supported = (DeviceCapabilities(printers[i].pPrinterName, NULL, DC_COLORDEVICE, NULL, NULL) == 1);
 
-                QJsonObject printerObject;
+                printerObject["driver"] = driverName;
                 printerObject["name"] = QString::fromWCharArray(printers[i].pPrinterName);
                 printerObject["duplex_supported"] = duplex_supported;
                 printerObject["color_supported"] = color_supported;
@@ -240,9 +304,26 @@ public:
                 if (!ppd)
                     continue;
                 ppd_file_t *ppdF = ppdOpenFile(ppd);
+                if (!ppdF) {
+                    unlink(ppd);
+                    continue;
+                }
+                QJsonObject printerObject;
+                const QString driverName = ppdF->nickname ? QString::fromUtf8(ppdF->nickname) : "";
+                if (jsonArrayContainsDriverName(cachedPrintersArray, driverName, printerObject)) {
+                    printerObject["name"] = QString::fromUtf8(dest->name);
+                    printersArray.append(printerObject);
+                    ppdClose(ppdF);
+                    unlink(ppd);
+                    continue;
+                } else {
+                    if (!needUpdateCache)
+                        needUpdateCache = true;
+                }
+
                 bool duplex_supported = ppdFindOption(ppdF, "Duplex");
 
-                QJsonObject printerObject;
+                printerObject["driver"] = driverName;
                 printerObject["name"] = QString::fromUtf8(dest->name);
                 printerObject["duplex_supported"] = duplex_supported;
                 printerObject["color_supported"] = false;
@@ -276,12 +357,17 @@ public:
                 }
                 printersArray.append(printerObject);
                 ppdClose(ppdF);
+                unlink(ppd);
             }
             cupsFreeDests(num_dests, dests);
         }
 #endif
         QJsonObject rootObject;
         rootObject["printers"] = printersArray;
+        if (needUpdateCache) {
+            const QByteArray json = QJsonDocument(rootObject).toJson(QJsonDocument::Compact);
+            Utils::writeFile(printers_cache, json);
+        }
         return rootObject;
     }
 
@@ -332,6 +418,11 @@ auto CPrintData::printerInfo() const -> QPrinterInfo
     }
 
     return m_priv->printer_info;
+}
+
+void CPrintData::setAppDataPath(const std::wstring &app_data_path)
+{
+    m_priv->app_data_path = app_data_path;
 }
 
 auto CPrintData::setPrinterInfo(const QPrinterInfo& info) -> void

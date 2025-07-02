@@ -50,6 +50,7 @@ public:
     auto init(NSEditorApi::CAscPrintEnd *) -> void;
     auto init(int, NSEditorApi::CAscPrintEnd *) -> void;
     auto printerInfo() const -> QPrinterInfo;
+    auto setAppDataPath(const std::wstring&) -> void;
     auto setPrinterInfo(const QPrinterInfo&) -> void;
     auto setPrinterInfo(const QPrinter&) -> void;
     auto pageSize() const -> QPageSize;
