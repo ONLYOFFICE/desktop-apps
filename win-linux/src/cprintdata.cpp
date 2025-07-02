@@ -31,7 +31,6 @@
 */
 
 #include "cprintdata.h"
-#include "cascapplicationmanagerwrapper.h"
 #include "utils.h"
 #include "defines.h"
 #include <QJsonDocument>
@@ -118,6 +117,7 @@ public:
     int paper_width = 0,
         paper_height = 0;
     QString size_preset;
+    std::wstring app_data_path;
     QJsonObject printers_capabilities_json;
     int sender_id = -1;
     int copies_count = 1;
@@ -224,8 +224,7 @@ public:
     {
         bool needUpdateCache = false;
         QJsonArray printersArray, cachedPrintersArray;
-        const AscAppManager &app = AscAppManager::getInstance();
-        std::wstring user_data_path = app.m_oSettings.app_data_path;
+        std::wstring user_data_path = app_data_path;
         const QString printers_cache = QString::fromStdWString(user_data_path.append(L"/printers.cache"));
         if (QFile::exists(printers_cache)) {
             QJsonObject cache = Utils::parseJsonFile(printers_cache);
@@ -419,6 +418,11 @@ auto CPrintData::printerInfo() const -> QPrinterInfo
     }
 
     return m_priv->printer_info;
+}
+
+void CPrintData::setAppDataPath(const std::wstring &app_data_path)
+{
+    m_priv->app_data_path = app_data_path;
 }
 
 auto CPrintData::setPrinterInfo(const QPrinterInfo& info) -> void
