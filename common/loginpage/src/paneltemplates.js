@@ -146,9 +146,7 @@
     });
 
     utils.fn.extend(ControllerTemplates.prototype, (function() {
-        let _page_num = 0, 
-            isLoading = false, 
-            totalPages = null; 
+        let isCloudTmplsLoading = false;
 
         const _on_nav_item_click = function(e) {
             $('.nav-item', this.view.$panel).removeClass('selected');
@@ -353,52 +351,35 @@
             $('#search-no-results', $panel).toggle(matchCount === 0);
         };
         
-        const _loadTemplates = function(nl) {
+        const _loadTemplates = function(nl, page_num = 0) {
             const locale = nl ? nl.split('_')[0].toLowerCase() : 'en';
-            if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
+            if (isCloudTmplsLoading) return;
 
-            _page_num++;  
-            isLoading = true;
+            page_num++;
+            isCloudTmplsLoading = true;
 
             const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com'; // https://oforms.teamlab.info
-            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=${locale}&pagination[page]=${_page_num}`;
+            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=${locale}&pagination[page]=${page_num}`;
             fetch(_url)
                 .then(r => r.json())
                 .then(d => {
-                    isLoading = false;
+                    isCloudTmplsLoading = false;
                     if (d.data && d.data.length > 0) {
                         _on_add_cloud_templates.call(this, d.data);
-                        totalPages = d.meta.pagination.pageCount;
+                        const totalPages = d.meta.pagination.pageCount;
                         
-                        if (_page_num < totalPages) {
-                            _loadTemplates.call(this, nl);
+                        if (page_num + 1 < totalPages) {
+                            _loadTemplates.call(this, nl, page_num);
                         } 
                     } else if (d.data && d.data.length === 0 && locale !== 'en') {
-                        _resetPagination.call(this); 
-                        _loadTemplates.call(this, 'en'); 
+                        _resetPagination.call(this);
+                        _loadTemplates.call(this, 'en', 0);
                     }
                 })
         };
 
-        const loadAllPages = function() {
-            if (isLoading) return;
-
-            _page_num = 0;
-            const self = this;
-            const loadNext = () => {
-                if (_page_num < totalPages || totalPages === null) {
-                    _loadTemplates.call(self,  utils.Lang.id);
-                    setTimeout(loadNext, 150); 
-                }
-            };
-
-            loadNext(); 
-        };
-
         const _resetPagination = function() {
-            isLoading = false;
-            totalPages = null;
-            _page_num = 0;
+            isCloudTmplsLoading = false;
             this.templates.empty();
         };
     
@@ -443,7 +424,6 @@
                     ls.push("en-US","en_US","en");
                     window.sdk.LocalFileTemplates(ls);
                 };
-                _reload_templates(utils.Lang.id);
 
                 CommonEvents.on('lang:changed', (ol, nl) => {
                     _resetPagination.call(this);  
@@ -451,7 +431,8 @@
                     _loadTemplates.call(this, nl);
                 });
 
-                loadAllPages.call(this);
+                _reload_templates(utils.Lang.id);
+                _loadTemplates.call(this, utils.Lang.id);
 
                 return this;
             }
