@@ -541,7 +541,8 @@
                     documentTypes: [
                         {
                             id: 'word',
-                            title: `<span class="text" l10n>${utils.Lang.newDoc}</span>`,
+                            title: utils.Lang.newDoc,
+                            langKey: 'newDoc',
                             formatLabel: {
                                 value: 'DOCX',
                                 gradientColorStart: '#4298C5',
@@ -552,7 +553,8 @@
                         },
                         {
                             id: 'cell',
-                            title: `<span class="text" l10n>${utils.Lang.newXlsx}</span>`,
+                            title: utils.Lang.newXlsx,
+                            langKey: 'newXlsx',
                             formatLabel: {
                                 value: 'XLSX',
                                 gradientColorStart: '#5BB514',
@@ -563,7 +565,8 @@
                         },
                         {
                             id: 'slide',
-                            title: `<span class="text" l10n>${utils.Lang.newPptx}</span>`,
+                            title: utils.Lang.newPptx,
+                            langKey: 'newPptx',
                             formatLabel: {
                                 value: 'PPTX',
                                 gradientColorStart: '#F4893A',
@@ -574,7 +577,8 @@
                         },
                         {
                             id: 'form',
-                            title: `<span class="text" l10n>${utils.Lang.newForm}</span>`,
+                            title: utils.Lang.newForm,
+                            langKey: 'newForm',
                             formatLabel: {
                                 value: 'PDF',
                                 gradientColorStart: '#F36653',
