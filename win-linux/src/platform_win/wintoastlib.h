@@ -232,6 +232,8 @@ namespace WinToastLib {
         std::wstring const& appUserModelId() const;
         void setAppUserModelId(_In_ std::wstring const& aumi);
         void setAppName(_In_ std::wstring const& appName);
+        void setShortcutPath(_In_ const std::wstring &shortcutPath);
+        void setShortcutTarget(_In_ const std::wstring &shortcutTarget);
         void setShortcutPolicy(_In_ ShortcutPolicy policy);
 
     protected:
@@ -290,6 +292,8 @@ namespace WinToastLib {
         ShortcutPolicy _shortcutPolicy{SHORTCUT_POLICY_REQUIRE_CREATE};
         std::wstring _appName{};
         std::wstring _aumi{};
+        std::wstring _shortcutPath;
+        std::wstring _shortcutTarget;
         std::map<INT64, NotifyData> _buffer{};
 
         void markAsReadyForDeletion(_In_ INT64 id);
