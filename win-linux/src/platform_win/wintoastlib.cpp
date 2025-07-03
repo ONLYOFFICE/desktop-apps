@@ -474,6 +474,16 @@ void WinToast::setAppUserModelId(_In_ std::wstring const& aumi) {
     DEBUG_MSG(L"Default App User Model Id: " << _aumi.c_str());
 }
 
+void WinToast::setShortcutPath(_In_ const std::wstring &shortcutPath)
+{
+    _shortcutPath = shortcutPath;
+}
+
+void WinToast::setShortcutTarget(_In_ const std::wstring &shortcutTarget)
+{
+    _shortcutTarget = shortcutTarget;
+}
+
 void WinToast::setShortcutPolicy(_In_ ShortcutPolicy shortcutPolicy) {
     _shortcutPolicy = shortcutPolicy;
 }
@@ -609,7 +619,11 @@ std::wstring const& WinToast::appUserModelId() const {
 
 HRESULT WinToast::validateShellLinkHelper(_Out_ bool& wasChanged) {
     WCHAR path[MAX_PATH] = {L'\0'};
-    Util::defaultShellLinkPath(_appName, path);
+    if (!_shortcutPath.empty()) {
+        wcsncpy_s(path, _shortcutPath.c_str(), _TRUNCATE);
+    } else {
+        Util::defaultShellLinkPath(_appName, path);
+    }
     // Check if the file exist
     DWORD attr = GetFileAttributesW(path);
     if (attr >= 0xFFFFFFF) {
@@ -629,7 +643,7 @@ HRESULT WinToast::validateShellLinkHelper(_Out_ bool& wasChanged) {
         ComPtr<IPersistFile> persistFile;
         hr = shellLink.As(&persistFile);
         if (SUCCEEDED(hr)) {
-            hr = persistFile->Load(path, STGM_READWRITE);
+            hr = persistFile->Load(path, _shortcutPolicy == SHORTCUT_POLICY_REQUIRE_CREATE ? STGM_READWRITE : STGM_READ);
             if (SUCCEEDED(hr)) {
                 ComPtr<IPropertyStore> propertyStore;
                 hr = shellLink.As(&propertyStore);
@@ -676,8 +690,16 @@ HRESULT WinToast::createShellLinkHelper() {
 
     WCHAR exePath[MAX_PATH]{L'\0'};
     WCHAR slPath[MAX_PATH]{L'\0'};
-    Util::defaultShellLinkPath(_appName, slPath);
-    Util::defaultExecutablePath(exePath);
+    if (!_shortcutPath.empty()) {
+        wcsncpy_s(slPath, _shortcutPath.c_str(), _TRUNCATE);
+    } else {
+        Util::defaultShellLinkPath(_appName, slPath);
+    }
+    if (!_shortcutTarget.empty()) {
+        wcsncpy_s(exePath, _shortcutTarget.c_str(), _TRUNCATE);
+    } else {
+        Util::defaultExecutablePath(exePath);
+    }
     std::wstring exeDir = Util::parentDirectory(exePath, sizeof(exePath) / sizeof(exePath[0]));
     ComPtr<IShellLinkW> shellLink;
     HRESULT hr = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&shellLink));
