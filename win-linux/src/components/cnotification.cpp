@@ -269,18 +269,22 @@ bool CNotification::init()
     }
     WinToast::instance()->setAppName(TEXT(WINDOW_TITLE));
     WinToast::instance()->setAppUserModelId(TEXT(APP_USER_MODEL_ID));
-    WinToast::instance()->setShortcutPolicy(WinToastLib::WinToast::SHORTCUT_POLICY_REQUIRE_NO_CREATE);
-    PWSTR progPath = nullptr;
-    if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_CommonPrograms, 0, nullptr, &progPath))) {
-        std::wstring shortcutPath(progPath);
-        shortcutPath.append(L"\\");
-        shortcutPath.append(TEXT(APP_REG_NAME));
-        shortcutPath.append(TEXT(APP_SHORTCUT_NAME));
-        WinToast::instance()->setShortcutPath(shortcutPath);
+    if (IsPackage(Portable)) {
+        WinToast::instance()->setShortcutPolicy(WinToastLib::WinToast::SHORTCUT_POLICY_REQUIRE_CREATE);
+        const QString shortcutTarget = qApp->applicationDirPath() + APP_LAUNCH_NAME;
+        WinToast::instance()->setShortcutTarget(QDir::toNativeSeparators(shortcutTarget).toStdWString());
+    } else {
+        WinToast::instance()->setShortcutPolicy(WinToastLib::WinToast::SHORTCUT_POLICY_REQUIRE_NO_CREATE);
+        PWSTR progPath = nullptr;
+        if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_CommonPrograms, 0, nullptr, &progPath))) {
+            std::wstring shortcutPath(progPath);
+            shortcutPath.append(L"\\");
+            shortcutPath.append(TEXT(APP_REG_NAME));
+            shortcutPath.append(TEXT(APP_SHORTCUT_NAME));
+            WinToast::instance()->setShortcutPath(shortcutPath);
+        }
+        CoTaskMemFree(progPath);
     }
-    CoTaskMemFree(progPath);
-    const QString shortcutTarget = qApp->applicationDirPath() + APP_LAUNCH_NAME;
-    WinToast::instance()->setShortcutTarget(QDir::toNativeSeparators(shortcutTarget).toStdWString());
     pimpl->isInit = WinToast::instance()->initialize();
 #endif
     return pimpl->isInit;
