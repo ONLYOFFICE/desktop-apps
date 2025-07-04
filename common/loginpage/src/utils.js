@@ -401,6 +401,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
 
             _files_arr.push({
                 fileid: _f_.id,
+                pinid: !_f_.pin ? _f_.id : -_f_.id,
                 type: _f_.type,
                 format: utils.parseFileFormat(_f_.type),
                 name: name,
@@ -408,6 +409,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 date: _f_.modifyed,
                 path: fn,
                 cloud: _f_.cloud,
+                pinned: _f_.pin,
             });
 
             _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);
