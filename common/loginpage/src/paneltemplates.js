@@ -93,8 +93,8 @@
                                             <use id="idx-nothing-found-dark" href="#nothing-found-dark"></use>
                                         </svg>
                                     </div>
-                                    <p class="no-results-title">${_lang.tplNoResultsTitle}</p>
-                                    <p class="no-results-text">${_lang.tplNoResultsText}</p> 
+                                    <p class="no-results-title" l10n>${_lang.tplNoResultsTitle}</p>
+                                    <p class="no-results-text" l10n>${_lang.tplNoResultsText}</p> 
                                 </div>
                                 <section class='themed-sroll' panel='all'>
                                     <div class='table-box flex-fill'>
@@ -368,7 +368,7 @@
                         _on_add_cloud_templates.call(this, d.data);
                         const totalPages = d.meta.pagination.pageCount;
                         
-                        if (page_num + 1 < totalPages) {
+                        if (page_num + 1 <= totalPages) {
                             _loadTemplates.call(this, nl, page_num);
                         } 
                     } else if (d.data && d.data.length === 0 && locale !== 'en') {
@@ -429,6 +429,7 @@
                     _resetPagination.call(this);  
                     _reload_templates(nl);
                     _loadTemplates.call(this, nl);
+                    $('#template-search', this.view.$panel).attr('placeholder', utils.Lang.tplSearch);
                 });
 
                 _reload_templates(utils.Lang.id);
