@@ -324,6 +324,7 @@
             $(`#${model.uid}-pin-btn`, view).click((e) => {
                 e.stopPropagation();
                 model.set('pinned', !model.pinned);
+                model.set('pinid', !model.pinned ? model.fileid: -model.fileid);
             })
 
             $(`#${model.uid}-more-btn`, view).click((e) => {
@@ -352,14 +353,27 @@
         function handlePin(collection, model) {
             let $el = $('#' + model.uid, collection.list);
             if ($el.length) {
-                const $pinned = collection.list.children('.row.pinned');
-                if ($pinned.length) {
-                    $el.insertAfter($pinned.last());
+                const f = collection.items.find((elem, i, arr) => {
+                    if ( model.pinid < 0 )
+                        return elem.pinid < model.pinid;
+                    else return elem.pinid > model.pinid;
+                });
+
+                if ( f ) {
+                    const $item = $('#' + f.uid, collection.list);
+                    $el.insertAfter($item);
                 } else {
                     $el.prependTo(collection.list);
                 }
 
-                $el[model.pinned ? 'addClass' : 'removeClass']('pinned');
+                // const $pinned = collection.list.children('.row.pinned');
+                // if ($pinned.length) {
+                //     $el.insertAfter($pinned.last());
+                // } else {
+                //     $el.prependTo(collection.list);
+                // }
+
+                // $el[model.pinned ? 'addClass' : 'removeClass']('pinned');
             }
         }
 
@@ -417,8 +431,13 @@
                 if ($el) {
                     $el[model.exist ? 'removeClass' : 'addClass']('unavail');
                     if (property['pinned'] !== undefined) {
-                        handlePin(collection, model);
+                        // handlePin(collection, model);
                         sdk.setRecentFilePinned(model.get('fileid'), property['pinned']);
+                        $el[model.pinned ? 'addClass' : 'removeClass']('pinned');
+                    }
+
+                    if ( property.pinid != undefined ) {
+                        handlePin(collection, model);
                     }
                 }
             });
