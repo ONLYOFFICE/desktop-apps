@@ -120,7 +120,13 @@ l10n.ja = {
     tplDocument: "ドキュメント",
     tplSpreadsheet: "スプレッドシート",
     tplPresentation: "プレゼンテーション",
+    tplSearch: "テンプレートを検索",
+    tplSearchResult: "検索結果",
+    tplNoResultsTitle: "何も見つかりませんでした",
+    tplNoResultsText: "検索条件に一致する結果が見つかりませんでした",
     colFileName: "ファイル名",
     colLocation: '位置',
     colLastOpened: '最終閲覧',
+    labelDropFile: 'ファイルをここにドラッグするか',
+    labelSelectFile: 'ファイルを選択',
 }

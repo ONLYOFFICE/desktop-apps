@@ -215,7 +215,7 @@
                             </div>
                         </td>
                         <td class="row-cell">
-                            <p class="cportal primary">${utils.skipUrlProtocol(info.portal)}</p>
+                            <p class="cportal primary" title="${info.portal}">${utils.skipUrlProtocol(info.portal)}</p>
                             <p class="cuser minor">${info.user}${info.email.length && (' (' + info.email + ')') || ''}</p>
                         </td>
                         <td class="cell-tools">
@@ -383,7 +383,7 @@
                             let el = this.view.$sidebarPortalList.find('#' + model.uid);
                             el.html(
                                 $(this.view.portaltemplate({
-                                    portal: model.name,
+                                    portal: model.path,
                                     iconid: _create_icon_id(model.provider),
                                     iconsrc: _get_icon_scr(model.provider),
                                     themeicons: _get_theme_icons(model.provider),
@@ -400,7 +400,7 @@
                 collection.events.inserted.attach((collection, model) => {
                     let $listPortals = collection.view.find('.table-files.list');
                     let $item = $(this.view.portaltemplate({
-                        portal: model.name,
+                        portal: model.path,
                         iconid: _create_icon_id(model.provider),
                         iconsrc: _get_icon_scr(model.provider),
                         themeicons: _get_theme_icons(model.provider),
@@ -433,6 +433,18 @@
 
                 collection.events.click.attach((collection, model)=>{
                     _on_context_menu(undefined, 'portal:open', model);
+
+                    // TODO: doubful variant to check portal availability on click instead of on launch
+                    if ( model.get('exists') === undefined )
+                        (new DialogConnect).portalexists(model.path, model.provider)
+                                .then(data => {
+                                    model.set('exists', true)
+                                    // data.status == 'success' && _is_logged && model.set('logged', true); 
+                                }, error => {
+                                    $('#' + model.uid, this.view.$sidebarPortalList).toggleClass('unavail', true);
+                                    model.set('logged', false)
+                                    model.set('exists', false)
+                                });
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
@@ -465,15 +477,17 @@
                 let model = collection.find('name', i);
 
                 if (model) {
-                    model.set('logged', false)
+                    // TODO: doubful variant to check portal availability on click instead of on launch
+                    model.set('logged', obj[i].length > 0)
 
-                    const _is_logged = obj[i].length > 0;
-                    (new DialogConnect).portalexists(model.path, model.provider)
-                            .then(data => {
-                                data.status == 'success' && _is_logged && model.set('logged', true); 
-                            }, error => {
-                                $('#' + model.uid, this.view.$sidebarPortalList).toggleClass('unavail', true);
-                            });
+                    // model.set('logged', false)
+                    // const _is_logged = obj[i].length > 0;
+                    // (new DialogConnect).portalexists(model.path, model.provider)
+                    //         .then(data => {
+                    //             data.status == 'success' && _is_logged && model.set('logged', true); 
+                    //         }, error => {
+                    //             $('#' + model.uid, this.view.$sidebarPortalList).toggleClass('unavail', true);
+                    //         });
                 }
             };
         };

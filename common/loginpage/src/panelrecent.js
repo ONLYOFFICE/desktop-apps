@@ -128,6 +128,7 @@
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted === undefined && (info.crypted = false);
             const dotIndex = info.name.lastIndexOf('.');
+            const fullName = info.name;
             if (dotIndex !== -1) {
                 info.ext = info.name.substring(dotIndex);
                 info.name = info.name.substring(0, dotIndex);
@@ -140,7 +141,7 @@
             //language=HTML
             let _tpl = `
                 <div ${id} class="row text-normal">
-                    <div class="col-name">
+                    <div class="col-name" title="${fullName}">
                         <div class="icon">
                             <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
                                 <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
@@ -153,7 +154,7 @@
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
                     </div>
-                    <div class="col-location">
+                    <div class="col-location" title="${info.descr}">
 <!--              todo: icon here          -->
                         ${info.descr}
                     </div>
@@ -327,9 +328,16 @@
             }
         };
 
-        function addContextMenuEventListener(collection, model, view) {
+        function addContextMenuEventListener(collection, model, view, actionList) {
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
+
+                if (Menu.opened) {
+                    Menu.closeAll();
+                    return;
+                }
+
+                ppmenu.actionlist = actionList;
                 ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
             })
         }
@@ -352,7 +360,7 @@
 
                 collection.list.append($item);
 
-                addContextMenuEventListener(collection, model, this.view.$panel);
+                addContextMenuEventListener(collection, model, this.view.$panel, 'recent');
 
                 collection.list.parent().removeClass('empty');
             });
@@ -387,7 +395,7 @@
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
-                addContextMenuEventListener(collection, model, this.view.$panel);
+                addContextMenuEventListener(collection, model, this.view.$panel, 'recovery');
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
@@ -584,7 +592,6 @@
                         }
                     ],
                     onDocumentSelect: (docType) => {
-                        console.log(docType)
                         window.sdk.command("create:new", docType);
                     }
                 });

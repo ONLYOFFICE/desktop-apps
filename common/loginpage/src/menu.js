@@ -134,13 +134,24 @@ Menu.prototype.showUnderElem = function(el, data, align) {
     let $el = $('#'+this.id);
     const $rel = $(el);
 
-    // const $rel.width();
     const pos = $rel.offset();
-    pos.top += $rel.height() + 2;
-
     const $dd = $el.find('.dropdown-menu');
-    if ( align == 'right' )
-        pos.left -= $dd.outerWidth() - $rel.outerWidth();
+
+    let topPos = pos.top + $rel.outerHeight() + 2;
+
+    const dropdownHeight = $dd.outerHeight();
+    const viewportHeight = $(window).height();
+    const scrollTop = $(window).scrollTop();
+
+    if ((topPos + dropdownHeight) > (viewportHeight + scrollTop)) {
+        topPos = pos.top - dropdownHeight - 2;
+    }
+
+    pos.top = topPos;
+
+    if (align === 'right') {
+        pos.left = pos.left - ($dd.outerWidth() - $rel.outerWidth());
+    }
 
     $el.css(pos);
     $dd.dropdown('toggle');

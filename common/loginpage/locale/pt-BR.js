@@ -120,7 +120,13 @@ l10n.pt_BR = {
     tplDocument: "Documentos",
     tplSpreadsheet: "Planilhas",
     tplPresentation: "Apresentações",
+    tplSearch: "Pesquisar modelos",
+    tplSearchResult: "Resultados para",
+    tplNoResultsTitle: "Nada encontrado",
+    tplNoResultsText: "Nenhum resultado correspondente à sua consulta foi encontrado",
     colFileName: "Nome do arquivo",
     colLocation: 'Localização',
     colLastOpened: 'Última abertura',
+    labelDropFile: 'Arraste seus arquivos aqui ou',
+    labelSelectFile: 'Selecione o arquivo',
 }

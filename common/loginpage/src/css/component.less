@@ -562,6 +562,10 @@ input[type="radio"] {
         p { margin: 0; }
         button { margin-top: 12px; }
     }
+
+    .win_xp & {
+        display: block;
+    }
 }
 
 // Document creation grid
@@ -605,14 +609,14 @@ input[type="radio"] {
         position: absolute;
         top: 14px;
         left: 10px;
-        padding: 4px 6px 6px;
+        padding: 0 6px;
         border-radius: 6px;
         background: conic-gradient(from 225deg at 50% 50%, var(--format-bg-start) 0deg, var(--format-bg-end) 360deg);
 
         span {
             color: @text-contrast-background;
             font-size: 16px;
-            line-height: 16px;
+            line-height: 28px;
             font-weight: 700;
         }
 

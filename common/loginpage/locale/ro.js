@@ -120,7 +120,13 @@ l10n.ro = {
     tplDocument: "Documente",
     tplSpreadsheet: "Foi de calcul",
     tplPresentation: "Prezentări",
+    tplSearch: "Căutare modele",
+    tplSearchResult: "Rezultate pentru",
+    tplNoResultsTitle: "Nu a fost găsit nimic",
+    tplNoResultsText: "Niciun rezultat găsit care să corespundă criteriilor căutării dvs",
     colFileName: "Numele fișierului",
     colLocation: 'Locația',
     colLastOpened: 'Deschis recent',
+    labelDropFile: 'Glisați fișierele aici sau',
+    labelSelectFile: 'Selectare fișier',
 }
