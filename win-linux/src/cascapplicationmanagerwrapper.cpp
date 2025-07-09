@@ -960,13 +960,23 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         if (open_opts.srctype == AscEditorType::etUndefined) {
             QString str_url = QString::fromStdWString(open_opts.wurl);
-#ifdef _WIN32
             if ( CFileInspector::isLocalFile(str_url) ) {
+#ifdef _WIN32
                 str_url = Utils::replaceBackslash(str_url);
                 open_opts.wurl = str_url.toStdWString();
-            }
+#else
+                QUrl url = QUrl::fromUserInput(str_url);
+                if (!url.isValid()) {
+                    QFileInfo info(str_url);
+                    if (info.isFile())
+                        url = QUrl::fromUserInput(info.absoluteFilePath());
+                }
+                if (url.isValid()) {
+                    str_url = url.toLocalFile();
+                    open_opts.wurl = str_url.toStdWString();
+                }
 #endif
-
+            }
             if ( _app.m_private->bringEditorToFront(str_url) ) {
                 continue;
             } else
