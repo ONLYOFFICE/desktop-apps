@@ -159,21 +159,21 @@
                     </div>
             `;
 
+            //language=HTML
+            _tpl += `
+                <div class="col-pin">
+                    <button id="${info.uid}-pin-btn" class="btn-quick">
+                        <svg class="icon">
+                            <use xlink:href="#pin"/>
+                        </svg>
+                        ${!isSvgIcons ? '<i class="icon tool-icon pin"></i>' : ''}
+                    </button>
+                </div>`;
+
             if (info.type !== 'folder') {
                 //language=HTML
                 _tpl += `
                     <div class="col-date"><p>${info.date}</p></div>`;
-
-                //language=HTML
-                _tpl += `
-                    <div class="col-pin">
-                        <button id="${info.uid}-pin-btn" class="btn-quick">
-                            <svg class="icon">
-                                <use xlink:href="#pin"/>
-                            </svg>
-                            ${!isSvgIcons ? '<i class="icon tool-icon pin"></i>' : ''}
-                        </button>
-                    </div>`;
 
                 //language=HTML
                 _tpl += `

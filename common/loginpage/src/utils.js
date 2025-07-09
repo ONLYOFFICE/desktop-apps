@@ -385,6 +385,20 @@ utils.fn.extend = function(dest, src) {
     return dest;
 };
 
+utils.fn.pinnedFolders = function(path, action) {
+    const key = 'pinnedFolders';
+    let pinned = JSON.parse(localStorage.getItem(key) || '[]');
+
+    if (action === 'check') return pinned.includes(path);
+
+    const i = pinned.indexOf(path);
+    if (action === 'toggle') {
+        i === -1 ? pinned.push(path) : pinned.splice(i, 1);
+    }
+
+    localStorage.setItem(key, JSON.stringify(pinned));
+};
+
 utils.fn.parseRecent = function(arr, out = 'files') {
     var _files_arr = [], _dirs_arr = [];
 
@@ -426,11 +440,17 @@ utils.fn.parseRecent = function(arr, out = 'files') {
         } else
             parent = _d_.slice(0, _d_.length - name.length - 1);
 
+        let pinned = utils.fn.pinnedFolders(_d_, 'check');
+        let id = _d_.hashCode();
+
         out_dirs_arr.push({
                 type: 'folder',
                 full: _d_,
                 name: name,
-                descr: parent
+                descr: parent,
+                pinid: !pinned ? id : -id,
+                pinned: pinned,
+                uid: `folder-${id}`
         });
     }
 
