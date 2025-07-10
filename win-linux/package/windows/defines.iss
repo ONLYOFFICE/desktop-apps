@@ -9,7 +9,7 @@
 #define sAppPublisher                   "Ascensio System SIA"
 #define sAppPublisherURL                "https://www.onlyoffice.com/"
 #define sAppSupportURL                  "https://www.onlyoffice.com/support.aspx"
-#define sAppCopyright                   str("Copyright (C) " + sAppPublisher + " " + GetDateTimeString("yyyy",,) + ". All rights reserved")
+#define sAppCopyright                   str("© " + sAppPublisher + " " + GetDateTimeString("yyyy",,) + ". All rights reserved.")
 #define sAppIconName                    "ONLYOFFICE"
 #define sOldAppIconName                 "ONLYOFFICE Editors"
 #define sAppProtocol                    'oo-office'

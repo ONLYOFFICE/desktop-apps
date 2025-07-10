@@ -120,7 +120,13 @@ l10n.fr = {
     tplDocument: "Documents",
     tplSpreadsheet: "Feuilles de calcul",
     tplPresentation: "Présentations",
+    tplSearch: "Rechercher des modèles",
+    tplSearchResult: "Résultats pour",
+    tplNoResultsTitle: "Aucun résultat trouvé",
+    tplNoResultsText: "Aucun résultat correspondant à votre demande n'a pu être trouvé",
     colFileName: "Nom de fichier",
     colLocation: 'Emplacement',
     colLastOpened: 'Récemment ouvert',
+    labelDropFile: 'Glissez vos fichiers ici ou',
+    labelSelectFile: 'Sélectionnez le fichier',
 }

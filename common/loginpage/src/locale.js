@@ -158,10 +158,11 @@ l10n.en = {
     tplSearchResult: "Results for",
     tplNoResultsTitle: "Nothing found",
     tplNoResultsText: "No results matching your query could be found",
+    tplErrorTLS: "Windows XP doesn't support current TLS 1.1 and TLS 1.2 protocol versions, so Cloud Templates cannot be used on this operating system.",
     colFileName: "File name",
     colLocation: 'Location',
     colLastOpened: 'Last opened',
-    labelDropFile: 'Drag you files here or',
+    labelDropFile: 'Drag your files here or',
     labelSelectFile: 'Select file',
 }
 
@@ -242,7 +243,13 @@ function changelang(lang) {
 };
 
 function is_lang_rtl(code) {
-    return code.startsWith('ar') || code.startsWith('he');
+    const langs = ['ar', 'he', 'ur'];
+    for (const l of langs) {
+        if (code.startsWith(l))
+            return true;
+    }
+
+    return false;
 }
 
 +function mixLocale(lang) {

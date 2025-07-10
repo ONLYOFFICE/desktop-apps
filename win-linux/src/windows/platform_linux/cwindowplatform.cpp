@@ -111,7 +111,8 @@ void CWindowPlatform::adjustGeometry()
 void CWindowPlatform::onWindowActivate(bool is_active)
 {
     for (auto *btn : m_pTopButtons) {
-        btn->setFaded(!is_active);
+        if (btn)
+            btn->setFaded(!is_active);
     }
 }
 

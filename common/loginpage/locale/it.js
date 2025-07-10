@@ -120,7 +120,13 @@ l10n.it_IT = {
     tplDocument: "Documenti",
     tplSpreadsheet: "Fogli elettronici",
     tplPresentation: "Presentazioni",
+    tplSearch: "Cerca modelli",
+    tplSearchResult: "Risultati per",
+    tplNoResultsTitle: "Nessun risultato trovato",
+    tplNoResultsText: "Nessun risultato corrispondente alla tua ricerca",
     colFileName: "Nome del file",
     colLocation: 'Posizione',
     colLastOpened: 'Ultima apertura',
+    labelDropFile: 'Trascina i tuoi file qui oppure',
+    labelSelectFile: 'Seleziona file',
 }

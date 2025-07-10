@@ -385,7 +385,7 @@ document.getElementById('wrap').ondragover = function (e) {
 
 $(document).on('keydown', function(e){
     if ( e.ctrlKey && e.which == 79 ) {
-        if ($('.action-panel').filter('.recent, .open, .welcome').is(':visible')) {
+        if ($('.action-panel').filter('.recents, .open, .welcome').is(':visible')) {
             openFile(OPEN_FILE_FOLDER, '');
         }
     }
