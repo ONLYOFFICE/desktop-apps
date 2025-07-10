@@ -125,6 +125,7 @@ l10n.en_GB = {
     tplSearchResult: "Results for",
     tplNoResultsTitle: "Nothing found",
     tplNoResultsText: "No results matching your query could be found",
+    tplErrorTLS: "Windows XP doesn't support current TLS 1.1 and TLS 1.2 protocol versions, so Cloud Templates cannot be used on this operating system.",
     colFileName: "File name",
     colLocation: 'Location',
     colLastOpened: 'Last opened',
