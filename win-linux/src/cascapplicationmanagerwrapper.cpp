@@ -1757,7 +1757,7 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
 {
     APP_CAST(_app);
 
-    QString _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
+    QString _out = Utils::readStylesheets(_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
     _out = _out.arg(GetColorQValueByRole(ecrWindowBackground),
                     GetColorQValueByRole(ecrTextNormal),
                     GetColorQValueByRole(ecrButtonHoverBackground),
@@ -1777,7 +1777,7 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
                     GetColorQValueByRole(ecrMenuSeparator));
 //    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
     if ( factor != CScalingFactor::SCALING_FACTOR_1 )
-        _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
+        _out.append(Utils::readStylesheets(_app.m_mapStyles[factor]));
 
     return _out;
 }
