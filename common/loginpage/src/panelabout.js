@@ -158,7 +158,7 @@
                     this.view.$dialog.setBody(this.view.$body)
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
-                        $('#idx-ver-edition').html(args.opts.edition);
+                        $('#idx-ver-edition', this.view.$body).html(args.opts.edition);
                     }
                 }
 
