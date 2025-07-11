@@ -58,6 +58,13 @@ window.DialogConnectIntro = function(params) {
       $body.html(_body_template);
       _bind_events();
 
+      $body.find('[l10n="portalEmptyDescr"]').text(utils.Lang.portalEmptyDescr);
+      $body.find('[l10n="portalEmptyAdv1"]').text(utils.Lang.portalEmptyAdv1);
+      $body.find('.btn--landing').text(utils.Lang.btnCreatePortal);
+      $body.find('label[l10n]').text(utils.Lang.textHavePortal);
+      $body.find('.login.link').text(utils.Lang.btnConnect);
+
+
       $el.on('click', function (e) {
         if (e.target === $el.get(0)) {
           close();
