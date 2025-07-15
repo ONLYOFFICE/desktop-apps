@@ -258,10 +258,6 @@
                 var model = new FileModel(item);
                 model.set('hash', item.path.hashCode());
 
-                // if (model.uid ==="asc-gen49") { // fixme: debug
-                //     model.set('pinned', true)
-                // }
-
                 if ( !!this.rawRecents ) {
                     collectionRecents.add(model);
                     _check_block[model.get('hash')] = item.path;
@@ -353,11 +349,7 @@
         function handlePin(collection, model) {
             let $el = $('#' + model.uid, collection.list);
             if ($el.length) {
-                const f = collection.items.find((elem, i, arr) => {
-                    if ( model.pinid < 0 )
-                        return elem.pinid < model.pinid;
-                    else return elem.pinid > model.pinid;
-                });
+                const f = collection.items.find((elem) => model.pinid <= 0 ? elem.pinid < model.pinid : elem.pinid > model.pinid);
 
                 if ( f ) {
                     const $item = $('#' + f.uid, collection.list);
@@ -365,15 +357,6 @@
                 } else {
                     $el.prependTo(collection.list);
                 }
-
-                // const $pinned = collection.list.children('.row.pinned');
-                // if ($pinned.length) {
-                //     $el.insertAfter($pinned.last());
-                // } else {
-                //     $el.prependTo(collection.list);
-                // }
-
-                // $el[model.pinned ? 'addClass' : 'removeClass']('pinned');
             }
         }
 

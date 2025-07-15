@@ -522,6 +522,12 @@ li.menu-item {
       background-color: @background-normal-element-light;
     }
 
+    &.unavail {
+      .col-more, .col-pin {
+        display: none;
+      }
+    }
+
     &:hover:not(.unavail) {
       .col-more, .col-pin {
         opacity: 1;
