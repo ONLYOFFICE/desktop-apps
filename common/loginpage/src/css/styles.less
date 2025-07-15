@@ -381,7 +381,7 @@ li.menu-item {
 .file-list-head, .file-list-body .row {
   display: grid;
   gap: 8px;
-  grid-template-columns: clamp(160px, calc(33vw - 250px), 500px) clamp(248px, calc(33vw - 100px), 650px) minmax(100px, 156px);
+  grid-template-columns: minmax(250px, 65fr) minmax(200px, 35fr) 130px;
   align-items: center;
   justify-content: space-between;
   padding-left: 16px;
@@ -389,10 +389,6 @@ li.menu-item {
   .rtl & {
     padding-left: 88px;
     padding-right: 16px;
-  }
-
-  @media (max-width: 1054px) {
-    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -466,7 +462,8 @@ li.menu-item {
     }
 
     .col-location {
-      height: 24px;
+      height: 32px;
+      line-height: 32px;
       text-align: left;
       white-space: nowrap;
       overflow: hidden;
@@ -478,6 +475,7 @@ li.menu-item {
 
     .col-date {
       height: 24px;
+      line-height: 24px;
       justify-content: flex-end;
     }
 
@@ -741,6 +739,14 @@ li.menu-item {
       }
     }
 
+    > * {
+      margin-bottom: 40px; 
+    }
+
+    > *:last-child {
+      margin-bottom: 0; 
+    }
+
     .file-list-head,
     .file-list-body .row {
       > * {
@@ -840,6 +846,11 @@ li.menu-item {
     font-size: 18px;
     line-height: 16px;
   }
+
+  .win_xp & {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 #box-container {
@@ -861,6 +872,22 @@ li.menu-item {
 
   &.empty {
     display: none;
+  }
+
+  @media (max-width: 1037px) {
+    .file-list-head {
+      grid-template-columns: minmax(250px, 1fr) 130px;
+    }
+
+    .file-list-body .row {
+      grid-template-columns: minmax(250px, 1fr) 130px;
+    }
+
+    .file-list-body, .file-list-head {
+      .col-location {
+        display: none;
+      }
+    }
   }
 }
 
@@ -928,12 +955,16 @@ li.menu-item {
     }
 
     .cell-tools {
-      width: 45px;
+      width: 38px;
       padding: 0 8px 0 0;
       overflow: visible;
 
       .hlayout {
         justify-content: flex-end;
+      }
+
+      .btn-quick.more {
+        margin: 0 5px 0 0px;
       }
     }
   }
@@ -1759,9 +1790,9 @@ li.menu-item {
 }
 
 .checkbox {
-  width: 12px;
-  height: 18px;
-  margin-right: 16px;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
   margin-left: 0;
 }
 
@@ -1912,7 +1943,7 @@ li.menu-item {
     }
     .search-icon {
         position: absolute;
-        top: 55%;
+        top: 50%;
         left: 10px;
         transform: translateY(-50%);
         width: 24px;
@@ -1928,7 +1959,7 @@ li.menu-item {
 
     .tool.close {
         position: absolute;
-        top: 55%;
+        top: 50%;
         right: 10px;
         transform: translateY(-50%);
         width: 16px;
@@ -2078,8 +2109,8 @@ li.menu-item {
             }
 
             .cloud-icon {
-                width: 16px;
-                height: 16px;
+                width: 20px;
+                height: 20px;
                 background-size: contain;
             }
     }

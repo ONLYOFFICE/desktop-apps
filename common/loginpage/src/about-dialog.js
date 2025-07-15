@@ -49,12 +49,14 @@ window.AboutDialog = function(params) {
 
             $dialogTitle = $el.find('.title');
             $dialogTitle.find('.tool.close').bind('click', onCloseClick);
+            $dialogTitle.find('.text-headline').text(utils.Lang.actAbout);
           
             $dialogBody = $el.find('.body');
             if (pendingBody) {
                 $dialogBody.html(pendingBody);
                 pendingBody = null;
             }
+            $dialogBody.find('#idx-about-version span[l10n]').text(utils.Lang.strVersion); 
 
             $el.get(0).showModal();
             $el.addClass('scaled');
