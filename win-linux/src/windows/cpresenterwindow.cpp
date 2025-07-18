@@ -44,6 +44,7 @@ using namespace std::placeholders;
 CPresenterWindow::CPresenterWindow(const QRect &rect, const QString &title, QCefView *view) :
     CWindowPlatform(rect)
 {    
+    setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
     m_pMainPanel = createMainPanel(this, title, static_cast<QWidget*>(view));
     setCentralWidget(m_pMainPanel);
 #ifdef __linux__
