@@ -18,7 +18,7 @@ window.DnDFileZone = function () {
 			$parent = parentElement;
 			$el = $parent.append(_template).find('.dnd-zone');
 
-			$el.find('a').bind('click', function () {
+			$el.find('button').bind('click', function () {
 				openFile(OPEN_FILE_FOLDER, '');
 			});
 		},

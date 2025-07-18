@@ -120,7 +120,13 @@ l10n.de = {
     tplDocument: "Dokumente",
     tplSpreadsheet: "Tabellen",
     tplPresentation: "Präsentationen",
+    tplSearch: "Vorlagen suchen",
+    tplSearchResult: "Ergebnisse für",
+    tplNoResultsTitle: "Keine Ergebnisse gefunden",
+    tplNoResultsText: "Keine passenden Ergebnisse für Ihre Suchanfrage gefunden",
     colFileName: "Dateiname",
     colLocation: 'Standort',
     colLastOpened: 'Zuletzt geöffnet',
+    labelDropFile: 'Dateien hierher ziehen oder',
+    labelSelectFile: 'Datei auswählen',
 }

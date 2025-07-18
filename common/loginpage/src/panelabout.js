@@ -72,13 +72,16 @@
 
         var _lang = utils.Lang;
         const _updates_status = `<section id="idx-update-cnt">
-                                        <div class="status-field">
-                                            <label id="idx-update-status-text"></label>
-                                        </div>
-                                        <div class="status-field">
-                                            <button id="idx-update-btnaction" class="btn btn--landing"></button>
-                                        </div>
-                                    </section>`;
+                                    <div class="status-field hbox">
+                                        <svg class="icon" id="idx-update-status-icon">
+                                            <use href=""></use>
+                                        </svg>
+                                        <label id="idx-update-status-text"></label>
+                                    </div>
+                                    <div class="status-field">
+                                        <button id="idx-update-btnaction" class="btn btn--landing"></button>
+                                    </div>
+                                </section>`;
         let _html = `<div class="flexbox">
                         <div class="box-ver">
                             <section class="hbox">
@@ -152,9 +155,10 @@
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
+                    this.view.$dialog.setBody(this.view.$body)
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
-                        $('#idx-ver-edition').html(args.opts.edition);
+                        $('#idx-ver-edition', this.view.$body).html(args.opts.edition);
                     }
                 }
 
@@ -274,7 +278,6 @@
         const onPanelShow = function(panel) {
             if (panel === this.action) {
                 this.view.$dialog.show();
-                this.view.$dialog.setBody(this.view.$body);
             }
         }
 

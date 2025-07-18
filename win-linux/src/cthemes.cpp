@@ -34,6 +34,7 @@ namespace NSTheme {
     static const QString theme_type_light = "light";
 
     enum class ThemeType {
+        ttUndef,
         ttDark,
         ttLight
     };
@@ -183,6 +184,16 @@ auto getUserThemesPath() -> QString
 class CTheme::CThemePrivate {
 public:
     CThemePrivate() {}
+    CThemePrivate(const CThemePrivate &other) :
+        id(other.id),
+        wstype(other.wstype),
+        type(other.type),
+        is_system(other.is_system),
+        jsonValues(other.jsonValues),
+        defdark(other.defdark),
+        deflight(other.deflight),
+        source_file(other.source_file)
+    {}
 
     auto fromJsonObject(const QJsonObject& obj) -> void {
         id = obj.value("id").toString().toStdWString();
@@ -221,7 +232,7 @@ public:
 
     std::wstring id;
     std::wstring wstype;
-    NSTheme::ThemeType type;
+    NSTheme::ThemeType type = NSTheme::ThemeType::ttUndef;
     bool is_system{false};
 
     QJsonObject jsonValues;
@@ -251,7 +262,11 @@ public:
 
         GET_REGISTRY_USER(_reg_user);
 
+#if !defined(__OS_WIN_XP)
         QString user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_ID_SYSTEM).toString();
+#else
+        QString user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_DEFAULT_LIGHT_ID).toString();
+#endif
 
         /* TODO: remove for ver 7.3. for compatibility with ver 7.1 only */
         // if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
@@ -307,7 +322,11 @@ public:
             }
         } else
         if ( rc_themes.find(user_theme) == rc_themes.end() || !current->fromFile(rc_themes.at(user_theme)) ) {
+#if !defined(__OS_WIN_XP)
             user_theme = THEME_ID_SYSTEM;
+#else
+            user_theme = THEME_DEFAULT_LIGHT_ID;
+#endif
         }
 
         if ( user_theme == THEME_ID_SYSTEM ) {
@@ -459,12 +478,43 @@ CTheme::CTheme(const QString& path)
         fromFile(path);
 }
 
+CTheme::CTheme(const CTheme &other)
+    : m_priv(new CThemePrivate(*other.m_priv))
+{}
+
+CTheme::CTheme(CTheme &&other) noexcept
+    : m_priv(other.m_priv)
+{
+    other.m_priv = nullptr;
+}
+
 CTheme::~CTheme()
 {
     if ( m_priv ) {
         delete m_priv;
         m_priv = nullptr;
     }
+}
+
+CTheme& CTheme::operator=(const CTheme &other)
+{
+    if (this != &other) {
+        if (m_priv)
+            delete m_priv;
+        m_priv = new CThemePrivate(*other.m_priv);
+    }
+    return *this;
+}
+
+CTheme& CTheme::operator=(CTheme &&other) noexcept
+{
+    if (this != &other) {
+        if (m_priv)
+            delete m_priv;
+        m_priv = other.m_priv;
+        other.m_priv = nullptr;
+    }
+    return *this;
 }
 
 auto CTheme::fromFile(const QString& path) -> bool
@@ -570,6 +620,11 @@ auto CTheme::isSystem() const -> bool
     return m_priv->is_system;
 }
 
+auto CTheme::isValid() const -> bool
+{
+    return !m_priv->id.empty() && m_priv->type != NSTheme::ThemeType::ttUndef && !m_priv->jsonValues.isEmpty();
+}
+
 /**/
 
 CThemes::CThemes()
@@ -599,6 +654,16 @@ auto CThemes::defaultDark() -> const CTheme&
 auto CThemes::defaultLight() -> const CTheme&
 {
     return *m_priv->getDefault(NSTheme::ThemeType::ttLight);
+}
+
+auto CThemes::localFromId(const QString &id) const -> CTheme
+{
+    CTheme theme;
+    auto it = m_priv->rc_themes.find(id);
+    if (it != m_priv->rc_themes.end()) {
+        theme.fromFile(it->second);
+    }
+    return theme;
 }
 
 auto CThemes::setCurrentTheme(const std::wstring& name) -> void

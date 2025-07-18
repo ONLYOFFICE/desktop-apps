@@ -66,7 +66,7 @@
         args.tplPage = `
             <div class="action-panel ${args.action}">
                 <div class="recent-panel-container">
-                    <div class="search-bar">
+                    <div class="search-bar hidden">
                         <h1 l10n>${_lang.welWelcome}</h1>
                     </div>
                     
@@ -74,29 +74,30 @@
                     ${welcomeBannerTemplate}
                     <section id="area-dnd-file"></section>
                     
-                    <div id="box-recovery">
-                        <div class="file-list-title">
-                            <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                    <div id="box-container">
+                        <div id="box-recovery">
+                            <div class="file-list-title">
+                                <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                            </div>
+                            <div class="file-list-head text-normal">
+                                <div class="col-name" l10n>${_lang.colFileName}</div>
+                                <div class="col-location" l10n>${_lang.colLocation}</div>
+                                <div class="col-date" l10n>${_lang.colLastOpened}</div>
+                            </div>
+                            <div class="file-list-body scrollable"></div>
                         </div>
-                        <div class="file-list-head text-normal">
-                            <div class="col-name" l10n>${_lang.colFileName}</div>
-                            <div class="col-location" l10n>${_lang.colLocation}</div>
-                            <div class="col-date" l10n>${_lang.colLastOpened}</div>
-                        </div>
-                        <div class="file-list-body scrollable"></div>
-                    </div>
 
-                    <div id="box-recent">
-                        <div class="file-list-title">
-                            <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                        <div id="box-recent">
+                            <div class="file-list-title">
+                                <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                            </div>
+                            <div class="file-list-head text-normal">
+                                <div class="col-name" l10n>${_lang.colFileName}</div>
+                                <div class="col-location" l10n>${_lang.colLocation}</div>
+                                <div class="col-date" l10n>${_lang.colLastOpened}</div>
+                            </div>
+                            <div class="file-list-body scrollable"></div>
                         </div>
-                        <div class="file-list-head text-normal">
-                            <div class="col-name" l10n>${_lang.colFileName}</div>
-                            <div class="col-location" l10n>${_lang.colLocation}</div>
-                            <div class="col-date" l10n>${_lang.colLastOpened}</div>
-                        </div>
-                        <div class="file-list-body scrollable"></div>
-                    </div>
                     </div>
                 </div>
             </div>`;
@@ -127,6 +128,7 @@
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted === undefined && (info.crypted = false);
             const dotIndex = info.name.lastIndexOf('.');
+            const fullName = info.name;
             if (dotIndex !== -1) {
                 info.ext = info.name.substring(dotIndex);
                 info.name = info.name.substring(0, dotIndex);
@@ -139,20 +141,20 @@
             //language=HTML
             let _tpl = `
                 <div ${id} class="row text-normal">
-                    <div class="col-name">
+                    <div class="col-name" title="${fullName}">
                         <div class="icon">
-                            <svg class="icon" data-iconname="${info.type == 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
-                                <use xlink:href="#${info.type == 'folder' ? 'folder-small' : info.format}"></use>
+                            <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
+                                <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
                             </svg>
                             ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
                                                 <use xlink:href="#shield"></use>
                                               </svg>` : ''}
-                            ${!isSvgIcons ? `<i class="icon tool-icon ${info.type == 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
+                            ${!isSvgIcons ? `<i class="icon tool-icon ${info.type === 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
                         </div>
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
                     </div>
-                    <div class="col-location">
+                    <div class="col-location" title="${info.descr}">
 <!--              todo: icon here          -->
                         ${info.descr}
                     </div>
@@ -290,7 +292,7 @@
                 this.rawRecents = undefined;
             }
 
-            this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
+            // this.view.$boxRecent.css('display', collectionRecents.size() > 0 ? 'flex' : 'none');
             // requestAnimationFrame(() => this.view.updateListSize());
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
@@ -326,9 +328,16 @@
             }
         };
 
-        function addContextMenuEventListener(collection, model, view) {
+        function addContextMenuEventListener(collection, model, view, actionList) {
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
+
+                if (Menu.opened) {
+                    Menu.closeAll();
+                    return;
+                }
+
+                ppmenu.actionlist = actionList;
                 ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
             })
         }
@@ -351,7 +360,7 @@
 
                 collection.list.append($item);
 
-                addContextMenuEventListener(collection, model, this.view.$panel);
+                addContextMenuEventListener(collection, model, this.view.$panel, 'recent');
 
                 collection.list.parent().removeClass('empty');
             });
@@ -386,7 +395,7 @@
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
-                addContextMenuEventListener(collection, model, this.view.$panel);
+                addContextMenuEventListener(collection, model, this.view.$panel, 'recovery');
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
@@ -421,19 +430,33 @@
                 menu.actionlist == 'recent' ?
                     openFile(OPEN_FILE_RECENT, data) :
                     openFile(OPEN_FILE_RECOVERY, data);
-            } else
-            if (/\:clear/.test(action)) {
-                menu.actionlist == 'recent' ?
-                    window.sdk.LocalFileRemoveAllRecents() :
+            } else if (/\:clear/.test(action)) {
+                if (menu.actionlist === 'recent') {
+                    window.sdk.LocalFileRemoveAllRecents();
+                    if (collectionRecovers.size() === 0) {
+                        this.dndZone.show();
+                    }
+                } else {
                     window.sdk.LocalFileRemoveAllRecovers();
+                    if (collectionRecents.size() === 0) {
+                        this.dndZone.show();
+                    }
+                }
             } else
             if (/\:forget/.test(action)) {
                 $('#' + data.uid, this.view.$panel).addClass('lost');
-                setTimeout(e => {
-                    menu.actionlist == 'recent' ?
-                        window.sdk.LocalFileRemoveRecent(parseInt(data.fileid)) :
-                        window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));}
-                , 300); // 300ms - duration of item's 'collapse' transition
+
+                if (menu.actionlist === 'recent') {
+                    window.sdk.LocalFileRemoveRecent(parseInt(data.fileid));
+                    if (collectionRecovers.size() === 0) {
+                        this.dndZone.show();
+                    }
+                } else {
+                    window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));
+                    if (collectionRecents.size() === 0) {
+                        this.dndZone.show();
+                    }
+                }
             } else
             if (/\:explore/.test(action)) {
                 if (menu.actionlist == 'recent') {
@@ -518,11 +541,6 @@
                     console.log('portal authorized');
                 });
 
-                $('#box-recent .table-box').scroll(e => {
-                    if ( Menu.opened )
-                        Menu.closeAll();
-                });
-
                 this.dndZone = new DnDFileZone();
                 this.dndZone.render(this.view.$panel.find("#area-dnd-file"));
 
@@ -531,46 +549,53 @@
                         {
                             id: 'word',
                             title: utils.Lang.newDoc,
+                            langKey: 'newDoc',
                             formatLabel: {
                                 value: 'DOCX',
                                 gradientColorStart: '#4298C5',
                                 gradientColorEnd: '#2D84B2',
+                                bgColorWinXP: '#287ca9',
                             },
                             icon: '#docx-big',
                         },
                         {
                             id: 'cell',
                             title: utils.Lang.newXlsx,
+                            langKey: 'newXlsx',
                             formatLabel: {
                                 value: 'XLSX',
                                 gradientColorStart: '#5BB514',
                                 gradientColorEnd: '#318C2B',
+                                bgColorWinXP: '#3aa133',
                             },
                             icon: '#xlsx-big',
                         },
                         {
                             id: 'slide',
                             title: utils.Lang.newPptx,
+                            langKey: 'newPptx',
                             formatLabel: {
                                 value: 'PPTX',
                                 gradientColorStart: '#F4893A',
                                 gradientColorEnd: '#DE7341',
+                                bgColorWinXP: '#f36700',
                             },
                             icon: '#pptx-big',
                         },
                         {
                             id: 'form',
                             title: utils.Lang.newForm,
+                            langKey: 'newForm',
                             formatLabel: {
                                 value: 'PDF',
                                 gradientColorStart: '#F36653',
                                 gradientColorEnd: '#D2402D',
+                                bgColorWinXP: '#e54d39',
                             },
                             icon: '#pdf-big',
                         }
                     ],
                     onDocumentSelect: (docType) => {
-                        console.log(docType)
                         window.sdk.command("create:new", docType);
                     }
                 });

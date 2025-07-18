@@ -201,6 +201,7 @@ utils.defines.FileFormat = {
     FILE_PRESENTATION_POTM: FILE_PRESENTATION + 0x0008,
     FILE_PRESENTATION_ODP_FLAT: FILE_PRESENTATION + 0x0009,
     FILE_PRESENTATION_OTP:  FILE_PRESENTATION + 0x000a,
+    FILE_PRESENTATION_ODG:  FILE_PRESENTATION + 0x000c,
     FILE_PRESENTATION_KEY:  FILE_PRESENTATION + 0x000d,
 
     FILE_SPREADSHEET:       FILE_SPREADSHEET,
@@ -293,6 +294,7 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_PRESENTATION_POTM:   return 'potm';
     case utils.defines.FileFormat.FILE_PRESENTATION_ODP_FLAT: return 'fodp';
     case utils.defines.FileFormat.FILE_PRESENTATION_KEY:    return 'key';
+    case utils.defines.FileFormat.FILE_PRESENTATION_ODG:    return 'odg';
 
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDFA:
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF:   return 'pdf';
@@ -440,6 +442,8 @@ utils.fn.decodeHtml = function(str) {
 }
 
 utils.fn.getToolMenuItemOrder = function(item) {
+    return { item: $('.menu-item a[action=settings]').parent(), after: false };
+
     let $item = $(item);
 
     let _action = $item.find('[action]').attr('action'),

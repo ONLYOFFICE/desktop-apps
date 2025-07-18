@@ -481,6 +481,15 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 std::wstring param = L"{\"quickaccesschanged\":" + pData->get_Param() + L"}";
                 QMetaObject::invokeMethod(it->second, "onWebTitleChanged", Qt::QueuedConnection, Q_ARG(int, sid), Q_ARG(std::wstring, param));
             }
+        } else
+        if ( !(cmd.find(L"recent:pinned") == std::wstring::npos) ) {
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                SetRecentPin(objRoot["id"].toInt(), objRoot["pinned"].toBool(false));
+            }
         }
 
         break; }
