@@ -47,18 +47,13 @@
 #include <QTimer>
 #include <QApplication>
 #include <QAction>
-#include "components/cprintdialog.h"
 #include <QRegularExpression>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMimeData>
-#include <QPrintEngine>
 
 #ifdef _WIN32
 # include "shlobj.h"
-# include <platform_win/printdialog.h>
-#else
-# include <platform_linux/gtkprintdialog.h>
 #endif
 
 
@@ -1325,138 +1320,19 @@ void CMainWindow::goStart()
 void CMainWindow::onDocumentPrint(void * opts)
 {
     Q_UNUSED(opts)
-#ifdef __OS_WIN_XP
-    if (QPrinterInfo::availablePrinterNames().size() == 0) {
-        CMessage::info(this, tr("There are no printers available"));
-        return;
-    }
-#endif
-
     static bool printInProcess = false;
     if (!printInProcess)
         printInProcess = true; else
         return;
 
-    QWidget *parent = qobject_cast<QWidget*>(this);
-#ifdef Q_OS_LINUX
-    WindowHelper::CParentDisable disabler(parent);
-#endif
-
-    CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
-
+    int viewId = AscAppManager::printData().viewId();
     int pagesCount = AscAppManager::printData().pagesCount(),
         currentPage = AscAppManager::printData().pageCurrent();
+    CCefView * pView = AscAppManager::getInstance().GetViewById(viewId);
+    QString documentName = m_pTabs->titleByIndex(m_pTabs->tabIndexByView(viewId), true);
 
-
-    if (pView && !(pagesCount < 1)) {
-        NSEditorApi::CAscMenuEvent * pEvent;
-        QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
-        QString documentName = m_pTabs->titleByIndex(m_pTabs->tabIndexByView(AscAppManager::printData().viewId()), true);
-
-        QPrinter * printer = pContext->getPrinter();
-        printer->setFromTo(1, pagesCount);
-        printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
-        printer->setDuplex(AscAppManager::printData().duplexMode());
-        if ( printer->supportsMultipleCopies() ) {
-            printer->setCopyCount(AscAppManager::printData().copiesCount());
-        }
-
-        if ( !AscAppManager::printData().isQuickPrint() ) {
-            printer->setPageOrientation(AscAppManager::printData().pageOrientation());
-            printer->setPageSize(AscAppManager::printData().pageSize());
-            printer->setFullPage(true);
-        }
-
-#ifdef _WIN32
-        printer->setOutputFileName("");
-        PrintDialog * dialog =  new PrintDialog(printer, this);
-#else
-        QFileInfo info(documentName);
-        QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
-        QString outputName = AscAppManager::printData().isQuickPrint() ? Utils::uniqFileName(pdfName) : pdfName;
-        if ( AscAppManager::printData().printerInfo().printerName().isEmpty() ) {
-            printer->setOutputFileName(outputName);
-        } else {
-            printer->printEngine()->setProperty(QPrintEngine::PPK_OutputFileName, outputName);
-        }
-
-# ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-        CPrintDialog * dialog =  new CPrintDialog(printer, parent);
-# else
-        GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
-# endif
-#endif // _WIN32
-
-        dialog->setWindowTitle(tr("Print Document"));
-        dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintToFile);
-        if (!(currentPage < 0)) {
-            currentPage++;
-            dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
-            dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
-        }
-        dialog->setPrintRange(AscAppManager::printData().printRange());
-        if ( dialog->printRange() == QPrintDialog::PageRange )
-            dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
-
-        int modal_res = QDialog::Accepted;
-        if ( AscAppManager::printData().isQuickPrint() || !AscAppManager::printData().useSystemDialog() ) {
-            dialog->accept();
-        } else modal_res = dialog->exec();
-        PROCESSEVENTS();
-
-        if ( modal_res == QDialog::Accepted ) {
-            if ( !AscAppManager::printData().isQuickPrint() )
-                AscAppManager::printData().setPrinterInfo(*printer);
-
-            QVector<PageRanges> page_ranges;
-
-#ifdef Q_OS_LINUX
-            if ( printer->outputFormat() == QPrinter::PdfFormat ) {
-                if ( !AscAppManager::printData().isQuickPrint() ) {
-                    info.setFile(printer->outputFileName());
-                    Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
-                }
-            } else {
-                if ( (AscAppManager::printData().isQuickPrint() || !AscAppManager::printData().useSystemDialog()) && !printer->outputFileName().isEmpty() ) {
-                    info.setFile(printer->outputFileName());
-                    if ( info.suffix() == "pdf" )
-                        printer->setOutputFileName("");
-                }
-            }
-#endif
-
-            switch(dialog->printRange()) {
-            case QPrintDialog::AllPages:
-                page_ranges.append(PageRanges(1, pagesCount));
-                break;
-            case QPrintDialog::PageRange:
-                page_ranges = dialog->getPageRanges();
-                break;
-            case QPrintDialog::Selection:
-                page_ranges.append(PageRanges(-1, -1));
-                break;
-            case QPrintDialog::CurrentPage:
-                page_ranges.append(PageRanges(currentPage, currentPage));
-                break;
-            }
-
-            CEditorTools::print({pView, pContext, &page_ranges, parent});
-        }
-
-        pContext->Release();
-
-        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_END);
-        pView->Apply(pEvent);
-//        RELEASEOBJECT(pEvent)
-
-#ifndef _WIN32
-        RELEASEOBJECT(dialog)
-#endif
-    } else
-        CMessage::warning(parent, tr("There are no pages set to print."));
-
+    CEditorTools::onDocumentPrint(this, pView, documentName, currentPage, pagesCount);
     printInProcess = false;
-//    RELEASEINTERFACE(pData)
 }
 
 void CMainWindow::onFullScreen(int id, bool apply)
