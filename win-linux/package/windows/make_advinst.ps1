@@ -1,6 +1,7 @@
 ﻿param (
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
+    [string]$Target,
     [string]$CompanyName = "ONLYOFFICE",
     [string]$ProductName = "DesktopEditors",
     [string]$BuildDir,
@@ -16,7 +17,10 @@ Set-Location $PSScriptRoot
 if (-not $BuildDir) {
     $BuildDir = ".build.$Arch"
 }
-$MsiFile = "$CompanyName-$ProductName-$Version-$Arch.msi"
+$MsiFile = switch ($Target) {
+    "commercial" { "$CompanyName-$ProductName-Commercial-$Version-$Arch.msi" }
+    default      { "$CompanyName-$ProductName-$Version-$Arch.msi" }
+}
 $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
 $MsiBuild = switch ($Arch) {
     "x64" { "MsiBuild64" }
@@ -134,6 +138,12 @@ if ($Arch -eq "x86") {
         "SetComponentAttribute -feature_name RegFileTypeAssociations -unset -64bit_component"
     $AssociationList | % {$AdvInstConfig += `
             "SetComponentAttribute -feature_name FA_$($_.ToUpper()) -unset -64bit_component"}
+}
+if ($Target -eq "commercial") {
+    $AdvInstConfig += `
+        "SetProperty Edition=Commercial", `
+        "SetProperty AI_PRODUCTNAME_ARP=`"[|AppName] ([|Edition]) [|Version] ([|Arch])`"", `
+        "SetPackageName `"$MsiFile`" -buildname $MsiBuild"
 }
 $LanguageCodes | % {$AdvInstConfig += "SetProductCode -langid $_ -guid $ProductCode"}
 $AdvInstConfig += `

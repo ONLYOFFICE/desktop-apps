@@ -71,7 +71,11 @@ DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
+#ifndef PACKAGE_EDITION
 UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#ARCH})
+#else
+UninstallDisplayName      = {#sAppName} ({#PACKAGE_EDITION}) {#sAppVerShort} ({#ARCH})
+#endif
 OutputDir                 ={#OUTPUT_DIR}
 PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
