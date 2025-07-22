@@ -351,9 +351,17 @@
             $('#search-no-results', $panel).toggle(matchCount === 0);
         };
         
-        const _loadTemplates = function(nl, page_num = 0) {
-            const locale = nl ? nl.split('_')[0].toLowerCase() : 'en';
+        const _loadTemplates = function(nl, page_num = 0, fallBack = 0) {
             if (isCloudTmplsLoading) return;
+
+            let locale = 'en';
+            if (nl) {
+                if (fallBack === 0) {
+                    locale = nl.replace('_', '-'); 
+                } else if (fallBack === 1) {
+                    locale = nl.replace('_', '-').split('-')[0]; 
+                }
+            }
 
             page_num++;
             isCloudTmplsLoading = true;
@@ -369,11 +377,11 @@
                         const totalPages = d.meta.pagination.pageCount;
                         
                         if (page_num + 1 <= totalPages) {
-                            _loadTemplates.call(this, nl, page_num);
+                            _loadTemplates.call(this, nl, page_num, fallBack);
                         } 
-                    } else if (d.data && d.data.length === 0 && locale !== 'en') {
+                    } else if (d.data && d.data.length === 0 && fallBack < 2) {
                         _resetPagination.call(this);
-                        _loadTemplates.call(this, 'en', 0);
+                        _loadTemplates.call(this, nl, 0, fallBack + 1);
                     }
                 })
                 .catch (function (err) {
