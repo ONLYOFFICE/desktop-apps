@@ -430,6 +430,13 @@ utils.fn.parseRecent = function(arr, out = 'files') {
 
     if (out == 'files') return _files_arr;
 
+    const pinned = JSON.parse(localStorage.getItem('pinnedFolders') || '[]');
+    for (const pinnedPath of pinned) {
+        if (!_dirs_arr.includes(pinnedPath)) {
+            _dirs_arr.push(pinnedPath);
+        }
+    }
+
     var out_dirs_arr = [];
     for (let _d_ of _dirs_arr) {
         let name = (!_is_win ? /([^/]+)$/ : /([^\\/]+)$/).exec(_d_)[1],
