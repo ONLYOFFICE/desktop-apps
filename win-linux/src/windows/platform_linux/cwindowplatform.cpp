@@ -37,6 +37,7 @@
 #include <QTimer>
 #include <QPainter>
 #include <QX11Info>
+#include <QPainterPath>
 #include <xcb/xcb.h>
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
