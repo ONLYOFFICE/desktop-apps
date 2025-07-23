@@ -1,59 +1,28 @@
 window.AboutDialog = function(params) {
-    "use strict";
+  "use strict";
 
-    !params && (params = {});
+  params = Object.assign({}, params, {
+    template: `
+      <dialog class="dlg dlg-about">
+        <div class="title">
+          <label class="text-headline" l10n>${utils.Lang.actAbout}</label>
+          <span class="tool close"></span>
+        </div>
+        <div class="body"></div>
+      </dialog>
+    `
+  });
 
-    let $el, $dialogTitle, $dialogBody;
-    const events = {close: params.onclose};
+  const dlg = Dialog(params);
 
-    const _template = `
-        <dialog class="dlg dlg-about">
-            <div class="title">
-                <label class="text-headline" l10n>${utils.Lang.actAbout}</label>
-                <span class="tool close"/>
-            </div>
-            <div class="body"/>
-        </dialog>
-    `;
+  return {
+    setBody: dlg.setBody,
+    show: function() { 
+      dlg.show('dlg-about', 576)
+      const {$title, $body} = dlg.getElements();
+      $title.find('.text-headline').text(utils.Lang.actAbout);
+      $body.find('#idx-about-version span[l10n]').text(utils.Lang.strVersion);
 
-    function onCloseClick(e) {
-        close();
-    };
-
-    function close(opts) {
-        $el.remove();
-        if (events.close) {
-            events.close(opts);
-        }
     }
-
-    function setBody(data) {
-        $dialogBody.html(data);
-    }
-
-    return {
-        setBody: function(data) {
-            $dialogBody.html(data);
-        },
-        show: function () {
-            $el = $('#placeholder').append(_template).find('.dlg-about');
-            $el.width(576);
-           
-
-            $dialogTitle = $el.find('.title');
-            $dialogTitle.find('.tool.close').bind('click', onCloseClick);
-          
-            $dialogBody = $el.find('.body');
-
-            $el.get(0).showModal();
-            $el.addClass('scaled');
-            $el.on('close', onCloseClick);
-
-            $(document).on('click', function(e) {
-                if (e.target === $el.get(0)) {
-                    close();
-                }
-            });
-        }
-    }
+  };
 };

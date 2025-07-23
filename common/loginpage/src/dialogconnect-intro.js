@@ -2,10 +2,9 @@ window.DialogConnectIntro = function(params) {
   "use strict";
 
   let connectHandler = params.onConnect || (() => {});
-  const events = { close: params.onclose };
+  const bodyTemplate = params.bodyTemplate || '<div/>';
 
-  let $el, $title, $body;
-  var _template = `
+  params.template = `
     <dialog class="dlg dlg-connect-intro">
       <div class="title">
         <label class="caption">${utils.Lang.loginTitleStart}</label>
@@ -15,64 +14,27 @@ window.DialogConnectIntro = function(params) {
     </dialog>
   `;
 
-  let _body_template = params.bodyTemplate || '<div/>';
-   
- function onCloseClick(e) {
-    close();
-  };
-
-  function close(opts) {
-    $el.remove();
-    if (events.close) {
-      events.close(opts);
-    }
-  }
-
-  function _bind_events() {
-    $title.find('.tool.close').on('click', onCloseClick);
-    $el.on('close', onCloseClick);
-
-    $body.find('.link-connect-now').on('click', e => {
-      close();
-      connectHandler(e);
-    });
-
-    $body.on('click', '.btn.login', e => {
-      close();
-      connectHandler(e, $(e.currentTarget).data('cprov'));
-    });
-
-    $body.on('click', '.link', e => {
-      close();
-      connectHandler(e);
-    });
-  }
+  const dlg = Dialog(params);
 
   return {
     show: function() {
-      $el = $('#placeholder').append(_template).find('.dlg-connect-intro');
-      $title = $el.find('.title');
-      $body = $el.find('.body');
-      $el.width(590);
+      dlg.show('dlg-connect-intro', 590);
+      const {$title, $body} = dlg.getElements();
 
-      $body.html(_body_template);
-      _bind_events();
+      $body.html(bodyTemplate);
+
+      $title.find('.tool.close').on('click', dlg.close);
+
+      $body.on('click', '.link-connect-now, .link, .btn.login', function(e) {
+        dlg.close();
+        connectHandler(e, $(this).data('cprov'));
+      });
 
       $body.find('[l10n="portalEmptyDescr"]').text(utils.Lang.portalEmptyDescr);
       $body.find('[l10n="portalEmptyAdv1"]').text(utils.Lang.portalEmptyAdv1);
       $body.find('.btn--landing').text(utils.Lang.btnCreatePortal);
       $body.find('label[l10n]').text(utils.Lang.textHavePortal);
       $body.find('.login.link').text(utils.Lang.btnConnect);
-
-
-      $el.on('click', function (e) {
-        if (e.target === $el.get(0)) {
-          close();
-        }
-      });
-
-      $el.get(0).showModal();
-      $el.addClass('scaled');
     }
   };
 };
