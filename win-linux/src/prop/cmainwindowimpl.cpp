@@ -57,7 +57,7 @@ CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
 void CMainWindowImpl::refreshAboutVersion()
 {
 #if defined(APP_LICENSE_URL)
-    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" APP_LICENSE_URL "')\" draggable=\"false\" href=\"#\"&gt;" APP_LICENSE_NAME "&lt;/a&gt;";
+    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + TO_STR(APP_LICENSE_URL) + "')\" draggable=\"false\" href=\"#\"&gt;" + TO_STR(APP_LICENSE_NAME) + "&lt;/a&gt;";
 #else
     QString _license = tr("Licensed under") + " " + TO_STR(APP_LICENSE_NAME);
 #endif
