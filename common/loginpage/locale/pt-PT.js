@@ -64,6 +64,8 @@ l10n.pt_PT = {
     licPanelDescr: 'A chave do seu produto foi enviada para o endereço de e-mail indicado durante a compra.',
     checkUpdates: 'Procurar por atualizações',
     strVersion: 'versão',
+    strVersionCommunity: 'Versão Community',
+    strVersionCommercial: 'Versão Comercial',
     emptySlide1Title: 'Partilhe e colabore',
     emptySlide1Text: 'Escolha modo de coedição em tempo real - Rápido ou Restrito, converse no seu documento,  adicione comentários ou partilhe-os para que sejam revistos.',
     emptySlide2Title: 'Ver ou restaurar versões anteriores',

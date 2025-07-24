@@ -64,6 +64,8 @@ l10n.ko = {
     licPanelDescr: '구입 시 지정하신 이메일 주소로 제품 키가 발송되었습니다.',
     checkUpdates: '업데이트를 확인해주세요',
     strVersion: '버전',
+    strVersionCommunity: '커뮤니티 버전',
+    strVersionCommercial: '상업용 버전',
     emptySlide1Title: '공유 & 공동 작업',
     emptySlide1Text: 'Fast 또는 Strict 실시간 공동 편집 중에서 선택하시고, 문서 내에서 대화하거나, 의견을 추가하거나, 검토를 위해 공유하세요.',
     emptySlide2Title: '이전 버전 복원 또는 확인',

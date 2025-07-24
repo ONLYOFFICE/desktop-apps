@@ -64,6 +64,8 @@ l10n.et = {
     licPanelDescr: 'Sinu toote kood saadeti meilile, mida kasutasid ostmise ajal',
     checkUpdates: 'Kontrolli uuendusi',
     strVersion: 'versioon',
+    strVersionCommunity: 'Kogukonna versioon',
+    strVersionCommercial: 'Kommertsversioon',
     emptySlide1Title: 'Jaga & tee koostööd',
     emptySlide1Text: 'Vali kiire või range reaalajas koostöö vahel, vestle oma dokumendis, lisa kommentaare ja jaga seda, et saada tagasisidet.',
     emptySlide2Title: 'Vaata või taasa eelnevad versioonid',
