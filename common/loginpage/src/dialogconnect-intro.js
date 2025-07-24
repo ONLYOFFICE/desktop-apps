@@ -2,25 +2,19 @@ window.DialogConnectIntro = function(params) {
   "use strict";
 
   let connectHandler = params.onConnect || (() => {});
-  const bodyTemplate = params.bodyTemplate || '<div/>';
 
-  params.template = `
-    <dialog class="dlg dlg-connect-intro">
-      <div class="title">
-        <label class="caption">${utils.Lang.loginTitleStart}</label>
-        <span class="tool close"></span>
-      </div>
-      <div class="body"></div>
-    </dialog>
-  `;
-
-  const dlg = Dialog(params);
+  const dlg = Dialog({
+    dialogClass: 'dlg-connect-intro',
+    titleText: utils.Lang.loginTitleStart,
+    bodyTemplate: params.bodyTemplate || '<div/>',
+    onclose: params.onclose
+  });
 
   return {
     show: function() {
-      dlg.show('dlg-connect-intro', 590);
+      dlg.show(590); 
       const {$title, $body} = dlg.getElements();
-
+      
       $body.html(bodyTemplate);
 
       $title.find('.tool.close').on('click', dlg.close);
