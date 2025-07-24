@@ -120,6 +120,7 @@
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
             const type = utils.formatToEditor(info.type);
+            const format = utils.parseFileFormat(info.type);
             const badge = `<i class="badge ${type}"></i>`;
             const cloudIcon = info.isCloud ? `<svg class="icon cloud-icon" data-iconname="location-cloud" data-precls="tool-icon">
                                                 <use href="#location-cloud"></use>
@@ -137,7 +138,13 @@
                             ${icon_el}
                         </div>
                         <div class="card">
-                            <div class="badge-wrapper">${badge}</div>
+                            <div class="badge-wrapper">
+                                <div class="icon badge-icon">
+                                    <svg class="icon" data-iconname="${format}" data-precls="tool-icon">
+                                        <use xlink:href="#${format}"></use>
+                                    </svg>
+                                </div>
+                            </div>
                             <div class="title">${info.name}</div>
                             ${cloudIcon}
                         </div>
