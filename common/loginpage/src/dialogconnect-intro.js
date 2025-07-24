@@ -14,8 +14,6 @@ window.DialogConnectIntro = function(params) {
     show: function() {
       dlg.show(590); 
       const {$title, $body} = dlg.getElements();
-      
-      $body.html(bodyTemplate);
 
       $title.find('.tool.close').on('click', dlg.close);
 
