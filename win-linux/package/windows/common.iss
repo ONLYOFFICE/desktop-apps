@@ -23,9 +23,6 @@
 #endif
 #ifndef OUTPUT_FILE
 #define OUTPUT_FILE sPackageName + '-' + VERSION + '-' + ARCH
-#ifdef _WIN_XP
-#define OUTPUT_FILE OUTPUT_FILE + '-xp'
-#endif
 #endif
 
 #if FileExists(BRANDING_DIR + '\branding.iss')

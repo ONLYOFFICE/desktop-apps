@@ -115,12 +115,12 @@ switch ($Target) {
     "standalone" {
         $InnoArgs += "/DPACKAGE_EDITION=Standalone", "/DEMBED_HELP"
     }
+    "xp" {
+        $InnoArgs += "/DPACKAGE_EDITION=XP", "/D_WIN_XP"
+    }
     "update" {
         $InnoArgs += "/DTARGET_NAME=$CompanyName-$ProductName-$Version-$Arch"
         $IssFile = "update_common.iss"
-    }
-    "xp" {
-        $InnoArgs += "/D_WIN_XP"
     }
 }
 if ($Sign) {
