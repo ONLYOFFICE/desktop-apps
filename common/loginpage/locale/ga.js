@@ -64,6 +64,8 @@ l10n.ga = {
     licPanelDescr: 'Cuireadh eochair do tháirge chuig an seoladh ríomhphoist a sonraíodh le linn an cheannaigh.',
     checkUpdates: 'Seiceáil do nuashrónaithe',
     strVersion: 'leagan',
+    strVersionCommunity: 'Leagan pobail',
+    strVersionCommercial: 'Leagan tráchtála',
     emptySlide1Title: 'Comhroinn & comhoibriú',
     emptySlide1Text: 'Roghnaigh idir comh-eagarthóireacht fhíor-ama tapa nó dian, comhrá i do doc, cuir tuairimí leis nó roinn é le haghaidh athbhreithnithe.',
     emptySlide2Title: 'Féach ar leaganacha roimhe seo nó iad a athshlánú',

@@ -66,6 +66,8 @@ l10n.ja = {
     licPanelDescr: 'プロダクトキーを購入時に指定したメールアドレスに送信しました。',
     checkUpdates: '更新プログラムを確認',
     strVersion: 'バージョン',
+    strVersionCommunity: 'コミュニティ版',
+    strVersionCommercial: '商用版',
     emptySlide1Title: '共有と共同作業',
     emptySlide1Text: '簡易リアルタイム編集と厳格リアルタイム編集からお選びください。ドキュメントでのチャット、コメントの追加、レビュー用に共有ができます。',
     emptySlide2Title: '前のバージョンを確認するか保管',

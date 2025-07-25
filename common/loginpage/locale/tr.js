@@ -64,6 +64,8 @@ l10n.tr = {
     licPanelDescr: 'Ürün kodunuz satın alma sırasında verdiğiniz e-mail adresine gönderilmiştir. ',
     checkUpdates: 'Güncellemeleri kontrol et',
     strVersion: 'sürüm',
+    strVersionCommunity: 'Topluluk sürümü',
+    strVersionCommercial: 'Ticari sürüm',
     emptySlide1Title: 'Paylaş ve işbirliği yap',
     emptySlide1Text: 'Hızlı veya Sıkı gerçek zamanlı yardımcı düzenleme arasında seçim yapın, belgenizde sohbet edin, yorum ekleyin veya inceleme için paylaşın.',
     emptySlide2Title: 'Önceki sürümlerini gör veya yenile',

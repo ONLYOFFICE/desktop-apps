@@ -64,6 +64,8 @@ l10n.lt = {
     licPanelDescr: 'Jūsų produkto kodas buvo išsiųstas pirkimo metu nurodytu el. pašto adresu.',
     checkUpdates: 'Tikrinti, ar yra naujinių',
     strVersion: 'versija',
+    strVersionCommunity: 'Bendrijos versiją',
+    strVersionCommercial: 'Komercinė versija',
     emptySlide1Title: 'Dalintis ir bendradarbiauti',
     emptySlide1Text: 'Pasirinktite tarp Skubaus ar Griežto bendrojo laikoredagavimo realiuoju laiku, bendradarbiaukite dokumentuose, rašykite komentarus ar bendrinkite juos peržiūrai ',
     emptySlide2Title: 'Žiūrėti arba atkurti buvusias versijas',
