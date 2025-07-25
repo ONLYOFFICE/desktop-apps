@@ -64,7 +64,7 @@ l10n.cs = {
     licPanelDescr: 'Produktový klíč byl odeslán na e-mailovou adresu zadanou při nákupu.',
     checkUpdates: 'Kontrola aktualizací',
     strVersion: 'verze',
-    strVersionCommunity: 'Verze Community',
+    strVersionCommunity: 'Komunitní verze',
     strVersionCommercial: 'Komerční verze',
     emptySlide1Title: 'Sdílejte a spolupracujte',
     emptySlide1Text: 'Vyberte si mezi rychlou nebo podrobnou spolu-úpravou v reálném čase, chatujte přímo v dokumentu, přidávejte či sdílejte dokumenty pro kontrolu.',

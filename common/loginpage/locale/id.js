@@ -64,7 +64,7 @@ l10n.id = {
     licPanelDescr: 'Kunci produk Anda dikirim ke alamat email yang telah ditentukan selama pembelian.',
     checkUpdates: 'Periksa pembaruan',
     strVersion: 'versi',
-    strVersionCommunity: 'Versi komunitas',
+    strVersionCommunity: 'Versi Komunitas',
     strVersionCommercial: 'Versi komersial',
     emptySlide1Title: 'Berbagi & berkolaborasi',
     emptySlide1Text: 'Pilih antara pengeditan bersama mode Fast atau Strict secara real time, mengobrolkan dokumen Anda, menambahkan komentar atau membagikannya untuk ditinjau.',

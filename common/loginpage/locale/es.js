@@ -65,7 +65,7 @@ l10n.es = {
     licPanelTitle: 'Introduzca la clave del producto',
     licPanelDescr: 'La clave de producto ha sido enviada a la dirección de correo electrónico especificada durante la compra.',
     checkUpdates: 'Comprobar si hay actualizaciones',
-    strVersion: 'version',
+    strVersion: 'versión',
     strVersionCommunity: 'Versión comunitaria',
     strVersionCommercial: 'Versión comercial',
     emptySlide1Title: 'Comparta y colabore',
