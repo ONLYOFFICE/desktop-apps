@@ -115,12 +115,14 @@ Menu.prototype.show = function(pos, data) {
         pos.left -= (_right - _rlimit + 4);
     }
 
-    let _top = $dd.height() + pos.top,
-        _blimit = $(document).height();
-    if (!!this.config.bottomlimitoffset)
-        _blimit -= this.config.bottomlimitoffset;
-    if (!!_top && _top > _blimit) {
-        pos.top -= (_top - _blimit + 4);
+    const dropdownHeight = $dd.outerHeight();
+    let documentHeight = $(document).height();
+    if (!!this.config.bottomlimitoffset) {
+        documentHeight -= this.config.bottomlimitoffset;
+    }
+
+    if ((pos.top + dropdownHeight) > documentHeight) {
+        pos.top = documentHeight - dropdownHeight - 4;
     }
 
     $el.css(pos);
