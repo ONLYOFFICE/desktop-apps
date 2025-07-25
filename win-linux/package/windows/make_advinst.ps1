@@ -143,6 +143,7 @@ if ($Target -eq "commercial") {
     $AdvInstConfig += `
         "SetProperty Edition=Commercial", `
         "SetProperty AI_PRODUCTNAME_ARP=`"[|AppName] ([|Edition]) [|Version] ([|Arch])`"", `
+        "SetEula -rtf `"$("..\..\..\common\package\license\commercial\LICENSE.rtf" | Resolve-Path)`"", `
         "SetPackageName `"$MsiFile`" -buildname $MsiBuild"
 }
 $LanguageCodes | % {$AdvInstConfig += "SetProductCode -langid $_ -guid $ProductCode"}
