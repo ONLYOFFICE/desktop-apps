@@ -109,20 +109,26 @@ Menu.prototype.show = function(pos, data) {
     let $el = $('#'+this.id);
 
     let $dd = $el.find('.dropdown-menu');
-    let _right = $dd.width() + pos.left,
-        _rlimit = $(document).width();
-    if (!!_right && _right > _rlimit) {
-        pos.left -= (_right - _rlimit + 4);
+    let dd_width = $dd.outerWidth();
+    let dd_height = $dd.outerHeight();
+
+    let scrollLeft = $(window).scrollLeft();
+    let viewportWidth = $(window).width();
+    let _right = dd_width + pos.left;
+    if (_right > scrollLeft + viewportWidth) {
+        pos.left = pos.left - dd_width - 4;
     }
 
-    const dropdownHeight = $dd.outerHeight();
-    let documentHeight = $(document).height();
+    let scrollTop = $(window).scrollTop();
+    let viewportHeight = $(window).height();
+    let visible_bottom = scrollTop + viewportHeight;
     if (!!this.config.bottomlimitoffset) {
-        documentHeight -= this.config.bottomlimitoffset;
+        visible_bottom -= this.config.bottomlimitoffset;
     }
 
-    if ((pos.top + dropdownHeight) > documentHeight) {
-        pos.top = documentHeight - dropdownHeight - 4;
+    let _bottom = dd_height + pos.top;
+    if (_bottom > visible_bottom) {
+        pos.top = pos.top - dd_height - 4;
     }
 
     $el.css(pos);

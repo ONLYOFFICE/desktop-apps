@@ -64,6 +64,8 @@ l10n.fi = {
     licPanelDescr: 'Tuoteavaimesi on lähetetty oston aikana annettuun sähköpostiosoitteeseen.',
     checkUpdates: 'Tarkista päivitykset',
     strVersion: 'versio',
+    strVersionCommunity: 'Yhteisön versio',
+    strVersionCommercial: 'Kaupallinen versio',
     emptySlide1Title: 'Jaa & tee yhteystyötä',
     emptySlide1Text: 'Valitse joko Nopea tai Täsmällinen reaaliaikainen yhteis-muokkaus, keskustele dokumentissa, lisää kommentteja tai jaa jaa se arvioitavaksi.',
     emptySlide2Title: 'Katsele tai palauta aiemmpia versioita',

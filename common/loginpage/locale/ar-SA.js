@@ -66,6 +66,8 @@ l10n.ar_SA = {
     licPanelDescr: 'تم إرسال مفتاح المنتج الخاص بك لبريدك الإلكتروني المُدخل أثناء عملية الشراء',
     checkUpdates: 'التحقق من التحديثات',
     strVersion: 'نسخة',
+    strVersionCommunity: 'النسخة المجتمعية (“Community”)',
+    strVersionCommercial: 'النسخة التجارية',
     emptySlide1Title: 'نشر وتعاون',
     emptySlide1Text: 'اختر بين تحرير مشترك سريع أو تحرير مشترك بالوفت الفعلي، تحدّث في المستند، أضف التعليقات أو انشرها ليتم مراجعتها.',
     emptySlide2Title: 'اعرض أو استرجع النسخ السابقة',

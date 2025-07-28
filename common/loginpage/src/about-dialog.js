@@ -56,7 +56,7 @@ window.AboutDialog = function(params) {
                 $dialogBody.html(pendingBody);
                 pendingBody = null;
             }
-            $dialogBody.find('#idx-about-version span[l10n]').text(utils.Lang.strVersion); 
+            // $dialogBody.find('#idx-about-version span[l10n]').text(utils.Lang.strVersion); 
 
             $el.get(0).showModal();
             $el.addClass('scaled');
