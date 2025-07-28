@@ -172,8 +172,6 @@ int WinDlg::showDialog(QWidget *parent,
         break;
     }
     gtk_widget_destroy(dialog);
-    while (gtk_events_pending())
-        gtk_main_iteration_do(FALSE);
 
     return result;
 }

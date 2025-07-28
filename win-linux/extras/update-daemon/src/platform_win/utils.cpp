@@ -153,6 +153,17 @@ namespace NS_Utils
         return L"";
     }
 
+    wstring cmdArgsAsString()
+    {
+        if (cmd_args.empty())
+            return L"";
+        wstring args = cmd_args[0];
+        for (size_t i = 1; i < cmd_args.size(); ++i) {
+            args += L" " + cmd_args[i];
+        }
+        return args;
+    }
+
     wstring GetLastErrorAsString()
     {
         DWORD errID = ::GetLastError();
@@ -576,7 +587,7 @@ namespace NS_File
     wstring tempPath()
     {
         if (NS_Utils::isRunAsApp()) {
-            WCHAR buff[MAX_PATH + 1] = {0};
+            WCHAR buff[MAX_PATH + 2] = {0};
             DWORD res = ::GetTempPath(MAX_PATH + 1, buff);
             if (res != 0) {
                 buff[res - 1] = '\0';
@@ -718,12 +729,12 @@ namespace NS_Logger
     void WriteLog(const wstring &log, bool showMessage)
     {
         if (allow_write_log) {
-            wstring filpPath(NS_File::appPath() + L"/service_log.txt");
+            wstring filpPath(NS_File::tempPath() + L"/oo_service_log.txt");
             std::wofstream file(filpPath.c_str(), std::ios::app);
             if (!file.is_open()) {
                 return;
             }
-            file << log << std::endl;
+            file << log << wstring(L"\n") << std::endl;
             file.close();
         }
         if (showMessage)

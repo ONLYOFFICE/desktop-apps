@@ -77,7 +77,9 @@ public:
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
 
-    virtual void initializeApp() {}
+    virtual void initializeApp() {
+        m_printData->setAppDataPath(m_appmanager.m_oSettings.app_data_path);
+    }
     virtual bool processEvent(NSEditorApi::CAscCefMenuEvent * event) {
         if ( detectDocumentOpening(*event) )
             return true;

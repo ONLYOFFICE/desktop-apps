@@ -42,6 +42,7 @@
 #include "ccefeventstransformer.h"
 #include "ccefeventsgate.h"
 #include "windows/ceditorwindow.h"
+#include "components/cnotification.h"
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
 #include "cprintdata.h"

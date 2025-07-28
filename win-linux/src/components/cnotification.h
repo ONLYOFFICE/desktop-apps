@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2022
+ * (c) Copyright Ascensio System SIA 2010-2019
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -30,48 +30,38 @@
  *
 */
 
-#ifndef CPRINTDATA_H
-#define CPRINTDATA_H
+#ifndef CNOTIFICATION_H
+#define CNOTIFICATION_H
 
-#include "applicationmanager_events.h"
-#include <QPrinterInfo>
-#include <QPrintDialog>
+#ifdef _WIN32
+# include "platform_win/updatedialog.h"
+#else
+# include "platform_linux/updatedialog.h"
+#endif
 #include <functional>
 
-typedef std::function<void(const QString&)> FnVoidStr;
+#define mbNone  WinDlg::DlgBtns(-1)
+#define NOTIF_FAILED    -2
+//#define NOTIF_DISMISSED -3
 
 
-class CPrintData
-{
+typedef std::function<void(int)> FnVoidInt;
+
+class CNotification {
 public:
-    explicit CPrintData();
-    ~CPrintData();
-
-    auto init(NSEditorApi::CAscPrintEnd *) -> void;
-    auto init(int, NSEditorApi::CAscPrintEnd *) -> void;
-    auto printerInfo() const -> QPrinterInfo;
-    auto setAppDataPath(const std::wstring&) -> void;
-    auto setPrinterInfo(const QPrinterInfo&) -> void;
-    auto setPrinterInfo(const QPrinter&) -> void;
-    auto pageSize() const -> QPageSize;
-    auto pageOrientation() const -> QPageLayout::Orientation;
-    auto pagesCount() const -> int;
-    auto pageCurrent() const -> int;
-    auto pageFrom() const -> int;
-    auto pageTo() const -> int;
-    auto printRange() const -> QPrintDialog::PrintRange;
-    auto isQuickPrint() const -> bool;
-    auto useSystemDialog() const -> bool;
-    auto viewId() const -> int;
-    auto copiesCount() const -> int;
-    auto duplexMode() const -> QPrinter::DuplexMode;
-    auto printerCapabilitiesReady() const -> bool;
-    auto getPrinterCapabilitiesJson() const -> QString;
-    auto queryPrinterCapabilitiesAsync(const FnVoidStr &callback) const -> void;
+    CNotification(const CNotification&) = delete;
+    CNotification& operator=(const CNotification&) = delete;
+    static CNotification& instance();
+    bool init();
+    bool show(const QString &msg, const QString &content, WinDlg::DlgBtns dlgBtns = mbNone, const FnVoidInt &callback = nullptr);
+    void clear();
 
 private:
-    class CPrintDataPrivate;
-    CPrintDataPrivate * m_priv;
+    CNotification();
+    ~CNotification();
+
+    class CNotificationPrivate;
+    CNotificationPrivate *pimpl = nullptr;
 };
 
-#endif // CPRINTDATA_H
+#endif // CNOTIFICATION_H
