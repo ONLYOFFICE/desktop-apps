@@ -270,7 +270,7 @@
                                 items.push(new FileTemplateModel(item));
                             } else {
                                 if ( !m.icon && item.icon ) {
-                                    m.set('icon', item.icon);
+                                    m.set('icon', $('<div>').html(item.icon).text());
                                 }
                             }
                         }
