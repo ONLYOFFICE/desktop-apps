@@ -186,6 +186,16 @@ CMD_IN_HELP_URL = $$join(URL_WEBAPPS_HELP,,\\\",\\\")
     message(no webapps help url found)
 }
 
+LICENSE_NAME = $$(DESKTOP_LICENSE_NAME)
+!isEmpty(LICENSE_NAME) {
+    DEFINES += APP_LICENSE_NAME=$$join(LICENSE_NAME,,\",\")
+}
+
+LICENSE_URL = $$(DESKTOP_LICENSE_URL)
+!isEmpty(LICENSE_URL) {
+    DEFINES += APP_LICENSE_URL=$$join(LICENSE_URL,,\",\")
+}
+
 PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs

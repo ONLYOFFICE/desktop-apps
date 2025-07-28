@@ -66,6 +66,8 @@ l10n.fr = {
     licPanelDescr: 'Votre clé de produit a été envoyée à l\'adresse e-mail spécifiée lors de l\'achat.',
     checkUpdates: 'Chercher les mises à jour',
     strVersion: 'version',
+    strVersionCommunity: 'Version Community',
+    strVersionCommercial: 'Version commerciale',
     emptySlide1Title: 'Partagez et collaborez',
     emptySlide1Text: 'Choisissez entre la co-édition Rapide ou Strict, chattez dans votre document, ajoutez les commentaires ou partagez les documents pour la révision.',
     emptySlide2Title: 'Consultez ou restaurez les versions précédentes',

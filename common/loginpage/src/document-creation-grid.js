@@ -81,7 +81,7 @@ window.DocumentCreationGrid = function (config = {}) {
 
 						${doc.icon.startsWith('#') ? `<svg class="icon"><use xlink:href="${doc.icon}"></use></svg>` : `<i class="icon ${doc.icon}"></i>`}
 
-                        <div class="title">
+                        <div class="title" l10n="${doc.langKey}">
                             ${doc.title}
                         </div>
                     </div>

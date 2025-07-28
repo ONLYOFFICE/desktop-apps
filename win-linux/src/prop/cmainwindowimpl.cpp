@@ -41,6 +41,17 @@
 #include <QJsonDocument>
 #include <QFile>
 
+#if !defined APP_LICENSE_NAME
+# define LICENSE_NAME           "GNU AGPL v3"
+# define LICENSE_URL            URL_AGPL
+#else
+# define LICENSE_TYPE_COMMERCIAL
+# define LICENSE_NAME           TO_STR(APP_LICENSE_NAME)
+# if defined(APP_LICENSE_URL)
+#   define LICENSE_URL          TO_STR(APP_LICENSE_URL)
+# endif
+#endif
+
 CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
     CMainWindow(rect)
 {
@@ -49,7 +60,11 @@ CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
 
 void CMainWindowImpl::refreshAboutVersion()
 {
-    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" URL_AGPL "')\" draggable=\"false\" href=\"#\"&gt;GNU AGPL v3&lt;/a&gt;";
+#if defined(LICENSE_URL)
+    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + LICENSE_URL + "')\" draggable=\"false\" href=\"#\"&gt;" + LICENSE_NAME + "&lt;/a&gt;";
+#else
+    QString _license = tr("Licensed under") + " " + LICENSE_NAME;
+#endif
 
     QJsonObject _json_obj;
     _json_obj["version"]    = VER_FILEVERSION_STR;
@@ -61,6 +76,10 @@ void CMainWindowImpl::refreshAboutVersion()
 # endif
 #endif
     _json_obj["edition"]    = _license;
+#ifdef LICENSE_TYPE_COMMERCIAL
+    _json_obj["paidversion"] = true;
+#endif
+
 #if defined(ABOUT_PAGE_APP_NAME)
     _json_obj["appname"]    = ABOUT_PAGE_APP_NAME;
 #else
