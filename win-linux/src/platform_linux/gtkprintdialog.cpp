@@ -514,11 +514,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
     default:
         break;
     } 
-    //gtk_window_close(GTK_WINDOW(dialog));
     gtk_widget_destroy(dialog);
-    //gtk_main();
-    while (gtk_events_pending())
-        gtk_main_iteration_do(FALSE);
 
     if (res == GTK_RESPONSE_REJECT)
         CMessage::error(m_parent, QObject::tr("The syntaxis for the page range is invalid.<br>"

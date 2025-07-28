@@ -115,9 +115,8 @@ if (Test-Path "$BuildDir\desktop\vlc-cache-gen.exe") {
 }
 
 if (Test-Path "$BuildDir\desktop\online-installer.exe") {
-    $dst = "$PSScriptRoot\OnlineInstaller-$Version-$Arch" + $(if ($Target -eq "xp") {"-xp"}) + ".exe"
-    Write-Host "MOVE: $BuildDir\desktop\online-installer.exe > $dst"
+    Write-Host "MOVE: $BuildDir\desktop\online-installer.exe > OnlineInstaller-$Version-$Arch.exe"
     Move-Item `
         -Path "$BuildDir\desktop\online-installer.exe" `
-        -Destination $dst
+        -Destination "OnlineInstaller-$Version-$Arch.exe"
 }

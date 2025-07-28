@@ -270,7 +270,7 @@
                                 items.push(new FileTemplateModel(item));
                             } else {
                                 if ( !m.icon && item.icon ) {
-                                    m.set('icon', item.icon);
+                                    m.set('icon', $('<div>').html(item.icon).text());
                                 }
                             }
                         }
@@ -351,14 +351,22 @@
             $('#search-no-results', $panel).toggle(matchCount === 0);
         };
         
-        const _loadTemplates = function(nl, page_num = 0) {
-            const locale = nl ? nl.split('_')[0].toLowerCase() : 'en';
+        const _loadTemplates = function(nl, page_num = 0, fallBack = 0) {
             if (isCloudTmplsLoading) return;
+
+            let locale = 'en';
+            if (nl) {
+                if (fallBack === 0) {
+                    locale = nl.replace('_', '-'); 
+                } else if (fallBack === 1) {
+                    locale = nl.replace('_', '-').split('-')[0]; 
+                }
+            }
 
             page_num++;
             isCloudTmplsLoading = true;
 
-            const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com'; // https://oforms.teamlab.info
+            const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com'; // https://oforms.teamlab.info
             const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=${locale}&pagination[page]=${page_num}`;
             fetch(_url)
                 .then(r => r.json())
@@ -369,11 +377,11 @@
                         const totalPages = d.meta.pagination.pageCount;
                         
                         if (page_num + 1 <= totalPages) {
-                            _loadTemplates.call(this, nl, page_num);
+                            _loadTemplates.call(this, nl, page_num, fallBack);
                         } 
-                    } else if (d.data && d.data.length === 0 && locale !== 'en') {
+                    } else if (d.data && d.data.length === 0 && fallBack < 2) {
                         _resetPagination.call(this);
-                        _loadTemplates.call(this, 'en', 0);
+                        _loadTemplates.call(this, nl, 0, fallBack + 1);
                     }
                 })
                 .catch (function (err) {

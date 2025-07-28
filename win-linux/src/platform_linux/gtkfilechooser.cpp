@@ -185,13 +185,9 @@ static void nativeFileDialog(const Window &parent_xid,
         if (s_filter && sel_filter)
             *sel_filter = strdup(gtk_file_filter_get_name(s_filter));
     }
-    //gtk_window_close(GTK_WINDOW(dialog));
     gtk_widget_destroy(dialog);
     if (list)
         g_slist_free(list);
-    //gtk_main();
-    while (gtk_events_pending())
-        gtk_main_iteration_do(FALSE);
 }
 
 QStringList Gtk::openGtkFileChooser(QWidget *parent,

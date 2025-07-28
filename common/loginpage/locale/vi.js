@@ -64,6 +64,8 @@ l10n.vi = {
     licPanelDescr: 'Mã sản phẩm của bạn đã được gửi đến email dùng mua sản phẩm.',
     checkUpdates: 'Kiểm tra cập nhật',
     strVersion: 'phiên bản',
+    strVersionCommunity: 'Phiên bản cộng đồng',
+    strVersionCommercial: 'Phiên bản thương mại',
     emptySlide1Title: 'Chia sẻ & cùng làm việc',
     emptySlide1Text: 'Chọn cùng chỉnh sửa theo thời gian thực hoặc hạn chế chỉ thấy thay đổi đã được lưu, trao đổi ngay trên tài liệu, thêm bình luận hay chia sẻ tập tin để xem xét.',
     emptySlide2Title: 'Xem hay khôi phục các phiên bản trước',

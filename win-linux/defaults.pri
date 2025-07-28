@@ -155,8 +155,10 @@ SOURCES += \
     $$PWD/src/cthemes.cpp
 
 updmodule:!build_xp {
-    HEADERS += $$PWD/src/cupdatemanager.h
-    SOURCES += $$PWD/src/cupdatemanager.cpp
+    HEADERS += $$PWD/src/cupdatemanager.h \
+               $$PWD/src/components/cnotification.h
+    SOURCES += $$PWD/src/cupdatemanager.cpp \
+               $$PWD/src/components/cnotification.cpp
 }
 
 RESOURCES += $$PWD/resources.qrc
@@ -182,6 +184,16 @@ CMD_IN_HELP_URL = $$join(URL_WEBAPPS_HELP,,\\\",\\\")
     message(webapps help url: $$CMD_IN_HELP_URL)
 } else {
     message(no webapps help url found)
+}
+
+LICENSE_NAME = $$(DESKTOP_LICENSE_NAME)
+!isEmpty(LICENSE_NAME) {
+    DEFINES += APP_LICENSE_NAME=$$join(LICENSE_NAME,,\",\")
+}
+
+LICENSE_URL = $$(DESKTOP_LICENSE_URL)
+!isEmpty(LICENSE_URL) {
+    DEFINES += APP_LICENSE_URL=$$join(LICENSE_URL,,\",\")
 }
 
 PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
@@ -228,8 +240,10 @@ core_linux {
                 $$PWD/extras/update-daemon/src/classes/csocket.cpp
 
     updmodule {
+        QT += dbus
         HEADERS += $$PWD/src/platform_linux/updatedialog.h
         SOURCES += $$PWD/src/platform_linux/updatedialog.cpp
+        PKGCONFIG += libnotify
     }
 
     CONFIG += link_pkgconfig
@@ -277,8 +291,10 @@ core_windows {
     updmodule:!build_xp {
         INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
         HEADERS += $$PWD/src/platform_win/updatedialog.h \
+                   $$PWD/src/platform_win/wintoastlib.h \
                    $$PWD/extras/update-daemon/src/classes/csocket.h
         SOURCES += $$PWD/src/platform_win/updatedialog.cpp \
+                   $$PWD/src/platform_win/wintoastlib.cpp \
                    $$PWD/extras/update-daemon/src/classes/csocket.cpp
     }
 

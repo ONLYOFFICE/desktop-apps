@@ -66,6 +66,8 @@ l10n.de = {
     licPanelDescr: 'Ihr Produktschlüssel wurde an die E-Mail-Adresse zugeschickt, die Sie beim Kauf angegeben haben.',
     checkUpdates: 'Nach Updates suchen',
     strVersion: 'Version',
+    strVersionCommunity: 'Community-Version',
+    strVersionCommercial: 'Kommerzielle Version',
     emptySlide1Title: 'Freigabe & Zusammenarbeit',
     emptySlide1Text: 'Wählen Sie zwischen zwei Modis (Formal / Halbformal) für die Bearbeitung in Echtzeit, chatten und kommentieren Sie direkt im Dokument oder teilen Sie Ihre Dokumente zur Überprüfung.',
     emptySlide2Title: 'Anzeigen oder Wiederherstellen der früheren Versionen',

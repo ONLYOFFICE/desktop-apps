@@ -64,6 +64,8 @@ l10n.gl = {
     licPanelDescr: 'A clave do produto enviouse ao enderezo electrónico especificado durante a compra.',
     checkUpdates: 'Buscar actualizacións',
     strVersion: 'versión',
+    strVersionCommunity: 'Versión Comunitaria',
+    strVersionCommercial: 'Versión Comercial',
     emptySlide1Title: 'Compartir e colaborar',
     emptySlide1Text: 'Elixe entre coedición rápida ou estrita en tempo real, chatea no teu documento, engade comentarios ou compártea para revisión.',
     emptySlide2Title: 'Ver ou restaurar versións anteriores',
