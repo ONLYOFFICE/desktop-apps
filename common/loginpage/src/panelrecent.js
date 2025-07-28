@@ -322,8 +322,8 @@
         function addContextMenuEventListener(collection, model, view, actionList) {
             $(`#${model.uid}-pin-btn`, view).click((e) => {
                 e.stopPropagation();
-                model.set('pinned', !model.pinned);
-                model.set('pinid', !model.pinned ? model.fileid : -model.fileid);
+                const pinned = !model.pinned;
+                model.setMany({ pinned: pinned, pinid: pinned ? -model.fileid : model.fileid });
             })
 
             $(`#${model.uid}-more-btn`, view).click((e) => {
@@ -423,7 +423,6 @@
                 if ($el) {
                     $el[model.exist ? 'removeClass' : 'addClass']('unavail');
                     if (property['pinned'] !== undefined) {
-                        // handlePin(collection, model);
                         sdk.setRecentFilePinned(model.get('fileid'), property['pinned']);
                         $el[model.pinned ? 'addClass' : 'removeClass']('pinned');
                     }
@@ -484,9 +483,15 @@
                     openFile(OPEN_FILE_RECENT, data) :
                     openFile(OPEN_FILE_RECOVERY, data);
             } else if (/\:pin/.test(action)) {
-                collectionRecents.find('uid', data.uid)?.set('pinned', true);
+                const targetModel = collectionRecents.find('uid', data.uid);
+                if (targetModel) {
+                    targetModel.setMany({ pinned: true, pinid: -targetModel.fileid });
+                }
             } else if (/\:unpin/.test(action)) {
-                collectionRecents.find('uid', data.uid)?.set('unpinned', true);
+                const targetModel = collectionRecents.find('uid', data.uid);
+                if (targetModel) {
+                    targetModel.setMany({ pinned: false, pinid: targetModel.fileid });
+                }
             } else if (/\:clear/.test(action)) {
                 if (menu.actionlist === 'recent') {
                     window.sdk.LocalFileRemoveAllRecents();
