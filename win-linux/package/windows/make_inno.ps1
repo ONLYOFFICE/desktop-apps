@@ -8,7 +8,8 @@
     [string]$BrandingDir,
     [switch]$Sign,
     [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [string]$TimestampServer = "http://timestamp.digicert.com",
+    [switch]$Debug
 )
 
 $ErrorActionPreference = "Stop"
@@ -98,8 +99,7 @@ if ($Target -notlike "*update") {
 Write-Host "`n[ Build Inno Setup project ]"
 
 $IssFile = "common.iss"
-$InnoArgs = "/Qp",
-            "/DVERSION=$Version",
+$InnoArgs = "/DVERSION=$Version",
             "/DARCH=$Arch",
             "/DBUILD_DIR=$BuildDir"
 if ($BrandingDir) {
@@ -126,6 +126,9 @@ switch ($Target) {
 if ($Sign) {
     $InnoArgs += "/DSIGN",
         "/Sbyparam=signtool sign /a /v /n `$q$CertName`$q /t $TimestampServer `$f"
+}
+if ($Debug) {
+    $InnoArgs += "/DPREPROCSAVE"
 }
 
 Write-Host "iscc $InnoArgs $IssFile"

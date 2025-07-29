@@ -1250,3 +1250,7 @@ Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; Value
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
 Type: filesandordirs; Name: "{app}\..\{#UPD_PATH}";
 Type: files; Name: "{app}\svcrestart.bat";
+
+#ifdef PREPROCSAVE
+#expr SaveToFile(AddBackslash(SourcePath) + "desktop_preprocessed.iss")
+#endif
