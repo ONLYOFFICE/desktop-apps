@@ -46,7 +46,12 @@
     };
 
     Dialog.prototype.close = function(opts) {
-        this.$el.remove();
+        if (!this.cover && this.$el) {
+            this.$el.remove();
+        } else {
+            this.$el?.get(0)?.close();
+        }
+
         if (this.events.close) this.events.close(opts);
     };
 
