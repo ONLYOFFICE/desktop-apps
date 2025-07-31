@@ -1,19 +1,21 @@
-window.AboutDialog = function(params) {
-  "use strict";
-
-  const dlg = Dialog({
-    dialogClass: 'dlg-about',
-    titleText: utils.Lang.actAbout,
-    onclose: params?.onclose
-  });
-
-  return {
-    setBody: dlg.setBody,
-    show: function() { 
-      dlg.show(570); 
-      const {$title, $body} = dlg.getElements();
-      $title.find('.caption').text(utils.Lang.actAbout);
-
++function() {
+    function AboutDialog(params) {
+        params = params || {};
+        Dialog.call(this, {
+            dialogClass: 'dlg-about',
+            titleText: utils.Lang.actAbout,
+            defaultWidth: 570,
+            onclose: params.onclose
+        });
     }
-  };
-};
+
+    AboutDialog.prototype = Object.create(Dialog.prototype);
+    AboutDialog.prototype.constructor = AboutDialog;
+
+    AboutDialog.prototype.inShow = function() {
+        var $title = this.getElements().$title;
+        $title.find('.caption').text(utils.Lang.actAbout);
+    };
+
+    window.AboutDialog = AboutDialog;
+}();

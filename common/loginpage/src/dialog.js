@@ -1,67 +1,68 @@
-window.Dialog = function(params) {
-  "use strict";
++function() {
+    function Dialog(params) {
+        params = params || {};
+        this.events = { close: params.onclose };
+        this.dialogClass = params.dialogClass || 'dlg';
+        this.titleText = params.titleText || '';
+        this.bodyTemplate = params.bodyTemplate || '';
+        this.defaultWidth = params.defaultWidth || 500;
 
-  params = params || {};
-  const events = { close: params.onclose };
-
-  const dialogClass = params.dialogClass || 'dlg';
-  const titleText = params.titleText || '';
-  const bodyTemplate = params.bodyTemplate || '';
-
-  let $el, $title, $body;
-
-  const template = `
-    <dialog class="dlg ${dialogClass}">
-      <div class="title">
-        <label class="caption">${titleText}</label>
-        <span class="tool close"></span>
-      </div>
-      <div class="body">${bodyTemplate}</div>
-    </dialog>
-  `;
-
-  function show(width) {
-    $el = $('#placeholder').append(template).find(`.${dialogClass}`);
-    $el.width(width || 500);
-
-    $title = $el.find('.title');
-    $body = $el.find('.body');
-
-    if (bodyTemplate) $body.html(bodyTemplate);
-
-    $title.find('.tool.close').on('click', close);
-    $el.on('close', close);
-
-    $(document).on('click', clickHandler);
-
-    $el.get(0).showModal();
-    $el.addClass('scaled');
-  }
-
-  function clickHandler(e) {
-    if (e.target === $el.get(0)) {
-      close();
+        this.$el = null;
+        this.$title = null;
+        this.$body = null;
     }
-  }
 
-  function close(opts) {
-    $el.remove();
-    $(document).off('click', clickHandler);
-    if (events.close) events.close(opts);
-  }
+    Dialog.prototype.template = function() {
+        return `<dialog class="dlg ${this.dialogClass}">
+            <div class="title">
+                <label class="caption">${this.titleText}</label>
+                <span class="tool close"></span>
+            </div>
+            <div class="body">${this.bodyTemplate}</div>
+        </dialog>`;
+    };
 
-  function setBody(html) {
-    $body.html(html);
-  }
+    Dialog.prototype.show = function(width) {
+        this.$el = $('#placeholder').append(this.template()).find(`.${this.dialogClass}`);
+        this.$el.width(width || this.defaultWidth);
 
-  function getElements() {
-    return { $el, $title, $body };
-  }
+        this.$title = this.$el.find('.title');
+        this.$body = this.$el.find('.body');
 
-  return {
-    show,
-    close,
-    setBody,
-    getElements
-  };
-};
+        if (this.bodyTemplate)  this.$body.html(this.bodyTemplate);
+
+        this.$title.find('.tool.close').on('click', () => this.close());
+        this.$el.on('close', () => this.close());
+        $(document).on('click', (e) => {
+            if (e.target === this.$el.get(0)) {
+                this.close();
+            }
+        });
+
+        this.$el.get(0).showModal();
+        this.$el.addClass('scaled');
+
+        this.inShow();
+    };
+
+    Dialog.prototype.close = function(opts) {
+        this.$el.remove();
+        if (this.events.close) this.events.close(opts);
+    };
+
+    Dialog.prototype.setBody = function(html) {
+        this.$body.html(html);
+    };
+
+    Dialog.prototype.getElements = function() {
+        return {
+            $el: this.$el,
+            $title: this.$title,
+            $body: this.$body
+        };
+    };
+
+    Dialog.prototype.inShow = function() {};
+
+    window.Dialog = Dialog;
+}();
