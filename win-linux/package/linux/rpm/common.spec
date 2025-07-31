@@ -56,7 +56,6 @@ rm -rf "%{buildroot}"
 %attr(-, root, root) %{_datadir}/doc/*
 %attr(-, root, root) %{_datadir}/icons/*
 %attr(-, root, root) %{_datadir}/licenses/*
-%attr(-, root, root) %{_datadir}/mime/*
 %attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
 %if "%{_company_name}" == "ONLYOFFICE"
 %attr(-, root, root) %{_bindir}/desktopeditors
@@ -73,6 +72,10 @@ rm -rf "%{buildroot}"
 %defattr(-, root, root, -)
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/*/main/resources/help
 %endif
+
+%postun
+rm -f /usr/share/mime/packages/onlyoffice-docxf.xml
+rm -f /usr/share/mime/packages/onlyoffice-oform.xml
 
 %changelog
 

@@ -69,11 +69,6 @@ LINUX_DEPS += $(patsubst $(BRANDING_DIR)/common/icons/%.png, \
 	$(wildcard $(BRANDING_DIR)/common/icons/*.png))
 LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE
 LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE
-ifneq ($(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes/*.xml),)
-LINUX_DEPS += $(patsubst $(BRANDING_DIR)/../../../common/package/mimetypes/%.xml, \
-	build/main/usr/share/mime/packages/%.xml, \
-	$(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes/*.xml))
-endif
 
 DEB_DEPS += $(CHANGELOG_DEB)
 DEB_DEPS += deb/build/debian/compat
@@ -185,9 +180,6 @@ build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE : $(BRANDING_DIR)/../../..
 build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE : $(BRANDING_DIR)/../../../common/package/license/3dparty/3DPARTYLICENSE
 
 build/main/usr/share/licenses/% :
-	install -m 644 -D $< $@
-
-build/main/usr/share/mime/packages/% : $(BRANDING_DIR)/../../../common/package/mimetypes/%
 	install -m 644 -D $< $@
 
 deb/build/debian/% : deb/template/%
