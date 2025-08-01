@@ -119,6 +119,7 @@
 
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
+            const isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio === 1;
             const type = utils.formatToEditor(info.type);
             const format = utils.parseFileFormat(info.type);
             const badge = `<i class="badge ${type}"></i>`;
@@ -139,11 +140,11 @@
                         </div>
                         <div class="card">
                             <div class="badge-wrapper">
-                                <div class="icon badge-icon">
-                                    <svg class="icon" data-iconname="${format}" data-precls="tool-icon">
-                                        <use xlink:href="#${format}"></use>
-                                    </svg>
-                                </div>
+                                ${isSvgIcons ? 
+                                `<svg class="icon badge-icon" data-iconname="${format}" data-precls="tool-icon">
+                                    <use href="#${format}"></use>
+                                </svg>`
+                                : badge}
                             </div>
                             <div class="title">${info.name}</div>
                             ${cloudIcon}

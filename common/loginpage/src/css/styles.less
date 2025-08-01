@@ -2053,13 +2053,24 @@ li.menu-item {
                 position: relative;
 
                 .badge-wrapper {
-                    display: flex;
+                  display: flex;
 
-                    .badge-icon {
-                        width: 24px;
-                        height: 30px;
-                    }
-                }
+                  .badge-icon,
+                  i.badge {
+                    width: 24px;
+                    height: 30px;
+                  }
+
+                  i.badge {
+                    .img-format;
+                    background-size: auto;
+
+                    &.word     { .format-from-index(0); }
+                    &.slide    { .format-from-index(10); }
+                    &.cell     { .format-from-index(6); }
+                    &.pdf      { .format-from-index(13); }
+                  }
+              }
             }
 
             .title {
