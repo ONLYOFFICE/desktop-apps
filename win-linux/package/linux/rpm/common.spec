@@ -27,7 +27,7 @@ work offline with documents, spreadsheets, presentations, PDFs, and PDF forms.
 %package help
 Summary: Offline help for %{_company_name} %{_product_name}
 BuildArch: noarch
-Requires: (%{_package_opensource} or %{_package_commercial})
+Requires: %{_package_opensource}
 
 %description help
 This package contains offline help files.
