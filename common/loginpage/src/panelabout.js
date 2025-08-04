@@ -93,7 +93,7 @@
                                     </svg>
                                 </div>
                                 <div class="vbox">
-                                    <p id="idx-about-appname">${_opts.appname}</p>
+                                    <p id="idx-about-appname">${_opts.appname}${_opts.commercial === true ? ' Pro' : ''}</p>
                                     <p id="idx-about-version"><span l10n>${strVersion}</span> ${_opts.version}</p>
                                 </div>
                             </section><p></p>
