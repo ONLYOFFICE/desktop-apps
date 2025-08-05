@@ -41,6 +41,10 @@
 #include <QJsonDocument>
 #include <QFile>
 
+#define DEFAULT_LICENSE_NAME    "GNU AGPL v3"
+#define DEFAULT_LICENSE_URL     URL_AGPL
+#define LICENSE_FILE_NAME       "./LICENSE.txt"
+
 CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
     CMainWindow(rect)
 {
@@ -49,9 +53,28 @@ CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
 
 void CMainWindowImpl::refreshAboutVersion()
 {
-    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" URL_AGPL "')\" draggable=\"false\" href=\"#\"&gt;GNU AGPL v3&lt;/a&gt;";
-
     QJsonObject _json_obj;
+
+    QString _lic_name, _lic_url;
+    QFile _lic_file(LICENSE_FILE_NAME);
+    if ( _lic_file.exists() ) {
+        if ( _lic_file.open(QIODevice::ReadOnly | QIODevice::Text )) {
+            QTextStream stream(&_lic_file);
+            _lic_name = _lic_file.readLine().trimmed();
+            _lic_file.close();
+        }
+    }
+
+    if ( _lic_name.isEmpty() ) {
+        _lic_name = DEFAULT_LICENSE_NAME;
+        _lic_url = DEFAULT_LICENSE_URL;
+    } else {
+        _lic_url = "file://" + QFileInfo(LICENSE_FILE_NAME).absoluteFilePath();
+        _json_obj["commercial"] = _lic_name != DEFAULT_LICENSE_NAME;
+    }
+
+    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";
+
     _json_obj["version"]    = VER_FILEVERSION_STR;
 #ifdef Q_OS_WIN
 # ifdef Q_OS_WIN64
@@ -61,6 +84,7 @@ void CMainWindowImpl::refreshAboutVersion()
 # endif
 #endif
     _json_obj["edition"]    = _license;
+
 #if defined(ABOUT_PAGE_APP_NAME)
     _json_obj["appname"]    = ABOUT_PAGE_APP_NAME;
 #else

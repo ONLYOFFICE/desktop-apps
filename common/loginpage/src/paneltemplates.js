@@ -93,8 +93,8 @@
                                             <use id="idx-nothing-found-dark" href="#nothing-found-dark"></use>
                                         </svg>
                                     </div>
-                                    <p class="no-results-title">${_lang.tplNoResultsTitle}</p>
-                                    <p class="no-results-text">${_lang.tplNoResultsText}</p> 
+                                    <p class="no-results-title" l10n>${_lang.tplNoResultsTitle}</p>
+                                    <p class="no-results-text" l10n>${_lang.tplNoResultsText}</p> 
                                 </div>
                                 <section class='themed-sroll' panel='all'>
                                     <div class='table-box flex-fill'>
@@ -146,9 +146,7 @@
     });
 
     utils.fn.extend(ControllerTemplates.prototype, (function() {
-        let _page_num = 0, 
-            isLoading = false, 
-            totalPages = null; 
+        let isCloudTmplsLoading = false;
 
         const _on_nav_item_click = function(e) {
             $('.nav-item', this.view.$panel).removeClass('selected');
@@ -272,7 +270,7 @@
                                 items.push(new FileTemplateModel(item));
                             } else {
                                 if ( !m.icon && item.icon ) {
-                                    m.set('icon', item.icon);
+                                    m.set('icon', $('<div>').html(item.icon).text());
                                 }
                             }
                         }
@@ -353,26 +351,38 @@
             $('#search-no-results', $panel).toggle(matchCount === 0);
         };
         
-        const _loadTemplates = function() {
-            if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
+        const _loadTemplates = function(nl, page_num = 0, fallBack = 0) {
+            if (isCloudTmplsLoading) return;
 
-            _page_num++;  
-            isLoading = true;
+            let locale = 'en';
+            if (nl) {
+                if (fallBack === 0) {
+                    locale = nl.replace('_', '-'); 
+                } else if (fallBack === 1) {
+                    locale = nl.replace('_', '-').split('-')[0]; 
+                }
+            }
 
-            const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com'; // https://oforms.teamlab.info
-            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            page_num++;
+            isCloudTmplsLoading = true;
+
+            const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com'; // https://oforms.teamlab.info
+            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=${locale}&pagination[page]=${page_num}`;
             fetch(_url)
                 .then(r => r.json())
                 .then(d => {
-                    isLoading = false;
-                    if (d.data) {
+                    isCloudTmplsLoading = false;
+                    if (d.data && d.data.length > 0) {
                         _on_add_cloud_templates.call(this, d.data);
-                        totalPages = d.meta.pagination.pageCount;
+                        const totalPages = d.meta.pagination.pageCount;
                         
-                        if (_page_num < totalPages) {
-                            _loadTemplates.call(this);
+                        if (page_num + 1 <= totalPages) {
+                            _loadTemplates.call(this, nl, page_num, fallBack);
                         } 
-                     }
+                    } else if (d.data && d.data.length === 0 && fallBack < 2) {
+                        _resetPagination.call(this);
+                        _loadTemplates.call(this, nl, 0, fallBack + 1);
+                    }
                 })
                 .catch (function (err) {
                     console.error(err);
@@ -382,19 +392,9 @@
                 })
         };
 
-        const loadAllPages = function() {
-            if (isLoading) return;
-
-            _page_num = 0;
-            const self = this;
-            const loadNext = () => {
-                if (_page_num < totalPages || totalPages === null) {
-                    _loadTemplates.call(self);
-                    setTimeout(loadNext, 150); 
-                }
-            };
-
-            loadNext(); 
+        const _resetPagination = function() {
+            isCloudTmplsLoading = false;
+            this.templates.empty();
         };
     
         return {
@@ -438,13 +438,16 @@
                     ls.push("en-US","en_US","en");
                     window.sdk.LocalFileTemplates(ls);
                 };
-                _reload_templates(utils.Lang.id);
 
                 CommonEvents.on('lang:changed', (ol, nl) => {
+                    _resetPagination.call(this);  
                     _reload_templates(nl);
+                    _loadTemplates.call(this, nl);
+                    $('#template-search', this.view.$panel).attr('placeholder', utils.Lang.tplSearch);
                 });
 
-                loadAllPages.call(this);
+                _reload_templates(utils.Lang.id);
+                _loadTemplates.call(this, utils.Lang.id);
 
                 return this;
             }
