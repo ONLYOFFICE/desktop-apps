@@ -140,11 +140,10 @@
                         </div>
                         <div class="card">
                             <div class="badge-wrapper">
-                                ${isSvgIcons ? 
-                                `<svg class="icon badge-icon" data-iconname="${format}" data-precls="tool-icon">
+                                <svg class="icon" data-iconname="${format}" data-precls="tool-icon">
                                     <use href="#${format}"></use>
-                                </svg>`
-                                : badge}
+                                </svg>
+                                ${!isSvgIcons ? badge : ''}
                             </div>
                             <div class="title">${info.name}</div>
                             ${cloudIcon}
