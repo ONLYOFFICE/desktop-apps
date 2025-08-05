@@ -143,13 +143,14 @@
                 <div ${id} class="row text-normal">
                     <div class="col-name" title="${fullName}">
                         <div class="icon">
-                            <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
-                                <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
-                            </svg>
-                            ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
-                                                <use xlink:href="#shield"></use>
-                                              </svg>` : ''}
-                            ${!isSvgIcons ? `<i class="icon ${info.type === 'folder' ? 'img-el folder' : `img-format ${info.format}`}"></i>` :''}
+                            <i class="icon ${info.type === 'folder' ? 'img-el folder' : `img-format ${info.format}`}"></i>
+                            ${!isSvgIcons ? '' : `<svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
+                                                    <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
+                                                </svg>
+                                                ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
+                                                                    <use xlink:href="#shield"></use>
+                                                                </svg>` : ''}` 
+                            }
                         </div>
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
@@ -182,32 +183,65 @@
 
             // todo: rewrite cicon rescale
 
-            $('#box-recent .cicon').each(function () {
-                 elm = $(this);
-                 parent = elm.parent();
-                 if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-                     parent.toggleClass('crypted-svg crypted');
+            // $('#box-recent .cicon').each(function () {
+            //      elm = $(this);
+            //      parent = elm.parent();
+            //      if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
+            //          parent.toggleClass('crypted-svg crypted');
 
-                 if(!pasteSvg || !!$('svg',elm).length) return;
+            //      if(!pasteSvg || !!$('svg',elm).length) return;
 
-                 icoName = $('i.icon', elm).attr('class').split(' ').filter((cls) => cls != 'icon' && cls != 'img-format');
-                 elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
-                 if(parent.hasClass('crypted-svg'))
-                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+            //      icoName = $('i.icon', elm).attr('class').split(' ').filter((cls) => cls != 'icon' && cls != 'img-format');
+            //      elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
+            //      if(parent.hasClass('crypted-svg'))
+            //          elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+            // });
+
+            $('#box-recent .row.text-normal').each(function () {
+                let elm = $(this);
+                let iconElem = elm.find('.col-name .icon i.icon');
+                let icoName = iconElem.attr('class').split(' ').filter(cls => cls !== 'icon' && cls !== 'img-format');
+                let iconContainer = iconElem.closest('div.icon');
+
+                if (!pasteSvg || iconContainer.find('svg.icon').length) return;
+
+                iconContainer.append(`<svg class="icon" data-iconname="${icoName}" data-precls="tool-icon">
+                                            <use xlink:href="#${icoName}"></use>
+                                    </svg>`);
+
+                if (elm.hasClass('crypted-svg')) {
+                    elm.append(`<svg class="shield"><use xlink:href="#shield"></use></svg>`);
+                }
             });
 
-            $('#box-recent-folders td.cicon').each(function (){
-                elm=$(this)
-                parent = elm.parent();
-                if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-                    parent.toggleClass('crypted-svg crypted');
-                if(!pasteSvg || !!$('svg',elm).length) return;
+            // $('#box-recent-folders td.cicon').each(function (){
+            //     elm=$(this)
+            //     parent = elm.parent();
+            //     if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
+            //         parent.toggleClass('crypted-svg crypted');
+            //     if(!pasteSvg || !!$('svg',elm).length) return;
 
-                elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
-                if(parent.hasClass('crypted-svg'))
-                    elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+            //     elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
+            //     if(parent.hasClass('crypted-svg'))
+            //         elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
 
-                });
+            //     });
+
+            $('.open-panel-container .row.text-normal').each(function () {
+                let elm = $(this);
+                let iconElem = elm.find('.col-name .icon i.icon');
+                let iconContainer = iconElem.closest('div.icon');
+
+                if (!pasteSvg || iconContainer.find('svg.icon').length) return;
+
+                iconContainer.append(`<svg class="icon folder" data-iconname="folder-small" data-precls="tool-icon">
+                                            <use xlink:href="#folder-small"></use>
+                                    </svg>`);
+
+                if (elm.hasClass('crypted-svg')) {
+                    elm.append(`<svg class="shield"><use xlink:href="#shield"></use></svg>`);
+                }
+            });
         },
         updateListSize: function () {
             const windowBottom = $(window).height();
