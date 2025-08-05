@@ -149,7 +149,7 @@
                             ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
                                                 <use xlink:href="#shield"></use>
                                               </svg>` : ''}
-                            ${!isSvgIcons ? `<i class="icon tool-icon ${info.type === 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
+                            ${!isSvgIcons ? `<i class="icon ${info.type === 'folder' ? 'img-el folder' : `img-format ${info.format}`}"></i>` :''}
                         </div>
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>

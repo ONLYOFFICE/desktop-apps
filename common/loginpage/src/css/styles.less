@@ -438,10 +438,44 @@ li.menu-item {
 
     .col-name {
       height: 32px;
+      .switch-svg();
 
-      .icon {
-        width: 32px;
+      .icon, i.icon {
+        // width: 32px;
+        width: 24px;
         height: 32px;
+      }
+
+      .img-format {
+        display: inline-block;
+        background-size: auto;
+        &.docx {
+          .format-from-index(0);
+        } 
+        &.txt {
+          .format-from-index(4);
+        }
+        &.htm, &.html {
+          .format-from-index(5);
+        }
+        &.xlsx {
+          .format-from-index(6);
+        }
+        &.ppt {
+          .format-from-index(11);
+        }
+        &.pdf {
+          .format-from-index(13);
+        }
+      }
+
+      .img-el {
+        display: inline-block;
+        &.folder {
+          height: 24px;
+          width: 28px;
+          background-position: -58px -48px;
+        }
       }
 
       .name {
