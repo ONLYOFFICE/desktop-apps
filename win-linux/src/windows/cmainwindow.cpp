@@ -1363,7 +1363,7 @@ void CMainWindow::onDocumentPrint(void * opts)
         printer->setFromTo(1, pagesCount);
         printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
         printer->setDuplex(AscAppManager::printData().duplexMode());
-        printer->setColorMode(AscAppManager::printData().colorSupported() ? QPrinter::Color : QPrinter::GrayScale);
+        printer->setColorMode(AscAppManager::printData().colorMode() ? QPrinter::Color : QPrinter::GrayScale);
         if ( printer->supportsMultipleCopies() ) {
             printer->setCopyCount(AscAppManager::printData().copiesCount());
         }

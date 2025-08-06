@@ -110,7 +110,7 @@ public:
     QPrinter::DuplexMode duplex_mode{QPrinter::DuplexMode::DuplexNone};
     bool is_quick = false;
     bool use_system_dialog = true;
-    bool color_supported = true;
+    bool color_mode = true;
     int page_from = 0,
         page_to = 0;
     int pages_count = -1,
@@ -144,7 +144,7 @@ public:
             }
 
             use_system_dialog = native.contains("usesystemdialog") ? native["usesystemdialog"].toBool() : true;
-            color_supported = native.contains("colorSupported") ? native["colorSupported"].toBool() : true;
+            color_mode = native.contains("colorMode") ? native["colorMode"].toBool() : true;
 
             if ( native.contains("pages") ) {
                 QString range = native["pages"].toString();
@@ -512,9 +512,9 @@ bool CPrintData::useSystemDialog() const
     return m_priv->use_system_dialog;
 }
 
-auto CPrintData::colorSupported() const -> bool
+auto CPrintData::colorMode() const -> bool
 {
-    return m_priv->color_supported;
+    return m_priv->color_mode;
 }
 
 auto CPrintData::pagesCount() const -> int
