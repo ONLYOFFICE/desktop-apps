@@ -64,7 +64,7 @@
         var _opts = args.opts;
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div id="idx-ver-edition" class="about-field">${_opts.edition}</div>` : '';
-        const strVersion = args.opts.paidversion === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
+        const strVersion = args.opts.commercial === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
 
         let _ext_ver = '';
         if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? 'x64' : 'x86'}`;
@@ -93,7 +93,7 @@
                                     </svg>
                                 </div>
                                 <div class="vbox">
-                                    <p id="idx-about-appname">${_opts.appname}</p>
+                                    <p id="idx-about-appname">${_opts.appname}${_opts.commercial === true ? ' Pro' : ''}</p>
                                     <p id="idx-about-version"><span l10n>${strVersion}</span> ${_opts.version}</p>
                                 </div>
                             </section><p></p>
