@@ -65,7 +65,7 @@ l10n.tr = {
     checkUpdates: 'Güncellemeleri kontrol et',
     strVersion: 'sürüm',
     strVersionCommunity: 'Topluluk sürümü',
-    strVersionCommercial: 'Ticari sürüm',
+    strVersionCommercial: 'Kurumsal sürüm',
     emptySlide1Title: 'Paylaş ve işbirliği yap',
     emptySlide1Text: 'Hızlı veya Sıkı gerçek zamanlı yardımcı düzenleme arasında seçim yapın, belgenizde sohbet edin, yorum ekleyin veya inceleme için paylaşın.',
     emptySlide2Title: 'Önceki sürümlerini gör veya yenile',

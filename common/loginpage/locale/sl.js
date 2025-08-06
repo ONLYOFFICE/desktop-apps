@@ -65,7 +65,7 @@ l10n.sl = {
     checkUpdates: 'Preveri posodobitve',
     strVersion: 'verzija',
     strVersionCommunity: 'Verzija Community',
-    strVersionCommercial: 'Komercialna verzija',
+    strVersionCommercial: 'Verzija Enterprise',
     emptySlide1Title: 'Deli & sodeluj',
     emptySlide1Text: 'Izbirajte med hitrim ali striktnim urejanjem v realnem času, klepetajte v svojem dokumentu, dodajte komentarje v dokument ali ga posredujte drugim v pregled.',
     emptySlide2Title: 'Ogled ali obnovitev prejšnjih verzij',

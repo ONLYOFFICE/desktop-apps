@@ -67,7 +67,7 @@ l10n.es = {
     checkUpdates: 'Comprobar si hay actualizaciones',
     strVersion: 'versión',
     strVersionCommunity: 'Versión comunitaria',
-    strVersionCommercial: 'Versión comercial',
+    strVersionCommercial: 'Versión empresarial',
     emptySlide1Title: 'Comparta y colabore',
     emptySlide1Text: 'Seleccione entre dos modos de coedición en tiempo real: «Rápido» y «Estricto», chatee en su documento, añada comentarios o compártalo para revisión.',
     emptySlide2Title: 'Vea o restaure versiones anteriores',

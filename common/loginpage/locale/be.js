@@ -65,7 +65,7 @@ l10n.be = {
     checkUpdates: 'Праверыць на наяўнасць абнаўленняў',
     strVersion: 'версія',
     strVersionCommunity: 'Версія Community',
-    strVersionCommercial: 'Камерцыйная версія',
+    strVersionCommercial: 'Версія Enterprise',
     emptySlide1Title: 'Адкрыццё доступу і сумесная праца',
     emptySlide1Text: 'Выкарыстоўвайце хуткі або строгі рэжым сумеснага рэдагавання, карыстайцеся чатам, дадавайце каментары або адпраўляйце дакументы на перагляд.',
     emptySlide2Title: 'Прагляд або аднаўленне папярэдніх версій',
