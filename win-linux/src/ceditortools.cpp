@@ -140,7 +140,7 @@ namespace CEditorTools
 
 #ifdef _WIN32
             printer->setOutputFileName("");
-            PrintDialog * dialog =  new PrintDialog(printer, this);
+            PrintDialog * dialog =  new PrintDialog(printer, parent);
 #else
             QFileInfo info(documentName);
             QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
