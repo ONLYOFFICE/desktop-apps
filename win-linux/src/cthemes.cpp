@@ -1,9 +1,12 @@
+#include <QtGlobal>
+#ifdef Q_OS_LINUX
+
+#include <gio/gio.h>
+#include <glib.h>
+
+#endif // Q_OS_LINUX
 
 #include "cthemes.h"
-#ifdef Q_OS_LINUX
-# include <gio/gio.h>
-# include <glib.h>
-#endif
 #include "defines.h"
 #include "utils.h"
 #include <QSettings>
