@@ -5,7 +5,10 @@ Source: M4_PUBLISHER_URL
 
 Files: *
 Copyright: 2016-M4_CURRENT_YEAR, M4_PUBLISHER_NAME <M4_SUPPORT_MAIL>
-License: AGPL-3.0-only and CC-BY-SA-4.0
+ifelse(M4_PACKAGE_EDITION, commercial,
+`License: Proprietary
+ Placeholder',
+`License: AGPL-3.0-only and CC-BY-SA-4.0
  This program is a free software product. You can redistribute it and/or
  modify it under the terms of the GNU Affero General Public License (AGPL)
  version 3 as published by the Free Software Foundation. In accordance with
@@ -28,7 +31,7 @@ License: AGPL-3.0-only and CC-BY-SA-4.0
  logo when distributing the program. Pursuant to Section 7(e) we decline to
  grant you any rights under trademark law for use of our trademarks.
  .
- All the Product's GUI elements, including illustrations and icon sets, as
+ All the Product''`s GUI elements, including illustrations and icon sets, as
  well as technical writing content are licensed under the terms of the
  Creative Commons Attribution-ShareAlike 4.0 International. See the License
- terms at https://creativecommons.org/licenses/by-sa/4.0/legalcode
+ terms at https://creativecommons.org/licenses/by-sa/4.0/legalcode')
