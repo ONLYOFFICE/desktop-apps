@@ -67,7 +67,7 @@ l10n.ro = {
     checkUpdates: 'Verificarea a actualizãrilor',
     strVersion: 'versiune',
     strVersionCommunity: 'Versiune Community',
-    strVersionCommercial: 'Versiune Comercială',
+    strVersionCommercial: 'Versiune Enterprise',
     emptySlide1Title: 'Partajare și colaborare',
     emptySlide1Text: 'Alegeți între moduri de colaborare în timp real Rapid sau Strict, utilizați un chat în documentul dvs, adãugați comentarii sau îl partajați pentru revizuire.',
     emptySlide2Title: 'Vizualizarea şi restaurarea versiunilor anterioare',

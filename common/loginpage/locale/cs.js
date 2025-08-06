@@ -65,7 +65,7 @@ l10n.cs = {
     checkUpdates: 'Kontrola aktualizací',
     strVersion: 'verze',
     strVersionCommunity: 'Komunitní verze',
-    strVersionCommercial: 'Komerční verze',
+    strVersionCommercial: 'Verze Enterprise',
     emptySlide1Title: 'Sdílejte a spolupracujte',
     emptySlide1Text: 'Vyberte si mezi rychlou nebo podrobnou spolu-úpravou v reálném čase, chatujte přímo v dokumentu, přidávejte či sdílejte dokumenty pro kontrolu.',
     emptySlide2Title: 'Zobrazte si nebo obnovte předchozí verze',

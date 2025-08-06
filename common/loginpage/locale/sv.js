@@ -65,7 +65,7 @@ l10n.sv = {
     checkUpdates: 'Sök efter uppdateringar',
     strVersion: 'version',
     strVersionCommunity: 'Community-version',
-    strVersionCommercial: 'Kommersiell version',
+    strVersionCommercial: 'Enterprise-version',
     emptySlide1Title: 'Dela & samarbeta',
     emptySlide1Text: 'Välj mellan Snabb eller Strikt realtidsredigering, chatta i ditt dokument, lägg till kommentarer eller dela det för ett omdöme.',
     emptySlide2Title: 'Se eller återställ tidigare versioner',

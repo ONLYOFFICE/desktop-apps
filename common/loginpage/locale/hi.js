@@ -65,7 +65,7 @@ l10n.hi = {
     checkUpdates: 'अपडेट की जाँच करें',
     strVersion: 'संस्करण',
     strVersionCommunity: 'सामुदायिक संस्करण',
-    strVersionCommercial: 'वाणिज्यिक संस्करण',
+    strVersionCommercial: 'एंटरप्राइज़ संस्करण',
     emptySlide1Title: 'साझा और सहयोग करें',
     emptySlide1Text: 'तेज़ या सख्त वास्तविक समय में सह-संपादन करने में से चयन करें, अपने दस्तावेज़ में चैट करें, टिप्पणी जोडें या समीक्षा के लिए इसे साझा करें।',
     emptySlide2Title: 'देखें या पहले वाले संस्करणों को बहाल करें',

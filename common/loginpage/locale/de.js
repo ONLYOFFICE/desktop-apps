@@ -67,7 +67,7 @@ l10n.de = {
     checkUpdates: 'Nach Updates suchen',
     strVersion: 'Version',
     strVersionCommunity: 'Community-Version',
-    strVersionCommercial: 'Kommerzielle Version',
+    strVersionCommercial: 'Enterprise-Version',
     emptySlide1Title: 'Freigabe & Zusammenarbeit',
     emptySlide1Text: 'Wählen Sie zwischen zwei Modis (Formal / Halbformal) für die Bearbeitung in Echtzeit, chatten und kommentieren Sie direkt im Dokument oder teilen Sie Ihre Dokumente zur Überprüfung.',
     emptySlide2Title: 'Anzeigen oder Wiederherstellen der früheren Versionen',
