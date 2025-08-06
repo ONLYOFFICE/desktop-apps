@@ -101,7 +101,7 @@ l10n.en = {
     checkUpdates: 'Check for updates',
     strVersion: 'version',
     strVersionCommunity: 'Community version',
-    strVersionCommercial: 'Commercial version',
+    strVersionCommercial: 'Enterprise version',
     emptySlide1Title: 'Share & collaborate',
     emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add comments or share it for review.',
     emptySlide2Title: 'View or restore previous versions',
