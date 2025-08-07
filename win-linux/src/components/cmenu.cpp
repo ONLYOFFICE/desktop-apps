@@ -171,7 +171,7 @@ public:
         item->installEventFilter(this);
         item->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft)  | Qt::AlignAbsolute);
 #ifdef _WIN32
-        if (m_dpiRatio == 1.0 && AscAppManager::themes().current().isDark()) {
+        if (m_dpiRatio == 1.0 && AscAppManager::themes().current().isDark() && !AscAppManager::isRtlEnabled()) {
             QFont fnt = item->font();
             fnt.setStretch(70);
             item->setFont(fnt);
