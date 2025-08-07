@@ -549,6 +549,7 @@
                         {
                             id: 'word',
                             title: utils.Lang.newDoc,
+                            langKey: 'newDoc',
                             formatLabel: {
                                 value: 'DOCX',
                                 gradientColorStart: '#4298C5',
@@ -560,6 +561,7 @@
                         {
                             id: 'cell',
                             title: utils.Lang.newXlsx,
+                            langKey: 'newXlsx',
                             formatLabel: {
                                 value: 'XLSX',
                                 gradientColorStart: '#5BB514',
@@ -571,6 +573,7 @@
                         {
                             id: 'slide',
                             title: utils.Lang.newPptx,
+                            langKey: 'newPptx',
                             formatLabel: {
                                 value: 'PPTX',
                                 gradientColorStart: '#F4893A',
@@ -582,6 +585,7 @@
                         {
                             id: 'form',
                             title: utils.Lang.newForm,
+                            langKey: 'newForm',
                             formatLabel: {
                                 value: 'PDF',
                                 gradientColorStart: '#F36653',

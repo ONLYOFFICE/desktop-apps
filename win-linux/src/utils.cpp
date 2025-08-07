@@ -649,23 +649,14 @@ QByteArray Utils::getAppStylesheets(int scale)
 }
 */
 
-QByteArray Utils::readStylesheets(std::vector<std::string> const * list)
+QByteArray Utils::readStylesheets(std::vector<std::string> const &list)
 {
-    auto read_styles = [](std::vector<std::string> const * inl) {
-        QByteArray _css;
-        QFile file;
-        for ( auto &path : *inl ) {
-            file.setFileName(path.c_str());
-            if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-                _css.append(file.readAll());
-                file.close();
-            }
-        }
+    QByteArray _css;
+    for ( auto &path : list ) {
+        _css.append(readStylesheets(QString::fromStdString(path)));
+    }
 
-        return std::move(_css);
-    };
-
-    return read_styles(list);
+    return _css;
 }
 
 QByteArray Utils::readStylesheets(const QString& path)

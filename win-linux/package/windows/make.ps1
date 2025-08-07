@@ -76,6 +76,16 @@ Get-ChildItem -Directory `
         Move-Item -Path "$src" -Destination "$dst"
     }
 
+Write-Host "COPY: ..\..\..\common\package\license\* > $BuildDir\desktop\"
+$LicenseDir = switch ($Target) {
+    "commercial" { "commercial" }
+    default      { "opensource" }
+}
+Copy-Item -Force `
+    -Path "..\..\..\common\package\license\3dparty\3DPARTYLICENSE", `
+          "..\..\..\common\package\license\$LicenseDir\LICENSE.txt" `
+    -Destination "$BuildDir\desktop\"
+
 # "$BuildDir\desktop: {0:0.00} MB" -f ((Get-ChildItem -Recurse `
 #     -Path "$BuildDir\desktop" | Measure-Object -Property Length -Sum).Sum / 1MB)
 # "$BuildDir\help: {0:0.00} MB" -f ((Get-ChildItem -Recurse `
@@ -112,12 +122,4 @@ if ($Sign) {
 if (Test-Path "$BuildDir\desktop\vlc-cache-gen.exe") {
     Write-Host "DELETE: $BuildDir\desktop\vlc-cache-gen.exe"
     Remove-Item -Force -LiteralPath "$BuildDir\desktop\vlc-cache-gen.exe"
-}
-
-if (Test-Path "$BuildDir\desktop\online-installer.exe") {
-    $dst = "$PSScriptRoot\OnlineInstaller-$Version-$Arch" + $(if ($Target -eq "xp") {"-xp"}) + ".exe"
-    Write-Host "MOVE: $BuildDir\desktop\online-installer.exe > $dst"
-    Move-Item `
-        -Path "$BuildDir\desktop\online-installer.exe" `
-        -Destination $dst
 }

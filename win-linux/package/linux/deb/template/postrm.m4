@@ -8,7 +8,12 @@ case "$1" in
     rm -fr /home/*/.config/M4_COMPANY_NAME_LOW/DesktopEditors.conf
   ;;
 
-  remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+  remove|upgrade)
+    rm -f /usr/share/mime/packages/onlyoffice-docxf.xml
+    rm -f /usr/share/mime/packages/onlyoffice-oform.xml
+  ;;
+
+  failed-upgrade|abort-install|abort-upgrade|disappear)
   ;;
 
   *)

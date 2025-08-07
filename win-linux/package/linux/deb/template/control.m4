@@ -33,6 +33,7 @@ ifelse(M4_PACKAGE_EDITION, full,
 Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,Suggests: M4_PACKAGE_NAME-help
 ,)dnl
+Replaces: ifelse(M4_PACKAGE_EDITION, commercial, M4_PACKAGE_OPENSOURCE, M4_PACKAGE_COMMERCIAL)
 Description: Desktop editors for text docs, spreadsheets, presentations, PDFs, and PDF forms.
  Open-source office suite pack that comprises all the tools you need to
  work offline with documents, spreadsheets, presentations, PDFs, and PDF forms.
@@ -41,7 +42,6 @@ ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 Package: M4_PACKAGE_NAME-help
 Architecture: all
 Pre-Depends: dpkg (>= 1.14.0)
-Depends:
-  M4_PACKAGE_NAME
+Depends: M4_PACKAGE_OPENSOURCE | M4_PACKAGE_COMMERCIAL
 Description: offline help for M4_COMPANY_NAME M4_PRODUCT_NAME
  This package contains offline help files.,)

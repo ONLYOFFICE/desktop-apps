@@ -103,26 +103,26 @@
             _panel.$panel.find('iframe').css({'height':'100%','border':'0 none'});
 
             let iframe = _panel.$panel.find('iframe');
-            iframe.load( e => {
-                $(e.target).contents().find("head")
-                    .append($("<style type='text/css'>body{margin-left:287px;}</style>"));
 
-                // var script = e.target.contentWindow.document.createElement("script");
-                // script.type = "text/javascript";
-                // script.innerHTML = `console.log('script loaded: ' + ONLYONET)`;
-                // e.target.contentWindow.document.body.appendChild(script);
+            if (!panel_url.startsWith("onlyoffice://")) {
+                iframe.load( e => {
+                    // var script = e.target.contentWindow.document.createElement("script");
+                    // script.type = "text/javascript";
+                    // script.innerHTML = `console.log('script loaded: ' + ONLYONET)`;
+                    // e.target.contentWindow.document.body.appendChild(script);
 
-                if ( !!e.target.contentWindow.ONLYONET ) {
-                    let _funcKeepPhrase = e.target.contentWindow.ONLYONET.storeSeedPhraseToFile;
-                    e.target.contentWindow.ONLYONET.storeSeedPhraseToFile = function(seedPhrase, password, callback){
-                        let _c = 0;
-                        while ( !!localStorage['seedphrase' + _c] ) { ++_c; }
-                        localStorage.setItem('seedphrase' + _c, seedPhrase);
+                    if ( !!e.target.contentWindow.ONLYONET ) {
+                        let _funcKeepPhrase = e.target.contentWindow.ONLYONET.storeSeedPhraseToFile;
+                        e.target.contentWindow.ONLYONET.storeSeedPhraseToFile = function(seedPhrase, password, callback){
+                            let _c = 0;
+                            while ( !!localStorage['seedphrase' + _c] ) { ++_c; }
+                            localStorage.setItem('seedphrase' + _c, seedPhrase);
 
-                        return _funcKeepPhrase(seedPhrase, password, callback);
-                    };
-                }
-            });
+                            return _funcKeepPhrase(seedPhrase, password, callback);
+                        };
+                    }
+                });
+            }
 
             if ( utils.Lang.id != 'en' )
                 _translatePanel(_panel, 'en', utils.Lang.id);
