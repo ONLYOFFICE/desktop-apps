@@ -65,7 +65,7 @@ l10n.et = {
     checkUpdates: 'Kontrolli uuendusi',
     strVersion: 'versioon',
     strVersionCommunity: 'Kogukonna versioon',
-    strVersionCommercial: 'Kommertsversioon',
+    strVersionCommercial: 'Ettevõtte versioon',
     emptySlide1Title: 'Jaga & tee koostööd',
     emptySlide1Text: 'Vali kiire või range reaalajas koostöö vahel, vestle oma dokumendis, lisa kommentaare ja jaga seda, et saada tagasisidet.',
     emptySlide2Title: 'Vaata või taasa eelnevad versioonid',

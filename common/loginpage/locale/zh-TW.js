@@ -65,7 +65,7 @@ l10n.zh_TW = {
     checkUpdates: '檢查更新',
     strVersion: '版本',
     strVersionCommunity: '社群版本',
-    strVersionCommercial: '商業版本',
+    strVersionCommercial: '企業版',
     emptySlide1Title: '共用與共同作業',
     emptySlide1Text: '可選用「快速」或「絕對即時」的共同編輯功能，在文件上聊天、新增註解，或共用待檢閱的文件。',
     emptySlide2Title: '檢視或還原先前版本',

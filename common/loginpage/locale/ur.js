@@ -65,7 +65,7 @@ l10n.ur = {
     checkUpdates: 'اپ ڈیٹس کے لیے چیک کریں',
     strVersion: 'ورژن',
     strVersionCommunity: 'کمیونٹی ورژن',
-    strVersionCommercial: 'تجارتی ورژن',
+    strVersionCommercial: 'انٹرپرائز ورژن',
     emptySlide1Title: 'شیئر کریں اور تعاون کریں',
     emptySlide1Text: 'تیز یا سخت ریئل ٹائم کو ایڈیٹنگ میں سے انتخاب کریں، اپنے دستاویز میں چیٹ کریں، تبصرے شامل کریں یا جائزہ کے لیے اس کا اشتراک کریں۔',
     emptySlide2Title: 'پچھلے ورژن دیکھیں یا بحال کریں',

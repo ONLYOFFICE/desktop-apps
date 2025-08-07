@@ -67,7 +67,7 @@ l10n.pt_BR = {
     checkUpdates: 'Verifique atualizações',
     strVersion: 'versão',
     strVersionCommunity: 'Versão da comunidade',
-    strVersionCommercial: 'Versão comercial',
+    strVersionCommercial: 'Versão empresarial',
     emptySlide1Title: 'Compartilhe e colabore',
     emptySlide1Text: 'Escolha modo de coedição em tempo real - Rápido ou Restrito, converse em seu documento, adicione comentários ou compartilhá-lo para revisão.',
     emptySlide2Title: 'Visualize ou restaure versões anteriores',

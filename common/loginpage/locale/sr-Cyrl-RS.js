@@ -67,7 +67,7 @@ l10n.sr_Cyrl_RS = {
     checkUpdates: 'Провери ажурирања',
     strVersion: 'верзија',
     strVersionCommunity: 'Community верзија',
-    strVersionCommercial: 'Комерцијална верзија',
+    strVersionCommercial: 'Enterprise верзија',
     emptySlide1Title: 'Дели и сарађуј',
     emptySlide1Text: 'Одаберите између Брзог ор Строгог ко-едитовања у стварном времену, четујте у својим документима, додајте коментаре или их делите за преглед.',
     emptySlide2Title: 'Прегледај или обнови претходне верзије',

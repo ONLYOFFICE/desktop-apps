@@ -67,7 +67,7 @@ l10n.hu = {
     checkUpdates: 'Frissítések keresése',
     strVersion: 'verzió',
     strVersionCommunity: 'Közösségi verzió',
-    strVersionCommercial: 'Kereskedelmi verzió',
+    strVersionCommercial: 'Vállalati verzió',
     emptySlide1Title: 'Megosztás & együttműködés',
     emptySlide1Text: 'Válasszon a Gyors vagy Szigorú valós idejű közös szerkesztés közül, csevegjen a dokumentumban, kommenteljen, vagy ossza meg és véleményeztesse.',
     emptySlide2Title: 'Előző verziók megtekintése vagy visszaállítása',

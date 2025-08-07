@@ -65,7 +65,7 @@ l10n.he = {
     checkUpdates: 'בדוק אם קיימים עדכונים',
     strVersion: 'גרסה',
     strVersionCommunity: 'גרסת הקהילה',
-    strVersionCommercial: 'גרסה מסחרית',
+    strVersionCommercial: 'גרסת ארגונית',
     emptySlide1Title: 'שתף ושתף פעולה',
     emptySlide1Text: 'בחר בין עריכה משותפת מהירה או קפדנית בזמן אמת, שוחח בצ אט במסמך שלך, הוסף הערות או שתף אותו לבדיקה.',
     emptySlide2Title: 'הצג או שחזר גרסאות קודמות',

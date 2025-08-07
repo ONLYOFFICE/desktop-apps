@@ -65,7 +65,7 @@ l10n.lv = {
     checkUpdates: 'Pārbaudīt atjauninājumus',
     strVersion: 'versija',
     strVersionCommunity: 'Community versija',
-    strVersionCommercial: 'Komerciālā versija',
+    strVersionCommercial: 'Enterprise versija',
     emptySlide1Title: 'Koplietojiet un līdzdarbojieties',
     emptySlide1Text: 'Izvēlieties Ātro vai Strikto reāllaika koprediģēšanu, tērzējiet savos dokumentos, pievienojiet komentārus vai koplietojiet tos pārskatīšanai.',
     emptySlide2Title: 'Apskatīt vai atkopt iepriekšējās versijas',

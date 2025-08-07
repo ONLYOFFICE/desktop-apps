@@ -65,7 +65,7 @@ l10n.gl = {
     checkUpdates: 'Buscar actualizacións',
     strVersion: 'versión',
     strVersionCommunity: 'Versión Comunitaria',
-    strVersionCommercial: 'Versión Comercial',
+    strVersionCommercial: 'Versión Empresarial',
     emptySlide1Title: 'Compartir e colaborar',
     emptySlide1Text: 'Elixe entre coedición rápida ou estrita en tempo real, chatea no teu documento, engade comentarios ou compártea para revisión.',
     emptySlide2Title: 'Ver ou restaurar versións anteriores',
