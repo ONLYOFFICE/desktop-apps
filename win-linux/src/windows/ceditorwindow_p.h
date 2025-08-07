@@ -103,7 +103,6 @@ class CEditorWindowPrivate : public CCefEventsGate
     CEditorWindow * window = nullptr;
     QLabel * iconuser = nullptr;
     bool isPrinting = false,
-         layoutIsSet = false,
         isFullScreen = false;
     int layoutType = LayoutNone;
     CFullScrWidget * fs_parent = nullptr;
