@@ -272,6 +272,13 @@ var Scroll_offset = '16px';
 
 function replaceIcons(usesvg) {
     if ( usesvg ) {
+        $('.btn-quick.login').each((i, el) => {
+            const btn = $(el);
+            if (btn.find('svg.icon').length === 0) {
+                const svg = `<svg class="icon"><use xlink:href="#plus"></use></svg>`;
+                btn.prepend(svg);
+            }
+        });
     } else {
         $('.tool-menu svg.icon').each((i, el) => {
             el = $(el);
