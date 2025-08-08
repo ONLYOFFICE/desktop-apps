@@ -283,6 +283,17 @@ function replaceIcons(usesvg) {
                 $(t).insertAfter(el);
             }
         });
+
+        $('.badge-wrapper svg.icon').each((i, el) => {
+            el = $(el);
+            const p = el.parent();
+            const type = el.closest('.item').data('type');
+
+            if ($('i.badge', p).length === 0) {
+                const badge = `<i class="badge ${type}"></i>`;
+                $(badge).insertAfter(el);
+            }
+        });
     }
 }
 

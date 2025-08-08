@@ -423,7 +423,11 @@
                 mql.addEventListener('change', e => {
                     this.view.svgicons = !e.target.matches;
                 });
-
+                
+                CommonEvents.on("icons:svg", function(usesvg) {
+                    replaceIcons(usesvg);
+                });
+                
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 _on_nav_item_click.call(this, { target: $('.nav-item.selected', this.view.$panel) });
                 $('#template-search', this.view.$panel).on('input', () => {
