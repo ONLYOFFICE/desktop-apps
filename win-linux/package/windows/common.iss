@@ -103,7 +103,7 @@ SetupIconFile={#BRANDING_DIR}\..\..\extras\projicons\res\icons\desktopeditors.ic
 WizardImageFile={#BRANDING_DIR}\data\dialogpicture*.bmp
 WizardSmallImageFile={#BRANDING_DIR}\data\dialogicon*.bmp
 #ifdef PACKAGE_EDITION
-#if PACKAGE_EDITION == "Commercial"
+#if PACKAGE_EDITION == "Enterprise"
 LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.rtf
 #else
 LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf

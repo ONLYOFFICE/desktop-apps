@@ -18,7 +18,7 @@ if (-not $BuildDir) {
     $BuildDir = ".build.$Arch"
 }
 $MsiFile = switch ($Target) {
-    "commercial" { "$CompanyName-$ProductName-Commercial-$Version-$Arch.msi" }
+    "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.msi" }
     default      { "$CompanyName-$ProductName-$Version-$Arch.msi" }
 }
 $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
@@ -141,7 +141,7 @@ if ($Arch -eq "x86") {
 }
 if ($Target -eq "commercial") {
     $AdvInstConfig += `
-        "SetProperty Edition=Commercial", `
+        "SetProperty Edition=Enterprise", `
         "SetProperty AI_PRODUCTNAME_ARP=`"[|AppName] ([|Edition]) [|Version] ([|Arch])`"", `
         "SetEula -rtf `"$("..\..\..\common\package\license\commercial\LICENSE.rtf" | Resolve-Path)`"", `
         "SetPackageName `"$MsiFile`" -buildname $MsiBuild"
