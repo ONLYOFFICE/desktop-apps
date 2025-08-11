@@ -366,13 +366,18 @@
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
 
-                if (Menu.opened) {
-                    Menu.closeAll();
-                    return;
+                if (ppmenu.contextdata) {
+                    const m = ppmenu.contextdata;
+                    if (m.uid != model.uid)
+                        Menu.closeAll();
                 }
 
-                ppmenu.actionlist = actionList;
-                ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
+                if (!Menu.opened) {
+                    ppmenu.actionlist = actionList;
+                    ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
+                } else {
+                    Menu.closeAll();
+                }
             })
         }
 
