@@ -71,7 +71,7 @@ UninstallDisplayIcon      = {app}\app.ico
 #ifndef PACKAGE_EDITION
 UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#ARCH})
 #else
-UninstallDisplayName      = {#sAppName} ({#PACKAGE_EDITION}) {#sAppVerShort} ({#ARCH})
+UninstallDisplayName      = {#sAppName} {#PACKAGE_EDITION} {#sAppVerShort} ({#ARCH})
 #endif
 OutputDir                 ={#OUTPUT_DIR}
 PrivilegesRequired        =admin
