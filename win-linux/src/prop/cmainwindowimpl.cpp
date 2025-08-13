@@ -70,7 +70,7 @@ void CMainWindowImpl::refreshAboutVersion()
         _lic_name = DEFAULT_LICENSE_NAME;
         _lic_url = DEFAULT_LICENSE_URL;
     } else {
-        _lic_url = "file://" + _lic_path;
+        _lic_url = QUrl::fromLocalFile(_lic_path).toString();
         _json_obj["commercial"] = _lic_name != DEFAULT_LICENSE_NAME;
     }
 
