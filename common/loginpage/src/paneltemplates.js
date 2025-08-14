@@ -119,7 +119,9 @@
 
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
+            const isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio === 1;
             const type = utils.formatToEditor(info.type);
+            const format = utils.parseFileFormat(info.type);
             const badge = `<i class="badge ${type}"></i>`;
             const cloudIcon = info.isCloud ? `<svg class="icon cloud-icon" data-iconname="location-cloud" data-precls="tool-icon">
                                                 <use href="#location-cloud"></use>
@@ -137,7 +139,12 @@
                             ${icon_el}
                         </div>
                         <div class="card">
-                            <div class="badge-wrapper">${badge}</div>
+                            <div class="badge-wrapper">
+                                <svg class="icon" data-iconname="${format}" data-precls="tool-icon">
+                                    <use href="#${format}"></use>
+                                </svg>
+                                ${!isSvgIcons ? badge : ''}
+                            </div>
                             <div class="title">${info.name}</div>
                             ${cloudIcon}
                         </div>
@@ -396,6 +403,22 @@
             isCloudTmplsLoading = false;
             this.templates.empty();
         };
+
+        const onscale = function (pasteSvg) {
+            if (!pasteSvg) {
+                $('.badge-wrapper svg.icon').each((i, el) => {
+                    el = $(el);
+                    const p = el.parent();
+                    const type = el.closest('.item').data('type');
+
+                    if ($('i.badge', p).length === 0) {
+                        const badge = `<i class="badge ${type}"></i>`;
+                        $(badge).insertAfter(el);
+                    }
+                });
+            }
+            
+        };
     
         return {
             init: function() {
@@ -416,7 +439,9 @@
                 mql.addEventListener('change', e => {
                     this.view.svgicons = !e.target.matches;
                 });
-
+                
+                CommonEvents.on("icons:svg",  onscale)
+                
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 _on_nav_item_click.call(this, { target: $('.nav-item.selected', this.view.$panel) });
                 $('#template-search', this.view.$panel).on('input', () => {
