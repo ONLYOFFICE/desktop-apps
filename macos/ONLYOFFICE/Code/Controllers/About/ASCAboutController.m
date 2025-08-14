@@ -46,7 +46,9 @@
 #import "ASCExternalController.h"
 #import "ASCSharedSettings.h"
 
-@interface ASCAboutController ()
+@interface ASCAboutController () {
+    BOOL isCommercialVersion;
+}
 @property (weak) IBOutlet NSTextField *appNameText;
 @property (weak) IBOutlet NSTextField *versionText;
 @property (weak) IBOutlet NSTextField *copyrightText;
@@ -94,11 +96,20 @@
         }
     }
 
+    isCommercialVersion = false;
+
     // EULA View
     if (self.eulaWebView) {
         NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:@"EULA" withExtension:@"html" subdirectory:@"license"];
         [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:eulaUrl]];
     } else {
+        NSString * licPath = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@"txt" inDirectory:@"license"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:licPath]) {
+            isCommercialVersion = true;
+            [self.licenseButton setTarget:self]; // 'self' refers to the object containing the action method
+            [self.licenseButton setAction:@selector(buttonCommercialLicenseClicked:)]; // The selector for your action method
+        }
+
         // About View
         // Setup license button view
         NSMutableAttributedString * attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[self.licenseButton attributedTitle]];
@@ -116,9 +127,9 @@
         [self.appNameText setStringValue:locProductName];
         
         // Version
-        [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@", nil),
-                                          [infoDictionary objectForKey:@"CFBundleShortVersionString"]]];
-        
+        NSString * tplVersion = !isCommercialVersion ? NSLocalizedString(@"Community version %@", nil) : NSLocalizedString(@"Enterprise version %@", nil);
+        [self.versionText setStringValue:[NSString stringWithFormat:tplVersion, [infoDictionary objectForKey:@"CFBundleShortVersionString"]]];
+
         NSClickGestureRecognizer *click = [[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(onVersionClick:)];
         [self.versionText addGestureRecognizer:click];
         
@@ -162,7 +173,9 @@
 - (void)onVersionClick:(NSTextField *)sender {
     NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
 
-    [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@-%@)", nil),
+    NSString * tplVersion = !isCommercialVersion ? NSLocalizedString(@"Community version %@ (%@-%@)", nil) :
+                                            NSLocalizedString(@"Enterprise version %@ (%@-%@)", nil);
+    [self.versionText setStringValue:[NSString stringWithFormat:tplVersion,
                                       [infoDictionary objectForKey:@"CFBundleShortVersionString"],
                                       [infoDictionary objectForKey:@"CFBundleVersion"],
                                       [infoDictionary objectForKey:@"ASCBundleBuildNumber"]]];
@@ -174,6 +187,14 @@
 #elif _ARM_ONLY
     [self.versionText setStringValue:[NSString stringWithFormat:@"%@ Apple Silicon", [self.versionText stringValue]]];
 #endif
+}
+
+- (IBAction)buttonCommercialLicenseClicked:(id)sender {
+    NSString * licensePath = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@"txt" inDirectory:@"license"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:licensePath]) {
+        NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+        [workspace openFile:licensePath];
+    }
 }
 
 @end
