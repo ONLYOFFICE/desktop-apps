@@ -96,18 +96,13 @@
         }
     }
 
-    isCommercialVersion = false;
-    NSString * licPath = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@"html" inDirectory:@"license"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:licPath]) {
-        isCommercialVersion = true;
-//        [self.licenseButton setTarget:self];
-//        [self.licenseButton setAction:@selector(buttonCommercialLicenseClicked:)];
-    }
+    NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:@"LICENSE" withExtension:@"html" subdirectory:@"license"];
+    isCommercialVersion = eulaUrl != nil;
 
     // EULA View
     if (self.eulaWebView) {
-        NSString * eulaName = !isCommercialVersion ? @"EULA" : @"LICENSE";
-        NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:eulaName withExtension:@"html" subdirectory:@"license"];
+        if ( !eulaUrl )
+            eulaUrl = [[NSBundle mainBundle] URLForResource:@"EULA" withExtension:@"html" subdirectory:@"license"];
         [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:eulaUrl]];
     } else {
         // About View
@@ -187,14 +182,6 @@
 #elif _ARM_ONLY
     [self.versionText setStringValue:[NSString stringWithFormat:@"%@ Apple Silicon", [self.versionText stringValue]]];
 #endif
-}
-
-- (IBAction)buttonCommercialLicenseClicked:(id)sender {
-    NSString * licensePath = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@"txt" inDirectory:@"license"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:licensePath]) {
-        NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-        [workspace openFile:licensePath];
-    }
 }
 
 @end
