@@ -403,6 +403,22 @@
             isCloudTmplsLoading = false;
             this.templates.empty();
         };
+
+        const onscale = function (pasteSvg) {
+            if (!pasteSvg) {
+                $('.badge-wrapper svg.icon').each((i, el) => {
+                    el = $(el);
+                    const p = el.parent();
+                    const type = el.closest('.item').data('type');
+
+                    if ($('i.badge', p).length === 0) {
+                        const badge = `<i class="badge ${type}"></i>`;
+                        $(badge).insertAfter(el);
+                    }
+                });
+            }
+            
+        };
     
         return {
             init: function() {
@@ -424,9 +440,7 @@
                     this.view.svgicons = !e.target.matches;
                 });
                 
-                CommonEvents.on("icons:svg", function(usesvg) {
-                    replaceIcons(usesvg);
-                });
+                CommonEvents.on("icons:svg",  onscale)
                 
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 _on_nav_item_click.call(this, { target: $('.nav-item.selected', this.view.$panel) });

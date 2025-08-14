@@ -600,9 +600,6 @@
                     }
                 });
 
-                CommonEvents.on("icons:svg", function(usesvg) {
-                    replaceIcons(usesvg);
-                });
 
                 docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 

@@ -272,13 +272,6 @@ var Scroll_offset = '16px';
 
 function replaceIcons(usesvg) {
     if ( usesvg ) {
-        $('.btn-quick.login').each((i, el) => {
-            const btn = $(el);
-            if (btn.find('svg.icon').length === 0) {
-                const svg = `<svg class="icon"><use xlink:href="#plus"></use></svg>`;
-                btn.prepend(svg);
-            }
-        });
     } else {
         $('.tool-menu svg.icon').each((i, el) => {
             el = $(el);
@@ -288,17 +281,6 @@ function replaceIcons(usesvg) {
                 const icon_class = el.data("iconname");
                 const t = `<i class="icon ${icon_pre_class? icon_pre_class : ''} ${icon_class}" />`;
                 $(t).insertAfter(el);
-            }
-        });
-
-        $('.badge-wrapper svg.icon').each((i, el) => {
-            el = $(el);
-            const p = el.parent();
-            const type = el.closest('.item').data('type');
-
-            if ($('i.badge', p).length === 0) {
-                const badge = `<i class="badge ${type}"></i>`;
-                $(badge).insertAfter(el);
             }
         });
     }

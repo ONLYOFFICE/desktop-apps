@@ -242,6 +242,13 @@
             return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
         },
         onscale: function (pasteSvg) {
+            if (pasteSvg) {
+                $('.btn-quick.login').each(function () {
+                    if (!$(this).find('svg.icon').length) {
+                        $(this).prepend('<svg class="icon"><use xlink:href="#plus"></use></svg>');
+                    }
+                });
+            }
             // if ( !pasteSvg ) {
             //     $('button .icon.more',this.$panelPortalList).each(function (){
             //         let elm = $(this);
