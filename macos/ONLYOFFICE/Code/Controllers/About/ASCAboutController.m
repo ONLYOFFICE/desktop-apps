@@ -97,19 +97,19 @@
     }
 
     isCommercialVersion = false;
+    NSString * licPath = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@"html" inDirectory:@"license"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:licPath]) {
+        isCommercialVersion = true;
+//        [self.licenseButton setTarget:self];
+//        [self.licenseButton setAction:@selector(buttonCommercialLicenseClicked:)];
+    }
 
     // EULA View
     if (self.eulaWebView) {
-        NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:@"EULA" withExtension:@"html" subdirectory:@"license"];
+        NSString * eulaName = !isCommercialVersion ? @"EULA" : @"LICENSE";
+        NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:eulaName withExtension:@"html" subdirectory:@"license"];
         [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:eulaUrl]];
     } else {
-        NSString * licPath = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@"txt" inDirectory:@"license"];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:licPath]) {
-            isCommercialVersion = true;
-            [self.licenseButton setTarget:self]; // 'self' refers to the object containing the action method
-            [self.licenseButton setAction:@selector(buttonCommercialLicenseClicked:)]; // The selector for your action method
-        }
-
         // About View
         // Setup license button view
         NSMutableAttributedString * attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[self.licenseButton attributedTitle]];
