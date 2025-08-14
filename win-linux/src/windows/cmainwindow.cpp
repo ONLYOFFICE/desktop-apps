@@ -1380,21 +1380,26 @@ void CMainWindow::onKeyDown(void * eventData)
     case VK_TAB:
         if (m_pTabs->count()) {
             if (_is_ctrl) {
-                int _new_index = 0;
-                if (_is_shift) {
-                    if ( m_pTabs->isActiveWidget() )
-                        _new_index = m_pTabs->currentIndex() - 1; else
-                        _new_index = m_pTabs->count() - 1;
+                bool mruSwitchAllowed = true;
+                if (mruSwitchAllowed) {
+                    m_pTabs->switchToNextMruTab(_is_shift);
                 } else {
-                    if (m_pTabs->isActiveWidget())
-                        _new_index = m_pTabs->currentIndex() + 1;
-                }
+                    int _new_index = 0;
+                    if (_is_shift) {
+                        if ( m_pTabs->isActiveWidget() )
+                            _new_index = m_pTabs->currentIndex() - 1; else
+                            _new_index = m_pTabs->count() - 1;
+                    } else {
+                        if (m_pTabs->isActiveWidget())
+                            _new_index = m_pTabs->currentIndex() + 1;
+                    }
 
-                if (_new_index < 0 || !(_new_index < m_pTabs->count()))
-                    toggleButtonMain(true);
-                else {
-                    toggleButtonMain(false);
-                    m_pTabs->setCurrentIndex(_new_index);
+                    if (_new_index < 0 || !(_new_index < m_pTabs->count()))
+                        toggleButtonMain(true);
+                    else {
+                        toggleButtonMain(false);
+                        m_pTabs->setCurrentIndex(_new_index);
+                    }
                 }
             }
         }

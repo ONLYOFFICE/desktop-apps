@@ -124,10 +124,12 @@ class CAscTabWidget : public QStackedWidget, public CScalingWrapper
 
 private:
     std::map<int, QCefView*> m_mapDownloads;
+    QList<QWidget*> m_mruList;
     CFullScreenData * m_dataFullScreen;
     size_params m_widthParams,
                 m_defWidthParams;
     bool m_isCustomStyle,
+         m_isMruUpdateLocked,
          m_isTabPinAllowed;
     CTabIconSet m_mapTabIcons;
 //    QSize m_tabIconSize;
@@ -149,10 +151,12 @@ public:
     int  addPortal(const QString& url, const QString& name, const QString& provider, const QString& entrypage = QString());
     int  addOAuthPortal(const QString& portal, const QString& type, const QString& service, const QString& entrypage = QString());
     int  insertPanel(QWidget *, int);
+    void removeWidget(QWidget *widget);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closePortal(const std::wstring&, bool editors = false);
     void setStyleSheet(const QString&);
     void setCurrentIndex(int);
+    void switchToNextMruTab(bool reverse); // Most Recently Used
     void applyUITheme(const std::wstring&);
 
     using QStackedWidget::count;
