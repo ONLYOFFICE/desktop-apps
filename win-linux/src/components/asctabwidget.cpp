@@ -175,7 +175,9 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     });
     auto turnOffAltHints = [=](int old_index, int index) {
         QTimer::singleShot(0, this, [=]() {
-            setCurrentIndex(index);
+            if (index != old_index) {
+                setCurrentIndex(index);
+            }
         });
         if (old_index > -1 && panel(old_index))
             AscAppManager::sendCommandTo(panel(old_index)->cef(), L"althints:show", L"false");
