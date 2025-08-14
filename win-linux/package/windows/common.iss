@@ -1192,6 +1192,16 @@ Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\converter\*.exe"; DestDir: {app}\converter; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags: signonce;
 Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
+#ifdef PACKAGE_EDITION
+#if PACKAGE_EDITION == "Enterprise"
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app};
+#else
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+#endif
+#else
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+#endif
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\3dparty\3DPARTYLICENSE"; DestDir: {app};
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins

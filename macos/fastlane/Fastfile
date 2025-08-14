@@ -70,7 +70,12 @@ platform :mac do
 
     desc 'Create DMG image'
     sh("npm install appdmg")
-    sh("npx appdmg resources/appdmg.json ../#{build}/#{scheme}-#{version_number}-#{app_build_number}.dmg")
+    sh("npx appdmg resources/appdmg.json ../#{build}/#{app_name}-#{git_suffix}-#{version_number}-#{app_build_number}.dmg")
+    # commercial
+    if scheme != "ONLYOFFICE-v8"
+      sh("find ../#{app} -name 'EULA.html' -exec cp -fv ../../common/package/license/commercial/LICENSE.html {} \\;")
+      sh("npx appdmg resources/appdmg.json ../#{build}/#{app_name}-Enterprise-#{git_suffix}-#{version_number}-#{app_build_number}.dmg")
+    end
 
     if options[:skip_git_bump]
       next
