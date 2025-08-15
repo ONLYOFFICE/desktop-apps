@@ -51,6 +51,11 @@ platform :mac do
     if edition && !edition.empty? then package_name += "-#{edition}" end
     package_name += "-#{git_suffix}-#{version_number}-#{app_build_number}"
 
+    if edition == "Enterprise"
+      sh("rm -fv ../Vendor/ONLYOFFICE/license/EULA.html")
+      sh("cp -fv ../../common/package/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/")
+    end
+
     desc 'Build for developer id and notarize'
     gym(
       scheme: scheme,
