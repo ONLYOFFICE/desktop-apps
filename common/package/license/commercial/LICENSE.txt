@@ -56,18 +56,16 @@ considered as infringement of exclusive (economic) rights.
 3.1. In order to use ONLYOFFICE Desktop Enterprise you shall pay us a License
 fee. The License Fee is payable according to the selected plan listed on the
 official website www.onlyoffice.com.
-3.2. Upon receiving the license fee we will send you instructions on how to
-install and activate ONLYOFFICE Desktop Enterprise.
-3.3. If you are not satisfied with our product and terminate the Agreement
+3.2. If you are not satisfied with our product and terminate the Agreement
 within 30 days from the Effective Date we will return you your License Fee;
 otherwise, this Fee shall be considered non-recoverable.
-3.4. Upon expiration of the license, continued access to the full functionality
+3.3. Upon expiration of the license, continued access to the full functionality
 of ONLYOFFICE Desktop Enterprise requires the purchase of a valid renewal
 license from our official website at www.onlyoffice.com.
-3.5. We shall have the right to modify the amount of the license fee for any
+3.4. We shall have the right to modify the amount of the license fee for any
 future period of using ONLYOFFICE Desktop Enterprise by you at any time without
 prior notice.
-3.6. We guarantee that no advertising materials may be presented in your copy of
+3.5. We guarantee that no advertising materials may be presented in your copy of
 ONLYOFFICE Desktop Enterprise as long as your license is valid.
 
 4. Restrictions on Use
