@@ -129,10 +129,12 @@ private:
     size_params m_widthParams,
                 m_defWidthParams;
     bool m_isCustomStyle,
+         m_isMruRemoveLocked,
          m_isMruUpdateLocked,
          m_isTabPinAllowed;
     CTabIconSet m_mapTabIcons;
 //    QSize m_tabIconSize;
+    QTimer  *m_mruTimer;
     CTabBar *m_pBar;
 
 signals:
