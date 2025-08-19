@@ -34,7 +34,8 @@ var l10n = l10n || {};
 l10n.en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
-    welNeedHelp: 'Need help? Visit our <a class="link" href="https://helpcenter.onlyoffice.com/" target="popup">Help Center</a>.',
+    welNeedHelp: 'Need help? Visit our $1.',
+    helpText: 'Help Center',
     btnConnect: 'Connect now',
     textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
