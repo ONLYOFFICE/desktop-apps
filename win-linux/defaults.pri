@@ -246,8 +246,7 @@ core_linux {
         PKGCONFIG += dbus-1
     }
 
-    LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
-    LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
+    include($$CORE_3DPARTY_PATH/icu/icu.pri)
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
 }
