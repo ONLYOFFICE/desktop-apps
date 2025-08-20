@@ -40,7 +40,6 @@
 #include <QDir>
 #include <QRegularExpression>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QUrl>
 #include <QUrlQuery>
 #include <QJsonDocument>

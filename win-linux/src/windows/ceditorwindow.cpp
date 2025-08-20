@@ -211,7 +211,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
     QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
     mainGridLayout->setSpacing(0);
-    mainGridLayout->setMargin(0);
+    QtComp::Widget::setLayoutMargin(mainGridLayout, 0);
     mainPanel->setLayout(mainGridLayout);
 
     if (isCustomWindowStyle()) {

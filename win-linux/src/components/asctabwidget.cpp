@@ -31,7 +31,6 @@
 */
 
 #include "components/asctabwidget.h"
-#include <QRegExp>
 #include <QHBoxLayout>
 #include <QApplication>
 #include "casctabdata.h"

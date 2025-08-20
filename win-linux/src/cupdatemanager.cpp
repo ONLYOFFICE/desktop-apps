@@ -61,6 +61,8 @@
 # define GetPid() getpid()
 #endif
 
+#include <qtcomp/qdatetime.h>
+
 #define modeToEnum(mod) ((mod == "silent") ? UpdateMode::SILENT : (mod == "ask") ? UpdateMode::ASK : UpdateMode::DISABLE)
 #define packageToStr() QString(IsPackage(ISS) ? "iss" : IsPackage(MSI) ? "msi" : IsPackage(Portable) ? "portable" : "other")
 #define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))
@@ -174,7 +176,7 @@ auto currentArch()->QString
 
 auto formattedTime(time_t timestamp)->QString
 {
-    return (timestamp != 0) ? QLocale::system().toString(QDateTime::fromTime_t(timestamp), QLocale::ShortFormat) :
+    return (timestamp != 0) ? QLocale::system().toString(QtComp::DateTime::fromTimestamp(timestamp), QLocale::ShortFormat) :
                QString("--.--.---- --:--");
 }
 
