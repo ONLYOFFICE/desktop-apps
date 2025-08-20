@@ -209,6 +209,11 @@ auto verToAppVer(const wstring &ver)->wstring
     size_t pos = ver.find(L'.');
     if (pos == std::wstring::npos)
         return ver;
+
+    pos = ver.find(L'.', pos + 1);
+    if (pos == std::wstring::npos)
+        return ver;
+
     pos = ver.find(L'.', pos + 1);
     return (pos == std::wstring::npos) ? ver : ver.substr(0, pos);
 }
