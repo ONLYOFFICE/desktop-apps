@@ -35,7 +35,7 @@ l10n.en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Need help? Visit our $1.',
-    helpText: 'Help Center',
+    textHelpCenter: 'Help Center',
     btnConnect: 'Connect now',
     textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
