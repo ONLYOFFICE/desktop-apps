@@ -114,24 +114,24 @@
         //                     </section>
         //                 </div>`;
 
-        var _html_empty_panel_with_providers =
-                            `<div id="box-empty-portals" class="empty flex-center">
-                                <section id='connect-empty-var-2'>
-                                    <!--h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3-->
-                                    <h4 class='text-description' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
-                                    <section class='tools-connect2 connect'>
-                                        <div id='box-providers-premium-button' />
-                                        <div id="box-providers-buttons" style='font-size:0;' />
-                                    </section>
-                                    <h4 class='text-description separate-top' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
-                                    <div class="tools-connect">
-                                        <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
-                                        <section class="link-connect">
-                                            <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
-                                        </section>
-                                    </div>
-                                </section>
-                            </div>`;
+        // var _html_empty_panel_with_providers =
+        //                     `<div id="box-empty-portals" class="empty flex-center">
+        //                         <section id='connect-empty-var-2'>
+        //                             <!--h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3-->
+        //                             <h4 class='text-description' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
+        //                             <section class='tools-connect2 connect'>
+        //                                 <div id='box-providers-premium-button' />
+        //                                 <div id="box-providers-buttons" style='font-size:0;' />
+        //                             </section>
+        //                             <h4 class='text-description separate-top' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
+        //                             <div class="tools-connect">
+        //                                 <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
+        //                                 <section class="link-connect">
+        //                                     <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
+        //                                 </section>
+        //                             </div>
+        //                         </section>
+        //                     </div>`;
 
         // var _html = `<div ${args.id} class="action-panel ${args.action}">
         //               ${config.portals.checklist.length > 1 ? _html_empty_panel_with_providers : _html_empty_panel_with_carousel}
