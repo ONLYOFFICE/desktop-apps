@@ -1,8 +1,8 @@
-+function() {
-    function Dialog(params) {
-        params = params || {};
+// +function() {
+{
+    function Dialog(params = {}) {
         this.events = { close: params.onclose };
-        this.dialogClass = params.dialogClass || 'dlg';
+        this.dialogClass = params.dialogClass || '';
         this.titleText = params.titleText || '';
         this.bodyTemplate = params.bodyTemplate || '';
         this.defaultWidth = params.defaultWidth || 500;
@@ -33,30 +33,21 @@
 
         this.$title.find('.tool.close').on('click', () => this.close());
         this.$el.on('close', () => this.close());
-        $(document).on('click', (e) => {
-            if (e.target === this.$el.get(0)) {
-                this.close();
-            }
-        });
 
         this.$el.get(0).showModal();
         this.$el.addClass('scaled');
-
-        this.inShow();
     };
 
     Dialog.prototype.close = function(opts) {
-        if (!this.cover && this.$el) {
-            this.$el.remove();
-        } else {
-            this.$el?.get(0)?.close();
-        }
+        this.$el.remove();
 
         if (this.events.close) this.events.close(opts);
     };
 
     Dialog.prototype.setBody = function(html) {
-        this.$body.html(html);
+        if (this.$body) {
+          this.$body.html(html);
+        }
     };
 
     Dialog.prototype.getElements = function() {
@@ -67,7 +58,6 @@
         };
     };
 
-    Dialog.prototype.inShow = function() {};
-
     window.Dialog = Dialog;
-}();
+}
+// }();

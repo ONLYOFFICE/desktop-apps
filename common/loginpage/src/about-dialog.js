@@ -1,12 +1,13 @@
-+function() {
-  function AboutDialog(params) {
-    params = params || {};
-    Dialog.call(this, {
-        dialogClass: 'dlg-about',
-        titleText: utils.Lang.actAbout,
-        defaultWidth: 570,
-        onclose: params.onclose
-    });
+// +function() {
+  function AboutDialog(params = {}) {
+    params = {...params, ...{
+                dialogClass: 'dlg-about',
+                titleText: utils.Lang.actAbout,
+                defaultWidth: 570,
+                onclose: params.onclose
+            }};
+
+    Dialog.call(this, params);
 
     this.pendingBody = null;
     this.cover = true; 
@@ -22,23 +23,5 @@
     }
   };
 
-  AboutDialog.prototype.inShow = function() {
-    var $title = this.getElements().$title;
-    $title.find('.caption').text(utils.Lang.actAbout);
-    if (this.pendingBody && this.$body && this.$body.is(':empty')) {
-      this.$body.html(this.pendingBody);
-    }
-  };
-
-  AboutDialog.prototype.show = function() {
-    if (this.$el && this.$el.length) {
-      if (!this.$el.get(0).open) this.$el.get(0).showModal();
-      this.inShow(); 
-      return;
-    }
-
-    Dialog.prototype.show.call(this);
-  };
-
-  window.AboutDialog = AboutDialog;
-}();
+  // window.AboutDialog = AboutDialog;
+// }();
