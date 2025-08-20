@@ -213,6 +213,27 @@ auto verToAppVer(const wstring &ver)->wstring
     return (pos == std::wstring::npos) ? ver : ver.substr(0, pos);
 }
 
+auto displayNameReplaceVersion(const wstring &disp_name, const wstring &newVersion)->wstring
+{
+    for (size_t i = disp_name.size(); i-- > 0;) {
+        if (iswdigit(disp_name[i])) {
+            size_t j = i;
+            bool hasDot = false;
+            while (j > 0 && (iswdigit(disp_name[j - 1]) || disp_name[j - 1] == L'.')) {
+                if (disp_name[j - 1] == L'.')
+                    hasDot = true;
+                --j;
+            }
+            if (hasDot) {
+                return disp_name.substr(0, j) + newVersion + disp_name.substr(i + 1);
+            } else {
+                i = j;
+            }
+        }
+    }
+    return disp_name;
+}
+
 auto getCurrentDate()->wstring
 {
     SYSTEMTIME sysTime;
@@ -760,6 +781,14 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
             if (NS_File::fileExists(tmpPath + files[i]))
                 NS_File::replaceFile(tmpPath + files[i], appPath + files[i]);
         }
+
+        auto licenseFiles = NS_File::findFilesByPattern(tmpPath, L"LICENSE.*");
+        auto eulaFiles = NS_File::findFilesByPattern(tmpPath, L"EULA.*");
+        licenseFiles.insert(licenseFiles.end(), eulaFiles.begin(), eulaFiles.end());
+        for (const auto &file : licenseFiles) {
+            if (!NS_File::fileExists(appPath + file) && NS_File::fileExists(tmpPath + file))
+                NS_File::replaceFile(tmpPath + file, appPath + file);
+        }
     }
 
     // To support a version without updatesvc.exe inside the working folder
@@ -784,8 +813,19 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
                 wstring app_key(TEXT(REG_UNINST_KEY));
                 app_key += (packageType == TEXT("iss")) ? L"_is1" : L"";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
-                    wstring disp_name = app_name + L" " + verToAppVer(ver) + L" (" + currentArch().substr(1) + L")";
+                    wstring disp_name;
                     wstring ins_date = getCurrentDate();
+                    {
+                        WCHAR pData[MAX_PATH] = {};
+                        DWORD cbData = sizeof(pData);
+                        DWORD dwType = REG_SZ;
+                        if (RegQueryValueEx(hAppKey, TEXT("DisplayName"), nullptr, &dwType, (LPBYTE)pData, &cbData) == ERROR_SUCCESS && pData[0] != L'\0') {
+                            disp_name = displayNameReplaceVersion(pData, verToAppVer(ver));
+                        } else {
+                            NS_Logger::WriteLog(L"Unable to get DisplayName from registry!");
+                            disp_name = app_name + L" " + verToAppVer(ver) + L" (" + currentArch().substr(1) + L")";
+                        }
+                    }
                     if (RegSetValueEx(hAppKey, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*)disp_name.c_str(), (DWORD)(disp_name.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
                         NS_Logger::WriteLog(L"Can't update DisplayName in registry!");
                     if (RegSetValueEx(hAppKey, TEXT("DisplayVersion"), 0, REG_SZ, (const BYTE*)ver.c_str(), (DWORD)(ver.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)

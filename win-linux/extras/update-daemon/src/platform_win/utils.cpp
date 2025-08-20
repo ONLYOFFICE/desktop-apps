@@ -254,6 +254,30 @@ namespace NS_File
         return true;
     }
 
+    std::vector<wstring> findFilesByPattern(const wstring &path, const wstring &pattern)
+    {
+        std::vector<wstring> result;
+        wstring searchPath = toNativeSeparators(path) + L"\\" + pattern;
+        if (searchPath.size() > MAX_PATH - 1) {
+            return result;
+        }
+
+        WIN32_FIND_DATAW ffd;
+        HANDLE hFind = FindFirstFile(searchPath.c_str(), &ffd);
+        if (hFind == INVALID_HANDLE_VALUE)
+            return result;
+
+        do {
+            if (!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+                result.push_back(L"/" + wstring(ffd.cFileName));
+            }
+
+        } while (FindNextFile(hFind, &ffd) != 0);
+
+        FindClose(hFind);
+        return result;
+    }
+
     bool readFile(const wstring &filePath, list<wstring> &linesList)
     {
         std::wifstream file(filePath.c_str(), std::ios_base::in);

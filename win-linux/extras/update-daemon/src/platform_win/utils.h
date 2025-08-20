@@ -35,6 +35,7 @@
 
 #include <string>
 #include <list>
+#include <vector>
 
 using std::string;
 using std::wstring;
@@ -61,6 +62,7 @@ wstring GetAppLanguage();
 namespace NS_File
 {
 bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked = false, bool folders_only = false);
+std::vector<wstring> findFilesByPattern(const wstring &path, const wstring &pattern);
 bool readFile(const wstring &filePath, list<wstring> &linesList);
 bool readBinFile(const wstring &filePath, list<wstring> &linesList);
 bool writeToFile(const wstring &filePath, list<wstring> &linesList);
