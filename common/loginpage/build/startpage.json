@@ -74,7 +74,7 @@
                     ,"../src/base.js"
                     ,"../src/dnd-file-zone.js"
                     ,"../src/document-creation-grid.js"
-                    ,"../src/dialog.js"
+                    ,"../src/dialogbase.js"
                     ,"../deploy/noconnect.js"
                     ,"../src/paneltemplates.js"
                     ,"../src/panelrecent.js"
@@ -86,8 +86,8 @@
                     ,"../src/panelexternal.js"
                     ,"../src/dialogconnect.min.js"
                     ,"../src/panels.js"
-                    ,"../src/about-dialog.js"
-                    ,"../src/dialogconnect-intro.js"
+                    ,"../src/dialogabout.js"
+                    ,"../src/dialogproviders.js"
                 ],
                 "dest": "../deploy/build.js"
             }

@@ -1,6 +1,6 @@
 // +function() {
 {
-    function Dialog(params = {}) {
+    function dialog(params = {}) {
         this.events = { close: params.onclose };
         this.dialogClass = params.dialogClass || '';
         this.titleText = params.titleText || '';
@@ -12,7 +12,7 @@
         this.$body = null;
     }
 
-    Dialog.prototype.template = function() {
+    dialog.prototype.template = function() {
         return `<dialog class="dlg ${this.dialogClass}">
             <div class="title">
                 <label class="caption">${this.titleText}</label>
@@ -22,7 +22,7 @@
         </dialog>`;
     };
 
-    Dialog.prototype.show = function(width) {
+    dialog.prototype.show = function(width) {
         this.$el = $('#placeholder').append(this.template()).find(`.${this.dialogClass}`);
         this.$el.width(width || this.defaultWidth);
 
@@ -38,19 +38,19 @@
         this.$el.addClass('scaled');
     };
 
-    Dialog.prototype.close = function(opts) {
+    dialog.prototype.close = function(opts) {
         this.$el.remove();
 
         if (this.events.close) this.events.close(opts);
     };
 
-    Dialog.prototype.setBody = function(html) {
+    dialog.prototype.setBody = function(html) {
         if (this.$body) {
           this.$body.html(html);
         }
     };
 
-    Dialog.prototype.getElements = function() {
+    dialog.prototype.getElements = function() {
         return {
             $el: this.$el,
             $title: this.$title,
@@ -58,6 +58,6 @@
         };
     };
 
-    window.Dialog = Dialog;
+    window.Dialog = dialog;
 }
 // }();

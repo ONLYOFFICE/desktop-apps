@@ -158,31 +158,6 @@
                         <div class="table-box flex-fill"><table class="table-files list"></table></div>
                     </div>`;
 
-        if ( config.portals.checklist.length ) {
-            const provider_button_template = (provider, name, icons) => {
-                                                const icon_light = icons ? icons.themeLight.buttonLogo : '',
-                                                        icon_dark = icons ? icons.themeDark.buttonLogo : '';
-                                                const button_el = `<img class='icon icon__light' src='${relpath}/providers/${provider}/${icon_light}'></img>
-                                                                    <img class='icon icon__dark' src='${relpath}/providers/${provider}/${icon_dark}'></img>`;
-                                                return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
-                                                            ${!!icons ? button_el : name}
-                                                        </button>`;
-                                            }
-
-           this.html_empty_panel = $(_html_empty_panel_with_providers);
-            let $box = $('<div />');
-            config.portals.checklist.forEach(item => {
-                if ( !!item.icons && !!item.icons.themeLight ) {
-                    const btn = provider_button_template(item.provider, item.name, item.icons);
-
-                    item.provider != 'onlyoffice' ? $box.append(btn) :
-                            this.html_empty_panel.find('#box-providers-premium-button').append(btn);
-                }
-            });
-
-            this.html_empty_panel.find('#box-providers-buttons').append($box.children());
-        }
-
         // args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
@@ -240,6 +215,51 @@
             }
 
             return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
+        },
+        portalsemptypage: function() {
+            const _lang = utils.Lang;
+            const _page_tpl = `<div id="box-empty-portals" class="empty flex-center">
+                                <section id='connect-empty-var-2'>
+                                    <!--h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3-->
+                                    <h4 class='text-description' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
+                                    <section class='tools-connect2 connect'>
+                                        <div id='box-providers-premium-button' />
+                                        <div id="box-providers-buttons" style='font-size:0;' />
+                                    </section>
+                                    <h4 class='text-description separate-top' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
+                                    <div class="tools-connect">
+                                        <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
+                                        <section class="link-connect">
+                                            <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
+                                        </section>
+                                    </div>
+                                </section>
+                            </div>`;
+
+            const provider_button_template = (provider, name, icons) => {
+                                                const icon_light = icons ? icons.themeLight.buttonLogo : '',
+                                                        icon_dark = icons ? icons.themeDark.buttonLogo : '';
+                                                const button_el = `<img class='icon icon__light' src='${relpath}/providers/${provider}/${icon_light}'></img>
+                                                                    <img class='icon icon__dark' src='${relpath}/providers/${provider}/${icon_dark}'></img>`;
+                                                return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
+                                                            ${!!icons ? button_el : name}
+                                                        </button>`;
+                                            }
+
+            const html_empty_panel = $(_page_tpl);
+            let $box = $('<div />');
+            config.portals.checklist.forEach(item => {
+                if ( !!item.icons && !!item.icons.themeLight ) {
+                    const btn = provider_button_template(item.provider, item.name, item.icons);
+
+                    item.provider != 'onlyoffice' ? $box.append(btn) :
+                            html_empty_panel.find('#box-providers-premium-button').append(btn);
+                }
+            });
+
+            html_empty_panel.find('#box-providers-buttons').append($box.children());
+
+            return html_empty_panel;
         },
         onscale: function (pasteSvg) {
             // if ( !pasteSvg ) {
@@ -712,11 +732,11 @@
                         !_data ? _do_connect.call(this) : _do_connect.call(this, {provider:_data.cprov});
                     } else { 
                         new DialogConnectIntro({
-                            bodyTemplate: this.view.html_empty_panel,
+                            bodyTemplate: this.view.portalsemptypage(),
                             onConnect: (e, provider) => {
                                 _do_connect.call(this, provider ? {provider} : {});
                             }
-                    }).show();
+                        }).show();
                     }
                 });
 
