@@ -760,6 +760,14 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
             if (NS_File::fileExists(tmpPath + files[i]))
                 NS_File::replaceFile(tmpPath + files[i], appPath + files[i]);
         }
+
+        auto licenseFiles = NS_File::findFilesByPattern(tmpPath, L"LICENSE.*");
+        auto eulaFiles = NS_File::findFilesByPattern(tmpPath, L"EULA.*");
+        licenseFiles.insert(licenseFiles.end(), eulaFiles.begin(), eulaFiles.end());
+        for (const auto &file : licenseFiles) {
+            if (!NS_File::fileExists(appPath + file) && NS_File::fileExists(tmpPath + file))
+                NS_File::replaceFile(tmpPath + file, appPath + file);
+        }
     }
 
     // To support a version without updatesvc.exe inside the working folder
