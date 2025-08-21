@@ -156,7 +156,6 @@
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
-                    this.view.$dialog.setBody(this.view.$body)
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
                         $('#idx-ver-edition', this.view.$body).html(args.opts.edition);
@@ -279,6 +278,7 @@
         const onPanelShow = function(panel) {
             if (panel === this.action) {
                 this.view.$dialog.show();
+                this.view.$dialog.setBody(this.view.$body);
             }
         }
 
