@@ -48,6 +48,8 @@
 #include <QGridLayout>
 #include <QAction>
 
+#include <qtcomp/qregexp.h>
+#include <qtcomp/qnativeevent.h>
 #define DEFAULT_BTNS_COUNT 6
 #define ICON_SPACER_WIDTH 9
 #define ICON_SIZE QSize(20,20)
@@ -137,7 +139,7 @@ public:
         leftboxbuttons = new QWidget;
         leftboxbuttons->setLayout(new QHBoxLayout);
         leftboxbuttons->layout()->setSpacing(0);
-        leftboxbuttons->layout()->setMargin(0);
+        QtComp::Widget::setLayoutMargin(leftboxbuttons->layout(), 0);
 
         CSVGPushButton * btnHome = new CSVGPushButton;
         btnHome->setProperty("class", "normal");
@@ -408,7 +410,7 @@ public:
 
     void onEditorActionRequest(int, const QString& json) override
     {
-        if ( json.contains(QRegExp("action\\\":\\\"file:close")) ) {
+        if ( json.contains(QtComp::RegExp::QRegExp("action\\\":\\\"file:close")) ) {
             window->closeWindow();
         }
     }
@@ -939,7 +941,7 @@ public:
         boxtitlelabel->setObjectName("boxtitlelabel");
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
-        boxtitlelabel->layout()->setMargin(0);
+        QtComp::Widget::setLayoutMargin(boxtitlelabel->layout(), 0);
         boxtitlelabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
         if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {

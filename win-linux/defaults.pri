@@ -68,7 +68,8 @@ INCLUDEPATH += \
     $$BASEEDITORS_PATH/lib/include \
     $$BASEEDITORS_PATH/lib/qt_wrapper/include \
     $$CORE_ROOT_DIR/DesktopEditor \
-    $$CORE_ROOT_DIR/Common
+    $$CORE_ROOT_DIR/Common \
+    $$PWD/src
 
 HEADERS += \
     $$PWD/src/windows/cmainwindow.h \

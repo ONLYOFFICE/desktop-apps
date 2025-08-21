@@ -6,7 +6,7 @@
 #include <QTimer>
 #include <QDir>
 #include <QDateTime>
-#include <QDesktopWidget>
+#include <qtcomp/qdesktopwidget.h>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>

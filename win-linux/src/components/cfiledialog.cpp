@@ -32,7 +32,7 @@
 
 #include "components/cfiledialog.h"
 #include <QFileDialog>
-#include <QRegularExpression>
+#include <qtcomp/qregexp.h>
 #include "defines.h"
 #include "utils.h"
 #include "components/cmessage.h"
@@ -132,11 +132,11 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QFileInfo info(fileName);
     _ext = info.suffix();
 
-    QRegExp reFilter("([\\w\\s]+\\(\\*\\."+_ext+"+\\))", Qt::CaseInsensitive);
+    QtComp::RegExp::QRegExp reFilter("([\\w\\s]+\\(\\*\\."+_ext+"+\\))", Qt::CaseInsensitive);
     if ( !m_filters.isEmpty() ) {
         _filters = m_filters;
 
-        if ( !(reFilter.indexIn(m_filters) < 0) ) {
+        if ( reFilter.match(m_filters) ) {
             if ( _sel_filter.isEmpty() )
                 _sel_filter = reFilter.cap(1);
         } else {
@@ -196,7 +196,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
         fileName = _exec_dialog(_parent, _croped_name, _filters, _sel_filter);
 
         if ( !fileName.isEmpty() ) {
-            if ( !(reFilter.indexIn(_sel_filter) < 0) ) {
+            if ( reFilter.match(_sel_filter) ) {
                 _ext = reFilter.cap(1);
 
                 if (!fileName.endsWith(_ext))
@@ -232,13 +232,13 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 QString CFileDialogWrapper::getFilter(const QString& extension) const
 {
     QString out = extension.toLower();
-    if (extension.contains(QRegExp("^docx?$"))) {
+    if (extension.contains(QtComp::RegExp::QRegExp("^docx?$"))) {
         return tr("Word Document") + " (*." + out +")";
     } else
-    if (extension.contains(QRegExp("^xlsx?$"))) {
+    if (extension.contains(QtComp::RegExp::QRegExp("^xlsx?$"))) {
         return tr("Excel Workbook") + " (*." + out + ")";
     } else
-    if (extension.contains(QRegExp("^pptx?$"))) {
+    if (extension.contains(QtComp::RegExp::QRegExp("^pptx?$"))) {
         return tr("PowerPoint Presentation") + " (*." + out + ")";
     } else {
         out.replace(0, 1, extension.left(1).toUpper());
