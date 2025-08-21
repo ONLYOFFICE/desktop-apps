@@ -1,6 +1,8 @@
 l10n.pl = {
     welWelcome: 'Witaj w ONLYOFFICE Desktop Editiors!',
     welDescr: 'Pracuj nad dokumentami offline lub połącz pakiet ze swoją chmurą: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Potrzebujesz pomocy? Odwiedź naszą $1.',
+    textHelpCenter: 'Centrum pomocy',
     btnConnect: 'Połącz teraz',
     textHavePortal: 'Korzystasz już z chmury?',
     btnCreatePortal: 'Utwórz chmurę ONLYOFFICE',

@@ -1,6 +1,8 @@
 l10n.es = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
     welDescr: 'Trabaje en documentos «offline» o conecte la suite a su nube: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: '¿Necesita ayuda? Visite nuestro $1.',
+    textHelpCenter: 'Centro de ayuda',
     btnConnect: 'Conectarse',
     textHavePortal: '¿Usa ya algún servicio en la nube?',
     btnCreatePortal: 'Crear cuenta de ONLYOFFICE en la nube',
