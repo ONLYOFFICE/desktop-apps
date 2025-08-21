@@ -1,6 +1,8 @@
 l10n.be = {
     welWelcome: 'Вітаем у ONLYOFFICE Desktop Editors!',
     welDescr: 'Працуйце з дакументамі ў аўтаномным рэжыме або падлучыцеся да воблака: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Патрэбна дапамога? Наведайце наш $1.',
+    textHelpCenter: 'Цэнтр дапамогі',
     btnConnect: 'Падлучыць',
     textHavePortal: 'Ужо выкарыстоўваеце воблака?',
     btnCreatePortal: 'Стварыць воблака ONLYOFFICE',

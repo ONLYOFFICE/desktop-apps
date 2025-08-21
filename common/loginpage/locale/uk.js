@@ -1,7 +1,8 @@
 l10n.uk = {
     welWelcome: 'Ласкаво просимо до десктопних редакторів ONLYOFFICE!',
     welDescr: 'Працюйте над документами в автономному режимі чи підключіть програмний комплекс до хмари ONLYOFFICE, ownCloud або Nextcloud.',
-    btnConnect: 'Підключитися',
+    welNeedHelp: 'Потрібна допомога? Відвідайте наш $1.',
+    textHelpCenter: 'Центр допомоги',
     textHavePortal: 'Уже використовуєте хмару?',
     btnCreatePortal: 'Створити хмару ONLYOFFICE',
     btnAddPortal: 'Додати хмару',

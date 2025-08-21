@@ -1,6 +1,8 @@
 l10n.sk = {
     welWelcome: 'Vitajte v ONLYOFFICE Desktop Editors!',
     welDescr: 'Pracujte s dokumentmi offline alebo pripojte balík k vášmu cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Potrebujete pomoc? Navštívte naše $1.',
+    textHelpCenter: 'Centrum pomoci',
     btnConnect: 'Pripojiť sa',
     textHavePortal: 'Už používate cloud?',
     btnCreatePortal: 'Vytvoriť ONLYOFFICE cloud',

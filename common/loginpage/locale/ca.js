@@ -1,6 +1,8 @@
 l10n.ca = {
     welWelcome: 'Benvingut/da a ONLYOFFICE Desktop Editors!',
     welDescr: 'Treballa sense connexió als teus documents o connecta la suite al teu núvol: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Necessites ajuda? Visita el nostre $1.',
+    textHelpCenter: 'Centre d\'Ajuda',
     btnConnect: 'Connecta ara',
     textHavePortal: 'Ja utilitzeu un núvol?',
     btnCreatePortal: 'Crea un núvol ONLYOFFICE',

@@ -1,6 +1,8 @@
 l10n.lt = {
     welWelcome: 'Sveiki atvykę ONLYOFFICE Desktop Editors!',
     welDescr: 'Dirbkite su dokumentais neprisijungę prie ryšio arba prisijunkite prie "cloud" sistemų: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Reikia pagalbos? Apsilankykite mūsų $1.',
+    textHelpCenter: 'Pagalbos centre',
     btnConnect: 'Prisijunkite dabar',
     textHavePortal: 'Jau naudojatės "cloud"?',
     btnCreatePortal: 'Sukurkite ONLYOFFICE "cloud"',

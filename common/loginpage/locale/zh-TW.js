@@ -1,6 +1,8 @@
 l10n.zh_TW = {
     welWelcome: '歡迎使用 ONLYOFFICE 桌面編輯器！',
     welDescr: '以離線方式在文件上工作，或將套件連線至您的雲端：ONLYOFFICE, ownCloud, Nextcloud',
+    welNeedHelp: '需要幫助？請造訪我們的 $1.',
+    textHelpCenter: '幫助中心',
     btnConnect: '立即連線',
     textHavePortal: '已有使用中的雲端？',
     btnCreatePortal: '建立 ONLYOFFICE 雲端',
