@@ -455,17 +455,19 @@ li.menu-item {
         }
       }
 
-      .ellipsis {
-          display: none;
-      }
-
-      .name[data-overflow] + .ellipsis {
-          display: inline;
-      }
-
       .ext {
         color: @text-secondary;
       }
+
+      .ext::before {
+        display: none; 
+      }
+
+    }
+
+    .col-name[data-overflow] .ext::before {
+      content: '…';
+      display: inline;
     }
 
     .col-location {

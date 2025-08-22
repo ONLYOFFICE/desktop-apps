@@ -152,7 +152,6 @@
                             ${!isSvgIcons ? `<i class="icon tool-icon ${info.type === 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
                         </div>
                         <p class="name">${info.name}</p>
-                        <span class="ellipsis">…</span>
                         <span class="ext">${info.ext}</span>
                     </div>
                     <div class="col-location" title="${info.descr}">
@@ -497,9 +496,9 @@
                 setTimeout(updateEllipsis, 100);
                 return;
             }
-
             names.forEach(nameEl => {
-                nameEl.toggleAttribute('data-overflow', nameEl.scrollWidth > nameEl.clientWidth);
+                const col = nameEl.parentElement; 
+                col.toggleAttribute('data-overflow', nameEl.scrollWidth > nameEl.clientWidth);
             });
         }
 
