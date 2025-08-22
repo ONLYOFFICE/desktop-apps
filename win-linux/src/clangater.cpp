@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QSettings>
 #include <QTranslator>
+#include <QRegularExpression>
 #include <list>
 #include <algorithm>
 

@@ -31,7 +31,11 @@ void CLogger::write(const QString &value)
     out.setCodec("UTF-8");
 #endif
     if ( m_file ) {
+#if QT_VERSION >= QT_VERSION_CHECK(5,14,0)
         out << text << Qt::endl;
+#else
+        out << text << endl;
+#endif
     }
 }
 
