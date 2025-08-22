@@ -447,13 +447,20 @@ li.menu-item {
       .name {
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis;
         margin-left: 8px;
 
         .rtl & {
           margin-left: 0;
           margin-right: 8px;
         }
+      }
+
+      .ellipsis {
+          display: none;
+      }
+
+      .name[data-overflow] + .ellipsis {
+          display: inline;
       }
 
       .ext {
