@@ -9,7 +9,6 @@
 #include <list>
 #include <algorithm>
 
-#include <qtcomp/qregexp.h>
 
 #ifdef _WIN32
 # ifndef __OS_WIN_XP
@@ -61,21 +60,21 @@ QString normalizeLocale(const QString &locale)
 {
     int len = locale.length();
     if (len > 1) {
-        int prim = locale.indexOf(QtComp::RegExp::QRegExp("[-_]"));
+        int prim = locale.indexOf(QRegularExpression("[-_]"));
         if (prim == -1) {
             if (len <= 3)
                 return locale.toLower();
         } else
         if (prim == 2 || prim == 3) {
             QString out = locale.mid(0, prim).toLower();
-            int scnd = locale.indexOf(QtComp::RegExp::QRegExp("[-_]"), prim + 1);
+            int scnd = locale.indexOf(QRegularExpression("[-_]"), prim + 1);
             if ((scnd == -1 && len - prim == 3) || (scnd != -1 && scnd - prim == 3)) {
                 out += "-" + locale.mid(prim + 1, 2).toUpper();
             } else
             if ((scnd == -1 && len - prim == 5) || (scnd != -1 && scnd - prim == 5)) {
                 out += QString("-") + locale.at(prim + 1).toUpper() + locale.mid(prim + 2, 3).toLower();
                 if (scnd != -1) {
-                    int thrd = locale.indexOf(QtComp::RegExp::QRegExp("[-_]"), scnd + 1);
+                    int thrd = locale.indexOf(QRegularExpression("[-_]"), scnd + 1);
                     if ((thrd == -1 && len - scnd == 3) || (thrd != -1 && thrd - scnd == 3))
                         out += "-" + locale.mid(scnd + 1, 2).toUpper();
                 }

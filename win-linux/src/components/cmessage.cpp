@@ -49,7 +49,6 @@
 #include <initializer_list>
 #include <memory.h>
 
-#include <qtcomp/qregexp.h>
 
 #ifdef __linux__
 # include "platform_linux/gtkmessage.h"
@@ -264,15 +263,16 @@ void QtMsg::setButtons(std::initializer_list<QString> btns)
         close();
     };
 
-    QtComp::RegExp::QRegExp reFocus("([^:]+)\\:?(default)?$");
+    QRegularExpression reFocus("([^:]+)\\:?(default)?$");
+    QRegularExpressionMatch match;
 
     QPushButton * _btn;
     int _btn_num(0);
     for (auto &btn: btns) {
-        reFocus.match(btn);
+        match = reFocus.match(btn);
 
-        _btn = new QPushButton(reFocus.cap(1));
-        if ( !reFocus.cap(2).isEmpty() ) {
+        _btn = new QPushButton(match.captured(1));
+        if ( !match.captured(2).isEmpty() ) {
             _btn->setDefault(true);
         }
 
@@ -288,7 +288,7 @@ void QtMsg::setButtons(std::initializer_list<QString> btns)
         };
 
         m_boxButtons->layout()->addWidget(_btn);
-        MsgRes msgRes = btnNames.key(reFocus.cap(1), MODAL_RESULT_CANCEL);
+        MsgRes msgRes = btnNames.key(match.captured(1), MODAL_RESULT_CANCEL);
         QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, msgRes));
 
         m_priv->addButton(_btn);

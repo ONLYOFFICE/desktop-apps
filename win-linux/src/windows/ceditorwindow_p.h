@@ -48,7 +48,6 @@
 #include <QGridLayout>
 #include <QAction>
 
-#include <qtcomp/qregexp.h>
 #include <qtcomp/qnativeevent.h>
 #define DEFAULT_BTNS_COUNT 6
 #define ICON_SPACER_WIDTH 9
@@ -410,7 +409,7 @@ public:
 
     void onEditorActionRequest(int, const QString& json) override
     {
-        if ( json.contains(QtComp::RegExp::QRegExp("action\\\":\\\"file:close")) ) {
+        if ( json.contains(QRegularExpression("action\\\":\\\"file:close")) ) {
             window->closeWindow();
         }
     }

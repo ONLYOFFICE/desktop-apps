@@ -51,7 +51,6 @@
 #include <QJsonObject>
 #include <QMimeData>
 
-#include <qtcomp/qregexp.h>
 #include <qtcomp/qpalette.h>
 
 #ifdef _WIN32
@@ -1301,7 +1300,7 @@ void CMainWindow::onEditorActionRequest(int vid, const QString& args)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if (!(index < 0)) {
-        if (args.contains(QtComp::RegExp::QRegExp("action\\\":\\\"file:close"))) {
+        if (args.contains(QRegularExpression("action\\\":\\\"file:close"))) {
             bool _is_local = m_pTabs->isLocalByIndex(index);
             onTabCloseRequest(index);
             if (!_is_local) {
