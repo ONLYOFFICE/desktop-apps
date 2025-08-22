@@ -494,7 +494,6 @@
         function updateEllipsis() {
             const names = document.querySelectorAll(".col-name .name");
             if (!names.length) {
-                console.log('1');
                 setTimeout(updateEllipsis, 100);
                 return;
             }
