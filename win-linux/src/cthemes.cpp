@@ -239,6 +239,7 @@ public:
     const CTheme * defdark = nullptr,
             * deflight = nullptr;
     QString source_file;
+    QString json;
 };
 
 /*
@@ -536,10 +537,16 @@ auto CTheme::fromJson(const QString& json) -> bool
     QJsonDocument jdoc = QJsonDocument::fromJson(json.toUtf8(), &jerror);
     if ( jerror.error == QJsonParseError::NoError ) {
         m_priv->fromJsonObject(jdoc.object());
+        m_priv->json = json;
         return true;
     }
 
     return false;
+}
+
+auto CTheme::json() const -> std::wstring
+{
+    return m_priv->json.isEmpty() ? L"" : m_priv->json.toStdWString();
 }
 
 auto CTheme::id() const -> std::wstring

@@ -2056,6 +2056,7 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             _editor->applyTheme(theme);
         }
 
+        AscAppManager::getInstance().SetSkin(_app.m_themes->current().json());
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
 }
