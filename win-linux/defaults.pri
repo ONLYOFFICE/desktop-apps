@@ -64,6 +64,10 @@ CORE_3DPARTY_PATH = $$PWD/../../core/Common/3dParty
 CONFIG += core_no_dst
 include($$CORE_ROOT_DIR/Common/base.pri)
 
+core_windows {
+    DEFINES -= WIN32_LEAN_AND_MEAN
+}
+
 INCLUDEPATH += \
     $$BASEEDITORS_PATH/lib/include \
     $$BASEEDITORS_PATH/lib/qt_wrapper/include \
