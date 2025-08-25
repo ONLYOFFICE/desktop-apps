@@ -49,6 +49,8 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrWindowBackground, "window-background"},
             {CTheme::ColorRole::ecrWindowBorder, "window-border"},
 
+            {CTheme::ColorRole::ecrBorderControlFocus, "border-control-focus"},
+
             {CTheme::ColorRole::ecrTextNormal, "text-normal"},
             {CTheme::ColorRole::ecrTextPretty, "text-pretty"},
             {CTheme::ColorRole::ecrTextInverse, "text-inverse"},
