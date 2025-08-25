@@ -1438,6 +1438,7 @@
 		FC5A2D371BAC075E001ACEB1 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				BE59EE322B9623FF00F12D5D /* mac_cefviewmedia.h */,
 				BE95F0A623E9FF590045E0CB /* mac_cefview.h */,
 				FC033D251BB13B9900F6C55F /* mac_application.h */,
 				FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */,

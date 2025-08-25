@@ -41,7 +41,7 @@
 #import "NSCefView.h"
 #import "NSString+Extensions.h"
 #import "mac_application.h"
-#import "mac_cefview.h"
+#import "mac_cefviewmedia.h"
 
 @interface NSCefView () {
     CCefViewWrapper* m_pCefView;
@@ -59,8 +59,8 @@
         [viewLayer setBackgroundColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0)]; //RGB plus Alpha Channel
         [self setWantsLayer:YES]; // view's backing store is using a Core Animation Layer
         [self setLayer:viewLayer];
-        
-        m_pCefView = new CCefViewWrapper(self);
+
+        m_pCefView = new CCefViewMedia(self);
     }
     return self;
 }
