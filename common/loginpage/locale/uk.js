@@ -1,7 +1,8 @@
 l10n.uk = {
     welWelcome: 'Ласкаво просимо до десктопних редакторів ONLYOFFICE!',
     welDescr: 'Працюйте над документами в автономному режимі чи підключіть програмний комплекс до хмари ONLYOFFICE, ownCloud або Nextcloud.',
-    btnConnect: 'Підключитися',
+    welNeedHelp: 'Потрібна допомога? Відвідайте наш $1.',
+    textHelpCenter: 'Центр допомоги',
     textHavePortal: 'Уже використовуєте хмару?',
     btnCreatePortal: 'Створити хмару ONLYOFFICE',
     btnAddPortal: 'Додати хмару',
@@ -65,7 +66,7 @@ l10n.uk = {
     checkUpdates: 'Перевірити наявність оновлень',
     strVersion: 'версія',
     strVersionCommunity: 'Версія Community',
-    strVersionCommercial: 'Комерційна версія',
+    strVersionCommercial: 'Версія Enterprise',
     emptySlide1Title: 'Спільний доступ і співпраця',
     emptySlide1Text: 'Обирайте між швидким та суворим спільним редагуванням у реальному часі, спілкуйтеся в документах, додавайте коментарі та надавайте спільний доступ для рецензування.',
     emptySlide2Title: 'Перегляд або відновлення попередніх версій',

@@ -1,6 +1,8 @@
 l10n.ro = {
     welWelcome: 'Bine ați venit la ONLYOFFICE Desktop Editors!',
     welDescr: 'Lucrați la documente offline sau conecta suitați suitã la cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Aveți nevoie de ajutor? Vizitează $1.',
+    textHelpCenter: 'Centru de ajutor',
     btnConnect: 'Conecteazã acum',
     textHavePortal: 'Utilizați deja serviciile cloud?',
     btnCreatePortal: 'Crearea unui cont ONLYOFFICE cloud',
@@ -67,7 +69,7 @@ l10n.ro = {
     checkUpdates: 'Verificarea a actualizãrilor',
     strVersion: 'versiune',
     strVersionCommunity: 'Versiune Community',
-    strVersionCommercial: 'Versiune Comercială',
+    strVersionCommercial: 'Versiune Enterprise',
     emptySlide1Title: 'Partajare și colaborare',
     emptySlide1Text: 'Alegeți între moduri de colaborare în timp real Rapid sau Strict, utilizați un chat în documentul dvs, adãugați comentarii sau îl partajați pentru revizuire.',
     emptySlide2Title: 'Vizualizarea şi restaurarea versiunilor anterioare',

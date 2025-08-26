@@ -34,7 +34,8 @@ var l10n = l10n || {};
 l10n.en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
-    welNeedHelp: 'Need help? Visit our <a class="link" href="https://helpcenter.onlyoffice.com/" target="popup">Help Center</a>.',
+    welNeedHelp: 'Need help? Visit our $1.',
+    textHelpCenter: 'Help Center',
     btnConnect: 'Connect now',
     textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
@@ -101,7 +102,7 @@ l10n.en = {
     checkUpdates: 'Check for updates',
     strVersion: 'version',
     strVersionCommunity: 'Community version',
-    strVersionCommercial: 'Commercial version',
+    strVersionCommercial: 'Enterprise version',
     emptySlide1Title: 'Share & collaborate',
     emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add comments or share it for review.',
     emptySlide2Title: 'View or restore previous versions',

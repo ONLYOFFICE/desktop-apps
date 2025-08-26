@@ -1,6 +1,8 @@
 l10n.de = {
     welWelcome: 'Willkommen in ONLYOFFICE Desktop-Editoren!',
     welDescr: 'Arbeiten Sie offline an Dokumenten oder verbinden Sie die Suite mit Ihrer Cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Brauchen Sie Hilfe? Besuchen Sie unser $1.',
+    textHelpCenter: 'Hilfe-Center',
     btnConnect: 'Zusammenarbeit',
     textHavePortal: 'Haben Sie Cloud schon benutzt?',
     btnCreatePortal: 'ONLYOFFICE-Cloud erstellen',
@@ -67,7 +69,7 @@ l10n.de = {
     checkUpdates: 'Nach Updates suchen',
     strVersion: 'Version',
     strVersionCommunity: 'Community-Version',
-    strVersionCommercial: 'Kommerzielle Version',
+    strVersionCommercial: 'Enterprise-Version',
     emptySlide1Title: 'Freigabe & Zusammenarbeit',
     emptySlide1Text: 'Wählen Sie zwischen zwei Modis (Formal / Halbformal) für die Bearbeitung in Echtzeit, chatten und kommentieren Sie direkt im Dokument oder teilen Sie Ihre Dokumente zur Überprüfung.',
     emptySlide2Title: 'Anzeigen oder Wiederherstellen der früheren Versionen',

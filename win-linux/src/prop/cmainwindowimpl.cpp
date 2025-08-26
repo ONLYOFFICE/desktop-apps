@@ -88,7 +88,8 @@ void CMainWindowImpl::refreshAboutVersion()
 #if defined(ABOUT_PAGE_APP_NAME)
     _json_obj["appname"]    = ABOUT_PAGE_APP_NAME;
 #else
-    _json_obj["appname"]    = WINDOW_NAME;
+    // _json_obj["appname"]    = WINDOW_NAME;
+    _json_obj["appname"]    = "ONLYOFFICE Desktop Editors";
 #endif
     _json_obj["rights"]     = ABOUT_COPYRIGHT_STR;
     _json_obj["link"]       = URL_SITE;

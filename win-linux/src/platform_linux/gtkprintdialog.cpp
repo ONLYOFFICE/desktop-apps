@@ -498,13 +498,10 @@ QDialog::DialogCode GtkPrintDialog::exec()
             m_printer->setPaperSize(QSizeF(width, height), qt_unit);
 
             GtkPageOrientation orient = gtk_page_setup_get_orientation(page_setup);
-            QPrinter::Orientation orient_arr[2] = {
-                QPrinter::Portrait,
-                QPrinter::Landscape
-            };
-            const int print_ornt = (int)orient;
-            m_printer->setOrientation((print_ornt == 0 || print_ornt == 2) ?
-                        orient_arr[0] : orient_arr[1]);
+            QPageLayout plt = m_printer->pageLayout();
+            plt.setOrientation((orient == GtkPageOrientation::GTK_PAGE_ORIENTATION_PORTRAIT ||
+                                orient == GtkPageOrientation::GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT) ? QPageLayout::Portrait : QPageLayout::Landscape);
+            m_printer->setPageLayout(plt);
         }
         break;
     }

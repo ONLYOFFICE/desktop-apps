@@ -1,6 +1,8 @@
 l10n.ga = {
     welWelcome: 'Fáilte chuig ONLYOFFICE Eagarthóirí Deisce!',
     welDescr: 'Oibrigh ar dhoiciméid as líne nó ceangail an tsraith le do scamall: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'An bhfuil cabhair uait? Tabhair cuairt ar ár $1.',
+    textHelpCenter: 'Lárionad Cabhrach',
     btnConnect: 'Déan teagmháil anois',
     textHavePortal: 'Úsáid scamall cheana?',
     btnCreatePortal: 'Cruthaigh scamall ONLYOFFICE',
@@ -65,7 +67,7 @@ l10n.ga = {
     checkUpdates: 'Seiceáil do nuashrónaithe',
     strVersion: 'leagan',
     strVersionCommunity: 'Leagan pobail',
-    strVersionCommercial: 'Leagan tráchtála',
+    strVersionCommercial: 'Leagan fiontraíochta',
     emptySlide1Title: 'Comhroinn & comhoibriú',
     emptySlide1Text: 'Roghnaigh idir comh-eagarthóireacht fhíor-ama tapa nó dian, comhrá i do doc, cuir tuairimí leis nó roinn é le haghaidh athbhreithnithe.',
     emptySlide2Title: 'Féach ar leaganacha roimhe seo nó iad a athshlánú',

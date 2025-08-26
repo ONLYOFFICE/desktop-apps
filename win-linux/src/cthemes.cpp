@@ -52,6 +52,8 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrWindowBackground, "window-background"},
             {CTheme::ColorRole::ecrWindowBorder, "window-border"},
 
+            {CTheme::ColorRole::ecrBorderControlFocus, "border-control-focus"},
+
             {CTheme::ColorRole::ecrTextNormal, "text-normal"},
             {CTheme::ColorRole::ecrTextPretty, "text-pretty"},
             {CTheme::ColorRole::ecrTextInverse, "text-inverse"},
@@ -242,6 +244,7 @@ public:
     const CTheme * defdark = nullptr,
             * deflight = nullptr;
     QString source_file;
+    QString json;
 };
 
 /*
@@ -539,10 +542,16 @@ auto CTheme::fromJson(const QString& json) -> bool
     QJsonDocument jdoc = QJsonDocument::fromJson(json.toUtf8(), &jerror);
     if ( jerror.error == QJsonParseError::NoError ) {
         m_priv->fromJsonObject(jdoc.object());
+        m_priv->json = json;
         return true;
     }
 
     return false;
+}
+
+auto CTheme::json() const -> std::wstring
+{
+    return m_priv->json.isEmpty() ? L"" : m_priv->json.toStdWString();
 }
 
 auto CTheme::id() const -> std::wstring

@@ -1,6 +1,8 @@
 l10n.hu = {
     welWelcome: 'Üdvözöljük az ONLYOFFICE Desktop Editor-ban!',
     welDescr: 'Dolgozzon offline módon a dokumentumain, vagy rendelje hozzá a programcsomagját a felhőhöz: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Segítségre van szüksége? Látogassa meg $1.',
+    textHelpCenter: 'Súgóközpontban',
     btnConnect: 'Csatlakozás',
     textHavePortal: 'Már használ felhő-alapú szolgáltatást?',
     btnCreatePortal: 'ONLYOFFICE felhő létrehozása',
@@ -67,7 +69,7 @@ l10n.hu = {
     checkUpdates: 'Frissítések keresése',
     strVersion: 'verzió',
     strVersionCommunity: 'Közösségi verzió',
-    strVersionCommercial: 'Kereskedelmi verzió',
+    strVersionCommercial: 'Vállalati verzió',
     emptySlide1Title: 'Megosztás & együttműködés',
     emptySlide1Text: 'Válasszon a Gyors vagy Szigorú valós idejű közös szerkesztés közül, csevegjen a dokumentumban, kommenteljen, vagy ossza meg és véleményeztesse.',
     emptySlide2Title: 'Előző verziók megtekintése vagy visszaállítása',

@@ -64,11 +64,16 @@ CORE_3DPARTY_PATH = $$PWD/../../core/Common/3dParty
 CONFIG += core_no_dst
 include($$CORE_ROOT_DIR/Common/base.pri)
 
+core_windows {
+    DEFINES -= WIN32_LEAN_AND_MEAN
+}
+
 INCLUDEPATH += \
     $$BASEEDITORS_PATH/lib/include \
     $$BASEEDITORS_PATH/lib/qt_wrapper/include \
     $$CORE_ROOT_DIR/DesktopEditor \
-    $$CORE_ROOT_DIR/Common
+    $$CORE_ROOT_DIR/Common \
+    $$PWD/src
 
 HEADERS += \
     $$PWD/src/windows/cmainwindow.h \
@@ -246,8 +251,7 @@ core_linux {
         PKGCONFIG += dbus-1
     }
 
-    LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
-    LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
+    include($$CORE_3DPARTY_PATH/icu/icu.pri)
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
 }

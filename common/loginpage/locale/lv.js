@@ -1,6 +1,8 @@
 l10n.lv = {
     welWelcome: 'Esiet sveicināti ONLYOFFICE Darbvirsmas Redaktoros!',
     welDescr: 'Strādājiet ar dokumentiem bezsaistē vai pieslēdziet komplektu savam mākonim: ONLYOFFICE, ownCloud, Nextcloud',
+    welNeedHelp: 'Vai nepieciešama palīdzība? Apmeklējiet mūsu $1.',
+    textHelpCenter: 'Palīdzības centrā',
     btnConnect: 'Savienoties tūlīt',
     textHavePortal: 'Vai jau lietojat mākoni?',
     btnCreatePortal: 'Izveidot ONLYOFFICE mākoni',
@@ -65,7 +67,7 @@ l10n.lv = {
     checkUpdates: 'Pārbaudīt atjauninājumus',
     strVersion: 'versija',
     strVersionCommunity: 'Community versija',
-    strVersionCommercial: 'Komerciālā versija',
+    strVersionCommercial: 'Enterprise versija',
     emptySlide1Title: 'Koplietojiet un līdzdarbojieties',
     emptySlide1Text: 'Izvēlieties Ātro vai Strikto reāllaika koprediģēšanu, tērzējiet savos dokumentos, pievienojiet komentārus vai koplietojiet tos pārskatīšanai.',
     emptySlide2Title: 'Apskatīt vai atkopt iepriekšējās versijas',

@@ -1,6 +1,8 @@
 l10n.sk = {
     welWelcome: 'Vitajte v ONLYOFFICE Desktop Editors!',
     welDescr: 'Pracujte s dokumentmi offline alebo pripojte balík k vášmu cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Potrebujete pomoc? Navštívte naše $1.',
+    textHelpCenter: 'Centrum pomoci',
     btnConnect: 'Pripojiť sa',
     textHavePortal: 'Už používate cloud?',
     btnCreatePortal: 'Vytvoriť ONLYOFFICE cloud',
@@ -65,7 +67,7 @@ l10n.sk = {
     checkUpdates: 'Vyhľadať aktualizácie',
     strVersion: 'verzia',
     strVersionCommunity: 'Verzia Community',
-    strVersionCommercial: 'Komerčná verzia',
+    strVersionCommercial: 'Verzia Enterprise',
     emptySlide1Title: 'Zdieľajte a spolupracujte',
     emptySlide1Text: 'Vyberte si medzi Rýchlou alebo Prísnou spoločnou editáciou v reálnom čase, chatujte vo vašich dokumentoch, pridávajte komentáre alebo ich zdieľajte na posúdenie.',
     emptySlide2Title: 'Zobraziť alebo obnoviť predchádzajúce verzie',

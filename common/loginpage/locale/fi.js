@@ -1,6 +1,8 @@
 l10n.fi = {
     welWelcome: 'Tervetuloa ONLYOFFICE Työpöytä Editoriin!',
     welDescr: 'Työskentele ilman verkkoyhteyttä tai yhdistä pilveesi: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Tarvitsetko apua? Käy osoitteessa $1.',
+    textHelpCenter: 'Ohjekeskus',
     btnConnect: 'Yhdistä nyt',
     textHavePortal: 'Käytätkö jo pilveä?',
     btnCreatePortal: 'Luo ONLYOFFICE pilvi',
@@ -65,7 +67,7 @@ l10n.fi = {
     checkUpdates: 'Tarkista päivitykset',
     strVersion: 'versio',
     strVersionCommunity: 'Yhteisön versio',
-    strVersionCommercial: 'Kaupallinen versio',
+    strVersionCommercial: 'Yritysversio',
     emptySlide1Title: 'Jaa & tee yhteystyötä',
     emptySlide1Text: 'Valitse joko Nopea tai Täsmällinen reaaliaikainen yhteis-muokkaus, keskustele dokumentissa, lisää kommentteja tai jaa jaa se arvioitavaksi.',
     emptySlide2Title: 'Katsele tai palauta aiemmpia versioita',

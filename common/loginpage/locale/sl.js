@@ -1,6 +1,8 @@
 l10n.sl = {
     welWelcome: 'Dobrodošli pri ONLYOFFICE namiznih urejevalnikih!',
     welDescr: 'Delaj z dokumenti brez povezave ali paket poveži s svojim oblakom: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Potrebujete pomoč? Obiščite naš $1.',
+    textHelpCenter: 'Center za pomoč',
     btnConnect: 'Poveži se zdaj',
     textHavePortal: 'Že uporabljaš oblak?',
     btnCreatePortal: 'Ustvari ONLYOFFICE oblak',
@@ -65,7 +67,7 @@ l10n.sl = {
     checkUpdates: 'Preveri posodobitve',
     strVersion: 'verzija',
     strVersionCommunity: 'Verzija Community',
-    strVersionCommercial: 'Komercialna verzija',
+    strVersionCommercial: 'Verzija Enterprise',
     emptySlide1Title: 'Deli & sodeluj',
     emptySlide1Text: 'Izbirajte med hitrim ali striktnim urejanjem v realnem času, klepetajte v svojem dokumentu, dodajte komentarje v dokument ali ga posredujte drugim v pregled.',
     emptySlide2Title: 'Ogled ali obnovitev prejšnjih verzij',

@@ -132,13 +132,15 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QFileInfo info(fileName);
     _ext = info.suffix();
 
-    QRegExp reFilter("([\\w\\s]+\\(\\*\\."+_ext+"+\\))", Qt::CaseInsensitive);
+    QRegularExpression reFilter("([\\w\\s]+\\(\\*\\."+_ext+"+\\))", QRegularExpression::CaseInsensitiveOption);
+    QRegularExpressionMatch match;
     if ( !m_filters.isEmpty() ) {
         _filters = m_filters;
 
-        if ( !(reFilter.indexIn(m_filters) < 0) ) {
+        match = reFilter.match(m_filters);
+        if ( match.hasMatch() ) {
             if ( _sel_filter.isEmpty() )
-                _sel_filter = reFilter.cap(1);
+                _sel_filter = match.captured(1);
         } else {
             fileName = info.absoluteFilePath();
         }
@@ -196,8 +198,10 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
         fileName = _exec_dialog(_parent, _croped_name, _filters, _sel_filter);
 
         if ( !fileName.isEmpty() ) {
-            if ( !(reFilter.indexIn(_sel_filter) < 0) ) {
-                _ext = reFilter.cap(1);
+            match = reFilter.match(_sel_filter);
+
+            if ( match.hasMatch() ) {
+                _ext = match.captured(1);
 
                 if (!fileName.endsWith(_ext))
                     fileName.append(_ext);
@@ -232,13 +236,13 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 QString CFileDialogWrapper::getFilter(const QString& extension) const
 {
     QString out = extension.toLower();
-    if (extension.contains(QRegExp("^docx?$"))) {
+    if (extension.contains(QRegularExpression("^docx?$"))) {
         return tr("Word Document") + " (*." + out +")";
     } else
-    if (extension.contains(QRegExp("^xlsx?$"))) {
+    if (extension.contains(QRegularExpression("^xlsx?$"))) {
         return tr("Excel Workbook") + " (*." + out + ")";
     } else
-    if (extension.contains(QRegExp("^pptx?$"))) {
+    if (extension.contains(QRegularExpression("^pptx?$"))) {
         return tr("PowerPoint Presentation") + " (*." + out + ")";
     } else {
         out.replace(0, 1, extension.left(1).toUpper());

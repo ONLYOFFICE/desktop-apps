@@ -42,15 +42,16 @@
 #include "version.h"
 #include "components/cmessage.h"
 #include "ctabundockevent.h"
-#include <QDesktopWidget>
+#include <qtcomp/qdesktopwidget.h>
 #include <QGridLayout>
 #include <QTimer>
 #include <QApplication>
 #include <QAction>
-#include <QRegularExpression>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMimeData>
+
+#include <qtcomp/qpalette.h>
 
 #ifdef _WIN32
 # include "shlobj.h"
@@ -483,7 +484,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
         QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
         gradient.setColorAt(0, QColor(0xeee));
         gradient.setColorAt(1, QColor(0xe4e4e4));
-        palette.setBrush(QPalette::Background, QBrush(gradient));
+        palette.setBrush(QtComp::Palette::Background, QBrush(gradient));
         label->setFixedHeight(0);
     }
 
@@ -1299,7 +1300,7 @@ void CMainWindow::onEditorActionRequest(int vid, const QString& args)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if (!(index < 0)) {
-        if (args.contains(QRegExp("action\\\":\\\"file:close"))) {
+        if (args.contains(QRegularExpression("action\\\":\\\"file:close"))) {
             bool _is_local = m_pTabs->isLocalByIndex(index);
             onTabCloseRequest(index);
             if (!_is_local) {

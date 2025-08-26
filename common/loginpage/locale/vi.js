@@ -1,6 +1,8 @@
 l10n.vi = {
     welWelcome: 'Chào mừng đến với ONLYOFFICE Editors cho máy tính!',
     welDescr: 'Làm việc với các tài liệu khi không kết nối mạng hay kết nối bộ công cụ với đám mây của bạn: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Cần trợ giúp? Truy cập $1.',
+    textHelpCenter: 'Trung tâm Hỗ trợ',
     btnConnect: 'Kết nối ngay',
     textHavePortal: 'Bạn đã dùng đám mây?',
     btnCreatePortal: 'Tạo một đám mây ONLYOFFICE',
@@ -65,7 +67,7 @@ l10n.vi = {
     checkUpdates: 'Kiểm tra cập nhật',
     strVersion: 'phiên bản',
     strVersionCommunity: 'Phiên bản cộng đồng',
-    strVersionCommercial: 'Phiên bản thương mại',
+    strVersionCommercial: 'Phiên bản doanh nghiệp',
     emptySlide1Title: 'Chia sẻ & cùng làm việc',
     emptySlide1Text: 'Chọn cùng chỉnh sửa theo thời gian thực hoặc hạn chế chỉ thấy thay đổi đã được lưu, trao đổi ngay trên tài liệu, thêm bình luận hay chia sẻ tập tin để xem xét.',
     emptySlide2Title: 'Xem hay khôi phục các phiên bản trước',

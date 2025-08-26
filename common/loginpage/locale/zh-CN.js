@@ -1,6 +1,8 @@
 l10n.zh_CN = {
     welWelcome: '欢迎使用ONLYOFFICE桌面编辑软件！',
     welDescr: '脱机处理文档或连接套件到云：ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: '需要帮助吗? 请访问我们的 $1.',
+    textHelpCenter: '帮助中',
     btnConnect: '现在连接',
     textHavePortal: '已在使用云？',
     btnCreatePortal: '创建ONLYOFFICE云',
@@ -67,7 +69,7 @@ l10n.zh_CN = {
     checkUpdates: '检查更新',
     strVersion: '版本',
     strVersionCommunity: '社区版',
-    strVersionCommercial: '商业版',
+    strVersionCommercial: '企业版',
     emptySlide1Title: '分享和协作',
     emptySlide1Text: '选择快速或严格的实时共同编辑、在您的文档中聊天、添加批注或分享文档以供审阅。',
     emptySlide2Title: '查看或还原先前版本',

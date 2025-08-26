@@ -1,6 +1,8 @@
 l10n.no = {
     welWelcome: 'Velkommen til ONLYOFFICE redigeringsprogrammer for PC!',
     welDescr: 'Arbeid med dokumenter offline eller koble suiten til din skykonto: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Trenger du hjelp? Gå til vårt $1.',
+    textHelpCenter: 'Hjelpesenter',
     btnConnect: 'Koble til nå',
     textHavePortal: 'Bruker du allerede en sky?',
     btnCreatePortal: 'Lag en ONLYOFFICE-sky',
@@ -65,7 +67,7 @@ l10n.no = {
     checkUpdates: 'Se etter oppdateringer',
     strVersion: 'versjon',
     strVersionCommunity: 'Community-versjon',
-    strVersionCommercial: 'Kommersiell versjon',
+    strVersionCommercial: 'Enterprise-versjon',
     emptySlide1Title: 'Del og kollaborer',
     emptySlide1Text: 'Velg mellom rask eller streng samredigering i sanntid, chat i dokumentet ditt, legg til kommentarer eller del det for gjennomgang.',
     emptySlide2Title: 'Vis eller gjenopprett tidligere versjoner',

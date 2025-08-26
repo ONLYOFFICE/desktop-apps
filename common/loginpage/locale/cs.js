@@ -1,6 +1,8 @@
 l10n.cs = {
     welWelcome: 'Vítejte v ONLYOFFICE Desktop Editors!',
     welDescr: 'Práce na dokumentech offline nebo propojení sady do cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Potřebujete pomoct? Navštivte naše $1.',
+    textHelpCenter: 'Centrum nápovědy',
     btnConnect: 'Připojit',
     textHavePortal: 'Už používáte cloud?',
     btnCreatePortal: 'Vytvořit ONLYOFFICE cloud',
@@ -65,7 +67,7 @@ l10n.cs = {
     checkUpdates: 'Kontrola aktualizací',
     strVersion: 'verze',
     strVersionCommunity: 'Komunitní verze',
-    strVersionCommercial: 'Komerční verze',
+    strVersionCommercial: 'Verze Enterprise',
     emptySlide1Title: 'Sdílejte a spolupracujte',
     emptySlide1Text: 'Vyberte si mezi rychlou nebo podrobnou spolu-úpravou v reálném čase, chatujte přímo v dokumentu, přidávejte či sdílejte dokumenty pro kontrolu.',
     emptySlide2Title: 'Zobrazte si nebo obnovte předchozí verze',
