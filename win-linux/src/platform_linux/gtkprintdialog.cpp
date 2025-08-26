@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <cmath>
 #include <glib.h>
 #include "gtkutils.h"
 #include "gtkprintdialog.h"
@@ -131,7 +132,7 @@ auto gtkPaperNameFromPageSize(const QSizeF &size)->QString
         GtkPaperSize *psize = (GtkPaperSize*)it->data;
         double width = gtk_paper_size_get_width(psize, GTK_UNIT_MM);
         double height = gtk_paper_size_get_height(psize, GTK_UNIT_MM);
-        if (std::abs(size.width() - width) < diff && std::abs(size.height() - height) < diff) {
+		if (std::fabs(size.width() - width) < diff && std::fabs(size.height() - height) < diff) {
             gtkPaperName = gtk_paper_size_get_name(psize);
             break;
         }
