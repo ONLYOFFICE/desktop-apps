@@ -25,6 +25,7 @@ public:
     enum class ColorRole {
         ecrWindowBackground
         , ecrWindowBorder
+        , ecrBorderControlFocus
         , ecrTextNormal
         , ecrTextPretty
         , ecrTextInverse
