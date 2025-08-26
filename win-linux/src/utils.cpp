@@ -48,6 +48,7 @@
 #include <QStorageInfo>
 #include <QPrinterInfo>
 #include <QProcess>
+#include <QDesktopWidget>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
