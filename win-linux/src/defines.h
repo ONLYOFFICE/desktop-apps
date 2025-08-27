@@ -123,45 +123,7 @@ typedef unsigned char BYTE;
 #define INSTANCE_SVC_PORT 12012
 #define INSTANCE_APP_PORT 13012
 
-#define BTN_TEXT_CANCEL QObject::tr("Cancel")
-#define BTN_TEXT_YES    QObject::tr("Yes")
-#define BTN_TEXT_NO     QObject::tr("No")
-#define BTN_TEXT_OK     QObject::tr("OK")
-#define BTN_TEXT_SKIP   QObject::tr("Skip")
-#define BTN_TEXT_BUY    QObject::tr("Buy Now")
-#define BTN_TEXT_ACTIVATE   QObject::tr("Activate")
-#define BTN_TEXT_CONTINUE   QObject::tr("Continue")
 #define WARNING_LAUNCH_WITH_ADMIN_RIGHTS "App can't working correctly under admin rights."
-
-enum class MsgBtns {
-    mbOk = 0,
-    mbYesNo,
-    mbYesDefNo,
-    mbYesNoCancel,
-    mbYesDefNoCancel,
-    mbOkCancel,
-    mbOkDefCancel,
-    mbYesDefSkipNo,
-    mbBuy,
-    mbActivateDefContinue,
-    mbContinue
-};
-enum class MsgType {
-    MSG_INFO = 0,
-    MSG_WARN,
-    MSG_CONFIRM,
-    MSG_ERROR
-};
-enum MsgRes {
-    MODAL_RESULT_CANCEL = 0,
-    MODAL_RESULT_YES,
-    MODAL_RESULT_NO,
-    MODAL_RESULT_OK,
-    MODAL_RESULT_SKIP,
-    MODAL_RESULT_BUY,
-    MODAL_RESULT_ACTIVATE,
-    MODAL_RESULT_CONTINUE
-};
 
 #include "defines_p.h"
 

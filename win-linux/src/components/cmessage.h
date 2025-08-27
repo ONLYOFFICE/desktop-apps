@@ -35,8 +35,37 @@
 
 #include <QWidget>
 #include <QString>
-#include "defines.h"
 
+
+enum class MsgBtns {
+    mbOk = 0,
+    mbYesNo,
+    mbYesDefNo,
+    mbYesNoCancel,
+    mbYesDefNoCancel,
+    mbOkCancel,
+    mbOkDefCancel,
+    mbYesDefSkipNo,
+    mbBuy,
+    mbActivateDefContinue,
+    mbContinue
+};
+enum class MsgType {
+    MSG_INFO = 0,
+    MSG_WARN,
+    MSG_CONFIRM,
+    MSG_ERROR
+};
+enum MsgRes {
+    MODAL_RESULT_CANCEL = 0,
+    MODAL_RESULT_YES,
+    MODAL_RESULT_NO,
+    MODAL_RESULT_OK,
+    MODAL_RESULT_SKIP,
+    MODAL_RESULT_BUY,
+    MODAL_RESULT_ACTIVATE,
+    MODAL_RESULT_CONTINUE
+};
 
 namespace CMessage
 {

@@ -49,6 +49,14 @@
 #include <initializer_list>
 #include <memory.h>
 
+#define BTN_TEXT_CANCEL QObject::tr("Cancel")
+#define BTN_TEXT_YES    QObject::tr("Yes")
+#define BTN_TEXT_NO     QObject::tr("No")
+#define BTN_TEXT_OK     QObject::tr("OK")
+#define BTN_TEXT_SKIP   QObject::tr("Skip")
+#define BTN_TEXT_BUY    QObject::tr("Buy Now")
+#define BTN_TEXT_ACTIVATE   QObject::tr("Activate")
+#define BTN_TEXT_CONTINUE   QObject::tr("Continue")
 
 #ifdef __linux__
 # pragma push_macro("signals")
