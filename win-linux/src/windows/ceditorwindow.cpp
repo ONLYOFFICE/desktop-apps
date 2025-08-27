@@ -545,7 +545,8 @@ void CEditorWindow::onClickButtonHome()
 
 void CEditorWindow::closeEvent(QCloseEvent * e)
 {
-    AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(this)});
+    if (isEnabled())
+        AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(this)});
     e->ignore();
 }
 

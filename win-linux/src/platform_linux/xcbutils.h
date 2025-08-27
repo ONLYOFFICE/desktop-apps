@@ -46,6 +46,7 @@ void findWindowAsync(const char *window_name, void *user_data,
                      uint timeout_ms,
                      void(*callback)(xcb_window_t, void*));
 void getWindowStack(std::vector<xcb_window_t> &winStack);
+void setInputEnabled(xcb_window_t window, bool enabled);
 }
 
 #endif // XCBUTILS_H
