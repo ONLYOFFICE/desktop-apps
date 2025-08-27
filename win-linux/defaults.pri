@@ -242,7 +242,7 @@ core_linux {
     }
 
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xext
     LIBS += -lX11 -lX11-xcb -lcups
 
     cef_version_107 {

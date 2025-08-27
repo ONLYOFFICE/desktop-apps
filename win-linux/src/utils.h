@@ -142,13 +142,12 @@ namespace WindowHelper {
 #ifdef Q_OS_LINUX
     class CParentDisable
     {
-        QWidget* m_pChild = nullptr;
+        QWidget* m_parent = nullptr;
     public:
-        CParentDisable(QWidget* &parent);
+        CParentDisable(QWidget* parent);
         ~CParentDisable();
 
-        void disable(QWidget* &parent);
-        void enable();
+        void enable(bool enabled);
     };
 
 //    auto check_button_state(Qt::MouseButton b) -> bool;

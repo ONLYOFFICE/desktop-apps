@@ -284,7 +284,8 @@ void CMainWindow::onCloseEvent()
 
 void CMainWindow::closeEvent(QCloseEvent * e)
 {
-    AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(this)});
+    if (isEnabled())
+        AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(this)});
     e->ignore();
 }
 
