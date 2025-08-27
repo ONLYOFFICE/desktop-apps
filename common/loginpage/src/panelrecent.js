@@ -601,6 +601,7 @@
                     }
                 });
 
+
                 docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 
                 $('#idx-recent-filter', this.view.$panel).on('input', _on_filter_recents.bind(this));

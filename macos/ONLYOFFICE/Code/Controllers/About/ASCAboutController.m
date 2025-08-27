@@ -46,7 +46,9 @@
 #import "ASCExternalController.h"
 #import "ASCSharedSettings.h"
 
-@interface ASCAboutController ()
+@interface ASCAboutController () {
+    BOOL isCommercialVersion;
+}
 @property (weak) IBOutlet NSTextField *appNameText;
 @property (weak) IBOutlet NSTextField *versionText;
 @property (weak) IBOutlet NSTextField *copyrightText;
@@ -94,9 +96,13 @@
         }
     }
 
+    NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:@"LICENSE" withExtension:@"html" subdirectory:@"license"];
+    isCommercialVersion = eulaUrl != nil;
+
     // EULA View
     if (self.eulaWebView) {
-        NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:@"EULA" withExtension:@"html"];
+        if ( !eulaUrl )
+            eulaUrl = [[NSBundle mainBundle] URLForResource:@"EULA" withExtension:@"html" subdirectory:@"license"];
         [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:eulaUrl]];
     } else {
         // About View
@@ -116,9 +122,9 @@
         [self.appNameText setStringValue:locProductName];
         
         // Version
-        [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@", nil),
-                                          [infoDictionary objectForKey:@"CFBundleShortVersionString"]]];
-        
+        NSString * tplVersion = !isCommercialVersion ? NSLocalizedString(@"Community version %@", nil) : NSLocalizedString(@"Enterprise version %@", nil);
+        [self.versionText setStringValue:[NSString stringWithFormat:tplVersion, [infoDictionary objectForKey:@"CFBundleShortVersionString"]]];
+
         NSClickGestureRecognizer *click = [[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(onVersionClick:)];
         [self.versionText addGestureRecognizer:click];
         
@@ -162,7 +168,9 @@
 - (void)onVersionClick:(NSTextField *)sender {
     NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
 
-    [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@-%@)", nil),
+    NSString * tplVersion = !isCommercialVersion ? NSLocalizedString(@"Community version %@ (%@-%@)", nil) :
+                                            NSLocalizedString(@"Enterprise version %@ (%@-%@)", nil);
+    [self.versionText setStringValue:[NSString stringWithFormat:tplVersion,
                                       [infoDictionary objectForKey:@"CFBundleShortVersionString"],
                                       [infoDictionary objectForKey:@"CFBundleVersion"],
                                       [infoDictionary objectForKey:@"ASCBundleBuildNumber"]]];
