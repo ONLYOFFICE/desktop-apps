@@ -81,7 +81,7 @@ public:
 
     auto fromFile(const QString&) -> bool;
     auto fromJson(const QString&) -> bool;
-    auto json() const -> std::wstring;
+    auto json() const -> QString;
 
     auto id() const -> std::wstring;
     auto originalId() const -> std::wstring;

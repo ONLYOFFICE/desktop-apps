@@ -546,9 +546,9 @@ auto CTheme::fromJson(const QString& json) -> bool
     return false;
 }
 
-auto CTheme::json() const -> std::wstring
+auto CTheme::json() const -> QString
 {
-    return m_priv->json.isEmpty() ? L"" : m_priv->json.toStdWString();
+    return m_priv->json.isEmpty() ? "" : m_priv->json;
 }
 
 auto CTheme::id() const -> std::wstring
