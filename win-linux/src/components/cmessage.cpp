@@ -51,9 +51,42 @@
 
 
 #ifdef __linux__
-# include "platform_linux/gtkmessage.h"
+# pragma push_macro("signals")
+# undef signals
+# include "platform_linux/gtkutils.h"
+# pragma pop_macro("signals")
+# include <gtk/gtkmessagedialog.h>
+# include <gtk/gtkcheckbutton.h>
+# include <gtk/gtktogglebutton.h>
+# include <gdk/gdkx.h>
+# define toCharPtr(qstr) qstr.toLocal8Bit().data()
+# define TEXT_CANCEL toCharPtr(BTN_TEXT_CANCEL)
+# define TEXT_YES    toCharPtr(BTN_TEXT_YES)
+# define TEXT_NO     toCharPtr(BTN_TEXT_NO)
+# define TEXT_OK     toCharPtr(BTN_TEXT_OK)
+# define TEXT_SKIP   toCharPtr(BTN_TEXT_SKIP)
+# define TEXT_BUY    toCharPtr(BTN_TEXT_BUY)
+# define TEXT_ACTIVATE   toCharPtr(BTN_TEXT_ACTIVATE)
+# define TEXT_CONTINUE   toCharPtr(BTN_TEXT_CONTINUE)
+# define AddButton(name, response) \
+    gtk_dialog_add_button(GTK_DIALOG(dialog), name, response)
+# define GrabFocus(response) \
+    gtk_widget_grab_focus(gtk_dialog_get_widget_for_response(GTK_DIALOG(dialog), response))
 #else
-# include "platform_win/message.h"
+# include <string.h>
+# include <Windows.h>
+# ifndef __OS_WIN_XP
+#  include <commctrl.h>
+# endif
+# define toWCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
+# define TEXT_CANCEL toWCharPtr(BTN_TEXT_CANCEL)
+# define TEXT_YES    toWCharPtr(BTN_TEXT_YES)
+# define TEXT_NO     toWCharPtr(BTN_TEXT_NO)
+# define TEXT_OK     toWCharPtr(BTN_TEXT_OK)
+# define TEXT_SKIP   toWCharPtr(BTN_TEXT_SKIP)
+# define TEXT_BUY    toWCharPtr(BTN_TEXT_BUY)
+# define TEXT_ACTIVATE   toWCharPtr(BTN_TEXT_ACTIVATE)
+# define TEXT_CONTINUE   toWCharPtr(BTN_TEXT_CONTINUE)
 #endif
 
 #define MSG_ICON_WIDTH  35
@@ -378,6 +411,333 @@ void QtMsg::setText( const QString& t)
 {
     m_message->setText(t);
 }
+
+#ifdef _WIN32
+# ifndef __OS_WIN_XP
+static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
+{
+    switch (msg) {
+    case TDN_DIALOG_CONSTRUCTED: {
+        QTimer::singleShot(0, [=]() {
+            if (hwnd)
+                WindowHelper::bringToTop(hwnd);
+        });
+        break;
+    }
+    default:
+        break;
+    }
+    return S_OK;
+}
+# endif
+
+namespace WinMsg
+{
+int showMessage(QWidget *parent, const QString &msg, MsgType msgType, MsgBtns msgBtns,
+                    bool *checkBoxState, const QString &chekBoxText)
+{
+    std::wstring lpCaption = QString("  %1").arg(WINDOW_TITLE).toStdWString();
+    std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
+    std::wstring lpCheckBoxText = chekBoxText.toStdWString();
+    HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;
+    if (parent_hwnd && IsIconic(parent_hwnd))
+        ShowWindow(parent_hwnd, SW_RESTORE);
+
+    int msgboxID = 0;
+# ifndef __OS_WIN_XP
+    PCWSTR pIcon = NULL;
+    switch (msgType) {
+    case MsgType::MSG_INFO:    pIcon = TD_INFORMATION_ICON; break;
+    case MsgType::MSG_WARN:    pIcon = TD_WARNING_ICON; break;
+    case MsgType::MSG_CONFIRM: pIcon = TD_SHIELD_ICON; break;
+    case MsgType::MSG_ERROR:   pIcon = TD_ERROR_ICON; break;
+    default:                   pIcon = TD_INFORMATION_ICON; break;
+    }
+
+    TASKDIALOG_BUTTON *pButtons;
+    uint cButtons = 0;
+    switch (msgBtns) {
+    case MsgBtns::mbYesNo:
+    case MsgBtns::mbYesDefNo:
+        cButtons = 2;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDYES, TEXT_YES};
+        pButtons[1] = {IDNO,  TEXT_NO};
+        break;
+    case MsgBtns::mbYesNoCancel:
+    case MsgBtns::mbYesDefNoCancel:
+        cButtons = 3;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDYES, TEXT_YES};
+        pButtons[1] = {IDNO,  TEXT_NO};
+        pButtons[2] = {IDCANCEL, TEXT_CANCEL};
+        break;
+    case MsgBtns::mbOkCancel:
+    case MsgBtns::mbOkDefCancel:
+        cButtons = 2;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDOK, TEXT_OK};
+        pButtons[1] = {IDCANCEL, TEXT_CANCEL};
+        break;
+    case MsgBtns::mbYesDefSkipNo:
+        cButtons = 3;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDYES, TEXT_YES};
+        pButtons[1] = {IDRETRY, TEXT_SKIP};
+        pButtons[2] = {IDNO, TEXT_NO};
+        break;
+    case MsgBtns::mbBuy:
+        cButtons = 1;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDYES, TEXT_BUY};
+        break;
+    case MsgBtns::mbActivateDefContinue:
+        cButtons = 2;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDYES, TEXT_ACTIVATE};
+        pButtons[1] = {IDNO, TEXT_CONTINUE};
+        break;
+    case MsgBtns::mbContinue:
+        cButtons = 1;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDOK, TEXT_CONTINUE};
+        break;
+    default:
+        cButtons = 1;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDOK, TEXT_OK};
+        break;
+    }
+
+    int nDefltBtn{0};
+    switch (msgBtns) {
+    case MsgBtns::mbYesNo:          nDefltBtn = IDNO; break;
+    case MsgBtns::mbYesDefNo:       nDefltBtn = IDYES; break;
+    case MsgBtns::mbYesNoCancel:    nDefltBtn = IDCANCEL; break;
+    case MsgBtns::mbYesDefNoCancel: nDefltBtn = IDYES; break;
+    case MsgBtns::mbOkCancel:       nDefltBtn = IDCANCEL; break;
+    case MsgBtns::mbOkDefCancel:    nDefltBtn = IDOK; break;
+    case MsgBtns::mbYesDefSkipNo:   nDefltBtn = IDYES; break;
+    case MsgBtns::mbBuy:            nDefltBtn = IDYES; break;
+    case MsgBtns::mbActivateDefContinue:   nDefltBtn = IDYES; break;
+    case MsgBtns::mbContinue:       nDefltBtn = IDOK; break;
+    default:                        nDefltBtn = IDOK; break;
+    }
+
+    BOOL chkState = (checkBoxState) ? (BOOL)*checkBoxState : FALSE;
+
+    TASKDIALOGCONFIG config = {0};
+    ZeroMemory(&config, sizeof(config));
+    config.cbSize             = sizeof(config);
+    config.dwFlags            = TDF_POSITION_RELATIVE_TO_WINDOW |
+                     TDF_ALLOW_DIALOG_CANCELLATION |
+                     TDF_SIZE_TO_CONTENT;
+    if (AscAppManager::isRtlEnabled())
+        config.dwFlags |= TDF_RTL_LAYOUT;
+    config.hwndParent         = parent_hwnd;
+    config.hInstance          = GetModuleHandle(NULL);
+    config.pfCallback         = (PFTASKDIALOGCALLBACK)Pftaskdialogcallback;
+    config.pButtons           = pButtons;
+    config.cButtons           = cButtons;
+    config.nDefaultButton     = nDefltBtn;
+    config.pszMainIcon        = pIcon;
+    config.pszWindowTitle     = lpCaption.c_str();
+    config.pszMainInstruction = lpText.c_str();
+    config.pszContent         = NULL;
+
+    if (chkState == TRUE)
+        config.dwFlags |= TDF_VERIFICATION_FLAG_CHECKED;
+    if (checkBoxState)
+        config.pszVerificationText = lpCheckBoxText.c_str();
+
+    TaskDialogIndirect(&config, &msgboxID, NULL, (checkBoxState != nullptr) ? &chkState : NULL);
+    if (checkBoxState != nullptr)
+        *checkBoxState = (chkState == TRUE);
+
+    for (int i = 0; i < (int)cButtons; i++)
+        free((void*)pButtons[i].pszButtonText);
+    delete[] pButtons;
+# else
+    DWORD uType{0};
+    switch (msgType) {
+    case MsgType::MSG_INFO:    uType |= MB_ICONINFORMATION; break;
+    case MsgType::MSG_WARN:    uType |= MB_ICONWARNING; break;
+    case MsgType::MSG_CONFIRM: uType |= MB_ICONQUESTION; break;
+    case MsgType::MSG_ERROR:   uType |= MB_ICONERROR; break;
+    default:                   uType |= MB_ICONINFORMATION; break;
+    }
+
+    switch (msgBtns) {
+    case MsgBtns::mbYesNo:          uType |= MB_YESNO | MB_DEFBUTTON2; break;
+    case MsgBtns::mbYesDefNo:       uType |= MB_YESNO | MB_DEFBUTTON1; break;
+    case MsgBtns::mbYesNoCancel:    uType |= MB_YESNOCANCEL | MB_DEFBUTTON3; break;
+    case MsgBtns::mbYesDefNoCancel: uType |= MB_YESNOCANCEL | MB_DEFBUTTON1; break;
+    case MsgBtns::mbOkCancel:       uType |= MB_OKCANCEL | MB_DEFBUTTON2; break;
+    case MsgBtns::mbOkDefCancel:    uType |= MB_OKCANCEL | MB_DEFBUTTON1; break;
+    default:                        uType |= MB_OK | MB_DEFBUTTON1; break;
+    }
+
+    msgboxID = MessageBoxW(parent_hwnd, lpText.c_str(), lpCaption.c_str(), uType);
+# endif
+
+    int result = MODAL_RESULT_CANCEL;
+    switch (msgboxID) {
+    case IDYES: result = (msgBtns == MsgBtns::mbBuy) ? MODAL_RESULT_BUY :
+                     (msgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_ACTIVATE : MODAL_RESULT_YES;
+        break;
+    case IDNO:  result = (msgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_CONTINUE : MODAL_RESULT_NO;
+        break;
+    case IDOK:  result = (msgBtns == MsgBtns::mbContinue) ? MODAL_RESULT_CONTINUE : MODAL_RESULT_OK;
+        break;
+    case IDRETRY:  result = MODAL_RESULT_SKIP;
+        break;
+    case IDCANCEL:
+    default:
+        break;
+    }
+
+    return result;
+}
+}
+#else
+namespace GtkMsg
+{
+int showMessage(QWidget *parent, const QString &msg, MsgType msgType, MsgBtns msgBtns,
+                    bool *checkBoxState, const QString &chekBoxText)
+{
+    QString plainText = QTextDocumentFragment::fromHtml(msg).toPlainText();
+    const int delim = plainText.indexOf('\n');
+    const QString primaryText = (delim != -1) ? plainText.mid(0, delim) : plainText;
+    const QString secondaryText = (delim != -1) ? plainText.mid(delim + 1) : "";
+    Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
+
+    const char* img_name = NULL;
+    switch (msgType) {
+    case MsgType::MSG_INFO:    img_name = "dialog-information"; break;
+    case MsgType::MSG_WARN:    img_name = "dialog-warning"; break;
+    case MsgType::MSG_CONFIRM: img_name = "dialog-question"; break;
+    case MsgType::MSG_ERROR:   img_name = "dialog-error"; break;
+    default:                   img_name = "dialog-information"; break;
+    }
+
+    GtkWidget *image = NULL;
+    image = gtk_image_new();
+    gtk_image_set_from_icon_name(GTK_IMAGE(image), img_name, GTK_ICON_SIZE_DIALOG);
+
+    GtkDialogFlags flags;
+    flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
+
+    if (AscAppManager::isRtlEnabled())
+        gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
+    GtkWidget *dialog = NULL;
+    dialog = gtk_message_dialog_new(NULL, flags,
+                                    GTK_MESSAGE_OTHER, // Message type doesn't show icon
+                                    GTK_BUTTONS_NONE, "%s",
+                                    primaryText.toLocal8Bit().data());
+
+    g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
+    g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
+    DialogTag tag;  // unable to send parent_xid via g_signal_connect and "focus_out_event"
+    memset(&tag, 0, sizeof(tag));
+    tag.dialog = dialog;
+    tag.parent_xid = (ulong)parent_xid;
+    g_signal_connect_swapped(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(focus_out), (gpointer)&tag);
+    //gtk_window_set_title(GTK_WINDOW(dialog), APP_TITLE);
+    if (!secondaryText.isEmpty())
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", secondaryText.toLocal8Bit().data());
+    gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog), image);
+    gtk_widget_show_all(image);
+
+    GtkWidget *chkbox = NULL;
+    if (checkBoxState != nullptr) {
+        //GtkWidget *cont_area = gtk_dialog_get_content_area(GTK_DIALOG (dialog));
+        GtkWidget *msg_area = gtk_message_dialog_get_message_area(GTK_MESSAGE_DIALOG(dialog));
+        chkbox = gtk_check_button_new_with_label(chekBoxText.toLocal8Bit().data());
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chkbox), (*checkBoxState) ? TRUE : FALSE);
+        gtk_container_add(GTK_CONTAINER(msg_area), chkbox);
+        gtk_widget_show_all(chkbox);
+    }
+
+    switch (msgBtns) {
+    case MsgBtns::mbYesNo:
+    case MsgBtns::mbYesDefNo:
+        AddButton(TEXT_YES, GTK_RESPONSE_YES);
+        AddButton(TEXT_NO, GTK_RESPONSE_NO);
+        break;
+    case MsgBtns::mbYesNoCancel:
+    case MsgBtns::mbYesDefNoCancel:
+        AddButton(TEXT_YES, GTK_RESPONSE_YES);
+        AddButton(TEXT_NO, GTK_RESPONSE_NO);
+        AddButton(TEXT_CANCEL, GTK_RESPONSE_CANCEL);
+        break;
+    case MsgBtns::mbOkCancel:
+    case MsgBtns::mbOkDefCancel:
+        AddButton(TEXT_OK, GTK_RESPONSE_OK);
+        AddButton(TEXT_CANCEL, GTK_RESPONSE_CANCEL);
+        break;
+    case MsgBtns::mbYesDefSkipNo:
+        AddButton(TEXT_YES, GTK_RESPONSE_YES);
+        AddButton(TEXT_SKIP, GTK_RESPONSE_REJECT);
+        AddButton(TEXT_NO, GTK_RESPONSE_NO);
+        break;
+    case MsgBtns::mbBuy:
+        AddButton(TEXT_BUY, GTK_RESPONSE_YES);
+        break;
+    case MsgBtns::mbActivateDefContinue:
+        AddButton(TEXT_ACTIVATE, GTK_RESPONSE_YES);
+        AddButton(TEXT_CONTINUE, GTK_RESPONSE_NO);
+        break;
+    case MsgBtns::mbContinue:
+        AddButton(TEXT_CONTINUE, GTK_RESPONSE_OK);
+        break;
+    default:
+        AddButton(TEXT_OK, GTK_RESPONSE_OK);
+        break;
+    }
+
+    switch (msgBtns) {
+    case MsgBtns::mbYesNo: GrabFocus(GTK_RESPONSE_NO); break;
+    case MsgBtns::mbYesDefNo: GrabFocus(GTK_RESPONSE_YES); break;
+    case MsgBtns::mbYesNoCancel: GrabFocus(GTK_RESPONSE_CANCEL); break;
+    case MsgBtns::mbYesDefNoCancel: GrabFocus(GTK_RESPONSE_YES); break;
+    case MsgBtns::mbOkCancel: GrabFocus(GTK_RESPONSE_CANCEL); break;
+    case MsgBtns::mbOkDefCancel: GrabFocus(GTK_RESPONSE_OK); break;
+    case MsgBtns::mbYesDefSkipNo: GrabFocus(GTK_RESPONSE_YES); break;
+    case MsgBtns::mbBuy: GrabFocus(GTK_RESPONSE_YES); break;
+    case MsgBtns::mbActivateDefContinue: GrabFocus(GTK_RESPONSE_YES); break;
+    case MsgBtns::mbContinue: GrabFocus(GTK_RESPONSE_OK); break;
+    default: GrabFocus(GTK_RESPONSE_OK); break;
+    }
+
+    int msgboxID = gtk_dialog_run (GTK_DIALOG (dialog));
+    int result = MODAL_RESULT_CANCEL;
+    switch (msgboxID) {
+    case GTK_RESPONSE_YES: result = (msgBtns == MsgBtns::mbBuy) ? MODAL_RESULT_BUY :
+                     (msgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_ACTIVATE : MODAL_RESULT_YES;
+        break;
+    case GTK_RESPONSE_NO:  result = (msgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_CONTINUE : MODAL_RESULT_NO;
+        break;
+    case GTK_RESPONSE_OK:  result = (msgBtns == MsgBtns::mbContinue) ? MODAL_RESULT_CONTINUE : MODAL_RESULT_OK;
+        break;
+    case GTK_RESPONSE_REJECT:  result = MODAL_RESULT_SKIP;
+        break;
+    case GTK_RESPONSE_DELETE_EVENT:
+    case GTK_RESPONSE_CANCEL:
+    default:
+        break;
+    }
+
+    if (checkBoxState != nullptr) {
+        gboolean chkState = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(chkbox));
+        *checkBoxState = (chkState == TRUE);
+    }
+
+    gtk_widget_destroy(dialog);
+
+    return result;
+}
+}
+#endif
 
 // -------------------- CMessage ------------------
 
