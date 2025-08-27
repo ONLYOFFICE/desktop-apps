@@ -158,7 +158,7 @@ public:
             qtProgressLabel->setStyleSheet(QString("margin-bottom: %1px;").arg(8*_dpi_ratio));
             layout->addWidget(qtProgressLabel);
 
-            QPushButton * btn_cancel = new QPushButton(QObject::tr("&Cancel", "CPrintProgress"));
+            QPushButton * btn_cancel = new QPushButton(cancelText);
             QWidget * box = new QWidget;
             box->setLayout(new QHBoxLayout);
             box->layout()->addWidget(btn_cancel);
