@@ -33,7 +33,6 @@
 #ifndef CMESSAGE_H
 #define CMESSAGE_H
 
-#include <QWidget>
 #include <QString>
 
 
@@ -67,6 +66,7 @@ enum MsgRes {
     MODAL_RESULT_CONTINUE
 };
 
+class QWidget;
 namespace CMessage
 {
 int showMessage(QWidget *parent,

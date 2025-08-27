@@ -40,10 +40,8 @@
 #include <QTimer>
 #include <functional>
 #include <QEvent>
-//#include <QKeyEvent>
 #include <QCheckBox>
 #include <QApplication>
-#include "defines.h"
 #include "utils.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <initializer_list>
@@ -81,6 +79,7 @@
 # define GrabFocus(response) \
     gtk_widget_grab_focus(gtk_dialog_get_widget_for_response(GTK_DIALOG(dialog), response))
 #else
+# include "defines.h"
 # include <string.h>
 # include <Windows.h>
 # ifndef __OS_WIN_XP
