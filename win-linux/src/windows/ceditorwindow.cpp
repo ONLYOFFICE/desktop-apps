@@ -33,6 +33,7 @@
 #include "windows/ceditorwindow.h"
 #include "windows/ceditorwindow_p.h"
 #include "iconfactory.h"
+#include "defines.h"
 #include <QApplication>
 #include <clangater.h>
 

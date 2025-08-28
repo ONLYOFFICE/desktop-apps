@@ -39,6 +39,7 @@
 #include "ceditortools.h"
 #include "components/cfullscrwidget.h"
 #include "components/cmenu.h"
+#include "defines.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
 #include <QDir>
 #include <QUuid>
