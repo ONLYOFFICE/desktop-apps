@@ -46,16 +46,6 @@
 #include "cascapplicationmanagerwrapper.h"
 #include <initializer_list>
 #include <memory.h>
-
-#define BTN_TEXT_CANCEL QObject::tr("Cancel")
-#define BTN_TEXT_YES    QObject::tr("Yes")
-#define BTN_TEXT_NO     QObject::tr("No")
-#define BTN_TEXT_OK     QObject::tr("OK")
-#define BTN_TEXT_SKIP   QObject::tr("Skip")
-#define BTN_TEXT_BUY    QObject::tr("Buy Now")
-#define BTN_TEXT_ACTIVATE   QObject::tr("Activate")
-#define BTN_TEXT_CONTINUE   QObject::tr("Continue")
-
 #ifdef __linux__
 # pragma push_macro("signals")
 # undef signals
@@ -66,14 +56,6 @@
 # include <gtk/gtktogglebutton.h>
 # include <gdk/gdkx.h>
 # define toCharPtr(qstr) qstr.toLocal8Bit().data()
-# define TEXT_CANCEL toCharPtr(BTN_TEXT_CANCEL)
-# define TEXT_YES    toCharPtr(BTN_TEXT_YES)
-# define TEXT_NO     toCharPtr(BTN_TEXT_NO)
-# define TEXT_OK     toCharPtr(BTN_TEXT_OK)
-# define TEXT_SKIP   toCharPtr(BTN_TEXT_SKIP)
-# define TEXT_BUY    toCharPtr(BTN_TEXT_BUY)
-# define TEXT_ACTIVATE   toCharPtr(BTN_TEXT_ACTIVATE)
-# define TEXT_CONTINUE   toCharPtr(BTN_TEXT_CONTINUE)
 # define AddButton(name, response) \
     gtk_dialog_add_button(GTK_DIALOG(dialog), name, response)
 # define GrabFocus(response) \
@@ -85,17 +67,26 @@
 # ifndef __OS_WIN_XP
 #  include <commctrl.h>
 # endif
-# define toWCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
-# define TEXT_CANCEL toWCharPtr(BTN_TEXT_CANCEL)
-# define TEXT_YES    toWCharPtr(BTN_TEXT_YES)
-# define TEXT_NO     toWCharPtr(BTN_TEXT_NO)
-# define TEXT_OK     toWCharPtr(BTN_TEXT_OK)
-# define TEXT_SKIP   toWCharPtr(BTN_TEXT_SKIP)
-# define TEXT_BUY    toWCharPtr(BTN_TEXT_BUY)
-# define TEXT_ACTIVATE   toWCharPtr(BTN_TEXT_ACTIVATE)
-# define TEXT_CONTINUE   toWCharPtr(BTN_TEXT_CONTINUE)
+# define toCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
 #endif
 
+#define BTN_TEXT_CANCEL QObject::tr("Cancel")
+#define BTN_TEXT_YES    QObject::tr("Yes")
+#define BTN_TEXT_NO     QObject::tr("No")
+#define BTN_TEXT_OK     QObject::tr("OK")
+#define BTN_TEXT_SKIP   QObject::tr("Skip")
+#define BTN_TEXT_BUY    QObject::tr("Buy Now")
+#define BTN_TEXT_ACTIVATE   QObject::tr("Activate")
+#define BTN_TEXT_CONTINUE   QObject::tr("Continue")
+
+#define TEXT_CANCEL toCharPtr(BTN_TEXT_CANCEL)
+#define TEXT_YES    toCharPtr(BTN_TEXT_YES)
+#define TEXT_NO     toCharPtr(BTN_TEXT_NO)
+#define TEXT_OK     toCharPtr(BTN_TEXT_OK)
+#define TEXT_SKIP   toCharPtr(BTN_TEXT_SKIP)
+#define TEXT_BUY    toCharPtr(BTN_TEXT_BUY)
+#define TEXT_ACTIVATE   toCharPtr(BTN_TEXT_ACTIVATE)
+#define TEXT_CONTINUE   toCharPtr(BTN_TEXT_CONTINUE)
 #define MSG_ICON_WIDTH  35
 #define MSG_ICON_HEIGHT 35
 
