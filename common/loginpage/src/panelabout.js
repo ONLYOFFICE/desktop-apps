@@ -186,7 +186,7 @@
                     if ( this.updates ) {
                         $('body').on('click', '.btn-update-action', e=>{
                             console.log('update action click');
-                            const action = $('#idx-update-btnaction').attr('data-action');
+                            const action = this.view.$body.find('#idx-update-btnaction').attr('data-action');
                             sdk.execCommand('updates:action', action);
                         });
 
