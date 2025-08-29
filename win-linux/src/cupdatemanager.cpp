@@ -42,10 +42,10 @@
 #include "version.h"
 #include "clangater.h"
 #include "clogger.h"
+#include "components/updatedialog.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <QCryptographicHash>
 #ifdef _WIN32
-# include "platform_win/updatedialog.h"
 # define DAEMON_NAME L"/updatesvc.exe"
 # define GetPid() GetCurrentProcessId()
 #else
@@ -56,7 +56,6 @@
 # include <fcntl.h>
 # include <elf.h>
 # include "components/cmessage.h"
-# include "platform_linux/updatedialog.h"
 # define DAEMON_NAME "/updatesvc"
 # define GetPid() getpid()
 #endif

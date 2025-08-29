@@ -37,24 +37,54 @@
 #include "defines.h"
 #include "utils.h"
 #include <string.h>
-#include <Windows.h>
-#include <CommCtrl.h>
 #include <QTimer>
+#ifdef __linux__
+# pragma push_macro("signals")
+# undef signals
+# include "platform_linux/gtkutils.h"
+# pragma pop_macro("signals")
+# include <gtk/gtkmessagedialog.h>
+# include <gdk/gdkx.h>
+# include "res/gresource.c"
+# define toCharPtr(qstr) qstr.toLocal8Bit().data()
+#else
+# include <Windows.h>
+# include <CommCtrl.h>
+# define toCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
+#endif
 
 #define DLG_PADDING 7
 #define BTN_SPACING 5
 #define BTN_PADDING 13
 #define DLG_PREF_WIDTH 240
-#define toWCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
-#define TEXT_SKIP        toWCharPtr(QObject::tr("Skip this version"))
-#define TEXT_REMIND      toWCharPtr(QObject::tr("Remind me later"))
-#define TEXT_INSTALL     toWCharPtr(QObject::tr("Install update"))
-#define TEXT_INSLATER    toWCharPtr(QObject::tr("Later"))
-#define TEXT_RESTART     toWCharPtr(QObject::tr("Restart Now"))
-#define TEXT_SAVEANDINS  toWCharPtr(QObject::tr("Save and Install Now"))
-#define TEXT_DOWNLOAD    toWCharPtr(QObject::tr("Download update"))
 
+#define BTN_TEXT_SKIPVER    QObject::tr("Skip this version")
+#define BTN_TEXT_REMIND     QObject::tr("Remind me later")
+#define BTN_TEXT_INSTALL    QObject::tr("Install update")
+#define BTN_TEXT_INSLATER   QObject::tr("Later")
+#define BTN_TEXT_RESTART    QObject::tr("Restart Now")
+#define BTN_TEXT_SAVEANDINS QObject::tr("Save and Install Now")
+#define BTN_TEXT_DOWNLOAD   QObject::tr("Download update")
 
+#define TEXT_SKIP        toCharPtr(BTN_TEXT_SKIPVER)
+#define TEXT_REMIND      toCharPtr(BTN_TEXT_REMIND)
+#define TEXT_INSTALL     toCharPtr(BTN_TEXT_INSTALL)
+#define TEXT_INSLATER    toCharPtr(BTN_TEXT_INSLATER)
+#define TEXT_RESTART     toCharPtr(BTN_TEXT_RESTART)
+#define TEXT_SAVEANDINS  toCharPtr(BTN_TEXT_SAVEANDINS)
+#define TEXT_DOWNLOAD    toCharPtr(BTN_TEXT_DOWNLOAD)
+
+#ifdef __linux__
+# define AddButton(name, response) \
+    gtk_dialog_add_button(GTK_DIALOG(dialog), name, response)
+# define GrabFocus(response) \
+    gtk_widget_grab_focus(gtk_dialog_get_widget_for_response(GTK_DIALOG(dialog), response))
+
+static void on_link_clicked(GtkWidget*, gchar *uri, gpointer)
+{
+    gtk_show_uri(NULL, uri, GDK_CURRENT_TIME, NULL);
+}
+#else
 static int calcApproxMinWidth(TASKDIALOG_BUTTON *pButtons, uint cButtons)
 {
     int width = 0;
@@ -91,11 +121,10 @@ static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam,
     }
     return S_OK;
 }
+#endif
 
-int WinDlg::showDialog(QWidget *parent,
-                       const QString &msg,
-                       const QString &content,
-                       DlgBtns dlgBtns)
+#ifdef _WIN32
+int WinDlg::showDialog(QWidget *parent, const QString &msg, const QString &content, DlgBtns dlgBtns)
 {
     std::wstring lpCaption = QString("  %1").arg(WINDOW_TITLE).toStdWString();
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
@@ -190,3 +219,117 @@ int WinDlg::showDialog(QWidget *parent,
 
     return result;
 }
+#else
+int WinDlg::showDialog(QWidget *parent, const QString &msg, const QString &content, DlgBtns dlgBtns)
+{
+//    QString title = QString("  %1").arg(WINDOW_TITLE);
+    QString primaryText = QTextDocumentFragment::fromHtml(msg).toPlainText();
+    QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
+                           QString("<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+    WindowHelper::CParentDisable oDisabler(parent);
+    Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
+
+    GtkDialogFlags flags;
+    flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
+
+    if (AscAppManager::isRtlEnabled())
+        gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
+    GtkWidget *dialog = NULL;
+    dialog = gtk_message_dialog_new(NULL, flags,
+                                    GTK_MESSAGE_OTHER, // Message type doesn't show icon
+                                    GTK_BUTTONS_NONE,
+                                    "%s", primaryText.toLocal8Bit().data());
+
+    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), TRUE);
+    g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
+    g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
+    DialogTag tag;  // unable to send parent_xid via g_signal_connect and "focus_out_event"
+    memset(&tag, 0, sizeof(tag));
+    tag.dialog = dialog;
+    tag.parent_xid = (ulong)parent_xid;
+    g_signal_connect_swapped(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(focus_out), (gpointer)&tag);
+    //    gtk_window_set_title(GTK_WINDOW(dialog), title.toLocal8Bit().data());
+    if (!content.isEmpty())
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", content.toLocal8Bit().data());
+
+    if (GtkWidget *image = gtk_image_new_from_resource("/icons/app-icon_64.png")) {
+        gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog), image);
+        gtk_widget_set_margin_top(image, 6);
+        gtk_widget_show_all(image);
+    }
+
+    if (!linkText.isEmpty()) {
+        GtkWidget *msg_area = gtk_message_dialog_get_message_area(GTK_MESSAGE_DIALOG(dialog));
+        GtkWidget *label = gtk_label_new(linkText.toLocal8Bit().data());
+        gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
+        gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
+        gtk_label_set_max_width_chars(GTK_LABEL(label), 50);
+        g_signal_connect(G_OBJECT(label), "activate-link", G_CALLBACK(on_link_clicked), NULL);
+        gtk_container_add(GTK_CONTAINER(msg_area), label);
+        gtk_widget_show_all(label);
+    }
+
+    { // Set text alignment
+        GtkWidget *msg_area = gtk_message_dialog_get_message_area(GTK_MESSAGE_DIALOG(dialog));
+        GList *children = gtk_container_get_children(GTK_CONTAINER(msg_area));
+        for (GList *iter = children; iter != NULL; iter = g_list_next(iter)) {
+            GtkWidget *child = GTK_WIDGET(iter->data);
+            if (GTK_IS_LABEL(child))
+                gtk_widget_set_halign(child, GTK_ALIGN_START);
+        }
+        g_list_free(children);
+    }
+
+    switch (dlgBtns) {
+    case DlgBtns::mbInslaterRestart:
+        AddButton(TEXT_INSLATER, GTK_RESPONSE_YES);
+        AddButton(TEXT_RESTART, GTK_RESPONSE_NO);
+        break;
+    case DlgBtns::mbSkipRemindInstall:
+        AddButton(TEXT_SKIP, GTK_RESPONSE_REJECT);
+        AddButton(TEXT_REMIND, GTK_RESPONSE_NO);
+        AddButton(TEXT_INSTALL, GTK_RESPONSE_YES);
+        break;
+    case DlgBtns::mbSkipRemindSaveandinstall:
+        AddButton(TEXT_SKIP, GTK_RESPONSE_REJECT);
+        AddButton(TEXT_REMIND, GTK_RESPONSE_NO);
+        AddButton(TEXT_SAVEANDINS, GTK_RESPONSE_YES);
+        break;
+    case DlgBtns::mbSkipRemindDownload:
+        AddButton(TEXT_SKIP, GTK_RESPONSE_REJECT);
+        AddButton(TEXT_REMIND, GTK_RESPONSE_NO);
+        AddButton(TEXT_DOWNLOAD, GTK_RESPONSE_YES);
+        break;
+    default:
+        break;
+    }
+
+    switch (dlgBtns) {
+    case DlgBtns::mbInslaterRestart:   GrabFocus(GTK_RESPONSE_NO); break;
+    case DlgBtns::mbSkipRemindInstall: GrabFocus(GTK_RESPONSE_YES); break;
+    case DlgBtns::mbSkipRemindSaveandinstall: GrabFocus(GTK_RESPONSE_YES); break;
+    case DlgBtns::mbSkipRemindDownload: GrabFocus(GTK_RESPONSE_YES); break;
+    default: break;
+    }
+
+    int msgboxID = gtk_dialog_run (GTK_DIALOG (dialog));
+    int result = GTK_RESPONSE_CANCEL;
+    switch (msgboxID) {
+    case GTK_RESPONSE_YES: result = (dlgBtns == DlgBtns::mbSkipRemindInstall ||
+                  dlgBtns == DlgBtns::mbSkipRemindSaveandinstall) ? DLG_RESULT_INSTALL :
+                     (dlgBtns == DlgBtns::mbSkipRemindDownload) ? DLG_RESULT_DOWNLOAD :
+                     DLG_RESULT_INSLATER; break;
+    case GTK_RESPONSE_NO:  result = (dlgBtns == DlgBtns::mbSkipRemindInstall ||
+                  dlgBtns == DlgBtns::mbSkipRemindSaveandinstall ||
+                  dlgBtns == DlgBtns::mbSkipRemindDownload) ? DLG_RESULT_REMIND :
+                     DLG_RESULT_RESTART; break;
+    case GTK_RESPONSE_REJECT: result = DLG_RESULT_SKIP; break;
+    case GTK_RESPONSE_CANCEL:
+    default:
+        break;
+    }
+    gtk_widget_destroy(dialog);
+
+    return result;
+}
+#endif

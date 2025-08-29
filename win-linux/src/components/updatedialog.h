@@ -55,10 +55,7 @@ enum DlgRes {
     DLG_RESULT_RESTART
 };
 
-int showDialog(QWidget *parent,
-               const QString &msg,
-               const QString &content,
-               DlgBtns dlgBtns = DlgBtns::mbSkipRemindInstall);
+int showDialog(QWidget *parent, const QString &msg, const QString &content, DlgBtns dlgBtns = DlgBtns::mbSkipRemindInstall);
 }
 
 #endif // UPDATEDIALOG_H

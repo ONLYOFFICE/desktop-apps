@@ -33,11 +33,7 @@
 #ifndef CNOTIFICATION_H
 #define CNOTIFICATION_H
 
-#ifdef _WIN32
-# include "platform_win/updatedialog.h"
-#else
-# include "platform_linux/updatedialog.h"
-#endif
+#include "components/updatedialog.h"
 #include <functional>
 
 #define mbNone  WinDlg::DlgBtns(-1)
