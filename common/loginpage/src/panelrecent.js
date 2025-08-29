@@ -490,17 +490,6 @@
             }
         }
 
-        function updateEllipsis() {
-            const names = document.querySelectorAll(".col-name .name");
-            if (!names.length) {
-                setTimeout(updateEllipsis, 100);
-                return;
-            }
-            names.forEach(nameEl => {
-                const col = nameEl.parentElement; 
-                col.toggleAttribute('data-overflow', nameEl.scrollWidth > nameEl.clientWidth);
-            });
-        }
 
         return {
             init: function() {
@@ -512,7 +501,6 @@
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
 
-                window.addEventListener("resize", updateEllipsis);
                 window.sdk.on('onupdaterecents', _on_recents.bind(this));
                 window.sdk.on('onupdaterecovers', _on_recovers.bind(this));
                 window.sdk.on('on_native_message', (cmd, param)=>{
@@ -554,7 +542,6 @@
                     console.log('portal authorized');
                 });
 
-                updateEllipsis();
 
                 this.dndZone = new DnDFileZone();
                 this.dndZone.render(this.view.$panel.find("#area-dnd-file"));
