@@ -294,7 +294,7 @@ window.DialogConnect = function(params) {
             $title = $el.find('.title');
             $body = $el.find('.body');
 
-            $el.width(450);
+            $el.width(480);
             $title.find('.tool.close').bind('click', _on_close_click);
 
             _set_title( utils.Lang.loginTitleStart );
