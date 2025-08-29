@@ -161,10 +161,8 @@ SOURCES += \
 
 updmodule:!build_xp {
     HEADERS += $$PWD/src/cupdatemanager.h \
-               $$PWD/src/components/updatedialog.h \
                $$PWD/src/components/cnotification.h
     SOURCES += $$PWD/src/cupdatemanager.cpp \
-               $$PWD/src/components/updatedialog.cpp \
                $$PWD/src/components/cnotification.cpp
 }
 

@@ -216,7 +216,10 @@ void Association::AssociationPrivate::tryProposeAssociation(QWidget *parent, con
                                                         .arg(QString(WINDOW_NAME), QString::fromStdWString(unassocFileExts[0])) :
                                                     QObject::tr("Do you want to make %1 your default application for all supported extensions?")
                                                         .arg(QString(WINDOW_NAME));
-        int res = CMessage::showMessage(parent, msg, MsgType::MSG_INFO, MsgBtns::mbYesDefNo, &m_ignoreAssocMsg, QObject::tr("Do not show this message again"));
+        CMessageOpts opts;
+        opts.checkBoxState = &m_ignoreAssocMsg;
+        opts.chekBoxText = QObject::tr("Do not show this message again");
+        int res = CMessage::showMessage(parent, msg, MsgType::MSG_INFO, MsgBtns::mbYesDefNo, opts);
         if (m_ignoreAssocMsg) {
             GET_REGISTRY_USER(reg_user)
             reg_user.setValue("ignoreAssocMsg", true);
