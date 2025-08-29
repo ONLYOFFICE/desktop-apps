@@ -76,7 +76,7 @@ static void action_callback(NotifyNotification *ntf, char *action, void *data)
         return;
     int res = strcmp(action, "inslater") == 0 ? MODAL_RESULT_INSLATER :
               strcmp(action, "restart") == 0 ?  MODAL_RESULT_RESTART :
-              strcmp(action, "skip") == 0 ?     MODAL_RESULT_SKIP :
+              strcmp(action, "skip") == 0 ?     MODAL_RESULT_SKIPVER :
               strcmp(action, "remind") == 0 ?   MODAL_RESULT_REMIND :
               strcmp(action, "install") == 0 ?  MODAL_RESULT_INSTALL :
               strcmp(action, "saveins") == 0 ?  MODAL_RESULT_INSTALL :
@@ -174,7 +174,7 @@ public:
     {
         int res = -1;
         switch (actionIndex) {
-        case 0: res = (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_INSLATER : MODAL_RESULT_SKIP; break;
+        case 0: res = (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_INSLATER : MODAL_RESULT_SKIPVER; break;
         case 1: res = (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_RESTART : MODAL_RESULT_REMIND; break;
         case 2: res = (dlgBtns == MsgBtns::mbSkipRemindDownload) ? MODAL_RESULT_DOWNLOAD : MODAL_RESULT_INSTALL; break;
         default:

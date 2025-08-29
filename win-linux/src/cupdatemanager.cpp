@@ -918,7 +918,7 @@ void CUpdateManager::showUpdateMessage(QWidget *parent, bool forceModal, int res
         else
             Utils::openUrl(DOWNLOAD_PAGE);
         break;
-    case MsgRes::MODAL_RESULT_SKIP: {
+    case MsgRes::MODAL_RESULT_SKIPVER: {
         skipVersion();
         refreshStartPage({"success", {TXT_UPDATED}, BTN_TXT_CHECK, "check", "false"});
         m_pLastCheckMsgTimer->start();
