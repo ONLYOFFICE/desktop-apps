@@ -65,8 +65,6 @@
 #define TEXT_SAVEANDINS  toTStr(QObject::tr("Install"))
 #define TEXT_DOWNLOAD    toTStr(QObject::tr("Download"))
 
-using namespace WinDlg;
-
 #ifdef __linux__
 # define addAction(action, label) notify_notification_add_action(ntf, action, label, NOTIFY_ACTION_CALLBACK(action_callback), (void*)&pimpl->ntfMap, NULL);
 
@@ -76,13 +74,13 @@ static void action_callback(NotifyNotification *ntf, char *action, void *data)
 {
     if (!data)
         return;
-    int res = strcmp(action, "inslater") == 0 ? DLG_RESULT_INSLATER :
-              strcmp(action, "restart") == 0 ?  DLG_RESULT_RESTART :
-              strcmp(action, "skip") == 0 ?     DLG_RESULT_SKIP :
-              strcmp(action, "remind") == 0 ?   DLG_RESULT_REMIND :
-              strcmp(action, "install") == 0 ?  DLG_RESULT_INSTALL :
-              strcmp(action, "saveins") == 0 ?  DLG_RESULT_INSTALL :
-              strcmp(action, "download") == 0 ? DLG_RESULT_DOWNLOAD : -1;
+    int res = strcmp(action, "inslater") == 0 ? MODAL_RESULT_INSLATER :
+              strcmp(action, "restart") == 0 ?  MODAL_RESULT_RESTART :
+              strcmp(action, "skip") == 0 ?     MODAL_RESULT_SKIPVER :
+              strcmp(action, "remind") == 0 ?   MODAL_RESULT_REMIND :
+              strcmp(action, "install") == 0 ?  MODAL_RESULT_INSTALL :
+              strcmp(action, "saveins") == 0 ?  MODAL_RESULT_INSTALL :
+              strcmp(action, "download") == 0 ? MODAL_RESULT_DOWNLOAD : -1;
 
     NtfMap *ntfMap = (NtfMap*)data;
     if (ntfMap->find(ntf) != ntfMap->end()) {
@@ -168,7 +166,7 @@ using namespace WinToastLib;
 
 class ToastHandler : public IWinToastHandler {
 public:
-    ToastHandler(DlgBtns _dlgBtns, FnVoidInt _callback) : dlgBtns(_dlgBtns), callback(_callback)
+    ToastHandler(MsgBtns _dlgBtns, FnVoidInt _callback) : dlgBtns(_dlgBtns), callback(_callback)
     {}
     virtual void toastActivated() const final // The user clicked in this toast
     {}
@@ -176,9 +174,9 @@ public:
     {
         int res = -1;
         switch (actionIndex) {
-        case 0: res = (dlgBtns == DlgBtns::mbInslaterRestart) ? DLG_RESULT_INSLATER : DLG_RESULT_SKIP; break;
-        case 1: res = (dlgBtns == DlgBtns::mbInslaterRestart) ? DLG_RESULT_RESTART : DLG_RESULT_REMIND; break;
-        case 2: res = (dlgBtns == DlgBtns::mbSkipRemindDownload) ? DLG_RESULT_DOWNLOAD : DLG_RESULT_INSTALL; break;
+        case 0: res = (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_INSLATER : MODAL_RESULT_SKIPVER; break;
+        case 1: res = (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_RESTART : MODAL_RESULT_REMIND; break;
+        case 2: res = (dlgBtns == MsgBtns::mbSkipRemindDownload) ? MODAL_RESULT_DOWNLOAD : MODAL_RESULT_INSTALL; break;
         default:
             break;
         }
@@ -207,7 +205,7 @@ public:
     }
 
 private:
-    DlgBtns dlgBtns;
+    MsgBtns dlgBtns;
     FnVoidInt callback;
 };
 #endif
@@ -300,7 +298,7 @@ void CNotification::clear()
 #endif
 }
 
-bool CNotification::show(const QString &msg, const QString &content, DlgBtns dlgBtns, const FnVoidInt &callback)
+bool CNotification::show(const QString &msg, const QString &content, MsgBtns dlgBtns, const FnVoidInt &callback)
 {
 #ifdef __linux__
     if (!isNotificationsEnabled())
@@ -314,21 +312,21 @@ bool CNotification::show(const QString &msg, const QString &content, DlgBtns dlg
 
     if (callback) {
         switch (dlgBtns) {
-        case DlgBtns::mbInslaterRestart:
+        case MsgBtns::mbInslaterRestart:
             addAction("inslater", TEXT_INSLATER.c_str());
             addAction("restart", TEXT_RESTART.c_str());
             break;
-        case DlgBtns::mbSkipRemindInstall:
+        case MsgBtns::mbSkipRemindInstall:
             addAction("skip", TEXT_SKIP.c_str());
             addAction("remind", TEXT_REMIND.c_str());
             addAction("install", TEXT_INSTALL.c_str());
             break;
-        case DlgBtns::mbSkipRemindSaveandinstall:
+        case MsgBtns::mbSkipRemindSaveandinstall:
             addAction("skip", TEXT_SKIP.c_str());
             addAction("remind", TEXT_REMIND.c_str());
             addAction("saveins", TEXT_SAVEANDINS.c_str());
             break;
-        case DlgBtns::mbSkipRemindDownload:
+        case MsgBtns::mbSkipRemindDownload:
             addAction("skip", TEXT_SKIP.c_str());
             addAction("remind", TEXT_REMIND.c_str());
             addAction("download", TEXT_DOWNLOAD.c_str());
@@ -353,21 +351,21 @@ bool CNotification::show(const QString &msg, const QString &content, DlgBtns dlg
     tmpl.setExpiration(NOTIF_TIMEOUT_MS);
 
     switch (dlgBtns) {
-    case DlgBtns::mbInslaterRestart:
+    case MsgBtns::mbInslaterRestart:
         tmpl.addAction(TEXT_INSLATER);
         tmpl.addAction(TEXT_RESTART);
         break;
-    case DlgBtns::mbSkipRemindInstall:
+    case MsgBtns::mbSkipRemindInstall:
         tmpl.addAction(TEXT_SKIP);
         tmpl.addAction(TEXT_REMIND);
         tmpl.addAction(TEXT_INSTALL);
         break;
-    case DlgBtns::mbSkipRemindSaveandinstall:
+    case MsgBtns::mbSkipRemindSaveandinstall:
         tmpl.addAction(TEXT_SKIP);
         tmpl.addAction(TEXT_REMIND);
         tmpl.addAction(TEXT_SAVEANDINS);
         break;
-    case DlgBtns::mbSkipRemindDownload:
+    case MsgBtns::mbSkipRemindDownload:
         tmpl.addAction(TEXT_SKIP);
         tmpl.addAction(TEXT_REMIND);
         tmpl.addAction(TEXT_DOWNLOAD);

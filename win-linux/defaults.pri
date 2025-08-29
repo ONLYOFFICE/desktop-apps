@@ -234,8 +234,6 @@ core_linux {
 
     updmodule {
         QT += dbus
-        HEADERS += $$PWD/src/platform_linux/updatedialog.h
-        SOURCES += $$PWD/src/platform_linux/updatedialog.cpp
         PKGCONFIG += libnotify
     }
 
@@ -280,11 +278,9 @@ core_windows {
 
     updmodule:!build_xp {
         INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
-        HEADERS += $$PWD/src/platform_win/updatedialog.h \
-                   $$PWD/src/platform_win/wintoastlib.h \
+        HEADERS += $$PWD/src/platform_win/wintoastlib.h \
                    $$PWD/extras/update-daemon/src/classes/csocket.h
-        SOURCES += $$PWD/src/platform_win/updatedialog.cpp \
-                   $$PWD/src/platform_win/wintoastlib.cpp \
+        SOURCES += $$PWD/src/platform_win/wintoastlib.cpp \
                    $$PWD/extras/update-daemon/src/classes/csocket.cpp
     }
 
