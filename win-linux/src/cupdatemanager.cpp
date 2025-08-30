@@ -42,7 +42,7 @@
 #include "version.h"
 #include "clangater.h"
 #include "clogger.h"
-#include "components/cmessage.h"
+#include "components/cnotification.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <QCryptographicHash>
 #ifdef _WIN32
@@ -403,7 +403,6 @@ void CUpdateManager::init()
     if (m_interval < MINIMUM_INTERVAL)
         m_interval = MINIMUM_INTERVAL;
     reg_user.endGroup();
-    m_notificationSupported = CNotification::instance().init();
 
     m_socket->onMessageReceived([this](void *data, size_t) {
         vector<tstring> params;
@@ -890,7 +889,7 @@ void CUpdateManager::showUpdateMessage(QWidget *parent, bool forceModal, int res
                            tr("The current version does not support installing this update directly. "
                               "To install updates, you can download the required package from the official website.");
         QString title = tr("Update is available");
-        if (!forceModal && m_notificationSupported) {
+        if (!forceModal && AscAppManager::notificationSupported()) {
             if (CNotification::instance().show(title,
                         QString("%1\n%2: %3\n%4: %5").arg(name, tr("Current version"),
                         curr_version, tr("New version"), m_packageData->version),
@@ -936,7 +935,7 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent, bool forceModal, i
         QString curr_version = (m_packageData->object == "app") ? QString(VER_FILEVERSION_STR) :
                                    getFileVersion(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME);
         QString title = tr("Update is ready to install");
-        if (!forceModal && m_notificationSupported) {
+        if (!forceModal && AscAppManager::notificationSupported()) {
             if (CNotification::instance().show(title,
                         QString("%1\n%2: %3\n%4: %5").arg(name, tr("Current version"),
                         curr_version, tr("New version"), m_packageData->version),

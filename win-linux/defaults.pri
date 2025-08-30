@@ -88,6 +88,7 @@ HEADERS += \
     $$PWD/src/components/cprintprogress.h \
     $$PWD/src/components/ctabbar.h \
     $$PWD/src/components/cmessage.h \
+    $$PWD/src/components/cnotification.h \
     $$PWD/src/components/canimatedicon.h \
     $$PWD/src/components/ctabpanel.h \
     $$PWD/src/components/csvgpushbutton.h \
@@ -131,6 +132,7 @@ SOURCES += \
     $$PWD/src/components/cprintprogress.cpp \
     $$PWD/src/components/ctabbar.cpp \
     $$PWD/src/components/cmessage.cpp \
+    $$PWD/src/components/cnotification.cpp \
     $$PWD/src/components/canimatedicon.cpp \
     $$PWD/src/components/ctabpanel.cpp \
     $$PWD/src/components/csvgpushbutton.cpp \
@@ -160,10 +162,8 @@ SOURCES += \
     $$PWD/src/cthemes.cpp
 
 updmodule:!build_xp {
-    HEADERS += $$PWD/src/cupdatemanager.h \
-               $$PWD/src/components/cnotification.h
-    SOURCES += $$PWD/src/cupdatemanager.cpp \
-               $$PWD/src/components/cnotification.cpp
+    HEADERS += $$PWD/src/cupdatemanager.h
+    SOURCES += $$PWD/src/cupdatemanager.cpp
 }
 
 RESOURCES += $$PWD/resources.qrc
@@ -199,7 +199,7 @@ ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, UnicodeConverter, hunspell, ooxmlsign
 include($$CORE_ROOT_DIR/../desktop-sdk/ChromiumBasedEditors/videoplayerlib/videoplayerlib_deps.pri)
 
 core_linux {
-    QT += network x11extras
+    QT += network x11extras dbus
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
@@ -232,13 +232,8 @@ core_linux {
                 $$PWD/src/platform_linux/xcbutils.cpp \
                 $$PWD/extras/update-daemon/src/classes/csocket.cpp
 
-    updmodule {
-        QT += dbus
-        PKGCONFIG += libnotify
-    }
-
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xext
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xext libnotify
     LIBS += -lX11 -lX11-xcb -lcups
 
     cef_version_107 {
@@ -263,6 +258,7 @@ core_windows {
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
+               $$PWD/src/platform_win/wintoastlib.h \
                $$PWD/src/platform_win/association.h \
                $$PWD/src/platform_win/filechooser.h \
                $$PWD/src/platform_win/printdialog.h \
@@ -270,6 +266,7 @@ core_windows {
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
+               $$PWD/src/platform_win/wintoastlib.cpp \
                $$PWD/src/platform_win/association.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
                $$PWD/src/platform_win/printdialog.cpp
@@ -278,10 +275,8 @@ core_windows {
 
     updmodule:!build_xp {
         INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
-        HEADERS += $$PWD/src/platform_win/wintoastlib.h \
-                   $$PWD/extras/update-daemon/src/classes/csocket.h
-        SOURCES += $$PWD/src/platform_win/wintoastlib.cpp \
-                   $$PWD/extras/update-daemon/src/classes/csocket.cpp
+        HEADERS += $$PWD/extras/update-daemon/src/classes/csocket.h
+        SOURCES += $$PWD/extras/update-daemon/src/classes/csocket.cpp
     }
 
     LIBS += -lwininet \

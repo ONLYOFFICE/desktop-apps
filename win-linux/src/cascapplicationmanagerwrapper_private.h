@@ -557,6 +557,7 @@ public:
     QPointer<QCefView> m_pStartPanel;
     bool m_openEditorWindow = false;
     bool m_needRestart = false;
+    bool m_notificationSupported = false;
     std::shared_ptr<CPrintData> m_printData;
 #ifndef _CAN_SCALE_IMMEDIATELY
     std::wstring uiscaling;
