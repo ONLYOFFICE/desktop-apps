@@ -1,8 +1,8 @@
 +function() {
-    function DialogConnectIntro(params) {
+    function dialogProviders(params) {
         params = params || {};
         Dialog.call(this, {
-            dialogClass: 'dlg-connect-intro',
+            dialogClass: 'dlg-providers',
             titleText: utils.Lang.loginTitleStart,
             bodyTemplate: params.bodyTemplate || '<div/>',
             defaultWidth: 590,
@@ -12,10 +12,10 @@
         this.connectHandler = params.onConnect || (() => {});
     }
 
-    DialogConnectIntro.prototype = Object.create(Dialog.prototype);
-    DialogConnectIntro.prototype.constructor = DialogConnectIntro;
+    dialogProviders.prototype = Object.create(Dialog.prototype);
+    dialogProviders.prototype.constructor = dialogProviders;
 
-    DialogConnectIntro.prototype.show = function(width) {
+    dialogProviders.prototype.show = function(width) {
         Dialog.prototype.show.call(this, width);
 
         this.$body.on('click', '.link-connect-now, .link, .btn.login', (e) => {
@@ -24,5 +24,5 @@
         });
     }
 
-    window.DialogConnectIntro = DialogConnectIntro;
+    window.DialogProviders = DialogProviders;
 }();

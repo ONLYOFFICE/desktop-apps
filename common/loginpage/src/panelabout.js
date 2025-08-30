@@ -185,15 +185,9 @@
 
                     if ( this.updates ) {
                         $('body').on('click', '.btn-update-action', e=>{
-                            console.log('update action click');
-                            const action = this.view.$body.find('#idx-update-btnaction').attr('data-action');
+                            const action = $(e.target).data('action');
                             sdk.execCommand('updates:action', action);
                         });
-
-                        // const $btn = this.view.$body.find('#idx-update-btnaction');
-                        // $btn.click(e => {
-                        //     sdk.execCommand('updates:action', $btn.data('action'));
-                        // });
                     }
                 }
             } else

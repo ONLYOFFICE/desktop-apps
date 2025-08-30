@@ -613,7 +613,7 @@
                         let _data = $(e.currentTarget).data();
                         !_data ? _do_connect.call(this) : _do_connect.call(this, {provider:_data.cprov});
                     } else { 
-                        new DialogConnectIntro({
+                        new DialogProviders({
                             bodyTemplate: this.view.portalsemptypage(),
                             onConnect: (e, provider) => {
                                 _do_connect.call(this, provider ? {provider} : {});
