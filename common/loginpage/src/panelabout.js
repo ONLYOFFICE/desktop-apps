@@ -80,7 +80,7 @@
                                         <label id="idx-update-status-text"></label>
                                     </div>
                                     <div class="status-field">
-                                        <button id="idx-update-btnaction" class="btn btn--landing"></button>
+                                        <button id="idx-update-btnaction" class="btn btn--landing btn-update-action"></button>
                                     </div>
                                 </section>`;
         let _html = `<div class="flexbox">
@@ -186,9 +186,9 @@
                     this.view.$body.find('#idx-update-cnt')[this.updates?'show':'hide']();
 
                     if ( this.updates ) {
-                        const $btn = this.view.$body.find('#idx-update-btnaction');
-                        $btn.click(e => {
-                            sdk.execCommand('updates:action', $btn.data('action'));
+                        $('body').on('click', '.btn-update-action', e=>{
+                            const action = $(e.target).data('action');
+                            sdk.execCommand('updates:action', action);
                         });
                     }
                 }
@@ -259,7 +259,7 @@
                     const $button = $('#idx-update-btnaction', this.view.$body);
                     if ( info.button.text ) {
                         $button.text(info.button.text);
-                        $button.data("action", info.button.action);
+                        $button.attr("data-action", info.button.action);
                     }
 
                     if ( info.button.lock ) {
