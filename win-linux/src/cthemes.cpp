@@ -34,6 +34,7 @@ namespace NSTheme {
     static const QString theme_type_light = "light";
 
     enum class ThemeType {
+        ttUndef,
         ttDark,
         ttLight
     };
@@ -47,6 +48,8 @@ namespace NSTheme {
 
             {CTheme::ColorRole::ecrWindowBackground, "window-background"},
             {CTheme::ColorRole::ecrWindowBorder, "window-border"},
+
+            {CTheme::ColorRole::ecrBorderControlFocus, "border-control-focus"},
 
             {CTheme::ColorRole::ecrTextNormal, "text-normal"},
             {CTheme::ColorRole::ecrTextPretty, "text-pretty"},
@@ -183,6 +186,16 @@ auto getUserThemesPath() -> QString
 class CTheme::CThemePrivate {
 public:
     CThemePrivate() {}
+    CThemePrivate(const CThemePrivate &other) :
+        id(other.id),
+        wstype(other.wstype),
+        type(other.type),
+        is_system(other.is_system),
+        jsonValues(other.jsonValues),
+        defdark(other.defdark),
+        deflight(other.deflight),
+        source_file(other.source_file)
+    {}
 
     auto fromJsonObject(const QJsonObject& obj) -> void {
         id = obj.value("id").toString().toStdWString();
@@ -221,13 +234,14 @@ public:
 
     std::wstring id;
     std::wstring wstype;
-    NSTheme::ThemeType type;
+    NSTheme::ThemeType type = NSTheme::ThemeType::ttUndef;
     bool is_system{false};
 
     QJsonObject jsonValues;
     const CTheme * defdark = nullptr,
             * deflight = nullptr;
     QString source_file;
+    QString json;
 };
 
 /*
@@ -467,12 +481,43 @@ CTheme::CTheme(const QString& path)
         fromFile(path);
 }
 
+CTheme::CTheme(const CTheme &other)
+    : m_priv(new CThemePrivate(*other.m_priv))
+{}
+
+CTheme::CTheme(CTheme &&other) noexcept
+    : m_priv(other.m_priv)
+{
+    other.m_priv = nullptr;
+}
+
 CTheme::~CTheme()
 {
     if ( m_priv ) {
         delete m_priv;
         m_priv = nullptr;
     }
+}
+
+CTheme& CTheme::operator=(const CTheme &other)
+{
+    if (this != &other) {
+        if (m_priv)
+            delete m_priv;
+        m_priv = new CThemePrivate(*other.m_priv);
+    }
+    return *this;
+}
+
+CTheme& CTheme::operator=(CTheme &&other) noexcept
+{
+    if (this != &other) {
+        if (m_priv)
+            delete m_priv;
+        m_priv = other.m_priv;
+        other.m_priv = nullptr;
+    }
+    return *this;
 }
 
 auto CTheme::fromFile(const QString& path) -> bool
@@ -494,10 +539,16 @@ auto CTheme::fromJson(const QString& json) -> bool
     QJsonDocument jdoc = QJsonDocument::fromJson(json.toUtf8(), &jerror);
     if ( jerror.error == QJsonParseError::NoError ) {
         m_priv->fromJsonObject(jdoc.object());
+        m_priv->json = json;
         return true;
     }
 
     return false;
+}
+
+auto CTheme::json() const -> QString
+{
+    return m_priv->json.isEmpty() ? "" : m_priv->json;
 }
 
 auto CTheme::id() const -> std::wstring
@@ -578,6 +629,11 @@ auto CTheme::isSystem() const -> bool
     return m_priv->is_system;
 }
 
+auto CTheme::isValid() const -> bool
+{
+    return !m_priv->id.empty() && m_priv->type != NSTheme::ThemeType::ttUndef && !m_priv->jsonValues.isEmpty();
+}
+
 /**/
 
 CThemes::CThemes()
@@ -607,6 +663,16 @@ auto CThemes::defaultDark() -> const CTheme&
 auto CThemes::defaultLight() -> const CTheme&
 {
     return *m_priv->getDefault(NSTheme::ThemeType::ttLight);
+}
+
+auto CThemes::localFromId(const QString &id) const -> CTheme
+{
+    CTheme theme;
+    auto it = m_priv->rc_themes.find(id);
+    if (it != m_priv->rc_themes.end()) {
+        theme.fromFile(it->second);
+    }
+    return theme;
 }
 
 auto CThemes::setCurrentTheme(const std::wstring& name) -> void

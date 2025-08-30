@@ -1,6 +1,8 @@
 l10n.da = {
     welWelcome: 'Velkommen til ONLYOFFICE Skrivebordseditor!',
     welDescr: 'Arbejd på dokumenter offline eller forbind pakken til din cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Brug for hjælp? Besøg vores $1.',
+    textHelpCenter: 'Hjælpecenter',
     btnConnect: 'Forbind nu',
     textHavePortal: 'Bruger du allerede cloud?',
     btnCreatePortal: 'Opret en ONLYOFFICE cloud',
@@ -64,6 +66,8 @@ l10n.da = {
     licPanelDescr: 'Din produktnøgle blev sendt til emailaddressen specificeret under købet.',
     checkUpdates: 'Tjek for opdateringer',
     strVersion: 'version',
+    strVersionCommunity: 'Fællesskabsversion',
+    strVersionCommercial: 'Enterprise-version',
     emptySlide1Title: 'Del & kollaborer',
     emptySlide1Text: 'Vælg mellem Hurtig eller Streng co-redigering i realtid, chat i din doc, tilføj kommentarer eller del det for bedømmelse.',
     emptySlide2Title: 'Se eller gendan tidligere versioner',

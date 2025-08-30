@@ -64,6 +64,7 @@
         var _opts = args.opts;
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div id="idx-ver-edition" class="about-field">${_opts.edition}</div>` : '';
+        const strVersion = args.opts.commercial === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
 
         let _ext_ver = '';
         if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? 'x64' : 'x86'}`;
@@ -93,7 +94,7 @@
                                 </div>
                                 <div class="vbox">
                                     <p id="idx-about-appname">${_opts.appname}</p>
-                                    <p id="idx-about-version"><span l10n>${_lang.strVersion}</span> ${_opts.version}</p>
+                                    <p id="idx-about-version"><span l10n>${strVersion}</span> ${_opts.version}</p>
                                 </div>
                             </section><p></p>
                             <div class="separator"></div>
@@ -155,9 +156,10 @@
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
+                    this.view.$dialog.setBody(this.view.$body)
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
-                        $('#idx-ver-edition').html(args.opts.edition);
+                        $('#idx-ver-edition', this.view.$body).html(args.opts.edition);
                     }
                 }
 
@@ -277,7 +279,6 @@
         const onPanelShow = function(panel) {
             if (panel === this.action) {
                 this.view.$dialog.show();
-                this.view.$dialog.setBody(this.view.$body);
             }
         }
 

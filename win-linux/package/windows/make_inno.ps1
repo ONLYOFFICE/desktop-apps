@@ -22,10 +22,10 @@ if (-not (Test-Path "$BuildDir")) {
     Write-Error "Path `"$BuildDir`" does not exist"
 }
 $InnoFile = switch ($Target) {
+    "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.exe" }
     "standalone" { "$CompanyName-$ProductName-Standalone-$Version-$Arch.exe" }
-    "xp"         { "$CompanyName-$ProductName-$Version-$Arch-xp.exe" }
     "update"     { "$CompanyName-$ProductName-Update-$Version-$Arch.exe" }
-    "xp_update"  { "$CompanyName-$ProductName-Update-$Version-$Arch-xp.exe" }
+    "xp"         { "$CompanyName-$ProductName-XP-$Version-$Arch.exe" }
     default      { "$CompanyName-$ProductName-$Version-$Arch.exe" }
 }
 
@@ -109,19 +109,17 @@ if ($CompanyName -eq "onlyoffice") {
     $InnoArgs += "/D_ONLYOFFICE"
 }
 switch ($Target) {
+    "commercial" {
+        $InnoArgs += "/DPACKAGE_EDITION=Enterprise"
+    }
     "standalone" {
-        $InnoArgs += "/DEMBED_HELP", "/DPACKAGE_EDITION=Standalone"
+        $InnoArgs += "/DPACKAGE_EDITION=Standalone", "/DEMBED_HELP"
     }
     "xp" {
-        $InnoArgs += "/D_WIN_XP"
+        $InnoArgs += "/DPACKAGE_EDITION=XP", "/D_WIN_XP"
     }
     "update" {
         $InnoArgs += "/DTARGET_NAME=$CompanyName-$ProductName-$Version-$Arch"
-        $IssFile = "update_common.iss"
-    }
-    "xp_update" {
-        $InnoArgs += "/D_WIN_XP",
-            "/DTARGET_NAME=$CompanyName-$ProductName-$Version-$Arch-xp"
         $IssFile = "update_common.iss"
     }
 }

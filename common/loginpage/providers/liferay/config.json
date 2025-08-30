@@ -4,7 +4,7 @@
     "check": {
         "url": "/o/onlyoffice/status",
     },
-    "editorPage" : "regex:[?&]p_p_id=onlyoffice_integration_ui_editactionportlet.*",
+    "editorPage" : "regex:[?&]p_p_id=com_onlyoffice_liferay_docs_portlet_editorportlet.*",
     "cryptoSupport" : "true",
     "icons": {
         "themeLight":{

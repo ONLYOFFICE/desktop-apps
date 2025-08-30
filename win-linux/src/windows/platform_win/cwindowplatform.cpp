@@ -35,7 +35,7 @@
 #include "defines.h"
 #include "utils.h"
 #include <QTimer>
-#include <QDesktopWidget>
+#include <qtcomp/qdesktopwidget.h>
 #include <QWindow>
 #include <QScreen>
 #include <QJsonObject>
@@ -290,7 +290,7 @@ void CWindowPlatform::adjustGeometry()
     if (isMaximized()) {
         if (Utils::getWinVersion() < WinVer::Win10) {
             QTimer::singleShot(25, this, [=]() {
-                auto rc = QApplication::desktop()->availableGeometry(this);
+                auto rc = QtComp::DesktopWidget::availableGeometry(this);
                 int offset = 0;
                 if (Utils::getWinVersion() == WinVer::WinXP) {
                     if (isTaskbarAutoHideOn())
@@ -332,7 +332,8 @@ bool CWindowPlatform::isSessionInProgress()
 void CWindowPlatform::onWindowActivate(bool is_active)
 {
     for (auto *btn : m_pTopButtons) {
-        btn->setFaded(!is_active);
+        if (btn)
+            btn->setFaded(!is_active);
     }
 }
 
@@ -375,7 +376,7 @@ void CWindowPlatform::changeEvent(QEvent *event)
     }
 }
 
-bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, long *result)
+bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, long_ptr *result)
 {
 #if (QT_VERSION == QT_VERSION_CHECK(5, 11, 1))
     MSG* msg = *reinterpret_cast<MSG**>(message);

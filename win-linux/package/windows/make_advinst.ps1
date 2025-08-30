@@ -1,6 +1,7 @@
 ﻿param (
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
+    [string]$Target,
     [string]$CompanyName = "ONLYOFFICE",
     [string]$ProductName = "DesktopEditors",
     [string]$BuildDir,
@@ -16,7 +17,10 @@ Set-Location $PSScriptRoot
 if (-not $BuildDir) {
     $BuildDir = ".build.$Arch"
 }
-$MsiFile = "$CompanyName-$ProductName-$Version-$Arch.msi"
+$MsiFile = switch ($Target) {
+    "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.msi" }
+    default      { "$CompanyName-$ProductName-$Version-$Arch.msi" }
+}
 $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
 $MsiBuild = switch ($Arch) {
     "x64" { "MsiBuild64" }
@@ -76,6 +80,7 @@ $AssociationList = @(
     "csv", "txt",
     "docxf"
 )
+$LicensePath = "..\..\..\common\package\license"
 $PluginManagerPath = "editors\sdkjs-plugins\{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}"
 $MD5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
 $ASCII = New-Object -TypeName System.Text.ASCIIEncoding
@@ -144,7 +149,20 @@ $AdvInstConfig += `
     "UpdateFile APPDIR\updatesvc.exe $BuildDir\desktop\updatesvc.exe", `
     "NewSync APPDIR $BuildDir\desktop -existingfiles keep -feature Files", `
     "NewSync APPDIR\$PluginManagerPath $BuildDir\desktop\$PluginManagerPath -existingfiles delete -feature PluginManager", `
+    "AddFile APPDIR $LicensePath\3dparty\3DPARTYLICENSE"
     # "GenerateReport -buildname $MsiBuild -output_path .\report.pdf", `
+if ($Target -ne "commercial") {
+    $AdvInstConfig += `
+        "AddFile APPDIR $LicensePath\opensource\LICENSE.txt"
+} else {
+    $AdvInstConfig += `
+        "SetProperty Edition=Enterprise", `
+        "SetProperty AI_PRODUCTNAME_ARP=`"[|AppName] ([|Edition]) [|Version] ([|Arch])`"", `
+        "SetEula -rtf `"$("$LicensePath\commercial\LICENSE.rtf" | Resolve-Path)`"", `
+        "SetPackageName `"$MsiFile`" -buildname $MsiBuild", `
+        "AddFile APPDIR $LicensePath\commercial\LICENSE.txt"
+}
+$AdvInstConfig += `
     "Rebuild -buildslist $MsiBuild"
 $AdvInstConfig = ";aic", $AdvInstConfig
 $AdvInstConfig

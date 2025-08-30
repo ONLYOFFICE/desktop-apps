@@ -23,9 +23,6 @@
 #endif
 #ifndef OUTPUT_FILE
 #define OUTPUT_FILE sPackageName + '-' + VERSION + '-' + ARCH
-#ifdef _WIN_XP
-#define OUTPUT_FILE OUTPUT_FILE + '-xp'
-#endif
 #endif
 
 #if FileExists(BRANDING_DIR + '\branding.iss')
@@ -71,7 +68,11 @@ DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
+#ifndef PACKAGE_EDITION
 UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#ARCH})
+#else
+UninstallDisplayName      = {#sAppName} ({#PACKAGE_EDITION}) {#sAppVerShort} ({#ARCH})
+#endif
 OutputDir                 ={#OUTPUT_DIR}
 PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
@@ -101,73 +102,81 @@ SignTool                  =byparam $p
 SetupIconFile={#BRANDING_DIR}\..\..\extras\projicons\res\icons\desktopeditors.ico
 WizardImageFile={#BRANDING_DIR}\data\dialogpicture*.bmp
 WizardSmallImageFile={#BRANDING_DIR}\data\dialogicon*.bmp
+#ifdef PACKAGE_EDITION
+#if PACKAGE_EDITION == "Enterprise"
+LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.rtf
+#else
+LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf
+#endif
+#else
+LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf
+#endif
 
 SolidCompression=yes
 Compression=lzma2/ultra64
 LZMAUseSeparateProcess=yes
 
 [Languages]
-#define sLicenseFile BRANDING_DIR + "\..\..\..\common\package\license\" + LIC_FILE + ".rtf"
 #ifdef _ONLYOFFICE
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
-Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
+Name: en; MessagesFile: compiler:Default.isl;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;
 #else
-Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;
+Name: en; MessagesFile: compiler:Default.isl;
 #endif
-Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl; LicenseFile: {#sLicenseFile};
-Name: ca; MessagesFile: compiler:Languages\Catalan.isl; LicenseFile: {#sLicenseFile};
-Name: cs; MessagesFile: compiler:Languages\Czech.isl; LicenseFile: {#sLicenseFile};
-Name: el; MessagesFile: compiler:Languages\Greek.isl; LicenseFile: {#sLicenseFile};
-;Name: et; MessagesFile: compiler:Languages\Estonian.isl; LicenseFile: {#sLicenseFile};
-Name: fi; MessagesFile: compiler:Languages\Finnish.isl; LicenseFile: {#sLicenseFile};
-;Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl; LicenseFile: {#sLicenseFile};
-Name: lo; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
-Name: nl; MessagesFile: compiler:Languages\Dutch.isl; LicenseFile: {#sLicenseFile};
-Name: de; MessagesFile: compiler:Languages\German.isl; LicenseFile: {#sLicenseFile};
-Name: fr; MessagesFile: compiler:Languages\French.isl; LicenseFile: {#sLicenseFile};
-Name: es; MessagesFile: compiler:Languages\Spanish.isl; LicenseFile: {#sLicenseFile};
-Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: {#sLicenseFile};
-Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl; LicenseFile: {#sLicenseFile};
-Name: id; MessagesFile: compiler:Languages\Indonesian.isl; LicenseFile: {#sLicenseFile};
-Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: {#sLicenseFile};
-Name: pl; MessagesFile: compiler:Languages\Polish.isl; LicenseFile: {#sLicenseFile};
-Name: ro; MessagesFile: compiler:Languages\Romanian.isl; LicenseFile: {#sLicenseFile};
-Name: sk; MessagesFile: compiler:Languages\Slovak.isl; LicenseFile: {#sLicenseFile};
-Name: sl; MessagesFile: compiler:Languages\Slovenian.isl; LicenseFile: {#sLicenseFile};
-Name: sv; MessagesFile: compiler:Languages\Swedish.isl; LicenseFile: {#sLicenseFile};
-Name: tr; MessagesFile: compiler:Languages\Turkish.isl; LicenseFile: {#sLicenseFile};
+Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl;
+Name: ca; MessagesFile: compiler:Languages\Catalan.isl;
+Name: cs; MessagesFile: compiler:Languages\Czech.isl;
+Name: el; MessagesFile: compiler:Languages\Greek.isl;
+;Name: et; MessagesFile: compiler:Languages\Estonian.isl;
+Name: fi; MessagesFile: compiler:Languages\Finnish.isl;
+;Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl;
+Name: lo; MessagesFile: compiler:Default.isl;
+Name: nl; MessagesFile: compiler:Languages\Dutch.isl;
+Name: de; MessagesFile: compiler:Languages\German.isl;
+Name: fr; MessagesFile: compiler:Languages\French.isl;
+Name: es; MessagesFile: compiler:Languages\Spanish.isl;
+Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl;
+Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl;
+Name: id; MessagesFile: compiler:Languages\Indonesian.isl;
+Name: it_IT; MessagesFile: compiler:Languages\Italian.isl;
+Name: pl; MessagesFile: compiler:Languages\Polish.isl;
+Name: ro; MessagesFile: compiler:Languages\Romanian.isl;
+Name: sk; MessagesFile: compiler:Languages\Slovak.isl;
+Name: sl; MessagesFile: compiler:Languages\Slovenian.isl;
+Name: sv; MessagesFile: compiler:Languages\Swedish.isl;
+Name: tr; MessagesFile: compiler:Languages\Turkish.isl;
 #if Int(DecodeVer(PREPROCVER,1)) < 6
-Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu; LicenseFile: {#sLicenseFile};
-Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu; LicenseFile: {#sLicenseFile};
+Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu;
+Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;
 #else
-Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl; LicenseFile: {#sLicenseFile};
-Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl; LicenseFile: {#sLicenseFile};
+Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl;
+Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl;
 #endif
-Name: zh_CN; MessagesFile: compiler:Languages\ChineseSimplified.isl;  LicenseFile: {#sLicenseFile};
-;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu; LicenseFile: {#sLicenseFile};
-;Name: hr; MessagesFile: compiler:Languages\Croatian.isl; LicenseFile: {#sLicenseFile};
-Name: da; MessagesFile: compiler:Languages\Danish.isl; LicenseFile: {#sLicenseFile};
-;Name: hi; MessagesFile: compiler:Languages\Hindi.islu; LicenseFile: {#sLicenseFile};
-Name: hu; MessagesFile: compiler:Languages\Hungarian.isl; LicenseFile: {#sLicenseFile};
-;Name: ga_IE; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
-Name: ja; MessagesFile: compiler:Languages\Japanese.isl; LicenseFile: {#sLicenseFile};
-Name: ko; MessagesFile: compiler:Languages\Korean.isl; LicenseFile: {#sLicenseFile};
-Name: lv; MessagesFile: compiler:Languages\Latvian.isl; LicenseFile: {#sLicenseFile};
-Name: no; MessagesFile: compiler:Languages\Norwegian.isl; LicenseFile: {#sLicenseFile};
-Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl; LicenseFile: {#sLicenseFile};
-Name: be; MessagesFile: compiler:Languages\Belarusian.isl; LicenseFile: {#sLicenseFile};
-Name: gl; MessagesFile: compiler:Languages\Galician.isl; LicenseFile: {#sLicenseFile};
-Name: si; MessagesFile: compiler:Languages\Sinhala.islu; LicenseFile: {#sLicenseFile};
-Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl; LicenseFile: {#sLicenseFile};
-Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl; LicenseFile: {#sLicenseFile};
-Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl; LicenseFile: {#sLicenseFile};
-Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl; LicenseFile: {#sLicenseFile};
-Name: en_GB; MessagesFile: compiler:Languages\EnglishBritish.isl; LicenseFile: {#sLicenseFile};
-Name: he; MessagesFile: compiler:Languages\Hebrew.isl; LicenseFile: {#sLicenseFile};
-Name: sq; MessagesFile: compiler:Languages\Albanian.isl; LicenseFile: {#sLicenseFile};
+Name: zh_CN; MessagesFile: compiler:Languages\ChineseSimplified.isl;
+;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;
+;Name: hr; MessagesFile: compiler:Languages\Croatian.isl;
+Name: da; MessagesFile: compiler:Languages\Danish.isl;
+;Name: hi; MessagesFile: compiler:Languages\Hindi.islu;
+Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;
+;Name: ga_IE; MessagesFile: compiler:Default.isl;
+Name: ja; MessagesFile: compiler:Languages\Japanese.isl;
+Name: ko; MessagesFile: compiler:Languages\Korean.isl;
+Name: lv; MessagesFile: compiler:Languages\Latvian.isl;
+Name: no; MessagesFile: compiler:Languages\Norwegian.isl;
+Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;
+Name: be; MessagesFile: compiler:Languages\Belarusian.isl;
+Name: gl; MessagesFile: compiler:Languages\Galician.isl;
+Name: si; MessagesFile: compiler:Languages\Sinhala.islu;
+Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl;
+Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl;
+Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl;
+Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl;
+Name: en_GB; MessagesFile: compiler:Languages\EnglishBritish.isl;
+Name: he; MessagesFile: compiler:Languages\Hebrew.isl;
+Name: sq; MessagesFile: compiler:Languages\Albanian.isl;
 #if Ver >= EncodeVer(6,1,1)
-Name: ur; MessagesFile: compiler:Languages\Urdu.isl; LicenseFile: {#sLicenseFile};
+Name: ur; MessagesFile: compiler:Languages\Urdu.isl;
 #endif
 
 [LangOptions]
@@ -1183,6 +1192,16 @@ Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\converter\*.exe"; DestDir: {app}\converter; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags: signonce;
 Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
+#ifdef PACKAGE_EDITION
+#if PACKAGE_EDITION == "Enterprise"
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app};
+#else
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+#endif
+#else
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+#endif
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\3dparty\3DPARTYLICENSE"; DestDir: {app};
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins

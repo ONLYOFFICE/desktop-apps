@@ -115,6 +115,11 @@ QWidget * CWindowBase::handle() const
     return qobject_cast<QWidget *>(const_cast<CWindowBase*>(this));
 }
 
+QWidget * CWindowBase::mainPanel() const
+{
+    return m_pMainPanel;
+}
+
 bool CWindowBase::isCustomWindowStyle()
 {
     return pimpl->is_custom_window_;

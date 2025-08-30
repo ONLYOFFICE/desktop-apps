@@ -6,7 +6,7 @@
 #include <QTimer>
 #include <QDir>
 #include <QDateTime>
-#include <QDesktopWidget>
+#include <qtcomp/qdesktopwidget.h>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
@@ -330,6 +330,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #ifdef _UPDMODULE
         if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {   // params: check, download, install, abort
             if (m_pUpdateManager) {
+                CNotification::instance().clear();
                 const QString params = QString::fromStdWString(pData->get_Param());
                 if (params == "check") {
                     m_pUpdateManager->checkUpdates(true);
@@ -480,6 +481,15 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             if ( it != m_receivers.cend() ) {
                 std::wstring param = L"{\"quickaccesschanged\":" + pData->get_Param() + L"}";
                 QMetaObject::invokeMethod(it->second, "onWebTitleChanged", Qt::QueuedConnection, Q_ARG(int, sid), Q_ARG(std::wstring, param));
+            }
+        } else
+        if ( !(cmd.find(L"recent:pinned") == std::wstring::npos) ) {
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                SetRecentPin(objRoot["id"].toInt(), objRoot["pinned"].toBool(false));
             }
         }
 
@@ -959,13 +969,23 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         if (open_opts.srctype == AscEditorType::etUndefined) {
             QString str_url = QString::fromStdWString(open_opts.wurl);
-#ifdef _WIN32
             if ( CFileInspector::isLocalFile(str_url) ) {
+#ifdef _WIN32
                 str_url = Utils::replaceBackslash(str_url);
                 open_opts.wurl = str_url.toStdWString();
-            }
+#else
+                QUrl url = QUrl::fromUserInput(str_url);
+                if (!url.isValid()) {
+                    QFileInfo info(str_url);
+                    if (info.isFile())
+                        url = QUrl::fromUserInput(info.absoluteFilePath());
+                }
+                if (url.isValid()) {
+                    str_url = url.toLocalFile();
+                    open_opts.wurl = str_url.toStdWString();
+                }
 #endif
-
+            }
             if ( _app.m_private->bringEditorToFront(str_url) ) {
                 continue;
             } else
@@ -1756,7 +1776,7 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
 {
     APP_CAST(_app);
 
-    QString _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
+    QString _out = Utils::readStylesheets(_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
     _out = _out.arg(GetColorQValueByRole(ecrWindowBackground),
                     GetColorQValueByRole(ecrTextNormal),
                     GetColorQValueByRole(ecrButtonHoverBackground),
@@ -1776,7 +1796,7 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
                     GetColorQValueByRole(ecrMenuSeparator));
 //    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
     if ( factor != CScalingFactor::SCALING_FACTOR_1 )
-        _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
+        _out.append(Utils::readStylesheets(_app.m_mapStyles[factor]));
 
     return _out;
 }
@@ -1871,6 +1891,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _lang_id = l;
 
                 _reg_user.setValue("locale", _lang_id);
+
+                QJsonObject _json_obj{{"lang", _lang_id}};
+                AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
                 if (!direction_changed)
                     CLangater::reloadTranslations(_lang_id);
 #ifdef _UPDMODULE
@@ -2036,6 +2059,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             _editor->applyTheme(theme);
         }
 
+        QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
 }

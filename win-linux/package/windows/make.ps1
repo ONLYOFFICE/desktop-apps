@@ -113,11 +113,3 @@ if (Test-Path "$BuildDir\desktop\vlc-cache-gen.exe") {
     Write-Host "DELETE: $BuildDir\desktop\vlc-cache-gen.exe"
     Remove-Item -Force -LiteralPath "$BuildDir\desktop\vlc-cache-gen.exe"
 }
-
-if (Test-Path "$BuildDir\desktop\online-installer.exe") {
-    $dst = "$PSScriptRoot\OnlineInstaller-$Version-$Arch" + $(if ($Target -eq "xp") {"-xp"}) + ".exe"
-    Write-Host "MOVE: $BuildDir\desktop\online-installer.exe > $dst"
-    Move-Item `
-        -Path "$BuildDir\desktop\online-installer.exe" `
-        -Destination $dst
-}

@@ -1,6 +1,8 @@
 l10n.ru = {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
     welDescr: 'Работайте с документами офлайн или подключитесь к облаку: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Требуется помощь? Обратитесь в наш $1.',
+    textHelpCenter: 'Справочный центр',
     btnConnect: 'Подключить',
     textHavePortal: 'Уже используете облако?',
     btnCreatePortal: 'Создать облако ONLYOFFICE',
@@ -66,6 +68,8 @@ l10n.ru = {
     licPanelDescr: 'Ваш ключ продукта был выслан на адрес электронной почты, указанный при покупке.',
     checkUpdates: 'Проверить обновления',
     strVersion: 'версия',
+    strVersionCommunity: 'Версия Community',
+    strVersionCommercial: 'Версия Enterprise',
     emptySlide1Title: 'Предоставление доступа и совместная работа',
     emptySlide1Text: 'Выбирайте быстрый или строгий режим совместного редактирования, используйте встроенный чат или отправляйте документ на рецензирование.',
     emptySlide2Title: 'Просмотр или восстановление предыдущих версий',
@@ -120,7 +124,14 @@ l10n.ru = {
     tplDocument: "Документы",
     tplSpreadsheet: "Таблицы",
     tplPresentation: "Презентации",
+    tplSearch: "Поиск шаблонов",
+    tplSearchResult: "Результаты для",
+    tplNoResultsTitle: "Ничего не найдено",
+    tplNoResultsText: "Результатов, соответствующих вашему запросу, не найдено",
+    tplErrorTLS: "Windows XP не поддерживает актуальные версии протокола TLS 1.1 и 1.2, поэтому облачные шаблоны не могут использоваться в этой операционной системе.",
     fileName: "Имя файла",
     location: "Расположение",
-    lastOpened: "Последнее открытие"
+    lastOpened: "Последнее открытие",
+    labelDropFile: 'Перетащите файлы сюда или',
+    labelSelectFile: 'Выберите файл',
 }

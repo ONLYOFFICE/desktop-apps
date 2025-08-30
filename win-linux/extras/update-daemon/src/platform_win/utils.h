@@ -35,6 +35,7 @@
 
 #include <string>
 #include <list>
+#include <vector>
 
 using std::string;
 using std::wstring;
@@ -53,6 +54,7 @@ bool isRunAsApp();
 void parseCmdArgs(int argc, wchar_t *argv[]);
 bool cmdArgContains(const wstring &param);
 wstring cmdArgValue(const wstring &param);
+wstring cmdArgsAsString();
 wstring GetLastErrorAsString();
 int ShowMessage(wstring str, bool showError = false);
 wstring GetAppLanguage();
@@ -61,6 +63,7 @@ wstring GetAppLanguage();
 namespace NS_File
 {
 bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked = false, bool folders_only = false);
+std::vector<wstring> findFilesByPattern(const wstring &path, const wstring &pattern);
 bool readFile(const wstring &filePath, list<wstring> &linesList);
 bool readBinFile(const wstring &filePath, list<wstring> &linesList);
 bool writeToFile(const wstring &filePath, list<wstring> &linesList);

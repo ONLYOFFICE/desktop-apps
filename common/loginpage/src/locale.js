@@ -34,6 +34,8 @@ var l10n = l10n || {};
 l10n.en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Need help? Visit our $1.',
+    textHelpCenter: 'Help Center',
     btnConnect: 'Connect now',
     textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
@@ -99,6 +101,8 @@ l10n.en = {
     licPanelDescr: 'Your product key was sent to the email address specified during the purchase.',
     checkUpdates: 'Check for updates',
     strVersion: 'version',
+    strVersionCommunity: 'Community version',
+    strVersionCommercial: 'Enterprise version',
     emptySlide1Title: 'Share & collaborate',
     emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add comments or share it for review.',
     emptySlide2Title: 'View or restore previous versions',
@@ -153,9 +157,16 @@ l10n.en = {
     tplDocument: "Documents",
     tplSpreadsheet: "Spreadsheets",
     tplPresentation: "Presentations",
+    tplSearch: "Search for templates",
+    tplSearchResult: "Results for",
+    tplNoResultsTitle: "Nothing found",
+    tplNoResultsText: "No results matching your query could be found",
+    tplErrorTLS: "Windows XP doesn't support current TLS 1.1 and TLS 1.2 protocol versions, so Cloud Templates cannot be used on this operating system.",
     colFileName: "File name",
     colLocation: 'Location',
     colLastOpened: 'Last opened',
+    labelDropFile: 'Drag your files here or',
+    labelSelectFile: 'Select file',
 }
 
 
@@ -235,7 +246,13 @@ function changelang(lang) {
 };
 
 function is_lang_rtl(code) {
-    return code.startsWith('ar') || code.startsWith('he');
+    const langs = ['ar', 'he', 'ur'];
+    for (const l of langs) {
+        if (code.startsWith(l))
+            return true;
+    }
+
+    return false;
 }
 
 +function mixLocale(lang) {

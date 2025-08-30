@@ -1,6 +1,8 @@
 l10n.sq = {
     welWelcome: 'Mirësevini në ONLYOFFICE Desktop Editors!',
     welDescr: 'Punoni me dokumente jashtë linje ose lidhni paketën me renë tuaj kompjuterike: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Keni nevojë për ndihmë? Vizitoni $1.',
+    textHelpCenter: 'Qendra e Ndihmës',
     btnConnect: 'Lidhuni tani',
     textHavePortal: 'Tashmë përdor një re?',
     btnCreatePortal: 'Krijoni një re ONLYOFFICE',
@@ -64,6 +66,8 @@ l10n.sq = {
     licPanelDescr: 'Çelësi juaj i produktit u dërgua në adresën e postës elektronike të specifikuar gjatë blerjes.',
     checkUpdates: 'Kontrolloni për përditësime',
     strVersion: 'versioni',
+    strVersionCommunity: 'Versioni i komunitetit',
+    strVersionCommercial: 'Versioni i ndërmarrjes',
     emptySlide1Title: 'Shpërndajeni & përshkruani',
     emptySlide1Text: 'Zgjidhni midis bashkëpunimit në kohë reale të Shpejtë ose të Rreptë, bisedoni në dokumentin tuaj, shtoni komente ose shpërndajeni atë për shqyrtim.',
     emptySlide2Title: 'Shikoni ose rivendosni versionet e mëparshme',

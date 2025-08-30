@@ -55,18 +55,19 @@
         // localStorage.removeItem('welcome');
 
 		//language=HTML
+        const helpLink = `<a l10n class="link" href="https://helpcenter.onlyoffice.com/" target="popup">${_lang.textHelpCenter}</a>`;
 		const welcomeBannerTemplate = !localStorage.getItem('welcome') ? `
             <div id="area-welcome">
                 <h2 l10n>${_lang.welWelcome}</h2>
                 <p l10n class="text-normal">${_lang.welDescr}</p>
-                <p l10n class="text-normal">${_lang.welNeedHelp}</p>
+                <p l10n class="text-normal">${_lang.welNeedHelp.replace('$1', helpLink)}</p>
             </div>` : '';
 
         //language=HTML
         args.tplPage = `
             <div class="action-panel ${args.action}">
                 <div class="recent-panel-container">
-                    <div class="search-bar">
+                    <div class="search-bar hidden">
                         <h1 l10n>${_lang.welWelcome}</h1>
                     </div>
                     
@@ -74,29 +75,30 @@
                     ${welcomeBannerTemplate}
                     <section id="area-dnd-file"></section>
                     
-                    <div id="box-recovery">
-                        <div class="file-list-title">
-                            <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                    <div id="box-container">
+                        <div id="box-recovery">
+                            <div class="file-list-title">
+                                <h3 l10n>${_lang.listRecoveryTitle}</h3>
+                            </div>
+                            <div class="file-list-head text-normal">
+                                <div class="col-name" l10n>${_lang.colFileName}</div>
+                                <div class="col-location" l10n>${_lang.colLocation}</div>
+                                <div class="col-date" l10n>${_lang.colLastOpened}</div>
+                            </div>
+                            <div class="file-list-body scrollable"></div>
                         </div>
-                        <div class="file-list-head text-normal">
-                            <div class="col-name" l10n>${_lang.colFileName}</div>
-                            <div class="col-location" l10n>${_lang.colLocation}</div>
-                            <div class="col-date" l10n>${_lang.colLastOpened}</div>
-                        </div>
-                        <div class="file-list-body scrollable"></div>
-                    </div>
 
-                    <div id="box-recent">
-                        <div class="file-list-title">
-                            <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                        <div id="box-recent">
+                            <div class="file-list-title">
+                                <h3 l10n>${_lang.listRecentFileTitle}</h3>
+                            </div>
+                            <div class="file-list-head text-normal">
+                                <div class="col-name" l10n>${_lang.colFileName}</div>
+                                <div class="col-location" l10n>${_lang.colLocation}</div>
+                                <div class="col-date" l10n>${_lang.colLastOpened}</div>
+                            </div>
+                            <div class="file-list-body scrollable"></div>
                         </div>
-                        <div class="file-list-head text-normal">
-                            <div class="col-name" l10n>${_lang.colFileName}</div>
-                            <div class="col-location" l10n>${_lang.colLocation}</div>
-                            <div class="col-date" l10n>${_lang.colLastOpened}</div>
-                        </div>
-                        <div class="file-list-body scrollable"></div>
-                    </div>
                     </div>
                 </div>
             </div>`;
@@ -127,6 +129,7 @@
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted === undefined && (info.crypted = false);
             const dotIndex = info.name.lastIndexOf('.');
+            const fullName = info.name;
             if (dotIndex !== -1) {
                 info.ext = info.name.substring(dotIndex);
                 info.name = info.name.substring(0, dotIndex);
@@ -139,7 +142,7 @@
             //language=HTML
             let _tpl = `
                 <div ${id} class="row text-normal">
-                    <div class="col-name">
+                    <div class="col-name" title="${fullName}">
                         <div class="icon">
                             <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
                                 <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
@@ -152,7 +155,7 @@
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
                     </div>
-                    <div class="col-location">
+                    <div class="col-location" title="${info.descr}">
 <!--              todo: icon here          -->
                         ${info.descr}
                     </div>
@@ -326,9 +329,16 @@
             }
         };
 
-        function addContextMenuEventListener(collection, model, view) {
+        function addContextMenuEventListener(collection, model, view, actionList) {
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
+
+                if (Menu.opened) {
+                    Menu.closeAll();
+                    return;
+                }
+
+                ppmenu.actionlist = actionList;
                 ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
             })
         }
@@ -351,7 +361,7 @@
 
                 collection.list.append($item);
 
-                addContextMenuEventListener(collection, model, this.view.$panel);
+                addContextMenuEventListener(collection, model, this.view.$panel, 'recent');
 
                 collection.list.parent().removeClass('empty');
             });
@@ -386,7 +396,7 @@
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
-                addContextMenuEventListener(collection, model, this.view.$panel);
+                addContextMenuEventListener(collection, model, this.view.$panel, 'recovery');
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
@@ -540,6 +550,7 @@
                         {
                             id: 'word',
                             title: utils.Lang.newDoc,
+                            langKey: 'newDoc',
                             formatLabel: {
                                 value: 'DOCX',
                                 gradientColorStart: '#4298C5',
@@ -551,6 +562,7 @@
                         {
                             id: 'cell',
                             title: utils.Lang.newXlsx,
+                            langKey: 'newXlsx',
                             formatLabel: {
                                 value: 'XLSX',
                                 gradientColorStart: '#5BB514',
@@ -562,6 +574,7 @@
                         {
                             id: 'slide',
                             title: utils.Lang.newPptx,
+                            langKey: 'newPptx',
                             formatLabel: {
                                 value: 'PPTX',
                                 gradientColorStart: '#F4893A',
@@ -573,6 +586,7 @@
                         {
                             id: 'form',
                             title: utils.Lang.newForm,
+                            langKey: 'newForm',
                             formatLabel: {
                                 value: 'PDF',
                                 gradientColorStart: '#F36653',
@@ -583,10 +597,10 @@
                         }
                     ],
                     onDocumentSelect: (docType) => {
-                        console.log(docType)
                         window.sdk.command("create:new", docType);
                     }
                 });
+
 
                 docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 

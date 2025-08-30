@@ -101,27 +101,35 @@ input[type=checkbox] {
         content: "";
         display: block;
         position: absolute;
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         top: 0;
         left: 0;
-        border: @scaled-one-px solid @border-regular-control;
-        border-radius: 3px;
-        background-color: @background-normal;
+        border: @scaled-one-px solid @chb-border-normal;
+        border-radius: @chb-border-radius;
+        background-color: @chb-background-normal;
     }
 
-    &:checked:after {
-        content: "";
-        display: block;
-        width: 5px;
-        height: 10px;
-        border: solid @text-normal;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-        position: absolute;
-        top: 3px;
-        left: 7px;
+    &:checked {
+        &:before {
+            border-color: @chb-border-checked;
+            background-color: @chb-background-checked;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            width: 5px;
+            height: 10px;
+            border: solid @chb-check-mark-background;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            position: absolute;
+            top: 3px;
+            left: 7px;
+        }
     }
+
     &:focus-visible {
         outline: 0;
         &:before {
@@ -554,13 +562,17 @@ input[type="radio"] {
 .dnd-zone {
     display: grid;
     place-items: center;
-    padding: 56px 340px;
+    padding: 56px 0;
     border-radius: 12px;
     border: 1px dashed @border-regular-control;
 
     .content {
         p { margin: 0; }
         button { margin-top: 12px; }
+    }
+
+    .win_xp & {
+        display: block;
     }
 }
 
@@ -586,8 +598,8 @@ input[type="radio"] {
     flex-shrink: 0;
 
     position: relative;
-    width: 192px;
-    height: 196px;
+    width: 172px;
+    height: 172px;
     padding: 24px 16px 16px;
 
     border-radius: 8px;
@@ -605,14 +617,14 @@ input[type="radio"] {
         position: absolute;
         top: 14px;
         left: 10px;
-        padding: 4px 6px 6px;
+        padding: 1px 6px 0 6px;
         border-radius: 6px;
         background: conic-gradient(from 225deg at 50% 50%, var(--format-bg-start) 0deg, var(--format-bg-end) 360deg);
 
         span {
             color: @text-contrast-background;
             font-size: 16px;
-            line-height: 16px;
+            line-height: 28px;
             font-weight: 700;
         }
 

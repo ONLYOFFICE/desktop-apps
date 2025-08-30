@@ -1,6 +1,8 @@
 l10n.hr = {
     welWelcome: 'Dobrodošli u ONLYOFFICE uređivače radne površine!',
     welDescr: 'Radite na dokumentima izvanmrežno ili povežite paket na svoj oblak: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Trebate pomoć? Posjetite naš $1.',
+    textHelpCenter: 'Centar za pomoć',
     btnConnect: 'Povežite sada',
     textHavePortal: 'Već koristite oblak?',
     btnCreatePortal: 'Stvorite ONLYOFFICE oblak',
@@ -64,6 +66,8 @@ l10n.hr = {
     licPanelDescr: 'Vaš ključ proizvoda poslan je na adresu e-pošte koju ste naveli tijekom kupnje.',
     checkUpdates: 'Provjerite ima li ažuriranja',
     strVersion: 'verzija',
+    strVersionCommunity: 'Zajednička verzija',
+    strVersionCommercial: 'Enterprise verzija',
     emptySlide1Title: 'Dijelite & surađujte',
     emptySlide1Text: 'Odaberite između brzog ili striktnog zajedničkog uređivanja u stvarnom vremenu, razgovarajte u svom dokumentu, dodajte komentare ili ga podijelite za reviziju.',
     emptySlide2Title: 'Pregledajte ili oporavite prethodne verzije',

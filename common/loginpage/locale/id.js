@@ -1,6 +1,8 @@
 l10n.id = {
     welWelcome: 'Selamat Datang di ONLYOFFICE Desktop Editors!',
     welDescr: 'Mengerjakan dokumen secara luring atau menghubungkannya ke cloud Anda: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Butuh bantuan? Kunjungi $1 kami.',
+    textHelpCenter: 'Pusat Bantuan',
     btnConnect: 'Hubungkan sekarang',
     textHavePortal: 'Sudah menggunakan cloud?',
     btnCreatePortal: 'Buat cloud ONLYOFFICE',
@@ -64,6 +66,8 @@ l10n.id = {
     licPanelDescr: 'Kunci produk Anda dikirim ke alamat email yang telah ditentukan selama pembelian.',
     checkUpdates: 'Periksa pembaruan',
     strVersion: 'versi',
+    strVersionCommunity: 'Versi komunitas',
+    strVersionCommercial: 'Versi perusahaan',
     emptySlide1Title: 'Berbagi & berkolaborasi',
     emptySlide1Text: 'Pilih antara pengeditan bersama mode Fast atau Strict secara real time, mengobrolkan dokumen Anda, menambahkan komentar atau membagikannya untuk ditinjau.',
     emptySlide2Title: 'Tampilan atau pulihkan versi sebelumnya',

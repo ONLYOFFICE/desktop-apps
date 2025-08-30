@@ -9,7 +9,7 @@
 #define sAppPublisher                   "Ascensio System SIA"
 #define sAppPublisherURL                "https://www.onlyoffice.com/"
 #define sAppSupportURL                  "https://www.onlyoffice.com/support.aspx"
-#define sAppCopyright                   str("Copyright (C) " + sAppPublisher + " " + GetDateTimeString("yyyy",,) + ". All rights reserved")
+#define sAppCopyright                   str("© " + sAppPublisher + " " + GetDateTimeString("yyyy",,) + ". All rights reserved.")
 #define sAppIconName                    "ONLYOFFICE"
 #define sOldAppIconName                 "ONLYOFFICE Editors"
 #define sAppProtocol                    'oo-office'
@@ -24,7 +24,6 @@
 
 #define iconsExe                        "DesktopEditors.exe"
 #define NAME_EXE_OUT                    "editors.exe"
-#define LIC_FILE                        "agpl-3.0"
 
 #define ASSC_APP_NAME                   "ONLYOFFICE"
 #define ASCC_REG_PREFIX                 "ASC"

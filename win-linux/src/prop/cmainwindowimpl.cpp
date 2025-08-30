@@ -41,6 +41,10 @@
 #include <QJsonDocument>
 #include <QFile>
 
+#define DEFAULT_LICENSE_NAME    "GNU AGPL v3"
+#define DEFAULT_LICENSE_URL     URL_AGPL
+#define LICENSE_FILE_NAME       "/LICENSE.txt"
+
 CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
     CMainWindow(rect)
 {
@@ -49,9 +53,29 @@ CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
 
 void CMainWindowImpl::refreshAboutVersion()
 {
-    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" URL_AGPL "')\" draggable=\"false\" href=\"#\"&gt;GNU AGPL v3&lt;/a&gt;";
-
     QJsonObject _json_obj;
+
+    QString _lic_name, _lic_url;
+    const QString _lic_path = QCoreApplication::applicationDirPath() + LICENSE_FILE_NAME;
+    QFile _lic_file(_lic_path);
+    if ( _lic_file.exists() ) {
+        if ( _lic_file.open(QIODevice::ReadOnly | QIODevice::Text )) {
+            QTextStream stream(&_lic_file);
+            _lic_name = _lic_file.readLine().trimmed();
+            _lic_file.close();
+        }
+    }
+
+    if ( _lic_name.isEmpty() ) {
+        _lic_name = DEFAULT_LICENSE_NAME;
+        _lic_url = DEFAULT_LICENSE_URL;
+    } else {
+        _lic_url = QUrl::fromLocalFile(_lic_path).toString();
+        _json_obj["commercial"] = _lic_name != DEFAULT_LICENSE_NAME;
+    }
+
+    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";
+
     _json_obj["version"]    = VER_FILEVERSION_STR;
 #ifdef Q_OS_WIN
 # ifdef Q_OS_WIN64
@@ -61,12 +85,14 @@ void CMainWindowImpl::refreshAboutVersion()
 # endif
 #endif
     _json_obj["edition"]    = _license;
+
 #if defined(ABOUT_PAGE_APP_NAME)
     _json_obj["appname"]    = ABOUT_PAGE_APP_NAME;
 #else
-    _json_obj["appname"]    = WINDOW_NAME;
+    // _json_obj["appname"]    = WINDOW_NAME;
+    _json_obj["appname"]    = "ONLYOFFICE Desktop Editors";
 #endif
-    _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
+    _json_obj["rights"]     = ABOUT_COPYRIGHT_STR;
     _json_obj["link"]       = URL_SITE;
 //    _json_obj["changelog"]  = "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md";
 

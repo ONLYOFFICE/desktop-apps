@@ -81,9 +81,9 @@
                                 </div>
                                 <div id='idx-nav-templates'>
                                     <a data-value='Documents' class='nav-item selected' l10n>${_lang.tplDocument}</a>
-                                    <a data-value='Spreadsheet' class='nav-item' l10n>${_lang.tplSpreadsheet}</a>
+                                    <a data-value='Spreadsheets' class='nav-item' l10n>${_lang.tplSpreadsheet}</a>
                                     <a data-value='Presentations' class='nav-item' l10n>${_lang.tplPresentation}</a>
-                                    <a data-value='PDF' class='nav-item' l10n>${_lang.tplPDF}</a>
+                                    <a data-value='PDFs' class='nav-item' l10n>${_lang.tplPDF}</a>
                                 </div>
                                 <div id="search-result" class="search-result" style="display: none;"></div>
                                     <div id="search-no-results" class="search-no-results" style="display: none;">
@@ -93,8 +93,8 @@
                                             <use id="idx-nothing-found-dark" href="#nothing-found-dark"></use>
                                         </svg>
                                     </div>
-                                    <p class="no-results-title">${_lang.tplNoResultsTitle}</p>
-                                    <p class="no-results-text">${_lang.tplNoResultsText}</p> 
+                                    <p class="no-results-title" l10n>${_lang.tplNoResultsTitle}</p>
+                                    <p class="no-results-text" l10n>${_lang.tplNoResultsText}</p> 
                                 </div>
                                 <section class='themed-sroll' panel='all'>
                                     <div class='table-box flex-fill'>
@@ -119,7 +119,9 @@
 
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
+            const isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio === 1;
             const type = utils.formatToEditor(info.type);
+            const format = utils.parseFileFormat(info.type);
             const badge = `<i class="badge ${type}"></i>`;
             const cloudIcon = info.isCloud ? `<svg class="icon cloud-icon" data-iconname="location-cloud" data-precls="tool-icon">
                                                 <use href="#location-cloud"></use>
@@ -127,14 +129,22 @@
                                               `<svg class="icon cloud-icon" data-iconname="location-local" data-precls="tool-icon">
                                                 <use href="#location-local"></use>
                                               </svg>`;                    
-            const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
-                                         `<div class="box"><img src="${info.icon}">${badge}</div>`;
+
+            const icon_el = !info.icon ? `<svg class='icon icon--default'><use xlink:href='#template-item'></use></svg>
+                                            <div class="box"><img>${badge}</div>` :
+                                            `<div class="box"><img src="${info.icon}">${badge}</div>`;
+
             return `<div id="${info.uid}" class='item' data-type="${type}">
                         <div class="wrapper">
                             ${icon_el}
                         </div>
                         <div class="card">
-                            <div class="badge-wrapper">${badge}</div>
+                            <div class="badge-wrapper">
+                                <svg class="icon" data-iconname="${format}" data-precls="tool-icon">
+                                    <use href="#${format}"></use>
+                                </svg>
+                                ${!isSvgIcons ? badge : ''}
+                            </div>
                             <div class="title">${info.name}</div>
                             ${cloudIcon}
                         </div>
@@ -143,9 +153,7 @@
     });
 
     utils.fn.extend(ControllerTemplates.prototype, (function() {
-        let _page_num = 0, 
-            isLoading = false, 
-            totalPages = null; 
+        let isCloudTmplsLoading = false;
 
         const _on_nav_item_click = function(e) {
             $('.nav-item', this.view.$panel).removeClass('selected');
@@ -154,7 +162,7 @@
 
             const panel = $item.data('value');
 
-            this.view.$panel.removeClass('Documents Spreadsheet Presentations PDF').addClass(panel);
+            this.view.$panel.removeClass('Documents Spreadsheets Presentations PDFs').addClass(panel);
 
             applyFilter(this.view.$panel);
             $('.themed-sroll', this.view.$panel).scrollTop(0);
@@ -173,14 +181,39 @@
                 });
 
                 collection.events.inserted.attach((col, model) => {
-                    const $item = $(this.view.listitemtemplate(model));
-                    if (!model.isCloud) {
+                    let $item, isprepend = false;
+                    if ( model instanceof Array ) {
+                        const items = model;
+                        $item = [], isprepend = !items[0].isCloud;
+                        items.forEach(m => {
+                            $item.push($(this.view.listitemtemplate(m)));
+                        });
+                    } else {
+                        $item = $(this.view.listitemtemplate(model));
+                    }
+
+                    if ( isprepend === true ) {
                         col.list.prepend($item); 
                     } else {
                         col.list.append($item);
                     }
                     col.list.parent().removeClass('empty');
                     applyFilter(this.view.$panel);
+                });
+
+                collection.events.reset.attach((col, models) => {
+                    let elms = [];
+                    models.forEach(m => {
+                        const $item = $(this.view.listitemtemplate(m));
+                        elms.push($item);
+                    });
+
+                    if ( elms.length ) {
+                        col.list.prepend(elms);
+                        col.list.parent().removeClass('empty');
+
+                        applyFilter(this.view.$panel);
+                    }
                 });
 
                 collection.events.click.attach((col, model) => {
@@ -196,38 +229,89 @@
                         }));
                     }
                 });
+
+                collection.events.changed.attach((collection, m, v) => {
+                    if ( v && v.icon ) {
+                        const $el = $(`#${m.uid}`, collection.list);
+                        $el.find('svg.icon--default').hide();
+                        $el.find('.box img').attr('src', m.icon);
+                    }
+                });
             };
             setupCollection(this.templates);
         }
 
         Collection.prototype.emptyLocal = function() {
-            const cloudItems = this.items.filter(item => item.isCloud);
-            this.empty();
-            cloudItems.forEach(item => {
-                this.add(item);
-            });
+            // const cloudItems = this.items.filter(item => item.isCloud);
+            // this.empty();
+            // cloudItems.forEach(item => {
+            //     this.add(item);
+            // });
+
+            this.items.forEach(m => {
+                    if ( !m.isCloud ) {
+                        const el = document.getElementById(m.uid);
+                        if ( el ) el.remove();
+                    }
+                });
+
+            const cloud_items = this.items.filter(item => item.isCloud);
+            this.items = cloud_items;
         };
 
         const _on_add_local_templates = function(tmpls) {
-            this.templates.emptyLocal();
+            const _func_ = () => {
+                // this.templates.emptyLocal();
 
-            [...tmpls]
-                .reverse()
-                .forEach(item => {
-                    const type = utils.formatToEditor(item.type);
-                    if (['word', 'cell', 'slide', 'pdf'].includes(type)) {
-                        this.templates.add(new FileTemplateModel(item));
-                    }
-                });
+                let items = [];
+                // [...tmpls]
+                    // .reverse()
+                (this.tmpls || tmpls)
+                    .forEach(item => {
+                        const type = utils.formatToEditor(item.type);
+                        if (['word', 'cell', 'slide', 'pdf'].includes(type)) {
+                            // this.templates.add(new FileTemplateModel(item));
+
+                            const m = this.templates.find('path', item.path);
+                            if ( !m ) {
+                                items.push(new FileTemplateModel(item));
+                            } else {
+                                if ( !m.icon && item.icon ) {
+                                    m.set('icon', $('<div>').html(item.icon).text());
+                                }
+                            }
+                        }
+                    });
+
+                if ( items.length )
+                    this.templates.add(items);
+            };
+
+            // if ( this.timer_id )
+            //     this.tmpls = tmpls;
+            // else {
+            //     this.timer_id = setTimeout(e => {
+            //         this.timer_id = undefined;
+            //         _func_();
+
+            //         delete this.tmpls;
+            //     }, 2000);
+
+                _func_();
+            // }
         };
 
         const _on_add_cloud_templates = function(data) {
+            let items = [];
             data.forEach(i => {
-                const info = i['attributes'],
-                    file_ext = info['form_exts']['data'][0]['attributes']['ext'],
+                const info = i['attributes'];
+                if ( !info['form_exts']['data'].length ) return;
+
+                const file_ext = info['form_exts']['data'][0]['attributes']['ext'],
                     id = i.id;
                 if (!this.templates.items.some(t => t.uid === id)) {
-                    this.templates.add(new FileTemplateModel({    
+
+                    const m = new FileTemplateModel({
                         uid: id,
                         name: info['name_form'],
                         descr: info['template_desc'],
@@ -235,17 +319,23 @@
                         type: utils.fileExtensionToFileFormat(file_ext),
                         icon: info.template_image ? info.template_image.data.attributes.formats.thumbnail.url : undefined,
                         isCloud: true,
-                    }));
+                    });
+
+                    items.push(m);
+                    // this.templates.add(m);
                 }
             });
+
+            if ( items.length )
+                this.templates.add(items);
         }
         
         const applyFilter = function($panel) {
             const selectedType = {
                 'Documents': 'word',
-                'Spreadsheet': 'cell',
+                'Spreadsheets': 'cell',
                 'Presentations': 'slide',
-                'PDF': 'pdf'
+                'PDFs': 'pdf'
             }[$('.nav-item.selected', $panel).data('value')];
 
             const search = $('#template-search').val() || '';
@@ -268,42 +358,66 @@
             $('#search-no-results', $panel).toggle(matchCount === 0);
         };
         
-        const _loadTemplates = function() {
-            if (isLoading || (totalPages !== null && _page_num >= totalPages)) return;
+        const _loadTemplates = function(nl, page_num = 0, fallBack = 0) {
+            if (isCloudTmplsLoading) return;
 
-            _page_num++;  
-            isLoading = true;
+            let locale = 'en';
+            if (nl) {
+                if (fallBack === 0) {
+                    locale = nl.replace('_', '-'); 
+                } else if (fallBack === 1) {
+                    locale = nl.replace('_', '-').split('-')[0]; 
+                }
+            }
 
-            const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com'; // https://oforms.teamlab.info
-            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=en&pagination[page]=${_page_num}`;
+            page_num++;
+            isCloudTmplsLoading = true;
+
+            const _domain = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://templates.onlyoffice.com'; // https://oforms.teamlab.info
+            const _url = `${_domain}/dashboard/api/oforms?populate=*&locale=${locale}&pagination[page]=${page_num}`;
             fetch(_url)
                 .then(r => r.json())
                 .then(d => {
-                    isLoading = false;
-                    if (d.data) {
+                    isCloudTmplsLoading = false;
+                    if (d.data && d.data.length > 0) {
                         _on_add_cloud_templates.call(this, d.data);
-                        totalPages = d.meta.pagination.pageCount;
+                        const totalPages = d.meta.pagination.pageCount;
                         
-                        if (_page_num < totalPages) {
-                            _loadTemplates.call(this);
+                        if (page_num + 1 <= totalPages) {
+                            _loadTemplates.call(this, nl, page_num, fallBack);
                         } 
-                     }
+                    } else if (d.data && d.data.length === 0 && fallBack < 2) {
+                        _resetPagination.call(this);
+                        _loadTemplates.call(this, nl, 0, fallBack + 1);
+                    }
+                })
+                .catch (function (err) {
+                    console.error(err);
+                    if (window.utils.isWinXp) {
+                        console.warn(utils.Lang.tplErrorTLS) 
+                    }  
                 })
         };
 
-        const loadAllPages = function() {
-            if (isLoading) return;
+        const _resetPagination = function() {
+            isCloudTmplsLoading = false;
+            this.templates.empty();
+        };
 
-            _page_num = 0;
-            const self = this;
-            const loadNext = () => {
-                if (_page_num < totalPages || totalPages === null) {
-                    _loadTemplates.call(self);
-                    setTimeout(loadNext, 150); 
-                }
-            };
+        const onscale = function (pasteSvg) {
+            if (!pasteSvg) {
+                $('.badge-wrapper svg.icon').each((i, el) => {
+                    el = $(el);
+                    const p = el.parent();
+                    const type = el.closest('.item').data('type');
 
-            loadNext(); 
+                    if ($('i.badge', p).length === 0) {
+                        const badge = `<i class="badge ${type}"></i>`;
+                        $(badge).insertAfter(el);
+                    }
+                });
+            }
+            
         };
     
         return {
@@ -325,7 +439,9 @@
                 mql.addEventListener('change', e => {
                     this.view.svgicons = !e.target.matches;
                 });
-
+                
+                CommonEvents.on("icons:svg",  onscale)
+                
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 _on_nav_item_click.call(this, { target: $('.nav-item.selected', this.view.$panel) });
                 $('#template-search', this.view.$panel).on('input', () => {
@@ -347,13 +463,16 @@
                     ls.push("en-US","en_US","en");
                     window.sdk.LocalFileTemplates(ls);
                 };
-                _reload_templates(utils.Lang.id);
 
                 CommonEvents.on('lang:changed', (ol, nl) => {
+                    _resetPagination.call(this);  
                     _reload_templates(nl);
+                    _loadTemplates.call(this, nl);
+                    $('#template-search', this.view.$panel).attr('placeholder', utils.Lang.tplSearch);
                 });
 
-                loadAllPages.call(this);
+                _reload_templates(utils.Lang.id);
+                _loadTemplates.call(this, utils.Lang.id);
 
                 return this;
             }
