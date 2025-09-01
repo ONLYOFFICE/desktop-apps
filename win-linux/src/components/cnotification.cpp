@@ -57,7 +57,16 @@
 #else
 # define toTStr(qstr)     qstr.toStdWString()
 #endif
+
+#define TEXT_CANCEL      toTStr(QObject::tr("Cancel"))
+#define TEXT_YES         toTStr(QObject::tr("Yes"))
+#define TEXT_NO          toTStr(QObject::tr("No"))
+#define TEXT_OK          toTStr(QObject::tr("OK"))
 #define TEXT_SKIP        toTStr(QObject::tr("Skip"))
+#define TEXT_BUY         toTStr(QObject::tr("Buy Now"))
+#define TEXT_ACTIVATE    toTStr(QObject::tr("Activate"))
+#define TEXT_CONTINUE    toTStr(QObject::tr("Continue"))
+#define TEXT_SKIPVER     toTStr(QObject::tr("Skip"))
 #define TEXT_REMIND      toTStr(QObject::tr("Later"))
 #define TEXT_INSTALL     toTStr(QObject::tr("Install"))
 #define TEXT_INSLATER    toTStr(QObject::tr("Later"))
@@ -74,9 +83,17 @@ static void action_callback(NotifyNotification *ntf, char *action, void *data)
 {
     if (!data)
         return;
-    int res = strcmp(action, "inslater") == 0 ? MODAL_RESULT_INSLATER :
+    int res = strcmp(action, "cancel") == 0 ?   MODAL_RESULT_CANCEL :
+              strcmp(action, "yes") == 0 ?      MODAL_RESULT_YES :
+              strcmp(action, "no") == 0 ?       MODAL_RESULT_NO :
+              strcmp(action, "ok") == 0 ?       MODAL_RESULT_OK :
+              strcmp(action, "skip") == 0 ?     MODAL_RESULT_SKIP :
+              strcmp(action, "buy") == 0 ?      MODAL_RESULT_BUY :
+              strcmp(action, "activate") == 0 ? MODAL_RESULT_ACTIVATE :
+              strcmp(action, "continue") == 0 ? MODAL_RESULT_CONTINUE :
+              strcmp(action, "inslater") == 0 ? MODAL_RESULT_INSLATER :
               strcmp(action, "restart") == 0 ?  MODAL_RESULT_RESTART :
-              strcmp(action, "skip") == 0 ?     MODAL_RESULT_SKIPVER :
+              strcmp(action, "skipver") == 0 ?  MODAL_RESULT_SKIPVER :
               strcmp(action, "remind") == 0 ?   MODAL_RESULT_REMIND :
               strcmp(action, "install") == 0 ?  MODAL_RESULT_INSTALL :
               strcmp(action, "saveins") == 0 ?  MODAL_RESULT_INSTALL :
@@ -174,9 +191,25 @@ public:
     {
         int res = -1;
         switch (actionIndex) {
-        case 0: res = (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_INSLATER : MODAL_RESULT_SKIPVER; break;
-        case 1: res = (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_RESTART : MODAL_RESULT_REMIND; break;
-        case 2: res = (dlgBtns == MsgBtns::mbSkipRemindDownload) ? MODAL_RESULT_DOWNLOAD : MODAL_RESULT_INSTALL; break;
+        case 0: res = (dlgBtns == MsgBtns::mbOk || dlgBtns == MsgBtns::mbOkCancel || dlgBtns == MsgBtns::mbOkDefCancel) ? MODAL_RESULT_OK :
+                      (dlgBtns == MsgBtns::mbYesNo || dlgBtns == MsgBtns::mbYesDefNo || dlgBtns == MsgBtns::mbYesNoCancel
+                          || dlgBtns == MsgBtns::mbYesDefNoCancel || dlgBtns == MsgBtns::mbYesDefSkipNo) ? MODAL_RESULT_YES :
+                      (dlgBtns == MsgBtns::mbBuy) ? MODAL_RESULT_BUY :
+                      (dlgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_ACTIVATE :
+                      (dlgBtns == MsgBtns::mbContinue) ? MODAL_RESULT_CONTINUE :
+                      (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_INSLATER : MODAL_RESULT_SKIPVER;
+            break;
+        case 1: res = (dlgBtns == MsgBtns::mbOkCancel || dlgBtns == MsgBtns::mbOkDefCancel) ? MODAL_RESULT_CANCEL :
+                      (dlgBtns == MsgBtns::mbYesNo || dlgBtns == MsgBtns::mbYesDefNo || dlgBtns == MsgBtns::mbYesNoCancel
+                          || dlgBtns == MsgBtns::mbYesDefNoCancel) ? MODAL_RESULT_NO :
+                      (dlgBtns == MsgBtns::mbYesDefSkipNo) ? MODAL_RESULT_SKIP :
+                      (dlgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_CONTINUE :
+                      (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_RESTART : MODAL_RESULT_REMIND;
+            break;
+        case 2: res = (dlgBtns == MsgBtns::mbYesNoCancel || dlgBtns == MsgBtns::mbYesDefNoCancel) ? MODAL_RESULT_CANCEL :
+                      (dlgBtns == MsgBtns::mbYesDefSkipNo) ? MODAL_RESULT_NO :
+                      (dlgBtns == MsgBtns::mbSkipRemindDownload) ? MODAL_RESULT_DOWNLOAD : MODAL_RESULT_INSTALL;
+            break;
         default:
             break;
         }
@@ -312,22 +345,53 @@ bool CNotification::show(const QString &msg, const QString &content, MsgBtns dlg
 
     if (callback) {
         switch (dlgBtns) {
+        case MsgBtns::mbYesNo:
+        case MsgBtns::mbYesDefNo:
+            addAction("yes", TEXT_YES.c_str());
+            addAction("no", TEXT_NO.c_str());
+            break;
+        case MsgBtns::mbYesNoCancel:
+        case MsgBtns::mbYesDefNoCancel:
+            addAction("yes", TEXT_YES.c_str());
+            addAction("no", TEXT_NO.c_str());
+            addAction("cancel", TEXT_CANCEL.c_str());
+            break;
+        case MsgBtns::mbOkCancel:
+        case MsgBtns::mbOkDefCancel:
+            addAction("ok", TEXT_OK.c_str());
+            addAction("cancel", TEXT_CANCEL.c_str());
+            break;
+        case MsgBtns::mbYesDefSkipNo:
+            addAction("yes", TEXT_YES.c_str());
+            addAction("skip", TEXT_SKIP.c_str());
+            addAction("no", TEXT_NO.c_str());
+            break;
+        case MsgBtns::mbBuy:
+            addAction("buy", TEXT_BUY.c_str());
+            break;
+        case MsgBtns::mbActivateDefContinue:
+            addAction("activate", TEXT_ACTIVATE.c_str());
+            addAction("continue", TEXT_CONTINUE.c_str());
+            break;
+        case MsgBtns::mbContinue:
+            addAction("continue", TEXT_CONTINUE.c_str());
+            break;
         case MsgBtns::mbInslaterRestart:
             addAction("inslater", TEXT_INSLATER.c_str());
             addAction("restart", TEXT_RESTART.c_str());
             break;
         case MsgBtns::mbSkipRemindInstall:
-            addAction("skip", TEXT_SKIP.c_str());
+            addAction("skipver", TEXT_SKIPVER.c_str());
             addAction("remind", TEXT_REMIND.c_str());
             addAction("install", TEXT_INSTALL.c_str());
             break;
         case MsgBtns::mbSkipRemindSaveandinstall:
-            addAction("skip", TEXT_SKIP.c_str());
+            addAction("skipver", TEXT_SKIPVER.c_str());
             addAction("remind", TEXT_REMIND.c_str());
             addAction("saveins", TEXT_SAVEANDINS.c_str());
             break;
         case MsgBtns::mbSkipRemindDownload:
-            addAction("skip", TEXT_SKIP.c_str());
+            addAction("skipver", TEXT_SKIPVER.c_str());
             addAction("remind", TEXT_REMIND.c_str());
             addAction("download", TEXT_DOWNLOAD.c_str());
             break;
@@ -351,22 +415,53 @@ bool CNotification::show(const QString &msg, const QString &content, MsgBtns dlg
     tmpl.setExpiration(NOTIF_TIMEOUT_MS);
 
     switch (dlgBtns) {
+    case MsgBtns::mbYesNo:
+    case MsgBtns::mbYesDefNo:
+        tmpl.addAction(TEXT_YES);
+        tmpl.addAction(TEXT_NO);
+        break;
+    case MsgBtns::mbYesNoCancel:
+    case MsgBtns::mbYesDefNoCancel:
+        tmpl.addAction(TEXT_YES);
+        tmpl.addAction(TEXT_NO);
+        tmpl.addAction(TEXT_CANCEL);
+        break;
+    case MsgBtns::mbOkCancel:
+    case MsgBtns::mbOkDefCancel:
+        tmpl.addAction(TEXT_OK);
+        tmpl.addAction(TEXT_CANCEL);
+        break;
+    case MsgBtns::mbYesDefSkipNo:
+        tmpl.addAction(TEXT_YES);
+        tmpl.addAction(TEXT_SKIP);
+        tmpl.addAction(TEXT_NO);
+        break;
+    case MsgBtns::mbBuy:
+        tmpl.addAction(TEXT_BUY);
+        break;
+    case MsgBtns::mbActivateDefContinue:
+        tmpl.addAction(TEXT_ACTIVATE);
+        tmpl.addAction(TEXT_CONTINUE);
+        break;
+    case MsgBtns::mbContinue:
+        tmpl.addAction(TEXT_CONTINUE);
+        break;
     case MsgBtns::mbInslaterRestart:
         tmpl.addAction(TEXT_INSLATER);
         tmpl.addAction(TEXT_RESTART);
         break;
     case MsgBtns::mbSkipRemindInstall:
-        tmpl.addAction(TEXT_SKIP);
+        tmpl.addAction(TEXT_SKIPVER);
         tmpl.addAction(TEXT_REMIND);
         tmpl.addAction(TEXT_INSTALL);
         break;
     case MsgBtns::mbSkipRemindSaveandinstall:
-        tmpl.addAction(TEXT_SKIP);
+        tmpl.addAction(TEXT_SKIPVER);
         tmpl.addAction(TEXT_REMIND);
         tmpl.addAction(TEXT_SAVEANDINS);
         break;
     case MsgBtns::mbSkipRemindDownload:
-        tmpl.addAction(TEXT_SKIP);
+        tmpl.addAction(TEXT_SKIPVER);
         tmpl.addAction(TEXT_REMIND);
         tmpl.addAction(TEXT_DOWNLOAD);
         break;

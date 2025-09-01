@@ -42,7 +42,6 @@
 #include "ccefeventstransformer.h"
 #include "ccefeventsgate.h"
 #include "windows/ceditorwindow.h"
-#include "components/cnotification.h"
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
 #include "cprintdata.h"
@@ -210,6 +209,7 @@ public:
     static void             cancelClose();
     static void             setRtlEnabled(bool);
     static bool             isRtlEnabled();
+    static bool             notificationSupported();
 
     std::wstring GetExternalSchemeName();
     using CAscApplicationManager::GetExternalSchemeName;

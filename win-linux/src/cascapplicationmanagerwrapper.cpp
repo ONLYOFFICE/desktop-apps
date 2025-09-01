@@ -24,6 +24,7 @@
 #include "ctabundockevent.h"
 #include "clangater.h"
 #include "components/cmessage.h"
+#include "components/cnotification.h"
 #include "ceditortools.h"
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
@@ -1101,6 +1102,12 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
 
 void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 {
+    static bool runOnce = false;
+    if (!runOnce) {
+        runOnce = true;
+        m_private->m_notificationSupported = CNotification::instance().init();
+    }
+
 #ifdef _UPDMODULE
     if (!m_pUpdateManager) {
         m_pUpdateManager = new CUpdateManager(this);
@@ -1865,6 +1872,12 @@ void CAscApplicationManagerWrapper::setRtlEnabled(bool state)
 bool CAscApplicationManagerWrapper::isRtlEnabled()
 {
     return m_rtlEnabled;
+}
+
+bool CAscApplicationManagerWrapper::notificationSupported()
+{
+    APP_CAST(_app);
+    return _app.m_private->m_notificationSupported;
 }
 
 bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
