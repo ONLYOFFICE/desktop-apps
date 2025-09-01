@@ -24,5 +24,5 @@
         });
     }
 
-    window.DialogProviders = DialogProviders;
+    window.DialogProviders = dialogProviders;
 }();
