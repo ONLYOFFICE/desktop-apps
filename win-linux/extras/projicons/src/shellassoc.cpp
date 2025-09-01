@@ -79,7 +79,7 @@ End Sub
 
 enum WinVer {
     Undef, WinXP, WinVista, Win7, Win8, Win8_1,
-    Win10UpTo1607, Win10Above1607, Win11, WinFuture
+    Win10UpTo1607, Win10UpTo21H2, Win10Above21H2, Win11, WinFuture
 };
 
 int getWindowsVersion()
@@ -104,7 +104,8 @@ int getWindowsVersion()
                 major == 6L && minor == 2L ? Win8 :
                 major == 6L && minor == 3L ? Win8_1 :
                 major == 10L && minor == 0L && build <= 14393 ? Win10UpTo1607 :
-                major == 10L && minor == 0L && build < 22000 ? Win10Above1607 :
+                major == 10L && minor == 0L && build <= 19044 ? Win10UpTo21H2 :
+                major == 10L && minor == 0L && build < 22000 ? Win10Above21H2 :
                 major == 10L && minor == 0L && build >= 22000 ? Win11 :
                 major == 10L && minor > 0L ? WinFuture :
                 major > 10L ? WinFuture : Undef;
@@ -421,20 +422,19 @@ bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
     HKEY hKey;
     if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
         RegCloseKey(hKey);
-        if (!IsPdfOrHttpScheme(ext))
-            goto LABEL_DEL_ORDIN;
-
-        if (winVer > Win8_1) {
-            RunDeleteAssocWithHTA(subkey);
-            goto LABEL_CREATE;
-        }
-    LABEL_DEL_ORDIN:
-        if (RegDeleteKeyA(HKEY_CURRENT_USER, subkey) != ERROR_SUCCESS) {
-            printf("Could not delete registry key %s\n", subkey);
-            return false;
+        if (winVer <= Win8_1 || (winVer <= Win10UpTo21H2 && !IsPdfOrHttpScheme(ext))) {
+            if (RegDeleteKeyA(HKEY_CURRENT_USER, subkey) != ERROR_SUCCESS) {
+                printf("Could not delete registry key %s\n", subkey);
+                return false;
+            }
+        } else {
+            if (!RunDeleteAssocWithHTA(subkey)) {
+                printf("Could not delete registry key with HTA %s\n", subkey);
+                return false;
+            }
         }
     }
-LABEL_CREATE:
+
     if (RegCreateKeyExA(HKEY_CURRENT_USER, subkey, 0, NULL, 0, KEY_WRITE, 0, &hKey, 0) != ERROR_SUCCESS) {
         printf("Could not create registry key %s\n", subkey);
         return false;
@@ -465,7 +465,7 @@ LABEL_CREATE:
     if (winVer > Win8_1) {
         std::string ts = GetRegistryKeyTimestampHex(subkey);
         std::string sid = GetCurrentUserSidString();
-        if (winVer < Win10Above1607) {
+        if (winVer <= Win10UpTo1607) {
             snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
         } else {
             snprintf(pSource, _countof(pSource), "%s%s%s%s%s", ext, sid.c_str(), progID, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
@@ -502,7 +502,7 @@ LABEL_CREATE:
 
     char resHash[20];
     snprintf(resHash, 20, "%s", base64Enc.c_str());
-    if (_stricmp(ext, ".pdf") == 0 || _stricmp(ext, "http") == 0 || _stricmp(ext, "https") == 0) {
+    if (winVer >= Win10Above21H2 || _stricmp(ext, ".pdf") == 0 || _stricmp(ext, "http") == 0 || _stricmp(ext, "https") == 0) {
         return RunWriteAssocWithHTA(subkey, resHash, progID);
 
     } else {
