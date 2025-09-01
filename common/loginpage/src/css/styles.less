@@ -2408,3 +2408,30 @@ li.menu-item {
         }
     }
 }
+
+.template-preview-body {
+  .icon {
+    border: @scaled-one-px solid @border-divider;
+    border-radius: 4px;
+    height: 280px;
+    width: 424px;
+  }
+  .name {
+    font-weight: bold;
+    font-size: 14px;
+    padding-bottom: 2px;
+  }
+  .pricing, .descr {
+    font-size: 12px;
+    padding-bottom: 2px;
+    color: @text-normal;
+  }
+
+  .btn--landing { 
+    float: right;
+    margin: 0 0 10px;
+    .rtl & {
+      float: left;
+    }
+  }
+}

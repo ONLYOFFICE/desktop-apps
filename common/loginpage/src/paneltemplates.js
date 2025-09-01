@@ -149,6 +149,20 @@
                             ${cloudIcon}
                         </div>
                     </div>`;
+        },
+
+        templateDialogBody: function(model) {
+            return `
+                <div class="template-preview-body">
+                    <img class="icon" src="${model.preview}">
+                    <div class="description">
+                        <h3 class="name">${model.name}</h3>
+                        <p class="pricing">${utils.Lang.tplFree}</p>
+                        <p class="descr">${model.descr}</p>
+                        <button class="btn btn--landing">${utils.Lang.tplUseTemplate}</button>
+                    </div>
+                </div>
+            `;
         }
     });
 
@@ -218,7 +232,9 @@
 
                 collection.events.click.attach((col, model) => {
                     if (model.isCloud) {
-                        window.sdk.openTemplate(model.path, model.name);
+                        new CloudTemplateDialog(model, {
+                            bodyTemplate: this.view.templateDialogBody(model)
+                        }).show();
                     } else {
                         sdk.command('create:new', JSON.stringify({
                             template: {
@@ -315,6 +331,7 @@
                         uid: id,
                         name: info['name_form'],
                         descr: info['template_desc'],
+                        preview: info.card_prewiew ? info.card_prewiew.data.attributes.url : undefined,
                         path: info.file_oform ? info.file_oform.data[0].attributes.url : undefined,
                         type: utils.fileExtensionToFileFormat(file_ext),
                         icon: info.template_image ? info.template_image.data.attributes.formats.thumbnail.url : undefined,

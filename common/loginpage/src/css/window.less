@@ -69,6 +69,21 @@ dialog {
         }
     }
 
+    &.dlg-template-preview {
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: @background-action-panel;
+        .title {
+            padding: 5px 16px;
+            border-bottom: initial;
+            font-weight: bold;
+            background-color: @background-action-panel;
+        }
+         .body {
+            padding: 0 16px 10px;
+        }
+    }
+
     &.dlg-providers, &.dlg-connect-to {
         border-radius: 8px;
         .title {
