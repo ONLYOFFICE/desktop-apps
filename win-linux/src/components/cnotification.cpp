@@ -191,25 +191,94 @@ public:
     {
         int res = -1;
         switch (actionIndex) {
-        case 0: res = (dlgBtns == MsgBtns::mbOk || dlgBtns == MsgBtns::mbOkCancel || dlgBtns == MsgBtns::mbOkDefCancel) ? MODAL_RESULT_OK :
-                      (dlgBtns == MsgBtns::mbYesNo || dlgBtns == MsgBtns::mbYesDefNo || dlgBtns == MsgBtns::mbYesNoCancel
-                          || dlgBtns == MsgBtns::mbYesDefNoCancel || dlgBtns == MsgBtns::mbYesDefSkipNo) ? MODAL_RESULT_YES :
-                      (dlgBtns == MsgBtns::mbBuy) ? MODAL_RESULT_BUY :
-                      (dlgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_ACTIVATE :
-                      (dlgBtns == MsgBtns::mbContinue) ? MODAL_RESULT_CONTINUE :
-                      (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_INSLATER : MODAL_RESULT_SKIPVER;
+        case 0: {
+            switch (dlgBtns) {
+            case MsgBtns::mbOk:
+            case MsgBtns::mbOkCancel:
+            case MsgBtns::mbOkDefCancel:
+                res = MODAL_RESULT_OK;
+                break;
+            case MsgBtns::mbYesNo:
+            case MsgBtns::mbYesDefNo:
+            case MsgBtns::mbYesNoCancel:
+            case MsgBtns::mbYesDefNoCancel:
+            case MsgBtns::mbYesDefSkipNo:
+                res = MODAL_RESULT_YES;
+                break;
+            case MsgBtns::mbBuy:
+                res = MODAL_RESULT_BUY;
+                break;
+            case MsgBtns::mbActivateDefContinue:
+                res = MODAL_RESULT_ACTIVATE;
+                break;
+            case MsgBtns::mbContinue:
+                res = MODAL_RESULT_CONTINUE;
+                break;
+            case MsgBtns::mbInslaterRestart:
+                res = MODAL_RESULT_INSLATER;
+                break;
+            case MsgBtns::mbSkipRemindInstall:
+            case MsgBtns::mbSkipRemindSaveandinstall:
+            case MsgBtns::mbSkipRemindDownload:
+                res = MODAL_RESULT_SKIPVER;
+                break;
+            default:
+                break;
+            }
             break;
-        case 1: res = (dlgBtns == MsgBtns::mbOkCancel || dlgBtns == MsgBtns::mbOkDefCancel) ? MODAL_RESULT_CANCEL :
-                      (dlgBtns == MsgBtns::mbYesNo || dlgBtns == MsgBtns::mbYesDefNo || dlgBtns == MsgBtns::mbYesNoCancel
-                          || dlgBtns == MsgBtns::mbYesDefNoCancel) ? MODAL_RESULT_NO :
-                      (dlgBtns == MsgBtns::mbYesDefSkipNo) ? MODAL_RESULT_SKIP :
-                      (dlgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_CONTINUE :
-                      (dlgBtns == MsgBtns::mbInslaterRestart) ? MODAL_RESULT_RESTART : MODAL_RESULT_REMIND;
+        }
+        case 1: {
+            switch (dlgBtns) {
+            case MsgBtns::mbOkCancel:
+            case MsgBtns::mbOkDefCancel:
+                res = MODAL_RESULT_CANCEL;
+                break;
+            case MsgBtns::mbYesNo:
+            case MsgBtns::mbYesDefNo:
+            case MsgBtns::mbYesNoCancel:
+            case MsgBtns::mbYesDefNoCancel:
+                res = MODAL_RESULT_NO;
+                break;
+            case MsgBtns::mbYesDefSkipNo:
+                res = MODAL_RESULT_SKIP;
+                break;
+            case MsgBtns::mbActivateDefContinue:
+                res = MODAL_RESULT_CONTINUE;
+                break;
+            case MsgBtns::mbInslaterRestart:
+                res = MODAL_RESULT_RESTART;
+                break;
+            case MsgBtns::mbSkipRemindInstall:
+            case MsgBtns::mbSkipRemindSaveandinstall:
+            case MsgBtns::mbSkipRemindDownload:
+                res = MODAL_RESULT_REMIND;
+                break;
+            default:
+                break;
+            }
             break;
-        case 2: res = (dlgBtns == MsgBtns::mbYesNoCancel || dlgBtns == MsgBtns::mbYesDefNoCancel) ? MODAL_RESULT_CANCEL :
-                      (dlgBtns == MsgBtns::mbYesDefSkipNo) ? MODAL_RESULT_NO :
-                      (dlgBtns == MsgBtns::mbSkipRemindDownload) ? MODAL_RESULT_DOWNLOAD : MODAL_RESULT_INSTALL;
+        }
+        case 2: {
+            switch (dlgBtns) {
+            case MsgBtns::mbYesNoCancel:
+            case MsgBtns::mbYesDefNoCancel:
+                res = MODAL_RESULT_CANCEL;
+                break;
+            case MsgBtns::mbYesDefSkipNo:
+                res = MODAL_RESULT_NO;
+                break;
+            case MsgBtns::mbSkipRemindDownload:
+                res = MODAL_RESULT_DOWNLOAD;
+                break;
+            case MsgBtns::mbSkipRemindInstall:
+            case MsgBtns::mbSkipRemindSaveandinstall:
+                res = MODAL_RESULT_INSTALL;
+                break;
+            default:
+                break;
+            }
             break;
+        }
         default:
             break;
         }
