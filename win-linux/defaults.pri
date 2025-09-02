@@ -88,7 +88,6 @@ HEADERS += \
     $$PWD/src/components/cprintprogress.h \
     $$PWD/src/components/ctabbar.h \
     $$PWD/src/components/cmessage.h \
-    $$PWD/src/components/cnotification.h \
     $$PWD/src/components/canimatedicon.h \
     $$PWD/src/components/ctabpanel.h \
     $$PWD/src/components/csvgpushbutton.h \
@@ -132,7 +131,6 @@ SOURCES += \
     $$PWD/src/components/cprintprogress.cpp \
     $$PWD/src/components/ctabbar.cpp \
     $$PWD/src/components/cmessage.cpp \
-    $$PWD/src/components/cnotification.cpp \
     $$PWD/src/components/canimatedicon.cpp \
     $$PWD/src/components/ctabpanel.cpp \
     $$PWD/src/components/csvgpushbutton.cpp \
@@ -210,6 +208,7 @@ core_linux {
     HEADERS +=  $$PWD/src/windows/platform_linux/cx11decoration.h \
                 #$$PWD/src/windows/platform_linux/gtk_addon.h \
                 $$PWD/src/windows/platform_linux/cwindowplatform.h \
+                $$PWD/src/components/cnotification.h \
                 $$PWD/src/platform_linux/cdialogopenssl.h \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.h \
                 $$PWD/src/platform_linux/singleapplication.h \
@@ -222,6 +221,7 @@ core_linux {
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 $$PWD/src/windows/platform_linux/cwindowplatform.cpp \
+                $$PWD/src/components/cnotification.cpp \
                 $$PWD/src/platform_linux/cdialogopenssl.cpp \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \
                 $$PWD/src/platform_linux/singleapplication.cpp \
@@ -258,7 +258,6 @@ core_windows {
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
-               $$PWD/src/platform_win/wintoastlib.h \
                $$PWD/src/platform_win/association.h \
                $$PWD/src/platform_win/filechooser.h \
                $$PWD/src/platform_win/printdialog.h \
@@ -266,7 +265,6 @@ core_windows {
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
-               $$PWD/src/platform_win/wintoastlib.cpp \
                $$PWD/src/platform_win/association.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
                $$PWD/src/platform_win/printdialog.cpp
@@ -311,6 +309,11 @@ core_windows {
 
     build_xp {
         DEFINES += __OS_WIN_XP
+    } else {
+        HEADERS += $$PWD/src/platform_win/wintoastlib.h \
+                   $$PWD/src/components/cnotification.h
+        SOURCES += $$PWD/src/platform_win/wintoastlib.cpp \
+                   $$PWD/src/components/cnotification.cpp
     }
 }
 

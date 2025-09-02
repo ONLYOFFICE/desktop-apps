@@ -24,11 +24,13 @@
 #include "ctabundockevent.h"
 #include "clangater.h"
 #include "components/cmessage.h"
-#include "components/cnotification.h"
 #include "ceditortools.h"
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
 #include "cproviders.h"
+#ifndef __OS_WIN_XP
+# include "components/cnotification.h"
+#endif
 
 #ifdef _WIN32
 # include <io.h>
@@ -1102,11 +1104,13 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
 
 void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 {
+#ifndef __OS_WIN_XP
     static bool runOnce = false;
     if (!runOnce) {
         runOnce = true;
         m_private->m_notificationSupported = CNotification::instance().init();
     }
+#endif
 
 #ifdef _UPDMODULE
     if (!m_pUpdateManager) {
