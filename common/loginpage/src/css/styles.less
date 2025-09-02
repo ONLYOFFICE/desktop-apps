@@ -2410,28 +2410,52 @@ li.menu-item {
 }
 
 .template-preview-body {
-  .icon {
-    border: @scaled-one-px solid @border-divider;
-    border-radius: 4px;
-    height: 280px;
-    width: 424px;
-  }
-  .name {
-    font-weight: bold;
-    font-size: 14px;
-    padding-bottom: 2px;
-  }
-  .pricing, .descr {
-    font-size: 12px;
-    padding-bottom: 2px;
-    color: @text-normal;
+   display: flex;
+  .icon--default {
+    border: initial;
   }
 
-  .btn--landing { 
-    float: right;
-    margin: 0 0 10px;
-    .rtl & {
-      float: left;
+  .icon {
+    display:none;
+    border: @scaled-one-px solid @border-divider;
+    border-radius: 4px;
+    width: 475px;
+    margin-right: 16px;
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    
+    .name {
+      font-weight: bold;
+      font-size: 14px;
+      margin: 4px 0 10px;
+    }
+    
+    .pricing, .descr, .file-info {
+      font-size: 12px;
+      color: @text-normal;
+      margin: 0 0 10px;
+    }
+    
+    .file-info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .file-info .value {
+      font-weight: bold;
+    }
+
+    .btn--landing { 
+      margin-left: auto;
+      margin-top: 10px;
+      border-radius: 4px;
+      .rtl & {
+        margin-left: 0;
+        margin-right: auto;
+      }
     }
   }
 }

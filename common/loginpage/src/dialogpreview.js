@@ -1,19 +1,19 @@
-function CloudTemplateDialog(model, params = {}) {
+function PreviewTemplateDialog(model, params = {}) {
     params = {
         ...params,
         dialogClass: 'dlg-template-preview',
         titleText: utils.Lang.actPreviewTemplates,
-        defaultWidth: 456,
+        defaultWidth: 800,
     };
 
     Dialog.call(this, params);
     this.model = model;
 }
 
-CloudTemplateDialog.prototype = Object.create(Dialog.prototype);
-CloudTemplateDialog.prototype.constructor = CloudTemplateDialog;
+PreviewTemplateDialog.prototype = Object.create(Dialog.prototype);
+PreviewTemplateDialog.prototype.constructor = PreviewTemplateDialog;
 
-CloudTemplateDialog.prototype.show = function(width) {
+PreviewTemplateDialog.prototype.show = function(width) {
     Dialog.prototype.show.call(this, width);
 
     const {$el} = this.getElements();
@@ -24,4 +24,4 @@ CloudTemplateDialog.prototype.show = function(width) {
     });
 };
 
-window.CloudTemplateDialog = CloudTemplateDialog;
+window.PreviewTemplateDialog = PreviewTemplateDialog;
