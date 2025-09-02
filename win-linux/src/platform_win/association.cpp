@@ -253,27 +253,27 @@ void Association::AssociationPrivate::showAssociationMessage(QWidget *parent, co
 
     if (result == MODAL_RESULT_YES) {
         associate(unassocFileExts);
-        return;
-        if (Utils::getWinVersion() >= Utils::WinVer::Win10) {
-            ShellExecute(NULL, L"open", L"ms-settings:defaultapps", NULL, NULL, SW_SHOWNORMAL);
-        } else
-        if (Utils::getWinVersion() >= Utils::WinVer::Win8) {
-#ifndef __OS_WIN_XP
-            HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
-            if (SUCCEEDED(hr)) {
-                IApplicationAssociationRegistrationUI *ar;
-                HRESULT hr = CoCreateInstance(CLSID_ApplicationAssociationRegistrationUI, 0, CLSCTX_INPROC_SERVER,
-                                              IID_IApplicationAssociationRegistrationUI, (void**)&ar);
-                if (SUCCEEDED(hr)) {
-                    ar->LaunchAdvancedAssociationUI(TEXT(APP_REG_NAME));
-                    ar->Release();
-                }
-                CoUninitialize();
-            }
-#endif
-        } else {
-            associate(unassocFileExts);
-        }
+//         return;
+//         if (Utils::getWinVersion() >= Utils::WinVer::Win10) {
+//             ShellExecute(NULL, L"open", L"ms-settings:defaultapps", NULL, NULL, SW_SHOWNORMAL);
+//         } else
+//         if (Utils::getWinVersion() >= Utils::WinVer::Win8) {
+// #ifndef __OS_WIN_XP
+//             HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+//             if (SUCCEEDED(hr)) {
+//                 IApplicationAssociationRegistrationUI *ar;
+//                 HRESULT hr = CoCreateInstance(CLSID_ApplicationAssociationRegistrationUI, 0, CLSCTX_INPROC_SERVER,
+//                                               IID_IApplicationAssociationRegistrationUI, (void**)&ar);
+//                 if (SUCCEEDED(hr)) {
+//                     ar->LaunchAdvancedAssociationUI(TEXT(APP_REG_NAME));
+//                     ar->Release();
+//                 }
+//                 CoUninitialize();
+//             }
+// #endif
+//         } else {
+//             associate(unassocFileExts);
+//         }
     }
 }
 
