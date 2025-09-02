@@ -33,13 +33,18 @@
 #include "association.h"
 #include "utils.h"
 #include "defines.h"
-#include "components/cnotification.h"
+
 #include "cascapplicationmanagerwrapper.h"
 #include <unordered_map>
 #include <unordered_set>
 #include <shlwapi.h>
 #include <ShlObj.h>
 #include <ctime>
+#ifdef __OS_WIN_XP
+# include "components/cmessage.h"
+#else
+# include "components/cnotification.h"
+#endif
 
 #define DLG_RESULT_NONE -2
 #define DAY_TO_SEC 24*3600
@@ -230,7 +235,7 @@ void Association::AssociationPrivate::showAssociationMessage(QWidget *parent, co
                                                         .arg(QString(WINDOW_NAME), QString::fromStdWString(unassocFileExts[0])) :
                                                     QObject::tr("Do you want to make %1 your default application for all supported extensions?")
                                                         .arg(QString(WINDOW_NAME));
-
+#ifndef __OS_WIN_XP
         if (!forceModal && AscAppManager::notificationSupported()) {
             if (CNotification::instance().show(QObject::tr("Set Default App"), msg,
                        MsgBtns::mbYesDefNo, [=](int res) {
@@ -240,7 +245,7 @@ void Association::AssociationPrivate::showAssociationMessage(QWidget *parent, co
                 return;
             }
         }
-
+#endif
         CMessageOpts opts;
         opts.checkBoxState = &m_ignoreAssocMsg;
         opts.chekBoxText = QObject::tr("Do not show this message again");
