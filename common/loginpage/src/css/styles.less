@@ -2411,17 +2411,34 @@ li.menu-item {
 
 .template-preview-body {
    display: flex;
-  .icon--default {
-    border: initial;
+
+  .img-container {
+    max-height: 80vh;
+    overflow-y: auto;
+    margin-right: 16px;
+    flex-shrink: 0;
+    .rtl & {
+      margin-right: 0;
+      margin-left: 16px;
+    } 
+    
+    .icon--default {
+      border: initial;
+    }
+    
+    .icon {
+      display:none;
+      border: @scaled-one-px solid @border-divider;
+      border-radius: 4px;
+      width: 475px;
+      margin-right: 16px;
+      .rtl & {
+          margin-right: 0;
+          margin-left: 16px;
+        }
+    }
   }
 
-  .icon {
-    display:none;
-    border: @scaled-one-px solid @border-divider;
-    border-radius: 4px;
-    width: 475px;
-    margin-right: 16px;
-  }
   .description {
     display: flex;
     flex-direction: column;
