@@ -1569,24 +1569,28 @@ ur.extXLSB =ایکسل بائنری فائل فارمیٹ
 #endif
 
 en.extXLSM =Microsoft Excel Macro-Enabled Workbook
+en_GB.extXLSM =Microsoft Excel Macro-Enabled Workbook
 sq.extXLSM =Libri i punës i aktivizuar me makro Microsoft Excel
 #if Ver >= EncodeVer(6,1,1)
 ur.extXLSM =مائیکروسافٹ ایکسل میکرو فعال ورک بک
 #endif
 
 en.extFODS =OpenDocument Flat XML Spreadsheet
+en_GB.extFODS =OpenDocument Flat XML Spreadsheet
 sq.extFODS =Fletëllogaritëse e sheshtë OpenDocument XML
 #if Ver >= EncodeVer(6,1,1)
 ur.extFODS =اوپن دستاویز فلیٹ ایکس ایم ایل اسپریڈشیٹ
 #endif
 
 en.extFODT =OpenDocument Flat XML Document
+en_GB.extFODT =OpenDocument Flat XML Document
 sq.extFODT =Dokument XML i sheshtë OpenDocument
 #if Ver >= EncodeVer(6,1,1)
 ur.extFODT =اوپن دستاویز فلیٹ XML دستاویز
 #endif
 
 en.extVSDX =Visio Drawing
+en_GB.extVSDX =Visio Drawing
 sq.extVSDX =Vizatim Visio
 #if Ver >= EncodeVer(6,1,1)
 ur.extVSDX =ویزیو ڈرائنگ
