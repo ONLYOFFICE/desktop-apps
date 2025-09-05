@@ -70,6 +70,9 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , m_private(ptrprivate)
 {
     qRegisterMetaType<sWinTag>("sWinTag");
+#if defined(_WIN32) && !defined(QT_VERSION_6)
+    qRegisterMetaType<std::vector<std::wstring>>("std::vector<std::wstring>");
+#endif
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
 

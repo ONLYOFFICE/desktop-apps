@@ -75,6 +75,9 @@ struct sWinTag
 };
 
 Q_DECLARE_METATYPE(sWinTag)
+#if defined(_WIN32) && !defined(QT_VERSION_6)
+Q_DECLARE_METATYPE(std::vector<std::wstring>)
+#endif
 
 enum class CScalingFactor
 {
