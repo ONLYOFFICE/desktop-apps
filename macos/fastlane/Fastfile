@@ -71,7 +71,7 @@ platform :mac do
     notarize(
       package: app,
       print_log: true,
-      verbose: true
+      # verbose: true
     )
 
     desc 'Prepare zip for delta update'
