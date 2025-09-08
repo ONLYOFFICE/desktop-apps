@@ -521,11 +521,16 @@ li.menu-item {
       opacity: 0;
       display: flex;
       align-items: center;
+      
+      i.icon {
+        display: block; 
+      }
 
       button {
         color: @icon-normal;
         padding: 0;
         align-items: center;
+        .switch-svg();
 
         &:active {
           background: color-mix(in srgb, @icon-normal, 15%, transparent); // 555F65 15%
