@@ -146,10 +146,11 @@
                             <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
                                 <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
                             </svg>
-                            ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
+                            ${info.crypted ? `<svg class="icon shield" data-iconname="shield" data-precls="tool-icon">
                                                 <use xlink:href="#shield"></use>
                                               </svg>` : ''}
-                            ${!isSvgIcons ? `<i class="icon ${info.type === 'folder' ? 'img-el folder' : `img-format ${info.format}`}"></i>` :''}
+                            ${!isSvgIcons ? `<i class="icon ${info.type === 'folder' ? 'img-el folder' : `img-format ${info.format}`}"></i>` : ''}
+                            ${info.crypted && !isSvgIcons ? `<i class="icon img-el shield"></i>` : ''}
                         </div>
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
@@ -206,8 +207,8 @@
                 let icoName = svgElem.attr('data-iconname');
                 iconContainer.append(`<i class="icon img-format ${icoName}"></i>`);
 
-                if (elm.hasClass('crypted-svg')) {
-                    iconContainer.append(`<svg class="icon shield"><use xlink:href="#shield"></use></svg>`);
+                if (iconContainer.find('.icon.shield').length) {
+                    iconContainer.append(`<i class="icon img-el shield"></i>`);
                 }
             });
 
@@ -233,8 +234,8 @@
 
                 iconContainer.append(`<i class="icon img-el folder"></i>`);
 
-                if (elm.hasClass('crypted-svg')) {
-                    iconContainer.append(`<svg class="icon shield"><use xlink:href="#shield"></use></svg>`);
+                if (iconContainer.find('.icon.shield').length) {
+                    iconContainer.append(`<i class="icon img-el shield"></i>`);
                 }
             });
 
