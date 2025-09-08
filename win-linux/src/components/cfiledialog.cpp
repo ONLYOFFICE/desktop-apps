@@ -132,7 +132,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QFileInfo info(fileName);
     _ext = info.suffix();
 
-    QRegularExpression reFilter("([\\w\\s]+\\(\\*\\."+_ext+"+\\))", QRegularExpression::CaseInsensitiveOption);
+    QRegularExpression reFilter("([^;]+\\(\\*\\."+_ext+"\\))", QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match;
     if ( !m_filters.isEmpty() ) {
         _filters = m_filters;
