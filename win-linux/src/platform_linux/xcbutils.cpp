@@ -191,13 +191,11 @@ void XcbUtils::setInputEnabled(xcb_window_t window, bool enabled)
 {
     Display* disp = QX11Info::display();
     Window wnd = window;
-    XRectangle rc = {0, 0, 0, 0};
     if (enabled) {
-        XWindowAttributes attr;
-        XGetWindowAttributes(disp, wnd, &attr);
-        rc.width = attr.width;
-        rc.height = attr.height;
+        XShapeCombineMask(disp, wnd, ShapeInput, 0, 0, None, ShapeSet);
+    } else {
+        XRectangle rc = {0, 0, 0, 0};
+        XShapeCombineRectangles(disp, wnd, ShapeInput, 0, 0, &rc, 1, ShapeSet, YXBanded);
     }
-    XShapeCombineRectangles(disp, wnd, ShapeInput, 0, 0, &rc, 1, ShapeSet, YXBanded);
     XFlush(disp);
 }
