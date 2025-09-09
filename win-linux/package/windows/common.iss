@@ -184,6 +184,7 @@ en.LanguageName=English (United States)
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
 ar_SA.LanguageName=الْعَرَبِيَّة
+ur.RightToLeft=yes
 
 [CustomMessages]
 en.AppLocale =en-US
