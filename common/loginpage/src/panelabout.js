@@ -297,6 +297,12 @@
                 } else sdk.GetLocalFeatures = e => false;
 
                 CommonEvents.on('panel:show', onPanelShow.bind(this));
+                CommonEvents.on('lang:changed', () => {
+                    if (this.view) {
+                        this.view.$dialog.titleText = utils.Lang.actAbout;
+                        $('#idx-about-version span', this.view.$body).text(utils.Lang.strVersion);
+                    }
+                });
 
                 return this;
             },
