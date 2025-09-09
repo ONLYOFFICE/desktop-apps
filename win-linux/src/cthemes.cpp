@@ -195,6 +195,7 @@ static void applyGtkTheme(bool isDark)
     const char *theme_dark = "Adwaita-dark";
     if (!themeExists(theme_light) || !themeExists(theme_dark))
         return;
+    qputenv("GTK_THEME", isDark ? theme_dark : theme_light);
     if (GtkSettings *stn = gtk_settings_get_default())
         g_object_set(stn, "gtk-theme-name", isDark ? theme_dark : theme_light, NULL);
 }
