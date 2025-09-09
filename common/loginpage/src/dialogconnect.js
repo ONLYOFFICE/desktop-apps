@@ -59,7 +59,7 @@ window.DialogConnect = function(params) {
                                 </div>
                                 <div style="height:12px;"></div>
                                 <div class="lr-flex">
-                                    <a class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
+                                    <!-- <a class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a> -->
                                     <span />
                                     <div class="lr-flex">
                                         <img class="img-loader">
@@ -300,7 +300,7 @@ window.DialogConnect = function(params) {
             $title = $el.find('.title');
             $body = $el.find('.body');
 
-            $el.width(450);
+            $el.width(480);
             $title.find('.tool.close').bind('click', _on_close_click);
 
             _set_title( utils.Lang.loginTitleStart );

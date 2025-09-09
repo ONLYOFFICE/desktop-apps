@@ -88,7 +88,8 @@ bool CPresenterWindow::holdView(int id) const
 
 void CPresenterWindow::closeEvent(QCloseEvent *e)
 {
-    onCloseEvent();
+    if (isEnabled())
+        onCloseEvent();
     e->ignore();
 }
 

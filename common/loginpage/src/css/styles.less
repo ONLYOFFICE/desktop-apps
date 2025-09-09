@@ -184,14 +184,14 @@ h4 {
     @media (-webkit-device-pixel-ratio: 1),
     (resolution: 1dppx),
     (resolution: 96dpi) {
-      i.icon {
+      i.icon, i.badge {
         display: none;
       }
     }
     @media (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 2dppx),
     (min-resolution: 192dpi) {
-      i.icon {
+      i.icon, i.badge {
         display: none;
       }
     }
@@ -953,6 +953,7 @@ li.menu-item {
     .btn-quick {
         opacity: .8;
         background-color: transparent;
+        .switch-svg();
 
         &:hover {
           opacity: 1;
@@ -1828,6 +1829,88 @@ li.menu-item {
   }
 }
 
+.empty {
+  .text-description {
+    font-size: 14px;
+    color: @text-secondary;
+    margin: 0;
+  }
+
+  .btn--landing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto 10px auto;
+  }
+
+  .link-connect {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    color: @text-secondary;
+    padding: 5px 0 10px;
+    .login, .link {
+      color: @text-link;
+    }
+  }
+
+  .separate-top {
+    margin-top: 10px;
+    padding-top: 30px;
+    border-top: @scaled-one-px solid @border-divider;
+  }
+
+  .tools-connect2 {
+    padding-top: 20px;
+  }
+
+  #box-providers-premium-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  #box-providers-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+    margin: -5px auto 0;
+    max-width: 360px;
+
+    .btn.btn--big.btn--svg.login {
+      margin: 7px;
+      padding: 0;
+    }
+  }
+
+  #box-providers-premium-button {
+    .btn.btn--big.btn--svg.login {
+      width: 330px;
+      height: 48px;
+    }
+  }
+
+  .btn {
+    background-color: @background-normal;
+  }
+
+  .btn.btn--big.btn--svg.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 158px;
+    height: 42px;
+  }
+
+  .connect button[data-cprov] {
+    margin: initial;
+  }
+
+  .connect button[data-cprov] img.icon {
+    height: initial;
+    width: initial;
+  }
+}
 
 .templates {
     .table-caption {
@@ -2055,27 +2138,25 @@ li.menu-item {
                 position: relative;
 
                 .badge-wrapper {
-                    display: flex;
+                  display: flex;  
+                  .switch-svg();              
 
-                    i.badge {
-                        width: 24px;
-                        height: 30px;
-                        .img-format;
-                        background-size: auto;
-                        &.word {
-                            .format-from-index(0);
-                        }
-                        &.slide {
-                            .format-from-index(10);
-                        }
-                        &.cell {
-                            .format-from-index(6);
-                        }
-                        &.pdf {
-                            .format-from-index(13);
-                        }
-                    }
-                }
+                  .icon,
+                  i.badge {
+                    width: 24px;
+                    height: 30px;
+                  }
+
+                  i.badge {
+                    .img-format;
+                    background-size: auto;
+
+                    &.word     { .format-from-index(0); }
+                    &.slide    { .format-from-index(10); }
+                    &.cell     { .format-from-index(6); }
+                    &.pdf      { .format-from-index(13); }
+                  }
+              }
             }
 
             .title {

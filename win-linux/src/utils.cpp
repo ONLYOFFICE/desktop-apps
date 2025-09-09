@@ -64,6 +64,7 @@
 #include "shlobj.h"
 #include "lmcons.h"
 #else
+# include "platform_linux/xcbutils.h"
 # include <QEventLoop>
 # include <QX11Info>
 #include <sys/stat.h>
@@ -925,47 +926,24 @@ std::wstring Utils::appUserName()
 
 namespace WindowHelper {
 #ifdef Q_OS_LINUX
-    CParentDisable::CParentDisable(QWidget* &parent)
+    CParentDisable::CParentDisable(QWidget* parent) : m_parent(parent)
     {
-        disable(parent);
+        enable(false);
     }
 
     CParentDisable::~CParentDisable()
     {
-        enable();
+        enable(true);
     }
 
-    void CParentDisable::disable(QWidget* &parent)
+    void CParentDisable::enable(bool enabled)
     {
-        if (parent) {
-            parent->setProperty("blocked", true);
-            Qt::WindowFlags flags = Qt::FramelessWindowHint;
-            if (!QX11Info::isCompositingManagerRunning()) {
-                flags |= (Qt::SubWindow | Qt::BypassWindowManagerHint);
-                Utils::processMoreEvents(); // Fixed Cef rendering before reopening the dialog
-            } else
-                flags |= Qt::Dialog;
-            m_pChild = new QWidget(parent, flags);
-            m_pChild->setAttribute(Qt::WA_TranslucentBackground);
-            if (QX11Info::isCompositingManagerRunning()) {
-                m_pChild->setWindowModality(Qt::ApplicationModal);
-                int offset = parent->isMaximized() ? 0 : 10;
-                m_pChild->move(parent->pos() - QPoint(offset, offset));
-                m_pChild->setFixedSize(parent->size() + 2 * QSize(offset, offset));
-                parent = m_pChild;
-            } else
-                m_pChild->setGeometry(parent->rect());
-            m_pChild->show();
-        }
-    }
+        CWindowBase *wb = dynamic_cast<CWindowBase*>(m_parent);
+        if (!wb) return;
 
-    void CParentDisable::enable()
-    {
-        if ( m_pChild ) {
-            if (m_pChild->parent())
-                m_pChild->parent()->setProperty("blocked", false);
-            delete m_pChild, m_pChild = nullptr;
-        }
+        wb->setEnabled(enabled);
+        WId wnd = wb->mainPanel()->winId();
+        XcbUtils::setInputEnabled(wnd, enabled);
     }
 
     // Linux Environment Info

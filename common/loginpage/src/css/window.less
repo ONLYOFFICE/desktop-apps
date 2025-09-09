@@ -69,6 +69,46 @@ dialog {
         }
     }
 
+    &.dlg-providers, &.dlg-connect-to {
+        border-radius: 8px;
+        .title {
+            border-bottom: initial;
+            font-weight: bold;
+        }
+    }
+
+    &.dlg-providers {
+        overflow: hidden;
+        .title, .body,  .empty .btn.btn--big.btn--svg.login {
+            background-color: @background-action-panel;
+        }
+        .body {
+            padding: 10px 25px;
+        }
+    }
+
+    &.dlg-connect-to {
+        background-color: @background-action-panel;
+        will-change: transform;
+        .title {
+            height: 56px;
+            padding: 16px 16px 16px 32px;
+            .rtl &{
+                padding: 16px 32px 16px 16px;
+            }
+        }
+        .body {
+            padding: 0 32px 16px;
+        }
+        .title, .body {
+            background-color: transparent;
+        }
+        .box-cmp-select .btn, .tbox,
+        button.btn.btn--landing {
+            border-radius: 4px;
+        }
+    }
+
     .body {
         /*position: absolute;*/
         width: 100%;
@@ -274,4 +314,8 @@ dialog {
     .img-loader {
         content: data-uri('../res/img/spinner-light.png');
     }
+}
+
+dialog.dlg-about {
+    will-change: transform;
 }

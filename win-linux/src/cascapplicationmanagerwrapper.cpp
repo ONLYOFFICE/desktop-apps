@@ -28,6 +28,9 @@
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
 #include "cproviders.h"
+#ifndef __OS_WIN_XP
+# include "components/cnotification.h"
+#endif
 
 #ifdef _WIN32
 # include <io.h>
@@ -67,6 +70,9 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , m_private(ptrprivate)
 {
     qRegisterMetaType<sWinTag>("sWinTag");
+#if defined(_WIN32) && !defined(QT_VERSION_6)
+    qRegisterMetaType<std::vector<std::wstring>>("std::vector<std::wstring>");
+#endif
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
 
@@ -1101,6 +1107,14 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
 
 void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 {
+#ifndef __OS_WIN_XP
+    static bool runOnce = false;
+    if (!runOnce) {
+        runOnce = true;
+        m_private->m_notificationSupported = CNotification::instance().init();
+    }
+#endif
+
 #ifdef _UPDMODULE
     if (!m_pUpdateManager) {
         m_pUpdateManager = new CUpdateManager(this);
@@ -1867,6 +1881,12 @@ bool CAscApplicationManagerWrapper::isRtlEnabled()
     return m_rtlEnabled;
 }
 
+bool CAscApplicationManagerWrapper::notificationSupported()
+{
+    APP_CAST(_app);
+    return _app.m_private->m_notificationSupported;
+}
+
 bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 {
     QJsonParseError jerror;
@@ -1891,6 +1911,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _lang_id = l;
 
                 _reg_user.setValue("locale", _lang_id);
+
+                QJsonObject _json_obj{{"lang", _lang_id}};
+                AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
                 if (!direction_changed)
                     CLangater::reloadTranslations(_lang_id);
 #ifdef _UPDMODULE
@@ -2056,7 +2079,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             _editor->applyTheme(theme);
         }
 
-        AscAppManager::getInstance().SetSkin(_app.m_themes->current().json());
+        QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
 }
