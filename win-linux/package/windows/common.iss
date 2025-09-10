@@ -184,7 +184,9 @@ en.LanguageName=English (United States)
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
 ar_SA.LanguageName=الْعَرَبِيَّة
+#if Ver >= EncodeVer(6,1,1)
 ur.RightToLeft=yes
+#endif
 
 [CustomMessages]
 en.AppLocale =en-US
