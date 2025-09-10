@@ -314,18 +314,22 @@
         };
 
         var _on_recovers = function(params) {
-            collectionRecovers.empty();
+            if ( true )
+                window.sdk.command("recovery:update", JSON.stringify(params));
+            else {
+                collectionRecovers.empty();
 
-            var files = utils.fn.parseRecent(params);
-            for (let item of files) {
-                collectionRecovers.add( new FileModel(item) );
-            }
+                var files = utils.fn.parseRecent(params);
+                for (let item of files) {
+                    collectionRecovers.add( new FileModel(item) );
+                }
 
-            this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
-            // requestAnimationFrame(() => this.view.updateListSize());
+                this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
+                // requestAnimationFrame(() => this.view.updateListSize());
 
-            if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
-                this.dndZone.hide();
+                if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
+                    this.dndZone.hide();
+                }
             }
         };
 

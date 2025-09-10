@@ -497,6 +497,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 QJsonObject objRoot = jdoc.object();
                 SetRecentPin(objRoot["id"].toInt(), objRoot["pinned"].toBool(false));
             }
+        } else
+        if ( !(cmd.find(L"recovery:update") == std::wstring::npos) ) {
+            qDebug() << "on recovery" << pData->get_Param();
         }
 
         break; }
