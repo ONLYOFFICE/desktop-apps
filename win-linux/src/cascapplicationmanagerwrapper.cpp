@@ -499,7 +499,27 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
         } else
         if ( !(cmd.find(L"recovery:update") == std::wstring::npos) ) {
-            qDebug() << "on recovery" << pData->get_Param();
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                if (jdoc.isArray()) {
+                    const QJsonArray arr = jdoc.array();
+                    for (const auto &val : arr) {
+                        QJsonObject obj = val.toObject();
+                        if (obj.contains("path")) {
+                            QString path = obj["path"].toString();
+
+                            QFileInfo _info(path);
+                            COpenOptions opts{_info.fileName(), etLocalFile};
+                            opts.parent_id = event->get_SenderId();
+                            opts.url = path;
+                            opts.wurl = path.toStdWString();
+                            m_private->openDocument(opts);
+                        }
+                    }
+                }
+            }
         }
 
         break; }
