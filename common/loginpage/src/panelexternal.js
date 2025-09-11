@@ -53,7 +53,7 @@
 
         let _html = `<div class="action-panel style--free ${args.action}">
                       <div class="flexbox">
-                        <iframe name="${args.id}" id="${args.id}" src="${args.url}"></iframe>
+                        <iframe name="${args.id}" id="${args.id}" src="${args.url}" allow="clipboard-read; clipboard-write"></iframe>
                       </div>
                     </div>`;
 
