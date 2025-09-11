@@ -147,10 +147,11 @@
                             <svg class="icon" data-iconname="${info.type === 'folder' ? 'folder' : `${info.format}`}" data-precls="tool-icon">
                                 <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
                             </svg>
-                            ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
+                            ${info.crypted ? `<svg class="icon shield" data-iconname="shield" data-precls="tool-icon">
                                                 <use xlink:href="#shield"></use>
                                               </svg>` : ''}
-                            ${!isSvgIcons ? `<i class="icon tool-icon ${info.type === 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
+                            ${!isSvgIcons ? `<i class="icon ${info.type === 'folder' ? 'img-el folder' : `img-format ${info.format}`}"></i>` : ''}
+                            ${info.crypted && !isSvgIcons ? `<i class="icon img-el shield"></i>` : ''}
                         </div>
                         <p class="name">${info.name}</p>
                         <span class="ext">${info.ext}</span>
@@ -183,32 +184,43 @@
 
             // todo: rewrite cicon rescale
 
-            $('#box-recent .cicon').each(function () {
-                 elm = $(this);
-                 parent = elm.parent();
-                 if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-                     parent.toggleClass('crypted-svg crypted');
+            $('#box-recent .row.text-normal').each(function () {
+                let elm = $(this);
+                let iconContainer = elm.find('.col-name .icon').first();
+                let svgElem = iconContainer.find('svg.icon').first();
 
-                 if(!pasteSvg || !!$('svg',elm).length) return;
+                if (pasteSvg || !svgElem.length || iconContainer.find('i.icon').length) return;
 
-                 icoName = $('i.icon', elm).attr('class').split(' ').filter((cls) => cls != 'icon' && cls != 'img-format');
-                 elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
-                 if(parent.hasClass('crypted-svg'))
-                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+                let icoName = svgElem.attr('data-iconname');
+                iconContainer.append(`<i class="icon img-format ${icoName}"></i>`);
+
+                if (iconContainer.find('.icon.shield').length) {
+                    iconContainer.append(`<i class="icon img-el shield"></i>`);
+                }
             });
 
-            $('#box-recent-folders td.cicon').each(function (){
-                elm=$(this)
-                parent = elm.parent();
-                if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-                    parent.toggleClass('crypted-svg crypted');
-                if(!pasteSvg || !!$('svg',elm).length) return;
+            $('.open-panel-container .row.text-normal').each(function () {
+                let elm = $(this);
+                let iconContainer = elm.find('.col-name .icon').first();
+                let svgElem = iconContainer.find('svg.icon').first();
 
-                elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
-                if(parent.hasClass('crypted-svg'))
-                    elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+                if (pasteSvg || !svgElem.length || iconContainer.find('i.icon').length) return;
 
-                });
+                iconContainer.append(`<i class="icon img-el folder"></i>`);
+
+                if (iconContainer.find('.icon.shield').length) {
+                    iconContainer.append(`<i class="icon img-el shield"></i>`);
+                }
+            });
+
+            $('.col-more .btn-quick.more').each(function () {
+                let btn = $(this);
+                let svgElem = btn.find('svg.icon').first();
+
+                if (pasteSvg || !svgElem.length || btn.find('i.icon').length) return;
+
+                btn.append(`<i class="icon tool-icon more"></i>`);
+            });
         },
         updateListSize: function () {
             const windowBottom = $(window).height();
@@ -337,13 +349,18 @@
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
 
-                if (Menu.opened) {
-                    Menu.closeAll();
-                    return;
+                if (ppmenu.contextdata) {
+                    const m = ppmenu.contextdata;
+                    if (m.uid != model.uid)
+                        Menu.closeAll();
                 }
 
-                ppmenu.actionlist = actionList;
-                ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
+                if (!Menu.opened) {
+                    ppmenu.actionlist = actionList;
+                    ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
+                } else {
+                    Menu.closeAll();
+                }
             })
         }
 
