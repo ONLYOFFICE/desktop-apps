@@ -67,7 +67,7 @@ l10n.zh_CN = {
     checkUpdates: '检查更新',
     strVersion: '版本',
     strVersionCommunity: '社区版',
-    strVersionCommercial: '商业版',
+    strVersionCommercial: '企业版',
     emptySlide1Title: '分享和协作',
     emptySlide1Text: '选择快速或严格的实时共同编辑、在您的文档中聊天、添加批注或分享文档以供审阅。',
     emptySlide2Title: '查看或还原先前版本',

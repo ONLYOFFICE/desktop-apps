@@ -67,7 +67,7 @@ l10n.ru = {
     checkUpdates: 'Проверить обновления',
     strVersion: 'версия',
     strVersionCommunity: 'Версия Community',
-    strVersionCommercial: 'Коммерческая версия',
+    strVersionCommercial: 'Версия Enterprise',
     emptySlide1Title: 'Предоставление доступа и совместная работа',
     emptySlide1Text: 'Выбирайте быстрый или строгий режим совместного редактирования, используйте встроенный чат или отправляйте документ на рецензирование.',
     emptySlide2Title: 'Просмотр или восстановление предыдущих версий',

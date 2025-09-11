@@ -13,11 +13,15 @@ Vendor: %{_publisher_name}
 Packager: %{_publisher_name} %{_support_mail}
 AutoReq: no
 AutoProv: no
+Provides: %{_package_opensource}
 %if "%{_package_edition}" == "commercial"
 Conflicts: %{_package_opensource}
+Obsoletes: %{_package_opensource}
 %else
 Conflicts: %{_package_commercial}
+Obsoletes: %{_package_commercial}
 %endif
+Suggests: %{_package_opensource}-help
 
 %description
 Open-source office suite pack that comprises all the tools you need to
@@ -28,6 +32,7 @@ work offline with documents, spreadsheets, presentations, PDFs, and PDF forms.
 Summary: Offline help for %{_company_name} %{_product_name}
 BuildArch: noarch
 Requires: %{_package_opensource}
+Enhances: %{_package_opensource}
 
 %description help
 This package contains offline help files.

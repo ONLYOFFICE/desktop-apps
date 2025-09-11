@@ -65,7 +65,7 @@ l10n.si = {
     checkUpdates: 'යාවත්කාල පරීක්‍ෂා කරන්න',
     strVersion: 'අනුවාදය',
     strVersionCommunity: 'ප්‍රජා අනුවාදය',
-    strVersionCommercial: 'වාණිජ අනුවාදය',
+    strVersionCommercial: 'ව්‍යවසාය අනුවාදය',
     emptySlide1Title: 'බෙදාගැනීම හා සහයෝගය',
     emptySlide1Text: 'වේගවත් හෝ විධිවත් තත්‍ය කාලීන සම-සංස්කරණය තෝරන්න, ඔබගේ ලේඛනය තුළම කතාබස් කරන්න, අදහස් එක් කරන්න හෝ එය සමාලෝචනයට බෙදාගන්න.',
     emptySlide2Title: 'පසුගිය අනුවාද බලන්න හෝ ප්‍රත්‍යර්පණය කරන්න',

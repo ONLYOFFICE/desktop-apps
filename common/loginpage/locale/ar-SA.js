@@ -67,7 +67,7 @@ l10n.ar_SA = {
     checkUpdates: 'التحقق من التحديثات',
     strVersion: 'نسخة',
     strVersionCommunity: 'النسخة المجتمعية (“Community”)',
-    strVersionCommercial: 'النسخة التجارية',
+    strVersionCommercial: 'نسخة المؤسسة (“Enterprise”)',
     emptySlide1Title: 'نشر وتعاون',
     emptySlide1Text: 'اختر بين تحرير مشترك سريع أو تحرير مشترك بالوفت الفعلي، تحدّث في المستند، أضف التعليقات أو انشرها ليتم مراجعتها.',
     emptySlide2Title: 'اعرض أو استرجع النسخ السابقة',

@@ -65,7 +65,7 @@ l10n.ga = {
     checkUpdates: 'Seiceáil do nuashrónaithe',
     strVersion: 'leagan',
     strVersionCommunity: 'Leagan pobail',
-    strVersionCommercial: 'Leagan tráchtála',
+    strVersionCommercial: 'Leagan fiontraíochta',
     emptySlide1Title: 'Comhroinn & comhoibriú',
     emptySlide1Text: 'Roghnaigh idir comh-eagarthóireacht fhíor-ama tapa nó dian, comhrá i do doc, cuir tuairimí leis nó roinn é le haghaidh athbhreithnithe.',
     emptySlide2Title: 'Féach ar leaganacha roimhe seo nó iad a athshlánú',

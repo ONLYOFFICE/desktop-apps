@@ -43,7 +43,7 @@
 
 #define DEFAULT_LICENSE_NAME    "GNU AGPL v3"
 #define DEFAULT_LICENSE_URL     URL_AGPL
-#define LICENSE_FILE_NAME       "./LICENSE.txt"
+#define LICENSE_FILE_NAME       "/LICENSE.txt"
 
 CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
     CMainWindow(rect)
@@ -56,7 +56,8 @@ void CMainWindowImpl::refreshAboutVersion()
     QJsonObject _json_obj;
 
     QString _lic_name, _lic_url;
-    QFile _lic_file(LICENSE_FILE_NAME);
+    const QString _lic_path = QCoreApplication::applicationDirPath() + LICENSE_FILE_NAME;
+    QFile _lic_file(_lic_path);
     if ( _lic_file.exists() ) {
         if ( _lic_file.open(QIODevice::ReadOnly | QIODevice::Text )) {
             QTextStream stream(&_lic_file);
@@ -69,7 +70,7 @@ void CMainWindowImpl::refreshAboutVersion()
         _lic_name = DEFAULT_LICENSE_NAME;
         _lic_url = DEFAULT_LICENSE_URL;
     } else {
-        _lic_url = "file://" + QFileInfo(LICENSE_FILE_NAME).absoluteFilePath();
+        _lic_url = QUrl::fromLocalFile(_lic_path).toString();
         _json_obj["commercial"] = _lic_name != DEFAULT_LICENSE_NAME;
     }
 
@@ -88,7 +89,8 @@ void CMainWindowImpl::refreshAboutVersion()
 #if defined(ABOUT_PAGE_APP_NAME)
     _json_obj["appname"]    = ABOUT_PAGE_APP_NAME;
 #else
-    _json_obj["appname"]    = WINDOW_NAME;
+    // _json_obj["appname"]    = WINDOW_NAME;
+    _json_obj["appname"]    = "ONLYOFFICE Desktop Editors";
 #endif
     _json_obj["rights"]     = ABOUT_COPYRIGHT_STR;
     _json_obj["link"]       = URL_SITE;

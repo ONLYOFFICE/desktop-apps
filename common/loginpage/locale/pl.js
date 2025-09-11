@@ -65,7 +65,7 @@ l10n.pl = {
     checkUpdates: 'Sprawdź Dostępność Aktualizacji',
     strVersion: 'wersja',
     strVersionCommunity: 'Wersja Community',
-    strVersionCommercial: 'Wersja komercyjna',
+    strVersionCommercial: 'Wersja Enterprise',
     emptySlide1Title: 'Udostępniaj i współpracuj',
     emptySlide1Text: 'Wybierz pomiędzy Szybkim lub Dokładnym współedytowaniem w czasie rzeczywistym, czatuj w dokumencie, dodawaj komentarze lub udostępniaj go do przeglądu.',
     emptySlide2Title: 'Wyświetl lub przywróć poprzednie wersje',

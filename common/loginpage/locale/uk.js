@@ -65,7 +65,7 @@ l10n.uk = {
     checkUpdates: 'Перевірити наявність оновлень',
     strVersion: 'версія',
     strVersionCommunity: 'Версія Community',
-    strVersionCommercial: 'Комерційна версія',
+    strVersionCommercial: 'Версія Enterprise',
     emptySlide1Title: 'Спільний доступ і співпраця',
     emptySlide1Text: 'Обирайте між швидким та суворим спільним редагуванням у реальному часі, спілкуйтеся в документах, додавайте коментарі та надавайте спільний доступ для рецензування.',
     emptySlide2Title: 'Перегляд або відновлення попередніх версій',
