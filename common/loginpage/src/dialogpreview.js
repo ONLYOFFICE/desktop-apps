@@ -20,7 +20,7 @@ PreviewTemplateDialog.prototype.show = function(width) {
 
     $el.find('.btn.btn--landing').on('click', () => {
         this.close();
-        window.sdk.openTemplate(this.model.path, this.model.name);
+        window.sdk.openTemplate(this.model.path, this.model.fullName);
     });
 };
 
