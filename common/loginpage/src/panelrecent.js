@@ -183,20 +183,6 @@
 
             // todo: rewrite cicon rescale
 
-            // $('#box-recent .cicon').each(function () {
-            //      elm = $(this);
-            //      parent = elm.parent();
-            //      if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-            //          parent.toggleClass('crypted-svg crypted');
-
-            //      if(!pasteSvg || !!$('svg',elm).length) return;
-
-            //      icoName = $('i.icon', elm).attr('class').split(' ').filter((cls) => cls != 'icon' && cls != 'img-format');
-            //      elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
-            //      if(parent.hasClass('crypted-svg'))
-            //          elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
-            // });
-
             $('#box-recent .row.text-normal').each(function () {
                 let elm = $(this);
                 let iconContainer = elm.find('.col-name .icon').first();
@@ -211,19 +197,6 @@
                     iconContainer.append(`<i class="icon img-el shield"></i>`);
                 }
             });
-
-            // $('#box-recent-folders td.cicon').each(function (){
-            //     elm=$(this)
-            //     parent = elm.parent();
-            //     if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-            //         parent.toggleClass('crypted-svg crypted');
-            //     if(!pasteSvg || !!$('svg',elm).length) return;
-
-            //     elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
-            //     if(parent.hasClass('crypted-svg'))
-            //         elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
-
-            //     });
 
             $('.open-panel-container .row.text-normal').each(function () {
                 let elm = $(this);
