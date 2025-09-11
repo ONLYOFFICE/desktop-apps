@@ -22,7 +22,7 @@ if (-not (Test-Path "$BuildDir")) {
     Write-Error "Path `"$BuildDir`" does not exist"
 }
 $InnoFile = switch ($Target) {
-    "commercial" { "$CompanyName-$ProductName-Commercial-$Version-$Arch.exe" }
+    "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.exe" }
     "standalone" { "$CompanyName-$ProductName-Standalone-$Version-$Arch.exe" }
     "update"     { "$CompanyName-$ProductName-Update-$Version-$Arch.exe" }
     "xp"         { "$CompanyName-$ProductName-XP-$Version-$Arch.exe" }
@@ -110,7 +110,7 @@ if ($CompanyName -eq "onlyoffice") {
 }
 switch ($Target) {
     "commercial" {
-        $InnoArgs += "/DPACKAGE_EDITION=Commercial"
+        $InnoArgs += "/DPACKAGE_EDITION=Enterprise"
     }
     "standalone" {
         $InnoArgs += "/DPACKAGE_EDITION=Standalone", "/DEMBED_HELP"
