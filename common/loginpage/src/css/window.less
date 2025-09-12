@@ -47,81 +47,85 @@ dialog {
         }
     }
 
-    &.dlg-about {
-        .title {
-            font-size: 18px;
-            display: flex;
-            justify-content: space-between;
-            padding: 30px 16px 16px 32px;
-            background: none;
-        }
-
-        .body {
-            padding: 0px 30px 28px;
-        }
-
-        .separator {
-            padding-top: 5px;
-            border-bottom: @scaled-one-px solid @border-divider;
-        }
-    }
-
-    &.dlg-template-preview {
-        overflow: hidden;
-        background-color: @background-action-panel;
-        .title {
-            height: 48px;
-            padding: 12px 16px;
-            background-color: @background-action-panel;
-        }
-
-        .body {
-            padding: 0 24px 24px;
-        }
-
-        .separator {
-            padding-top: 15px;
-            border-top: @scaled-one-px solid @border-divider;
-        }
-    }
-
-    &.dlg-providers, &.dlg-connect-to, &.dlg-template-preview, &.dlg-about {
+    &.dlg {
         border-radius: 8px;
+        background-color: @background-action-panel;
         .title {
             border-bottom: initial;
             font-weight: bold;
-        }
-    }
-
-    &.dlg-providers {
-        overflow: hidden;
-        .title, .body,  .empty .btn.btn--big.btn--svg.login {
             background-color: @background-action-panel;
         }
-        .body {
-            padding: 10px 25px;
-        }
-    }
 
-    &.dlg-connect-to {
-        background-color: @background-action-panel;
-        will-change: transform;
-        .title {
-            height: 56px;
-            padding: 16px 16px 16px 32px;
-            .rtl &{
-                padding: 16px 32px 16px 16px;
+        &.dlg-about {
+            will-change: transform;
+            .title {
+                font-size: 18px;
+                display: flex;
+                justify-content: space-between;
+                padding: 30px 16px 16px 32px;
+                background: none;
+                .rtl &{
+                    padding: 30px 32px 16px 16px;
+                }
+            }
+
+            .body {
+                padding: 0px 30px 28px;
+                .separator {
+                    padding-top: 5px;
+                    border-bottom: @scaled-one-px solid @border-divider;
+                }
             }
         }
-        .body {
-            padding: 0 32px 16px;
+
+        &.dlg-template-preview {
+            overflow: hidden;
+            .title {
+                height: 48px;
+                padding: 12px 16px;
+            }
+
+            .body {
+                padding: 0 24px 24px;
+                .separator {
+                    padding-top: 15px;
+                    border-top: @scaled-one-px solid @border-divider;
+                }
+            }
         }
-        .title, .body {
-            background-color: transparent;
+
+        &.dlg-providers {
+            overflow: hidden;
+            will-change: transform;
+            .body {
+                padding: 10px 25px;
+            }
         }
-        .box-cmp-select .btn, .tbox,
-        button.btn.btn--landing {
-            border-radius: 4px;
+
+        &.dlg-connect-to {
+            will-change: transform;
+            .title {
+                height: 56px;
+                padding: 16px 16px 16px 32px;
+                .rtl &{
+                    padding: 16px 32px 16px 16px;
+                }
+            }
+
+            .body {
+                padding: 0 32px 16px;
+                .btn, .tbox {
+                border-radius: 4px;
+                }
+
+                .box-cmp-select {
+                    width: 100%;
+                }
+            }
+
+            .title, .body {
+                background-color: transparent;
+            }
         }
     }
 
@@ -265,12 +269,6 @@ dialog {
     }
 }
 
-.dlg-connect-to {
-    .box-cmp-select {
-        width: 100%;
-    }
-}
-
 .lr-flex {
     display: flex;
     justify-content: space-between;
@@ -332,6 +330,3 @@ dialog {
     }
 }
 
-dialog.dlg-about {
-    will-change: transform;
-}

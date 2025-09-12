@@ -149,47 +149,8 @@
                             ${cloudIcon}
                         </div>
                     </div>`;
-        },
-
-        templateDialogBody: function(model) {
-            const type = utils.parseFileFormat(model.type);
-            const size = formatSize(model.size);
-
-            return `
-                <div class="template-preview-body">
-                    <div class="img-container">
-                        <svg class='icon--default'><use xlink:href='#template-item'></use></svg>
-                        <img class="icon" src="${model.preview}">
-                    </div>
-                    <div class="description">
-                        <h3 class="name">${model.name}</h3>
-                        <p class="pricing" l10n>${utils.Lang.tplFree}</p>
-                        <p class="descr">${model.descr}</p>
-                        <div class="file-info separator">
-                            <div>
-                                <span class="label" l10n>${utils.Lang.tplFileSize}:</span>
-                                <span class="value">${size}</span>
-                            </div>
-                            <div>
-                                <span class="label" l10n>${utils.Lang.tplFileType}:</span>
-                                <span class="value">${type}</span>
-                            </div>
-                        </div>
-                        <button class="btn btn--landing" l10n>${utils.Lang.tplUseTemplate}</button>
-                    </div>
-                </div>
-            `;
         }
     });
-
-    function formatSize(size) {
-        if (!size) return '';
-        if (size < 1024) {
-            return Math.round(size) + ' kb';
-        } else {
-            return Math.round(size / 1024) + ' mb';
-        }
-    }
 
     utils.fn.extend(ControllerTemplates.prototype, (function() {
         let isCloudTmplsLoading = false;
@@ -257,17 +218,7 @@
 
                 collection.events.click.attach((col, model) => {
                     if (model.isCloud) {
-                        const body = this.view.templateDialogBody(model);
-                        const $body = $(body);
-                        const $img = $body.find('img.icon');
-                        const $icon = $body.find('.icon--default');
-
-                        $img.on('load', () => {
-                            $icon.hide();
-                            $img.show();
-                        });
-
-                        new PreviewTemplateDialog(model, { bodyTemplate: $body }).show();
+                        new PreviewTemplateDialog(model).show();
                     } else {
                         sdk.command('create:new', JSON.stringify({
                             template: {
