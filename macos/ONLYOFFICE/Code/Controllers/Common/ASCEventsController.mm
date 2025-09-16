@@ -188,6 +188,12 @@ public:
                         break;
                     }
                         
+                    case ASC_MENU_EVENT_TYPE_CEF_CHECK_KEYBOARD: {
+                        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                        appManager->CheckKeyboard();
+                        break;
+                    }
+
                     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS:
                         break;
                         
