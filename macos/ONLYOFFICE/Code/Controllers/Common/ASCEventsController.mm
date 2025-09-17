@@ -660,7 +660,13 @@ public:
                                 }
                                 
                                 if (NSString * langId = json[@"langid"]) {
-                                    [ASCLinguist setAppLanguageCode:langId];
+                                    if ( [ASCLinguist appLanguageCode] != langId ) {
+                                        [ASCLinguist setAppLanguageCode:langId];
+
+                                        NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"lang": langId}];
+                                        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                        appManager->UpdatePlugins([[json jsonString] stdwstring]);
+                                    }
                                 }
 
                                 if (NSString * userName = json[@"username"]) {

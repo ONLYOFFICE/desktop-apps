@@ -1873,6 +1873,9 @@
         pEvent->m_pData = pCommand;
         appManager->SetEventToAllMainWindows(pEvent);
 
+        NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"theme": theme}];
+        appManager->UpdatePlugins([[json jsonString] stdwstring]);
+
         for (ASCTabView * tab in self.tabsControl.tabs) {
             if (NSCefView * cefView = [self cefViewWithTab:tab]) {
                 CCefView * cef = appManager->GetViewById((int)cefView.uuid);
