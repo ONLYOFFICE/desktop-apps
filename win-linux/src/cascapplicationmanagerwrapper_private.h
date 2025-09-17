@@ -280,11 +280,10 @@ public:
                             if (obj.contains("path")) {
                                 QString path = obj["path"].toString();
 
-                                QFileInfo _info(path);
-                                COpenOptions opts{_info.fileName(), etLocalFile};
+                                COpenOptions opts{path.toStdWString(), etRecoveryFile, obj["id"].toInt()};
                                 opts.parent_id = event.m_nSenderId;
-                                opts.url = path;
-                                opts.wurl = path.toStdWString();
+                                opts.format = obj["type"].toInt();
+                                opts.name = (QFileInfo(path)).fileName();
                                 openDocument(opts);
                             }
                         }
