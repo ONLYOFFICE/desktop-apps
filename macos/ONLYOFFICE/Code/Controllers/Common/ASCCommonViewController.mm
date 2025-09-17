@@ -1552,7 +1552,8 @@
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
     
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?:
+                            [ASCThemesController defaultThemeId:[ASCThemesController isCurrentThemeDark]];
 
     NSMutableDictionary * json_langs = @{
         @"uitheme": uiTheme,

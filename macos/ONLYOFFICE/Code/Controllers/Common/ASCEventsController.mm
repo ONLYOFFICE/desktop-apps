@@ -831,7 +831,9 @@ public:
                             CCefView * pCefView = appManager->GetViewById(senderId);
 
                             if (pCefView) {
-                                NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
+                                BOOL isDark = [ASCThemesController isCurrentThemeDark];
+                                NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?:
+                                                        [ASCThemesController defaultThemeId:isDark];
 
                                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                                 pCommand->put_FrameName(L"frameEditor");
