@@ -826,6 +826,12 @@ public:
                                                                                              @"path"    : json[@"path"]
                                                                                              }];
                             }
+                        } else if (cmd.find(L"recovery:update") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameRecoveryFiles
+                                                                                object:nil
+                                                                                userInfo:@{
+                                                                                        @"files":[NSString stringWithstdwstring:param]
+                                                                                }];
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);

@@ -143,6 +143,7 @@
     addObserverFor(CEFEventNameCertificatePreview, @selector(onCEFCertificatePreview:));
     addObserverFor(ASCEventNameChangedUITheme, @selector(onUIThemeChanged:));
     addObserverFor(ASCEventNameChangedSystemTheme, @selector(onSystemThemeChanged:));
+    addObserverFor(ASCEventNameRecoveryFiles, @selector(onRecoveryFiles:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -1897,6 +1898,28 @@
 
         [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:theme];
         [[ASCEditorJSVariables instance] applyParameters];
+    }
+}
+
+-(void)onRecoveryFiles:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * sfiles = params[@"files"];
+        NSError * err = nil;
+        NSArray * arrfiles = [NSJSONSerialization JSONObjectWithData:[sfiles dataUsingEncoding:NSUTF8StringEncoding]
+                                                          options:0
+                                                            error:&err];
+        for (NSDictionary * f in arrfiles) {
+            NSNotification * n = [NSNotification notificationWithName:CEFEventNameCreateTab
+                                                               object:nil
+                                                             userInfo:@{
+                                                                        @"action"  : @(ASCTabActionOpenLocalRecoverFile),
+                                                                        @"active"  : @(YES),
+                                                                        @"fileId"  : f[@"id"],
+                                                                        @"path"    : f[@"path"]
+                                                                    }];
+            [self onCEFCreateTab:n];
+        }
     }
 }
 
