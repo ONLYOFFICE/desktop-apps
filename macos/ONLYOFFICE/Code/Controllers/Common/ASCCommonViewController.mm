@@ -1571,8 +1571,10 @@
     }
 
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1");
+    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1"),
+        detectkeyboard = !(appManager->GetUserSettings()->Get(L"spell-check-input-mode") == L"1");
     [json_langs setValue:@(usegpu) forKey:@"usegpu"];
+    [json_langs setValue:detectkeyboard?@"auto":@"off" forKey:@"spellcheckdetect"];
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
