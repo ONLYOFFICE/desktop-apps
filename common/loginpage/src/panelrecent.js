@@ -151,8 +151,9 @@
                                               </svg>` : ''}
                             ${!isSvgIcons ? `<i class="icon tool-icon ${info.type === 'folder' ? 'folder' : `${info.format}`}"></i>` :''}
                         </div>
-                        <p class="name">${info.name}</p>
-                        <span class="ext">${info.ext}</span>
+                        <p class="name">
+                            ${info.name}<span class="ext">${info.ext}</span>
+                        </p>
                     </div>
                     <div class="col-location" title="${info.descr}">
 <!--              todo: icon here          -->
