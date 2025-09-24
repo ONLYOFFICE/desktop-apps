@@ -590,56 +590,56 @@ bool SetUserFileAssoc(const std::vector<AssocPair> &assocList)
             continue;
 
         } else {
-        char pBrowsrCmd[MAX_PATH] = {0};
-        if (_stricmp(data.extension.c_str(), "http") == 0 || _stricmp(data.extension.c_str(), "https") == 0) {
-            if (_stricmp(data.progId.c_str(), EDGE_UWP_LEGACY_ID) == 0 || _stricmp(data.progId.c_str(), EDGE_UWP_MODERN_ID) == 0) {
-                strcpy_s(pBrowsrCmd, _countof(pBrowsrCmd), EDGE_UWP_EXE_PATH);
-            } else {
-                if (!FindBrowserCommandByProtocol(HKEY_CURRENT_USER, data.extension.c_str(), data.progId.c_str(), sizeof(pBrowsrCmd), pBrowsrCmd))
-                    FindBrowserCommandByProtocol(HKEY_LOCAL_MACHINE, data.extension.c_str(), data.progId.c_str(), sizeof(pBrowsrCmd), pBrowsrCmd);
+            char pBrowsrCmd[MAX_PATH] = {0};
+            if (_stricmp(data.extension.c_str(), "http") == 0 || _stricmp(data.extension.c_str(), "https") == 0) {
+                if (_stricmp(data.progId.c_str(), EDGE_UWP_LEGACY_ID) == 0 || _stricmp(data.progId.c_str(), EDGE_UWP_MODERN_ID) == 0) {
+                    strcpy_s(pBrowsrCmd, _countof(pBrowsrCmd), EDGE_UWP_EXE_PATH);
+                } else {
+                    if (!FindBrowserCommandByProtocol(HKEY_CURRENT_USER, data.extension.c_str(), data.progId.c_str(), sizeof(pBrowsrCmd), pBrowsrCmd))
+                        FindBrowserCommandByProtocol(HKEY_LOCAL_MACHINE, data.extension.c_str(), data.progId.c_str(), sizeof(pBrowsrCmd), pBrowsrCmd);
+                }
             }
-        }
-        char pSource[STRING_BUFFER];
-        if (winVer > Win8_1) {
-            std::string ts = GetRegistryKeyTimestampHex(data.regKeyPath.c_str());
-            std::string sid = GetCurrentUserSidString();
-            if (winVer <= Win10UpTo1607) {
-                snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+            char pSource[STRING_BUFFER];
+            if (winVer > Win8_1) {
+                std::string ts = GetRegistryKeyTimestampHex(data.regKeyPath.c_str());
+                std::string sid = GetCurrentUserSidString();
+                if (winVer <= Win10UpTo1607) {
+                    snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+                } else {
+                    snprintf(pSource, _countof(pSource), "%s%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+                }
             } else {
-                snprintf(pSource, _countof(pSource), "%s%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+                std::string sid = GetCurrentUserSidString();
+                snprintf(pSource, _countof(pSource), "%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), pBrowsrCmd);
             }
-        } else {
-            std::string sid = GetCurrentUserSidString();
-            snprintf(pSource, _countof(pSource), "%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), pBrowsrCmd);
-        }
 
-        size_t cbDest;
-        wchar_t pDest[STRING_BUFFER] = {0};
-        mbstowcs_s(&cbDest, pDest, sizeof(pDest)/sizeof(pDest[0]), pSource, strlen(pSource));
-        cbDest = (wcslen(pDest) + 1) * sizeof(pDest[0]);
-        _wcslwr_s(pDest);
+            size_t cbDest;
+            wchar_t pDest[STRING_BUFFER] = {0};
+            mbstowcs_s(&cbDest, pDest, sizeof(pDest)/sizeof(pDest[0]), pSource, strlen(pSource));
+            cbDest = (wcslen(pDest) + 1) * sizeof(pDest[0]);
+            _wcslwr_s(pDest);
 
-        uint32_t md5Hash[2] = {0};
-        CalcMD5Hash(pDest, cbDest, md5Hash);
+            uint32_t md5Hash[2] = {0};
+            CalcMD5Hash(pDest, cbDest, md5Hash);
 
-        unsigned int len = ((cbDest & 4) == 0) + (cbDest >> 2) - 1;
-        uint32_t outHash[4] = {0};
-        CalcCustomHash_V1((uint32_t*)pDest, len, md5Hash, outHash);
-        CalcCustomHash_V2((uint32_t*)pDest, len, md5Hash, outHash + 2);
-        uint64_t hashVal1 = *(uint64_t*)(outHash + 2) ^ *(uint64_t*)outHash;
-        uint64_t hashVal2 = *(uint64_t*)(outHash + 3) ^ *(uint64_t*)(outHash + 1);
-        uint8_t outHashBase[8] = {0};
-        memcpy(outHashBase, &hashVal1, sizeof(outHashBase)/2);
-        memcpy(outHashBase + 4, &hashVal2, sizeof(outHashBase)/2);
+            unsigned int len = ((cbDest & 4) == 0) + (cbDest >> 2) - 1;
+            uint32_t outHash[4] = {0};
+            CalcCustomHash_V1((uint32_t*)pDest, len, md5Hash, outHash);
+            CalcCustomHash_V2((uint32_t*)pDest, len, md5Hash, outHash + 2);
+            uint64_t hashVal1 = *(uint64_t*)(outHash + 2) ^ *(uint64_t*)outHash;
+            uint64_t hashVal2 = *(uint64_t*)(outHash + 3) ^ *(uint64_t*)(outHash + 1);
+            uint8_t outHashBase[8] = {0};
+            memcpy(outHashBase, &hashVal1, sizeof(outHashBase)/2);
+            memcpy(outHashBase + 4, &hashVal2, sizeof(outHashBase)/2);
 
-        std::string base64Enc;
-        if (!Base64Encode((const BYTE*)outHashBase, sizeof(outHashBase), base64Enc)) {
-            return false;
-        }
+            std::string base64Enc;
+            if (!Base64Encode((const BYTE*)outHashBase, sizeof(outHashBase), base64Enc)) {
+                return false;
+            }
 
-        char resHash[20];
-        snprintf(resHash, 20, "%s", base64Enc.c_str());
-        data.hash = resHash;
+            char resHash[20];
+            snprintf(resHash, 20, "%s", base64Enc.c_str());
+            data.hash = resHash;
         }
 
         if (!data.specialExt) {
