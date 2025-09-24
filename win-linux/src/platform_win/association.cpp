@@ -340,21 +340,21 @@ void Association::AssociationPrivate::associate(const std::vector<std::wstring> 
         if (ShellExecuteEx(&shExInfo)) {
             CloseHandle(shExInfo.hProcess);
         }
-        return;
-    }
 
-    HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
-    if (SUCCEEDED(hr)) {
-        IApplicationAssociationRegistration *pAr;
-        HRESULT hr = CoCreateInstance(CLSID_ApplicationAssociationRegistration, NULL, CLSCTX_INPROC, IID_IApplicationAssociationRegistration, (void**)&pAr);
+    } else {
+        HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
         if (SUCCEEDED(hr)) {
-            for (const auto &ext : unassocFileExts) {
-                if (m_extMap.find(ext) != m_extMap.end())
-                    pAr->SetAppAsDefault(TEXT(APP_REG_NAME), ext.c_str(), AT_FILEEXTENSION);
+            IApplicationAssociationRegistration *pAr;
+            HRESULT hr = CoCreateInstance(CLSID_ApplicationAssociationRegistration, NULL, CLSCTX_INPROC, IID_IApplicationAssociationRegistration, (void**)&pAr);
+            if (SUCCEEDED(hr)) {
+                for (const auto &ext : unassocFileExts) {
+                    if (m_extMap.find(ext) != m_extMap.end())
+                        pAr->SetAppAsDefault(TEXT(APP_REG_NAME), ext.c_str(), AT_FILEEXTENSION);
+                }
+                pAr->Release();
             }
-            pAr->Release();
+            CoUninitialize();
         }
-        CoUninitialize();
     }
 #endif
 }
