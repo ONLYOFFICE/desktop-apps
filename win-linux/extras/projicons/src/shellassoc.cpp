@@ -3,6 +3,7 @@
 #include <Shlobj.h>
 #include <shlwapi.h>
 #include <sddl.h>
+#include <winternl.h>
 #include <wincrypt.h>
 #include <cstdint>
 #include <string>
@@ -11,6 +12,43 @@
 #define TIMESTAMP_LEN 16
 #define STRING_BUFFER 1024
 
+#define UCPD_FEATURE_PDF    0x0002
+#define UCPD_FEATURE_OFFICE 0x8000
+#define UCPD_FEATURE_HTML   0x10000
+
+#define AppDefaultHashFeatureID                     44860385
+#define AppDefaultHashRotationFeatureID             43229420
+#define AppDefaultHashRotationUpdateHashesFeatureID 27623730
+
+typedef ULONG RTL_FEATURE_ID;
+typedef ULONGLONG RTL_FEATURE_CHANGE_STAMP, *PRTL_FEATURE_CHANGE_STAMP;
+
+typedef enum _RTL_FEATURE_CONFIGURATION_TYPE
+{
+    RtlFeatureConfigurationBoot,
+    RtlFeatureConfigurationRuntime,
+    RtlFeatureConfigurationCount
+} RTL_FEATURE_CONFIGURATION_TYPE;
+
+typedef struct _RTL_FEATURE_CONFIGURATION
+{
+    ULONG FeatureId;
+    union
+    {
+        ULONG Flags;
+        struct
+        {
+            ULONG Priority : 4;
+            ULONG EnabledState : 2;
+            ULONG IsWexpConfiguration : 1;
+            ULONG HasSubscriptions : 1;
+            ULONG Variant : 6;
+            ULONG VariantPayloadKind : 2;
+            ULONG Reserved : 16;
+        };
+    };
+    ULONG VariantPayload;
+} RTL_FEATURE_CONFIGURATION, *PRTL_FEATURE_CONFIGURATION;
 
 static const char REG_URL_IE_ASSOC[]   = "SOFTWARE\\Microsoft\\Internet Explorer\\Capabilities\\UrlAssociations";
 static const char REG_EXT_USER_ASSOC[] = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\%s\\UserChoice";
@@ -112,6 +150,44 @@ int getWindowsVersion()
         }
     }
     return winVer;
+}
+
+bool FeatureEnabled(RTL_FEATURE_ID featureId)
+{
+    if (HMODULE mod = GetModuleHandleA("ntdll.dll")) {
+        NTSTATUS (NTAPI *_RtlQueryFeatureConfiguration)(RTL_FEATURE_ID, RTL_FEATURE_CONFIGURATION_TYPE, PRTL_FEATURE_CHANGE_STAMP, PRTL_FEATURE_CONFIGURATION);
+        *(FARPROC*)&_RtlQueryFeatureConfiguration = GetProcAddress(mod, "RtlQueryFeatureConfiguration");
+        if (_RtlQueryFeatureConfiguration) {
+            RTL_FEATURE_CHANGE_STAMP stamp = 0;
+            RTL_FEATURE_CONFIGURATION config = {0};
+            NTSTATUS status = _RtlQueryFeatureConfiguration(featureId, RtlFeatureConfigurationRuntime, &stamp, &config);
+            if (NT_SUCCESS(status)) {
+                return (config.EnabledState == 2);
+            }
+        }
+    }
+    return false;
+}
+
+DWORD QueryUcpdFeatureV2()
+{
+    static DWORD feature_v2 = 0;
+    if (feature_v2 != 0)
+        return feature_v2;
+
+    HKEY hKey = NULL;
+    LSTATUS result = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Services\\UCPD", 0, KEY_READ, &hKey);
+    if (result == ERROR_SUCCESS) {
+        DWORD data = 0;
+        DWORD cbData = sizeof(data);
+        DWORD type = REG_DWORD;
+        result = RegQueryValueExW(hKey, L"FeatureV2", NULL, &type, (LPBYTE)&data, &cbData);
+        if (result == ERROR_SUCCESS && type == REG_DWORD) {
+            feature_v2 = data;
+        }
+        RegCloseKey(hKey);
+    }
+    return feature_v2;
 }
 
 std::string GetCurrentUserSidString()
@@ -228,14 +304,30 @@ bool FindBrowserCommandByProtocol(HKEY hKey, LPCSTR protocol, LPCSTR progId, DWO
     return false;
 }
 
-bool IsPdfOrHttpScheme(const char *str)
+bool IsSpecialUrlOrExtension(const char *str)
 {
-    static const char *exts[] = {".pdf", "http", "https"};
-    for (size_t i = 0; i < sizeof(exts)/sizeof(exts[0]); ++i) {
-        if (_stricmp(str, exts[i]) == 0)
-            return 1;
+    DWORD feature_v2 = QueryUcpdFeatureV2();
+    if (!FeatureEnabled(AppDefaultHashFeatureID) || !feature_v2)
+        return false;
+
+    if (_stricmp(str, "http") == 0 || _stricmp(str, "https") == 0)
+        return true;
+
+    if ((feature_v2 & UCPD_FEATURE_PDF) && _stricmp(str, ".pdf") == 0)
+        return true;
+
+    if (feature_v2 & UCPD_FEATURE_OFFICE) {
+        static const char *exts[] = {".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx"};
+        for (size_t i = 0; i < sizeof(exts)/sizeof(exts[0]); i++) {
+            if (_stricmp(str, exts[i]) == 0)
+                return true;
+        }
     }
-    return 0;
+
+    if (feature_v2 & UCPD_FEATURE_HTML)
+        return (_stricmp(str, ".htm") == 0 || _stricmp(str, ".html") == 0);
+
+    return false;
 }
 
 bool CalcMD5Hash(const void *src, size_t size, uint32_t md5[2])
@@ -263,7 +355,7 @@ bool CalcMD5Hash(const void *src, size_t size, uint32_t md5[2])
     }
     CryptDestroyHash(hHash);
     CryptReleaseContext(hProv, 0);
-    memcpy(md5, hash, MD5_HASH_LEN);
+    memcpy(md5, hash, sizeof(uint32_t) * 2);
     return true;
 }
 
@@ -422,7 +514,7 @@ bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
     HKEY hKey;
     if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
         RegCloseKey(hKey);
-        if (winVer <= Win8_1 || (winVer <= Win10UpTo21H2 && !IsPdfOrHttpScheme(ext))) {
+        if (winVer <= Win8_1 || !IsSpecialUrlOrExtension(ext)) {
             if (RegDeleteKeyA(HKEY_CURRENT_USER, subkey) != ERROR_SUCCESS) {
                 printf("Could not delete registry key %s\n", subkey);
                 return false;
@@ -502,7 +594,7 @@ bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
 
     char resHash[20];
     snprintf(resHash, 20, "%s", base64Enc.c_str());
-    if (winVer >= Win10Above21H2 || _stricmp(ext, ".pdf") == 0 || _stricmp(ext, "http") == 0 || _stricmp(ext, "https") == 0) {
+    if (IsSpecialUrlOrExtension(ext)) {
         return RunWriteAssocWithHTA(subkey, resHash, progID);
 
     } else {
