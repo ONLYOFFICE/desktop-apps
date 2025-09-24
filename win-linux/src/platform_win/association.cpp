@@ -46,6 +46,11 @@
 # include "components/cnotification.h"
 #endif
 
+#define IOWL_ALLOW_REGISTRATION 0x01
+#define IOWL_EXEC               0x02
+#define IOWL_REGISTER_EXT       0x04
+#define IOWL_FORCE_REGISTRATION 0x00100000
+
 #define DLG_RESULT_NONE -2
 #define DAY_TO_SEC 24*3600
 #define REG_FILE_ASSOC "SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME "\\Capabilities\\FileAssociations"
@@ -66,6 +71,52 @@
 //         RegCloseKey(hKey);
 //     }
 // }
+#else
+static const char REG_OPEN_WITH[] = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\OpenWith";
+static const IID IID_IOpenWithLauncher = {0x6A283FE2, 0xECFA, 0x4599, {0x91, 0xC4, 0xE8, 0x09, 0x57, 0x13, 0x7B, 0x26}};
+
+struct IOpenWithLauncher : public IUnknown
+{
+    virtual HRESULT STDMETHODCALLTYPE Launch(HWND hwndParent, BSTR pszFilePath, DWORD flags) noexcept = 0;
+};
+
+static bool LaunchOpenWithDialog(HWND hwnd, const wchar_t *ext)
+{
+    if (!ext || *ext == L'\0') {
+        return false;
+    }
+    HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    if (FAILED(hr)) {
+        return false;
+    }
+    IOpenWithLauncher *ppv = NULL;
+    HKEY hKey = NULL;
+    if (RegOpenKeyExA(HKEY_LOCAL_MACHINE, REG_OPEN_WITH, 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS) {
+        OLECHAR pData[128];
+        memset(pData, 0, sizeof(pData));
+        DWORD cbData = sizeof(pData);
+        LSTATUS res = RegQueryValueExW(hKey, L"OpenWithLauncher", NULL, NULL, (LPBYTE)pData, &cbData);
+        RegCloseKey(hKey);
+        if (res == ERROR_SUCCESS) {
+            size_t len = wcslen(pData);
+            CLSID pclsid;
+            if (len == 38 && CLSIDFromString(pData, &pclsid) == NOERROR) {
+                hr = CoCreateInstance(pclsid, NULL, CLSCTX_LOCAL_SERVER, IID_IOpenWithLauncher, (LPVOID*)&ppv);
+            }
+        }
+    }
+    if (FAILED(hr) || !ppv) {
+        CoUninitialize();
+        return false;
+    }
+    CoAllowSetForegroundWindow(ppv, NULL);
+    BSTR extBstr = SysAllocString(ext);
+    hr = ppv->Launch(hwnd, extBstr, IOWL_REGISTER_EXT);
+    SysFreeString(extBstr);
+    ppv->Release();
+    CoUninitialize();
+    return SUCCEEDED(hr);
+}
 #endif
 
 class Association::AssociationPrivate : public QObject
@@ -216,8 +267,11 @@ void Association::AssociationPrivate::tryProposeAssociation(QWidget *parent, con
     std::vector<std::wstring> unassocFileExts;
     if (fileExt.empty()) {
         for (auto it = m_extMap.begin(); it != m_extMap.end(); ++it) {
-            if (!isFormatAssociated(it->first.c_str()))
+            if (!isFormatAssociated(it->first.c_str())) {
                 unassocFileExts.push_back(it->first);
+                if (Utils::getWinVersion() > Utils::WinVer::Win10)
+                    break;
+            }
         }
     } else
     if (!isFormatAssociated(fileExt.c_str()))
@@ -310,6 +364,14 @@ void Association::AssociationPrivate::associate(const std::vector<std::wstring> 
     }
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
 #else
+    if (Utils::getWinVersion() > Utils::WinVer::Win10) {
+        if (!unassocFileExts.empty()) {
+            std::wstring ext = unassocFileExts.at(0);
+            HWND desktopHwnd = GetDesktopWindow();
+            LaunchOpenWithDialog(desktopHwnd, ext.c_str());
+        }
+
+    } else
     if (Utils::getWinVersion() > Utils::WinVer::Win7) {
         std::wstring args(L"--assoc \"");
         for (const auto &ext : unassocFileExts) {
