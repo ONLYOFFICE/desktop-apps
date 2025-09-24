@@ -3,6 +3,7 @@
 #include <Shlobj.h>
 #include <shlwapi.h>
 #include <sddl.h>
+#include <winternl.h>
 #include <wincrypt.h>
 #include <cstdint>
 #include <string>
@@ -11,6 +12,52 @@
 #define TIMESTAMP_LEN 16
 #define STRING_BUFFER 1024
 
+#define UCPD_FEATURE_PDF    0x0002
+#define UCPD_FEATURE_OFFICE 0x8000
+#define UCPD_FEATURE_HTML   0x10000
+
+#define AppDefaultHashFeatureID                     44860385
+#define AppDefaultHashRotationFeatureID             43229420
+#define AppDefaultHashRotationUpdateHashesFeatureID 27623730
+
+typedef ULONG RTL_FEATURE_ID;
+typedef ULONGLONG RTL_FEATURE_CHANGE_STAMP, *PRTL_FEATURE_CHANGE_STAMP;
+
+typedef enum _RTL_FEATURE_CONFIGURATION_TYPE
+{
+    RtlFeatureConfigurationBoot,
+    RtlFeatureConfigurationRuntime,
+    RtlFeatureConfigurationCount
+} RTL_FEATURE_CONFIGURATION_TYPE;
+
+typedef struct _RTL_FEATURE_CONFIGURATION
+{
+    ULONG FeatureId;
+    union
+    {
+        ULONG Flags;
+        struct
+        {
+            ULONG Priority : 4;
+            ULONG EnabledState : 2;
+            ULONG IsWexpConfiguration : 1;
+            ULONG HasSubscriptions : 1;
+            ULONG Variant : 6;
+            ULONG VariantPayloadKind : 2;
+            ULONG Reserved : 16;
+        };
+    };
+    ULONG VariantPayload;
+} RTL_FEATURE_CONFIGURATION, *PRTL_FEATURE_CONFIGURATION;
+
+struct AssocData
+{
+    std::string extension;
+    std::string progId;
+    std::string regKeyPath;
+    std::string hash;
+    bool specialExt = false;
+};
 
 static const char REG_URL_IE_ASSOC[]   = "SOFTWARE\\Microsoft\\Internet Explorer\\Capabilities\\UrlAssociations";
 static const char REG_EXT_USER_ASSOC[] = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\%s\\UserChoice";
@@ -112,6 +159,44 @@ int getWindowsVersion()
         }
     }
     return winVer;
+}
+
+bool FeatureEnabled(RTL_FEATURE_ID featureId)
+{
+    if (HMODULE mod = GetModuleHandleA("ntdll.dll")) {
+        NTSTATUS (NTAPI *_RtlQueryFeatureConfiguration)(RTL_FEATURE_ID, RTL_FEATURE_CONFIGURATION_TYPE, PRTL_FEATURE_CHANGE_STAMP, PRTL_FEATURE_CONFIGURATION);
+        *(FARPROC*)&_RtlQueryFeatureConfiguration = GetProcAddress(mod, "RtlQueryFeatureConfiguration");
+        if (_RtlQueryFeatureConfiguration) {
+            RTL_FEATURE_CHANGE_STAMP stamp = 0;
+            RTL_FEATURE_CONFIGURATION config = {0};
+            NTSTATUS status = _RtlQueryFeatureConfiguration(featureId, RtlFeatureConfigurationRuntime, &stamp, &config);
+            if (NT_SUCCESS(status)) {
+                return (config.EnabledState == 2);
+            }
+        }
+    }
+    return false;
+}
+
+DWORD QueryUcpdFeatureV2()
+{
+    static DWORD feature_v2 = 0;
+    if (feature_v2 != 0)
+        return feature_v2;
+
+    HKEY hKey = NULL;
+    LSTATUS result = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Services\\UCPD", 0, KEY_READ, &hKey);
+    if (result == ERROR_SUCCESS) {
+        DWORD data = 0;
+        DWORD cbData = sizeof(data);
+        DWORD type = REG_DWORD;
+        result = RegQueryValueExW(hKey, L"FeatureV2", NULL, &type, (LPBYTE)&data, &cbData);
+        if (result == ERROR_SUCCESS && type == REG_DWORD) {
+            feature_v2 = data;
+        }
+        RegCloseKey(hKey);
+    }
+    return feature_v2;
 }
 
 std::string GetCurrentUserSidString()
@@ -228,14 +313,30 @@ bool FindBrowserCommandByProtocol(HKEY hKey, LPCSTR protocol, LPCSTR progId, DWO
     return false;
 }
 
-bool IsPdfOrHttpScheme(const char *str)
+bool IsSpecialUrlOrExtension(const char *str)
 {
-    static const char *exts[] = {".pdf", "http", "https"};
-    for (size_t i = 0; i < sizeof(exts)/sizeof(exts[0]); ++i) {
-        if (_stricmp(str, exts[i]) == 0)
-            return 1;
+    DWORD feature_v2 = QueryUcpdFeatureV2();
+    if (!FeatureEnabled(AppDefaultHashFeatureID) || !feature_v2)
+        return false;
+
+    if (_stricmp(str, "http") == 0 || _stricmp(str, "https") == 0)
+        return true;
+
+    if ((feature_v2 & UCPD_FEATURE_PDF) && _stricmp(str, ".pdf") == 0)
+        return true;
+
+    if (feature_v2 & UCPD_FEATURE_OFFICE) {
+        static const char *exts[] = {".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx"};
+        for (size_t i = 0; i < sizeof(exts)/sizeof(exts[0]); i++) {
+            if (_stricmp(str, exts[i]) == 0)
+                return true;
+        }
     }
-    return 0;
+
+    if (feature_v2 & UCPD_FEATURE_HTML)
+        return (_stricmp(str, ".htm") == 0 || _stricmp(str, ".html") == 0);
+
+    return false;
 }
 
 bool CalcMD5Hash(const void *src, size_t size, uint32_t md5[2])
@@ -263,7 +364,7 @@ bool CalcMD5Hash(const void *src, size_t size, uint32_t md5[2])
     }
     CryptDestroyHash(hHash);
     CryptReleaseContext(hProv, 0);
-    memcpy(md5, hash, MD5_HASH_LEN);
+    memcpy(md5, hash, sizeof(uint32_t) * 2);
     return true;
 }
 
@@ -334,7 +435,7 @@ bool Base64Encode(const BYTE *pData, DWORD cbData, std::string &base64Str)
     return CryptBinaryToStringA(pData, cbData, CRYPT_STRING_BASE64 | CRYPT_STRING_NOCRLF, &base64Str[0], &cchSize);
 }
 
-bool CreateRegWriteHTA(const char *fileName, const char *regPath, const char *hash, const char *progId)
+bool CreateRegWriteHTA(const char *fileName, const std::vector<AssocData> &assocData)
 {
     FILE *f;
     errno_t err = fopen_s(&f, fileName, "w");
@@ -342,12 +443,15 @@ bool CreateRegWriteHTA(const char *fileName, const char *regPath, const char *ha
         return false;
     }
     fprintf(f, HTA_BEGIN, "WriteToRegistry");
-    fprintf(f, HTA_WRITE, regPath, hash, regPath, progId);
+    for (const auto &data : assocData) {
+        if (data.specialExt)
+            fprintf(f, HTA_WRITE, data.regKeyPath.c_str(), data.hash.c_str(), data.regKeyPath.c_str(), data.progId.c_str());
+    }
     fputs(HTA_END, f);
     return fclose(f) == 0;
 }
 
-bool CreateRegDeleteHTA(const char *fileName, const char *regPath)
+bool CreateRegDeleteHTA(const char *fileName, const std::vector<std::string> &regPaths)
 {    
     FILE *f;
     errno_t err = fopen_s(&f, fileName, "w");
@@ -355,7 +459,8 @@ bool CreateRegDeleteHTA(const char *fileName, const char *regPath)
         return false;
     }
     fprintf(f, HTA_BEGIN, "DeleteRegistryKey");
-    fprintf(f, HTA_DELETE, regPath);
+    for (const auto &regPath : regPaths)
+        fprintf(f, HTA_DELETE, regPath.c_str());
     fputs(HTA_END, f);
     return fclose(f) == 0;
 }
@@ -396,159 +501,165 @@ bool GenerateFilePathHTA(DWORD nBufferLen, LPSTR lpBuffer)
     return true;
 }
 
-bool RunWriteAssocWithHTA(const char *regPath, const char *hash, const char *progId)
+bool RunWriteAssocWithHTA(const std::vector<AssocData> &assocData)
 {
     char tempFile[MAX_PATH];
     if (!GenerateFilePathHTA(MAX_PATH, tempFile))
         return false;
-    CreateRegWriteHTA(tempFile, regPath, hash, progId);
+    CreateRegWriteHTA(tempFile, assocData);
     RunHTAScript(tempFile);
     return DeleteFileA(tempFile);
 }
 
-bool RunDeleteAssocWithHTA(const char *regPath)
+bool RunDeleteAssocWithHTA(const std::vector<std::string> &regPaths)
 {
     char tempFile[MAX_PATH];
     if (!GenerateFilePathHTA(MAX_PATH, tempFile))
         return false;
-    CreateRegDeleteHTA(tempFile, regPath);
+    CreateRegDeleteHTA(tempFile, regPaths);
     RunHTAScript(tempFile);
     return DeleteFileA(tempFile);
 }
 
-bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
+bool SetUserFileAssoc(const std::vector<AssocPair> &assocList)
 {
     int winVer = getWindowsVersion();
+    if (winVer < WinVista)
+        return false;
+
     HKEY hKey;
-    if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
+    bool hasSpecialExt = false;
+    std::vector<std::string> specialRegKeyPaths;
+    std::vector<AssocData> assocData;
+    for (const AssocPair &assoc : assocList) {
+        size_t cbDest;
+        char ext[MAX_PATH];
+        wcstombs_s(&cbDest, ext, sizeof(ext), assoc.extension, sizeof(ext) - 1);
+
+        char progID[MAX_PATH];
+        wcstombs_s(&cbDest, progID, sizeof(progID), assoc.progId, sizeof(progID) - 1);
+
+        char subkey[MAX_PATH];
+        snprintf(subkey, _countof(subkey), ext[0] == L'.' ? REG_EXT_USER_ASSOC : REG_URL_USER_ASSOC, ext);
+
+        AssocData data;
+        data.extension = ext;
+        data.progId = progID;
+        data.regKeyPath = subkey;
+
+        if (winVer > Win7) {
+            data.specialExt = IsSpecialUrlOrExtension(ext);
+            if (data.specialExt && !hasSpecialExt)
+                hasSpecialExt = true;
+        }
+
+        if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
+            RegCloseKey(hKey);
+            if (winVer <= Win8_1 || !IsSpecialUrlOrExtension(ext)) {
+                if (RegDeleteKeyA(HKEY_CURRENT_USER, subkey) != ERROR_SUCCESS) {
+                    printf("Could not delete registry key %s\n", subkey);
+                    return false;
+                }
+            } else {
+                specialRegKeyPaths.push_back(subkey);
+            }
+        }
+        assocData.push_back(data);
+    }
+
+    if (!specialRegKeyPaths.empty() && !RunDeleteAssocWithHTA(specialRegKeyPaths)) {
+        return false;
+    }
+
+    for (auto &data : assocData) {
+        if (RegCreateKeyExA(HKEY_CURRENT_USER, data.regKeyPath.c_str(), 0, NULL, 0, KEY_WRITE, 0, &hKey, 0) != ERROR_SUCCESS) {
+            printf("Could not create registry key %s\n", data.regKeyPath.c_str());
+            return false;
+        }
         RegCloseKey(hKey);
-        if (winVer <= Win8_1 || (winVer <= Win10UpTo21H2 && !IsPdfOrHttpScheme(ext))) {
-            if (RegDeleteKeyA(HKEY_CURRENT_USER, subkey) != ERROR_SUCCESS) {
-                printf("Could not delete registry key %s\n", subkey);
+
+        if (winVer < Win8) {
+            if (RegOpenKeyExA(HKEY_CURRENT_USER, data.regKeyPath.c_str(), 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
                 return false;
             }
-        } else {
-            if (!RunDeleteAssocWithHTA(subkey)) {
-                printf("Could not delete registry key with HTA %s\n", subkey);
+            if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)data.progId.c_str(), data.progId.length() + 1) != ERROR_SUCCESS) {
+                RegCloseKey(hKey);
                 return false;
             }
-        }
-    }
-
-    if (RegCreateKeyExA(HKEY_CURRENT_USER, subkey, 0, NULL, 0, KEY_WRITE, 0, &hKey, 0) != ERROR_SUCCESS) {
-        printf("Could not create registry key %s\n", subkey);
-        return false;
-    }
-    RegCloseKey(hKey);
-
-    if (winVer < Win8) {
-        if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
-            return false;
-        }
-        if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)progID, strlen(progID) + 1) != ERROR_SUCCESS) {
             RegCloseKey(hKey);
-            return false;
-        }
-        return RegCloseKey(hKey) == ERROR_SUCCESS;
-    }
+            continue;
 
-    char pBrowsrCmd[MAX_PATH] = {0};
-    if (_stricmp(ext, "http") == 0 || _stricmp(ext, "https") == 0) {
-        if (_stricmp(progID, EDGE_UWP_LEGACY_ID) == 0 || _stricmp(progID, EDGE_UWP_MODERN_ID) == 0) {
-            strcpy_s(pBrowsrCmd, _countof(pBrowsrCmd), EDGE_UWP_EXE_PATH);
         } else {
-            if (!FindBrowserCommandByProtocol(HKEY_CURRENT_USER, ext, progID, sizeof(pBrowsrCmd), pBrowsrCmd))
-                FindBrowserCommandByProtocol(HKEY_LOCAL_MACHINE, ext, progID, sizeof(pBrowsrCmd), pBrowsrCmd);
+            char pBrowsrCmd[MAX_PATH] = {0};
+            if (_stricmp(data.extension.c_str(), "http") == 0 || _stricmp(data.extension.c_str(), "https") == 0) {
+                if (_stricmp(data.progId.c_str(), EDGE_UWP_LEGACY_ID) == 0 || _stricmp(data.progId.c_str(), EDGE_UWP_MODERN_ID) == 0) {
+                    strcpy_s(pBrowsrCmd, _countof(pBrowsrCmd), EDGE_UWP_EXE_PATH);
+                } else {
+                    if (!FindBrowserCommandByProtocol(HKEY_CURRENT_USER, data.extension.c_str(), data.progId.c_str(), sizeof(pBrowsrCmd), pBrowsrCmd))
+                        FindBrowserCommandByProtocol(HKEY_LOCAL_MACHINE, data.extension.c_str(), data.progId.c_str(), sizeof(pBrowsrCmd), pBrowsrCmd);
+                }
+            }
+            char pSource[STRING_BUFFER];
+            if (winVer > Win8_1) {
+                std::string ts = GetRegistryKeyTimestampHex(data.regKeyPath.c_str());
+                std::string sid = GetCurrentUserSidString();
+                if (winVer <= Win10UpTo1607) {
+                    snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+                } else {
+                    snprintf(pSource, _countof(pSource), "%s%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+                }
+            } else {
+                std::string sid = GetCurrentUserSidString();
+                snprintf(pSource, _countof(pSource), "%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), pBrowsrCmd);
+            }
+
+            size_t cbDest;
+            wchar_t pDest[STRING_BUFFER] = {0};
+            mbstowcs_s(&cbDest, pDest, sizeof(pDest)/sizeof(pDest[0]), pSource, strlen(pSource));
+            cbDest = (wcslen(pDest) + 1) * sizeof(pDest[0]);
+            _wcslwr_s(pDest);
+
+            uint32_t md5Hash[2] = {0};
+            CalcMD5Hash(pDest, cbDest, md5Hash);
+
+            unsigned int len = ((cbDest & 4) == 0) + (cbDest >> 2) - 1;
+            uint32_t outHash[4] = {0};
+            CalcCustomHash_V1((uint32_t*)pDest, len, md5Hash, outHash);
+            CalcCustomHash_V2((uint32_t*)pDest, len, md5Hash, outHash + 2);
+            uint64_t hashVal1 = *(uint64_t*)(outHash + 2) ^ *(uint64_t*)outHash;
+            uint64_t hashVal2 = *(uint64_t*)(outHash + 3) ^ *(uint64_t*)(outHash + 1);
+            uint8_t outHashBase[8] = {0};
+            memcpy(outHashBase, &hashVal1, sizeof(outHashBase)/2);
+            memcpy(outHashBase + 4, &hashVal2, sizeof(outHashBase)/2);
+
+            std::string base64Enc;
+            if (!Base64Encode((const BYTE*)outHashBase, sizeof(outHashBase), base64Enc)) {
+                return false;
+            }
+
+            char resHash[20];
+            snprintf(resHash, 20, "%s", base64Enc.c_str());
+            data.hash = resHash;
         }
-    }
-    char pSource[STRING_BUFFER];
-    if (winVer > Win8_1) {
-        std::string ts = GetRegistryKeyTimestampHex(subkey);
-        std::string sid = GetCurrentUserSidString();
-        if (winVer <= Win10UpTo1607) {
-            snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
-        } else {
-            snprintf(pSource, _countof(pSource), "%s%s%s%s%s", ext, sid.c_str(), progID, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
-        }
-    } else
-    if (winVer > Win7) {
-        std::string sid = GetCurrentUserSidString();
-        snprintf(pSource, _countof(pSource), "%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd);
-    }
 
-    size_t cbDest;
-    wchar_t pDest[STRING_BUFFER] = {0};
-    mbstowcs_s(&cbDest, pDest, sizeof(pDest)/sizeof(pDest[0]), pSource, strlen(pSource));
-    cbDest = (wcslen(pDest) + 1) * sizeof(pDest[0]);
-    _wcslwr_s(pDest);
-
-    uint32_t md5Hash[2] = {0};
-    CalcMD5Hash(pDest, cbDest, md5Hash);
-
-    unsigned int len = ((cbDest & 4) == 0) + (cbDest >> 2) - 1;
-    uint32_t outHash[4] = {0};
-    CalcCustomHash_V1((uint32_t*)pDest, len, md5Hash, outHash);
-    CalcCustomHash_V2((uint32_t*)pDest, len, md5Hash, outHash + 2);
-    uint64_t hashVal1 = *(uint64_t*)(outHash + 2) ^ *(uint64_t*)outHash;
-    uint64_t hashVal2 = *(uint64_t*)(outHash + 3) ^ *(uint64_t*)(outHash + 1);
-    uint8_t outHashBase[8] = {0};
-    memcpy(outHashBase, &hashVal1, sizeof(outHashBase)/2);
-    memcpy(outHashBase + 4, &hashVal2, sizeof(outHashBase)/2);
-
-    std::string base64Enc;
-    if (!Base64Encode((const BYTE*)outHashBase, sizeof(outHashBase), base64Enc)) {
-        return false;
-    }
-
-    char resHash[20];
-    snprintf(resHash, 20, "%s", base64Enc.c_str());
-    if (winVer >= Win10Above21H2 || _stricmp(ext, ".pdf") == 0 || _stricmp(ext, "http") == 0 || _stricmp(ext, "https") == 0) {
-        return RunWriteAssocWithHTA(subkey, resHash, progID);
-
-    } else {
-        if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
-            return false;
-        }
-        if (RegSetValueExA(hKey, "Hash", 0, REG_SZ, (const BYTE*)resHash, strlen(resHash) + 1) != ERROR_SUCCESS) {
+        if (!data.specialExt) {
+            if (RegOpenKeyExA(HKEY_CURRENT_USER, data.regKeyPath.c_str(), 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
+                return false;
+            }
+            if (RegSetValueExA(hKey, "Hash", 0, REG_SZ, (const BYTE*)data.hash.c_str(), data.hash.length() + 1) != ERROR_SUCCESS) {
+                RegCloseKey(hKey);
+                return false;
+            }
+            if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)data.progId.c_str(), data.progId.length() + 1) != ERROR_SUCCESS) {
+                RegCloseKey(hKey);
+                return false;
+            }
             RegCloseKey(hKey);
-            return false;
         }
-        if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)progID, strlen(progID) + 1) != ERROR_SUCCESS) {
-            RegCloseKey(hKey);
-            return false;
-        }
-        return RegCloseKey(hKey) == ERROR_SUCCESS;
     }
-}
 
-bool SetUserFileAssoc(const wchar_t* ext, const wchar_t* progId, bool notifySystem)
-{
-    if (getWindowsVersion() < WinVista)
+    if (hasSpecialExt && !RunWriteAssocWithHTA(assocData)) {
         return false;
-
-    char lpExt[MAX_PATH];
-    size_t cbDest;
-    wcstombs_s(&cbDest, lpExt, sizeof(lpExt), ext, sizeof(lpExt) - 1);
-
-    char lpProgId[MAX_PATH];
-    wcstombs_s(&cbDest, lpProgId, sizeof(lpProgId), progId, sizeof(lpProgId) - 1);
-
-    char lpSubkey[MAX_PATH];
-    snprintf(lpSubkey, _countof(lpSubkey), lpExt[0] == L'.' ? REG_EXT_USER_ASSOC : REG_URL_USER_ASSOC, lpExt);
-
-    if (!SetAssocWithHash(lpExt, lpProgId, lpSubkey))
-        return false;
-
-    if (notifySystem)
-        SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
-    return true;
-}
-
-bool SetUserFileAssoc(const AssocPair* assocArray, size_t count)
-{
-    for (int i = 0; i < count; ++i) {
-        if (!SetUserFileAssoc(assocArray[i].extension, assocArray[i].progId, false))
-            return false;
     }
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
     return true;
