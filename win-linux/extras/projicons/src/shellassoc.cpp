@@ -508,10 +508,24 @@ bool RunDeleteAssocWithHTA(const char *regPath)
     return DeleteFileA(tempFile);
 }
 
-bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
+bool SetUserFileAssoc(const std::vector<AssocPair> &assocList)
 {
     int winVer = getWindowsVersion();
+    if (winVer < WinVista)
+        return false;
+
     HKEY hKey;
+    for (const AssocPair &assoc : assocList) {
+        size_t cbDest;
+        char ext[MAX_PATH];
+        wcstombs_s(&cbDest, ext, sizeof(ext), assoc.extension, sizeof(ext) - 1);
+
+        char progID[MAX_PATH];
+        wcstombs_s(&cbDest, progID, sizeof(progID), assoc.progId, sizeof(progID) - 1);
+
+        char subkey[MAX_PATH];
+        snprintf(subkey, _countof(subkey), ext[0] == L'.' ? REG_EXT_USER_ASSOC : REG_URL_USER_ASSOC, ext);
+
     if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
         RegCloseKey(hKey);
         if (winVer <= Win8_1 || !IsSpecialUrlOrExtension(ext)) {
@@ -541,7 +555,8 @@ bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
             RegCloseKey(hKey);
             return false;
         }
-        return RegCloseKey(hKey) == ERROR_SUCCESS;
+        RegCloseKey(hKey);
+        continue;
     }
 
     char pBrowsrCmd[MAX_PATH] = {0};
@@ -568,7 +583,6 @@ bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
         snprintf(pSource, _countof(pSource), "%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd);
     }
 
-    size_t cbDest;
     wchar_t pDest[STRING_BUFFER] = {0};
     mbstowcs_s(&cbDest, pDest, sizeof(pDest)/sizeof(pDest[0]), pSource, strlen(pSource));
     cbDest = (wcslen(pDest) + 1) * sizeof(pDest[0]);
@@ -595,7 +609,8 @@ bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
     char resHash[20];
     snprintf(resHash, 20, "%s", base64Enc.c_str());
     if (IsSpecialUrlOrExtension(ext)) {
-        return RunWriteAssocWithHTA(subkey, resHash, progID);
+        if (!RunWriteAssocWithHTA(subkey, resHash, progID))
+            return false;
 
     } else {
         if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
@@ -609,38 +624,8 @@ bool SetAssocWithHash(const char *ext, const char *progID, const char *subkey)
             RegCloseKey(hKey);
             return false;
         }
-        return RegCloseKey(hKey) == ERROR_SUCCESS;
+        RegCloseKey(hKey);
     }
-}
-
-bool SetUserFileAssoc(const wchar_t* ext, const wchar_t* progId, bool notifySystem)
-{
-    if (getWindowsVersion() < WinVista)
-        return false;
-
-    char lpExt[MAX_PATH];
-    size_t cbDest;
-    wcstombs_s(&cbDest, lpExt, sizeof(lpExt), ext, sizeof(lpExt) - 1);
-
-    char lpProgId[MAX_PATH];
-    wcstombs_s(&cbDest, lpProgId, sizeof(lpProgId), progId, sizeof(lpProgId) - 1);
-
-    char lpSubkey[MAX_PATH];
-    snprintf(lpSubkey, _countof(lpSubkey), lpExt[0] == L'.' ? REG_EXT_USER_ASSOC : REG_URL_USER_ASSOC, lpExt);
-
-    if (!SetAssocWithHash(lpExt, lpProgId, lpSubkey))
-        return false;
-
-    if (notifySystem)
-        SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
-    return true;
-}
-
-bool SetUserFileAssoc(const AssocPair* assocArray, size_t count)
-{
-    for (int i = 0; i < count; ++i) {
-        if (!SetUserFileAssoc(assocArray[i].extension, assocArray[i].progId, false))
-            return false;
     }
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
     return true;
