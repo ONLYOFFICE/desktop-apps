@@ -50,6 +50,15 @@ typedef struct _RTL_FEATURE_CONFIGURATION
     ULONG VariantPayload;
 } RTL_FEATURE_CONFIGURATION, *PRTL_FEATURE_CONFIGURATION;
 
+struct AssocData
+{
+    std::string extension;
+    std::string progId;
+    std::string regKeyPath;
+    std::string hash;
+    bool specialExt = false;
+};
+
 static const char REG_URL_IE_ASSOC[]   = "SOFTWARE\\Microsoft\\Internet Explorer\\Capabilities\\UrlAssociations";
 static const char REG_EXT_USER_ASSOC[] = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\%s\\UserChoice";
 static const char REG_URL_USER_ASSOC[] = "SOFTWARE\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\%s\\UserChoice";
@@ -426,7 +435,7 @@ bool Base64Encode(const BYTE *pData, DWORD cbData, std::string &base64Str)
     return CryptBinaryToStringA(pData, cbData, CRYPT_STRING_BASE64 | CRYPT_STRING_NOCRLF, &base64Str[0], &cchSize);
 }
 
-bool CreateRegWriteHTA(const char *fileName, const char *regPath, const char *hash, const char *progId)
+bool CreateRegWriteHTA(const char *fileName, const std::vector<AssocData> &assocData)
 {
     FILE *f;
     errno_t err = fopen_s(&f, fileName, "w");
@@ -434,12 +443,15 @@ bool CreateRegWriteHTA(const char *fileName, const char *regPath, const char *ha
         return false;
     }
     fprintf(f, HTA_BEGIN, "WriteToRegistry");
-    fprintf(f, HTA_WRITE, regPath, hash, regPath, progId);
+    for (const auto &data : assocData) {
+        if (data.specialExt)
+            fprintf(f, HTA_WRITE, data.regKeyPath.c_str(), data.hash.c_str(), data.regKeyPath.c_str(), data.progId.c_str());
+    }
     fputs(HTA_END, f);
     return fclose(f) == 0;
 }
 
-bool CreateRegDeleteHTA(const char *fileName, const char *regPath)
+bool CreateRegDeleteHTA(const char *fileName, const std::vector<std::string> &regPaths)
 {    
     FILE *f;
     errno_t err = fopen_s(&f, fileName, "w");
@@ -447,7 +459,8 @@ bool CreateRegDeleteHTA(const char *fileName, const char *regPath)
         return false;
     }
     fprintf(f, HTA_BEGIN, "DeleteRegistryKey");
-    fprintf(f, HTA_DELETE, regPath);
+    for (const auto &regPath : regPaths)
+        fprintf(f, HTA_DELETE, regPath.c_str());
     fputs(HTA_END, f);
     return fclose(f) == 0;
 }
@@ -488,22 +501,22 @@ bool GenerateFilePathHTA(DWORD nBufferLen, LPSTR lpBuffer)
     return true;
 }
 
-bool RunWriteAssocWithHTA(const char *regPath, const char *hash, const char *progId)
+bool RunWriteAssocWithHTA(const std::vector<AssocData> &assocData)
 {
     char tempFile[MAX_PATH];
     if (!GenerateFilePathHTA(MAX_PATH, tempFile))
         return false;
-    CreateRegWriteHTA(tempFile, regPath, hash, progId);
+    CreateRegWriteHTA(tempFile, assocData);
     RunHTAScript(tempFile);
     return DeleteFileA(tempFile);
 }
 
-bool RunDeleteAssocWithHTA(const char *regPath)
+bool RunDeleteAssocWithHTA(const std::vector<std::string> &regPaths)
 {
     char tempFile[MAX_PATH];
     if (!GenerateFilePathHTA(MAX_PATH, tempFile))
         return false;
-    CreateRegDeleteHTA(tempFile, regPath);
+    CreateRegDeleteHTA(tempFile, regPaths);
     RunHTAScript(tempFile);
     return DeleteFileA(tempFile);
 }
@@ -515,6 +528,9 @@ bool SetUserFileAssoc(const std::vector<AssocPair> &assocList)
         return false;
 
     HKEY hKey;
+    bool hasSpecialExt = false;
+    std::vector<std::string> specialRegKeyPaths;
+    std::vector<AssocData> assocData;
     for (const AssocPair &assoc : assocList) {
         size_t cbDest;
         char ext[MAX_PATH];
@@ -526,6 +542,17 @@ bool SetUserFileAssoc(const std::vector<AssocPair> &assocList)
         char subkey[MAX_PATH];
         snprintf(subkey, _countof(subkey), ext[0] == L'.' ? REG_EXT_USER_ASSOC : REG_URL_USER_ASSOC, ext);
 
+        AssocData data;
+        data.extension = ext;
+        data.progId = progID;
+        data.regKeyPath = subkey;
+
+        if (winVer > Win7) {
+            data.specialExt = IsSpecialUrlOrExtension(ext);
+            if (data.specialExt && !hasSpecialExt)
+                hasSpecialExt = true;
+        }
+
         if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
             RegCloseKey(hKey);
             if (winVer <= Win8_1 || !IsSpecialUrlOrExtension(ext)) {
@@ -534,55 +561,59 @@ bool SetUserFileAssoc(const std::vector<AssocPair> &assocList)
                     return false;
                 }
             } else {
-                if (!RunDeleteAssocWithHTA(subkey)) {
-                    printf("Could not delete registry key with HTA %s\n", subkey);
-                    return false;
-                }
+                specialRegKeyPaths.push_back(subkey);
             }
         }
+        assocData.push_back(data);
+    }
 
-        if (RegCreateKeyExA(HKEY_CURRENT_USER, subkey, 0, NULL, 0, KEY_WRITE, 0, &hKey, 0) != ERROR_SUCCESS) {
-            printf("Could not create registry key %s\n", subkey);
+    if (!specialRegKeyPaths.empty() && !RunDeleteAssocWithHTA(specialRegKeyPaths)) {
+        return false;
+    }
+
+    for (auto &data : assocData) {
+        if (RegCreateKeyExA(HKEY_CURRENT_USER, data.regKeyPath.c_str(), 0, NULL, 0, KEY_WRITE, 0, &hKey, 0) != ERROR_SUCCESS) {
+            printf("Could not create registry key %s\n", data.regKeyPath.c_str());
             return false;
         }
         RegCloseKey(hKey);
 
         if (winVer < Win8) {
-            if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
+            if (RegOpenKeyExA(HKEY_CURRENT_USER, data.regKeyPath.c_str(), 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
                 return false;
             }
-            if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)progID, strlen(progID) + 1) != ERROR_SUCCESS) {
+            if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)data.progId.c_str(), data.progId.length() + 1) != ERROR_SUCCESS) {
                 RegCloseKey(hKey);
                 return false;
             }
             RegCloseKey(hKey);
             continue;
-        }
 
+        } else {
         char pBrowsrCmd[MAX_PATH] = {0};
-        if (_stricmp(ext, "http") == 0 || _stricmp(ext, "https") == 0) {
-            if (_stricmp(progID, EDGE_UWP_LEGACY_ID) == 0 || _stricmp(progID, EDGE_UWP_MODERN_ID) == 0) {
+        if (_stricmp(data.extension.c_str(), "http") == 0 || _stricmp(data.extension.c_str(), "https") == 0) {
+            if (_stricmp(data.progId.c_str(), EDGE_UWP_LEGACY_ID) == 0 || _stricmp(data.progId.c_str(), EDGE_UWP_MODERN_ID) == 0) {
                 strcpy_s(pBrowsrCmd, _countof(pBrowsrCmd), EDGE_UWP_EXE_PATH);
             } else {
-                if (!FindBrowserCommandByProtocol(HKEY_CURRENT_USER, ext, progID, sizeof(pBrowsrCmd), pBrowsrCmd))
-                    FindBrowserCommandByProtocol(HKEY_LOCAL_MACHINE, ext, progID, sizeof(pBrowsrCmd), pBrowsrCmd);
+                if (!FindBrowserCommandByProtocol(HKEY_CURRENT_USER, data.extension.c_str(), data.progId.c_str(), sizeof(pBrowsrCmd), pBrowsrCmd))
+                    FindBrowserCommandByProtocol(HKEY_LOCAL_MACHINE, data.extension.c_str(), data.progId.c_str(), sizeof(pBrowsrCmd), pBrowsrCmd);
             }
         }
         char pSource[STRING_BUFFER];
         if (winVer > Win8_1) {
-            std::string ts = GetRegistryKeyTimestampHex(subkey);
+            std::string ts = GetRegistryKeyTimestampHex(data.regKeyPath.c_str());
             std::string sid = GetCurrentUserSidString();
             if (winVer <= Win10UpTo1607) {
-                snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+                snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
             } else {
-                snprintf(pSource, _countof(pSource), "%s%s%s%s%s", ext, sid.c_str(), progID, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+                snprintf(pSource, _countof(pSource), "%s%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
             }
-        } else
-        if (winVer > Win7) {
+        } else {
             std::string sid = GetCurrentUserSidString();
-            snprintf(pSource, _countof(pSource), "%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd);
+            snprintf(pSource, _countof(pSource), "%s%s%s%s", data.extension.c_str(), sid.c_str(), data.progId.c_str(), pBrowsrCmd);
         }
 
+        size_t cbDest;
         wchar_t pDest[STRING_BUFFER] = {0};
         mbstowcs_s(&cbDest, pDest, sizeof(pDest)/sizeof(pDest[0]), pSource, strlen(pSource));
         cbDest = (wcslen(pDest) + 1) * sizeof(pDest[0]);
@@ -608,24 +639,27 @@ bool SetUserFileAssoc(const std::vector<AssocPair> &assocList)
 
         char resHash[20];
         snprintf(resHash, 20, "%s", base64Enc.c_str());
-        if (IsSpecialUrlOrExtension(ext)) {
-            if (!RunWriteAssocWithHTA(subkey, resHash, progID))
-                return false;
+        data.hash = resHash;
+        }
 
-        } else {
-            if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
+        if (!data.specialExt) {
+            if (RegOpenKeyExA(HKEY_CURRENT_USER, data.regKeyPath.c_str(), 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
                 return false;
             }
-            if (RegSetValueExA(hKey, "Hash", 0, REG_SZ, (const BYTE*)resHash, strlen(resHash) + 1) != ERROR_SUCCESS) {
+            if (RegSetValueExA(hKey, "Hash", 0, REG_SZ, (const BYTE*)data.hash.c_str(), data.hash.length() + 1) != ERROR_SUCCESS) {
                 RegCloseKey(hKey);
                 return false;
             }
-            if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)progID, strlen(progID) + 1) != ERROR_SUCCESS) {
+            if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)data.progId.c_str(), data.progId.length() + 1) != ERROR_SUCCESS) {
                 RegCloseKey(hKey);
                 return false;
             }
             RegCloseKey(hKey);
         }
+    }
+
+    if (hasSpecialExt && !RunWriteAssocWithHTA(assocData)) {
+        return false;
     }
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
     return true;
