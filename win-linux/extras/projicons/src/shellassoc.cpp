@@ -526,106 +526,106 @@ bool SetUserFileAssoc(const std::vector<AssocPair> &assocList)
         char subkey[MAX_PATH];
         snprintf(subkey, _countof(subkey), ext[0] == L'.' ? REG_EXT_USER_ASSOC : REG_URL_USER_ASSOC, ext);
 
-    if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
+        if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
+            RegCloseKey(hKey);
+            if (winVer <= Win8_1 || !IsSpecialUrlOrExtension(ext)) {
+                if (RegDeleteKeyA(HKEY_CURRENT_USER, subkey) != ERROR_SUCCESS) {
+                    printf("Could not delete registry key %s\n", subkey);
+                    return false;
+                }
+            } else {
+                if (!RunDeleteAssocWithHTA(subkey)) {
+                    printf("Could not delete registry key with HTA %s\n", subkey);
+                    return false;
+                }
+            }
+        }
+
+        if (RegCreateKeyExA(HKEY_CURRENT_USER, subkey, 0, NULL, 0, KEY_WRITE, 0, &hKey, 0) != ERROR_SUCCESS) {
+            printf("Could not create registry key %s\n", subkey);
+            return false;
+        }
         RegCloseKey(hKey);
-        if (winVer <= Win8_1 || !IsSpecialUrlOrExtension(ext)) {
-            if (RegDeleteKeyA(HKEY_CURRENT_USER, subkey) != ERROR_SUCCESS) {
-                printf("Could not delete registry key %s\n", subkey);
+
+        if (winVer < Win8) {
+            if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
                 return false;
             }
-        } else {
-            if (!RunDeleteAssocWithHTA(subkey)) {
-                printf("Could not delete registry key with HTA %s\n", subkey);
+            if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)progID, strlen(progID) + 1) != ERROR_SUCCESS) {
+                RegCloseKey(hKey);
                 return false;
             }
-        }
-    }
-
-    if (RegCreateKeyExA(HKEY_CURRENT_USER, subkey, 0, NULL, 0, KEY_WRITE, 0, &hKey, 0) != ERROR_SUCCESS) {
-        printf("Could not create registry key %s\n", subkey);
-        return false;
-    }
-    RegCloseKey(hKey);
-
-    if (winVer < Win8) {
-        if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
-            return false;
-        }
-        if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)progID, strlen(progID) + 1) != ERROR_SUCCESS) {
             RegCloseKey(hKey);
+            continue;
+        }
+
+        char pBrowsrCmd[MAX_PATH] = {0};
+        if (_stricmp(ext, "http") == 0 || _stricmp(ext, "https") == 0) {
+            if (_stricmp(progID, EDGE_UWP_LEGACY_ID) == 0 || _stricmp(progID, EDGE_UWP_MODERN_ID) == 0) {
+                strcpy_s(pBrowsrCmd, _countof(pBrowsrCmd), EDGE_UWP_EXE_PATH);
+            } else {
+                if (!FindBrowserCommandByProtocol(HKEY_CURRENT_USER, ext, progID, sizeof(pBrowsrCmd), pBrowsrCmd))
+                    FindBrowserCommandByProtocol(HKEY_LOCAL_MACHINE, ext, progID, sizeof(pBrowsrCmd), pBrowsrCmd);
+            }
+        }
+        char pSource[STRING_BUFFER];
+        if (winVer > Win8_1) {
+            std::string ts = GetRegistryKeyTimestampHex(subkey);
+            std::string sid = GetCurrentUserSidString();
+            if (winVer <= Win10UpTo1607) {
+                snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+            } else {
+                snprintf(pSource, _countof(pSource), "%s%s%s%s%s", ext, sid.c_str(), progID, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
+            }
+        } else
+        if (winVer > Win7) {
+            std::string sid = GetCurrentUserSidString();
+            snprintf(pSource, _countof(pSource), "%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd);
+        }
+
+        wchar_t pDest[STRING_BUFFER] = {0};
+        mbstowcs_s(&cbDest, pDest, sizeof(pDest)/sizeof(pDest[0]), pSource, strlen(pSource));
+        cbDest = (wcslen(pDest) + 1) * sizeof(pDest[0]);
+        _wcslwr_s(pDest);
+
+        uint32_t md5Hash[2] = {0};
+        CalcMD5Hash(pDest, cbDest, md5Hash);
+
+        unsigned int len = ((cbDest & 4) == 0) + (cbDest >> 2) - 1;
+        uint32_t outHash[4] = {0};
+        CalcCustomHash_V1((uint32_t*)pDest, len, md5Hash, outHash);
+        CalcCustomHash_V2((uint32_t*)pDest, len, md5Hash, outHash + 2);
+        uint64_t hashVal1 = *(uint64_t*)(outHash + 2) ^ *(uint64_t*)outHash;
+        uint64_t hashVal2 = *(uint64_t*)(outHash + 3) ^ *(uint64_t*)(outHash + 1);
+        uint8_t outHashBase[8] = {0};
+        memcpy(outHashBase, &hashVal1, sizeof(outHashBase)/2);
+        memcpy(outHashBase + 4, &hashVal2, sizeof(outHashBase)/2);
+
+        std::string base64Enc;
+        if (!Base64Encode((const BYTE*)outHashBase, sizeof(outHashBase), base64Enc)) {
             return false;
         }
-        RegCloseKey(hKey);
-        continue;
-    }
 
-    char pBrowsrCmd[MAX_PATH] = {0};
-    if (_stricmp(ext, "http") == 0 || _stricmp(ext, "https") == 0) {
-        if (_stricmp(progID, EDGE_UWP_LEGACY_ID) == 0 || _stricmp(progID, EDGE_UWP_MODERN_ID) == 0) {
-            strcpy_s(pBrowsrCmd, _countof(pBrowsrCmd), EDGE_UWP_EXE_PATH);
+        char resHash[20];
+        snprintf(resHash, 20, "%s", base64Enc.c_str());
+        if (IsSpecialUrlOrExtension(ext)) {
+            if (!RunWriteAssocWithHTA(subkey, resHash, progID))
+                return false;
+
         } else {
-            if (!FindBrowserCommandByProtocol(HKEY_CURRENT_USER, ext, progID, sizeof(pBrowsrCmd), pBrowsrCmd))
-                FindBrowserCommandByProtocol(HKEY_LOCAL_MACHINE, ext, progID, sizeof(pBrowsrCmd), pBrowsrCmd);
-        }
-    }
-    char pSource[STRING_BUFFER];
-    if (winVer > Win8_1) {
-        std::string ts = GetRegistryKeyTimestampHex(subkey);
-        std::string sid = GetCurrentUserSidString();
-        if (winVer <= Win10UpTo1607) {
-            snprintf(pSource, _countof(pSource), "%s%s%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
-        } else {
-            snprintf(pSource, _countof(pSource), "%s%s%s%s%s", ext, sid.c_str(), progID, ts.c_str(), (const char*)ASSOC_DESCRIPTOR);
-        }
-    } else
-    if (winVer > Win7) {
-        std::string sid = GetCurrentUserSidString();
-        snprintf(pSource, _countof(pSource), "%s%s%s%s", ext, sid.c_str(), progID, pBrowsrCmd);
-    }
-
-    wchar_t pDest[STRING_BUFFER] = {0};
-    mbstowcs_s(&cbDest, pDest, sizeof(pDest)/sizeof(pDest[0]), pSource, strlen(pSource));
-    cbDest = (wcslen(pDest) + 1) * sizeof(pDest[0]);
-    _wcslwr_s(pDest);
-
-    uint32_t md5Hash[2] = {0};
-    CalcMD5Hash(pDest, cbDest, md5Hash);
-
-    unsigned int len = ((cbDest & 4) == 0) + (cbDest >> 2) - 1;
-    uint32_t outHash[4] = {0};
-    CalcCustomHash_V1((uint32_t*)pDest, len, md5Hash, outHash);
-    CalcCustomHash_V2((uint32_t*)pDest, len, md5Hash, outHash + 2);
-    uint64_t hashVal1 = *(uint64_t*)(outHash + 2) ^ *(uint64_t*)outHash;
-    uint64_t hashVal2 = *(uint64_t*)(outHash + 3) ^ *(uint64_t*)(outHash + 1);
-    uint8_t outHashBase[8] = {0};
-    memcpy(outHashBase, &hashVal1, sizeof(outHashBase)/2);
-    memcpy(outHashBase + 4, &hashVal2, sizeof(outHashBase)/2);
-
-    std::string base64Enc;
-    if (!Base64Encode((const BYTE*)outHashBase, sizeof(outHashBase), base64Enc)) {
-        return false;
-    }
-
-    char resHash[20];
-    snprintf(resHash, 20, "%s", base64Enc.c_str());
-    if (IsSpecialUrlOrExtension(ext)) {
-        if (!RunWriteAssocWithHTA(subkey, resHash, progID))
-            return false;
-
-    } else {
-        if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
-            return false;
-        }
-        if (RegSetValueExA(hKey, "Hash", 0, REG_SZ, (const BYTE*)resHash, strlen(resHash) + 1) != ERROR_SUCCESS) {
+            if (RegOpenKeyExA(HKEY_CURRENT_USER, subkey, 0, KEY_SET_VALUE, &hKey) != ERROR_SUCCESS) {
+                return false;
+            }
+            if (RegSetValueExA(hKey, "Hash", 0, REG_SZ, (const BYTE*)resHash, strlen(resHash) + 1) != ERROR_SUCCESS) {
+                RegCloseKey(hKey);
+                return false;
+            }
+            if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)progID, strlen(progID) + 1) != ERROR_SUCCESS) {
+                RegCloseKey(hKey);
+                return false;
+            }
             RegCloseKey(hKey);
-            return false;
         }
-        if (RegSetValueExA(hKey, "ProgId", 0, REG_SZ, (const BYTE*)progID, strlen(progID) + 1) != ERROR_SUCCESS) {
-            RegCloseKey(hKey);
-            return false;
-        }
-        RegCloseKey(hKey);
-    }
     }
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
     return true;
