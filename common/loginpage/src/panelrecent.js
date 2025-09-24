@@ -153,8 +153,9 @@
                             ${!isSvgIcons ? `<i class="icon ${info.type === 'folder' ? 'img-el folder' : `img-format ${info.format}`}"></i>` : ''}
                             ${info.crypted && !isSvgIcons ? `<i class="icon img-el shield"></i>` : ''}
                         </div>
-                        <p class="name">${info.name}</p>
-                        <span class="ext">${info.ext}</span>
+                        <p class="name">
+                            ${info.name}<span class="ext">${info.ext}</span>
+                        </p>
                     </div>
                     <div class="col-location" title="${info.descr}">
 <!--              todo: icon here          -->
@@ -512,6 +513,7 @@
             }
         }
 
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -562,6 +564,7 @@
 
                     console.log('portal authorized');
                 });
+
 
                 this.dndZone = new DnDFileZone();
                 this.dndZone.render(this.view.$panel.find("#area-dnd-file"));
