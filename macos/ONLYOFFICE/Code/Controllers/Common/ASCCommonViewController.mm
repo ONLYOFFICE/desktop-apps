@@ -1201,7 +1201,16 @@
 
         NSArray * allowedFileTypes = @[];
 
-        if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
+        if ([fileTypes length] == 0) {
+            NSMutableArray * filter = [NSMutableArray array];
+            [filter addObjectsFromArray:[ASCConstants documents]];
+            [filter addObjectsFromArray:[ASCConstants spreadsheets]];
+            [filter addObjectsFromArray:[ASCConstants presentations]];
+            [filter addObjectsFromArray:[ASCConstants draws]];
+            [filter addObjectsFromArray:[ASCConstants csvtxt]];
+
+            allowedFileTypes = filter;
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
             allowedFileTypes = [ASCConstants images];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterAudio]) {
             allowedFileTypes = [ASCConstants audios];
