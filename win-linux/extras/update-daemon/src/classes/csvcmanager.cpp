@@ -739,8 +739,12 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
 #endif
         for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
             int retries = 10;
+#ifdef _WIN32
+            tstring app = NS_File::toNativeSeparators(appPath + apps[i]);
+#else
             tstring app(apps[i]);
             app = app.substr(1);
+#endif
             while (NS_File::isProcessRunning(app) && retries-- > 0)
                 sleep(500);
 
@@ -912,8 +916,12 @@ void CSvcManager::startReplacingService(const bool restartAfterUpdate)
 #endif
         for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
             int retries = 10;
+#ifdef _WIN32
+            tstring app = NS_File::toNativeSeparators(appPath + apps[i]);
+#else
             tstring app(apps[i]);
             app = app.substr(1);
+#endif
             while (NS_File::isProcessRunning(app) && retries-- > 0)
                 sleep(500);
 
