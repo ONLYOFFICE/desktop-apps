@@ -55,7 +55,7 @@
 }
 
 + (NSArray *)images {
-    return @[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tif", @"tiff", @"ico", @"svg"];
+    return @[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tif", @"tiff", @"heif", @"ico", @"svg"];
 }
 
 + (NSArray *)videos {
