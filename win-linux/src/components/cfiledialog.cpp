@@ -407,7 +407,7 @@ QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QStrin
 {
     QString selected, extra;
     if ( type == VIDEO_TYPE ) {
-        selected = tr("Video file") + " (*.mp4 *.mkv *.avi *.mpg *.mpeg *.mpe *.mpv *.mov *.wmv *.m2v *.m4v *.webm *.ogg *.f4v *.m2ts *.mts)";
+        selected = tr("Video file") + " (*.mp4 *.mkv *.avi *.mpg *.mpeg *.mpe *.mpv *.mov *.wmv *.m2v *.m4v *.webm *.ogg *.f4v *.m2ts *.mts *.ts)";
         extra = "Avi (*.avi);;Mpeg (*.mpg *.mpeg *.mpe *.mpv *.m2v *.m4v *.mp4);;Mkv (*.mkv);;Mts (*.m2ts *.mts);;Webm (*.webm);;Mov (*.mov)"
                                       ";;Wmv (*.wmv);;F4v (*.f4v);;Ogg (*.ogg)";
     } else
