@@ -243,8 +243,8 @@ window.DialogConnect = function(params) {
             if ( !_url.startsWith('http') )
                 resolve({status:'skipped', response: {statusText: _url}});
             else {
-
-                const matches = (e) => (e.responseText || '').toLowerCase().includes(provider) || portal.toLowerCase().includes(provider);
+    
+                const matches = (e) => (provider === 'onlyoffice' ? ['onlyoffice', 'teamlab'] : [provider]).some(p => (e.responseText || '').toLowerCase().includes(p) || portal.toLowerCase().includes(p));
                 let fetchFuntion = $.ajax;
                 if (window.AscSimpleRequest && window.AscSimpleRequest.createRequest)
                     fetchFuntion = window.AscSimpleRequest.createRequest;
