@@ -36,13 +36,12 @@ function PreviewTemplateDialog(model, params = {}) {
         }
     }
 
-    params = {
-        ...params,
+    Object.assign(params, {
         dialogClass: 'dlg-template-preview',
         titleText: utils.Lang.actPreviewTemplates,
         defaultWidth: 800,
         bodyTemplate: bodyTemplate
-    };
+    });
 
     Dialog.call(this, params);
     this.model = model;
