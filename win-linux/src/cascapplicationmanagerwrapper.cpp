@@ -311,8 +311,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( cmd.find(L"app:onready") != std::wstring::npos ) {
+            GET_REGISTRY_SYSTEM(reg_system)
             GET_REGISTRY_USER(reg_user)
-            if (reg_user.value("lockPortals", false).toBool()
+            if (reg_system.value("lockPortals", false).toBool() || reg_user.value("lockPortals", false).toBool()
 #ifdef Q_OS_WIN
                     || Utils::getWinVersion() <= Utils::WinVer::WinVista
 #endif
