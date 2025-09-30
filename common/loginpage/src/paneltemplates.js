@@ -390,7 +390,6 @@
                             _loadTemplates.call(this, nl, page_num, fallBack);
                         } 
                     } else if (d.data && d.data.length === 0 && fallBack < 2) {
-                        _resetPagination.call(this);
                         _loadTemplates.call(this, nl, 0, fallBack + 1);
                     }
                 })
