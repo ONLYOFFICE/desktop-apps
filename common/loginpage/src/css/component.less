@@ -618,14 +618,16 @@ input[type="radio"] {
         position: absolute;
         top: 14px;
         left: 10px;
-        padding: 1px 6px 0 6px;
+        display: flex;
+        height: 28px;
+        align-items: center;
+        padding: 0px 6px;
         border-radius: 6px;
         background: conic-gradient(from 225deg at 50% 50%, var(--format-bg-start) 0deg, var(--format-bg-end) 360deg);
 
         span {
             color: @text-contrast-background;
             font-size: 16px;
-            line-height: 28px;
             font-weight: 700;
         }
 
