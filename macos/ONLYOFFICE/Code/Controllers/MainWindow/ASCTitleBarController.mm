@@ -223,7 +223,7 @@ static float kASCRTLTabsRightMargin = 0;
         if (@available(macOS 10.13, *)) {
             portalButtonCell.bgColor            = [NSColor colorNamed:@"tab-inactiveColor"];
             portalButtonCell.bgHoverColor       = [NSColor colorNamed:@"tab-hoverInactiveColor"];
-            portalButtonCell.bgActiveColor      = [NSColor colorNamed:@"tab-portal-activeColor"];
+            portalButtonCell.bgActiveColor      = [ASCThemesController currentThemeColor:btnPortalActiveBackgroundColor];
             portalButtonCell.textColor          = [NSColor clearColor];
             portalButtonCell.textActiveColor    = [NSColor clearColor];
             portalButtonCell.lineColor          = [NSColor clearColor];
@@ -237,7 +237,6 @@ static float kASCRTLTabsRightMargin = 0;
         }
 
         if ( [ASCThemesController isCurrentThemeDark] ) {
-            portalButtonCell.bgActiveColor = [ASCThemesController currentThemeColor:btnPortalActiveBackgroundColor];
             [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
         }
     }
