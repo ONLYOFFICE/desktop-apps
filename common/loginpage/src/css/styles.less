@@ -2460,11 +2460,12 @@ li.menu-item {
 }
 
 .template-preview-body {
-   display: flex;
+  display: flex;
 
   .img-container {
     max-height: 80vh;
     overflow-y: auto;
+    overflow-x: hidden;
     margin-right: 16px;
     flex-shrink: 0;
     .rtl & {
@@ -2525,5 +2526,34 @@ li.menu-item {
         margin-right: auto;
       }
     }
+  }
+  @media (max-width: 780px) {
+    flex-direction: column;
+
+    .img-container {
+      max-height: 30vh;
+      margin-right: 0;
+
+      .rtl & {
+        margin-left: 0;
+      }
+
+      .icon {
+        width: 100%;
+      }
+    }
+
+    .description {
+      .name,
+      .pricing,
+      .descr,
+      .file-info {
+        margin-bottom: 5px;
+      }
+
+      .btn--landing {
+        margin-top: 0;
+      }
+    } 
   }
 }
