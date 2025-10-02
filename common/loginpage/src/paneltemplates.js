@@ -467,6 +467,7 @@
                 };
 
                 CommonEvents.on('lang:changed', (ol, nl) => {
+                    if (ol === nl) return;
                     _resetPagination.call(this);  
                     _reload_templates(nl);
                     _loadTemplates.call(this, nl);
