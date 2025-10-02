@@ -311,6 +311,7 @@
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
                 this.dndZone.hide();
+                this.view.$panel.find('#area-welcome').hide();
             }
         };
 
