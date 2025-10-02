@@ -102,7 +102,7 @@
     // EULA View
     if (self.eulaWebView) {
         if ( !eulaUrl )
-            eulaUrl = [[NSBundle mainBundle] URLForResource:@"License" withExtension:@"html" subdirectory:@"license"];
+            eulaUrl = [[NSBundle mainBundle] URLForResource:@"LICENSE" withExtension:@"html" subdirectory:@"license"];
         [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:eulaUrl]];
     } else {
         // About View
