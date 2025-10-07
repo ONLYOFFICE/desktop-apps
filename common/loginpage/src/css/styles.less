@@ -749,7 +749,7 @@ li.menu-item {
       background-color: @background-normal-element-light;
     }
 
-    &:hover:not(.unavail) {
+    &:hover {
       .col-more {
         opacity: 1;
       }
@@ -761,6 +761,13 @@ li.menu-item {
 
     &:active, &[data-active] {
       background-color: @highlight-button-pressed;
+    }
+
+    &.unavail {
+      > :not(.col-more) {
+        opacity: 0.5;
+        -webkit-filter: grayscale(100%);
+      }
     }
   }
 }
