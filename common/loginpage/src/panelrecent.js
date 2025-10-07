@@ -470,16 +470,15 @@
             if (/\:forget/.test(action)) {
                 $('#' + data.uid, this.view.$panel).addClass('lost');
 
+                const count = collectionRecovers.size() + collectionRecents.size();
                 if (menu.actionlist === 'recent') {
                     window.sdk.LocalFileRemoveRecent(parseInt(data.fileid));
-                    if (collectionRecovers.size() === 0) {
-                        this.dndZone.show();
-                    }
                 } else {
                     window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));
-                    if (collectionRecents.size() === 0) {
-                        this.dndZone.show();
-                    }
+                }
+
+                if ( !(count > 1) ) {
+                    this.dndZone.show();
                 }
             } else
             if (/\:explore/.test(action)) {
