@@ -1,6 +1,8 @@
 l10n.sr_Cyrl_RS = {
     welWelcome: 'Добро дошли у ONLYOFFICE Десктоп Уређиваче!',
     welDescr: 'Радите на документима офлајн или конектујте пакет на свој облак: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Треба вам помоћ? Посетите наш $1.',
+    textHelpCenter: 'Центар за помоћ',
     btnConnect: 'Повежи сад',
     textHavePortal: 'Већ користите облак?',
     btnCreatePortal: 'Креирај ONLYOFFICE облак',

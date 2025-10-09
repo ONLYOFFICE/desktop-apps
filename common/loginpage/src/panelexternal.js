@@ -53,7 +53,7 @@
 
         let _html = `<div class="action-panel style--free ${args.action}">
                       <div class="flexbox">
-                        <iframe name="${args.id}" id="${args.id}" src="${args.url}"></iframe>
+                        <iframe name="${args.id}" id="${args.id}" src="${args.url}" allow="clipboard-read; clipboard-write"></iframe>
                       </div>
                     </div>`;
 
@@ -132,6 +132,14 @@
             /**/
             if ( panel_id.includes('\{B17BDC61\-') ) {
                 _encrype_workaround(_panel);
+            } else
+            if ( panel_id.includes('F2402876-659F-47FB-A646-67B49F2B5AAA') ) {
+                const $svgicon = _panel.$menuitem.find('svg.icon');
+                if ( $svgicon.length ) {
+                    $svgicon.data('iconname', 'aichat');
+                    $('use', $svgicon).attr('href', '#aichat');
+                }
+                _panel.$menuitem.find('i.icon').removeClass('plugin').addClass('aichat');
             }
             /**/
         };

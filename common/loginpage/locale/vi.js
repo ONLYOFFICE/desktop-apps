@@ -1,6 +1,8 @@
 l10n.vi = {
     welWelcome: 'Chào mừng đến với ONLYOFFICE Editors cho máy tính!',
     welDescr: 'Làm việc với các tài liệu khi không kết nối mạng hay kết nối bộ công cụ với đám mây của bạn: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Cần trợ giúp? Truy cập $1.',
+    textHelpCenter: 'Trung tâm Hỗ trợ',
     btnConnect: 'Kết nối ngay',
     textHavePortal: 'Bạn đã dùng đám mây?',
     btnCreatePortal: 'Tạo một đám mây ONLYOFFICE',

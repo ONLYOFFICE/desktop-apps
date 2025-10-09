@@ -117,7 +117,6 @@ private:
 
     bool        m_startUpdateOnClose = false,
                 m_restartAfterUpdate = false,
-                m_notificationSupported = false,
                 m_manualCheck = false,
                 m_lock = false;
 

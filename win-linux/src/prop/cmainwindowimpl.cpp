@@ -43,7 +43,7 @@
 
 #define DEFAULT_LICENSE_NAME    "GNU AGPL v3"
 #define DEFAULT_LICENSE_URL     URL_AGPL
-#define LICENSE_FILE_NAME       "/LICENSE.txt"
+#define LICENSE_FILE_NAME       "/EULA.txt"
 
 CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
     CMainWindow(rect)
@@ -55,23 +55,35 @@ void CMainWindowImpl::refreshAboutVersion()
 {
     QJsonObject _json_obj;
 
-    QString _lic_name, _lic_url;
-    const QString _lic_path = QCoreApplication::applicationDirPath() + LICENSE_FILE_NAME;
-    QFile _lic_file(_lic_path);
-    if ( _lic_file.exists() ) {
-        if ( _lic_file.open(QIODevice::ReadOnly | QIODevice::Text )) {
-            QTextStream stream(&_lic_file);
-            _lic_name = _lic_file.readLine().trimmed();
-            _lic_file.close();
+    auto _read_license_name = [](const QString& path) -> QString {
+        QFile f(path);
+        QString n;
+        if ( f.exists(path) ) {
+            if ( f.open(QIODevice::ReadOnly | QIODevice::Text )) {
+                QTextStream stream(&f);
+                n = f.readLine().trimmed();
+                f.close();
+            }
         }
+
+        return n;
+    };
+
+    QString _lic_path = QCoreApplication::applicationDirPath() + LICENSE_FILE_NAME;
+    QString _lic_name = _read_license_name(_lic_path),
+            _lic_url;
+    if ( _lic_name.isEmpty() ) {
+        _lic_path = QCoreApplication::applicationDirPath() + "/License.txt";
+        if ( (_lic_name = _read_license_name(_lic_path)).isEmpty() ) {
+            _lic_name = DEFAULT_LICENSE_NAME;
+            _lic_url = DEFAULT_LICENSE_URL;
+        }
+    } else {
+        _json_obj["commercial"] = _lic_name != DEFAULT_LICENSE_NAME;
     }
 
-    if ( _lic_name.isEmpty() ) {
-        _lic_name = DEFAULT_LICENSE_NAME;
-        _lic_url = DEFAULT_LICENSE_URL;
-    } else {
+    if ( _lic_url.isEmpty() ) {
         _lic_url = QUrl::fromLocalFile(_lic_path).toString();
-        _json_obj["commercial"] = _lic_name != DEFAULT_LICENSE_NAME;
     }
 
     QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";

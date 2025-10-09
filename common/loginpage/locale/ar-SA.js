@@ -1,6 +1,8 @@
 l10n.ar_SA = {
     welWelcome: 'مرحبًا بك في محرر ONLYOFFICE لسطح المكتب!',
     welDescr: 'اعمل على مستنداتك بدون اتصال أو اتصل بسحابتك: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'بحاجة الى مساعدة؟ قم بزيارة $1 الخاص بنا.',
+    textHelpCenter: 'مركز المساعدة',
     btnConnect: 'اتصل الآن',
     textHavePortal: 'هل تستخدم سحابة من قبل؟',
     btnCreatePortal: 'أنشئ سحابة ONLYOFFICE',

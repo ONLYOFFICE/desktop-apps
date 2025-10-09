@@ -42,15 +42,16 @@
 #include "version.h"
 #include "components/cmessage.h"
 #include "ctabundockevent.h"
-#include <QDesktopWidget>
+#include <qtcomp/qdesktopwidget.h>
 #include <QGridLayout>
 #include <QTimer>
 #include <QApplication>
 #include <QAction>
-#include <QRegularExpression>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMimeData>
+
+#include <qtcomp/qpalette.h>
 
 #ifdef _WIN32
 # include "shlobj.h"
@@ -283,7 +284,8 @@ void CMainWindow::onCloseEvent()
 
 void CMainWindow::closeEvent(QCloseEvent * e)
 {
-    AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(this)});
+    if (isEnabled())
+        AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(this)});
     e->ignore();
 }
 
@@ -308,9 +310,11 @@ void CMainWindow::close()
                 for (int i = 0; i < m_pTabs->count(); i++) {
                     if (!m_pTabs->modifiedByIndex(i)) {
                         bool dontAskAgain = false;
+                        CMessageOpts opts;
+                        opts.checkBoxState = &dontAskAgain;
+                        opts.chekBoxText = tr("Don't ask again.");
                         int res = CMessage::showMessage(this, tr("More than one document is open.<br>Close the window anyway?"),
-                                                           MsgType::MSG_WARN, MsgBtns::mbYesNo, &dontAskAgain,
-                                                           tr("Don't ask again."));
+                                                           MsgType::MSG_WARN, MsgBtns::mbYesNo, opts);
                         if (dontAskAgain)
                             reg_user.setValue("ignoreMsgAboutOpenTabs", true);
                         if (res != MODAL_RESULT_YES) {
@@ -483,7 +487,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
         QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
         gradient.setColorAt(0, QColor(0xeee));
         gradient.setColorAt(1, QColor(0xe4e4e4));
-        palette.setBrush(QPalette::Background, QBrush(gradient));
+        palette.setBrush(QtComp::Palette::Background, QBrush(gradient));
         label->setFixedHeight(0);
     }
 
@@ -1299,7 +1303,7 @@ void CMainWindow::onEditorActionRequest(int vid, const QString& args)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if (!(index < 0)) {
-        if (args.contains(QRegExp("action\\\":\\\"file:close"))) {
+        if (args.contains(QRegularExpression("action\\\":\\\"file:close"))) {
             bool _is_local = m_pTabs->isLocalByIndex(index);
             onTabCloseRequest(index);
             if (!_is_local) {

@@ -177,6 +177,9 @@ public:
 
                 paper_width = std::ceil(size["w"].toDouble(0));
                 paper_height = std::ceil(size["h"].toDouble(0));
+                if (page_orientation == QPageLayout::Landscape) {
+                    std::swap(paper_width, paper_height);
+                }
                 size_preset = size["preset"].toString();
             }
 

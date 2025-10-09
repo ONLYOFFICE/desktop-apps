@@ -1,6 +1,8 @@
 l10n.ro = {
     welWelcome: 'Bine ați venit la ONLYOFFICE Desktop Editors!',
     welDescr: 'Lucrați la documente offline sau conecta suitați suitã la cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Aveți nevoie de ajutor? Vizitează $1.',
+    textHelpCenter: 'Centru de ajutor',
     btnConnect: 'Conecteazã acum',
     textHavePortal: 'Utilizați deja serviciile cloud?',
     btnCreatePortal: 'Crearea unui cont ONLYOFFICE cloud',

@@ -39,6 +39,7 @@
 #include "ceditortools.h"
 #include "components/cfullscrwidget.h"
 #include "components/cmenu.h"
+#include "defines.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
 #include <QDir>
 #include <QUuid>
@@ -48,6 +49,7 @@
 #include <QGridLayout>
 #include <QAction>
 
+#include <qtcomp/qnativeevent.h>
 #define DEFAULT_BTNS_COUNT 6
 #define ICON_SPACER_WIDTH 9
 #define ICON_SIZE QSize(20,20)
@@ -103,7 +105,6 @@ class CEditorWindowPrivate : public CCefEventsGate
     CEditorWindow * window = nullptr;
     QLabel * iconuser = nullptr;
     bool isPrinting = false,
-         layoutIsSet = false,
         isFullScreen = false;
     int layoutType = LayoutNone;
     CFullScrWidget * fs_parent = nullptr;
@@ -138,7 +139,7 @@ public:
         leftboxbuttons = new QWidget;
         leftboxbuttons->setLayout(new QHBoxLayout);
         leftboxbuttons->layout()->setSpacing(0);
-        leftboxbuttons->layout()->setMargin(0);
+        QtComp::Widget::setLayoutMargin(leftboxbuttons->layout(), 0);
 
         CSVGPushButton * btnHome = new CSVGPushButton;
         btnHome->setProperty("class", "normal");
@@ -409,7 +410,7 @@ public:
 
     void onEditorActionRequest(int, const QString& json) override
     {
-        if ( json.contains(QRegExp("action\\\":\\\"file:close")) ) {
+        if ( json.contains(QRegularExpression("action\\\":\\\"file:close")) ) {
             window->closeWindow();
         }
     }
@@ -940,7 +941,7 @@ public:
         boxtitlelabel->setObjectName("boxtitlelabel");
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
-        boxtitlelabel->layout()->setMargin(0);
+        QtComp::Widget::setLayoutMargin(boxtitlelabel->layout(), 0);
         boxtitlelabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
         if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {

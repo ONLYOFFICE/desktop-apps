@@ -134,8 +134,11 @@ namespace CEditorTools
             }
 
             if ( !AscAppManager::printData().isQuickPrint() ) {
-                printer->setPageOrientation(AscAppManager::printData().pageOrientation());
+                // printer->setPageOrientation(AscAppManager::printData().pageOrientation());
                 printer->setPageSize(AscAppManager::printData().pageSize());
+                QPageLayout layout = printer->pageLayout();
+                layout.setOrientation(AscAppManager::printData().pageOrientation());
+                printer->setPageLayout(layout);
                 printer->setFullPage(true);
             }
 

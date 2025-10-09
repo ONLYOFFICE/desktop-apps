@@ -143,6 +143,7 @@
     addObserverFor(CEFEventNameCertificatePreview, @selector(onCEFCertificatePreview:));
     addObserverFor(ASCEventNameChangedUITheme, @selector(onUIThemeChanged:));
     addObserverFor(ASCEventNameChangedSystemTheme, @selector(onSystemThemeChanged:));
+    addObserverFor(ASCEventNameRecoveryFiles, @selector(onRecoveryFiles:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -1200,7 +1201,16 @@
 
         NSArray * allowedFileTypes = @[];
 
-        if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
+        if ([fileTypes length] == 0) {
+            NSMutableArray * filter = [NSMutableArray array];
+            [filter addObjectsFromArray:[ASCConstants documents]];
+            [filter addObjectsFromArray:[ASCConstants spreadsheets]];
+            [filter addObjectsFromArray:[ASCConstants presentations]];
+            [filter addObjectsFromArray:[ASCConstants draws]];
+            [filter addObjectsFromArray:[ASCConstants csvtxt]];
+
+            allowedFileTypes = filter;
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
             allowedFileTypes = [ASCConstants images];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterAudio]) {
             allowedFileTypes = [ASCConstants audios];
@@ -1552,7 +1562,8 @@
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
     
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?:
+                            [ASCThemesController defaultThemeId:[ASCThemesController isCurrentThemeDark]];
 
     NSMutableDictionary * json_langs = @{
         @"uitheme": uiTheme,
@@ -1569,8 +1580,10 @@
     }
 
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1");
+    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1"),
+        detectkeyboard = !(appManager->GetUserSettings()->Get(L"spell-check-input-mode") == L"0");
     [json_langs setValue:@(usegpu) forKey:@"usegpu"];
+    [json_langs setValue:detectkeyboard?@"auto":@"off" forKey:@"spellcheckdetect"];
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
@@ -1873,6 +1886,9 @@
         pEvent->m_pData = pCommand;
         appManager->SetEventToAllMainWindows(pEvent);
 
+        NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"theme": theme}];
+        appManager->UpdatePlugins([[json jsonString] stdwstring]);
+
         for (ASCTabView * tab in self.tabsControl.tabs) {
             if (NSCefView * cefView = [self cefViewWithTab:tab]) {
                 CCefView * cef = appManager->GetViewById((int)cefView.uuid);
@@ -1893,6 +1909,28 @@
 
         [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:theme];
         [[ASCEditorJSVariables instance] applyParameters];
+    }
+}
+
+-(void)onRecoveryFiles:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * sfiles = params[@"files"];
+        NSError * err = nil;
+        NSArray * arrfiles = [NSJSONSerialization JSONObjectWithData:[sfiles dataUsingEncoding:NSUTF8StringEncoding]
+                                                          options:0
+                                                            error:&err];
+        for (NSDictionary * f in arrfiles) {
+            NSNotification * n = [NSNotification notificationWithName:CEFEventNameCreateTab
+                                                               object:nil
+                                                             userInfo:@{
+                                                                        @"action"  : @(ASCTabActionOpenLocalRecoverFile),
+                                                                        @"active"  : @(YES),
+                                                                        @"fileId"  : f[@"id"],
+                                                                        @"path"    : f[@"path"]
+                                                                    }];
+            [self onCEFCreateTab:n];
+        }
     }
 }
 

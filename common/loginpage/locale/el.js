@@ -1,6 +1,8 @@
 l10n.el = {
     welWelcome: 'Καλώς ήλθατε στο ONLYOFFICE Desktop Editors!',
     welDescr: 'Εργαστείτε εκτός σύνδεσης με έγγραφα ή συνδέστε τη σουίτα στο cloud σας: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Χρειάζεστε βοήθεια; Επισκεφτείτε το $1 μας.',
+    textHelpCenter: 'Κέντρο Βοήθειας',
     btnConnect: 'Σύνδεση τώρα',
     textHavePortal: 'Χρησιμοποιείτε ήδη cloud;',
     btnCreatePortal: 'Δημιουργήστε ένα ONLYOFFICE cloud',
@@ -57,6 +59,8 @@ l10n.el = {
     actAbout: 'Σχετικά',
     actSettings: 'Ρυθμίσεις',
     actTemplates: 'Πρότυπα',
+    actClouds: 'Δικτυακά',
+    actHome: 'Κεντρική',
     licKeyHolder: 'εισαγωγή κλειδιού ενεργοποίησης',
     btnActivate: 'Ενεργοποίηση',
     licGetLicense: 'Απόκτηση άδειας χρήσης τώρα',

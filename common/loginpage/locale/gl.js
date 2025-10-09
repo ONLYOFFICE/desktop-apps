@@ -1,6 +1,8 @@
 l10n.gl = {
     welWelcome: 'Dámosche a benvida aos editores de escritorio ONLYOFFICE!',
     welDescr: 'Traballa en documentos sen conexión ou conecta a suite á túa nube: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Necesitas axuda? Visita o noso $1.',
+    textHelpCenter: 'Centro de Axuda',
     btnConnect: 'Conectar agora',
     textHavePortal: 'Estás usando xa a nube?',
     btnCreatePortal: 'Crear unha nube en ONLYOFFICE',

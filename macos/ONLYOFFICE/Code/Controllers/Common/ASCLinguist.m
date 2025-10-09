@@ -98,9 +98,6 @@ static BOOL uiLayoutDirectionRTL = NO;
             // Get only keyboard input sources
             CFTypeRef type = TISGetInputSourceProperty(source, kTISPropertyInputSourceType);
             if ( CFEqual(type, kTISTypeKeyboardLayout) || CFEqual(type, kTISTypeKeyboardInputMode) ) {
-                CFStringRef localizedName = TISGetInputSourceProperty(source, kTISPropertyLocalizedName);
-                NSString *name = (__bridge NSString *)localizedName;
-
                 // Get the language codes (ISO 639 format)
                 CFArrayRef languages = TISGetInputSourceProperty(source, kTISPropertyInputSourceLanguages);
                 if ( languages && CFArrayGetCount(languages) > 0 ) {
@@ -108,6 +105,19 @@ static BOOL uiLayoutDirectionRTL = NO;
                     CFStringRef firstLang = CFArrayGetValueAtIndex(languages, 0);
                     NSString *langString = (__bridge NSString *)firstLang;
 
+                    NSString *name = nil;
+                    NSLocale *locale = [NSLocale localeWithLocaleIdentifier:langString];
+                    if (locale) {
+                        name = [locale displayNameForKey:NSLocaleIdentifier value:langString];
+                        if (name) {
+                            name = [name capitalizedString];
+                        }
+                    }
+                    
+                    if (!name) {
+                        CFStringRef localizedName = (CFStringRef)TISGetInputSourceProperty(source, kTISPropertyLocalizedName);
+                        name = (__bridge NSString *)localizedName;
+                    }
                     outdict[langString] = name;
 //                    NSArray *components = [langString componentsSeparatedByString:@"-"];
 //                    NSString *languageCode = components[0];
