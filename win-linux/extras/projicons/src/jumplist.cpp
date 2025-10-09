@@ -101,7 +101,6 @@ HRESULT _CreateShellLink(PCWSTR pszArguments, PCWSTR pszTitle, IShellLink **ppsl
 
 HRESULT _AddTasksToList(ICustomDestinationList *pcdl, const QStringList &list)
 {
-    pcdl->AppendKnownCategory(KDC_RECENT);
     IObjectCollection *poc;
     HRESULT hr = CoCreateInstance(CLSID_EnumerableObjectCollection, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&poc));
     if (SUCCEEDED(hr))
