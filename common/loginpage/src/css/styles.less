@@ -942,8 +942,11 @@ li.menu-item {
     margin-left: auto;
     margin-right: auto;
     .document-creation-grid {
-      padding-left: 104px;
-      padding-right: 112px;
+      @media (min-width: 1280px) {
+        padding-left: 104px;
+        padding-right: 112px;
+      }
+      
       > * {
         margin-right: 32px;
       }
