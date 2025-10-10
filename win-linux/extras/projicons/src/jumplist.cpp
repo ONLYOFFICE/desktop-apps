@@ -53,13 +53,14 @@
 
 HRESULT _CreateShellLink(PCWSTR pszArguments, PCWSTR pszTitle, IShellLink **ppsl, int index)
 {
+    WCHAR szAppPath[MAX_PATH];
+    if (GetModuleFileName(NULL, szAppPath, ARRAYSIZE(szAppPath)) == 0)
+        return HRESULT_FROM_WIN32(GetLastError());
+
     IShellLink *psl;
     HRESULT hr = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&psl));
     if (SUCCEEDED(hr))
     {
-        WCHAR szAppPath[MAX_PATH];
-        if (GetModuleFileName(NULL, szAppPath, ARRAYSIZE(szAppPath)))
-        {
             hr = psl->SetPath(szAppPath);
             if (SUCCEEDED(hr))
             {
@@ -91,11 +92,6 @@ HRESULT _CreateShellLink(PCWSTR pszArguments, PCWSTR pszTitle, IShellLink **ppsl
                     }
                 }
             }
-        }
-        else
-        {
-            hr = HRESULT_FROM_WIN32(GetLastError());
-        }
         psl->Release();
     }
     return hr;
