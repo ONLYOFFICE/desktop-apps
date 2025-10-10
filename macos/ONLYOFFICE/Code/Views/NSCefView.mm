@@ -56,7 +56,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         CALayer *viewLayer = [CALayer layer];
-        [viewLayer setBackgroundColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0)]; //RGB plus Alpha Channel
+        
+        CGColorRef backColor = CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0); //RGB plus Alpha Channel
+        [viewLayer setBackgroundColor:backColor];
+        CGColorRelease(backColor);
+        
         [self setWantsLayer:YES]; // view's backing store is using a Core Animation Layer
         [self setLayer:viewLayer];
 
@@ -108,9 +112,14 @@
 }
 
 - (void)setBackgroundColor:(NSColor *)color {
+    CGFloat red, green, blue, alpha;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    CGColorRef backColor = CGColorCreateGenericRGB(red, green, blue, 1.0); //RGB plus Alpha Channel
+    [self.layer setBackgroundColor:backColor];
+    CGColorRelease(backColor);
+    
     if (m_pCefView) {
-        CGFloat red, green, blue, alpha;
-        [color getRed:&red green:&green blue:&blue alpha:&alpha];
         return m_pCefView->SetBackgroundCefColor(255 * red, 255 * green, 255 * blue);
     }
 }
