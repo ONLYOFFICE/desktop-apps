@@ -514,12 +514,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
@@ -1016,17 +1016,17 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="115"/>
         <source>There are no printers available</source>
-        <translation type="unfinished">कोई प्रिंटर उपलब्ध नहीं है</translation>
+        <translation>कोई प्रिंटर उपलब्ध नहीं है</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="165"/>
         <source>Print Document</source>
-        <translation type="unfinished">दस्तावेज़ को प्रिंट करें</translation>
+        <translation>दस्तावेज़ को प्रिंट करें</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="229"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished">प्रिंट करने के लिए कोई पेज सेट नहीं है।</translation>
+        <translation>प्रिंट करने के लिए कोई पेज सेट नहीं है।</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="267"/>
@@ -1209,19 +1209,19 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">प्रिंट हो रहा है...</translation>
+        <translation>प्रिंट हो रहा है...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">दस्तावेज़ को तैयार कर रहे हैं</translation>
+        <translation>दस्तावेज़ को तैयार कर रहे हैं</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="98"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;रद्द करें</translation>
+        <translation>&amp;रद्द करें</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="234"/>
@@ -1258,7 +1258,7 @@
     <message>
         <location filename="../src/components/cnotification.cpp" line="73"/>
         <source>Restart</source>
-        <translation type="unfinished">पुनः आरंभ करें</translation>
+        <translation>पुनः आरंभ करें</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="75"/>

@@ -501,12 +501,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
@@ -997,17 +997,17 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="115"/>
         <source>There are no printers available</source>
-        <translation type="unfinished">لا توجد أي طابعة متاحة</translation>
+        <translation>لا توجد أي طابعة متاحة</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="165"/>
         <source>Print Document</source>
-        <translation type="unfinished">طباعة المستند</translation>
+        <translation>طباعة المستند</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="229"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished">لا توجد صفحات مضبوطة للطباعة.</translation>
+        <translation>لا توجد صفحات مضبوطة للطباعة.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="267"/>
@@ -1225,7 +1225,7 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="240"/>
         <source>Set Default App</source>
-        <translation type="unfinished"></translation>
+        <translation>تعيين التطبيق الافتراضي</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="251"/>
@@ -1242,17 +1242,17 @@
         <location filename="../src/components/cnotification.cpp" line="71"/>
         <location filename="../src/components/cnotification.cpp" line="74"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>يثبت</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="73"/>
         <source>Restart</source>
-        <translation type="unfinished">إعادة تشغيل</translation>
+        <translation>إعادة تشغيل</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="75"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>تحميل</translation>
     </message>
 </context>
 </TS>

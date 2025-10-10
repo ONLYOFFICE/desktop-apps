@@ -1008,12 +1008,12 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="115"/>
         <source>There are no printers available</source>
-        <translation type="unfinished">ບໍ່ມີເຄື່ອງພິມທີ່ມີຢູ່</translation>
+        <translation>ບໍ່ມີເຄື່ອງພິມທີ່ມີຢູ່</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="165"/>
         <source>Print Document</source>
-        <translation type="unfinished">ພິມເອກະສານ</translation>
+        <translation>ພິມເອກະສານ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="229"/>
@@ -1221,19 +1221,19 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">ກຳລັງພິມ...</translation>
+        <translation>ກຳລັງພິມ...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">ການກະກຽມເອກະສານ</translation>
+        <translation>ການກະກຽມເອກະສານ</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="98"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;ຍົກເລີກ</translation>
+        <translation>&amp;ຍົກເລີກ</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="234"/>

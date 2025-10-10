@@ -529,12 +529,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
@@ -1086,17 +1086,17 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="115"/>
         <source>There are no printers available</source>
-        <translation type="unfinished">无可用的打印机</translation>
+        <translation>无可用的打印机</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="165"/>
         <source>Print Document</source>
-        <translation type="unfinished">打印文件</translation>
+        <translation>打印文件</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="229"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished">没有要打印的页面。</translation>
+        <translation>没有要打印的页面。</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
@@ -1328,7 +1328,7 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="240"/>
         <source>Set Default App</source>
-        <translation type="unfinished"></translation>
+        <translation>设置默认应用程序</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="251"/>
@@ -1345,17 +1345,17 @@
         <location filename="../src/components/cnotification.cpp" line="71"/>
         <location filename="../src/components/cnotification.cpp" line="74"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>安装</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="73"/>
         <source>Restart</source>
-        <translation type="unfinished">重新启动</translation>
+        <translation>重新启动</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="75"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>下载</translation>
     </message>
 </context>
 <context>

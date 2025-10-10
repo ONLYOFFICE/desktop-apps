@@ -529,12 +529,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
@@ -1078,17 +1078,17 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="115"/>
         <source>There are no printers available</source>
-        <translation type="unfinished">利用可能なプリンターはありません</translation>
+        <translation>利用可能なプリンターはありません</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="165"/>
         <source>Print Document</source>
-        <translation type="unfinished">ドキュメントを印刷</translation>
+        <translation>ドキュメントを印刷</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="229"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished">印刷するページが設定されていません。</translation>
+        <translation>印刷するページが設定されていません。</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="276"/>
@@ -1320,7 +1320,7 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="240"/>
         <source>Set Default App</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルトアプリを設定する</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="251"/>
@@ -1337,17 +1337,17 @@
         <location filename="../src/components/cnotification.cpp" line="71"/>
         <location filename="../src/components/cnotification.cpp" line="74"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>インストール</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="73"/>
         <source>Restart</source>
-        <translation type="unfinished">再起動</translation>
+        <translation>再起動</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="75"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>ダウンロード</translation>
     </message>
 </context>
 <context>

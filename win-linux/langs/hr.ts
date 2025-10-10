@@ -509,17 +509,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
         <source>Visio diagram</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio dijagram</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
@@ -624,7 +624,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="83"/>
         <location filename="../src/windows/cmainwindow.cpp" line="636"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Glavni prozor</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="316"/>
@@ -1016,17 +1016,17 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="115"/>
         <source>There are no printers available</source>
-        <translation type="unfinished">Nema dostupnih pisača</translation>
+        <translation>Nema dostupnih pisača</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="165"/>
         <source>Print Document</source>
-        <translation type="unfinished">Ispis dokumenta</translation>
+        <translation>Ispis dokumenta</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="229"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished">Nijedna stranica nije postavljena za ispis.</translation>
+        <translation>Nijedna stranica nije postavljena za ispis.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="267"/>
@@ -1103,7 +1103,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="753"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Došlo je do pogreške prilikom pokretanja instalacije ažuriranja: Usluga ažuriranja nije pronađena!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="763"/>
@@ -1209,61 +1209,61 @@
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
         <source>Printing...</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Ispisivanje...</translation>
+        <translation>Ispisivanje...</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Pripremanje dokumenta</translation>
+        <translation>Pripremanje dokumenta</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="98"/>
         <source>&amp;Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">&amp;Odustani</translation>
+        <translation>&amp;Odustani</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="234"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>Želite li %1 postaviti kao zadanu aplikaciju za proširenje: %2?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="236"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>Želite li %1 postaviti kao zadanu aplikaciju za sva podržana proširenja?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="240"/>
         <source>Set Default App</source>
-        <translation type="unfinished"></translation>
+        <translation>Postavi zadanu aplikaciju</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="251"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne prikazuj više ovu poruku</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>Postoje nespremljeni dokumenti</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="71"/>
         <location filename="../src/components/cnotification.cpp" line="74"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalirati</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="73"/>
         <source>Restart</source>
-        <translation type="unfinished">Ponovno pokreni</translation>
+        <translation>Ponovno pokreni</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="75"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Preuzmi</translation>
     </message>
 </context>
 <context>
