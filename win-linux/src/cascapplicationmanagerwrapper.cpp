@@ -855,7 +855,7 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
     QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr, CWindowBase::expectedContentSize(_start_rect));
     _startPanel->Create(&_app, cvwtSimple);
     _startPanel->setObjectName("startPanel");
-    QColor c = m_themes.current().color(CTheme::ColorRole::ecrWindowBackground);
+	QColor c = m_themes->current().color(CTheme::ColorRole::ecrWindowBackground);
     _startPanel->SetBackgroundCefColor(uchar(c.red()), uchar(c.green()), uchar(c.blue()));
     //_startPanel->resize(_start_rect.width(), _start_rect.height());
 
