@@ -325,7 +325,6 @@ public:
                         CMessage::error(m_appmanager.mainWindow()->handle(),
                                         QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                     }
-                    else Utils::addToRecent(file_path);
                 }
 
                 return true;

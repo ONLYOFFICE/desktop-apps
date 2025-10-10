@@ -1015,7 +1015,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     if ( _c_pos != std::wstring::npos )
                         open_opts.name = QString::fromStdWString(open_opts.wurl.substr(++_c_pos));
 
-                    Utils::addToRecent(open_opts.wurl);
 //                    open_opts.srctype = etLocalFile;
                 } else
                 if ( _error == EBADF && !open_in_new_window ) {
@@ -1133,8 +1132,24 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
     Association::instance().chekForAssociations(uid);
 #endif
 
-    if (uid > -1 && printData().printerCapabilitiesReady())
-        AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+    if (uid > -1) {
+        if (printData().printerCapabilitiesReady())
+            AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+
+        CAscTabData *data = nullptr;
+        if (CEditorWindow *editor = editorWindowFromViewId(uid)) {
+            data = editor->mainView()->data();
+        } else
+            if (mainWindow() && mainWindow()->holdView(uid)) {
+                int indx = mainWindow()->tabWidget()->tabIndexByView(uid);
+                if (indx > -1)
+                    data = mainWindow()->tabWidget()->panel(indx)->data();
+            }
+
+        if (data && data->isLocal() && !data->url().empty()) {
+            Utils::addToRecent(data->url());
+        }
+    }
 
     static bool check_printers = false;
     if (!check_printers) {

@@ -956,7 +956,6 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
         toggleButtonMain(false, true);
-        Utils::addToRecent(opts.wurl);
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
