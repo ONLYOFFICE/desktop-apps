@@ -33,9 +33,11 @@
 #define NTDDI_VERSION NTDDI_WIN7
 #define WIN32_LEAN_AND_MEAN
 #define STRICT_TYPED_ITEMIDS
+#define MAX_TASK_NUM 4
 #define ICON_OFFSET 14
 
 #include "jumplist.h"
+#include "resource.h"
 #include <QtGlobal>
 #include <Windows.h>
 #include <psapi.h>
@@ -99,22 +101,33 @@ HRESULT _CreateShellLink(PCWSTR pszArguments, PCWSTR pszTitle, IShellLink **ppsl
     return hr;
 }
 
-HRESULT _AddTasksToList(ICustomDestinationList *pcdl, const QStringList &list)
+HRESULT _AddTasksToList(ICustomDestinationList *pcdl)
 {
+    WCHAR szAppPath[MAX_PATH];
+    if (GetModuleFileName(NULL, szAppPath, ARRAYSIZE(szAppPath)) == 0)
+        return HRESULT_FROM_WIN32(GetLastError());
+
     IObjectCollection *poc;
     HRESULT hr = CoCreateInstance(CLSID_EnumerableObjectCollection, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&poc));
     if (SUCCEEDED(hr))
     {
-        PCWSTR args[MAX_TASK_NUM] = {
-            L"--new:word",
-            L"--new:cell",
-            L"--new:slide",
-            L"--new:form"
+        struct {
+            PCWSTR arg;
+            int stringId;
+        }
+        tasks[MAX_TASK_NUM] = {
+            {L"--new:word",  IDS_JUMP_DOCX},
+            {L"--new:cell",  IDS_JUMP_XLSX},
+            {L"--new:slide", IDS_JUMP_PPTX},
+            {L"--new:form",  IDS_NEW_PDF},
         };
 
         IShellLink * psl;
-        for (int i = 0; i < MAX_TASK_NUM && i < list.size(); i++) {
-            hr = _CreateShellLink(args[i], list[i].toStdWString().c_str(), &psl, i);
+        for (int i = 0; i < MAX_TASK_NUM; i++) {
+            WCHAR szResPath[MAX_PATH];
+            swprintf_s(szResPath, ARRAYSIZE(szResPath), L"@%s,-%d", szAppPath, tasks[i].stringId);
+
+            hr = _CreateShellLink(tasks[i].arg, szResPath, &psl, i);
             if (SUCCEEDED(hr))
             {
                 hr = poc->AddObject(psl);
@@ -137,7 +150,7 @@ HRESULT _AddTasksToList(ICustomDestinationList *pcdl, const QStringList &list)
     return hr;
 }
 
-void CreateJumpList(const QStringList &list)
+void CreateJumpList()
 {
     HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
     if (SUCCEEDED(hr))
@@ -150,7 +163,7 @@ void CreateJumpList(const QStringList &list)
             IObjectArray *poaRemoved;
             hr = pcdl->BeginList(&cMinSlots, IID_PPV_ARGS(&poaRemoved));
             if (SUCCEEDED(hr)) {
-                hr = _AddTasksToList(pcdl, list);
+                hr = _AddTasksToList(pcdl);
                 if (SUCCEEDED(hr))
                     hr = pcdl->CommitList();
                 poaRemoved->Release();
