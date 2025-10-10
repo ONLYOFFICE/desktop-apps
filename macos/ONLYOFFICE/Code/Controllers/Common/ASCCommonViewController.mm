@@ -205,6 +205,8 @@
         
         self.cefStartPageView = [[NSCefView alloc] initWithFrame:tab.view.frame];
         [self.cefStartPageView create:appManager withType:cvwtSimple];
+        NSColor * backColor = [ASCThemesController currentThemeColor:windowBackgroundColor];
+        [self.cefStartPageView setBackgroundColor:backColor];
         [tab.view addSubview:self.cefStartPageView];
         [self.cefStartPageView autoPinEdgesToSuperviewEdges];
     }
@@ -1966,7 +1968,8 @@
         } else {
             [cefView create:appManager withType:cvwtEditor];
         }
-        
+        [cefView setBackgroundColor:[ASCThemesController currentThemeColor:windowBackgroundColor]];
+
         [self.view.window makeKeyAndOrderFront:nil];
         
         switch (action) {

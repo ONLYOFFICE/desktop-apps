@@ -107,6 +107,14 @@
     }
 }
 
+- (void)setBackgroundColor:(NSColor *)color {
+    if (m_pCefView) {
+        CGFloat red, green, blue, alpha;
+        [color getRed:&red green:&green blue:&blue alpha:&alpha];
+        return m_pCefView->SetBackgroundCefColor(255 * red, 255 * green, 255 * blue);
+    }
+}
+
 - (NSInteger)uuid {
     if (m_pCefView) {
         return m_pCefView->GetCefView()->GetId();
