@@ -138,7 +138,7 @@
         return;
     }
     
-    [_controller close];
+    [_controller.window performClose:nil];
     _isDisplay = false;
 }
 
