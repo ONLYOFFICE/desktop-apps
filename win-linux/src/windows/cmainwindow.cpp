@@ -1703,3 +1703,22 @@ void CMainWindow::handleWindowAction(const std::wstring& action)
         }
     }
 }
+
+void CMainWindow::onEditorMouseEvent(QEvent::Type ev, QPoint pt)
+{
+    POINT _pt;
+    ::GetCursorPos(&_pt);
+    ::ReleaseCapture();
+    switch (ev) {
+    case QEvent::MouseButtonDblClick:
+        ::PostMessage((HWND)winId(), WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(_pt));
+        break;
+    case QEvent::MouseButtonPress:
+        ::PostMessage((HWND)winId(), WM_NCLBUTTONDOWN, HTCAPTION, POINTTOPOINTS(_pt));
+        break;
+    case QEvent::MouseButtonRelease:
+        break;
+    default:
+        break;
+    }
+}

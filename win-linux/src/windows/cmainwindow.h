@@ -157,6 +157,8 @@ public slots:
     void onErrorPage(int, const std::wstring&);
     virtual void onDocumentReady(int);
 
+    void onEditorMouseEvent(QEvent::Type ev, QPoint pt);
+
 private:
     QWidget * createMainPanel(QWidget *parent);
     int  trySaveDocument(int);

@@ -33,7 +33,10 @@
 #include "ccefeventstransformer.h"
 #include "applicationmanager_events.h"
 #include "common/Types.h"
+#include "utils.h"
+#include <QJsonObject>
 #include <QProcess>
+#include <QEvent>
 #include <QTimer>
 
 using namespace NSEditorApi;
@@ -43,6 +46,7 @@ CCefEventsTransformer::CCefEventsTransformer(QObject *parent)
     , pObjTarget(parent)
 {
     qRegisterMetaType<std::wstring>("std::wstring");
+    qRegisterMetaType<QEvent::Type>("QEvent::Type");
 }
 
 void CCefEventsTransformer::OnEvent(NSEditorApi::CAscCefMenuEvent *pEvent)
@@ -248,6 +252,13 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         } else
         if ( cmd.compare(L"error:page") == 0 ) {
             QMetaObject::invokeMethod(target, "onErrorPage", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()));
+        } else
+        if ( cmd.compare(L"title:mouseup") == 0 || cmd.compare(L"title:mousedown") == 0 || cmd.compare(L"title:dblclick") == 0 ) {
+            QEvent::Type ev = (cmd == L"title:mouseup") ? QEvent::MouseButtonRelease :
+                                  (cmd == L"title:mousedown") ? QEvent::MouseButtonPress : QEvent::MouseButtonDblClick;
+            QJsonObject obj = Utils::parseJsonString(pData->get_Param());
+            QPoint pt( obj["x"].toInt(0), obj["y"].toInt(0) );
+            QMetaObject::invokeMethod( target, "onEditorMouseEvent", Qt::QueuedConnection, Q_ARG(QEvent::Type, ev), Q_ARG(QPoint, pt) );
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);
