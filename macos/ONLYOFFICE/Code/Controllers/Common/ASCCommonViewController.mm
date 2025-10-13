@@ -72,6 +72,7 @@
 #import "ASCEditorJSVariables.h"
 #import "ASCPresentationReporter.h"
 #import <Carbon/Carbon.h>
+#import <QuartzCore/QuartzCore.h>
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -98,6 +99,7 @@
     [super viewDidLoad];
 
     self.tabsWithChanges = @[].mutableCopy;
+    self.tabView.delegate = self;
     
     _externalDelegate = [[ASCExternalController shared] delegate];
     
@@ -2170,6 +2172,49 @@
                                                                       value:nil];
         }
     }
+}
+
+#pragma mark -
+#pragma mark NSTabView Delegate
+
+- (void)tabView:(NSTabView *)tabView dimTabViewItem:(nullable NSTabViewItem *)tabViewItem {
+    if (!tabViewItem) {
+        return;
+    }
+  
+//    NSView *renderWidgetHostViewCocoa = [tabView subviewOfClassName:@"RenderWidgetHostViewCocoa"];
+//    if (renderWidgetHostViewCocoa) {
+//        [renderWidgetHostViewCocoa setBackgroundColor:[NSColor windowBackgroundColor]];
+//        [renderWidgetHostViewCocoa displayIfNeeded];
+//    }
+//    
+//    [tabView displayIfNeeded];
+    
+    NSImage * selectedTabViewItemImage = [tabView windowScreenshot];
+    NSView * dimView = [[NSView alloc] initWithFrame:tabView.frame];
+    dimView.backgroundColor = [NSColor windowBackgroundColor];
+    
+    if (selectedTabViewItemImage) {
+        dimView.wantsLayer = true;
+        [dimView.layer setContents:selectedTabViewItemImage];
+        [dimView.layer setContentsGravity:kCAGravityTopLeft];
+    }
+    
+    [tabView.window.contentView addSubview:dimView positioned:NSWindowAbove relativeTo:tabView];
+            
+    [dimView displayIfNeeded];
+    [tabView.window.contentView displayIfNeeded];
+            
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [dimView removeFromSuperview];
+    });
+}
+
+- (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(nullable NSTabViewItem *)tabViewItem {
+    [self tabView:tabView dimTabViewItem:tabViewItem];
+    return true;
 }
 
 #pragma mark -

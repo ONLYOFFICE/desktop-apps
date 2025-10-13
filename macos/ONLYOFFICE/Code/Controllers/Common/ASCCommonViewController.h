@@ -42,7 +42,7 @@
 #import "ASCTabView.h"
 #import "NSCefView.h"
 
-@interface ASCCommonViewController : NSViewController
+@interface ASCCommonViewController : NSViewController <NSTabViewDelegate>
 - (BOOL)shouldTerminateApplication;
 - (BOOL)shouldCloseMainWindow;
 
@@ -53,4 +53,3 @@
 - (void)openEULA;
 - (void)openPreferences;
 @end
-
