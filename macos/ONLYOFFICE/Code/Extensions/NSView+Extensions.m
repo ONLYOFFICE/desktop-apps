@@ -265,4 +265,58 @@ static NSString * const kASCUuidPropertyKey = @"ascUuidPropertyKey";
     return image;
 }
 
+- (nullable NSImage *)windowScreenshot {
+    if (self.window) {
+        NSRect viewFrameInWindow = [self convertRect:self.bounds toView:nil];
+        
+        NSRect windowFrame = [self.window convertRectToScreen:viewFrameInWindow];
+        CGFloat screenHeight = NSScreen.mainScreen.frame.size.height;
+        
+        CGImageRef cgImage = CGWindowListCreateImage
+        (
+         CGRectMake
+         (
+          windowFrame.origin.x,
+          screenHeight - windowFrame.origin.y - windowFrame.size.height,
+          windowFrame.size.width,
+          windowFrame.size.height
+          ),
+         kCGWindowListOptionIncludingWindow,
+         (CGWindowID)[self.window windowNumber],
+         kCGWindowImageBoundsIgnoreFraming | kCGWindowImageShouldBeOpaque
+         );
+        
+        NSImage *snapshot = nil;
+        if (cgImage) {
+            snapshot = [[NSImage alloc] initWithCGImage:cgImage size:viewFrameInWindow.size];
+            CGImageRelease(cgImage);
+        }
+        
+        return snapshot;
+    }
+    
+    return nil;
+}
+
+- (nullable NSView *)subviewOfClassName:(NSString * _Nonnull)className {
+    Class cls = NSClassFromString(className);
+    
+    if (!cls) {
+        return nil;
+    }
+
+    for (NSView *subview in self.subviews) {
+        if ([subview isKindOfClass:cls]) {
+            return subview;
+        }
+        
+        NSView *found = [subview subviewOfClassName:className];
+        
+        if (found) {
+            return found;
+        }
+    }
+    return nil;
+}
+
 @end
