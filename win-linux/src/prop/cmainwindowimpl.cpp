@@ -39,6 +39,7 @@
 
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QDir>
 #include <QFile>
 
 #define DEFAULT_LICENSE_NAME    "GNU AGPL v3"
@@ -56,7 +57,15 @@ void CMainWindowImpl::refreshAboutVersion()
     QJsonObject _json_obj;
 
     auto _read_license_name = [](const QString& path) -> QString {
-        QFile f(path);
+        QFileInfo fi(path);
+        QDir dir = fi.dir();
+        QStringList files = dir.entryList(QStringList() << fi.fileName(),
+                                          QDir::Files, QDir::Name | QDir::IgnoreCase);
+        if (files.isEmpty())
+            return QString();
+
+        QString correctPath = dir.filePath(files.first());
+        QFile f(correctPath);
         QString n;
         if ( f.exists() ) {
             if ( f.open(QIODevice::ReadOnly | QIODevice::Text )) {
