@@ -155,12 +155,15 @@ if ($Target -ne "commercial") {
     $AdvInstConfig += `
         "AddFile APPDIR $LicensePath\opensource\LICENSE.txt"
 } else {
+    Copy-Item -Force `
+        -Path "$LicensePath\commercial\LICENSE.txt" `
+        -Destination "$LicensePath\commercial\EULA.txt"
     $AdvInstConfig += `
         "SetProperty Edition=Enterprise", `
         "SetProperty AI_PRODUCTNAME_ARP=`"[|AppName] ([|Edition]) [|Version] ([|Arch])`"", `
         "SetEula -rtf `"$("$LicensePath\commercial\LICENSE.rtf" | Resolve-Path)`"", `
         "SetPackageName `"$MsiFile`" -buildname $MsiBuild", `
-        "AddFile APPDIR $LicensePath\commercial\LICENSE.txt"
+        "AddFile APPDIR $LicensePath\commercial\EULA.txt"
 }
 $AdvInstConfig += `
     "Rebuild -buildslist $MsiBuild"
