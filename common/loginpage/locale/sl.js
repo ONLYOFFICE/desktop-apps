@@ -1,6 +1,8 @@
 l10n.sl = {
     welWelcome: 'Dobrodošli pri ONLYOFFICE namiznih urejevalnikih!',
     welDescr: 'Delaj z dokumenti brez povezave ali paket poveži s svojim oblakom: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Potrebujete pomoč? Obiščite naš $1.',
+    textHelpCenter: 'Center za pomoč',
     btnConnect: 'Poveži se zdaj',
     textHavePortal: 'Že uporabljaš oblak?',
     btnCreatePortal: 'Ustvari ONLYOFFICE oblak',

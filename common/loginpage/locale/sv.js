@@ -1,6 +1,8 @@
 l10n.sv = {
     welWelcome: 'Välkommen till ONLYOFFICE Desktop Editors!',
     welDescr: 'Arbeta med dokument offline eller anslut sviten till ditt moln: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Behöver du hjälp? Besök vårt $1.',
+    textHelpCenter: 'Hjälpcenter',
     btnConnect: 'Anslut nu',
     textHavePortal: 'Använder redan ett moln?',
     btnCreatePortal: 'Skapa ett ONLYOFFICE-moln',

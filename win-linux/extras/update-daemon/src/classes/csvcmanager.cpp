@@ -175,11 +175,15 @@ auto restartService()->void
         return;
     }
 
+    wstring args = NS_Utils::cmdArgsAsString();
+    if (!args.empty())
+        args.insert(0, 1, L' ');
+
     std::list<wstring> batch = {
         L"@chcp 65001>nul",
         L"@echo off",
         wstring(L"NET STOP ") + L"\"" + TEXT(VER_PRODUCTNAME_STR) + L"\"",
-        wstring(L"NET START ") + L"\"" +  TEXT(VER_PRODUCTNAME_STR) + L"\"",
+        wstring(L"SC START ") + L"\"" +  TEXT(VER_PRODUCTNAME_STR) + L"\"" + args,
         L"del /F /Q \"%~dp0~updatesvc.exe\"",
         L"exit"
     };
@@ -407,7 +411,7 @@ void CSvcManager::init()
                 break;
 
             case MSG_SetLanguage:
-                Translator::setLanguage(params[1]);
+                Translator::instance().setLanguage(params[1]);
                 break;
 
             default:
@@ -735,8 +739,12 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
 #endif
         for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
             int retries = 10;
+#ifdef _WIN32
+            tstring app = NS_File::toNativeSeparators(appPath + apps[i]);
+#else
             tstring app(apps[i]);
             app = app.substr(1);
+#endif
             while (NS_File::isProcessRunning(app) && retries-- > 0)
                 sleep(500);
 
@@ -908,8 +916,12 @@ void CSvcManager::startReplacingService(const bool restartAfterUpdate)
 #endif
         for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
             int retries = 10;
+#ifdef _WIN32
+            tstring app = NS_File::toNativeSeparators(appPath + apps[i]);
+#else
             tstring app(apps[i]);
             app = app.substr(1);
+#endif
             while (NS_File::isProcessRunning(app) && retries-- > 0)
                 sleep(500);
 

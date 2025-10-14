@@ -72,6 +72,7 @@
 #import "ASCEditorJSVariables.h"
 #import "ASCPresentationReporter.h"
 #import <Carbon/Carbon.h>
+#import <QuartzCore/QuartzCore.h>
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -96,8 +97,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.tabsWithChanges = @[].mutableCopy;
+    self.tabView.delegate = self;
     
     _externalDelegate = [[ASCExternalController shared] delegate];
     
@@ -143,7 +145,8 @@
     addObserverFor(CEFEventNameCertificatePreview, @selector(onCEFCertificatePreview:));
     addObserverFor(ASCEventNameChangedUITheme, @selector(onUIThemeChanged:));
     addObserverFor(ASCEventNameChangedSystemTheme, @selector(onSystemThemeChanged:));
-
+    addObserverFor(ASCEventNameRecoveryFiles, @selector(onRecoveryFiles:));
+    
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
     }
@@ -169,7 +172,7 @@
         [self createStartPage];
         [self loadStartPage];
         [self setupTouchBar];
-
+        
         // External handle
         if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onMainWindowLoaded:)]) {
             [_externalDelegate onMainWindowLoaded:self];
@@ -204,6 +207,8 @@
         
         self.cefStartPageView = [[NSCefView alloc] initWithFrame:tab.view.frame];
         [self.cefStartPageView create:appManager withType:cvwtSimple];
+        NSColor * backColor = [ASCThemesController currentThemeColor:windowBackgroundColor];
+        [self.cefStartPageView setBackgroundColor:backColor];
         [tab.view addSubview:self.cefStartPageView];
         [self.cefStartPageView autoPinEdgesToSuperviewEdges];
     }
@@ -215,14 +220,14 @@
         
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
-
+        
         NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: [ASCLinguist appLanguageCode]];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
-
+        
         if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
             countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
         }
-
+        
         loginPage.queryItems            = @[countryCode, portalAddress];
         loginPage.scheme                = NSURLFileScheme;
         
@@ -257,34 +262,34 @@
     if (NSURL * url = [NSURL URLWithString:path]) {
         NSString * urlHost = [url host];
         BOOL isFoundPortal = false;
-
+        
         // Search opened tab of a portal
         for (ASCTabView * tab in self.tabsControl.tabs) {
             if (tab.type == ASCTabViewTypePortal) {
                 if (NSString * portalUrlString = tab.params[@"url"]) {
                     if (NSURL * portalURL = [NSURL URLWithString:portalUrlString]) {
                         NSString * portalHost = [portalURL host];
-
+                        
                         if ([portalHost isEqualToString:urlHost]) {
                             [self.tabsControl selectTab:tab];
-
+                            
                             if (NSCefView * cefView = [self cefViewWithTab:tab]) {
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
                                 NSURLComponents *urlPage      = [NSURLComponents componentsWithString:path];
                                 NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
                                 NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
-
+                                
                                 if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
                                     countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
                                 }
-
+                                
                                 NSMutableArray * qitems = urlPage.queryItems ? [NSMutableArray arrayWithArray:urlPage.queryItems] : [[NSMutableArray alloc] init];
                                 [qitems addObjectsFromArray:@[countryCode, portalAddress]];
                                 urlPage.queryItems = qitems;
-
+                                
                                 [cefView loadWithUrl:[urlPage string]];
                             }
-
+                            
                             isFoundPortal = true;
                             break;
                         }
@@ -292,29 +297,29 @@
                 }
             }
         }
-
+        
         // Force open tab of a portal if not exist
         if (!isFoundPortal) {
             id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
             NSURLComponents *urlPage      = [NSURLComponents componentsWithString:path];
             NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
             NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
-
+            
             if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
                 countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
             }
-
+            
             NSMutableArray * qitems = urlPage.queryItems ? [NSMutableArray arrayWithArray:urlPage.queryItems] : [[NSMutableArray alloc] init];
             [qitems addObjectsFromArray:@[countryCode, portalAddress]];
             urlPage.queryItems = qitems;
-
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                 object:nil
                                                               userInfo:@{
-                                                                         @"action"  : @(ASCTabActionOpenPortal),
-                                                                         @"url"     : [urlPage string],
-                                                                         @"active"  : @(YES)
-                                                                         }];
+                @"action"  : @(ASCTabActionOpenPortal),
+                @"url"     : [urlPage string],
+                @"active"  : @(YES)
+            }];
         }
     }
 }
@@ -344,14 +349,14 @@
 - (void)openPreferences {
     [self.tabView selectTabViewItemWithIdentifier:rootTabId];
     [self.tabsControl selectTab:nil];
-
+    
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"panel:select");
     pCommand->put_Param(L"settings");
-
+    
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
-
+    
     [self.cefStartPageView apply:pEvent];
 }
 
@@ -365,7 +370,7 @@
                 @"title": [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)],
                 @"url": [link.absoluteString stringByRemovingPercentEncoding]
             } mutableCopy];
-
+            
             [self.tabsControl addTab:tab selected:YES];
         }];
         
@@ -386,8 +391,8 @@
 }
 
 - (void)onTouchBarItemTap:(id)sender senderId:(NSString *)senderId {
-//    NSLog(@"onTouchBarItemTap: %@", senderId);
-
+    //    NSLog(@"onTouchBarItemTap: %@", senderId);
+    
     if (senderId) {
         if ([senderId isEqualToString:kStartPageButtonIdentifier]) {
             [self onOnlyofficeButton:nil];
@@ -395,34 +400,34 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                 object:nil
                                                               userInfo:@{
-                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                         @"type"    : @(int(AscEditorType::etDocument)),
-                                                                         @"active"  : @(YES)
-                                                                         }];
+                @"action"  : @(ASCTabActionCreateLocalFile),
+                @"type"    : @(int(AscEditorType::etDocument)),
+                @"active"  : @(YES)
+            }];
         } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"spreadsheet"]]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                 object:nil
                                                               userInfo:@{
-                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                         @"type"    : @(int(AscEditorType::etSpreadsheet)),
-                                                                         @"active"  : @(YES)
-                                                                         }];
+                @"action"  : @(ASCTabActionCreateLocalFile),
+                @"type"    : @(int(AscEditorType::etSpreadsheet)),
+                @"active"  : @(YES)
+            }];
         } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"presentation"]]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                 object:nil
                                                               userInfo:@{
-                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                         @"type"    : @(int(AscEditorType::etPresentation)),
-                                                                         @"active"  : @(YES)
-                                                                         }];
+                @"action"  : @(ASCTabActionCreateLocalFile),
+                @"type"    : @(int(AscEditorType::etPresentation)),
+                @"active"  : @(YES)
+            }];
         } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"pdfform"]]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                 object:nil
                                                               userInfo:@{
-                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                         @"type"    : @(int(AscEditorType::etDocumentMasterForm)),
-                                                                         @"active"  : @(YES)
-                                                                         }];
+                @"action"  : @(ASCTabActionCreateLocalFile),
+                @"type"    : @(int(AscEditorType::etDocumentMasterForm)),
+                @"active"  : @(YES)
+            }];
         } else {
             ASCTabView * tab = [self.tabsControl tabWithUUID:senderId];
             if (tab) {
@@ -437,20 +442,20 @@
 
 - (BOOL)shouldTerminateApplication {
     NSInteger unsaved = 0;
-//    BOOL preventTerminate = NO;
-
+    //    BOOL preventTerminate = NO;
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                         object:nil
                                                       userInfo:@{@"fullscreen" : @(NO),
                                                                  @"terminate"  : @(YES)
                                                                }];
-
+    
     NSMutableArray * locked_uuids = [NSMutableArray array];
     for (ASCTabView * tab in self.tabsControl.tabs) {
         if (tab.changed) {
             unsaved++;
         }
-
+        
         if (NSCefView * cefView = [self cefViewWithTab:tab]) {
             // Blockchain check
             if ([cefView checkCloudCryptoNeedBuild]) {
@@ -464,8 +469,8 @@
             }
         }
     }
-
-
+    
+    
     if (unsaved > 0) {
         NSString * productName = [ASCHelper appName];
         
@@ -529,7 +534,7 @@
             }
             return NO;
         }
-    }    
+    }
     return YES;
 }
 
@@ -568,7 +573,7 @@
             if (tab.params[param] && [tab.params[param] isKindOfClass:[NSString class]]) {
                 NSString * localTabValue = [NSString stringWithString:tab.params[param]];
                 NSString * localValue = [NSString stringWithString:value];
-
+                
                 if (NSString *provider = tab.params[@"provider"]) {
                     if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
                         if ([localTabValue isEqualToString:localValue]) {
@@ -577,10 +582,10 @@
                         localValue = [localValue stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
                     }
                 }
-
+                
                 localTabValue = [localTabValue removeUrlQuery:@[@"lang", @"desktop"]];
                 localValue = [localValue removeUrlQuery:@[@"lang", @"desktop"]];
-
+                
                 if (localTabValue && localTabValue.length > 0 && [localTabValue isEqualToString:localValue]) {
                     return tab;
                 }
@@ -599,7 +604,7 @@
         
         [self.tabsControl selectTab:tab];
         
-//        __block NSInteger fileType = [params[@"fileType"] intValue];
+        //        __block NSInteger fileType = [params[@"fileType"] intValue];
         
         __block ASCSavePanelWithFormatController * saveController = [ASCSavePanelWithFormatController new];
         
@@ -607,7 +612,7 @@
         
         saveController.filters = formats;
         saveController.original = params[@"original"];
-//        saveController.filterType = fileType;
+        //        saveController.filterType = fileType;
         
         if (!path || path.length < 1) {
             path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -637,9 +642,9 @@
             if (result == NSFileHandlingPanelOKButton) {
                 [[NSUserDefaults standardUserDefaults] setObject:[[savePanel directoryURL] path] forKey:ASCUserLastSavePath];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-
+                
                 NSString * path = [NSString stringWithFormat:@"%@", [[savePanel URL] path]];
-                                
+                
                 saveData->put_Path([path stdwstring]);
                 saveData->put_Id([viewId intValue]);
                 saveData->put_FileType((int)[saveController filterType]);
@@ -658,11 +663,11 @@
 
 - (BOOL)canOpenFile:(NSString *)path tab:(ASCTabView *)tab {
     BOOL canOpen = NO;
-
+    
     if (path) {
         
         NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-
+        
         if (urlFile && [urlFile host]) {
             canOpen = YES;
         } else {
@@ -694,7 +699,7 @@
         if (NSString * pathString = [fileList objectForKey:key]) {
             NSRange typeRange = [pathString rangeOfString:@"^https?://"
                                                   options:NSRegularExpressionSearch];
-
+            
             if (typeRange.location != NSNotFound) {
                 checkedList[key] = @"true";
             } else {
@@ -717,14 +722,14 @@
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
             [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
             [alert setAlertStyle:NSAlertStyleWarning];
-
+            
             [self.tabsControl selectTab:tab];
-
+            
             NSInteger returnCode = [alert runModalSheet];
-
+            
             if(returnCode == NSAlertFirstButtonReturn) {
                 tab.params[@"shouldClose"] = @(YES);
-
+                
                 if (cefView) {
                     NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
                     [cefView apply:pEvent];
@@ -753,7 +758,7 @@
 - (void)onCEFCreateTab:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSMutableDictionary * params = [notification.userInfo mutableCopy];
-
+        
         if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFileFromTemplate)]) {
             if ( [params objectForKey:@"path"] or [params objectForKey:@"id"] ) {}
             else {
@@ -778,19 +783,19 @@
                 } else return;
             }
         } else
-        if ([params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalRecentFile)] ||
+            if ([params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalRecentFile)] ||
                 [params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalFile)])
-        {
-            if ( ![self canOpenFile:params[@"path"] tab:nil] ) {
-                return;
+            {
+                if ( ![self canOpenFile:params[@"path"] tab:nil] ) {
+                    return;
+                }
             }
-        }
-
+        
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
         tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
         tab.type        = ASCTabViewTypeOpening;
         tab.params      = [params mutableCopy];
-
+        
         ASCTabView * existTab = [self tabWithParam:@"url" value:params[@"url"]];
         
         if (!existTab) {
@@ -821,7 +826,7 @@
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
         NSString * viewId = params[@"viewId"];
-       
+        
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         
         if (tab) {
@@ -833,10 +838,10 @@
     if (notification && notification.userInfo) {
         NSDictionary * params   = (NSDictionary *)notification.userInfo;
         NSString * viewId       = params[@"viewId"];
-//        NSInteger type          = [params[@"type"] integerValue];
-
+        //        NSInteger type          = [params[@"type"] integerValue];
+        
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
-
+        
         if (tab) {
         }
     }
@@ -863,7 +868,7 @@
         NSString * viewId = params[@"viewId"];
         
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
-
+        
         if (tab) {
             [tab.params addEntriesFromDictionary:params];
             [self saveLocalFileWithTab:tab];
@@ -890,7 +895,7 @@
 - (void)onCEFFullscreen:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
-
+        
         BOOL isFullscreen = [params[@"fullscreen"] boolValue];
         ASCTabView * tab= nil;
         if ( [params objectForKey:@"viewId"] ) {
@@ -899,10 +904,10 @@
             if (self.tabsControl.tabs.count > 0)
                 tab = [self.tabsControl selectedTab];
         }
-
+        
         if ( tab ) {
             NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
-
+            
             NSWindow * win_main = [NSWindow titleWindowOrMain];
             if (isFullscreen) {
                 NSScreen * ppeScreen = [win_main screen];
@@ -914,16 +919,16 @@
                             break;
                         }
                     }
-
+                
                 NSApplicationPresentationOptions options = NSApplicationPresentationAutoHideDock | NSApplicationPresentationAutoHideMenuBar;
                 [item.view enterFullScreenMode:ppeScreen withOptions:@{
-                        NSFullScreenModeApplicationPresentationOptions: @(options),
-                                            NSFullScreenModeAllScreens: @(NO)
-                                                                     }];
+                    NSFullScreenModeApplicationPresentationOptions: @(options),
+                    NSFullScreenModeAllScreens: @(NO)
+                }];
                 if ( tab ) {
                     [[self cefViewWithTab:tab] focus];
                 }
-
+                
                 [win_main setIsVisible:false];
             } else if ([item.view isInFullScreenMode]) {
                 [win_main setIsVisible:true];
@@ -940,10 +945,10 @@
                     if (cefView) {
                         NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                         pCommand->put_Command(L"editor:stopDemonstration");
-
+                        
                         NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
                         pEvent->m_pData = pCommand;
-
+                        
                         [cefView apply:pEvent];
                     }
                 }
@@ -961,30 +966,30 @@
         //NSLog(@"ui oncefkeydown");
         if (eventData) {
             NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
-
+            
             int keyCode = pData->get_KeyCode();
             if ( keyCode == 112 /*kVK_F1*/ && pData->get_IsShift() && pData->get_IsCtrl() ) {
                 NSOpenPanel * openPanel = [NSOpenPanel openPanel];
-
+                
                 openPanel.canChooseDirectories = YES;
                 openPanel.allowsMultipleSelection = NO;
                 openPanel.canChooseFiles = NO;
                 openPanel.allowedFileTypes = [ASCConstants images];
-//                openPanel.directoryURL = [NSURL fileURLWithPath:directory];
-
+                //                openPanel.directoryURL = [NSURL fileURLWithPath:directory];
+                
                 [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
                     [openPanel orderOut:self];
-
+                    
                     if (result == NSFileHandlingPanelOKButton) {
                         NSString * pathToHelp = [[[openPanel directoryURL] path] stringByAppendingString: @"/apps"];
                         NSString * pathContents = [pathToHelp stringByAppendingString:@"/documenteditor/main/resources/help/en/Contents.json"];
-
+                        
                         NSAlert * alert = [[NSAlert alloc] init];
                         if ( [[NSFileManager defaultManager] fileExistsAtPath:pathContents] ) {
                             [[NSUserDefaults standardUserDefaults] setValue:pathToHelp forKey:@"helpUrl"];
                             [[ASCEditorJSVariables instance] setVariable:@"helpUrl" withString:pathToHelp];
                             [[ASCEditorJSVariables instance] apply];
-
+                            
                             [alert setMessageText:@"Successfully"];
                         } else {
                             [alert setMessageText:@"Failed"];
@@ -1058,17 +1063,17 @@
         NSNumber * idx      = notification.userInfo[@"idx"];
         
         NSSavePanel * savePanel = [NSSavePanel savePanel];
-//        [savePanel setDirectoryURL:[NSURL URLWithString:[NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject]]];
+        //        [savePanel setDirectoryURL:[NSURL URLWithString:[NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject]]];
         if (fileName && fileName.length > 0) {
             [savePanel setAllowedFileTypes:@[fileName.pathExtension]];
             [savePanel setNameFieldStringValue:[fileName lastPathComponent]];
         }
-
+        
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         
         [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [savePanel orderOut:self];
-           
+            
             if (result == NSFileHandlingPanelOKButton) {
                 appManager->EndSaveDialog([[[savePanel URL] path] stdwstring], [idx unsignedIntValue]);
             } else {
@@ -1089,16 +1094,16 @@
 
 - (void)onCEFOnBeforePrintEnd:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-//        NSNumber * viewId       = notification.userInfo[@"viewId"];
-//        NSNumber * pagesCount   = notification.userInfo[@"countPages"];
-//        NSNumber * pagesCount   = notification.userInfo[@"currentPage"];
+        //        NSNumber * viewId       = notification.userInfo[@"viewId"];
+        //        NSNumber * pagesCount   = notification.userInfo[@"countPages"];
+        //        NSNumber * pagesCount   = notification.userInfo[@"currentPage"];
         NSString * options      = notification.userInfo[@"options"];
         
         NSDictionary * nameLocales = [options dictionary];
         NSLog(@"options: %@", nameLocales);
-
+        
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
+        
         // using synchronization to be sure that flag `ASCPrinterContext::isCurrentlyPrinting` is correctly handled
         static dispatch_queue_t printQueue = dispatch_queue_create(NULL, NULL);
         dispatch_sync(printQueue, ^{
@@ -1131,7 +1136,7 @@
         openPanel.canChooseFiles = YES;
         openPanel.allowedFileTypes = filter;
         openPanel.directoryURL = [NSURL fileURLWithPath:directory];
-
+        
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];
             
@@ -1139,10 +1144,10 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                     object:nil
                                                                   userInfo:@{
-                                                                             @"action"  : @(ASCTabActionOpenLocalFile),
-                                                                             @"path"    : [[openPanel URL] path],
-                                                                             @"active"  : @(YES)
-                                                                             }];
+                    @"action"  : @(ASCTabActionOpenLocalFile),
+                    @"path"    : [[openPanel URL] path],
+                    @"active"  : @(YES)
+                }];
             }
         }];
     }
@@ -1158,7 +1163,7 @@
         }
         
         NSOpenPanel * openPanel = [NSOpenPanel openPanel];
-
+        
         openPanel.canChooseDirectories = NO;
         openPanel.allowsMultipleSelection = NO;
         openPanel.canChooseFiles = YES;
@@ -1193,14 +1198,23 @@
         NSString * fileTypes = notification.userInfo[@"filter"];
         NSInteger fileId = [notification.userInfo[@"fileId"] intValue];
         BOOL isMulti = [notification.userInfo[@"isMulti"] boolValue];
-
+        
         if (!directory || directory.length < 1) {
             directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         }
-
+        
         NSArray * allowedFileTypes = @[];
-
-        if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
+        
+        if ([fileTypes length] == 0) {
+            NSMutableArray * filter = [NSMutableArray array];
+            [filter addObjectsFromArray:[ASCConstants documents]];
+            [filter addObjectsFromArray:[ASCConstants spreadsheets]];
+            [filter addObjectsFromArray:[ASCConstants presentations]];
+            [filter addObjectsFromArray:[ASCConstants draws]];
+            [filter addObjectsFromArray:[ASCConstants csvtxt]];
+            
+            allowedFileTypes = filter;
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
             allowedFileTypes = [ASCConstants images];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterAudio]) {
             allowedFileTypes = [ASCConstants audios];
@@ -1221,7 +1235,7 @@
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterXML]) {
             allowedFileTypes = [ASCConstants xmldata];
         } else if ([fileTypes isEqualToString:@"any"] || [fileTypes isEqualToString:@"*.*"]) {
-//            allowedFileTypes = @[@"*.*"];
+            //            allowedFileTypes = @[@"*.*"];
         } else {
             // filters come in view "*.docx *.pptx *.xlsx"
             NSError *error = nil;
@@ -1229,23 +1243,23 @@
             NSString * filters = [regex stringByReplacingMatchesInString:fileTypes options:0 range:NSMakeRange(0, [fileTypes length]) withTemplate:@""];
             allowedFileTypes = [filters componentsSeparatedByString:@" "];
         }
-
+        
         NSOpenPanel * openPanel = [NSOpenPanel openPanel];
-
+        
         openPanel.canChooseDirectories = NO;
         openPanel.allowsMultipleSelection = NO;
         openPanel.canChooseFiles = YES;
         openPanel.directoryURL = [NSURL fileURLWithPath:directory];
-
+        
         if (allowedFileTypes.count > 0) {
             openPanel.allowedFileTypes = allowedFileTypes;
         }
-
+        
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];
-
+            
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
+            
             NSEditorApi::CAscLocalOpenFileDialog * imageInfo = new NSEditorApi::CAscLocalOpenFileDialog();
             imageInfo->put_Id((int)fileId);
             imageInfo->put_Filter([fileTypes stdwstring]);
@@ -1259,10 +1273,10 @@
             if (isMulti) {
                 imageInfo->put_IsMultiselect(true);
             }
-
+            
             NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG);
             pEvent->m_pData = imageInfo;
-
+            
             appManager->Apply(pEvent);
         }];
     }
@@ -1271,7 +1285,7 @@
 - (void)onCEFPortalLogin:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-
+        
         if (NSString *viewId = json[@"viewId"]) {
             if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
                 if (NSCefView * cefView = [self cefViewWithTab:tab]) {
@@ -1280,7 +1294,7 @@
                             if (NSString *originalUrl = [cefView originalUrl]) {
                                 originalUrl = [[originalUrl stringByReplacingOccurrencesOfString:@"://" withString:@":////"]
                                                stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
-
+                                
                                 // Hotfix virtual path
                                 if (NSString *provider = tab.params[@"provider"]) {
                                     if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
@@ -1288,17 +1302,17 @@
                                     }
                                 }
                                 originalUrl = [originalUrl virtualUrl];
-
+                                
                                 if (NSString * jsonString = [info jsonString]) {
                                     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                                     pCommand->put_Command(L"portal:login");
                                     pCommand->put_Param([jsonString stdwstring]);
-
+                                    
                                     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                                     pEvent->m_pData = pCommand;
-
+                                    
                                     [self.cefStartPageView apply:pEvent];
-
+                                    
                                     // Hotfix for SSO
                                     tab.params[@"url"] = originalUrl;
                                 }
@@ -1310,13 +1324,13 @@
         }
     }
 }
-    
+
 - (void)onCEFPortalLogout:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
         NSString * portal = json[@"domain"];
         NSMutableArray * portals = [NSMutableArray arrayWithObject:portal];
-
+        
         if (portal) {
             BOOL isReload = [@"reload" isEqualToString:json[@"onsuccess"]];
             self.shouldLogoutPortal = YES;
@@ -1416,38 +1430,38 @@
                 }
             }
         }
-
+        
         if (self.shouldLogoutPortal) {
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
+            
             for ( NSString * u in portals ) {
                 appManager->Logout([u stdwstring]);
             }
-
+            
             NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
             pCommand->put_Command(L"portal:logout");
             pCommand->put_Param([portal stdwstring]);
-
+            
             NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
             pEvent->m_pData = pCommand;
-
+            
             [self.cefStartPageView apply:pEvent];
         }
     }
 }
-    
+
 - (void)onCEFPortalCreate:(NSNotification *)notification {
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                         object:nil
                                                       userInfo:@{
-                                                                 @"action"  : @(ASCTabActionOpenPortal),
-                                                                 @"url"     : [ASCConstants appInfo:kRegistrationPortalUrl],
-                                                                 @"title"   : NSLocalizedString(@"Create portal", nil),
-                                                                 @"active"  : @(YES)
-                                                                 }];
+        @"action"  : @(ASCTabActionOpenPortal),
+        @"url"     : [ASCConstants appInfo:kRegistrationPortalUrl],
+        @"title"   : NSLocalizedString(@"Create portal", nil),
+        @"active"  : @(YES)
+    }];
 }
 
-    
+
 - (void)onCEFPortalNew:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
@@ -1473,15 +1487,15 @@
         id json = notification.userInfo;
         NSString * portalUrl = json[@"portal"];
         NSString * providerUrl = json[@"provider"];
-
+        
         if (portalUrl && providerUrl) {
             ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
             tab.title       = portalUrl;
             tab.type        = ASCTabViewTypePortal;
             tab.params      = [@{@"url" : [NSString stringWithFormat:@"sso:%@", providerUrl],
                                  @"provider": @"asc"
-                                 } mutableCopy];
-
+                               } mutableCopy];
+            
             [self.tabsControl addTab:tab selected:YES];
         }
     }
@@ -1509,10 +1523,10 @@
                     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                     pCommand->put_Command(L"files:checked");
                     pCommand->put_Param([jsonString stdwstring]);
-
+                    
                     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                     pEvent->m_pData = pCommand;
-
+                    
                     [self.cefStartPageView apply:pEvent];
                 }
             });
@@ -1523,76 +1537,79 @@
 - (void)onCEFSaveBeforeSign:(NSNotification *)notification {
     ASCTabView * tab = [self.tabsControl selectedTab];
     NSCefView * cefView = NULL;
-
+    
     if (tab) {
         cefView = [self cefViewWithTab:tab];
     }
-
+    
     if (NULL == cefView) {
         return;
     }
-
+    
     NSAlert *alert = [NSAlert new];
     [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
     [[alert addButtonWithTitle:NSLocalizedString(@"Don't Save", nil)] setKeyEquivalent:@"\e"];
     [alert setMessageText:NSLocalizedString(@"Before signing the document, it must be saved.", nil)];
     [alert setInformativeText:NSLocalizedString(@"Save the document?", nil)];
     [alert setAlertStyle:NSAlertStyleWarning];
-
+    
     NSInteger returnCode = [alert runModalSheet];
-
+    
     NSEditorApi::CAscEditorSaveQuestion * pEventData = new NSEditorApi::CAscEditorSaveQuestion();
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
-
+    
     pEventData->put_Value(returnCode == NSAlertFirstButtonReturn);
     pEvent->m_pData = pEventData;
-
+    
     [cefView apply:pEvent];
 }
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
     
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
-
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?:
+    [ASCThemesController defaultThemeId:[ASCThemesController isCurrentThemeDark]];
+    
     NSMutableDictionary * json_langs = @{
         @"uitheme": uiTheme,
         @"rtl": @([ASCLinguist isUILayoutDirectionRtl])
     }.mutableCopy;
-
+    
     NSDictionary * langs = [ASCLinguist availableLanguages];
     if ( langs ) {
         [json_langs setObject:@{
-                @"current": [ASCLinguist appLanguageCode],
-                @"langs": langs,
-                @"restart": @true
-            } forKey:@"locale"];
+            @"current": [ASCLinguist appLanguageCode],
+            @"langs": langs,
+            @"restart": @true
+        } forKey:@"locale"];
     }
-
+    
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1");
+    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1"),
+    detectkeyboard = !(appManager->GetUserSettings()->Get(L"spell-check-input-mode") == L"0");
     [json_langs setValue:@(usegpu) forKey:@"usegpu"];
-
+    [json_langs setValue:detectkeyboard?@"auto":@"off" forKey:@"spellcheckdetect"];
+    
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
     pCommand->put_Param([[json_langs jsonString] stdwstring]);
-
+    
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
     pEvent->AddRef();
-
+    
     [self.cefStartPageView apply:pEvent];
-
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:ASCUserLockPageConnections]) {
         pCommand->put_Command(L"panel:hide");
         pCommand->put_Param(L"connect");
-
+        
         pEvent->AddRef();
         [self.cefStartPageView apply:pEvent];
     }
-
+    
     pCommand->put_Command(L"app:ready");
     pCommand->put_Param(L"");
-
+    
     [self.cefStartPageView apply:pEvent];
     
     [self onOpenAppLink];
@@ -1602,36 +1619,36 @@
     //
     if (notification && notification.userInfo) {
         NSArray * printers = [NSPrinter printerNames];
-
+        
         if ([printers count] != 0) {
             NSMutableArray * arr = [NSMutableArray array];
-
+            
             for (NSString * printerName in printers) {
                 [arr addObject:@{@"name": printerName}];
             }
-
+            
             id info = notification.userInfo;
             if (NSString * viewId = info[@"viewId"]) {
                 CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
+                
                 int cefViewId = [viewId intValue];
                 CCefView * cef = appManager->GetViewById(cefViewId);
                 if (cef && cef->GetType() == cvwtEditor) {
                     NSString * def_printer_name = arr[0][@"name"];
                     NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary:
                                                   @{
-                                                    @"current_printer": def_printer_name,
-                                                    @"printers": arr
-                                                    }];
-
+                        @"current_printer": def_printer_name,
+                        @"printers": arr
+                    }];
+                    
                     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                     pCommand->put_FrameName(L"frameEditor");
                     pCommand->put_Command(L"printer:config");
                     pCommand->put_Param([[json jsonString] stdwstring]);
-
+                    
                     NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                     pEvent->m_pData = pCommand;
-
+                    
                     cef->Apply(pEvent);
                 }
             }
@@ -1642,7 +1659,7 @@
 - (void)onCEFEditorAppReady:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-
+        
         if (NSString * viewId = json[@"viewId"]) {
         }
     }
@@ -1651,25 +1668,25 @@
 - (void)onCEFEditorEvent:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-
+        
         NSString * viewId = json[@"viewId"];
         NSDictionary * data = json[@"data"];
-
+        
         if (viewId && data) {
             NSString * action = data[@"action"];
-
+            
             if ( action ) {
                 if ( [action isEqualToString:@"file:close"] ) {
                     if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
                         [self.tabsControl removeTab:tab selected:NO];
                     }
                 } else
-                if ( [action isEqualToString:@"file:open"] ){
-                    NSNotification * notification = [NSNotification notificationWithName: CEFEventNameOpenLocalFile
-                                                                         object: nil
-                                                                       userInfo: @{@"directory":@""}];
-                    [self onCEFOnOpenLocalFile: notification];
-                }
+                    if ( [action isEqualToString:@"file:open"] ){
+                        NSNotification * notification = [NSNotification notificationWithName: CEFEventNameOpenLocalFile
+                                                                                      object: nil
+                                                                                    userInfo: @{@"directory":@""}];
+                        [self onCEFOnOpenLocalFile: notification];
+                    }
             }
         }
     }
@@ -1678,18 +1695,18 @@
 - (void)onCEFEditorAppActionRequest:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-
+        
         NSString * viewId = json[@"viewId"];
         NSString * action = json[@"action"];
         NSString * path = json[@"url"];
-
+        
         if (viewId && action) {
             if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
                 if ([action isEqualToString:@"close"]) {
                     [self.tabsControl removeTab:tab selected:NO];
                 }
             }
-
+            
             // Open start page or portal
             if (path) {
                 if ([path isEqualToString:@"onlyoffice.com"]) { // onlyoffice.com equal "offline"
@@ -1706,19 +1723,19 @@
 - (void)onCEFEditorOpenFolder:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-
+        
         NSString * viewId = json[@"viewId"];
         NSString * path = json[@"path"];
-
+        
         if (viewId && path) {
             if ([path isEqualToString:@"offline"]) {
                 int cefViewId = [viewId intValue];
                 CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                 CCefViewEditor * cefView = (CCefViewEditor *)appManager->GetViewById(cefViewId);
-
+                
                 if (cefView) {
                     NSString * urlString = [NSString stringWithstdwstring:cefView->GetLocalFilePath()];
-
+                    
                     if (urlString && urlString.length > 0) {
                         // Offline file is exist
                         if (NSURL * url = [NSURL fileURLWithPath:urlString]) {
@@ -1726,13 +1743,13 @@
                         }
                     } else {
                         // Offline file is new
-
+                        
                         NSAlert *alert = [NSAlert new];
                         [alert addButtonWithTitle:@"OK"];
                         [alert setMessageText:NSLocalizedString(@"Cannot open folder of the file location.", nil)];
                         [alert setInformativeText:NSLocalizedString(@"To open the file location, it must be saved.", nil)];
                         [alert setAlertStyle:NSAlertStyleWarning];
-
+                        
                         [alert runModalSheet];
                     }
                 }
@@ -1746,10 +1763,10 @@
 - (void)onCEFDocumentFragmentBuild:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-
+        
         NSString * viewId = json[@"viewId"];
         int error = [json[@"error"] intValue];
-
+        
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         if (tab) {
             if (error == 0) {
@@ -1762,40 +1779,40 @@
 - (void)onCEFDocumentFragmented:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-
+        
         NSString * viewId = json[@"viewId"];
         BOOL isFragmented = [json[@"isFragmented"] boolValue];
-
+        
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         if (tab) {
             if (isFragmented) {
-//                windows code skip this warning for ver 5.2
-//                NSAlert * alert = [NSAlert new];
-//                [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
-//                [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
-//                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
-//                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
-//                [alert setAlertStyle:NSAlertStyleInformational];
-//
-//                NSInteger returnCode = [alert runModalSheet];
-//
-//                if (returnCode == NSAlertFirstButtonReturn) {
-                    NSCefView * cefView = [self cefViewWithTab:tab];
-
-                    if (cefView) {
-//                        self.shouldTerminateApp = NO;
-
-                        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD);
-                        [cefView apply:pEvent];
-                        return;
-                    }
-//                } else if (returnCode == NSAlertSecondButtonReturn) {
-//                    //
-//                } else {
-//                    return;
-//                }
+                //                windows code skip this warning for ver 5.2
+                //                NSAlert * alert = [NSAlert new];
+                //                [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+                //                [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+                //                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
+                //                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
+                //                [alert setAlertStyle:NSAlertStyleInformational];
+                //
+                //                NSInteger returnCode = [alert runModalSheet];
+                //
+                //                if (returnCode == NSAlertFirstButtonReturn) {
+                NSCefView * cefView = [self cefViewWithTab:tab];
+                
+                if (cefView) {
+                    //                        self.shouldTerminateApp = NO;
+                    
+                    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD);
+                    [cefView apply:pEvent];
+                    return;
+                }
+                //                } else if (returnCode == NSAlertSecondButtonReturn) {
+                //                    //
+                //                } else {
+                //                    return;
+                //                }
             }
-
+            
             [self.tabsControl removeTab:tab selected:YES];
         }
     }
@@ -1804,7 +1821,7 @@
 - (void)onCEFCertificatePreview:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-
+        
         NSString * text = json[@"text"];
         NSString * path = json[@"path"];
         
@@ -1823,18 +1840,18 @@
         NSDictionary * info = (NSDictionary *)notification.userInfo;
         NSString * mode = info[@"mode"];
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
+        
         NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"theme": @{@"system": mode}}];
         std::wstring params = [[json jsonString] stdwstring];
-
+        
         NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
         pCommand->put_Command(L"renderervars:changed");
         pCommand->put_Param(params);
-
+        
         NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
         pEvent->m_pData = pCommand;
         appManager->SetEventToAllMainWindows(pEvent);
-
+        
         for (ASCTabView * tab in self.tabsControl.tabs) {
             if (NSCefView * cefView = [self cefViewWithTab:tab]) {
                 CCefView * cef = appManager->GetViewById((int)cefView.uuid);
@@ -1843,10 +1860,10 @@
                     pCommand->put_FrameName(L"frameEditor");
                     pCommand->put_Command(L"renderervars:changed");
                     pCommand->put_Param(params);
-
+                    
                     pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                     pEvent->m_pData = pCommand;
-
+                    
                     [cefView apply:pEvent];
                 }
             }
@@ -1864,15 +1881,18 @@
         std::wstring wtheme = [params[@"uitheme"] stdwstring];
         NSString * theme = params[@"uitheme"];
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
+        
         NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
         pCommand->put_Command(L"uitheme:changed");
         pCommand->put_Param(wtheme);
-
+        
         NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
         pEvent->m_pData = pCommand;
         appManager->SetEventToAllMainWindows(pEvent);
-
+        
+        NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"theme": theme}];
+        appManager->UpdatePlugins([[json jsonString] stdwstring]);
+        
         for (ASCTabView * tab in self.tabsControl.tabs) {
             if (NSCefView * cefView = [self cefViewWithTab:tab]) {
                 CCefView * cef = appManager->GetViewById((int)cefView.uuid);
@@ -1881,18 +1901,40 @@
                     pCommand->put_FrameName(L"frameEditor");
                     pCommand->put_Command(L"uitheme:changed");
                     pCommand->put_Param(wtheme);
-
+                    
                     pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                     pEvent->m_pData = pCommand;
-
+                    
                     [cefView apply:pEvent];
                 }
             }
         }
-
-
+        
+        
         [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:theme];
         [[ASCEditorJSVariables instance] applyParameters];
+    }
+}
+
+-(void)onRecoveryFiles:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * sfiles = params[@"files"];
+        NSError * err = nil;
+        NSArray * arrfiles = [NSJSONSerialization JSONObjectWithData:[sfiles dataUsingEncoding:NSUTF8StringEncoding]
+                                                             options:0
+                                                               error:&err];
+        for (NSDictionary * f in arrfiles) {
+            NSNotification * n = [NSNotification notificationWithName:CEFEventNameCreateTab
+                                                               object:nil
+                                                             userInfo:@{
+                @"action"  : @(ASCTabActionOpenLocalRecoverFile),
+                @"active"  : @(YES),
+                @"fileId"  : f[@"id"],
+                @"path"    : f[@"path"]
+            }];
+            [self onCEFCreateTab:n];
+        }
     }
 }
 
@@ -1928,6 +1970,7 @@
         } else {
             [cefView create:appManager withType:cvwtEditor];
         }
+        [cefView setBackgroundColor:[ASCThemesController currentThemeColor:windowBackgroundColor]];
         
         [self.view.window makeKeyAndOrderFront:nil];
         
@@ -1941,7 +1984,7 @@
                 if (newTitle && newTitle.length > 0) {
                     tab.title = [[NSURL URLWithString:tab.params[@"url"]] host];
                 }
-
+                
                 if (provider && [provider length] > 0) {
                     [cefView setExternalCloud:provider];
                 }
@@ -1964,9 +2007,9 @@
                     if ([param isEqualToString:@"cell"]) docType = AscEditorType::etSpreadsheet;
                     else if ([param isEqualToString:@"slide"]) docType = AscEditorType::etPresentation;
                     else if ([param isEqualToString:@"form"]) docType = AscEditorType::etDocumentMasterForm;
-//                    else /*if ([param isEqualToString:@"word"])*/ docType = AscEditorType::etDocument;
+                    //                    else /*if ([param isEqualToString:@"word"])*/ docType = AscEditorType::etDocument;
                 } else docType = (AscEditorType)[tab.params[@"type"] intValue];
-
+                
                 NSString * docName = NSLocalizedString(@"Untitled", nil);
                 
                 switch (docType) {
@@ -1991,7 +2034,7 @@
                 } else {
                     [cefView createFileWithNameFromTemplate:docName tplpath:tab.params[@"path"]];
                 }
-
+                
                 break;
             }
                 
@@ -2000,16 +2043,16 @@
                 
                 int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
                 [cefView openFileWithName:filePath type:fileFormatType];
-                    
+                
                 [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
-                                                                             action:@"Open local file"
-                                                                              label:nil
-                                                                              value:nil];
+                                                                         action:@"Open local file"
+                                                                          label:nil
+                                                                          value:nil];
                 
                 break;
             }
             case ASCTabActionOpenLocalRecoverFile: {
-                NSInteger docId = [tab.params[@"fileId"] intValue];               
+                NSInteger docId = [tab.params[@"fileId"] intValue];
                 [cefView openRecoverFileWithId:docId];
                 
                 [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
@@ -2029,15 +2072,15 @@
                     if ( filePath && filePath.length )
                         [cefView loadWithUrl:filePath];
                 }
-                    
+                
                 [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
-                                                                             action:@"Open local file"
-                                                                              label:nil
-                                                                              value:nil];
+                                                                         action:@"Open local file"
+                                                                          label:nil
+                                                                          value:nil];
                 
                 break;
             }
-
+                
             default:
                 break;
         }
@@ -2050,6 +2093,8 @@
         [self.tabView addTabViewItem:item];
         [item.view addSubview:cefView];
         [cefView autoPinEdgesToSuperviewEdges];
+        
+        [self tabView:self.tabView dimTabViewItem:item];
     }
 }
 
@@ -2060,7 +2105,7 @@
             self.shouldTerminateApp = NO;
             return NO;
         }
-
+        
         if (tab.changed || (cefView && [cefView isSaveLocked])) {
             [self requestSaveChangesForTab:tab];
             return NO;
@@ -2072,9 +2117,9 @@
 - (void)tabs:(ASCTabsControl *)control didRemovedTab:(ASCTabView *)tab {
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     appManager->DestroyCefView([tab.uuid intValue]);
-
+    
     NSCefView * cefView = [self cefViewWithTab:tab];
-
+    
     if (cefView) {
         [cefView internalClean];
     }
@@ -2129,6 +2174,45 @@
                                                                       value:nil];
         }
     }
+}
+
+#pragma mark -
+#pragma mark NSTabView Delegate
+
+- (void)tabView:(NSTabView *)tabView dimTabViewItem:(nullable NSTabViewItem *)tabViewItem {
+    [self tabView:tabView dimTabViewItem:tabViewItem delay:0.33];
+}
+
+- (void)tabView:(NSTabView *)tabView dimTabViewItem:(nullable NSTabViewItem *)tabViewItem delay:(double)delay {
+    if (!tabViewItem) {
+        return;
+    }
+    
+    NSImage * selectedTabViewItemImage = [[[tabView selectedTabViewItem] view] windowScreenshot];
+    NSView * dimView = [[NSView alloc] initWithFrame:tabView.frame];
+    dimView.backgroundColor = [NSColor windowBackgroundColor];
+    
+    if (selectedTabViewItemImage) {
+        dimView.wantsLayer = true;
+        [dimView.layer setContents:selectedTabViewItemImage];
+        [dimView.layer setContentsGravity:kCAGravityTopLeft];
+    }
+    
+    [self.view addSubview:dimView];
+            
+    [dimView displayIfNeeded];
+    [self.view displayIfNeeded];
+            
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [dimView removeFromSuperview];
+    });
+}
+
+- (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(nullable NSTabViewItem *)tabViewItem {
+    [self tabView:tabView dimTabViewItem:tabViewItem delay:0.1];
+    return true;
 }
 
 #pragma mark -

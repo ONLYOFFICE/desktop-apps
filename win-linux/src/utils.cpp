@@ -40,7 +40,6 @@
 #include <QDir>
 #include <QRegularExpression>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QUrl>
 #include <QUrlQuery>
 #include <QJsonDocument>
@@ -52,6 +51,9 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
+#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
+# include <QDesktopWidget>
+#endif
 
 #ifdef _WIN32
 # include <QDesktopServices>
@@ -61,6 +63,7 @@
 #include "shlobj.h"
 #include "lmcons.h"
 #else
+# include "platform_linux/xcbutils.h"
 # include <QEventLoop>
 # include <QX11Info>
 #include <sys/stat.h>
@@ -649,23 +652,14 @@ QByteArray Utils::getAppStylesheets(int scale)
 }
 */
 
-QByteArray Utils::readStylesheets(std::vector<std::string> const * list)
+QByteArray Utils::readStylesheets(std::vector<std::string> const &list)
 {
-    auto read_styles = [](std::vector<std::string> const * inl) {
-        QByteArray _css;
-        QFile file;
-        for ( auto &path : *inl ) {
-            file.setFileName(path.c_str());
-            if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
-                _css.append(file.readAll());
-                file.close();
-            }
-        }
+    QByteArray _css;
+    for ( auto &path : list ) {
+        _css.append(readStylesheets(QString::fromStdString(path)));
+    }
 
-        return std::move(_css);
-    };
-
-    return read_styles(list);
+    return _css;
 }
 
 QByteArray Utils::readStylesheets(const QString& path)
@@ -931,47 +925,24 @@ std::wstring Utils::appUserName()
 
 namespace WindowHelper {
 #ifdef Q_OS_LINUX
-    CParentDisable::CParentDisable(QWidget* &parent)
+    CParentDisable::CParentDisable(QWidget* parent) : m_parent(parent)
     {
-        disable(parent);
+        enable(false);
     }
 
     CParentDisable::~CParentDisable()
     {
-        enable();
+        enable(true);
     }
 
-    void CParentDisable::disable(QWidget* &parent)
+    void CParentDisable::enable(bool enabled)
     {
-        if (parent) {
-            parent->setProperty("blocked", true);
-            Qt::WindowFlags flags = Qt::FramelessWindowHint;
-            if (!QX11Info::isCompositingManagerRunning()) {
-                flags |= (Qt::SubWindow | Qt::BypassWindowManagerHint);
-                Utils::processMoreEvents(); // Fixed Cef rendering before reopening the dialog
-            } else
-                flags |= Qt::Dialog;
-            m_pChild = new QWidget(parent, flags);
-            m_pChild->setAttribute(Qt::WA_TranslucentBackground);
-            if (QX11Info::isCompositingManagerRunning()) {
-                m_pChild->setWindowModality(Qt::ApplicationModal);
-                int offset = parent->isMaximized() ? 0 : 10;
-                m_pChild->move(parent->pos() - QPoint(offset, offset));
-                m_pChild->setFixedSize(parent->size() + 2 * QSize(offset, offset));
-                parent = m_pChild;
-            } else
-                m_pChild->setGeometry(parent->rect());
-            m_pChild->show();
-        }
-    }
+        CWindowBase *wb = dynamic_cast<CWindowBase*>(m_parent);
+        if (!wb) return;
 
-    void CParentDisable::enable()
-    {
-        if ( m_pChild ) {
-            if (m_pChild->parent())
-                m_pChild->parent()->setProperty("blocked", false);
-            delete m_pChild, m_pChild = nullptr;
-        }
+        wb->setEnabled(enabled);
+        WId wnd = wb->mainPanel()->winId();
+        XcbUtils::setInputEnabled(wnd, enabled);
     }
 
     // Linux Environment Info
@@ -989,6 +960,12 @@ namespace WindowHelper {
             else
             if (env.indexOf("KDE") != -1)
                 desktop_env = KDE;
+            else
+            if (env.indexOf("XFCE") != -1)
+                desktop_env = XFCE;
+            else
+            if (env.indexOf("Cinnamon") != -1)
+                desktop_env = CINNAMON;
             else desktop_env = OTHER;
         }
         return desktop_env;

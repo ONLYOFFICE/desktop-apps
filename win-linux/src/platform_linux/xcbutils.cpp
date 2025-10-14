@@ -39,6 +39,7 @@
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
 #include <X11/Xlib-xcb.h>
+#include <X11/extensions/shape.h>
 
 
 void XcbUtils::moveWindow(xcb_window_t window, int x, int y)
@@ -184,4 +185,17 @@ void XcbUtils::getWindowStack(std::vector<xcb_window_t> &winStack)
             winStack.push_back((xcb_window_t)win_list[i]);
         XFree(win_list);
     }
+}
+
+void XcbUtils::setInputEnabled(xcb_window_t window, bool enabled)
+{
+    Display* disp = QX11Info::display();
+    Window wnd = window;
+    if (enabled) {
+        XShapeCombineMask(disp, wnd, ShapeInput, 0, 0, None, ShapeSet);
+    } else {
+        XRectangle rc = {0, 0, 0, 0};
+        XShapeCombineRectangles(disp, wnd, ShapeInput, 0, 0, &rc, 1, ShapeSet, YXBanded);
+    }
+    XFlush(disp);
 }

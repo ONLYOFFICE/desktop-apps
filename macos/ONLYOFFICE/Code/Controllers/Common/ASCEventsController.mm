@@ -48,6 +48,7 @@
 #import "OfficeFileFormats.h"
 #import "ASCLinguist.h"
 #import "mac_application.h"
+#import "mac_cefviewmedia.h"
 #import "NSApplication+Extensions.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCThemesController.h"
@@ -86,7 +87,7 @@ public:
                 if (pCefEvent) {
                     senderId = pCefEvent->get_SenderId();
                 }
-                
+
                 switch (pEvent->m_nType) {
                     case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
                         NSEditorApi::CAscCreateTab *pData = (NSEditorApi::CAscCreateTab*)pEvent->m_pData;
@@ -187,6 +188,12 @@ public:
                         break;
                     }
                         
+                    case ASC_MENU_EVENT_TYPE_CEF_CHECK_KEYBOARD: {
+                        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                        appManager->CheckKeyboard();
+                        break;
+                    }
+
                     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS:
                         break;
                         
@@ -359,6 +366,22 @@ public:
                                                                                      }];
                         break;
                     }
+
+					case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_PLAYER_COMMAND: {
+						CAscApplicationManager* appManager = [NSAscApplicationWorker getAppManager];
+						CCefView* pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
+						if (pCefView)
+						{
+							CCefViewWidgetImpl* pWidgetImpl = pCefView->GetWidgetImpl();
+							if (pWidgetImpl)
+							{
+								CCefViewMedia* pCefViewMedia = static_cast<CCefViewMedia*>(pWidgetImpl);
+								pCefViewMedia->OnMediaPlayerCommand(static_cast<NSEditorApi::CAscExternalMediaPlayerCommand*>(pEvent->m_pData));
+							}
+						}
+
+						break;
+					}
 
                     case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG: {
                         NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
@@ -637,7 +660,13 @@ public:
                                 }
                                 
                                 if (NSString * langId = json[@"langid"]) {
-                                    [ASCLinguist setAppLanguageCode:langId];
+                                    if ( [ASCLinguist appLanguageCode] != langId ) {
+                                        [ASCLinguist setAppLanguageCode:langId];
+
+                                        NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"lang": langId}];
+                                        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                        appManager->UpdatePlugins([[json jsonString] stdwstring]);
+                                    }
                                 }
 
                                 if (NSString * userName = json[@"username"]) {
@@ -678,6 +707,11 @@ public:
                                 if ( [json objectForKey:@"usegpu"] != nil ) {
                                     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"disable-gpu", [json[@"usegpu"] boolValue] ? L"0" : L"1");
+                                }
+
+                                if ( [json objectForKey:@"spellcheckdetect"] != nil ) {
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->GetUserSettings()->Set(L"spell-check-input-mode", [json[@"spellcheckdetect"] isEqualToString:@"off"] ? L"0" : L"1");
                                 }
 
                                 [[ASCEditorJSVariables instance] applyParameters];
@@ -797,12 +831,20 @@ public:
                                                                                              @"path"    : json[@"path"]
                                                                                              }];
                             }
+                        } else if (cmd.find(L"recovery:update") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameRecoveryFiles
+                                                                                object:nil
+                                                                                userInfo:@{
+                                                                                        @"files":[NSString stringWithstdwstring:param]
+                                                                                }];
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);
 
                             if (pCefView) {
-                                NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
+                                BOOL isDark = [ASCThemesController isCurrentThemeDark];
+                                NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?:
+                                                        [ASCThemesController defaultThemeId:isDark];
 
                                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                                 pCommand->put_FrameName(L"frameEditor");

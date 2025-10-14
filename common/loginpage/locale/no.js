@@ -1,6 +1,8 @@
 l10n.no = {
     welWelcome: 'Velkommen til ONLYOFFICE redigeringsprogrammer for PC!',
     welDescr: 'Arbeid med dokumenter offline eller koble suiten til din skykonto: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Trenger du hjelp? Gå til vårt $1.',
+    textHelpCenter: 'Hjelpesenter',
     btnConnect: 'Koble til nå',
     textHavePortal: 'Bruker du allerede en sky?',
     btnCreatePortal: 'Lag en ONLYOFFICE-sky',

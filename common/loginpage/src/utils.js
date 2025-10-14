@@ -406,7 +406,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 name: name,
                 descr: path,
                 date: _f_.modifyed,
-                path: fn,
+                path: $('<div>').html(fn).text(),
                 cloud: _f_.cloud,
             });
 

@@ -1,6 +1,8 @@
 l10n.zh_CN = {
     welWelcome: '欢迎使用ONLYOFFICE桌面编辑软件！',
     welDescr: '脱机处理文档或连接套件到云：ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: '需要帮助吗? 请访问我们的 $1.',
+    textHelpCenter: '帮助中',
     btnConnect: '现在连接',
     textHavePortal: '已在使用云？',
     btnCreatePortal: '创建ONLYOFFICE云',

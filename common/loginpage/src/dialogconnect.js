@@ -243,7 +243,8 @@ window.DialogConnect = function(params) {
             if ( !_url.startsWith('http') )
                 resolve({status:'skipped', response: {statusText: _url}});
             else {
-
+    
+                const matches = (e) => (provider === 'onlyoffice' ? ['onlyoffice', 'teamlab'] : [provider]).some(p => (e.responseText || '').toLowerCase().includes(p) || portal.toLowerCase().includes(p));
                 let fetchFuntion = $.ajax;
                 if (window.AscSimpleRequest && window.AscSimpleRequest.createRequest)
                     fetchFuntion = window.AscSimpleRequest.createRequest;
@@ -260,6 +261,11 @@ window.DialogConnect = function(params) {
                                 // skip checking response for tests
                                 // if ( !_model.entryPage )
                                     // JSON.parse(e.responseText)
+                                
+                                if (!matches(e)) {
+                                    reject({status:'invalid portal', response:e});
+                                    return;
+                                }
 
                                 resolve({status:status, response:e});
                             } catch (err) {
@@ -294,7 +300,7 @@ window.DialogConnect = function(params) {
             $title = $el.find('.title');
             $body = $el.find('.body');
 
-            $el.width(450);
+            $el.width(480);
             $title.find('.tool.close').bind('click', _on_close_click);
 
             _set_title( utils.Lang.loginTitleStart );

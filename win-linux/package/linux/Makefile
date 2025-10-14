@@ -154,7 +154,14 @@ build : $(LINUX_DEPS)
 	mkdir -p $@/main/opt/$(DESKTOPEDITORS_PREFIX)
 	cp -rft $@/main/opt/$(DESKTOPEDITORS_PREFIX) $(SOURCE_DIR)/desktopeditors/*
 	chmod 755 $@/main/opt/$(DESKTOPEDITORS_PREFIX)/DesktopEditors
-	cp -ft $@/main/opt/$(DESKTOPEDITORS_PREFIX) $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt
+
+ifneq ($(PACKAGE_EDITION), commercial)
+	cp -f $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/LICENSE.txt
+else
+	cp -f $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/EULA.txt
+endif
 
 	cd $@; \
 	for path in main/$(HELP_GLOB); do \

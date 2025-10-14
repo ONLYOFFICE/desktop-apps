@@ -153,6 +153,17 @@ namespace NS_Utils
         return L"";
     }
 
+    wstring cmdArgsAsString()
+    {
+        if (cmd_args.empty())
+            return L"";
+        wstring args = cmd_args[0];
+        for (size_t i = 1; i < cmd_args.size(); ++i) {
+            args += L" " + cmd_args[i];
+        }
+        return args;
+    }
+
     wstring GetLastErrorAsString()
     {
         DWORD errID = ::GetLastError();
@@ -417,8 +428,9 @@ namespace NS_File
         return false;
     }
 
-    bool isProcessRunning(const wstring &fileName)
+    bool isProcessRunning(const wstring &filePath)
     {
+        wstring fileName = filePath.substr(filePath.find_last_of(L"\\/") + 1);
         HANDLE snapShot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
         if (snapShot == INVALID_HANDLE_VALUE)
             return false;
@@ -432,8 +444,19 @@ namespace NS_File
 
         do {
             if (lstrcmpi(entry.szExeFile, fileName.c_str()) == 0) {
-                CloseHandle(snapShot);
-                return true;
+                HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, entry.th32ProcessID);
+                if (hProcess) {
+                    WCHAR processPath[MAX_PATH];
+                    DWORD pathSize = MAX_PATH;
+                    if (QueryFullProcessImageNameW(hProcess, 0, processPath, &pathSize)) {
+                        if (lstrcmpi(processPath, filePath.c_str()) == 0) {
+                            CloseHandle(hProcess);
+                            CloseHandle(snapShot);
+                            return true;
+                        }
+                    }
+                    CloseHandle(hProcess);
+                }
             }
         } while (Process32Next(snapShot, &entry));
 
@@ -600,7 +623,7 @@ namespace NS_File
     wstring tempPath()
     {
         if (NS_Utils::isRunAsApp()) {
-            WCHAR buff[MAX_PATH + 1] = {0};
+            WCHAR buff[MAX_PATH + 2] = {0};
             DWORD res = ::GetTempPath(MAX_PATH + 1, buff);
             if (res != 0) {
                 buff[res - 1] = '\0';
@@ -742,12 +765,12 @@ namespace NS_Logger
     void WriteLog(const wstring &log, bool showMessage)
     {
         if (allow_write_log) {
-            wstring filpPath(NS_File::appPath() + L"/service_log.txt");
+            wstring filpPath(NS_File::tempPath() + L"/oo_service_log.txt");
             std::wofstream file(filpPath.c_str(), std::ios::app);
             if (!file.is_open()) {
                 return;
             }
-            file << log << std::endl;
+            file << log << wstring(L"\n") << std::endl;
             file.close();
         }
         if (showMessage)

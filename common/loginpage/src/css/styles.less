@@ -438,10 +438,234 @@ li.menu-item {
 
     .col-name {
       height: 32px;
+      .switch-svg();
 
       .icon {
-        width: 32px;
+        // width: 32px;
+        width: 24px;
         height: 32px;
+      }
+
+      .icon.img-format {
+        display: inline-block;
+        background-size: auto;
+        &.docx {
+          .format-from-index(0);
+        }
+
+        &.doc {
+          .format-from-index(1);
+        }
+
+        &.odt {
+          .format-from-index(2);
+        }
+
+        &.rtf {
+          .format-from-index(3);
+        }
+
+        &.txt {
+          .format-from-index(4);
+        }
+
+        &.htm, &.html {
+          .format-from-index(5);
+        }
+
+        &.xlsx {
+          .format-from-index(6);
+        }
+
+        &.xls {
+          .format-from-index(7);
+        }
+
+        &.ods {
+          .format-from-index(8);
+        }
+
+        &.csv {
+          .format-from-index(9);
+        }
+
+        &.pptx {
+          .format-from-index(10);
+        }
+
+        &.ppt {
+          .format-from-index(11);
+        }
+
+        &.odp {
+          .format-from-index(12);
+        }
+
+        &.pdf {
+          .format-from-index(13);
+        }
+
+        &.djvu {
+          .format-from-index(14);
+        }
+
+        &.xps {
+          .format-from-index(15);
+        }
+
+        &.xml {
+          .format-from-index(16);
+        }
+
+        &.mht {
+          .format-from-index(17);
+        }
+
+        &.epub {
+          .format-from-index(18);
+        }
+
+        &.fb2 {
+          .format-from-index(19);
+        }
+
+        &.dotx {
+          .format-from-index(20);
+        }
+
+        &.xltx {
+          .format-from-index(21);
+        }
+
+        &.potx {
+          .format-from-index(22);
+        }
+
+        &.ott {
+          .format-from-index(23);
+        }
+
+        &.ots {
+          .format-from-index(24);
+        }
+
+        &.otp {
+          .format-from-index(25);
+        }
+
+        &.pps {
+          .format-from-index(26);
+        }
+
+        &.ppsx {
+          .format-from-index(27);
+        }
+
+        &.docxf {
+          .format-from-index(28);
+        }
+
+        &.oform {
+          .format-from-index(29);
+        }
+
+        &.xlsb {
+          .format-from-index(30);
+        }
+
+        &.docm {
+          .format-from-index(31);
+        }
+
+        &.dotm {
+          .format-from-index(32);
+        }
+
+        &.fodt {
+          .format-from-index(33);
+        }
+
+        &.xltm {
+          .format-from-index(34);
+        }
+
+        &.xlsm {
+          .format-from-index(35);
+        }
+
+        &.fods {
+          .format-from-index(36);
+        }
+
+        &.pptm {
+          .format-from-index(37);
+        }
+
+        &.ppsm {
+          .format-from-index(38);
+        }
+
+        &.potm {
+          .format-from-index(39);
+        }
+
+        &.fodp {
+          .format-from-index(40);
+        }
+
+        &.md {
+          .format-from-index(41);
+        }
+
+        &.neutral {
+          .format-from-index(42);
+        }
+
+        &.pages {
+          .format-from-index(43);
+        }
+
+        &.numbers {
+          .format-from-index(44);
+        }
+
+        &.key {
+          .format-from-index(45);
+        }
+
+        &.vsdx {
+          .format-from-index(46);
+        }
+
+        &.hwp {
+          .format-from-index(47);
+        }
+
+        &.hwpx {
+          .format-from-index(48);
+        }
+
+        &.odg {
+          .format-from-index(49);
+        }
+      }
+
+      .img-el {
+        display: inline-block;
+        &.folder {
+          height: 24px;
+          width: 28px;
+          background-position: -58px -48px;
+        }
+      }
+
+      .icon.shield, i.icon.img-el.shield {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 26px;
+        left: 29px;
+        background-position: -60px -76px;
       }
 
       .name {
@@ -487,11 +711,16 @@ li.menu-item {
       opacity: 0;
       display: flex;
       align-items: center;
+      
+      i.icon {
+        display: block; 
+      }
 
       button {
         color: @icon-normal;
         padding: 0;
         align-items: center;
+        .switch-svg();
 
         &:active {
           background: color-mix(in srgb, @icon-normal, 15%, transparent); // 555F65 15%
@@ -520,7 +749,7 @@ li.menu-item {
       background-color: @background-normal-element-light;
     }
 
-    &:hover:not(.unavail) {
+    &:hover {
       .col-more {
         opacity: 1;
       }
@@ -532,6 +761,13 @@ li.menu-item {
 
     &:active, &[data-active] {
       background-color: @highlight-button-pressed;
+    }
+
+    &.unavail {
+      > :not(.col-more) {
+        opacity: 0.5;
+        -webkit-filter: grayscale(100%);
+      }
     }
   }
 }
@@ -675,7 +911,7 @@ li.menu-item {
 .recent-panel-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  /*gap: 40px;*/
   position: relative;
   height: 100%;
   padding-inline: 32px;
@@ -706,8 +942,11 @@ li.menu-item {
     margin-left: auto;
     margin-right: auto;
     .document-creation-grid {
-      padding-left: 104px;
-      padding-right: 112px;
+      @media (min-width: 1280px) {
+        padding-left: 104px;
+        padding-right: 112px;
+      }
+      
       > * {
         margin-right: 32px;
       }
@@ -795,8 +1034,9 @@ li.menu-item {
 #area-document-creation-grid {
   padding: 12px 16px 0; // 16px inner + outer 32px
   overflow-x: auto;
-  min-height: 184px;
+  min-height: 204px;
   overflow-y: hidden;
+  margin-bottom: 40px;
 
   @media(max-width: 1280px) {
     padding-right: 48px;
@@ -815,6 +1055,7 @@ li.menu-item {
 #area-welcome {
   margin-top: 40px;
   margin-inline: auto;
+  margin-bottom: 40px;
 
   text-align: center;
   max-width: 744px;
@@ -1361,6 +1602,7 @@ li.menu-item {
 
 .main-column,
 .action-panel,
+.dlg,
 *
 {
     ::-webkit-scrollbar-track {
@@ -1827,6 +2069,90 @@ li.menu-item {
   }
 }
 
+.empty {
+  .text-description {
+    font-size: 14px;
+    color: @text-secondary;
+    margin: 0;
+  }
+
+  .btn--landing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto 10px auto;
+  }
+
+  .link-connect {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    color: @text-secondary;
+    padding: 5px 0 10px;
+    .login, .link {
+      color: @text-link;
+    }
+  }
+
+  .separate-top {
+    margin-top: 10px;
+    padding-top: 30px;
+    border-top: @scaled-one-px solid @border-divider;
+  }
+
+  .tools-connect2 {
+    padding-top: 20px;
+  }
+
+  #box-providers-premium-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  #box-providers-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+    margin: -5px auto 0;
+    max-width: 360px;
+
+    .btn.btn--big.btn--svg.login {
+      margin: 7px;
+      padding: 0;
+      background-color: @background-action-panel;
+    }
+  }
+
+  #box-providers-premium-button {
+    .btn.btn--big.btn--svg.login {
+      width: 330px;
+      height: 48px;
+      background-color: @background-action-panel;
+    }
+  }
+
+  .btn {
+    background-color: @background-normal;
+  }
+
+  .btn.btn--big.btn--svg.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 158px;
+    height: 42px;
+  }
+
+  .connect button[data-cprov] {
+    margin: initial;
+  }
+
+  .connect button[data-cprov] img.icon {
+    height: initial;
+    width: initial;
+  }
+}
 
 .templates {
     .table-caption {
@@ -2323,4 +2649,103 @@ li.menu-item {
             float: left;
         }
     }
+}
+
+.template-preview-body {
+  display: flex;
+
+  .img-container {
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-right: 16px;
+    flex-shrink: 0;
+    .rtl & {
+      margin-right: 0;
+      margin-left: 16px;
+    } 
+    
+    .icon--default {
+      border: initial;
+    }
+    
+    .icon {
+      display:none;
+      border: @scaled-one-px solid @border-divider;
+      border-radius: 4px;
+      width: 475px;
+      margin-right: 16px;
+      .rtl & {
+          margin-right: 0;
+          margin-left: 16px;
+        }
+    }
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    
+    .name {
+      color: @text-normal;
+      font-weight: bold;
+      font-size: 14px;
+      margin: 4px 0 10px;
+    }
+    
+    .pricing, .descr, .file-info {
+      font-size: 12px;
+      color: @text-normal;
+      margin: 0 0 10px;
+    }
+    
+    .file-info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .file-info .value {
+      font-weight: bold;
+    }
+
+    .btn--landing { 
+      margin-left: auto;
+      margin-top: 10px;
+      border-radius: 4px;
+      .rtl & {
+        margin-left: 0;
+        margin-right: auto;
+      }
+    }
+  }
+  @media (max-width: 780px) {
+    flex-direction: column;
+
+    .img-container {
+      max-height: 30vh;
+      margin-right: 0;
+
+      .rtl & {
+        margin-left: 0;
+      }
+
+      .icon {
+        width: 100%;
+      }
+    }
+
+    .description {
+      .name,
+      .pricing,
+      .descr,
+      .file-info {
+        margin-bottom: 5px;
+      }
+
+      .btn--landing {
+        margin-top: 0;
+      }
+    } 
+  }
 }
