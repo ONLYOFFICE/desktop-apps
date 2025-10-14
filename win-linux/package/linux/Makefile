@@ -156,11 +156,11 @@ build : $(LINUX_DEPS)
 	chmod 755 $@/main/opt/$(DESKTOPEDITORS_PREFIX)/DesktopEditors
 
 ifneq ($(PACKAGE_EDITION), commercial)
-	cp -ft $@/main/opt/$(DESKTOPEDITORS_PREFIX) \
-		$(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt
+	cp -f $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/LICENSE.txt
 else
-	cp -ft $@/main/opt/$(DESKTOPEDITORS_PREFIX) \
-		$(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/EULA.txt
+	cp -f $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/EULA.txt
 endif
 
 	cd $@; \
