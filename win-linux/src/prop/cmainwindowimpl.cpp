@@ -58,10 +58,10 @@ void CMainWindowImpl::refreshAboutVersion()
     auto _read_license_name = [](const QString& path) -> QString {
         QFile f(path);
         QString n;
-        if ( f.exists(path) ) {
+        if ( f.exists() ) {
             if ( f.open(QIODevice::ReadOnly | QIODevice::Text )) {
                 QTextStream stream(&f);
-                n = f.readLine().trimmed();
+                n = stream.readLine().trimmed();
                 f.close();
             }
         }
