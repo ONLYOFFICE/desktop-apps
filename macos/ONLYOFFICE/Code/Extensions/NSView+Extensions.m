@@ -269,24 +269,14 @@ static NSString * const kASCUuidPropertyKey = @"ascUuidPropertyKey";
     if (self.window) {
         NSRect viewFrameInWindow = [self convertRect:self.bounds toView:nil];
         NSRect windowFrame = [self.window convertRectToScreen:viewFrameInWindow];
+        CGRect mainDisplayBounds = CGDisplayBounds(CGMainDisplayID());
         
-        // Find the maximum Y coordinate across all screens for proper coordinate conversion
-        CGFloat maxY = 0;
-        for (NSScreen *screen in [NSScreen screens]) {
-            CGFloat screenMaxY = screen.frame.origin.y + screen.frame.size.height;
-            if (screenMaxY > maxY) {
-                maxY = screenMaxY;
-            }
-        }
-        
-        CGFloat captureX = windowFrame.origin.x;
-        CGFloat captureY = (maxY - windowFrame.origin.y - windowFrame.size.height);
-        CGFloat captureWidth = windowFrame.size.width;
-        CGFloat captureHeight = windowFrame.size.height;
+        CGFloat cgX = windowFrame.origin.x;
+        CGFloat cgY = mainDisplayBounds.size.height - windowFrame.origin.y - windowFrame.size.height;
         
         CGImageRef cgImage = CGWindowListCreateImage
         (
-         CGRectMake(captureX, captureY, captureWidth, captureHeight),
+         CGRectMake(cgX, cgY, windowFrame.size.width, windowFrame.size.height),
          kCGWindowListOptionIncludingWindow,
          (CGWindowID)[self.window windowNumber],
          kCGWindowImageBoundsIgnoreFraming | kCGWindowImageShouldBeOpaque
