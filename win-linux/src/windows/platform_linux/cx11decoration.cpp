@@ -426,11 +426,16 @@ void CX11Decoration::checkCursor(QPoint & p)
     }
 }
 
-void CX11Decoration::dispatchMouseDown(QMouseEvent *e)
+void CX11Decoration::dispatchMouseDown(QMouseEvent *e, bool move_only)
 {
     if (m_decoration) return;
 
     if (e->buttons() == Qt::LeftButton) {
+        if (move_only) {
+            m_nDirection = k_NET_WM_MOVERESIZE_MOVE;
+            return;
+        }
+
         QRect oTitleRect = m_title->geometry();
 
         if (!m_bIsMaximized)

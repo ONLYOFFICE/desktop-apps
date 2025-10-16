@@ -118,17 +118,24 @@ void CWindowPlatform::onWindowActivate(bool is_active)
 
 void CWindowPlatform::onEditorMouseEvent(QEvent::Type ev)
 {
-    switch (ev) {
-    case QEvent::MouseButtonDblClick:
+    QPoint pt = QCursor::pos();
+    QMouseEvent mev(ev, mapFromGlobal(pt), pt, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
 
+    switch (ev) {
+    case QEvent::MouseMove:
+        CX11Decoration::dispatchMouseMove(&mev);
+        break;
+
+    case QEvent::MouseButtonDblClick:
+        onMaximizeEvent();
         break;
 
     case QEvent::MouseButtonPress:
-
+        CX11Decoration::dispatchMouseDown(&mev, true);
         break;
 
     case QEvent::MouseButtonRelease:
-
+        CX11Decoration::dispatchMouseUp(&mev);
         break;
 
     default:

@@ -49,7 +49,7 @@ public:
     virtual ~CX11Decoration();
 
     void setTitleWidget(QWidget *);
-    void dispatchMouseDown(QMouseEvent *);
+    void dispatchMouseDown(QMouseEvent *, bool move_only = false);
     void dispatchMouseMove(QMouseEvent *);
     void dispatchMouseUp(QMouseEvent *);
     void setCursorPos(int x, int y);
