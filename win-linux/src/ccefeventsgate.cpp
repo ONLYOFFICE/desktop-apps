@@ -80,6 +80,10 @@ void CCefEventsGate::onKeyDown(void *)
 
 }
 
+void CCefEventsGate::onEditorMouseEvent(QEvent::Type ev)
+{
+}
+
 void CCefEventsGate::onDocumentLoadFinished(int uid)
 {
 }

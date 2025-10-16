@@ -138,6 +138,7 @@ public slots:
     void onDocumentFragmentedBuild(int, int);
     void onFullScreen(int id, bool apply);
     void onKeyDown(void *);
+    void onEditorMouseEvent(QEvent::Type ev);
     void onLocalFilesOpen(void *);
     void onLocalFileRecent(void *);
     void onLocalFileRecent(const COpenOptions&);
@@ -156,8 +157,6 @@ public slots:
     void onReporterMode(int, bool);
     void onErrorPage(int, const std::wstring&);
     virtual void onDocumentReady(int);
-
-    void onEditorMouseEvent(QEvent::Type ev, QPoint pt);
 
 private:
     QWidget * createMainPanel(QWidget *parent);

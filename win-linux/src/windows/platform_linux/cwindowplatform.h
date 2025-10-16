@@ -50,6 +50,7 @@ public:
 
 protected:
     void onWindowActivate(bool is_active);
+    void onEditorMouseEvent(QEvent::Type ev);
     virtual void onMinimizeEvent() override;
     virtual bool event(QEvent *event) override;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;

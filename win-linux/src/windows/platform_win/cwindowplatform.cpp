@@ -337,6 +337,29 @@ void CWindowPlatform::onWindowActivate(bool is_active)
     }
 }
 
+void CWindowPlatform::onEditorMouseEvent(QEvent::Type ev)
+{
+    POINT pt;
+    ::GetCursorPos(&pt);
+    ::ReleaseCapture();
+
+    switch (ev) {
+    case QEvent::MouseButtonDblClick:
+        ::PostMessage(m_hWnd, WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(pt));
+        break;
+
+    case QEvent::MouseButtonPress:
+        ::PostMessage(m_hWnd, WM_NCLBUTTONDOWN, HTCAPTION, POINTTOPOINTS(pt));
+        break;
+
+    case QEvent::MouseButtonRelease:
+        break;
+
+    default:
+        break;
+    }
+}
+
 bool CWindowPlatform::event(QEvent * event)
 {
     if (event->type() == QEvent::LayoutDirectionChange) {

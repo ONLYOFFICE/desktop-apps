@@ -116,6 +116,26 @@ void CWindowPlatform::onWindowActivate(bool is_active)
     }
 }
 
+void CWindowPlatform::onEditorMouseEvent(QEvent::Type ev)
+{
+    switch (ev) {
+    case QEvent::MouseButtonDblClick:
+
+        break;
+
+    case QEvent::MouseButtonPress:
+
+        break;
+
+    case QEvent::MouseButtonRelease:
+
+        break;
+
+    default:
+        break;
+    }
+}
+
 void CWindowPlatform::onMinimizeEvent()
 {
     CX11Decoration::setMinimized();

@@ -1428,6 +1428,11 @@ void CMainWindow::onKeyDown(void * eventData)
     }
 }
 
+void CMainWindow::onEditorMouseEvent(QEvent::Type ev)
+{
+    CWindowPlatform::onEditorMouseEvent(ev);
+}
+
 void CMainWindow::onPortalOpen(QString json)
 {
     QJsonParseError jerror;
@@ -1701,24 +1706,5 @@ void CMainWindow::handleWindowAction(const std::wstring& action)
             if ( !_panel_to_select.empty() )
                 AscAppManager::sendCommandTo(0, L"panel:select", _panel_to_select);
         }
-    }
-}
-
-void CMainWindow::onEditorMouseEvent(QEvent::Type ev, QPoint pt)
-{
-    POINT _pt;
-    ::GetCursorPos(&_pt);
-    ::ReleaseCapture();
-    switch (ev) {
-    case QEvent::MouseButtonDblClick:
-        ::PostMessage((HWND)winId(), WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(_pt));
-        break;
-    case QEvent::MouseButtonPress:
-        ::PostMessage((HWND)winId(), WM_NCLBUTTONDOWN, HTCAPTION, POINTTOPOINTS(_pt));
-        break;
-    case QEvent::MouseButtonRelease:
-        break;
-    default:
-        break;
     }
 }

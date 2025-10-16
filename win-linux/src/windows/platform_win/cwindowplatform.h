@@ -63,6 +63,7 @@ public:
 protected:
     bool isSessionInProgress();
     void onWindowActivate(bool is_active);
+    void onEditorMouseEvent(QEvent::Type ev);
     virtual bool event(QEvent *event) override;
     virtual void onLayoutDirectionChanged() = 0;
 #ifdef __OS_WIN_XP

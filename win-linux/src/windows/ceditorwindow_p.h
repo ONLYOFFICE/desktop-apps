@@ -671,6 +671,11 @@ public:
         return fs_parent != nullptr;
     }
 
+    void onEditorMouseEvent(QEvent::Type ev) override
+    {
+        window->CWindowPlatform::onEditorMouseEvent(ev);
+    }
+
     void onFullScreen(bool apply)
     {
         if ( apply == isFullScreen ) return;

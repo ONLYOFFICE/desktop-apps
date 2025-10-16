@@ -256,9 +256,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( cmd.compare(L"title:mouseup") == 0 || cmd.compare(L"title:mousedown") == 0 || cmd.compare(L"title:dblclick") == 0 ) {
             QEvent::Type ev = (cmd == L"title:mouseup") ? QEvent::MouseButtonRelease :
                                   (cmd == L"title:mousedown") ? QEvent::MouseButtonPress : QEvent::MouseButtonDblClick;
-            QJsonObject obj = Utils::parseJsonString(pData->get_Param());
-            QPoint pt( obj["x"].toInt(0), obj["y"].toInt(0) );
-            QMetaObject::invokeMethod( target, "onEditorMouseEvent", Qt::QueuedConnection, Q_ARG(QEvent::Type, ev), Q_ARG(QPoint, pt) );
+            QMetaObject::invokeMethod( target, "onEditorMouseEvent", Qt::QueuedConnection, Q_ARG(QEvent::Type, ev) );
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);
