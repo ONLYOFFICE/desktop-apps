@@ -146,6 +146,15 @@
                 return [NSColor colorNamed:@"tab-portal-activeColor"];
             else return kColorRGBA(255, 255, 255, 1.0);
         }
+    } else if ( [name isEqualToString:windowBackgroundColor] ) {
+        if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x282828);
+        else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x181818);
+        else if ( [theme isEqualToString:uiThemeGray] ) return UIColorFromRGB(0xd9d9d9);
+        else if ( [theme isEqualToString:uiThemeNight] ) return UIColorFromRGB(0x383838);
+        else if ( [theme isEqualToString:uiThemeWhite] ) return UIColorFromRGB(0xeaeaea);
+        else {
+            return UIColorFromRGB(0xe4e4e4);
+        }
     } else {
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x2a2a2a);
         else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);

@@ -48,6 +48,7 @@
 - (void)create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
 - (void)apply:(NSEditorApi::CAscMenuEvent *)event;
 - (void)setExternalCloud:(NSString *)provider;
+- (void)setBackgroundColor:(NSColor *)color;
 - (void)internalClean;
 - (void)focus;
 - (void)reload;

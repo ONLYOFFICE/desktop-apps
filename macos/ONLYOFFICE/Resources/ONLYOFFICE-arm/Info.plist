@@ -689,5 +689,7 @@
 	<string>N2LfKoNN6LkD5qNMjt+lEh6LYrQMEFNCEXQ3Kk6nTlM=</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 </dict>
 </plist>
