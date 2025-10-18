@@ -328,7 +328,7 @@
         };
 
         var _on_recovers = function(params) {
-            if ( true )
+            if ( false )
                 window.sdk.command("recovery:update", JSON.stringify(params));
             else {
                 collectionRecovers.empty();

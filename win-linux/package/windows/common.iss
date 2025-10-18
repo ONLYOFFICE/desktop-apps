@@ -1197,7 +1197,7 @@ Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags:
 Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
 #ifdef PACKAGE_EDITION
 #if PACKAGE_EDITION == "Enterprise"
-Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app};
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app}; DestName: "EULA.txt";
 #else
 Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
 #endif
