@@ -1,0 +1,28 @@
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION    $${VER_PRODUCT_VERSION_COMMAS}
+PRODUCTVERSION $${VER_PRODUCT_VERSION_COMMAS}
+BEGIN
+    BLOCK \"StringFileInfo\"
+    BEGIN
+        BLOCK \"$${VER_LANG_AND_CHARSET}\"
+        BEGIN
+            VALUE \"CompanyName\",      \"$${VER_COMPANYNAME}\"
+            VALUE \"FileDescription\",  \"$${VER_FILEDESCRIPTION}\"
+            VALUE \"FileVersion\",      \"$${VER_PRODUCT_VERSION}\"
+            VALUE \"InternalName\",     \"$${VER_INTERNALNAME}\"
+            VALUE \"LegalCopyright\",   \"$${VER_LEGALCOPYRIGHT}\"
+            VALUE \"LegalTrademarks1\", \"$${VER_LEGALTRADEMARKS1}\"
+            VALUE \"LegalTrademarks2\", \"$${VER_LEGALTRADEMARKS2}\"
+            VALUE \"OriginalFilename\", \"$${VER_ORIGINALFILENAME}\"
+            VALUE \"ProductName\",      \"$${VER_PRODUCTNAME}\"
+            VALUE \"ProductVersion\",   \"$${VER_PRODUCT_VERSION}\"
+        END
+    END
+    BLOCK \"VarFileInfo\"
+    BEGIN
+        VALUE \"Translation\", $${VER_LANG_ID} $${VER_CHARSET_ID}
+    END
+END
+
+/* EOF */

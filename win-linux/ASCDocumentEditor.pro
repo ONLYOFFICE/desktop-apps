@@ -31,8 +31,40 @@ message($$PLATFORM_BUILD)
 #}
 
 core_windows {
-    RC_FILE = $$PWD/version.rc
-    OTHER_FILES += $$PWD/version.rc
+    VER_PRODUCTNAME      = ONLYOFFICE
+    VER_INTERNALNAME     = Desktop Editors
+    VER_FILEDESCRIPTION  = ONLYOFFICE Desktop Editors
+    VER_LEGALTRADEMARKS1 = All Rights Reserved
+    VER_LEGALTRADEMARKS2 = $$VER_LEGALTRADEMARKS1
+    VER_ORIGINALFILENAME = editors.exe
+    VER_LANG_ID          = 0x0409
+    VER_CHARSET_ID       = 0x04E4
+    VER_LANG_AND_CHARSET = 040904E4
+
+    version_info.input = $$PWD/version.rc.in
+    version_info.output = $$PWD/version.rc
+    version_info.variables = \
+        VER_PRODUCT_VERSION_COMMAS \
+        VER_LANG_AND_CHARSET \
+        VER_COMPANYNAME \
+        VER_FILEDESCRIPTION \
+        VER_PRODUCT_VERSION \
+        VER_INTERNALNAME \
+        VER_LEGALCOPYRIGHT \
+        VER_LEGALTRADEMARKS1 \
+        VER_LEGALTRADEMARKS2 \
+        VER_ORIGINALFILENAME \
+        VER_PRODUCTNAME \
+        VER_LANG_ID \
+        VER_CHARSET_ID
+
+    QMAKE_SUBSTITUTES += version_info
+
+    RC_FILE = $$PWD/resource.rc
+    OTHER_FILES += \
+        $$PWD/resource.rc \
+        $$PWD/version.rc \
+        $$PWD/version.rc.in
 }
 
 core_linux {
