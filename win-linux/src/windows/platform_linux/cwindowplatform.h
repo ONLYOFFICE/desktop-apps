@@ -50,7 +50,7 @@ public:
 
 protected:
     void onWindowActivate(bool is_active);
-    void onEditorMouseEvent(QEvent::Type ev);
+    void onEditorMouseEvent(QEvent::Type ev, QRect);
     virtual void onMinimizeEvent() override;
     virtual bool event(QEvent *event) override;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;
@@ -64,6 +64,7 @@ private:
     virtual void mouseReleaseEvent(QMouseEvent *) final;
     virtual void mouseDoubleClickEvent(QMouseEvent *) final;
     QTimer *m_propertyTimer;
+    bool m_mouseUnderEditorTitle = false;
 };
 
 #endif // CWINDOWPLATFORM_H

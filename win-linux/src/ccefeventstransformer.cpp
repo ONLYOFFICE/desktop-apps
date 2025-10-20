@@ -254,11 +254,21 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
             QMetaObject::invokeMethod(target, "onErrorPage", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()));
         } else
         if ( cmd.compare(L"title:mouseup") == 0 || cmd.compare(L"title:mousedown") == 0 || cmd.compare(L"title:dblclick") == 0
-                   || cmd.compare(L"title:mousemove") == 0 ) {
+                   || cmd.compare(L"title:mouseenter") == 0 || cmd.compare(L"title:mouseleave") == 0 ) {
             QEvent::Type ev = (cmd == L"title:mouseup") ? QEvent::MouseButtonRelease :
                                   (cmd == L"title:mousedown") ? QEvent::MouseButtonPress :
-                                  (cmd == L"title:dblclick") ? QEvent::MouseButtonDblClick : QEvent::MouseMove;
-            QMetaObject::invokeMethod( target, "onEditorMouseEvent", Qt::QueuedConnection, Q_ARG(QEvent::Type, ev) );
+                                  (cmd == L"title:dblclick") ? QEvent::MouseButtonDblClick :
+                                  (cmd == L"title:mouseenter") ? QEvent::Enter :
+                                  (cmd == L"title:mouseleave") ? QEvent::Leave : QEvent::None;
+            QRect rc;
+            if (ev == QEvent::Enter) {
+                QJsonObject obj = Utils::parseJsonString(pData->get_Param());
+                QJsonObject box = obj["box"].toObject();
+                QJsonObject topLeft = box["topLeft"].toObject();
+                QRectF rcF(topLeft["x"].toDouble(), topLeft["y"].toDouble(), box["width"].toDouble(), box["height"].toDouble());
+                rc = rcF.toRect();
+            }
+            QMetaObject::invokeMethod( target, "onEditorMouseEvent", Qt::QueuedConnection, Q_ARG(QEvent::Type, ev), Q_ARG(QRect, rc) );
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);

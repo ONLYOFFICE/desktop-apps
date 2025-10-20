@@ -671,9 +671,9 @@ public:
         return fs_parent != nullptr;
     }
 
-    void onEditorMouseEvent(QEvent::Type ev) override
+    void onEditorMouseEvent(QEvent::Type ev, QRect rc) override
     {
-        window->CWindowPlatform::onEditorMouseEvent(ev);
+        window->CWindowPlatform::onEditorMouseEvent(ev, rc);
     }
 
     void onFullScreen(bool apply)

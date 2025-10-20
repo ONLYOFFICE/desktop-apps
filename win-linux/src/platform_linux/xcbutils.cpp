@@ -199,3 +199,17 @@ void XcbUtils::setInputEnabled(xcb_window_t window, bool enabled)
     }
     XFlush(disp);
 }
+
+void XcbUtils::setInputDisabledInRect(xcb_window_t window, const xcb_rectangle_t &rc,
+                                      const xcb_rectangle_t &except_rc)
+{
+    Display* disp = QX11Info::display();
+    Window wnd = window;
+    XRectangle xrc = {rc.x, rc.y, rc.width, rc.height};
+    XRectangle xexcept_rc = {except_rc.x, except_rc.y, except_rc.width, except_rc.height};
+    XShapeCombineRectangles(disp, wnd, ShapeInput, 0, 0, &xrc, 1, ShapeSubtract, YXBanded);
+    if (except_rc.width > 0 && except_rc.height > 0) {
+        XShapeCombineRectangles(disp, wnd, ShapeInput, 0, 0, &xexcept_rc, 1, ShapeUnion, YXBanded);
+    }
+    XFlush(disp);
+}

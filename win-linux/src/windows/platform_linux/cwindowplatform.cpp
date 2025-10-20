@@ -33,6 +33,7 @@
 #include "windows/platform_linux/cwindowplatform.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
+#include "platform_linux/xcbutils.h"
 #include "utils.h"
 #include <QTimer>
 #include <QPainter>
@@ -116,26 +117,23 @@ void CWindowPlatform::onWindowActivate(bool is_active)
     }
 }
 
-void CWindowPlatform::onEditorMouseEvent(QEvent::Type ev)
+void CWindowPlatform::onEditorMouseEvent(QEvent::Type ev, QRect rc)
 {
-    QPoint pt = QCursor::pos();
-    QMouseEvent mev(ev, mapFromGlobal(pt), pt, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-
     switch (ev) {
-    case QEvent::MouseMove:
-        CX11Decoration::dispatchMouseMove(&mev);
-        break;
+    case QEvent::Enter: {
+        m_mouseUnderEditorTitle = true;
+        rc = QRect(rc.x() * m_dpiRatio, rc.y() * m_dpiRatio, rc.width() * m_dpiRatio, rc.height() * m_dpiRatio);
+        rc.translate(m_pMainView->pos());
 
-    case QEvent::MouseButtonDblClick:
-        onMaximizeEvent();
+        xcb_rectangle_t rect = {(int16_t)rc.x(), (int16_t)rc.y(), (uint16_t)rc.width(), (uint16_t)rc.height()};
+        // xcb_rectangle_t ex_rect = {(int16_t)(300 + rc.x()), (int16_t)(rc.y()), 500, (uint16_t)rc.height()};
+        XcbUtils::setInputDisabledInRect(m_pMainPanel->winId(), rect/*, ex_rect*/);
         break;
+    }
 
-    case QEvent::MouseButtonPress:
-        CX11Decoration::dispatchMouseDown(&mev, true);
-        break;
-
-    case QEvent::MouseButtonRelease:
-        CX11Decoration::dispatchMouseUp(&mev);
+    case QEvent::Leave:
+        XcbUtils::setInputEnabled(m_pMainPanel->winId(), true);
+        m_mouseUnderEditorTitle = false;
         break;
 
     default:
@@ -235,7 +233,7 @@ void CWindowPlatform::mouseMoveEvent(QMouseEvent *e)
 
 void CWindowPlatform::mousePressEvent(QMouseEvent *e)
 {
-    CX11Decoration::dispatchMouseDown(e);
+    CX11Decoration::dispatchMouseDown(e, m_mouseUnderEditorTitle);
 }
 
 void CWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
@@ -246,7 +244,7 @@ void CWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
 void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *me)
 {
     if (m_boxTitleBtns) {
-        if (m_boxTitleBtns->geometry().contains(me->pos()))
+        if (m_mouseUnderEditorTitle || m_boxTitleBtns->geometry().contains(me->pos()))
             onMaximizeEvent();
     }
 }

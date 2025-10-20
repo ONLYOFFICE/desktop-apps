@@ -80,7 +80,7 @@ void CCefEventsGate::onKeyDown(void *)
 
 }
 
-void CCefEventsGate::onEditorMouseEvent(QEvent::Type ev)
+void CCefEventsGate::onEditorMouseEvent(QEvent::Type, QRect)
 {
 }
 

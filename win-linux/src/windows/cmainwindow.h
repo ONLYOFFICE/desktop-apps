@@ -138,7 +138,7 @@ public slots:
     void onDocumentFragmentedBuild(int, int);
     void onFullScreen(int id, bool apply);
     void onKeyDown(void *);
-    void onEditorMouseEvent(QEvent::Type ev);
+    void onEditorMouseEvent(QEvent::Type ev, QRect);
     void onLocalFilesOpen(void *);
     void onLocalFileRecent(void *);
     void onLocalFileRecent(const COpenOptions&);

@@ -1428,9 +1428,9 @@ void CMainWindow::onKeyDown(void * eventData)
     }
 }
 
-void CMainWindow::onEditorMouseEvent(QEvent::Type ev)
+void CMainWindow::onEditorMouseEvent(QEvent::Type ev, QRect rc)
 {
-    CWindowPlatform::onEditorMouseEvent(ev);
+    CWindowPlatform::onEditorMouseEvent(ev, rc);
 }
 
 void CMainWindow::onPortalOpen(QString json)

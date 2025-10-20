@@ -337,7 +337,7 @@ void CWindowPlatform::onWindowActivate(bool is_active)
     }
 }
 
-void CWindowPlatform::onEditorMouseEvent(QEvent::Type ev)
+void CWindowPlatform::onEditorMouseEvent(QEvent::Type ev, QRect)
 {
     POINT pt;
     ::GetCursorPos(&pt);

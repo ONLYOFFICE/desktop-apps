@@ -47,6 +47,8 @@ void findWindowAsync(const char *window_name, void *user_data,
                      void(*callback)(xcb_window_t, void*));
 void getWindowStack(std::vector<xcb_window_t> &winStack);
 void setInputEnabled(xcb_window_t window, bool enabled);
+void setInputDisabledInRect(xcb_window_t window, const xcb_rectangle_t &rc,
+                            const xcb_rectangle_t &except_rc = {});
 }
 
 #endif // XCBUTILS_H
