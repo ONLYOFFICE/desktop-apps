@@ -273,7 +273,7 @@ void CMainWindow::focus()
     if ( m_pTabs->isActiveWidget() ) {
         m_pTabs->setFocusedView();
     } else {
-        ((QCefView *)m_pMainWidget)->setFocusToCef();
+        ((QCefView *)m_pMainView)->setFocusToCef();
     }
 }
 
@@ -513,18 +513,18 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 
 void CMainWindow::attachStartPanel(QCefView * const view)
 {
-    m_pMainWidget = qobject_cast<QWidget *>(view);
+    m_pMainView = qobject_cast<QWidget *>(view);
 #ifdef __linux
     view->setMouseTracking(m_pButtonMain->hasMouseTracking());
 #endif
-    m_pMainWidget->setParent(m_pMainPanel);
+    m_pMainView->setParent(m_pMainPanel);
     QGridLayout *_pMainGridLayout = dynamic_cast<QGridLayout*>(m_pMainPanel->layout());
     Q_ASSERT(_pMainGridLayout != nullptr);
     if (_pMainGridLayout)
-        _pMainGridLayout->addWidget(m_pMainWidget, 1, 0, 1, 3);
-    m_pMainWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        _pMainGridLayout->addWidget(m_pMainView, 1, 0, 1, 3);
+    m_pMainView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     if (!m_pTabs->isActiveWidget())
-        m_pMainWidget->show();
+        m_pMainView->show();
 }
 
 #ifdef __linux
@@ -541,8 +541,8 @@ void CMainWindow::setMouseTracking(bool enable)
         foreach (auto btn, m_pTopButtons)
             btn->setMouseTracking(enable);
     }
-    if ( m_pMainWidget )
-        m_pMainWidget->setMouseTracking(enable);
+    if ( m_pMainView )
+        m_pMainView->setMouseTracking(enable);
 }
 #endif
 
@@ -550,10 +550,10 @@ void CMainWindow::pushButtonMainClicked()
 {
     if ( m_pTabs->isActiveWidget() ) {
         m_pTabs->activate(false);
-        m_pMainWidget->setHidden(false);
+        m_pMainView->setHidden(false);
         m_pTabs->setFocusedView();
         m_pButtonMain->setProperty("class", "active");
-        ((QCefView *)m_pMainWidget)->setFocusToCef();
+        ((QCefView *)m_pMainView)->setFocusToCef();
         onTabChanged(m_pTabs->currentIndex());
     }
 }
@@ -564,7 +564,7 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
         if (m_pTabs->isActiveWidget() == state) {
             m_pButtonMain->setProperty("class", state ? "active" : "normal");
             m_pTabs->activate(!state);
-            m_pMainWidget->setHidden(!state);
+            m_pMainView->setHidden(!state);
             if (!state)
                 m_pTabs->setFocusedView();
             onTabChanged(m_pTabs->currentIndex());
@@ -597,9 +597,9 @@ void CMainWindow::onTabsCountChanged(int count, int i, int d)
 
 void CMainWindow::onEditorAllowedClose(int uid)
 {
-    if ( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() == uid ) {
+    if ( ((QCefView *)m_pMainView)->GetCefView()->GetId() == uid ) {
 //        if ( m_pTabs->count() ) {
-//            m_pMainWidget->setProperty("removed", true);
+//            m_pMainView->setProperty("removed", true);
 //        }
     } else {
         int _index = m_pTabs->tabIndexByView(uid);
@@ -640,7 +640,7 @@ void CMainWindow::onTabChanged(int index)
         if (_panel)
             title = _panel->data()->title();
     } else {
-        ((QCefView *)m_pMainWidget)->setFocusToCef();
+        ((QCefView *)m_pMainView)->setFocusToCef();
     }
 
     if (title != windowTitle()) {
@@ -1592,7 +1592,7 @@ QString CMainWindow::getSaveMessage() const
 
 bool CMainWindow::holdUid(int uid) const
 {
-    CCefView * _view = (qobject_cast<QCefView *>(m_pMainWidget))->GetCefView();
+    CCefView * _view = (qobject_cast<QCefView *>(m_pMainView))->GetCefView();
     bool _res_out = _view->GetId() == uid;
     if (!_res_out) {
         CTabPanel * _widget = qobject_cast<CTabPanel *>(m_pTabs->fullScreenWidget());
@@ -1627,7 +1627,7 @@ bool CMainWindow::slideshowHoldUrl(const QString &url, AscEditorType type) const
 
 int CMainWindow::startPanelId()
 {
-    return ((QCefView *)m_pMainWidget)->GetCefView()->GetId();
+    return ((QCefView *)m_pMainView)->GetCefView()->GetId();
 }
 
 CAscTabWidget * CMainWindow::tabWidget()
@@ -1653,7 +1653,7 @@ void CMainWindow::cancelClose()
 
 QSize CMainWindow::contentSize()
 {
-    return m_pMainWidget ? m_pMainWidget->size() : QSize();
+    return m_pMainView ? m_pMainView->size() : QSize();
 }
 
 void CMainWindow::onLayoutDirectionChanged()

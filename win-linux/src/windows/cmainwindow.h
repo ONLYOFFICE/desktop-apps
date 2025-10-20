@@ -165,7 +165,6 @@ private:
 
     CAscTabWidget *  m_pTabs = nullptr;
     CSVGPushButton*  m_pButtonMain = nullptr;
-    QWidget*         m_pMainWidget = nullptr;
     QPushButton*     m_pButtonProfile = nullptr;
     CDownloadWidget* m_pWidgetDownload = nullptr;
     QString          m_savePortal;
