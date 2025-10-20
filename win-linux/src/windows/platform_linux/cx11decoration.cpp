@@ -618,7 +618,7 @@ void CX11Decoration::sendButtonRelease()
 
     XQueryPointer(xdisplay_, x_window, &event.xbutton.root, &event.xbutton.window,
                         &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-    XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
+    XSendEvent(xdisplay_, x_window, False, ButtonReleaseMask | PointerMotionMask, &event);
     XFlush(xdisplay_);
 }
 
