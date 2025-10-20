@@ -604,7 +604,7 @@ void CX11Decoration::raiseWindow()
 void CX11Decoration::sendButtonRelease()
 {
     Display * xdisplay_ = QX11Info::display();
-    Window x_root_window_ = (Window)m_window->effectiveWinId();
+    Window x_window = m_window->winId();
 
     XEvent event;
     memset(&event, 0, sizeof(XEvent));
@@ -616,7 +616,7 @@ void CX11Decoration::sendButtonRelease()
 //    event.xbutton.root = x_root_window_;
 //    event.xbutton.window = m_window->winId();
 
-    XQueryPointer(xdisplay_, x_root_window_, &event.xbutton.root, &event.xbutton.window,
+    XQueryPointer(xdisplay_, x_window, &event.xbutton.root, &event.xbutton.window,
                         &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
     XFlush(xdisplay_);
