@@ -975,7 +975,7 @@ end;
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   commonCachePath, userCachePath: string;
-  paramStore, translateArgs: string;
+  paramStore: string;
   ErrorCode: Integer;
   version: TWindowsVersion;
 begin
@@ -983,11 +983,7 @@ begin
     DoPostInstall();
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
-      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200;@{app}\{#iconsExe},-1201;@{app}\{#iconsExe},-1202');
-#ifdef _ONLYOFFICE
-      translateArgs := translateArgs + ExpandConstant(';@{app}\{#iconsExe},-1103');
-#endif
-      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list "' + translateArgs + '"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
       if CheckCommandlineParam('/noupdates') then begin
         RegWriteDWordValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'CheckForUpdates', 0);
       end else
