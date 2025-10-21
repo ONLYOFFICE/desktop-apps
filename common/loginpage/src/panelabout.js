@@ -258,7 +258,7 @@
                     const $button = $('#idx-update-btnaction', this.view.$body);
                     if ( info.button.text ) {
                         $button.text(info.button.text);
-                        $button.attr("data-action", info.button.action);
+                        $button.data("action", info.button.action);
                     }
 
                     if ( info.button.lock ) {
