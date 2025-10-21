@@ -157,8 +157,10 @@ namespace EditorJSVariables {
     QJsonObject vars_object;
 
     auto init() -> void {
-#ifdef __OS_WIN_XP
+#if defined(__OS_WIN_XP)
         vars_object["os"] = "winxp";
+#elif defined(__linux__)
+        vars_object["os"] = "linux";
 #endif
         if ( InputArgs::contains(L"--help-url") )
             vars_object["helpUrl"] = QUrl(QString::fromStdWString(InputArgs::argument_value(L"--help-url"))).toString();
