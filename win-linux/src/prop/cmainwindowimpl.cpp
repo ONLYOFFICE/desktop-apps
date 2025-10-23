@@ -86,7 +86,11 @@ void CMainWindowImpl::refreshAboutVersion()
         _lic_url = QUrl::fromLocalFile(_lic_path).toString();
     }
 
-    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";
+    QString _license;
+    if ( !(_lic_name.count() > 15) )
+        _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";
+    else _license = "&lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";
+
 
     _json_obj["version"]    = VER_FILEVERSION_STR;
 #ifdef Q_OS_WIN
