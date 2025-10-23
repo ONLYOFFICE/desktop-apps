@@ -240,6 +240,8 @@
 }
 
 - (void)openLocalPage:(NSString *)path query:(NSString *)query title:(NSString *)title {
+    if ( !path ) return;
+    
     NSURLComponents *urlPage = [NSURLComponents componentsWithString:path];
     urlPage.scheme = NSURLFileScheme;
     urlPage.query = query;
@@ -343,7 +345,13 @@
 }
 
 - (void)openEULA {
-    [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"EULA" ofType:@"html"] title:NSLocalizedString(@"License Agreement", nil)];
+    NSString * eulaUrl = [[NSBundle mainBundle] pathForResource:@"EULA" ofType:@"html" inDirectory:@"license"];
+    if ( !eulaUrl )
+        eulaUrl = [[NSBundle mainBundle] pathForResource:@"LICENSE" ofType:@"html" inDirectory:@"license"];
+
+    if ( eulaUrl ) {
+        [self openLocalPage:eulaUrl title:NSLocalizedString(@"License Agreement", nil)];
+    }
 }
 
 - (void)openPreferences {
