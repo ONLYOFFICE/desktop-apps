@@ -109,7 +109,7 @@ if ($Sign) {
     Set-Location $PSScriptRoot
 }
 
-if ($Arch -ne "arm64" -and Test-Path "$BuildDir\desktop\vlc-cache-gen.exe") {
+if (($Arch -ne "arm64") -and (Test-Path "$BuildDir\desktop\vlc-cache-gen.exe")) {
     Write-Host "DELETE: $BuildDir\desktop\vlc-cache-gen.exe"
     Remove-Item -Force -LiteralPath "$BuildDir\desktop\vlc-cache-gen.exe"
 }
