@@ -16,12 +16,10 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $SourceDir) {
-    $BuildPrefix = switch ("$Arch$Target") {
-        "x64" { "win_64" }
-        "x86" { "win_32" }
+    $BuildPrefix = switch ($Arch) {
+        "x64" { "win_64" + $(if ($Target -eq "xp") { "_xp" }) }
+        "x86" { "win_32" + $(if ($Target -eq "xp") { "_xp" }) }
         "arm64" { "win_arm64" }
-        "x64xp" { "win_64_xp" }
-        "x86xp" { "win_32_xp" }
     }
     $SourceDir = "$PSScriptRoot\..\..\..\..\build_tools\out\" `
         + "$BuildPrefix\$CompanyName\$ProductName" | Resolve-Path
@@ -102,14 +100,16 @@ if ($Sign) {
     if ($LastExitCode -ne 0) { throw }
 
     # VLC plugin cache
-    Write-Host ".\vlc-cache-gen $PWD\plugins"
-    & .\vlc-cache-gen "$PWD\plugins"
-    if ($LastExitCode -ne 0) { throw }
+    if ($Arch -ne "arm64") {
+        Write-Host ".\vlc-cache-gen $PWD\plugins"
+        & .\vlc-cache-gen "$PWD\plugins"
+        if ($LastExitCode -ne 0) { throw }
+    }
 
     Set-Location $PSScriptRoot
 }
 
-if (Test-Path "$BuildDir\desktop\vlc-cache-gen.exe") {
+if ($Arch -ne "arm64" -and Test-Path "$BuildDir\desktop\vlc-cache-gen.exe") {
     Write-Host "DELETE: $BuildDir\desktop\vlc-cache-gen.exe"
     Remove-Item -Force -LiteralPath "$BuildDir\desktop\vlc-cache-gen.exe"
 }
