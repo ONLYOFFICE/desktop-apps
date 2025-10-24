@@ -25,6 +25,7 @@ $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
 $MsiBuild = switch ($Arch) {
     "x64" { "MsiBuild64" }
     "x86" { "MsiBuild32" }
+    "arm64" { "MsiBuildARM64" }
 }
 $LanguageCodes = @(
     1033, # en              English (United States)
@@ -185,6 +186,7 @@ $Template = ";$($LanguageCodes -join ','),0"
 $Template = switch ($Arch) {
     "x64" { "x64" + $Template }
     "x86" { "Intel" + $Template }
+    "arm64" { "Arm64" + $Template }
 }
 
 Write-Host "MsiInfo $MsiFile /p $Template"

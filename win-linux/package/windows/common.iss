@@ -1176,15 +1176,9 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-#ifndef _WIN_XP
 Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2022;
-#else
-Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2019;
-#endif
+  Check: not checkVCRedist;
 
 Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)

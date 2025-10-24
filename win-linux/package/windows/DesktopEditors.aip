@@ -3,7 +3,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_APP_FILE" Value="[#DesktopEditors.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
-    <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="MsiBuild64:aiui#MsiBuild32:aiui"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|AppName] [|Version] ([|Arch])" ValueLocId="-"/>
     <ROW Property="AI_SHORTCUTSREG" Value="0|0|0|0|"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
@@ -12,7 +11,7 @@
     <ROW Property="ARPCONTACT" Value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050" ValueLocId="-"/>
     <ROW Property="ARPHELPLINK" Value="http://dev.onlyoffice.org/" ValueLocId="-"/>
     <ROW Property="ARPHELPTELEPHONE" Value="+371 66016425" ValueLocId="-"/>
-    <ROW Property="ARPNOMODIFY" MultiBuildValue="MsiBuild64:1#MsiBuild32:1"/>
+    <ROW Property="ARPNOMODIFY" MultiBuildValue="MsiBuild64:1#MsiBuild32:1#MsiBuildARM64:1"/>
     <ROW Property="ARPNOREPAIR" Value="1"/>
     <ROW Property="ARPPRODUCTICON" Value="i_desktopeditors" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
@@ -20,7 +19,7 @@
     <ROW Property="ARPURLUPDATEINFO" Value="http://www.onlyoffice.com/download.aspx" ValueLocId="-"/>
     <ROW Property="AppName" Value="ONLYOFFICE" ValueLocId="-"/>
     <ROW Property="AppUserModelID" Value="ASC.Documents.5" ValueLocId="-"/>
-    <ROW Property="Arch" Value="x64" MultiBuildValue="MsiBuild32:x86" ValueLocId="-"/>
+    <ROW Property="Arch" Value="x64" MultiBuildValue="MsiBuild32:x86#MsiBuildARM64:arm64" ValueLocId="-"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="CompanyPath" Value="ONLYOFFICE" ValueLocId="-"/>
     <ROW Property="DesktopPath" Value="DesktopEditors" ValueLocId="-"/>
@@ -30,9 +29,9 @@
     <ROW Property="FORMS" Value="1" ValueLocId="-"/>
     <ROW Property="IncompatibleVersion_ErrorText" Value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <ROW Property="LOCALE" Value="en-US"/>
-    <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
+    <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7#MsiBuildARM64:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA" ValueLocId="-"/>
-    <ROW Property="MsiLogging" MultiBuildValue="MsiBuild64:vp#MsiBuild32:vp"/>
+    <ROW Property="MsiLogging" MultiBuildValue="MsiBuild64:vp#MsiBuild32:vp#MsiBuildARM64:vp"/>
     <ROW Property="NOASSOCHECK" Value="0" ValueLocId="-"/>
     <ROW Property="NewDocument" Value="New document"/>
     <ROW Property="NewForm" Value="New PDF Form"/>
@@ -110,18 +109,18 @@
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
     <ROW Property="VC_REDIST" Value="1" ValueLocId="-"/>
     <ROW Property="Version" Value="0.0.0" ValueLocId="-"/>
-    <ROW Property="WindowsType9X" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsType9XDisplay" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT40" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT50" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT5X" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT60" MultiBuildValue="MsiBuild64:Windows Vista/Server 2008#MsiBuild32:Windows Vista/Server 2008" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT60Display" MultiBuildValue="MsiBuild64:Windows Vista/Server 2008#MsiBuild32:Windows Vista/Server 2008" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="MsiBuild64:32-bit Windows versions" ValueLocId="-"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME#MsiBuildARM64:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME#MsiBuildARM64:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86#MsiBuildARM64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0#MsiBuildARM64:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0#MsiBuildARM64:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000#MsiBuildARM64:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000#MsiBuildARM64:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003#MsiBuildARM64:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003#MsiBuildARM64:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60" MultiBuildValue="MsiBuild64:Windows Vista/Server 2008#MsiBuild32:Windows Vista/Server 2008#MsiBuildARM64:Windows Vista/Server 2008" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60Display" MultiBuildValue="MsiBuild64:Windows Vista/Server 2008#MsiBuild32:Windows Vista/Server 2008#MsiBuildARM64:Windows Vista/Server 2008" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="MsiBuild64:32-bit Windows versions#MsiBuildARM64:32-bit Windows versions" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
@@ -512,8 +511,9 @@
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="251"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
-    <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
+    <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" UseLargeSchema="true"/>
+    <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" UseLargeSchema="true" MsiPackageType="x64"/>
+    <ROW BuildKey="MsiBuildARM64" BuildName="MsiBuildARM64" BuildOrder="3" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" UseLargeSchema="true" MsiPackageType="Arm64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -575,10 +575,7 @@
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
-    <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
-    <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
     <ROW Action="AI_DownloadPrereq" Description="Downloading prerequisite software" DescriptionLocId="ActionText.Description.AI_DownloadPrereq" Template="Downloading [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_DownloadPrereq"/>
-    <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
     <ROW Action="AI_ExtractPrereq" Description="Extracting prerequisite software" DescriptionLocId="ActionText.Description.AI_ExtractPrereq" Template="Extracting [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_ExtractPrereq"/>
     <ROW Action="AI_InstallPostPrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
     <ROW Action="AI_InstallPrePrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
@@ -591,13 +588,10 @@
     <ROW Property="AI_SHORTCUTSREG" Signature_="AI_ShRegOptionMachine"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
-    <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
     <ROW Name="background.bmp" SourcePath="data\background.bmp"/>
     <ROW Name="banner.png" SourcePath="data\banner.png"/>
-    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
-    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
     <ROW Property="REGISTER_CSV" Value="1"/>
@@ -1075,18 +1069,10 @@
     <ROW Action="AI_DELETE_SHORTCUTS" Type="1" Source="aicustact.dll" Target="DeleteShortcuts"/>
     <ROW Action="AI_DEL_EMPTY_SHORTCUTDIR" Type="3073" Source="aicustact.dll" Target="DeleteEmptyDirectory" AdditionalSeq="AI_DATA_SETTER"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
-    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
-    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
-    <ROW Action="AI_DoRemoveExternalUIStub" Type="3585" Source="ExternalUICleaner.dll" Target="DoRemoveExternalUIStub" WithoutSeq="true"/>
     <ROW Action="AI_DownloadPrereq" Type="1" Source="Prereq.dll" Target="DownloadPrereq"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
-    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
     <ROW Action="AI_ExtractPrereq" Type="65" Source="Prereq.dll" Target="ExtractPrereq"/>
-    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
     <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
@@ -1098,10 +1084,8 @@
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
-    <ROW Action="AI_RemoveExternalUIStub" Type="1" Source="ExternalUICleaner.dll" Target="RemoveExternalUIStub"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_ResolvePropertyBaseFolder" Type="1" Source="aicustact.dll" Target="ResolvePropertyBaseFolder" WithoutSeq="true"/>
-    <ROW Action="AI_RestartElevated" Type="1" Source="aicustact.dll" Target="RestartElevated"/>
     <ROW Action="AI_RestoreInstallerProps" Type="1" Source="aicustact.dll" Target="RestoreInstallerProps" WithoutSeq="true"/>
     <ROW Action="AI_RollbackPrePrereq" Type="65" Source="Prereq.dll" Target="RollbackPrePrereq" WithoutSeq="true"/>
     <ROW Action="AI_RollbackPrereq" Type="65" Source="Prereq.dll" Target="RollbackPrereq" WithoutSeq="true"/>
@@ -1164,7 +1148,7 @@
     <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list &quot;@[#DesktopEditors.exe],-1200;@[#DesktopEditors.exe],-1201;@[#DesktopEditors.exe],-1202;@[#DesktopEditors.exe],-1103&quot;"/>
     <ROW Action="IncompatibleVersion" Type="19" Target="[IncompatibleVersion_ErrorText]"/>
     <ROW Action="RemoveJumpList" Type="210" Source="DesktopEditors.exe" Target="--remove-jump-list"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][CompanyPath]\[DesktopPath]#MsiBuild32:[ProgramFilesFolder][CompanyPath]\[DesktopPath]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][CompanyPath]\[DesktopPath]#MsiBuild32:[ProgramFilesFolder][CompanyPath]\[DesktopPath]#MsiBuildARM64:[ProgramFiles64Folder][CompanyPath]\[DesktopPath]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][CompanyPath]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
@@ -1461,29 +1445,19 @@
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
     <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="56" MsiKey="AI_DETECT_MODERNWIN"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
-    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="55"/>
     <ROW Action="AI_EnableDebugLog" Sequence="53"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1402"/>
-    <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
     <ROW Action="AI_DELETE_SHORTCUTS" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="1401"/>
     <ROW Action="AI_DEL_EMPTY_SHORTCUTDIR" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6402"/>
     <ROW Action="AI_DATA_SETTER" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6401"/>
-    <ROW Action="AI_AppSearchEx" Sequence="102"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="RemoveJumpList" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="6602"/>
     <ROW Action="CreateJumpList" Condition="( NOT Installed )" Sequence="6601"/>
-    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6597" Builds="MsiBuild64;MsiBuild32"/>
     <ROW Action="AI_DETECT_WINTHEME" Condition="(VersionNT &gt;= 603)" Sequence="54" MsiKey="AI_DETECT_WINTHEME"/>
-    <ROW Action="AI_MigrateInstallerProps" Condition="SETUPEXEDIR AND ((UILevel = 2) OR (UILevel = 3))" Sequence="6599"/>
+    <ROW Action="AI_MigrateInstallerProps" Condition="SETUPEXEDIR AND ((UILevel = 2) OR (UILevel = 3))" Sequence="6598"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="Assoc__csv" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_CSV = 3 )" Sequence="6603"/>
     <ROW Action="Assoc__djvu" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DJVU = 3 )" Sequence="6604"/>
@@ -1540,12 +1514,11 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
-    <ROW Action="AI_ResolveKnownFolders" Sequence="54"/>
-    <ROW Action="AI_DpiContentScale" Sequence="53"/>
-    <ROW Action="AI_EnableDebugLog" Sequence="52"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="95"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
-    <ROW Action="AI_RestartElevated" Sequence="51" Builds="MsiBuild64;MsiBuild32"/>
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
     <ROW Action="AI_InstallPrePrerequisite" Condition="Installed" Sequence="1296"/>
@@ -1557,12 +1530,12 @@
     <ROW Action="AI_CleanPrereq" Sequence="1302"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
-    <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="MsiBuild64"/>
-    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
+    <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
+    <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiMergeModsComponent">
     <ROW Module="Microsoft_VC142_CRT_x64.msm" Path="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\v142\MergeModules\Microsoft_VC142_CRT_x64.msm" Feature="Microsoft_VC142_CRT_x64" Directory="APPDIR" Order="1"/>

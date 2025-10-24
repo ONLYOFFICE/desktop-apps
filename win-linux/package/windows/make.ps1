@@ -16,12 +16,12 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $SourceDir) {
-    $BuildPrefix = switch ($Arch) {
+    $BuildPrefix = switch ("$Arch$Target") {
         "x64" { "win_64" }
         "x86" { "win_32" }
-    }
-    if ($Target -eq "xp") {
-        $BuildPrefix += "_xp"
+        "arm64" { "win_arm64" }
+        "x64xp" { "win_64_xp" }
+        "x86xp" { "win_32_xp" }
     }
     $SourceDir = "$PSScriptRoot\..\..\..\..\build_tools\out\" `
         + "$BuildPrefix\$CompanyName\$ProductName" | Resolve-Path
