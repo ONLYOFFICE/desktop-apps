@@ -71,6 +71,7 @@
 #import "ASCThemesController.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCPresentationReporter.h"
+#import "ASCLicenseController.h"
 #import <Carbon/Carbon.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -245,18 +246,35 @@
     NSURLComponents *urlPage = [NSURLComponents componentsWithString:path];
     urlPage.scheme = NSURLFileScheme;
     urlPage.query = query;
-    
-    ASCTabView * existTab = [self tabWithParam:@"url" value:[urlPage string]];
-    
-    if (existTab) {
-        [self.tabsControl selectTab:existTab];
-    } else {
-        ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
-        tab.title       = title;
-        tab.type        = ASCTabViewTypePortal;
-        tab.params      = [@{@"url" : [urlPage string]} mutableCopy];
+
+//    ASCTabView * existTab = [self tabWithParam:@"url" value:[urlPage string]];
+//
+//    if (existTab) {
+//        [self.tabsControl selectTab:existTab];
+//    } else {
+//        ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+//        tab.title       = title;
+//        tab.type        = ASCTabViewTypePortal;
+//        tab.params      = [@{@"url" : [urlPage string]} mutableCopy];
+//
+//        [self.tabsControl addTab:tab selected:YES];
+//    }
         
-        [self.tabsControl addTab:tab selected:YES];
+    NSWindow *mainWindow = [[NSApp windows] objectAtIndex:0];
+    if (mainWindow) {
+        ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
+        NSWindowController * windowController = [controller.storyboard instantiateControllerWithIdentifier:@"ASCLicenseWindowControllerId"];
+        ASCLicenseController *licView = (ASCLicenseController *)windowController.contentViewController;
+        [licView setUrl:urlPage.URL];
+        NSWindow *licWindow = windowController.window;
+        
+        NSRect parentFrame = mainWindow.frame;
+        NSRect childFrame = licWindow.frame;
+        [licWindow setFrameOrigin:NSMakePoint(NSMidX(parentFrame) - childFrame.size.width/2,
+                                              NSMidY(parentFrame) - childFrame.size.height/2)];
+        [licWindow makeKeyAndOrderFront:nil]; // Show the window first to apply the coordinates
+        
+        [NSApp runModalForWindow:licWindow];
     }
 }
 
