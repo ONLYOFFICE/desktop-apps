@@ -2195,7 +2195,7 @@
     if (selectedTabViewItemImage) {
         dimView.wantsLayer = true;
         [dimView.layer setContents:selectedTabViewItemImage];
-        [dimView.layer setContentsGravity:kCAGravityTopLeft];
+        [dimView.layer setContentsGravity:kCAGravityResize];
     }
     
     [self.view addSubview:dimView];

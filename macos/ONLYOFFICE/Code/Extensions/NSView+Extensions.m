@@ -268,19 +268,15 @@ static NSString * const kASCUuidPropertyKey = @"ascUuidPropertyKey";
 - (nullable NSImage *)windowScreenshot {
     if (self.window) {
         NSRect viewFrameInWindow = [self convertRect:self.bounds toView:nil];
-        
         NSRect windowFrame = [self.window convertRectToScreen:viewFrameInWindow];
-        CGFloat screenHeight = NSScreen.mainScreen.frame.size.height;
+        CGRect mainDisplayBounds = CGDisplayBounds(CGMainDisplayID());
+        
+        CGFloat cgX = windowFrame.origin.x;
+        CGFloat cgY = mainDisplayBounds.size.height - windowFrame.origin.y - windowFrame.size.height;
         
         CGImageRef cgImage = CGWindowListCreateImage
         (
-         CGRectMake
-         (
-          windowFrame.origin.x,
-          screenHeight - windowFrame.origin.y - windowFrame.size.height,
-          windowFrame.size.width,
-          windowFrame.size.height
-          ),
+         CGRectMake(cgX, cgY, windowFrame.size.width, windowFrame.size.height),
          kCGWindowListOptionIncludingWindow,
          (CGWindowID)[self.window windowNumber],
          kCGWindowImageBoundsIgnoreFraming | kCGWindowImageShouldBeOpaque
