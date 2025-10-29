@@ -1161,7 +1161,7 @@
     <ROW Action="Assoc__xltx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xltx:[ExtPfx].Xltx&quot;"/>
     <ROW Action="Assoc__xml" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xml:[ExtPfx].Xml&quot;"/>
     <ROW Action="Assoc__xps" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xps:[ExtPfx].Xps&quot;"/>
-    <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list &quot;@[#DesktopEditors.exe],-1200;@[#DesktopEditors.exe],-1201;@[#DesktopEditors.exe],-1202;@[#DesktopEditors.exe],-1103&quot;"/>
+    <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list"/>
     <ROW Action="IncompatibleVersion" Type="19" Target="[IncompatibleVersion_ErrorText]"/>
     <ROW Action="RemoveJumpList" Type="210" Source="DesktopEditors.exe" Target="--remove-jump-list"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][CompanyPath]\[DesktopPath]#MsiBuild32:[ProgramFilesFolder][CompanyPath]\[DesktopPath]"/>
