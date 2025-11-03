@@ -5,7 +5,7 @@ function PreviewTemplateDialog(model, params = {}) {
     const bodyTemplate = `
         <div class="template-preview-body">
             <div class="img-container">
-                <svg class='icon--default'><use xlink:href='#template-item'></use></svg>
+                <img class='icon--default' src="${model.icon}">
                 <img class="icon" src="${model.preview}" style="display:none;">
             </div>
             <div class="description">
@@ -55,7 +55,7 @@ PreviewTemplateDialog.prototype.show = function(width) {
 
     const {$el} = this.getElements();
     const $img = $el.find('img.icon');
-    const $icon = $el.find('svg.icon--default');
+    const $icon = $el.find('img.icon--default');
 
     $img.on('load', () => {
         $icon.hide();
