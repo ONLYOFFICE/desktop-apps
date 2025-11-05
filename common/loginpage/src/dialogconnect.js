@@ -245,8 +245,7 @@ window.DialogConnect = function(params) {
             else {
     
                 const matches = (e) => {
-                    const portal = portal.replace(/^https?:\/\//, '');
-                    const isIP = /^\d{1,3}(\.\d{1,3}){3}(?::\d+)?/.test(portal);
+                    const isIP = /^\d{1,3}(\.\d{1,3}){3}(?::\d+)?/.test(portal.replace(/^https?:\/\//, ''));
                     const text = (e.responseText || '').toLowerCase();
                     const providers = config.portals.checklist.map(p => p.provider);
                     const current = provider === 'onlyoffice' ? ['onlyoffice', 'teamlab'] : [provider];
