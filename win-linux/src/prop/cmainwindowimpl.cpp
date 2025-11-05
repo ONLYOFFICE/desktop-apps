@@ -103,10 +103,14 @@ void CMainWindowImpl::refreshAboutVersion()
 
     _json_obj["version"]    = VER_FILEVERSION_STR;
 #ifdef Q_OS_WIN
-# ifdef Q_OS_WIN64
-    _json_obj["arch"]       = "x64";
-# else
-    _json_obj["arch"]       = "x86";
+# if defined(_M_ARM64)
+    _json_obj["arch"] = "arm64";
+# elif defined(_M_ARM)
+    _json_obj["arch"] = "arm";
+# elif defined(_M_X64)
+    _json_obj["arch"] = "x64";
+# elif defined(_M_IX86)
+    _json_obj["arch"] = "x86";
 # endif
 #endif
     _json_obj["edition"]    = _license;
