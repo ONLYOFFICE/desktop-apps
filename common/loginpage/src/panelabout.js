@@ -67,7 +67,7 @@
         const strVersion = args.opts.commercial === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
 
         let _ext_ver = '';
-        if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? 'x64' : 'x86'}`;
+        if ( !!_opts.arch ) _ext_ver += _opts.arch;
         if ( !!_opts.pkg ) _ext_ver += ` ${_opts.pkg}`;
         if ( !!_ext_ver ) _opts.version += ` (${_ext_ver.trim()})`;
 
