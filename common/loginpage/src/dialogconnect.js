@@ -244,7 +244,18 @@ window.DialogConnect = function(params) {
                 resolve({status:'skipped', response: {statusText: _url}});
             else {
     
-                const matches = (e) => (provider === 'onlyoffice' ? ['onlyoffice', 'teamlab'] : [provider]).some(p => (e.responseText || '').toLowerCase().includes(p) || portal.toLowerCase().includes(p));
+                const matches = (e) => {
+                    const portal = portal.replace(/^https?:\/\//, '');
+                    const isIP = /^\d{1,3}(\.\d{1,3}){3}(?::\d+)?/.test(portal);
+                    const text = (e.responseText || '').toLowerCase();
+                    const providers = config.portals.checklist.map(p => p.provider);
+                    const current = provider === 'onlyoffice' ? ['onlyoffice', 'teamlab'] : [provider];
+
+                    if (isIP) {
+                        return !providers.some(p => !current.includes(p) && text.includes(p));
+                    }
+                    return current.some(p => text.includes(p) || portal.toLowerCase().includes(p));
+                };
                 let fetchFuntion = $.ajax;
                 if (window.AscSimpleRequest && window.AscSimpleRequest.createRequest)
                     fetchFuntion = window.AscSimpleRequest.createRequest;
