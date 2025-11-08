@@ -28,7 +28,7 @@ if (-not (Test-Path "$SourceDir")) {
     Write-Error "Path `"$SourceDir`" does not exist"
 }
 if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
+    $BuildDir = "_$Arch"
 }
 
 Write-Host @"

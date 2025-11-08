@@ -15,7 +15,7 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
+    $BuildDir = "_$Arch"
 }
 $MsiFile = switch ($Target) {
     "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.msi" }
