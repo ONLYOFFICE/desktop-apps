@@ -124,6 +124,7 @@
 
     utils.fn.extend(ControllerAbout.prototype, (function() {
         let features = undefined;
+        let action = null;
 
         let _on_features_avalable = function (params) {
             if ( !!this.view ) {
@@ -186,7 +187,6 @@
 
                     if ( this.updates ) {
                         $('body').on('click', '.btn-update-action', e=>{
-                            const action = $(e.target).data('action');
                             sdk.execCommand('updates:action', action);
                         });
                     }
@@ -258,7 +258,7 @@
                     const $button = $('#idx-update-btnaction', this.view.$body);
                     if ( info.button.text ) {
                         $button.text(info.button.text);
-                        $button.data("action", info.button.action);
+                        action = info.button.action;
                     }
 
                     if ( info.button.lock ) {
