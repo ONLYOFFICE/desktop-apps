@@ -95,9 +95,11 @@ using std::vector;
 auto currentArch()->tstring
 {
 #ifdef _WIN32
-# ifdef _WIN64
+# if defined(_M_ARM64)
+    return L"_arm64";
+# elif defined(_M_X64)
     return L"_x64";
-# else
+# elif defined(_M_IX86)
     return L"_x86";
 # endif
 #else
@@ -513,9 +515,11 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                 tstring curr_svc_version = _T(VER_FILEVERSION_STR);
                 JsonObject package = root.value(_T("package")).toObject();
 #ifdef _WIN32
-# ifdef _WIN64
+# if defined(_M_ARM64)
+                JsonObject win = package.value(_T("win_arm64")).toObject();
+# elif defined(_M_X64)
                 JsonObject win = package.value(_T("win_64")).toObject();
-# else
+# elif defined(_M_IX86)
                 JsonObject win = package.value(_T("win_32")).toObject();
 # endif
 #else
