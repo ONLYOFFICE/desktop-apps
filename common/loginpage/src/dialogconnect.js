@@ -244,17 +244,6 @@ window.DialogConnect = function(params) {
                 resolve({status:'skipped', response: {statusText: _url}});
             else {
     
-                const matches = (e) => {
-                    const isIP = /^\d{1,3}(\.\d{1,3}){3}(?::\d+)?/.test(portal.replace(/^https?:\/\//, ''));
-                    const text = (e.responseText || '').toLowerCase();
-                    const providers = config.portals.checklist.map(p => p.provider);
-                    const current = provider === 'onlyoffice' ? ['onlyoffice', 'teamlab'] : [provider];
-
-                    if (isIP) {
-                        return !providers.some(p => !current.includes(p) && text.includes(p));
-                    }
-                    return current.some(p => text.includes(p) || portal.toLowerCase().includes(p));
-                };
                 let fetchFuntion = $.ajax;
                 if (window.AscSimpleRequest && window.AscSimpleRequest.createRequest)
                     fetchFuntion = window.AscSimpleRequest.createRequest;
@@ -271,11 +260,6 @@ window.DialogConnect = function(params) {
                                 // skip checking response for tests
                                 // if ( !_model.entryPage )
                                     // JSON.parse(e.responseText)
-                                
-                                if (!matches(e)) {
-                                    reject({status:'invalid portal', response:e});
-                                    return;
-                                }
 
                                 resolve({status:status, response:e});
                             } catch (err) {
