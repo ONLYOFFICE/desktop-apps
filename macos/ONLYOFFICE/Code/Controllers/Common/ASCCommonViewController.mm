@@ -2022,6 +2022,7 @@
                     case AscEditorType::etPresentation:
                         docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++presentationNameCounter];
                         break;
+                    case AscEditorType::etPdf:
                     case AscEditorType::etDocumentMasterOForm:
                     case AscEditorType::etDocumentMasterForm:
                         docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.pdf", nil), ++pdfNameCounter];
