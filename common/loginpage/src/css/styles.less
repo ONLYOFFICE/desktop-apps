@@ -1155,6 +1155,7 @@ li.menu-item {
   }
 
   tr:not(.lost) {
+    position: relative;
     .cportal, .cuser, .cemail {
       /*width: 25%;*/
       padding: 0;
@@ -1173,10 +1174,33 @@ li.menu-item {
       }
     }
 
+    .info {
+        width: 100%;
+    }
+
+    &:hover .info-content {
+      padding-right: 40px;
+      .rtl & {
+        padding-right: 0;
+        padding-left: 40px;
+      }
+    }
+
     .cell-tools {
       width: 38px;
       padding: 0 8px 0 0;
       overflow: visible;
+      position: absolute;
+      top: 50%; 
+      right: 0;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      .rtl & {
+          padding: 0 0 0 8px;
+          right: auto; 
+          left: 0; 
+      }
 
       .hlayout {
         justify-content: flex-end;
@@ -1184,9 +1208,12 @@ li.menu-item {
 
       .btn-quick.more {
         margin: 0 5px 0 0px;
+        .rtl & {
+          margin: 0  0 0 5px;
+        }
       }
     }
-  }
+}
 
   .sidebar-block-title {
     .btn-quick {
