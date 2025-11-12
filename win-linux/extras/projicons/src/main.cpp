@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
                 it++;
             }
             if (!assocList.empty())
-                SetUserFileAssoc(assocList.data(), assocList.size());
+                SetUserFileAssoc(assocList);
         }
         return 0;
     }

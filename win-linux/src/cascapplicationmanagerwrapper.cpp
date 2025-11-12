@@ -311,8 +311,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( cmd.find(L"app:onready") != std::wstring::npos ) {
+            GET_REGISTRY_SYSTEM(reg_system)
             GET_REGISTRY_USER(reg_user)
-            if (reg_user.value("lockPortals", false).toBool()
+            if (reg_system.value("lockPortals", false).toBool() || reg_user.value("lockPortals", false).toBool()
 #ifdef Q_OS_WIN
                     || Utils::getWinVersion() <= Utils::WinVer::WinVista
 #endif
@@ -854,6 +855,8 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
     QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr, CWindowBase::expectedContentSize(_start_rect));
     _startPanel->Create(&_app, cvwtSimple);
     _startPanel->setObjectName("startPanel");
+	QColor c = m_themes->current().color(CTheme::ColorRole::ecrWindowBackground);
+    _startPanel->SetBackgroundCefColor(uchar(c.red()), uchar(c.green()), uchar(c.blue()));
     //_startPanel->resize(_start_rect.width(), _start_rect.height());
 
     CMainWindow * _window = static_cast<CMainWindow*>(new CMainWindowImpl(_start_rect));
@@ -2319,6 +2322,7 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     switch ( format ) {
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF: {
         QString docname = tr("Document%1.docx").arg(++pdf_count);
         return docname.replace("docx", "pdf");

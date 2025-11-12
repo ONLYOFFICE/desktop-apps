@@ -268,6 +268,30 @@ public:
 
                 return true;
             } else
+            if ( cmd.compare(L"recovery:update") == 0 ) {
+                QJsonParseError jerror;
+                QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(data.get_Param()).toUtf8(), &jerror);
+
+                if( jerror.error == QJsonParseError::NoError ) {
+                    if (jdoc.isArray()) {
+                        const QJsonArray arr = jdoc.array();
+                        for (const auto &val : arr) {
+                            QJsonObject obj = val.toObject();
+                            if (obj.contains("path")) {
+                                QString path = obj["path"].toString();
+
+                                COpenOptions opts{path.toStdWString(), etRecoveryFile, obj["id"].toInt()};
+                                opts.parent_id = event.m_nSenderId;
+                                opts.format = obj["type"].toInt();
+                                opts.name = (QFileInfo(path)).fileName();
+                                openDocument(opts);
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            } else
             if ( cmd.compare(L"open:document") == 0 ) {
                 const std::wstring & _url = data.get_Param();
                 if ( !_url.empty() ) {

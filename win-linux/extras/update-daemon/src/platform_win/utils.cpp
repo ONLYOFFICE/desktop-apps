@@ -428,8 +428,9 @@ namespace NS_File
         return false;
     }
 
-    bool isProcessRunning(const wstring &fileName)
+    bool isProcessRunning(const wstring &filePath)
     {
+        wstring fileName = filePath.substr(filePath.find_last_of(L"\\/") + 1);
         HANDLE snapShot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
         if (snapShot == INVALID_HANDLE_VALUE)
             return false;
@@ -443,8 +444,19 @@ namespace NS_File
 
         do {
             if (lstrcmpi(entry.szExeFile, fileName.c_str()) == 0) {
-                CloseHandle(snapShot);
-                return true;
+                HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, entry.th32ProcessID);
+                if (hProcess) {
+                    WCHAR processPath[MAX_PATH];
+                    DWORD pathSize = MAX_PATH;
+                    if (QueryFullProcessImageNameW(hProcess, 0, processPath, &pathSize)) {
+                        if (lstrcmpi(processPath, filePath.c_str()) == 0) {
+                            CloseHandle(hProcess);
+                            CloseHandle(snapShot);
+                            return true;
+                        }
+                    }
+                    CloseHandle(hProcess);
+                }
             }
         } while (Process32Next(snapShot, &entry));
 

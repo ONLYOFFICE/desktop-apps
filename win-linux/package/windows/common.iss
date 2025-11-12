@@ -184,6 +184,9 @@ en.LanguageName=English (United States)
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
 ar_SA.LanguageName=الْعَرَبِيَّة
+#if Ver >= EncodeVer(6,1,1)
+ur.RightToLeft=yes
+#endif
 
 [CustomMessages]
 en.AppLocale =en-US
@@ -1173,15 +1176,9 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-#ifndef _WIN_XP
 Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2022;
-#else
-Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2019;
-#endif
+  Check: not checkVCRedist;
 
 Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)
@@ -1194,7 +1191,7 @@ Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags:
 Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
 #ifdef PACKAGE_EDITION
 #if PACKAGE_EDITION == "Enterprise"
-Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app};
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app}; DestName: "EULA.txt";
 #else
 Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
 #endif

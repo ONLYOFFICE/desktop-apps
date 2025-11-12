@@ -15,7 +15,7 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
+    $BuildDir = "_$Arch"
 }
 $MsiFile = switch ($Target) {
     "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.msi" }
@@ -25,6 +25,7 @@ $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
 $MsiBuild = switch ($Arch) {
     "x64" { "MsiBuild64" }
     "x86" { "MsiBuild32" }
+    "arm64" { "MsiBuildARM64" }
 }
 $LanguageCodes = @(
     1033, # en              English (United States)
@@ -155,12 +156,15 @@ if ($Target -ne "commercial") {
     $AdvInstConfig += `
         "AddFile APPDIR $LicensePath\opensource\LICENSE.txt"
 } else {
+    Copy-Item -Force `
+        -Path "$LicensePath\commercial\LICENSE.txt" `
+        -Destination "$LicensePath\commercial\EULA.txt"
     $AdvInstConfig += `
         "SetProperty Edition=Enterprise", `
         "SetProperty AI_PRODUCTNAME_ARP=`"[|AppName] ([|Edition]) [|Version] ([|Arch])`"", `
         "SetEula -rtf `"$("$LicensePath\commercial\LICENSE.rtf" | Resolve-Path)`"", `
         "SetPackageName `"$MsiFile`" -buildname $MsiBuild", `
-        "AddFile APPDIR $LicensePath\commercial\LICENSE.txt"
+        "AddFile APPDIR $LicensePath\commercial\EULA.txt"
 }
 $AdvInstConfig += `
     "Rebuild -buildslist $MsiBuild"
@@ -185,6 +189,7 @@ $Template = ";$($LanguageCodes -join ','),0"
 $Template = switch ($Arch) {
     "x64" { "x64" + $Template }
     "x86" { "Intel" + $Template }
+    "arm64" { "Arm64" + $Template }
 }
 
 Write-Host "MsiInfo $MsiFile /p $Template"

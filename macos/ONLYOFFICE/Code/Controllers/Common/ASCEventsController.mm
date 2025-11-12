@@ -188,6 +188,12 @@ public:
                         break;
                     }
                         
+                    case ASC_MENU_EVENT_TYPE_CEF_CHECK_KEYBOARD: {
+                        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                        appManager->CheckKeyboard();
+                        break;
+                    }
+
                     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS:
                         break;
                         
@@ -654,7 +660,13 @@ public:
                                 }
                                 
                                 if (NSString * langId = json[@"langid"]) {
-                                    [ASCLinguist setAppLanguageCode:langId];
+                                    if ( [ASCLinguist appLanguageCode] != langId ) {
+                                        [ASCLinguist setAppLanguageCode:langId];
+
+                                        NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"lang": langId}];
+                                        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                        appManager->UpdatePlugins([[json jsonString] stdwstring]);
+                                    }
                                 }
 
                                 if (NSString * userName = json[@"username"]) {
@@ -695,6 +707,11 @@ public:
                                 if ( [json objectForKey:@"usegpu"] != nil ) {
                                     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"disable-gpu", [json[@"usegpu"] boolValue] ? L"0" : L"1");
+                                }
+
+                                if ( [json objectForKey:@"spellcheckdetect"] != nil ) {
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->GetUserSettings()->Set(L"spell-check-input-mode", [json[@"spellcheckdetect"] isEqualToString:@"off"] ? L"0" : L"1");
                                 }
 
                                 [[ASCEditorJSVariables instance] applyParameters];
@@ -739,7 +756,8 @@ public:
                                     int tplType = [json[@"type"] intValue];
 //                                    if ( tplType > AVS_OFFICESTUDIO_FILE_DOCUMENT and tplType < AVS_OFFICESTUDIO_FILE_PRESENTATION ) docType = AscEditorType::etDocument; else
                                     if ( tplType > AVS_OFFICESTUDIO_FILE_PRESENTATION and tplType < AVS_OFFICESTUDIO_FILE_SPREADSHEET ) docType = AscEditorType::etPresentation; else
-                                    if ( tplType > AVS_OFFICESTUDIO_FILE_SPREADSHEET and tplType < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) docType = AscEditorType::etSpreadsheet;
+                                    if ( tplType > AVS_OFFICESTUDIO_FILE_SPREADSHEET and tplType < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) docType = AscEditorType::etSpreadsheet; else
+                                    if ( tplType == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF ) { docType = AscEditorType::etPdf; }
 //                                    else if ( tplType > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM and tplType < AVS_OFFICESTUDIO_FILE_IMAGE ) {}
                                 }
 
@@ -814,12 +832,20 @@ public:
                                                                                              @"path"    : json[@"path"]
                                                                                              }];
                             }
+                        } else if (cmd.find(L"recovery:update") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameRecoveryFiles
+                                                                                object:nil
+                                                                                userInfo:@{
+                                                                                        @"files":[NSString stringWithstdwstring:param]
+                                                                                }];
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);
 
                             if (pCefView) {
-                                NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
+                                BOOL isDark = [ASCThemesController isCurrentThemeDark];
+                                NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?:
+                                                        [ASCThemesController defaultThemeId:isDark];
 
                                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                                 pCommand->put_FrameName(L"frameEditor");

@@ -32,7 +32,7 @@ platform :mac do
     edition = options[:edition]
 
     desc 'Cleanup'
-    sh("rm -rf ../#{build}")
+    sh("rm -rf ../#{build} && rm -rf ../Vendor/ONLYOFFICE")
 
     desc 'Get the version from plist'
     version_number = get_info_plist_value(
@@ -51,9 +51,10 @@ platform :mac do
     if edition && !edition.empty? then package_name += "-#{edition}" end
     package_name += "-#{git_suffix}-#{version_number}-#{app_build_number}"
 
-    if edition == "Enterprise"
-      sh("rm -fv ../Vendor/ONLYOFFICE/license/EULA.html")
-      sh("cp -fv ../../common/package/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/")
+    if edition != "Enterprise"
+      sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../common/package/license/opensource/LICENSE.html ../Vendor/ONLYOFFICE/license/LICENSE.html")
+    else
+      sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../common/package/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
     end
 
     desc 'Build for developer id and notarize'

@@ -59,7 +59,7 @@ window.DialogConnect = function(params) {
                                 </div>
                                 <div style="height:12px;"></div>
                                 <div class="lr-flex">
-                                    <!-- <a class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a> -->
+                                    <a class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
                                     <span />
                                     <div class="lr-flex">
                                         <img class="img-loader">
@@ -243,8 +243,7 @@ window.DialogConnect = function(params) {
             if ( !_url.startsWith('http') )
                 resolve({status:'skipped', response: {statusText: _url}});
             else {
-
-                const matches = (e) => (e.responseText || '').toLowerCase().includes(provider) || portal.toLowerCase().includes(provider);
+    
                 let fetchFuntion = $.ajax;
                 if (window.AscSimpleRequest && window.AscSimpleRequest.createRequest)
                     fetchFuntion = window.AscSimpleRequest.createRequest;
@@ -261,11 +260,6 @@ window.DialogConnect = function(params) {
                                 // skip checking response for tests
                                 // if ( !_model.entryPage )
                                     // JSON.parse(e.responseText)
-                                
-                                if (!matches(e)) {
-                                    reject({status:'invalid portal', response:e});
-                                    return;
-                                }
 
                                 resolve({status:status, response:e});
                             } catch (err) {

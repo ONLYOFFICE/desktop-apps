@@ -7,6 +7,13 @@
 #endif // Q_OS_LINUX
 
 #include "cthemes.h"
+
+#ifdef Q_OS_LINUX
+# include <gtk/gtk.h>
+# include <gio/gio.h>
+# include <glib.h>
+#endif
+
 #include "defines.h"
 #include "utils.h"
 #include <QSettings>
@@ -183,6 +190,26 @@ auto getUserThemesPath() -> QString
     return Utils::getAppCommonPath() + "/uithemes";
 }
 
+#ifdef __linux__
+static bool themeExists(const char *theme)
+{
+    char path[256];
+    snprintf(path, sizeof(path), "/usr/share/themes/%s/gtk-3.0", theme);
+    return access(path, F_OK) == 0;
+}
+
+static void applyGtkTheme(bool isDark)
+{
+    const char *theme_light = "Adwaita";
+    const char *theme_dark = "Adwaita-dark";
+    if (!themeExists(theme_light) || !themeExists(theme_dark))
+        return;
+    qputenv("GTK_THEME", isDark ? theme_dark : theme_light);
+    if (GtkSettings *stn = gtk_settings_get_default())
+        g_object_set(stn, "gtk-theme-name", isDark ? theme_dark : theme_light, NULL);
+}
+#endif
+
 /*
  * CThemePrivate
 */
@@ -339,6 +366,10 @@ public:
             current->fromFile(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
             current->m_priv->is_system = true;
         }
+
+#ifdef __linux__
+        applyGtkTheme(current->isDark());
+#endif
     }
 
     ~CThemesPrivate()
@@ -691,6 +722,9 @@ auto CThemes::setCurrentTheme(const std::wstring& name) -> void
         // if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
         //     _reg_user.remove(REGISTRY_THEME_KEY_7_2);
 
+#ifdef __linux__
+        applyGtkTheme(m_priv->current->isDark());
+#endif
     }
 }
 

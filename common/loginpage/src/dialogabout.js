@@ -1,12 +1,10 @@
 // +function() {
   function AboutDialog(params = {}) {
-    params = {...params, ...{
-                dialogClass: 'dlg-about',
-                titleText: utils.Lang.actAbout,
-                defaultWidth: 570,
-                onclose: params.onclose
-            }};
-
+    Object.assign(params, { dialogClass: 'dlg-about',
+                            titleText: utils.Lang.actAbout,
+                            defaultWidth: 570,
+                            onclose: params.onclose,
+                        });
     Dialog.call(this, params);
   }
 
