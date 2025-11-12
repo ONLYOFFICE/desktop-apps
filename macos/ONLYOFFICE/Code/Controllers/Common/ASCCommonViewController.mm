@@ -1872,6 +1872,9 @@
                                                                            @"type": [ASCThemesController isCurrentThemeDark] ? @"dark" : @"light",
                                                                            @"system": mode}];
         [[ASCEditorJSVariables instance] apply];
+
+        json = [[NSMutableDictionary alloc] initWithDictionary: @{@"theme": [ASCThemesController actualThemeId]}];
+        appManager->UpdatePlugins([[json jsonString] stdwstring]);
     }
 }
 

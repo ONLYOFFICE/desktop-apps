@@ -111,9 +111,11 @@
                                 <svg class='icon'><use href='#${info.iconid}'></svg>
                             </div>
                         </td>
-                        <td class="row-cell">
-                            <p class="cportal primary" title="${info.portal}">${utils.skipUrlProtocol(info.portal)}</p>
-                            <p class="cuser minor">${info.user}${info.email.length && (' (' + info.email + ')') || ''}</p>
+                        <td class="row-cell info">
+                            <div class="info-content">
+                                <p class="cportal primary" title="${info.portal}">${utils.skipUrlProtocol(info.portal)}</p>
+                                <p class="cuser minor">${info.user}${info.email.length && (' (' + info.email + ')') || ''}</p>
+                            <div>
                         </td>
                         <td class="cell-tools">
                             <div class="hlayout">
