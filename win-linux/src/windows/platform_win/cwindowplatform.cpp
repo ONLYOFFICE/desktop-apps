@@ -48,7 +48,14 @@
 #define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, this, callback)
 
 using WinVer = Utils::WinVer;
+using GetSystemMetricsForDpi_t = int (WINAPI*)(int nIndex, UINT dpi);
 
+static auto pGetSystemMetricsForDpi = []() -> GetSystemMetricsForDpi_t
+{
+    if (HMODULE hUser32 = GetModuleHandle(L"user32"))
+        return (GetSystemMetricsForDpi_t)GetProcAddress(hUser32, "GetSystemMetricsForDpi");
+    return nullptr;
+}();
 
 static double GetLogicalDpi(QWidget *wgt)
 {
@@ -65,6 +72,17 @@ static double GetLogicalDpi(QWidget *wgt)
 
 static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = false)
 {
+    if (pGetSystemMetricsForDpi) {
+        frame.left = 0;
+        frame.top = pGetSystemMetricsForDpi(SM_CYCAPTION, dpi * 96);
+        if (!maximized) {
+            int cyFrame = pGetSystemMetricsForDpi(SM_CYSIZEFRAME, dpi * 96);
+            int cyBorder = pGetSystemMetricsForDpi(SM_CXPADDEDBORDER, dpi * 96);
+            frame.top += (cyFrame + cyBorder);
+        }
+        return;
+    }
+
     WinVer ver = Utils::getWinVersion();
     int row = ver == WinVer::WinXP ? 0 :
               ver <= WinVer::Win7 ? 1 :
@@ -492,6 +510,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_SETTINGCHANGE: {
+        if (msg->wParam == SPI_SETNONCLIENTMETRICS) {
+            GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
+            SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+        } else
         if (msg->wParam == SPI_SETWINARRANGING) {
             if (Utils::getWinVersion() > Utils::WinVer::Win10 && m_boxTitleBtns)
                 SendMessage((HWND)m_boxTitleBtns->winId(), WM_SETTINGCHANGE, 0, 0);
