@@ -58,13 +58,17 @@
         baseView.prototype.constructor.call(this, args);
     };
 
+    const version = function(commercial) {
+        return commercial === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
+    };
+
     ViewAbout.prototype = Object.create(baseView.prototype);
     ViewAbout.prototype.constructor = ViewAbout;
     ViewAbout.prototype.paneltemplate = function(args) {
         var _opts = args.opts;
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div id="idx-ver-edition" class="about-field">${_opts.edition}</div>` : '';
-        const strVersion = args.opts.commercial === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
+        const strVersion = version(args.opts.commercial);
 
         let _ext_ver = '';
         if ( !!_opts.arch ) _ext_ver += _opts.arch;
@@ -154,6 +158,7 @@
 
                 if (!this.view) {
                     this.view = new ViewAbout(args);
+                    this.view.args = args;
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
@@ -300,7 +305,7 @@
                 CommonEvents.on('lang:changed', () => {
                     if (this.view) {
                         this.view.$dialog.titleText = utils.Lang.actAbout;
-                        $('#idx-about-version span', this.view.$body).text(utils.Lang.strVersion);
+                        $('#idx-about-version span', this.view.$body).text(version(this.view.args.opts.commercial));
                     }
                 });
 
