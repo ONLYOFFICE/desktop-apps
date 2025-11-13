@@ -91,7 +91,6 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         {0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win10
         {0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}  // Win11
     };
-    frame.left = left[row][column];
 
     const int top[5][13] = { // Top margin for scales 100-500%
         {0,  0,  0,  0,  0,  1,  1,  1,  2,  2,   2,   2,   2}, // WinXp: for NC width 3px
@@ -100,10 +99,6 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         {31, 38, 45, 52, 58, 65, 72, 85, 99, 112, 126, 139, 167}, // Win10
         {30, 37, 43, 50, 56, 63, 69, 82, 95, 108, 121, 134, 161}  // Win11
     };
-    frame.top = top[row][column];
-
-    if (!maximized)
-        return;
 
     const int left_ofs[5][13] = { // Left offset for scales 100-500%
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // WinXp
@@ -112,7 +107,6 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win10
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}  // Win11
     };
-    frame.left -= left_ofs[row][column];
 
     const int top_ofs[5][13] = { // Top offset for scales 100-500%
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // WinXp
@@ -121,7 +115,13 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         {8,  9,  11, 12, 13, 14, 16, 18, 21, 24, 27, 30, 36}, // Win10
         {7,  8,  9,  10, 11, 12, 13, 15, 17, 19, 21, 23, 28}  // Win11
     };
-    frame.top -= top_ofs[row][column];
+
+    frame.left = left[row][column];
+    frame.top = top[row][column];
+    if (maximized) {
+        frame.left -= left_ofs[row][column];
+        frame.top -= top_ofs[row][column];
+    }
 }
 
 static QColor GetBorderColor(bool isActive, const QColor &bkgColor)
