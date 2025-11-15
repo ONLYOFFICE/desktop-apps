@@ -101,8 +101,8 @@ if ($Sign) {
 
     # VLC plugin cache
     if (
-            (($Arch -like "x??") -and ($env:PROCESSOR_ARCHITECTURE -eq "AMD64"))
-        -or (($Arch -eq "arm64") -and ($env:PROCESSOR_ARCHITECTURE -eq "ARM64"))
+            (($Arch -like "x??") -and ($env:PROCESSOR_ARCHITECTURE -eq "AMD64")) -or
+            (($Arch -eq "arm64") -and ($env:PROCESSOR_ARCHITECTURE -eq "ARM64"))
     )
     {
         Write-Host ".\vlc-cache-gen $PWD\plugins"
