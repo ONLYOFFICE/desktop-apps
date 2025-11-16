@@ -861,6 +861,14 @@ std::wstring Utils::normalizeAppProtocolUrl(const std::wstring &url)
         query.addQueryItem("placement", "desktop");
         _url.setQuery(query);
         return _url.toString(QUrl::RemoveScheme).toStdWString();
+    } else
+    if (_url.scheme() == "ascdesktop") {
+        if (_url.host() == "external") {
+            QString path = _url.path();
+            if (path.startsWith('/'))
+                path = path.mid(1);
+            return path.toStdWString();
+        }
     }
     return url;
 }
