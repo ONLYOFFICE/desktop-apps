@@ -111,7 +111,7 @@
     <ROW Property="Version" Value="0.0.0" ValueLocId="-"/>
     <ROW Property="WindowsType9X" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME#MsiBuildARM64:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME#MsiBuildARM64:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86#MsiBuildARM64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0#MsiBuildARM64:Windows NT 4.0" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40Display" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0#MsiBuildARM64:Windows NT 4.0" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT50" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000#MsiBuildARM64:Windows 2000" ValueLocId="-"/>
@@ -120,7 +120,7 @@
     <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003#MsiBuildARM64:Windows XP/2003" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT60" MultiBuildValue="MsiBuild64:Windows Vista/Server 2008#MsiBuild32:Windows Vista/Server 2008#MsiBuildARM64:Windows Vista/Server 2008" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT60Display" MultiBuildValue="MsiBuild64:Windows Vista/Server 2008#MsiBuild32:Windows Vista/Server 2008#MsiBuildARM64:Windows Vista/Server 2008" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="MsiBuild64:32-bit Windows versions#MsiBuildARM64:32-bit Windows versions" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="MsiBuild64:32-bit Windows versions" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
@@ -1530,7 +1530,7 @@
     <ROW Action="AI_CleanPrereq" Sequence="1302"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
-    <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="MsiBuild64"/>
     <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
