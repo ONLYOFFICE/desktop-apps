@@ -158,7 +158,7 @@ static std::wstring selectClient(std::vector<std::wstring> &clients)
     delete[] pRadioBtns;
     if (result == IDOK) {
         try {
-            return clients.at(selRadio);
+            return clients.at(selRadio - dfltRadioId);
         } catch (...) {}
     }
     return L"";
