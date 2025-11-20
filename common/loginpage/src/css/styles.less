@@ -174,24 +174,25 @@ h4 {
 
 .switch-svg {
   @media only screen {
-    @media (-webkit-min-device-pixel-ratio: 1.1) and (-webkit-max-device-pixel-ratio: 1.9),
-    (min-resolution: 1.1dppx) and (max-resolution: 1.9dppx),
-    (min-resolution: 97dpi) and (max-resolution: 191dpi) {
+    @media (-webkit-min-device-pixel-ratio: 1.25) and (-webkit-max-device-pixel-ratio: 1.99),
+    (min-resolution: 1.25dppx) and (max-resolution: 1.99dppx),
+    (min-resolution: 120dpi) and (max-resolution: 191dpi) {
       svg.icon {
         display: none;
       }
     }
     @media (-webkit-device-pixel-ratio: 1),
-    (resolution: 1dppx),
-    (resolution: 96dpi) {
-      i.icon, i.badge {
+    (min-resolution: 1dppx) and (max-resolution: 1.24dppx),
+    (min-resolution: 1dpi) and (max-resolution: 119dpi) {
+      i.icon, i.badge, .icon.img-format {
         display: none;
       }
+      
     }
     @media (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 2dppx),
     (min-resolution: 192dpi) {
-      i.icon, i.badge {
+      i.icon, i.badge, .icon.img-format {
         display: none;
       }
     }
@@ -438,7 +439,7 @@ li.menu-item {
 
     .col-name {
       height: 32px;
-      .switch-svg();
+      
 
       .icon {
         // width: 32px;
@@ -650,6 +651,8 @@ li.menu-item {
         }
       }
 
+      .switch-svg();
+
       .img-el {
         display: inline-block;
         &.folder {
@@ -808,7 +811,7 @@ li.menu-item {
   }
 
   &.templates {
-    /*        padding: 20px;*/
+    padding-left: 35px;
   }
 
   // Folders
@@ -2182,7 +2185,6 @@ li.menu-item {
 }
 
 .templates {
-    padding-left: 35px;
     .rtl & { 
       padding-left: 40; 
       padding-right: 35px; 
