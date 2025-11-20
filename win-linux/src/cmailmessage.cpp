@@ -52,6 +52,9 @@
 # endif
 #endif
 
+#define BTN_TEXT_CANCEL QObject::tr("Cancel")
+#define BTN_TEXT_OK     QObject::tr("OK")
+
 #ifdef WIN32_USING_MAPI
 static void regValue(HKEY rootKey, std::wstring &value)
 {
