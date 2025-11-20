@@ -1,6 +1,8 @@
 l10n.tr = {
     welWelcome: 'ONLYOFFICE Masaüstü Editörlerine Hoşgeldiniz!',
     welDescr: 'Belgeler üzerinde çevrimdışı çalışın veya suiti bulutunuza bağlayın: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Yardıma mı ihtiyacınız var? $1 ziyaret edin.',
+    textHelpCenter: 'Yardım Merkezi',
     btnConnect: 'Hemen bağlan',
     textHavePortal: 'Zaten bulut kullanıyor musunuz?',
     btnCreatePortal: 'ONLYOFFICE bulutu oluşturun',
@@ -65,7 +67,7 @@ l10n.tr = {
     checkUpdates: 'Güncellemeleri kontrol et',
     strVersion: 'sürüm',
     strVersionCommunity: 'Topluluk sürümü',
-    strVersionCommercial: 'Ticari sürüm',
+    strVersionCommercial: 'Kurumsal sürüm',
     emptySlide1Title: 'Paylaş ve işbirliği yap',
     emptySlide1Text: 'Hızlı veya Sıkı gerçek zamanlı yardımcı düzenleme arasında seçim yapın, belgenizde sohbet edin, yorum ekleyin veya inceleme için paylaşın.',
     emptySlide2Title: 'Önceki sürümlerini gör veya yenile',

@@ -42,7 +42,6 @@
 #include "ccefeventstransformer.h"
 #include "ccefeventsgate.h"
 #include "windows/ceditorwindow.h"
-#include "components/cnotification.h"
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
 #include "cprintdata.h"
@@ -76,6 +75,9 @@ struct sWinTag
 };
 
 Q_DECLARE_METATYPE(sWinTag)
+#if defined(_WIN32) && !defined(QT_VERSION_6)
+Q_DECLARE_METATYPE(std::vector<std::wstring>)
+#endif
 
 enum class CScalingFactor
 {
@@ -210,6 +212,7 @@ public:
     static void             cancelClose();
     static void             setRtlEnabled(bool);
     static bool             isRtlEnabled();
+    static bool             notificationSupported();
 
     std::wstring GetExternalSchemeName();
     using CAscApplicationManager::GetExternalSchemeName;

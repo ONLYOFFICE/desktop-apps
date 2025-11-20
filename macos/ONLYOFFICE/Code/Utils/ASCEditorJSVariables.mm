@@ -91,6 +91,7 @@
         NSMutableDictionary * keybLangs = [NSMutableDictionary dictionary];
         [keybLangs setObject:[ASCLinguist keyboardLanguages] forKey:@"langs"];
         [_jsVariables setObject:keybLangs forKey:@"keyboard"];
+        [_jsVariables setValue:[ASCLinguist appLanguageCode] forKey:@"lang"];
     }
 
     return self;

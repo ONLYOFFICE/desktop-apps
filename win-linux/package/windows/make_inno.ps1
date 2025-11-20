@@ -8,7 +8,8 @@
     [string]$BrandingDir,
     [switch]$Sign,
     [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [string]$TimestampServer = "http://timestamp.digicert.com",
+    [switch]$Debug
 )
 
 $ErrorActionPreference = "Stop"
@@ -16,13 +17,13 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
+    $BuildDir = "_$Arch"
 }
 if (-not (Test-Path "$BuildDir")) {
     Write-Error "Path `"$BuildDir`" does not exist"
 }
 $InnoFile = switch ($Target) {
-    "commercial" { "$CompanyName-$ProductName-Commercial-$Version-$Arch.exe" }
+    "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.exe" }
     "standalone" { "$CompanyName-$ProductName-Standalone-$Version-$Arch.exe" }
     "update"     { "$CompanyName-$ProductName-Update-$Version-$Arch.exe" }
     "xp"         { "$CompanyName-$ProductName-XP-$Version-$Arch.exe" }
@@ -98,8 +99,7 @@ if ($Target -notlike "*update") {
 Write-Host "`n[ Build Inno Setup project ]"
 
 $IssFile = "common.iss"
-$InnoArgs = "/Qp",
-            "/DVERSION=$Version",
+$InnoArgs = "/DVERSION=$Version",
             "/DARCH=$Arch",
             "/DBUILD_DIR=$BuildDir"
 if ($BrandingDir) {
@@ -110,7 +110,7 @@ if ($CompanyName -eq "onlyoffice") {
 }
 switch ($Target) {
     "commercial" {
-        $InnoArgs += "/DPACKAGE_EDITION=Commercial"
+        $InnoArgs += "/DPACKAGE_EDITION=Enterprise"
     }
     "standalone" {
         $InnoArgs += "/DPACKAGE_EDITION=Standalone", "/DEMBED_HELP"
@@ -126,6 +126,9 @@ switch ($Target) {
 if ($Sign) {
     $InnoArgs += "/DSIGN",
         "/Sbyparam=signtool sign /a /v /n `$q$CertName`$q /t $TimestampServer `$f"
+}
+if ($Debug) {
+    $InnoArgs += "/DPREPROCSAVE"
 }
 
 Write-Host "iscc $InnoArgs $IssFile"

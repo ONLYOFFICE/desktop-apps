@@ -17,11 +17,9 @@ Set-Location $PSScriptRoot
 
 if (-not $SourceDir) {
     $BuildPrefix = switch ($Arch) {
-        "x64" { "win_64" }
-        "x86" { "win_32" }
-    }
-    if ($Target -eq "xp") {
-        $BuildPrefix += "_xp"
+        "x64" { "win_64" + $(if ($Target -eq "xp") { "_xp" }) }
+        "x86" { "win_32" + $(if ($Target -eq "xp") { "_xp" }) }
+        "arm64" { "win_arm64" }
     }
     $SourceDir = "$PSScriptRoot\..\..\..\..\build_tools\out\" `
         + "$BuildPrefix\$CompanyName\$ProductName" | Resolve-Path
@@ -30,7 +28,7 @@ if (-not (Test-Path "$SourceDir")) {
     Write-Error "Path `"$SourceDir`" does not exist"
 }
 if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
+    $BuildDir = "_$Arch"
 }
 
 Write-Host @"
@@ -102,21 +100,18 @@ if ($Sign) {
     if ($LastExitCode -ne 0) { throw }
 
     # VLC plugin cache
-    Write-Host ".\vlc-cache-gen $PWD\plugins"
-    & .\vlc-cache-gen "$PWD\plugins"
-    if ($LastExitCode -ne 0) { throw }
+    if (
+            (($Arch -like "x??") -and ($env:PROCESSOR_ARCHITECTURE -eq "AMD64")) -or
+            (($Arch -eq "arm64") -and ($env:PROCESSOR_ARCHITECTURE -eq "ARM64"))
+    )
+    {
+        Write-Host ".\vlc-cache-gen $PWD\plugins"
+        & .\vlc-cache-gen "$PWD\plugins"
+        if ($LastExitCode -ne 0) { throw }
+
+        Write-Host "DELETE: vlc-cache-gen.exe"
+        Remove-Item -Force -LiteralPath "vlc-cache-gen.exe"
+    }
 
     Set-Location $PSScriptRoot
-}
-
-if (Test-Path "$BuildDir\desktop\vlc-cache-gen.exe") {
-    Write-Host "DELETE: $BuildDir\desktop\vlc-cache-gen.exe"
-    Remove-Item -Force -LiteralPath "$BuildDir\desktop\vlc-cache-gen.exe"
-}
-
-if (Test-Path "$BuildDir\desktop\online-installer.exe") {
-    Write-Host "MOVE: $BuildDir\desktop\online-installer.exe > OnlineInstaller-$Version-$Arch.exe"
-    Move-Item `
-        -Path "$BuildDir\desktop\online-installer.exe" `
-        -Destination "OnlineInstaller-$Version-$Arch.exe"
 }

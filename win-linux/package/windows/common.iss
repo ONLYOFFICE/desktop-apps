@@ -79,10 +79,10 @@ AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 
-#if str(ARCH) == "x64"
+#if ARCH == "x64" | ARCH == "arm64"
 #if Int(DecodeVer(PREPROCVER,1)) >= 6
-ArchitecturesAllowed              = x64compatible
-ArchitecturesInstallIn64BitMode   = x64compatible
+ArchitecturesAllowed              = x64compatible or arm64
+ArchitecturesInstallIn64BitMode   = x64compatible or arm64
 #else
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
@@ -103,7 +103,7 @@ SetupIconFile={#BRANDING_DIR}\..\..\extras\projicons\res\icons\desktopeditors.ic
 WizardImageFile={#BRANDING_DIR}\data\dialogpicture*.bmp
 WizardSmallImageFile={#BRANDING_DIR}\data\dialogicon*.bmp
 #ifdef PACKAGE_EDITION
-#if PACKAGE_EDITION == "Commercial"
+#if PACKAGE_EDITION == "Enterprise"
 LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.rtf
 #else
 LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf
@@ -184,6 +184,9 @@ en.LanguageName=English (United States)
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
 ar_SA.LanguageName=الْعَرَبِيَّة
+#if Ver >= EncodeVer(6,1,1)
+ur.RightToLeft=yes
+#endif
 
 [CustomMessages]
 en.AppLocale =en-US
@@ -972,7 +975,7 @@ end;
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   commonCachePath, userCachePath: string;
-  paramStore, translateArgs: string;
+  paramStore: string;
   ErrorCode: Integer;
   version: TWindowsVersion;
 begin
@@ -980,11 +983,7 @@ begin
     DoPostInstall();
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
-      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200;@{app}\{#iconsExe},-1201;@{app}\{#iconsExe},-1202');
-#ifdef _ONLYOFFICE
-      translateArgs := translateArgs + ExpandConstant(';@{app}\{#iconsExe},-1103');
-#endif
-      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list "' + translateArgs + '"', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
       if CheckCommandlineParam('/noupdates') then begin
         RegWriteDWordValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'CheckForUpdates', 0);
       end else
@@ -1173,15 +1172,9 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-#ifndef _WIN_XP
 Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2022;
-#else
-Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2019;
-#endif
+  Check: not checkVCRedist;
 
 Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)
@@ -1192,6 +1185,16 @@ Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\converter\*.exe"; DestDir: {app}\converter; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags: signonce;
 Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
+#ifdef PACKAGE_EDITION
+#if PACKAGE_EDITION == "Enterprise"
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app}; DestName: "EULA.txt";
+#else
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+#endif
+#else
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+#endif
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\3dparty\3DPARTYLICENSE"; DestDir: {app};
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
@@ -1243,3 +1246,7 @@ Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; Value
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
 Type: filesandordirs; Name: "{app}\..\{#UPD_PATH}";
 Type: files; Name: "{app}\svcrestart.bat";
+
+#ifdef PREPROCSAVE
+#expr SaveToFile(AddBackslash(SourcePath) + "desktop_preprocessed.iss")
+#endif

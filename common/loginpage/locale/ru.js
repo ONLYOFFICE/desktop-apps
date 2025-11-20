@@ -1,6 +1,8 @@
 l10n.ru = {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
     welDescr: 'Работайте с документами офлайн или подключитесь к облаку: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Требуется помощь? Обратитесь в наш $1.',
+    textHelpCenter: 'Справочный центр',
     btnConnect: 'Подключить',
     textHavePortal: 'Уже используете облако?',
     btnCreatePortal: 'Создать облако ONLYOFFICE',
@@ -67,7 +69,7 @@ l10n.ru = {
     checkUpdates: 'Проверить обновления',
     strVersion: 'версия',
     strVersionCommunity: 'Версия Community',
-    strVersionCommercial: 'Коммерческая версия',
+    strVersionCommercial: 'Версия Enterprise',
     emptySlide1Title: 'Предоставление доступа и совместная работа',
     emptySlide1Text: 'Выбирайте быстрый или строгий режим совместного редактирования, используйте встроенный чат или отправляйте документ на рецензирование.',
     emptySlide2Title: 'Просмотр или восстановление предыдущих версий',

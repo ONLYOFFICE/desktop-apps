@@ -58,16 +58,20 @@
         baseView.prototype.constructor.call(this, args);
     };
 
+    const version = function(commercial) {
+        return commercial === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
+    };
+
     ViewAbout.prototype = Object.create(baseView.prototype);
     ViewAbout.prototype.constructor = ViewAbout;
     ViewAbout.prototype.paneltemplate = function(args) {
         var _opts = args.opts;
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div id="idx-ver-edition" class="about-field">${_opts.edition}</div>` : '';
-        const strVersion = args.opts.paidversion === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
+        const strVersion = version(args.opts.commercial);
 
         let _ext_ver = '';
-        if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? 'x64' : 'x86'}`;
+        if ( !!_opts.arch ) _ext_ver += _opts.arch;
         if ( !!_opts.pkg ) _ext_ver += ` ${_opts.pkg}`;
         if ( !!_ext_ver ) _opts.version += ` (${_ext_ver.trim()})`;
 
@@ -80,7 +84,7 @@
                                         <label id="idx-update-status-text"></label>
                                     </div>
                                     <div class="status-field">
-                                        <button id="idx-update-btnaction" class="btn btn--landing"></button>
+                                        <button id="idx-update-btnaction" class="btn btn--landing btn-update-action"></button>
                                     </div>
                                 </section>`;
         let _html = `<div class="flexbox">
@@ -124,6 +128,7 @@
 
     utils.fn.extend(ControllerAbout.prototype, (function() {
         let features = undefined;
+        let action = null;
 
         let _on_features_avalable = function (params) {
             if ( !!this.view ) {
@@ -153,10 +158,10 @@
 
                 if (!this.view) {
                     this.view = new ViewAbout(args);
+                    this.view.args = args;
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
-                    this.view.$dialog.setBody(this.view.$body)
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
                         $('#idx-ver-edition', this.view.$body).html(args.opts.edition);
@@ -186,9 +191,8 @@
                     this.view.$body.find('#idx-update-cnt')[this.updates?'show':'hide']();
 
                     if ( this.updates ) {
-                        const $btn = this.view.$body.find('#idx-update-btnaction');
-                        $btn.click(e => {
-                            sdk.execCommand('updates:action', $btn.data('action'));
+                        $('body').on('click', '.btn-update-action', e=>{
+                            sdk.execCommand('updates:action', action);
                         });
                     }
                 }
@@ -259,7 +263,7 @@
                     const $button = $('#idx-update-btnaction', this.view.$body);
                     if ( info.button.text ) {
                         $button.text(info.button.text);
-                        $button.data("action", info.button.action);
+                        action = info.button.action;
                     }
 
                     if ( info.button.lock ) {
@@ -279,6 +283,7 @@
         const onPanelShow = function(panel) {
             if (panel === this.action) {
                 this.view.$dialog.show();
+                this.view.$dialog.setBody(this.view.$body);
             }
         }
 
@@ -297,6 +302,12 @@
                 } else sdk.GetLocalFeatures = e => false;
 
                 CommonEvents.on('panel:show', onPanelShow.bind(this));
+                CommonEvents.on('lang:changed', () => {
+                    if (this.view) {
+                        this.view.$dialog.titleText = utils.Lang.actAbout;
+                        $('#idx-about-version span', this.view.$body).text(version(this.view.args.opts.commercial));
+                    }
+                });
 
                 return this;
             },

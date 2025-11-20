@@ -1,6 +1,8 @@
 l10n.sr_Latn_RS = {
     welWelcome: 'Dobro došli u ONLYOFFICE Desktop Uređivače!',
     welDescr: 'Radite na dokumentima oflajn ili konektujte paket na svoj oblak: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Treba vam pomoć? Posetite naš $1.',
+    textHelpCenter: 'Centar za pomoć',
     btnConnect: 'Poveži sad',
     textHavePortal: 'Već koristite oblak?',
     btnCreatePortal: 'Kreiraj ONLYOFFICE oblak',
@@ -67,7 +69,7 @@ l10n.sr_Latn_RS = {
     checkUpdates: 'Proveri ažuriranja',
     strVersion: 'verzija',
     strVersionCommunity: 'Community verzija',
-    strVersionCommercial: 'Komercijalna verzija',
+    strVersionCommercial: 'Enterprise verzija',
     emptySlide1Title: 'Deli i sarađuj',
     emptySlide1Text: 'Odaberite između Brzog or Strogog ko-editovanja u stvarnom vremenu, četujte u svojim dokumentima, dodajte komentare ili ih delite za pregled.',
     emptySlide2Title: 'Pregledaj ili obnovi prethodne verzije',

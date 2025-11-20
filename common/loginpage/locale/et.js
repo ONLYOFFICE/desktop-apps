@@ -1,6 +1,8 @@
 l10n.et = {
     welWelcome: 'Tere tulemast ONLYOFFICE Töölaua Redigeerijad!',
     welDescr: 'Tööta oma dokumentide kallal võrgust väljas või ühenda omale sobiliku pilvega: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Vajad abi? Külasta meie $1.',
+    textHelpCenter: 'Abikeskus',
     btnConnect: 'Ühenda nüüd',
     textHavePortal: 'Oled juba pilve kasutaja?',
     btnCreatePortal: 'Loo ONLYOFFICE pilv',
@@ -65,7 +67,7 @@ l10n.et = {
     checkUpdates: 'Kontrolli uuendusi',
     strVersion: 'versioon',
     strVersionCommunity: 'Kogukonna versioon',
-    strVersionCommercial: 'Kommertsversioon',
+    strVersionCommercial: 'Ettevõtte versioon',
     emptySlide1Title: 'Jaga & tee koostööd',
     emptySlide1Text: 'Vali kiire või range reaalajas koostöö vahel, vestle oma dokumendis, lisa kommentaare ja jaga seda, et saada tagasisidet.',
     emptySlide2Title: 'Vaata või taasa eelnevad versioonid',

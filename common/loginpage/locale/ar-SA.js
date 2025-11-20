@@ -1,6 +1,8 @@
 l10n.ar_SA = {
     welWelcome: 'مرحبًا بك في محرر ONLYOFFICE لسطح المكتب!',
     welDescr: 'اعمل على مستنداتك بدون اتصال أو اتصل بسحابتك: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'بحاجة الى مساعدة؟ قم بزيارة $1 الخاص بنا.',
+    textHelpCenter: 'مركز المساعدة',
     btnConnect: 'اتصل الآن',
     textHavePortal: 'هل تستخدم سحابة من قبل؟',
     btnCreatePortal: 'أنشئ سحابة ONLYOFFICE',
@@ -67,7 +69,7 @@ l10n.ar_SA = {
     checkUpdates: 'التحقق من التحديثات',
     strVersion: 'نسخة',
     strVersionCommunity: 'النسخة المجتمعية (“Community”)',
-    strVersionCommercial: 'النسخة التجارية',
+    strVersionCommercial: 'نسخة المؤسسة (“Enterprise”)',
     emptySlide1Title: 'نشر وتعاون',
     emptySlide1Text: 'اختر بين تحرير مشترك سريع أو تحرير مشترك بالوفت الفعلي، تحدّث في المستند، أضف التعليقات أو انشرها ليتم مراجعتها.',
     emptySlide2Title: 'اعرض أو استرجع النسخ السابقة',

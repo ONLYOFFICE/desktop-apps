@@ -1,6 +1,8 @@
 l10n.ja = {
     welWelcome: 'ONLYOFFICE デスクトップ エディターにようこそ!',
     welDescr: 'ドキュメントをオフラインで使用するか、お使いのクラウドへスイートを接続: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'ご不明な点がございましたら、 $1 をご覧ください',
+    textHelpCenter: 'ヘルプセンター',
     btnConnect: '今すぐ接続',
     textHavePortal: 'もうクラウドをご利用ですか?',
     btnCreatePortal: 'ONLYOFFICE クラウドを作成',
@@ -67,7 +69,7 @@ l10n.ja = {
     checkUpdates: '更新プログラムを確認',
     strVersion: 'バージョン',
     strVersionCommunity: 'コミュニティ版',
-    strVersionCommercial: '商用版',
+    strVersionCommercial: 'エンターブライズ版',
     emptySlide1Title: '共有と共同作業',
     emptySlide1Text: '簡易リアルタイム編集と厳格リアルタイム編集からお選びください。ドキュメントでのチャット、コメントの追加、レビュー用に共有ができます。',
     emptySlide2Title: '前のバージョンを確認するか保管',

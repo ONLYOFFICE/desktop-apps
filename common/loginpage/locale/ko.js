@@ -1,6 +1,8 @@
 l10n.ko = {
     welWelcome: 'ONLYOFFICE 데스크톱 에디터에 오신 것을 환영합니다!',
     welDescr: '오프라인에서 문서 작업을 하시거나 클라우드에 도구 모음을 연결하세요: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: '도움이 필요하신가요? $1 를 방문하세요.',
+    textHelpCenter: '도움말 센터',
     btnConnect: '지금 연결',
     textHavePortal: '이미 클라우드 사용자세요?',
     btnCreatePortal: 'ONLYOFFICE 클라우드 생성',
@@ -65,7 +67,7 @@ l10n.ko = {
     checkUpdates: '업데이트를 확인해주세요',
     strVersion: '버전',
     strVersionCommunity: '커뮤니티 버전',
-    strVersionCommercial: '상업용 버전',
+    strVersionCommercial: '엔터프라이즈 버전',
     emptySlide1Title: '공유 & 공동 작업',
     emptySlide1Text: 'Fast 또는 Strict 실시간 공동 편집 중에서 선택하시고, 문서 내에서 대화하거나, 의견을 추가하거나, 검토를 위해 공유하세요.',
     emptySlide2Title: '이전 버전 복원 또는 확인',

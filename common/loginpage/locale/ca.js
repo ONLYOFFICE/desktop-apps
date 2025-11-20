@@ -1,6 +1,8 @@
 l10n.ca = {
     welWelcome: 'Benvingut/da a ONLYOFFICE Desktop Editors!',
     welDescr: 'Treballa sense connexió als teus documents o connecta la suite al teu núvol: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Necessites ajuda? Visita el nostre $1.',
+    textHelpCenter: 'Centre d\'Ajuda',
     btnConnect: 'Connecta ara',
     textHavePortal: 'Ja utilitzeu un núvol?',
     btnCreatePortal: 'Crea un núvol ONLYOFFICE',
@@ -65,7 +67,7 @@ l10n.ca = {
     checkUpdates: 'Cercar actualitzacions',
     strVersion: 'versió',
     strVersionCommunity: 'Versió comunitària',
-    strVersionCommercial: 'Versió comercial',
+    strVersionCommercial: 'Versió empresarial',
     emptySlide1Title: 'Compartir i col·laborar',
     emptySlide1Text: 'Trieu entre una coedició ràpida o estricta en temps real, xatejar al document, afegir comentaris o compartir per a la seva revisió.',
     emptySlide2Title: 'Veure o restaurar les versions anteriors',

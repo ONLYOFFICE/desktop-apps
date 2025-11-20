@@ -6,7 +6,7 @@
 #include <QTimer>
 #include <QDir>
 #include <QDateTime>
-#include <QDesktopWidget>
+#include <qtcomp/qdesktopwidget.h>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
@@ -28,6 +28,9 @@
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
 #include "cproviders.h"
+#ifndef __OS_WIN_XP
+# include "components/cnotification.h"
+#endif
 
 #ifdef _WIN32
 # include <io.h>
@@ -67,6 +70,9 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , m_private(ptrprivate)
 {
     qRegisterMetaType<sWinTag>("sWinTag");
+#if defined(_WIN32) && !defined(QT_VERSION_6)
+    qRegisterMetaType<std::vector<std::wstring>>("std::vector<std::wstring>");
+#endif
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
 
@@ -305,8 +311,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( cmd.find(L"app:onready") != std::wstring::npos ) {
+            GET_REGISTRY_SYSTEM(reg_system)
             GET_REGISTRY_USER(reg_user)
-            if (reg_user.value("lockPortals", false).toBool()
+            if (reg_system.value("lockPortals", false).toBool() || reg_user.value("lockPortals", false).toBool()
 #ifdef Q_OS_WIN
                     || Utils::getWinVersion() <= Utils::WinVer::WinVista
 #endif
@@ -848,6 +855,8 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
     QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr, CWindowBase::expectedContentSize(_start_rect));
     _startPanel->Create(&_app, cvwtSimple);
     _startPanel->setObjectName("startPanel");
+	QColor c = m_themes->current().color(CTheme::ColorRole::ecrWindowBackground);
+    _startPanel->SetBackgroundCefColor(uchar(c.red()), uchar(c.green()), uchar(c.blue()));
     //_startPanel->resize(_start_rect.width(), _start_rect.height());
 
     CMainWindow * _window = static_cast<CMainWindow*>(new CMainWindowImpl(_start_rect));
@@ -1008,7 +1017,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     if ( _c_pos != std::wstring::npos )
                         open_opts.name = QString::fromStdWString(open_opts.wurl.substr(++_c_pos));
 
-                    Utils::addToRecent(open_opts.wurl);
 //                    open_opts.srctype = etLocalFile;
                 } else
                 if ( _error == EBADF && !open_in_new_window ) {
@@ -1101,6 +1109,14 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
 
 void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 {
+#ifndef __OS_WIN_XP
+    static bool runOnce = false;
+    if (!runOnce) {
+        runOnce = true;
+        m_private->m_notificationSupported = CNotification::instance().init();
+    }
+#endif
+
 #ifdef _UPDMODULE
     if (!m_pUpdateManager) {
         m_pUpdateManager = new CUpdateManager(this);
@@ -1118,8 +1134,24 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
     Association::instance().chekForAssociations(uid);
 #endif
 
-    if (uid > -1 && printData().printerCapabilitiesReady())
-        AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+    if (uid > -1) {
+        if (printData().printerCapabilitiesReady())
+            AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+
+        CAscTabData *data = nullptr;
+        if (CEditorWindow *editor = editorWindowFromViewId(uid)) {
+            data = editor->mainView()->data();
+        } else
+            if (mainWindow() && mainWindow()->holdView(uid)) {
+                int indx = mainWindow()->tabWidget()->tabIndexByView(uid);
+                if (indx > -1)
+                    data = mainWindow()->tabWidget()->panel(indx)->data();
+            }
+
+        if (data && data->isLocal() && !data->url().empty()) {
+            Utils::addToRecent(data->url());
+        }
+    }
 
     static bool check_printers = false;
     if (!check_printers) {
@@ -1776,7 +1808,7 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
 {
     APP_CAST(_app);
 
-    QString _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
+    QString _out = Utils::readStylesheets(_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
     _out = _out.arg(GetColorQValueByRole(ecrWindowBackground),
                     GetColorQValueByRole(ecrTextNormal),
                     GetColorQValueByRole(ecrButtonHoverBackground),
@@ -1796,7 +1828,7 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
                     GetColorQValueByRole(ecrMenuSeparator));
 //    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
     if ( factor != CScalingFactor::SCALING_FACTOR_1 )
-        _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
+        _out.append(Utils::readStylesheets(_app.m_mapStyles[factor]));
 
     return _out;
 }
@@ -1867,6 +1899,12 @@ bool CAscApplicationManagerWrapper::isRtlEnabled()
     return m_rtlEnabled;
 }
 
+bool CAscApplicationManagerWrapper::notificationSupported()
+{
+    APP_CAST(_app);
+    return _app.m_private->m_notificationSupported;
+}
+
 bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 {
     QJsonParseError jerror;
@@ -1891,6 +1929,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _lang_id = l;
 
                 _reg_user.setValue("locale", _lang_id);
+
+                QJsonObject _json_obj{{"lang", _lang_id}};
+                AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
                 if (!direction_changed)
                     CLangater::reloadTranslations(_lang_id);
 #ifdef _UPDMODULE
@@ -2056,6 +2097,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             _editor->applyTheme(theme);
         }
 
+        QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
 }
@@ -2294,6 +2337,7 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     switch ( format ) {
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF: {
         QString docname = tr("Document%1.docx").arg(++pdf_count);
         return docname.replace("docx", "pdf");

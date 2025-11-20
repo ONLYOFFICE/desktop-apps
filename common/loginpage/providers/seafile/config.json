@@ -4,7 +4,8 @@
     "check": {
         "url": "/api2/server-info/"
     },
-    "editorPage": "regex:\/lib\/(?:[\w-]{32,})\/file\/.*\.(docx|pptx|xlsx|doc|ppt|xls|odt|fodt|odp|fodp|fods)$",
+    "editorPage": "regex:\/lib\/(?:[\w-]{32,})\/file\/.*\.(docx|pptx|xlsx|doc|ppt|xls|odt|fodt|odp|fodp|fods)",
+    "editorFrameSize": "finite",
     "cryptoSupport": "true",
     "icons": {
         "themeLight":{

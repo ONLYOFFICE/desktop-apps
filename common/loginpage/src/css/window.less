@@ -47,25 +47,120 @@ dialog {
         }
     }
 
-    &.dlg-about {
+    &.dlg {
         border-radius: 8px;
+        background-color: @background-action-panel;
         .title {
-            font-size: 18px;
+            border-bottom: initial;
             font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            padding: 30px 16px 16px 32px;
-            border-bottom: none;
-            background: none;
+            background-color: @background-action-panel;
         }
 
-        .body {
-            padding: 0px 30px 28px;
+        &.dlg-about {
+            will-change: transform;
+            .title {
+                font-size: 18px;
+                display: flex;
+                justify-content: space-between;
+                padding: 30px 16px 16px 32px;
+                background: none;
+                user-select: none;
+                .rtl &{
+                    padding: 30px 32px 16px 16px;
+                }
+            }
+
+            .body {
+                padding: 0px 30px 28px;
+                .separator {
+                    padding-top: 5px;
+                    border-bottom: @scaled-one-px solid @border-divider;
+                }
+            }
         }
 
-        .separator {
-            padding-top: 5px;
-            border-bottom: @scaled-one-px solid @border-divider;
+        &.dlg-template-preview {
+            overflow: hidden;
+            @media (max-width: 780px) {
+                max-width: 500px;
+                max-height: 90vh;
+            }
+            
+            .title {
+                height: 48px;
+                padding: 12px 16px;
+            }
+
+            .body {
+                padding: 0 24px 24px;
+                .separator {
+                    padding-top: 15px;
+                    border-top: @scaled-one-px solid @border-divider;
+                }
+            }
+        }
+
+        &.dlg-providers {
+            user-select: none;
+            overflow: hidden;
+            will-change: transform;
+            .body {
+                padding: 10px 25px;
+            }
+        }
+
+        &.dlg-connect-to {
+            will-change: transform;
+            .title {
+                height: 56px;
+                padding: 16px 16px 16px 32px;
+                .rtl &{
+                    padding: 16px 32px 16px 16px;
+                }
+            }
+
+            .body {
+                padding: 0 32px 16px;
+                .btn, .tbox {
+                border-radius: 4px;
+                }
+
+                .box-cmp-select {
+                    width: 100%;
+                    .dropdown .text,
+                    .dropdown .filter-option-inner-inner {
+                        display: flex;
+                        align-items: center; 
+                    }
+                }
+
+                .icon {
+                    width: 32px;
+                    height: 28px;
+                    padding-right: 5px;
+
+                    .rtl & {
+                        padding-right: 0;
+                        padding-left: 5px;
+                    }
+                }
+
+                .theme-type-dark & {
+                    .icon__light {
+                    display: none;
+                    }
+                }
+
+                .theme-type-light & {
+                    .icon__dark {
+                    display: none;
+                    }
+                }
+            }
+
+            .title, .body {
+                background-color: transparent;
+            }
         }
     }
 
@@ -209,12 +304,6 @@ dialog {
     }
 }
 
-.dlg-connect-to {
-    .box-cmp-select {
-        width: 100%;
-    }
-}
-
 .lr-flex {
     display: flex;
     justify-content: space-between;
@@ -275,3 +364,8 @@ dialog {
         content: data-uri('../res/img/spinner-light.png');
     }
 }
+
+.win_xp .dlg.dlg-about .body {
+    -webkit-user-select: text;
+}
+

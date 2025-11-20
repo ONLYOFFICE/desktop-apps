@@ -15,16 +15,17 @@ SCHEME_HANDLER ?= oo-office
 
 PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
-PACKAGE_EDITION ?= opensource
 
 BRANDING_DIR ?= .
 
 PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
-PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
-
+PACKAGE_OPENSOURCE := $(PACKAGE_NAME)
+PACKAGE_COMMERCIAL := $(PACKAGE_NAME)-enterprise
+PACKAGE_EDITION ?= opensource
 ifeq ($(PACKAGE_EDITION), commercial)
-PACKAGE_NAME := $(PACKAGE_NAME)-commercial
+PACKAGE_NAME := $(PACKAGE_COMMERCIAL)
 endif
+PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
 UNAME_M ?= $(shell uname -m)
 ifeq ($(UNAME_M),x86_64)
@@ -69,11 +70,6 @@ LINUX_DEPS += $(patsubst $(BRANDING_DIR)/common/icons/%.png, \
 	$(wildcard $(BRANDING_DIR)/common/icons/*.png))
 LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE
 LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE
-ifneq ($(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes/*.xml),)
-LINUX_DEPS += $(patsubst $(BRANDING_DIR)/../../../common/package/mimetypes/%.xml, \
-	build/main/usr/share/mime/packages/%.xml, \
-	$(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes/*.xml))
-endif
 
 DEB_DEPS += $(CHANGELOG_DEB)
 DEB_DEPS += deb/build/debian/compat
@@ -98,6 +94,8 @@ M4_PARAMS += -D M4_PUBLISHER_URL='$(PUBLISHER_URL)'
 M4_PARAMS += -D M4_SUPPORT_MAIL='$(SUPPORT_MAIL)'
 M4_PARAMS += -D M4_SUPPORT_URL='$(SUPPORT_URL)'
 M4_PARAMS += -D M4_PACKAGE_NAME='$(PACKAGE_NAME)'
+M4_PARAMS += -D M4_PACKAGE_OPENSOURCE='$(PACKAGE_OPENSOURCE)'
+M4_PARAMS += -D M4_PACKAGE_COMMERCIAL='$(PACKAGE_COMMERCIAL)'
 M4_PARAMS += -D M4_PACKAGE_EDITION='$(PACKAGE_EDITION)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX='$(DESKTOPEDITORS_PREFIX)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC='$(DESKTOPEDITORS_EXEC)'
@@ -114,6 +112,8 @@ RPM_PARAMS += --define '_publisher_name $(PUBLISHER_NAME)'
 RPM_PARAMS += --define '_publisher_url $(PUBLISHER_URL)'
 RPM_PARAMS += --define '_support_mail $(SUPPORT_MAIL)'
 RPM_PARAMS += --define '_package_name $(PACKAGE_NAME)'
+RPM_PARAMS += --define '_package_opensource $(PACKAGE_OPENSOURCE)'
+RPM_PARAMS += --define '_package_commercial $(PACKAGE_COMMERCIAL)'
 RPM_PARAMS += --define '_package_edition $(PACKAGE_EDITION)'
 RPM_PARAMS += --define '_product_version $(PRODUCT_VERSION)'
 RPM_PARAMS += --define '_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)'
@@ -155,6 +155,14 @@ build : $(LINUX_DEPS)
 	cp -rft $@/main/opt/$(DESKTOPEDITORS_PREFIX) $(SOURCE_DIR)/desktopeditors/*
 	chmod 755 $@/main/opt/$(DESKTOPEDITORS_PREFIX)/DesktopEditors
 
+ifneq ($(PACKAGE_EDITION), commercial)
+	cp -f $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/LICENSE.txt
+else
+	cp -f $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/EULA.txt
+endif
+
 	cd $@; \
 	for path in main/$(HELP_GLOB); do \
 		path_new=$$(echo $$path | sed 's|^main/|help/|'); \
@@ -185,9 +193,6 @@ build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE : $(BRANDING_DIR)/../../..
 build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE : $(BRANDING_DIR)/../../../common/package/license/3dparty/3DPARTYLICENSE
 
 build/main/usr/share/licenses/% :
-	install -m 644 -D $< $@
-
-build/main/usr/share/mime/packages/% : $(BRANDING_DIR)/../../../common/package/mimetypes/%
 	install -m 644 -D $< $@
 
 deb/build/debian/% : deb/template/%

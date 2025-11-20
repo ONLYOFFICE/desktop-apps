@@ -1,6 +1,8 @@
 l10n.be = {
     welWelcome: 'Вітаем у ONLYOFFICE Desktop Editors!',
     welDescr: 'Працуйце з дакументамі ў аўтаномным рэжыме або падлучыцеся да воблака: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Патрэбна дапамога? Наведайце наш $1.',
+    textHelpCenter: 'Цэнтр дапамогі',
     btnConnect: 'Падлучыць',
     textHavePortal: 'Ужо выкарыстоўваеце воблака?',
     btnCreatePortal: 'Стварыць воблака ONLYOFFICE',
@@ -65,7 +67,7 @@ l10n.be = {
     checkUpdates: 'Праверыць на наяўнасць абнаўленняў',
     strVersion: 'версія',
     strVersionCommunity: 'Версія Community',
-    strVersionCommercial: 'Камерцыйная версія',
+    strVersionCommercial: 'Версія Enterprise',
     emptySlide1Title: 'Адкрыццё доступу і сумесная праца',
     emptySlide1Text: 'Выкарыстоўвайце хуткі або строгі рэжым сумеснага рэдагавання, карыстайцеся чатам, дадавайце каментары або адпраўляйце дакументы на перагляд.',
     emptySlide2Title: 'Прагляд або аднаўленне папярэдніх версій',

@@ -265,6 +265,30 @@ namespace NS_File
         return true;
     }
 
+    std::vector<wstring> findFilesByPattern(const wstring &path, const wstring &pattern)
+    {
+        std::vector<wstring> result;
+        wstring searchPath = toNativeSeparators(path) + L"\\" + pattern;
+        if (searchPath.size() > MAX_PATH - 1) {
+            return result;
+        }
+
+        WIN32_FIND_DATAW ffd;
+        HANDLE hFind = FindFirstFile(searchPath.c_str(), &ffd);
+        if (hFind == INVALID_HANDLE_VALUE)
+            return result;
+
+        do {
+            if (!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+                result.push_back(L"/" + wstring(ffd.cFileName));
+            }
+
+        } while (FindNextFile(hFind, &ffd) != 0);
+
+        FindClose(hFind);
+        return result;
+    }
+
     bool readFile(const wstring &filePath, list<wstring> &linesList)
     {
         std::wifstream file(filePath.c_str(), std::ios_base::in);
@@ -404,8 +428,9 @@ namespace NS_File
         return false;
     }
 
-    bool isProcessRunning(const wstring &fileName)
+    bool isProcessRunning(const wstring &filePath)
     {
+        wstring fileName = filePath.substr(filePath.find_last_of(L"\\/") + 1);
         HANDLE snapShot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
         if (snapShot == INVALID_HANDLE_VALUE)
             return false;
@@ -419,8 +444,19 @@ namespace NS_File
 
         do {
             if (lstrcmpi(entry.szExeFile, fileName.c_str()) == 0) {
-                CloseHandle(snapShot);
-                return true;
+                HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, entry.th32ProcessID);
+                if (hProcess) {
+                    WCHAR processPath[MAX_PATH];
+                    DWORD pathSize = MAX_PATH;
+                    if (QueryFullProcessImageNameW(hProcess, 0, processPath, &pathSize)) {
+                        if (lstrcmpi(processPath, filePath.c_str()) == 0) {
+                            CloseHandle(hProcess);
+                            CloseHandle(snapShot);
+                            return true;
+                        }
+                    }
+                    CloseHandle(hProcess);
+                }
             }
         } while (Process32Next(snapShot, &entry));
 

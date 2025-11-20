@@ -55,12 +55,14 @@
 
         // localStorage.removeItem('welcome');
 
-        //language=HTML
-        const welcomeBannerTemplate = !localStorage.getItem('welcome') ? `
+
+		//language=HTML
+        const helpLink = `<a l10n class="link" href="https://helpcenter.onlyoffice.com/" target="popup">${_lang.textHelpCenter}</a>`;
+		const welcomeBannerTemplate = !localStorage.getItem('welcome') ? `
             <div id="area-welcome">
                 <h2 l10n>${_lang.welWelcome}</h2>
                 <p l10n class="text-normal">${_lang.welDescr}</p>
-                <p l10n class="text-normal">${_lang.welNeedHelp}</p>
+                <p l10n class="text-normal">${_lang.welNeedHelp.replace('$1', helpLink)}</p>
             </div>` : '';
 
         //language=HTML
@@ -148,13 +150,15 @@
                                  data-precls="tool-icon">
                                 <use xlink:href="#${info.type === 'folder' ? 'folder-small' : info.format}"></use>
                             </svg>
-                            ${info.crypted ? `<svg class="icon" data-iconname="shield" data-precls="tool-icon">
+                            ${info.crypted ? `<svg class="icon shield" data-iconname="shield" data-precls="tool-icon">
                                                 <use xlink:href="#shield"></use>
                                               </svg>` : ''}
-                            ${!isSvgIcons ? `<i class="icon tool-icon ${info.type === 'folder' ? 'folder' : `${info.format}`}"></i>` : ''}
+                            ${!isSvgIcons ? `<i class="icon ${info.type === 'folder' ? 'img-el folder' : `img-format ${info.format}`}"></i>` : ''}
+                            ${info.crypted && !isSvgIcons ? `<i class="icon img-el shield"></i>` : ''}
                         </div>
-                        <p class="name">${info.name}</p>
-                        <span class="ext">${info.ext}</span>
+                        <p class="name">
+                            ${info.name}<span class="ext">${info.ext}</span>
+                        </p>
                     </div>
                     <div class="col-location" title="${info.descr}">
                         <!--              todo: icon here          -->
@@ -200,33 +204,71 @@
             if (pasteSvg && !emptylist.find('svg').length)
                 emptylist.prepend($('<svg class = "icon"><use xlink:href="#folder-big"></use></svg>'));
 
-            $('#box-recent .cicon').each(function () {
-                elm = $(this);
-                parent = elm.parent();
-                if (parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-                    parent.toggleClass('crypted-svg crypted');
+            // todo: rewrite cicon rescale
 
-                if (!pasteSvg || !!$('svg', elm).length) return;
+            $('#box-recent .row.text-normal').each(function () {
+                let elm = $(this);
+                let iconContainer = elm.find('.col-name .icon').first();
+                let svgElem = iconContainer.find('svg.icon').first();
 
-                icoName = $('i.icon', elm).attr('class').split(' ').filter((cls) => cls != 'icon' && cls != 'img-format');
-                elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
-                if (parent.hasClass('crypted-svg'))
-                    elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+                if (pasteSvg || !svgElem.length || iconContainer.find('i.icon').length) return;
+
+                let icoName = svgElem.attr('data-iconname');
+                iconContainer.append(`<i class="icon img-format ${icoName}"></i>`);
+
+                if (iconContainer.find('.icon.shield').length) {
+                    iconContainer.append(`<i class="icon img-el shield"></i>`);
+                }
             });
 
-            $('#box-recent-folders td.cicon').each(function () {
-                elm = $(this)
-                parent = elm.parent();
-                if (parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-                    parent.toggleClass('crypted-svg crypted');
-                if (!pasteSvg || !!$('svg', elm).length) return;
+            $('.open-panel-container .row.text-normal').each(function () {
+                let elm = $(this);
+                let iconContainer = elm.find('.col-name .icon').first();
+                let svgElem = iconContainer.find('svg.icon').first();
 
-                elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
-                if (parent.hasClass('crypted-svg'))
-                    elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+                if (pasteSvg || !svgElem.length || iconContainer.find('i.icon').length) return;
 
+                iconContainer.append(`<i class="icon img-el folder"></i>`);
+
+                if (iconContainer.find('.icon.shield').length) {
+                    iconContainer.append(`<i class="icon img-el shield"></i>`);
+                }
             });
-        }
+
+            $('.col-more .btn-quick.more').each(function () {
+                let btn = $(this);
+                let svgElem = btn.find('svg.icon').first();
+
+                if (pasteSvg || !svgElem.length || btn.find('i.icon').length) return;
+
+                btn.append(`<i class="icon tool-icon more"></i>`);
+            });
+        },
+        updateListSize: function () {
+            const windowBottom = $(window).height();
+
+            // Recovery
+            const $headRecovery = this.$boxRecovery.find('.file-list-head');
+            const $bodyRecovery = this.$boxRecovery.find('.file-list-body');
+
+            if ($headRecovery.length && $bodyRecovery.length) {
+                const headBottomRecovery = $headRecovery.offset().top + $headRecovery.outerHeight(true);
+                const availableRecovery = windowBottom - headBottomRecovery - 20;
+
+                $bodyRecovery.css({ 'max-height': availableRecovery > 0 ? availableRecovery + 'px' : '0px' });
+            }
+
+            // Recent
+            const $headRecent = this.$boxRecent.find('.file-list-head');
+            const $bodyRecent = this.$boxRecent.find('.file-list-body');
+
+            if ($headRecent.length && $bodyRecent.length) {
+                const headBottomRecent = $headRecent.offset().top + $headRecent.outerHeight(true);
+                const availableRecent = windowBottom - headBottomRecent - 20;
+
+                $bodyRecent.css({ 'max-height': availableRecent > 0 ? availableRecent + 'px' : '0px' });
+            }
+        },
     });
 
     window.ControllerRecent = ControllerRecent;
@@ -289,6 +331,7 @@
 
             if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
                 this.dndZone.hide();
+                this.view.$panel.find('#area-welcome').hide();
             }
         };
 
@@ -304,18 +347,23 @@
             }, 10)
         };
 
-        var _on_recovers = function (params) {
-            collectionRecovers.empty();
+        var _on_recovers = function(params) {
+            if ( false )
+                window.sdk.command("recovery:update", JSON.stringify(params));
+            else {
+                collectionRecovers.empty();
 
-            var files = utils.fn.parseRecent(params);
-            for (let item of files) {
-                collectionRecovers.add(new FileModel(item));
-            }
+                var files = utils.fn.parseRecent(params);
+                for (let item of files) {
+                    collectionRecovers.add( new FileModel(item) );
+                }
 
-            this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
+                this.view.$boxRecovery.css('display', collectionRecovers.size() > 0 ? 'flex' : 'none');
+                // requestAnimationFrame(() => this.view.updateListSize());
 
-            if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
-                this.dndZone.hide();
+                if (collectionRecents.size() > 0 || collectionRecovers.size() > 0) {
+                    this.dndZone.hide();
+                }
             }
         };
 
@@ -329,11 +377,11 @@
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.stopPropagation();
 
-                if (Menu.opened) {
-                    Menu.closeAll();
-                    return;
+                if (ppmenu.contextdata) {
+                    const m = ppmenu.contextdata;
+                    if (m.uid != model.uid)
+                        Menu.closeAll();
                 }
-
                 ppmenu.actionlist = actionList;
                 if (actionList === 'recovery') {
                     ppmenu.hideItem('files:explore', true);
@@ -346,6 +394,13 @@
                 }
 
                 ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
+
+                if (!Menu.opened) {
+                    ppmenu.actionlist = actionList;
+                    ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
+                } else {
+                    Menu.closeAll();
+                }
             })
         }
 
@@ -507,16 +562,15 @@
             } else if (/\:forget/.test(action)) {
                 $('#' + data.uid, this.view.$panel).addClass('lost');
 
+                const count = collectionRecovers.size() + collectionRecents.size();
                 if (menu.actionlist === 'recent') {
                     window.sdk.LocalFileRemoveRecent(parseInt(data.fileid));
-                    if (collectionRecovers.size() === 0) {
-                        this.dndZone.show();
-                    }
                 } else {
                     window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));
-                    if (collectionRecents.size() === 0) {
-                        this.dndZone.show();
-                    }
+                }
+
+                if ( !(count > 1) ) {
+                    this.dndZone.show();
                 }
             } else if (/\:explore/.test(action)) {
                 if (menu.actionlist == 'recent') {
@@ -552,6 +606,7 @@
                 });
             }
         }
+
 
         return {
             init: function () {
@@ -599,6 +654,7 @@
 
                     console.log('portal authorized');
                 });
+
 
                 this.dndZone = new DnDFileZone();
                 this.dndZone.render(this.view.$panel.find("#area-dnd-file"));
@@ -658,6 +714,7 @@
                         window.sdk.command("create:new", docType);
                     }
                 });
+
 
                 docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 

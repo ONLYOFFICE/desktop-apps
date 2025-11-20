@@ -12,13 +12,13 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
+    $BuildDir = "_$Arch"
 }
 if (-not (Test-Path "$BuildDir")) {
     Write-Error "Path `"$BuildDir`" does not exist"
 }
 $ZipFile = switch ($Target) {
-    "commercial" { "$CompanyName-$ProductName-Commercial-$Version-$Arch.zip" }
+    "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.zip" }
     "xp"         { "$CompanyName-$ProductName-XP-$Version-$Arch.zip" }
     default      { "$CompanyName-$ProductName-$Version-$Arch.zip" }
 }

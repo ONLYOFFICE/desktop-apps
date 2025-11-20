@@ -1,6 +1,8 @@
 l10n.es = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
     welDescr: 'Trabaje en documentos «offline» o conecte la suite a su nube: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: '¿Necesita ayuda? Visite nuestro $1.',
+    textHelpCenter: 'Centro de ayuda',
     btnConnect: 'Conectarse',
     textHavePortal: '¿Usa ya algún servicio en la nube?',
     btnCreatePortal: 'Crear cuenta de ONLYOFFICE en la nube',
@@ -67,7 +69,7 @@ l10n.es = {
     checkUpdates: 'Comprobar si hay actualizaciones',
     strVersion: 'versión',
     strVersionCommunity: 'Versión comunitaria',
-    strVersionCommercial: 'Versión comercial',
+    strVersionCommercial: 'Versión empresarial',
     emptySlide1Title: 'Comparta y colabore',
     emptySlide1Text: 'Seleccione entre dos modos de coedición en tiempo real: «Rápido» y «Estricto», chatee en su documento, añada comentarios o compártalo para revisión.',
     emptySlide2Title: 'Vea o restaure versiones anteriores',

@@ -119,7 +119,9 @@
 
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
+            const isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio === 1;
             const type = utils.formatToEditor(info.type);
+            const format = utils.parseFileFormat(info.type);
             const badge = `<i class="badge ${type}"></i>`;
             const cloudIcon = info.isCloud ? `<svg class="icon cloud-icon" data-iconname="location-cloud" data-precls="tool-icon">
                                                 <use href="#location-cloud"></use>
@@ -137,7 +139,12 @@
                             ${icon_el}
                         </div>
                         <div class="card">
-                            <div class="badge-wrapper">${badge}</div>
+                            <div class="badge-wrapper">
+                                <svg class="icon" data-iconname="${format}" data-precls="tool-icon">
+                                    <use href="#${format}"></use>
+                                </svg>
+                                ${!isSvgIcons ? badge : ''}
+                            </div>
                             <div class="title">${info.name}</div>
                             ${cloudIcon}
                         </div>
@@ -211,7 +218,7 @@
 
                 collection.events.click.attach((col, model) => {
                     if (model.isCloud) {
-                        window.sdk.openTemplate(model.path, model.name);
+                        new PreviewTemplateDialog(model).show();
                     } else {
                         sdk.command('create:new', JSON.stringify({
                             template: {
@@ -307,10 +314,13 @@
                     const m = new FileTemplateModel({
                         uid: id,
                         name: info['name_form'],
+                        fullName: [info['name_form'], file_ext].join('.'),
                         descr: info['template_desc'],
+                        preview: info.card_prewiew ? info.card_prewiew.data.attributes.url : undefined,
                         path: info.file_oform ? info.file_oform.data[0].attributes.url : undefined,
                         type: utils.fileExtensionToFileFormat(file_ext),
                         icon: info.template_image ? info.template_image.data.attributes.formats.thumbnail.url : undefined,
+                        size: info.file_oform ? info.file_oform.data[0].attributes.size : undefined,
                         isCloud: true,
                     });
 
@@ -380,7 +390,6 @@
                             _loadTemplates.call(this, nl, page_num, fallBack);
                         } 
                     } else if (d.data && d.data.length === 0 && fallBack < 2) {
-                        _resetPagination.call(this);
                         _loadTemplates.call(this, nl, 0, fallBack + 1);
                     }
                 })
@@ -395,6 +404,22 @@
         const _resetPagination = function() {
             isCloudTmplsLoading = false;
             this.templates.empty();
+        };
+
+        const onscale = function (pasteSvg) {
+            if (!pasteSvg) {
+                $('.badge-wrapper svg.icon').each((i, el) => {
+                    el = $(el);
+                    const p = el.parent();
+                    const type = el.closest('.item').data('type');
+
+                    if ($('i.badge', p).length === 0) {
+                        const badge = `<i class="badge ${type}"></i>`;
+                        $(badge).insertAfter(el);
+                    }
+                });
+            }
+            
         };
     
         return {
@@ -416,7 +441,9 @@
                 mql.addEventListener('change', e => {
                     this.view.svgicons = !e.target.matches;
                 });
-
+                
+                CommonEvents.on("icons:svg",  onscale)
+                
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 _on_nav_item_click.call(this, { target: $('.nav-item.selected', this.view.$panel) });
                 $('#template-search', this.view.$panel).on('input', () => {
@@ -440,6 +467,7 @@
                 };
 
                 CommonEvents.on('lang:changed', (ol, nl) => {
+                    if (ol === nl) return;
                     _resetPagination.call(this);  
                     _reload_templates(nl);
                     _loadTemplates.call(this, nl);

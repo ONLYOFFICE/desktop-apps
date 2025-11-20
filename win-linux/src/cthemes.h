@@ -25,6 +25,7 @@ public:
     enum class ColorRole {
         ecrWindowBackground
         , ecrWindowBorder
+        , ecrBorderControlFocus
         , ecrTextNormal
         , ecrTextPretty
         , ecrTextInverse
@@ -80,6 +81,7 @@ public:
 
     auto fromFile(const QString&) -> bool;
     auto fromJson(const QString&) -> bool;
+    auto json() const -> QString;
 
     auto id() const -> std::wstring;
     auto originalId() const -> std::wstring;

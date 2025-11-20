@@ -1,6 +1,8 @@
 l10n.gl = {
     welWelcome: 'Dámosche a benvida aos editores de escritorio ONLYOFFICE!',
     welDescr: 'Traballa en documentos sen conexión ou conecta a suite á túa nube: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Necesitas axuda? Visita o noso $1.',
+    textHelpCenter: 'Centro de Axuda',
     btnConnect: 'Conectar agora',
     textHavePortal: 'Estás usando xa a nube?',
     btnCreatePortal: 'Crear unha nube en ONLYOFFICE',
@@ -65,7 +67,7 @@ l10n.gl = {
     checkUpdates: 'Buscar actualizacións',
     strVersion: 'versión',
     strVersionCommunity: 'Versión Comunitaria',
-    strVersionCommercial: 'Versión Comercial',
+    strVersionCommercial: 'Versión Empresarial',
     emptySlide1Title: 'Compartir e colaborar',
     emptySlide1Text: 'Elixe entre coedición rápida ou estrita en tempo real, chatea no teu documento, engade comentarios ou compártea para revisión.',
     emptySlide2Title: 'Ver ou restaurar versións anteriores',

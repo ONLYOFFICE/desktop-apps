@@ -1569,24 +1569,28 @@ ur.extXLSB =ایکسل بائنری فائل فارمیٹ
 #endif
 
 en.extXLSM =Microsoft Excel Macro-Enabled Workbook
+en_GB.extXLSM =Microsoft Excel Macro-Enabled Workbook
 sq.extXLSM =Libri i punës i aktivizuar me makro Microsoft Excel
 #if Ver >= EncodeVer(6,1,1)
 ur.extXLSM =مائیکروسافٹ ایکسل میکرو فعال ورک بک
 #endif
 
 en.extFODS =OpenDocument Flat XML Spreadsheet
+en_GB.extFODS =OpenDocument Flat XML Spreadsheet
 sq.extFODS =Fletëllogaritëse e sheshtë OpenDocument XML
 #if Ver >= EncodeVer(6,1,1)
 ur.extFODS =اوپن دستاویز فلیٹ ایکس ایم ایل اسپریڈشیٹ
 #endif
 
 en.extFODT =OpenDocument Flat XML Document
+en_GB.extFODT =OpenDocument Flat XML Document
 sq.extFODT =Dokument XML i sheshtë OpenDocument
 #if Ver >= EncodeVer(6,1,1)
 ur.extFODT =اوپن دستاویز فلیٹ XML دستاویز
 #endif
 
 en.extVSDX =Visio Drawing
+en_GB.extVSDX =Visio Drawing
 sq.extVSDX =Vizatim Visio
 #if Ver >= EncodeVer(6,1,1)
 ur.extVSDX =ویزیو ڈرائنگ
@@ -2053,9 +2057,9 @@ var
   prefix: string;
 begin
 #ifdef _ONLYOFFICE
-  SetArrayLength(AudioExts, 27);
+  SetArrayLength(AudioExts, 28);
 #else
-  SetArrayLength(AudioExts, 26);
+  SetArrayLength(AudioExts, 27);
 #endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
@@ -2085,10 +2089,10 @@ begin
   AudioExts[22] := 'XLSB';
   AudioExts[23] := 'FODS';
   AudioExts[24] := 'FODT';
-//  AudioExts[25] := 'VSDX';
-  AudioExts[25] := 'XLSM';
+  AudioExts[25] := 'VSDX';
+  AudioExts[26] := 'XLSM';
 #ifdef _ONLYOFFICE
-  AudioExts[26] := 'DOCXF';
+  AudioExts[27] := 'DOCXF';
 #endif
 
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
@@ -2121,10 +2125,10 @@ begin
   ExtensionRegistryInfo[22] := prefix + 'Xlsb:'         + ExpandConstant('{cm:extXLSB}')            + ':' + '32';
   ExtensionRegistryInfo[23] := prefix + 'Fods:'         + ExpandConstant('{cm:extFODS}')            + ':' + '34';
   ExtensionRegistryInfo[24] := prefix + 'Fodt:'         + ExpandConstant('{cm:extFODT}')            + ':' + '35';
-//  ExtensionRegistryInfo[25] := prefix + 'Vsdx:'         + ExpandConstant('{cm:extVSDX}')            + ':' + '36';
-  ExtensionRegistryInfo[25] := prefix + 'Xlsm:'         + ExpandConstant('{cm:extXLSM}')            + ':' + '37';
+  ExtensionRegistryInfo[25] := prefix + 'Vsdx:'         + ExpandConstant('{cm:extVSDX}')            + ':' + '36';
+  ExtensionRegistryInfo[26] := prefix + 'Xlsm:'         + ExpandConstant('{cm:extXLSM}')            + ':' + '37';
 #ifdef _ONLYOFFICE
-  ExtensionRegistryInfo[26] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+  ExtensionRegistryInfo[27] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
 #endif
 end;
 

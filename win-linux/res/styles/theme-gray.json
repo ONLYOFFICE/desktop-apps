@@ -11,6 +11,8 @@
         "window-background": "#d9d9d9",
         "window-border": "#cbcbcb",
 
+        "border-control-focus": "#4a87e7",
+
         "text-normal": "#444",
         "text-pretty": "#fff",
         "text-inverse": "#fff",

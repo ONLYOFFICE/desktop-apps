@@ -31,7 +31,6 @@
 */
 
 #include "components/asctabwidget.h"
-#include <QRegExp>
 #include <QHBoxLayout>
 #include <QApplication>
 #include "casctabdata.h"
@@ -843,6 +842,9 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
 {
     int tabIndex = tabIndexByView(id);
     if ( !(tabIndex < 0) ) {
+        if ( AscEditorType(etPortal) == panel(tabIndex)->data()->contentType() )
+            return;
+
         panel(tabIndex)->data()->setContentType(AscEditorType(type));
 
         const CTheme & ui_theme = AscAppManager::themes().current();

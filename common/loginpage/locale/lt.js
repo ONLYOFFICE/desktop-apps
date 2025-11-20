@@ -1,6 +1,8 @@
 l10n.lt = {
     welWelcome: 'Sveiki atvykę ONLYOFFICE Desktop Editors!',
     welDescr: 'Dirbkite su dokumentais neprisijungę prie ryšio arba prisijunkite prie "cloud" sistemų: ONLYOFFICE, ownCloud, Nextcloud.',
+    welNeedHelp: 'Reikia pagalbos? Apsilankykite mūsų $1.',
+    textHelpCenter: 'Pagalbos centre',
     btnConnect: 'Prisijunkite dabar',
     textHavePortal: 'Jau naudojatės "cloud"?',
     btnCreatePortal: 'Sukurkite ONLYOFFICE "cloud"',
@@ -65,7 +67,7 @@ l10n.lt = {
     checkUpdates: 'Tikrinti, ar yra naujinių',
     strVersion: 'versija',
     strVersionCommunity: 'Bendrijos versiją',
-    strVersionCommercial: 'Komercinė versija',
+    strVersionCommercial: 'Enterprise versija',
     emptySlide1Title: 'Dalintis ir bendradarbiauti',
     emptySlide1Text: 'Pasirinktite tarp Skubaus ar Griežto bendrojo laikoredagavimo realiuoju laiku, bendradarbiaukite dokumentuose, rašykite komentarus ar bendrinkite juos peržiūrai ',
     emptySlide2Title: 'Žiūrėti arba atkurti buvusias versijas',
