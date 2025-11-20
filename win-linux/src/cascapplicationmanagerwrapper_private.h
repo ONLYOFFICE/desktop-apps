@@ -77,7 +77,9 @@ public:
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
 
-    virtual void initializeApp() {}
+    virtual void initializeApp() {
+        m_printData->setAppDataPath(m_appmanager.m_oSettings.app_data_path);
+    }
     virtual bool processEvent(NSEditorApi::CAscCefMenuEvent * event) {
         if ( detectDocumentOpening(*event) )
             return true;
@@ -217,11 +219,8 @@ public:
             opts.parent_id = event.m_nSenderId;
             opts.name = QString::fromStdWString(data.get_Name());
 
-            // TODO: remove for ver 8.2 if unused
-            //            if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
-            //                bringEditorToFront(_v->GetId());
-            //            } else openDocument(opts);
-            openDocument(opts);
+            if ( !bringEditorToFront(QString::fromStdWString(opts.wurl)) )
+                openDocument(opts);
 
             return true;
         }
@@ -254,6 +253,10 @@ public:
                                                             MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
                             if ( res == MODAL_RESULT_YES ) {
                                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
+                            } else
+                            if ( res == MODAL_RESULT_NO ) {
+                                int uid = objRoot["hash"].toInt();
+                                m_appmanager.onFileChecked(opts.name, uid, false);
                             }
 
                             return true;
@@ -261,6 +264,30 @@ public:
                     }
 
                     openDocument(opts);
+                }
+
+                return true;
+            } else
+            if ( cmd.compare(L"recovery:update") == 0 ) {
+                QJsonParseError jerror;
+                QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(data.get_Param()).toUtf8(), &jerror);
+
+                if( jerror.error == QJsonParseError::NoError ) {
+                    if (jdoc.isArray()) {
+                        const QJsonArray arr = jdoc.array();
+                        for (const auto &val : arr) {
+                            QJsonObject obj = val.toObject();
+                            if (obj.contains("path")) {
+                                QString path = obj["path"].toString();
+
+                                COpenOptions opts{path.toStdWString(), etRecoveryFile, obj["id"].toInt()};
+                                opts.parent_id = event.m_nSenderId;
+                                opts.format = obj["type"].toInt();
+                                opts.name = (QFileInfo(path)).fileName();
+                                openDocument(opts);
+                            }
+                        }
+                    }
                 }
 
                 return true;
@@ -298,7 +325,6 @@ public:
                         CMessage::error(m_appmanager.mainWindow()->handle(),
                                         QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                     }
-                    else Utils::addToRecent(file_path);
                 }
 
                 return true;
@@ -356,9 +382,10 @@ public:
     auto bringEditorToFront(int viewid) -> void
     {
         CEditorWindow * editor = m_appmanager.editorWindowFromViewId(viewid);
-        if ( editor )
-            editor->bringToTop();
-        else m_appmanager.mainWindow()->selectView(viewid);
+        if ( editor  ) {
+            if (!editor->isSlideshowMode())
+                editor->bringToTop();
+        } else m_appmanager.mainWindow()->selectView(viewid);
     }
 
     auto bringEditorToFront(const QString& url) -> bool
@@ -368,18 +395,22 @@ public:
         if ( _view ) {
             int _view_id = _view->GetId();
 
-            if ( mainWindow() && mainWindow()->holdUid(_view_id) ) {
-                mainWindow()->bringToTop();
-                mainWindow()->selectView(_view_id);
+            if ( mainWindow() && (mainWindow()->slideshowHoldView(_view_id) || mainWindow()->holdUid(_view_id)) ) {
+                if (!mainWindow()->isSlideshowMode()) {
+                    mainWindow()->bringToTop();
+                    mainWindow()->selectView(_view_id);
+                }
                 return true;
             } else
                 _editor = m_appmanager.editorWindowFromViewId(_view_id);
         } else {
             QString _n_url = Utils::replaceBackslash(url);
 
-            if ( mainWindow() && mainWindow()->holdUrl(_n_url, etLocalFile) ) {
-                mainWindow()->bringToTop();
-                mainWindow()->selectView(_n_url);
+            if ( mainWindow() && (mainWindow()->slideshowHoldUrl(_n_url, etLocalFile) || mainWindow()->holdUrl(_n_url, etLocalFile)) ) {
+                if (!mainWindow()->isSlideshowMode()) {
+                    mainWindow()->bringToTop();
+                    mainWindow()->selectView(_n_url);
+                }
                 return true;
             } else {
                 _editor = m_appmanager.editorWindowFromUrl(_n_url);
@@ -387,7 +418,8 @@ public:
         }
 
         if ( _editor ) {
-            _editor->bringToTop();
+            if (!_editor->isSlideshowMode())
+                _editor->bringToTop();
             return true;
         }
 
@@ -548,6 +580,7 @@ public:
     QPointer<QCefView> m_pStartPanel;
     bool m_openEditorWindow = false;
     bool m_needRestart = false;
+    bool m_notificationSupported = false;
     std::shared_ptr<CPrintData> m_printData;
 #ifndef _CAN_SCALE_IMMEDIATELY
     std::wstring uiscaling;

@@ -23,9 +23,6 @@
 #endif
 #ifndef OUTPUT_FILE
 #define OUTPUT_FILE sPackageName + '-' + VERSION + '-' + ARCH
-#ifdef _WIN_XP
-#define OUTPUT_FILE OUTPUT_FILE + '-xp'
-#endif
 #endif
 
 #if FileExists(BRANDING_DIR + '\branding.iss')
@@ -71,17 +68,21 @@ DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
+#ifndef PACKAGE_EDITION
 UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#ARCH})
+#else
+UninstallDisplayName      = {#sAppName} ({#PACKAGE_EDITION}) {#sAppVerShort} ({#ARCH})
+#endif
 OutputDir                 ={#OUTPUT_DIR}
 PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 
-#if str(ARCH) == "x64"
+#if ARCH == "x64" | ARCH == "arm64"
 #if Int(DecodeVer(PREPROCVER,1)) >= 6
-ArchitecturesAllowed              = x64compatible
-ArchitecturesInstallIn64BitMode   = x64compatible
+ArchitecturesAllowed              = x64compatible or arm64
+ArchitecturesInstallIn64BitMode   = x64compatible or arm64
 #else
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
@@ -101,77 +102,91 @@ SignTool                  =byparam $p
 SetupIconFile={#BRANDING_DIR}\..\..\extras\projicons\res\icons\desktopeditors.ico
 WizardImageFile={#BRANDING_DIR}\data\dialogpicture*.bmp
 WizardSmallImageFile={#BRANDING_DIR}\data\dialogicon*.bmp
+#ifdef PACKAGE_EDITION
+#if PACKAGE_EDITION == "Enterprise"
+LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.rtf
+#else
+LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf
+#endif
+#else
+LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf
+#endif
 
 SolidCompression=yes
 Compression=lzma2/ultra64
 LZMAUseSeparateProcess=yes
 
 [Languages]
-#define sLicenseFile BRANDING_DIR + "\..\..\..\common\package\license\" + LIC_FILE + ".rtf"
 #ifdef _ONLYOFFICE
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
-Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
+Name: en; MessagesFile: compiler:Default.isl;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;
 #else
-Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;
+Name: en; MessagesFile: compiler:Default.isl;
 #endif
-Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl; LicenseFile: {#sLicenseFile};
-Name: ca; MessagesFile: compiler:Languages\Catalan.isl; LicenseFile: {#sLicenseFile};
-Name: cs; MessagesFile: compiler:Languages\Czech.isl; LicenseFile: {#sLicenseFile};
-Name: el; MessagesFile: compiler:Languages\Greek.isl; LicenseFile: {#sLicenseFile};
-;Name: et; MessagesFile: compiler:Languages\Estonian.isl; LicenseFile: {#sLicenseFile};
-Name: fi; MessagesFile: compiler:Languages\Finnish.isl; LicenseFile: {#sLicenseFile};
-;Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl; LicenseFile: {#sLicenseFile};
-Name: lo; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
-Name: nl; MessagesFile: compiler:Languages\Dutch.isl; LicenseFile: {#sLicenseFile};
-Name: de; MessagesFile: compiler:Languages\German.isl; LicenseFile: {#sLicenseFile};
-Name: fr; MessagesFile: compiler:Languages\French.isl; LicenseFile: {#sLicenseFile};
-Name: es; MessagesFile: compiler:Languages\Spanish.isl; LicenseFile: {#sLicenseFile};
-Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: {#sLicenseFile};
-Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl; LicenseFile: {#sLicenseFile};
-Name: id; MessagesFile: compiler:Languages\Indonesian.isl; LicenseFile: {#sLicenseFile};
-Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: {#sLicenseFile};
-Name: pl; MessagesFile: compiler:Languages\Polish.isl; LicenseFile: {#sLicenseFile};
-Name: ro; MessagesFile: compiler:Languages\Romanian.isl; LicenseFile: {#sLicenseFile};
-Name: sk; MessagesFile: compiler:Languages\Slovak.isl; LicenseFile: {#sLicenseFile};
-Name: sl; MessagesFile: compiler:Languages\Slovenian.isl; LicenseFile: {#sLicenseFile};
-Name: sv; MessagesFile: compiler:Languages\Swedish.isl; LicenseFile: {#sLicenseFile};
-Name: tr; MessagesFile: compiler:Languages\Turkish.isl; LicenseFile: {#sLicenseFile};
+Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl;
+Name: ca; MessagesFile: compiler:Languages\Catalan.isl;
+Name: cs; MessagesFile: compiler:Languages\Czech.isl;
+Name: el; MessagesFile: compiler:Languages\Greek.isl;
+;Name: et; MessagesFile: compiler:Languages\Estonian.isl;
+Name: fi; MessagesFile: compiler:Languages\Finnish.isl;
+;Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl;
+Name: lo; MessagesFile: compiler:Default.isl;
+Name: nl; MessagesFile: compiler:Languages\Dutch.isl;
+Name: de; MessagesFile: compiler:Languages\German.isl;
+Name: fr; MessagesFile: compiler:Languages\French.isl;
+Name: es; MessagesFile: compiler:Languages\Spanish.isl;
+Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl;
+Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl;
+Name: id; MessagesFile: compiler:Languages\Indonesian.isl;
+Name: it_IT; MessagesFile: compiler:Languages\Italian.isl;
+Name: pl; MessagesFile: compiler:Languages\Polish.isl;
+Name: ro; MessagesFile: compiler:Languages\Romanian.isl;
+Name: sk; MessagesFile: compiler:Languages\Slovak.isl;
+Name: sl; MessagesFile: compiler:Languages\Slovenian.isl;
+Name: sv; MessagesFile: compiler:Languages\Swedish.isl;
+Name: tr; MessagesFile: compiler:Languages\Turkish.isl;
 #if Int(DecodeVer(PREPROCVER,1)) < 6
-Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu; LicenseFile: {#sLicenseFile};
-Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu; LicenseFile: {#sLicenseFile};
+Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu;
+Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;
 #else
-Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl; LicenseFile: {#sLicenseFile};
-Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl; LicenseFile: {#sLicenseFile};
+Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl;
+Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl;
 #endif
-Name: zh_CN; MessagesFile: compiler:Languages\ChineseSimplified.isl;  LicenseFile: {#sLicenseFile};
-;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu; LicenseFile: {#sLicenseFile};
-;Name: hr; MessagesFile: compiler:Languages\Croatian.isl; LicenseFile: {#sLicenseFile};
-Name: da; MessagesFile: compiler:Languages\Danish.isl; LicenseFile: {#sLicenseFile};
-;Name: hi; MessagesFile: compiler:Languages\Hindi.islu; LicenseFile: {#sLicenseFile};
-Name: hu; MessagesFile: compiler:Languages\Hungarian.isl; LicenseFile: {#sLicenseFile};
-;Name: ga_IE; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
-Name: ja; MessagesFile: compiler:Languages\Japanese.isl; LicenseFile: {#sLicenseFile};
-Name: ko; MessagesFile: compiler:Languages\Korean.isl; LicenseFile: {#sLicenseFile};
-Name: lv; MessagesFile: compiler:Languages\Latvian.isl; LicenseFile: {#sLicenseFile};
-Name: no; MessagesFile: compiler:Languages\Norwegian.isl; LicenseFile: {#sLicenseFile};
-Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl; LicenseFile: {#sLicenseFile};
-Name: be; MessagesFile: compiler:Languages\Belarusian.isl; LicenseFile: {#sLicenseFile};
-Name: gl; MessagesFile: compiler:Languages\Galician.isl; LicenseFile: {#sLicenseFile};
-Name: si; MessagesFile: compiler:Languages\Sinhala.islu; LicenseFile: {#sLicenseFile};
-Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl; LicenseFile: {#sLicenseFile};
-Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl; LicenseFile: {#sLicenseFile};
-Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl; LicenseFile: {#sLicenseFile};
-Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl; LicenseFile: {#sLicenseFile};
-Name: en_GB; MessagesFile: compiler:Languages\EnglishBritish.isl; LicenseFile: {#sLicenseFile};
-Name: he; MessagesFile: compiler:Languages\Hebrew.isl; LicenseFile: {#sLicenseFile};
-Name: sq; MessagesFile: compiler:Languages\Albanian.isl; LicenseFile: {#sLicenseFile};
+Name: zh_CN; MessagesFile: compiler:Languages\ChineseSimplified.isl;
+;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;
+;Name: hr; MessagesFile: compiler:Languages\Croatian.isl;
+Name: da; MessagesFile: compiler:Languages\Danish.isl;
+;Name: hi; MessagesFile: compiler:Languages\Hindi.islu;
+Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;
+;Name: ga_IE; MessagesFile: compiler:Default.isl;
+Name: ja; MessagesFile: compiler:Languages\Japanese.isl;
+Name: ko; MessagesFile: compiler:Languages\Korean.isl;
+Name: lv; MessagesFile: compiler:Languages\Latvian.isl;
+Name: no; MessagesFile: compiler:Languages\Norwegian.isl;
+Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;
+Name: be; MessagesFile: compiler:Languages\Belarusian.isl;
+Name: gl; MessagesFile: compiler:Languages\Galician.isl;
+Name: si; MessagesFile: compiler:Languages\Sinhala.islu;
+Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl;
+Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl;
+Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl;
+Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl;
+Name: en_GB; MessagesFile: compiler:Languages\EnglishBritish.isl;
+Name: he; MessagesFile: compiler:Languages\Hebrew.isl;
+Name: sq; MessagesFile: compiler:Languages\Albanian.isl;
+#if Ver >= EncodeVer(6,1,1)
+Name: ur; MessagesFile: compiler:Languages\Urdu.isl;
+#endif
 
 [LangOptions]
 en.LanguageName=English (United States)
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
 ar_SA.LanguageName=الْعَرَبِيَّة
+#if Ver >= EncodeVer(6,1,1)
+ur.RightToLeft=yes
+#endif
 
 [CustomMessages]
 en.AppLocale =en-US
@@ -221,6 +236,9 @@ ar_SA.AppLocale =ar-SA
 sr_Latn_RS.AppLocale =sr-Latn-RS
 sr_Cyrl_RS.AppLocale =sr-Cyrl-RS
 sq.AppLocale =sq-AL
+#if Ver >= EncodeVer(6,1,1)
+ur.AppLocale =ur-PK
+#endif
 ;======================================================================================================
 en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
 en_GB.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
@@ -234,6 +252,9 @@ ja.PrevVer=旧バージョンの{#sAppName}が検出されました。「OK」�
 es.PrevVer=Se ha detectado la versión anterior de {#sAppName}. Por favor, haga clic en el botón 'OK' para desinstalarla, o en 'Cancelar' para salir de la instalación.
 de.PrevVer=Die vorherige Version von {#sAppName} wurde erkannt. Bitte klicken Sie auf 'OK', um sie zu deinstallieren, oder auf 'Abbrechen', um das Setup zu beenden.
 sq.PrevVer=Versioni i mëparshëm i {#sAppName} u zbulua, ju lutemi klikoni butonin 'OK' për ta çinstaluar, ose 'Anulo' për të lënë konfigurimin.
+#if Ver >= EncodeVer(6,1,1)
+ur.PrevVer={#sAppName} کے پچھلے ورژن کا پتہ چلا، براہ کرم اسے اَن انسٹال کرنے کے لیے 'OK' بٹن پر کلک کریں، یا سیٹ اپ چھوڑنے کے لیے 'منسوخ کریں' پر کلک کریں۔
+#endif
 ;======================================================================================================
 en.Launch =Launch %1
 en_GB.Launch =Launch %1
@@ -282,6 +303,9 @@ sr_Latn_RS.Launch =Lansiraj %1
 sr_Cyrl_RS.Launch =Лансирај %1
 he.Launch =הפעל את %1
 sq.Launch =Lanso %1
+#if Ver >= EncodeVer(6,1,1)
+ur.Launch =%1 لانچ کریں۔
+#endif
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 en_GB.CreateDesktopIcon =Create %1 &desktop icon
@@ -330,6 +354,9 @@ sr_Latn_RS.CreateDesktopIcon =Kreiraj %1 &desktop ikonicu
 sr_Cyrl_RS.CreateDesktopIcon =Креирај %1 &десктоп иконицу
 he.CreateDesktopIcon =צור סמל &שולחן עבודה עבור %1
 sq.CreateDesktopIcon =Krijoni %1 dhe ikonën në desktop
+#if Ver >= EncodeVer(6,1,1)
+ur.CreateDesktopIcon =%1 اور ڈیسک ٹاپ آئیکن بنائیں
+#endif
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 en_GB.InstallAdditionalComponents =Installing additional system components. Please wait...
@@ -378,6 +405,9 @@ sr_Latn_RS.InstallAdditionalComponents =Instaliranje dodatnih sistemskih kompone
 sr_Cyrl_RS.InstallAdditionalComponents =Инсталирање додатних системских компоненти. Молимо сачекајте...
 he.InstallAdditionalComponents =מתקין רכיבי מערכת נוספים. אנא המתן...
 sq.InstallAdditionalComponents =Po instalohen komponentë shtesë të sistemit. Ju lutem prisni...
+#if Ver >= EncodeVer(6,1,1)
+ur.InstallAdditionalComponents =سسٹم کے اضافی اجزاء کی تنصیب۔ برائے مہربانی انتظار کریں...
+#endif
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 en_GB.AdditionalTasks =Tasks:
@@ -426,6 +456,9 @@ sr_Latn_RS.AdditionalTasks =Zadaci:
 sr_Cyrl_RS.AdditionalTasks =Задаци:
 he.AdditionalTasks =משימות:
 sq.AdditionalTasks =Detyrat:
+#if Ver >= EncodeVer(6,1,1)
+ur.AdditionalTasks =کام:
+#endif
 ;======================================================================================================
 en.Uninstall =Uninstall
 en_GB.Uninstall =Uninstall
@@ -473,7 +506,10 @@ zh_TW.Uninstall =解除安裝
 sr_Latn_RS.Uninstall =Deinstaliraj
 sr_Cyrl_RS.Uninstall =Деинсталирај
 he.Uninstall =הסר התקנה
-sq.Uninstall ==Çinstaloni
+sq.Uninstall =Çinstaloni
+#if Ver >= EncodeVer(6,1,1)
+ur.Uninstall =ان انسٹال کریں۔
+#endif
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 en_GB.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
@@ -522,6 +558,9 @@ sr_Latn_RS.WarningWrongArchitecture =Pokušavate da instalirate %1-bit aplikacij
 sr_Cyrl_RS.WarningWrongArchitecture =Покушавате да инсталирате %1-бит апликација верзију преко %2-бит инсталиране верзије. Молимо прво деинсталирајте претходну верзију или преузмите тачну верзију за инсталацију.
 he.WarningWrongArchitecture =אתה מנסה להתקין את גרסת היישום %1-סיביות על גבי גרסת %2-סיביות מותקנת. אנא הסר תחילה את הגרסה הקודמת או הורד את הגרסה הנכונה להתקנה.
 sq.WarningWrongArchitecture =Ju po përpiqeni të instaloni versionin e aplikacionit %1-bit mbi versionin %2-bit të instaluar. Ju lutem çinstaloni fillimisht versionin e mëparshëm ose shkarkoni versionin e duhur për instalim.
+#if Ver >= EncodeVer(6,1,1)
+ur.WarningWrongArchitecture =آپ انسٹال کردہ %2 بٹ ورژن پر %1-bit ایپلیکیشن ورژن انسٹال کرنے کی کوشش کر رہے ہیں۔ براہ کرم پہلے پچھلے ورژن کو ان انسٹال کریں یا انسٹالیشن کے لیے صحیح ورژن ڈاؤن لوڈ کریں۔
+#endif
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -571,6 +610,9 @@ sr_Latn_RS.UpdateAppRunning=Setup je detektovao da %1 se trenutno izvršava.%n%n
 sr_Cyrl_RS.UpdateAppRunning =Сетуп је детектовао да %1 се тренутно извршава.%n%nБиће затворено аутоматски. Кликните ОК да наставите, или Откажи да изађете.
 he.UpdateAppRunning=תוכנית ההתקנה זיהתה ש-%1 פועלת כרגע.%n%nהיא תיסגר אוטומטית. לחץ על אישור כדי להמשיך, או ביטול כדי לצאת.
 sq.UpdateAppRunning=Konfigurimi ka zbuluar se %1 po ekzekutohet aktualisht.%n%nDo të mbyllet automatikisht. Klikoni OK për të vazhduar, ose Anulo për të dalë.
+#if Ver >= EncodeVer(6,1,1)
+ur.UpdateAppRunning=سیٹ اپ کو پتہ چلا ہے کہ فی الحال %1 چل رہا ہے۔ %n%nیہ خود بخود بند ہو جائے گا۔ جاری رکھنے کے لیے ٹھیک ہے، یا باہر نکلنے کے لیے منسوخ پر کلک کریں۔
+#endif
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 en_GB.WarningClearAppData =Do you want to clear the user settings and application cached data?
@@ -619,6 +661,9 @@ sr_Latn_RS.WarningClearAppData =Da li želite da obrišete korisničke postavke 
 sr_Cyrl_RS.WarningClearAppData =Да ли желите да обришете корисничке поставке и кеширане податке апликације?
 he.WarningClearAppData =האם ברצונך לנקות את הגדרות המשתמש ונתוני המטמון של היישום?
 sq.WarningClearAppData =Dëshironi të pastroni cilësimet e përdoruesit dhe të dhënat e memories së aplikacionit?
+#if Ver >= EncodeVer(6,1,1)
+ur.WarningClearAppData =کیا آپ صارف کی ترتیبات اور ایپلیکیشن کیشڈ ڈیٹا کو صاف کرنا چاہتے ہیں؟
+#endif
 ;======================================================================================================
 
 
@@ -649,6 +694,9 @@ sq.WarningClearAppData =Dëshironi të pastroni cilësimet e përdoruesit dhe t�
 ;sr_Cyrl_RS.AssociateDescription =Повежи врсте офис фајл докумената са %1
 he.AssociateDescription =שייך סוגי קבצי מסמכי משרד ל-%1
 ;sq.AssociateDescription =Shoqëroni llojet e skedarëve të dokumentit të zyrës me %1
+#if Ver >= EncodeVer(6,1,1)
+;ur.AssociateDescription =آفس دستاویز فائل کی اقسام کو %1 کے ساتھ منسلک کریں۔
+#endif
 ;======================================================================================================
 en.UpdateService =Update service for {#sAppName}
 en_GB.UpdateService =Update service for {#sAppName}
@@ -678,6 +726,9 @@ hy_AM.UpdateService =Թարմացրեք ծառայությունը {#sAppName}-�
 sr_Cyrl_RS.UpdateService =Ажурирај услугу за {#sAppName}
 he.UpdateService =שירות עדכון עבור {#sAppName}
 sq.UpdateService =Shërbimi i përditësimit për {#sAppName}
+#if Ver >= EncodeVer(6,1,1)
+ur.UpdateService ={#sAppName} کے لیے سروس اپ ڈیٹ کریں
+#endif
 
 [Code]
 const
@@ -924,7 +975,7 @@ end;
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   commonCachePath, userCachePath: string;
-  paramStore, translateArgs: string;
+  paramStore: string;
   ErrorCode: Integer;
   version: TWindowsVersion;
 begin
@@ -932,14 +983,7 @@ begin
     DoPostInstall();
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
-#ifdef _ONLYOFFICE
-      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200+@{app}\{#iconsExe},-1201+@{app}\{#iconsExe},-1202+@{app}\{#iconsExe},-1103');
-#else
-      translateArgs := ExpandConstant('@{app}\{#iconsExe},-1200+@{app}\{#iconsExe},-1201+@{app}\{#iconsExe},-1202');
-#endif
-      StringChangeEx(translateArgs, ' ', '_', True);
-      StringChangeEx(translateArgs, '+', ' ', True);
-      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
       if CheckCommandlineParam('/noupdates') then begin
         RegWriteDWordValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'CheckForUpdates', 0);
       end else
@@ -966,6 +1010,10 @@ begin
     if CheckCommandlineParam('/disableplugins') then begin
       if DirExists(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}') then
         DelTree(ExpandConstant('{app}\editors\sdkjs-plugins\') + '{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}', True, True, True);
+    end;
+
+    if CheckCommandlineParam('/noassocheck') then begin
+      RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'ignoreAssocMsg', 'true');
     end;
 
   end else
@@ -1124,15 +1172,9 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-#ifndef _WIN_XP
 Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2022;
-#else
-Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2019;
-#endif
+  Check: not checkVCRedist;
 
 Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)
@@ -1143,6 +1185,16 @@ Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\converter\*.exe"; DestDir: {app}\converter; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags: signonce;
 Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
+#ifdef PACKAGE_EDITION
+#if PACKAGE_EDITION == "Enterprise"
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app}; DestName: "EULA.txt";
+#else
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+#endif
+#else
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+#endif
+Source: "{#BRANDING_DIR}\..\..\..\common\package\license\3dparty\3DPARTYLICENSE"; DestDir: {app};
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
@@ -1194,3 +1246,7 @@ Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; Value
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
 Type: filesandordirs; Name: "{app}\..\{#UPD_PATH}";
 Type: files; Name: "{app}\svcrestart.bat";
+
+#ifdef PREPROCSAVE
+#expr SaveToFile(AddBackslash(SourcePath) + "desktop_preprocessed.iss")
+#endif

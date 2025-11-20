@@ -453,7 +453,7 @@ Mums jums ir īpašs piedāvājums.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Jauna PDF veidlapa</target>
+        <target>Jauns PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

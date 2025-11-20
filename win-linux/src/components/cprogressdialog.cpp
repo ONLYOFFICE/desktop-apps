@@ -93,6 +93,7 @@ class CProgressDialog::CProgressDialogPrivate
 public:
     CProgressDialogPrivate(QWidget *parent, const QString &primaryText, const QString &secondaryText) {
         useNativeDialog = WindowHelper::useNativeDialog();
+        const QString cancelText = QObject::tr("&Cancel", "CPrintProgress");
         if (useNativeDialog) {
 #ifdef _WIN32
             parentHwnd = parent ? (HWND)parent->winId() : NULL;
@@ -127,7 +128,7 @@ public:
             //gtk_window_set_title(GTK_WINDOW(dialog), APP_TITLE);
             gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(gtkDlg), "%s", secondaryText.toLocal8Bit().data());
 
-            gtk_dialog_add_button(GTK_DIALOG(gtkDlg), BTN_TEXT_CANCEL.toLocal8Bit().data(), GTK_RESPONSE_CANCEL);
+            gtk_dialog_add_button(GTK_DIALOG(gtkDlg), cancelText.toLocal8Bit().data(), GTK_RESPONSE_CANCEL);
             gtk_widget_grab_focus(gtk_dialog_get_widget_for_response(GTK_DIALOG(gtkDlg), GTK_RESPONSE_CANCEL));
             gtkProgressBar = gtk_progress_bar_new();
             gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(gtkProgressBar), 0.05);
@@ -155,7 +156,7 @@ public:
             qtProgressLabel->setStyleSheet(QString("margin-bottom: %1px;").arg(8*_dpi_ratio));
             layout->addWidget(qtProgressLabel);
 
-            QPushButton * btn_cancel = new QPushButton(QObject::tr("&Cancel", "CPrintProgress"));
+            QPushButton * btn_cancel = new QPushButton(cancelText);
             QWidget * box = new QWidget;
             box->setLayout(new QHBoxLayout);
             box->layout()->addWidget(btn_cancel);

@@ -409,7 +409,7 @@ Chúng tôi có ưu đãi đặc biệt dành cho bạn.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>Mẫu PDF mới</target>
+        <target>PDF mới</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

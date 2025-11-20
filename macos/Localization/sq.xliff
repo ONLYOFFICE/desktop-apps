@@ -503,7 +503,7 @@ Ne kemi një ofertë speciale për ju.</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target state="translated">Format PDF i ri</target>
+        <target state="translated">PDF i ri</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

@@ -448,7 +448,7 @@ We have a special offer for you.</source>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>नया पीडीएफ फॉर्म</target>
+        <target>नया पीडीएफ</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

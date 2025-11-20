@@ -56,6 +56,9 @@ int main( int argc, char *argv[] )
     Utils::setAppUserModelId();
     WCHAR * cm_line = GetCommandLine();
     InputArgs::init(cm_line);
+    if ( InputArgs::contains(L"--assoc") ) {
+        return 0;
+    }
 #else
     qputenv("QT_QPA_PLATFORM", "xcb");
     qputenv("GDK_BACKEND", "x11");
@@ -69,7 +72,11 @@ int main( int argc, char *argv[] )
         return 0;
     }
 #endif
+#ifdef QT_VERSION_6
+    qputenv("QT_ENABLE_HIGHDPI_SCALING", "0");
+#else
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
+#endif
     QCoreApplication::setAttribute(Qt::AA_Use96Dpi);
     QCoreApplication::setApplicationName(QString::fromUtf8(WINDOW_NAME));
     QApplication::setApplicationDisplayName(QString::fromUtf8(WINDOW_NAME));
