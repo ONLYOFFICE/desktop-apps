@@ -2337,6 +2337,7 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     switch ( format ) {
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF: {
         QString docname = tr("Document%1.docx").arg(++pdf_count);
         return docname.replace("docx", "pdf");

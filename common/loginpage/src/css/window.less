@@ -64,6 +64,7 @@ dialog {
                 justify-content: space-between;
                 padding: 30px 16px 16px 32px;
                 background: none;
+                user-select: none;
                 .rtl &{
                     padding: 30px 32px 16px 16px;
                 }
@@ -362,5 +363,9 @@ dialog {
     .img-loader {
         content: data-uri('../res/img/spinner-light.png');
     }
+}
+
+.win_xp .dlg.dlg-about .body {
+    -webkit-user-select: text;
 }
 

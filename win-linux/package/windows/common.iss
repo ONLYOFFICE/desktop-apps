@@ -79,10 +79,10 @@ AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 
-#if str(ARCH) == "x64"
+#if ARCH == "x64" | ARCH == "arm64"
 #if Int(DecodeVer(PREPROCVER,1)) >= 6
-ArchitecturesAllowed              = x64compatible
-ArchitecturesInstallIn64BitMode   = x64compatible
+ArchitecturesAllowed              = x64compatible or arm64
+ArchitecturesInstallIn64BitMode   = x64compatible or arm64
 #else
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
@@ -1246,3 +1246,7 @@ Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; Value
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
 Type: filesandordirs; Name: "{app}\..\{#UPD_PATH}";
 Type: files; Name: "{app}\svcrestart.bat";
+
+#ifdef PREPROCSAVE
+#expr SaveToFile(AddBackslash(SourcePath) + "desktop_preprocessed.iss")
+#endif

@@ -58,16 +58,20 @@
         baseView.prototype.constructor.call(this, args);
     };
 
+    const version = function(commercial) {
+        return commercial === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
+    };
+
     ViewAbout.prototype = Object.create(baseView.prototype);
     ViewAbout.prototype.constructor = ViewAbout;
     ViewAbout.prototype.paneltemplate = function(args) {
         var _opts = args.opts;
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div id="idx-ver-edition" class="about-field">${_opts.edition}</div>` : '';
-        const strVersion = args.opts.commercial === true ? utils.Lang.strVersionCommercial : utils.Lang.strVersionCommunity;
+        const strVersion = version(args.opts.commercial);
 
         let _ext_ver = '';
-        if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? 'x64' : 'x86'}`;
+        if ( !!_opts.arch ) _ext_ver += _opts.arch;
         if ( !!_opts.pkg ) _ext_ver += ` ${_opts.pkg}`;
         if ( !!_ext_ver ) _opts.version += ` (${_ext_ver.trim()})`;
 
@@ -124,6 +128,7 @@
 
     utils.fn.extend(ControllerAbout.prototype, (function() {
         let features = undefined;
+        let action = null;
 
         let _on_features_avalable = function (params) {
             if ( !!this.view ) {
@@ -153,6 +158,7 @@
 
                 if (!this.view) {
                     this.view = new ViewAbout(args);
+                    this.view.args = args;
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
@@ -186,7 +192,6 @@
 
                     if ( this.updates ) {
                         $('body').on('click', '.btn-update-action', e=>{
-                            const action = $(e.target).data('action');
                             sdk.execCommand('updates:action', action);
                         });
                     }
@@ -258,7 +263,7 @@
                     const $button = $('#idx-update-btnaction', this.view.$body);
                     if ( info.button.text ) {
                         $button.text(info.button.text);
-                        $button.data("action", info.button.action);
+                        action = info.button.action;
                     }
 
                     if ( info.button.lock ) {
@@ -300,7 +305,7 @@
                 CommonEvents.on('lang:changed', () => {
                     if (this.view) {
                         this.view.$dialog.titleText = utils.Lang.actAbout;
-                        $('#idx-about-version span', this.view.$body).text(utils.Lang.strVersion);
+                        $('#idx-about-version span', this.view.$body).text(version(this.view.args.opts.commercial));
                     }
                 });
 
