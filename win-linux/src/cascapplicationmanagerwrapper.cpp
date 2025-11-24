@@ -2082,7 +2082,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             _editor->applyTheme(theme);
         }
 
-        QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        // QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        QJsonObject _json_obj{{"theme", QString::fromStdWString(_app.m_themes->current().id())}};       // for bug 78050. send only theme id
         AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
