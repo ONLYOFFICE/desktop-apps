@@ -1535,6 +1535,7 @@
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
     <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
+    <ROW Condition="AiArm64" Description="[ProductName] can only be installed on Arm64 Windows versions." Builds="MsiBuildARM64"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiMergeModsComponent">
