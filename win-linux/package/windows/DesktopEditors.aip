@@ -24,7 +24,7 @@
     <ROW Property="CompanyPath" Value="ONLYOFFICE" ValueLocId="-"/>
     <ROW Property="DesktopPath" Value="DesktopEditors" ValueLocId="-"/>
     <ROW Property="EMPTY_LANG_DIR" Value="en-US"/>
-    <ROW Property="Edition" Value="Open Source" ValueLocId="-"/>
+    <ROW Property="Edition" Value="Community" ValueLocId="-"/>
     <ROW Property="ExtPfx" Value="ASC" ValueLocId="-"/>
     <ROW Property="FORMS" Value="1" ValueLocId="-"/>
     <ROW Property="IncompatibleVersion_ErrorText" Value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
@@ -1561,6 +1561,9 @@
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
+    <ROW Registry="PackageArch" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageArch" Value="[Arch]" Component_="c_reg_sw_app"/>
+    <ROW Registry="PackageEdition" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageEdition" Value="[Edition]" Component_="c_reg_sw_app"/>
+    <ROW Registry="PackageType" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageType" Value="advinst" Component_="c_reg_sw_app"/>
     <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
