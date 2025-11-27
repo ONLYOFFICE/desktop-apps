@@ -1185,10 +1185,8 @@ Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesu
 #if defined(_WIN_XP) | defined(EMBED_HELP)
 Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #endif
-Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: signonce;
-Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
-Source: "{#BUILD_DIR}\desktop\converter\*.exe"; DestDir: {app}\converter; Flags: signonce;
-Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags: signonce;
+Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: recursesubdirs signonce;
+Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: recursesubdirs signonce;
 Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
 #ifdef PACKAGE_EDITION
 #if PACKAGE_EDITION == "Enterprise"

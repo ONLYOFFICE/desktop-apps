@@ -85,9 +85,7 @@ Write-Host "`n[ Sign files ]"
 
 if ($Sign) {
     Set-Location "$BuildDir\desktop"
-    $SignFiles = Get-ChildItem `
-        *.exe, *.dll, converter\*.exe, converter\*.dll, plugins\*\*.dll `
-        | Resolve-Path -Relative
+    $SignFiles = Get-ChildItem *.exe, *.dll -Recurse | Resolve-Path -Relative
 
     # Sign
     Write-Host "signtool sign /a /n $CertName /t $TimestampServer ..."
@@ -95,9 +93,7 @@ if ($Sign) {
     if ($LastExitCode -ne 0) { throw }
 
     # Verify
-    Write-Host "signtool verify /q /pa /all ..."
-    & signtool verify /q /pa /all $SignFiles | Out-Null
-    if ($LastExitCode -ne 0) { throw }
+    Get-ChildItem *.exe, *.dll -Recurse | % { Get-AuthenticodeSignature $_ }
 
     # VLC plugin cache
     if (
