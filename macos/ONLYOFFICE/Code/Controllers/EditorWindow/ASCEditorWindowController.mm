@@ -45,6 +45,7 @@
 #import "ASCHelper.h"
 #import "NSCefView.h"
 #import "NSCefData.h"
+#import "ASCPresentationReporter.h"
 
 @interface ASCEditorWindowController () <NSWindowDelegate>
 @property (nonatomic) BOOL waitingForClose;
@@ -77,6 +78,7 @@
     addObserverFor(CEFEventNameTabEditorNameChanged, @selector(onCEFChangedTabEditorName:));
     addObserverFor(CEFEventNameTabEditorType, @selector(onCEFChangedTabEditorType:));
     addObserverFor(CEFEventNameSave, @selector(onCEFSave:));
+    addObserverFor(CEFEventNameFullscreen, @selector(onCEFFullscreen:));
     addObserverFor(CEFEventNameEditorAppActionRequest, @selector(onCEFEditorAppActionRequest:));
     addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
@@ -246,6 +248,62 @@
             if ([self holdView:viewId] && self.waitingForClose) {
                 [self.window close];
             }
+        }
+    }
+}
+
+- (void)onCEFFullscreen:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+
+        BOOL isFullscreen = [params[@"fullscreen"] boolValue];
+        
+        ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+        NSCefView *cefView = (NSCefView *)window.webView;
+        if (!cefView) {
+            return;
+        }
+        
+        if ([params objectForKey:@"viewId"]) {
+            NSString * viewId = params[@"viewId"];
+            if (![self holdView:viewId]) {
+                return;
+            }
+        }
+        
+        if (isFullscreen) {
+            NSScreen * targetScreen = [self.window screen];
+            NSArray<NSScreen *> * screens = [NSScreen screens];
+            
+            if ( [[ASCPresentationReporter sharedInstance] isVisible] && [screens count] > 1 ) {
+                for ( NSScreen * screen in screens ) {
+                    if ( screen != [NSScreen mainScreen] ) {
+                        targetScreen = screen;
+                        break;
+                    }
+                }
+            }
+
+            NSApplicationPresentationOptions options = NSApplicationPresentationAutoHideDock | NSApplicationPresentationAutoHideMenuBar;
+            [cefView enterFullScreenMode:targetScreen withOptions:@{
+                NSFullScreenModeApplicationPresentationOptions: @(options),
+                NSFullScreenModeAllScreens: @(NO)
+            }];
+            
+            [cefView focus];
+            [self.window setIsVisible:NO];
+            
+        } else if ([cefView isInFullScreenMode]) {
+            [self.window setIsVisible:YES];
+            [cefView exitFullScreenModeWithOptions:nil];
+
+            NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+            pCommand->put_Command(L"editor:stopDemonstration");
+
+            NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+            pEvent->m_pData = pCommand;
+
+            [cefView apply:pEvent];
         }
     }
 }
