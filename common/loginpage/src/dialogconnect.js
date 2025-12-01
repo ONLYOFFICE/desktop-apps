@@ -244,7 +244,6 @@ window.DialogConnect = function(params) {
                 resolve({status:'skipped', response: {statusText: _url}});
             else {
     
-                const matches = (e) => (provider === 'onlyoffice' ? ['onlyoffice', 'teamlab'] : [provider]).some(p => (e.responseText || '').toLowerCase().includes(p) || portal.toLowerCase().includes(p));
                 let fetchFuntion = $.ajax;
                 if (window.AscSimpleRequest && window.AscSimpleRequest.createRequest)
                     fetchFuntion = window.AscSimpleRequest.createRequest;
@@ -261,11 +260,6 @@ window.DialogConnect = function(params) {
                                 // skip checking response for tests
                                 // if ( !_model.entryPage )
                                     // JSON.parse(e.responseText)
-                                
-                                if (!matches(e)) {
-                                    reject({status:'invalid portal', response:e});
-                                    return;
-                                }
 
                                 resolve({status:status, response:e});
                             } catch (err) {

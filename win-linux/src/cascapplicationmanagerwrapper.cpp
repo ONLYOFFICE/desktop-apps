@@ -2082,7 +2082,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             _editor->applyTheme(theme);
         }
 
-        QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        // QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        QJsonObject _json_obj{{"theme", QString::fromStdWString(actual_id)}};       // for bug 78050. send only theme id
         AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
@@ -2322,6 +2323,7 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     switch ( format ) {
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF: {
         QString docname = tr("Document%1.docx").arg(++pdf_count);
         return docname.replace("docx", "pdf");

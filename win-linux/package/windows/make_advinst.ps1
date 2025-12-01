@@ -7,7 +7,8 @@
     [string]$BuildDir,
     [switch]$Sign,
     [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [string]$TimestampServer = "http://timestamp.digicert.com",
+    [switch]$Debug
 )
 
 $ErrorActionPreference = "Stop"
@@ -15,7 +16,7 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
+    $BuildDir = "_$Arch"
 }
 $MsiFile = switch ($Target) {
     "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.msi" }
@@ -25,6 +26,7 @@ $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
 $MsiBuild = switch ($Arch) {
     "x64" { "MsiBuild64" }
     "x86" { "MsiBuild32" }
+    "arm64" { "MsiBuildARM64" }
 }
 $LanguageCodes = @(
     1033, # en              English (United States)
@@ -150,7 +152,6 @@ $AdvInstConfig += `
     "NewSync APPDIR $BuildDir\desktop -existingfiles keep -feature Files", `
     "NewSync APPDIR\$PluginManagerPath $BuildDir\desktop\$PluginManagerPath -existingfiles delete -feature PluginManager", `
     "AddFile APPDIR $LicensePath\3dparty\3DPARTYLICENSE"
-    # "GenerateReport -buildname $MsiBuild -output_path .\report.pdf", `
 if ($Target -ne "commercial") {
     $AdvInstConfig += `
         "AddFile APPDIR $LicensePath\opensource\LICENSE.txt"
@@ -164,6 +165,9 @@ if ($Target -ne "commercial") {
         "SetEula -rtf `"$("$LicensePath\commercial\LICENSE.rtf" | Resolve-Path)`"", `
         "SetPackageName `"$MsiFile`" -buildname $MsiBuild", `
         "AddFile APPDIR $LicensePath\commercial\EULA.txt"
+}
+if ($Debug) {
+    $AdvInstConfig += "Save"
 }
 $AdvInstConfig += `
     "Rebuild -buildslist $MsiBuild"
@@ -188,6 +192,7 @@ $Template = ";$($LanguageCodes -join ','),0"
 $Template = switch ($Arch) {
     "x64" { "x64" + $Template }
     "x86" { "Intel" + $Template }
+    "arm64" { "Arm64" + $Template }
 }
 
 Write-Host "MsiInfo $MsiFile /p $Template"
