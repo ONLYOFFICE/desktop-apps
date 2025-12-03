@@ -31,15 +31,49 @@
 */
 
 //
-//  ASCAboutController.h
+//  ASCLicenseController.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 18.02.16.
-//  Copyright © 2017 Ascensio System SIA. All rights reserved.
+//  Copyright © 2025 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "ASCLicenseController.h"
+#import <WebKit/WebKit.h>
 
-@interface ASCAboutController : NSViewController
-- (IBAction)onLicenseButtonClick:(id)sender;
+@interface ASCLicenseController () {
+    NSURL *_url;
+}
+@property (weak) IBOutlet WebView *eulaWebView;
+@end
+
+@implementation ASCLicenseController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    if (_url) {
+        [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:_url]];
+    }
+}
+
+- (void)viewDidAppear {
+    [super viewDidAppear];
+}
+
+- (void)viewDidDisappear {
+    [super viewDidDisappear];
+}
+
+- (void)setUrl:(NSURL *)url {
+    _url = url;
+    if (self.isViewLoaded) {
+        [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
+    }
+}
+
+- (IBAction)onCloseButtonClick:(id)sender {
+    [NSApp stopModal];
+    [self.view.window close];
+}
+
 @end
