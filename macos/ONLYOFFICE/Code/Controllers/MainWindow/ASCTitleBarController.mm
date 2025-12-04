@@ -576,7 +576,8 @@ static float kASCRTLTabsRightMargin = 0;
     [app.windowControllers addObject:windowController];
     
     ASCEditorWindow *editorWindow = (ASCEditorWindow *)windowController.window;
-    [editorWindow setTitle:@""];
+    [editorWindow setTitleVisibility:NSWindowTitleHidden];
+    [editorWindow setTitle:[webView.data title:YES]];
     
     NSViewController *contentViewController = windowController.contentViewController;
     if (contentViewController && contentViewController.view) {

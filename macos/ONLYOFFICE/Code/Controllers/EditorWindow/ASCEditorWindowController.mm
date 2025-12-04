@@ -231,7 +231,7 @@
         
         if ([self holdView:viewId]) {
             [self.cefData setTitle:name];
-//            [self.window setTitle:name];
+            [self.window setTitle:name];
 
 //            if ( !(path == nil) && !(path.length == 0) ) {
 //                tab.params[@"path"] = path;
