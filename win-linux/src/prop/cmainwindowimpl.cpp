@@ -56,7 +56,7 @@ void CMainWindowImpl::refreshAboutVersion()
 {
     QJsonObject _json_obj;
 
-    auto _read_license_name = [](const QString& path) -> QString {
+    auto _read_license_name = [](QString& path) -> QString {
         QFileInfo fi(path);
         QDir dir = fi.dir();
         QStringList files = dir.entryList(QStringList() << fi.fileName(),
@@ -64,8 +64,8 @@ void CMainWindowImpl::refreshAboutVersion()
         if (files.isEmpty())
             return QString();
 
-        QString correctPath = dir.filePath(files.first());
-        QFile f(correctPath);
+        path = dir.filePath(files.first());
+        QFile f(path);
         QString n;
         if ( f.exists() ) {
             if ( f.open(QIODevice::ReadOnly | QIODevice::Text )) {

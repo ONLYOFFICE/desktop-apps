@@ -728,28 +728,36 @@ namespace NS_File
 
     bool verifyEmbeddedSignature(const wstring &fileName)
     {
-        WINTRUST_FILE_INFO fileInfo;
-        ZeroMemory(&fileInfo, sizeof(fileInfo));
-        fileInfo.cbStruct = sizeof(WINTRUST_FILE_INFO);
-        fileInfo.pcwszFilePath = fileName.c_str();
-        fileInfo.hFile = NULL;
-        fileInfo.pgKnownSubject = NULL;
+        WINTRUST_FILE_INFO wfi;
+        ZeroMemory(&wfi, sizeof(wfi));
+        wfi.cbStruct = sizeof(WINTRUST_FILE_INFO);
+        wfi.pcwszFilePath = fileName.c_str();
+        wfi.hFile = NULL;
+        wfi.pgKnownSubject = NULL;
 
-        GUID guidAction = WINTRUST_ACTION_GENERIC_VERIFY_V2;
-        WINTRUST_DATA winTrustData;
-        ZeroMemory(&winTrustData, sizeof(winTrustData));
-        winTrustData.cbStruct = sizeof(WINTRUST_DATA);
-        winTrustData.pPolicyCallbackData = NULL;
-        winTrustData.pSIPClientData = NULL;
-        winTrustData.dwUIChoice = WTD_UI_NONE;
-        winTrustData.fdwRevocationChecks = WTD_REVOKE_NONE;
-        winTrustData.dwUnionChoice = WTD_CHOICE_FILE;
-        winTrustData.dwStateAction = WTD_STATEACTION_VERIFY;
-        winTrustData.hWVTStateData = NULL;
-        winTrustData.pwszURLReference = NULL;
-        winTrustData.dwUIContext = 0;
-        winTrustData.pFile = &fileInfo;
-        return WinVerifyTrust(NULL, &guidAction, &winTrustData) == ERROR_SUCCESS;
+        WINTRUST_DATA wtd;
+        ZeroMemory(&wtd, sizeof(wtd));
+        wtd.cbStruct = sizeof(WINTRUST_DATA);
+        wtd.pPolicyCallbackData = NULL;
+        wtd.pSIPClientData = NULL;
+        wtd.dwUIChoice = WTD_UI_NONE;
+        wtd.fdwRevocationChecks = WTD_REVOKE_NONE;
+        wtd.dwUnionChoice = WTD_CHOICE_FILE;
+        wtd.dwStateAction = WTD_STATEACTION_VERIFY;
+        wtd.hWVTStateData = NULL;
+        wtd.pwszURLReference = NULL;
+        wtd.dwUIContext = 0;
+        wtd.pFile = &wfi;
+
+        GUID action = WINTRUST_ACTION_GENERIC_VERIFY_V2;
+        LONG res = WinVerifyTrust(NULL, &action, &wtd);
+
+        if (wtd.hWVTStateData) {
+            wtd.dwStateAction = WTD_STATEACTION_CLOSE;
+            WinVerifyTrust(NULL, &action, &wtd);
+        }
+
+        return (res == ERROR_SUCCESS);
     }
 }
 

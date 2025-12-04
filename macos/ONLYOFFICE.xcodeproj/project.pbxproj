@@ -102,6 +102,9 @@
 		BE6251BA22BD089100656116 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = BE6251B922BD089100656116 /* dictionaries */; };
 		BE9A63CD2E2A429F0040CE84 /* ascdocumentscore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9A63CC2E2A429F0040CE84 /* ascdocumentscore.framework */; };
 		BE9A63CF2E2A42A60040CE84 /* ooxmlsignature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9A63CE2E2A42A60040CE84 /* ooxmlsignature.framework */; };
+		F10175932EAB756000C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
+		F10175942EAB756100C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
+		F10175952EAB756100C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
 		FC0BD686258B63F700C47F95 /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
@@ -829,6 +832,8 @@
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		BE9A63CC2E2A429F0040CE84 /* ascdocumentscore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ascdocumentscore.framework; path = ../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/ascdocumentscore.framework; sourceTree = "<group>"; };
 		BE9A63CE2E2A42A60040CE84 /* ooxmlsignature.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ooxmlsignature.framework; path = ../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/ooxmlsignature.framework; sourceTree = "<group>"; };
+		F10175912EAB756000C6C1B8 /* ASCLicenseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCLicenseController.h; sourceTree = "<group>"; };
+		F10175922EAB756000C6C1B8 /* ASCLicenseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCLicenseController.m; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
 		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
@@ -1157,6 +1162,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F10175902EAB739E00C6C1B8 /* License */ = {
+			isa = PBXGroup;
+			children = (
+				F10175912EAB756000C6C1B8 /* ASCLicenseController.h */,
+				F10175922EAB756000C6C1B8 /* ASCLicenseController.m */,
+			);
+			path = License;
+			sourceTree = "<group>";
+		};
 		FC035A5A24855E1900AF820F /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -1691,6 +1705,7 @@
 		FCF289722150E6A1002FD438 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F10175902EAB739E00C6C1B8 /* License */,
 				FCF289742150E820002FD438 /* Common */,
 				FCF289762150E904002FD438 /* MainWindow */,
 				FCF289782150E95F002FD438 /* About */,
@@ -2251,7 +2266,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/license\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\nCreateDir \"${DST_DIR}/license\"\n[ -d \"${SRC_BASE_DIR}/license\" ] && cp -vR \"${SRC_BASE_DIR}/license\" \"${DST_DIR}\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\n# cp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C6BB26DD018B0012C20D /* Copy Library */ = {
@@ -2391,6 +2406,7 @@
 				FC0BD6AC258B63F700C47F95 /* ASCDownloadController.mm in Sources */,
 				FC0BD6AD258B63F700C47F95 /* ASCTabCloseButtonCell.m in Sources */,
 				FC0BD6AE258B63F700C47F95 /* ASCTabTouchBarItem.m in Sources */,
+				F10175952EAB756100C6C1B8 /* ASCLicenseController.m in Sources */,
 				FC0BD6AF258B63F700C47F95 /* ASCTabViewController.m in Sources */,
 				FC2C439625D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m in Sources */,
 				FC0BD6B0258B63F700C47F95 /* ASCPresentationReporter.mm in Sources */,
@@ -2466,6 +2482,7 @@
 				FCB4C6E526DD018B0012C20D /* ASCDownloadController.mm in Sources */,
 				FCB4C6E626DD018B0012C20D /* ASCTabCloseButtonCell.m in Sources */,
 				FCB4C6E726DD018B0012C20D /* ASCTabTouchBarItem.m in Sources */,
+				F10175932EAB756000C6C1B8 /* ASCLicenseController.m in Sources */,
 				FCB4C6E826DD018B0012C20D /* ASCTabViewController.m in Sources */,
 				FCB4C6E926DD018B0012C20D /* ASCCertificatePreviewTextViewController.m in Sources */,
 				FCB4C6EA26DD018B0012C20D /* ASCPresentationReporter.mm in Sources */,
@@ -2541,6 +2558,7 @@
 				FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */,
 				FCC77C91206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */,
 				FCCC2FE121E5E10D00FB9209 /* ASCTabTouchBarItem.m in Sources */,
+				F10175942EAB756100C6C1B8 /* ASCLicenseController.m in Sources */,
 				FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FC2C439525D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m in Sources */,
 				FC54A2941F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,

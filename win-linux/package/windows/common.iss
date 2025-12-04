@@ -5,6 +5,9 @@
 #endif
 #include BRANDING_DIR + '\defines.iss'
 
+#ifndef PACKAGE_EDITION
+#define PACKAGE_EDITION 'Community'
+#endif
 #ifndef VERSION
 #define VERSION '0.0.0.0'
 #endif
@@ -15,14 +18,15 @@
 #ifndef BUILD_DIR
 #define BUILD_DIR '.\build.' + ARCH
 #endif
-#ifdef PACKAGE_EDITION
-#define sPackageName sPackageName + '-' + PACKAGE_EDITION
-#endif
 #ifndef OUTPUT_DIR
 #define OUTPUT_DIR '.'
 #endif
 #ifndef OUTPUT_FILE
+#if PACKAGE_EDITION == 'Community'
 #define OUTPUT_FILE sPackageName + '-' + VERSION + '-' + ARCH
+#else
+#define OUTPUT_FILE sPackageName + '-' + PACKAGE_EDITION + '-' + VERSION + '-' + ARCH
+#endif
 #endif
 
 #if FileExists(BRANDING_DIR + '\branding.iss')
@@ -68,7 +72,7 @@ DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
-#ifndef PACKAGE_EDITION
+#if PACKAGE_EDITION == "Community" | PACKAGE_EDITION == "XP"
 UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#ARCH})
 #else
 UninstallDisplayName      = {#sAppName} ({#PACKAGE_EDITION}) {#sAppVerShort} ({#ARCH})
@@ -79,14 +83,15 @@ AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 
-#if ARCH == "x64" | ARCH == "arm64"
-#if Int(DecodeVer(PREPROCVER,1)) >= 6
-ArchitecturesAllowed              = x64compatible or arm64
-ArchitecturesInstallIn64BitMode   = x64compatible or arm64
-#else
+#if Ver < EncodeVer(6,0,0) & ARCH == "x64"
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
-#endif
+#elif Ver >= EncodeVer(6,0,0) & ARCH == "x64"
+ArchitecturesAllowed              = x64compatible
+ArchitecturesInstallIn64BitMode   = x64compatible
+#elif ARCH == "arm64"
+ArchitecturesAllowed              = arm64
+ArchitecturesInstallIn64BitMode   = arm64
 #endif
 
 #ifdef _WIN_XP
@@ -102,12 +107,8 @@ SignTool                  =byparam $p
 SetupIconFile={#BRANDING_DIR}\..\..\extras\projicons\res\icons\desktopeditors.ico
 WizardImageFile={#BRANDING_DIR}\data\dialogpicture*.bmp
 WizardSmallImageFile={#BRANDING_DIR}\data\dialogicon*.bmp
-#ifdef PACKAGE_EDITION
 #if PACKAGE_EDITION == "Enterprise"
 LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.rtf
-#else
-LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf
-#endif
 #else
 LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf
 #endif
@@ -1180,17 +1181,11 @@ Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesu
 #if defined(_WIN_XP) | defined(EMBED_HELP)
 Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #endif
-Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: signonce;
-Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
-Source: "{#BUILD_DIR}\desktop\converter\*.exe"; DestDir: {app}\converter; Flags: signonce;
-Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags: signonce;
+Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: recursesubdirs signonce;
+Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: recursesubdirs signonce;
 Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
-#ifdef PACKAGE_EDITION
 #if PACKAGE_EDITION == "Enterprise"
 Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app}; DestName: "EULA.txt";
-#else
-Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
-#endif
 #else
 Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
 #endif
@@ -1234,6 +1229,9 @@ Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: AppPath;  
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKCU; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
+Root: HKLM; Subkey: "{#APP_REG_PATH}"; ValueType: "string"; ValueName: "PackageArch";    ValueData: "{#ARCH}";            Flags: uninsdeletevalue;
+Root: HKLM; Subkey: "{#APP_REG_PATH}"; ValueType: "string"; ValueName: "PackageEdition"; ValueData: "{#PACKAGE_EDITION}"; Flags: uninsdeletevalue;
+Root: HKLM; Subkey: "{#APP_REG_PATH}"; ValueType: "string"; ValueName: "PackageType";    ValueData: "inno";               Flags: uninsdeletevalue;
 
 #ifdef _ONLYOFFICE
 Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}"; ValueType: "string"; ValueData: "URL:{#sAppName} Protocol"; Flags: uninsdeletekey;

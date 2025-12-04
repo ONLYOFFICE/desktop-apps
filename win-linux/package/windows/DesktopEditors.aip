@@ -24,7 +24,7 @@
     <ROW Property="CompanyPath" Value="ONLYOFFICE" ValueLocId="-"/>
     <ROW Property="DesktopPath" Value="DesktopEditors" ValueLocId="-"/>
     <ROW Property="EMPTY_LANG_DIR" Value="en-US"/>
-    <ROW Property="Edition" Value="Open Source" ValueLocId="-"/>
+    <ROW Property="Edition" Value="Community" ValueLocId="-"/>
     <ROW Property="ExtPfx" Value="ASC" ValueLocId="-"/>
     <ROW Property="FORMS" Value="1" ValueLocId="-"/>
     <ROW Property="IncompatibleVersion_ErrorText" Value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
@@ -513,7 +513,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" UseLargeSchema="true"/>
     <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" UseLargeSchema="true" MsiPackageType="x64"/>
-    <ROW BuildKey="MsiBuildARM64" BuildName="MsiBuildARM64" BuildOrder="3" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Subject:[|PackageName] [|ProductVersion] [|Arch]" UseLargeSchema="true" MsiPackageType="Arm64"/>
+    <ROW BuildKey="MsiBuildARM64" BuildName="MsiBuildARM64" BuildOrder="3" BuildType="0" PackageFolder="." PackageFileName="[|PackageFileName]-[|ProductVersion]-[|Arch]" Languages="en;ar;be;bg;ca;cs;da;de;el;en_GB;es;fi;fr;gl;he;hu;id;it;ja;ko;lv;nb;nl;pl;pt;pt_BR;ro;ru;sk;sl;sq;sr_SP_Cyrillic;sr_SP_Latin;sv;tr;uk;ur;vi;zh;zh_TW" LangOpt="1" InstallationType="4" SummInfoMetadata="Creating Application:[|AI_PACKAGING_TOOL]#Page Count:500#Subject:[|PackageName] [|ProductVersion] [|Arch]" UseLargeSchema="true" MsiPackageType="Arm64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -1535,6 +1535,7 @@
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
     <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
+    <ROW Condition="AiArm64" Description="[ProductName] can only be installed on Arm64 Windows versions." Builds="MsiBuildARM64"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiMergeModsComponent">
@@ -1560,6 +1561,9 @@
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
+    <ROW Registry="PackageArch" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageArch" Value="[Arch]" Component_="c_reg_sw_app"/>
+    <ROW Registry="PackageEdition" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageEdition" Value="[Edition]" Component_="c_reg_sw_app"/>
+    <ROW Registry="PackageType" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageType" Value="advinst" Component_="c_reg_sw_app"/>
     <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
