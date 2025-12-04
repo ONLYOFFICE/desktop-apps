@@ -57,6 +57,19 @@ using namespace std::placeholders;
 
 bool CAscApplicationManagerWrapper::m_rtlEnabled = false;
 
+std::wstring get_file_name_from_open_deeplink(const std::wstring& link)
+{
+    size_t pos1 = link.find(L"|n|");
+    if ( pos1 != std::wstring::npos ) {
+        size_t pos2 = link.find(L"|", pos1 += 3);
+
+        if ( pos2 != std::wstring::npos )
+            return link.substr(pos1, pos2 - pos1);
+    }
+
+    return L"";
+}
+
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
 
@@ -921,6 +934,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         open_scheme.push_back(app_scheme);
     }
     std::wstring app_action = app_scheme + L"//action";
+    std::wstring app_action_open = app_scheme + L"//open";
     std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
     std::vector<std::wstring> vec_window_actions;
 
@@ -972,6 +986,12 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             }
 
             continue;
+        } else
+        if ( arg.rfind(app_action_open, 0) == 0 ) {
+            std::wstring deep_link = arg;
+            Utils::replaceAll(deep_link, L"%7C", L"|");
+            open_opts.wurl = deep_link;
+            open_opts.name = QString::fromStdWString(get_file_name_from_open_deeplink(deep_link));
         } else {
             open_opts.wurl = arg;
         }
