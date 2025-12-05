@@ -1285,20 +1285,18 @@ void CAscApplicationManagerWrapper::initializeApp()
         AscAppManager::setUserSettings(L"system-scale", L"1");
     }
 
-    if ( !InputArgs::contains(L"--single-window-app") ) {
-        SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
-        connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
-            std::vector<std::wstring> vec_inargs;
-            foreach (auto arg, args.split(";")) {
-                if ( !arg.isEmpty() )
-                    vec_inargs.push_back(arg.toStdWString());
-            }
-            if ( !vec_inargs.empty() )
-                handleInputCmd(vec_inargs);
-            else
-                gotoMainWindow();
-        });
-    }
+    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
+    connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
+        std::vector<std::wstring> vec_inargs;
+        foreach (auto arg, args.split(";")) {
+            if ( !arg.isEmpty() )
+                vec_inargs.push_back(arg.toStdWString());
+        }
+        if ( !vec_inargs.empty() )
+            handleInputCmd(vec_inargs);
+        else
+            gotoMainWindow();
+    });
 
     /* prevent drawing of focus rectangle on a button */
 //    QApplication::setStyle(new CStyleTweaks);
