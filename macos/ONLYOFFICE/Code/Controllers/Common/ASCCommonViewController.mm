@@ -79,8 +79,8 @@
 }
 @property (nonatomic) NSCefView * cefStartPageView;
 @property (weak) IBOutlet NSTabView *tabView;
-@property (nonatomic) BOOL shouldTerminateApp;
 @property (nonatomic) BOOL shouldLogoutPortal;
+@property (nonatomic) BOOL waitingForClose;
 @property (nonatomic, assign) id <ASCExternalDelegate> externalDelegate;
 @property (nonatomic) ASCTouchBarController *touchBarController;
 @property (nonatomic) NSMutableArray<ASCTabView *> * tabsWithChanges;
@@ -416,7 +416,7 @@
 #pragma mark -
 #pragma mark Public
 
-- (BOOL)shouldTerminateApplication {
+- (BOOL)shouldCloseWindow {
     NSInteger unsaved = 0;
     //    BOOL preventTerminate = NO;
     
@@ -435,7 +435,7 @@
         
             // Blockchain check
             if ([cefView checkCloudCryptoNeedBuild]) {
-                self.shouldTerminateApp = YES;
+                self.waitingForClose = YES;
                 return NO;
             } else {
                 if ([cefView isSaveLocked]) {
@@ -462,7 +462,8 @@
         
         if (result == NSAlertFirstButtonReturn) {
             // "Review Changes..." clicked
-            self.shouldTerminateApp = YES;
+            self.waitingForClose = YES;
+            [self.tabsWithChanges removeAllObjects];
             
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             for (ASCTabView * tab in tabs) {
@@ -480,7 +481,7 @@
             return NO;
         } else {
             // "Delete and Quit" clicked
-            self.shouldTerminateApp = YES;
+            self.waitingForClose = YES;
             
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             
@@ -497,14 +498,13 @@
     return YES;
 }
 
-- (BOOL)shouldCloseMainWindow {
+- (BOOL)shouldCloseWindowIfNoTabs {
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                         object:nil
                                                       userInfo:@{@"fullscreen" : @(NO)}];
     
     if (self.tabsControl.tabs.count > 0) {
         ASCTabView * tab = [self.tabsControl selectedTab];
-        
         if (tab) {
             if ([self tabs:self.tabsControl willRemovedTab:tab]) {
                 [self.tabsControl removeTab:tab];
@@ -648,7 +648,7 @@
             } else if (returnCode == NSAlertSecondButtonReturn) {
                 [self.tabsControl removeTab:tab];
             } else if (returnCode == NSAlertThirdButtonReturn) {
-                self.shouldTerminateApp = NO;
+                self.waitingForClose = NO;
                 self.shouldLogoutPortal = NO;
             }
         }
@@ -1005,6 +1005,7 @@
                     
                     if (result == NSAlertFirstButtonReturn) {
                         // "Review Changes..." clicked
+                        [self.tabsWithChanges removeAllObjects];
                         
                         for (ASCTabView * tab in portalTabs) {
                             NSCefView * cefView = [self cefViewWithTab:tab];
@@ -1519,7 +1520,7 @@
     if (tab) {
         NSCefView * cefView = [self cefViewWithTab:tab];
         if (cefView && ([cefView checkCloudCryptoNeedBuild] || [cefView checkBuilding])) {
-            self.shouldTerminateApp = NO;
+            self.waitingForClose = NO;
             return NO;
         }
         
@@ -1555,8 +1556,8 @@
         [self safeCloseTabsWithChanges];
     }
     
-    if (self.shouldTerminateApp && self.tabsControl.tabs.count < 1) {
-        [NSApp terminate:nil];
+    if (self.waitingForClose && self.tabsControl.tabs.count < 1) {
+        [self.view.window close];
     }
 }
 

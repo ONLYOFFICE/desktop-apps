@@ -44,8 +44,8 @@
 #import "NSCefView.h"
 
 @interface ASCCommonViewController : NSViewController <NSTabViewDelegate>
-- (BOOL)shouldTerminateApplication;
-- (BOOL)shouldCloseMainWindow;
+- (BOOL)shouldCloseWindow;
+- (BOOL)shouldCloseWindowIfNoTabs;
 
 - (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
 - (ASCTabView *)tabViewWithId:(int)viewId;

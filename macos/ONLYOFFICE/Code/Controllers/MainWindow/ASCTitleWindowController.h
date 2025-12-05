@@ -42,5 +42,6 @@
 #import "ASCTitleBarController.h"
 
 @interface ASCTitleWindowController : NSWindowController
+- (BOOL)shouldPerformClose;
 @property (nonatomic) ASCTitleBarController *titlebarController;
 @end

@@ -150,10 +150,10 @@
         NSInteger returnCode = [alert runModal];
         if (returnCode == NSAlertFirstButtonReturn) {
             // Save
+            self.waitingForClose = YES;
+            
             NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
             [cefView apply:pEvent];
-            
-            self.waitingForClose = YES;
             return NO;
 
         } else
