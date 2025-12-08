@@ -592,7 +592,7 @@ static float kASCRTLTabsRightMargin = 0;
     
     // Mark tab as detached to prevent view destruction in didRemovedTab
     tab.params[@"detached"] = @YES;
-    [control removeTab:tab];
+    [control removeTab:tab animated:YES];
     
     [editorWindow makeKeyAndOrderFront:nil];
 

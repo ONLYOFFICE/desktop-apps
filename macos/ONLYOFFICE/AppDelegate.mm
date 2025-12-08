@@ -798,7 +798,7 @@
                             ASCCommonViewController * controller = (ASCCommonViewController *)window.contentViewController;
                             ASCTabView * tab = [controller.tabsControl tabWithUUID:viewId];
                             if (tab) {
-                                [controller.tabsControl removeTab:tab selected:NO];
+                                [controller.tabsControl removeTab:tab selected:NO animated:NO];
                                 break;
                             }
 

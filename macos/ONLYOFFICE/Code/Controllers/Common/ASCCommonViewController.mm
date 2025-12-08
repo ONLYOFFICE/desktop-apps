@@ -471,7 +471,7 @@
                 if ((cefView && [cefView.data hasChanges]) || [locked_uuids containsObject:tab.uuid]) {
                     [self.tabsWithChanges addObject:tab];
                 } else {
-                    [self.tabsControl removeTab:tab selected:NO];
+                    [self.tabsControl removeTab:tab selected:NO animated:NO];
                 }
             }
             
@@ -486,7 +486,7 @@
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             
             for (ASCTabView * tab in tabs) {
-                [self.tabsControl removeTab:tab selected:NO];
+                [self.tabsControl removeTab:tab selected:NO animated:NO];
             }
             
             [self.tabView selectTabViewItemWithIdentifier:rootTabId];
@@ -507,7 +507,7 @@
         ASCTabView * tab = [self.tabsControl selectedTab];
         if (tab) {
             if ([self tabs:self.tabsControl willRemovedTab:tab]) {
-                [self.tabsControl removeTab:tab];
+                [self.tabsControl removeTab:tab animated:NO];
             }
             return NO;
         }
@@ -595,7 +595,7 @@
         [alert setAlertStyle:NSAlertStyleCritical];
         [alert beginSheetModalForWindow:[NSApp mainWindow]  completionHandler:^(NSModalResponse returnCode) {
             if (tab) {
-                [self.tabsControl removeTab:tab];
+                [self.tabsControl removeTab:tab animated:NO];
             }
         }];
     }
@@ -646,7 +646,7 @@
                     [cefView apply:pEvent];
                 }
             } else if (returnCode == NSAlertSecondButtonReturn) {
-                [self.tabsControl removeTab:tab];
+                [self.tabsControl removeTab:tab animated:NO];
             } else if (returnCode == NSAlertThirdButtonReturn) {
                 self.waitingForClose = NO;
                 self.shouldLogoutPortal = NO;
@@ -767,7 +767,7 @@
             ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
             
             if (tab && tab.params[@"shouldClose"] && [tab.params[@"shouldClose"] boolValue]) {
-                [self.tabsControl removeTab:tab];
+                [self.tabsControl removeTab:tab animated:NO];
             }
         }
     }
@@ -1012,7 +1012,7 @@
                             if ((cefView && [cefView.data hasChanges]) || [saveLockedTabs containsObject:tab.uuid]) {
                                 [self.tabsWithChanges addObject:tab];
                             } else {
-                                [self.tabsControl removeTab:tab selected:NO];
+                                [self.tabsControl removeTab:tab selected:NO animated:NO];
                             }
                         }
                         
@@ -1023,12 +1023,12 @@
                         // "Delete and Quit" clicked
                         
                         for (ASCTabView * tab in portalTabs) {
-                            [self.tabsControl removeTab:tab selected:NO];
+                            [self.tabsControl removeTab:tab selected:NO animated:NO];
                         }
                     }
                 } else {
                     for (ASCTabView * tab in portalTabs) {
-                        [self.tabsControl removeTab:tab selected:NO];
+                        [self.tabsControl removeTab:tab selected:NO animated:NO];
                     }
                     
                     [self.tabView selectTabViewItemWithIdentifier:rootTabId];
@@ -1200,7 +1200,7 @@
         if (viewId && action) {
             if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
                 if ([action isEqualToString:@"close"]) {
-                    [self.tabsControl removeTab:tab selected:NO];
+                    [self.tabsControl removeTab:tab selected:NO animated:NO];
                 }
             }
             
@@ -1267,7 +1267,7 @@
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         if (tab) {
             if (error == 0) {
-                [self.tabsControl removeTab:tab selected:YES];
+                [self.tabsControl removeTab:tab selected:YES animated:NO];
             }
         }
     }
@@ -1310,7 +1310,7 @@
                 //                }
             }
             
-            [self.tabsControl removeTab:tab selected:YES];
+            [self.tabsControl removeTab:tab selected:YES animated:NO];
         }
     }
 }
