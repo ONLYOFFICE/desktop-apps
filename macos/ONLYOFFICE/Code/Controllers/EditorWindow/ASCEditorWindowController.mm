@@ -243,10 +243,14 @@
 - (void)onCEFSave:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
-        if ( ![params[@"cancel"] boolValue] ) {
-            NSString * viewId = params[@"viewId"];
-            if ([self holdView:viewId] && self.waitingForClose) {
-                [self.window close];
+        NSString * viewId = params[@"viewId"];
+        if ([self holdView:viewId]) {
+            if ( ![params[@"cancel"] boolValue] ) {
+                if (self.waitingForClose) {
+                    [self.window close];
+                }
+            } else {
+                self.waitingForClose = NO;
             }
         }
     }
