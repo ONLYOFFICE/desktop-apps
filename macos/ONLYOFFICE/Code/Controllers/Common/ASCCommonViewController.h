@@ -55,4 +55,5 @@
 - (void)openPreferences;
 
 @property (weak) ASCTabsControl *tabsControl;
+@property (nonatomic) NSMutableArray<ASCTabView *> * tabsWithChanges;
 @end

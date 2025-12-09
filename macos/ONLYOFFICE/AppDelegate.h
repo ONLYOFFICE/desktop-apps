@@ -42,6 +42,9 @@
 #import "mac_application.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
+- (BOOL)shouldTerminateApplication;
+
+@property (nonatomic) BOOL waitingForTerminateApp;
 @property (nonatomic) NSMutableArray *windowControllers;
 @end
 

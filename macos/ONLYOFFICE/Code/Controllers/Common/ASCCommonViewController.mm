@@ -83,7 +83,6 @@
 @property (nonatomic) BOOL waitingForClose;
 @property (nonatomic, assign) id <ASCExternalDelegate> externalDelegate;
 @property (nonatomic) ASCTouchBarController *touchBarController;
-@property (nonatomic) NSMutableArray<ASCTabView *> * tabsWithChanges;
 @end
 
 @implementation ASCCommonViewController
@@ -656,11 +655,15 @@
 }
 
 - (void)safeCloseTabsWithChanges {
-    if ([[self tabsWithChanges] count] > 0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self tabs:self.tabsControl willRemovedTab:[self.tabsWithChanges firstObject]];
-        });
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSArray *tabsToProcess = [[self tabsWithChanges] copy];
+        for (ASCTabView *tab in tabsToProcess) {
+            [self tabs:self.tabsControl willRemovedTab:tab];
+            if (!self.waitingForClose) {
+                break;
+            }
+        }
+    });
 }
 
 #pragma mark -
@@ -1552,9 +1555,9 @@
     if ([self.tabsWithChanges containsObject:tab]) {
         [self.tabsWithChanges removeObject:tab];
     }
-    if (self.tabsWithChanges.count > 0) {
-        [self safeCloseTabsWithChanges];
-    }
+//    if (self.tabsWithChanges.count > 0) {
+//        [self safeCloseTabsWithChanges];
+//    }
     
     if (self.waitingForClose && self.tabsControl.tabs.count < 1) {
         [self.view.window close];

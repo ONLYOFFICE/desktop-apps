@@ -302,21 +302,121 @@
     if (self.terminationAlreadyHandled) {
         return NSTerminateNow;
     }
-
-    for (NSWindow *window in theApplication.windows) {
-        if ([window isKindOfClass:[ASCTitleWindow class]]) {
-            ASCCommonViewController * controller = (ASCCommonViewController *)window.contentViewController;
-            if (![controller shouldTerminateApplication])
-                return NSTerminateCancel;
-        } else
-        if ([window isKindOfClass:[ASCEditorWindow class]]) {
-            ASCEditorWindowController * controller = window.windowController;
-            if (![controller shouldTerminateApplication])
-                return NSTerminateCancel;
-        }
-    }
+    
+    if (![self shouldTerminateApplication])
+        return NSTerminateCancel;
+    
     self.terminationAlreadyHandled = YES;
     return NSTerminateNow;
+}
+
+- (BOOL)shouldTerminateApplication {
+    NSInteger unsaved = 0;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
+                                                        object:nil
+                                                      userInfo:@{@"fullscreen" : @(NO),
+                                                                 @"terminate"  : @(YES)
+                                                               }];
+    NSMutableArray * locked_uuids = [NSMutableArray array];
+    
+    ASCCommonViewController * controller = nil;
+    for (NSWindow *window in [NSApp windows]) {
+        if ([window isKindOfClass:[ASCTitleWindow class]]) {
+            controller = (ASCCommonViewController *)window.contentViewController;
+            for (ASCTabView * tab in controller.tabsControl.tabs) {
+                if (NSCefView * cefView = [controller cefViewWithTab:tab]) {
+                    if ([cefView.data hasChanges]) {
+                        unsaved++;
+                    }
+                
+                    // Blockchain check
+                    if ([cefView checkCloudCryptoNeedBuild]) {
+                        self.waitingForTerminateApp = YES;
+                        return NO;
+                    } else {
+                        if ([cefView isSaveLocked]) {
+                            unsaved++;
+                            [locked_uuids addObject:tab.uuid];
+                        }
+                    }
+                }
+            }
+        } else
+        if ([window isKindOfClass:[ASCEditorWindow class]]) {
+            ASCEditorWindow *editor = (ASCEditorWindow *)window;
+            NSCefView *cefView = (NSCefView *)editor.webView;
+            if ([cefView.data hasChanges]) {
+                unsaved++;
+            }
+            
+            // Blockchain check
+            if ([cefView checkCloudCryptoNeedBuild]) {
+                self.waitingForTerminateApp = YES;
+                return NO;
+            } else {
+                if ([cefView isSaveLocked]) {
+                    unsaved++;
+                    [locked_uuids addObject:[NSString stringWithFormat:@"%ld", cefView.uuid]];
+                }
+            }
+        }
+    }
+    
+    if (unsaved > 0) {
+        NSString * productName = [ASCHelper appName];
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
+        [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
+        [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
+        [alert setAlertStyle:NSAlertStyleInformational];
+        
+        NSInteger result = [alert runModal];
+        if (result == NSAlertFirstButtonReturn) {
+            // Review Changes...
+            self.waitingForTerminateApp = YES;
+            
+            if (controller) {
+                NSArray * tabs = [NSArray arrayWithArray:controller.tabsControl.tabs];
+                for (ASCTabView * tab in tabs) {
+                    NSCefView * cefView = [controller cefViewWithTab:tab];
+                    if ([cefView.data hasChanges] || [locked_uuids containsObject:tab.uuid]) {
+                        [controller.tabsWithChanges addObject:tab];
+                    } else {
+                        [controller.tabsControl removeTab:tab selected:NO animated:NO];
+                    }
+                }
+                 
+                //[controller safeCloseTabsWithChanges];
+            }
+            
+            return NO;
+            
+        } else
+        if (result == NSAlertSecondButtonReturn) {
+            // Cancel
+            return NO;
+            
+        } else {
+            // Delete and Quit
+            self.waitingForTerminateApp = YES;
+            
+            if (controller) {
+                NSArray * tabs = [NSArray arrayWithArray:controller.tabsControl.tabs];
+                for (ASCTabView * tab in tabs) {
+                    [controller.tabsControl removeTab:tab selected:NO animated:NO];
+                }
+                 
+                //[controller.tabView selectTabViewItemWithIdentifier:rootTabId];
+            }
+            
+            return NO;
+        }
+    }
+    return YES;
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
