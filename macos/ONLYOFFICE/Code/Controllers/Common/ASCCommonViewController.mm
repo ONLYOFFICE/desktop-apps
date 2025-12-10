@@ -645,6 +645,8 @@
             } else if (returnCode == NSAlertSecondButtonReturn) {
                 [self.tabsControl removeTab:tab animated:NO];
             } else if (returnCode == NSAlertThirdButtonReturn) {
+                AppDelegate *app = (AppDelegate *)[NSApp delegate];
+                app.waitingForTerminateApp = NO;
                 self.waitingForClose = NO;
                 self.shouldLogoutPortal = NO;
             }
@@ -1517,6 +1519,8 @@
     if (tab) {
         NSCefView * cefView = [self cefViewWithTab:tab];
         if (cefView && ([cefView checkCloudCryptoNeedBuild] || [cefView checkBuilding])) {
+            AppDelegate *app = (AppDelegate *)[NSApp delegate];
+            app.waitingForTerminateApp = NO;
             self.waitingForClose = NO;
             return NO;
         }
@@ -1557,6 +1561,10 @@
         AppDelegate *app = (AppDelegate *)[NSApp delegate];
         if (self.waitingForClose || app.waitingForTerminateApp)
             [self.view.window close];
+        
+        if (app.waitingForTerminateApp && app.editorWindowControllers.count > 0) {
+            [app safeCloseEditorWindows];
+        }
     }
 }
 

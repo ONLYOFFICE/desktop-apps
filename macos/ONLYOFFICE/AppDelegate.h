@@ -43,6 +43,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 - (BOOL)shouldTerminateApplication;
+- (void)safeCloseEditorWindows;
 
 @property (nonatomic) BOOL waitingForTerminateApp;
 @property (nonatomic) NSMutableArray *editorWindowControllers;

@@ -357,7 +357,7 @@
             } else {
                 if ([cefView isSaveLocked]) {
                     unsaved++;
-                    [locked_uuids addObject:[NSString stringWithFormat:@"%ld", cefView.uuid]];
+                    // [locked_uuids addObject:[NSString stringWithFormat:@"%ld", cefView.uuid]];
                 }
             }
         }
@@ -379,18 +379,29 @@
             // Review Changes...
             self.waitingForTerminateApp = YES;
             
+            NSInteger tabs_count = 0;
             if (controller) {
                 NSArray * tabs = [NSArray arrayWithArray:controller.tabsControl.tabs];
-                for (ASCTabView * tab in tabs) {
-                    NSCefView * cefView = [controller cefViewWithTab:tab];
-                    if ([cefView.data hasChanges] || [locked_uuids containsObject:tab.uuid]) {
-                        [controller.tabsWithChanges addObject:tab];
-                    } else {
-                        [controller.tabsControl removeTab:tab selected:NO animated:NO];
+                tabs_count = tabs.count;
+                if (tabs_count > 0) {
+                    for (ASCTabView * tab in tabs) {
+                        NSCefView * cefView = [controller cefViewWithTab:tab];
+                        if ([cefView.data hasChanges] || [locked_uuids containsObject:tab.uuid]) {
+                            [controller.tabsWithChanges addObject:tab];
+                        } else {
+                            [controller.tabsControl removeTab:tab selected:NO animated:NO];
+                        }
                     }
+                    
+                    [controller safeCloseTabsWithChanges];
+                    
+                } else {
+                    [controller.view.window performClose:nil];
                 }
-                 
-                [controller safeCloseTabsWithChanges];
+            }
+            
+            if (!controller || tabs_count == 0) {
+                [self safeCloseEditorWindows];
             }
             
             return NO;
@@ -422,6 +433,15 @@
         }
     }
     return YES;
+}
+
+- (void)safeCloseEditorWindows {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSWindowController *controller = [self.editorWindowControllers firstObject];
+        if (controller) {
+            [controller.window performClose:nil];
+        }
+    });
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {

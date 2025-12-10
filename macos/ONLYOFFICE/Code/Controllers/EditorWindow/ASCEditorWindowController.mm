@@ -100,6 +100,10 @@
     
     AppDelegate *app = (AppDelegate *)[NSApp delegate];
     [app.editorWindowControllers removeObject:self];
+    
+    if (app.waitingForTerminateApp && app.editorWindowControllers.count > 0) {
+        [app safeCloseEditorWindows];
+    }
 }
 
 - (BOOL)windowShouldClose:(NSWindow *)sender {
@@ -163,6 +167,8 @@
         } else
         if (returnCode == NSAlertThirdButtonReturn) {
             // Cancel
+            AppDelegate *app = (AppDelegate *)[NSApp delegate];
+            app.waitingForTerminateApp = NO;
             return NO;
         }
     }
