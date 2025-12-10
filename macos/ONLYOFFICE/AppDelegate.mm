@@ -77,7 +77,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    self.windowControllers = [NSMutableArray array];
+    self.editorWindowControllers = [NSMutableArray array];
 #ifndef _MAS
     PFMoveToApplicationsFolderIfNecessary();
 #endif
@@ -390,7 +390,7 @@
                     }
                 }
                  
-                //[controller safeCloseTabsWithChanges];
+                [controller safeCloseTabsWithChanges];
             }
             
             return NO;
@@ -410,7 +410,12 @@
                     [controller.tabsControl removeTab:tab selected:NO animated:NO];
                 }
                  
-                //[controller.tabView selectTabViewItemWithIdentifier:rootTabId];
+                [controller.tabView selectTabViewItemWithIdentifier:rootTabId];
+            }
+            
+            NSMutableArray *controllers = [self.editorWindowControllers copy];
+            for (NSWindowController *controller in controllers) {
+                [controller.window close];
             }
             
             return NO;

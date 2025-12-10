@@ -99,7 +99,7 @@
     }
     
     AppDelegate *app = (AppDelegate *)[NSApp delegate];
-    [app.windowControllers removeObject:self];
+    [app.editorWindowControllers removeObject:self];
 }
 
 - (BOOL)windowShouldClose:(NSWindow *)sender {

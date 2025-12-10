@@ -45,6 +45,6 @@
 - (BOOL)shouldTerminateApplication;
 
 @property (nonatomic) BOOL waitingForTerminateApp;
-@property (nonatomic) NSMutableArray *windowControllers;
+@property (nonatomic) NSMutableArray *editorWindowControllers;
 @end
 

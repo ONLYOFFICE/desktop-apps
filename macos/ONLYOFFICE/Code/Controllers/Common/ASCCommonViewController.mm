@@ -69,7 +69,6 @@
 #import <Carbon/Carbon.h>
 #import <QuartzCore/QuartzCore.h>
 
-#define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
 @interface ASCCommonViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
     NSUInteger documentNameCounter;
@@ -78,7 +77,6 @@
     NSUInteger pdfNameCounter;
 }
 @property (nonatomic) NSCefView * cefStartPageView;
-@property (weak) IBOutlet NSTabView *tabView;
 @property (nonatomic) BOOL shouldLogoutPortal;
 @property (nonatomic) BOOL waitingForClose;
 @property (nonatomic, assign) id <ASCExternalDelegate> externalDelegate;
@@ -655,15 +653,11 @@
 }
 
 - (void)safeCloseTabsWithChanges {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSArray *tabsToProcess = [[self tabsWithChanges] copy];
-        for (ASCTabView *tab in tabsToProcess) {
-            [self tabs:self.tabsControl willRemovedTab:tab];
-            if (!self.waitingForClose) {
-                break;
-            }
-        }
-    });
+    if ([[self tabsWithChanges] count] > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self tabs:self.tabsControl willRemovedTab:[self.tabsWithChanges firstObject]];
+        });
+    }
 }
 
 #pragma mark -
@@ -1555,12 +1549,14 @@
     if ([self.tabsWithChanges containsObject:tab]) {
         [self.tabsWithChanges removeObject:tab];
     }
-//    if (self.tabsWithChanges.count > 0) {
-//        [self safeCloseTabsWithChanges];
-//    }
+    if (self.tabsWithChanges.count > 0) {
+        [self safeCloseTabsWithChanges];
+    }
     
-    if (self.waitingForClose && self.tabsControl.tabs.count < 1) {
-        [self.view.window close];
+    if (self.tabsControl.tabs.count < 1) {
+        AppDelegate *app = (AppDelegate *)[NSApp delegate];
+        if (self.waitingForClose || app.waitingForTerminateApp)
+            [self.view.window close];
     }
 }
 

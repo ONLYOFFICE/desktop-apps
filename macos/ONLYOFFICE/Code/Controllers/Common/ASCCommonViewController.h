@@ -43,17 +43,21 @@
 #import "ASCTabsControl.h"
 #import "NSCefView.h"
 
+#define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
+
 @interface ASCCommonViewController : NSViewController <NSTabViewDelegate>
 - (BOOL)shouldCloseWindow;
 - (BOOL)shouldCloseWindowIfNoTabs;
 
 - (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
 - (ASCTabView *)tabViewWithId:(int)viewId;
+- (void)safeCloseTabsWithChanges;
 
 - (void)openAcknowledgments;
 - (void)openEULA;
 - (void)openPreferences;
 
 @property (weak) ASCTabsControl *tabsControl;
+@property (weak) IBOutlet NSTabView *tabView;
 @property (nonatomic) NSMutableArray<ASCTabView *> * tabsWithChanges;
 @end

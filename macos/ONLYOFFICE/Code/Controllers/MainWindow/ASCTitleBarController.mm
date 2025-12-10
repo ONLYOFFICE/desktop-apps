@@ -573,7 +573,7 @@ static float kASCRTLTabsRightMargin = 0;
     
     ASCEditorWindowController *windowController = [ASCEditorWindowController initWithFrame:windowFrame];
     AppDelegate *app = [NSApp delegate];
-    [app.windowControllers addObject:windowController];
+    [app.editorWindowControllers addObject:windowController];
     
     ASCEditorWindow *editorWindow = (ASCEditorWindow *)windowController.window;
     [editorWindow setTitleVisibility:NSWindowTitleHidden];
