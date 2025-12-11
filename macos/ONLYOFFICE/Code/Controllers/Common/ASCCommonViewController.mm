@@ -644,7 +644,10 @@
                 }
             } else if (returnCode == NSAlertSecondButtonReturn) {
                 [self.tabsControl removeTab:tab animated:NO];
+                
             } else if (returnCode == NSAlertThirdButtonReturn) {
+                [self.tabsWithChanges removeAllObjects];
+                
                 AppDelegate *app = (AppDelegate *)[NSApp delegate];
                 app.waitingForTerminateApp = NO;
                 self.waitingForClose = NO;

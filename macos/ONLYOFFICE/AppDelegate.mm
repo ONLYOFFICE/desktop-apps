@@ -381,18 +381,21 @@
             
             NSInteger tabs_count = 0;
             if (controller) {
+                [controller.tabsWithChanges removeAllObjects];
                 NSArray * tabs = [NSArray arrayWithArray:controller.tabsControl.tabs];
                 tabs_count = tabs.count;
                 if (tabs_count > 0) {
+                    NSMutableArray<ASCTabView *> *tabsWithChanges = [NSMutableArray array];
                     for (ASCTabView * tab in tabs) {
                         NSCefView * cefView = [controller cefViewWithTab:tab];
                         if ([cefView.data hasChanges] || [locked_uuids containsObject:tab.uuid]) {
-                            [controller.tabsWithChanges addObject:tab];
+                            [tabsWithChanges addObject:tab];
                         } else {
                             [controller.tabsControl removeTab:tab selected:NO animated:NO];
                         }
                     }
                     
+                    controller.tabsWithChanges = [NSMutableArray arrayWithArray:tabsWithChanges];
                     [controller safeCloseTabsWithChanges];
                     
                 } else {
@@ -400,7 +403,7 @@
                 }
             }
             
-            if (!controller || tabs_count == 0) {
+            if (tabs_count == 0) {
                 [self safeCloseEditorWindows];
             }
             
@@ -424,7 +427,7 @@
                 [controller.tabView selectTabViewItemWithIdentifier:rootTabId];
             }
             
-            NSMutableArray *controllers = [self.editorWindowControllers copy];
+            NSMutableArray *controllers = [NSMutableArray arrayWithArray:self.editorWindowControllers];
             for (NSWindowController *controller in controllers) {
                 [controller.window close];
             }
