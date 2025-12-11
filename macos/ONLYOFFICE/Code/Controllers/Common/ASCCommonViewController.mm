@@ -627,7 +627,7 @@
             [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Don't Save", nil)];
             [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
-            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), [cefView.data title:YES]]];
             [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
             [alert setAlertStyle:NSAlertStyleWarning];
             
