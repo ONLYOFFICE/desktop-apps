@@ -635,13 +635,24 @@ static float kASCRTLTabsRightMargin = 0;
     NSCefView *webView =  (NSCefView *)window.webView;
     [webView removeFromSuperview];
     
+    ASCTabViewType docType = ASCTabViewTypeUnknown;
+    switch ([webView.data contentType]) {
+        case AscEditorType::etDocument     : docType = ASCTabViewTypeDocument; break;
+        case AscEditorType::etSpreadsheet  : docType = ASCTabViewTypeSpreadsheet; break;
+        case AscEditorType::etPresentation : docType = ASCTabViewTypePresentation; break;
+        case AscEditorType::etPdf          : docType = ASCTabViewTypePdf; break;
+        case AscEditorType::etDraw         : docType = ASCTabViewTypeDraw; break;
+        default:
+            break;
+    }
+    
     ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
     tab.title       = [webView.data title:NO];
-    tab.type        = ASCTabViewTypeDocument;
+    tab.type        = docType;
     tab.webView = webView;
     tab.params = [NSMutableDictionary dictionary];
     tab.params[@"action"] = @(ASCTabActionUnknown);
-    tab.params[@"isReattaching"] = @YES;
+    tab.params[@"reattaching"] = @YES;
     [self.tabsControl addTab:tab selected:YES];
     
     window.webView = nil;

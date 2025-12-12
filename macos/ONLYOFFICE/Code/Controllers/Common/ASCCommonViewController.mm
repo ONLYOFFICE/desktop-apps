@@ -1363,10 +1363,10 @@
 
 - (void)tabs:(ASCTabsControl *)control didAddTab:(ASCTabView *)tab {
     if (tab.params) {
-        BOOL isReattaching = [tab.params[@"isReattaching"] boolValue];
+        BOOL isReattaching = [tab.params[@"reattaching"] boolValue];
         NSCefView *existingCefView = (NSCefView *)tab.webView;
         
-        if (isReattaching && existingCefView && [existingCefView isKindOfClass:[NSCefView class]]) {
+        if (isReattaching && existingCefView) {
             tab.uuid = [NSString stringWithFormat:@"%ld", (long)existingCefView.uuid];
             
             NSTabViewItem *item = [[NSTabViewItem alloc] initWithIdentifier:tab.uuid];

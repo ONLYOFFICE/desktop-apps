@@ -178,9 +178,8 @@
 - (BOOL)holdView:(NSString *)viewId {
     ASCEditorWindow *window = (ASCEditorWindow *)self.window;
     NSCefView *cefView = (NSCefView *)window.webView;
-    if (cefView) {
-        if ([viewId intValue] == cefView.uuid)
-            return YES;
+    if (cefView && cefView.uuid == [viewId intValue]) {
+        return YES;
     }
     return NO;
 }
