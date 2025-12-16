@@ -393,10 +393,7 @@
                     ppmenu.hideItem(model.pinned ? 'files:unpin' : 'files:pin', false);
                 }
 
-                ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
-
                 if (!Menu.opened) {
-                    ppmenu.actionlist = actionList;
                     ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
                 } else {
                     Menu.closeAll();
