@@ -645,7 +645,7 @@ int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
 
         if (doc && doc->contentType() == et)
             if (doc->title() == t ||
-                    (et == etPortal && doc->title().contains(t)))
+                    (et == etPortal && doc->title().startsWith(t)))
             {
                 return i;
             }
