@@ -753,82 +753,79 @@ procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSyste
 
 function GetHKLM: Integer; forward;
 
-function UninstallPreviosVersion(): Boolean;
+function CheckAppRegData(RegName: string; RegData: string): Boolean;
 var
-  ResultCode: Integer;
-  ConfirmUninstall: Integer;
-  ResultString: String;
-  arrayCode: array[1..32] of char;
-  ProductCode: String;
-  tmp: char;
-  i: Integer;
-  j: Integer;
-  Names: TArrayOfString;
-  DeleteString: String;
+  Data: string;
 begin
   Result := True;
-  if RegGetValueNames(
-  GetHKLM(),
-  'SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UpgradeCodes\{#sUpgradeCode}',
-  Names) then begin
-    ConfirmUninstall := IDOK;
-    if not WizardSilent() then begin
-      if MsgBox(ExpandConstant('{cm:PrevVer}'), mbConfirmation, MB_OKCANCEL) = IDCANCEL then begin
-        Result := False;
-        Exit;
-      end;
-    end;
+  if RegQueryStringValue(HKLM, '{#APP_REG_PATH}', RegName, Data) then
+    if (Trim(Data) = '') or (CompareText(RegData, Data) <> 0) then
+      Result := False;
+  // MsgBox(FmtMessage('App Reg: %1 - %2 - %3', [RegData, Data, IntToStr(CompareText(RegData, Data))]), mbInformation, MB_OK);
+end;
 
-    for i := 1 to 32 do begin
-      arrayCode[i] := (Names[0])[i];
-    end;
+function CheckUninstalledRegData(RegRoot: integer; RegData: string): Boolean;
+var
+  Data: string;
+begin
+  Result := True;
+  if RegQueryStringValue(RegRoot,
+    'Software\Microsoft\Windows\CurrentVersion\Uninstall\{#APP_REG_UNINST_KEY}_is1',
+    'DisplayName', Data) then
+    if Pos(RegData, Data) = 0 then
+      Result := False;
+  // MsgBox(FmtMessage('Uninstalled Reg: %1 - %2 - %3', [RegData, Data, IntToStr(Pos(RegData, Data))]), mbInformation, MB_OK);
+end;
 
-    ProductCode := '{';
+function CheckInstalledProduct(): Boolean;
+var
+  Check: boolean;
+begin
+  Result := True;
+  Check := True;
 
-    for i := 8 downto 1 do begin
-      ProductCode := ProductCode + arrayCode[i];
-    end;
+  Check := Check and CheckAppRegData('PackageType', 'inno');
+  Check := Check and not IsMsiProductInstalled('{47EEF706-B0E4-4C43-944B-E5F914B92B79}', 0);
+  if Result and not Check then
+  begin
+    MsgBox(
+      'Type of the installed package does not match.',
+      mbCriticalError, MB_OK
+    );
+    Result := False;
+  end;
 
-    ProductCode := ProductCode + '-';
+  Check := Check and CheckAppRegData('PackageArch', '{#ARCH}');
+  Check := Check and CheckUninstalledRegData(HKLM, '({#ARCH})');
+#if ARCH == "x86"
+  if IsWin64 and not Is64BitInstallMode then
+    Check := Check and CheckUninstalledRegData(HKLM64, '({#ARCH})');
+#else
+  if IsWin64 and Is64BitInstallMode then
+    Check := Check and CheckUninstalledRegData(HKLM32, '({#ARCH})');
+#endif
+  if Result and not Check then
+  begin
+    MsgBox(
+      'Architecture of the installed package does not match.',
+      mbCriticalError, MB_OK
+    );
+    Result := False;
+  end;
 
-    for i := 12 downto 9 do begin
-      ProductCode := ProductCode + arrayCode[i];
-    end;
-
-    ProductCode := ProductCode + '-';
-
-    for i := 16 downto 13 do begin
-      ProductCode := ProductCode + arrayCode[i];
-    end;
-
-    ProductCode := ProductCode + '-';
-
-    j := 17;
-    while j < 32 do begin
-      tmp := arrayCode[j];
-      arrayCode[j] := arrayCode[j + 1];
-      arrayCode[j + 1] := tmp;
-      j := j + 2;
-    end;
-
-    for i := 17 to 32 do begin
-      ProductCode := ProductCode + arrayCode[i];
-      if i = 20 then begin
-        ProductCode := ProductCode + '-';
-      end
-    end;
-
-    ProductCode := ProductCode + '}';
-
-    DeleteString := 'msiexec.exe /x ' + ProductCode;
-    Exec('>', DeleteString, '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
-  end
+  Check := Check and CheckAppRegData('PackageEdition', '{#PACKAGE_EDITION}');
+  if Result and not Check then
+  begin
+    MsgBox(
+      'Edition of the installed package does not match.',
+      mbCriticalError, MB_OK
+    );
+    Result := False;
+  end;
 end;
 
 function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
   external 'SendMessageTimeoutA@user32.dll stdcall';
-
-//procedure checkArchitectureVersion; forward;
 
 procedure InitializeWizard();
 var
@@ -836,10 +833,6 @@ var
   path: string;
 begin
   InitializeAssociatePage();
-
-  if not UninstallPreviosVersion() then begin
-    Abort;
-  end;
 
   if RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'AppPath', path) and
         FileExists(path + '\{#NAME_EXE_OUT}') then
@@ -859,28 +852,9 @@ begin
   gHWND := 0;
   OutResult := True;
 
-  if IsWin64 then
+  if not CheckInstalledProduct() then
   begin
-    if Is64BitInstallMode then
-    begin
-      regkey := HKLM32;
-      mess := ExpandConstant('{cm:WarningWrongArchitecture,64,32}')
-    end else
-    begin
-      regkey := HKLM64;
-      mess := ExpandConstant('{cm:WarningWrongArchitecture,32,64}')
-    end;
-
-    if RegQueryStringValue(regkey,
-        'SOFTWARE\{#APP_PATH}',
-        'AppPath', path) then
-    begin
-      if FileExists(path + '\{#NAME_EXE_OUT}') then
-      begin
-        MsgBox(mess, mbInformation, MB_OK)
-        OutResult := False
-      end
-    end
+    OutResult := False;
   end;
 
   if OutResult then begin
@@ -1086,26 +1060,6 @@ begin
   else
     Result := HKEY_LOCAL_MACHINE;
 end;
-
-(*
-procedure checkArchitectureVersion;
-//var
-  //isExists: Boolean;
-begin
-  if IsWin64 then
-  begin
-    if Is64BitInstallMode then
-    begin
-      //isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\ONLYOFFICE\ASCDocumentEditor')
-      MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,64,32}'), mbInformation, MB_OK)
-    end else
-    begin
-      //isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\ONLYOFFICE\ASCDocumentEditor');
-      MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,32,64}'), mbInformation, MB_OK)
-    end
-  end;
-end;
-*)
 
 function getPosixTime: string;
 var
