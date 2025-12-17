@@ -109,18 +109,6 @@
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
     <ROW Property="VC_REDIST" Value="1" ValueLocId="-"/>
     <ROW Property="Version" Value="0.0.0" ValueLocId="-"/>
-    <ROW Property="WindowsType9X" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME#MsiBuildARM64:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsType9XDisplay" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME#MsiBuildARM64:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT40" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0#MsiBuildARM64:Windows NT 4.0" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0#MsiBuildARM64:Windows NT 4.0" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT50" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000#MsiBuildARM64:Windows 2000" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000#MsiBuildARM64:Windows 2000" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT5X" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003#MsiBuildARM64:Windows XP/2003" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003#MsiBuildARM64:Windows XP/2003" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT60" MultiBuildValue="MsiBuild64:Windows Vista/Server 2008#MsiBuild32:Windows Vista/Server 2008#MsiBuildARM64:Windows Vista/Server 2008" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT60Display" MultiBuildValue="MsiBuild64:Windows Vista/Server 2008#MsiBuild32:Windows Vista/Server 2008#MsiBuildARM64:Windows Vista/Server 2008" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="MsiBuild64:32-bit Windows versions" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
@@ -506,7 +494,6 @@
     <ROW Action="AI_InstallPrePrerequisite" Condition="AI_BOOTSTRAPPER AND (NOT AI_PrereqsFulfilled)" Sequence="649"/>
     <ROW Action="AI_VerifyPrePrereq" Condition="AI_BOOTSTRAPPER AND (NOT AI_PrereqsFulfilled)" Sequence="651"/>
     <ROW Action="AI_CleanPrePrereq" Condition="AI_BOOTSTRAPPER AND (NOT AI_PrereqsFulfilled)" Sequence="652"/>
-    <ROW Action="AI_AppSearchEx" Condition="AI_BOOTSTRAPPER" Sequence="252"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="249"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="251"/>
   </COMPONENT>
@@ -586,6 +573,16 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
     <ROW Property="AI_SHORTCUTSREG" Signature_="AI_ShRegOptionUser"/>
     <ROW Property="AI_SHORTCUTSREG" Signature_="AI_ShRegOptionMachine"/>
+    <ROW Property="SEARCH_PACKAGE_ARCH" Signature_="AppSearch_Package_Arch_32" Builds="MsiBuild32"/>
+    <ROW Property="SEARCH_PACKAGE_ARCH" Signature_="AppSearch_Package_Arch_64" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Property="SEARCH_PACKAGE_EDITION" Signature_="AppSearch_Package_Edition_32" Builds="MsiBuild32"/>
+    <ROW Property="SEARCH_PACKAGE_EDITION" Signature_="AppSearch_Package_Edition_64" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Property="SEARCH_PACKAGE_TYPE" Signature_="AppSearch_Package_Type_32" Builds="MsiBuild32"/>
+    <ROW Property="SEARCH_PACKAGE_TYPE" Signature_="AppSearch_Package_Type_64" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Property="SEARCH_UNINSTALL_ADVINST_32" Signature_="AppSearch_Uninstall_AdvInst_32"/>
+    <ROW Property="SEARCH_UNINSTALL_ADVINST_64" Signature_="AppSearch_Uninstall_AdvInst_64"/>
+    <ROW Property="SEARCH_UNINSTALL_INNO_32" Signature_="AppSearch_Uninstall_Inno_32"/>
+    <ROW Property="SEARCH_UNINSTALL_INNO_64" Signature_="AppSearch_Uninstall_Inno_64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
@@ -1061,7 +1058,6 @@
     <ROW Directory_="SHORTCUTDIR" Component_="c_dir_shortcut" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
-    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_CleanPrePrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
     <ROW Action="AI_CleanPrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
@@ -1146,7 +1142,6 @@
     <ROW Action="Assoc__xml" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xml:[ExtPfx].Xml&quot;"/>
     <ROW Action="Assoc__xps" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.xps:[ExtPfx].Xps&quot;"/>
     <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list"/>
-    <ROW Action="IncompatibleVersion" Type="19" Target="[IncompatibleVersion_ErrorText]"/>
     <ROW Action="RemoveJumpList" Type="210" Source="DesktopEditors.exe" Target="--remove-jump-list"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][CompanyPath]\[DesktopPath]#MsiBuild32:[ProgramFilesFolder][CompanyPath]\[DesktopPath]#MsiBuildARM64:[ProgramFiles64Folder][CompanyPath]\[DesktopPath]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][CompanyPath]"/>
@@ -1453,7 +1448,6 @@
     <ROW Action="AI_DELETE_SHORTCUTS" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="1401"/>
     <ROW Action="AI_DEL_EMPTY_SHORTCUTDIR" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6402"/>
     <ROW Action="AI_DATA_SETTER" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6401"/>
-    <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="RemoveJumpList" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="6602"/>
     <ROW Action="CreateJumpList" Condition="( NOT Installed )" Sequence="6601"/>
     <ROW Action="AI_DETECT_WINTHEME" Condition="(VersionNT &gt;= 603)" Sequence="54" MsiKey="AI_DETECT_WINTHEME"/>
@@ -1518,11 +1512,9 @@
     <ROW Action="AI_DpiContentScale" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="95"/>
-    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
-    <ROW Action="AI_AppSearchEx" Sequence="101"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
     <ROW Action="AI_InstallPrePrerequisite" Condition="Installed" Sequence="1296"/>
-    <ROW Action="IncompatibleVersion" Condition="( NOT Installed ) AND ( (SEARCH_REG_ADVINST_64 AND Arch &lt;&gt; &quot;x64&quot;) OR (SEARCH_REG_ADVINST_32 AND Arch &lt;&gt; &quot;x86&quot;) OR SEARCH_REG_INNO_64 OR SEARCH_REG_INNO_32 )" Sequence="201"/>
     <ROW Action="AI_DownloadPrereq" Sequence="1297"/>
     <ROW Action="AI_ExtractPrereq" Sequence="1298"/>
     <ROW Action="AI_InstallPrerequisite" Sequence="1299"/>
@@ -1530,13 +1522,16 @@
     <ROW Action="AI_CleanPrereq" Sequence="1302"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
-    <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="MsiBuild64"/>
-    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
-    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
-    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
-    <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
-    <ROW Condition="AiArm64" Description="[ProductName] can only be installed on Arm64 Windows versions." Builds="MsiBuildARM64"/>
-    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32;MsiBuildARM64"/>
+    <ROW Condition="AiArm64" Description="[ProductName] can be installed only on Arm64 Windows versions." Builds="MsiBuildARM64"/>
+    <ROW Condition="NOT (SEARCH_UNINSTALL_INNO_64 OR SEARCH_UNINSTALL_INNO_32)" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Type of the installed package does not match.&#13;&#10;64: [SEARCH_UNINSTALL_INNO_64]&#13;&#10;32: [SEARCH_UNINSTALL_INNO_32]"/>
+    <ROW Condition="NOT SEARCH_PACKAGE_ARCH OR SEARCH_PACKAGE_ARCH ~= Arch" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Architecture of the installed package does not match. ([Arch] != [SEARCH_PACKAGE_ARCH])"/>
+    <ROW Condition="NOT SEARCH_PACKAGE_EDITION OR SEARCH_PACKAGE_EDITION ~= Edition" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Edition of the installed package does not match. ([Edition] != [SEARCH_PACKAGE_EDITION])"/>
+    <ROW Condition="NOT SEARCH_PACKAGE_TYPE OR SEARCH_PACKAGE_TYPE ~= &quot;advinst&quot;" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Type of the installed package does not match. (advinst != [SEARCH_PACKAGE_TYPE])"/>
+    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_32" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Architecture of the installed package does not match.&#13;&#10;64:[SEARCH_UNINSTALL_ADVINST_64]&#13;&#10;32:[SEARCH_UNINSTALL_ADVINST_32]" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_64" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Architecture of the installed package does not match.&#13;&#10;64:[SEARCH_UNINSTALL_ADVINST_64]&#13;&#10;32:[SEARCH_UNINSTALL_ADVINST_32]" Builds="MsiBuild32"/>
+    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_64 OR SEARCH_UNINSTALL_ADVINST_64 ~&gt;&lt; Arch" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Architecture of the installed package does not match. ([SEARCH_UNINSTALL_ADVINST_64] &gt;&lt; [Arch])" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Condition="VersionNT &gt;= 601" Description="[ProductName] can be installed only on Windows 7 or later."/>
+    <ROW Condition="VersionNT64" Description="[ProductName] can be installed only on 64-bit Windows versions." Builds="MsiBuild64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiMergeModsComponent">
     <ROW Module="Microsoft_VC142_CRT_x64.msm" Path="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\v142\MergeModules\Microsoft_VC142_CRT_x64.msm" Feature="Microsoft_VC142_CRT_x64" Directory="APPDIR" Order="1"/>
@@ -1545,6 +1540,16 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
     <ROW Signature_="AI_ShRegOptionMachine" Root="2" Key="Software\Caphyon\Advanced Installer\Installs\[ProductCode]" Name="AIShRegAnswer" Type="2"/>
     <ROW Signature_="AI_ShRegOptionUser" Root="1" Key="Software\Caphyon\Advanced Installer\Installs\[ProductCode]" Name="AIShRegAnswer" Type="2"/>
+    <ROW Signature_="AppSearch_Package_Arch_32" Root="2" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageArch" Type="2"/>
+    <ROW Signature_="AppSearch_Package_Arch_64" Root="2" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageArch" Type="18"/>
+    <ROW Signature_="AppSearch_Package_Edition_32" Root="2" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageEdition" Type="2"/>
+    <ROW Signature_="AppSearch_Package_Edition_64" Root="2" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageEdition" Type="18"/>
+    <ROW Signature_="AppSearch_Package_Type_32" Root="2" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageType" Type="2"/>
+    <ROW Signature_="AppSearch_Package_Type_64" Root="2" Key="Software\[CompanyPath]\[DesktopPath]" Name="PackageType" Type="18"/>
+    <ROW Signature_="AppSearch_Uninstall_AdvInst_32" Root="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[PackageName]" Name="DisplayName" Type="2"/>
+    <ROW Signature_="AppSearch_Uninstall_AdvInst_64" Root="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[PackageName]" Name="DisplayName" Type="18"/>
+    <ROW Signature_="AppSearch_Uninstall_Inno_32" Root="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[PackageName]_is1" Name="UninstallString" Type="2"/>
+    <ROW Signature_="AppSearch_Uninstall_Inno_64" Root="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[PackageName]_is1" Name="UninstallString" Type="18"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
@@ -2502,11 +2507,5 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
     <ROW UpgradeCode="{BD3B6686-BDB3-4C4B-A4B1-B3195E8AE3FA}" VersionMin="0.0.0" Language="1049" Attributes="5" ActionProperty="UPGRADE_1"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
-    <ROW SearchKey="SearchReg_AdvInst_32" SearchType="7" SearchString="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\[PackageName]\UninstallString" Order="7" Property="SEARCH_REG_ADVINST_32"/>
-    <ROW SearchKey="SearchReg_AdvInst_64" SearchType="7" SearchString="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\[PackageName]\UninstallString" Order="7" Property="SEARCH_REG_ADVINST_64" Platform="1"/>
-    <ROW SearchKey="SearchReg_Inno_32" SearchType="7" SearchString="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\[PackageName]_is1\UninstallString" Order="7" Property="SEARCH_REG_INNO_32"/>
-    <ROW SearchKey="SearchReg_Inno_64" SearchType="7" SearchString="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\[PackageName]_is1\UninstallString" Order="7" Property="SEARCH_REG_INNO_64" Platform="1"/>
   </COMPONENT>
 </DOCUMENT>
