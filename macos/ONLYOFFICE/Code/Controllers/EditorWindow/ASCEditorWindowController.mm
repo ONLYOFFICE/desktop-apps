@@ -55,7 +55,7 @@
 
 + (instancetype)initWithFrame:(NSRect)frame {
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:StoryboardNameEditor bundle:nil];
-    ASCEditorWindowController * controller = [storyboard instantiateControllerWithIdentifier:@"EditorWindowController"];
+    ASCEditorWindowController * controller = [storyboard instantiateControllerWithIdentifier:@"ASCEditorWindowControllerId"];
     [controller.window setFrame:frame display:NO];
     return controller;
 }

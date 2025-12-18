@@ -45,7 +45,9 @@
 - (BOOL)shouldTerminateApplication;
 - (void)safeCloseEditorWindows;
 
+@property (nonatomic) BOOL openInEditorWindow;
 @property (nonatomic) BOOL waitingForTerminateApp;
+@property (nonatomic) NSWindowController *mainWindowController;
 @property (nonatomic) NSMutableArray *editorWindowControllers;
 @end
 

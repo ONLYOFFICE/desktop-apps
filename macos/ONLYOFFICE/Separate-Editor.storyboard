@@ -8,7 +8,7 @@
         <!--Window Controller-->
         <scene sceneID="xkr-XX-l4i">
             <objects>
-                <windowController storyboardIdentifier="EditorWindowController" id="ayF-h0-EsM" customClass="ASCEditorWindowController" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="ASCEditorWindowControllerId" id="ayF-h0-EsM" customClass="ASCEditorWindowController" sceneMemberID="viewController">
                     <window key="window" title="Editor Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="cAh-Jm-QUj" userLabel="Editor Window" customClass="ASCEditorWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

@@ -40,6 +40,7 @@
 
 #import "ASCTitleWindowController.h"
 #import "ASCTitleWindow.h"
+#import "AppDelegate.h"
 #import "ASCConstants.h"
 #import "ASCCommonViewController.h"
 #import "ASCHelper.h"
@@ -69,6 +70,11 @@
     ASCTitleWindow * window = (ASCTitleWindow *)self.window;
     ASCCommonViewController * controller = (ASCCommonViewController *)window.contentViewController;
     return [controller shouldCloseWindowIfNoTabs];
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    AppDelegate *app = (AppDelegate *)[NSApp delegate];
+    app.mainWindowController = nil;
 }
 
 - (BOOL)windowShouldClose:(id)sender {

@@ -43,6 +43,7 @@
 #import "ASCSavePanelWithFormatController.h"
 #import "ASCCertificatePreviewController.h"
 #import "ASCCertificateQLPreviewController.h"
+#import "ASCTitleWindowController.h"
 #import "ASCCommonViewController.h"
 #import "ASCEditorWindowController.h"
 #import "ASCEditorWindow.h"
@@ -77,6 +78,12 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    
+    self.openInEditorWindow = NO;
+    if (!self.openInEditorWindow) {
+        [self presentMainWindow];
+    }
+    
     self.editorWindowControllers = [NSMutableArray array];
 #ifndef _MAS
     PFMoveToApplicationsFolderIfNecessary();
@@ -97,6 +104,7 @@
     
     addObserverFor(ASCEventNameChangedUITheme, @selector(onUIThemeChanged:));
     addObserverFor(ASCEventNameChangedSystemTheme, @selector(onSystemThemeChanged:));
+    addObserverFor(CEFEventNameCreateTab, @selector(onCEFCreateTab:));
     addObserverFor(CEFEventNameStartSaveDialog, @selector(onCEFStartSave:));
     addObserverFor(CEFEventNameSaveLocal, @selector(onCEFSaveLocalFile:));
     addObserverFor(CEFEventNameOpenLocalFile, @selector(onCEFOnOpenLocalFile:));
@@ -109,6 +117,7 @@
     addObserverFor(CEFEventNameKeyboardDown, @selector(onCEFKeyDown:));
     addObserverFor(CEFEventNameSaveBeforSign, @selector(onCEFSaveBeforeSign:));
     addObserverFor(CEFEventNamePrintDialog, @selector(onCEFOnBeforePrintEnd:));
+    addObserverFor(ASCEventNameRecoveryFiles, @selector(onRecoveryFiles:));
     
     // Google Analytics
     
@@ -438,6 +447,18 @@
     return YES;
 }
 
+- (void)presentMainWindow {
+    if (self.mainWindowController) {
+        [self.mainWindowController.window makeKeyAndOrderFront:nil];
+    } else {
+        NSStoryboard *storyboard = [NSStoryboard storyboardWithName:StoryboardNameMain bundle:nil];
+        ASCTitleWindowController *windowController = [storyboard instantiateControllerWithIdentifier:@"ASCTitleWindowControllerId"];
+        self.mainWindowController = windowController;
+        ASCTitleWindow *mainWindow = (ASCTitleWindow *)windowController.window;
+        [mainWindow makeKeyAndOrderFront:nil];
+    }
+}
+
 - (void)safeCloseEditorWindows {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSWindowController *controller = [self.editorWindowControllers firstObject];
@@ -631,20 +652,7 @@
 }
 
 - (NSWindow *)getMainWindow {
-    static NSWindow * ptrmainwindow = nullptr;
-
-    if ( !ptrmainwindow ) {
-        ptrmainwindow = [[NSApp windows] objectAtIndex:0];
-
-//        NSArray * winarr = [NSApp windows];
-//        for (NSWindow * child in [NSApp windows]) {
-//            if ([child.title isEqualToString: @"ONLYOFFICE"]) {
-//                ptrmainwindow = child;
-//            }
-//        }
-    }
-
-    return ptrmainwindow;
+    return self.mainWindowController ? self.mainWindowController.window : nil;
 }
 
 - (NSViewController *)topMostViewController {
@@ -723,6 +731,37 @@
             appManager->Apply(pEvent);
         }];
     }
+}
+
+- (BOOL)canOpenFile:(NSString *)path tab:(ASCTabView *)tab {
+    BOOL canOpen = NO;
+    
+    if (path) {
+        
+        NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        
+        if (urlFile && [urlFile host]) {
+            canOpen = YES;
+        } else {
+            int fileFormatType = CCefViewEditor::GetFileFormat([path stdwstring]);
+            canOpen = (0 != fileFormatType);
+        }
+    }
+    
+    if (!canOpen) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+        [alert setMessageText:NSLocalizedString(@"File can not be open.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"File \"%@\" can not be open or not exist.", nil), path]];
+        [alert setAlertStyle:NSAlertStyleCritical];
+        [alert beginSheetModalForWindow:[NSApp mainWindow]  completionHandler:^(NSModalResponse returnCode) {
+            if (tab) {
+                //[self.tabsControl removeTab:tab animated:NO];
+            }
+        }];
+    }
+    
+    return canOpen;
 }
 
 #pragma mark -
@@ -805,6 +844,73 @@
 
 #pragma mark -
 #pragma mark CEF events handlers
+
+- (void)onCEFCreateTab:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSMutableDictionary * params = [notification.userInfo mutableCopy];
+        
+        if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFileFromTemplate)]) {
+            if ( [params objectForKey:@"path"] or [params objectForKey:@"id"] ) {}
+            else {
+                NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+                NSMutableArray * filter = [NSMutableArray array];
+                
+                if ( [params[@"type"] isEqualToNumber:@((int)AscEditorType::etPresentation)] ) {
+                    [filter addObjectsFromArray:@[@"potx", @"otp"]];
+                } else if ( [params[@"type"] isEqualToNumber:@((int)AscEditorType::etSpreadsheet)] ) {
+                    [filter addObjectsFromArray:@[@"xltx", @"xltm", @"ots"]];
+                } else {
+                    [filter addObjectsFromArray:@[@"dotx", @"ott"]];
+                }
+                
+                openPanel.canChooseDirectories = NO;
+                openPanel.allowsMultipleSelection = NO;
+                openPanel.canChooseFiles = YES;
+                openPanel.allowedFileTypes = filter;
+                
+                if ([openPanel runModal] == NSModalResponseOK) {
+                    [params setValue:[[openPanel URL] path] forKey:@"path"];
+                } else return;
+            }
+        } else
+        if ([params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalRecentFile)] ||
+            [params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalFile)])
+        {
+            if ( ![self canOpenFile:params[@"path"] tab:nil] ) {
+                return;
+            }
+        }
+        
+        ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+        tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
+        tab.type        = ASCTabViewTypeOpening;
+        tab.params      = [params mutableCopy];
+        
+        /*ASCTabView * existTab = [self tabWithParam:@"url" value:params[@"url"]];
+        
+        if (!existTab) {
+            existTab = [self tabWithParam:@"path" value:params[@"path"]];
+        }
+        
+        [self.view.window makeKeyAndOrderFront:nil];
+        
+        if (existTab) {
+            [self.tabsControl selectTab:existTab];
+        } else {
+            if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFile)]) {
+                // Prevent add tab if necessary
+            }
+            
+            if (params[@"external"]) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.9 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+                });
+            } else {
+                [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+            }
+        }*/
+    }
+}
 
 - (void)onCEFStartSave:(NSNotification *)notification {
     if (notification && notification.userInfo) {
@@ -1287,6 +1393,28 @@
                 m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
             }
         });
+    }
+}
+
+-(void)onRecoveryFiles:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * sfiles = params[@"files"];
+        NSError * err = nil;
+        NSArray * arrfiles = [NSJSONSerialization JSONObjectWithData:[sfiles dataUsingEncoding:NSUTF8StringEncoding]
+                                                             options:0
+                                                               error:&err];
+        for (NSDictionary * f in arrfiles) {
+            NSNotification * n = [NSNotification notificationWithName:CEFEventNameCreateTab
+                                                               object:nil
+                                                             userInfo:@{
+                @"action"  : @(ASCTabActionOpenLocalRecoverFile),
+                @"active"  : @(YES),
+                @"fileId"  : f[@"id"],
+                @"path"    : f[@"path"]
+            }];
+            [self onCEFCreateTab:n];
+        }
     }
 }
 
