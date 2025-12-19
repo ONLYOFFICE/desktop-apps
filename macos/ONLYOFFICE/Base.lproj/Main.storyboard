@@ -1156,7 +1156,7 @@ DQ
         <!--Common View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ASCCommonViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ASCCommonViewControllerId" id="XfG-lQ-9wD" customClass="ASCCommonViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="790"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -51,6 +51,7 @@
 
 - (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
 - (ASCTabView *)tabViewWithId:(int)viewId;
+- (ASCTabView *)tabWithParam:(NSString *)param value:(NSString *)value;
 - (void)safeCloseTabsWithChanges;
 
 - (void)openAcknowledgments;

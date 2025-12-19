@@ -105,15 +105,15 @@
 		F12F85D32EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D42EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D52EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
+		F1376CA42EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
+		F1376CA52EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
+		F1376CA62EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
 		F14CD3C32EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F14CD3C42EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F14CD3C52EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F15C17322EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17332EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17342EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
-		F1AC69612EB3883900270F8D /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1AC69602EB3883900270F8D /* Separate-Editor.storyboard */; };
-		F1AC69622EB3883900270F8D /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1AC69602EB3883900270F8D /* Separate-Editor.storyboard */; };
-		F1AC69632EB3883900270F8D /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1AC69602EB3883900270F8D /* Separate-Editor.storyboard */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
 		FC0BD686258B63F700C47F95 /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
@@ -843,11 +843,11 @@
 		BE9A63CE2E2A42A60040CE84 /* ooxmlsignature.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ooxmlsignature.framework; path = ../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/ooxmlsignature.framework; sourceTree = "<group>"; };
 		F12F85D12EB6A38400370877 /* ASCEditorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindowController.h; sourceTree = "<group>"; };
 		F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEditorWindowController.mm; sourceTree = "<group>"; };
+		F1376CA32EF581FA00EC5E08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Separate-Editor.storyboard"; sourceTree = "<group>"; };
 		F14CD3C12EB73EBC00D476FE /* ASCEditorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindow.h; sourceTree = "<group>"; };
 		F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCEditorWindow.m; sourceTree = "<group>"; };
 		F15C17302EBCA75000D266C7 /* NSCefData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefData.h; sourceTree = "<group>"; };
 		F15C17312EBCA75000D266C7 /* NSCefData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefData.mm; sourceTree = "<group>"; };
-		F1AC69602EB3883900270F8D /* Separate-Editor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Separate-Editor.storyboard"; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
 		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
@@ -1249,8 +1249,8 @@
 		FC29CD421F979946003F4136 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */,
 				FCBC42771B9D650500405301 /* Main.storyboard */,
-				F1AC69602EB3883900270F8D /* Separate-Editor.storyboard */,
 				FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */,
 				FCDDD606208F3C25008AF573 /* Document-Sign.storyboard */,
 			);
@@ -2035,7 +2035,7 @@
 				FC0BD6DA258B63F700C47F95 /* file-djvu.icns in Resources */,
 				FC0BD6DB258B63F700C47F95 /* file-csv.icns in Resources */,
 				FC0BD6DC258B63F700C47F95 /* file-xps.icns in Resources */,
-				F1AC69632EB3883900270F8D /* Separate-Editor.storyboard in Resources */,
+				F1376CA62EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */,
 				FC0BD6DD258B63F700C47F95 /* dictionaries in Resources */,
 				5A54B9362D0353A8008FA596 /* file-vsdx.icns in Resources */,
 				FC0BD6DE258B63F700C47F95 /* file-docx.icns in Resources */,
@@ -2101,7 +2101,7 @@
 				FCB4C71626DD018B0012C20D /* file-djvu.icns in Resources */,
 				5ACC12892BC036B30089A585 /* file-ots.icns in Resources */,
 				FCB4C71726DD018B0012C20D /* file-csv.icns in Resources */,
-				F1AC69612EB3883900270F8D /* Separate-Editor.storyboard in Resources */,
+				F1376CA42EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */,
 				FCB4C71826DD018B0012C20D /* file-xps.icns in Resources */,
 				5A54B9342D0353A8008FA596 /* file-vsdx.icns in Resources */,
 				FCB4C71926DD018B0012C20D /* dictionaries in Resources */,
@@ -2167,7 +2167,7 @@
 				FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */,
 				5ACC12882BC036B20089A585 /* file-ots.icns in Resources */,
 				FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */,
-				F1AC69622EB3883900270F8D /* Separate-Editor.storyboard in Resources */,
+				F1376CA52EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */,
 				FC98AF411E94E16A00718A12 /* file-xps.icns in Resources */,
 				5A54B9352D0353A8008FA596 /* file-vsdx.icns in Resources */,
 				BE6251BA22BD089100656116 /* dictionaries in Resources */,
@@ -2616,6 +2616,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1376CA32EF581FA00EC5E08 /* Base */,
+			);
+			name = "Separate-Editor.storyboard";
+			sourceTree = "<group>";
+		};
 		FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

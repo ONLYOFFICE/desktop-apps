@@ -473,7 +473,8 @@
     [self.updateMenuItem setHidden:YES];
     [self.eulaMenuItem setHidden:YES];
 #endif
-    
+    NSWindow *keyWindow = [NSApp keyWindow];
+    BOOL isWindowVisible = (keyWindow != nil) && [keyWindow isVisible];
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
     NSString * productName = [ASCHelper appName];
     
@@ -487,9 +488,9 @@
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"Quit %@", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuNew:)) {
-        return [[self getMainWindow] isVisible];
+        return isWindowVisible;
     } else if ([item action] == @selector(onMenuOpen:)) {
-        return [[self getMainWindow] isVisible];
+        return isWindowVisible;
     } else if ([item action] == @selector(onMenuSave:)) {
         return nil != tab && [[self getMainWindow] isVisible];
     } else if ([item action] == @selector(onMenuSaveAs:)) {
@@ -500,11 +501,11 @@
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@ Help", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuAcknowledgments:)) {
-        return [[self getMainWindow] isVisible];
+        return isWindowVisible;
     } else if ([item action] == @selector(onMenuEULA:)) {
-        return [[self getMainWindow] isVisible];
+        return isWindowVisible;
     } else if ([item action] == @selector(onPreferences:)) {
-        return [[self getMainWindow] isVisible];
+        return isWindowVisible;
     }
     
     return [super validateMenuItem:item];
@@ -881,21 +882,26 @@
             }
         }
         
+        [self presentMainWindow];
+        
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
         tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
         tab.type        = ASCTabViewTypeOpening;
         tab.params      = [params mutableCopy];
         
-        /*ASCTabView * existTab = [self tabWithParam:@"url" value:params[@"url"]];
+        ASCTitleWindowController *controller = (ASCTitleWindowController *)self.mainWindowController;
+        ASCCommonViewController *com = (ASCCommonViewController *)controller.contentViewController;
+        
+        ASCTabView * existTab = [com tabWithParam:@"url" value:params[@"url"]];
         
         if (!existTab) {
-            existTab = [self tabWithParam:@"path" value:params[@"path"]];
+            existTab = [com tabWithParam:@"path" value:params[@"path"]];
         }
         
-        [self.view.window makeKeyAndOrderFront:nil];
+        [com.view.window makeKeyAndOrderFront:nil];
         
         if (existTab) {
-            [self.tabsControl selectTab:existTab];
+            [com.tabsControl selectTab:existTab];
         } else {
             if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFile)]) {
                 // Prevent add tab if necessary
@@ -903,12 +909,12 @@
             
             if (params[@"external"]) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.9 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+                    [com.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
                 });
             } else {
-                [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+                [com.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
             }
-        }*/
+        }
     }
 }
 

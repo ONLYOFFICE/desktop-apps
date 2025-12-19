@@ -44,6 +44,7 @@
 
 @interface ASCTabsMulticastDelegate : NSObject
 - (void)addDelegate:(id)delegate;
+- (void)removeDelegate:(id)delegate;
 @end
 
 @protocol ASCTabsControlDelegate <NSObject>

@@ -55,18 +55,22 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
 @implementation ASCTabsMulticastDelegate {
     // the array of observing delegates
-    NSMutableArray* _delegates;
+    NSHashTable* _delegates;
 }
 
 - (id)init {
     if (self = [super init]) {
-        _delegates = [NSMutableArray array];
+        _delegates = [NSHashTable weakObjectsHashTable];
     }
     return self;
 }
 
 - (void)addDelegate:(id)delegate {
     [_delegates addObject:delegate];
+}
+
+- (void)removeDelegate:(id)delegate {
+    [_delegates removeObject:delegate];
 }
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
