@@ -751,22 +751,9 @@ li.menu-item {
     &:nth-child(even) {
       background-color: @background-normal-element-light;
     }
-
-
-    &.unavail {
-      .col-more, .col-pin {
-        display: none;
-      }
-    }
-
-    &:hover:not(.unavail) {
-      .col-more, .col-pin {
-        opacity: 1;
-      }
-    }
-
+    
     &:hover {
-      .col-more {
+      .col-more, .col-pin  {
         opacity: 1;
       }
     }
@@ -796,7 +783,7 @@ li.menu-item {
       }
     }
     &.unavail {
-      > :not(.col-more) {
+      > :not(.col-more, .col-pin) {
         opacity: 0.5;
         -webkit-filter: grayscale(100%);
       }
