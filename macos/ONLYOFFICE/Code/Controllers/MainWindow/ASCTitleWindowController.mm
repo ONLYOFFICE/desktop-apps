@@ -73,8 +73,9 @@
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
-    AppDelegate *app = (AppDelegate *)[NSApp delegate];
-    app.mainWindowController = nil;
+//    self.window.delegate = nil;
+//    AppDelegate *app = [NSApp delegate];
+//    app.mainWindowController = nil;
 }
 
 - (BOOL)windowShouldClose:(id)sender {

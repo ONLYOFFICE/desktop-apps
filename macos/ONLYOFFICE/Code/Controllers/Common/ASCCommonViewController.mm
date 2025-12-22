@@ -491,6 +491,14 @@
         }
         
         return NO;
+        
+    } else {
+        [self.tabsWithChanges removeAllObjects];
+        NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
+        for (ASCTabView * tab in tabs) {
+            [self.tabsControl removeTab:tab selected:NO animated:NO];
+        }        
+        [self.tabView selectTabViewItemWithIdentifier:rootTabId];
     }
     
     return YES;
