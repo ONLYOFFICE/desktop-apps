@@ -68,9 +68,13 @@
 
 @interface AppDelegate () {
     ASCPrinterContext * m_pContext;
+    NSTimer *dropTimer;
+    BOOL dropTimerActive;
+    NSPoint lastCursorPos;
 }
 @property (weak) IBOutlet NSMenuItem *updateMenuItem;
 @property (weak) IBOutlet NSMenuItem *eulaMenuItem;
+@property (nonatomic, weak) NSWindow *dropEditorWindow;
 @property (nonatomic, assign) BOOL terminationAlreadyHandled;
 @end
 
@@ -118,7 +122,8 @@
     addObserverFor(CEFEventNameSaveBeforSign, @selector(onCEFSaveBeforeSign:));
     addObserverFor(CEFEventNamePrintDialog, @selector(onCEFOnBeforePrintEnd:));
     addObserverFor(ASCEventNameRecoveryFiles, @selector(onRecoveryFiles:));
-    
+    addObserverFor(ASCEventNameEditorWindowMoving, @selector(onEditorWindowMoving:));
+        
     // Google Analytics
     
 #ifdef _PRODUCT_ONLYOFFICE
@@ -1574,6 +1579,86 @@
             [self onCEFCreateTab:n];
         }
     }
+}
+
+#pragma mark -
+#pragma mark Tab Attachment Support
+
+- (ASCTitleBarController *)titleBarController {
+    ASCTitleWindowController *controller = (ASCTitleWindowController *)self.mainWindowController;
+    return controller ? controller.titlebarController : nil;
+}
+
+- (void)pinWindowToTab:(ASCEditorWindow *)window atPoint:(NSPoint)screenPoint {
+    ASCTitleBarController *titlebarController = [self titleBarController];
+    if (titlebarController) {
+        [titlebarController attachEditor:window.webView];
+        window.webView = nil;
+        [window close];
+    }
+}
+
+- (void)handleDropTimer {
+    ASCTitleBarController *titlebarController = [self titleBarController];
+    NSPoint currentCursor = [NSEvent mouseLocation];
+    if (titlebarController && [titlebarController canPinTabAtPoint:currentCursor]) {
+        if (NSEqualPoints(currentCursor, lastCursorPos)) {
+            [self stopDropTimer];
+
+            NSEventMask buttons = [NSEvent pressedMouseButtons];
+            if (buttons & (1 << 0)) { // Left button pressed
+                ASCEditorWindow *editorWindow = (ASCEditorWindow *)self.dropEditorWindow;
+                [self pinWindowToTab:editorWindow atPoint:currentCursor];
+            }
+        } else {
+            lastCursorPos = currentCursor;
+        }
+    } else {
+        [self stopDropTimer];
+    }
+}
+
+- (void)stopDropTimer {
+    if (dropTimer && [dropTimer isValid]) {
+        [dropTimer invalidate];
+    }
+    dropTimer = nil;
+    dropTimerActive = NO;
+}
+
+- (void)validateDrop:(NSWindow *)editorWindow {
+    ASCTitleBarController *titlebarController = [self titleBarController];
+    if (!titlebarController) {
+        return;
+    }
+    NSWindow *mainWindow = titlebarController.view.window;
+    if (mainWindow && mainWindow.isVisible && !mainWindow.isMiniaturized) {
+        self.dropEditorWindow = editorWindow;
+        
+        if (!dropTimer) {
+            dropTimer = [NSTimer timerWithTimeInterval:0.3
+                                                target:self
+                                              selector:@selector(handleDropTimer)
+                                              userInfo:nil
+                                               repeats:YES];
+        }
+        
+        NSPoint pos = [NSEvent mouseLocation];
+        if ([titlebarController canPinTabAtPoint:pos]) {
+            if (!dropTimerActive) {
+                [[NSRunLoop currentRunLoop] addTimer:dropTimer forMode:NSRunLoopCommonModes];
+                dropTimerActive = YES;
+            }
+            lastCursorPos = pos;
+        } else {
+            [self stopDropTimer];
+        }
+    }
+}
+
+- (void)onEditorWindowMoving:(NSNotification *)notification {
+    NSWindow *editorWindow = notification.object;
+    [self validateDrop:editorWindow];
 }
 
 @end

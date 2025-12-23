@@ -66,14 +66,11 @@ static float kASCWindowMinTitleWidth = 0;
 static float kASCRTLTabsRightMargin = 0;
 
 @interface ASCTitleBarController ()  <ASCTabsControlDelegate, ASCDownloadControllerDelegate> {
-    NSTimer *dropTimer;
-    BOOL dropTimerActive;
-    NSPoint lastCursorPos;
+    
 }
 @property (nonatomic) NSArray *standardButtonsDefaults;
 @property (nonatomic) NSArray *standardButtonsFullscreen;
 
-@property (nonatomic, weak) NSWindow *dropEditorWindow;
 @property (nonatomic, weak) NSButton *closeButtonFullscreen;
 @property (nonatomic, weak) NSButton *miniaturizeButtonFullscreen;
 @property (nonatomic, weak) NSButton *fullscreenButtonFullscreen;
@@ -180,11 +177,6 @@ static float kASCRTLTabsRightMargin = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onWindowSetFrame:)
                                                  name:ASCEventNameMainWindowSetFrame
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onEditorWindowMoving:)
-                                                 name:ASCEventNameEditorWindowMoving
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -631,8 +623,8 @@ static float kASCRTLTabsRightMargin = 0;
 #pragma mark -
 #pragma mark Tab Attachment Support
 
-- (void)attachWindow:(ASCEditorWindow *)window atPoint:(NSPoint)screenPoint {
-    NSCefView *webView =  (NSCefView *)window.webView;
+- (void)attachEditor:(NSView *)cefView {
+    NSCefView *webView =  (NSCefView *)cefView;
     [webView removeFromSuperview];
     
     ASCTabViewType docType = ASCTabViewTypeUnknown;
@@ -655,63 +647,6 @@ static float kASCRTLTabsRightMargin = 0;
     tab.params[@"path"] = webView.data.path;
     tab.params[@"reattaching"] = @YES;
     [self.tabsControl addTab:tab selected:YES];
-    
-    window.webView = nil;
-    [window close];
-    NSLog(@"Tab attached to main window");
-}
-
-- (void)handleDropTimer {
-    NSPoint currentCursor = [NSEvent mouseLocation];
-    if ([self canPinTabAtPoint:currentCursor]) {
-        if (NSEqualPoints(currentCursor, lastCursorPos)) {
-            [self stopDropTimer];
-
-            NSEventMask buttons = [NSEvent pressedMouseButtons];
-            if (buttons & (1 << 0)) { // Left button pressed
-                ASCEditorWindow *editorWindow = (ASCEditorWindow *)self.dropEditorWindow;
-                [self attachWindow:editorWindow atPoint:currentCursor];
-            }
-        } else {
-            lastCursorPos = currentCursor;
-        }
-    } else {
-        [self stopDropTimer];
-    }
-}
-
-- (void)stopDropTimer {
-    if (dropTimer && [dropTimer isValid]) {
-        [dropTimer invalidate];
-    }
-    dropTimer = nil;
-    dropTimerActive = NO;
-}
-
-- (void)validateDrop:(NSWindow *)editorWindow {
-    NSWindow *mainWindow = self.view.window;
-    if (mainWindow && mainWindow.isVisible && !mainWindow.isMiniaturized) {
-        self.dropEditorWindow = editorWindow;
-        
-        if (!dropTimer) {
-            dropTimer = [NSTimer timerWithTimeInterval:0.3
-                                                target:self
-                                              selector:@selector(handleDropTimer)
-                                              userInfo:nil
-                                               repeats:YES];
-        }
-        
-        NSPoint pos = [NSEvent mouseLocation];
-        if ([self canPinTabAtPoint:pos]) {
-            if (!dropTimerActive) {
-                [[NSRunLoop currentRunLoop] addTimer:dropTimer forMode:NSRunLoopCommonModes];
-                dropTimerActive = YES;
-            }
-            lastCursorPos = pos;
-        } else {
-            [self stopDropTimer];
-        }
-    }
 }
 
 - (BOOL)canPinTabAtPoint:(NSPoint)screenPoint {
@@ -724,11 +659,6 @@ static float kASCRTLTabsRightMargin = 0;
     NSRect titleBarRect = NSMakeRect(windowFrame.origin.x, contentRect.origin.y + contentRect.size.height,
                                      windowFrame.size.width, windowFrame.size.height - contentRect.size.height);
     return NSPointInRect(screenPoint, titleBarRect);
-}
-
-- (void)onEditorWindowMoving:(NSNotification *)notification {
-    NSWindow *editorWindow = notification.object;
-    [self validateDrop:editorWindow];
 }
 
 @end
