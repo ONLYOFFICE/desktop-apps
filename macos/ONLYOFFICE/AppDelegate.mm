@@ -882,37 +882,184 @@
             }
         }
         
-        [self presentMainWindow];
-        
-        ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
-        tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
-        tab.type        = ASCTabViewTypeOpening;
-        tab.params      = [params mutableCopy];
-        
-        ASCTitleWindowController *controller = (ASCTitleWindowController *)self.mainWindowController;
-        ASCCommonViewController *com = (ASCCommonViewController *)controller.contentViewController;
-        
-        ASCTabView * existTab = [com tabWithParam:@"url" value:params[@"url"]];
-        
-        if (!existTab) {
-            existTab = [com tabWithParam:@"path" value:params[@"path"]];
+        for (NSWindow *window in [NSApp windows]) {
+            if ([window isKindOfClass:[ASCTitleWindow class]]) {
+                ASCCommonViewController *common = (ASCCommonViewController *)window.contentViewController;
+                ASCTabView * existTab = [common tabWithParam:@"url" value:params[@"url"]];
+                if (!existTab) {
+                    existTab = [common tabWithParam:@"path" value:params[@"path"]];
+                }
+                if (existTab) {
+                    [common.tabsControl selectTab:existTab];
+                    return;
+                }
+                
+            } else
+            if ([window isKindOfClass:[ASCEditorWindow class]]) {
+                ASCEditorWindow *editor = (ASCEditorWindow *)window;
+                NSCefView *cefView = (NSCefView *)editor.webView;
+                // TODO: add impl
+            }
         }
         
-        [com.view.window makeKeyAndOrderFront:nil];
+        ASCTabActionType action = (ASCTabActionType)[params[@"action"] intValue];
+        NSString *title = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
         
-        if (existTab) {
-            [com.tabsControl selectTab:existTab];
+        if (self.openInEditorWindow && action != ASCTabActionOpenPortal) {
+            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+            NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
+            
+            NSCefData *cefData = [[NSCefData alloc] initWith:title viewType:cvwtEditor];
+            
+            cefView.data = cefData;
+            
+            [cefView create:appManager withType:cvwtEditor];
+            [cefView setBackgroundColor:[ASCThemesController currentThemeColor:windowBackgroundColor]];
+                       
+            ASCTabViewType type = ASCTabViewTypeOpening;
+            switch (action) {
+                case ASCTabActionOpenUrl: {
+                    [cefView loadWithUrl:params[@"url"]];
+                    
+                    if (params[@"title"] && [params[@"title"] length] > 0) {
+                        title = params[@"title"];
+                    }
+                    
+                    break;
+                }
+                    
+                case ASCTabActionCreateLocalFileFromTemplate:
+                case ASCTabActionCreateLocalFile: {
+                    AscEditorType docType = AscEditorType::etDocument;
+                    if ( [params[@"type"] isKindOfClass:[NSString class]] ) {
+                        NSString * param = params[@"type"];
+                        if ([param isEqualToString:@"cell"]) docType = AscEditorType::etSpreadsheet;
+                        else if ([param isEqualToString:@"slide"]) docType = AscEditorType::etPresentation;
+                        else if ([param isEqualToString:@"form"]) docType = AscEditorType::etDocumentMasterForm;
+//                        else /*if ([param isEqualToString:@"word"])*/ docType = AscEditorType::etDocument;
+                    } else docType = (AscEditorType)[params[@"type"] intValue];
+                    
+                    NSString * docName = NSLocalizedString(@"Untitled", nil);
+                    
+                    switch (docType) {
+                        case AscEditorType::etDocument:
+                            docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docx", nil), ++self.documentNameCounter];
+                            break;
+                        case AscEditorType::etSpreadsheet:
+                            docName = [NSString stringWithFormat:NSLocalizedString(@"Spreadsheet %ld.xlsx", nil), ++self.spreadsheetNameCounter];
+                            break;
+                        case AscEditorType::etPresentation:
+                            docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++self.presentationNameCounter];
+                            break;
+                        case AscEditorType::etDocumentMasterOForm:
+                        case AscEditorType::etDocumentMasterForm:
+                            docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.pdf", nil), ++self.pdfNameCounter];
+                            break;
+                        default: break;
+                    }
+                    
+                    if (action == ASCTabActionCreateLocalFile ) {
+                        [cefView createFileWithName:docName type:docType];
+                    } else {
+                        [cefView createFileWithNameFromTemplate:docName tplpath:params[@"path"]];
+                    }
+                    
+                    break;
+                }
+                    
+                case ASCTabActionOpenLocalFile: {
+                    NSString * filePath = params[@"path"];
+                    
+                    int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
+                    [cefView openFileWithName:filePath type:fileFormatType];
+                    
+                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                             action:@"Open local file"
+                                                                              label:nil
+                                                                              value:nil];
+                    
+                    break;
+                }
+                case ASCTabActionOpenLocalRecoverFile: {
+                    NSInteger docId = [params[@"fileId"] intValue];
+                    [cefView openRecoverFileWithId:docId];
+                    
+                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                             action:@"Open local recover file"
+                                                                              label:nil
+                                                                              value:nil];
+                    
+                    break;
+                }
+                case ASCTabActionOpenLocalRecentFile: {
+                    NSInteger docId = [params[@"fileId"] intValue];
+                    
+                    if ( !(docId < 0) )
+                        [cefView openRecentFileWithId:docId];
+                    else {
+                        NSString * filePath = params[@"path"];
+                        if ( filePath && filePath.length )
+                            [cefView loadWithUrl:filePath];
+                    }
+                    
+                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                             action:@"Open local file"
+                                                                              label:nil
+                                                                              value:nil];
+                    
+                    break;
+                }
+                    
+                default:
+                    break;
+            }
+            
+            ASCEditorWindowController *windowController = nil;
+            if (self.mainWindowController && self.mainWindowController.window) {
+                NSRect mainFrame = self.mainWindowController.window.frame;
+                mainFrame.origin.x += 30;
+                mainFrame.origin.y += 30;
+                windowController = [ASCEditorWindowController initWithFrame:mainFrame];
+            } else {
+                windowController = [ASCEditorWindowController initWithDefaultFrame];
+            }
+            [self.editorWindowControllers addObject:windowController];
+            
+            ASCEditorWindow *editorWindow = (ASCEditorWindow *)windowController.window;
+            [editorWindow setTitleVisibility:NSWindowTitleHidden];
+            [editorWindow setTitle:title];
+            
+            NSViewController *contentViewController = windowController.contentViewController;
+            if (contentViewController && contentViewController.view) {
+                editorWindow.webView = cefView;
+                cefView.frame = contentViewController.view.bounds;
+                cefView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+                [contentViewController.view addSubview:cefView];
+                NSLog(@"Tab detached: WebView moved to new window");
+            }
+                        
+            [editorWindow makeKeyAndOrderFront:nil];
+            
         } else {
+            [self presentMainWindow];
+            ASCTitleWindowController *controller = (ASCTitleWindowController *)self.mainWindowController;
+            ASCCommonViewController *common = (ASCCommonViewController *)controller.contentViewController;
+            
+            ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+            tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
+            tab.type        = ASCTabViewTypeOpening;
+            tab.params      = [params mutableCopy];
+            
             if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFile)]) {
                 // Prevent add tab if necessary
             }
             
             if (params[@"external"]) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.9 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [com.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+                    [common.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
                 });
             } else {
-                [com.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+                [common.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
             }
         }
     }

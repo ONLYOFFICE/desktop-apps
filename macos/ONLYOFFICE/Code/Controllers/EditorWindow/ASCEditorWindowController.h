@@ -40,6 +40,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ASCEditorWindowController : NSWindowController <NSWindowDelegate>
++ (instancetype)initWithDefaultFrame;
 + (instancetype)initWithFrame:(NSRect)frame;
 - (BOOL)holdView:(NSString *)viewId;
 

@@ -53,9 +53,14 @@
 
 @implementation ASCEditorWindowController
 
-+ (instancetype)initWithFrame:(NSRect)frame {
++ (instancetype)initWithDefaultFrame {
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:StoryboardNameEditor bundle:nil];
     ASCEditorWindowController * controller = [storyboard instantiateControllerWithIdentifier:@"ASCEditorWindowControllerId"];
+    return controller;
+}
+
++ (instancetype)initWithFrame:(NSRect)frame {
+    ASCEditorWindowController * controller = [self initWithDefaultFrame];
     [controller.window setFrame:frame display:NO];
     return controller;
 }

@@ -49,5 +49,9 @@
 @property (nonatomic) BOOL waitingForTerminateApp;
 @property (nonatomic) NSWindowController *mainWindowController;
 @property (nonatomic) NSMutableArray *editorWindowControllers;
+@property (nonatomic) NSUInteger documentNameCounter;
+@property (nonatomic) NSUInteger spreadsheetNameCounter;
+@property (nonatomic) NSUInteger presentationNameCounter;
+@property (nonatomic) NSUInteger pdfNameCounter;
 @end
 

@@ -71,10 +71,7 @@
 
 
 @interface ASCCommonViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
-    NSUInteger documentNameCounter;
-    NSUInteger spreadsheetNameCounter;
-    NSUInteger presentationNameCounter;
-    NSUInteger pdfNameCounter;
+
 }
 @property (nonatomic) NSCefView * cefStartPageView;
 @property (nonatomic) BOOL shouldLogoutPortal;
@@ -1319,20 +1316,20 @@
                 } else docType = (AscEditorType)[tab.params[@"type"] intValue];
                 
                 NSString * docName = NSLocalizedString(@"Untitled", nil);
-                
+                AppDelegate *app = [NSApp delegate];
                 switch (docType) {
                     case AscEditorType::etDocument:
-                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docx", nil), ++documentNameCounter];
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docx", nil), ++app.documentNameCounter];
                         break;
                     case AscEditorType::etSpreadsheet:
-                        docName = [NSString stringWithFormat:NSLocalizedString(@"Spreadsheet %ld.xlsx", nil), ++spreadsheetNameCounter];
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Spreadsheet %ld.xlsx", nil), ++app.spreadsheetNameCounter];
                         break;
                     case AscEditorType::etPresentation:
-                        docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++presentationNameCounter];
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++app.presentationNameCounter];
                         break;
                     case AscEditorType::etDocumentMasterOForm:
                     case AscEditorType::etDocumentMasterForm:
-                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.pdf", nil), ++pdfNameCounter];
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.pdf", nil), ++app.pdfNameCounter];
                         break;
                     default: break;
                 }
