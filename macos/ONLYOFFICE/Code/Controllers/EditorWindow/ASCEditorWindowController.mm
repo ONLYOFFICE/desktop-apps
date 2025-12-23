@@ -243,9 +243,9 @@
             [self.cefData setTitle:name];
             [self.window setTitle:name];
 
-//            if ( !(path == nil) && !(path.length == 0) ) {
-//                tab.params[@"path"] = path;
-//            }
+            if ( !(path == nil) && !(path.length == 0) ) {
+                self.cefData.path = path;
+            }
         }
     }
 }

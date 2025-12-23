@@ -898,7 +898,12 @@
             if ([window isKindOfClass:[ASCEditorWindow class]]) {
                 ASCEditorWindow *editor = (ASCEditorWindow *)window;
                 NSCefView *cefView = (NSCefView *)editor.webView;
-                // TODO: add impl
+                if (cefView) {
+                    if ([cefView.data.url isEqualToString:params[@"url"]] || [cefView.data.path isEqualToString:params[@"path"]]) {
+                        [editor makeKeyAndOrderFront:nil];
+                        return;
+                    }
+                }
             }
         }
         

@@ -652,6 +652,7 @@ static float kASCRTLTabsRightMargin = 0;
     tab.webView = webView;
     tab.params = [NSMutableDictionary dictionary];
     tab.params[@"action"] = @(ASCTabActionUnknown);
+    tab.params[@"path"] = webView.data.path;
     tab.params[@"reattaching"] = @YES;
     [self.tabsControl addTab:tab selected:YES];
     

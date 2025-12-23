@@ -59,6 +59,7 @@
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *path;
 @property (nonatomic, copy) NSString *cloudName;
 @property (nonatomic, assign) AscEditorType contentType;
 @property (nonatomic, assign) BOOL isLocal;
