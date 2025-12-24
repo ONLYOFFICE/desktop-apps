@@ -628,33 +628,23 @@ static float kASCRTLTabsRightMargin = 0;
 - (NSInteger)insertionIndexForScreenPoint:(NSPoint)screenPoint {
     NSWindow *window = self.view.window;
     NSPoint windowPoint = [window convertPointFromScreen:screenPoint];
+    NSPoint pointInTabs = [self.tabsControl convertPoint:windowPoint fromView:nil];
+
     NSInteger tabsCount = [self.tabsControl.tabs count];
     if (tabsCount == 0) {
         return 0;
     }
 
-    NSArray<ASCTabView *> *tabs = self.tabsControl.tabs;
-    BOOL isRTL = ([self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft);
-    if (!isRTL) {
-        for (NSUInteger i = 0; i < tabsCount; ++i) {
-            ASCTabView *tab = tabs[i];
-            NSRect tabFrame = [tab convertRect:tab.bounds toView:nil];
-            if (windowPoint.x < NSMidX(tabFrame)) {
-                return i;
-            }
+    for (NSInteger i = 0; i < tabsCount; ++i) {
+        ASCTabView *tab = [self.tabsControl.tabs objectAtIndex:i];
+        NSRect tabFrameInTabs = [tab convertRect:tab.bounds toView:self.tabsControl];
+        CGFloat midX = NSMidX(tabFrameInTabs);
+        if (pointInTabs.x < midX) {
+            return i;
         }
-        return tabsCount;
-        
-    } else {
-        for (NSInteger i = tabsCount - 1; i >= 0; --i) {
-            ASCTabView *tab = tabs[i];
-            NSRect tabFrame = [tab convertRect:tab.bounds toView:nil];
-            if (windowPoint.x > NSMidX(tabFrame)) {
-                return (i + 1);
-            }
-        }
-        return 0;
     }
+
+    return tabsCount;
 }
 
 - (BOOL)canPinTabAtPoint:(NSPoint)screenPoint {

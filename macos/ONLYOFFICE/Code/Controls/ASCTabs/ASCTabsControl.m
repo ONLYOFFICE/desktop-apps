@@ -716,15 +716,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
     tab.hidden = YES;
     NSUInteger count = self.tabs.count;
-    NSUInteger actualIndex;
     NSUInteger visualIndex = MIN(index, count);
-    if ( [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft ) {
-        actualIndex = visualIndex;
-    } else {
-        actualIndex = count - visualIndex;
-    }
-    
-    [self.tabs insertObject:tab atIndex:actualIndex];
+    [self.tabs insertObject:tab atIndex:visualIndex];
 
     if (_delegate && [_delegate respondsToSelector:@selector(tabs:didResize:)]) {
         [_delegate tabs:self didResize:CGRectZero];
