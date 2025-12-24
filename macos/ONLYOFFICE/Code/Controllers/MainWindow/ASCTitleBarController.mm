@@ -620,6 +620,7 @@ static float kASCRTLTabsRightMargin = 0;
     tab.params[@"path"] = webView.data.path;
     tab.params[@"reattaching"] = @YES;
     [self.tabsControl addTab:tab selected:YES];
+    [webView focus];
 }
 
 - (BOOL)canPinTabAtPoint:(NSPoint)screenPoint {

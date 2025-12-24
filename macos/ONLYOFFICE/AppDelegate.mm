@@ -1666,12 +1666,11 @@
 #pragma mark Tab Detachment Support
 
 - (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event {
-    ASCTitleBarController *titlebarController = [self titleBarController];
-    if (!titlebarController) {
+    if (!self.mainWindowController) {
         return;
     }
     NSCefView *webView = (NSCefView *)cefView;
-    NSWindow * mainWindow = titlebarController.view.window;
+    NSWindow * mainWindow = self.mainWindowController.window;
     NSSize size = [mainWindow frame].size;
     NSRect windowFrame = NSMakeRect(screenPoint.x - 200, screenPoint.y - size.height + 11, size.width, size.height);
         
@@ -1691,6 +1690,7 @@
     }
     
     [editorWindow makeKeyAndOrderFront:nil];
+    [webView focus];
 
     // Let the event loop process before starting drag to prevent window jerking
     dispatch_async(dispatch_get_main_queue(), ^{
