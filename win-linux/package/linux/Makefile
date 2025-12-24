@@ -317,7 +317,7 @@ deb/build/package.config :
 	mkdir -p $(@D) && echo "package = deb" > $@
 
 $(DEB) : build $(DEB_DEPS)
-	cd deb/build && dpkg-buildpackage -b -uc -us -a$(DEB_ARCH)
+	+cd deb/build && dpkg-buildpackage -b -uc -us -a$(DEB_ARCH)
 
 $(RPM_SUSE) : build rpm-suse/$(PACKAGE_NAME).spec
 	cd rpm-suse && rpmbuild -bb \
