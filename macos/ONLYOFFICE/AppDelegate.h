@@ -46,7 +46,6 @@
 - (void)safeCloseEditorWindows;
 - (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event;
 
-@property (nonatomic) BOOL openInEditorWindow;
 @property (nonatomic) BOOL waitingForTerminateApp;
 @property (nonatomic) NSWindowController *mainWindowController;
 @property (nonatomic) NSMutableArray *editorWindowControllers;

@@ -74,6 +74,7 @@
 }
 @property (weak) IBOutlet NSMenuItem *updateMenuItem;
 @property (weak) IBOutlet NSMenuItem *eulaMenuItem;
+@property (nonatomic) BOOL openInEditorWindow;
 @property (nonatomic, weak) NSWindow *dropEditorWindow;
 @property (nonatomic, assign) BOOL terminationAlreadyHandled;
 @end
