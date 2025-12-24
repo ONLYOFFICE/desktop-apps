@@ -48,7 +48,7 @@
 @end
 
 @interface ASCTitleBarController : NSViewController
-- (void)attachEditor:(NSView *)cefView;
+- (void)attachEditor:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint;
 - (BOOL)canPinTabAtPoint:(NSPoint)screenPoint;
 @property (weak) IBOutlet ASCTabsControl *tabsControl;
 

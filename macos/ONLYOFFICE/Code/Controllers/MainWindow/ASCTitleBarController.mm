@@ -596,7 +596,7 @@ static float kASCRTLTabsRightMargin = 0;
 #pragma mark -
 #pragma mark Tab Attachment Support
 
-- (void)attachEditor:(NSView *)cefView {
+- (void)attachEditor:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint {
     NSCefView *webView =  (NSCefView *)cefView;
     [webView removeFromSuperview];
     
@@ -619,8 +619,42 @@ static float kASCRTLTabsRightMargin = 0;
     tab.params[@"action"] = @(ASCTabActionUnknown);
     tab.params[@"path"] = webView.data.path;
     tab.params[@"reattaching"] = @YES;
-    [self.tabsControl addTab:tab selected:YES];
+    
+    NSInteger index = [self insertionIndexForScreenPoint:screenPoint];
+    [self.tabsControl insertTab:tab atIndex:index selected:YES];
     [webView focus];
+}
+
+- (NSInteger)insertionIndexForScreenPoint:(NSPoint)screenPoint {
+    NSWindow *window = self.view.window;
+    NSPoint windowPoint = [window convertPointFromScreen:screenPoint];
+    NSInteger tabsCount = [self.tabsControl.tabs count];
+    if (tabsCount == 0) {
+        return 0;
+    }
+
+    NSArray<ASCTabView *> *tabs = self.tabsControl.tabs;
+    BOOL isRTL = ([self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft);
+    if (!isRTL) {
+        for (NSUInteger i = 0; i < tabsCount; ++i) {
+            ASCTabView *tab = tabs[i];
+            NSRect tabFrame = [tab convertRect:tab.bounds toView:nil];
+            if (windowPoint.x < NSMidX(tabFrame)) {
+                return i;
+            }
+        }
+        return tabsCount;
+        
+    } else {
+        for (NSInteger i = tabsCount - 1; i >= 0; --i) {
+            ASCTabView *tab = tabs[i];
+            NSRect tabFrame = [tab convertRect:tab.bounds toView:nil];
+            if (windowPoint.x > NSMidX(tabFrame)) {
+                return (i + 1);
+            }
+        }
+        return 0;
+    }
 }
 
 - (BOOL)canPinTabAtPoint:(NSPoint)screenPoint {

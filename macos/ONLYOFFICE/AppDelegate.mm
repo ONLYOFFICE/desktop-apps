@@ -1593,7 +1593,7 @@
 - (void)pinWindowToTab:(ASCEditorWindow *)window atPoint:(NSPoint)screenPoint {
     ASCTitleBarController *titlebarController = [self titleBarController];
     if (titlebarController) {
-        [titlebarController attachEditor:window.webView];
+        [titlebarController attachEditor:window.webView atScreenPoint:screenPoint];
         window.webView = nil;
         [window close];
     }
