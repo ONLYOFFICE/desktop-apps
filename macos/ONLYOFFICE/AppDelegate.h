@@ -44,6 +44,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 - (BOOL)shouldTerminateApplication;
 - (void)safeCloseEditorWindows;
+- (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event;
 
 @property (nonatomic) BOOL openInEditorWindow;
 @property (nonatomic) BOOL waitingForTerminateApp;

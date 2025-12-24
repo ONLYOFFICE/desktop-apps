@@ -53,8 +53,6 @@
 #import "ASCMenuButtonCell.h"
 #import "ASCThemesController.h"
 #import "ASCApplicationManager.h"
-#import "ASCEditorWindowController.h"
-#import "ASCEditorWindow.h"
 #import "AppDelegate.h"
 #import "ASCLinguist.h"
 #import "NSWindow+Extensions.h"
@@ -559,39 +557,14 @@ static float kASCRTLTabsRightMargin = 0;
         return;
     }
     
-    NSWindow * mainWindow = self.view.window;
-    NSSize size = [mainWindow frame].size;
-    NSRect windowFrame = NSMakeRect(screenPoint.x - 200, screenPoint.y - size.height + 11, size.width, size.height);
-    
-    ASCEditorWindowController *windowController = [ASCEditorWindowController initWithFrame:windowFrame];
-    AppDelegate *app = [NSApp delegate];
-    [app.editorWindowControllers addObject:windowController];
-    
-    ASCEditorWindow *editorWindow = (ASCEditorWindow *)windowController.window;
-    [editorWindow setTitleVisibility:NSWindowTitleHidden];
-    [editorWindow setTitle:[webView.data title:YES]];
-    
-    NSViewController *contentViewController = windowController.contentViewController;
-    if (contentViewController && contentViewController.view) {
-        [webView removeFromSuperview];
-        editorWindow.webView = webView;
-        tab.webView = nil;
-        webView.frame = contentViewController.view.bounds;
-        webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-        [contentViewController.view addSubview:webView];
-        NSLog(@"Tab detached: WebView moved to new window");
-    }
-    
+    [webView removeFromSuperview];
+    tab.webView = nil;
     // Mark tab as detached to prevent view destruction in didRemovedTab
     tab.params[@"detached"] = @YES;
     [control removeTab:tab animated:NO];
     
-    [editorWindow makeKeyAndOrderFront:nil];
-
-    // Let the event loop process before starting drag to prevent window jerking
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [editorWindow performWindowDragWithEvent:event];
-    });
+    AppDelegate *app = [NSApp delegate];
+    [app dragDetachedTab:webView atScreenPoint:screenPoint withEvent:event];
 }
 
 #pragma mark -
