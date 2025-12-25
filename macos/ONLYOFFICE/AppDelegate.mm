@@ -74,20 +74,15 @@
 }
 @property (weak) IBOutlet NSMenuItem *updateMenuItem;
 @property (weak) IBOutlet NSMenuItem *eulaMenuItem;
-@property (nonatomic) BOOL openInEditorWindow;
 @property (nonatomic, weak) NSWindow *dropEditorWindow;
 @property (nonatomic, assign) BOOL terminationAlreadyHandled;
+@property (nonatomic, assign) BOOL hasFilesToOpenOnLaunch;
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    
-    self.openInEditorWindow = NO;
-    if (!self.openInEditorWindow) {
-        [self presentMainWindow];
-    }
     
     self.editorWindowControllers = [NSMutableArray array];
     
@@ -154,6 +149,8 @@
             NSString * param = [arg substringFromIndex:6];
 
             if ( [keysCreateNew containsObject:param] ) {
+                self.hasFilesToOpenOnLaunch = YES;
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                     object:nil
                                                                   userInfo:@{ @"action"  : @(ASCTabActionCreateLocalFile),
@@ -165,6 +162,10 @@
         } else if ([arg isEqualToString:@"--unlock-portals"]) {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:ASCUserLockPageConnections];
         }
+    }
+    
+    if (!self.hasFilesToOpenOnLaunch) {
+        [self presentMainWindow];
     }
 }
 
@@ -254,6 +255,10 @@
         filenames = processedFileList;
     }
 
+    if (filenames.count > 0) {
+        self.hasFilesToOpenOnLaunch = YES;
+    }
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         for (NSString * filePath in filenames) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
@@ -326,6 +331,12 @@
     
     self.terminationAlreadyHandled = YES;
     return NSTerminateNow;
+}
+
+- (BOOL)preferOpenEditorWindow {
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    auto mode = appManager->GetUserSettings()->Get(L"editor-window-mode");
+    return (mode == L"1") ? YES : NO;
 }
 
 - (BOOL)shouldTerminateApplication {
@@ -940,7 +951,7 @@
         ASCTabActionType action = (ASCTabActionType)[params[@"action"] intValue];
         NSString *title = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
         
-        if (self.openInEditorWindow && action != ASCTabActionOpenPortal) {
+        if ([self preferOpenEditorWindow] && action != ASCTabActionOpenPortal) {
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
             NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
             
