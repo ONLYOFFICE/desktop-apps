@@ -57,6 +57,7 @@
 #import "ASCLinguist.h"
 #import "NSWindow+Extensions.h"
 #import "NSCefView.h"
+#import "NSDictionary+Extensions.h"
 
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
@@ -600,6 +601,9 @@ static float kASCRTLTabsRightMargin = 0;
     NSCefView *webView =  (NSCefView *)cefView;
     [webView removeFromSuperview];
     
+    NSDictionary *widgetInfo = @{@"widgetType": @"tab", @"captionHeight": @0};
+    [webView setParentWidgetInfoWithJson:[widgetInfo jsonString]];
+    
     ASCTabViewType docType = ASCTabViewTypeUnknown;
     switch ([webView.data contentType]) {
         case AscEditorType::etDocument     : docType = ASCTabViewTypeDocument; break;
@@ -622,6 +626,10 @@ static float kASCRTLTabsRightMargin = 0;
     
     NSInteger index = [self insertionIndexForScreenPoint:screenPoint];
     [self.tabsControl insertTab:tab atIndex:index selected:YES];
+    
+    NSDictionary *windowFeatures = @{@"skiptoparea": @0, @"singlewindow": @NO};
+    [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
+    
     [webView focus];
 }
 

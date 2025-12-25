@@ -915,6 +915,13 @@ public:
                                     }
                                 }
                             }
+                        } else if (cmd.find(L"webapps:entry") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameWebAppsEntry
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"info": [NSString stringWithstdwstring:param]
+                                                                                         }];
                         }
 
                         break;

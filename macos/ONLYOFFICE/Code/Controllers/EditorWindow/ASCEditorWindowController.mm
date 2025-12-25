@@ -46,6 +46,7 @@
 #import "NSCefView.h"
 #import "NSCefData.h"
 #import "ASCPresentationReporter.h"
+#import "NSDictionary+Extensions.h"
 
 @interface ASCEditorWindowController () <NSWindowDelegate>
 @property (nonatomic) BOOL waitingForClose;
@@ -87,6 +88,7 @@
     addObserverFor(CEFEventNameEditorAppActionRequest, @selector(onCEFEditorAppActionRequest:));
     addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
+    addObserverFor(CEFEventNameWebAppsEntry, @selector(onCEFWebAppsEntry:));
 }
 
 - (void)windowDidMove:(NSNotification *)notification {
@@ -373,6 +375,22 @@
                 if ([action isEqualToString:@"close"]) {
                     [self.window close];
                 }
+            }
+        }
+    }
+}
+
+- (void)onCEFWebAppsEntry:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+        
+        NSString * viewId = json[@"viewId"];
+        if ([self holdView:viewId]) {
+            ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+            NSCefView *cefView = (NSCefView *)window.webView;
+            if (cefView) {
+                NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
+                [cefView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
             }
         }
     }

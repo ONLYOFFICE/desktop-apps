@@ -950,6 +950,9 @@
             
             [cefView create:appManager withType:cvwtEditor];
             [cefView setBackgroundColor:[ASCThemesController currentThemeColor:windowBackgroundColor]];
+            
+            NSDictionary *widgetInfo = @{@"widgetType": @"window", @"captionHeight": TOOLBTN_HEIGHT};
+            [cefView setParentWidgetInfoWithJson:[widgetInfo jsonString]];
                        
             ASCTabViewType type = ASCTabViewTypeOpening;
             switch (action) {
@@ -1074,6 +1077,9 @@
             }
                         
             [editorWindow makeKeyAndOrderFront:nil];
+            
+            NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
+            [cefView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
             
         } else {
             [self presentMainWindow];
@@ -1694,6 +1700,10 @@
         return;
     }
     NSCefView *webView = (NSCefView *)cefView;
+    
+    NSDictionary *widgetInfo = @{@"widgetType": @"window", @"captionHeight": TOOLBTN_HEIGHT};
+    [webView setParentWidgetInfoWithJson:[widgetInfo jsonString]];
+    
     NSWindow * mainWindow = self.mainWindowController.window;
     NSSize size = [mainWindow frame].size;
     NSRect windowFrame = NSMakeRect(screenPoint.x - 200, screenPoint.y - size.height + 11, size.width, size.height);
@@ -1714,6 +1724,9 @@
     }
     
     [editorWindow makeKeyAndOrderFront:nil];
+    
+    NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
+    [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
     [webView focus];
 
     // Let the event loop process before starting drag to prevent window jerking

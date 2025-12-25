@@ -73,6 +73,10 @@
     [self internalClean];
 }
 
+- (CCefView *)cef {
+    return m_pCefView ? m_pCefView->GetCefView() : nullptr;
+}
+
 - (void)internalClean {
     if (NULL != m_pCefView) {
         if (m_pCefView->GetCefView()) {
@@ -269,5 +273,27 @@
     return nil;
 }
 
+- (void)setParentWidgetInfoWithJson:(NSString *)jsonString {
+    CCefView * cef = [self cef];
+    if (cef) {
+        cef->SetParentWidgetInfo([jsonString stdwstring]);
+    }
+}
+
+- (void)sendCommand:(NSString *)command withParam:(NSString *)param {
+    CCefView * cef = [self cef];
+    if (cef) {
+        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+        pCommand->put_Command([command stdwstring]);
+        pCommand->put_Param([param stdwstring]);
+        
+        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+        if (cef->GetType() == cvwtEditor ) {
+            pCommand->put_FrameName(L"frameEditor");
+        }
+        cef->Apply(pEvent);
+    }
+}
 
 @end

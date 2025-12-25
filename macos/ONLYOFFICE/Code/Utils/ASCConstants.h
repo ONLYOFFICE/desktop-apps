@@ -44,6 +44,7 @@
 #ifndef ONLYOFFICE_ASCConstants_h
 #define ONLYOFFICE_ASCConstants_h
 
+#define TOOLBTN_HEIGHT @28
 #define ADDREFINTERFACE(x) if (x) {x->AddRef();}
 
 typedef NS_ENUM(int, ASCTabActionType) {
@@ -151,6 +152,7 @@ static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFo
 static NSString * const CEFEventNameDocumentFragmentBuild   = @"CEF_documentFragmentBuild";
 static NSString * const CEFEventNameDocumentFragmented      = @"CEF_documentFragmented";
 static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificatePreview";
+static NSString * const CEFEventNameWebAppsEntry            = @"CEF_webAppsEntry";
 
 @interface ASCConstants : NSObject
 

@@ -1279,6 +1279,9 @@
         [cefView create:appManager withType:type];
         [cefView setBackgroundColor:[ASCThemesController currentThemeColor:windowBackgroundColor]];
         
+        NSDictionary *widgetInfo = @{@"widgetType": @"tab", @"captionHeight": @0};
+        [cefView setParentWidgetInfoWithJson:[widgetInfo jsonString]];
+        
         [self.view.window makeKeyAndOrderFront:nil];
         
         switch (action) {
