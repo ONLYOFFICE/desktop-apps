@@ -46,6 +46,7 @@
 #import "NSCefView.h"
 #import "NSCefData.h"
 #import "ASCPresentationReporter.h"
+#import "NSString+Extensions.h"
 #import "NSDictionary+Extensions.h"
 
 @interface ASCEditorWindowController () <NSWindowDelegate>
@@ -89,6 +90,7 @@
     addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
     addObserverFor(CEFEventNameWebAppsEntry, @selector(onCEFWebAppsEntry:));
+    addObserverFor(CEFEventNameWebTitleChanged, @selector(onWebTitleChanged:));
 }
 
 - (void)windowDidMove:(NSNotification *)notification {
@@ -391,6 +393,25 @@
             if (cefView) {
                 NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
                 [cefView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
+            }
+        }
+    }
+}
+
+- (void)onWebTitleChanged:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+        
+        NSString * viewId = json[@"viewId"];
+        if ([self holdView:viewId]) {
+            if (NSString * infoString = json[@"info"]) {
+                if (NSMutableDictionary *info = [[infoString dictionary] mutableCopy]) {
+                    NSString *clickAction = info[@"click"];
+                    if (clickAction && [clickAction isEqualToString:@"home"]) {
+                        AppDelegate *app = (AppDelegate *)[NSApp delegate];
+                        [app presentMainWindow];
+                    }
+                }
             }
         }
     }

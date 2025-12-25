@@ -922,6 +922,13 @@ public:
                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId],
                                                                                          @"info": [NSString stringWithstdwstring:param]
                                                                                          }];
+                        } else if (cmd.compare(L"title:button") == 0 ) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameWebTitleChanged
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"info": [NSString stringWithstdwstring:param]
+                                                                                         }];
                         }
 
                         break;

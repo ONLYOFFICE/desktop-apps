@@ -153,6 +153,7 @@ static NSString * const CEFEventNameDocumentFragmentBuild   = @"CEF_documentFrag
 static NSString * const CEFEventNameDocumentFragmented      = @"CEF_documentFragmented";
 static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificatePreview";
 static NSString * const CEFEventNameWebAppsEntry            = @"CEF_webAppsEntry";
+static NSString * const CEFEventNameWebTitleChanged         = @"CEF_webTitleChanged";
 
 @interface ASCConstants : NSObject
 
