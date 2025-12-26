@@ -676,19 +676,16 @@
     return self.mainWindowController ? self.mainWindowController.window : nil;
 }
 
-- (NSViewController *)topMostViewController {
+- (NSWindow *)effectiveKeyWindow {
     NSWindow *keyWindow = [NSApp keyWindow];
     if (!keyWindow) {
-        NSArray<NSWindow *> *windows = [NSApp windows];
+        NSArray<NSWindow *> *windows = [NSApp orderedWindows];
         if (windows.count == 0) {
             return nil;
         }
-        keyWindow = windows.firstObject;
+        return windows.firstObject;
     }
-    if (keyWindow && keyWindow.contentViewController) {
-        return keyWindow.contentViewController;
-    }
-    return nil;
+    return keyWindow;
 }
 
 - (void)saveLocalFileWithParams:(NSDictionary *)params {
@@ -1415,9 +1412,12 @@
             [controller previewBy:[NSURL fileURLWithPath:path]];
         } else
         if (text && text.length > 0) {
-            NSViewController* controller = [self topMostViewController];
-            ASCCertificatePreviewController * previewController = [[ASCCertificatePreviewController alloc] init:controller];
-            [previewController presentTextInfo:text];
+            NSWindow * window = [self effectiveKeyWindow];
+            NSViewController * controller = nil;
+            if (window && (controller = window.contentViewController) != nil) {
+                ASCCertificatePreviewController * previewController = [[ASCCertificatePreviewController alloc] init:controller];
+                [previewController presentTextInfo:text];
+            }
         }
     }
 }
