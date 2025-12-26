@@ -494,8 +494,9 @@
     [self.eulaMenuItem setHidden:YES];
 #endif
     NSWindow *keyWindow = [NSApp keyWindow];
-    BOOL isWindowVisible = (keyWindow != nil) && [keyWindow isVisible];
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
+    BOOL hasKeyWindow = (keyWindow != nil && ([keyWindow isKindOfClass:[ASCTitleWindow class]] || [keyWindow isKindOfClass:[ASCEditorWindow class]]));
+    BOOL keyWindowSupportsDocumentOperations = hasKeyWindow && ([keyWindow isKindOfClass:[ASCEditorWindow class]] || tab != nil);
     NSString * productName = [ASCHelper appName];
     
     if ([item action] == @selector(onMenuAbout:)) {
@@ -508,24 +509,24 @@
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"Quit %@", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuNew:)) {
-        return isWindowVisible;
+        return hasKeyWindow;
     } else if ([item action] == @selector(onMenuOpen:)) {
-        return isWindowVisible;
+        return hasKeyWindow;
     } else if ([item action] == @selector(onMenuSave:)) {
-        return nil != tab && [[self getMainWindow] isVisible];
+        return keyWindowSupportsDocumentOperations;
     } else if ([item action] == @selector(onMenuSaveAs:)) {
-        return nil != tab && [[self getMainWindow] isVisible];
+        return keyWindowSupportsDocumentOperations;
     } else if ([item action] == @selector(onMenuPrint:)) {
-        return nil != tab && [[self getMainWindow] isVisible];
+        return keyWindowSupportsDocumentOperations;
     } else if ([item action] == @selector(onShowHelp:)) {
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@ Help", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuAcknowledgments:)) {
-        return isWindowVisible;
+        return hasKeyWindow;
     } else if ([item action] == @selector(onMenuEULA:)) {
-        return isWindowVisible;
+        return hasKeyWindow;
     } else if ([item action] == @selector(onPreferences:)) {
-        return isWindowVisible;
+        return hasKeyWindow;
     }
     
     return [super validateMenuItem:item];
@@ -586,11 +587,7 @@
 }
 
 - (IBAction)onMenuSave:(NSMenuItem *)sender {
-    ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
-    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
-    NSCefView * cefView = [controller cefViewWithTab:tab];
-    
+    NSCefView * cefView = [self cefViewFromKeyWindow];
     if (cefView) {
         NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
         [cefView apply:pEvent];
@@ -598,11 +595,7 @@
 }
 
 - (IBAction)onMenuSaveAs:(NSMenuItem *)sender {
-    ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
-    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
-    NSCefView * cefView = [controller cefViewWithTab:tab];
-    
+    NSCefView * cefView = [self cefViewFromKeyWindow];
     if (cefView) {
         NSEditorApi::CAscExecCommandJS * pData = new NSEditorApi::CAscExecCommandJS;
         pData->put_Command(L"file:saveas");
@@ -617,11 +610,7 @@
 }
 
 - (IBAction)onMenuPrint:(NSMenuItem *)sender {
-    ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
-    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
-    NSCefView * cefView = [controller cefViewWithTab:tab];
-    
+    NSCefView * cefView = [self cefViewFromKeyWindow];
     if (cefView) {
         NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
         pCommand->put_FrameName(L"frameEditor");
@@ -635,19 +624,22 @@
 }
 
 - (IBAction)onMenuAcknowledgments:(NSMenuItem *)sender {
-    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    [self presentMainWindow];
+    NSWindow * mainWindow = [self getMainWindow];
     ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
     [controller openAcknowledgments];
 }
 
 - (IBAction)onMenuEULA:(NSMenuItem *)sender {
-    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    [self presentMainWindow];
+    NSWindow * mainWindow = [self getMainWindow];
     ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
     [controller openEULA];
 }
 
 - (IBAction)onMenuAbout:(NSMenuItem *)sender {
 //    [NSApp orderFrontStandardAboutPanel:sender];
+    [self presentMainWindow];
     NSWindow * mainWindow = [self getMainWindow];
     
     if (mainWindow) {
@@ -659,7 +651,8 @@
 }
 
 - (IBAction)onPreferences:(NSMenuItem *)sender {
-    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    [self presentMainWindow];
+    NSWindow * mainWindow = [self getMainWindow];
     ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
     [controller openPreferences];
 }
@@ -678,14 +671,36 @@
 
 - (NSWindow *)effectiveKeyWindow {
     NSWindow *keyWindow = [NSApp keyWindow];
-    if (!keyWindow) {
-        NSArray<NSWindow *> *windows = [NSApp orderedWindows];
-        if (windows.count == 0) {
-            return nil;
-        }
-        return windows.firstObject;
+    if (keyWindow && ([keyWindow isKindOfClass:[ASCTitleWindow class]] || [keyWindow isKindOfClass:[ASCEditorWindow class]])) {
+        return keyWindow;
     }
-    return keyWindow;
+    for (NSWindow *window in [NSApp orderedWindows]) {
+        if ([window isKindOfClass:[ASCTitleWindow class]] || [window isKindOfClass:[ASCEditorWindow class]]) {
+            return window;
+        }
+    }
+    return nil;
+}
+
+- (NSCefView *)cefViewFromKeyWindow {
+    NSWindow *keyWindow = [NSApp keyWindow];
+    if (!keyWindow) {
+        return nil;
+    }
+
+    if ([keyWindow isKindOfClass:[ASCTitleWindow class]]) {
+        ASCTabView *tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
+        if (tab) {
+            ASCCommonViewController *controller = (ASCCommonViewController *)keyWindow.contentViewController;
+            return [controller cefViewWithTab:tab];
+        }
+    }
+
+    if ([keyWindow isKindOfClass:[ASCEditorWindow class]]) {
+        ASCEditorWindow *editor = (ASCEditorWindow *)keyWindow;
+        return (NSCefView *)editor.webView;
+    }
+    return nil;
 }
 
 - (void)saveLocalFileWithParams:(NSDictionary *)params {
