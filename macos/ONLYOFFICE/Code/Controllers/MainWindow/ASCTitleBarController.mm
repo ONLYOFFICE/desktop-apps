@@ -563,6 +563,8 @@ static float kASCRTLTabsRightMargin = 0;
     // Mark tab as detached to prevent view destruction in didRemovedTab
     tab.params[@"detached"] = @YES;
     [control removeTab:tab animated:NO];
+    webView.data.url = tab.params[@"url"];
+    webView.data.path = tab.params[@"path"];
     
     AppDelegate *app = [NSApp delegate];
     [app dragDetachedTab:webView atScreenPoint:screenPoint withEvent:event];
@@ -621,6 +623,7 @@ static float kASCRTLTabsRightMargin = 0;
     tab.webView = webView;
     tab.params = [NSMutableDictionary dictionary];
     tab.params[@"action"] = @(ASCTabActionUnknown);
+    tab.params[@"url"] = webView.data.url;
     tab.params[@"path"] = webView.data.path;
     tab.params[@"reattaching"] = @YES;
     
