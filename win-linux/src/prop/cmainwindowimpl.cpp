@@ -112,6 +112,12 @@ void CMainWindowImpl::refreshAboutVersion()
 # elif defined(_M_IX86)
     _json_obj["arch"] = "x86";
 # endif
+#else
+# if defined(__aarch64__)
+    _json_obj["arch"] = "arm64";
+# elif defined(__x86_64__)
+    _json_obj["arch"] = "x64";
+# endif
 #endif
     _json_obj["edition"]    = _license;
 

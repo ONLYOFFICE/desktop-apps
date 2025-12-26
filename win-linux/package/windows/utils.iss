@@ -88,7 +88,7 @@ begin
 
   upgradecode := '{DC9BAE42-810B-423A-9E25-E4073F1C7B00}'; //arm64
 
-  Result :=  msiproductupgrade(upgradecode, '14.0.0.0');
+  Result :=  msiproductupgrade(upgradecode, '14.32.31332.0');
 
 #else
 #ifndef _WIN_XP
