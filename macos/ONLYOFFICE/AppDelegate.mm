@@ -522,11 +522,11 @@
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@ Help", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuAcknowledgments:)) {
-        return hasKeyWindow;
+        return YES;
     } else if ([item action] == @selector(onMenuEULA:)) {
-        return hasKeyWindow;
+        return YES;
     } else if ([item action] == @selector(onPreferences:)) {
-        return hasKeyWindow;
+        return YES;
     }
     
     return [super validateMenuItem:item];
