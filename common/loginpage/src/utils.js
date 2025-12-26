@@ -385,6 +385,20 @@ utils.fn.extend = function(dest, src) {
     return dest;
 };
 
+utils.fn.pinnedFolders = function(path, action) {
+    const key = 'pinnedFolders';
+    let pinned = JSON.parse(localStorage.getItem(key) || '[]');
+
+    if (action === 'check') return pinned.includes(path);
+
+    const i = pinned.indexOf(path);
+    if (action === 'toggle') {
+        i === -1 ? pinned.push(path) : pinned.splice(i, 1);
+    }
+
+    localStorage.setItem(key, JSON.stringify(pinned));
+};
+
 utils.fn.parseRecent = function(arr, out = 'files') {
     var _files_arr = [], _dirs_arr = [];
 
@@ -401,6 +415,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
 
             _files_arr.push({
                 fileid: _f_.id,
+                pinid: !_f_.pin ? _f_.id : -_f_.id,
                 type: _f_.type,
                 format: utils.parseFileFormat(_f_.type),
                 name: name,
@@ -408,6 +423,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 date: _f_.modifyed,
                 path: $('<div>').html(fn).text(),
                 cloud: _f_.cloud,
+                pinned: _f_.pin,
             });
 
             _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);
@@ -415,6 +431,13 @@ utils.fn.parseRecent = function(arr, out = 'files') {
     }
 
     if (out == 'files') return _files_arr;
+
+    const pinned = JSON.parse(localStorage.getItem('pinnedFolders') || '[]');
+    for (const pinnedPath of pinned) {
+        if (!_dirs_arr.includes(pinnedPath)) {
+            _dirs_arr.push(pinnedPath);
+        }
+    }
 
     var out_dirs_arr = [];
     for (let _d_ of _dirs_arr) {
@@ -426,11 +449,17 @@ utils.fn.parseRecent = function(arr, out = 'files') {
         } else
             parent = _d_.slice(0, _d_.length - name.length - 1);
 
+        let pinned = utils.fn.pinnedFolders(_d_, 'check');
+        let id = _d_.hashCode();
+
         out_dirs_arr.push({
                 type: 'folder',
                 full: _d_,
                 name: name,
-                descr: parent
+                descr: parent,
+                pinid: !pinned ? id : -id,
+                pinned: pinned,
+                uid: `folder-${id}`
         });
     }
 

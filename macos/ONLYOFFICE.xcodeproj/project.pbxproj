@@ -102,6 +102,9 @@
 		BE6251BA22BD089100656116 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = BE6251B922BD089100656116 /* dictionaries */; };
 		BE9A63CD2E2A429F0040CE84 /* ascdocumentscore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9A63CC2E2A429F0040CE84 /* ascdocumentscore.framework */; };
 		BE9A63CF2E2A42A60040CE84 /* ooxmlsignature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9A63CE2E2A42A60040CE84 /* ooxmlsignature.framework */; };
+		F11377F02EFED60000ED2405 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11377EE2EFED5FF00ED2405 /* ASCLicenseController.m */; };
+		F11377F12EFED60000ED2405 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11377EE2EFED5FF00ED2405 /* ASCLicenseController.m */; };
+		F11377F22EFED60000ED2405 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11377EE2EFED5FF00ED2405 /* ASCLicenseController.m */; };
 		F12F85D32EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D42EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D52EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
@@ -841,6 +844,8 @@
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		BE9A63CC2E2A429F0040CE84 /* ascdocumentscore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ascdocumentscore.framework; path = ../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/ascdocumentscore.framework; sourceTree = "<group>"; };
 		BE9A63CE2E2A42A60040CE84 /* ooxmlsignature.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ooxmlsignature.framework; path = ../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/ooxmlsignature.framework; sourceTree = "<group>"; };
+		F11377EE2EFED5FF00ED2405 /* ASCLicenseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCLicenseController.m; sourceTree = "<group>"; };
+		F11377EF2EFED5FF00ED2405 /* ASCLicenseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCLicenseController.h; sourceTree = "<group>"; };
 		F12F85D12EB6A38400370877 /* ASCEditorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindowController.h; sourceTree = "<group>"; };
 		F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEditorWindowController.mm; sourceTree = "<group>"; };
 		F1376CA32EF581FA00EC5E08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Separate-Editor.storyboard"; sourceTree = "<group>"; };
@@ -1176,6 +1181,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F11377ED2EFED5FF00ED2405 /* License */ = {
+			isa = PBXGroup;
+			children = (
+				F11377EE2EFED5FF00ED2405 /* ASCLicenseController.m */,
+				F11377EF2EFED5FF00ED2405 /* ASCLicenseController.h */,
+			);
+			path = License;
+			sourceTree = "<group>";
+		};
 		F12F85D02EB6A38400370877 /* EditorWindow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1722,6 +1736,7 @@
 		FCF289722150E6A1002FD438 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F11377ED2EFED5FF00ED2405 /* License */,
 				F12F85D02EB6A38400370877 /* EditorWindow */,
 				FCF289742150E820002FD438 /* Common */,
 				FCF289762150E904002FD438 /* MainWindow */,
@@ -2288,7 +2303,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/license\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\nCreateDir \"${DST_DIR}/license\"\n[ -d \"${SRC_BASE_DIR}/license\" ] && cp -vR \"${SRC_BASE_DIR}/license\" \"${DST_DIR}\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\n# cp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C6BB26DD018B0012C20D /* Copy Library */ = {
@@ -2422,6 +2437,7 @@
 				FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.mm in Sources */,
 				FC0BD6A5258B63F700C47F95 /* SFBPopover.m in Sources */,
 				FC0BD6A6258B63F700C47F95 /* ASCEventsController.mm in Sources */,
+				F11377F22EFED60000ED2405 /* ASCLicenseController.m in Sources */,
 				FC0BD6A7258B63F700C47F95 /* ASCAboutController.m in Sources */,
 				FC0BD6A8258B63F700C47F95 /* ASCMulticastDelegate.m in Sources */,
 				FC0BD6A9258B63F700C47F95 /* ASCButtonCell.m in Sources */,
@@ -2500,6 +2516,7 @@
 				FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.mm in Sources */,
 				FCB4C6DE26DD018B0012C20D /* SFBPopover.m in Sources */,
 				FCB4C6DF26DD018B0012C20D /* ASCEventsController.mm in Sources */,
+				F11377F02EFED60000ED2405 /* ASCLicenseController.m in Sources */,
 				FCB4C6E026DD018B0012C20D /* ASCAboutController.m in Sources */,
 				FCB4C6E126DD018B0012C20D /* ASCMulticastDelegate.m in Sources */,
 				FCB4C6E226DD018B0012C20D /* ASCButtonCell.m in Sources */,
@@ -2578,6 +2595,7 @@
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.mm in Sources */,
 				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
 				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
+				F11377F12EFED60000ED2405 /* ASCLicenseController.m in Sources */,
 				FC659BFA1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
 				FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */,
 				FCC77C85206CEE5B001B7837 /* ASCButtonCell.m in Sources */,

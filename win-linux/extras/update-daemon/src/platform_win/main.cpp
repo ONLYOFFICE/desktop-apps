@@ -50,7 +50,7 @@ static const WCHAR      gSvcVersion[] = _T("Service version: " VER_FILEVERSION_S
 VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv);
 VOID WINAPI SvcCtrlHandler(DWORD dwCtrl);
 VOID ReportSvcStatus(DWORD, DWORD, DWORD);
-
+BOOL EnableRedirectionTrustPolicy();
 
 int __cdecl _tmain (int argc, TCHAR *argv[])
 {
@@ -200,6 +200,11 @@ VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv)
     // Report running status when initialization is complete.
     ReportSvcStatus(SERVICE_RUNNING, NO_ERROR, 0);
 
+    // Prevent the process from following filesystem junctions
+    // created by non-admin users.
+    if (!EnableRedirectionTrustPolicy())
+        NS_Logger::WriteLog(_T("Failed to set redirection trust policy: ") + NS_Utils::GetLastErrorAsString());
+
     CSvcManager upd;
     upd.aboutToQuit([]() {
         ReportSvcStatus(SERVICE_STOPPED, NO_ERROR, 0);
@@ -250,4 +255,15 @@ VOID ReportSvcStatus(DWORD currState, DWORD exitCode, DWORD waitHint)
         wstring err(ADVANCED_ERROR_MESSAGE);
         SvcControl::SvcReportEvent(err.c_str());
     }
+}
+
+BOOL EnableRedirectionTrustPolicy()
+{
+    BOOL(WINAPI *_SetProcessMitigationPolicy)(PROCESS_MITIGATION_POLICY, PVOID, SIZE_T) = NULL;
+    if (HMODULE module = GetModuleHandleA("kernel32"))
+        *(FARPROC*)&_SetProcessMitigationPolicy = GetProcAddress(module, "SetProcessMitigationPolicy");
+
+    PROCESS_MITIGATION_REDIRECTION_TRUST_POLICY policy = {0};
+    policy.EnforceRedirectionTrust = 1;
+    return _SetProcessMitigationPolicy ? _SetProcessMitigationPolicy(ProcessRedirectionTrustPolicy, &policy, sizeof(policy)) : FALSE;
 }

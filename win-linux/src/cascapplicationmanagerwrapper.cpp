@@ -57,6 +57,19 @@ using namespace std::placeholders;
 
 bool CAscApplicationManagerWrapper::m_rtlEnabled = false;
 
+std::wstring get_file_name_from_open_deeplink(const std::wstring& link)
+{
+    size_t pos1 = link.find(L"|n|");
+    if ( pos1 != std::wstring::npos ) {
+        size_t pos2 = link.find(L"|", pos1 += 3);
+
+        if ( pos2 != std::wstring::npos )
+            return link.substr(pos1, pos2 - pos1);
+    }
+
+    return L"";
+}
+
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
 
@@ -921,6 +934,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         open_scheme.push_back(app_scheme);
     }
     std::wstring app_action = app_scheme + L"//action";
+    std::wstring app_action_open = app_scheme + L"//open";
     std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
     std::vector<std::wstring> vec_window_actions;
 
@@ -972,6 +986,12 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             }
 
             continue;
+        } else
+        if ( arg.rfind(app_action_open, 0) == 0 ) {
+            std::wstring deep_link = arg;
+            Utils::replaceAll(deep_link, L"%7C", L"|");
+            open_opts.wurl = deep_link;
+            open_opts.name = QString::fromStdWString(get_file_name_from_open_deeplink(deep_link));
         } else {
             open_opts.wurl = arg;
         }
@@ -1265,20 +1285,18 @@ void CAscApplicationManagerWrapper::initializeApp()
         AscAppManager::setUserSettings(L"system-scale", L"1");
     }
 
-    if ( !InputArgs::contains(L"--single-window-app") ) {
-        SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
-        connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
-            std::vector<std::wstring> vec_inargs;
-            foreach (auto arg, args.split(";")) {
-                if ( !arg.isEmpty() )
-                    vec_inargs.push_back(arg.toStdWString());
-            }
-            if ( !vec_inargs.empty() )
-                handleInputCmd(vec_inargs);
-            else
-                gotoMainWindow();
-        });
-    }
+    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
+    connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
+        std::vector<std::wstring> vec_inargs;
+        foreach (auto arg, args.split(";")) {
+            if ( !arg.isEmpty() )
+                vec_inargs.push_back(arg.toStdWString());
+        }
+        if ( !vec_inargs.empty() )
+            handleInputCmd(vec_inargs);
+        else
+            gotoMainWindow();
+    });
 
     /* prevent drawing of focus rectangle on a button */
 //    QApplication::setStyle(new CStyleTweaks);
@@ -2097,7 +2115,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             _editor->applyTheme(theme);
         }
 
-        QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        // QJsonObject _json_obj{{"theme", _app.m_themes->current().json()}};
+        QJsonObject _json_obj{{"theme", QString::fromStdWString(actual_id)}};       // for bug 78050. send only theme id
         AscAppManager::getInstance().UpdatePlugins(Utils::stringifyJson(_json_obj).toStdWString());
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
@@ -2337,6 +2356,7 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     switch ( format ) {
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF: {
         QString docname = tr("Document%1.docx").arg(++pdf_count);
         return docname.replace("docx", "pdf");

@@ -370,9 +370,7 @@ bool CNotification::init()
     WinToast::instance()->setAppName(TEXT(WINDOW_TITLE));
     WinToast::instance()->setAppUserModelId(TEXT(APP_USER_MODEL_ID));
     if (IsPackage(Portable)) {
-        WinToast::instance()->setShortcutPolicy(WinToastLib::WinToast::SHORTCUT_POLICY_REQUIRE_CREATE);
-        const QString shortcutTarget = qApp->applicationDirPath() + APP_LAUNCH_NAME;
-        WinToast::instance()->setShortcutTarget(QDir::toNativeSeparators(shortcutTarget).toStdWString());
+        WinToast::instance()->setShortcutPolicy(WinToastLib::WinToast::SHORTCUT_POLICY_IGNORE);
     } else {
         WinToast::instance()->setShortcutPolicy(WinToastLib::WinToast::SHORTCUT_POLICY_REQUIRE_NO_CREATE);
         PWSTR progPath = nullptr;

@@ -121,6 +121,13 @@
     return isdark ? uiThemeNight : uiThemeWhite;
 }
 
++ (NSString*)actualThemeId {
+    NSString * theme = [self currentThemeId];
+    if ([uiThemeSystem isEqualToString:theme]) {
+        return [self defaultThemeId:[self isCurrentThemeDark]];
+    } else return theme;
+}
+
 + (NSColor*)currentThemeColor:(NSString*)name {
     return [self color:name forTheme:[self currentThemeId]];
 }

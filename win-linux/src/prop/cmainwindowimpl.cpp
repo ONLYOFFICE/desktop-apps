@@ -39,6 +39,7 @@
 
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QDir>
 #include <QFile>
 
 #define DEFAULT_LICENSE_NAME    "GNU AGPL v3"
@@ -55,13 +56,21 @@ void CMainWindowImpl::refreshAboutVersion()
 {
     QJsonObject _json_obj;
 
-    auto _read_license_name = [](const QString& path) -> QString {
+    auto _read_license_name = [](QString& path) -> QString {
+        QFileInfo fi(path);
+        QDir dir = fi.dir();
+        QStringList files = dir.entryList(QStringList() << fi.fileName(),
+                                          QDir::Files, QDir::Name | QDir::IgnoreCase);
+        if (files.isEmpty())
+            return QString();
+
+        path = dir.filePath(files.first());
         QFile f(path);
         QString n;
-        if ( f.exists(path) ) {
+        if ( f.exists() ) {
             if ( f.open(QIODevice::ReadOnly | QIODevice::Text )) {
                 QTextStream stream(&f);
-                n = f.readLine().trimmed();
+                n = stream.readLine().trimmed();
                 f.close();
             }
         }
@@ -86,14 +95,22 @@ void CMainWindowImpl::refreshAboutVersion()
         _lic_url = QUrl::fromLocalFile(_lic_path).toString();
     }
 
-    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";
+    QString _license;
+    if ( !(_lic_name.count() > 15) )
+        _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";
+    else _license = "&lt;a class=\"link\" onclick=\"window.open('" + _lic_url + "')\" draggable=\"false\" href=\"#\"&gt;" + _lic_name + "&lt;/a&gt;";
+
 
     _json_obj["version"]    = VER_FILEVERSION_STR;
 #ifdef Q_OS_WIN
-# ifdef Q_OS_WIN64
-    _json_obj["arch"]       = "x64";
-# else
-    _json_obj["arch"]       = "x86";
+# if defined(_M_ARM64)
+    _json_obj["arch"] = "arm64";
+# elif defined(_M_ARM)
+    _json_obj["arch"] = "arm";
+# elif defined(_M_X64)
+    _json_obj["arch"] = "x64";
+# elif defined(_M_IX86)
+    _json_obj["arch"] = "x86";
 # endif
 #endif
     _json_obj["edition"]    = _license;

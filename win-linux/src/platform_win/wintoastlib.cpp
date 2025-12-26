@@ -593,6 +593,22 @@ bool WinToast::initialize(_Out_opt_ WinToastError* error) {
             DEBUG_MSG(L"Error while attaching the AUMI to the current proccess =(");
             return false;
         }
+    } else {
+        HKEY hKey = nullptr;
+        std::wstring key = L"SOFTWARE\\Classes\\AppUserModelId\\" + _aumi;
+        LSTATUS res = RegCreateKeyExW(HKEY_CURRENT_USER, key.c_str(), 0, nullptr, REG_OPTION_VOLATILE, KEY_SET_VALUE, nullptr, &hKey, nullptr);
+        if (res != ERROR_SUCCESS) {
+            setError(error, WinToastError::UnknownError);
+            DEBUG_MSG(L"Failed to create AUMID registry key =(");
+            return false;
+        }
+        res = RegSetValueExW(hKey, L"DisplayName", 0, REG_SZ, (const BYTE*)_appName.c_str(), (_appName.length() + 1) * sizeof(WCHAR));
+        RegCloseKey(hKey);
+        if (res != ERROR_SUCCESS) {
+            setError(error, WinToastError::UnknownError);
+            DEBUG_MSG(L"Failed to set DisplayName for AUMID registry key =(");
+            return false;
+        }
     }
 
     if (FAILED(DllImporter::SetCurrentProcessExplicitAppUserModelID(_aumi.c_str()))) {

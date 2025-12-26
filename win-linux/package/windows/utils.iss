@@ -79,10 +79,19 @@ begin
    end;
 end;
 
-function checkVCRedist2022(): Boolean;
+function checkVCRedist(): Boolean;
 var
   upgradecode: String;
 begin
+
+#if ARCH == "arm64"
+
+  upgradecode := '{DC9BAE42-810B-423A-9E25-E4073F1C7B00}'; //arm64
+
+  Result :=  msiproductupgrade(upgradecode, '14.0.0.0');
+
+#else
+#ifndef _WIN_XP
 
   if Is64BitInstallMode then
     upgradecode := '{36F68A90-239C-34DF-B58C-64B30153CE35}' //x64
@@ -90,12 +99,8 @@ begin
     upgradecode := '{65E5BD06-6392-3027-8C26-853107D3CF1A}'; //x86
 
   Result :=  msiproductupgrade(upgradecode, '14.32.31332.0');
-end;
 
-function checkVCRedist2019(): Boolean;
-var
-  upgradecode: String;
-begin
+#else
 
   if Is64BitInstallMode then
     upgradecode := '{C146EF48-4D31-3C3D-A2C5-1E91AF8A0A9B}' //x64
@@ -103,6 +108,10 @@ begin
     upgradecode := '{F899BAD3-98ED-308E-A905-56B5338963FF}'; //x86
 
   Result :=  msiproductupgrade(upgradecode, '14.27.29114.0');
+
+#endif
+#endif
+
 end;
 
 function ReadBinFile(fileName: String; list: TStringList): Boolean;

@@ -163,9 +163,11 @@ void CUpdateManager::DialogSchedule::addToSchedule(const QString &method, const 
 auto currentArch()->QString
 {
 #ifdef _WIN32
-# ifdef _WIN64
+# if defined(_M_ARM64)
+    return "_arm64";
+# elif defined(_M_X64)
     return "_x64";
-# else
+# elif defined(_M_IX86)
     return "_x86";
 # endif
 #else

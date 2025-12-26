@@ -56,6 +56,8 @@ l10n.en = {
     menuRemoveModel: 'Remove from list',
     menuClear: 'Clear',
     menuLogout: 'Logout',
+    menuFilePin: 'Pin',
+    menuFileUnpin: 'Unpin',
     textMyComputer: 'My Computer',
     textThrough: 'through',
     linkForgotPass: 'Forgot password?',

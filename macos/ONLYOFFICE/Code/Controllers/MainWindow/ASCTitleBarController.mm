@@ -353,6 +353,7 @@ static float kASCRTLTabsRightMargin = 0;
         NSDictionary * params   = (NSDictionary *)notification.userInfo;
         NSString * viewId       = params[@"viewId"];
         NSString * name         = params[@"name"];
+        NSString * path         = params[@"path"];
 
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         
@@ -362,6 +363,10 @@ static float kASCRTLTabsRightMargin = 0;
             }
             [tab setTitle:name];
             [tab setToolTip:name];
+
+            if ( !(path == nil) && !(path.length == 0) ) {
+                tab.params[@"path"] = path;
+            }
 
             [self.tabsControl updateTab:tab];
 //            if ([tab state] == NSControlStateValueOn) {

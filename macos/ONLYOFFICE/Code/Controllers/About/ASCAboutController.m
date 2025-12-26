@@ -40,11 +40,10 @@
 
 #import "ASCAboutController.h"
 
-#import <WebKit/WebKit.h>
-
 #import "ASCConstants.h"
 #import "ASCExternalController.h"
 #import "ASCSharedSettings.h"
+#import "ASCLicenseController.h"
 
 @interface ASCAboutController () {
     BOOL isCommercialVersion;
@@ -53,7 +52,6 @@
 @property (weak) IBOutlet NSTextField *versionText;
 @property (weak) IBOutlet NSTextField *copyrightText;
 @property (weak) IBOutlet NSButton *licenseButton;
-@property (weak) IBOutlet WebView *eulaWebView;
 @property (weak) IBOutlet NSStackView *infoStackView;
 @end
 
@@ -99,12 +97,6 @@
     NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:@"EULA" withExtension:@"html" subdirectory:@"license"];
     isCommercialVersion = eulaUrl != nil;
 
-    // EULA View
-    if (self.eulaWebView) {
-        if ( !eulaUrl )
-            eulaUrl = [[NSBundle mainBundle] URLForResource:@"LICENSE" withExtension:@"html" subdirectory:@"license"];
-        [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:eulaUrl]];
-    } else {
         // About View
         // Setup license button view
         NSMutableAttributedString * attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[self.licenseButton attributedTitle]];
@@ -140,27 +132,16 @@
         
         // Window
         [self setTitle:[NSString stringWithFormat:NSLocalizedString(@"About %@", nil), locProductName]];
-    }
 }
 
 - (void)viewDidAppear {
     [super viewDidAppear];
-    
-    // EULA View
-    if (self.eulaWebView) {
-        return;
-    }
-    
+        
     [self.view.window setStyleMask:[self.view.window styleMask] & ~NSResizableWindowMask];
 }
 
 - (void)viewDidDisappear {
     [super viewDidDisappear];
-
-    // EULA View
-    if (self.eulaWebView) {
-        return;
-    }
     
     [NSApp stopModal];
 }
@@ -182,6 +163,25 @@
 #elif _ARM_ONLY
     [self.versionText setStringValue:[NSString stringWithFormat:@"%@ Apple Silicon", [self.versionText stringValue]]];
 #endif
+}
+
+- (IBAction)onLicenseButtonClick:(id)sender {
+    NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:@"EULA" withExtension:@"html" subdirectory:@"license"];
+    if ( !eulaUrl )
+        eulaUrl = [[NSBundle mainBundle] URLForResource:@"LICENSE" withExtension:@"html" subdirectory:@"license"];
+    
+    NSWindowController * windowController = [self.storyboard instantiateControllerWithIdentifier:@"ASCLicenseWindowControllerId"];
+    ASCLicenseController *licView = (ASCLicenseController *)windowController.contentViewController;
+    [licView setUrl:eulaUrl];
+    NSWindow *licWindow = windowController.window;
+    
+    NSRect parentFrame = self.view.window.frame;
+    NSRect childFrame = licWindow.frame;
+    [licWindow setFrameOrigin:NSMakePoint(NSMidX(parentFrame) - childFrame.size.width/2,
+                                          NSMidY(parentFrame) - childFrame.size.height/2)];
+    [licWindow makeKeyAndOrderFront:nil]; // Show the window first to apply the coordinates
+    
+    [NSApp runModalForWindow:licWindow];
 }
 
 @end

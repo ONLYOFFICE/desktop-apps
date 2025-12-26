@@ -204,6 +204,16 @@ Model.prototype.set = function(key, value, opts) {
         this.events.changed.notify(args);
 };
 
+Model.prototype.setMany = function(args, opts) {
+    for (const [key, value] of Object.entries(args)) {
+        this[key] = value;
+    }
+
+    if (!opts || opts.silent !== true) {
+        this.events.changed.notify(args);
+    }
+};
+
 Model.prototype.get = function(key) {
     return this[key];
 };
