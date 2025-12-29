@@ -44,7 +44,7 @@
 
 @interface ASCCommonViewController : NSViewController <NSTabViewDelegate>
 - (BOOL)shouldTerminateApplication;
-- (BOOL)shouldCloseMainWindow;
+- (BOOL)shouldCloseWindowIfNoTabs;
 
 - (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
 - (ASCTabView *)tabViewWithId:(int)viewId;

@@ -549,7 +549,7 @@
     return YES;
 }
 
-- (BOOL)shouldCloseMainWindow {
+- (BOOL)shouldCloseWindowIfNoTabs {
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                         object:nil
                                                       userInfo:@{@"fullscreen" : @(NO)}];
