@@ -514,15 +514,18 @@
             // "Review Changes..." clicked
             self.shouldTerminateApp = YES;
             
+            [self.tabsWithChanges removeAllObjects];
+            NSMutableArray<ASCTabView *> *tabsWithChanges = [NSMutableArray array];
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             for (ASCTabView * tab in tabs) {
                 if (tab.changed || [locked_uuids containsObject:tab.uuid]) {
-                    [self.tabsWithChanges addObject:tab];
+                    [tabsWithChanges addObject:tab];
                 } else {
                     [self.tabsControl removeTab:tab selected:NO animated:NO];
                 }
             }
             
+            self.tabsWithChanges = [NSMutableArray arrayWithArray:tabsWithChanges];
             [self safeCloseTabsWithChanges];
         } else if (result == NSAlertSecondButtonReturn) {
             // "Cancel" clicked
@@ -765,6 +768,7 @@
             } else if (returnCode == NSAlertThirdButtonReturn) {
                 self.shouldTerminateApp = NO;
                 self.shouldLogoutPortal = NO;
+                [self.tabsWithChanges removeAllObjects];
             }
         }
     }
@@ -1429,14 +1433,17 @@
                     if (result == NSAlertFirstButtonReturn) {
                         // "Review Changes..." clicked
                         
+                        [self.tabsWithChanges removeAllObjects];
+                        NSMutableArray<ASCTabView *> *tabsWithChanges = [NSMutableArray array];
                         for (ASCTabView * tab in portalTabs) {
                             if (tab.changed || [saveLockedTabs containsObject:tab.uuid]) {
-                                [self.tabsWithChanges addObject:tab];
+                                [tabsWithChanges addObject:tab];
                             } else {
                                 [self.tabsControl removeTab:tab selected:NO animated:NO];
                             }
                         }
                         
+                        self.tabsWithChanges = [NSMutableArray arrayWithArray:tabsWithChanges];
                         [self safeCloseTabsWithChanges];
                     } else if (result == NSAlertSecondButtonReturn) {
                         return;
