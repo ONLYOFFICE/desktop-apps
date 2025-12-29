@@ -66,8 +66,8 @@
 
 - (void)addTab:(ASCTabView *)tab;
 - (void)addTab:(ASCTabView *)tab selected:(BOOL)selected;
-- (void)removeTab:(ASCTabView *)tab;
-- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected;
+- (void)removeTab:(ASCTabView *)tab animated:(BOOL)animated;
+- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected animated:(BOOL)animated;
 - (void)removeAllTabs;
 - (void)selectTab:(ASCTabView *)tab;
 - (void)updateTab:(ASCTabView *)tab;

@@ -682,19 +682,13 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self addTab:tab selected:YES];
 }
 
-- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected {
+- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected animated:(BOOL)animated {
     if (tab) {
         NSInteger tabIndex = tab.tag;
         
         [self.tabs removeObject:tab];
         
-        if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRemovedTab:)]) {
-            [_delegate tabs:self didRemovedTab:tab];
-        }
-        
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-            tab.animator.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
-        } completionHandler:^{
+        void (^completion)(void) = ^{
             [tab removeFromSuperview];
             
             if (_delegate && [_delegate respondsToSelector:@selector(tabs:didResize:)]) {
@@ -730,12 +724,24 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
                 [self selectTab:tabToSelect];
             }
-        }];
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRemovedTab:)]) {
+                [_delegate tabs:self didRemovedTab:tab];
+            }
+        };
+                
+        if (animated) {
+            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+                tab.animator.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
+            } completionHandler:completion];
+        } else {
+            completion();
+        }
     }
 }
 
-- (void)removeTab:(ASCTabView *)tab {
-    [self removeTab:tab selected:tab.state == NSControlStateValueOn];
+- (void)removeTab:(ASCTabView *)tab animated:(BOOL)animated {
+    [self removeTab:tab selected:tab.state == NSControlStateValueOn animated:animated];
 }
 
 - (void)removeAllTabs {
@@ -783,7 +789,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             return;
         }
     }
-    [self removeTab:tab];
+    [self removeTab:tab animated:YES];
 }
 
 - (void)tabDidUpdate:(ASCTabView *)tab {
