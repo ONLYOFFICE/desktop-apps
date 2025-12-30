@@ -2002,12 +2002,8 @@
         NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
         
         ASCTabActionType action = (ASCTabActionType)[tab.params[@"action"] intValue];
-        
-        if (action == ASCTabActionOpenPortal) {
-            [cefView create:appManager withType:cvwtSimple];
-        } else {
-            [cefView create:appManager withType:cvwtEditor];
-        }
+        CefViewWrapperType type = (action == ASCTabActionOpenPortal) ? cvwtSimple : cvwtEditor;
+        [cefView create:appManager withType:type];
         [cefView setBackgroundColor:[ASCThemesController currentThemeColor:windowBackgroundColor]];
         
         [self.view.window makeKeyAndOrderFront:nil];
