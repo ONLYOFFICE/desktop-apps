@@ -67,4 +67,7 @@
 - (void)openRecoverFileWithId:(NSInteger)index;
 
 - (void)createReporter:(CAscApplicationManager *)manager data:(void *)pData;
+
+- (void)setParentWidgetInfoWithJson:(NSString *)jsonString;
+- (void)sendCommand:(NSString *)command withParam:(NSString *)param;
 @end
