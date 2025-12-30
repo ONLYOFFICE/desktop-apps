@@ -461,12 +461,6 @@
     if ( !ptrmainwindow ) {
         ptrmainwindow = [[NSApp windows] objectAtIndex:0];
 
-//        NSArray * winarr = [NSApp windows];
-//        for (NSWindow * child in [NSApp windows]) {
-//            if ([child.title isEqualToString: @"ONLYOFFICE"]) {
-//                ptrmainwindow = child;
-//            }
-//        }
     }
 
     return ptrmainwindow;
