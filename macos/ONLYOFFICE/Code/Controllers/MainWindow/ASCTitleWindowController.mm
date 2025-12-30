@@ -65,18 +65,24 @@
                                                         object:self];
 }
 
+- (BOOL)shouldPerformClose {
+    ASCTitleWindow * window = (ASCTitleWindow *)self.window;
+    ASCCommonViewController * controller = (ASCCommonViewController *)window.contentViewController;
+    return [controller shouldCloseWindowIfNoTabs];
+}
+
 - (BOOL)windowShouldClose:(id)sender {
     ASCTitleWindow * window = (ASCTitleWindow *)self.window;
     ASCCommonViewController * controller = (ASCCommonViewController *)window.contentViewController;
-    NSEvent * event = [window currentEvent];
+//    NSEvent * event = [window currentEvent];
 
 //    BOOL isCommandKey = ([event modifierFlags] & NSCommandKeyMask) != 0;
 
-    if (event != nil && ((event.type != NSEventTypeLeftMouseUp) || event.window == nil)) {
-        if (![controller shouldCloseWindowIfNoTabs]) {
-            return NO;
-        }
-    }
+//    if (event != nil && ((event.type != NSEventTypeLeftMouseUp) || event.window == nil)) {
+//        if (![controller shouldCloseWindowIfNoTabs]) {
+//            return NO;
+//        }
+//    }
     
     return [controller shouldTerminateApplication];
 }
