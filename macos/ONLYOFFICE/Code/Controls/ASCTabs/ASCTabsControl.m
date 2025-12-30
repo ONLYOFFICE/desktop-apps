@@ -682,6 +682,55 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self addTab:tab selected:YES];
 }
 
+- (void)insertTab:(ASCTabView *)tab atIndex:(NSUInteger)index {
+    [self insertTab:tab atIndex:index selected:YES];
+}
+
+- (void)insertTab:(ASCTabView *)tab atIndex:(NSUInteger)index selected:(BOOL)selected {
+    if (!tab) return;
+
+    tab.hidden = YES;
+    NSUInteger count = self.tabs.count;
+    NSUInteger visualIndex = MIN(index, count);
+    [self.tabs insertObject:tab atIndex:visualIndex];
+
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didResize:)]) {
+        [_delegate tabs:self didResize:CGRectZero];
+    }
+
+    [self layoutTabs:nil animated:YES];
+
+    tab.hidden = NO;
+    tab.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
+
+    [self.tabsView setFrame:CGRectMake(0.0, 0.0, CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.frame))];
+
+    tab.delegate = self;
+    tab.target   = self;
+    tab.action   = @selector(handleSelectTab:);
+    [tab sendActionOn:NSEventMaskLeftMouseDown];
+
+    [self.tabsView addSubview:tab];
+
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        [context setAllowsImplicitAnimation:YES];
+        tab.animator.frame = CGRectOffset(tab.frame, 0, CGRectGetHeight(self.scrollView.frame));
+        [tab.superview scrollRectToVisible:tab.frame];
+    } completionHandler:^{
+        [self layoutTabs:nil animated:NO];
+        [self updateAuxiliaryButtons];
+        [self invalidateRestorableState];
+    }];
+
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didAddTab:)]) {
+        [_delegate tabs:self didAddTab:tab];
+    }
+
+    if (selected) {
+        [self selectTab:tab];
+    }
+}
+
 - (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected animated:(BOOL)animated {
     if (tab) {
         NSInteger tabIndex = tab.tag;

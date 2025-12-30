@@ -66,6 +66,9 @@
 
 - (void)addTab:(ASCTabView *)tab;
 - (void)addTab:(ASCTabView *)tab selected:(BOOL)selected;
+- (void)insertTab:(ASCTabView *)tab atIndex:(NSUInteger)index;
+- (void)insertTab:(ASCTabView *)tab atIndex:(NSUInteger)index selected:(BOOL)selected;
+
 - (void)removeTab:(ASCTabView *)tab animated:(BOOL)animated;
 - (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected animated:(BOOL)animated;
 - (void)removeAllTabs;
