@@ -31,40 +31,39 @@
 */
 
 //
-//  NSCefView.h
-//  CefViewTest
+//  NSCefData.h
 //
-//  Created by Oleg Korshul on 14.09.15.
-//  Copyright (c) 2015 Ascensio System. All rights reserved.
+//  Copyright (c) 2025 Ascensio System. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
-#import "applicationmanager.h"
-#import "NSCefData.h"
+#import "cefview.h"
 
+@interface NSCefData : NSObject
+-(instancetype)initWith:(NSString *)title viewType:(CefViewWrapperType)type;
+-(instancetype)initWith:(NSString *)title contentType:(AscEditorType)type;
 
-@interface NSCefView : NSView
-@property (nonatomic, strong) NSCefData *data;
-@property (nonatomic, readonly) NSInteger uuid;
+-(NSString *)title:(BOOL)orig;
+-(NSString *)features;
+-(CefViewWrapperType)viewType;
+-(BOOL)isViewType:(CefViewWrapperType)viewType;
+-(BOOL)hasFeature:(NSString *)feature;
+-(BOOL)hasFrame;
+-(BOOL)modified;
+-(BOOL)hasChanges;
+-(BOOL)closed;
+-(void)setFeatures:(NSString *)features;
+-(void)setChanged:(BOOL)changed;
+-(void)close;
+-(void)reuse;
 
-- (void)create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
-- (void)apply:(NSEditorApi::CAscMenuEvent *)event;
-- (void)setExternalCloud:(NSString *)provider;
-- (void)setBackgroundColor:(NSColor *)color;
-- (void)internalClean;
-- (void)focus;
-- (void)reload;
-- (BOOL)checkCloudCryptoNeedBuild;
-- (BOOL)checkBuilding;
-- (NSString *)originalUrl;
-- (BOOL)isSaveLocked;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) NSString *cloudName;
+@property (nonatomic, assign) AscEditorType contentType;
+@property (nonatomic, assign) BOOL isLocal;
+@property (nonatomic, assign) BOOL hasError;
+@property (nonatomic, assign) BOOL eventLoadSupported;
 
-- (void)loadWithUrl:(NSString *)url;
-- (void)createFileWithName:(NSString *)name type:(AscEditorType)type;
-- (void)createFileWithNameFromTemplate:(NSString *)name tplpath:(NSString *)path;
-- (void)openFileWithName:(NSString *)name type:(NSInteger)type;
-- (void)openRecentFileWithId:(NSInteger)index;
-- (void)openRecoverFileWithId:(NSInteger)index;
-
-- (void)createReporter:(CAscApplicationManager *)manager data:(void *)pData;
 @end
