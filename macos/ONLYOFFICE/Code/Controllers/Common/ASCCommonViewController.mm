@@ -1036,16 +1036,18 @@
                     }
                 }
             } else if ( keyCode == 87 ) { // W
-                if ( pData->get_IsCommandMac() ) {
-                    ASCTabView * tab = [self.tabsControl selectedTab];
-                    if ( tab and [self tabs:self.tabsControl willRemovedTab:tab] ) {
-                        [self.tabsControl removeTab:tab animated:NO];
-                    }
-                }
+                // Handled by AppKit
+//                if ( pData->get_IsCommandMac() ) {
+//                    ASCTabView * tab = [self.tabsControl selectedTab];
+//                    if ( tab and [self tabs:self.tabsControl willRemovedTab:tab] ) {
+//                        [self.tabsControl removeTab:tab animated:NO];
+//                    }
+//                }
             } else if ( keyCode == 81 ) { // Q
-                if ( pData->get_IsCommandMac() ) {
-                    [NSApp terminate:self];
-                }
+                // Handled by AppKit
+//                if ( pData->get_IsCommandMac() ) {
+//                    [NSApp terminate:self];
+//                }
             }
         }
     }
