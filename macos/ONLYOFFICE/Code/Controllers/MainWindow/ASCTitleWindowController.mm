@@ -84,7 +84,7 @@
 //        }
 //    }
     
-    return [controller shouldTerminateApplication];
+    return [controller shouldCloseWindow];
 }
 
 - (float)defaultTitleBarHeight {

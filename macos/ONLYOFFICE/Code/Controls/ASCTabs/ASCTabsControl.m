@@ -539,11 +539,31 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
     CGPoint prevPoint = dragPoint;
     
+    static const CGFloat kDetachmentThreshold = 30.0;
+
     while (1) {
         event = [self.window nextEventMatchingMask:NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp];
         
         CGFloat scrollPosition = [[self.scrollView contentView] documentVisibleRect].origin.x;
         
+        if (event.type == NSEventTypeLeftMouseDragged) {
+            NSPoint windowPoint = event.locationInWindow;
+            NSPoint controlPoint = [self convertPoint:windowPoint fromView:nil];
+
+            BOOL isAboveControl = controlPoint.y > NSMaxY(self.bounds) + kDetachmentThreshold;
+            BOOL isBelowControl = controlPoint.y < NSMinY(self.bounds) - kDetachmentThreshold;
+            if (isAboveControl || isBelowControl) {
+                // Detach the tab
+                [draggingTab removeFromSuperview];
+                [tab setHidden:NO];
+                if (_delegate && [_delegate respondsToSelector:@selector(tabs:didDetachTab:atScreenPoint:withEvent:)]) {
+                    NSPoint screenPoint = [self.window convertPointToScreen:windowPoint];
+                    [_delegate tabs:self didDetachTab:tab atScreenPoint:screenPoint withEvent:event];
+                }
+                return;
+            }
+        }
+
         if (event.type == NSEventTypeLeftMouseUp) {
             [[NSAnimationContext currentContext] setCompletionHandler:^{
                 [draggingTab removeFromSuperview];

@@ -437,7 +437,9 @@ public:
                     case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO: {
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveBeforSign
                                                                             object:nil
-                                                                          userInfo:nil];
+                                                                          userInfo:@{
+                                                                                     @"viewId": [NSString stringWithFormat:@"%d", senderId]
+                                                                                     }];
                         break;
                     }
 
@@ -709,6 +711,11 @@ public:
                                     appManager->GetUserSettings()->Set(L"disable-gpu", [json[@"usegpu"] boolValue] ? L"0" : L"1");
                                 }
 
+                                if ( [json objectForKey:@"editorwindowmode"] != nil ) {
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->GetUserSettings()->Set(L"editor-window-mode", [json[@"editorwindowmode"] boolValue] ? L"1" : L"0");
+                                }
+
                                 if ( [json objectForKey:@"spellcheckdetect"] != nil ) {
                                     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"spell-check-input-mode", [json[@"spellcheckdetect"] isEqualToString:@"off"] ? L"0" : L"1");
@@ -909,6 +916,20 @@ public:
                                     }
                                 }
                             }
+                        } else if (cmd.find(L"webapps:entry") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameWebAppsEntry
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"info": [NSString stringWithstdwstring:param]
+                                                                                         }];
+                        } else if (cmd.compare(L"title:button") == 0 ) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameWebTitleChanged
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"info": [NSString stringWithstdwstring:param]
+                                                                                         }];
                         }
 
                         break;

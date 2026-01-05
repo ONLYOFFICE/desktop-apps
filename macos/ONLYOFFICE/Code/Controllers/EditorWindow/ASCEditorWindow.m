@@ -31,34 +31,46 @@
 */
 
 //
-//  ASCCommonViewController.h
+//  ASCEditorWindow.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Copyright (c) 2025 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "ASCTabView.h"
-#import "ASCTabsControl.h"
-#import "NSCefView.h"
+#import "ASCEditorWindow.h"
+#import "ASCConstants.h"
 
-#define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
+@interface ASCEditorWindow()
+@end
 
-@interface ASCCommonViewController : NSViewController <NSTabViewDelegate>
-- (BOOL)shouldCloseWindow;
-- (BOOL)shouldCloseWindowIfNoTabs;
+@implementation ASCEditorWindow
 
-- (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
-- (ASCTabView *)tabViewWithId:(int)viewId;
-- (ASCTabView *)tabWithParam:(NSString *)param value:(NSString *)value;
-- (void)safeCloseTabsWithChanges;
+- (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)backingStoreType defer:(BOOL)flag {
+    self = [super initWithContentRect:contentRect styleMask:style backing:backingStoreType defer:flag];
+    
+    if (self) {
+        [self initialize];
+    }
+    
+    return self;
+}
 
-- (void)openAcknowledgments;
-- (void)openEULA;
-- (void)openPreferences;
+- (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)backingStoreType defer:(BOOL)flag screen:(NSScreen *)screen {
+    self = [super initWithContentRect:contentRect styleMask:style backing:backingStoreType defer:flag screen:screen];
+    
+    if (self) {
+        [self initialize];
+    }
+    
+    return self;
+}
 
-@property (weak) ASCTabsControl *tabsControl;
-@property (weak) IBOutlet NSTabView *tabView;
-@property (nonatomic) NSMutableArray<ASCTabView *> * tabsWithChanges;
+- (void) setFrame:(NSRect)frameRect display:(BOOL)flag {
+    [super setFrame:frameRect display:flag];
+}
+
+- (void)initialize {
+
+}
+
 @end
