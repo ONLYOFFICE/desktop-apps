@@ -86,6 +86,8 @@
     
     self.editorWindowControllers = [NSMutableArray array];
     
+    [self updateAppAppearance];
+    
 #ifndef _MAS
     PFMoveToApplicationsFolderIfNecessary();
 #endif
@@ -795,10 +797,29 @@
 }
 
 #pragma mark -
+#pragma mark App Appearance
+
+- (void)updateAppAppearance {
+    if (@available(macOS 10.14, *)) {
+        NSString * theme = [ASCThemesController currentThemeId];
+        if ([theme isEqualToString:uiThemeSystem]) {
+            [NSApp setAppearance:nil];
+        } else
+        if ([ASCThemesController isCurrentThemeDark]) {
+            [NSApp setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameDarkAqua]];
+        } else {
+            [NSApp setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameAqua]];
+        }
+    }
+}
+
+#pragma mark -
 #pragma mark Notification handlers
 
 - (void)onSystemThemeChanged:(NSNotification *)notification {
     if (notification && notification.userInfo) {
+        [self updateAppAppearance];
+        
         NSDictionary * info = (NSDictionary *)notification.userInfo;
         NSString * mode = info[@"mode"];
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
@@ -840,6 +861,8 @@
 
 - (void)onUIThemeChanged:(NSNotification *)notification {
     if (notification && notification.userInfo) {
+        [self updateAppAppearance];
+        
         NSDictionary * params = (NSDictionary *)notification.userInfo;
         std::wstring wtheme = [params[@"uitheme"] stdwstring];
         NSString * theme = params[@"uitheme"];
