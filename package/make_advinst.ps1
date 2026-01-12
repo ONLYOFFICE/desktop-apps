@@ -16,7 +16,7 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $BuildDir) {
-    $BuildDir = "_$Arch"
+    $BuildDir = "build\$Arch"
 }
 $MsiFile = switch ($Target) {
     "commercial" { "$CompanyName-$ProductName-Enterprise-$Version-$Arch.msi" }
@@ -82,7 +82,7 @@ $AssociationList = @(
     "csv", "txt",
     "docxf"
 )
-$LicensePath = "..\..\..\common\package\license"
+$LicensePath = "common\license"
 $PluginManagerPath = "editors\sdkjs-plugins\{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}"
 $MD5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
 $ASCII = New-Object -TypeName System.Text.ASCIIEncoding
@@ -117,11 +117,13 @@ $env:Path = "$AdvInstPath;$env:Path"
 
 ####
 
+Push-Location "advinst"
+
 Write-Host "`n[ Create package.config ]"
 
-Write-Host "WRITE: $BuildDir\desktop\converter\package.config"
+Write-Host "WRITE: ..\$BuildDir\desktop\converter\package.config"
 Write-Output "package=msi" `
-    | Out-File -Encoding ASCII "$BuildDir\desktop\converter\package.config"
+    | Out-File -Encoding ASCII "..\$BuildDir\desktop\converter\package.config"
 
 ####
 
@@ -147,24 +149,24 @@ $AdvInstConfig += `
     "SetProperty Version=$VersionShort", `
     "SetVersion $Version -noprodcode", `
     "SetCurrentFeature MainFeature", `
-    "UpdateFile APPDIR\DesktopEditors.exe $BuildDir\desktop\DesktopEditors.exe", `
-    "UpdateFile APPDIR\updatesvc.exe $BuildDir\desktop\updatesvc.exe", `
-    "NewSync APPDIR $BuildDir\desktop -existingfiles keep -feature Files", `
-    "NewSync APPDIR\$PluginManagerPath $BuildDir\desktop\$PluginManagerPath -existingfiles delete -feature PluginManager", `
-    "AddFile APPDIR $LicensePath\3dparty\3DPARTYLICENSE"
+    "UpdateFile APPDIR\DesktopEditors.exe ..\$BuildDir\desktop\DesktopEditors.exe", `
+    "UpdateFile APPDIR\updatesvc.exe ..\$BuildDir\desktop\updatesvc.exe", `
+    "NewSync APPDIR ..\$BuildDir\desktop -existingfiles keep -feature Files", `
+    "NewSync APPDIR\$PluginManagerPath ..\$BuildDir\desktop\$PluginManagerPath -existingfiles delete -feature PluginManager", `
+    "AddFile APPDIR ..\$LicensePath\3dparty\3DPARTYLICENSE"
 if ($Target -ne "commercial") {
     $AdvInstConfig += `
-        "AddFile APPDIR $LicensePath\opensource\LICENSE.txt"
+        "AddFile APPDIR ..\$LicensePath\opensource\LICENSE.txt"
 } else {
     Copy-Item -Force `
-        -Path "$LicensePath\commercial\LICENSE.txt" `
-        -Destination "$LicensePath\commercial\EULA.txt"
+        -Path "..\$LicensePath\commercial\LICENSE.txt" `
+        -Destination "..\$LicensePath\commercial\EULA.txt"
     $AdvInstConfig += `
         "SetProperty Edition=Enterprise", `
         "SetProperty AI_PRODUCTNAME_ARP=`"[|AppName] ([|Edition]) [|Version] ([|Arch])`"", `
-        "SetEula -rtf `"$("$LicensePath\commercial\LICENSE.rtf" | Resolve-Path)`"", `
+        "SetEula -rtf `"$("..\$LicensePath\commercial\LICENSE.rtf" | Resolve-Path)`"", `
         "SetPackageName `"$MsiFile`" -buildname $MsiBuild", `
-        "AddFile APPDIR $LicensePath\commercial\EULA.txt"
+        "AddFile APPDIR ..\$LicensePath\commercial\EULA.txt"
 }
 if ($Debug) {
     $AdvInstConfig += "Save"
@@ -204,3 +206,5 @@ if ($Sign) {
     & signtool sign /a /n $CertName /t $TimestampServer /v $MsiFile
     if ($LastExitCode -ne 0) { throw }
 }
+
+Pop-Location
