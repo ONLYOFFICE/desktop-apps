@@ -100,6 +100,53 @@ static QString getFirstPrinterName(const QJsonObject &json)
     return QString();
 }
 
+static QVector<PageRanges> parsePageRanges(const QString& input, int pages_count)
+{
+    QVector<PageRanges> result;
+    if (pages_count <= 0 || input.trimmed().isEmpty())
+        return result;
+
+    const QStringList parts = input.split(',', Qt::SkipEmptyParts);
+    for (const QString& part : parts) {
+        QString token = part.trimmed();
+        if (token.isEmpty())
+            continue;
+
+        int firstDash = token.indexOf('-');
+        int lastDash = token.lastIndexOf('-');
+        if (firstDash == -1) {
+            // Single page
+            bool ok;
+            int page = token.toInt(&ok);
+            if (ok && page >= 1 && page <= pages_count) {
+                result.append(PageRanges(page, page));
+            }
+        } else
+        if (firstDash == lastDash) {
+            // Exactly one hyphen
+            QString left = token.left(firstDash).trimmed();
+            QString right = token.mid(firstDash + 1).trimmed();
+            if (!left.isEmpty() && !right.isEmpty()) {
+                bool ok1, ok2;
+                int fromPage = left.toInt(&ok1);
+                int toPage = right.toInt(&ok2);
+                if (ok1 && ok2) {
+                    if (fromPage > toPage)
+                        std::swap(fromPage, toPage);
+                    if (fromPage > pages_count || toPage < 1)
+                        continue;
+
+                    fromPage = std::max<int>(fromPage, 1);
+                    toPage = std::min<int>(toPage, pages_count);
+                    if (fromPage <= toPage)
+                        result.append(PageRanges(fromPage, toPage));
+                }
+            }
+        }
+    }
+    return result;
+}
+
 class CPrintData::CPrintDataPrivate : public QObject
 {
     Q_OBJECT
@@ -119,6 +166,7 @@ public:
         paper_height = 0;
     QString size_preset;
     std::wstring app_data_path;
+    QVector<PageRanges> page_ranges;
     QJsonObject printers_capabilities_json;
     int sender_id = -1;
     int copies_count = 1;
@@ -152,18 +200,14 @@ public:
                 if ( range == "all" ) print_range = QPrintDialog::AllPages; else
                 if ( range == "current" ) print_range = QPrintDialog::CurrentPage;
                 else {
-                    QRegularExpression re_range("(\\d+)(?:-(\\d+))?");
-                    QRegularExpressionMatch re_match = re_range.match(range);
-
-                    if ( re_match.hasMatch() ) {
+                    const QVector<PageRanges> ranges = parsePageRanges(range, pages_count);
+                    if ( !ranges.empty() ) {
                         print_range = QPrintDialog::PageRange;
-                        page_from = re_match.captured(1).toInt();
-                        page_to = !re_match.captured(2).isEmpty() ? re_match.captured(2).toInt() : page_from;
+                        page_ranges = ranges;
 
-                        if ( page_from > pages_count )
-                            page_from = pages_count;
-                        if ( page_to > 0 && page_to > pages_count )
-                            page_to = pages_count;
+                        page_from = ranges[0].fromPage;
+                        page_to = ranges[0].toPage;
+
                     } else print_range = QPrintDialog::AllPages;
                 }
             }
@@ -221,6 +265,8 @@ public:
         print_range = QPrintDialog::AllPages;
         page_from = 1;
         page_to = pages_count;
+        page_ranges.clear();
+        page_ranges.push_back(PageRanges(page_from, page_to));
 
         parseJsonOptions(data->get_Options());
     }
@@ -498,6 +544,11 @@ auto CPrintData::pageFrom() const -> int
 auto CPrintData::pageTo() const -> int
 {
     return m_priv->page_to;
+}
+
+auto CPrintData::pageRanges() const -> QVector<PageRanges>
+{
+    return m_priv->page_ranges;
 }
 
 auto CPrintData::printRange() const -> QPrintDialog::PrintRange
