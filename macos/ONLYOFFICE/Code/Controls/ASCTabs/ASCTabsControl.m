@@ -55,12 +55,12 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
 @implementation ASCTabsMulticastDelegate {
     // the array of observing delegates
-    NSMutableArray* _delegates;
+    NSHashTable* _delegates;
 }
 
 - (id)init {
     if (self = [super init]) {
-        _delegates = [NSMutableArray array];
+        _delegates = [NSHashTable weakObjectsHashTable];
     }
     return self;
 }
@@ -539,11 +539,31 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
     CGPoint prevPoint = dragPoint;
     
+    static const CGFloat kDetachmentThreshold = 30.0;
+
     while (1) {
         event = [self.window nextEventMatchingMask:NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp];
         
         CGFloat scrollPosition = [[self.scrollView contentView] documentVisibleRect].origin.x;
         
+        if (event.type == NSEventTypeLeftMouseDragged) {
+            NSPoint windowPoint = event.locationInWindow;
+            NSPoint controlPoint = [self convertPoint:windowPoint fromView:nil];
+
+            BOOL isAboveControl = controlPoint.y > NSMaxY(self.bounds) + kDetachmentThreshold;
+            BOOL isBelowControl = controlPoint.y < NSMinY(self.bounds) - kDetachmentThreshold;
+            if (isAboveControl || isBelowControl) {
+                // Detach the tab
+                [draggingTab removeFromSuperview];
+                [tab setHidden:NO];
+                if (_delegate && [_delegate respondsToSelector:@selector(tabs:didDetachTab:atScreenPoint:withEvent:)]) {
+                    NSPoint screenPoint = [self.window convertPointToScreen:windowPoint];
+                    [_delegate tabs:self didDetachTab:tab atScreenPoint:screenPoint withEvent:event];
+                }
+                return;
+            }
+        }
+
         if (event.type == NSEventTypeLeftMouseUp) {
             [[NSAnimationContext currentContext] setCompletionHandler:^{
                 [draggingTab removeFromSuperview];
@@ -682,19 +702,62 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self addTab:tab selected:YES];
 }
 
-- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected {
+- (void)insertTab:(ASCTabView *)tab atIndex:(NSUInteger)index {
+    [self insertTab:tab atIndex:index selected:YES];
+}
+
+- (void)insertTab:(ASCTabView *)tab atIndex:(NSUInteger)index selected:(BOOL)selected {
+    if (!tab) return;
+
+    tab.hidden = YES;
+    NSUInteger count = self.tabs.count;
+    NSUInteger visualIndex = MIN(index, count);
+    [self.tabs insertObject:tab atIndex:visualIndex];
+
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didResize:)]) {
+        [_delegate tabs:self didResize:CGRectZero];
+    }
+
+    [self layoutTabs:nil animated:YES];
+
+    tab.hidden = NO;
+    tab.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
+
+    [self.tabsView setFrame:CGRectMake(0.0, 0.0, CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.frame))];
+
+    tab.delegate = self;
+    tab.target   = self;
+    tab.action   = @selector(handleSelectTab:);
+    [tab sendActionOn:NSEventMaskLeftMouseDown];
+
+    [self.tabsView addSubview:tab];
+
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        [context setAllowsImplicitAnimation:YES];
+        tab.animator.frame = CGRectOffset(tab.frame, 0, CGRectGetHeight(self.scrollView.frame));
+        [tab.superview scrollRectToVisible:tab.frame];
+    } completionHandler:^{
+        [self layoutTabs:nil animated:NO];
+        [self updateAuxiliaryButtons];
+        [self invalidateRestorableState];
+    }];
+
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didAddTab:)]) {
+        [_delegate tabs:self didAddTab:tab];
+    }
+
+    if (selected) {
+        [self selectTab:tab];
+    }
+}
+
+- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected animated:(BOOL)animated {
     if (tab) {
         NSInteger tabIndex = tab.tag;
         
         [self.tabs removeObject:tab];
         
-        if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRemovedTab:)]) {
-            [_delegate tabs:self didRemovedTab:tab];
-        }
-        
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-            tab.animator.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
-        } completionHandler:^{
+        void (^completion)(void) = ^{
             [tab removeFromSuperview];
             
             if (_delegate && [_delegate respondsToSelector:@selector(tabs:didResize:)]) {
@@ -730,12 +793,24 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
                 [self selectTab:tabToSelect];
             }
-        }];
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRemovedTab:)]) {
+                [_delegate tabs:self didRemovedTab:tab];
+            }
+        };
+                
+        if (animated) {
+            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+                tab.animator.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
+            } completionHandler:completion];
+        } else {
+            completion();
+        }
     }
 }
 
-- (void)removeTab:(ASCTabView *)tab {
-    [self removeTab:tab selected:tab.state == NSControlStateValueOn];
+- (void)removeTab:(ASCTabView *)tab animated:(BOOL)animated {
+    [self removeTab:tab selected:tab.state == NSControlStateValueOn animated:animated];
 }
 
 - (void)removeAllTabs {
@@ -783,7 +858,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             return;
         }
     }
-    [self removeTab:tab];
+    [self removeTab:tab animated:YES];
 }
 
 - (void)tabDidUpdate:(ASCTabView *)tab {

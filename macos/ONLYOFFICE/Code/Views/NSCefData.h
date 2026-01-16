@@ -31,34 +31,39 @@
 */
 
 //
-//  ASCCommonViewController.h
-//  ONLYOFFICE
+//  NSCefData.h
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Copyright (c) 2025 Ascensio System. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ASCTabView.h"
-#import "ASCTabsControl.h"
-#import "NSCefView.h"
+#import "cefview.h"
 
-#define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
+@interface NSCefData : NSObject
+-(instancetype)initWith:(NSString *)title viewType:(CefViewWrapperType)type;
+-(instancetype)initWith:(NSString *)title contentType:(AscEditorType)type;
 
-@interface ASCCommonViewController : NSViewController <NSTabViewDelegate>
-- (BOOL)shouldCloseWindow;
-- (BOOL)shouldCloseWindowIfNoTabs;
+-(NSString *)title:(BOOL)orig;
+-(NSString *)features;
+-(CefViewWrapperType)viewType;
+-(BOOL)isViewType:(CefViewWrapperType)viewType;
+-(BOOL)hasFeature:(NSString *)feature;
+-(BOOL)hasFrame;
+-(BOOL)modified;
+-(BOOL)hasChanges;
+-(BOOL)closed;
+-(void)setFeatures:(NSString *)features;
+-(void)setChanged:(BOOL)changed;
+-(void)close;
+-(void)reuse;
 
-- (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
-- (ASCTabView *)tabViewWithId:(int)viewId;
-- (ASCTabView *)tabWithParam:(NSString *)param value:(NSString *)value;
-- (void)safeCloseTabsWithChanges;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) NSString *cloudName;
+@property (nonatomic, assign) AscEditorType contentType;
+@property (nonatomic, assign) BOOL isLocal;
+@property (nonatomic, assign) BOOL hasError;
+@property (nonatomic, assign) BOOL eventLoadSupported;
 
-- (void)openAcknowledgments;
-- (void)openEULA;
-- (void)openPreferences;
-
-@property (weak) ASCTabsControl *tabsControl;
-@property (weak) IBOutlet NSTabView *tabView;
-@property (nonatomic) NSMutableArray<ASCTabView *> * tabsWithChanges;
 @end
