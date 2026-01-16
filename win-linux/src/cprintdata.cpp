@@ -45,6 +45,12 @@
 # include <cups/ppd.h>
 #endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+# define SKIP_EMPTY Qt::SkipEmptyParts
+#else
+# define SKIP_EMPTY QString::SkipEmptyParts
+#endif
+
 #ifdef _WIN32
 static QString getDriverName(LPWSTR printerName)
 {
@@ -106,7 +112,7 @@ static QVector<PageRanges> parsePageRanges(const QString& input, int pages_count
     if (pages_count <= 0 || input.trimmed().isEmpty())
         return result;
 
-    const QStringList parts = input.split(',', Qt::SkipEmptyParts);
+    const QStringList parts = input.split(',', SKIP_EMPTY);
     for (const QString& part : parts) {
         QString token = part.trimmed();
         if (token.isEmpty())
