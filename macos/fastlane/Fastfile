@@ -52,9 +52,9 @@ platform :mac do
     package_name += "-#{git_suffix}-#{version_number}-#{app_build_number}"
 
     if edition != "Enterprise"
-      sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../common/package/license/opensource/LICENSE.html ../Vendor/ONLYOFFICE/license/LICENSE.html")
+      sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/opensource/LICENSE.html ../Vendor/ONLYOFFICE/license/LICENSE.html")
     else
-      sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../common/package/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
+      sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
     end
 
     desc 'Build for developer id and notarize'
