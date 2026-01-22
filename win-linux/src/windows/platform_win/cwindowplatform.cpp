@@ -210,7 +210,12 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_isResizeable(true)
 //    m_allowMaximize(true)
 {
-    winVer = Utils::getWinVersion();
+    if (Utils::IsRunningInCompatibilityMode()) {
+        winVer = WinVer::WinXP;
+        pGetSystemMetricsForDpi = nullptr;
+    } else {
+        winVer = Utils::getWinVersion();
+    }
     m_isThemeActive = isThemeActive();
     m_isTaskbarAutoHideOn = isTaskbarAutoHideOn();
     m_borderless = isCustomWindowStyle();
