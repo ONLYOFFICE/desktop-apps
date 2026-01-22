@@ -50,6 +50,8 @@
 using WinVer = Utils::WinVer;
 using GetSystemMetricsForDpi_t = int (WINAPI*)(int nIndex, UINT dpi);
 
+static WinVer winVer = WinVer::Undef;
+
 static auto pGetSystemMetricsForDpi = []() -> GetSystemMetricsForDpi_t
 {
     if (HMODULE hUser32 = GetModuleHandle(L"user32"))
@@ -83,11 +85,10 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         return;
     }
 
-    WinVer ver = Utils::getWinVersion();
-    int row = ver == WinVer::WinXP ? 0 :
-              ver <= WinVer::Win7 ? 1 :
-              ver <= WinVer::Win8_1 ? 2 :
-              ver <= WinVer::Win10 ? 3 : 4;
+    int row = winVer == WinVer::WinXP ? 0 :
+              winVer <= WinVer::Win7 ? 1 :
+              winVer <= WinVer::Win8_1 ? 2 :
+              winVer <= WinVer::Win10 ? 3 : 4;
 
     int column = dpi <= 1.0 ? 0 :
                  dpi <= 1.25 ? 1 :
@@ -209,16 +210,17 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_isResizeable(true)
 //    m_allowMaximize(true)
 {
+    winVer = Utils::getWinVersion();
     m_isThemeActive = isThemeActive();
     m_isTaskbarAutoHideOn = isTaskbarAutoHideOn();
     m_borderless = isCustomWindowStyle();
     if (AscAppManager::isRtlEnabled())
         setLayoutDirection(Qt::RightToLeft);
-    if (m_borderless && Utils::getWinVersion() <= WinVer::WinVista)
+    if (m_borderless && winVer <= WinVer::WinVista)
         setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
     setGeometry(m_window_rect);
     m_hWnd = (HWND)winId();
-    if (m_borderless && Utils::getWinVersion() < WinVer::Win10) {
+    if (m_borderless && winVer < WinVer::Win10) {
         LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE) | WS_OVERLAPPEDWINDOW;
         ::SetWindowLong(m_hWnd, GWL_STYLE, style & ~WS_CAPTION);
     }
@@ -278,14 +280,14 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
     m_brdColor = border;
     m_bkgColor = background;
     QString css;
-    if (Utils::getWinVersion() == Utils::WinVer::WinXP) {
+    if (winVer == Utils::WinVer::WinXP) {
         css = QString("QMainWindow{background-color: %1;}").arg(background.name());
         RedrawWindow((HWND)winId(), NULL, NULL, RDW_INVALIDATE | RDW_FRAME | RDW_UPDATENOW); // Apply colors to NC-area
     } else
-    if (Utils::getWinVersion() < Utils::WinVer::Win10) {
+    if (winVer < Utils::WinVer::Win10) {
         css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
     } else
-    if (Utils::getWinVersion() == Utils::WinVer::Win10) {
+    if (winVer == Utils::WinVer::Win10) {
         int brdWidth = 0;
         HDC hdc = GetDC(NULL);
         brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
@@ -306,29 +308,29 @@ void CWindowPlatform::adjustGeometry()
         return;
     }
     if (isMaximized()) {
-        if (Utils::getWinVersion() < WinVer::Win10) {
+        if (winVer < WinVer::Win10) {
             QTimer::singleShot(25, this, [=]() {
                 auto rc = QtComp::DesktopWidget::availableGeometry(this);
                 int offset = 0;
-                if (Utils::getWinVersion() == WinVer::WinXP) {
+                if (winVer == WinVer::WinXP) {
                     if (isTaskbarAutoHideOn())
                         offset += NC_AREA_WIDTH + 1;
                     if (m_isThemeActive)
                         rc.adjust(-NC_AREA_WIDTH, -NC_AREA_WIDTH, NC_AREA_WIDTH, NC_AREA_WIDTH);
                 } else
-                if (Utils::getWinVersion() > WinVer::WinXP && isTaskbarAutoHideOn())
+                if (winVer > WinVer::WinXP && isTaskbarAutoHideOn())
                     offset += 2;
                 SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
             });
         }
     } else {
-        if (Utils::getWinVersion() < WinVer::Win10) {
+        if (winVer < WinVer::Win10) {
             int border = qRound(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
-            if (Utils::getWinVersion() == WinVer::WinXP)
+            if (winVer == WinVer::WinXP)
                 border -= NC_AREA_WIDTH;
             mrg = QMargins(border, border, border, border);
         } else
-        if (Utils::getWinVersion() == WinVer::Win10) {
+        if (winVer == WinVer::Win10) {
             int brdWidth = 0;
             HDC hdc = GetDC(NULL);
             brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
@@ -370,7 +372,7 @@ bool CWindowPlatform::event(QEvent * event)
 void CWindowPlatform::resizeEvent(QResizeEvent *ev)
 {
     CWindowBase::resizeEvent(ev);
-    if (m_borderless && Utils::getWinVersion() <= WinVer::WinVista) {
+    if (m_borderless && winVer <= WinVer::WinVista) {
         RECT rc;
         GetClientRect(m_hWnd, &rc);
         if (centralWidget()) {
@@ -452,7 +454,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         params->rgrc[0].top -= m_frame.top;
         params->rgrc[0].right += m_frame.left;
         params->rgrc[0].bottom += m_frame.left;
-        if (m_isMaximized && m_isTaskbarAutoHideOn && (Utils::getWinVersion() >= WinVer::Win10))
+        if (m_isMaximized && m_isTaskbarAutoHideOn && (winVer >= WinVer::Win10))
             params->rgrc[0].bottom -= 2;
         return true;
     }
@@ -515,7 +517,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
         } else
         if (msg->wParam == SPI_SETWINARRANGING) {
-            if (Utils::getWinVersion() > Utils::WinVer::Win10 && m_boxTitleBtns)
+            if (winVer > Utils::WinVer::Win10 && m_boxTitleBtns)
                 SendMessage((HWND)m_boxTitleBtns->winId(), WM_SETTINGCHANGE, 0, 0);
         } else
         if (msg->wParam == SPI_SETWORKAREA) {
@@ -525,7 +527,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             if (!EqualRect(&oldWorkArea, &workArea)) {
                 oldWorkArea = workArea;
                 m_isTaskbarAutoHideOn = isTaskbarAutoHideOn();
-                if (Utils::getWinVersion() < WinVer::Win10)
+                if (winVer < WinVer::Win10)
                     adjustGeometry();
             }
         } else if (msg->wParam == 0 && msg->lParam) {
@@ -618,7 +620,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         return false;
 
     case WM_NCPAINT: {
-        if (Utils::getWinVersion() > WinVer::Win7 || !m_borderless)
+        if (winVer > WinVer::Win7 || !m_borderless)
             break;
         if (HDC hdc = ::GetDCEx(msg->hwnd, 0, DCX_WINDOW | DCX_USESTYLE)) {
             RECT rcc, rcw;
@@ -667,12 +669,12 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     case WM_NCACTIVATE: {
         if (m_borderless) {
             onWindowActivate(LOWORD(msg->wParam));
-            if (Utils::getWinVersion() > WinVer::WinXP && Utils::getWinVersion() < WinVer::Win10) {
+            if (winVer > WinVer::WinXP && winVer < WinVer::Win10) {
                 // Prevent drawing of inactive system frame (needs ~WS_CAPTION or temporary ~WS_VISIBLE to work)
                 *result = DefWindowProc(msg->hwnd, WM_NCACTIVATE, msg->wParam, -1);
                 return true;
             } else
-            if (Utils::getWinVersion() == WinVer::Win10) {
+            if (winVer == WinVer::Win10) {
                 setWindowColors(m_bkgColor, m_brdColor, LOWORD(msg->wParam));
                 repaint();
             }
