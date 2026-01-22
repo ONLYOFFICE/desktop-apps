@@ -1134,6 +1134,10 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
     if (!runOnce) {
         runOnce = true;
         m_private->m_notificationSupported = CNotification::instance().init();
+        if (m_private->m_notificationSupported && Utils::IsRunningInCompatibilityMode()) {
+            CNotification::instance().show(tr("Compatibility Mode"), tr("Running in Compatibility Mode may cause issues. "
+                                                                        "Disable it in the app's properties for best results."));
+        }
     }
 #endif
 

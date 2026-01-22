@@ -363,7 +363,16 @@ bool CNotification::init()
 #ifdef __linux__
     pimpl->isInit = notify_init(WINDOW_TITLE);
 #else
-    if (Utils::getWinVersion() < Utils::WinVer::Win10) {
+    DWORD major = 0, minor = 0;
+    bool compatMode = Utils::IsRunningInCompatibilityMode(&major, &minor);
+    bool meetsRequirements = false;
+    if (compatMode) {
+        meetsRequirements = (major > 6) || (major == 6 && minor >= 2);
+    } else {
+        meetsRequirements = (Utils::getWinVersion() >= Utils::WinVer::Win10);
+    }
+
+    if (!meetsRequirements) {
         pimpl->isInit = 0;
         return false;
     }
