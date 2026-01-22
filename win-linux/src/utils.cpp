@@ -810,6 +810,42 @@ QString Utils::GetCurrentUserSID()
     return user_sid;
 }
 
+bool Utils::IsRunningInCompatibilityMode(DWORD *major, DWORD *minor)
+{
+    static int compatMode = -1;
+    static DWORD _major = 0;
+    static DWORD _minor = 0;
+    if (compatMode != -1) {
+        if (major) *major = _major;
+        if (minor) *minor = _minor;
+        return (bool)compatMode;
+    }
+
+    RTL_OSVERSIONINFOEXW os = {0};
+    os.dwOSVersionInfoSize = sizeof(os);
+    if (!pRtlGetVersion_t || pRtlGetVersion_t(&os) != 0) {
+        compatMode = 0;
+        return false;
+    }
+
+    WKSTA_INFO_100* pBuf = nullptr;
+    NET_API_STATUS nStatus = NetWkstaGetInfo(nullptr, 100, (LPBYTE*)&pBuf);
+    if (nStatus != NERR_Success || pBuf == nullptr) {
+        if (pBuf) NetApiBufferFree(pBuf);
+        compatMode = 0;
+        return false;
+    }
+
+    _major = pBuf->wki100_ver_major;
+    _minor = pBuf->wki100_ver_minor;
+    if (major) *major = _major;
+    if (minor) *minor = _minor;
+    compatMode = (_major != os.dwMajorVersion || _minor != os.dwMinorVersion);
+
+    NetApiBufferFree(pBuf);
+    return (bool)compatMode;
+}
+
 std::atomic_bool sessionInProgress{true};
 
 bool Utils::isSessionInProgress()

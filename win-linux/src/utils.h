@@ -129,6 +129,7 @@ public:
     };
     static WinVer getWinVersion();
     static QString GetCurrentUserSID();
+    static bool IsRunningInCompatibilityMode(DWORD *major = nullptr, DWORD *minor = nullptr);
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
     static void setAppUserModelId();
