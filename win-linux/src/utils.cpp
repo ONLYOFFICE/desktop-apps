@@ -70,6 +70,16 @@
 #include <stdlib.h>
 #endif
 
+#ifdef _WIN32
+using RtlGetVersion_t = NTSTATUS(NTAPI*)(PRTL_OSVERSIONINFOEXW);
+
+static auto pRtlGetVersion_t = []() -> RtlGetVersion_t
+{
+    if (HMODULE hNtdll = GetModuleHandle(L"ntdll"))
+        return (RtlGetVersion_t)GetProcAddress(hNtdll, "RtlGetVersion");
+    return nullptr;
+}();
+#endif
 
 namespace InputArgs {
     std::vector<std::wstring> in_args;
@@ -753,28 +763,23 @@ void Utils::processMoreEvents(uint timeout)
 Utils::WinVer Utils::getWinVersion()
 {
     static WinVer winVer = WinVer::Undef;
-    if (winVer == WinVer::Undef) {
-        if (HMODULE module = GetModuleHandleA("ntdll")) {
-            NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW);
-            *(FARPROC*)&RtlGetVersion = GetProcAddress(module, "RtlGetVersion");
-            if (RtlGetVersion) {
-                OSVERSIONINFOEXW os = {0};
-                os.dwOSVersionInfoSize = sizeof(os);
-                RtlGetVersion(&os);
-#define MjrVer os.dwMajorVersion
-#define MinVer os.dwMinorVersion
-#define BldVer os.dwBuildNumber
-                winVer = MjrVer == 5L && (MinVer == 1L || MinVer == 2L) ? WinVer::WinXP :
-                         MjrVer == 6L && MinVer == 0L ? WinVer::WinVista :
-                         MjrVer == 6L && MinVer == 1L ? WinVer::Win7 :
-                         MjrVer == 6L && MinVer == 2L ? WinVer::Win8 :
-                         MjrVer == 6L && MinVer == 3L ? WinVer::Win8_1 :
-                         MjrVer == 10L && MinVer == 0L && BldVer < 22000 ? WinVer::Win10 :
-                         MjrVer == 10L && MinVer == 0L && BldVer >= 22000 ? WinVer::Win11 :
-                         MjrVer == 10L && MinVer > 0L ? WinVer::Win11 :
-                         MjrVer > 10L ? WinVer::Win11 : WinVer::Undef;
-            }
-        }
+    if (winVer != WinVer::Undef) return winVer;
+
+    RTL_OSVERSIONINFOEXW os = {0};
+    os.dwOSVersionInfoSize = sizeof(os);
+    if (pRtlGetVersion_t && pRtlGetVersion_t(&os) == 0) {
+        const DWORD major = os.dwMajorVersion;
+        const DWORD minor = os.dwMinorVersion;
+        const DWORD build = os.dwBuildNumber;
+        winVer = major == 5L && (minor == 1L || minor == 2L) ? WinVer::WinXP :
+                 major == 6L && minor == 0L ? WinVer::WinVista :
+                 major == 6L && minor == 1L ? WinVer::Win7 :
+                 major == 6L && minor == 2L ? WinVer::Win8 :
+                 major == 6L && minor == 3L ? WinVer::Win8_1 :
+                 major == 10L && minor == 0L && build < 22000 ? WinVer::Win10 :
+                 major == 10L && minor == 0L && build >= 22000 ? WinVer::Win11 :
+                 major == 10L && minor > 0L ? WinVer::Win11 :
+                 major > 10L ? WinVer::Win11 : WinVer::Undef;
     }
     return winVer;
 }
