@@ -100,8 +100,6 @@
 		BE5EE54C2E3391440010A8A8 /* ascdocumentscore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5EE5492E3382D20010A8A8 /* ascdocumentscore.framework */; };
 		BE5EE54D2E3391440010A8A8 /* ooxmlsignature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5EE5482E3382D20010A8A8 /* ooxmlsignature.framework */; };
 		BE6251BA22BD089100656116 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = BE6251B922BD089100656116 /* dictionaries */; };
-		BE9A63CD2E2A429F0040CE84 /* ascdocumentscore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9A63CC2E2A429F0040CE84 /* ascdocumentscore.framework */; };
-		BE9A63CF2E2A42A60040CE84 /* ooxmlsignature.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9A63CE2E2A42A60040CE84 /* ooxmlsignature.framework */; };
 		F10175932EAB756000C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
 		F10175942EAB756100C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
 		F10175952EAB756100C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
@@ -842,8 +840,6 @@
 		BE5EE5492E3382D20010A8A8 /* ascdocumentscore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ascdocumentscore.framework; path = ../../build_tools/out/mac_64/onlyoffice/desktopeditors/ascdocumentscore.framework; sourceTree = "<group>"; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
-		BE9A63CC2E2A429F0040CE84 /* ascdocumentscore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ascdocumentscore.framework; path = ../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/ascdocumentscore.framework; sourceTree = "<group>"; };
-		BE9A63CE2E2A42A60040CE84 /* ooxmlsignature.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ooxmlsignature.framework; path = ../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/ooxmlsignature.framework; sourceTree = "<group>"; };
 		F10175912EAB756000C6C1B8 /* ASCLicenseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCLicenseController.h; sourceTree = "<group>"; };
 		F10175922EAB756000C6C1B8 /* ASCLicenseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCLicenseController.m; sourceTree = "<group>"; };
 		F12F85D12EB6A38400370877 /* ASCEditorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindowController.h; sourceTree = "<group>"; };
@@ -1158,9 +1154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB4C70126DD018B0012C20D /* WebKit.framework in Frameworks */,
-				BE9A63CD2E2A429F0040CE84 /* ascdocumentscore.framework in Frameworks */,
 				5AD24E2A2902AE3C00748926 /* Sparkle.framework in Frameworks */,
-				BE9A63CF2E2A42A60040CE84 /* ooxmlsignature.framework in Frameworks */,
 				FCB4C70226DD018B0012C20D /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1711,8 +1705,6 @@
 			isa = PBXGroup;
 			children = (
 				BE5EE5492E3382D20010A8A8 /* ascdocumentscore.framework */,
-				BE9A63CE2E2A42A60040CE84 /* ooxmlsignature.framework */,
-				BE9A63CC2E2A429F0040CE84 /* ascdocumentscore.framework */,
 				BE5EE5482E3382D20010A8A8 /* ooxmlsignature.framework */,
 				5A02294C2CB9C0410011C6EC /* QuickLookUI.framework */,
 			);
@@ -2303,7 +2295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\nCreateDir \"${DST_DIR}/license\"\n[ -d \"${SRC_BASE_DIR}/license\" ] && cp -vR \"${SRC_BASE_DIR}/license\" \"${DST_DIR}\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\nCreateDir \"${DST_DIR}/license\"\n[ -d \"${SRC_BASE_DIR}/license\" ] && cp -vR \"${SRC_BASE_DIR}/license\" \"${DST_DIR}\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\n#cp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C6BB26DD018B0012C20D /* Copy Library */ = {
