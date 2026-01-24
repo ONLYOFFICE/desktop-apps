@@ -303,18 +303,18 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     }
 }
 
-- (void)setChanged:(BOOL)changed {
-    _changed = changed;
-    
-    unichar l = [[super title] characterAtIndex:0];
-    if ( changed ) {
-        if ( l != '*' )
-            [super setTitle:[NSString stringWithFormat:@"*%@", originalTitle]];
-    } else {
-        if ( l == '*' )
-            [super setTitle:originalTitle];
-    }
-}
+//- (void)setChanged:(BOOL)changed {
+//    _changed = changed;
+//
+//    unichar l = [[super title] characterAtIndex:0];
+//    if ( changed ) {
+//        if ( l != '*' )
+//            [super setTitle:[NSString stringWithFormat:@"*%@", originalTitle]];
+//    } else {
+//        if ( l == '*' )
+//            [super setTitle:originalTitle];
+//    }
+//}
 
 - (void)drawRect:(NSRect)dirtyRect {
 //    [[NSColor greenColor] setFill];

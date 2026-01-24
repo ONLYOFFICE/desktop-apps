@@ -34,6 +34,7 @@
 #define CPRINTDATA_H
 
 #include "applicationmanager_events.h"
+#include "components/cprintdialog.h"
 #include <QPrinterInfo>
 #include <QPrintDialog>
 #include <functional>
@@ -59,6 +60,7 @@ public:
     auto pageCurrent() const -> int;
     auto pageFrom() const -> int;
     auto pageTo() const -> int;
+    auto pageRanges() const -> QVector<PageRanges>;
     auto printRange() const -> QPrintDialog::PrintRange;
     auto isQuickPrint() const -> bool;
     auto useSystemDialog() const -> bool;

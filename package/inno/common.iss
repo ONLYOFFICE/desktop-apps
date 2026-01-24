@@ -16,7 +16,7 @@
 #define ARCH 'x64'
 #endif
 #ifndef BUILD_DIR
-#define BUILD_DIR '.\build.' + ARCH
+#define BUILD_DIR '..\build\' + ARCH
 #endif
 #ifndef OUTPUT_DIR
 #define OUTPUT_DIR '.'
@@ -104,13 +104,15 @@ OutputBaseFileName                ={#OUTPUT_FILE}
 SignTool                  =byparam $p
 #endif
 
-SetupIconFile={#BRANDING_DIR}\..\..\extras\projicons\res\icons\desktopeditors.ico
-WizardImageFile={#BRANDING_DIR}\data\dialogpicture*.bmp
-WizardSmallImageFile={#BRANDING_DIR}\data\dialogicon*.bmp
+SetupIconFile={#BRANDING_DIR}\..\..\win-linux\extras\projicons\res\icons\desktopeditors.ico
+WizardStyle=classic dynamic
+WizardSizePercent=100
+WizardImageFile={#BRANDING_DIR}\res\dialogpicture*.bmp
+WizardSmallImageFile={#BRANDING_DIR}\res\dialogicon*.bmp
 #if PACKAGE_EDITION == "Enterprise"
-LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.rtf
+LicenseFile={#BRANDING_DIR}\..\common\license\commercial\LICENSE.rtf
 #else
-LicenseFile={#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.rtf
+LicenseFile={#BRANDING_DIR}\..\common\license\opensource\LICENSE.rtf
 #endif
 
 SolidCompression=yes
@@ -1173,8 +1175,8 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+Source: "vc_redist.{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vc_redist.{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
   Check: not checkVCRedist;
 
 Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
@@ -1183,13 +1185,13 @@ Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: ignoreversion recursesubdi
 #endif
 Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: recursesubdirs signonce;
 Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: recursesubdirs signonce;
-Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
+Source: "package.config"; DestDir: {app}\converter;
 #if PACKAGE_EDITION == "Enterprise"
-Source: "{#BRANDING_DIR}\..\..\..\common\package\license\commercial\LICENSE.txt"; DestDir: {app}; DestName: "EULA.txt";
+Source: "{#BRANDING_DIR}\..\common\license\commercial\LICENSE.txt"; DestDir: {app}; DestName: "EULA.txt";
 #else
-Source: "{#BRANDING_DIR}\..\..\..\common\package\license\opensource\LICENSE.txt"; DestDir: {app};
+Source: "{#BRANDING_DIR}\..\common\license\opensource\LICENSE.txt"; DestDir: {app};
 #endif
-Source: "{#BRANDING_DIR}\..\..\..\common\package\license\3dparty\3DPARTYLICENSE"; DestDir: {app};
+Source: "{#BRANDING_DIR}\..\common\license\3dparty\3DPARTYLICENSE"; DestDir: {app};
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins

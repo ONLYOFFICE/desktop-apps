@@ -590,8 +590,8 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="background.bmp" SourcePath="data\background.bmp"/>
-    <ROW Name="banner.png" SourcePath="data\banner.png"/>
+    <ROW Name="background.bmp" SourcePath="res\background.bmp"/>
+    <ROW Name="banner.png" SourcePath="res\banner.png"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
     <ROW Property="REGISTER_CSV" Value="1"/>
@@ -841,7 +841,7 @@
     <ROW Dialog_="FolderDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="This is the folder where [ProductName] will be installed." Order="1100" TextLocId="Control.Text.FolderDlg#Description" MsiKey="FolderDlg#Description"/>
     <ROW Dialog_="FolderDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="1200" MsiKey="FolderDlg#BannerLine"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="300" MsiKey="LicenseAgreementDlg#BannerBitmap"/>
-    <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="20" Y="60" Width="330" Height="120" Attributes="7" Text="..\..\..\common\package\license\opensource\LICENSE.rtf" Order="400" TextLocId="-" MsiKey="LicenseAgreementDlg#AgreementText"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="20" Y="60" Width="330" Height="120" Attributes="7" Text="..\common\license\opensource\LICENSE.rtf" Order="400" TextLocId="-" MsiKey="LicenseAgreementDlg#AgreementText"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="700" TextLocId="-" MsiKey="LicenseAgreementDlg#Back" Options="1"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="Description" Type="Text" X="25" Y="23" Width="304" Height="15" Attributes="196611" Text="Please read the following license agreement carefully" Order="800" TextLocId="Control.Text.LicenseAgreementDlg#Description" MsiKey="LicenseAgreementDlg#Description"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="Title" Type="Text" X="15" Y="6" Width="304" Height="15" Attributes="196611" Text="End-User License Agreement" TextStyle="[DlgTitleFont]" Order="900" TextLocId="Control.Text.LicenseAgreementDlg#Title" MsiKey="LicenseAgreementDlg#Title"/>
@@ -1435,11 +1435,11 @@
     <ROW Feature_="Registry" Component_="c_reg_sw_app_ignoreassocmsg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="i_desktopeditors" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
-    <ROW Name="i_desktopeditors_cell" SourcePath="..\..\extras\projicons\res\icons\cell.ico" Index="0"/>
-    <ROW Name="i_desktopeditors_form" SourcePath="..\..\extras\projicons\res\icons\form.ico" Index="0"/>
-    <ROW Name="i_desktopeditors_slide" SourcePath="..\..\extras\projicons\res\icons\slide.ico" Index="0"/>
-    <ROW Name="i_desktopeditors_word" SourcePath="..\..\extras\projicons\res\icons\word.ico" Index="0"/>
+    <ROW Name="i_desktopeditors" SourcePath="..\..\win-linux\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_cell" SourcePath="..\..\win-linux\extras\projicons\res\icons\cell.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_form" SourcePath="..\..\win-linux\extras\projicons\res\icons\form.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_slide" SourcePath="..\..\win-linux\extras\projicons\res\icons\slide.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_word" SourcePath="..\..\win-linux\extras\projicons\res\icons\word.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>

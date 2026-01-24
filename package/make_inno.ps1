@@ -17,7 +17,7 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 if (-not $BuildDir) {
-    $BuildDir = "_$Arch"
+    $BuildDir = "build\$Arch"
 }
 if (-not (Test-Path "$BuildDir")) {
     Write-Error "Path `"$BuildDir`" does not exist"
@@ -65,7 +65,7 @@ $env:Path = "$InnoPath;$env:Path"
 if ($Target -notlike "*update") {
     Write-Host "`n[ Download VCRedist $Arch ]"
 
-    $VCRedist = "data\vcredist_$Arch.exe"
+    $VCRedist = "inno\vc_redist.$Arch.exe"
     $VCRedistUrl = switch -Wildcard ("$Arch-$Target") {
         # Microsoft Visual C++ 2015-2019 Redistributable - 14.27.29114
         "x64-xp" { "https://download.visualstudio.microsoft.com/download/pr/722d59e4-0671-477e-b9b1-b8da7d4bd60b/591CBE3A269AFBCC025681B968A29CD191DF3C6204712CBDC9BA1CB632BA6068/VC_redist.x64.exe"; Break }
@@ -77,7 +77,7 @@ if ($Target -notlike "*update") {
         (-not (Get-Item "$VCRedist").VersionInfo.ProductVersion)) {
         Write-Host "DOWNLOAD: $VCRedistUrl"
         $WebClient = New-Object System.Net.WebClient
-        $WebClient.DownloadFile($VCRedistUrl, $VCRedist)
+        $WebClient.DownloadFile($VCRedistUrl, "$VCRedist")
     }
 
     Write-Host "Version: $((Get-Item $VCRedist).VersionInfo.ProductVersion)"
@@ -86,12 +86,13 @@ if ($Target -notlike "*update") {
 
 ####
 
+Push-Location "inno"
+
 if ($Target -notlike "*update") {
     Write-Host "`n[ Create package.config ]"
 
-    Write-Host "WRITE: $BuildDir\desktop\converter\package.config"
-    Write-Output "package=exe" `
-        | Out-File -Encoding ASCII "$BuildDir\desktop\converter\package.config"
+    Write-Host "WRITE: package.config"
+    Write-Output "package=exe" | Out-File -Encoding ASCII "package.config"
 }
 
 ####
@@ -100,8 +101,7 @@ Write-Host "`n[ Build Inno Setup project ]"
 
 $IssFile = "common.iss"
 $InnoArgs = "/DVERSION=$Version",
-            "/DARCH=$Arch",
-            "/DBUILD_DIR=$BuildDir"
+            "/DARCH=$Arch"
 if ($BrandingDir) {
     $InnoArgs += "/DBRANDING_DIR=$BrandingDir"
 }
@@ -134,3 +134,5 @@ if ($Debug) {
 Write-Host "iscc $InnoArgs $IssFile"
 & iscc $InnoArgs $IssFile
 if ($LastExitCode -ne 0) { throw }
+
+Pop-Location

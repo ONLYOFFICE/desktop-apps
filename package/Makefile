@@ -65,9 +65,9 @@ DESKTOP_FILES += build/main/usr/share/applications/$(DESKTOPEDITORS_EXEC).deskto
 LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
 LINUX_DEPS += $(CHANGELOG_RPM)
-LINUX_DEPS += $(patsubst $(BRANDING_DIR)/common/icons/%.png, \
+LINUX_DEPS += $(patsubst $(BRANDING_DIR)/common/linux/icons/%.png, \
 	build/main/usr/share/icons/hicolor/%/apps/$(DESKTOPEDITORS_EXEC).png, \
-	$(wildcard $(BRANDING_DIR)/common/icons/*.png))
+	$(wildcard $(BRANDING_DIR)/common/linux/icons/*.png))
 LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE
 LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE
 
@@ -84,7 +84,7 @@ DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).links
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME)-help.install
 DEB_DEPS += deb/build/package.config
 
-SOURCE_DIR := ../../../../build_tools/out/$(PLATFORM)/$(COMPANY_NAME_LOW)
+SOURCE_DIR := ../../build_tools/out/$(PLATFORM)/$(COMPANY_NAME_LOW)
 
 M4_PARAMS += -D M4_COMPANY_NAME='$(COMPANY_NAME)'
 M4_PARAMS += -D M4_COMPANY_NAME_LOW='$(COMPANY_NAME_LOW)'
@@ -121,7 +121,7 @@ RPM_PARAMS += --define '_desktopeditors_exec $(DESKTOPEDITORS_EXEC)'
 RPM_PARAMS += --define '_scheme_handler $(SCHEME_HANDLER)'
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
-CHANGES_DIR := $(BRANDING_DIR)/../../../common/changes
+CHANGES_DIR := $(BRANDING_DIR)/common/changelog
 CHANGES_HTML := changes.html
 CHANGES_VERSIONS := $(shell echo $(PRODUCT_VERSION); { ls -1 $(CHANGES_DIR) \
 	| grep -E '^[0-9]+' | grep -v $(PRODUCT_VERSION) | sort -Vur; })
@@ -156,10 +156,10 @@ build : $(LINUX_DEPS)
 	chmod 755 $@/main/opt/$(DESKTOPEDITORS_PREFIX)/DesktopEditors
 
 ifneq ($(PACKAGE_EDITION), commercial)
-	cp -f $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt \
+	cp -f $(BRANDING_DIR)/common/license/$(PACKAGE_EDITION)/LICENSE.txt \
 		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/LICENSE.txt
 else
-	cp -f $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt \
+	cp -f $(BRANDING_DIR)/common/license/$(PACKAGE_EDITION)/LICENSE.txt \
 		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/EULA.txt
 endif
 
@@ -186,11 +186,11 @@ $(RPM) : build rpm/$(PACKAGE_NAME).spec
 		$(RPM_PARAMS) \
 		$(PACKAGE_NAME).spec
 
-build/main/usr/share/icons/hicolor/%/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/%.png
+build/main/usr/share/icons/hicolor/%/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/linux/icons/%.png
 	install -m 644 -D $< $@
 
-build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE : $(BRANDING_DIR)/../../../common/package/license/$(PACKAGE_EDITION)/LICENSE.txt
-build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE : $(BRANDING_DIR)/../../../common/package/license/3dparty/3DPARTYLICENSE
+build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE : $(BRANDING_DIR)/common/license/$(PACKAGE_EDITION)/LICENSE.txt
+build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE : $(BRANDING_DIR)/common/license/3dparty/3DPARTYLICENSE
 
 build/main/usr/share/licenses/% :
 	install -m 644 -D $< $@
@@ -280,7 +280,7 @@ $(NEWS_RPM) :
 			echo "$(PRODUCT_VERSION)" > $(CHANGES_DIR)/$$v/news_rpm; \
 		fi; \
 		m4 $(M4_PARAMS) -D M4_VERSION=$$v -D M4_DATE_SHORT="$$date" \
-			common/NEWS.m4 \
+			common/linux/NEWS.m4 \
 			| sed '2r '$(CHANGES_DIR)/$$v/news_rpm >> $@; \
 	done
 
@@ -303,7 +303,7 @@ $(CHANGELOG_RPM) : $(NEWS_RPM)
 			-e 's/^[^ *]/- &/' \
 			> $(CHANGES_DIR)/$$v/changes_rpm; \
 		m4 $(M4_PARAMS) -D M4_VERSION=$$v -D M4_DATE="$$date" \
-			common/ChangeLog.m4 \
+			common/linux/ChangeLog.m4 \
 			| sed '1r '$(CHANGES_DIR)/$$v/changes_rpm >> $@; \
 	done
 
@@ -317,7 +317,7 @@ deb/build/package.config :
 	mkdir -p $(@D) && echo "package = deb" > $@
 
 $(DEB) : build $(DEB_DEPS)
-	cd deb/build && dpkg-buildpackage -b -uc -us -a$(DEB_ARCH)
+	+cd deb/build && dpkg-buildpackage -b -uc -us -a$(DEB_ARCH)
 
 $(RPM_SUSE) : build rpm-suse/$(PACKAGE_NAME).spec
 	cd rpm-suse && rpmbuild -bb \
@@ -342,11 +342,11 @@ $(TAR_HELP) : build
 		--directory=build/help --file=$@ \
 		$(patsubst build/help/%,%,$(wildcard build/help/*))
 
-build/main/usr/bin/$(DESKTOPEDITORS_EXEC) : common/desktopeditors.sh.m4
-build/main/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop : common/desktopeditors.desktop.m4
+build/main/usr/bin/$(DESKTOPEDITORS_EXEC) : common/linux/desktopeditors.sh.m4
+build/main/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop : common/linux/desktopeditors.desktop.m4
 
 $(BIN_FILES) $(DESKTOP_FILES) :
-	mkdir -p $(@D) && m4 -I "$(BRANDING_DIR)/common" $(M4_PARAMS) $< > $@
+	mkdir -p $(@D) && m4 -I "$(BRANDING_DIR)/common/linux" $(M4_PARAMS) $< > $@
 
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@

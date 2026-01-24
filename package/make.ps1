@@ -21,14 +21,14 @@ if (-not $SourceDir) {
         "x86" { "win_32" + $(if ($Target -eq "xp") { "_xp" }) }
         "arm64" { "win_arm64" }
     }
-    $SourceDir = "$PSScriptRoot\..\..\..\..\build_tools\out\" `
+    $SourceDir = "$PSScriptRoot\..\..\build_tools\out\" `
         + "$BuildPrefix\$CompanyName\$ProductName" | Resolve-Path
 }
 if (-not (Test-Path "$SourceDir")) {
     Write-Error "Path `"$SourceDir`" does not exist"
 }
 if (-not $BuildDir) {
-    $BuildDir = "_$Arch"
+    $BuildDir = "build\$Arch"
 }
 
 Write-Host @"
