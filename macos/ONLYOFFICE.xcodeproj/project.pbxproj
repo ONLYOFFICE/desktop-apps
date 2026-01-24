@@ -1153,6 +1153,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE5EE54C2E3391440010A8A8 /* ascdocumentscore.framework in Frameworks */,
+				BE5EE54D2E3391440010A8A8 /* ooxmlsignature.framework in Frameworks */,
 				FCB4C70126DD018B0012C20D /* WebKit.framework in Frameworks */,
 				5AD24E2A2902AE3C00748926 /* Sparkle.framework in Frameworks */,
 				FCB4C70226DD018B0012C20D /* Security.framework in Frameworks */,
