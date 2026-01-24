@@ -266,7 +266,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.odg *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi *.key);;" +
                     tr("Visio diagram") + " (*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
-                    tr("Text files") + " (*.txt *.csv)";
+                    tr("Text files") + " (*.txt *.csv *.tsv)";
 //#ifdef __linux__
         _sel_filter = tr("All supported files") + " " + joinExtentions(_filter_);
         _filter_.prepend(_sel_filter + ";;");
@@ -367,7 +367,7 @@ QStringList CFileDialogWrapper::modalOpenDocuments(const QString& path, bool mul
 QStringList CFileDialogWrapper::modalOpenSpreadsheets(const QString& path, bool multi)
 {
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.prepend(tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.xltx *.xltm *.fods *.et *.ett);;");
+    filter.prepend(tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.tsv *.xltx *.xltm *.fods *.et *.ett);;");
 
     return modalOpen(path, filter, nullptr, multi);
 }
