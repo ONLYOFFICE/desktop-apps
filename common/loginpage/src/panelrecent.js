@@ -510,6 +510,12 @@
         };
 
         function _init_ppmenu() {
+            if (ppmenu) {
+                Menu.closeAll();
+                $('#pp-menu-files').remove();
+                ppmenu = null;
+            }
+
             ppmenu = new Menu({
                 id: 'pp-menu-files',
                 className: 'with-icons',
@@ -712,6 +718,7 @@
                     }
                 });
 
+                CommonEvents.on('lang:changed', _init_ppmenu.bind(this));
 
                 docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 
