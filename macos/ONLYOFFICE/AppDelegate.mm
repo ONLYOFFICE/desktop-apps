@@ -1758,9 +1758,9 @@
     [webView focus];
 
     // Let the event loop process before starting drag to prevent window jerking
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [editorWindow performWindowDragWithEvent:event];
-    });
+    [editorWindow performSelector:@selector(performWindowDragWithEvent:)
+                       withObject:event
+                       afterDelay:0.0];
 }
 
 @end
