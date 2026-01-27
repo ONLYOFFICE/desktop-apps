@@ -184,8 +184,7 @@ static QColor GetBorderColor(bool isActive, const QColor &bkgColor)
 
 static bool isTaskbarAutoHideOn()
 {
-    APPBARDATA ABData;
-    ABData.cbSize = sizeof(ABData);
+    APPBARDATA ABData = { sizeof(APPBARDATA) };
     return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) != 0;
 }
 
@@ -452,8 +451,8 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         params->rgrc[0].top -= m_frame.top;
         params->rgrc[0].right += m_frame.left;
         params->rgrc[0].bottom += m_frame.left;
-        if (m_isMaximized && m_isTaskbarAutoHideOn && (Utils::getWinVersion() >= WinVer::Win10))
-            params->rgrc[0].bottom -= 2;
+        if (m_isMaximized && (Utils::getWinVersion() >= WinVer::Win10) && isTaskbarAutoHideOn())
+            params->rgrc[0].bottom -= 1 * round(m_dpi);
         return true;
     }
 
