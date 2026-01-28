@@ -1752,6 +1752,8 @@
     }
     
     [editorWindow makeKeyAndOrderFront:nil];
+    [editorWindow.contentView layoutSubtreeIfNeeded];
+    [editorWindow displayIfNeeded];
     
     NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
     [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
