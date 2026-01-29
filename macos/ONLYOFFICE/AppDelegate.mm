@@ -1695,7 +1695,7 @@
         NSPoint pos = [NSEvent mouseLocation];
         if ([titlebarController canPinTabAtPoint:pos]) {
             if (!dropTimer) {
-                dropTimer = [NSTimer scheduledTimerWithTimeInterval:0.3
+                dropTimer = [NSTimer scheduledTimerWithTimeInterval:0.15
                                                              target:self
                                                            selector:@selector(handleDropTimer)
                                                            userInfo:nil
