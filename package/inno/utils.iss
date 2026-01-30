@@ -1,8 +1,4 @@
-﻿
-#include "stringversion.iss"
-#include "msiproduct.iss"
-
-[Code]
+﻿[Code]
 
 procedure DirectoryCopy(SourcePath, DestPath: string);
 var
@@ -79,39 +75,27 @@ begin
    end;
 end;
 
-function checkVCRedist(): Boolean;
+function CheckVCRedist(): Boolean;
 var
-  upgradecode: String;
+  Version: Integer;
 begin
-
-#if ARCH == "arm64"
-
-  upgradecode := '{DC9BAE42-810B-423A-9E25-E4073F1C7B00}'; //arm64
-
-  Result :=  msiproductupgrade(upgradecode, '14.32.31332.0');
-
-#else
 #ifndef _WIN_XP
-
-  if Is64BitInstallMode then
-    upgradecode := '{36F68A90-239C-34DF-B58C-64B30153CE35}' //x64
-  else
-    upgradecode := '{65E5BD06-6392-3027-8C26-853107D3CF1A}'; //x86
-
-  Result :=  msiproductupgrade(upgradecode, '14.32.31332.0');
-
+  Version := PackVersionComponents(14, 32, 31332, 0);
+#if ARCH == "arm64"
+  Result := IsMsiProductInstalled('{DC9BAE42-810B-423A-9E25-E4073F1C7B00}', Version);
 #else
-
   if Is64BitInstallMode then
-    upgradecode := '{C146EF48-4D31-3C3D-A2C5-1E91AF8A0A9B}' //x64
+    Result := IsMsiProductInstalled('{36F68A90-239C-34DF-B58C-64B30153CE35}', Version)
   else
-    upgradecode := '{F899BAD3-98ED-308E-A905-56B5338963FF}'; //x86
-
-  Result :=  msiproductupgrade(upgradecode, '14.27.29114.0');
-
+    Result := IsMsiProductInstalled('{65E5BD06-6392-3027-8C26-853107D3CF1A}', Version);
 #endif
+#else
+  Version := PackVersionComponents(14, 27, 29114, 0);
+  if Is64BitInstallMode then
+    Result := IsMsiProductInstalled('{C146EF48-4D31-3C3D-A2C5-1E91AF8A0A9B}', Version)
+  else
+    Result := IsMsiProductInstalled('{F899BAD3-98ED-308E-A905-56B5338963FF}', Version);
 #endif
-
 end;
 
 function ReadBinFile(fileName: String; list: TStringList): Boolean;
