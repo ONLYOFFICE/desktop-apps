@@ -62,6 +62,7 @@
 class ASCEventListener: public NSEditorApi::CAscCefMenuEventListener {
     dispatch_queue_t eventListenerQueue;
     id <ASCExternalDelegate> externalDelegate;
+    int fullscreen_view_id = -1;
 public:
     ASCEventListener() : NSEditorApi::CAscCefMenuEventListener () {
         eventListenerQueue = dispatch_queue_create("asc.onlyoffice.MenuEventListenerQueue", NULL);
@@ -239,10 +240,9 @@ public:
                         CCefView * pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
 
                         if ( pCefView && pCefView->GetType() == cvwtEditor && !((CCefViewEditor*)pCefView)->IsPresentationReporter() ) {
-                            static int view_id = -1;
                             if ( pRawEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER ) {
-                                if ( view_id < 0 ) {
-                                    view_id = pRawEvent->get_SenderId();
+                                if ( fullscreen_view_id < 0 ) {
+                                    fullscreen_view_id = pRawEvent->get_SenderId();
 
                                     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                                                         object:nil
@@ -256,8 +256,8 @@ public:
                                     pCefView->Apply(pEvent);
                                 }
                             } else {
-                                if ( view_id == pRawEvent->get_SenderId() )
-                                    view_id = -1;
+                                if ( fullscreen_view_id == pRawEvent->get_SenderId() )
+                                    fullscreen_view_id = -1;
 
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                                                     object:nil
@@ -954,6 +954,11 @@ public:
     {
         return true;
     }
+    
+    void resetFullscreenState()
+    {
+        fullscreen_view_id = -1;
+    }
 };
 
 
@@ -996,6 +1001,13 @@ public:
     }
     
     return self;
+}
+
++ (void)resetFullscreenState {
+    ASCEventsController *ec = [ASCEventsController sharedInstance];
+    if (ec && ec->_listener) {
+        ec->_listener->resetFullscreenState();
+    }
 }
 
 @end

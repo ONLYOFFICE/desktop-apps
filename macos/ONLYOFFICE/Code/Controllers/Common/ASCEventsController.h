@@ -42,4 +42,5 @@
 
 @interface ASCEventsController : NSObject
 + (instancetype)sharedInstance;
++ (void)resetFullscreenState;
 @end

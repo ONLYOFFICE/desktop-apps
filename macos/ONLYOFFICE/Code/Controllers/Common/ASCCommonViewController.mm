@@ -728,6 +728,7 @@
         if ( [params objectForKey:@"viewId"] ) {
             tab = [self tabViewWithId:[params[@"viewId"] intValue]];
         } else if ( [params objectForKey:@"terminate"] and [params[@"terminate"] boolValue] ) {
+            [ASCEventsController resetFullscreenState];
             if (self.tabsControl.tabs.count > 0)
                 tab = [self.tabsControl selectedTab];
         }
