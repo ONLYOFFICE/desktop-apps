@@ -69,7 +69,6 @@
 @interface AppDelegate () {
     ASCPrinterContext * m_pContext;
     NSTimer *dropTimer;
-    BOOL dropTimerActive;
     NSPoint lastCursorPos;
 }
 @property (weak) IBOutlet NSMenuItem *updateMenuItem;
@@ -1682,7 +1681,6 @@
         [dropTimer invalidate];
     }
     dropTimer = nil;
-    dropTimerActive = NO;
 }
 
 - (void)validateDrop:(NSWindow *)editorWindow {
@@ -1694,23 +1692,20 @@
     if (mainWindow && mainWindow.isVisible && !mainWindow.isMiniaturized) {
         self.dropEditorWindow = editorWindow;
         
-        if (!dropTimer) {
-            dropTimer = [NSTimer timerWithTimeInterval:0.3
-                                                target:self
-                                              selector:@selector(handleDropTimer)
-                                              userInfo:nil
-                                               repeats:YES];
-        }
-        
         NSPoint pos = [NSEvent mouseLocation];
         if ([titlebarController canPinTabAtPoint:pos]) {
-            if (!dropTimerActive) {
-                [[NSRunLoop currentRunLoop] addTimer:dropTimer forMode:NSRunLoopCommonModes];
-                dropTimerActive = YES;
+            if (!dropTimer) {
+                dropTimer = [NSTimer scheduledTimerWithTimeInterval:0.15
+                                                             target:self
+                                                           selector:@selector(handleDropTimer)
+                                                           userInfo:nil
+                                                            repeats:YES];
             }
             lastCursorPos = pos;
         } else {
-            [self stopDropTimer];
+            if (dropTimer) {
+                [self stopDropTimer];
+            }
         }
     }
 }
