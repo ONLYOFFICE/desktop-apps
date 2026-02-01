@@ -45,6 +45,7 @@
 #import "ASCHelper.h"
 #import "NSCefView.h"
 #import "NSCefData.h"
+#import "ASCEventsController.h"
 #import "ASCPresentationReporter.h"
 #import "NSString+Extensions.h"
 #import "NSDictionary+Extensions.h"
@@ -287,6 +288,9 @@
             if (![self holdView:viewId]) {
                 return;
             }
+        } else
+        if ([params objectForKey:@"terminate"] and [params[@"terminate"] boolValue]) {
+            [ASCEventsController resetFullscreenState];
         }
         
         if (isFullscreen) {
