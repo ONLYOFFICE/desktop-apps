@@ -90,7 +90,7 @@
 }
 
 + (NSArray *)plugins {
-    return @[@"plugin"];
+    return @[@"plugin", @"zip"];
 }
 
 + (NSArray *)csvtxt {
