@@ -639,7 +639,15 @@ static float kASCRTLTabsRightMargin = 0;
 
 - (NSInteger)insertionIndexForScreenPoint:(NSPoint)screenPoint {
     NSWindow *window = self.view.window;
-    NSPoint windowPoint = [window convertPointFromScreen:screenPoint];
+    NSPoint windowPoint;
+    if (@available(macOS 10.12, *)) {
+        windowPoint = [window convertPointFromScreen:screenPoint];
+    } else {
+        NSRect screenRect = NSMakeRect(screenPoint.x, screenPoint.y, 0, 0);
+        NSRect windowRect = [window convertRectFromScreen:screenRect];
+        windowPoint = windowRect.origin;
+    }
+    
     NSPoint pointInTabs = [self.tabsControl convertPoint:windowPoint fromView:nil];
 
     NSInteger tabsCount = [self.tabsControl.tabs count];
