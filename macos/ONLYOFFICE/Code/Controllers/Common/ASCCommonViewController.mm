@@ -1060,7 +1060,8 @@
                     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                     pEvent->m_pData = pCommand;
                     
-                    [self.cefStartPageView apply:pEvent];
+                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                    appManager->SetEventToAllMainWindows(pEvent);
                 }
             });
         });
