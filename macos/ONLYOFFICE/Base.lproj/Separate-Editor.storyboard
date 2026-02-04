@@ -12,12 +12,11 @@
                     <window key="window" title="Editor Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="cAh-Jm-QUj" userLabel="Editor Window" customClass="ASCEditorWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="733" y="408" width="480" height="270"/>
+                        <rect key="contentRect" x="733" y="408" width="1024" height="540"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
-                        <value key="minSize" type="size" width="800" height="600"/>
-                        <value key="minFullScreenContentSize" type="size" width="800" height="600"/>
+                        <value key="minSize" type="size" width="518" height="440"/>
                         <view key="contentView" id="slM-5v-MnY">
-                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="540"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </view>
                         <connections>
