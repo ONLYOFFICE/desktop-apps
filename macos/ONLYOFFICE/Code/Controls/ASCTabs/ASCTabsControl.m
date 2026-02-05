@@ -557,7 +557,14 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
                 [draggingTab removeFromSuperview];
                 [tab setHidden:NO];
                 if (_delegate && [_delegate respondsToSelector:@selector(tabs:didDetachTab:atScreenPoint:withEvent:)]) {
-                    NSPoint screenPoint = [self.window convertPointToScreen:windowPoint];
+                    NSPoint screenPoint;
+                    if (@available(macOS 10.12, *)) {
+                        screenPoint = [self.window convertPointToScreen:windowPoint];
+                    } else {
+                        NSRect windowRect = NSMakeRect(windowPoint.x, windowPoint.y, 0, 0);
+                        NSRect screenRect = [self.window convertRectToScreen:windowRect];
+                        screenPoint = screenRect.origin;
+                    }
                     [_delegate tabs:self didDetachTab:tab atScreenPoint:screenPoint withEvent:event];
                 }
                 return;
