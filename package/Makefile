@@ -106,6 +106,9 @@ M4_PARAMS += -D M4_CURRENT_YEAR='$(shell date +"%Y")'
 M4_DEB_PARAMS = $(M4_PARAMS)
 M4_DEB_PARAMS += -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)$(DEB_RELEASE_SUFFIX)'
 
+XZ_OPT ?= -9 -T$(shell nproc)
+RPMBUILD_BINARY_PAYLOAD ?= w9T$(shell nproc).xzdio
+
 RPM_PARAMS += --define '_company_name $(COMPANY_NAME)'
 RPM_PARAMS += --define '_product_name $(PRODUCT_NAME)'
 RPM_PARAMS += --define '_publisher_name $(PUBLISHER_NAME)'
@@ -119,7 +122,10 @@ RPM_PARAMS += --define '_product_version $(PRODUCT_VERSION)'
 RPM_PARAMS += --define '_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)'
 RPM_PARAMS += --define '_desktopeditors_exec $(DESKTOPEDITORS_EXEC)'
 RPM_PARAMS += --define '_scheme_handler $(SCHEME_HANDLER)'
-RPM_PARAMS += --define '_binary_payload w7.xzdio'
+RPM_PARAMS += --define '_binary_payload $(RPMBUILD_BINARY_PAYLOAD)'
+ifeq ($(shell rpm --eval %_arch):$(RPM_ARCH),x86_64:aarch64)
+	RPM_PARAMS += --define '__strip /usr/bin/aarch64-linux-gnu-strip'
+endif
 
 CHANGES_DIR := $(BRANDING_DIR)/common/changelog
 CHANGES_HTML := changes.html
@@ -330,14 +336,14 @@ $(RPM_SUSE) : build rpm-suse/$(PACKAGE_NAME).spec
 
 $(TAR) : build
 	mkdir -p tar
-	tar --create --use-compress-program="xz -9T0" \
+	XZ_OPT="$(XZ_OPT)" tar --create --xz \
 		--owner=root --group=root \
 		--directory=build/main --file=$@ \
 		$(patsubst build/main/%,%,$(wildcard build/main/*))
 
 $(TAR_HELP) : build
 	mkdir -p tar
-	tar --create --use-compress-program="xz -9T0" \
+	XZ_OPT="$(XZ_OPT)" tar --create --xz \
 		--owner=root --group=root \
 		--directory=build/help --file=$@ \
 		$(patsubst build/help/%,%,$(wildcard build/help/*))

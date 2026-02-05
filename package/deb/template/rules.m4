@@ -13,4 +13,4 @@ override_dh_shlibdeps:
 	dh_shlibdeps --no-act
 
 override_dh_builddeb:
-	dh_builddeb -- -z9 -Zxz
+	dh_builddeb -- -z9 -Zxz --threads-max=$(shell nproc)
