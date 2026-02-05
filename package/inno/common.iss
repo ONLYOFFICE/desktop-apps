@@ -107,8 +107,10 @@ SignTool                  =byparam $p
 SetupIconFile={#BRANDING_DIR}\..\..\win-linux\extras\projicons\res\icons\desktopeditors.ico
 WizardStyle=classic dynamic
 WizardSizePercent=100
-WizardImageFile={#BRANDING_DIR}\res\dialogpicture*.bmp
-WizardSmallImageFile={#BRANDING_DIR}\res\dialogicon*.bmp
+WizardImageFile={#BRANDING_DIR}\res\WizImage-Light-*.png
+WizardImageFileDynamicDark={#BRANDING_DIR}\res\WizImage-Dark-*.png
+WizardSmallImageFile={#BRANDING_DIR}\res\WizSmallImage-Light-*.png
+WizardSmallImageFileDynamicDark={#BRANDING_DIR}\res\WizSmallImage-Dark-*.png
 #if PACKAGE_EDITION == "Enterprise"
 LicenseFile={#BRANDING_DIR}\..\common\license\commercial\LICENSE.rtf
 #else
