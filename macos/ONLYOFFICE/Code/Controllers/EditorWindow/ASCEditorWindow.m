@@ -69,6 +69,10 @@
     [super setFrame:frameRect display:flag];
 }
 
+- (NSRect)constrainFrameRect:(NSRect)frameRect toScreen:(NSScreen *)screen {
+    return frameRect;
+}
+
 - (void)initialize {
 
 }
