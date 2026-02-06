@@ -1130,7 +1130,7 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="240"/>
         <source>Set Default App</source>
-        <translation>Set Default Ap</translation>
+        <translation>Set Default App</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="251"/>
