@@ -1,6 +1,6 @@
 l10n.en_GB = {
     welWelcome: 'Welcome to ONLYOFFICE!',
-    welDescr: 'Create, edit, and collaborate on documents, spreadsheets, presentations, and PDFs — all in one place.<br/>Powerful tools for documents, spreadsheets, and slides PDF editing, forms, and conversion Real-time cloud collaboration',
+    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Need help? Visit our $1.',
     textHelpCenter: 'Help Center',
     btnConnect: 'Connect now',
@@ -23,6 +23,8 @@ l10n.en_GB = {
     menuRemoveModel: 'Remove from list',
     menuClear: 'Clear',
     menuLogout: 'Logout',
+    menuFilePin: 'Pin',
+    menuFileUnpin: 'Unpin',
     textMyComputer: 'My Computer',
     textThrough: 'through',
     linkForgotPass: 'Forgot password?',
