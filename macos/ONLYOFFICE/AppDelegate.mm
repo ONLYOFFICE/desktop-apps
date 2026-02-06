@@ -182,6 +182,7 @@
             
             NSString * actionSelectPanel = [NSString stringWithFormat:@"%@://%@|", kSchemeApp, @"action|panel"];
             NSString * actionInstallPlugin = [NSString stringWithFormat:@"%@://%@|", kSchemeApp, @"action|install-plugin"];
+            NSString * appCommand = [NSString stringWithFormat:@"%@://%@|", kSchemeApp, @"command/"];
             if ( [strLink hasPrefix:actionSelectPanel] ) {
                 NSString * panelName = [strLink substringFromIndex:actionSelectPanel.length];
                 
@@ -202,6 +203,12 @@
 
                 CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                 appManager->InstallPluginFromStore([pluginName stdwstring]);
+            } else
+            if ( [strLink hasPrefix:appCommand] ) {
+                NSString * cmd = [strLink substringFromIndex:appCommand.length];
+
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                appManager->CallCommand([cmd stdwstring]);
             } else {
                 [openLinks addObject:obj];
             }
