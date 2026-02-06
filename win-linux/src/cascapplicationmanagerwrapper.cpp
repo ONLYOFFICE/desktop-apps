@@ -936,6 +936,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     std::wstring app_action = app_scheme + L"//action";
     std::wstring app_action_open = app_scheme + L"//open";
     std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
+    std::wstring app_command = app_scheme + L"//command/";
     std::vector<std::wstring> vec_window_actions;
 
     for (const auto& arg: vargs) {
@@ -992,6 +993,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             Utils::replaceAll(deep_link, L"%7C", L"|");
             open_opts.wurl = deep_link;
             open_opts.name = QString::fromStdWString(get_file_name_from_open_deeplink(deep_link));
+        } else
+        if ( arg.rfind(app_command, 0) == 0 ) {
+            vec_window_actions.push_back(arg);
+            continue;
         } else {
             open_opts.wurl = arg;
         }
@@ -1115,6 +1120,7 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
     std::wstring app_scheme = GetExternalSchemeName();
     if ( !app_scheme.empty() ) {
         const std::wstring app_action_panel = app_scheme + L"//action|panel|";
+        const std::wstring app_command = app_scheme + L"//command/";
 
         for (const auto& a: actions) {
             if ( a.rfind(app_action_panel, 0) == 0 ) {
@@ -1122,6 +1128,11 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
 
                 gotoMainWindow();
                 m_pMainWindow->handleWindowAction(_action);
+            } else
+            if ( a.rfind(app_command, 0) == 0 ) {
+                std::wstring _arg_cmd = a.substr(app_command.length());
+                if (!_arg_cmd.empty())
+                    CallCommand(_arg_cmd);
             }
         }
     }
