@@ -711,6 +711,7 @@
                 <windowController storyboardIdentifier="ASCTitleWindowControllerId" id="B8D-0N-5wS" customClass="ASCTitleWindowController" sceneMemberID="viewController">
                     <window key="window" title="ONLYOFFICE" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="ASCTitleWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="0.0" y="0.0" width="1024" height="540"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
                         <value key="minSize" type="size" width="518" height="440"/>
