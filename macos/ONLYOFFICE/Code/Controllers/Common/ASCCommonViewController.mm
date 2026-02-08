@@ -1045,6 +1045,11 @@
 }
 
 - (void)onCEFFilesCheck:(NSNotification *)notification {
+    AppDelegate *app = (AppDelegate *)[NSApp delegate];
+    if (app.waitingForTerminateApp || self.waitingForClose) {
+        return;
+    }
+    
     if (notification && notification.userInfo) {
         id paths = notification.userInfo;
         
