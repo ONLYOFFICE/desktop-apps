@@ -16,10 +16,6 @@
                         <rect key="contentRect" x="733" y="408" width="1024" height="540"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
                         <value key="minSize" type="size" width="518" height="440"/>
-                        <view key="contentView" id="slM-5v-MnY">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="540"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </view>
                         <connections>
                             <outlet property="delegate" destination="ayF-h0-EsM" id="wDl-ug-8Gz"/>
                         </connections>
