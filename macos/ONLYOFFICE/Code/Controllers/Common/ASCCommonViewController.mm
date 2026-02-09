@@ -1197,6 +1197,7 @@
                     }
                 }
             } else {
+                [self.view.window makeKeyAndOrderFront:nil];
                 [self displayPortalTabBy:path];
             }
         }
