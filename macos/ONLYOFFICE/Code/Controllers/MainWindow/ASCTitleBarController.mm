@@ -420,7 +420,7 @@ static float kASCRTLTabsRightMargin = 0;
         [self.portalButton setNeedsDisplay];
 
         if ( [self.portalButton state] != NSControlStateValueOn ) {
-            [NSApplication isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+            [ASCThemesController isDarkWindowAppearance] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                     [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         } else {
             [ASCThemesController isCurrentThemeDark] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
@@ -446,12 +446,12 @@ static float kASCRTLTabsRightMargin = 0;
             portalButtonCell.bgActiveColor = [ASCThemesController color:btnPortalActiveBackgroundColor forTheme:theme];
             [self.portalButton setNeedsDisplay];
 
-            [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+            [ASCThemesController isDarkWindowAppearance] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                         [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         }
     } else {
         if ( [self.portalButton state] != NSControlStateValueOn ) {
-            [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+            [ASCThemesController isDarkWindowAppearance] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                         [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         }
     }
@@ -545,7 +545,7 @@ static float kASCRTLTabsRightMargin = 0;
     if (tab) {
         [self.portalButton setState:NSControlStateValueOff];
 
-        if ( [NSApplication isSystemDarkMode] )
+        if ( [ASCThemesController isDarkWindowAppearance] )
             [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
         else [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
     } else {

@@ -102,7 +102,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 }
 
 - (void)refreshPortalTabIconset {
-    NSString * normalIcon = [NSApplication isSystemDarkMode] ? @"icon_tab_portal_inactive" : @"icon_tab_portal_active",
+    NSString * normalIcon = [ASCThemesController isDarkWindowAppearance] ? @"icon_tab_portal_inactive" : @"icon_tab_portal_active",
             * activeIcon = [ASCThemesController isCurrentThemeDark] ? @"icon_tab_portal_inactive" : @"icon_tab_portal_active";
 
     _icons[ASCTabViewTypePortal] = @{@"normal": normalIcon, @"active": activeIcon};

@@ -198,4 +198,14 @@
     return false;
 }
 
++ (BOOL)isDarkWindowAppearance {
+    BOOL isDarkWindow;
+    if (@available(macOS 10.14, *)) {
+        isDarkWindow = [ASCThemesController isCurrentThemeDark];
+    } else {
+        isDarkWindow = [NSApplication isSystemDarkMode];
+    }
+    return isDarkWindow;
+}
+
 @end
