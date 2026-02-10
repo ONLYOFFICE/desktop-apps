@@ -60,6 +60,7 @@
 #import "NSAlert+SynchronousSheet.h"
 #import "NSString+Extensions.h"
 #import "NSDictionary+Extensions.h"
+#import "PureLayout.h"
 #import "ascprinter.h"
 
 #ifndef _MAS
@@ -1752,9 +1753,8 @@
     NSViewController *contentViewController = windowController.contentViewController;
     if (contentViewController && contentViewController.view) {
         editorWindow.webView = webView;
-        webView.frame = contentViewController.view.bounds;
-        webView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
         [contentViewController.view addSubview:webView];
+        [webView autoPinEdgesToSuperviewEdges];
     }
     
     [editorWindow makeKeyAndOrderFront:nil];
