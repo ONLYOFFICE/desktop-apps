@@ -630,6 +630,11 @@ public:
                         } else if (cmd.find(L"recent:forget") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             appManager->RemoveRecentByViewId(senderId);
+                        } else if (cmd.find(L"recent:pinned") != std::wstring::npos) {
+                            NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary];
+
+                            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                            appManager->SetRecentPin([json[@"id"] intValue], [json[@"pinned"] boolValue]);
                         } else if (cmd.find(L"go:folder") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorOpenFolder
                                                                                 object:nil
