@@ -83,6 +83,10 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     
+    if (@available(macOS 10.12, *)) {
+        [NSWindow setAllowsAutomaticWindowTabbing:NO];
+    }
+    
     self.editorWindowControllers = [NSMutableArray array];
     
     [self updateAppAppearance];
