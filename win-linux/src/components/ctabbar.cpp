@@ -291,7 +291,6 @@ void Tab::resizeEvent(QResizeEvent *event)
 
 void Tab::paintEvent(QPaintEvent *ev)
 {
-    QFrame::paintEvent(ev);
     if (!tabcolor.isEmpty() && tabcolor != "none" && property("selected").toBool()) {
 //        if (tabBar && tabBar->property("active").toBool())
         {
@@ -299,6 +298,8 @@ void Tab::paintEvent(QPaintEvent *ev)
             int left = AscAppManager::isRtlEnabled() ? frameWidth() : 0;
             p.fillRect(rect().adjusted(left, 0, left ? 0 : -frameWidth(), 0), QBrush(QColor(tabcolor)));
         }
+    } else {
+        QFrame::paintEvent(ev);
     }
 }
 
