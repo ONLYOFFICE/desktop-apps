@@ -151,6 +151,10 @@
                      @"description" : NSLocalizedString(@"Mobipocket e-book", nil),
                      @"extension"   : @"epub"
                      },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MD): @{
+                     @"description" : NSLocalizedString(@"Markdown File", nil),
+                     @"extension"   : @"md"
+                     },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX): @{
                      @"description" : NSLocalizedString(@"Document template", nil),
                      @"extension"   : @"dotx"
