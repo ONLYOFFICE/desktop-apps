@@ -538,8 +538,6 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [tab setHidden:YES];
 
     CGPoint prevPoint = dragPoint;
-    
-    static const CGFloat kDetachmentThreshold = 30.0;
 
     while (1) {
         event = [self.window nextEventMatchingMask:NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp];
@@ -550,8 +548,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             NSPoint windowPoint = event.locationInWindow;
             NSPoint controlPoint = [self convertPoint:windowPoint fromView:nil];
 
-            BOOL isAboveControl = controlPoint.y > NSMaxY(self.bounds) + kDetachmentThreshold;
-            BOOL isBelowControl = controlPoint.y < NSMinY(self.bounds) - kDetachmentThreshold;
+            BOOL isAboveControl = controlPoint.y > NSMaxY(self.bounds) + 9.0;
+            BOOL isBelowControl = controlPoint.y < NSMinY(self.bounds);
             if (isAboveControl || isBelowControl) {
                 // Detach the tab
                 [draggingTab removeFromSuperview];
