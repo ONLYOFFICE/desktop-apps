@@ -450,7 +450,7 @@
     <ROW Feature="FA_XPS" Feature_Parent="RegFileTypeAssociations" Title=".xps" Display="91" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="Files" Feature_Parent="MainFeature" Title="Files" Display="0" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="MainFeature" Title="MainFeature" Display="0" Level="1" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="Microsoft_VC142_CRT_x64" Title="Microsoft Visual C++ Redistributable (x64)" Display="0" Level="4" Attributes="0" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Feature="Microsoft_VC142_CRT_x64" Title="Microsoft Visual C++ Redistributable (x64)" Display="0" Level="4" Attributes="0" Builds="MsiBuild64"/>
     <ROW Feature="Microsoft_VC142_CRT_x86" Title="Microsoft Visual C++ Redistributable (x86)" Display="0" Level="4" Attributes="0" Builds="MsiBuild32"/>
     <ROW Feature="PluginManager" Title="Plugin Manager" Display="2" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="RegFileTypeAssociations" Title="File Type Associations" Display="6" Level="1" Directory_="APPDIR" Attributes="0"/>
