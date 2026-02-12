@@ -673,6 +673,14 @@ static float kASCRTLTabsRightMargin = 0;
     if (!NSPointInRect(screenPoint, windowFrame)) {
         return false;
     }
+    
+    if ( [self isFullScreen] ) {
+        const CGFloat dropZoneHeight = 36.0;
+        NSRect dropZoneRect = NSMakeRect(windowFrame.origin.x, windowFrame.origin.y + windowFrame.size.height - dropZoneHeight,
+                                         windowFrame.size.width, dropZoneHeight);
+        return NSPointInRect(screenPoint, dropZoneRect);
+    }
+    
     NSRect contentRect = [mainWindow contentRectForFrameRect:windowFrame];
     NSRect titleBarRect = NSMakeRect(windowFrame.origin.x, contentRect.origin.y + contentRect.size.height,
                                      windowFrame.size.width, windowFrame.size.height - contentRect.size.height);
