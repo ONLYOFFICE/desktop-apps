@@ -625,6 +625,8 @@
     if (tab) {
         NSCefView * cefView = [self cefViewWithTab:tab];
         if (cefView && ([cefView.data hasChanges] || [cefView isSaveLocked])) {
+            [self.view.window makeKeyAndOrderFront:nil];
+
             NSAlert *alert = [[NSAlert alloc] init];
             [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
             [alert addButtonWithTitle:NSLocalizedString(@"Don't Save", nil)];

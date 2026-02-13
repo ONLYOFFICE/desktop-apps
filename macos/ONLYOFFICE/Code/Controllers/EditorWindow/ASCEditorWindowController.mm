@@ -153,6 +153,8 @@
     }
     
     if (hasUnsaved) {
+        [window makeKeyAndOrderFront:nil];
+        
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Don't Save", nil)];
