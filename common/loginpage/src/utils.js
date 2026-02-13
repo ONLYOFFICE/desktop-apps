@@ -518,6 +518,23 @@ utils.fn.needUseSvg = function () {
     return !(window.devicePixelRatio < 2) || window.devicePixelRatio == 1;
 }
 
+utils.fn.sortProviders = function(list) {
+    return (list || []).slice().sort((a, b) => {
+
+        if (a.provider === 'onlyoffice' && b.provider !== 'onlyoffice') return -1;
+        if (b.provider === 'onlyoffice' && a.provider !== 'onlyoffice') return 1;
+
+        const aNoOrder = (a.order === undefined || a.order === null || a.order === '');
+        const bNoOrder = (b.order === undefined || b.order === null || b.order === '');
+
+        if (aNoOrder && !bNoOrder) return 1;
+        if (!aNoOrder && bNoOrder) return -1;
+        if (aNoOrder && bNoOrder) return 0;
+
+        return Number(a.order) - Number(b.order);
+    });
+};
+
 function getUrlParams() {
     var e,
     a = /\+/g,  

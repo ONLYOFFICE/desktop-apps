@@ -4,6 +4,7 @@
     "entryPage": "https://dropbox.onlyoffice.com/app",
     "extraLogout": "https://www.dropbox.com",
     "editorPage": "regex:\/(convert|editor)",
+    "order": 1,
     "icons": {
         "themeLight":{
             "connectionsList": "./assets/listicon.svg",

@@ -4,6 +4,7 @@
     "entryPage": "https://box.onlyoffice.com/app",
     "extraLogout": "https://box.com",
     "editorPage": "regex:execute.*onlyoffice_personal",
+    "order": 0,
     "icons": {
         "themeLight":{
             "connectionsList": "./assets/listicon.svg",
