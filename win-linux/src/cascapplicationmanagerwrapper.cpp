@@ -1008,16 +1008,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 str_url = Utils::replaceBackslash(str_url);
                 open_opts.wurl = str_url.toStdWString();
 #else
-                QUrl url = QUrl::fromUserInput(str_url);
-                if (!url.isValid()) {
-                    QFileInfo info(str_url);
-                    if (info.isFile())
-                        url = QUrl::fromUserInput(info.absoluteFilePath());
-                }
-                if (url.isValid()) {
-                    str_url = url.toLocalFile();
-                    open_opts.wurl = str_url.toStdWString();
-                }
+                str_url = str_url.startsWith(QLatin1String("file://"), Qt::CaseInsensitive) ?
+                    QUrl(str_url).toLocalFile() :
+                    QDir::cleanPath(QDir::current().absoluteFilePath(str_url));
+                open_opts.wurl = str_url.toStdWString();
 #endif
             }
             if ( _app.m_private->bringEditorToFront(str_url) ) {
