@@ -76,6 +76,11 @@
     [self setShouldCascadeWindows:YES];
     self.window.delegate = self;
     
+    NSString *savedFrame = [[NSUserDefaults standardUserDefaults] stringForKey:@"ASCEditorWindowFrame"];
+    if (savedFrame) {
+        [self.window setFrameFromString:savedFrame];
+    }
+    
     void (^addObserverFor)(_Nullable NSNotificationName, SEL) = ^(_Nullable NSNotificationName name, SEL selector) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:selector
@@ -101,6 +106,8 @@
 
 - (void)windowWillClose:(NSNotification *)notification {
     ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+    [[NSUserDefaults standardUserDefaults] setObject:[window stringWithSavedFrame] forKey:@"ASCEditorWindowFrame"];
+    
     NSCefView *cefView = (NSCefView *)window.webView;
     if (cefView) {
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
