@@ -1106,9 +1106,8 @@
             NSViewController *contentViewController = windowController.contentViewController;
             if (contentViewController && contentViewController.view) {
                 editorWindow.webView = cefView;
-                cefView.frame = contentViewController.view.bounds;
-                cefView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
                 [contentViewController.view addSubview:cefView];
+                [cefView autoPinEdgesToSuperviewEdges];
                 NSLog(@"Tab detached: WebView moved to new window");
             }
             
