@@ -73,6 +73,7 @@
     self.window.title = productName;
     
     [super windowDidLoad];
+    [self setShouldCascadeWindows:YES];
     self.window.delegate = self;
     
     void (^addObserverFor)(_Nullable NSNotificationName, SEL) = ^(_Nullable NSNotificationName name, SEL selector) {
