@@ -1092,7 +1092,7 @@
             if (self.mainWindowController && self.mainWindowController.window) {
                 NSRect mainFrame = self.mainWindowController.window.frame;
                 mainFrame.origin.x += 30;
-                mainFrame.origin.y += 30;
+                mainFrame.origin.y -= 30;
                 windowController = [ASCEditorWindowController initWithFrame:mainFrame];
             } else {
                 windowController = [ASCEditorWindowController initWithDefaultFrame];
