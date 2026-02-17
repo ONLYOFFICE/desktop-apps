@@ -1767,7 +1767,7 @@
     // Let the event loop process before starting drag to prevent window jerking
     [editorWindow performSelector:@selector(performWindowDragWithEvent:)
                        withObject:event
-                       afterDelay:0.0];
+                       afterDelay:0.016];
 }
 
 @end
