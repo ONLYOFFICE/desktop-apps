@@ -206,6 +206,16 @@ static float kASCRTLTabsRightMargin = 0;
                                                  name:ASCEventNameChangedSystemTheme
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(windowDidBecomeKey:)
+                                                 name:NSWindowDidBecomeKeyNotification
+                                               object:mainWindow];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(windowDidResignKey:)
+                                                 name:NSWindowDidResignKeyNotification
+                                               object:mainWindow];
+
     [[[ASCDownloadController sharedInstance] multicastDelegate] addDelegate:self];
     [self.tabsControl.multicastDelegate addDelegate:self];
     
@@ -311,6 +321,23 @@ static float kASCRTLTabsRightMargin = 0;
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
     [self doLayout];
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    [self updateWindowButtonsAppearance];
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification {
+    [self updateWindowButtonsAppearance];
+}
+
+- (void)updateWindowButtonsAppearance {
+    [self.standardButtonsFullscreen enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
+        [view setNeedsDisplay:YES];
+    }];
+    [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
+        [view setNeedsDisplay:YES];
+    }];
 }
 
 #pragma mark -
