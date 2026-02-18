@@ -471,13 +471,13 @@ var
 begin
   lang := ExpandConstant('{cm:AppLocale}');
   case lang of
-    'ar-SA', 'az-Latn-AZ', 'bg-BG', 'cs-CZ', 'de-DE', 'el-GR',
-    'en-GB', 'en-US', 'es-ES', 'eu-ES', 'fi-FI', 'fr-FR',
-    'gl-ES', 'he-IL', 'hy-AM', 'it-IT', 'ja-JP', 'ko-KR',
-    'lv-LV', 'ms-MY', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-BR',
-    'pt-PT', 'ru-RU', 'si-LK', 'sk-SK', 'sl-SI', 'sr-Cyrl-RS',
-    'sr-Latn-RS', 'sv-SE', 'tr-TR', 'uk-UA', 'vi-VN', 'zh-CN',
-    'zh-TW' : dir := lang;
+    'ar-SA', 'az-Latn-AZ', 'bg-BG', 'ca-ES', 'cs-CZ', 'da-DK', 'de-DE',
+    'el-GR', 'en-GB', 'en-US', 'es-ES', 'eu-ES', 'fi-FI', 'fr-FR',
+    'gl-ES', 'he-IL', 'hu-HU', 'hy-AM', 'id-ID', 'it-IT', 'ja-JP',
+    'ko-KR', 'lv-LV', 'ms-MY', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-BR',
+    'pt-PT', 'ro-RO', 'ru-RU', 'si-LK', 'sk-SK', 'sl-SI', 'sq-AL',
+    'sr-Cyrl-RS', 'sr-Latn-RS', 'sv-SE', 'tr-TR', 'uk-UA', 'ur-PK', 'vi-VN',
+    'zh-CN', 'zh-TW' : dir := lang;
   else
     dir := 'default';
   end;

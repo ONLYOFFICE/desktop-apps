@@ -101,9 +101,9 @@
     <STRING lang="ar" value="ar-SA"/>
     <STRING lang="be" value="default"/>
     <STRING lang="bg" value="bg-BG"/>
-    <STRING lang="ca" value="default"/>
+    <STRING lang="ca" value="ca-ES"/>
     <STRING lang="cs" value="cs-CZ"/>
-    <STRING lang="da" value="default"/>
+    <STRING lang="da" value="da-DK"/>
     <STRING lang="de" value="de-DE"/>
     <STRING lang="el" value="el-GR"/>
     <STRING lang="en_GB" value="en-GB"/>
@@ -112,8 +112,8 @@
     <STRING lang="fr" value="fr-FR"/>
     <STRING lang="gl" value="gl-ES"/>
     <STRING lang="he" value="he-IL"/>
-    <STRING lang="hu" value="default"/>
-    <STRING lang="id" value="default"/>
+    <STRING lang="hu" value="hu-HU"/>
+    <STRING lang="id" value="id-ID"/>
     <STRING lang="it" value="it-IT"/>
     <STRING lang="ja" value="ja-JP"/>
     <STRING lang="ko" value="ko-KR"/>
@@ -123,7 +123,7 @@
     <STRING lang="pl" value="pl-PL"/>
     <STRING lang="pt" value="pt-PT"/>
     <STRING lang="pt_BR" value="pt-BR"/>
-    <STRING lang="ro" value="default"/>
+    <STRING lang="ro" value="ro-RO"/>
     <STRING lang="ru" value="ru-RU"/>
     <STRING lang="sk" value="sk-SK"/>
     <STRING lang="sl" value="sl-SI"/>
