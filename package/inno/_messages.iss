@@ -102,8 +102,8 @@ da.Launch =Start %1
 ;hi.Launch =लॉन्च %1
 hu.Launch =%1 elindítása
 ;ga_IE.Launch =Lainseáil %1
-ja.Launch ==%1 を起動
-ko.Launch ==%1 시작
+ja.Launch =%1 を起動
+ko.Launch =%1 시작
 lv.Launch =Sākt %1
 no.Launch =Kjør %1
 uk.Launch =Запустити %1
@@ -151,10 +151,10 @@ hy_AM.CreateDesktopIcon =Ստեղծել %1 &աշխատասեղանի պատկե�
 ;hr.CreateDesktopIcon =Izradite %1 &ikonu radne površine
 da.CreateDesktopIcon =Opret %1 &skrivebordsikon
 ;hi.CreateDesktopIcon =बनाएँ %1 &डेस्कटॉप आइकन
-hu.CreateDesktopIcon ==%1 &ikon létrehozása az asztalon
+hu.CreateDesktopIcon =%1 &ikon létrehozása az asztalon
 ;ga_IE.CreateDesktopIcon =Deilbhín deisce a chruthú
-ja.CreateDesktopIcon ==%1 &デスクトップアイコンを作成
-ko.CreateDesktopIcon ==%1 &데스크탑 아이콘 생성
+ja.CreateDesktopIcon =%1 &デスクトップアイコンを作成
+ko.CreateDesktopIcon =%1 &데스크탑 아이콘 생성
 lv.CreateDesktopIcon =Izveidot %1 &darbvirsmas ikonu
 no.CreateDesktopIcon =Opprett %1 &skrivebordsikon
 uk.CreateDesktopIcon =Створити &іконку %1 на робочому столі
@@ -410,7 +410,7 @@ da.UpdateAppRunning=Setup har registreret at %1 kører i øjeblikket.%n%nIDet vi
 hu.UpdateAppRunning=A telepítő észlelte, hogy %1 jelenleg fut.%n%nAutomatikusan bezárásra kerül. Folytatáshoz kattintson az OK-ra, kilépéshez kattintson a Mégse gombra.
 ;ga_IE.UpdateAppRunning=Tá sé aimsithe ag an socrú go bhfuil %1 ag rith faoi láthair. Dúnfar é go huathoibríoch. Cliceáil OK chun leanúint ar aghaidh, nó Cealaigh chun imeacht.
 ja.UpdateAppRunning=設定では現時点で %1 の実行を検知しています。%n%nIt'll は自動的に閉じます。OK をクリックして続けるか、キャンセルして終了します。
-ko.UpdateAppRunning==%1 앱이 현재 실행되고 있음을 감지했습니다.%n%n자동으로 종료될 예정입니다. 계속 진행하시려면 확인을, 종료하시려면 취소를 클릭하세요.
+ko.UpdateAppRunning=%1 앱이 현재 실행되고 있음을 감지했습니다.%n%n자동으로 종료될 예정입니다. 계속 진행하시려면 확인을, 종료하시려면 취소를 클릭하세요.
 lv.UpdateAppRunning=Uzstādīšanas programma ir uztvērusi, ka šobrīd darbojas %1. %n%nTā tiks automātiski aizvērta. Klikšķiniet uz Labi, lai turpinātu, vai Atcelt, lai izietu.
 no.UpdateAppRunning=Installasjonen har oppdaget at %1 kjører for øyeblikket.%n%nDen vil lukkes automatisk. Klikk OK for å fortsette, eller Avbryt for å avslutte.
 uk.UpdateAppRunning=Програма інсталяції виявила, що запущено %1.%n%nЦя програма буде закрита автоматично. Натисніть "ОК", щоб продовжити, або "Скасувати", щоб вийти.
@@ -594,7 +594,7 @@ sr_Cyrl_RS.AssociateDescription =Повежи офис документ фајл
 he.AssociateDescription =שייך סוגי קבצי מסמכי משרד ל-{#ASSC_APP_NAME}
 sq.AssociateDescription =Shoqëroni llojet e skedarëve të dokumentit të zyrës me {#ASSC_APP_NAME}
 #if Ver >= EncodeVer(6,1,1)
-ur.AssociateDescription ==آفس دستاویز فائل کی اقسام کو {#ASSC_APP_NAME} کے ساتھ منسلک کریں
+ur.AssociateDescription =آفس دستاویز فائل کی اقسام کو {#ASSC_APP_NAME} کے ساتھ منسلک کریں
 #endif
 
 en.AssociateCaption =File Associations
