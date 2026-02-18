@@ -39,6 +39,7 @@
 
 #import "ASCEditorWindowController.h"
 #import "ASCEditorWindow.h"
+#import "ASCEditorTitleBarController.h"
 #import "AppDelegate.h"
 #import "ASCConstants.h"
 #import "AnalyticsHelper.h"
@@ -49,9 +50,11 @@
 #import "ASCPresentationReporter.h"
 #import "NSString+Extensions.h"
 #import "NSDictionary+Extensions.h"
+#import "NSView+Extensions.h"
 
 @interface ASCEditorWindowController () <NSWindowDelegate>
 @property (nonatomic) BOOL waitingForClose;
+@property (nonatomic) ASCEditorTitleBarController *titlebarController;
 @end
 
 @implementation ASCEditorWindowController
@@ -75,7 +78,8 @@
     [super windowDidLoad];
     [self setShouldCascadeWindows:YES];
     self.window.delegate = self;
-    
+    [self setupToolbar];
+
     NSString *savedFrame = [[NSUserDefaults standardUserDefaults] stringForKey:@"ASCEditorWindowFrame"];
     if (savedFrame) {
         [self.window setFrameFromString:savedFrame];
@@ -98,6 +102,50 @@
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
     addObserverFor(CEFEventNameWebAppsEntry, @selector(onCEFWebAppsEntry:));
     addObserverFor(CEFEventNameWebTitleChanged, @selector(onWebTitleChanged:));
+}
+
+- (void)setupToolbar {
+    ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+    self.titlebarController = [self.storyboard instantiateControllerWithIdentifier:@"editorTitleBarControllerID"];
+
+    NSView * titlebar = [[window standardWindowButton:NSWindowCloseButton] superview];
+    [titlebar addSubview:self.titlebarController.view];
+
+    NSView * view = self.titlebarController.view;
+    NSView * superview = view.superview;
+
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:view
+                                                          attribute:NSLayoutAttributeLeading
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:superview
+                                                          attribute:NSLayoutAttributeLeading
+                                                         multiplier:1
+                                                           constant:0]];
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:view
+                                                          attribute:NSLayoutAttributeTop
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:superview
+                                                          attribute:NSLayoutAttributeTop
+                                                         multiplier:1
+                                                           constant:0]];
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:superview
+                                                          attribute:NSLayoutAttributeTrailing
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:view
+                                                          attribute:NSLayoutAttributeTrailing
+                                                         multiplier:1
+                                                           constant:0]];
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:superview
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:view
+                                                          attribute:NSLayoutAttributeHeight
+                                                         multiplier:1
+                                                           constant:0]];
+
+    [self.titlebarController setupWithWindow:window];
 }
 
 - (void)windowDidMove:(NSNotification *)notification {

@@ -103,6 +103,9 @@
 		F10175932EAB756000C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
 		F10175942EAB756100C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
 		F10175952EAB756100C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
+		F121296F2F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */; };
+		F12129702F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */; };
+		F12129712F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */; };
 		F12F85D32EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D42EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D52EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
@@ -842,6 +845,8 @@
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		F10175912EAB756000C6C1B8 /* ASCLicenseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCLicenseController.h; sourceTree = "<group>"; };
 		F10175922EAB756000C6C1B8 /* ASCLicenseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCLicenseController.m; sourceTree = "<group>"; };
+		F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCEditorTitleBarController.m; sourceTree = "<group>"; };
+		F121296E2F36360C00BFB54F /* ASCEditorTitleBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorTitleBarController.h; sourceTree = "<group>"; };
 		F12F85D12EB6A38400370877 /* ASCEditorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindowController.h; sourceTree = "<group>"; };
 		F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEditorWindowController.mm; sourceTree = "<group>"; };
 		F1376CA32EF581FA00EC5E08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Separate-Editor.storyboard"; sourceTree = "<group>"; };
@@ -1189,6 +1194,8 @@
 		F12F85D02EB6A38400370877 /* EditorWindow */ = {
 			isa = PBXGroup;
 			children = (
+				F121296E2F36360C00BFB54F /* ASCEditorTitleBarController.h */,
+				F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */,
 				F14CD3C12EB73EBC00D476FE /* ASCEditorWindow.h */,
 				F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */,
 				F12F85D12EB6A38400370877 /* ASCEditorWindowController.h */,
@@ -2453,6 +2460,7 @@
 				FC0BD6B6258B63F700C47F95 /* ASCDownloadViewController.m in Sources */,
 				FC0BD6B7258B63F700C47F95 /* ASCTitleWindow.m in Sources */,
 				FC0BD6B8258B63F700C47F95 /* ASCTitleBackground.m in Sources */,
+				F12129712F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */,
 				FC0BD6B9258B63F700C47F95 /* ASCConstants.m in Sources */,
 				FC0BD6BA258B63F700C47F95 /* GTMNSString+HTML.m in Sources */,
 				5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */,
@@ -2532,6 +2540,7 @@
 				FCB4C6F226DD018B0012C20D /* ASCDownloadViewController.m in Sources */,
 				FCB4C6F326DD018B0012C20D /* ASCTitleWindow.m in Sources */,
 				FCB4C6F426DD018B0012C20D /* ASCTitleBackground.m in Sources */,
+				F121296F2F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */,
 				FCB4C6F526DD018B0012C20D /* ASCConstants.m in Sources */,
 				FCB4C6F626DD018B0012C20D /* GTMNSString+HTML.m in Sources */,
 				5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */,
@@ -2611,6 +2620,7 @@
 				FCAA9A441BBA817B00F3C47F /* ASCDownloadViewController.m in Sources */,
 				FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */,
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
+				F12129702F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */,
 				FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
 				5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */,
