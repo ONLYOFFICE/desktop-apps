@@ -78,6 +78,9 @@
     [super windowDidLoad];
     [self setShouldCascadeWindows:YES];
     self.window.delegate = self;
+    if (@available(macOS 11.0, *)) {
+        self.window.toolbarStyle = NSWindowToolbarStyleUnifiedCompact;
+    }
     [self setupToolbar];
 
     NSString *savedFrame = [[NSUserDefaults standardUserDefaults] stringForKey:@"ASCEditorWindowFrame"];
