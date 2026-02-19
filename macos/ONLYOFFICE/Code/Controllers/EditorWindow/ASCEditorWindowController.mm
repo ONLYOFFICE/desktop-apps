@@ -49,6 +49,7 @@
 #import "ASCPresentationReporter.h"
 #import "NSString+Extensions.h"
 #import "NSDictionary+Extensions.h"
+#import "PureLayout.h"
 
 @interface ASCEditorWindowController () <NSWindowDelegate>
 @property (nonatomic) BOOL waitingForClose;
@@ -328,6 +329,7 @@
         } else if ([cefView isInFullScreenMode]) {
             [self.window setIsVisible:YES];
             [cefView exitFullScreenModeWithOptions:nil];
+            [cefView autoPinEdgesToSuperviewEdges];
 
             NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
             pCommand->put_Command(L"editor:stopDemonstration");
