@@ -115,8 +115,6 @@ l10n.hr = {
     settOptDescDisabled: "Automatska provjera ažuriranja bit će onemogućena",
     settOptDescAUpdateSilent: "Preuzmi ažuriranja i pitaj prije instalacije",
     settOptDescAUpdateAsk: "Bit ćete obaviješteni o svim koracima ažuriranja",
-    settRtlMode: "RTL sučelje",
     settGpuUseMode: "Koristite grafičko ubrzanje ako je dostupno",
-    tplPanelLocal: "Lokalni",
-    tplPanelCloud: "Oblačni",
+    settUseAI: 'Koristite AI funkcije',
 }

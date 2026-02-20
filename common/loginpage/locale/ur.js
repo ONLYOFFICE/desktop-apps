@@ -115,8 +115,6 @@ l10n.ur = {
     settOptDescDisabled: "آٹو چیکنگ اپ ڈیٹس کو غیر فعال کر دیا جائے گا",
     settOptDescAUpdateSilent: "پس منظر میں اپ ڈیٹ ڈاؤن لوڈ اور انسٹال کریں",
     settOptDescAUpdateAsk: "آپ کو اپ ڈیٹ کے تمام مراحل کے بارے میں مطلع کیا جائے گا",
-    settRtlMode: "RTL انٹرفیس",
     settGpuUseMode: "جب دستیاب ہو تو گرافکس ایکسلریشن استعمال کریں",
-    tplPanelLocal: "مقامی",
-    tplPanelCloud: "بادل",
+    settUseAI: 'AI افعال استعمال کریں۔',
 }

@@ -141,4 +141,5 @@ l10n.uk = {
     colLastOpened: 'Останнє відкриття',
     labelDropFile: 'Перетягніть файли сюди або',
     labelSelectFile: 'Виберіть файл',
+    settUseAI: 'Використовуйте функції AI',
 }

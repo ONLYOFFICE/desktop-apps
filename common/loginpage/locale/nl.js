@@ -129,4 +129,5 @@
     colLastOpened: 'Laatst geopend',
     labelDropFile: 'Sleep uw bestanden hierheen of',
     labelSelectFile: 'Selecteer bestand',
+    settUseAI: 'Gebruik AI-functies',
 }

@@ -141,4 +141,5 @@ l10n.sq = {
     colLastOpened: 'Hapja e fundit',
     labelDropFile: 'Zvarritni skedarët këtu ose',
     labelSelectFile: 'Zgjidhni skedarin',
+    settUseAI: 'Përdorni funksionet e AI',
 }

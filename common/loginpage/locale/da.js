@@ -115,8 +115,6 @@ l10n.da = {
     settOptDescDisabled: 'Automatisk kontrol af opdateringer vil deaktiveres',
     settOptDescAUpdateSilent: 'Download opdateringer og anmod før installation',
     settOptDescAUpdateAsk: 'Du vil blive underrettet om alle opdateringstrin',
-    settRtlMode: "RTL-interface",
     settGpuUseMode: "Benyt grafikacceleration når det er muligt",
-    tplPanelLocal: "Lokale",
-    tplPanelCloud: "Cloud",
+    settUseAI: 'Brug AI-funktioner',
 }

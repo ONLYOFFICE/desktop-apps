@@ -114,6 +114,6 @@ l10n.si = {
     settOptDescDisabled: "යාවත්කාල ස්වයංක්‍රීය පරීක්‍ෂාව අක්‍රිය වනු ඇත",
     settOptDescAUpdateSilent: "පසුබිමෙන් යාවත්කාල බාගෙන ස්ථාපනය කරන්න",
     settOptDescAUpdateAsk: "යළුම යාවත්කාල පියවර ගැන ඔබට දැනුම් දෙනු ඇත",
-    settRtlMode: "RTL අතුරුමුහුණත",
     settGpuUseMode: "චිත්‍රණ ත්වරණය තිබෙන විට භාවිතා කරන්න",
+    settUseAI: 'AI කාර්යයන් භාවිතා කරන්න',
 }

@@ -129,4 +129,5 @@ l10n.cs = {
     colLastOpened: 'Naposledy otevřené',
     labelDropFile: 'Přetáhněte sem soubory nebo',
     labelSelectFile: 'Vybrat soubor',
+    settUseAI: 'Používejte funkce AI',
 }

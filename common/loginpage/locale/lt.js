@@ -115,8 +115,6 @@ l10n.lt = {
     settOptDescDisabled: "Automatinis naujinimų tikrinimas bus išjungtas",
     settOptDescAUpdateSilent: "Atsisiųsti naujinimus ir klausti prieš įdiegiant",
     settOptDescAUpdateAsk: "Jums bus pranešta apie visus atnaujinimo žingsnius",
-    settRtlMode: "RTL Sąsaja",
     settGpuUseMode: "Kai įmanoma, naudokite grafinį pagreitį",
-    tplPanelLocal: "Vietiniai",
-    tplPanelCloud: "Debesų",
+    settUseAI: 'Naudokite dirbtinio intelekto funkcijas',
 }
