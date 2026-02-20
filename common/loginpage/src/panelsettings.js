@@ -274,7 +274,7 @@
                                         <div class='settings-field' style='display:none;'>
                                             <section class='switch-labeled hbox' id='sett-box-use-ai'>
                                                 <input type="checkbox" class="checkbox" id="sett-use-ai">
-                                                <label for="sett-gpu-mode" class='sett__caption' l10n>${_lang.settUseAI} *</label>
+                                                <label for="sett-use-ai" class='sett__caption' l10n>${_lang.settUseAI} *</label>
                                             </section>
                                         </div>
                                         <!-- temporary elements section -->
@@ -935,6 +935,12 @@
                 $(window).on('resize', on_window_resize.bind(this));
                 CommonEvents.on('panel:show', on_panel_show.bind(this));
                 CommonEvents.on('lang:changed', _on_lang_changed.bind(this));
+
+                const badge_new_feat = '<span class="new-feat-badge">NEW</span>';
+                $panel.find('#sett-box-use-ai label').after(badge_new_feat);
+                if (utils.isMacOS) {
+                    $panel.find('#opts-launch-mode label').after(badge_new_feat);
+                }
 
                 return this;
             },

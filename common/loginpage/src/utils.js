@@ -552,3 +552,4 @@ function getUrlParams() {
 utils.inParams = getUrlParams();
 utils.brandCheck = opts => false;
 utils.isWinXp = utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion);
+utils.isMacOS = /mac os/i.test(navigator.userAgent);
