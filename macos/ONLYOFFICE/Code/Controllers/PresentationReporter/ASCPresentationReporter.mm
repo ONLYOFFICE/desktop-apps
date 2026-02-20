@@ -140,6 +140,9 @@
                     }
                 }
             } else {
+                if ([screens count] == 1) {
+                    [_controller.window setLevel: NSFloatingWindowLevel];
+                }
                 [_controller showWindow:nil];
             }
             
