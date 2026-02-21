@@ -373,7 +373,13 @@ sq.WarningWrongArchitecture =Ju po përpiqeni të instaloni versionin e aplikaci
 #if Ver >= EncodeVer(6,1,1)
 ur.WarningWrongArchitecture =آپ انسٹال کردہ %2 بٹ ورژن پر %1-bit ایپلیکیشن ورژن انسٹال کرنے کی کوشش کر رہے ہیں۔ براہ کرم پہلے پچھلے ورژن کو ان انسٹال کریں یا انسٹالیشن کے لیے صحیح ورژن ڈاؤن لوڈ کریں۔
 #endif
-;======================================================================================================
+;===============================================================================
+en.ErrorMismatchInstalledType =The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing.
+;===============================================================================
+en.ErrorMismatchInstalledArch =The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing.
+;===============================================================================
+en.ErrorMismatchInstalledEdition =The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing.
+;===============================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 en_GB.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.

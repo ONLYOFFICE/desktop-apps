@@ -828,10 +828,7 @@ begin
   Check := Check and not IsMsiProductInstalled('{47EEF706-B0E4-4C43-944B-E5F914B92B79}', 0);
   if Result and not Check then
   begin
-    MsgBox(
-      'Type of the installed package does not match.',
-      mbCriticalError, MB_OK
-    );
+    MsgBox(ExpandConstant('{cm:ErrorMismatchInstalledType}'), mbCriticalError, MB_OK);
     Result := False;
   end;
 
@@ -846,20 +843,14 @@ begin
 #endif
   if Result and not Check then
   begin
-    MsgBox(
-      'Architecture of the installed package does not match.',
-      mbCriticalError, MB_OK
-    );
+    MsgBox(ExpandConstant('{cm:ErrorMismatchInstalledArch}'), mbCriticalError, MB_OK);
     Result := False;
   end;
 
   Check := Check and CheckAppRegData('PackageEdition', '{#PACKAGE_EDITION}');
   if Result and not Check then
   begin
-    MsgBox(
-      'Edition of the installed package does not match.',
-      mbCriticalError, MB_OK
-    );
+    MsgBox(ExpandConstant('{cm:ErrorMismatchInstalledEdition}'), mbCriticalError, MB_OK);
     Result := False;
   end;
 end;

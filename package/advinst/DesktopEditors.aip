@@ -27,10 +27,12 @@
     <ROW Property="Edition" Value="Community" ValueLocId="-"/>
     <ROW Property="ExtPfx" Value="ASC" ValueLocId="-"/>
     <ROW Property="FORMS" Value="1" ValueLocId="-"/>
-    <ROW Property="IncompatibleVersion_ErrorText" Value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <ROW Property="LOCALE" Value="en-US"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7#MsiBuildARM64:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA" ValueLocId="-"/>
+    <ROW Property="MismatchInstalledArch_ErrorText" Value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing." ValueLocId="*"/>
+    <ROW Property="MismatchInstalledEdition_ErrorText" Value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing." ValueLocId="*"/>
+    <ROW Property="MismatchInstalledType_ErrorText" Value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing." ValueLocId="*"/>
     <ROW Property="MsiLogging" MultiBuildValue="MsiBuild64:vp#MsiBuild32:vp#MsiBuildARM64:vp"/>
     <ROW Property="NOASSOCHECK" Value="0" ValueLocId="-"/>
     <ROW Property="NewDocument" Value="New document"/>
@@ -1523,13 +1525,13 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="AiArm64" Description="[ProductName] can be installed only on Arm64 Windows versions." Builds="MsiBuildARM64"/>
-    <ROW Condition="NOT (SEARCH_UNINSTALL_INNO_64 OR SEARCH_UNINSTALL_INNO_32)" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Type of the installed package does not match.&#13;&#10;64: [SEARCH_UNINSTALL_INNO_64]&#13;&#10;32: [SEARCH_UNINSTALL_INNO_32]"/>
-    <ROW Condition="NOT SEARCH_PACKAGE_ARCH OR SEARCH_PACKAGE_ARCH ~= Arch" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Architecture of the installed package does not match. ([Arch] != [SEARCH_PACKAGE_ARCH])"/>
-    <ROW Condition="NOT SEARCH_PACKAGE_EDITION OR SEARCH_PACKAGE_EDITION ~= Edition" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Edition of the installed package does not match. ([Edition] != [SEARCH_PACKAGE_EDITION])"/>
-    <ROW Condition="NOT SEARCH_PACKAGE_TYPE OR SEARCH_PACKAGE_TYPE ~= &quot;advinst&quot;" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Type of the installed package does not match. (advinst != [SEARCH_PACKAGE_TYPE])"/>
-    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_32" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Architecture of the installed package does not match.&#13;&#10;64:[SEARCH_UNINSTALL_ADVINST_64]&#13;&#10;32:[SEARCH_UNINSTALL_ADVINST_32]" Builds="MsiBuild64;MsiBuildARM64"/>
-    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_64" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Architecture of the installed package does not match.&#13;&#10;64:[SEARCH_UNINSTALL_ADVINST_64]&#13;&#10;32:[SEARCH_UNINSTALL_ADVINST_32]" Builds="MsiBuild32"/>
-    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_64 OR SEARCH_UNINSTALL_ADVINST_64 ~&gt;&lt; Arch" Description="[IncompatibleVersion_ErrorText]&#13;&#10;Architecture of the installed package does not match. ([SEARCH_UNINSTALL_ADVINST_64] &gt;&lt; [Arch])" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Condition="NOT (SEARCH_UNINSTALL_INNO_64 OR SEARCH_UNINSTALL_INNO_32)" Description="[MismatchInstalledType_ErrorText]"/>
+    <ROW Condition="NOT SEARCH_PACKAGE_ARCH OR SEARCH_PACKAGE_ARCH ~= Arch" Description="[MismatchInstalledArch_ErrorText]"/>
+    <ROW Condition="NOT SEARCH_PACKAGE_EDITION OR SEARCH_PACKAGE_EDITION ~= Edition" Description="[MismatchInstalledEdition_ErrorText]"/>
+    <ROW Condition="NOT SEARCH_PACKAGE_TYPE OR SEARCH_PACKAGE_TYPE ~= &quot;advinst&quot;" Description="[MismatchInstalledType_ErrorText]"/>
+    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_32" Description="[MismatchInstalledArch_ErrorText]" Builds="MsiBuild64;MsiBuildARM64"/>
+    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_64" Description="[MismatchInstalledArch_ErrorText]" Builds="MsiBuild32"/>
+    <ROW Condition="NOT SEARCH_UNINSTALL_ADVINST_64 OR SEARCH_UNINSTALL_ADVINST_64 ~&gt;&lt; Arch" Description="[MismatchInstalledArch_ErrorText]" Builds="MsiBuild64;MsiBuildARM64"/>
     <ROW Condition="VersionNT &gt;= 601" Description="[ProductName] can be installed only on Windows 7 or later."/>
     <ROW Condition="VersionNT64" Description="[ProductName] can be installed only on 64-bit Windows versions." Builds="MsiBuild64"/>
   </COMPONENT>

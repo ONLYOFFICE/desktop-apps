@@ -138,48 +138,6 @@
     <STRING lang="zh" value="zh-CN"/>
     <STRING lang="zh_TW" value="zh-TW"/>
   </ENTRY>
-  <ENTRY id="Property.IncompatibleVersion_ErrorText">
-    <STRING lang="en" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="ar" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="be" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="bg" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="ca" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="cs" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="da" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="de" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="el" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="en_GB" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="es" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="fi" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="fr" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="gl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="he" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="hu" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="id" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="it" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="ja" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="ko" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="lv" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="nb" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="nl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="pl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="pt" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="pt_BR" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="ro" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="ru" value="Уже установлена другая версия приложения, несовместимая с этой установкой. Пожалуйста, сначала удалите текущую версию или загрузите правильную версию для установки."/>
-    <STRING lang="sk" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="sl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="sq" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="sr_SP_Cyrillic" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="sr_SP_Latin" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="sv" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="tr" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="uk" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="ur" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="vi" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="zh" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-    <STRING lang="zh_TW" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
-  </ENTRY>
   <ENTRY id="Property.LOCALE">
     <STRING lang="en" value="en-US"/>
     <STRING lang="ar" value="ar-SA"/>
@@ -221,6 +179,132 @@
     <STRING lang="vi" value="vi-VN"/>
     <STRING lang="zh" value="zh-CN"/>
     <STRING lang="zh_TW" value="zh-TW"/>
+  </ENTRY>
+  <ENTRY id="Property.MismatchInstalledArch_ErrorText">
+    <STRING lang="en" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ar" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="be" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="bg" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ca" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="cs" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="da" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="de" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="el" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="en_GB" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="es" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="fi" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="fr" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="gl" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="he" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="hu" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="id" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="it" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ja" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ko" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="lv" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="nb" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="nl" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pl" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pt" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pt_BR" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ro" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ru" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sk" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sl" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sq" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sr_SP_Cyrillic" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sr_SP_Latin" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sv" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="tr" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="uk" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ur" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="vi" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="zh" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="zh_TW" value="The architecture of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+  </ENTRY>
+  <ENTRY id="Property.MismatchInstalledEdition_ErrorText">
+    <STRING lang="en" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ar" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="be" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="bg" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ca" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="cs" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="da" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="de" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="el" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="en_GB" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="es" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="fi" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="fr" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="gl" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="he" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="hu" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="id" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="it" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ja" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ko" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="lv" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="nb" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="nl" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pl" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pt" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pt_BR" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ro" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ru" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sk" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sl" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sq" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sr_SP_Cyrillic" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sr_SP_Latin" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sv" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="tr" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="uk" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ur" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="vi" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="zh" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="zh_TW" value="The edition of the installed version does not match this package. Please install the correct package or uninstall the existing version before continuing."/>
+  </ENTRY>
+  <ENTRY id="Property.MismatchInstalledType_ErrorText">
+    <STRING lang="en" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ar" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="be" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="bg" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ca" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="cs" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="da" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="de" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="el" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="en_GB" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="es" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="fi" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="fr" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="gl" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="he" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="hu" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="id" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="it" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ja" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ko" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="lv" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="nb" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="nl" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pl" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pt" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="pt_BR" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ro" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ru" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sk" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sl" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sq" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sr_SP_Cyrillic" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sr_SP_Latin" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="sv" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="tr" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="uk" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="ur" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="vi" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="zh" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
+    <STRING lang="zh_TW" value="The installed version was deployed using a different type of installer. Please install the correct package or uninstall the existing version before continuing."/>
   </ENTRY>
   <ENTRY id="Property.NewDocument">
     <STRING lang="en" value="New document"/>
