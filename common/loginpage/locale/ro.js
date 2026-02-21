@@ -141,4 +141,5 @@ l10n.ro = {
     colLastOpened: 'Deschis recent',
     labelDropFile: 'Glisați fișierele aici sau',
     labelSelectFile: 'Selectare fișier',
+    settUseAI: 'Folosește funcții de IA',
 }

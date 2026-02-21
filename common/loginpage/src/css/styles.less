@@ -777,12 +777,16 @@ li.menu-item {
       }
     }
 
-    &.pinned .col-pin {
-      opacity: 1;
-      .icon {
+    @media (min-width: 860px) {
+      &.pinned .col-pin {
         opacity: 1;
+
+        .icon {
+          opacity: 1;
+        }
       }
     }
+
     &.unavail {
       > :not(.col-more, .col-pin) {
         opacity: 0.5;

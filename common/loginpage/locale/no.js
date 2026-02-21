@@ -115,8 +115,6 @@ l10n.no = {
     settOptDescDisabled: "Automatisk sjekk etter oppdateringer vil bli deaktivert",
     settOptDescAUpdateSilent: "Last ned og installer oppdateringer i bakgrunnen",
     settOptDescAUpdateAsk: "Du vil bli varslet om alle oppdateringstrinn",
-    settRtlMode: "RTL-grensesnitt",
     settGpuUseMode: "Bruk grafikkakselerasjon når tilgjengelig",
-    tplPanelLocal: "Lokale",
-    tplPanelCloud: "Cloud",
+    settUseAI: 'Bruk AI-funksjoner',
 }

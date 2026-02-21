@@ -114,8 +114,6 @@ l10n.id = {
     settOptDescDisabled: "Cek update otomatis akan dihentikan",
     settOptDescAUpdateSilent: "Download update dan tanya sebelum instalasi",
     settOptDescAUpdateAsk: "Anda akan mendapatkan notifikasi langkah untuk melakukan update",
-    settRtlMode: "RTL Interface",
     settGpuUseMode: "Gunakan akselerasi grafik jika tersedia",
-    tplPanelLocal: "Lokal",
-    tplPanelCloud: "Cloud",
+    settUseAI: 'Gunakan fungsi AI',
 }

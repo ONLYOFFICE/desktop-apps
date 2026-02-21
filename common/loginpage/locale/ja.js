@@ -141,4 +141,5 @@ l10n.ja = {
     colLastOpened: '最終閲覧',
     labelDropFile: 'ファイルをここにドラッグするか',
     labelSelectFile: 'ファイルを選択',
+    settUseAI: 'AIに聞く',
 }

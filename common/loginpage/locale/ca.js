@@ -115,8 +115,6 @@ l10n.ca = {
     settOptDescDisabled: "S'inhabilitarà la comprovació d'actualitzacions automàtiques",
     settOptDescAUpdateSilent: "Descarregar actualitzacions i preguntar abans d'instal·lar-les",
     settOptDescAUpdateAsk: "Se li notificaran tots els passos de les actualitzacions",
-    settRtlMode: "Interfície RTL",
     settGpuUseMode: "Utilitza gràfics d’acceleració quan estiguin disponibles",
-    tplPanelLocal: "Locals",
-    tplPanelCloud: "De núvol",
+    settUseAI: 'Utilitza funcions d\'IA',
 }

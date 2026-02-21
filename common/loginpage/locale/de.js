@@ -141,4 +141,5 @@ l10n.de = {
     colLastOpened: 'Zuletzt geöffnet',
     labelDropFile: 'Dateien hierher ziehen oder',
     labelSelectFile: 'Datei auswählen',
+    settUseAI: 'KI-Funktionen nutzen',
 }

@@ -141,4 +141,5 @@ l10n.el = {
     colLastOpened: 'Τελευταίο άνοιγμα',
     labelDropFile: 'Σύρετε τα αρχεία σας εδώ ή',
     labelSelectFile: 'Επιλέξτε αρχείο',
+    settUseAI: 'Χρησιμοποιήστε λειτουργίες AI',
 }

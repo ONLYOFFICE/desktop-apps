@@ -658,3 +658,29 @@ input[type="radio"] {
     }
     
 }
+
+/**/
+.margin-left(@value) {
+    margin-left: @value;
+    margin-right: 0;
+
+    .rtl & {
+        margin-left: 0;
+        margin-right: @value;
+    }
+}
+
+.new-feat-badge {
+  /*position: absolute;*/
+  /*top: -5px;*/
+  /*right: -5px;*/
+  background-color: #ffb400;
+  color: #6e4e00;
+  border-radius: 4px;
+  padding: 3px 6px; /* Adjust size */
+  font-size: 12px;
+  font-weight: 600;
+  /*text-align: center;*/
+  .margin-left(10px);
+}
+/**/

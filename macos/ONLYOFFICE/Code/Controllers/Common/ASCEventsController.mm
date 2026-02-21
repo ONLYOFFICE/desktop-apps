@@ -716,6 +716,11 @@ public:
                                     appManager->GetUserSettings()->Set(L"disable-gpu", [json[@"usegpu"] boolValue] ? L"0" : L"1");
                                 }
 
+                                if ( [json objectForKey:@"useai"] != nil ) {
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->GetUserSettings()->Set(L"disable-ai", [json[@"useai"] boolValue] ? L"0" : L"1");
+                                }
+
                                 if ( [json objectForKey:@"editorwindowmode"] != nil ) {
                                     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"editor-window-mode", [json[@"editorwindowmode"] boolValue] ? L"1" : L"0");

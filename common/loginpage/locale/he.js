@@ -141,4 +141,5 @@ l10n.he = {
     colLastOpened: 'נפתח לאחרונה',
     labelDropFile: 'גררו את הקבצים שלכם לכאן או',
     labelSelectFile: 'בחר קובץ',
+    settUseAI: 'השתמש בפונקציות של בינה מלאכותית',
 }
