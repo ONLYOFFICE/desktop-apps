@@ -158,8 +158,8 @@
 
         <h4>Security</h4>
         <ul>
-            <li>Fixed several vulnerabilities with out-of-bounds read in <code>XLS</code> processing/conversion (via <code>FilePass</code>, <code>HLink</code>, <code>rgXTI</code>, <code>itabLast</code>, <code>Formula</code> record <code>cce</code>, <code>ShapePropsStream</code>, and <code>CRN</code>, <code>colLast</code> records/fields) leading to information leak and <code>ASLR</code> bypass</li>
-            <li>Fixed vulnerabilities with untrusted pointer dereference in <code>XLS</code> processing/conversion (via <code>pictFmla</code>,<code>cbBufInCtlStm</code> and other vectors) leading to information leak and <code>ASLR</code> bypass</li>
+            <li>Fixed several vulnerabilities with out-of-bounds read in <code>XLS</code> processing/conversion (via <code>FilePass</code>, <code>HLink</code>, <code>rgXTI</code>, <code>itabLast</code>, <code>Formula</code> record <code>cce</code>, <code>ShapePropsStream</code>, and <code>CRN.colLast</code> records/fields) leading to information leak and <code>ASLR</code> bypass</li>
+            <li>Fixed vulnerabilities with untrusted pointer dereference in <code>XLS</code> processing/conversion (via <code>pictFmla.cbBufInCtlStm</code> and other vectors) leading to information leak and <code>ASLR</code> bypass</li>
             <li>Fixed a DOM-based XSS vulnerability when executing a macro using dynamic import() (CVE-2021-43446, CVE-2023-50883, CVE-2024-44085)</li>
             <li>Fixed the vulnerability in the update service, that allows you to perform actions with files with system privileges</li>
         </ul>
