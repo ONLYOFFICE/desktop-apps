@@ -144,7 +144,7 @@ int main( int argc, char *argv[] )
 
     SingleApplication app(argc, argv);
 
-    if (!app.isPrimary() && !InputArgs::contains(L"--single-window-app")) {
+    if ( !app.isPrimary() ) {
         QString _out_args;
         auto _args = InputArgs::arguments();
         if (_args.size() > 0) {

@@ -76,7 +76,7 @@ bool dirIsEmpty(const wstring &dirName);
 bool makePath(const wstring &path, size_t root_offset = 3);
 bool replaceFile(const wstring &oldFilePath, const wstring &newFilePath);
 bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing = false);
-bool removeFile(const wstring &filePath);
+bool removeFile(const wstring &filePath, bool safeMode = false);
 bool removeDirRecursively(const wstring &dir);
 wstring fromNativeSeparators(const wstring &path);
 wstring toNativeSeparators(const wstring &path);

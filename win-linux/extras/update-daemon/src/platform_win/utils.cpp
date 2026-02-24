@@ -548,9 +548,50 @@ namespace NS_File
         return SUCCEEDED(hr);
     }
 
-    bool removeFile(const wstring &filePath)
+    bool removeFile(const wstring &filePath, bool safeMode)
     {
-        return DeleteFile(filePath.c_str()) != 0;
+        if (!safeMode)
+            return DeleteFileW(filePath.c_str()) != 0;
+
+        HANDLE hFile = CreateFileW(filePath.c_str(), DELETE | SYNCHRONIZE, 
+                                   FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+                                   NULL, OPEN_EXISTING, FILE_FLAG_OPEN_REPARSE_POINT, NULL);
+
+        if (hFile == INVALID_HANDLE_VALUE) {
+            DWORD error = GetLastError();
+            if (error == ERROR_FILE_NOT_FOUND) {
+                return true;
+            }
+            if (error == ERROR_SHARING_VIOLATION || error == ERROR_LOCK_VIOLATION) {
+                // File is locked, skipping deletion
+                return false;
+            }
+            return false;
+        }
+
+        // Get attributes via handle to avoid TOCTOU
+        FILE_ATTRIBUTE_TAG_INFO tagInfo;
+        if (!GetFileInformationByHandleEx(hFile, FileAttributeTagInfo, &tagInfo, sizeof(tagInfo))) {
+            CloseHandle(hFile);
+            return false;
+        }
+
+        if (tagInfo.FileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+            CloseHandle(hFile);
+            return false;
+        }
+
+        if (tagInfo.FileAttributes & FILE_ATTRIBUTE_REPARSE_POINT) {
+            CloseHandle(hFile);
+            // Refusing to delete reparse point
+            return false;
+        }        
+
+        FILE_DISPOSITION_INFO fdi = { TRUE };
+        BOOL result = SetFileInformationByHandle(hFile, FileDispositionInfo, &fdi, sizeof(fdi));
+        CloseHandle(hFile);
+
+        return result != FALSE;
     }
 
     bool removeDirRecursively(const wstring &dir)
@@ -728,28 +769,36 @@ namespace NS_File
 
     bool verifyEmbeddedSignature(const wstring &fileName)
     {
-        WINTRUST_FILE_INFO fileInfo;
-        ZeroMemory(&fileInfo, sizeof(fileInfo));
-        fileInfo.cbStruct = sizeof(WINTRUST_FILE_INFO);
-        fileInfo.pcwszFilePath = fileName.c_str();
-        fileInfo.hFile = NULL;
-        fileInfo.pgKnownSubject = NULL;
+        WINTRUST_FILE_INFO wfi;
+        ZeroMemory(&wfi, sizeof(wfi));
+        wfi.cbStruct = sizeof(WINTRUST_FILE_INFO);
+        wfi.pcwszFilePath = fileName.c_str();
+        wfi.hFile = NULL;
+        wfi.pgKnownSubject = NULL;
 
-        GUID guidAction = WINTRUST_ACTION_GENERIC_VERIFY_V2;
-        WINTRUST_DATA winTrustData;
-        ZeroMemory(&winTrustData, sizeof(winTrustData));
-        winTrustData.cbStruct = sizeof(WINTRUST_DATA);
-        winTrustData.pPolicyCallbackData = NULL;
-        winTrustData.pSIPClientData = NULL;
-        winTrustData.dwUIChoice = WTD_UI_NONE;
-        winTrustData.fdwRevocationChecks = WTD_REVOKE_NONE;
-        winTrustData.dwUnionChoice = WTD_CHOICE_FILE;
-        winTrustData.dwStateAction = WTD_STATEACTION_VERIFY;
-        winTrustData.hWVTStateData = NULL;
-        winTrustData.pwszURLReference = NULL;
-        winTrustData.dwUIContext = 0;
-        winTrustData.pFile = &fileInfo;
-        return WinVerifyTrust(NULL, &guidAction, &winTrustData) == ERROR_SUCCESS;
+        WINTRUST_DATA wtd;
+        ZeroMemory(&wtd, sizeof(wtd));
+        wtd.cbStruct = sizeof(WINTRUST_DATA);
+        wtd.pPolicyCallbackData = NULL;
+        wtd.pSIPClientData = NULL;
+        wtd.dwUIChoice = WTD_UI_NONE;
+        wtd.fdwRevocationChecks = WTD_REVOKE_NONE;
+        wtd.dwUnionChoice = WTD_CHOICE_FILE;
+        wtd.dwStateAction = WTD_STATEACTION_VERIFY;
+        wtd.hWVTStateData = NULL;
+        wtd.pwszURLReference = NULL;
+        wtd.dwUIContext = 0;
+        wtd.pFile = &wfi;
+
+        GUID action = WINTRUST_ACTION_GENERIC_VERIFY_V2;
+        LONG res = WinVerifyTrust(NULL, &action, &wtd);
+
+        if (wtd.hWVTStateData) {
+            wtd.dwStateAction = WTD_STATEACTION_CLOSE;
+            WinVerifyTrust(NULL, &action, &wtd);
+        }
+
+        return (res == ERROR_SUCCESS);
     }
 }
 

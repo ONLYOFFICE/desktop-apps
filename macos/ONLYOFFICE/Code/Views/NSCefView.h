@@ -40,9 +40,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "applicationmanager.h"
+#import "NSCefData.h"
 
 
 @interface NSCefView : NSView
+@property (nonatomic, strong) NSCefData *data;
 @property (nonatomic, readonly) NSInteger uuid;
 
 - (void)create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
@@ -65,4 +67,7 @@
 - (void)openRecoverFileWithId:(NSInteger)index;
 
 - (void)createReporter:(CAscApplicationManager *)manager data:(void *)pData;
+
+- (void)setParentWidgetInfoWithJson:(NSString *)jsonString;
+- (void)sendCommand:(NSString *)command withParam:(NSString *)param;
 @end

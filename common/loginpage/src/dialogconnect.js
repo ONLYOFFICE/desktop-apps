@@ -307,7 +307,16 @@ window.DialogConnect = function(params) {
                 $combo.parents('.select-field').hide();
             } else {
                 for (let c of _clouds) {
-                    $combo.append(`<option value='${c.provider}'>${c.name}</option>`);
+                    const icon_light = c.icons ? c.icons.themeLight.connectionsList : '',
+                          icon_dark  = c.icons ? c.icons.themeDark.connectionsList : '';
+
+                    $combo.append(`
+                        <option value='${c.provider}' data-content='
+                            ${`<img class="icon icon__light" src="${relpath}/providers/${c.provider}/${icon_light}" />`}
+                            ${`<img class="icon icon__dark"  src="${relpath}/providers/${c.provider}/${icon_dark}" />`}
+                            ${c.name}
+                        '></option>
+                    `);
                 }
                 $combo.val(params.provider);
 

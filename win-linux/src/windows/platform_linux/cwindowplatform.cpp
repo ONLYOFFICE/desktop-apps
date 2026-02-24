@@ -177,9 +177,10 @@ void CWindowPlatform::setScreenScalingFactor(double factor, bool resize)
 
 void CWindowPlatform::paintEvent(QPaintEvent *event)
 {
-    CWindowBase::paintEvent(event);
-    if (!QX11Info::isCompositingManagerRunning())
+    if (!QX11Info::isCompositingManagerRunning()) {
+        CWindowBase::paintEvent(event);
         return;
+    }
 
     QPainter pnt(this);
     pnt.setRenderHint(QPainter::Antialiasing);

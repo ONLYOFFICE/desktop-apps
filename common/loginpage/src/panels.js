@@ -194,12 +194,14 @@ $(document).ready(function() {
 function onActionClick(e) {
     var $el = $(this);
     var action = $el.attr('action');
+    const pinned = JSON.parse(localStorage.getItem('pinnedFolders') || '[]');
 
     if (/^custom/.test(action)) return;
 
     if (action == 'open' && 
             !app.controller.recent.getRecents().size() && 
-                !app.controller.recent.getRecovers().size()) 
+                !app.controller.recent.getRecovers().size() &&
+                    !pinned.length) 
     {
         openFile(OPEN_FILE_FOLDER, '');
     } else {

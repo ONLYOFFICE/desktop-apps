@@ -115,8 +115,6 @@ l10n.be = {
     settOptDescDisabled: "Аўтаматычная праверка абнаўленняў будзе адключана",
     settOptDescAUpdateSilent: "Спампоўваць абнаўленні і пытацца перад уста-ноўкай",
     settOptDescAUpdateAsk: "Вы будзеце ведаць пра ўсе этапы абнаўлення",
-    settRtlMode: "Інтэрфейс RTL",
     settGpuUseMode: "Выкарыстоўвайце графічнае паскарэнне, калі яно даступна",
-    tplPanelLocal: "Лакальныя",
-    tplPanelCloud: "Хмарныя",
+    settUseAI: 'Выкарыстоўвайце функцыі AI',
 }

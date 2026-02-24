@@ -57,6 +57,19 @@ using namespace std::placeholders;
 
 bool CAscApplicationManagerWrapper::m_rtlEnabled = false;
 
+std::wstring get_file_name_from_open_deeplink(const std::wstring& link)
+{
+    size_t pos1 = link.find(L"|n|");
+    if ( pos1 != std::wstring::npos ) {
+        size_t pos2 = link.find(L"|", pos1 += 3);
+
+        if ( pos2 != std::wstring::npos )
+            return link.substr(pos1, pos2 - pos1);
+    }
+
+    return L"";
+}
+
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
 
@@ -921,7 +934,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         open_scheme.push_back(app_scheme);
     }
     std::wstring app_action = app_scheme + L"//action";
+    std::wstring app_action_open = app_scheme + L"//open";
     std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
+    std::wstring app_command = app_scheme + L"//command/";
     std::vector<std::wstring> vec_window_actions;
 
     for (const auto& arg: vargs) {
@@ -972,6 +987,16 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             }
 
             continue;
+        } else
+        if ( arg.rfind(app_action_open, 0) == 0 ) {
+            std::wstring deep_link = arg;
+            Utils::replaceAll(deep_link, L"%7C", L"|");
+            open_opts.wurl = deep_link;
+            open_opts.name = QString::fromStdWString(get_file_name_from_open_deeplink(deep_link));
+        } else
+        if ( arg.rfind(app_command, 0) == 0 ) {
+            vec_window_actions.push_back(arg);
+            continue;
         } else {
             open_opts.wurl = arg;
         }
@@ -983,16 +1008,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 str_url = Utils::replaceBackslash(str_url);
                 open_opts.wurl = str_url.toStdWString();
 #else
-                QUrl url = QUrl::fromUserInput(str_url);
-                if (!url.isValid()) {
-                    QFileInfo info(str_url);
-                    if (info.isFile())
-                        url = QUrl::fromUserInput(info.absoluteFilePath());
-                }
-                if (url.isValid()) {
-                    str_url = url.toLocalFile();
-                    open_opts.wurl = str_url.toStdWString();
-                }
+                str_url = str_url.startsWith(QLatin1String("file://"), Qt::CaseInsensitive) ?
+                    QUrl(str_url).toLocalFile() :
+                    QDir::cleanPath(QDir::current().absoluteFilePath(str_url));
+                open_opts.wurl = str_url.toStdWString();
 #endif
             }
             if ( _app.m_private->bringEditorToFront(str_url) ) {
@@ -1017,7 +1036,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     if ( _c_pos != std::wstring::npos )
                         open_opts.name = QString::fromStdWString(open_opts.wurl.substr(++_c_pos));
 
-                    Utils::addToRecent(open_opts.wurl);
 //                    open_opts.srctype = etLocalFile;
                 } else
                 if ( _error == EBADF && !open_in_new_window ) {
@@ -1096,6 +1114,7 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
     std::wstring app_scheme = GetExternalSchemeName();
     if ( !app_scheme.empty() ) {
         const std::wstring app_action_panel = app_scheme + L"//action|panel|";
+        const std::wstring app_command = app_scheme + L"//command/";
 
         for (const auto& a: actions) {
             if ( a.rfind(app_action_panel, 0) == 0 ) {
@@ -1103,6 +1122,11 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
 
                 gotoMainWindow();
                 m_pMainWindow->handleWindowAction(_action);
+            } else
+            if ( a.rfind(app_command, 0) == 0 ) {
+                std::wstring _arg_cmd = a.substr(app_command.length());
+                if (!_arg_cmd.empty())
+                    CallCommand(_arg_cmd);
             }
         }
     }
@@ -1135,8 +1159,24 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
     Association::instance().chekForAssociations(uid);
 #endif
 
-    if (uid > -1 && printData().printerCapabilitiesReady())
-        AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+    if (uid > -1) {
+        if (printData().printerCapabilitiesReady())
+            AscAppManager::sendCommandTo(GetViewById(uid), L"printer:config", printData().getPrinterCapabilitiesJson().toStdWString());
+
+        CAscTabData *data = nullptr;
+        if (CEditorWindow *editor = editorWindowFromViewId(uid)) {
+            data = editor->mainView()->data();
+        } else
+            if (mainWindow() && mainWindow()->holdView(uid)) {
+                int indx = mainWindow()->tabWidget()->tabIndexByView(uid);
+                if (indx > -1)
+                    data = mainWindow()->tabWidget()->panel(indx)->data();
+            }
+
+        if (data && data->isLocal() && !data->url().empty()) {
+            Utils::addToRecent(data->url());
+        }
+    }
 
     static bool check_printers = false;
     if (!check_printers) {
@@ -1250,20 +1290,18 @@ void CAscApplicationManagerWrapper::initializeApp()
         AscAppManager::setUserSettings(L"system-scale", L"1");
     }
 
-    if ( !InputArgs::contains(L"--single-window-app") ) {
-        SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
-        connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
-            std::vector<std::wstring> vec_inargs;
-            foreach (auto arg, args.split(";")) {
-                if ( !arg.isEmpty() )
-                    vec_inargs.push_back(arg.toStdWString());
-            }
-            if ( !vec_inargs.empty() )
-                handleInputCmd(vec_inargs);
-            else
-                gotoMainWindow();
-        });
-    }
+    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
+    connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
+        std::vector<std::wstring> vec_inargs;
+        foreach (auto arg, args.split(";")) {
+            if ( !arg.isEmpty() )
+                vec_inargs.push_back(arg.toStdWString());
+        }
+        if ( !vec_inargs.empty() )
+            handleInputCmd(vec_inargs);
+        else
+            gotoMainWindow();
+    });
 
     /* prevent drawing of focus rectangle on a button */
 //    QApplication::setStyle(new CStyleTweaks);
@@ -1381,11 +1419,11 @@ void CAscApplicationManagerWrapper::initializeApp()
                                         {"type", _app.m_themes->current().stype()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())},
                                         {"addlocal", "on"}
-#ifndef Q_OS_LINUX
+// #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
-#else
-                                        ,{"system", "disabled"}
-#endif
+// #else
+//                                         ,{"system", "disabled"}
+// #endif
                                      });
 
     AscAppManager::getInstance().m_oSettings.macroses_support = reg_system.value("macrosDisabled", true).toBool();
@@ -1979,6 +2017,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             setUserSettings(L"disable-gpu", use_gpu ? L"0" : L"1");
         }
 
+        if ( objRoot.contains("useai") ) {
+            setUserSettings(L"disable-ai", objRoot["useai"].toBool(true) ? L"0" : L"1");
+        }
+
 #ifdef _UPDMODULE
         if ( objRoot.contains("autoupdatemode") ) {
             if (m_pUpdateManager)
@@ -2060,11 +2102,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         EditorJSVariables::applyVariable("theme", {
                                             {"type", _app.m_themes->current().stype()},
                                             {"id", QString::fromStdWString(_app.m_themes->current().id())}
-#ifndef Q_OS_LINUX
+// #ifndef Q_OS_LINUX
                                             ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
-#else
-                                            ,{"system", "disabled"}
-#endif
+// #else
+//                                             ,{"system", "disabled"}
+// #endif
                                          });
 
         // TODO: remove

@@ -40,6 +40,7 @@
 
 #import "ASCTitleBarController.h"
 #import "ASCTitleWindow.h"
+#import "ASCTitleWindowController.h"
 #import "ASCConstants.h"
 #import "NSView+Extensions.h"
 #import "NSColor+Extensions.h"
@@ -52,8 +53,11 @@
 #import "ASCMenuButtonCell.h"
 #import "ASCThemesController.h"
 #import "ASCApplicationManager.h"
+#import "AppDelegate.h"
 #import "ASCLinguist.h"
 #import "NSWindow+Extensions.h"
+#import "NSCefView.h"
+#import "NSDictionary+Extensions.h"
 
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
@@ -332,6 +336,10 @@ static float kASCRTLTabsRightMargin = 0;
                 default:
                     break;
             }
+
+            if (NSCefView *cefView = (NSCefView *)tab.webView) {
+                [cefView.data setContentType:AscEditorType(type)];
+            }
             [tab setType:docType];
             [self.tabsControl updateTab:tab];
         }
@@ -348,6 +356,9 @@ static float kASCRTLTabsRightMargin = 0;
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         
         if (tab) {
+            if (NSCefView *cefView = (NSCefView *)tab.webView) {
+                [cefView.data setTitle:name];
+            }
             [tab setTitle:name];
             [tab setToolTip:name];
 
@@ -372,9 +383,13 @@ static float kASCRTLTabsRightMargin = 0;
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
 
         if (tab) {
-            tab.changed = changed;
-
-            [self.tabsControl updateTab:tab];
+            if (NSCefView *cefView = (NSCefView *)tab.webView) {
+                [cefView.data setChanged:changed];
+                
+                [tab setTitle:[cefView.data title:NO]];
+                [self.tabsControl updateTab:tab];
+            }
+            
 //            if ([tab state] == NSControlStateValueOn) {
 //                [self.tabsControl reloadTab:tab];
 //            }
@@ -405,7 +420,7 @@ static float kASCRTLTabsRightMargin = 0;
         [self.portalButton setNeedsDisplay];
 
         if ( [self.portalButton state] != NSControlStateValueOn ) {
-            [NSApplication isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+            [ASCThemesController isDarkWindowAppearance] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                     [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         } else {
             [ASCThemesController isCurrentThemeDark] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
@@ -431,12 +446,12 @@ static float kASCRTLTabsRightMargin = 0;
             portalButtonCell.bgActiveColor = [ASCThemesController color:btnPortalActiveBackgroundColor forTheme:theme];
             [self.portalButton setNeedsDisplay];
 
-            [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+            [ASCThemesController isDarkWindowAppearance] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                         [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         }
     } else {
         if ( [self.portalButton state] != NSControlStateValueOn ) {
-            [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+            [ASCThemesController isDarkWindowAppearance] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                         [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         }
     }
@@ -530,13 +545,30 @@ static float kASCRTLTabsRightMargin = 0;
     if (tab) {
         [self.portalButton setState:NSControlStateValueOff];
 
-        if ( [NSApplication isSystemDarkMode] )
+        if ( [ASCThemesController isDarkWindowAppearance] )
             [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
         else [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
     } else {
         [self.portalButton setState:NSControlStateValueOn];
         [self.portalButton setImage:[NSImage imageNamed:[ASCThemesController isCurrentThemeDark] ? @"logo-tab-light" : @"logo-tab-dark"]];
     }
+}
+
+- (void)tabs:(ASCTabsControl *)control didDetachTab:(ASCTabView *)tab atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event {
+    NSCefView *webView = (NSCefView *)tab.webView;
+    if (!webView || ![webView.data isViewType:cvwtEditor]) {
+        return;
+    }
+    
+    [webView removeFromSuperview];
+    tab.webView = nil;
+    tab.params[@"detached"] = @YES;
+    [control removeTab:tab animated:NO];
+    webView.data.url = tab.params[@"url"];
+    webView.data.path = tab.params[@"path"];
+    
+    AppDelegate *app = [NSApp delegate];
+    [app dragDetachedTab:webView atScreenPoint:screenPoint withEvent:event];
 }
 
 #pragma mark -
@@ -565,5 +597,94 @@ static float kASCRTLTabsRightMargin = 0;
     }
 }
 
+#pragma mark -
+#pragma mark Tab Attachment Support
+
+- (void)attachEditor:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint {
+    NSCefView *webView =  (NSCefView *)cefView;
+    [webView removeFromSuperview];
+    
+    NSDictionary *widgetInfo = @{@"widgetType": @"tab", @"captionHeight": @0};
+    [webView setParentWidgetInfoWithJson:[widgetInfo jsonString]];
+    
+    ASCTabViewType docType = ASCTabViewTypeUnknown;
+    switch ([webView.data contentType]) {
+        case AscEditorType::etDocument     : docType = ASCTabViewTypeDocument; break;
+        case AscEditorType::etSpreadsheet  : docType = ASCTabViewTypeSpreadsheet; break;
+        case AscEditorType::etPresentation : docType = ASCTabViewTypePresentation; break;
+        case AscEditorType::etPdf          : docType = ASCTabViewTypePdf; break;
+        case AscEditorType::etDraw         : docType = ASCTabViewTypeDraw; break;
+        default:
+            break;
+    }
+    
+    ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+    tab.title       = [webView.data title:NO];
+    tab.type        = docType;
+    tab.webView = webView;
+    tab.params = [NSMutableDictionary dictionary];
+    tab.params[@"action"] = @(ASCTabActionUnknown);
+    tab.params[@"url"] = webView.data.url;
+    tab.params[@"path"] = webView.data.path;
+    tab.params[@"reattaching"] = @YES;
+    
+    NSInteger index = [self insertionIndexForScreenPoint:screenPoint];
+    [self.tabsControl insertTab:tab atIndex:index selected:YES];
+    
+    NSDictionary *windowFeatures = @{@"skiptoparea": @0, @"singlewindow": @NO};
+    [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
+    
+    [webView focus];
+}
+
+- (NSInteger)insertionIndexForScreenPoint:(NSPoint)screenPoint {
+    NSWindow *window = self.view.window;
+    NSPoint windowPoint;
+    if (@available(macOS 10.12, *)) {
+        windowPoint = [window convertPointFromScreen:screenPoint];
+    } else {
+        NSRect screenRect = NSMakeRect(screenPoint.x, screenPoint.y, 0, 0);
+        NSRect windowRect = [window convertRectFromScreen:screenRect];
+        windowPoint = windowRect.origin;
+    }
+    
+    NSPoint pointInTabs = [self.tabsControl convertPoint:windowPoint fromView:nil];
+
+    NSInteger tabsCount = [self.tabsControl.tabs count];
+    if (tabsCount == 0) {
+        return 0;
+    }
+
+    for (NSInteger i = 0; i < tabsCount; ++i) {
+        ASCTabView *tab = [self.tabsControl.tabs objectAtIndex:i];
+        NSRect tabFrameInTabs = [tab convertRect:tab.bounds toView:self.tabsControl];
+        CGFloat midX = NSMidX(tabFrameInTabs);
+        if (pointInTabs.x < midX) {
+            return i;
+        }
+    }
+
+    return tabsCount;
+}
+
+- (BOOL)canPinTabAtPoint:(NSPoint)screenPoint {
+    NSWindow * mainWindow = self.view.window;
+    NSRect windowFrame = mainWindow.frame;
+    if (!NSPointInRect(screenPoint, windowFrame)) {
+        return false;
+    }
+    
+    if ( [self isFullScreen] ) {
+        const CGFloat dropZoneHeight = 36.0;
+        NSRect dropZoneRect = NSMakeRect(windowFrame.origin.x, windowFrame.origin.y + windowFrame.size.height - dropZoneHeight,
+                                         windowFrame.size.width, dropZoneHeight);
+        return NSPointInRect(screenPoint, dropZoneRect);
+    }
+    
+    NSRect contentRect = [mainWindow contentRectForFrameRect:windowFrame];
+    NSRect titleBarRect = NSMakeRect(windowFrame.origin.x, contentRect.origin.y + contentRect.size.height,
+                                     windowFrame.size.width, windowFrame.size.height - contentRect.size.height);
+    return NSPointInRect(screenPoint, titleBarRect);
+}
 
 @end

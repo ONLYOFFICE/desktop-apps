@@ -83,6 +83,11 @@
     utils.fn.extend(ControllerFolders.prototype, (function() {
         var _on_update = function(params) {
             var _dirs = utils.fn.parseRecent(params, 'folders'), $item;
+            _dirs.sort((a, b) => {
+                if (a.pinned && !b.pinned) return -1;
+                if (!a.pinned && b.pinned) return 1;
+                return 0;
+            });
 
             const $listRecentDirs = this.view.$panel.find('.file-list-body');
 
@@ -92,12 +97,26 @@
                 if (!utils.getUrlProtocol(dir.full)) {
                     $item = $(app.controller.recent.view.listitemtemplate(dir));
 
-                    $item.click({path: dir.full}, e=>{
+                if (dir.pinned) {
+                    $item.addClass('pinned');
+                }
+
+                $item.find('.col-pin .btn-quick').click(function (e) {
+                    
+                    const folderPath = dir.full;
+                    const newPinState = utils.fn.pinnedFolders(folderPath, 'toggle');
+                    
+                    $item.toggleClass('pinned', newPinState);
+                    
+                    _on_update.call(this, params);
+                }.bind(this));
+
+                $item.click({path: dir.full}, e=>{
                         openFile(OPEN_FILE_FOLDER, e.data.path);
 
                         e.preventDefault();
                         return false;
-                    });
+                });
 
                     $listRecentDirs.append($item);
                 }

@@ -55,6 +55,7 @@
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab;
 - (void)tabs:(ASCTabsControl *)control didUpdateTab:(ASCTabView *)tab;
 - (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab from:(NSInteger)oldIndex to:(NSInteger)newIndex;
+- (void)tabs:(ASCTabsControl *)control didDetachTab:(ASCTabView *)tab atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event;
 @end
 
 @interface ASCTabsControl : NSControl
@@ -66,8 +67,11 @@
 
 - (void)addTab:(ASCTabView *)tab;
 - (void)addTab:(ASCTabView *)tab selected:(BOOL)selected;
-- (void)removeTab:(ASCTabView *)tab;
-- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected;
+- (void)insertTab:(ASCTabView *)tab atIndex:(NSUInteger)index;
+- (void)insertTab:(ASCTabView *)tab atIndex:(NSUInteger)index selected:(BOOL)selected;
+
+- (void)removeTab:(ASCTabView *)tab animated:(BOOL)animated;
+- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected animated:(BOOL)animated;
 - (void)removeAllTabs;
 - (void)selectTab:(ASCTabView *)tab;
 - (void)updateTab:(ASCTabView *)tab;

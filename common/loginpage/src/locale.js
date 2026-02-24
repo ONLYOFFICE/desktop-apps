@@ -56,6 +56,8 @@ l10n.en = {
     menuRemoveModel: 'Remove from list',
     menuClear: 'Clear',
     menuLogout: 'Logout',
+    menuFilePin: 'Pin',
+    menuFileUnpin: 'Unpin',
     textMyComputer: 'My Computer',
     textThrough: 'through',
     linkForgotPass: 'Forgot password?',
@@ -172,6 +174,7 @@ l10n.en = {
     colLastOpened: 'Last opened',
     labelDropFile: 'Drag your files here or',
     labelSelectFile: 'Select file',
+    settUseAI: 'Use AI functions',
 }
 
 

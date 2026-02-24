@@ -74,7 +74,7 @@
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"xlsm", @"xlsb", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc",@"numbers"];
+    return @[@"xls", @"xlsx", @"xlsm", @"xlsb", @"csv", @"tsv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc",@"numbers"];
 }
 
 + (NSArray *)presentations {
@@ -90,7 +90,7 @@
 }
 
 + (NSArray *)plugins {
-    return @[@"plugin"];
+    return @[@"plugin", @"zip"];
 }
 
 + (NSArray *)csvtxt {
@@ -150,6 +150,10 @@
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB): @{
                      @"description" : NSLocalizedString(@"Mobipocket e-book", nil),
                      @"extension"   : @"epub"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MD): @{
+                     @"description" : NSLocalizedString(@"Markdown File", nil),
+                     @"extension"   : @"md"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX): @{
                      @"description" : NSLocalizedString(@"Document template", nil),

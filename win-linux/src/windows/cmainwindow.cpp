@@ -259,7 +259,7 @@ void CMainWindow::applyTheme(const std::wstring& theme)
                                                  GetColorQValueByRole(ecrTabDivider),
                                                  GetColorQValueByRole(ecrTabWordActive)));
     m_pTabs->applyUITheme(GetActualTheme(theme));
-    m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
+    // m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * m_dpiRatio);
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
         m_pWidgetDownload->applyTheme();
@@ -956,7 +956,6 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
         toggleButtonMain(false, true);
-        Utils::addToRecent(opts.wurl);
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
@@ -1551,7 +1550,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     // m_pTabs->setStyleSheet(_style);
 //    m_pTabs->updateScalingFactor(dpiratio);
     m_pTabs->reloadTabIcons();
-    m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
+    // m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * dpiratio);
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
         m_pWidgetDownload->updateScalingFactor(dpiratio);

@@ -64,6 +64,7 @@ static NSString * const windowBackgroundColor           = @"window-backg
 + (NSColor*)color:(NSString*)name forTheme:(NSString*)theme;
 + (NSColor*)currentThemeColor:(NSString*)name;
 + (BOOL)isSystemDarkMode;
++ (BOOL)isDarkWindowAppearance;
 
 @end
 

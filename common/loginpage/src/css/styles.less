@@ -31,6 +31,7 @@
 
 body {
   cursor: default;
+  font-family: @font-family-base;
 }
 
 input,
@@ -174,24 +175,25 @@ h4 {
 
 .switch-svg {
   @media only screen {
-    @media (-webkit-min-device-pixel-ratio: 1.1) and (-webkit-max-device-pixel-ratio: 1.9),
-    (min-resolution: 1.1dppx) and (max-resolution: 1.9dppx),
-    (min-resolution: 97dpi) and (max-resolution: 191dpi) {
+    @media (-webkit-min-device-pixel-ratio: 1.25) and (-webkit-max-device-pixel-ratio: 1.99),
+    (min-resolution: 1.25dppx) and (max-resolution: 1.99dppx),
+    (min-resolution: 120dpi) and (max-resolution: 191dpi) {
       svg.icon {
         display: none;
       }
     }
     @media (-webkit-device-pixel-ratio: 1),
-    (resolution: 1dppx),
-    (resolution: 96dpi) {
-      i.icon, i.badge {
+    (min-resolution: 1dppx) and (max-resolution: 1.24dppx),
+    (min-resolution: 1dpi) and (max-resolution: 119dpi) {
+      i.icon, i.badge, .icon.img-format {
         display: none;
       }
+
     }
     @media (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 2dppx),
     (min-resolution: 192dpi) {
-      i.icon, i.badge {
+      i.icon, i.badge, .icon.img-format {
         display: none;
       }
     }
@@ -385,9 +387,9 @@ li.menu-item {
   align-items: center;
   justify-content: space-between;
   padding-left: 16px;
-  padding-right: 56px;
+  padding-right: 88px;
   .rtl & {
-    padding-left: 56px;
+    padding-left: 88px;
     padding-right: 16px;
   }
 }
@@ -438,7 +440,7 @@ li.menu-item {
 
     .col-name {
       height: 32px;
-      .switch-svg();
+
 
       .icon {
         // width: 32px;
@@ -650,6 +652,8 @@ li.menu-item {
         }
       }
 
+      .switch-svg();
+
       .img-el {
         display: inline-block;
         &.folder {
@@ -703,7 +707,7 @@ li.menu-item {
       justify-content: flex-end;
     }
 
-    .col-more {
+    .col-more, .col-pin {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -711,9 +715,9 @@ li.menu-item {
       opacity: 0;
       display: flex;
       align-items: center;
-      
+
       i.icon {
-        display: block; 
+        display: block;
       }
 
       button {
@@ -748,9 +752,9 @@ li.menu-item {
     &:nth-child(even) {
       background-color: @background-normal-element-light;
     }
-
+    
     &:hover {
-      .col-more {
+      .col-more, .col-pin  {
         opacity: 1;
       }
     }
@@ -763,8 +767,28 @@ li.menu-item {
       background-color: @highlight-button-pressed;
     }
 
+
+    .col-pin {
+      right: 44px;
+
+      .rtl & {
+        right: unset;
+        left: 44px;
+      }
+    }
+
+    @media (min-width: 860px) {
+      &.pinned .col-pin {
+        opacity: 1;
+
+        .icon {
+          opacity: 1;
+        }
+      }
+    }
+
     &.unavail {
-      > :not(.col-more) {
+      > :not(.col-more, .col-pin) {
         opacity: 0.5;
         -webkit-filter: grayscale(100%);
       }
@@ -818,7 +842,7 @@ li.menu-item {
       justify-content: normal;
       gap: clamp(10px, 6vw, 104px);
       > div {
-            min-width: 30px; 
+            min-width: 30px;
         }
     }
 
@@ -947,7 +971,7 @@ li.menu-item {
         padding-left: 104px;
         padding-right: 112px;
       }
-      
+
       > * {
         margin-right: 32px;
       }
@@ -958,17 +982,17 @@ li.menu-item {
     }
 
     > * {
-      margin-bottom: 40px; 
+      margin-bottom: 40px;
     }
 
     > *:last-child {
-      margin-bottom: 0; 
+      margin-bottom: 0;
     }
 
     .file-list-head,
     .file-list-body .row {
       > * {
-          margin-right: 8px; 
+          margin-right: 8px;
           width: 264px;
         }
 
@@ -1015,6 +1039,13 @@ li.menu-item {
    gap: 8px;
     .file-list-body {
       overflow-x: hidden;
+      .col-pin {
+        right: 16px;
+        .rtl & {
+          right: auto;
+          left: 16px;
+        }
+      }
     }
 
   .win_xp & {
@@ -1023,13 +1054,13 @@ li.menu-item {
    .file-list-body  {
       .row {
         justify-content: flex-start;
-        
+
         > * {
           margin-right: calc(8vw);
         }
-      } 
-    }  
-  }  
+      }
+    }
+  }
 }
 
 #area-document-creation-grid {
@@ -1113,7 +1144,7 @@ li.menu-item {
 
 #box-recovery {
   .file-list-body, .file-list-head {
-    .col-location, .col-date {
+    .col-location, .col-date, .col-pin {
       display: none;
     }
   }
@@ -1145,6 +1176,10 @@ li.menu-item {
 
   .table-files {
     /*table-layout: auto;*/
+
+    .cell-tools {
+      width: 0;
+    }
 
     td:first-child {
       /*width: 50%;*/
@@ -1192,15 +1227,15 @@ li.menu-item {
       padding: 0 8px 0 0;
       overflow: visible;
       position: absolute;
-      top: 50%; 
+      top: 50%;
       right: 0;
       transform: translateY(-50%);
       display: flex;
       align-items: center;
       .rtl & {
           padding: 0 0 0 8px;
-          right: auto; 
-          left: 0; 
+          right: auto;
+          left: 0;
       }
 
       .hlayout {
@@ -1208,9 +1243,9 @@ li.menu-item {
       }
 
       .btn-quick.more {
-        margin: 0 5px 0 0px;
+        margin: 0 5px 0 0;
         .rtl & {
-          margin: 0  0 0 5px;
+          margin: 0 0 0 5px;
         }
       }
     }
@@ -2150,6 +2185,10 @@ li.menu-item {
       padding: 0;
       background-color: @background-action-panel;
     }
+    
+    .btn.btn--big.btn--svg.login:hover:not(:disabled) {
+      background-color: var(--highlight-button-hover);
+    }
   }
 
   #box-providers-premium-button {
@@ -2157,6 +2196,10 @@ li.menu-item {
       width: 330px;
       height: 48px;
       background-color: @background-action-panel;
+    }
+    
+    .btn.btn--big.btn--svg.login:hover:not(:disabled) {
+      background-color: var(--highlight-button-hover);
     }
   }
 
@@ -2171,6 +2214,10 @@ li.menu-item {
     width: 158px;
     height: 42px;
   }
+  
+  .btn.btn--big.btn--svg.login:hover:not(:disabled) {
+    background-color: var(--highlight-button-hover);
+  }
 
   .connect button[data-cprov] {
     margin: initial;
@@ -2183,15 +2230,15 @@ li.menu-item {
 }
 
 .templates {
-    .rtl & { 
-      padding-left: 40; 
-    } 
+    .rtl & {
+      padding-left: 40;
+    }
 
     .flexbox.content-box > * {
-        padding-left: 5px;  
-        .rtl & { 
-          padding-left: 0; 
-          padding-right: 5px; 
+        padding-left: 5px;
+        .rtl & {
+          padding-left: 0;
+          padding-right: 5px;
         }
     }
 
@@ -2219,17 +2266,17 @@ li.menu-item {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 5px;    
-            right: 0;   
+            left: 5px;
+            right: 0;
             height: 1px;
             background-color: @border-divider;
         }
-        
+
         .rtl & {
             text-align: right;
             &::after {
                 left: 0;
-                right: 5px;  
+                right: 5px;
             }
         }
     }
@@ -2266,7 +2313,7 @@ li.menu-item {
 
             #idx-nothing-found-dark {
                 display: none;
-            }     
+            }
         }
 
         .no-results-title {
@@ -2434,8 +2481,8 @@ li.menu-item {
                 position: relative;
 
                 .badge-wrapper {
-                  display: flex;  
-                  .switch-svg();              
+                  display: flex;
+                  .switch-svg();
 
                   .icon,
                   i.badge {
@@ -2499,7 +2546,7 @@ li.menu-item {
   .action-panel.templates {
       .table-templates.list {
         > * {
-          margin: 8px; 
+          margin: 8px;
         }
       }
 
@@ -2717,12 +2764,12 @@ li.menu-item {
     .rtl & {
       margin-right: 0;
       margin-left: 16px;
-    } 
-    
+    }
+
     .icon {
       display:none;
     }
-    
+
     .icon, .icon--default {
       border: @scaled-one-px solid @border-divider;
       border-radius: 4px;
@@ -2738,20 +2785,20 @@ li.menu-item {
   .description {
     display: flex;
     flex-direction: column;
-    
+
     .name {
       color: @text-normal;
       font-weight: bold;
       font-size: 14px;
       margin: 4px 0 10px;
     }
-    
+
     .pricing, .descr, .file-info {
       font-size: 12px;
       color: @text-normal;
       margin: 0 0 10px;
     }
-    
+
     .file-info {
       display: flex;
       justify-content: space-between;
@@ -2762,7 +2809,7 @@ li.menu-item {
       font-weight: bold;
     }
 
-    .btn--landing { 
+    .btn--landing {
       margin-left: auto;
       margin-top: 10px;
       border-radius: 4px;
@@ -2799,6 +2846,6 @@ li.menu-item {
       .btn--landing {
         margin-top: 0;
       }
-    } 
+    }
   }
 }
