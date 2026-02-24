@@ -141,7 +141,7 @@
         <ul>
             <li>Added version history</li>
             <li>Added Multiple pages view</li>
-            <li>Added the Zoom to 100% and Multiple pages buttons to the View tab</li>
+            <li>Added the <code>Zoom to 100%</code> and <code>Multiple pages</code> buttons to the View tab</li>
             <li>Implemented a password prompt when enabling the Edit PDF mode if the file is protected from editing</li>
             <li>Added support for Link annotations with the ability to add them both to an area and to text on a page</li>
             <li>Added the ability to continue editing <code>PDF</code> using embedded fonts</li>
@@ -159,7 +159,7 @@
         <h4>Security</h4>
         <ul>
             <li>Fixed several vulnerabilities with out-of-bounds read in <code>XLS</code> processing/conversion (via <code>FilePass</code>, <code>HLink</code>, <code>rgXTI`.`itabLast</code>, <code>Formula</code> record <code>cce</code>, <code>ShapePropsStream</code>, and <code>CRN`.`colLast</code> records/fields) leading to information leak and <code>ASLR</code> bypass</li>
-            <li>Fixed vulnerabilities with untrusted pointer dereference in <code>XLS</code> processing/conversion (via <code>pictFmla`.`cbBufInCtlStm</code> and other vectors) leading to information leak and <code>ASLR</code> bypass</li>
+            <li>Fixed vulnerabilities with untrusted pointer dereference in <code>XLS</code> processing/conversion (via <code>pictFmla</code>,<code>cbBufInCtlStm</code> and other vectors) leading to information leak and <code>ASLR</code> bypass</li>
             <li>Fixed a DOM-based XSS vulnerability when executing a macro using dynamic import() (CVE-2021-43446, CVE-2023-50883, CVE-2024-44085)</li>
             <li>Fixed the vulnerability in the update service, that allows you to perform actions with files with system privileges</li>
         </ul>
