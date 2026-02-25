@@ -393,10 +393,7 @@
                     ppmenu.hideItem(model.pinned ? 'files:unpin' : 'files:pin', false);
                 }
 
-                ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
-
                 if (!Menu.opened) {
-                    ppmenu.actionlist = actionList;
                     ppmenu.showUnderElem(e.currentTarget, model, $('body').hasClass('rtl') ? 'left' : 'right');
                 } else {
                     Menu.closeAll();
@@ -406,20 +403,39 @@
 
         function handlePin(collection, model) {
             let $el = $('#' + model.uid, collection.list);
-            if ($el.length) {
-                const f = collection.items.find((elem) => {
-                    return model.pinid <= 0 ? elem.pinid < model.pinid : elem.pinid > model.pinid
-                });
+            if (!$el.length) return;
 
-                if (f) {
-                    const $item = $('#' + f.uid, collection.list);
-                    $el.insertBefore($item);
-                } else if (!f && model.pinid > 0) {
-                    $el.appendTo(collection.list);
-                } else {
-                    $el.prependTo(collection.list);
+            $el.detach();
+
+            if (model.pinid <= 0) {
+                // Pinning: insert after last pinned, or prepend
+                const $lastPinned = collection.list.children('.row.pinned').last();
+                $lastPinned.length ? $el.insertAfter($lastPinned) : $el.prependTo(collection.list);
+                return;
+            }
+
+            // Unpinning: restore position among unpinned items
+            const modelIndex = collection.items.indexOf(model);
+            const items = collection.items;
+
+            // Find nearest unpinned neighbor in DOM to position relative to
+            for (let i = modelIndex + 1; i < items.length; i++) {
+                if (!items[i].pinned) {
+                    let $target = $('#' + items[i].uid, collection.list);
+                    if ($target.length) { $el.insertBefore($target); return; }
                 }
             }
+
+            for (let i = modelIndex - 1; i >= 0; i--) {
+                if (!items[i].pinned) {
+                    let $target = $('#' + items[i].uid, collection.list);
+                    if ($target.length) { $el.insertAfter($target); return; }
+                }
+            }
+
+            // No unpinned neighbors found — place after pinned block or at start
+            const $lastPinned = collection.list.children('.row.pinned').last();
+            $lastPinned.length ? $el.insertAfter($lastPinned) : $el.prependTo(collection.list);
         }
 
         function _init_collections() {
@@ -513,6 +529,12 @@
         };
 
         function _init_ppmenu() {
+            if (ppmenu) {
+                Menu.closeAll();
+                $('#pp-menu-files').remove();
+                ppmenu = null;
+            }
+
             ppmenu = new Menu({
                 id: 'pp-menu-files',
                 className: 'with-icons',
@@ -715,6 +737,7 @@
                     }
                 });
 
+                CommonEvents.on('lang:changed', _init_ppmenu.bind(this));
 
                 docGrid.render(this.view.$panel.find("#area-document-creation-grid"));
 

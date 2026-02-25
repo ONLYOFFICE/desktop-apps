@@ -39,7 +39,7 @@
     window.relpath = !/mac os/i.test(navigator.userAgent) ? '.' : '..';
     window.config = { portals: {
         update: function() {
-            config.portals.checklist = sdk.externalClouds();
+            config.portals.checklist = utils.fn.sortProviders(sdk.externalClouds());
 
             if ( config.portals.checklist ) {
                 let _providers = {};

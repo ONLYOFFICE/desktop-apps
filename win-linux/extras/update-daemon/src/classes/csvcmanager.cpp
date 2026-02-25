@@ -693,7 +693,11 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
                 tstring lcFilePath(filePath);
                 std::transform(lcFilePath.begin(), lcFilePath.end(), lcFilePath.begin(), ::tolower);
                 if (lcFilePath.find(prefix) != tstring::npos && filePath != except)
+#ifdef _WIN32
+                    NS_File::removeFile(filePath, true);
+#else
                     NS_File::removeFile(filePath);
+#endif
             }
         }
         tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;

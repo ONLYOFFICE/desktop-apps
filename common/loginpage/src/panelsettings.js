@@ -271,6 +271,12 @@
                                                 <label for="sett-gpu-mode" class='sett__caption' l10n>${_lang.settGpuUseMode} *</label>
                                             </section>
                                         </div>
+                                        <div class='settings-field' style='display:none;'>
+                                            <section class='switch-labeled hbox' id='sett-box-use-ai'>
+                                                <input type="checkbox" class="checkbox" id="sett-use-ai">
+                                                <label for="sett-use-ai" class='sett__caption' l10n>${_lang.settUseAI} *</label>
+                                            </section>
+                                        </div>
                                         <!-- temporary elements section -->
                                         <div class='settings-field' style='display:none;'>
                                             <section class='switch-labeled hbox' id='sett-box-preview-mode'>
@@ -320,7 +326,8 @@
             $optsSpellcheckMode,
             $optsLaunchMode,
             $optsAutoupdateMode;
-        let $chGpu;
+        let $chGpu,
+            $chUseAI;
         let appSettings;
 
         function _set_user_name(name) {
@@ -462,6 +469,15 @@
                     if ( appSettings.usegpu != _new_settings.usegpu ) {
                         _new_settings.restart = true;
                         appSettings.usegpu = _new_settings.usegpu;
+                    }
+                }
+
+                if ( $chUseAI ) {
+                    _new_settings.useai = $chUseAI.prop("checked");
+
+                    if ( appSettings.useai != _new_settings.useai ) {
+                        _new_settings.restart = true;
+                        appSettings.useai = _new_settings.useai;
                     }
                 }
 
@@ -677,6 +693,14 @@
                         if ( appSettings.usegpu !== undefined ) {
                             $chGpu = $('#sett-box-gpu-mode', $panel).parent().show().find('#sett-gpu-mode');
                             $chGpu.prop('checked', !!appSettings.usegpu)
+                                .on('change', e => {
+                                    $btnApply.isdisabled() && $btnApply.disable(false);
+                                });
+                        }
+
+                        if ( appSettings.useai !== undefined ) {
+                            $chUseAI = $('#sett-box-use-ai', $panel).parent().show().find('#sett-use-ai');
+                            $chUseAI.prop('checked', !!appSettings.useai)
                                 .on('change', e => {
                                     $btnApply.isdisabled() && $btnApply.disable(false);
                                 });
@@ -911,6 +935,12 @@
                 $(window).on('resize', on_window_resize.bind(this));
                 CommonEvents.on('panel:show', on_panel_show.bind(this));
                 CommonEvents.on('lang:changed', _on_lang_changed.bind(this));
+
+                const badge_new_feat = '<span class="new-feat-badge">NEW</span>';
+                $panel.find('#sett-box-use-ai label').after(badge_new_feat);
+                if (utils.isMacOS) {
+                    $panel.find('#opts-launch-mode label').after(badge_new_feat);
+                }
 
                 return this;
             },

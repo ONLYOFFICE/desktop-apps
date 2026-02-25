@@ -31,6 +31,7 @@
 
 body {
   cursor: default;
+  font-family: @font-family-base;
 }
 
 input,
@@ -751,22 +752,9 @@ li.menu-item {
     &:nth-child(even) {
       background-color: @background-normal-element-light;
     }
-
-
-    &.unavail {
-      .col-more, .col-pin {
-        display: none;
-      }
-    }
-
-    &:hover:not(.unavail) {
-      .col-more, .col-pin {
-        opacity: 1;
-      }
-    }
-
+    
     &:hover {
-      .col-more {
+      .col-more, .col-pin  {
         opacity: 1;
       }
     }
@@ -789,14 +777,18 @@ li.menu-item {
       }
     }
 
-    &.pinned .col-pin {
-      opacity: 1;
-      .icon {
+    @media (min-width: 860px) {
+      &.pinned .col-pin {
         opacity: 1;
+
+        .icon {
+          opacity: 1;
+        }
       }
     }
+
     &.unavail {
-      > :not(.col-more) {
+      > :not(.col-more, .col-pin) {
         opacity: 0.5;
         -webkit-filter: grayscale(100%);
       }
@@ -2193,6 +2185,10 @@ li.menu-item {
       padding: 0;
       background-color: @background-action-panel;
     }
+    
+    .btn.btn--big.btn--svg.login:hover:not(:disabled) {
+      background-color: var(--highlight-button-hover);
+    }
   }
 
   #box-providers-premium-button {
@@ -2200,6 +2196,10 @@ li.menu-item {
       width: 330px;
       height: 48px;
       background-color: @background-action-panel;
+    }
+    
+    .btn.btn--big.btn--svg.login:hover:not(:disabled) {
+      background-color: var(--highlight-button-hover);
     }
   }
 
@@ -2213,6 +2213,10 @@ li.menu-item {
     align-items: center;
     width: 158px;
     height: 42px;
+  }
+  
+  .btn.btn--big.btn--svg.login:hover:not(:disabled) {
+    background-color: var(--highlight-button-hover);
   }
 
   .connect button[data-cprov] {

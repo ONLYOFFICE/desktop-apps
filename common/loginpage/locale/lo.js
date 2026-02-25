@@ -96,4 +96,5 @@ l10n.lo = {
     settOptLaunchInTab: 'ໃນຊ່ອງ',
     settOptLaunchInWindow: 'ໃນປ່ອງ',
     settOptDisabled: 'ປິດ',
+    settUseAI: 'ໃຊ້ຟັງຊັນ AI',
 }

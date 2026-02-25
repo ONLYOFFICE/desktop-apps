@@ -115,8 +115,6 @@ l10n.gl = {
     settOptDescDisabled: "A verificación automática de actualizacións estará desactivada",
     settOptDescAUpdateSilent: "Descargar actualizacións e preguntar antes de instalalas",
     settOptDescAUpdateAsk: "Notificaráselle sobre todos os pasos de actualización",
-    settRtlMode: "Interface RTL",
     settGpuUseMode: "Utilizar a aceleración de gráficos cando estea dispoñible",
-    tplPanelLocal: "Locais",
-    tplPanelCloud: "De nube",
+    settUseAI: 'Usar funcións de IA',
 }

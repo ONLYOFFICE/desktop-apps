@@ -62,6 +62,7 @@
 class ASCEventListener: public NSEditorApi::CAscCefMenuEventListener {
     dispatch_queue_t eventListenerQueue;
     id <ASCExternalDelegate> externalDelegate;
+    int fullscreen_view_id = -1;
 public:
     ASCEventListener() : NSEditorApi::CAscCefMenuEventListener () {
         eventListenerQueue = dispatch_queue_create("asc.onlyoffice.MenuEventListenerQueue", NULL);
@@ -239,10 +240,9 @@ public:
                         CCefView * pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
 
                         if ( pCefView && pCefView->GetType() == cvwtEditor && !((CCefViewEditor*)pCefView)->IsPresentationReporter() ) {
-                            static int view_id = -1;
                             if ( pRawEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER ) {
-                                if ( view_id < 0 ) {
-                                    view_id = pRawEvent->get_SenderId();
+                                if ( fullscreen_view_id < 0 ) {
+                                    fullscreen_view_id = pRawEvent->get_SenderId();
 
                                     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                                                         object:nil
@@ -256,8 +256,8 @@ public:
                                     pCefView->Apply(pEvent);
                                 }
                             } else {
-                                if ( view_id == pRawEvent->get_SenderId() )
-                                    view_id = -1;
+                                if ( fullscreen_view_id == pRawEvent->get_SenderId() )
+                                    fullscreen_view_id = -1;
 
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                                                     object:nil
@@ -437,7 +437,9 @@ public:
                     case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO: {
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveBeforSign
                                                                             object:nil
-                                                                          userInfo:nil];
+                                                                          userInfo:@{
+                                                                                     @"viewId": [NSString stringWithFormat:@"%d", senderId]
+                                                                                     }];
                         break;
                     }
 
@@ -628,6 +630,11 @@ public:
                         } else if (cmd.find(L"recent:forget") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             appManager->RemoveRecentByViewId(senderId);
+                        } else if (cmd.find(L"recent:pinned") != std::wstring::npos) {
+                            NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary];
+
+                            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                            appManager->SetRecentPin([json[@"id"] intValue], [json[@"pinned"] boolValue]);
                         } else if (cmd.find(L"go:folder") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorOpenFolder
                                                                                 object:nil
@@ -707,6 +714,16 @@ public:
                                 if ( [json objectForKey:@"usegpu"] != nil ) {
                                     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"disable-gpu", [json[@"usegpu"] boolValue] ? L"0" : L"1");
+                                }
+
+                                if ( [json objectForKey:@"useai"] != nil ) {
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->GetUserSettings()->Set(L"disable-ai", [json[@"useai"] boolValue] ? L"0" : L"1");
+                                }
+
+                                if ( [json objectForKey:@"editorwindowmode"] != nil ) {
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->GetUserSettings()->Set(L"editor-window-mode", [json[@"editorwindowmode"] boolValue] ? L"1" : L"0");
                                 }
 
                                 if ( [json objectForKey:@"spellcheckdetect"] != nil ) {
@@ -909,6 +926,20 @@ public:
                                     }
                                 }
                             }
+                        } else if (cmd.find(L"webapps:entry") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameWebAppsEntry
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"info": [NSString stringWithstdwstring:param]
+                                                                                         }];
+                        } else if (cmd.compare(L"title:button") == 0 ) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameWebTitleChanged
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"info": [NSString stringWithstdwstring:param]
+                                                                                         }];
                         }
 
                         break;
@@ -932,6 +963,11 @@ public:
     virtual bool IsSupportEvent(int nEventType)
     {
         return true;
+    }
+    
+    void resetFullscreenState()
+    {
+        fullscreen_view_id = -1;
     }
 };
 
@@ -975,6 +1011,13 @@ public:
     }
     
     return self;
+}
+
++ (void)resetFullscreenState {
+    ASCEventsController *ec = [ASCEventsController sharedInstance];
+    if (ec && ec->_listener) {
+        ec->_listener->resetFullscreenState();
+    }
 }
 
 @end

@@ -129,4 +129,5 @@ l10n.sl = {
     colLastOpened: 'Nazadnje odprto',
     labelDropFile: 'Povleci datoteke sem ali',
     labelSelectFile: 'Izberi datoteko',
+    settUseAI: 'Uporabite funkcije umetne inteligence',
 }

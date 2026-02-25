@@ -936,6 +936,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     std::wstring app_action = app_scheme + L"//action";
     std::wstring app_action_open = app_scheme + L"//open";
     std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
+    std::wstring app_command = app_scheme + L"//command/";
     std::vector<std::wstring> vec_window_actions;
 
     for (const auto& arg: vargs) {
@@ -992,6 +993,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             Utils::replaceAll(deep_link, L"%7C", L"|");
             open_opts.wurl = deep_link;
             open_opts.name = QString::fromStdWString(get_file_name_from_open_deeplink(deep_link));
+        } else
+        if ( arg.rfind(app_command, 0) == 0 ) {
+            vec_window_actions.push_back(arg);
+            continue;
         } else {
             open_opts.wurl = arg;
         }
@@ -1003,16 +1008,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 str_url = Utils::replaceBackslash(str_url);
                 open_opts.wurl = str_url.toStdWString();
 #else
-                QUrl url = QUrl::fromUserInput(str_url);
-                if (!url.isValid()) {
-                    QFileInfo info(str_url);
-                    if (info.isFile())
-                        url = QUrl::fromUserInput(info.absoluteFilePath());
-                }
-                if (url.isValid()) {
-                    str_url = url.toLocalFile();
-                    open_opts.wurl = str_url.toStdWString();
-                }
+                str_url = str_url.startsWith(QLatin1String("file://"), Qt::CaseInsensitive) ?
+                    QUrl(str_url).toLocalFile() :
+                    QDir::cleanPath(QDir::current().absoluteFilePath(str_url));
+                open_opts.wurl = str_url.toStdWString();
 #endif
             }
             if ( _app.m_private->bringEditorToFront(str_url) ) {
@@ -1115,6 +1114,7 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
     std::wstring app_scheme = GetExternalSchemeName();
     if ( !app_scheme.empty() ) {
         const std::wstring app_action_panel = app_scheme + L"//action|panel|";
+        const std::wstring app_command = app_scheme + L"//command/";
 
         for (const auto& a: actions) {
             if ( a.rfind(app_action_panel, 0) == 0 ) {
@@ -1122,6 +1122,11 @@ void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std:
 
                 gotoMainWindow();
                 m_pMainWindow->handleWindowAction(_action);
+            } else
+            if ( a.rfind(app_command, 0) == 0 ) {
+                std::wstring _arg_cmd = a.substr(app_command.length());
+                if (!_arg_cmd.empty())
+                    CallCommand(_arg_cmd);
             }
         }
     }
@@ -1414,11 +1419,11 @@ void CAscApplicationManagerWrapper::initializeApp()
                                         {"type", _app.m_themes->current().stype()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())},
                                         {"addlocal", "on"}
-#ifndef Q_OS_LINUX
+// #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
-#else
-                                        ,{"system", "disabled"}
-#endif
+// #else
+//                                         ,{"system", "disabled"}
+// #endif
                                      });
 
     AscAppManager::getInstance().m_oSettings.macroses_support = reg_system.value("macrosDisabled", true).toBool();
@@ -2012,6 +2017,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             setUserSettings(L"disable-gpu", use_gpu ? L"0" : L"1");
         }
 
+        if ( objRoot.contains("useai") ) {
+            setUserSettings(L"disable-ai", objRoot["useai"].toBool(true) ? L"0" : L"1");
+        }
+
 #ifdef _UPDMODULE
         if ( objRoot.contains("autoupdatemode") ) {
             if (m_pUpdateManager)
@@ -2093,11 +2102,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         EditorJSVariables::applyVariable("theme", {
                                             {"type", _app.m_themes->current().stype()},
                                             {"id", QString::fromStdWString(_app.m_themes->current().id())}
-#ifndef Q_OS_LINUX
+// #ifndef Q_OS_LINUX
                                             ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
-#else
-                                            ,{"system", "disabled"}
-#endif
+// #else
+//                                             ,{"system", "disabled"}
+// #endif
                                          });
 
         // TODO: remove

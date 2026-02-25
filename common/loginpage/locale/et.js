@@ -115,8 +115,6 @@ l10n.et = {
     settOptDescDisabled: "Automaatne uuenduste kontrollimine keelatakse",
     settOptDescAUpdateSilent: "Uuenduste allalaadimine ja küsimine enne paigaldamist",
     settOptDescAUpdateAsk: "Teid teavitatakse kõikidest uuenduste sammudest",
-    settRtlMode: "RTL liides",
     settGpuUseMode: "Kasutage võimalusel graafikakiirendust",
-    tplPanelLocal: "Kohalikud",
-    tplPanelCloud: "Pilve",
+    settUseAI: 'Kasutage tehisintellekti funktsioone',
 }

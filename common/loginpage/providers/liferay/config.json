@@ -6,6 +6,7 @@
     },
     "editorPage" : "regex:[?&]p_p_id=com_onlyoffice_liferay_docs_portlet_editorportlet.*",
     "cryptoSupport" : "true",
+    "order": 6,
     "icons": {
         "themeLight":{
             "connectionsList": "./assets/listicon.svg",

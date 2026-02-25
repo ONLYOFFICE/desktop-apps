@@ -205,7 +205,8 @@ namespace CEditorTools
                     page_ranges.append(PageRanges(1, pagesCount));
                     break;
                 case QPrintDialog::PageRange:
-                    page_ranges = dialog->getPageRanges();
+                    page_ranges = AscAppManager::printData().useSystemDialog() ?
+                                      dialog->getPageRanges() : AscAppManager::printData().pageRanges();
                     break;
                 case QPrintDialog::Selection:
                     page_ranges.append(PageRanges(-1, -1));
