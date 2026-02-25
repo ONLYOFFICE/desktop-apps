@@ -1505,6 +1505,145 @@
     //
 }
 
+- (void)tabs:(ASCTabsControl *)control didRequestCloseTab:(ASCTabView *)tab {
+    if (tab) {
+        if ([self tabs:control willRemovedTab:tab]) {
+            [control removeTab:tab animated:YES];
+        }
+    }
+}
+
+- (void)tabs:(ASCTabsControl *)control didRequestCloseSavedTabs:(ASCTabView *)tab {
+    NSArray *tabsCopy = [NSArray arrayWithArray:control.tabs];
+    for (ASCTabView *tab in tabsCopy) {
+        NSString *path = tab.params[@"path"];
+        NSCefView *cefView = [self cefViewWithTab:tab];
+        if (cefView && [cefView.data isViewType:cvwtEditor] && ![cefView.data hasChanges]
+                && ![cefView isSaveLocked] && path && path.length > 0) {
+            [control removeTab:tab selected:NO animated:NO];
+        }
+    }
+    
+    NSTabViewItem * item = [self.tabView selectedTabViewItem];
+    if ( ![[item identifier] isEqual:rootTabId] ) {
+        if (control.tabs.count > 0) {
+            if ( ![control selectedTab] ) {
+                [control selectTab:control.tabs.firstObject];
+            }
+        } else {
+            [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+            [control selectTab:nil];
+        }
+    }
+}
+
+- (void)tabs:(ASCTabsControl *)control didRequestCloseAllTabs:(ASCTabView *)tab {
+    NSMutableArray<ASCTabView *> *tabsWithChanges = [NSMutableArray array];
+    NSArray *tabsCopy = [NSArray arrayWithArray:control.tabs];
+    for (ASCTabView *tab in tabsCopy) {
+        NSCefView *cefView = [self cefViewWithTab:tab];
+        if (cefView && ([cefView checkCloudCryptoNeedBuild] || [cefView checkBuilding])) {
+            continue;
+        }
+        
+        if (cefView && ([cefView.data hasChanges] || [cefView isSaveLocked])) {
+            [tabsWithChanges addObject:tab];
+        } else {
+            [control removeTab:tab selected:NO animated:NO];
+        }
+    }
+    
+    if (tabsWithChanges.count > 0) {
+        self.tabsWithChanges = tabsWithChanges;
+        [self safeCloseTabsWithChanges];
+    } else {
+        NSTabViewItem *item = [self.tabView selectedTabViewItem];
+        if (![[item identifier] isEqual:rootTabId]) {
+            if (control.tabs.count > 0) {
+                if (![control selectedTab]) {
+                    [control selectTab:control.tabs.firstObject];
+                }
+            } else {
+                [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+                [control selectTab:nil];
+            }
+        }
+    }
+}
+
+- (void)tabs:(ASCTabsControl *)control didRequestShowInFolderForTab:(ASCTabView *)tab {
+    if (tab) {
+        NSString *filePath = tab.params[@"path"];
+        if (filePath && filePath.length > 0) {
+            NSURL *url = [NSURL fileURLWithPath:filePath];
+            if (url && [[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
+            }
+        }
+    }
+}
+
+- (void)tabs:(ASCTabsControl *)control didRequestDetachTab:(ASCTabView *)tab {
+    if (tab) {
+        NSCefView *webView = (NSCefView *)tab.webView;
+        if (!webView || ![webView.data isViewType:cvwtEditor]) {
+            return;
+        }
+        
+        [webView removeFromSuperview];
+        tab.webView = nil;
+        tab.params[@"detached"] = @YES;
+        [control removeTab:tab animated:NO];
+        webView.data.url = tab.params[@"url"];
+        webView.data.path = tab.params[@"path"];
+                
+        AppDelegate *app = [NSApp delegate];
+        ASCTitleWindowController *mainWindowController = (ASCTitleWindowController *)app.mainWindowController;
+        NSRect mainFrame = [mainWindowController normalFrame];
+        mainFrame.origin.x += 30;
+        mainFrame.origin.y -= 30;
+        
+        NSWindow* editorWindow = [app editorWindowFromCef:webView withFrame:mainFrame];
+        if ( [mainWindowController.window isZoomed] ) {
+            [editorWindow setIsZoomed:YES];
+        }
+    }
+}
+
+- (void)tabs:(ASCTabsControl *)control didRequestCreateNewForTab:(ASCTabView *)tab {
+    if (tab) {
+        ASCTabViewType type = tab.type;
+        NSInteger createType = -1;
+        
+        switch (type) {
+            case ASCTabViewTypeDocument:
+                createType = (int)AscEditorType::etDocument;
+                break;
+            case ASCTabViewTypeSpreadsheet:
+                createType = (int)AscEditorType::etSpreadsheet;
+                break;
+            case ASCTabViewTypePresentation:
+                createType = (int)AscEditorType::etPresentation;
+                break;
+            case ASCTabViewTypePdf:
+                createType = (int)AscEditorType::etDocumentMasterForm;
+                break;
+            default:
+                break;
+        }
+        
+        if (createType >= 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                @"action"  : @(ASCTabActionCreateLocalFile),
+                @"type"    : @(createType),
+                @"active"  : @(YES)
+            }];
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark ASCTitleBarController Delegate
 

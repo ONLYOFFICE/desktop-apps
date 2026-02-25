@@ -1733,19 +1733,12 @@
 #pragma mark -
 #pragma mark Tab Detachment Support
 
-- (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event {
-    if (!self.mainWindowController) {
-        return;
-    }
+- (NSWindow *)editorWindowFromCef:(NSView *)cefView withFrame:(NSRect)windowFrame {
     NSCefView *webView = (NSCefView *)cefView;
     
     NSDictionary *widgetInfo = @{@"widgetType": @"window", @"captionHeight": TOOLBTN_HEIGHT};
     [webView setParentWidgetInfoWithJson:[widgetInfo jsonString]];
-    
-    ASCTitleWindowController *mainWindowController = (ASCTitleWindowController *)self.mainWindowController;
-    NSSize size = [mainWindowController normalFrame].size;
-    NSRect windowFrame = NSMakeRect(screenPoint.x - 200, screenPoint.y - size.height + 11, size.width, size.height);
-        
+            
     ASCEditorWindowController *windowController = [ASCEditorWindowController initWithFrame:windowFrame];
     [self.editorWindowControllers addObject:windowController];
     
@@ -1767,7 +1760,21 @@
     NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
     [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
     [webView focus];
+    
+    return editorWindow;
+}
 
+- (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event {
+    if (!self.mainWindowController) {
+        return;
+    }
+    
+    ASCTitleWindowController *mainWindowController = (ASCTitleWindowController *)self.mainWindowController;
+    NSSize size = [mainWindowController normalFrame].size;
+    NSRect windowFrame = NSMakeRect(screenPoint.x - 200, screenPoint.y - size.height + 11, size.width, size.height);
+
+    NSWindow *editorWindow = [self editorWindowFromCef:cefView withFrame:windowFrame];
+    
     // Let the event loop process before starting drag to prevent window jerking
     [editorWindow performSelector:@selector(performWindowDragWithEvent:)
                        withObject:event

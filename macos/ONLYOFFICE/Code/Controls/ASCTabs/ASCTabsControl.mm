@@ -42,6 +42,7 @@
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
 #import "ASCTabViewCell.h"
+#import "NSCefView.h"
 
 static char kASCTabsScrollViewObservationContext;
 static CGFloat const kASCTabsScrollButtonWidth = 24.f;
@@ -699,6 +700,206 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         if (NSPointInRect(dragPoint, [tab frame])) {
             [self tabDidClose: tab];
             break;
+        }
+    }
+}
+
+- (void)rightMouseDown:(NSEvent *)event {
+    NSPoint clickPoint = [self.tabsView convertPoint:event.locationInWindow fromView:nil];
+    
+    for (ASCTabView * tab in self.tabs) {
+        if (NSPointInRect(clickPoint, [tab frame])) {
+            [self showContextMenuForTab:tab atPoint:[NSEvent mouseLocation]];
+            break;
+        }
+    }
+}
+
+- (void)showContextMenuForTab:(ASCTabView *)tab atPoint:(NSPoint)point {
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Tab Context Menu"];
+    [menu setAutoenablesItems:NO];
+    
+    // Close tab
+    NSMenuItem *closeItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Close", nil)
+                                                       action:@selector(menuCloseTab:)
+                                                keyEquivalent:@""];
+    closeItem.target = self;
+    closeItem.representedObject = tab;
+    [menu addItem:closeItem];
+    
+    // Close saved tabs
+    NSMenuItem *closeSavedItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Close saved", nil)
+                                                            action:@selector(menuCloseSavedTabs:)
+                                                     keyEquivalent:@""];
+    closeSavedItem.target = self;
+    closeSavedItem.representedObject = tab;
+    [menu addItem:closeSavedItem];
+    
+    // Close all tabs
+    NSMenuItem *closeAllItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Close all", nil)
+                                                          action:@selector(menuCloseAllTabs:)
+                                                   keyEquivalent:@""];
+    closeAllItem.target = self;
+    closeAllItem.representedObject = tab;
+    [menu addItem:closeAllItem];
+    
+    // Separator
+    [menu addItem:[NSMenuItem separatorItem]];
+    
+    NSCefView *webView = (NSCefView *)tab.webView;
+    BOOL isEditorTab = (webView && [webView.data isViewType:cvwtEditor]);
+    
+    if (isEditorTab) {
+        // Show in folder
+        NSMenuItem *showInFolderItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Show in folder", nil)
+                                                                  action:@selector(menuShowInFolder:)
+                                                           keyEquivalent:@""];
+        showInFolderItem.target = self;
+        showInFolderItem.representedObject = tab;
+        
+        // Enable only for local files
+        NSString *filePath = tab.params[@"path"];
+        BOOL isLocalFile = filePath && filePath.length > 0 && [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+        [showInFolderItem setEnabled:isLocalFile];
+        
+        [menu addItem:showInFolderItem];
+        [menu addItem:[NSMenuItem separatorItem]];
+    }
+    
+    // Move to start
+    NSMenuItem *moveToStartItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Move to start", nil)
+                                                             action:@selector(menuMoveToStart:)
+                                                      keyEquivalent:@""];
+    moveToStartItem.target = self;
+    moveToStartItem.representedObject = tab;
+    [moveToStartItem setEnabled:self.tabs.count > 1];
+    [menu addItem:moveToStartItem];
+    
+    // Move to end
+    NSMenuItem *moveToEndItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Move to end", nil)
+                                                           action:@selector(menuMoveToEnd:)
+                                                    keyEquivalent:@""];
+    moveToEndItem.target = self;
+    moveToEndItem.representedObject = tab;
+    [moveToEndItem setEnabled:self.tabs.count > 1];
+    [menu addItem:moveToEndItem];
+    
+    if (isEditorTab) {
+        // Unpin tab
+        NSMenuItem *unpinTabItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Unpin tab", nil)
+                                                              action:@selector(menuUnpinTab:)
+                                                       keyEquivalent:@""];
+        unpinTabItem.target = self;
+        unpinTabItem.representedObject = tab;
+        [menu addItem:unpinTabItem];
+        
+        [menu addItem:[NSMenuItem separatorItem]];
+        
+        // Create new
+        NSMenuItem *createNewItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Create new", nil)
+                                                               action:@selector(menuCreateNew:)
+                                                        keyEquivalent:@""];
+        createNewItem.target = self;
+        createNewItem.representedObject = tab;
+        [menu addItem:createNewItem];
+    }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:willShowContextMenuForTab:withMenu:)]) {
+        [_delegate tabs:self willShowContextMenuForTab:tab withMenu:menu];
+    }
+    
+    [menu popUpMenuPositioningItem:nil atLocation:point inView:nil];
+}
+
+#pragma mark -
+#pragma mark Context Menu Actions
+
+- (void)menuCloseTab:(NSMenuItem *)sender {
+    ASCTabView *tab = sender.representedObject;
+    if (tab) {
+        if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRequestCloseTab:)]) {
+            [_delegate tabs:self didRequestCloseTab:tab];
+        }
+    }
+}
+
+- (void)menuCloseSavedTabs:(NSMenuItem *)sender {
+    ASCTabView *tab = sender.representedObject;
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRequestCloseSavedTabs:)]) {
+        [_delegate tabs:self didRequestCloseSavedTabs:tab];
+    }
+}
+
+- (void)menuCloseAllTabs:(NSMenuItem *)sender {
+    ASCTabView *tab = sender.representedObject;
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRequestCloseAllTabs:)]) {
+        [_delegate tabs:self didRequestCloseAllTabs:tab];
+    }
+}
+
+- (void)menuShowInFolder:(NSMenuItem *)sender {
+    ASCTabView *tab = sender.representedObject;
+    if (tab) {
+        if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRequestShowInFolderForTab:)]) {
+            [_delegate tabs:self didRequestShowInFolderForTab:tab];
+        }
+    }
+}
+
+- (void)menuMoveToStart:(NSMenuItem *)sender {
+    ASCTabView *tab = sender.representedObject;
+    if (tab && self.tabs.count > 1) {
+        NSUInteger currentIndex = [self.tabs indexOfObject:tab];
+        NSUInteger destIndex = ([self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) ?
+                               self.tabs.count - 1 : 0;
+        
+        if (currentIndex != destIndex && currentIndex != NSNotFound) {
+            [self.tabs removeObject:tab];
+            [self.tabs insertObject:tab atIndex:destIndex];
+            [self layoutTabs:nil animated:YES];
+            [self updateAuxiliaryButtons];
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(tabs:didReorderTab:from:to:)]) {
+                [_delegate tabs:self didReorderTab:tab from:currentIndex to:destIndex];
+            }
+        }
+    }
+}
+
+- (void)menuMoveToEnd:(NSMenuItem *)sender {
+    ASCTabView *tab = sender.representedObject;
+    if (tab && self.tabs.count > 1) {
+        NSUInteger currentIndex = [self.tabs indexOfObject:tab];
+        NSUInteger destIndex = ([self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) ?
+                               0 : self.tabs.count - 1;
+        
+        if (currentIndex != destIndex && currentIndex != NSNotFound) {
+            [self.tabs removeObject:tab];
+            [self.tabs insertObject:tab atIndex:destIndex];
+            [self layoutTabs:nil animated:YES];
+            [self updateAuxiliaryButtons];
+            
+            if (_delegate && [_delegate respondsToSelector:@selector(tabs:didReorderTab:from:to:)]) {
+                [_delegate tabs:self didReorderTab:tab from:currentIndex to:destIndex];
+            }
+        }
+    }
+}
+
+- (void)menuUnpinTab:(NSMenuItem *)sender {
+    ASCTabView *tab = sender.representedObject;
+    if (tab) {
+        if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRequestDetachTab:)]) {
+            [_delegate tabs:self didRequestDetachTab:tab];
+        }
+    }
+}
+
+- (void)menuCreateNew:(NSMenuItem *)sender {
+    ASCTabView *tab = sender.representedObject;
+    if (tab) {
+        if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRequestCreateNewForTab:)]) {
+            [_delegate tabs:self didRequestCreateNewForTab:tab];
         }
     }
 }

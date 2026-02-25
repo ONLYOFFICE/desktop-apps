@@ -56,6 +56,13 @@
 - (void)tabs:(ASCTabsControl *)control didUpdateTab:(ASCTabView *)tab;
 - (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab from:(NSInteger)oldIndex to:(NSInteger)newIndex;
 - (void)tabs:(ASCTabsControl *)control didDetachTab:(ASCTabView *)tab atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event;
+- (void)tabs:(ASCTabsControl *)control willShowContextMenuForTab:(ASCTabView *)tab withMenu:(NSMenu *)menu;
+- (void)tabs:(ASCTabsControl *)control didRequestCloseTab:(ASCTabView *)tab;
+- (void)tabs:(ASCTabsControl *)control didRequestCloseSavedTabs:(ASCTabView *)tab;
+- (void)tabs:(ASCTabsControl *)control didRequestCloseAllTabs:(ASCTabView *)tab;
+- (void)tabs:(ASCTabsControl *)control didRequestShowInFolderForTab:(ASCTabView *)tab;
+- (void)tabs:(ASCTabsControl *)control didRequestDetachTab:(ASCTabView *)tab;
+- (void)tabs:(ASCTabsControl *)control didRequestCreateNewForTab:(ASCTabView *)tab;
 @end
 
 @interface ASCTabsControl : NSControl
