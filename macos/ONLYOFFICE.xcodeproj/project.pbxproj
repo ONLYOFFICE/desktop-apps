@@ -146,7 +146,7 @@
 		FC0BD6A0258B63F700C47F95 /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
 		FC0BD6A1258B63F700C47F95 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FC0BD6A2258B63F700C47F95 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
-		FC0BD6A3258B63F700C47F95 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
+		FC0BD6A3258B63F700C47F95 /* ASCTabsControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */; };
 		FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */; };
 		FC0BD6A5258B63F700C47F95 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
 		FC0BD6A6258B63F700C47F95 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
@@ -322,7 +322,7 @@
 		FCB4C6D926DD018B0012C20D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
 		FCB4C6DA26DD018B0012C20D /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FCB4C6DB26DD018B0012C20D /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
-		FCB4C6DC26DD018B0012C20D /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
+		FCB4C6DC26DD018B0012C20D /* ASCTabsControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */; };
 		FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */; };
 		FCB4C6DE26DD018B0012C20D /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
 		FCB4C6DF26DD018B0012C20D /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
@@ -412,7 +412,7 @@
 		FCC77C82206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
 		FCC77C85206CEE5B001B7837 /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C78206CEE5B001B7837 /* ASCButtonCell.m */; };
 		FCC77C91206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */; };
-		FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
+		FCC77C94206CEE85001B7837 /* ASCTabsControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */; };
 		FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8E206CEE85001B7837 /* ASCTabView.m */; };
 		FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
 		FCCC2FD721E5DF7700FB9209 /* ASCBlockHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FD621E5DF7700FB9209 /* ASCBlockHolder.m */; };
@@ -1068,7 +1068,7 @@
 		FCC77C89206CEE85001B7837 /* ASCTabCloseButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabCloseButtonCell.h; sourceTree = "<group>"; };
 		FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabCloseButtonCell.m; sourceTree = "<group>"; };
 		FCC77C8B206CEE85001B7837 /* ASCTabsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabsControl.h; sourceTree = "<group>"; };
-		FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabsControl.m; sourceTree = "<group>"; };
+		FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCTabsControl.mm; sourceTree = "<group>"; };
 		FCC77C8D206CEE85001B7837 /* ASCTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabView.h; sourceTree = "<group>"; };
 		FCC77C8E206CEE85001B7837 /* ASCTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabView.m; sourceTree = "<group>"; };
 		FCC77C8F206CEE85001B7837 /* ASCTabViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabViewCell.h; sourceTree = "<group>"; };
@@ -1639,7 +1639,7 @@
 				FCC77C89206CEE85001B7837 /* ASCTabCloseButtonCell.h */,
 				FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */,
 				FCC77C8B206CEE85001B7837 /* ASCTabsControl.h */,
-				FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */,
+				FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */,
 				FCC77C8D206CEE85001B7837 /* ASCTabView.h */,
 				FCC77C8E206CEE85001B7837 /* ASCTabView.m */,
 				FCC77C8F206CEE85001B7837 /* ASCTabViewCell.h */,
@@ -2427,7 +2427,7 @@
 				FC0BD6A0258B63F700C47F95 /* ASCDocumentSignatureController.m in Sources */,
 				FC0BD6A1258B63F700C47F95 /* ASCPopoverLightView.m in Sources */,
 				FC0BD6A2258B63F700C47F95 /* NSCefView.mm in Sources */,
-				FC0BD6A3258B63F700C47F95 /* ASCTabsControl.m in Sources */,
+				FC0BD6A3258B63F700C47F95 /* ASCTabsControl.mm in Sources */,
 				FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.mm in Sources */,
 				FC0BD6A5258B63F700C47F95 /* SFBPopover.m in Sources */,
 				FC0BD6A6258B63F700C47F95 /* ASCEventsController.mm in Sources */,
@@ -2506,7 +2506,7 @@
 				FCB4C6D926DD018B0012C20D /* ASCDocumentSignatureController.m in Sources */,
 				FCB4C6DA26DD018B0012C20D /* ASCPopoverLightView.m in Sources */,
 				FCB4C6DB26DD018B0012C20D /* NSCefView.mm in Sources */,
-				FCB4C6DC26DD018B0012C20D /* ASCTabsControl.m in Sources */,
+				FCB4C6DC26DD018B0012C20D /* ASCTabsControl.mm in Sources */,
 				FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.mm in Sources */,
 				FCB4C6DE26DD018B0012C20D /* SFBPopover.m in Sources */,
 				FCB4C6DF26DD018B0012C20D /* ASCEventsController.mm in Sources */,
@@ -2585,7 +2585,7 @@
 				FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
-				FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */,
+				FCC77C94206CEE85001B7837 /* ASCTabsControl.mm in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.mm in Sources */,
 				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
 				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
