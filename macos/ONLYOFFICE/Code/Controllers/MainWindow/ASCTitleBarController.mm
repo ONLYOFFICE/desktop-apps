@@ -672,21 +672,30 @@ static float kASCRTLTabsRightMargin = 0;
 - (BOOL)canPinTabAtPoint:(NSPoint)screenPoint {
     NSWindow * mainWindow = self.view.window;
     NSRect windowFrame = mainWindow.frame;
-    if (!NSPointInRect(screenPoint, windowFrame)) {
-        return false;
+    
+    BOOL containsPoint = NO;
+    
+    if (NSPointInRect(screenPoint, windowFrame)) {
+        if ( [self isFullScreen] ) {
+            const CGFloat dropZoneHeight = 36.0;
+            NSRect dropZoneRect = NSMakeRect(windowFrame.origin.x, windowFrame.origin.y + windowFrame.size.height - dropZoneHeight,
+                                             windowFrame.size.width, dropZoneHeight);
+            containsPoint = NSPointInRect(screenPoint, dropZoneRect);
+        } else {
+            NSRect contentRect = [mainWindow contentRectForFrameRect:windowFrame];
+            NSRect titleBarRect = NSMakeRect(windowFrame.origin.x, contentRect.origin.y + contentRect.size.height,
+                                             windowFrame.size.width, windowFrame.size.height - contentRect.size.height);
+            containsPoint = NSPointInRect(screenPoint, titleBarRect);
+        }
     }
     
-    if ( [self isFullScreen] ) {
-        const CGFloat dropZoneHeight = 36.0;
-        NSRect dropZoneRect = NSMakeRect(windowFrame.origin.x, windowFrame.origin.y + windowFrame.size.height - dropZoneHeight,
-                                         windowFrame.size.width, dropZoneHeight);
-        return NSPointInRect(screenPoint, dropZoneRect);
+    BOOL pinAllowed = self.tabsControl.tabPinAllowed;
+    if (!containsPoint && !pinAllowed) {
+        self.tabsControl.tabPinAllowed = YES;
+        return NO;
     }
     
-    NSRect contentRect = [mainWindow contentRectForFrameRect:windowFrame];
-    NSRect titleBarRect = NSMakeRect(windowFrame.origin.x, contentRect.origin.y + contentRect.size.height,
-                                     windowFrame.size.width, windowFrame.size.height - contentRect.size.height);
-    return NSPointInRect(screenPoint, titleBarRect);
+    return containsPoint && pinAllowed;
 }
 
 @end

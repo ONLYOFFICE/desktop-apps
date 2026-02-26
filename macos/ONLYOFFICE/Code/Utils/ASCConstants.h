@@ -98,6 +98,7 @@ static NSString * const ASCUserLockPageConnections          = @"asc_lock_page_co
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
 static NSString * const ASCEventNameEditorWindowMoving      = @"UI_editorWindowMoving";
+static NSString * const ASCEventNameEditorWindowEndMoving   = @"UI_editorWindowEndMoving";
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
 static NSString * const ASCEventNameOpenAppLinks            = @"UI_openAppLinks";
 static NSString * const ASCEventNameChangedUITheme          = @"UI_changedUITheme";

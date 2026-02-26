@@ -126,6 +126,7 @@
     addObserverFor(CEFEventNamePrintDialog, @selector(onCEFOnBeforePrintEnd:));
     addObserverFor(ASCEventNameRecoveryFiles, @selector(onRecoveryFiles:));
     addObserverFor(ASCEventNameEditorWindowMoving, @selector(onEditorWindowMoving:));
+    addObserverFor(ASCEventNameEditorWindowEndMoving, @selector(onEditorWindowEndMoving:));
         
     // Google Analytics
     
@@ -1692,6 +1693,13 @@
         [dropTimer invalidate];
     }
     dropTimer = nil;
+}
+
+- (void)onEditorWindowEndMoving:(NSNotification *)notification {
+    ASCTitleBarController *titlebarController = [self titleBarController];
+    if (titlebarController) {
+        titlebarController.tabsControl.tabPinAllowed = YES;
+    }
 }
 
 - (void)validateDrop:(NSWindow *)editorWindow {

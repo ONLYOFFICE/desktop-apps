@@ -64,6 +64,7 @@
 @property (nonatomic) CGFloat maxTabWidth;
 @property (nonatomic, assign) id <ASCTabsControlDelegate> delegate;
 @property (readonly) ASCTabsMulticastDelegate* multicastDelegate;
+@property (nonatomic) BOOL tabPinAllowed;
 
 - (void)addTab:(ASCTabView *)tab;
 - (void)addTab:(ASCTabView *)tab selected:(BOOL)selected;
