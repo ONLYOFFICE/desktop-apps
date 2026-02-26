@@ -554,10 +554,10 @@ static float kASCRTLTabsRightMargin = 0;
     }
 }
 
-- (void)tabs:(ASCTabsControl *)control didDetachTab:(ASCTabView *)tab atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event {
+- (BOOL)tabs:(ASCTabsControl *)control didDetachTab:(ASCTabView *)tab atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event {
     NSCefView *webView = (NSCefView *)tab.webView;
     if (!webView || ![webView.data isViewType:cvwtEditor]) {
-        return;
+        return NO;
     }
     
     [webView removeFromSuperview];
@@ -569,6 +569,8 @@ static float kASCRTLTabsRightMargin = 0;
     
     AppDelegate *app = [NSApp delegate];
     [app dragDetachedTab:webView atScreenPoint:screenPoint withEvent:event];
+    
+    return YES;
 }
 
 #pragma mark -

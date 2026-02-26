@@ -552,8 +552,6 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             BOOL isBelowControl = controlPoint.y < NSMinY(self.bounds);
             if (isAboveControl || isBelowControl) {
                 // Detach the tab
-                [draggingTab removeFromSuperview];
-                [tab setHidden:NO];
                 if (_delegate && [_delegate respondsToSelector:@selector(tabs:didDetachTab:atScreenPoint:withEvent:)]) {
                     NSPoint screenPoint;
                     if (@available(macOS 10.12, *)) {
@@ -563,12 +561,14 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
                         NSRect screenRect = [self.window convertRectToScreen:windowRect];
                         screenPoint = screenRect.origin;
                     }
-                    [_delegate tabs:self didDetachTab:tab atScreenPoint:screenPoint withEvent:event];
+                    BOOL handled = [_delegate tabs:self didDetachTab:tab atScreenPoint:screenPoint withEvent:event];
+                    if (handled) {
+                        [draggingTab removeFromSuperview];
+                        return;
+                    }
                 }
-                return;
             }
-        }
-
+        } else
         if (event.type == NSEventTypeLeftMouseUp) {
             [[NSAnimationContext currentContext] setCompletionHandler:^{
                 [draggingTab removeFromSuperview];
