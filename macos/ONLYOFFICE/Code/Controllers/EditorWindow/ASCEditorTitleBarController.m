@@ -52,7 +52,6 @@ static float kASCEditorWindowDefaultTrafficButtonsLeftMargin = 0;
 @property (nonatomic, weak) NSButton *closeButtonFullscreen;
 @property (nonatomic, weak) NSButton *miniaturizeButtonFullscreen;
 @property (nonatomic, weak) NSButton *fullscreenButtonFullscreen;
-@property (nonatomic) NSImageView *miniaturizeButtonImageViewFullscreen;
 @end
 
 @implementation ASCEditorTitleBarController
@@ -66,13 +65,10 @@ static float kASCEditorWindowDefaultTrafficButtonsLeftMargin = 0;
 
     self.closeButtonFullscreen = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSWindowStyleMaskTitled];
     self.fullscreenButtonFullscreen = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSWindowStyleMaskTitled];
-    NSButton *miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskFullScreen];
+    self.miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskTitled];
+    self.miniaturizeButtonFullscreen.enabled = NO;
 
-    NSImage *miniaturizeButtonImage = [miniaturizeButtonFullscreen imageRepresentation];
-    self.miniaturizeButtonImageViewFullscreen = [[NSImageView alloc] initWithFrame:CGRectMake(0, 0, miniaturizeButtonImage.size.width, miniaturizeButtonImage.size.height)];
-    self.miniaturizeButtonImageViewFullscreen.image = miniaturizeButtonImage;
-
-    self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonImageViewFullscreen, self.fullscreenButtonFullscreen];
+    self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonFullscreen, self.fullscreenButtonFullscreen];
     if ([self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) {
         self.standardButtonsFullscreen = [[self.standardButtonsFullscreen reverseObjectEnumerator] allObjects];
     }
