@@ -42,6 +42,7 @@
 @interface ASCEditorWindowController : NSWindowController <NSWindowDelegate>
 + (instancetype)initWithDefaultFrame;
 + (instancetype)initWithFrame:(NSRect)frame;
+- (void)extendableTitleToSimple;
 - (BOOL)holdView:(NSString *)viewId;
 
 @property (nonatomic) NSMutableDictionary *params;

@@ -1756,6 +1756,8 @@
         [webView autoPinEdgesToSuperviewEdges];
     }
     
+    [windowController extendableTitleToSimple];
+    
     [editorWindow makeKeyAndOrderFront:nil];
     [editorWindow.contentView layoutSubtreeIfNeeded];
     [editorWindow displayIfNeeded];

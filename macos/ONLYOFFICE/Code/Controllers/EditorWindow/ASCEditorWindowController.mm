@@ -51,10 +51,50 @@
 #import "NSString+Extensions.h"
 #import "NSDictionary+Extensions.h"
 #import "NSView+Extensions.h"
+#import "PureLayout.h"
+
+@interface ASCHoverButton : NSButton
+@property (nonatomic) BOOL isHovered;
+@end
+
+@implementation ASCHoverButton
+
+- (void)updateTrackingAreas {
+    [super updateTrackingAreas];
+    for (NSTrackingArea *area in self.trackingAreas) {
+        [self removeTrackingArea:area];
+    }
+    NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds
+                                                               options:NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow
+                                                                 owner:self
+                                                              userInfo:nil];
+    [self addTrackingArea:trackingArea];
+}
+
+- (void)mouseEntered:(NSEvent *)event {
+    _isHovered = YES;
+    [self setNeedsDisplay:YES];
+}
+
+- (void)mouseExited:(NSEvent *)event {
+    _isHovered = NO;
+    [self setNeedsDisplay:YES];
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+    if (_isHovered) {
+        [[NSColor colorWithWhite:0.0 alpha:0.15] set];
+        NSRectFillUsingOperation(self.bounds, NSCompositingOperationSourceOver);
+    }
+    [super drawRect:dirtyRect];
+}
+
+@end
 
 @interface ASCEditorWindowController () <NSWindowDelegate>
 @property (nonatomic) BOOL waitingForClose;
 @property (nonatomic) ASCEditorTitleBarController *titlebarController;
+@property (nonatomic) NSView *simpleEditorTitle;
 @end
 
 @implementation ASCEditorWindowController
@@ -149,6 +189,62 @@
                                                            constant:0]];
 
     [self.titlebarController setupWithWindow:window];
+}
+
+- (void)extendableTitleToSimple {
+    ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+    NSView *webView = window.webView;
+
+    CGFloat stripHeight = 28.0;
+
+    NSView *rootView = self.contentViewController.view;
+
+    self.simpleEditorTitle = [[NSView alloc] initForAutoLayout];
+    self.simpleEditorTitle.wantsLayer = YES;
+    self.simpleEditorTitle.layer.backgroundColor = [[NSColor colorWithRed:170.0/255.0 green:82.0/255.0 blue:82.0/255.0 alpha:1.0] CGColor];
+
+    [rootView addSubview:self.simpleEditorTitle];
+
+    [self.simpleEditorTitle autoPinEdgeToSuperviewEdge:ALEdgeTop];
+    [self.simpleEditorTitle autoPinEdgeToSuperviewEdge:ALEdgeLeading];
+    [self.simpleEditorTitle autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
+    [self.simpleEditorTitle autoSetDimension:ALDimensionHeight toSize:stripHeight];
+
+    for (NSLayoutConstraint *constraint in rootView.constraints.copy) {
+        BOOL isTopConstraint = (constraint.firstItem == webView && constraint.firstAttribute == NSLayoutAttributeTop) ||
+                               (constraint.secondItem == webView && constraint.secondAttribute == NSLayoutAttributeTop);
+        if (isTopConstraint) {
+            [rootView removeConstraint:constraint];
+        }
+    }
+
+    [webView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.simpleEditorTitle];
+
+    NSImage *tintedImage = [[NSImage imageNamed:@"icon-home_normal"] copy];
+    tintedImage.size = NSMakeSize(20, 20);
+    [tintedImage lockFocus];
+    [[NSColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] set];
+    NSRectFillUsingOperation(NSMakeRect(0, 0, 20, 20), NSCompositingOperationSourceAtop);
+    [tintedImage unlockFocus];
+
+    ASCHoverButton *iconButton = [[ASCHoverButton alloc] initForAutoLayout];
+    iconButton.image = tintedImage;
+    iconButton.imageScaling = NSImageScaleNone;
+    iconButton.imagePosition = NSImageOnly;
+    iconButton.bordered = NO;
+    iconButton.target = self;
+    iconButton.action = @selector(onSimpleTitleIconClicked:);
+
+    [self.simpleEditorTitle addSubview:iconButton];
+
+    [iconButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
+    [iconButton autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [iconButton autoSetDimensionsToSize:CGSizeMake(40, 28)];
+}
+
+- (void)onSimpleTitleIconClicked:(id)sender {
+    AppDelegate *app = (AppDelegate *)[NSApp delegate];
+    [app presentMainWindow];
 }
 
 - (void)windowDidMove:(NSNotification *)notification {
