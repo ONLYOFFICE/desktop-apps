@@ -240,6 +240,19 @@
     [iconButton autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
     [iconButton autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [iconButton autoSetDimensionsToSize:CGSizeMake(40, 28)];
+
+    NSTextField *titleLabel = [[NSTextField alloc] initForAutoLayout];
+    titleLabel.stringValue = @"ONLYOFFICE";
+    titleLabel.editable = NO;
+    titleLabel.selectable = NO;
+    titleLabel.bordered = NO;
+    titleLabel.backgroundColor = [NSColor clearColor];
+    titleLabel.textColor = [NSColor whiteColor];
+    titleLabel.font = [NSFont systemFontOfSize:13.0 weight:NSFontWeightRegular];
+    titleLabel.alignment = NSTextAlignmentCenter;
+
+    [self.simpleEditorTitle addSubview:titleLabel];
+    [titleLabel autoCenterInSuperview];
 }
 
 - (void)onSimpleTitleIconClicked:(id)sender {
