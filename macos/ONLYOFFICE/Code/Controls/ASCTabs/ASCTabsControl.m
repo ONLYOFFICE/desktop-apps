@@ -152,6 +152,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     self.minTabWidth = 50.0;
     self.maxTabWidth = 150.0;
     
+    self.tabPinAllowed = YES;
+    
     self.scrollView = [[NSScrollView alloc] initWithFrame:self.bounds];
     [self.scrollView setDrawsBackground:NO];
     [self.scrollView setHasHorizontalScroller:NO];
@@ -550,10 +552,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
             BOOL isAboveControl = controlPoint.y > NSMaxY(self.bounds) + 9.0;
             BOOL isBelowControl = controlPoint.y < NSMinY(self.bounds);
-            if (isAboveControl || isBelowControl) {
+            BOOL isLeftOfControl = controlPoint.x < NSMinX(self.bounds);
+            BOOL isRightOfControl = controlPoint.x > NSMaxX(self.bounds);
+            if (isAboveControl || isBelowControl || isLeftOfControl || isRightOfControl) {
                 // Detach the tab
-                [draggingTab removeFromSuperview];
-                [tab setHidden:NO];
                 if (_delegate && [_delegate respondsToSelector:@selector(tabs:didDetachTab:atScreenPoint:withEvent:)]) {
                     NSPoint screenPoint;
                     if (@available(macOS 10.12, *)) {
@@ -563,12 +565,15 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
                         NSRect screenRect = [self.window convertRectToScreen:windowRect];
                         screenPoint = screenRect.origin;
                     }
-                    [_delegate tabs:self didDetachTab:tab atScreenPoint:screenPoint withEvent:event];
+                    BOOL handled = [_delegate tabs:self didDetachTab:tab atScreenPoint:screenPoint withEvent:event];
+                    if (handled) {
+                        [draggingTab removeFromSuperview];
+                        self.tabPinAllowed = NO;
+                        return;
+                    }
                 }
-                return;
             }
-        }
-
+        } else
         if (event.type == NSEventTypeLeftMouseUp) {
             [[NSAnimationContext currentContext] setCompletionHandler:^{
                 [draggingTab removeFromSuperview];

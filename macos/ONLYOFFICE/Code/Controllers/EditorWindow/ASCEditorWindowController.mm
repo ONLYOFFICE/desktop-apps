@@ -51,7 +51,9 @@
 #import "NSDictionary+Extensions.h"
 #import "PureLayout.h"
 
-@interface ASCEditorWindowController () <NSWindowDelegate>
+@interface ASCEditorWindowController () <NSWindowDelegate> {
+    id mouseUpMonitor;
+}
 @property (nonatomic) BOOL waitingForClose;
 @end
 
@@ -103,6 +105,26 @@
 
 - (void)windowDidMove:(NSNotification *)notification {
     [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameEditorWindowMoving object:self.window];
+    if (!mouseUpMonitor) {
+        [self startMouseUpMonitor];
+    }
+}
+
+- (void)startMouseUpMonitor {
+    if (mouseUpMonitor) return;
+    
+    mouseUpMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskLeftMouseUp handler:^NSEvent *(NSEvent *event) {
+        [self stopMouseUpMonitor];
+        [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameEditorWindowEndMoving object:self.window];
+        return event;
+    }];
+}
+
+- (void)stopMouseUpMonitor {
+    if (mouseUpMonitor) {
+        [NSEvent removeMonitor:mouseUpMonitor];
+        mouseUpMonitor = nil;
+    }
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
