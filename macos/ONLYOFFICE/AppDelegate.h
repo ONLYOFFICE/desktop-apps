@@ -45,6 +45,7 @@
 - (BOOL)shouldTerminateApplication;
 - (void)safeCloseEditorWindows;
 - (void)presentMainWindow;
+- (NSWindow *)editorWindowFromCef:(NSView *)cefView withFrame:(NSRect)windowFrame;
 - (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event;
 
 @property (nonatomic) BOOL waitingForTerminateApp;
