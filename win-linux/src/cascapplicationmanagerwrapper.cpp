@@ -92,6 +92,14 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent, this, &CAscApplicationManagerWrapper::onCoreEvent);
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CAscApplicationManagerWrapper::onFileChecked);
     QObject::connect(&commonEvents(), &CEventDriver::onEditorClosed, this, &CAscApplicationManagerWrapper::onEditorWidgetClosed);
+#ifndef _CAN_SCALE_IMMEDIATELY
+    QObject::connect(this, &CAscApplicationManagerWrapper::aboutToQuit, this, [=]() {
+        if (!m_private->uiscaling.empty()) {
+            setUserSettings(L"system-scale", m_private->uiscaling != L"0" ? L"0" : L"1");
+            setUserSettings(L"force-scale", m_private->uiscaling == L"0" ? L"default" : m_private->uiscaling);
+        }
+    });
+#endif
 
     std::function<void(sWinTag)> callback_ = [&](sWinTag t){
         QMetaObject::invokeMethod(this, "onQueueCloseWindow", Qt::QueuedConnection, Q_ARG(sWinTag, t));
@@ -103,12 +111,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
-#ifndef _CAN_SCALE_IMMEDIATELY
-    if (!m_private->uiscaling.empty()) {
-        setUserSettings(L"system-scale", m_private->uiscaling != L"0" ? L"0" : L"1");
-        setUserSettings(L"force-scale", m_private->uiscaling == L"0" ? L"default" : m_private->uiscaling);
-    }
-#endif
     delete m_queueToClose, m_queueToClose = nullptr;
 
     if ( m_pMainWindow ) {
