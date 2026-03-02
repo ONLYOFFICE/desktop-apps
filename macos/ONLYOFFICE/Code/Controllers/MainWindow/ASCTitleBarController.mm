@@ -71,7 +71,6 @@ static float kASCRTLTabsRightMargin = 0;
 @property (nonatomic, weak) NSButton *closeButtonFullscreen;
 @property (nonatomic, weak) NSButton *miniaturizeButtonFullscreen;
 @property (nonatomic, weak) NSButton *fullscreenButtonFullscreen;
-@property (nonatomic) NSImageView * miniaturizeButtonImageViewFullscreen;
 
 @property (weak) IBOutlet NSView *titleContainerView;
 @property (weak) IBOutlet NSButton *portalButton;
@@ -107,13 +106,10 @@ static float kASCRTLTabsRightMargin = 0;
 
     self.closeButtonFullscreen = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSWindowStyleMaskTitled];
     self.fullscreenButtonFullscreen = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSWindowStyleMaskTitled];
-    NSButton * miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskFullScreen];
+    self.miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskTitled];
+    self.miniaturizeButtonFullscreen.enabled = NO;
 
-    NSImage * miniaturizeButtonImage = [miniaturizeButtonFullscreen imageRepresentation];
-    self.miniaturizeButtonImageViewFullscreen = [[NSImageView alloc] initWithFrame:CGRectMake(0, 0, miniaturizeButtonImage.size.width, miniaturizeButtonImage.size.height)];
-    self.miniaturizeButtonImageViewFullscreen.image = miniaturizeButtonImage;
-
-    self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonImageViewFullscreen, self.fullscreenButtonFullscreen];
+    self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonFullscreen, self.fullscreenButtonFullscreen];
     if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft )
         self.standardButtonsFullscreen = [[self.standardButtonsFullscreen reverseObjectEnumerator] allObjects];
 
@@ -205,6 +201,16 @@ static float kASCRTLTabsRightMargin = 0;
                                              selector:@selector(onChangedSystemTheme:)
                                                  name:ASCEventNameChangedSystemTheme
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(windowDidBecomeKey:)
+                                                 name:NSWindowDidBecomeKeyNotification
+                                               object:mainWindow];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(windowDidResignKey:)
+                                                 name:NSWindowDidResignKeyNotification
+                                               object:mainWindow];
 
     [[[ASCDownloadController sharedInstance] multicastDelegate] addDelegate:self];
     [self.tabsControl.multicastDelegate addDelegate:self];
@@ -311,6 +317,23 @@ static float kASCRTLTabsRightMargin = 0;
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
     [self doLayout];
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    [self updateWindowButtonsAppearance];
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification {
+    [self updateWindowButtonsAppearance];
+}
+
+- (void)updateWindowButtonsAppearance {
+    [self.standardButtonsFullscreen enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
+        [view setNeedsDisplay:YES];
+    }];
+    [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
+        [view setNeedsDisplay:YES];
+    }];
 }
 
 #pragma mark -

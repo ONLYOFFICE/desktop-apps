@@ -41,6 +41,7 @@
 #import "ASCConstants.h"
 
 @interface ASCEditorWindow()
+@property (strong) NSTitlebarAccessoryViewController *dummyTitlebarAccessoryViewController;
 @end
 
 @implementation ASCEditorWindow
@@ -67,14 +68,37 @@
 
 - (void) setFrame:(NSRect)frameRect display:(BOOL)flag {
     [super setFrame:frameRect display:flag];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameEditorWindowSetFrame object:self];
 }
 
 - (NSRect)constrainFrameRect:(NSRect)frameRect toScreen:(NSScreen *)screen {
     return frameRect;
 }
 
-- (void)initialize {
+- (void)setTitleBarHeight:(CGFloat)titleBarHeight {
+    if (_dummyTitlebarAccessoryViewController) {
+        [self removeTitlebarAccessoryViewControllerAtIndex:0];
+    }
+       
+    NSVisualEffectView * view = [[NSVisualEffectView alloc] initWithFrame:NSMakeRect(0, 0, 10, titleBarHeight)];
+    _dummyTitlebarAccessoryViewController = [NSTitlebarAccessoryViewController new];
+    _dummyTitlebarAccessoryViewController.view = view;
+    _dummyTitlebarAccessoryViewController.fullScreenMinHeight = titleBarHeight;
+    [self addTitlebarAccessoryViewController:_dummyTitlebarAccessoryViewController];
+}
 
+- (void)initialize {
+    if (@available(macOS 11, *)) {
+        NSToolbar * customToolbar = [NSToolbar new];
+        customToolbar.showsBaselineSeparator = false;
+        self.titlebarAppearsTransparent = true;
+        self.titleVisibility = NSWindowTitleHidden;
+        self.toolbar = customToolbar;
+    }
+}
+
+- (NSWindowTitleVisibility)titleVisibility {
+    return NSWindowTitleHidden;
 }
 
 @end
