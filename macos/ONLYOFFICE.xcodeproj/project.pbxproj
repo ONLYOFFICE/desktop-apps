@@ -118,6 +118,9 @@
 		F15C17322EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17332EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17342EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
+		F164E3312F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
+		F164E3322F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
+		F164E3332F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
 		FC0BD686258B63F700C47F95 /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
@@ -854,6 +857,8 @@
 		F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCEditorWindow.m; sourceTree = "<group>"; };
 		F15C17302EBCA75000D266C7 /* NSCefData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefData.h; sourceTree = "<group>"; };
 		F15C17312EBCA75000D266C7 /* NSCefData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefData.mm; sourceTree = "<group>"; };
+		F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCHeaderButton.m; sourceTree = "<group>"; };
+		F164E3302F582BC700CC8D45 /* ASCHeaderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCHeaderButton.h; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
 		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
@@ -1600,6 +1605,8 @@
 		FCBC428E1B9D65CA00405301 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				F164E3302F582BC700CC8D45 /* ASCHeaderButton.h */,
+				F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */,
 				FCC77C88206CEE85001B7837 /* ASCTabs */,
 				FCC77C77206CEE5B001B7837 /* ASCButton.h */,
 				FCC77C75206CEE5B001B7837 /* ASCButton.m */,
@@ -2469,6 +2476,7 @@
 				FC0BD6BD258B63F700C47F95 /* NSAlert+SynchronousSheet.m in Sources */,
 				FC0BD6BE258B63F700C47F95 /* NSArray+PureLayout.m in Sources */,
 				FC0BD6BF258B63F700C47F95 /* SFBPopoverWindowFrame.m in Sources */,
+				F164E3332F582BC700CC8D45 /* ASCHeaderButton.m in Sources */,
 				FC0BD6C0258B63F700C47F95 /* ASCTabViewCell.m in Sources */,
 				F15C17342EBCA75000D266C7 /* NSCefData.mm in Sources */,
 				FC0BD6C1258B63F700C47F95 /* ASCReplacePresentationAnimator.mm in Sources */,
@@ -2549,6 +2557,7 @@
 				FCB4C6F926DD018B0012C20D /* NSAlert+SynchronousSheet.m in Sources */,
 				FCB4C6FA26DD018B0012C20D /* NSArray+PureLayout.m in Sources */,
 				FCB4C6FB26DD018B0012C20D /* SFBPopoverWindowFrame.m in Sources */,
+				F164E3312F582BC700CC8D45 /* ASCHeaderButton.m in Sources */,
 				FCB4C6FC26DD018B0012C20D /* ASCTabViewCell.m in Sources */,
 				F15C17322EBCA75000D266C7 /* NSCefData.mm in Sources */,
 				FCB4C6FD26DD018B0012C20D /* ASCReplacePresentationAnimator.mm in Sources */,
@@ -2629,6 +2638,7 @@
 				FCC77C5D206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
 				FCE7D16C207D002700642010 /* NSArray+PureLayout.m in Sources */,
 				FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */,
+				F164E3322F582BC700CC8D45 /* ASCHeaderButton.m in Sources */,
 				FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */,
 				F15C17332EBCA75000D266C7 /* NSCefData.mm in Sources */,
 				FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */,

@@ -116,6 +116,7 @@
     addObserverFor(CEFEventNameSaveLocal, @selector(onCEFSaveLocalFile:));
     addObserverFor(CEFEventNameOpenLocalFile, @selector(onCEFOnOpenLocalFile:));
     addObserverFor(CEFEventNameEditorEvent, @selector(onCEFEditorEvent:));
+    addObserverFor(CEFEventNameWebAppsFeatures, @selector(onCEFWebAppsFeatures:));
     addObserverFor(CEFEventNameOpenImage, @selector(onCEFOpenLocalImage:));
     addObserverFor(CEFEventNameOpenFileDialog, @selector(onCEFOpenFileDialog:));
     addObserverFor(CEFEventNameFileInFinder, @selector(onCEFFileInFinder:));
@@ -1120,6 +1121,7 @@
             
             NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
             [cefView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
+            [cefView sendCommand:@"editor:config" withParam:@"request"];
             
         } else {
             [self presentMainWindow];
@@ -1288,6 +1290,43 @@
                                                                                 userInfo: @{@"directory":@""}];
                     [self onCEFOnOpenLocalFile: notification];
                 }
+            }
+        }
+    }
+}
+
+- (void)onCEFWebAppsFeatures:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        NSString * info = json[@"info"];
+        
+        if (viewId) {
+            NSCefView * cefView = nil;
+            for (NSWindow *window in [NSApp windows]) {
+                if ([window isKindOfClass:[ASCTitleWindow class]]) {
+                    ASCCommonViewController * controller = (ASCCommonViewController *)window.contentViewController;
+                    ASCTabView * tab = [controller.tabsControl tabWithUUID:viewId];
+                    if (tab) {
+                        cefView = [controller cefViewWithTab:tab];
+                        break;
+                    }
+                    
+                } else
+                if ([window isKindOfClass:[ASCEditorWindow class]]) {
+                    ASCEditorWindow *editor = (ASCEditorWindow *)window;
+                    ASCEditorWindowController *controller = (ASCEditorWindowController *)editor.windowController;
+                    if (controller && [controller holdView:viewId]) {
+                        cefView = (NSCefView *)editor.webView;
+                        break;
+                    }
+                }
+            }
+            
+            if (cefView) {
+                NSCefData * data = [cefView data];
+                [data setFeatures:info];
             }
         }
     }
@@ -1767,6 +1806,7 @@
     
     NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
     [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
+    [webView sendCommand:@"editor:config" withParam:@"request"];
     [webView focus];
     
     return editorWindow;

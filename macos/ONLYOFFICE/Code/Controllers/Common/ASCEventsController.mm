@@ -620,6 +620,13 @@ public:
                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId],
                                                                                          @"data": [[NSString stringWithstdwstring:param] dictionary]
                                                                                          }];
+                        } else if (cmd.find(L"editor:config") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorConfig
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"data": [[NSString stringWithstdwstring:param] dictionary]
+                                                                                         }];
                         } else if (cmd.find(L"editor:request") != std::wstring::npos) {
                             NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:@{@"viewId": [NSString stringWithFormat:@"%d", senderId]}];
                             [params addEntriesFromDictionary:[[NSString stringWithstdwstring:param] dictionary]];
@@ -856,6 +863,13 @@ public:
                                                                                         @"files":[NSString stringWithstdwstring:param]
                                                                                 }];
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameWebAppsFeatures
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"info": [NSString stringWithstdwstring:param]
+                                                                                         }];
+                            
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);
 

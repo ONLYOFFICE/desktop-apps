@@ -149,12 +149,14 @@ static NSString * const CEFEventNameOpenSSLCertificate      = @"CEF_openSSLCerti
 static NSString * const CEFEventNameEditorDocumentReady     = @"CEF_editorDocumentReady";
 static NSString * const CEFEventNameEditorAppReady          = @"CEF_editorAppReady";
 static NSString * const CEFEventNameEditorEvent             = @"CEF_editorEvent";
+static NSString * const CEFEventNameEditorConfig            = @"CEF_editorConfig";
 static NSString * const CEFEventNameEditorAppActionRequest  = @"CEF_editorAppActionRequest";
 static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
 static NSString * const CEFEventNameDocumentFragmentBuild   = @"CEF_documentFragmentBuild";
 static NSString * const CEFEventNameDocumentFragmented      = @"CEF_documentFragmented";
 static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificatePreview";
 static NSString * const CEFEventNameWebAppsEntry            = @"CEF_webAppsEntry";
+static NSString * const CEFEventNameWebAppsFeatures         = @"CEF_webAppsFeatures";
 static NSString * const CEFEventNameWebTitleChanged         = @"CEF_webTitleChanged";
 
 @interface ASCConstants : NSObject
