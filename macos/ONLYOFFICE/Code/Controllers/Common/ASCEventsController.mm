@@ -52,6 +52,7 @@
 #import "NSApplication+Extensions.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCThemesController.h"
+#import "ASCProviders.h"
 
 #pragma mark -
 #pragma mark ========================================================
@@ -575,6 +576,8 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
                                                                                 object:nil
                                                                               userInfo:[[NSString stringWithstdwstring:param] dictionary]];
+                        } else if (cmd.compare(L"provider:list") == 0) {
+                            [[ASCProviders sharedInstance] configureWithJson:[NSString stringWithstdwstring:param]];
                         } else if (cmd.compare(L"portal:create") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalCreate
                                                                                 object:nil
