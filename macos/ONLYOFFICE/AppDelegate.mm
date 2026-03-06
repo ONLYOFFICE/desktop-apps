@@ -985,6 +985,8 @@
             NSCefData *cefData = [[NSCefData alloc] initWith:title viewType:cvwtEditor];
             
             cefView.data = cefData;
+            cefData.url = params[@"url"];
+            cefData.path = params[@"path"];
             
             [cefView create:appManager withType:cvwtEditor];
             [cefView setBackgroundColor:[ASCThemesController currentThemeColor:windowBackgroundColor]];
