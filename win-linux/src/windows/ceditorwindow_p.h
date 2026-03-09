@@ -393,7 +393,16 @@ public:
                         if (!usedQuickaccess)
                             leftBtnsCount = DEFAULT_BTNS_COUNT;
                         if (auto mainGridLayout = qobject_cast<QGridLayout*>(window->m_pMainPanel->layout())) {
-                            window->m_pSpacer = new QSpacerItem(int(leftBtnsCount*TOOLBTN_WIDTH*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                            int _spacer_width = int(leftBtnsCount*TOOLBTN_WIDTH*window->m_dpiRatio);
+
+                            QJsonObject sec1 = objRoot["title"].toObject();
+                            if (sec1.contains("qasectionwidth")) {
+                                const double secw1 = sec1["qasectionwidth"].toDouble();
+                                _spacer_width = int(secw1 * window->m_dpiRatio);
+                            }
+
+                            // window->m_pSpacer = new QSpacerItem(int(leftBtnsCount*TOOLBTN_WIDTH*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                            window->m_pSpacer = new QSpacerItem(_spacer_width, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
                             mainGridLayout->addItem(window->m_pSpacer, 1, 0, Qt::AlignTop);
                         }
                     }
@@ -890,10 +899,18 @@ public:
                 }
             } else
             if ( objRoot.contains("quickaccesschanged") ) {
-                leftBtnsCount = leftBtnsCount + (json.find(L"true") != std::wstring::npos ? 1 : -1);
-                if (window->m_pSpacer)
-                    window->m_pSpacer->changeSize(int(TOOLBTN_WIDTH*leftBtnsCount*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
-                centerTitle(window->m_dpiRatio);
+                QJsonObject qa = objRoot["quickaccesschanged"].toObject();
+                if (qa.contains(L"qasectionwidth")) {
+                    const double _section_width = qa[L"qasectionwidth"].toDouble();
+                    if (window->m_pSpacer)
+                        window->m_pSpacer->changeSize(int(_section_width * window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                }
+                else {
+                    leftBtnsCount = leftBtnsCount + (json.find(L"true") != std::wstring::npos ? 1 : -1);
+                    if (window->m_pSpacer)
+                        window->m_pSpacer->changeSize(int(TOOLBTN_WIDTH*leftBtnsCount*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                    centerTitle(window->m_dpiRatio);
+                }
             }
         }
     }
