@@ -513,6 +513,17 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 QJsonObject objRoot = jdoc.object();
                 SetRecentPin(objRoot["id"].toInt(), objRoot["pinned"].toBool(false));
             }
+        } else
+        if ( !(cmd.find(L"autosave") == std::wstring::npos) ) {
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                if (objRoot.contains("active")) {
+                    qDebug() << "autosave" << objRoot["active"].toBool(false);
+                }
+            }
         }
 
         break; }
