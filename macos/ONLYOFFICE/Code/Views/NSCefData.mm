@@ -37,6 +37,7 @@
 //
 
 #import "NSCefData.h"
+#import "ASCProviders.h"
 
 @interface NSCefData () {
     CefViewWrapperType _viewType;
@@ -123,8 +124,7 @@
 }
 
 -(BOOL)hasFrame {
-    // TODO: add implementation
-    return NO;
+    return [[ASCProviders sharedInstance] editorsHasFrameWithUrl:_url cloud:_cloudName];
 }
 
 -(BOOL)modified {

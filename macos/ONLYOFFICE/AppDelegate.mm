@@ -984,6 +984,9 @@
             
             NSCefData *cefData = [[NSCefData alloc] initWith:title viewType:cvwtEditor];
             
+            cefData.url = params[@"url"];
+            cefData.path = params[@"path"];
+            cefData.cloudName = params[@"cloud"];
             cefView.data = cefData;
             
             [cefView create:appManager withType:cvwtEditor];
