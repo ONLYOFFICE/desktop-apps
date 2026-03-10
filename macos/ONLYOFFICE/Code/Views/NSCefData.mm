@@ -37,6 +37,7 @@
 //
 
 #import "NSCefData.h"
+#import "ASCProviders.h"
 
 @interface NSCefData () {
     CefViewWrapperType _viewType;
@@ -123,8 +124,7 @@
 }
 
 -(BOOL)hasFrame {
-    // TODO: add implementation
-    return NO;
+    return [[ASCProviders sharedInstance] editorsHasFrameWithUrl:_url cloud:_cloudName];
 }
 
 -(BOOL)modified {
@@ -139,8 +139,50 @@
     return _isClosed;
 }
 
--(void)setFeatures:(NSString *)features {
-    // TODO: add implementation
+-(void)setFeatures:(NSString *)fs {
+    if (!fs || fs.length == 0) {
+        return;
+    }
+    
+    NSError *error = nil;
+    NSData *jsonData = [fs dataUsingEncoding:NSUTF8StringEncoding];
+    id parsedObj = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                   options:0
+                                                     error:&error];
+    
+    if (!error && [parsedObj isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *newDict = (NSDictionary *)parsedObj;
+        
+        if (!_features || _features.length == 0) {
+            NSData *compactData = [NSJSONSerialization dataWithJSONObject:newDict
+                                                                  options:0
+                                                                    error:nil];
+            _features = [[NSString alloc] initWithData:compactData encoding:NSUTF8StringEncoding];
+            // NSLog(@"JSON: %@", _features);
+            
+        } else {
+            NSData *existingData = [_features dataUsingEncoding:NSUTF8StringEncoding];
+            id existingObj = [NSJSONSerialization JSONObjectWithData:existingData
+                                                             options:0
+                                                               error:&error];
+            
+            if (!error && [existingObj isKindOfClass:[NSDictionary class]]) {
+                NSMutableDictionary *mergedDict = [NSMutableDictionary dictionaryWithDictionary:(NSDictionary *)existingObj];
+                [mergedDict addEntriesFromDictionary:newDict];
+                NSData *resultData = [NSJSONSerialization dataWithJSONObject:mergedDict
+                                                                     options:0
+                                                                       error:nil];
+                if (resultData) {
+                    _features = [[NSString alloc] initWithData:resultData encoding:NSUTF8StringEncoding];
+                    // NSLog(@"JSON: %@", _features);
+                }
+            } else {
+                NSLog(@"JSON has error: %@", error.localizedDescription);
+            }
+        }
+    } else {
+        NSLog(@"JSON has error: %@", error.localizedDescription);
+    }
 }
 
 -(void)setChanged:(BOOL)changed {

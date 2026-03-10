@@ -117,6 +117,19 @@
     } else return [uiThemeDark isEqualToString:theme] || [uiThemeContrastDark isEqualToString:theme] || [uiThemeNight isEqualToString:theme];
 }
 
++ (BOOL)isColorDark:(NSColor*)color {
+    if (!color) return YES;
+    
+    NSColor *rgbColor = [color colorUsingColorSpace:[NSColorSpace sRGBColorSpace]];
+    if (!rgbColor) return YES;
+    
+    CGFloat r, g, b, a;
+    [rgbColor getRed:&r green:&g blue:&b alpha:&a];
+    
+    CGFloat luma = 0.2126f * r + 0.7152f * g + 0.0722f * b;
+    return luma < 0.5;
+}
+
 + (NSString*)defaultThemeId:(BOOL)isdark {
     return isdark ? uiThemeNight : uiThemeWhite;
 }

@@ -236,6 +236,9 @@
 "Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Скоро истечет срок действия подписки\n(осталось дней: %d).\n\nДля Вас доступно специальное предложение.";
 
 /* No comment provided by engineer. */
+"Show main window" = "Показать главное окно";
+
+/* No comment provided by engineer. */
 "Close" = "Закрыть";
 
 /* No comment provided by engineer. */
