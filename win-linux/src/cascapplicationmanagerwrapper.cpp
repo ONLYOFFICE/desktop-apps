@@ -1661,6 +1661,29 @@ ParentHandle CAscApplicationManagerWrapper::windowHandleFromId(int id)
 }
 
 namespace Drop {
+    auto isMainWindowCoveredByAnotherWindow(QWidget *mainWindow, QWidget *ignoringWindow, const QPoint &pt) -> bool
+    {
+#ifdef _WIN32
+        HWND hwnd = GetWindow((HWND)ignoringWindow->winId(), GW_HWNDNEXT);
+        while (hwnd) {
+            if (!IsWindowVisible(hwnd)) {
+                hwnd = GetWindow(hwnd, GW_HWNDNEXT);
+                continue;
+            }
+
+            RECT rc;
+            GetWindowRect(hwnd, &rc);
+            if (!PtInRect(&rc, {pt.x(), pt.y()})) {
+                hwnd = GetWindow(hwnd, GW_HWNDNEXT);
+                continue;
+            }
+            return hwnd != (HWND)mainWindow->winId();
+        }
+#else
+#endif
+        return false;
+    }
+
     const int drop_timeout = 300;
     auto callback_to_attach(const CEditorWindow * editor) -> void {
         if ( editor ) {
@@ -1683,7 +1706,8 @@ namespace Drop {
                 QObject::connect(drop_timer, &QTimer::timeout, []{
                     CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
                     QPoint current_cursor = QCursor::pos();
-                    if ( main_window->canPinTabAtPoint(current_cursor) ) {
+                    if ( main_window->canPinTabAtPoint(current_cursor)
+                            && !isMainWindowCoveredByAnotherWindow(main_window, (QWidget*)drop_handle, current_cursor) ) {
                         if ( current_cursor == last_cursor_pos ) {
                             drop_timer->stop();
 
@@ -1698,7 +1722,8 @@ namespace Drop {
                 });
             }
 
-            if ( main_window->canPinTabAtPoint(pt) ) {
+            if ( main_window->canPinTabAtPoint(pt)
+                    && !isMainWindowCoveredByAnotherWindow(main_window, (QWidget*)drop_handle, pt) ) {
                 if ( !drop_timer->isActive() )
                     drop_timer->start(drop_timeout);
 
