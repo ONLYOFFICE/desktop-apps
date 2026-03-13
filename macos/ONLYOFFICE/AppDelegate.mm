@@ -53,6 +53,7 @@
 #import "NSString+Extensions.h"
 #import "NSCefView.h"
 #import "ASCHelper.h"
+#import "ASCLinguist.h"
 #import "AnalyticsHelper.h"
 #import "ASCExternalController.h"
 #import "ASCEditorJSVariables.h"
@@ -1822,7 +1823,8 @@
     
     ASCTitleWindowController *mainWindowController = (ASCTitleWindowController *)self.mainWindowController;
     NSSize size = [mainWindowController normalFrame].size;
-    NSRect windowFrame = NSMakeRect(screenPoint.x - 200, screenPoint.y - size.height + 11, size.width, size.height);
+    CGFloat offsetX = [ASCLinguist isUILayoutDirectionRtl] ? size.width - 200 : 200;
+    NSRect windowFrame = NSMakeRect(screenPoint.x - offsetX, screenPoint.y - size.height + 11, size.width, size.height);
 
     NSWindow *editorWindow = [self editorWindowFromCef:cefView withFrame:windowFrame];
     
