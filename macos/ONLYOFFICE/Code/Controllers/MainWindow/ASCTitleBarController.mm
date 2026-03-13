@@ -711,6 +711,16 @@ static float kASCRTLTabsRightMargin = 0;
                                              windowFrame.size.width, windowFrame.size.height - contentRect.size.height);
             containsPoint = NSPointInRect(screenPoint, titleBarRect);
         }
+        
+        if (containsPoint) {
+            NSRect portalButtonRect = [self.portalButton convertRect:self.portalButton.bounds toView:nil];
+            portalButtonRect = [mainWindow convertRectToScreen:portalButtonRect];
+            if (NSMidX(portalButtonRect) < NSMidX(windowFrame)
+                    ? screenPoint.x <= NSMaxX(portalButtonRect)
+                    : screenPoint.x >= NSMinX(portalButtonRect)) {
+                containsPoint = NO;
+            }
+        }
     }
     
     BOOL pinAllowed = self.tabsControl.tabPinAllowed;
