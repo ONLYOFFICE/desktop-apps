@@ -1,0 +1,19 @@
+{
+    "provider": "odoo",
+    "name": "Odoo",
+    "check": {
+        "url": "web/session/get_session_info"
+    },
+    "startPage": "/web",
+    "editorPage": "/onlyoffice/editor/document",
+    "icons": {
+        "themeLight": {
+            "connectionsList": "./assets/listicon.svg",
+            "buttonLogo": "./assets/buttonlogo.svg"
+        },
+        "themeDark": {
+            "connectionsList": "./assets/listicon_dark.svg",
+            "buttonLogo": "./assets/buttonlogo_dark.svg"
+        }
+    }
+}
