@@ -6,6 +6,7 @@
     },
     "startPage": "/web",
     "editorPage": "/onlyoffice/editor/document",
+    "order": 4,
     "icons": {
         "themeLight": {
             "connectionsList": "./assets/listicon.svg",

@@ -5,7 +5,7 @@
     "extraLogout": "https://infomaniak.com/",
     "editorPage": "/app/office/",
     "cryptoSupport": "true",
-    "order": 5,
+    "order": 6,
     "icons": {
         "themeLight": {
             "connectionsList": "./assets/listicon.svg",
