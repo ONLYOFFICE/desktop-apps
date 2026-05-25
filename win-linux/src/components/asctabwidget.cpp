@@ -137,14 +137,19 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
+    , m_isMruRemoveLocked(false)
+    , m_isMruUpdateLocked(false)
     , m_isTabPinAllowed(true)
 //    , m_tabIconSize(16, 16)
+    , m_mruTimer(nullptr)
     , m_pBar(_pBar)
 {
     m_pBar->setObjectName("asc_editors_tabbar");
     setProperty("active", false);
     // setProperty("empty", true);
     m_pBar->setProperty("active", false);
+
+    m_mruList.append(nullptr); // Adding nullptr as a Main Tab
 
     static int _dropedindex = -1;
     QObject::connect(this, &CAscTabWidget::currentChanged, this, [=](int index) {
@@ -169,6 +174,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 
                 QTimer::singleShot(0, this, [=]() {
                     if (widget(index)) {
+                        m_mruList.removeAll(widget(index));
                         widget(index)->deleteLater();
                     }
                 });
@@ -194,6 +200,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         if (from < 0 || from >= count() || to < 0 || to >= count() || from == to)
             return;
         auto wgt = widget(from);
+        m_isMruRemoveLocked = true;
         blockSignals(true);
         removeWidget(wgt);
         insertWidget(to, wgt);
@@ -212,12 +219,14 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
             }
         }
         blockSignals(false);
+        m_isMruRemoveLocked = false;
     });
     QObject::connect(m_pBar, &CTabBar::tabsSwapped, this, [=](int from, int to) {
         if (from == to || !indexIsValid(from) || !indexIsValid(to))
             return;
         auto wgt_from = widget(from);
         auto wgt_to = widget(to);
+        m_isMruRemoveLocked = true;
         blockSignals(true);
         removeWidget(wgt_from);
         removeWidget(wgt_to);
@@ -229,6 +238,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         if (to == m_pBar->currentIndex())
             QStackedWidget::setCurrentIndex(from);
         blockSignals(false);
+        m_isMruRemoveLocked = false;
     });
 }
 
@@ -552,6 +562,13 @@ int CAscTabWidget::insertWidget(int index, QWidget* widget)
     int actual_index = QStackedWidget::insertWidget(index, widget);
     emit editorInserted(actual_index, count());
     return actual_index;
+}
+
+void CAscTabWidget::removeWidget(QWidget *widget)
+{
+    if (!m_isMruRemoveLocked)
+        m_mruList.removeAll(widget);
+    QStackedWidget::removeWidget(widget);
 }
 
 void CAscTabWidget::setCustomWindowParams(bool iscustom)
@@ -977,7 +994,12 @@ void CAscTabWidget::activate(bool a)
     if (property("active").toBool() != a) {
         this->setProperty("active", a);
         m_pBar->activate(a);
+        if (!a && !m_isMruUpdateLocked) {
+            m_mruList.removeAll(nullptr);
+            m_mruList.prepend(nullptr);
+        }
     }
+    m_isMruUpdateLocked = false;
 //    m_pBar->polish();
 }
 
@@ -1316,6 +1338,51 @@ void CAscTabWidget::setCurrentIndex(int index)
 {
     QStackedWidget::setCurrentIndex(index);
     m_pBar->setCurrentIndex(index);
+    if (QWidget* w = widget(index)) {
+        m_mruList.removeAll(w);
+        m_mruList.prepend(w);
+    }
+}
+
+void CAscTabWidget::switchToNextMruTab(bool reverse)
+{
+    if (!m_mruTimer) {
+        m_mruTimer = new QTimer(this);
+        m_mruTimer->setSingleShot(false);
+        m_mruTimer->setInterval(100);
+        connect(m_mruTimer, &QTimer::timeout, this, [=]() {
+            if (!(QGuiApplication::queryKeyboardModifiers() & Qt::ControlModifier)) {
+                m_mruTimer->stop();
+                QWidget* cur = isActiveWidget() ? currentWidget() : nullptr;
+                m_mruList.removeAll(cur);
+                m_mruList.prepend(cur);
+            }
+        });
+    }
+    if (!m_mruTimer->isActive())
+        m_mruTimer->start();
+
+    const int mru_size = m_mruList.size();
+    if (mru_size < 2)
+        return;
+
+    QWidget* cur = isActiveWidget() ? currentWidget() : nullptr;
+    int pos = m_mruList.indexOf(cur);
+    if (pos == -1)
+        return;
+
+    pos = (pos + (reverse ? -1 : 1) + mru_size) % mru_size;
+    if (QWidget* w = m_mruList.at(pos)) {
+        int index = -1;
+        if ((index = indexOf(w)) != -1) {
+            AscAppManager::getInstance().mainWindow()->toggleButtonMain(false);
+            QStackedWidget::setCurrentWidget(w);
+            m_pBar->setCurrentIndex(index);
+        }
+    } else {
+        m_isMruUpdateLocked = true;
+        AscAppManager::getInstance().mainWindow()->toggleButtonMain(true);
+    }
 }
 
 void CAscTabWidget::applyUITheme(const std::wstring& theme)
