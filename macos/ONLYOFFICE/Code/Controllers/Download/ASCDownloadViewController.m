@@ -79,8 +79,6 @@ static const int kMaxRows      = 6;
 
     [[[ASCDownloadController sharedInstance] multicastDelegate] addDelegate:self];
     
-    self.clearButton.title = NSLocalizedString(@"Clear", nil);
-    self.downloadsLabel.stringValue = NSLocalizedString(@"Downloads", nil);
 }
 
 - (void)viewDidDisappear {
@@ -240,8 +238,6 @@ static const int kMaxRows      = 6;
     cellView.sizeLabel.hidden       = YES;
     cellView.openButton.hidden      = YES;
     cellView.openFolderButton.hidden = YES;
-    cellView.openButton.title = NSLocalizedString(@"Open", nil);
-    cellView.openFolderButton.title = NSLocalizedString(@"Show in folder", nil);
     
     [self configureCell:cellView withDownload:download];
     return cellView;
