@@ -151,7 +151,7 @@
                      @"extension"   : @"mht"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB): @{
-                     @"description" : NSLocalizedString(@"Mobipocket e-book", nil),
+                     @"description" : NSLocalizedString(@"Electronic Publication", nil),
                      @"extension"   : @"epub"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MD): @{
