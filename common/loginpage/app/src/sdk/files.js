@@ -10,6 +10,10 @@ export function openLocal() {
   cmd("open:folder", "");
 }
 
+export function openFolder(path) {
+  cmd("open:folder", path);
+}
+
 export function openRecentFile(model) {
   cmd("open:recent", {
     id: model.fileid,

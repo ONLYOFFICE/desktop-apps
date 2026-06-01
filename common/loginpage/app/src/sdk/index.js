@@ -13,6 +13,6 @@ export {
   isPinnedFolder,
   togglePinnedFolder,
 } from "./recents";
-export { createDocument, openLocal, openRecentFile, openRecoveryFile, exploreFile, checkFiles, dropOfficeFiles } from "./files";
+export { createDocument, openLocal, openFolder, openRecentFile, openRecoveryFile, exploreFile, checkFiles, dropOfficeFiles } from "./files";
 export { signalAppReady } from "./app";
 export { FileFormat, formatToEditor, parseFileFormat, fileExtensionToFileFormat } from "./format";
