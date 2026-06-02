@@ -244,8 +244,15 @@ bool CWindowBase::event(QEvent *event)
            if (wgt->property("ToolTip").isValid())
                text = wgt->property("ToolTip").toString();
            if (m_pMainPanel && !text.isEmpty()) {
-               CToolTip *tool = new CToolTip(m_pMainPanel, text, hlp->globalPos());
+               int offset = 3 * m_dpiRatio;
+               CToolTip *tool = new CToolTip(this, text, hlp->globalPos());
                connect(wgt, &QWidget::destroyed, tool, &CToolTip::deleteLater);
+               tool->setProperty("uitheme", m_pMainPanel->property("uitheme"));
+               tool->setProperty("rtl-font", m_pMainPanel->property("rtl-font"));
+               tool->setStyleSheet(m_pMainPanel->styleSheet());
+               tool->adjustSize();
+               tool->move(hlp->globalPos() + QPoint(AscAppManager::isRtlEnabled() ? -tool->width() - offset : offset, offset));
+               tool->show();
            }
        }
     }

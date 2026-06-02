@@ -53,5 +53,5 @@ QPushButton#toolButtonDownload {border-right-width: 1px; max-width: 50px; width:
     font-size: 14px;
     border-width: 1px; border-radius: 5px;
 }
-#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {border-width: 1px;}
-#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {border-width: 1px;}
+#CToolTip[uitheme=theme-dark]>QLabel {border-width: 1px;}
+#CToolTip[uitheme=theme-contrast-dark]>QLabel {border-width: 1px;}

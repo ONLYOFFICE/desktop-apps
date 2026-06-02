@@ -59,6 +59,7 @@ private:
     void showEffect(const EffectType efType);
     QLabel *m_label;
     bool m_activated;
+    QPoint m_pos;
 };
 
 #endif // CTOOLTIP_H
