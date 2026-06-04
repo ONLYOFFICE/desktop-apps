@@ -65,7 +65,7 @@
         <target state="translated">サインを読み込む</target>
         <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note>
       </trans-unit>
-  </body>
+    </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="ja-JP" datatype="plaintext">
     <header>
@@ -97,6 +97,10 @@
         <target state="translated">キャンセル</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Canceled" xml:space="preserve">
+        <source>Canceled</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
         <source>Cannot open file of Digital Signature</source>
         <target state="translated">デジタル署名のファイルを開けません</target>
@@ -112,9 +116,37 @@
         <target state="translated">ファイルの場所にあるフォルダを開けません。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Close" xml:space="preserve">
+        <source>Close</source>
+        <target state="translated">閉じる</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close all" xml:space="preserve">
+        <source>Close all</source>
+        <target>すべて閉じる</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close saved" xml:space="preserve">
+        <source>Close saved</source>
+        <target>保存して閉じる</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
         <target state="translated">コンマで区切られた値</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Community version %@" xml:space="preserve">
+        <source>Community version %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
+        <source>Community version %1$@ (%2$@-%3$@)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create new" xml:space="preserve">
+        <source>Create new</source>
+        <target>新規作成</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -157,9 +189,17 @@
         <target state="translated">保存しない</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-  <trans-unit id="Electronic Publication" xml:space="preserve">
+      <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
         <target state="translated">電子出版ファイル</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enterprise version %@" xml:space="preserve">
+        <source>Enterprise version %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
+        <source>Enterprise version %1$@ (%2$@-%3$@)</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -172,12 +212,20 @@
         <target state="translated">Office オープン XML スプレッドシート</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-		<trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
+      <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
         <source>Macro-enabled spreadsheet template</source>
-        <target state="translated">マクロ対応表計算テンプレート（*.xltm）</target>
+        <target state="translated">マクロ対応表計算テンプレート</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-		<trans-unit id="FictionBook File" xml:space="preserve">
+      <trans-unit id="Excel Binary Workbook" xml:space="preserve">
+        <source>Excel Binary Workbook</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to install theme" xml:space="preserve">
+        <source>Failed to install theme</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
         <target state="translated">FictionBook 2ファイル</target>
         <note>No comment provided by engineer.</note>
@@ -197,11 +245,6 @@
         <target state="translated">ファイルが開けません。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="HTML File" xml:space="preserve">
-        <source>HTML File</source>
-        <target state="translated">ハイパーテキスト マークアップ言語 ファイル</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target state="translated">%@を非表示</target>
@@ -217,19 +260,32 @@
         <target state="translated">既に%@を購入されている方は、確認メールに活発化キーが記載されています。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="JPG Image" xml:space="preserve">
+        <source>JPG Image</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
         <target state="translated">ライセンス契約</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="MHT File" xml:space="preserve">
-        <source>MHT File</source>
-        <target state="translated">Web ページのアーカイブ ファイル</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
         <target state="translated">Mobipocketファイル</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Markdown File" xml:space="preserve">
+        <source>Markdown File</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to end" xml:space="preserve">
+        <source>Move to end</source>
+        <target>末尾に移動</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to start" xml:space="preserve">
+        <source>Move to start</source>
+        <target>先頭に移動</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -240,6 +296,18 @@
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target state="translated">OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Document Form Template" xml:space="preserve">
+        <source>ONLYOFFICE Document Form Template</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
+        <source>ONLYOFFICE Fillable Online Form</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
+        <source>ONLYOFFICE Form Document</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
@@ -297,6 +365,10 @@
         <target state="translated">ポータブルドキュメント /A</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="PNG Image" xml:space="preserve">
+        <source>PNG Image</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
         <target state="translated">プレーンテキストファイル</target>
@@ -312,12 +384,12 @@
         <target state="translated">OfficeオープンXMLプレゼンテーション</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-		<trans-unit id="Macro-enabled Presentation" xml:space="preserve">
+      <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
         <source>Macro-enabled Presentation</source>
-        <target state="translated">マクロ対応プレゼンテーション（*.pptm）</target>
+        <target state="translated">マクロ対応プレゼンテーション</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-		<trans-unit id="PowerPoint Slide Show" xml:space="preserve">
+      <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
         <target state="translated">Office オープン XMLスライドショー</target>
         <note>No comment provided by engineer.</note>
@@ -347,6 +419,10 @@
         <target state="translated">%@を中止</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Replace" xml:space="preserve">
+        <source>Replace</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
         <target state="translated">レビュー変更...</target>
@@ -367,12 +443,30 @@
         <target state="translated">ドキュメントの保存？</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Select theme file" xml:space="preserve">
+        <source>Select theme file</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Selected theme isn't valid" xml:space="preserve">
+        <source>Selected theme isn't valid</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show in folder" xml:space="preserve">
+        <source>Show in folder</source>
+        <target>フォルダーに表示</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show main window" xml:space="preserve">
+        <source>Show main window</source>
+        <target>メインウィンドウを表示</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Signature Details" xml:space="preserve">
         <source>Signature Details</source>
         <target state="translated">サインの詳細</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-  <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
+      <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
         <target state="translated">スプレッドシート %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
@@ -392,6 +486,18 @@
         <target state="translated">ドキュメント"%@"を作成する必要があります。続けますか？</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
+        <source>Theme already exists. Replace it?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This file doesn't contain theme" xml:space="preserve">
+        <source>This file doesn't contain theme</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This theme file is not valid" xml:space="preserve">
+        <source>This theme file is not valid</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
         <source>To open the file location, it must be saved.</source>
         <target state="translated">ファイルの場所を開くには、保存されている必要があります。</target>
@@ -402,19 +508,23 @@
         <target state="translated">未確認</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Unpin tab" xml:space="preserve">
+        <source>Unpin tab</source>
+        <target>タブの固定を解除</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
         <target state="translated">無題</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Version %@ (%@)" xml:space="preserve">
-        <source>Version %1$@ (%2$@)</source>
-        <target state="translated">バージョン%1$@ (%2$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
         <target state="translated">ホームページ</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="VSDX File" xml:space="preserve">
+        <source>VSDX File</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -452,6 +562,10 @@
         <target state="translated">正常に %@ を起動されました。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
+        <source>Your changes will be lost if you don't save them.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
         <target state="translated">保存しないと変更内容が失われてしまいます。</target>
@@ -479,6 +593,10 @@ We have a special offer for you.</source>
 (残り %d 日)。
 
 スペシャル優待をご用意しています。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="kBps" xml:space="preserve">
+        <source>kBps</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
@@ -513,11 +631,6 @@ We have a special offer for you.</source>
         <target state="translated">%#@日間@</target>
         <note/>
       </trans-unit>
-      <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
-        <source>%d day are left until the license expiration.</source>
-        <target state="translated">ライセンスの有効期限まで、あと %d 日です。</target>
-        <note/>
-      </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
         <target state="translated">ライセンスの有効期限まで、あと %d 日です。</target>
@@ -526,13 +639,6 @@ We have a special offer for you.</source>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
         <target state="translated">%#@日間@</target>
-        <note/>
-      </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
-        <source>You are using a trial version of the application.
-The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
-        <target state="translated">アプリケーションの試用版を使用しています。
-試用期間は %d 日で終了し、それ以降はドキュメントの作成や編集ができなくなります。</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
@@ -545,11 +651,6 @@ The trial period will end in %d days, after that you will not be able to create 
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
         <target state="translated">%#@ドキュメント@</target>
-        <note/>
-      </trans-unit>
-      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
-        <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="translated">変更を未確認ドキュメントが %ld %@ 個あります。終了する前に、これらの変更を確認しますか？</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
@@ -593,6 +694,10 @@ The trial period will end in %d days, after that you will not be able to create 
         <source>Transformations</source>
         <target state="translated">変換</target>
         <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
+      </trans-unit>
+      <trans-unit id="3FX-nT-Klk.title" xml:space="preserve">
+        <source>Close</source>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source>
@@ -658,11 +763,6 @@ The trial period will end in %d days, after that you will not be able to create 
         <source>New</source>
         <target state="translated">新規</target>
         <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
-      </trans-unit>
-      <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
-        <source>none</source>
-        <target state="translated">なし</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
       </trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source>
@@ -743,11 +843,6 @@ The trial period will end in %d days, after that you will not be able to create 
         <source>Substitutions</source>
         <target state="translated">置換</target>
         <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
-      </trans-unit>
-      <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
-        <source>User Name</source>
-        <target state="translated">ユーザー名</target>
-        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
       </trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source>
@@ -904,21 +999,6 @@ The trial period will end in %d days, after that you will not be able to create 
         <target state="translated">	右から左へ</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
       </trans-unit>
-      <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
-        <source>Close</source>
-        <target state="translated">閉じる</target>
-        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
-      </trans-unit>
-      <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
-        <source>none</source>
-        <target state="translated">なし</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
-      </trans-unit>
-      <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
-        <source>Logout</source>
-        <target state="translated">ログアウト</target>
-        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
-      </trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source>
         <target state="translated">上書き</target>
@@ -1009,11 +1089,6 @@ The trial period will end in %d days, after that you will not be able to create 
         <target state="translated">バージョン</target>
         <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
       </trans-unit>
-      <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
-        <source>Email:</source>
-        <target state="translated">Eメール；</target>
-        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
-      </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source>
         <target state="translated">段落</target>
@@ -1063,6 +1138,10 @@ The trial period will end in %d days, after that you will not be able to create 
         <source>Use None</source>
         <target state="translated">使用なし</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
+      </trans-unit>
+      <trans-unit id="clr-Cl-d05.title" xml:space="preserve">
+        <source>Clear</source>
+        <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source>
@@ -1169,6 +1248,10 @@ The trial period will end in %d days, after that you will not be able to create 
         <target state="translated">スペルで文法をチェックする</target>
         <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
       </trans-unit>
+      <trans-unit id="ne5-Gy-5by.title" xml:space="preserve">
+        <source>PDF Form</source>
+        <note>Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by";</note>
+      </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source>
         <target state="translated">合字</target>
@@ -1179,10 +1262,18 @@ The trial period will end in %d days, after that you will not be able to create 
         <target state="translated">最近使った項目を開く</target>
         <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
       </trans-unit>
+      <trans-unit id="ofn-Cl-d04.title" xml:space="preserve">
+        <source>Show in folder</source>
+        <note>Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04";</note>
+      </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source>
         <target state="translated">緩める</target>
         <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
+      </trans-unit>
+      <trans-unit id="opn-Cl-d03.title" xml:space="preserve">
+        <source>Open</source>
+        <note>Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source>
@@ -1238,6 +1329,10 @@ The trial period will end in %d days, after that you will not be able to create 
         <source>Kern</source>
         <target state="translated">カーン</target>
         <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
+      </trans-unit>
+      <trans-unit id="ttl-Cl-d03.title" xml:space="preserve">
+        <source>Downloads</source>
+        <note>Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
@@ -1319,11 +1414,6 @@ The trial period will end in %d days, after that you will not be able to create 
         <target state="translated">置換の表示</target>
         <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
       </trans-unit>
-      <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
-        <source>Portal:</source>
-        <target state="translated">ポータル：</target>
-        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
-      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="ja-JP" datatype="plaintext">
@@ -1385,7 +1475,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="ja-JP" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-arm/Base.lproj/InfoPlist.strings" source-language="en" target-language="ja-JP" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -1402,7 +1492,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-v8/Base.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-v8/Base.lproj/InfoPlist.strings" source-language="en" target-language="ja-JP" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -1419,7 +1509,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Base.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Base.lproj/InfoPlist.strings" source-language="en" target-language="ja-JP" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>

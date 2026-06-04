@@ -2,7 +2,7 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="sl-SI" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
@@ -69,17 +69,12 @@
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="sl-SI" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
     <body>
       <trans-unit id="%@ Help" xml:space="preserve">
         <source>%@ Help</source>
         <target>%@ Pomoč</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="%@ Reporter Window" xml:space="preserve">
-        <source>%@ Reporter Window</source>
-        <target state="translated">%@ Okno sporočanja</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
@@ -102,6 +97,10 @@
         <target>Prekliči</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Canceled" xml:space="preserve">
+        <source>Canceled</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
         <source>Cannot open file of Digital Signature</source>
         <target state="translated">Ne morem odpreti datoteke Digitalni podpis</target>
@@ -117,9 +116,37 @@
         <target state="translated">Ne morem odpreti mape na mestu datoteke.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Close" xml:space="preserve">
+        <source>Close</source>
+        <target>Zapri</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close all" xml:space="preserve">
+        <source>Close all</source>
+        <target>Zapri vse</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close saved" xml:space="preserve">
+        <source>Close saved</source>
+        <target>Zapri shranjeno</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
         <target state="translated">Vrednosti, ločene z vejico</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Community version %@" xml:space="preserve">
+        <source>Community version %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
+        <source>Community version %1$@ (%2$@-%3$@)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create new" xml:space="preserve">
+        <source>Create new</source>
+        <target>Ustvari novo</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -157,6 +184,22 @@
         <target state="translated">Word Open XML predloga dokumenta</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Don't Save" xml:space="preserve">
+        <source>Don't Save</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Electronic Publication" xml:space="preserve">
+        <source>Electronic Publication</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enterprise version %@" xml:space="preserve">
+        <source>Enterprise version %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
+        <source>Enterprise version %1$@ (%2$@-%3$@)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Excel 97-2003 preglednica</target>
@@ -165,6 +208,18 @@
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
         <target state="translated">Office Open XML preglednica</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel Binary Workbook" xml:space="preserve">
+        <source>Excel Binary Workbook</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to install theme" xml:space="preserve">
+        <source>Failed to install theme</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="FictionBook File" xml:space="preserve">
+        <source>FictionBook File</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -197,14 +252,40 @@
         <target>Če ste že kupili %@, boste aktivacijski ključ našli v potrditvenem email sporočilu.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="JPG Image" xml:space="preserve">
+        <source>JPG Image</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
         <target>Licenčna pogodba</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
+        <source>Macro-enabled Presentation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
+        <source>Macro-enabled spreadsheet template</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Markdown File" xml:space="preserve">
+        <source>Markdown File</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
         <target state="translated">Mobipocket e-knjiga</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to end" xml:space="preserve">
+        <source>Move to end</source>
+        <target>Premakni na konec</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to start" xml:space="preserve">
+        <source>Move to start</source>
+        <target>Premakni na začetek</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -215,6 +296,18 @@
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target>V redu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Document Form Template" xml:space="preserve">
+        <source>ONLYOFFICE Document Form Template</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
+        <source>ONLYOFFICE Fillable Online Form</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
+        <source>ONLYOFFICE Form Document</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
@@ -269,7 +362,11 @@
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">Prenosni document /A)</target>
+        <target>Prenosni document /A</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PNG Image" xml:space="preserve">
+        <source>PNG Image</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
@@ -307,9 +404,17 @@
         <target state="translated">PowerPoint Open XML predloga predstavitve</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Presenter View" xml:space="preserve">
+        <source>Presenter View</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
         <source>Quit %@</source>
         <target>Končaj %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Replace" xml:space="preserve">
+        <source>Replace</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
@@ -332,6 +437,28 @@
         <target state="translated">Želite shraniti dokument?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Select theme file" xml:space="preserve">
+        <source>Select theme file</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Selected theme isn't valid" xml:space="preserve">
+        <source>Selected theme isn't valid</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show in folder" xml:space="preserve">
+        <source>Show in folder</source>
+        <target>Prikaži v mapi</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show main window" xml:space="preserve">
+        <source>Show main window</source>
+        <target>Prikaži glavno okno</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Signature Details" xml:space="preserve">
+        <source>Signature Details</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
         <target>Preglednica %ld.xlsx</target>
@@ -352,6 +479,18 @@
         <target state="translated">Dokument "%@" mora biti sestavljen. Želite nadaljevati?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
+        <source>Theme already exists. Replace it?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This file doesn't contain theme" xml:space="preserve">
+        <source>This file doesn't contain theme</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This theme file is not valid" xml:space="preserve">
+        <source>This theme file is not valid</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
         <source>To open the file location, it must be saved.</source>
         <target state="translated">Za odpiranje mesta datoteke mora biti ta shranjena.</target>
@@ -362,19 +501,27 @@
         <target>Nepotrjeno</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Unpin tab" xml:space="preserve">
+        <source>Unpin tab</source>
+        <target>Odpni zavihek</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
         <target>Brez naslova</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Version %@ (%@)" xml:space="preserve">
-        <source>Version %1$@ (%2$@)</source>
-        <target state="translated">Verzija %1$@ (%2$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
         <target>Spletna stran</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="VSDX File" xml:space="preserve">
+        <source>VSDX File</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="With access to pro features" xml:space="preserve">
+        <source>With access to pro features</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
@@ -407,6 +554,10 @@
         <target>Uspešno ste aktivirali %@.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
+        <source>Your changes will be lost if you don't save them.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
         <target>Vaše spremembe bodo izglubljene, če jih ne boste shranili.</target>
@@ -436,6 +587,10 @@ We have a special offer for you.</source>
 Za vas imamo posebno ponudbo.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="kBps" xml:space="preserve">
+        <source>kBps</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
         <target state="translated">Nov dokument</target>
@@ -460,7 +615,7 @@ Za vas imamo posebno ponudbo.</target>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="sl-SI" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
@@ -550,7 +705,7 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="sl-SI" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title" xml:space="preserve">
@@ -560,7 +715,7 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
       </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
       </trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
@@ -582,6 +737,10 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <source>Transformations</source>
         <target>Transformacije</target>
         <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
+      </trans-unit>
+      <trans-unit id="3FX-nT-Klk.title" xml:space="preserve">
+        <source>Close</source>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source>
@@ -647,11 +806,6 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <source>New</source>
         <target>Nov</target>
         <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
-      </trans-unit>
-      <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
-        <source>none</source>
-        <target>nobeden</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
       </trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source>
@@ -733,11 +887,6 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <target>Zamenjave</target>
         <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
       </trans-unit>
-      <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
-        <source>User Name</source>
-        <target>Uporabniško ime</target>
-        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
-      </trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source>
         <target>Poudarjeno</target>
@@ -795,7 +944,7 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
       </trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
       </trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
@@ -893,21 +1042,6 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <target>	Iz desne v levo</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
       </trans-unit>
-      <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
-        <source>Close</source>
-        <target>Zapri</target>
-        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
-      </trans-unit>
-      <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
-        <source>none</source>
-        <target>nobeden</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
-      </trans-unit>
-      <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
-        <source>Logout</source>
-        <target>Odjava</target>
-        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
-      </trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source>
         <target>Nadpis</target>
@@ -998,11 +1132,6 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <target>Verzija</target>
         <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
       </trans-unit>
-      <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
-        <source>Email:</source>
-        <target>Email:</target>
-        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
-      </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source>
         <target>Paragraf</target>
@@ -1052,6 +1181,10 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <source>Use None</source>
         <target>Uporabi nobeden</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
+      </trans-unit>
+      <trans-unit id="clr-Cl-d05.title" xml:space="preserve">
+        <source>Clear</source>
+        <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source>
@@ -1145,7 +1278,7 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
       </trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
@@ -1158,6 +1291,10 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <target>Preveri slovnico s pravopisom</target>
         <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
       </trans-unit>
+      <trans-unit id="ne5-Gy-5by.title" xml:space="preserve">
+        <source>PDF Form</source>
+        <note>Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by";</note>
+      </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source>
         <target>Ligature</target>
@@ -1168,10 +1305,18 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <target>Odpri nedavni</target>
         <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
       </trans-unit>
+      <trans-unit id="ofn-Cl-d04.title" xml:space="preserve">
+        <source>Show in folder</source>
+        <note>Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04";</note>
+      </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source>
         <target>Opusti</target>
         <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
+      </trans-unit>
+      <trans-unit id="opn-Cl-d03.title" xml:space="preserve">
+        <source>Open</source>
+        <note>Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source>
@@ -1180,7 +1325,7 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
       </trans-unit>
       <trans-unit id="pxx-59-PXV.title" xml:space="preserve">
         <source>Save</source>
-        <target>Shrani</target>
+        <target state="translated">Shrani</target>
         <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
       </trans-unit>
       <trans-unit id="q09-fT-Sye.title" xml:space="preserve">
@@ -1228,9 +1373,13 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <target>Prilagodi presledek</target>
         <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
       </trans-unit>
+      <trans-unit id="ttl-Cl-d03.title" xml:space="preserve">
+        <source>Downloads</source>
+        <note>Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03";</note>
+      </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
       </trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
@@ -1308,16 +1457,11 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
         <target>Pokaži zamenjave</target>
         <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
       </trans-unit>
-      <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
-        <source>Portal:</source>
-        <target>Portal:</target>
-        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
-      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="sl-SI" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder" xml:space="preserve">
@@ -1364,7 +1508,7 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="sl-SI" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title" xml:space="preserve">
@@ -1374,9 +1518,43 @@ Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli u
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="sl-SI" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-arm/Base.lproj/InfoPlist.strings" source-language="en" target-language="sl-SI" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright © 2026 Ascensio System SIA. All rights reserved.</source>
+        <target>Copyright © 2026 Ascensio System SIA. All rights reserved.</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-v8/Base.lproj/InfoPlist.strings" source-language="en" target-language="sl-SI" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright © 2026 Ascensio System SIA. All rights reserved.</source>
+        <target>Copyright © 2026 Ascensio System SIA. All rights reserved.</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Base.lproj/InfoPlist.strings" source-language="en" target-language="sl-SI" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">

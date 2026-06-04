@@ -67,7 +67,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="ur" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="ur-PK" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -621,7 +621,7 @@ We have a special offer for you.</source>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="ur" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="ur-PK" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -677,7 +677,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="ur" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" datatype="plaintext" source-language="en" target-language="ur-PK">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -1433,7 +1433,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="ur" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" datatype="plaintext" source-language="en" target-language="ur-PK">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -1480,7 +1480,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="ur" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" datatype="plaintext" source-language="en" target-language="ur-PK">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -1492,7 +1492,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-arm/Base.lproj/InfoPlist.strings" source-language="en" target-language="ur" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-arm/Base.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ur-PK">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -1503,13 +1503,13 @@ The trial period will end in %d days, after that you will not be able to create 
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2024 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated">کاپی رائٹ © 2024 Ascensio System SIA۔ جملہ حقوق محفوظ ہیں۔</target>
+        <source>Copyright © 2026 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">کاپی رائٹ © 2026 Ascensio System SIA۔ جملہ حقوق محفوظ ہیں۔</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-v8/Base.lproj/InfoPlist.strings" source-language="en" target-language="ur" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-v8/Base.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ur-PK">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -1520,13 +1520,13 @@ The trial period will end in %d days, after that you will not be able to create 
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2024 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated">کاپی رائٹ © 2024 Ascensio System SIA۔ جملہ حقوق محفوظ ہیں۔</target>
+        <source>Copyright © 2026 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">کاپی رائٹ © 2026 Ascensio System SIA۔ جملہ حقوق محفوظ ہیں۔</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Base.lproj/InfoPlist.strings" source-language="en" target-language="ur" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Base.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ur-PK">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
     </header>
@@ -1537,8 +1537,8 @@ The trial period will end in %d days, after that you will not be able to create 
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2024 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated">کاپی رائٹ © 2024 Ascensio System SIA۔ جملہ حقوق محفوظ ہیں۔</target>
+        <source>Copyright © 2026 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">کاپی رائٹ © 2026 Ascensio System SIA۔ جملہ حقوق محفوظ ہیں۔</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
