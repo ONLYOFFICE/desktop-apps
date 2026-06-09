@@ -104,6 +104,7 @@
       </trans-unit>
       <trans-unit id="Canceled" xml:space="preserve">
         <source>Canceled</source>
+        <target state="translated">Отказано</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
@@ -123,14 +124,17 @@
       </trans-unit>
       <trans-unit id="Close" xml:space="preserve">
         <source>Close</source>
+        <target state="translated">Затвори</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Close all" xml:space="preserve">
         <source>Close all</source>
+        <target state="translated">Затвори све</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Close saved" xml:space="preserve">
         <source>Close saved</source>
+        <target state="translated">Затвори сачувано</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
@@ -140,14 +144,17 @@
       </trans-unit>
       <trans-unit id="Community version %@" xml:space="preserve">
         <source>Community version %@</source>
+        <target state="translated">Верзија Community %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
         <source>Community version %1$@ (%2$@-%3$@)</source>
+        <target state="translated">Верзија Community %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create new" xml:space="preserve">
         <source>Create new</source>
+        <target state="translated">Направи ново</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -197,10 +204,12 @@
       </trans-unit>
       <trans-unit id="Enterprise version %@" xml:space="preserve">
         <source>Enterprise version %@</source>
+        <target state="translated">Верзија Enterprise %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
         <source>Enterprise version %1$@ (%2$@-%3$@)</source>
+        <target state="translated">Верзија Enterprise %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -220,10 +229,12 @@
       </trans-unit>
       <trans-unit id="Excel Binary Workbook" xml:space="preserve">
         <source>Excel Binary Workbook</source>
+        <target state="translated">Excel бинарна прорачунска табела</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
         <source>Failed to install theme</source>
+        <target state="translated">Инсталирање теме није успело</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -263,6 +274,7 @@
       </trans-unit>
       <trans-unit id="JPG Image" xml:space="preserve">
         <source>JPG Image</source>
+        <target state="translated">JPG слика</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
@@ -277,18 +289,22 @@
       </trans-unit>
       <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
         <source>Macro-enabled Presentation</source>
+        <target state="translated">Макро-омогућена презентација</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Markdown File" xml:space="preserve">
         <source>Markdown File</source>
+        <target state="translated">Markdown датотека</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to end" xml:space="preserve">
         <source>Move to end</source>
+        <target state="translated">Помери на крај</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to start" xml:space="preserve">
         <source>Move to start</source>
+        <target state="translated">Премести на почетак</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -303,14 +319,17 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE Document Form Template" xml:space="preserve">
         <source>ONLYOFFICE Document Form Template</source>
+        <target state="translated">ONLYOFFICE шаблон обрасца документа</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
         <source>ONLYOFFICE Fillable Online Form</source>
+        <target state="translated">ONLYOFFICE попуњавајући онлајн образац</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
         <source>ONLYOFFICE Form Document</source>
+        <target state="translated">PDF образац</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
@@ -370,6 +389,7 @@
       </trans-unit>
       <trans-unit id="PNG Image" xml:space="preserve">
         <source>PNG Image</source>
+        <target state="translated">PNG слика</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
@@ -424,6 +444,7 @@
       </trans-unit>
       <trans-unit id="Replace" xml:space="preserve">
         <source>Replace</source>
+        <target state="translated">Замени</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
@@ -448,18 +469,22 @@
       </trans-unit>
       <trans-unit id="Select theme file" xml:space="preserve">
         <source>Select theme file</source>
+        <target state="translated">Изаберите датотеку теме</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Selected theme isn't valid" xml:space="preserve">
         <source>Selected theme isn't valid</source>
+        <target state="translated">Изабрана тема није важећа</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Show in folder" xml:space="preserve">
         <source>Show in folder</source>
+        <target state="translated">Прикажи у фолдеру</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Show main window" xml:space="preserve">
         <source>Show main window</source>
+        <target state="translated">Прикажи главни прозор</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Signature Details" xml:space="preserve">
@@ -489,14 +514,17 @@
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
         <source>Theme already exists. Replace it?</source>
+        <target state="translated">Тема већ постоји. Да ли желите да је замените?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This file doesn't contain theme" xml:space="preserve">
         <source>This file doesn't contain theme</source>
+        <target state="translated">Ова датотека не садржи тему</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This theme file is not valid" xml:space="preserve">
         <source>This theme file is not valid</source>
+        <target state="translated">Ова датотека теме није важећа</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -511,6 +539,7 @@
       </trans-unit>
       <trans-unit id="Unpin tab" xml:space="preserve">
         <source>Unpin tab</source>
+        <target state="translated">Откачи картицу</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
@@ -525,6 +554,7 @@
       </trans-unit>
       <trans-unit id="VSDX File" xml:space="preserve">
         <source>VSDX File</source>
+        <target state="translated">Visio цртеж</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -564,6 +594,7 @@
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
         <source>Your changes will be lost if you don't save them.</source>
+        <target state="translated">Ваше промене ће бити изгубљене ако их не сачувате.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
@@ -597,6 +628,7 @@ We have a special offer for you.</source>
       </trans-unit>
       <trans-unit id="kBps" xml:space="preserve">
         <source>kBps</source>
+        <target state="translated">kBps</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
@@ -633,6 +665,7 @@ We have a special offer for you.</source>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
+        <target state="translated">%d дана је преостало до истека лиценце.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
@@ -653,6 +686,8 @@ We have a special offer for you.</source>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target state="translated">Користите пробну верзију апликације.
+Пробни период ће се завршити за %d дана, након тога нећете моћи да креирате и уређујете документе.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
@@ -676,6 +711,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/few:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target state="translated">Имате %ld %@ докумената са непотврђеним променама. Желите ли да прегледате ове промене пре одустајања?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
@@ -727,6 +763,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="3FX-nT-Klk.title" xml:space="preserve">
         <source>Close</source>
+        <target state="translated">Затвори</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
@@ -1171,6 +1208,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="clr-Cl-d05.title" xml:space="preserve">
         <source>Clear</source>
+        <target state="translated">Обриши</target>
         <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
@@ -1280,6 +1318,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="ne5-Gy-5by.title" xml:space="preserve">
         <source>PDF Form</source>
+        <target state="translated">PDF образац</target>
         <note>Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by";</note>
       </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
@@ -1294,6 +1333,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="ofn-Cl-d04.title" xml:space="preserve">
         <source>Show in folder</source>
+        <target state="translated">Прикажи у фолдеру</target>
         <note>Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04";</note>
       </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
@@ -1303,6 +1343,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="opn-Cl-d03.title" xml:space="preserve">
         <source>Open</source>
+        <target state="translated">Отвори</target>
         <note>Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
@@ -1362,6 +1403,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="ttl-Cl-d03.title" xml:space="preserve">
         <source>Downloads</source>
+        <target state="translated">Преузимања</target>
         <note>Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
