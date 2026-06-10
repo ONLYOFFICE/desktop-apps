@@ -99,6 +99,7 @@
       </trans-unit>
       <trans-unit id="Canceled" xml:space="preserve">
         <source>Canceled</source>
+        <target state="translated">İptal edildi</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
@@ -138,10 +139,12 @@
       </trans-unit>
       <trans-unit id="Community version %@" xml:space="preserve">
         <source>Community version %@</source>
+        <target state="translated">Community sürümü %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
         <source>Community version %1$@ (%2$@-%3$@)</source>
+        <target state="translated">Community sürümü %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create new" xml:space="preserve">
@@ -171,6 +174,7 @@
       </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
+        <target state="translated">Belge %ld.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document %ld.pdf" xml:space="preserve">
@@ -185,18 +189,22 @@
       </trans-unit>
       <trans-unit id="Don't Save" xml:space="preserve">
         <source>Don't Save</source>
+        <target state="translated">Kaydetme</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
+        <target state="translated">Elektronik Yayın</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Enterprise version %@" xml:space="preserve">
         <source>Enterprise version %@</source>
+        <target state="translated">Enterprise sürümü %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
         <source>Enterprise version %1$@ (%2$@-%3$@)</source>
+        <target state="translated">Enterprise sürümü %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -211,14 +219,17 @@
       </trans-unit>
       <trans-unit id="Excel Binary Workbook" xml:space="preserve">
         <source>Excel Binary Workbook</source>
+        <target state="translated">Excel İkili çalışma sayfası</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
         <source>Failed to install theme</source>
+        <target state="translated">Tema yüklenemedi</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
+        <target state="translated">FictionBook 2 Dosyası</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -253,6 +264,7 @@
       </trans-unit>
       <trans-unit id="JPG Image" xml:space="preserve">
         <source>JPG Image</source>
+        <target state="translated">JPG Resmi</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
@@ -262,14 +274,17 @@
       </trans-unit>
       <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
         <source>Macro-enabled Presentation</source>
+        <target state="translated">Makro Etkinleştirilmiş sunum</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
         <source>Macro-enabled spreadsheet template</source>
+        <target state="translated">Makro Etkinleştirilmiş Elektronik Tablo Şablonu</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Markdown File" xml:space="preserve">
         <source>Markdown File</source>
+        <target state="translated">Markdown dosyası</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
@@ -299,14 +314,17 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE Document Form Template" xml:space="preserve">
         <source>ONLYOFFICE Document Form Template</source>
+        <target state="translated">ONLYOFFICE Belge Formu Şablonu</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
         <source>ONLYOFFICE Fillable Online Form</source>
+        <target state="translated">ONLYOFFICE Doldurulabilir Çevrimiçi Form</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
         <source>ONLYOFFICE Form Document</source>
+        <target state="translated">ONLYOFFICE PDF Formu</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
@@ -366,6 +384,7 @@
       </trans-unit>
       <trans-unit id="PNG Image" xml:space="preserve">
         <source>PNG Image</source>
+        <target state="translated">PNG Resmi</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
@@ -405,6 +424,7 @@
       </trans-unit>
       <trans-unit id="Presenter View" xml:space="preserve">
         <source>Presenter View</source>
+        <target state="translated">Sunucu Görünümü</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -414,6 +434,7 @@
       </trans-unit>
       <trans-unit id="Replace" xml:space="preserve">
         <source>Replace</source>
+        <target state="translated">Değiştir</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
@@ -438,10 +459,12 @@
       </trans-unit>
       <trans-unit id="Select theme file" xml:space="preserve">
         <source>Select theme file</source>
+        <target state="translated">Tema dosyasını seçin</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Selected theme isn't valid" xml:space="preserve">
         <source>Selected theme isn't valid</source>
+        <target state="translated">Seçilen tema geçerli değil</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Show in folder" xml:space="preserve">
@@ -456,6 +479,7 @@
       </trans-unit>
       <trans-unit id="Signature Details" xml:space="preserve">
         <source>Signature Details</source>
+        <target state="translated">İmza Ayrıntıları</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
@@ -480,14 +504,17 @@
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
         <source>Theme already exists. Replace it?</source>
+        <target state="translated">Tema zaten mevcut. Değiştirilsin mi?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This file doesn't contain theme" xml:space="preserve">
         <source>This file doesn't contain theme</source>
+        <target state="translated">Bu dosya tema içermiyor</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This theme file is not valid" xml:space="preserve">
         <source>This theme file is not valid</source>
+        <target state="translated">Bu tema dosyası geçerli değil</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -517,10 +544,12 @@
       </trans-unit>
       <trans-unit id="VSDX File" xml:space="preserve">
         <source>VSDX File</source>
+        <target state="translated">Çizim Visio</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
         <source>With access to pro features</source>
+        <target state="translated">Profesyonel özelliklere erişimle</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
@@ -555,6 +584,7 @@
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
         <source>Your changes will be lost if you don't save them.</source>
+        <target state="translated">Kaydetmezseniz değişiklikleriniz kaybolacaktır.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
@@ -603,6 +633,7 @@ Size özel bir teklifimiz var.</target>
       </trans-unit>
       <trans-unit id="kBps" xml:space="preserve">
         <source>kBps</source>
+        <target state="translated">kBps</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
@@ -695,6 +726,7 @@ Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak 
       </trans-unit>
       <trans-unit id="2h7-ER-AoG.title" xml:space="preserve">
         <source>Raise</source>
+        <target state="translated">Yükselt</target>
         <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
       </trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title" xml:space="preserve">
@@ -704,6 +736,7 @@ Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak 
       </trans-unit>
       <trans-unit id="3FX-nT-Klk.title" xml:space="preserve">
         <source>Close</source>
+        <target state="translated">Kapat</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
@@ -1148,6 +1181,7 @@ Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak 
       </trans-unit>
       <trans-unit id="clr-Cl-d05.title" xml:space="preserve">
         <source>Clear</source>
+        <target state="translated">Temizle</target>
         <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
@@ -1257,6 +1291,7 @@ Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak 
       </trans-unit>
       <trans-unit id="ne5-Gy-5by.title" xml:space="preserve">
         <source>PDF Form</source>
+        <target state="translated">PDF Formu</target>
         <note>Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by";</note>
       </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
@@ -1271,6 +1306,7 @@ Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak 
       </trans-unit>
       <trans-unit id="ofn-Cl-d04.title" xml:space="preserve">
         <source>Show in folder</source>
+        <target state="translated">Klasörde göster</target>
         <note>Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04";</note>
       </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
@@ -1280,6 +1316,7 @@ Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak 
       </trans-unit>
       <trans-unit id="opn-Cl-d03.title" xml:space="preserve">
         <source>Open</source>
+        <target state="translated">Aç</target>
         <note>Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
@@ -1339,6 +1376,7 @@ Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak 
       </trans-unit>
       <trans-unit id="ttl-Cl-d03.title" xml:space="preserve">
         <source>Downloads</source>
+        <target state="translated">İndirmeler</target>
         <note>Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">

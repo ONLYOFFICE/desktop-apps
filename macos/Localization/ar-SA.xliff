@@ -104,6 +104,7 @@
       </trans-unit>
       <trans-unit id="Canceled" xml:space="preserve">
         <source>Canceled</source>
+        <target state="translated">تم الإلغاء</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
@@ -143,10 +144,12 @@
       </trans-unit>
       <trans-unit id="Community version %@" xml:space="preserve">
         <source>Community version %@</source>
+        <target state="translated">إصدار "المجتمع" %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
         <source>Community version %1$@ (%2$@-%3$@)</source>
+        <target state="translated">إصدار "المجتمع" %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create new" xml:space="preserve">
@@ -201,10 +204,12 @@
       </trans-unit>
       <trans-unit id="Enterprise version %@" xml:space="preserve">
         <source>Enterprise version %@</source>
+        <target state="translated">إصدار "المؤسسات" %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
         <source>Enterprise version %1$@ (%2$@-%3$@)</source>
+        <target state="translated">إصدار "المؤسسات" %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -229,10 +234,12 @@
       </trans-unit>
       <trans-unit id="Excel Binary Workbook" xml:space="preserve">
         <source>Excel Binary Workbook</source>
+        <target state="translated">ورقة عمل Excel ثنائية</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
         <source>Failed to install theme</source>
+        <target state="translated">فشل تثبيت السمة</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -267,6 +274,7 @@
       </trans-unit>
       <trans-unit id="JPG Image" xml:space="preserve">
         <source>JPG Image</source>
+        <target state="translated">صورة بخلفية</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
@@ -281,6 +289,7 @@
       </trans-unit>
       <trans-unit id="Markdown File" xml:space="preserve">
         <source>Markdown File</source>
+        <target state="translated">ملف Markdown</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to end" xml:space="preserve">
@@ -305,14 +314,17 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE Document Form Template" xml:space="preserve">
         <source>ONLYOFFICE Document Form Template</source>
+        <target state="translated">قالب مستند ONLYOFFICE</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
         <source>ONLYOFFICE Fillable Online Form</source>
+        <target state="translated">نموذج ONLYOFFICE قابل للتعبئة عبر الإنترنت</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
         <source>ONLYOFFICE Form Document</source>
+        <target state="translated">نموذج ONLYOFFICE PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
@@ -372,6 +384,7 @@
       </trans-unit>
       <trans-unit id="PNG Image" xml:space="preserve">
         <source>PNG Image</source>
+        <target state="translated">صورة بلا خلفية</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
@@ -426,6 +439,7 @@
       </trans-unit>
       <trans-unit id="Replace" xml:space="preserve">
         <source>Replace</source>
+        <target state="translated">استبدال</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
@@ -450,10 +464,12 @@
       </trans-unit>
       <trans-unit id="Select theme file" xml:space="preserve">
         <source>Select theme file</source>
+        <target state="translated">حدد ملف السمة</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Selected theme isn't valid" xml:space="preserve">
         <source>Selected theme isn't valid</source>
+        <target state="translated">السمة المحددة غير صالحة</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Show in folder" xml:space="preserve">
@@ -493,14 +509,17 @@
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
         <source>Theme already exists. Replace it?</source>
+        <target state="translated">السمة موجودة بالفعل. هل تريد استبدالها؟</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This file doesn't contain theme" xml:space="preserve">
         <source>This file doesn't contain theme</source>
+        <target state="translated">هذا الملف لا يحتوي على السمة</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This theme file is not valid" xml:space="preserve">
         <source>This theme file is not valid</source>
+        <target state="translated">ملف السمة هذا غير صالح</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -530,6 +549,7 @@
       </trans-unit>
       <trans-unit id="VSDX File" xml:space="preserve">
         <source>VSDX File</source>
+        <target state="translated">رسم مرئي</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -569,6 +589,7 @@
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
         <source>Your changes will be lost if you don't save them.</source>
+        <target state="translated">سوف يتم فقد التغييرات إن لم تقم بالحفظ.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
@@ -602,6 +623,7 @@ We have a special offer for you.</source>
       </trans-unit>
       <trans-unit id="kBps" xml:space="preserve">
         <source>kBps</source>
+        <target state="translated">كيلوبايت في الثانية</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
@@ -638,12 +660,12 @@ We have a special offer for you.</source>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target>%d days are left until the license expiration.</target>
+        <target state="translated">%d أيام متبقية لانتهاء الترخيص.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/many:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target>%d days are left until the license expiration.</target>
+        <target state="translated">%d أيام متبقية لانتهاء الترخيص.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
@@ -658,12 +680,12 @@ We have a special offer for you.</source>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/two:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target>%d days are left until the license expiration.</target>
+        <target state="translated">%d أيام متبقية لانتهاء الترخيص.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/zero:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target>%d days are left until the license expiration.</target>
+        <target state="translated">%d أيام متبقية لانتهاء الترخيص.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
@@ -674,15 +696,15 @@ We have a special offer for you.</source>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
+        <target state="translated">أنت تستخدم نسخة تجريبية من التطبيق.
+مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/many:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
+        <target state="translated">أنت تستخدم نسخة تجريبية من التطبيق.
+مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
@@ -702,15 +724,15 @@ The trial period will end in %d days, after that you will not be able to create 
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/two:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
+        <target state="translated">أنت تستخدم نسخة تجريبية من التطبيق.
+مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/zero:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
+        <target state="translated">أنت تستخدم نسخة تجريبية من التطبيق.
+مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
@@ -720,12 +742,12 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/few:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <target state="translated">لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/many:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <target state="translated">لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
@@ -740,12 +762,12 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/two:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <target state="translated">لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/zero:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <target state="translated">لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
@@ -787,6 +809,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="3FX-nT-Klk.title" xml:space="preserve">
         <source>Close</source>
+        <target state="translated">إغلاق</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
@@ -1231,6 +1254,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="clr-Cl-d05.title" xml:space="preserve">
         <source>Clear</source>
+        <target state="translated">مسح</target>
         <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
@@ -1340,6 +1364,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="ne5-Gy-5by.title" xml:space="preserve">
         <source>PDF Form</source>
+        <target state="translated">نموذج PDF</target>
         <note>Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by";</note>
       </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
@@ -1354,6 +1379,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="ofn-Cl-d04.title" xml:space="preserve">
         <source>Show in folder</source>
+        <target state="translated">تظهر في المجلد</target>
         <note>Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04";</note>
       </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
@@ -1363,6 +1389,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="opn-Cl-d03.title" xml:space="preserve">
         <source>Open</source>
+        <target state="translated">فتح</target>
         <note>Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
@@ -1422,6 +1449,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="ttl-Cl-d03.title" xml:space="preserve">
         <source>Downloads</source>
+        <target state="translated">التنزيلات</target>
         <note>Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
