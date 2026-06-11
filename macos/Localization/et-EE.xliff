@@ -1291,7 +1291,7 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       </trans-unit>
       <trans-unit id="ne5-Gy-5by.title" xml:space="preserve">
         <source>PDF Form</source>
-        <target state="translated">PDF vorm</target>
+        <target state="translated">PDF</target>
         <note>Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by";</note>
       </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
