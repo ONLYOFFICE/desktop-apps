@@ -274,7 +274,7 @@
       </trans-unit>
       <trans-unit id="JPG Image" xml:space="preserve">
         <source>JPG Image</source>
-        <target state="translated">JPG图像</target>
+        <target state="translated">JPG 图像</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
@@ -314,12 +314,12 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE Document Form Template" xml:space="preserve">
         <source>ONLYOFFICE Document Form Template</source>
-        <target state="translated">ONLYOFFICE文档表单模板</target>
+        <target state="translated">ONLYOFFICE 文档表单模板</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
         <source>ONLYOFFICE Fillable Online Form</source>
-        <target state="translated">ONLYOFFICE可填写在线表单</target>
+        <target state="translated">ONLYOFFICE 可填写在线表单</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
@@ -329,12 +329,12 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
-        <target>ONLYOFFICE无法打开该数字签名文件。请尝试打开另一个文件。</target>
+        <target state="translated">ONLYOFFICE 无法打开该数字签名文件。请尝试打开另一个文件。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
-        <target>ONLYOFFICE无法打开该私钥。请尝试打开另一个文件。</target>
+        <target state="translated">ONLYOFFICE 无法打开该私钥。请尝试打开另一个文件。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
@@ -384,7 +384,7 @@
       </trans-unit>
       <trans-unit id="PNG Image" xml:space="preserve">
         <source>PNG Image</source>
-        <target state="translated">PNG图像</target>
+        <target state="translated">PNG 图像</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">

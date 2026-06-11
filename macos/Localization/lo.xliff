@@ -384,7 +384,7 @@
       </trans-unit>
       <trans-unit id="PNG Image" xml:space="preserve">
         <source>PNG Image</source>
-        <target state="translated">ຮູບພາບແບບPNG</target>
+        <target state="translated">ຮູບພາບແບບ PNG</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">

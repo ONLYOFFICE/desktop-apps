@@ -229,7 +229,7 @@
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
-        <target state="translated">FictionBook फ़ाइल</target>
+        <target state="translated">FictionBook 2 फ़ाइल</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">

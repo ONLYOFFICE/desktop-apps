@@ -229,7 +229,7 @@
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
-        <target state="translated">小說文件</target>
+        <target state="translated">小說書 2 文件</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -264,7 +264,7 @@
       </trans-unit>
       <trans-unit id="JPG Image" xml:space="preserve">
         <source>JPG Image</source>
-        <target state="translated">JPG圖像</target>
+        <target state="translated">JPG 圖像</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
@@ -329,12 +329,12 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
-        <target state="translated">無法開啟數位簽章的檔案，嘗試開啟另一個檔案。</target>
+        <target state="translated">ONLYOFFICE 無法開啟數位簽章的檔案，嘗試開啟另一個檔案。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
-        <target state="translated">ONLYOFFICE無法開啟私密金鑰的檔案，嘗試開啟另一個檔案。</target>
+        <target state="translated">ONLYOFFICE 無法開啟私密金鑰的檔案，嘗試開啟另一個檔案。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
@@ -384,7 +384,7 @@
       </trans-unit>
       <trans-unit id="PNG Image" xml:space="preserve">
         <source>PNG Image</source>
-        <target state="translated">PNG圖像</target>
+        <target state="translated">PNG 圖像</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">

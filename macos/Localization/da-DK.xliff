@@ -144,7 +144,7 @@
       </trans-unit>
       <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
         <source>Community version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">Community version %1$@ (%2$@-%3$@)</target>
+        <target state="translated">Community-version %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create new" xml:space="preserve">
