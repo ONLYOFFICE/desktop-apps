@@ -122,8 +122,7 @@ export function parseRecentDirs(arr, t) {
   const seen = new Set();
   const dirs = [];
   for (const f of arr || []) {
-    if (/^https?:\/{2}[^\<\>]+/i.test(f.path))
-      continue;
+    if (/^https?:\/{2}[^<>]+/i.test(f.path)) continue;
 
     let p = f.path || "";
     if (isWin && /^\w:[\\/]/.test(p) && /\\{2,}/.test(p)) {

@@ -5,11 +5,7 @@ import "./FolderList.styles.css";
 
 function FolderRow(props) {
   return (
-    <div
-      class="row text-normal"
-      classList={{ pinned: props.folder.pinned }}
-      onClick={() => openFolder(props.folder.full)}
-    >
+    <div class="row text-normal" classList={{ pinned: props.folder.pinned }} onClick={() => openFolder(props.folder.full)}>
       <div class="col-name" title={props.folder.name}>
         <div class="icon">
           <svg class="icon">
@@ -50,9 +46,7 @@ export function FolderList(props) {
           <div class="col-location">{t("colLocation")}</div>
         </div>
         <div class="file-list-body scrollable">
-          <For each={folders()}>
-            {(folder) => <FolderRow folder={folder} onTogglePin={props.onTogglePin} />}
-          </For>
+          <For each={folders()}>{(folder) => <FolderRow folder={folder} onTogglePin={props.onTogglePin} />}</For>
         </div>
       </div>
     </Show>

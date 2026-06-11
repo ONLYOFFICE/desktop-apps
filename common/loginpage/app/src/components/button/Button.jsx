@@ -6,6 +6,7 @@ const variantClass = {
   default: styles.btnDefault,
   primary: styles.btnPrimary,
   accent: styles.btnAccent,
+  outline: styles.btnOutline,
 };
 
 const defaultProps = {

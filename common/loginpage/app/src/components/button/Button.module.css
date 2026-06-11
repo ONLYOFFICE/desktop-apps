@@ -8,6 +8,8 @@
 }
 
 .btnDefault {
+  background: transparent;
+
   &:hover {
     background-color: var(--highlight-button-hover);
   }
@@ -40,5 +42,18 @@
 
   &:active {
     background-color: var(--highlight-accent-button-pressed);
+  }
+}
+
+.btnOutline {
+  background: transparent;
+  border: 1px solid var(--border-regular-control);
+
+  &:hover {
+    background-color: var(--highlight-button-hover);
+  }
+
+  &:active {
+    background-color: var(--highlight-button-pressed);
   }
 }

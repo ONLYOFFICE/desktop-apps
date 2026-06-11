@@ -1,19 +1,35 @@
-import { lazy, onMount } from "solid-js";
+import { Show, createEffect, lazy, onMount } from "solid-js";
 import { HashRouter } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
+import { AiPanel, AiTogglePill } from "@/components/ai-panel";
 import { signalAppReady } from "@/sdk";
 import { initSettingsSync } from "@/services/settings-sync";
+import { settings } from "@/stores/settings";
+import { aichat } from "@/stores/aichat";
 import "./styles/main.css";
 import "./styles/layout.css";
 
 function Shell(props) {
+  const panelVisible = () => settings.useai && aichat.open;
+
+  createEffect(() => {
+    document.documentElement.style.setProperty("--ai-w", panelVisible() ? `${aichat.width}px` : "0px");
+  });
+
   return (
     <div class="shell">
       <div class="col-sidebar">
         <Sidebar />
       </div>
       <div class="col-center">{props.children}</div>
-      {/* TODO: AI Panel component */}
+      <Show when={panelVisible()}>
+        <div class="col-ai">
+          <AiPanel />
+        </div>
+      </Show>
+      <Show when={settings.useai && !aichat.open}>
+        <AiTogglePill />
+      </Show>
     </div>
   );
 }
