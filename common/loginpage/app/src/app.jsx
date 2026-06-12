@@ -4,16 +4,16 @@ import Sidebar from "./shell/Sidebar";
 import { AiPanel, AiTogglePill } from "@/components/ai-panel";
 import { signalAppReady } from "@/sdk";
 import { initSettingsSync } from "@/services/settings-sync";
+import { initAiPanel } from "@/services/ai-panel";
 import { settings } from "@/stores/settings";
 import { aichat } from "@/stores/aichat";
 import "./styles/main.css";
 import "./styles/layout.css";
 
 function Shell(props) {
-  const panelVisible = () => settings.useai && aichat.open;
-
   createEffect(() => {
-    document.documentElement.style.setProperty("--ai-w", panelVisible() ? `${aichat.width}px` : "0px");
+    const width = settings.useai && aichat.open ? `${aichat.width}px` : "0px";
+    document.documentElement.style.setProperty("--ai-w", width);
   });
 
   return (
@@ -22,7 +22,7 @@ function Shell(props) {
         <Sidebar />
       </div>
       <div class="col-center">{props.children}</div>
-      <Show when={panelVisible()}>
+      <Show when={settings.useai}>
         <div class="col-ai">
           <AiPanel />
         </div>
@@ -50,6 +50,7 @@ const routes = [
 
 export default function App() {
   initSettingsSync();
+  initAiPanel();
   onMount(signalAppReady);
   return <HashRouter root={Shell}>{routes}</HashRouter>;
 }

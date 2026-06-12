@@ -1,4 +1,3 @@
-import { onCleanup } from "solid-js";
 import { AI_CONTENT_MIN_WIDTH, AI_PANEL_MIN_WIDTH, setAichat } from "@/stores/aichat";
 import styles from "./AiPanel.module.css";
 
@@ -7,43 +6,35 @@ const SHELL_LEFT = 78;
 
 export function ResizeHandle() {
   let handleEl;
-  let dragging = false;
-
-  function clampWidth(w) {
-    const shellWidth = handleEl?.closest(".shell")?.clientWidth ?? window.innerWidth;
-    const max = Math.max(AI_PANEL_MIN_WIDTH, shellWidth - SHELL_LEFT - AI_CONTENT_MIN_WIDTH);
-    return Math.round(Math.min(Math.max(w, AI_PANEL_MIN_WIDTH), max));
-  }
-
-  const widthFromEvent = (e) => {
-    const right = handleEl?.closest(".shell")?.getBoundingClientRect().right ?? window.innerWidth;
-    return clampWidth(right - e.clientX);
-  };
+  let shellRight = 0;
+  let maxWidth = 0;
+  let width = 0;
 
   function onMove(e) {
-    if (!dragging) return;
-    document.documentElement.style.setProperty("--ai-w", `${widthFromEvent(e)}px`);
+    width = Math.round(Math.min(Math.max(shellRight - e.clientX, AI_PANEL_MIN_WIDTH), maxWidth));
+    document.documentElement.style.setProperty("--ai-w", `${width}px`);
   }
 
   function onUp(e) {
-    if (!dragging) return;
-    dragging = false;
-    setAichat("width", widthFromEvent(e));
-    window.removeEventListener("pointermove", onMove);
-    window.removeEventListener("pointerup", onUp);
+    handleEl.releasePointerCapture(e.pointerId);
+    handleEl.removeEventListener("pointermove", onMove);
+    handleEl.removeEventListener("pointerup", onUp);
+    handleEl.removeEventListener("pointercancel", onUp);
+    document.documentElement.classList.remove("ai-resizing");
+    setAichat("width", width);
   }
 
   function onDown(e) {
     e.preventDefault();
-    dragging = true;
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerup", onUp);
+    const rect = handleEl.closest(".shell").getBoundingClientRect();
+    shellRight = rect.right;
+    maxWidth = Math.max(AI_PANEL_MIN_WIDTH, rect.width - SHELL_LEFT - AI_CONTENT_MIN_WIDTH);
+    handleEl.setPointerCapture(e.pointerId);
+    document.documentElement.classList.add("ai-resizing");
+    handleEl.addEventListener("pointermove", onMove);
+    handleEl.addEventListener("pointerup", onUp);
+    handleEl.addEventListener("pointercancel", onUp);
   }
-
-  onCleanup(() => {
-    window.removeEventListener("pointermove", onMove);
-    window.removeEventListener("pointerup", onUp);
-  });
 
   return <div ref={(el) => (handleEl = el)} class={styles.resizeHandle} aria-hidden="true" onPointerDown={onDown} />;
 }

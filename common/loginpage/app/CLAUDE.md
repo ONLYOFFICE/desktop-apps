@@ -49,6 +49,11 @@ src/styles/       design tokens (tokens.css) and global styles
   `<nav class="tool-menu">` with NO `<ul>` wrapper. The CSS in `Sidebar.styles.css` uses
   the `.tool-menu > .menu-item` direct-child selector. This structure is a deliberate
   owner decision — never add a `<ul>` wrapper.
+- **Icons are sprite injections, never JSX** — render `<svg class="icon"><use href="#id" /></svg>`
+  against the `<symbol>` sets injected from `../res/img/generated/*.svg` by
+  `vite.config.js` (`injectSprites`). NEVER create an `icons.jsx` / `*-icons.jsx` /
+  `Icon*.jsx` module or inline `<path>` glyph markup in a `.jsx` file. Full rule:
+  `.claude/rules/icons.md`.
 
 ## Native bridge
 

@@ -3,6 +3,7 @@ import { settings, setSettings } from "@/stores/settings";
 import { onNativeMessage } from "@/sdk/events";
 import { cmd } from "@/sdk/bridge";
 import { applyLocale } from "@/services/l10n";
+import { htmlDecode } from "@/utils/html";
 
 const NATIVE_TO_STORE = {
   "theme-white": "modern-light",
@@ -107,12 +108,6 @@ function nativeScalingToStore(raw) {
 
   const value = String(raw).trim();
   return value === "" || value === "0" ? "auto" : value;
-}
-
-function htmlDecode(str) {
-  const ta = document.createElement("textarea");
-  ta.innerHTML = str;
-  return ta.value;
 }
 
 const [availableLangs, setAvailableLangs] = createSignal(FALLBACK_LANGS);
