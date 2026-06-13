@@ -528,6 +528,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 #else
                 JsonObject win = package.value(_T("linux_64")).toObject();
 #endif
+                bool prefer_secondary = NS_Utils::cmdArgContains(_T("--prefer-secondary-url"));
                 if (isVersionBHigherThanA(curr_version, version) && (version != m_ignVersion)) {
                     m_packageData->object = _T("app");
                     m_packageData->version = version;
@@ -552,7 +553,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
-                    m_packageData->packageUrl = ((url.empty() || !m_pDownloader->isUrlAccessible(url)) && !url2.empty()) ? url2 : url;
+                    bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
+                    m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
                     tstring hash = package_type.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
@@ -575,7 +577,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
-                    m_packageData->packageUrl = ((url.empty() || !m_pDownloader->isUrlAccessible(url)) && !url2.empty()) ? url2 : url;
+                    bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
+                    m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
                     tstring hash = package_type.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
