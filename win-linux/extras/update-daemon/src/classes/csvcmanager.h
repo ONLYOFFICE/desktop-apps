@@ -37,12 +37,11 @@
 #define CSVCMANAGER_H
 
 #include "classes/csocket.h"
+#include "classes/cdownloader.h"
 #include <future>
 #ifdef _WIN32
-# include "classes/platform_win/cdownloader.h"
 # include "classes/platform_win/cunzip.h"
 #else
-# include "classes/platform_linux/cdownloader.h"
 # include "classes/platform_linux/cunzip.h"
 #endif
 
@@ -61,7 +60,7 @@ public:
 
 private:
     void init();
-    void onQueryResponse(const int error, const int lenght);
+    void onQueryResponse(const int error, const uint64_t lenght);
     void onCompleteUnzip(const int error);
     void onCompleteSlot(const int error, const tstring &filePath);
     void onProgressSlot(const int percent);

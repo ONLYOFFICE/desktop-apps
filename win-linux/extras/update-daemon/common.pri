@@ -18,6 +18,7 @@ INCLUDEPATH += $$PWD/../../src/prop
 HEADERS += $$PWD/src/version.h \
            $$PWD/src/classes/csocket.h \
            $$PWD/src/classes/csvcmanager.h \
+           $$PWD/src/classes/cdownloader.h \
            $$PWD/src/classes/cjson_p.h \
            $$PWD/src/classes/cjson.h \
            $$PWD/src/classes/translator.h
@@ -66,7 +67,7 @@ core_windows {
                $$PWD/src/platform_win/svccontrol.h \
                $$PWD/src/classes/platform_win/capplication.h \
                $$PWD/src/classes/platform_win/cunzip.h \
-               $$PWD/src/classes/platform_win/cdownloader.h \
+               $$PWD/src/classes/platform_win/httptransaction_p.h \
                $$PWD/src/classes/platform_win/ctimer.h
 
     SOURCES += $$PWD/src/platform_win/main.cpp \
@@ -123,7 +124,6 @@ core_linux {
     HEADERS += $$PWD/src/platform_linux/utils.h \
                $$PWD/src/classes/platform_linux/capplication.h \
                $$PWD/src/classes/platform_linux/cunzip.h \
-               $$PWD/src/classes/platform_linux/cdownloader.h \
                $$PWD/src/classes/platform_linux/ctimer.h
 
     SOURCES += $$PWD/src/platform_linux/main.cpp \

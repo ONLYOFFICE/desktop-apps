@@ -38,11 +38,16 @@
 
 #include <string>
 #include <functional>
+#include <cstdint>
+#ifdef _WIN32
+# define tstring std::wstring
+#else
+# define tstring std::string
+#endif
 
 typedef std::function<void(int)> FnVoidInt;
-typedef std::function<void(int,int)> FnVoidIntInt;
-
-using std::string;
+typedef std::function<void(int, uint64_t)> FnVoidIntInt;
+typedef std::function<void(int, const tstring&)> FnVoidIntStr;
 
 
 class CDownloaderPrivate;
@@ -53,17 +58,28 @@ public:
     CDownloader();
     ~CDownloader();
 
-    bool isUrlAccessible(const string &url);
-    void queryContentLenght(const string &url);
-    void downloadFile(const string &url, const string &filePath);
-    void start();
-    void pause();
+    CDownloader(const CDownloader&) = delete;
+    CDownloader& operator=(const CDownloader&) = delete;
+
+    enum Result
+    {
+        Success      =  0,
+        Aborted      =  1,
+        OutOfMemory  = -1,
+        NetworkError = -2,
+        InvalidUrl   = -3,
+        FileOpError  = -4,
+        UnknownError = -5
+    };
+
+    bool isUrlAccessible(const tstring &url);
+    void queryContentLength(const tstring &url);
+    void downloadFile(const tstring &url, const tstring &filePath);
     void stop();
-    string GetFilePath();
 
     /* callback */
     void onQueryResponse(FnVoidIntInt callback);
-    void onComplete(FnVoidInt callback);
+    void onComplete(FnVoidIntStr callback);
     void onProgress(FnVoidInt callback);
 
 private:
