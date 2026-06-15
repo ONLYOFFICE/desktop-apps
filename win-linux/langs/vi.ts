@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>Mẫu PDF (*.pdf)</translation>
+        <translation>Mẫu PDF ONLYOFFICE (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -417,32 +417,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Vẽ Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Vẽ có hỗ trợ macro trong Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Mẫu Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Mẫu Visio hỗ trợ macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Mẫu Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Mẫu Visio hỗ trợ macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -509,17 +509,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
         <source>Visio diagram</source>
-        <translation type="unfinished"></translation>
+        <translation>Sơ đồ Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>

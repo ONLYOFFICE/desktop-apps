@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>PDF-skjema (*.pdf)</translation>
+        <translation>ONLYOFFICE PDF-skjema (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -427,7 +427,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio Stencil</translation>
+        <translation>Visio sjablong</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
@@ -509,17 +509,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
         <source>Visio diagram</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio-diagram</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>

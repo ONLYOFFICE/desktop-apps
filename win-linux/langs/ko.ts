@@ -358,7 +358,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>PDF 양식 (*.pdf)</translation>
+        <translation>ONLYOFFICE PDF 양식 (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -413,7 +413,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio Drawing</translation>
+        <translation>Visio 드로잉</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>

@@ -401,7 +401,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>Formulir PDF (*.pdf)</translation>
+        <translation>Formulir PDF ONLYOFFICE (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -431,32 +431,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Gambar Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Gambar Visio yang Diaktifkan Makro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Stensil Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Stensil Visio yang Diaktifkan Makro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Templat Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Templat Visio yang Diaktifkan Makro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
@@ -528,22 +528,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format gambar tidak dikenal.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="512"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format video tidak dikenal.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format audio tidak dikenal.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Format tidak dikenal.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -803,27 +803,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pembaruan gagal: kehabisan memori!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pembaruan gagal: kesalahan koneksi server!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pembaruan gagal: URL salah!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pembaruan gagal: tidak dapat membuat file!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pembaruan gagal: kesalahan jaringan!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>

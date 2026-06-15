@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>PDF-formulier (*.pdf)</translation>
+        <translation>ONLYOFFICE PDF-formulier (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -422,7 +422,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio-macro-enabled tekening</translation>
+        <translation>Visio-tekening met macro-ondersteuning</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
@@ -432,7 +432,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio Macro-Enabled Stencil</translation>
+        <translation>Visio-stencil met macro-ondersteuning</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>

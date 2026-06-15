@@ -346,7 +346,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>پی ڈی ایف فارم (*.pdf)</translation>
+        <translation>ONLYOFFICE پی ڈی ایف فارم (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -446,7 +446,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="214"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 پہلے سے موجود ہے۔&lt;br&gt;کیا آپ اسے تبدیل کرنا چاہتے ہیں؟</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="240"/>
@@ -518,22 +518,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>نامعلوم تصویری فارمیٹ۔</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="512"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>نامعلوم ویڈیو فارمیٹ۔</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>نامعلوم آڈیو فارمیٹ۔</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>نامعلوم فارمیٹ۔</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="267"/>
@@ -756,27 +756,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>اپ ڈیٹ ناکام: میموری ختم!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>اپ ڈیٹ ناکام: سرور کنکشن کی خرابی!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>اپ ڈیٹ ناکام: غلط URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>اپ ڈیٹ ناکام: فائل بنانے سے قاصر!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>اپ ڈیٹ ناکام ہو گیا: نیٹ ورک کی خرابی!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>

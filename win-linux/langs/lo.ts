@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>ທ່ານຕ້ອງເປີດແອັບພລິເຄຊັນຄືນໃໝ່ເພື່ອໃຫ້ການຕັ້ງຄ່າມີຜົນ.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2322"/>
@@ -143,12 +143,12 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="175"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>ດາວໂຫຼດ</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="178"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>ລຶບລ້າງ</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="259"/>
@@ -159,22 +159,22 @@
         <location filename="../src/components/cdownloadwidget.cpp" line="278"/>
         <location filename="../src/components/cdownloadwidget.cpp" line="387"/>
         <source>kBps</source>
-        <translation type="unfinished"></translation>
+        <translation>kBps</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="306"/>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>ຍົກເລີກແລ້ວ</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="343"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>ເປີດ</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="359"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>ສະແດງໃນໂຟນເດີ</translation>
     </message>
 </context>
 <context>
@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ແບບຟອມ PDF (*.pdf)</translation>
+        <translation>ONLYOFFICE ແບບຟອມ PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>ແຜ່ນວຽກ Excel Binary (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
@@ -412,37 +412,37 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>ຮູບພາບ SVG (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>ຮູບແຕ້ມ Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>ຮູບແຕ້ມທີ່ເປີດໃຊ້ງານ Visio Macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>ແມ່ແບບ Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>ແມ່ແບບ Visio ທີ່ເປີດໃຊ້ງານ Macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>ແມ່ແບບ Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>ແມ່ແບບທີ່ເປີດໃຊ້ງານ Visio Macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -509,37 +509,37 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
         <source>Visio diagram</source>
-        <translation type="unfinished"></translation>
+        <translation>ແຜນວາດ Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຮູບແບບຮູບພາບທີ່ບໍ່ຮູ້ຈັກ.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="512"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຮູບແບບວິດີໂອທີ່ບໍ່ຮູ້ຈັກ.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຮູບແບບສຽງທີ່ບໍ່ຮູ້ຈັກ.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຮູບແບບທີ່ບໍ່ຮູ້ຈັກ.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="268"/>
@@ -579,7 +579,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="368"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>ໄຟລ໌ຮູບແບບ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="289"/>
@@ -624,17 +624,17 @@
         <location filename="../src/windows/cmainwindow.cpp" line="83"/>
         <location filename="../src/windows/cmainwindow.cpp" line="636"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>ໜ້າຕ່າງຫຼັກ</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="316"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>ມີເອກະສານຫຼາຍກວ່າໜຶ່ງສະບັບເປີດຢູ່.&lt;br&gt;ປິດໜ້າຕ່າງແລ້ວບໍ?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="315"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຢ່າຖາມອີກ.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="963"/>
@@ -694,47 +694,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>ປິດ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>ປິດບັນທຶກແລ້ວ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>ປິດທັງໝົດ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>ສະແດງໃນໂຟນເດີ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>ຍ້າຍໄປເລີ່ມຕົ້ນ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>ຍ້າຍໄປຈຸດສິ້ນສຸດ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>ຖອນປັກໝຸດແຖບໃສ່ໜ້າຕ່າງ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="381"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>ປັກໝຸດໃສ່ແຖບ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="382"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>ສ້າງໃໝ່</translation>
     </message>
 </context>
 <context>
@@ -785,57 +785,57 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="106"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>ກວດສອບການອັບເດດ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>ບໍ່ສາມາດກວດສອບການອັບເດດໄດ້: URL ບໍ່ໄດ້ກຳນົດ.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>ການອັບເດດລົ້ມເຫຼວ: ໝົດໜ່ວຍຄວາມຈຳ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>ການອັບເດດລົ້ມເຫຼວ: ການເຊື່ອມຕໍ່ເຊີບເວີຜິດພາດ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>ການອັບເດດລົ້ມເຫຼວ: URL ຜິດ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>ການອັບເດດລົ້ມເຫຼວ: ບໍ່ສາມາດສ້າງໄຟລ໌ໄດ້!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>ການອັບເດດລົ້ມເຫຼວ: ເຄືອຂ່າຍຜິດພາດ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>ເພື່ອສຳເລັດການອັບເດດ, ເປີດແອັບຄືນໃໝ່</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="108"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>ເລີ່ມຕົ້ນໃໝ່</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>ກຳລັງກວດສອບການອັບເດດ...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>ບໍ່ອະນຸຍາດໃຫ້ອັບເດດ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="499"/>
@@ -849,7 +849,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>ກຳລັງດາວໂຫຼດເວີຊັນໃໝ່ %1 (%2%)</translation>
     </message>
     <message>
         <source>An error occurred while loading updates: Update Service not found!</source>
@@ -863,17 +863,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນຂະນະທີ່ໂຫຼດການອັບເດດ: URL ແພັກເກດຫວ່າງເປົ່າ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>ອັບເດດແພັກເກດຜິດພາດ: ຜົນລວມ md5 ບໍ່ກົງກັບຕົ້ນສະບັບ.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>ກຳລັງກະກຽມອັບເດດ...</translation>
     </message>
     <message>
         <source>An error occurred while unzip updates: Update Service not found!</source>
@@ -882,72 +882,72 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>ມີການອັບເດດແລ້ວ (ເວີຊັນ %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="107"/>
         <source>Download update</source>
-        <translation>ດາວໂຫລດອັບເດດ</translation>
+        <translation>ດາວໂຫຼດອັບເດດ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>ເວີຊັນປັດຈຸບັນເປັນເວີຊັນໃໝ່ແລ້ວ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນຂະນະທີ່ກຳລັງແຍກໄຟລ໌ເກັບມ້ຽນ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຄວາມຜິດພາດຂອງການບໍລິການ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Last check performed %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ການກວດສອບຄັ້ງສຸດທ້າຍໄດ້ດຳເນີນການ %1</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>ມີການອັບເດດບໍລິການແລ້ວ (ເວີຊັນ %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>ກຳລັງກະກຽມອັບເດດ (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນຂະນະທີ່ກວດສອບການອັບເດດ: ການບໍລິການອັບເດດບໍ່ໄດ້ຖືກຕິດຕັ້ງ ຫຼື ບໍ່ໄດ້ເຮັດວຽກ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນຂະນະທີ່ໂຫຼດການອັບເດດ: ການບໍລິການອັບເດດບໍ່ໄດ້ຖືກຕິດຕັ້ງ ຫຼື ບໍ່ໄດ້ເຮັດວຽກ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນຂະນະທີ່ unzip ການອັບເດດ: ການບໍລິການອັບເດດບໍ່ໄດ້ຖືກຕິດຕັ້ງ ຫຼື ບໍ່ໄດ້ເຮັດວຽກ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນການເປີດໄຟລ໌ JSON.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="889"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>ເວີຊັນປັດຈຸບັນບໍ່ຮອງຮັບການຕິດຕັ້ງການອັບເດດນີ້ໂດຍກົງ. ເພື່ອຕິດຕັ້ງການອັບເດດ, ທ່ານສາມາດດາວໂຫລດແພັກເກດທີ່ຕ້ອງການຈາກເວັບໄຊທ໌ທາງການ.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="891"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>ມີການອັບເດດແລ້ວ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="894"/>
@@ -955,7 +955,7 @@
         <location filename="../src/cupdatemanager.cpp" line="940"/>
         <location filename="../src/cupdatemanager.cpp" line="951"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>ເວີຊັນປັດຈຸບັນ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="895"/>
@@ -963,22 +963,22 @@
         <location filename="../src/cupdatemanager.cpp" line="941"/>
         <location filename="../src/cupdatemanager.cpp" line="951"/>
         <source>New version</source>
-        <translation type="unfinished"></translation>
+        <translation>ເວີຊັນໃໝ່</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="952"/>
         <source>To finish updating, restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>ເພື່ອສຳເລັດການອັບເດດ, ໃຫ້ເປີດແອັບຄືນໃໝ່</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="888"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>ທ່ານຕ້ອງການດາວໂຫຼດການອັບເດດດຽວນີ້ບໍ?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="937"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>ການອັບເດດພ້ອມທີ່ຈະຕິດຕັ້ງແລ້ວ</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -1023,7 +1023,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="229"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>ບໍ່ມີໜ້າທີ່ຕັ້ງຄ່າໃຫ້ພິມ.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="267"/>
@@ -1067,12 +1067,12 @@
         <location filename="../src/components/cnotification.cpp" line="70"/>
         <location filename="../src/components/cnotification.cpp" line="72"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>ຕໍ່ມາ</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="87"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>ເລີ່ມຕົ້ນໃໝ່ດຽວນີ້</translation>
     </message>
     <message>
         <source>Install on Next Start</source>
@@ -1120,7 +1120,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="753"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນຂະນະທີ່ເລີ່ມຕິດຕັ້ງການອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="763"/>
@@ -1189,38 +1189,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="391"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>ໄຟລ໌ %1 ຖືກໂຫຼດແລ້ວ. ປ່ຽນມັນບໍ?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>kB</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="517"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>ໄວຍາກອນສຳລັບຊ່ວງໜ້າບໍ່ຖືກຕ້ອງ.&lt;br&gt;ໃສ່ຊ່ວງໜ້າໜຶ່ງ ຫຼື ຫຼາຍອັນ, ຕົວຢ່າງ: 1-3,7,11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="557"/>
         <location filename="../src/platform_win/printdialog.cpp" line="565"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>ຊ່ວງທີ່ລະບຸ %1-%2 ເກີນຂີດຈຳກັດຂອງເອກະສານ: ຈຳນວນໜ້າສູງສຸດແມ່ນ %3</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="523"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>ບໍ່ສາມາດເປີດກ່ອງໂຕ້ຕອບການພິມ:&lt;br&gt;%1</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="96"/>
@@ -1243,44 +1243,44 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="234"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>ທ່ານຕ້ອງການເຮັດໃຫ້ %1 ເປັນແອັບພລິເຄຊັນເລີ່ມຕົ້ນຂອງທ່ານສຳລັບສ່ວນຂະຫຍາຍ: %2 ບໍ?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="236"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>ທ່ານຕ້ອງການເຮັດໃຫ້ %1 ເປັນແອັບພລິເຄຊັນເລີ່ມຕົ້ນຂອງທ່ານສຳລັບສ່ວນຂະຫຍາຍທີ່ຮອງຮັບທັງໝົດບໍ?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="240"/>
         <source>Set Default App</source>
-        <translation type="unfinished"></translation>
+        <translation>ຕັ້ງຄ່າແອັບເລີ່ມຕົ້ນ</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="251"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>ຢ່າສະແດງຂໍ້ຄວາມນີ້ອີກ</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>ມີເອກະສານທີ່ຍັງບໍ່ໄດ້ບັນທຶກໄວ້</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="71"/>
         <location filename="../src/components/cnotification.cpp" line="74"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>ຕິດຕັ້ງ</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="73"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>ເລີ່ມຕົ້ນໃໝ່</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="75"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>ດາວໂຫຼດ</translation>
     </message>
 </context>
 <context>

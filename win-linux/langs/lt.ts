@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>PDF forma (*.pdf)</translation>
+        <translation>ONLYOFFICE PDF forma (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -422,7 +422,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio makrokomandos įgalintas piešinys</translation>
+        <translation>Visio makrokomandos įgalintas brėžinys</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>

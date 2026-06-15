@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>PDF veidlapa (*.pdf)</translation>
+        <translation>ONLYOFFICE PDF veidlapa (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -417,32 +417,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio zīmēšana</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Makro iespējota Visio zīmēšana</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio trafarets</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Makro iespējota Visio trafarets</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>Visio zīmēšanas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>Makro iespējota Visio zīmēšanas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -524,22 +524,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezināms attēla formāts.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="512"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezināms video formāts.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezināms audio formāts.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezināms formāts.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="268"/>

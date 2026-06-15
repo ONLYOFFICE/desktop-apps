@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>PDF űrlap (*.pdf)</translation>
+        <translation>PDF űrlap ONLYOFFICE (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -437,12 +437,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio-sablon</translation>
+        <translation>Visio makróbarát sablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Makróbarát Visio sablon</translation>
+        <translation>Visio makróbarát sablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

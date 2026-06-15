@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>सेटिंग्स को लागू करने के लिए आपको एप्लिकेशन को रीस्टार्ट करना होगा।.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2322"/>
@@ -143,12 +143,12 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="175"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="178"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>साफ़ करें</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="259"/>
@@ -159,22 +159,22 @@
         <location filename="../src/components/cdownloadwidget.cpp" line="278"/>
         <location filename="../src/components/cdownloadwidget.cpp" line="387"/>
         <source>kBps</source>
-        <translation type="unfinished"></translation>
+        <translation>kBps</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="306"/>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>कैंसल किया गया</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="343"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>खोलें</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="359"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ोल्डर में दिखाएँ</translation>
     </message>
 </context>
 <context>
@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>पीडीएफ फॉर्म (*.pdf)</translation>
+        <translation>पीडीएफ फॉर्म ONLYOFFICE (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel बाइनरी वर्कशीट (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
@@ -417,32 +417,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation type="unfinished"></translation>
+        <translation>विज़ियो ड्रॉइंग</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation type="unfinished"></translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation type="unfinished"></translation>
+        <translation>विज़ियो स्टेंसिल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation type="unfinished"></translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो स्टेंसिल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation type="unfinished"></translation>
+        <translation>विज़ियो ड्रॉइंग टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation type="unfinished"></translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
@@ -509,7 +509,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
         <source>Visio diagram</source>
-        <translation type="unfinished"></translation>
+        <translation>विज़ियो डायग्राम</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="321"/>
@@ -524,22 +524,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="511"/>
         <source>Unknown image format.</source>
-        <translation type="unfinished"></translation>
+        <translation>इमेज फ़ॉर्मेट पता नहीं है।.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="512"/>
         <source>Unknown video format.</source>
-        <translation type="unfinished"></translation>
+        <translation>वीडियो फ़ॉर्मेट पता नहीं है।.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown audio format.</source>
-        <translation type="unfinished"></translation>
+        <translation>ऑडियो फ़ॉर्मेट पता नहीं है।.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="513"/>
         <source>Unknown format.</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ॉर्मेट पता नहीं है।.</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="268"/>
@@ -624,7 +624,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="83"/>
         <location filename="../src/windows/cmainwindow.cpp" line="636"/>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>मुख्य विंडो</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="316"/>
@@ -698,47 +698,47 @@
     <message>
         <location filename="../src/components/cmenu.cpp" line="374"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>बंद करें</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="375"/>
         <source>Close saved</source>
-        <translation type="unfinished"></translation>
+        <translation>सहेजा गया बंद करें</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="376"/>
         <source>Close all</source>
-        <translation type="unfinished"></translation>
+        <translation>सभी बंद करें</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="377"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>फ़ोल्डर में दिखाएँ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="378"/>
         <source>Move to start</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रारंभ करने के लिए ले जाएँ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="379"/>
         <source>Move to end</source>
-        <translation type="unfinished"></translation>
+        <translation>अंत पर जाएँ</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="380"/>
         <source>Unpin tab to window</source>
-        <translation type="unfinished"></translation>
+        <translation>टैब को विंडो से अनपिन करें</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="381"/>
         <source>Pin to tab</source>
-        <translation type="unfinished"></translation>
+        <translation>टैब पर पिन करें</translation>
     </message>
     <message>
         <location filename="../src/components/cmenu.cpp" line="382"/>
         <source>Create new</source>
-        <translation type="unfinished"></translation>
+        <translation>नया निर्माण</translation>
     </message>
 </context>
 <context>
@@ -799,27 +799,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेट फेल: मेमोरी खत्म!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेट फेल: सर्वर कनेक्शन एरर!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेट फेल: गलत URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेट फेल: फ़ाइल नहीं बन पा रही है!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Update failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेट फेल: नेटवर्क एरर!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
@@ -936,12 +936,12 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Service update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>सर्विस अपडेट उपलब्ध है (वर्जन %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेट तैयार किया जा रहा है (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
@@ -1108,12 +1108,12 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="753"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेट इंस्टॉल करना शुरू करते समय एक एरर आया: अपडेट सेवा नहीं मिली!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="763"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation>फ़ाइलें बदलना आरंभ करते समय कोई त्रुटि हुई है:  अपडेट सेवा नहीं मिली!</translation>
+        <translation>फ़ाइलें बदलना आरंभ करते समय कोई त्रुटि हुई है: अपडेट सेवा नहीं मिली!</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="75"/>
@@ -1231,34 +1231,34 @@
     <message>
         <location filename="../src/platform_win/association.cpp" line="234"/>
         <source>Do you want to make %1 your default application for extension: %2?</source>
-        <translation type="unfinished"></translation>
+        <translation>क्या आप एक्सटेंशन: %2 के लिए %1 को अपना डिफ़ॉल्ट एप्लिकेशन बनाना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="236"/>
         <source>Do you want to make %1 your default application for all supported extensions?</source>
-        <translation type="unfinished"></translation>
+        <translation>क्या आप सभी सपोर्टेड एक्सटेंशन के लिए %1 को अपना डिफ़ॉल्ट एप्लिकेशन बनाना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="240"/>
         <source>Set Default App</source>
-        <translation type="unfinished"></translation>
+        <translation>डिफ़ॉल्ट ऐप सेट करें</translation>
     </message>
     <message>
         <location filename="../src/platform_win/association.cpp" line="251"/>
         <source>Do not show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>यह मैसेज दोबारा न दिखाएं</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/singleapplication.cpp" line="101"/>
         <source>There are unsaved documents</source>
         <comment>SingleApplication</comment>
-        <translation type="unfinished"></translation>
+        <translation>कुछ डॉक्यूमेंट सेव नहीं हुए हैं</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="71"/>
         <location filename="../src/components/cnotification.cpp" line="74"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>इंस्टॉल करें</translation>
     </message>
     <message>
         <location filename="../src/components/cnotification.cpp" line="73"/>
@@ -1268,7 +1268,7 @@
     <message>
         <location filename="../src/components/cnotification.cpp" line="75"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड करना</translation>
     </message>
 </context>
 <context>
