@@ -7,6 +7,7 @@ export function AiTogglePill() {
   return (
     <Button type="button" variant="primary" class={styles.pill} onClick={() => expandPanel()}>
       <svg class={styles.pillIcon} aria-hidden="true">
+        {/* TODO: change icon */}
         <use href="#aichat" />
       </svg>
       {t("aiChatPillLabel")}
