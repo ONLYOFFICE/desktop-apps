@@ -17,18 +17,20 @@ function Shell(props) {
   });
 
   return (
-    <div class="shell">
+    <div class="shell" data-ai-open={aichat.open}>
       <div class="col-sidebar">
         <Sidebar />
       </div>
-      <div class="col-center">{props.children}</div>
-      <Show when={settings.useai}>
+      <div class="col-center">
+        {props.children}
+        <Show when={settings.useai && !aichat.open}>
+          <AiTogglePill />
+        </Show>
+      </div>
+      <Show when={settings.useai && aichat.open}>
         <div class="col-ai">
           <AiPanel />
         </div>
-      </Show>
-      <Show when={settings.useai && !aichat.open}>
-        <AiTogglePill />
       </Show>
     </div>
   );
