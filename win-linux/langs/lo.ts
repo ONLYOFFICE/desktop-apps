@@ -432,7 +432,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>ແມ່ແບບ Visio ທີ່ເປີດໃຊ້ງານ Macro</translation>
+        <translation>ແມ່ແບບທີ່ເປີດໃຊ້ງານ Visio Macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
