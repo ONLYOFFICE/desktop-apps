@@ -24,7 +24,7 @@
       line-height: 20px;
       cursor: pointer;
       text-decoration: none;
-      padding: 12px 8px 8px;
+      padding: 8px;
       border-radius: 8px;
 
       .icon {
@@ -35,6 +35,7 @@
       span {
         font-size: 10px;
         line-height: 1;
+        text-align: center;
       }
 
       &:hover {
@@ -64,6 +65,10 @@
 
   &.devider {
     flex-grow: 1;
+  }
+
+  &.hidden {
+    display: none;
   }
 }
 
