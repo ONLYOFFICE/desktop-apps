@@ -324,7 +324,7 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
         <source>ONLYOFFICE Form Document</source>
-        <target state="translated">PDF 양식 ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE PDF 양식</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
