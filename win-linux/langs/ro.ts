@@ -372,12 +372,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Document Office Open XML</translation>
+        <translation>Document Office Open XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>Șablon document OpenDocument</translation>
+        <translation>Șablon document OpenDocument (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -387,12 +387,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Șablon prezentare OpenDocument</translation>
+        <translation>Șablon prezentare OpenDocument (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Şablon foaie de calcul cu macrocomenzi activate</translation>
+        <translation>Şablon foaie de calcul cu macrocomenzi activate (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Șablon foaie de calcul OpenDocument</translation>
+        <translation>Șablon foaie de calcul OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -437,32 +437,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Desen Visio</translation>
+        <translation>Desen Visio (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Desen Visio activat pentru macrocomandă</translation>
+        <translation>Desen Visio activat pentru macrocomandă (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Tipar Visio</translation>
+        <translation>Tipar Visio (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Tipar Visio activat pentru macrocomandă</translation>
+        <translation>Tipar Visio activat pentru macrocomandă (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Șablon Visio</translation>
+        <translation>Șablon Visio (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Șablon Visio activat pentru macrocomandă</translation>
+        <translation>Șablon Visio activat pentru macrocomandă (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

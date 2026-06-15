@@ -352,12 +352,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>ऑफिस ओपन एक्सएमएल दस्तावेज़</translation>
+        <translation>ऑफिस ओपन एक्सएमएल दस्तावेज़ (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट</translation>
+        <translation>ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -367,12 +367,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट</translation>
+        <translation>ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>मैक्रो-सक्षम स्प्रेडशीट का टेम्पलेट</translation>
+        <translation>मैक्रो-सक्षम स्प्रेडशीट का टेम्पलेट (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट</translation>
+        <translation>ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -417,32 +417,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>विज़ियो ड्रॉइंग</translation>
+        <translation>विज़ियो ड्रॉइंग (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग</translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>विज़ियो स्टेंसिल</translation>
+        <translation>विज़ियो स्टेंसिल (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>मैक्रो-इनेबल्ड विज़ियो स्टेंसिल</translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो स्टेंसिल (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>विज़ियो ड्रॉइंग टेम्पलेट</translation>
+        <translation>विज़ियो ड्रॉइंग टेम्पलेट (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग टेम्पलेट</translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग टेम्पलेट (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

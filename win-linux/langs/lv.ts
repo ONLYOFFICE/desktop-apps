@@ -352,12 +352,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML dokuments</translation>
+        <translation>Office Open XML dokuments (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Dokumenta veidne</translation>
+        <translation>OpenDocument Dokumenta veidne (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -367,12 +367,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Prezentācijas veidne</translation>
+        <translation>OpenDocument Prezentācijas veidne (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Izklājlapas veidne ar iespējotu makro</translation>
+        <translation>Izklājlapas veidne ar iespējotu makro (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Izklājlapas veidne</translation>
+        <translation>OpenDocument Izklājlapas veidne (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -417,32 +417,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio zīmēšana</translation>
+        <translation>Visio zīmēšana (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Makro iespējota Visio zīmēšana</translation>
+        <translation>Makro iespējota Visio zīmēšana (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio trafarets</translation>
+        <translation>Visio trafarets (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Makro iespējota Visio trafarets</translation>
+        <translation>Makro iespējota Visio trafarets (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio zīmēšanas veidne</translation>
+        <translation>Visio zīmēšanas veidne (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Makro iespējota Visio zīmēšanas veidne</translation>
+        <translation>Makro iespējota Visio zīmēšanas veidne (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

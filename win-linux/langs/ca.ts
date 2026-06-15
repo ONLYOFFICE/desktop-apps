@@ -352,12 +352,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Document Office Open XML</translation>
+        <translation>Document Office Open XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>Plantilla de document OpenDocument</translation>
+        <translation>Plantilla de document OpenDocument (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -367,12 +367,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Plantilla de presentació OpenDocument</translation>
+        <translation>Plantilla de presentació OpenDocument (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Plantilla de full de càlcul amb macros</translation>
+        <translation>Plantilla de full de càlcul amb macros (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Plantilla de full de càlcul OpenDocument</translation>
+        <translation>Plantilla de full de càlcul OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -417,32 +417,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Dibuix de Visio</translation>
+        <translation>Dibuix de Visio (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Dibuix activat per macro de Visio</translation>
+        <translation>Dibuix activat per macro de Visio (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Plantilla de Visio</translation>
+        <translation>Plantilla de Visio (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Plantilla activada per macro de Visio</translation>
+        <translation>Plantilla activada per macro de Visio (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Plantilla de Visio</translation>
+        <translation>Plantilla de Visio (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Plantilla activada per a macros de Visio</translation>
+        <translation>Plantilla activada per a macros de Visio (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

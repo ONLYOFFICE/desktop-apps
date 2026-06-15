@@ -352,12 +352,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML-document</translation>
+        <translation>Office Open XML-document (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Document Sjabloon</translation>
+        <translation>OpenDocument Document Sjabloon (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -367,12 +367,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Presentatie Sjabloon</translation>
+        <translation>OpenDocument Presentatie Sjabloon (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Sjabloon Voor Spreadsheet Met Macro&apos;S</translation>
+        <translation>Sjabloon Voor Spreadsheet Met Macro&apos;S (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Spreadsheet Sjabloon</translation>
+        <translation>OpenDocument Spreadsheet Sjabloon (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -417,32 +417,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio-tekening</translation>
+        <translation>Visio-tekening (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio-tekening met macro-ondersteuning</translation>
+        <translation>Visio-tekening met macro-ondersteuning (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio-stencil</translation>
+        <translation>Visio-stencil (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio-stencil met macro-ondersteuning</translation>
+        <translation>Visio-stencil met macro-ondersteuning (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio-sjabloon</translation>
+        <translation>Visio-sjabloon (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio-sjabloon met macro-ondersteuning</translation>
+        <translation>Visio-sjabloon met macro-ondersteuning (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

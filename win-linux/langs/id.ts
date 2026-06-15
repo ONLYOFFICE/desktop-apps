@@ -391,12 +391,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Dokumen Office Open XML</translation>
+        <translation>Dokumen Office Open XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>Templat Dokumen OpenDocument</translation>
+        <translation>Templat Dokumen OpenDocument (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -406,12 +406,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Templat Presentasi OpenDocument</translation>
+        <translation>Templat Presentasi OpenDocument (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Macro-enabled Spreadsheet Template</translation>
+        <translation>Macro-enabled Spreadsheet Template (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -421,7 +421,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Templat Spreadsheet OpenDocument</translation>
+        <translation>Templat Spreadsheet OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
@@ -431,32 +431,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Gambar Visio</translation>
+        <translation>Gambar Visio (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Gambar Visio yang Diaktifkan Makro</translation>
+        <translation>Gambar Visio yang Diaktifkan Makro (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Stensil Visio</translation>
+        <translation>Stensil Visio (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Stensil Visio yang Diaktifkan Makro</translation>
+        <translation>Stensil Visio yang Diaktifkan Makro (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Templat Visio</translation>
+        <translation>Templat Visio (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Templat Visio yang Diaktifkan Makro</translation>
+        <translation>Templat Visio yang Diaktifkan Makro (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>

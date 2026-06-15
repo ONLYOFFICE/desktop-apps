@@ -364,12 +364,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML-dokument</translation>
+        <translation>Office Open XML-dokument (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Dokumentskabelon</translation>
+        <translation>OpenDocument Dokumentskabelon  (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -379,12 +379,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Præsentationsskabelon</translation>
+        <translation>OpenDocument Præsentationsskabelon (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Macro-enabled regnearksskabelon</translation>
+        <translation>Macro-enabled regnearksskabelon (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -394,7 +394,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Regnearksskabelon</translation>
+        <translation>OpenDocument Regnearksskabelon (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -429,32 +429,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio-tegning</translation>
+        <translation>Visio-tegning (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio Macro-aktiveret tegning</translation>
+        <translation>Visio Macro-aktiveret tegning (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio-sjablon</translation>
+        <translation>Visio-sjablon (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio Makro-aktiveret stencil</translation>
+        <translation>Visio Makro-aktiveret stencil (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio-skabelon</translation>
+        <translation>Visio-skabelon (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio Makro-aktiveret skabelon</translation>
+        <translation>Visio Makro-aktiveret skabelon (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

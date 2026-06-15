@@ -368,12 +368,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>ඔෆිස් ඕපන් XML ලේඛනය</translation>
+        <translation>ඔෆිස් ඕපන් XML ලේඛනය (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -383,12 +383,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
+        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -433,32 +433,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio ඇඳීම</translation>
+        <translation>Visio ඇඳීම (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio මැක්‍රෝ-සක්‍රීය ඇඳීම</translation>
+        <translation>Visio මැක්‍රෝ-සක්‍රීය ඇඳීම (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio ස්ටෙන්සිල්</translation>
+        <translation>Visio ස්ටෙන්සිල් (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio මැක්‍රෝ-සක්‍රීය ස්ටෙන්සිල්</translation>
+        <translation>Visio මැක්‍රෝ-සක්‍රීය ස්ටෙන්සිල් (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio සැකිල්ල</translation>
+        <translation>Visio සැකිල්ල (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio මැක්‍රෝ-සක්‍රීය සැකිල්ල</translation>
+        <translation>Visio මැක්‍රෝ-සක්‍රීය සැකිල්ල (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

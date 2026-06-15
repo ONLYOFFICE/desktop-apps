@@ -336,12 +336,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>آفس اوپن XML دستاویز</translation>
+        <translation>آفس اوپن XML دستاویز (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument دستاویز ٹیمپلیٹ</translation>
+        <translation>OpenDocument  (*.ott)دستاویز ٹیمپلیٹ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -351,12 +351,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>اوپن دستاویز پریزنٹیشن ٹیمپلیٹ</translation>
+        <translation>اوپن دستاویز پریزنٹیشن ٹیمپلیٹ (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>میکرو فعال اسپریڈشیٹ ٹیمپلیٹ</translation>
+        <translation>میکرو فعال اسپریڈشیٹ ٹیمپلیٹ (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>اوپن دستاویز اسپریڈشیٹ ٹیمپلیٹ</translation>
+        <translation>اوپن دستاویز اسپریڈشیٹ ٹیمپلیٹ (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>

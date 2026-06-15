@@ -259,7 +259,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
         <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument文件 (*.odt)</translation>
+        <translation type="unfinished">OpenDocument 文件 (*.odt)</translation>
     </message>
     <message>
         <source>OpenDocument Document template (*.ott)</source>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
         <source>ODP File (*.odp)</source>
-        <translation>OpenDocument簡報 (*.odp)</translation>
+        <translation>OpenDocument 簡報 (*.odp)</translation>
     </message>
     <message>
         <source>OpenDocument Presentation Template (*.otp)</source>
@@ -368,12 +368,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML 文件</translation>
+        <translation>Office Open XML 文件 (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument文件範本</translation>
+        <translation>OpenDocument 文件範本 (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -383,12 +383,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument簡報範本</translation>
+        <translation>OpenDocument 簡報範本 (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>啟用巨集的試算表範本</translation>
+        <translation>啟用巨集的試算表範本 (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument試算表範本</translation>
+        <translation>OpenDocument 試算表範本 (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -433,32 +433,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio 繪圖</translation>
+        <translation>Visio 繪圖 (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio 啟用巨集的繪圖</translation>
+        <translation>Visio 啟用巨集的繪圖 (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio 模具</translation>
+        <translation>Visio 模具 (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio 啟用巨集的模具</translation>
+        <translation>Visio 啟用巨集的模具 (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio 範本</translation>
+        <translation>Visio 範本 (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio 啟用巨集的範本</translation>
+        <translation>Visio 啟用巨集的範本 (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

@@ -259,7 +259,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
         <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument文本文件 (*.odt)</translation>
+        <translation>OpenDocument 文本文件 (*.odt)</translation>
     </message>
     <message>
         <source>OpenDocument Document template (*.ott)</source>
@@ -298,7 +298,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket文件 (*.mobi)</translation>
+        <translation>Mobipocket 文件 (*.mobi)</translation>
     </message>
     <message>
         <source>OFORM Document (*.oform)</source>
@@ -307,7 +307,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE表单模板 (*.docxf)</translation>
+        <translation>ONLYOFFICE 表单模板 (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
         <source>ODP File (*.odp)</source>
-        <translation>OpenDocument演示文稿 (*.odp)</translation>
+        <translation>OpenDocument 演示文稿 (*.odp)</translation>
     </message>
     <message>
         <source>OpenDocument Presentation Template (*.otp)</source>
@@ -363,7 +363,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="98"/>
         <source>ODS File (*.ods)</source>
-        <translation>OpenDocument电子表格 (*.ods)</translation>
+        <translation>OpenDocument 电子表格 (*.ods)</translation>
     </message>
     <message>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
@@ -372,12 +372,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML 文档</translation>
+        <translation>Office Open XML 文档 (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument文档模板</translation>
+        <translation>OpenDocument 文档模板 (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -387,12 +387,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument演示模板</translation>
+        <translation>OpenDocument 演示模板 (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>支持宏的电子表格模板</translation>
+        <translation>支持宏的电子表格模板 (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument电子表格模板</translation>
+        <translation>OpenDocument 电子表格模板 (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -437,32 +437,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio 绘图</translation>
+        <translation>Visio 绘图 (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio 启用宏的绘图</translation>
+        <translation>Visio 启用宏的绘图 (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio 模具</translation>
+        <translation>Visio 模具 (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio 启用宏的模具</translation>
+        <translation>Visio 启用宏的模具 (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio 模板</translation>
+        <translation>Visio 模板 (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio 启用宏的模板</translation>
+        <translation>Visio 启用宏的模板 (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>

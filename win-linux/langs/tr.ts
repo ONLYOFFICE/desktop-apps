@@ -352,27 +352,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML Belgesi</translation>
+        <translation>Office Open XML Belgesi (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Belge Şablonu</translation>
+        <translation>OpenDocument Belge Şablonu (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished">ONLYOFFICE PDF Formu (*.pdf)</translation>
+        <translation>ONLYOFFICE PDF Formu (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Sunum Şablonu</translation>
+        <translation>OpenDocument Sunum Şablonu (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Makro Etkinleştirilmiş Elektronik Tablo Şablonu</translation>
+        <translation>Makro Etkinleştirilmiş Elektronik Tablo Şablonu (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Tablo Şablonu</translation>
+        <translation>OpenDocument Tablo Şablonu (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -417,32 +417,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>Visio Çizimi</translation>
+        <translation>Visio Çizimi (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>Visio Makro Etkinleştirilmiş Çizim</translation>
+        <translation>Visio Makro Etkinleştirilmiş Çizim (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>Visio Şablonu</translation>
+        <translation>Visio Şablonu (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>Visio Makro Etkinleştirilmiş Şablon</translation>
+        <translation>Visio Makro Etkinleştirilmiş Şablon (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>Visio Şablonu</translation>
+        <translation>Visio Şablonu (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>Visio Makro Etkinleştirilmiş Şablon</translation>
+        <translation>Visio Makro Etkinleştirilmiş Şablon (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
