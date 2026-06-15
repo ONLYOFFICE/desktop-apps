@@ -1,9 +1,11 @@
 import { Show, createEffect, lazy, onMount } from "solid-js";
 import { HashRouter } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
+import About from "./routes/about/index.jsx";
 import { AiPanel, AiTogglePill } from "@/components/ai-panel";
 import { signalAppReady } from "@/sdk";
 import { initSettingsSync } from "@/services/settings-sync";
+import { initAbout } from "@/services/about";
 import { initAiPanel } from "@/services/ai-panel";
 import { settings } from "@/stores/settings";
 import { aichat } from "@/stores/aichat";
@@ -32,6 +34,7 @@ function Shell(props) {
           <AiPanel />
         </div>
       </Show>
+      <About />
     </div>
   );
 }
@@ -47,11 +50,11 @@ const routes = [
     component: lazy(() => import("./routes/settings/layout.jsx")),
     children: [{ path: "/general", component: lazy(() => import("./routes/settings/general/index.jsx")) }],
   },
-  { path: "/about", component: lazy(() => import("./routes/about/index.jsx")) },
 ];
 
 export default function App() {
   initSettingsSync();
+  initAbout();
   initAiPanel();
   onMount(signalAppReady);
   return <HashRouter root={Shell}>{routes}</HashRouter>;

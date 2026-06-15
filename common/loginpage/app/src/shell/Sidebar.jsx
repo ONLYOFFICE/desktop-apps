@@ -1,5 +1,6 @@
 import { A } from "@solidjs/router";
 import { t } from "@/services/l10n";
+import { openAbout } from "@/services/about";
 import "./Sidebar.styles.css";
 
 export default function Sidebar() {
@@ -40,12 +41,12 @@ export default function Sidebar() {
         </A>
       </li>
       <li class="menu-item hidden">
-        <A href="/about" activeClass="selected">
+        <button class="menu-btn" onClick={openAbout}>
           <svg class="icon">
             <use href="#about" />
           </svg>
           <span class="text">{t("actAbout")}</span>
-        </A>
+        </button>
       </li>
     </nav>
   );

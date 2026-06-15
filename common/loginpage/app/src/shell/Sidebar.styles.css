@@ -11,7 +11,8 @@
   list-style: none;
 
   &:not(.separator):not(.devider) {
-    a {
+    a,
+    .menu-btn {
       width: 62px;
       display: flex;
       flex-direction: column;
@@ -47,6 +48,11 @@
       &.selected {
         background: var(--background-toolbar);
       }
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
     }
   }
 
