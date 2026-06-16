@@ -340,12 +340,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>DOCX Document</source>
-        <translation>מסמך  (*.docx)Office Open XML</translation>
+        <translation>מסמך Office Open XML(*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Document template</source>
-        <translation>תבנית מסמך  (*.ott)OpenDocument</translation>
+        <translation>תבנית מסמך OpenDocument (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -355,12 +355,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>תבנית מצגת  (*.otp)OpenDocument</translation>
+        <translation>תבנית מצגת OpenDocument (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>תבנית גיליון אלקטרוני עם מאקרו (*.xltm)</translation>
+        <translation>תבנית גיליון אלקטרוני המאפשרת מאקרו (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -370,7 +370,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>תבנית גיליון אלקטרוני OpenDocument</translation>
+        <translation>תבנית גיליון אלקטרוני של OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="100"/>
@@ -405,32 +405,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>VSDX File</source>
-        <translation>ציור  (*.vsdx)Visio</translation>
+        <translation>ציור Visio (*.vsdx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>VSDM File</source>
-        <translation>ציור עם הפעלת מאקרו של  (*.vsdm)Visio</translation>
+        <translation>ציור Visio עם אפשרות הפעלה באמצעות מאקרו (*.vsdm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
         <source>VSSX File</source>
-        <translation>סטנסיל  (*.vssx)Visio</translation>
+        <translation>סטנסיל Visio (*.vssx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
         <source>VSSM File</source>
-        <translation>סטנסיל עם הפעלת מאקרו של  (*.vssm)Visio</translation>
+        <translation>סטנסיל Visio עם אפשרות הפעלה של מאקרו (*.vssm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
         <source>VSTX File</source>
-        <translation>תבנית  (*.vstx)Visio</translation>
+        <translation>תבנית Visio (*.vstx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="113"/>
         <source>VSTM File</source>
-        <translation>תבנית מופעלת מאקרו של  (*.vstm)Visio</translation>
+        <translation>תבנית Visio מופעלת מאקרו (*.vstm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
