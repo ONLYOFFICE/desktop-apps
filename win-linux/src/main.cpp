@@ -63,6 +63,8 @@ int main( int argc, char *argv[] )
         return 0;
     }
 #else
+    qunsetenv("QT_FONT_DPI");
+    qputenv("QT_SCALE_FACTOR", "1");
     qputenv("QT_QPA_PLATFORM", "xcb");
     qputenv("GDK_BACKEND", "x11");
     InputArgs::init(argc, argv);
