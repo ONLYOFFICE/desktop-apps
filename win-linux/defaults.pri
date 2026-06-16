@@ -1,4 +1,3 @@
-
 QT  += core gui widgets printsupport
 QT  += svg
 
@@ -333,6 +332,13 @@ build_xp {
 
 exists($$PWD/../common/loginpage/deploy/noconnect.html) {
     RESOURCES += $$PWD/extras.qrc
+}
+
+exists($$PWD/../../document-formats/onlyoffice-docs-formats.json) {
+    copy_formats_json.target = copy_formats_json
+    copy_formats_json.commands = $$QMAKE_COPY $$shell_path($$PWD/../../document-formats/onlyoffice-docs-formats.json) $$shell_path($$PWD/../common/converter/)
+    QMAKE_EXTRA_TARGETS += copy_formats_json
+    PRE_TARGETDEPS += copy_formats_json
 }
 
 OBJECTS_DIR = $$DESTDIR/obj
