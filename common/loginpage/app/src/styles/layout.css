@@ -78,7 +78,7 @@ html.ai-resizing * {
   color: var(--text-normal);
   padding: 8px 8px 8px 0;
 
-  > div {
+  > div:first-child {
     border-radius: 8px;
     background: var(--background-action-panel);
   }

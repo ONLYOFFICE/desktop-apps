@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+#box-recent {
+  container-type: inline-size;
+}
+
 /* fixme: ask for actual status */
 #box-recovery {
   .file-list-body,
@@ -161,7 +165,7 @@
   }
 }
 
-@media (max-width: 1037px) {
+@container (max-width: 980px) {
   #box-recent {
     .file-list-head,
     .file-list-body .row {

@@ -9,10 +9,11 @@
 
 .resizeHandle {
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  right: 1.5px;
+  top: 8px;
+  bottom: 8px;
   width: 5px;
+  border-radius: 9999px;
   cursor: col-resize;
   z-index: 2;
   touch-action: none;

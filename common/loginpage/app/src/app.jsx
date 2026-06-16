@@ -2,7 +2,7 @@ import { Show, createEffect, lazy, onMount } from "solid-js";
 import { HashRouter } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
 import About from "./routes/about/index.jsx";
-import { AiPanel, AiTogglePill } from "@/components/ai-panel";
+import { AiPanel, AiTogglePill, ResizeHandle } from "@/components/ai-panel";
 import { signalAppReady } from "@/sdk";
 import { initSettingsSync } from "@/services/settings-sync";
 import { initAbout } from "@/services/about";
@@ -27,6 +27,9 @@ function Shell(props) {
         {props.children}
         <Show when={settings.useai && !aichat.open}>
           <AiTogglePill />
+        </Show>
+        <Show when={settings.useai && aichat.open}>
+          <ResizeHandle />
         </Show>
       </div>
       <Show when={settings.useai && aichat.open}>

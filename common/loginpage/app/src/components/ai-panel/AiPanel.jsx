@@ -1,7 +1,6 @@
 import { onCleanup, onMount } from "solid-js";
 import { aichat, collapsePanel, expandPanel } from "@/stores/aichat";
 import { t } from "@/services/l10n";
-import { ResizeHandle } from "./ResizeHandle.jsx";
 import styles from "./AiPanel.module.css";
 
 export function AiPanel() {
@@ -25,7 +24,6 @@ export function AiPanel() {
 
   return (
     <div class={styles.panel}>
-      <ResizeHandle />
       <button type="button" class={styles.collapseButton} aria-label={t("aiChatClose")} onClick={() => collapsePanel()}>
         <svg class={styles.collapseIcon} aria-hidden="true">
           <use href="#ai-close" />
