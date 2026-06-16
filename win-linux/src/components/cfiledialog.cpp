@@ -42,6 +42,8 @@
 #include "../Common/OfficeFileFormats.h"
 #include <QList>
 #include <QMimeDatabase>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
@@ -118,6 +120,18 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image (*.jpg *.jpeg)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image (*.png)");
+
+    // read supported input formats
+    QFile file(":/formats.json");
+    if (file.open(QIODevice::ReadOnly)) {
+        const QByteArray data = file.readAll();
+        file.close();
+
+        QJsonParseError error;
+        const QJsonDocument doc = QJsonDocument::fromJson(data, &error);
+        if (error.error == QJsonParseError::NoError && doc.isArray())
+            m_jsonFormats = doc.array();
+    }
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()
@@ -254,21 +268,53 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
     }
 }
 
+QString CFileDialogWrapper::getSupportedFiltersByEditor(const QString &type) const
+{
+    QStringList extensions;
+    for (const QJsonValue &val : m_jsonFormats) {
+        const QJsonObject obj = val.toObject();
+        if (obj.value(QLatin1String("type")).toString() == type)
+            extensions << QStringLiteral("*.") + obj.value(QLatin1String("name")).toString();
+    }
+
+    if (extensions.length())
+        return extensions.join(QLatin1Char(' '));
+    else {
+        if (type == "word")
+            return "*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 "
+                   "*.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.docxf *.oform "
+                   "*.sxw *.stw *.xps *.oxps *.pages *.hwp *.hwpx";
+        else if (type == "cell")
+            return "*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers";
+        else if (type == "slide")
+            return "*.pptx *.ppt *.odp *.odg *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot "
+                   "*.potm *.fodp *.dps *.dpt *.sxi *.key";
+        else if (type == "diagram")
+            return "*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm";
+    }
+}
+
 QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& filter, QString * selected, bool multi)
 {
     QString _filter_ = filter;
     QString _sel_filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
+
+        QString _word_formats = getSupportedFiltersByEditor("word"),
+                _cell_formats = getSupportedFiltersByEditor("cell"),
+                _slide_formats = getSupportedFiltersByEditor("slide"),
+                _draw_formats = getSupportedFiltersByEditor("diagram");
+
         _filter_ =  tr("Text documents") +
 #ifndef __LOCK_OFORM_FORMATS
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.docxf *.oform *.sxw *.stw *.xps *.oxps *.pages *.hwp *.hwpx);;" +
+                        " ("+ _word_formats + ");;" +
 #else
                         " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.sxw *.stw *.xps *.oxps);;" +
 #endif
-                    tr("Spreadsheets") + " (*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.odg *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi *.key);;" +
-                    tr("Visio diagram") + " (*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm);;" +
+                    tr("Spreadsheets") + " (" + _cell_formats + ");;" +
+                    tr("Presentations") + " (" + _slide_formats + ");;" +
+                    tr("Visio diagram") + " (" + _draw_formats + ");;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv *.tsv)";
 //#ifdef __linux__

@@ -38,6 +38,7 @@
 
 #include <QObject>
 #include <QMap>
+#include <QJsonArray>
 
 
 class CFileDialogWrapper : public QObject
@@ -73,6 +74,7 @@ public:
 
 private:
     QString getFilter(const QString&) const;
+    QString getSupportedFiltersByEditor(const QString&) const;
     int getKey(const QString &value);
 //    QString joinFilters() const;
     void checkForMimeTypes(QStringList &files, const QString &type);
@@ -81,6 +83,7 @@ private:
     QString m_filters;
     QMap<int, QString> m_mapFilters;
     int m_format;
+    QJsonArray m_jsonFormats;
 };
 
 #endif // CFILEDIALOG_H
