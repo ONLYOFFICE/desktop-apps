@@ -57,6 +57,12 @@ platform :mac do
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
     end
 
+    desc 'Copy json with supported formats'
+    formats_src = File.expand_path('../../../document-formats/onlyoffice-docs-formats.json', __dir__)
+    if File.exist?(formats_src)
+      sh("cp -fv #{formats_src} ../../common/converter/")
+    end
+
     desc 'Build for developer id and notarize'
     gym(
       scheme: scheme,
