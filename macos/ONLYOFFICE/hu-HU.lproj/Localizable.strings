@@ -14,6 +14,9 @@
 "Cancel" = "Mégse";
 
 /* No comment provided by engineer. */
+"Canceled" = "Megszakítva";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Nem lehet megnyitni a Digitális Aláírás fájlját";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Nem lehet megnyitni a fálj helyének mappáját.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Vesszővel elválasztott értékek (*.csv)";
+"Close" = "Közeli";
+
+/* No comment provided by engineer. */
+"Close all" = "Összes bezárása";
+
+/* No comment provided by engineer. */
+"Close saved" = "Mentett elemek bezárása";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Vesszővel elválasztott értékek";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community verzió %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community verzió %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Új létrehozása";
 
 /* No comment provided by engineer. */
 "Create portal" = "Portál készítése";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Törlés és kilépés";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Digitális dokumentum (*.djvu)";
+"DjVu File" = "Digitális dokumentum";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Menti a(z) \"%@\" dokumentum módosításait?";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "Dokumentum %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML Dokumentumsablon (*.dotx)";
+"Document template" = "Word Open XML Dokumentumsablon";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 számolótábla (*.xls)";
+"Don't Save" = "Ne mentse";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML számolótábla (*.xlsx)";
+"Electronic Publication" = "Elektronikus kiadvány";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise verzió %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "Enterprise verzió %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 számolótábla";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML számolótábla";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel bináris munkalap";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Nem sikerült telepíteni a témát";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2 fájl";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "\"%@\" fájl nem nyitható meg vagy nem létezik.";
@@ -68,10 +110,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Amennyiben már megvásárolta a(z) %@-t, az aktiválási kulcsot a visszaigazoló e-mailben találja.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG kép";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Licencszerződés";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-könyv (*.mobi)";
+"Macro-enabled Presentation" = "Makróbarát prezentáció";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Makróbarát munkalap sablon";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown fájl";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-könyv";
+
+/* No comment provided by engineer. */
+"Move to end" = "Áthelyezés a végére";
+
+/* No comment provided by engineer. */
+"Move to start" = "Mozgasd a kezdéshez";
 
 /* No comment provided by engineer. */
 "new-document" = "Új dokumentum";
@@ -98,43 +161,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "Az ONLYOFFICE nem tudja megnyitni a Privát Kulcsot.. Próbáljon meg megnyitni egy másik fájlt.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument dokumentumsablon (*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE dokumentuműrlap sablon";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument bemutatósablon (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE kitölthető online űrlap";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument számolótábla-sablon (*.ots)";
+"ONLYOFFICE Form Document" = "PDF űrlap ONLYOFFICE";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument dokumentumsablon";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument bemutatósablon";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument számolótábla-sablon";
 
 /* No comment provided by engineer. */
 "Opening" = "Megnyitás";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument szöveges fájl (*.odt)";
+"OpenOffice Document" = "OpenDocument szöveges fájl";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument prezentáció (*.odp)";
+"OpenOffice Presentation" = "OpenDocument prezentáció";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument számolótábla (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument számolótábla";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF-fájlformátum (*.pdf)";
+"PDF File" = "PDF-fájlformátum";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF-fájlformátum /A (*.pdf)";
+"PDF/A File" = "PDF-fájlformátum /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Egyszerű szöveg (*.txt)";
+"Plain Text" = "Egyszerű szöveg";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-as prezentáció (*.ppt)";
+"PNG Image" = "PNG kép";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML prezentáció (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-as prezentáció";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML diavetítés (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Office Open XML prezentáció";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML diavetítés";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Előkészítés...";
@@ -143,16 +218,22 @@
 "Presentation %ld.pptx" = "Bemutató %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML prezentáció sablon (*.potx)";
+"Presentation template" = "PowerPoint Open XML prezentáció sablon";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Előadói nézet";
 
 /* No comment provided by engineer. */
 "Quit %@" = "A(z) %@ bezárása";
 
 /* No comment provided by engineer. */
+"Replace" = "Csere";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Változások áttekintése...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text formátumú fájl (*.rtf)";
+"Rich Text Document" = "Rich Text formátumú fájl";
 
 /* No comment provided by engineer. */
 "Save" = "Mentés";
@@ -161,10 +242,25 @@
 "Save the document?" = "Menti a dokumentumot ?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Témafájl kiválasztása";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "A kiválasztott téma érvénytelen";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Megjelenítés mappában";
+
+/* No comment provided by engineer. */
+"Show main window" = "Főablak megjelenítése";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Aláírás adatai";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Számolótábla %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML számolótábla-sablon (*.xltx)";
+"Spreadsheet template" = "Excel Open XML számolótábla-sablon";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Köszönjük, hogy értékelte a(z) %@-t!";
@@ -173,52 +269,43 @@
 "The document \"%@\" must be built. Continue?" = "A \"%@\" dokumentumot meg kell építeni. Folytatás?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "A téma már létezik. Cserélje le?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Ez a fájl nem tartalmaz témát";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Ez a témafájl érvénytelen";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Ahhoz, hogy meg lehessen nyitni a fájl helyét, el kell menteni.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Nincs megerősítve";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Lap rögzítésének feloldása";
+
+/* No comment provided by engineer. */
 "Untitled" = "Névtelen";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio rajz";
 
 /* No comment provided by engineer. */
 "Web Page" = "Weboldal";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003-as dokumentum (*.doc)";
+"With access to pro features" = "Hozzáférés a profi funkciókhoz";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office nyílt XML formátumú dokumentum (*.docx)";
+"Word 97-2003 Document" = "Word 97-2003-as dokumentum";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Open XPS-dokumentumformátum (*.xps)";
+"Word 2007 Document" = "Office nyílt XML formátumú dokumentum";
 
 /* No comment provided by engineer. */
-"Show main window" = "Főablak megjelenítése";
-
-/* No comment provided by engineer. */
-"Close" = "Közeli";
-
-/* No comment provided by engineer. */
-"Close saved" = "Mentett elemek bezárása";
-
-/* No comment provided by engineer. */
-"Close all" = "Összes bezárása";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Megjelenítés mappában";
-
-/* No comment provided by engineer. */
-"Move to start" = "Mozgasd a kezdéshez";
-
-/* No comment provided by engineer. */
-"Move to end" = "Áthelyezés a végére";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Lap rögzítésének feloldása";
-
-/* No comment provided by engineer. */
-"Create new" = "Új létrehozása";
+"XML Paper Specification" = "Open XPS-dokumentumformátum";
 
 /* No comment provided by engineer. */
 "Yes" = "Igen";
@@ -228,6 +315,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Sikeresen aktiválta a(z) %@-t.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "A módosításai elvesznek, ha nem menti őket.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "A módosításai elvesznek, ha nem menti őket.";

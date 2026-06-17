@@ -14,6 +14,9 @@
 "Cancel" = "Отменить";
 
 /* No comment provided by engineer. */
+"Canceled" = "Отменено";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Не удалось открыть файл цифровой подписи";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Не удалось открыть папку расположения файла.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Значения, разделенные запятыми (*.csv)";
+"Close" = "Закрыть";
+
+/* No comment provided by engineer. */
+"Close all" = "Закрыть все";
+
+/* No comment provided by engineer. */
+"Close saved" = "Закрыть сохраненные";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Значения, разделенные запятыми";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Версия Community %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Версия Community %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Создать новый";
 
 /* No comment provided by engineer. */
 "Create portal" = "Создать портал";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Отменить изменения";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Цифровой документ (*.djvu)";
+"DjVu File" = "Цифровой документ";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Вы хотите сохранить изменения сделанные в документе \"%@\"?";
@@ -44,19 +65,34 @@
 "Document %ld.pdf" = "Документ %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Шаблон документа Word Open XML (*.dotx)";
+"Document template" = "Шаблон документа Word Open XML";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Не сохранять";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Электронная таблица Excel 97-2003 (*.xls)";
+"Electronic Publication" = "Электронная книга";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Электронная таблица Office Open XML (*.xlsx)";
+"Enterprise version %@" = "Версия Enterprise %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "Файл FictionBook 2 (*.fb2)";
+"Enterprise version %@ (%@-%@)" = "Версия Enterprise %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Электронная таблица Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Электронная таблица Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Бинарная рабочая книга Excel";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Не удалось установить тему";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Файл FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Файл \"%@\" не может быть открыт или не существует.";
@@ -77,16 +113,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "Изображение JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "кбит/с";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Пользовательское соглашение";
 
 /* No comment provided by engineer. */
-"Macro-enabled Presentation" = "Презентация с поддержкой макросов (*.pptm)";
+"Macro-enabled Presentation" = "Презентация с поддержкой макросов";
 
 /* No comment provided by engineer. */
-"Macro-enabled spreadsheet template" = "Шаблон электронной таблицы с поддержкой макросов (*.xltm)";
+"Macro-enabled spreadsheet template" = "Шаблон электронной таблицы с поддержкой макросов";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Файл Mobipocket (*.mobi)";
+"Markdown File" = "Файл Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Файл Mobipocket";
+
+/* No comment provided by engineer. */
+"Move to end" = "Переместить в конец";
+
+/* No comment provided by engineer. */
+"Move to start" = "Переместить в начало";
 
 /* No comment provided by engineer. */
 "new-document" = "Новый документ";
@@ -113,43 +164,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не может открыть файл приватного ключа. Попробуйте открыть другой файл.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Шаблон документа OpenDocument (*.ott)";
+"ONLYOFFICE Document Form Template" = "Шаблон формы ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Шаблон презентации OpenDocument (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "Заполняемая онлайн-форма ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Шаблон электронной таблицы OpenDocument (*.ots)";
+"ONLYOFFICE Form Document" = "PDF-форма ONLYOFFICE";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Шаблон документа OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Шаблон презентации OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Шаблон электронной таблицы OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Открытие";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Текстовый файл OpenDocument (*.odt)";
+"OpenOffice Document" = "Текстовый файл OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Презентация OpenDocument (*.odp)";
+"OpenOffice Presentation" = "Презентация OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Электронная таблица OpenDocument (*.ods)";
+"OpenOffice Spreadsheet" = "Электронная таблица OpenDocument";
 
 /* No comment provided by engineer. */
-"PDF File" = "Переносимый документ (*.pdf)";
+"PDF File" = "Переносимый документ";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Переносимый документ /A (*.pdf)";
+"PDF/A File" = "Переносимый документ /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Текстовый файл (*.txt)";
+"Plain Text" = "Текстовый файл";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Презентация PowerPoint 97-2003 (*.ppt)";
+"PNG Image" = "Изображение PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Презентация Office Open XML (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "Презентация PowerPoint 97-2003";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Слайдшоу Office Open XML (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Презентация Office Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Слайдшоу Office Open XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Подготовка...";
@@ -158,7 +221,7 @@
 "Presentation %ld.pptx" = "Презентация %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Шаблон презентации PowerPoint Open XML (*.potx)";
+"Presentation template" = "Шаблон презентации PowerPoint Open XML";
 
 /* No comment provided by engineer. */
 "Presenter View" = "Режим докладчика";
@@ -167,10 +230,13 @@
 "Quit %@" = "Выйти %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Заменить";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Просмотреть изменения...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Файл в расширенном текстовом формате (*.rtf)";
+"Rich Text Document" = "Файл в расширенном текстовом формате";
 
 /* No comment provided by engineer. */
 "Save" = "Сохранить";
@@ -179,13 +245,25 @@
 "Save the document?" = "Сохранить документ?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Выбрать файл темы";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Выбранная тема недействительна";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Показать в папке";
+
+/* No comment provided by engineer. */
+"Show main window" = "Показать главное окно";
+
+/* No comment provided by engineer. */
 "Signature Details" = "Детали подписи";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Книга %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Шаблон электронной таблицы Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Шаблон электронной таблицы Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Спасибо за то, что выбрали %@!";
@@ -194,13 +272,28 @@
 "The document \"%@\" must be built. Continue?" = "Документ \"%@\" необходимо сформировать. Продолжить?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Тема уже существует. Заменить? ";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Этот файл не содержит тему";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Этот файл темы недействителен";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Чтобы открыть местоположение файла, он должен быть сохранен.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Неподтвержденный";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Открепить вкладку";
+
+/* No comment provided by engineer. */
 "Untitled" = "Без названия";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Чертеж Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Веб страница";
@@ -209,13 +302,13 @@
 "With access to pro features" = "С доступом к профессиональным функциям";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Документ Word 97-2003 (*.doc)";
+"Word 97-2003 Document" = "Документ Word 97-2003";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Документ Office Open XML (*.docx)";
+"Word 2007 Document" = "Документ Office Open XML";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Документ OpenXPS (*.xps)";
+"XML Paper Specification" = "Документ OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "Да";
@@ -227,6 +320,9 @@
 "You have successfully activated %@." = "Вы успешно активировали %@.";
 
 /* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
+
+/* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
 
 /* No comment provided by engineer. */
@@ -235,47 +331,3 @@
 /* No comment provided by engineer. */
 "Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Скоро истечет срок действия подписки\n(осталось дней: %d).\n\nДля Вас доступно специальное предложение.";
 
-/* No comment provided by engineer. */
-"Show main window" = "Показать главное окно";
-
-/* No comment provided by engineer. */
-"Close" = "Закрыть";
-
-/* No comment provided by engineer. */
-"Close saved" = "Закрыть сохраненные";
-
-/* No comment provided by engineer. */
-"Close all" = "Закрыть все";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Показать в папке";
-
-/* No comment provided by engineer. */
-"Move to start" = "Переместить в начало";
-
-/* No comment provided by engineer. */
-"Move to end" = "Переместить в конец";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Открепить вкладку";
-
-/* No comment provided by engineer. */
-"Create new" = "Создать новый";
-
-/* No comment provided by engineer. */
-"Downloads" = "Загрузки";
-
-/* No comment provided by engineer. */
-"Clear" = "Очистить";
-
-/* No comment provided by engineer. */
-"Canceled" = "Отменено";
-
-/* No comment provided by engineer. */
-"Cancel" = "Отмена";
-
-/* No comment provided by engineer. */
-"kBps" = "кбит/с";
-
-/* No comment provided by engineer. */
-"Open" = "Открыть";

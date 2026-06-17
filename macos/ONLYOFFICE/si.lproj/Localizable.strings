@@ -14,6 +14,9 @@
 "Cancel" = "අවලංගු";
 
 /* No comment provided by engineer. */
+"Canceled" = "අවලංගු කෙරිණි";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "සංඛ්‍යාංක අත්සන ගොනුව ඇරීමට නොහැකිය";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "ගොනුවේ ස්ථානයේ බහාලුම ඇරීමට නොහැකිය.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "අල්පවිරාම මගින් වෙන් කළ අගයන් (*.csv)";
+"Close" = "වසන්න";
+
+/* No comment provided by engineer. */
+"Close all" = "සියල්ල වසන්න";
+
+/* No comment provided by engineer. */
+"Close saved" = "සුරකින ලද ඒවා වසන්න";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "අල්පවිරාම මගින් වෙන් කළ අගයන්";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community අනුවාදය %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community අනුවාදය %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "අළුතින් සාදන්න";
 
 /* No comment provided by engineer. */
 "Create portal" = "ද්වාරය සාදන්න";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "මකා ඉවත් වන්න";
 
 /* No comment provided by engineer. */
-"DjVu File" = "සංඛ්‍යාංක ලේඛනය (*.djvu)";
+"DjVu File" = "සංඛ්‍යාංක ලේඛනය";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "\"%@\" ලේඛනයට සිදු කරන ලද වෙනස්කම් සුරැකීමට අවශ්‍යද?";
@@ -44,19 +65,34 @@
 "Document %ld.pdf" = "ලේඛනය %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "වර්ඩ් විවෘත XML ලේඛන අච්චුව (*.dotx)";
+"Document template" = "වර්ඩ් විවෘත XML ලේඛන අච්චුව";
 
 /* No comment provided by engineer. */
 "Don't Save" = "සුරකින්න එපා";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "එක්සෙල් 97-2003 පැතුරුම්පත (*.xls)";
+"Electronic Publication" = "විද්‍යුත් ප්‍රකාශන ගොනුව";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "ඔෆිස් ඕපන් XML පැතුරුම්පත (*.xlsx)";
+"Enterprise version %@" = "Enterprise අනුවාදය %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "ෆික්ෂන්බුක් 2 ගොනුව (*.fb2)";
+"Enterprise version %@ (%@-%@)" = "Enterprise අනුවාදය %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "එක්සෙල් 97-2003 පැතුරුම්පත";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "ඔෆිස් ඕපන් XML පැතුරුම්පත";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "එක්සෙල් ද්විමය වැඩ පත්‍රිකාව";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "තේමාව ස්ථාපනය කිරීමට අපොහොසත් විය";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "ෆික්ෂන්බුක් 2 ගොනුව";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "\"%@\" ගොනුව ඇරීමට නොහැකිය හෝ නොපවතී.";
@@ -77,10 +113,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "ඔබ දැනටමත් %@ මිල දී ගෙන තිබේ නම්, තහවුරු කිරීමේ වි-තැපෑලක ඔබගේ සක්‍රියන යතුර හමු වනු ඇත.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG අනුරුව";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "ගිවිසුම් බලපත්‍රය";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "මොබිපොකට් ගොනුව (*.mobi)";
+"Macro-enabled Presentation" = "සාර්ව-සක්‍රීය ඉදිරිපත් කිරීම";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව";
+
+/* No comment provided by engineer. */
+"Markdown File" = "මාර්ක්ඩවුන් ගොනුව";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "මොබිපොකට් ගොනුව";
+
+/* No comment provided by engineer. */
+"Move to end" = "අවසානයට ගෙන යන්න";
+
+/* No comment provided by engineer. */
+"Move to start" = "ආරම්භයට ගෙන යන්න";
 
 /* No comment provided by engineer. */
 "new-document" = "නව ලේඛනයක්";
@@ -107,43 +164,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ඔන්ලිඔෆිස් සඳහා පෞද්. යතුර ඇරීමට නොහැකිය. වෙනත් ගොනුවක් ඇරීමට උත්සාහ කරන්න.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව (*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE ලේඛන පෝරම සැකිල්ල";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE පිරවිය හැකි මාර්ගගත පෝරමය";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව (*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF පෝරමය";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව";
 
 /* No comment provided by engineer. */
 "Opening" = "විවෘත වෙමින්";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "ඕපන්ඩොකියුමන්ට් පෙළ ගොනුව (*.odt)";
+"OpenOffice Document" = "ඕපන්ඩොකියුමන්ට් පෙළ ගොනුව";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "ඕපන්ඩොකියුමන්ට් සමර්පණය (*.odp)";
+"OpenOffice Presentation" = "ඕපන්ඩොකියුමන්ට් සමර්පණය";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "ඕපන්ඩොකියුමන්ට් පැතුරුම්පත (*.ods)";
+"OpenOffice Spreadsheet" = "ඕපන්ඩොකියුමන්ට් පැතුරුම්පත";
 
 /* No comment provided by engineer. */
-"PDF File" = "සුවහ ලේඛනය (*.pdf)";
+"PDF File" = "සුවහ ලේඛනය";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "සුවහ ලේඛනය /ඒ (*.pdf)";
+"PDF/A File" = "සුවහ ලේඛනය /ඒ";
 
 /* No comment provided by engineer. */
-"Plain Text" = "සරල පෙළ ගොනුව (*.txt)";
+"Plain Text" = "සරල පෙළ ගොනුව";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "පවර්පොයින්ට් 97-2003 සමර්පණය (*.ppt)";
+"PNG Image" = "PNG අනුරුව";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "ඔෆිස් ඕපන් XML සමර්පණය (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "පවර්පොයින්ට් 97-2003 සමර්පණය";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "ඔෆිස් ඕපන් XML ස්ලයිඩ් ෂෝ (*.ppsx)";
+"PowerPoint 2007 Presentation" = "ඔෆිස් ඕපන් XML සමර්පණය";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "ඔෆිස් ඕපන් XML ස්ලයිඩ් ෂෝ";
 
 /* No comment provided by engineer. */
 "Preparing..." = "සූදානම් වෙමින්...";
@@ -161,16 +230,31 @@
 "Quit %@" = "ඉවත් වන්න";
 
 /* No comment provided by engineer. */
+"Replace" = "ප්‍රතිස්ථාපනය";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "වෙනස්කම සමාලෝචනය...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "පොහොසත් පෙළ ආකෘතිය ගොනුව (*.rtf)";
+"Rich Text Document" = "පොහොසත් පෙළ ආකෘතිය ගොනුව";
 
 /* No comment provided by engineer. */
 "Save" = "සුරකින්න";
 
 /* No comment provided by engineer. */
 "Save the document?" = "ලේඛනය සුරකින්නද?";
+
+/* No comment provided by engineer. */
+"Select theme file" = "තේමා ගොනුව තෝරන්න";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "තෝරාගත් තේමාව වලංගු නොවේ";
+
+/* No comment provided by engineer. */
+"Show in folder" = "ෆෝල්ඩරය තුළ පෙන්වන්න";
+
+/* No comment provided by engineer. */
+"Show main window" = "ප්‍රධාන කවුළුව පෙන්වන්න";
 
 /* No comment provided by engineer. */
 "Signature Details" = "අත්සනහි විස්තර";
@@ -188,13 +272,28 @@
 "The document \"%@\" must be built. Continue?" = "\"%@\" ලේඛනය තැනිය යුතුය. ඉදිරියට?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "තේමාව දැනටමත් පවතී. එය ප්‍රතිස්ථාපනය කරන්න?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "මෙම ගොනුවේ තේමාව අඩංගු නොවේ";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "මෙම තේමා ගොනුව වලංගු නොවේ";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "ගොනුවේ ස්ථානය විවෘත කිරීමට, එය සුරැකිය යුතුය.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "තහවුරු නොකළ";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "ටැබය ගලවන්න";
+
+/* No comment provided by engineer. */
 "Untitled" = "සිරැසියක් නැත";
+
+/* No comment provided by engineer. */
+"VSDX File" = "දර්ශන ඇඳීම";
 
 /* No comment provided by engineer. */
 "Web Page" = "වියමන පිටුව";
@@ -203,40 +302,13 @@
 "With access to pro features" = "ආධික්‍ය විශේෂාංග සඳහා ප්‍රවේශය සමඟ";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "වර්ඩ් 97-2003 ලේඛනය (*.doc)";
+"Word 97-2003 Document" = "වර්ඩ් 97-2003 ලේඛනය";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "ඔෆිස් ඕපන් XML ලේඛනය (*.docx)";
+"Word 2007 Document" = "ඔෆිස් ඕපන් XML ලේඛනය";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS ලේඛනය (*.xps)";
-
-/* No comment provided by engineer. */
-"Show main window" = "ප්‍රධාන කවුළුව පෙන්වන්න";
-
-/* No comment provided by engineer. */
-"Close" = "වසන්න";
-
-/* No comment provided by engineer. */
-"Close saved" = "සුරකින ලද ඒවා වසන්න";
-
-/* No comment provided by engineer. */
-"Close all" = "සියල්ල වසන්න";
-
-/* No comment provided by engineer. */
-"Show in folder" = "ෆෝල්ඩරය තුළ පෙන්වන්න";
-
-/* No comment provided by engineer. */
-"Move to start" = "ආරම්භයට ගෙන යන්න";
-
-/* No comment provided by engineer. */
-"Move to end" = "අවසානයට ගෙන යන්න";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "ටැබය ගලවන්න";
-
-/* No comment provided by engineer. */
-"Create new" = "අළුතින් සාදන්න";
+"XML Paper Specification" = "OpenXPS ලේඛනය";
 
 /* No comment provided by engineer. */
 "Yes" = "ඔව්";
@@ -246,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "ඔබ සාර්ථකව %@ සක්‍රිය කර ඇත.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "ඔබ ඒවා සුරැකුවේ නැතිනම් ඔබගේ වෙනස්කම් අහිමි වනු ඇත.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "ඔබ ඒවා සුරැකුවේ නැතිනම් ඔබගේ වෙනස්කම් අහිමි වනු ඇත.";

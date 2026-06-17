@@ -8,16 +8,52 @@
 "Acknowledgments" = "Bekräftelser";
 
 /* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Innan dokumentet signeras, måste det sparas.";
+
+/* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Kommaavgränsade värden (*.csv)";
+"Canceled" = "Avbruten";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Det går inte att öppna filen med digital signatur";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Det går inte att öppna filen med privat nyckel";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Det går inte att öppna mappen med filsökvägen.";
+
+/* No comment provided by engineer. */
+"Close" = "Stäng";
+
+/* No comment provided by engineer. */
+"Close all" = "Stäng alla";
+
+/* No comment provided by engineer. */
+"Close saved" = "Stäng sparad";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Kommaavgränsade värden";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community-version %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community-version %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Skapa ny";
+
+/* No comment provided by engineer. */
+"Create portal" = "Det går inte att öppna mappen med filsökvägen.";
 
 /* No comment provided by engineer. */
 "Delete and Quit" = "Radera och avsluta";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Digitalt document (*.djvu)";
+"DjVu File" = "Digitalt document";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Vill du spara ändringarna gjorda i dokument \"%@\"?";
@@ -29,10 +65,34 @@
 "Document %ld.pdf" = "Dokument %ld.pdf";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003-kalkylblad (*.xls)";
+"Document template" = "Word Open XML-dokumentmall";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML-kalkylblad (*.xlsx)";
+"Don't Save" = "Spara inte";
+
+/* No comment provided by engineer. */
+"Electronic Publication" = "Elektronisk publikation";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise-version %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "Enterprise-version %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003-kalkylblad";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML-kalkylblad";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel-binärt kalkylblad";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Misslyckades med att installera temat";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2-fil";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Filen \"%@\" kan inte öppnas eller finns inte.";
@@ -53,13 +113,43 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Om du redan har köpt %@, bör du hitta aktiveringsnyckeln i en e-postbekräftelse.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG-bild";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Licensavtal";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-bokl (*.mobi)";
+"Macro-enabled Presentation" = "Makroaktiverad presentation";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Makroaktiverad kalkylbladsmall";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown-fil";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-bokl";
+
+/* No comment provided by engineer. */
+"Move to end" = "Flytta till slutet";
+
+/* No comment provided by engineer. */
+"Move to start" = "Flytta till början";
+
+/* No comment provided by engineer. */
+"new-document" = "Nytt dokument";
 
 /* No comment provided by engineer. */
 "new-pdfform" = "Nytt PDF";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Ny presentation";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Nytt kalkylblad";
 
 /* No comment provided by engineer. */
 "No" = "Nej";
@@ -68,31 +158,61 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE kan inte öppna filen med den digitala signaturen. Försök att öppna en annan fil.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan inte öppna den privata nyckeln. Försök att öppna en annan fil.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE-dokumentformulärmall";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE-ifyllbart onlineformulär";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF-formulär";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument-dokumentmall";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument-presentationsmall";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument-kalkylbladsmall";
+
+/* No comment provided by engineer. */
 "Opening" = "Öppnar";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument-textfil (*.odt)";
+"OpenOffice Document" = "OpenDocument-textfil";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument-presentation (*.odp)";
+"OpenOffice Presentation" = "OpenDocument-presentation";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument-kalkylblad (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument-kalkylblad";
 
 /* No comment provided by engineer. */
-"PDF File" = "Portabelt dokumentformat (*.pdf)";
+"PDF File" = "Portabelt dokumentformat";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Oformaterad text (*.txt)";
+"PDF/A File" = "Portabelt dokumentformat /A-fil";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-presentation (*.ppt)";
+"Plain Text" = "Oformaterad text";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML-presentation (*.pptx)";
+"PNG Image" = "PNG-bild";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML-bildspel (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-presentation";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML-presentation";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML-bildspel";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Förbereder...";
@@ -101,64 +221,94 @@
 "Presentation %ld.pptx" = "Presentation %ld.pptx";
 
 /* No comment provided by engineer. */
+"Presentation template" = "PowerPoint Open XML-presentationsmall";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Presentationsvy";
+
+/* No comment provided by engineer. */
 "Quit %@" = "Avsluta %@";
+
+/* No comment provided by engineer. */
+"Replace" = "Ersätt";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Granska ändringar...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text Format-fil (*.rtf)";
+"Rich Text Document" = "Rich Text Format-fil";
 
 /* No comment provided by engineer. */
-"Spreadsheet %ld.xlsx" = "Kalkylblad %ld.xlsx";
+"Save" = "Spara";
 
 /* No comment provided by engineer. */
-"Thank you for evaluating %@!" = "Tack för att du utvärderar %@!";
+"Save the document?" = "Spara dokument?";
 
 /* No comment provided by engineer. */
-"Unconfirmed" = "Obekräftat";
+"Select theme file" = "Välj temafil";
 
 /* No comment provided by engineer. */
-"Untitled" = "Namnlös";
-
-/* No comment provided by engineer. */
-"Web Page" = "Webbsida";
-
-/* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003-dokument (*.doc)";
-
-/* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML-document (*.docx)";
-
-/* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS-dokument (*.xps)";
-
-/* No comment provided by engineer. */
-"Show main window" = "Visa huvudfönstret";
-
-/* No comment provided by engineer. */
-"Close" = "Stäng";
-
-/* No comment provided by engineer. */
-"Close saved" = "Stäng sparad";
-
-/* No comment provided by engineer. */
-"Close all" = "Stäng alla";
+"Selected theme isn't valid" = "Valt tema är inte giltigt";
 
 /* No comment provided by engineer. */
 "Show in folder" = "Visa i mapp";
 
 /* No comment provided by engineer. */
-"Move to start" = "Flytta till början";
+"Show main window" = "Visa huvudfönstret";
 
 /* No comment provided by engineer. */
-"Move to end" = "Flytta till slutet";
+"Signature Details" = "Signaturinformation";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Kalkylblad %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Excel Open XML-kalkylbladsmall (*.xltx)";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Tack för att du utvärderar %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Dokumentet \"%@\" måste byggas. Fortsätt?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Temat finns redan. Ersätt det?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Den här filen innehåller inte temat";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Den här temafilen är inte giltig";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "För att öppna filsökvägen, måste den sparas.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Obekräftat";
 
 /* No comment provided by engineer. */
 "Unpin tab" = "Lossa fliken";
 
 /* No comment provided by engineer. */
-"Create new" = "Skapa ny";
+"Untitled" = "Namnlös";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio-ritning";
+
+/* No comment provided by engineer. */
+"Web Page" = "Webbsida";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Med tillgång till proffsfunktioner";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003-dokument";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Office Open XML-document";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS-dokument";
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";
@@ -168,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Du har aktiverat %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Dina ändringar kommer att gå förlorade om du inte sparar dem.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Dina ändringar kommer att gå förlorade om du inte sparar dem.";

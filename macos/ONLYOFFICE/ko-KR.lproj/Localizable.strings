@@ -14,6 +14,9 @@
 "Cancel" = "취소";
 
 /* No comment provided by engineer. */
+"Canceled" = "취소됨";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "디지털 서명 파일을 열 수 없습니다";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "해당 파일 위치의 폴더를 열 수 없습니다.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "쉼표로 구분된 데이터 파일(*.csv)";
+"Close" = "닫기";
+
+/* No comment provided by engineer. */
+"Close all" = "모두 닫기";
+
+/* No comment provided by engineer. */
+"Close saved" = "닫기 저장됨";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "쉼표로 구분된 데이터 파일";
+
+/* No comment provided by engineer. */
+"Community version %@" = "\"커뮤니티\" 버전 %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "\"커뮤니티\" 버전 %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "새로 만들기";
 
 /* No comment provided by engineer. */
 "Create portal" = "포털 생성";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "삭제 및 종료";
 
 /* No comment provided by engineer. */
-"DjVu File" = "디지털 문서(*.djvu)";
+"DjVu File" = "디지털 문서";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "문서 \"%@\"의 변경 사항을 저장하시겠습니까?";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "문서 %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML 문서 템플릿(*.dotx)";
+"Document template" = "Word Open XML 문서 템플릿";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 스프레드시트(*.xls)";
+"Don't Save" = "저장하지 않음";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML 스프레드시트(*.xlsx)";
+"Electronic Publication" = "전자 출판물 파일";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "\"엔터프라이즈\" 버전 %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "\"엔터프라이즈\" 버전 %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 스프레드시트";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML 스프레드시트";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel 바이너리 워크시트";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "테마 설치 실패";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "픽션북 2 파일";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "\"%@\" 파일이 존재하지 않거나 열 수 없습니다.";
@@ -68,10 +110,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "이미 %@ 구입을 완료했으므로, 확인 이메일에서 활성화 키를 찾으실 수 있을 것입니다.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG 이미지";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "라이센스 계약";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "모비포켓 전자책(*.mobi)";
+"Macro-enabled Presentation" = "매크로 지원 프레젠테이션 파일";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "매크로 지원 스프레드시트 템플릿";
+
+/* No comment provided by engineer. */
+"Markdown File" = "마크다운 파일";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "모비포켓 전자책";
+
+/* No comment provided by engineer. */
+"Move to end" = "끝으로 이동";
+
+/* No comment provided by engineer. */
+"Move to start" = "시작 위치로 이동";
 
 /* No comment provided by engineer. */
 "new-document" = "새 문서";
@@ -98,43 +161,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE에서 해당 개인 키를 열 수 없습니다. 다른 파일을 열어보십시오.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument 문서 템플릿(*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE 문서 양식 템플릿";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument프레젠테이션 템플릿(*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE 온라인 양식 작성";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument 스프레드시트 템플릿(*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF 양식";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument 문서 템플릿";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument프레젠테이션 템플릿";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument 스프레드시트 템플릿";
 
 /* No comment provided by engineer. */
 "Opening" = "여는 중";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "오픈도큐먼트 텍스트 문서(*.odt)";
+"OpenOffice Document" = "오픈도큐먼트 텍스트 문서";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "오픈도큐먼트 프레젠테이션(*.odp)";
+"OpenOffice Presentation" = "오픈도큐먼트 프레젠테이션";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "오픈도큐먼트 스프레드시트(*.ods)";
+"OpenOffice Spreadsheet" = "오픈도큐먼트 스프레드시트";
 
 /* No comment provided by engineer. */
-"PDF File" = "휴대용 문서(*.pdf)";
+"PDF File" = "휴대용 문서";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "휴대용 문서 / A(*.pdf)";
+"PDF/A File" = "휴대용 문서 / A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "일반 텍스트 파일(*.txt)";
+"Plain Text" = "일반 텍스트 파일";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 프레젠테이션(*.ppt)";
+"PNG Image" = "PNG 이미지";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML 프레젠테이션(*.pptx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 프레젠테이션";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML 슬라이드 쇼(*.ppsx)";
+"PowerPoint 2007 Presentation" = "Office Open XML 프레젠테이션";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML 슬라이드 쇼";
 
 /* No comment provided by engineer. */
 "Preparing..." = "준비 중...";
@@ -143,16 +218,22 @@
 "Presentation %ld.pptx" = "프레젠테이션 %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML 프레젠테이션 템플릿(*.potx)";
+"Presentation template" = "PowerPoint Open XML 프레젠테이션 템플릿";
+
+/* No comment provided by engineer. */
+"Presenter View" = "발표자 보기";
 
 /* No comment provided by engineer. */
 "Quit %@" = "%@ 종료";
 
 /* No comment provided by engineer. */
+"Replace" = "바꾸기";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "변경 사항 검토 중...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "서식이 있는 텍스트 형식 파일(*.rtf)";
+"Rich Text Document" = "서식이 있는 텍스트 형식 파일";
 
 /* No comment provided by engineer. */
 "Save" = "저장";
@@ -161,10 +242,25 @@
 "Save the document?" = "문서를 저장하시겠습니까?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "테마 파일 선택";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "선택한 테마가 유효하지 않습니다";
+
+/* No comment provided by engineer. */
+"Show in folder" = "폴더에서 보기";
+
+/* No comment provided by engineer. */
+"Show main window" = "메인 창 표시";
+
+/* No comment provided by engineer. */
+"Signature Details" = "서명 세부 정보";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "스프레드시트 %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML 스프레드시트 템플릿(*.xltx)";
+"Spreadsheet template" = "Excel Open XML 스프레드시트 템플릿";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "%@를 평가해주셔서 감사합니다!";
@@ -173,52 +269,43 @@
 "The document \"%@\" must be built. Continue?" = "\"%@\" 문서를 생성해야 합니다. 계속하시겠습니까?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "테마가 이미 있습니다. 바꾸시겠습니까?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "이 파일에는 테마가 포함되어 있지 않습니다";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "이 테마 파일이 유효하지 않습니다";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "해당 파일 위치를 열려면, 먼저 저장해야 합니다.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "확인 안됨";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "탭 고정 해제";
+
+/* No comment provided by engineer. */
 "Untitled" = "제목 없음";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio 드로잉";
 
 /* No comment provided by engineer. */
 "Web Page" = "웹 페이지";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 문서(*.doc)";
+"With access to pro features" = "프로 기능 이용 가능";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML 문서(*.docx)";
+"Word 97-2003 Document" = "Word 97-2003 문서";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS 문서(*.xps)";
+"Word 2007 Document" = "Office Open XML 문서";
 
 /* No comment provided by engineer. */
-"Show main window" = "메인 창 표시";
-
-/* No comment provided by engineer. */
-"Close" = "닫기";
-
-/* No comment provided by engineer. */
-"Close saved" = "닫기 저장됨";
-
-/* No comment provided by engineer. */
-"Close all" = "모두 닫기";
-
-/* No comment provided by engineer. */
-"Show in folder" = "폴더에서 보기";
-
-/* No comment provided by engineer. */
-"Move to start" = "시작 위치로 이동";
-
-/* No comment provided by engineer. */
-"Move to end" = "끝으로 이동";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "탭 고정 해제";
-
-/* No comment provided by engineer. */
-"Create new" = "새로 만들기";
+"XML Paper Specification" = "OpenXPS 문서";
 
 /* No comment provided by engineer. */
 "Yes" = "네";
@@ -228,6 +315,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "%@ 활성화에 성공했습니다.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "변경 사항을 저장하지 않으면 잃게 됩니다.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "변경 사항을 저장하지 않으면 잃게 됩니다.";

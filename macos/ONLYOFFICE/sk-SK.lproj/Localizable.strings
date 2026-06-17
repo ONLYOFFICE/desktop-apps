@@ -14,6 +14,9 @@
 "Cancel" = "Zrušiť";
 
 /* No comment provided by engineer. */
+"Canceled" = "Zrušené";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Nedá sa otvoriť súbor digitálneho podpisu";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Nedá sa otvoriť priečinok umiestnenia súboru.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Hodnoty oddelené čiarkami (*.csv)";
+"Close" = "Zatvoriť";
+
+/* No comment provided by engineer. */
+"Close all" = "Zatvoriť všetko";
+
+/* No comment provided by engineer. */
+"Close saved" = "Zatvoriť uložené";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Hodnoty oddelené čiarkami";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Verzia Community %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Verzia Community %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Vytvořit nový";
 
 /* No comment provided by engineer. */
 "Create portal" = "Vytvoriť portál";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Odstrániť a ukončiťt";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Digitálny document (*.djvu)";
+"DjVu File" = "Digitálny document";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Chcete uložiť zmeny urobené v dokumente \"%@\"?";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "Dokument %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Šablóna dokumentu Word Open XML (*.dotx)";
+"Document template" = "Šablóna dokumentu Word Open XML";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Tabuľka Excel 97-2003 (*.xls)";
+"Don't Save" = "Neukladať";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Tabuľka Office Open XML (*.xlsx)";
+"Electronic Publication" = "Elektronická publikácia";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Verzia Enterprise %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "Verzia Enterprise %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Tabuľka Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Tabuľka Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Binárny tabuľka Excel";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Nepodarilo sa nainštalovať tému";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Súbor FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Súbor \"%@\" sa nedá otvoriť alebo neexistuje.";
@@ -71,10 +113,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Ak ste si už %@ zakúpili, aktivačný kľúč nájdete v potvrdzujúcom e-maili.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "Obrázok JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Licenčná zmluva";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "E-kniha Mobipocket (*.mobi)";
+"Macro-enabled Presentation" = "Prezentácia s podporou makra";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Šablóna tabuľky s podporou makra";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Súbor Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "E-kniha Mobipocket";
+
+/* No comment provided by engineer. */
+"Move to end" = "Presunúť na koniec";
+
+/* No comment provided by engineer. */
+"Move to start" = "Presunúť na začiatok";
 
 /* No comment provided by engineer. */
 "new-document" = "Nový dokument";
@@ -101,43 +164,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nemôže otvoriť súkromný kľúč. Skúste otvoriť iný súbor.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Šablóna dokumentu OpenDocument (*.ott)";
+"ONLYOFFICE Document Form Template" = "Šablóna formulára dokumentu ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Šablóna prezentácie OpenDocument (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "Vyplniteľný online formulár ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Šablóna zošitu OpenDocument (*.ots)";
+"ONLYOFFICE Form Document" = "Formulár PDF ONLYOFFICE";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Šablóna dokumentu OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Šablóna prezentácie OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Šablóna zošitu OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Otvára sa";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Textový súbor OpenDocument (*.odt)";
+"OpenOffice Document" = "Textový súbor OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Prezentácia OpenDocument (*.odp)";
+"OpenOffice Presentation" = "Prezentácia OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Tabuľka OpenDocument (*.ods)";
+"OpenOffice Spreadsheet" = "Tabuľka OpenDocument";
 
 /* No comment provided by engineer. */
-"PDF File" = "Prenosný document (*.pdf)";
+"PDF File" = "Prenosný document";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Prenosný document /A (*.pdf)";
+"PDF/A File" = "Prenosný document /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Súbor obyčajného textu (*.txt)";
+"Plain Text" = "Súbor obyčajného textu";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Prezentácia PowerPoint 97-2003 (*.ppt)";
+"PNG Image" = "Obrázok PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Prezentácia Office Open XML (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "Prezentácia PowerPoint 97-2003";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Premietanie slajdov Office Open XML (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Prezentácia Office Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Premietanie slajdov Office Open XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Príprava...";
@@ -146,16 +221,22 @@
 "Presentation %ld.pptx" = "Prezentácia %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Šablóna prezentácie PowerPoint Open XML (*.potx)";
+"Presentation template" = "Šablóna prezentácie PowerPoint Open XML";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Režim prezentácie";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Ukončiť %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Nahradiť";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Skontrolovať zmeny...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Súbor vo formáte RTF (*.rtf)";
+"Rich Text Document" = "Súbor vo formáte RTF";
 
 /* No comment provided by engineer. */
 "Save" = "Uložiť";
@@ -164,10 +245,25 @@
 "Save the document?" = "Uložiť dokument?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Vybrať súbor témy";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Vybratá téma nie je platná";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Zobraziť v priečinku";
+
+/* No comment provided by engineer. */
+"Show main window" = "Zobraziť hlavné okno";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Podrobnosti o podpise";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Tabuľka %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Šablóna zošitu Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Šablóna zošitu Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Ďakujeme za hodnotenie %@!";
@@ -176,52 +272,43 @@
 "The document \"%@\" must be built. Continue?" = "Dokument \"%@\" musí byť vytvorený. Pokračovať?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Téma už existuje. Nahradiť ju?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Tento súbor neobsahuje tému";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Tento súbor témy nie je platný";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Ak chcete otvoriť umiestnenie súboru, súbor musí byť uložený.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Nepotvrdené";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Odopnúť kartu";
+
+/* No comment provided by engineer. */
 "Untitled" = "Bez názvu";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Nákres Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Web stránka";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Dokument Word 97-2003 (*.doc)";
+"With access to pro features" = "S prístupom k funkciám Pro";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Dokument Office Open XML (*.docx)";
+"Word 97-2003 Document" = "Dokument Word 97-2003";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Dokument OpenXPS (*.xps)";
+"Word 2007 Document" = "Dokument Office Open XML";
 
 /* No comment provided by engineer. */
-"Show main window" = "Zobraziť hlavné okno";
-
-/* No comment provided by engineer. */
-"Close" = "Zatvoriť";
-
-/* No comment provided by engineer. */
-"Close saved" = "Zatvoriť uložené";
-
-/* No comment provided by engineer. */
-"Close all" = "Zatvoriť všetko";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Zobraziť v priečinku";
-
-/* No comment provided by engineer. */
-"Move to start" = "Presunúť na začiatok";
-
-/* No comment provided by engineer. */
-"Move to end" = "Presunúť na koniec";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Odopnúť kartu";
-
-/* No comment provided by engineer. */
-"Create new" = "Vytvořit nový";
+"XML Paper Specification" = "Dokument OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "Áno";
@@ -231,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Úspešne ste aktivovali %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Vaše zmeny sa stratia, ak ich neuložíte.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Vaše zmeny sa stratia, ak ich neuložíte.";

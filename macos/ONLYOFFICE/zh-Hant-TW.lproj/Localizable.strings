@@ -14,6 +14,9 @@
 "Cancel" = "取消";
 
 /* No comment provided by engineer. */
+"Canceled" = "已取消";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "無法開啟數位簽章的檔案";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "無法開啟檔案位址的資料夾。";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "逗點分隔值(*.csv)";
+"Close" = "關閉";
+
+/* No comment provided by engineer. */
+"Close all" = "關閉所有";
+
+/* No comment provided by engineer. */
+"Close saved" = "關閉已儲存";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "逗點分隔值";
+
+/* No comment provided by engineer. */
+"Community version %@" = "社群版 %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "社群版 %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "新增";
 
 /* No comment provided by engineer. */
 "Create portal" = "創造入口";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "刪除並結束";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu 檔案(*.djvu)";
+"DjVu File" = "DjVu 檔案";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "您要儲存文件 \"%@\" 已做的變更嗎嗎？";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "文件 %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML 文件範本(*.dotx)";
+"Document template" = "Word Open XML 文件範本";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 試算表(*.xls)";
+"Don't Save" = "不保存";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML 試算表(*.xlsx)";
+"Electronic Publication" = "電子出版品";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "企業版 %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "企業版 %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 試算表";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML 試算表";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel 二進位工作表";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "主題安裝失敗";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "小說書 2 文件";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "檔案 \"%@\" 無法開啟或不存在。";
@@ -68,10 +110,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "如您已購買 %@，您會在電子郵件確認信中取得您的啟用金鑰。";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG 圖像";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "授權合約";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket 電子書(*.mobi)";
+"Macro-enabled Presentation" = "啟用巨集的簡報";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "啟用巨集的試算表範本";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown 文件";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket 電子書";
+
+/* No comment provided by engineer. */
+"Move to end" = "移至結尾";
+
+/* No comment provided by engineer. */
+"Move to start" = "移至起始位置";
 
 /* No comment provided by engineer. */
 "new-document" = "新文件";
@@ -92,49 +155,61 @@
 "OK" = "好";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "無法開啟數位簽章的檔案，嘗試開啟另一個檔案。";
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE 無法開啟數位簽章的檔案，嘗試開啟另一個檔案。";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE無法開啟私密金鑰的檔案，嘗試開啟另一個檔案。";
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE 無法開啟私密金鑰的檔案，嘗試開啟另一個檔案。";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument 文件範本(*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE 文件表單模板";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument簡報範本(*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE 可填寫線上表單";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument試算表範本(*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF 表格";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument 文件範本";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument簡報範本";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument試算表範本";
 
 /* No comment provided by engineer. */
 "Opening" = "正在開啟";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument文件(*.odt)";
+"OpenOffice Document" = "OpenDocument文件";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument簡報(*.odp)";
+"OpenOffice Presentation" = "OpenDocument簡報";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument試算表(*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument試算表";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF 文件(*.pdf)";
+"PDF File" = "PDF 文件";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/單一檔案(*.pdf)";
+"PDF/A File" = "PDF/單一檔案";
 
 /* No comment provided by engineer. */
-"Plain Text" = "純文字(*.txt)";
+"Plain Text" = "純文字";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 簡報(*.ppt)";
+"PNG Image" = "PNG 圖像";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML 簡報(*.pptx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 簡報";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML 投影片(*.ppsx)";
+"PowerPoint 2007 Presentation" = "Office Open XML 簡報";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML 投影片";
 
 /* No comment provided by engineer. */
 "Preparing..." = "準備中...";
@@ -143,16 +218,22 @@
 "Presentation %ld.pptx" = "簡報 %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML 簡報範本(*.potx)";
+"Presentation template" = "PowerPoint Open XML 簡報範本";
+
+/* No comment provided by engineer. */
+"Presenter View" = "簡報者檢視畫面";
 
 /* No comment provided by engineer. */
 "Quit %@" = "結束 %@";
 
 /* No comment provided by engineer. */
+"Replace" = "替换";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "檢閱變更...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "RTF 文字文件(*.rtf)";
+"Rich Text Document" = "RTF 文字文件";
 
 /* No comment provided by engineer. */
 "Save" = "儲存";
@@ -161,10 +242,25 @@
 "Save the document?" = "儲存文件？";
 
 /* No comment provided by engineer. */
+"Select theme file" = "選擇主題文件";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "所選主題無效";
+
+/* No comment provided by engineer. */
+"Show in folder" = "在資料夾中顯示";
+
+/* No comment provided by engineer. */
+"Show main window" = "顯示主視窗";
+
+/* No comment provided by engineer. */
+"Signature Details" = "簽名詳情";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "試算表 %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML 試算表範本(*.xltx)";
+"Spreadsheet template" = "Excel Open XML 試算表範本";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "謝謝您評估 %@！";
@@ -173,52 +269,43 @@
 "The document \"%@\" must be built. Continue?" = "必須建立 \"%@\" 文件。 繼續嗎？";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "主題已存在。是否替換？";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "此文件不包含主題";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "此主題文件無效";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "必須先完成儲存後，再開啟檔案位址。";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "未確認";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "取消固定選項卡";
+
+/* No comment provided by engineer. */
 "Untitled" = "未命名";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio 繪圖";
 
 /* No comment provided by engineer. */
 "Web Page" = "網頁";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 文件(*.doc)";
+"With access to pro features" = "擁有專業功能存取權限";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML 文件(*.docx)";
+"Word 97-2003 Document" = "Word 97-2003 文件";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS 檔案(*.xps)";
+"Word 2007 Document" = "Office Open XML 文件";
 
 /* No comment provided by engineer. */
-"Show main window" = "顯示主視窗";
-
-/* No comment provided by engineer. */
-"Close" = "關閉";
-
-/* No comment provided by engineer. */
-"Close saved" = "關閉已儲存";
-
-/* No comment provided by engineer. */
-"Close all" = "關閉所有";
-
-/* No comment provided by engineer. */
-"Show in folder" = "在資料夾中顯示";
-
-/* No comment provided by engineer. */
-"Move to start" = "移至起始位置";
-
-/* No comment provided by engineer. */
-"Move to end" = "移至結尾";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "取消固定選項卡";
-
-/* No comment provided by engineer. */
-"Create new" = "新增";
+"XML Paper Specification" = "OpenXPS 檔案";
 
 /* No comment provided by engineer. */
 "Yes" = "是";
@@ -228,6 +315,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "您已成功啟用 %@。";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "如不儲存變更，您的變更將遺失。";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "如不儲存變更，您的變更將遺失。";

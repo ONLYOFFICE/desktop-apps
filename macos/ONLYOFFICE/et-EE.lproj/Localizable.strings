@@ -14,6 +14,9 @@
 "Cancel" = "Tühista";
 
 /* No comment provided by engineer. */
+"Canceled" = "Tühistatud";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Ei saa avada digitaalse allkirja faili";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Ei saa avada faili otsingu kausta.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Komaga eraldatud väärtused (*.csv)";
+"Close" = "Sule";
+
+/* No comment provided by engineer. */
+"Close all" = "Sulge kõik";
+
+/* No comment provided by engineer. */
+"Close saved" = "Suletud salvestatud";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Komaga eraldatud väärtused";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community versioon %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community versioon %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Loo uus";
 
 /* No comment provided by engineer. */
 "Create portal" = "Loo portaal";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Kustuta ja Loobu";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Digitaalne dokument (*.djvu)";
+"DjVu File" = "Digitaalne dokument";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Kas sa soovid dokumendis tehtud muudatused salvestada“%@“?";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "Dokument %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML dokument šabloon (*.dotx)";
+"Document template" = "Word Open XML dokument šabloon";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 arvutustabel (*.xls)";
+"Don't Save" = "Ära salvesta";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office avatud XML arvutustabel (*.xlsx)";
+"Electronic Publication" = "Elektrooniline väljaanne";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise versioon %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "Enterprise versioon %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 arvutustabel";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office avatud XML arvutustabel";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Exceli binaartööleht";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Teema installimine ebaõnnestus";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2 fail";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Faili „%@“ ei saa avada või seda ei eksisteeri.";
@@ -71,10 +113,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Kui sa oled juba ostnud %@, leiad oma aktiveerimis võtme kinnitus meililt.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG-pilt";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Litsentsileping";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-raamat (*.mobi)";
+"Macro-enabled Presentation" = "Makrotoega esitlus";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Makrotoega arvutustabeli mall";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdowni fail";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-raamat";
+
+/* No comment provided by engineer. */
+"Move to end" = "Liigu lõppu";
+
+/* No comment provided by engineer. */
+"Move to start" = "Liigu algusesse";
 
 /* No comment provided by engineer. */
 "new-document" = "Uus dokument";
@@ -101,43 +164,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ei saa avada privaatset võtit. Proovi avada muud faili.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument dokumendi šabloon (*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE dokumendivormi mall";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument esitluse šabloon(*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE täidetav veebivorm";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument arvutustabeli šabloon (*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF vorm";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument dokumendi šabloon";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument esitluse šabloon";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument arvutustabeli šabloon";
 
 /* No comment provided by engineer. */
 "Opening" = "Avamine";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument teksti fail (*.odt)";
+"OpenOffice Document" = "OpenDocument teksti fail";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument esitlus (*.odp)";
+"OpenOffice Presentation" = "OpenDocument esitlus";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument arvutustabel (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument arvutustabel";
 
 /* No comment provided by engineer. */
-"PDF File" = "Porditav document (*.pdf)";
+"PDF File" = "Porditav document";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Porditav document /A (*.pdf)";
+"PDF/A File" = "Porditav document /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Tavaline Tekst (*.txt)";
+"Plain Text" = "Tavaline Tekst";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 esitlus (*.ppt)";
+"PNG Image" = "PNG-pilt";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office avatud XML esitlus (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 esitlus";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML pildiesitlus (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Office avatud XML esitlus";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML pildiesitlus";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Valmistumine...";
@@ -146,16 +221,22 @@
 "Presentation %ld.pptx" = "Esitlus %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML esitluse šabloon (*.potx)";
+"Presentation template" = "PowerPoint Open XML esitluse šabloon";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Esitaja vaade";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Loobu %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Asenda";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Vaata muutused üle...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rikkaliku Teksti Dokument (*.rtf)";
+"Rich Text Document" = "Rikkaliku Teksti Dokument";
 
 /* No comment provided by engineer. */
 "Save" = "Salvesta";
@@ -164,10 +245,25 @@
 "Save the document?" = "Salvesta dokument?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Vali teemafail";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Valitud teema ei ole kehtiv";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Kuva kaustas";
+
+/* No comment provided by engineer. */
+"Show main window" = "Näita peamist akent";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Allkirja andmed";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Arvutustabel %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML arvutustabeli šabloon (*.xltx)";
+"Spreadsheet template" = "Excel Open XML arvutustabeli šabloon";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Aitäh, et hindasite %@!";
@@ -176,52 +272,43 @@
 "The document \"%@\" must be built. Continue?" = "Dokument „%@“ tuleb luua. Jätka?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Teema on juba olemas. Kas asendada see?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "See fail ei sisalda teemat";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "See teemafail ei ole kehtiv";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Et avada faili asukoht, tuleb see eelnevalt salvestada.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Kinnitamata";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Vabasta vahekaart";
+
+/* No comment provided by engineer. */
 "Untitled" = "Pealkirjata";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio joonis";
 
 /* No comment provided by engineer. */
 "Web Page" = "Veebileht";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 dokument (*.doc)";
+"With access to pro features" = "Juurdepääsuga profifunktsioonidele";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office avatud XML dokument (*.docx)";
+"Word 97-2003 Document" = "Word 97-2003 dokument";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS dokument (*.xps)";
+"Word 2007 Document" = "Office avatud XML dokument";
 
 /* No comment provided by engineer. */
-"Show main window" = "Näita peamist akent";
-
-/* No comment provided by engineer. */
-"Close" = "Sule";
-
-/* No comment provided by engineer. */
-"Close saved" = "Suletud salvestatud";
-
-/* No comment provided by engineer. */
-"Close all" = "Sulge kõik";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Kuva kaustas";
-
-/* No comment provided by engineer. */
-"Move to start" = "Liigu algusesse";
-
-/* No comment provided by engineer. */
-"Move to end" = "Liigu lõppu";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Vabasta vahekaart";
-
-/* No comment provided by engineer. */
-"Create new" = "Loo uus";
+"XML Paper Specification" = "OpenXPS dokument";
 
 /* No comment provided by engineer. */
 "Yes" = "Jah";
@@ -231,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Sa oled edukalt aktiveerinud %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Sinu muudatused lähevad kaotsi, kui sa neid ei salvesta.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Sinu muudatused lähevad kaotsi, kui sa neid ei salvesta.";

@@ -14,6 +14,9 @@
 "Cancel" = "منسوخ";
 
 /* No comment provided by engineer. */
+"Canceled" = "منسوخ";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "ڈیجیٹل دستخط کی فائل نہیں کھول سکتا";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "فائل لوکیشن کا فولڈر نہیں کھولا جا سکتا۔";
 
 /* No comment provided by engineer. */
+"Close" = "بند";
+
+/* No comment provided by engineer. */
+"Close all" = "سب بند کرو";
+
+/* No comment provided by engineer. */
+"Close saved" = "بند محفوظ ہو گیا-";
+
+/* No comment provided by engineer. */
 "Comma-Separated Values" = "کوما سے الگ کردہ اقدار";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community ورژن %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community ورژن %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "نیا بنائیں";
 
 /* No comment provided by engineer. */
 "Create portal" = "پورٹل بنائیں";
@@ -50,13 +71,28 @@
 "Don't Save" = "محفوظ نہ کریں۔";
 
 /* No comment provided by engineer. */
+"Electronic Publication" = "الیکٹرانک پبلیکیشن";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise ورژن %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "Enterprise ورژن %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "ایکسل 97-2003 اسپریڈشیٹ";
 
 /* No comment provided by engineer. */
 "Excel 2007 Spreadsheet" = "ایکسل 2007 اسپریڈشیٹ";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "فکشن بک فائل";
+"Excel Binary Workbook" = "ایکسل بائنری ورک شیٹ";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "تھیم انسٹال کرنے میں ناکام";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "فکشن بک 2 فائل";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "فائل \"%@\" کھلی نہیں ہوسکتی ہے یا موجود نہیں ہے۔";
@@ -77,6 +113,12 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "اگر آپ پہلے ہی %@ خرید چکے ہیں، تو آپ کو اپنی ایکٹیویشن کلید ای میل کی تصدیق میں ملنی چاہیے۔";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG تصویر";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "لائسنس کا معاہدہ";
 
 /* No comment provided by engineer. */
@@ -86,13 +128,22 @@
 "Macro-enabled spreadsheet template" = "میکرو فعال اسپریڈشیٹ ٹیمپلیٹ";
 
 /* No comment provided by engineer. */
+"Markdown File" = "مارک ڈاؤن فائل";
+
+/* No comment provided by engineer. */
 "Mobipocket e-book" = "موبی پاکٹ ای بک";
+
+/* No comment provided by engineer. */
+"Move to end" = "اختتام پر منتقل کریں۔";
+
+/* No comment provided by engineer. */
+"Move to start" = "شروع کرنے کے لیے آگے بڑھیں۔";
 
 /* No comment provided by engineer. */
 "new-document" = "نئی دستاویز";
 
 /* No comment provided by engineer. */
-"new-pdfform" = "اسپریڈشیٹ";
+"new-pdfform" = "نیا پی ڈی ایف";
 
 /* No comment provided by engineer. */
 "new-presentation" = "نئی پیشکش";
@@ -111,6 +162,15 @@
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE نجی کلید نہیں کھول سکتا۔ دوسری فائل کھولنے کی کوشش کریں۔";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE دستاویز فارم ٹیمپلیٹ";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE بھرنے کے قابل آن لائن فارم";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Form Document" = "ONLYOFFICE پی ڈی ایف فارم";
 
 /* No comment provided by engineer. */
 "OpenDocument Document Template" = "دستاویز دستاویز ٹیمپلیٹ کھولیں۔";
@@ -143,6 +203,9 @@
 "Plain Text" = "سادہ متن";
 
 /* No comment provided by engineer. */
+"PNG Image" = "PNG تصویر";
+
+/* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "پاورپوائنٹ 97-2003 پریزنٹیشن";
 
 /* No comment provided by engineer. */
@@ -167,6 +230,9 @@
 "Quit %@" = "چھوڑیں %@";
 
 /* No comment provided by engineer. */
+"Replace" = "بدل دیں۔";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "تبدیلیوں کا جائزہ لیں...";
 
 /* No comment provided by engineer. */
@@ -177,6 +243,18 @@
 
 /* No comment provided by engineer. */
 "Save the document?" = "دستاویز کو محفوظ کریں؟";
+
+/* No comment provided by engineer. */
+"Select theme file" = "تھیم فائل کو منتخب کریں۔";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "منتخب کردہ تھیم درست نہیں ہے۔";
+
+/* No comment provided by engineer. */
+"Show in folder" = "فولڈر میں دکھائیں";
+
+/* No comment provided by engineer. */
+"Show main window" = "مین ونڈو دکھائیں";
 
 /* No comment provided by engineer. */
 "Signature Details" = "دستخط کی تفصیلات";
@@ -194,13 +272,28 @@
 "The document \"%@\" must be built. Continue?" = "دستاویز \"%@\" بننا ضروری ہے۔ جاری رکھیں؟";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "تھیم پہلے سے موجود ہے۔ اسے بدل دیں؟";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "اس فائل میں تھیم نہیں ہے۔";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "یہ تھیم فائل درست نہیں ہے۔";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "فائل کا مقام کھولنے کے لیے، اسے محفوظ کرنا ضروری ہے۔";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "غیر تصدیق شدہ";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "ٹیب کو ان پن کریں۔";
+
+/* No comment provided by engineer. */
 "Untitled" = "بلا عنوان";
+
+/* No comment provided by engineer. */
+"VSDX File" = "ویزیو ڈرائنگ";
 
 /* No comment provided by engineer. */
 "Web Page" = "ویب صفحہ";
@@ -212,40 +305,10 @@
 "Word 97-2003 Document" = "ورڈ 97-2003 دستاویز";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "ورڈ 2007 دستاویز (*.doc)";
+"Word 2007 Document" = "ورڈ 2007 دستاویز";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML کاغذ کی تفصیلات (*.xps)";
-
-/* No comment provided by engineer. */
-"XML Paper Specification" = "دستاویز OpenXPS (*.xps)";
-
-/* No comment provided by engineer. */
-"Show main window" = "مین ونڈو دکھائیں";
-
-/* No comment provided by engineer. */
-"Close" = "بند";
-
-/* No comment provided by engineer. */
-"Close saved" = "بند محفوظ ہو گیا-";
-
-/* No comment provided by engineer. */
-"Close all" = "سب بند کرو";
-
-/* No comment provided by engineer. */
-"Show in folder" = "فولڈر میں دکھائیں";
-
-/* No comment provided by engineer. */
-"Move to start" = "شروع کرنے کے لیے آگے بڑھیں۔";
-
-/* No comment provided by engineer. */
-"Move to end" = "اختتام پر منتقل کریں۔";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "ٹیب کو ان پن کریں۔";
-
-/* No comment provided by engineer. */
-"Create new" = "نیا بنائیں";
+"XML Paper Specification" = "XML کاغذ کی تفصیلات";
 
 /* No comment provided by engineer. */
 "Yes" = "جی ہاں";
@@ -255,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "آپ نے کامیابی سے %@ کو چالو کر لیا ہے۔";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "اگر آپ انہیں محفوظ نہیں کرتے ہیں تو آپ کی تبدیلیاں ضائع ہو جائیں گی۔";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "اگر آپ انہیں محفوظ نہیں کرتے ہیں تو آپ کی تبدیلیاں ضائع ہو جائیں گی۔";

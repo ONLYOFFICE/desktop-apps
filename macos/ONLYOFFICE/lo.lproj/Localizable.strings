@@ -14,6 +14,9 @@
 "Cancel" = "ຍົກເບີກ";
 
 /* No comment provided by engineer. */
+"Canceled" = "ຍົກເລີກແລ້ວ";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "ບໍ່ສາມາດເປີດຟາຍລາຍເຊັນ";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "ບໍ່ສາມາດເປີດໂຟນເດີ້ເພື່ອເຂົ້າເຖິງຟາຍ.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "ຄ່າທີ່ຂັ້ນດ້ວຍເຄື່ອງໝາຍຈຸດ (*.csv)";
+"Close" = "ປິດ";
+
+/* No comment provided by engineer. */
+"Close all" = "ປິດທັງໝົດ";
+
+/* No comment provided by engineer. */
+"Close saved" = "ປິດບັນທຶກແລ້ວ";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "ຄ່າທີ່ຂັ້ນດ້ວຍເຄື່ອງໝາຍຈຸດ";
+
+/* No comment provided by engineer. */
+"Community version %@" = "ລຸ້ນ Community %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "ລຸ້ນ Community %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "ສ້າງໃໝ່";
 
 /* No comment provided by engineer. */
 "Create portal" = "ສ້າງໜ້າຕ່າງ";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "ລົບແລະຍົກເລີກ";
 
 /* No comment provided by engineer. */
-"DjVu File" = "ເອກະສານດິຈິຕອນ (*.djvu)";
+"DjVu File" = "ເອກະສານດິຈິຕອນ";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "ທ່ານຢາກບັນທືກເອກະສານບໍ່\"%@\"?";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "ເອກະສານ %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word (*.dotx)";
+"Document template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "ຕາຕະລາງ Excel 97-2003 (*.xls)";
+"Don't Save" = "ຢ່າບັນທຶກ";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "ເປີດຕາຕະລາງ XML (*.xlsx)";
+"Electronic Publication" = "ສິ່ງພິມເອເລັກໂຕຣນິກ";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "ລຸ້ນ Enterprise %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "ລຸ້ນ Enterprise %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "ຕາຕະລາງ Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "ເປີດຕາຕະລາງ XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "ແຜ່ນວຽກ Excel Binary";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "ຕິດຕັ້ງຮູບແບບລົ້ມເຫຼວ";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "ໄຟລ໌ FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "ຟາຍ \"%@\" ບໍ່ມີ ຫຼື ບໍ່ສາມາດເປີດ.";
@@ -71,10 +113,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "ຖ້າຫາກທ່ານໄດ້ເຮັດການຊຶ່ %@,ທ່ານຈະໄດ້ຮັບອີເມລຢັ້ງຢືນກຸນແຈລະຫັດເປີດການນໍາໃຊ້.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "ຮູບພາບ JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "ສັນຍາ ໃບອະນຸຍາດ";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "ໄຟລ໌ Mobipocket e-book (*.mobi)";
+"Macro-enabled Presentation" = "ການນຳສະເໜີທີ່ເປີດໃຊ້ງານມາໂຄຣ";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "ແມ່ແບບຕາຕະລາງທີ່ເປີດໃຊ້ງານມາໂຄຣ";
+
+/* No comment provided by engineer. */
+"Markdown File" = "ໄຟລ໌ Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "ໄຟລ໌ Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"Move to end" = "ຍ້າຍໄປຈຸດສິ້ນສຸດ";
+
+/* No comment provided by engineer. */
+"Move to start" = "ຍ້າຍໄປເລີ່ມຕົ້ນ";
 
 /* No comment provided by engineer. */
 "new-document" = "ເອກະສານໃໝ່";
@@ -101,43 +164,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ບໍ່ສາມາດເປີດກຸນແຈສ່ວນບຸກຄົນ. ລອງເປີດຟາຍອື່ນ.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ (*.ott)";
+"ONLYOFFICE Document Form Template" = "ແມ່ແບບແບບຟອມເອກະສານ ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "ເປີດເອກະສານ ໃນຮູບແບບນຳສະເໜີ (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ແບບຟອມອອນໄລນ໌ທີ່ສາມາດຕື່ມໄດ້ ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "ເປີດເອກະສານໃນຮູບແບບຂອງຕາຕະລາງ (*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE ແບບຟອມ PDF";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "ເປີດເອກະສານ ໃນຮູບແບບນຳສະເໜີ";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "ເປີດເອກະສານໃນຮູບແບບຂອງຕາຕະລາງ";
 
 /* No comment provided by engineer. */
 "Opening" = "ກໍາລັງເປີດ";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "ເປີດເອກະສານໄຟລ໌ Text (*.odt)";
+"OpenOffice Document" = "ເປີດເອກະສານໄຟລ໌ Text";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "ເປິດເອກະສານນຳສະເໜີ (*.odp)";
+"OpenOffice Presentation" = "ເປິດເອກະສານນຳສະເໜີ";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "ເປີດເອກະສານໃນຮູບແບບຕາຕະລາງ (*.ods)";
+"OpenOffice Spreadsheet" = "ເປີດເອກະສານໃນຮູບແບບຕາຕະລາງ";
 
 /* No comment provided by engineer. */
-"PDF File" = "ເອກະສານພົກພາ (*.pdf)";
+"PDF File" = "ເອກະສານພົກພາ";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "ເອກະສານແບບພົກພາ /A (*.pdf)";
+"PDF/A File" = "ເອກະສານແບບພົກພາ /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "ໄຟລ໌ຂໍ້ຄວາມທຳມະດາ (*.txt)";
+"Plain Text" = "ໄຟລ໌ຂໍ້ຄວາມທຳມະດາ";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "ນຳສະເໜີ PowerPoint 97-2003 (*.ppt)";
+"PNG Image" = "ຮູບພາບແບບ PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "ການນຳສະເໜີ XML (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "ນຳສະເໜີ PowerPoint 97-2003";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "ເປີດສະແດງສະໄລ XML (*.ppsx)";
+"PowerPoint 2007 Presentation" = "ການນຳສະເໜີ XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "ເປີດສະແດງສະໄລ XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "ກໍາລັງກະກຽມ...";
@@ -146,16 +221,22 @@
 "Presentation %ld.pptx" = "ພີເຊັນເທຊັນ %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບນຳສະເໜີ PowerPoint (*.potx)";
+"Presentation template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບນຳສະເໜີ PowerPoint";
+
+/* No comment provided by engineer. */
+"Presenter View" = "ມຸມມອງຜູ້ນຳສະເໜີ";
 
 /* No comment provided by engineer. */
 "Quit %@" = "ຍົກເລີກ %@";
 
 /* No comment provided by engineer. */
+"Replace" = "ປ່ຽນແທນ";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "ກວດເບີ່ງການປ່ຽນແປງ...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "ຮູບແບບໄຟລ໌ສົມບູນ (*.rtf)";
+"Rich Text Document" = "ຮູບແບບໄຟລ໌ສົມບູນ";
 
 /* No comment provided by engineer. */
 "Save" = "ບັນທືກ";
@@ -164,10 +245,25 @@
 "Save the document?" = "ບັນທືກເອກະສານ?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "ເລືອກໄຟລ໌ຮູບແບບ";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "ຮູບແບບທີ່ເລືອກບໍ່ຖືກຕ້ອງ";
+
+/* No comment provided by engineer. */
+"Show in folder" = "ສະແດງໃນໂຟນເດີ";
+
+/* No comment provided by engineer. */
+"Show main window" = "ສະແດງໜ້າຕ່າງຫຼັກ";
+
+/* No comment provided by engineer. */
+"Signature Details" = "ລາຍລະອຽດລາຍເຊັນ";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "ຕາຕະລາງ %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບຕາຕະລາງ Excel (*.xltx)";
+"Spreadsheet template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບຕາຕະລາງ Excel";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "ຂອບໃຈສໍາລັບການປະເມີນ %@!";
@@ -176,13 +272,28 @@
 "The document \"%@\" must be built. Continue?" = "ເອກະສານ \"%@\" ຈະຕ້ອງຖືກສ້າງ. ສືບຕໍ່?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "ຮູບແບບມີຢູ່ແລ້ວ. ປ່ຽນແທນມັນບໍ?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "ໄຟລ໌ນີ້ບໍ່ມີຮູບແບບ";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "ໄຟລ໌ຮູບແບບນີ້ບໍ່ຖືກຕ້ອງ";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "ເພື່ອເປີດຟາຍເອກະສານ, ຈະຕ້ອງບັນທືກກ່ອນ.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "ບໍ່ໄດ້ຮັບການຢືນຢັນ";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "ຖອນປັກໝຸດແຖບ";
+
+/* No comment provided by engineer. */
 "Untitled" = "ບໍ່ມີຊື່";
+
+/* No comment provided by engineer. */
+"VSDX File" = "ຮູບແຕ້ມ Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "ໜ້າເວັບ";
@@ -191,40 +302,13 @@
 "With access to pro features" = "ເຂົ້າເຖິງຄຸນສົມບັດໂປຮ";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "ເອກະສານ Word 97-2003 (*.doc)";
+"Word 97-2003 Document" = "ເອກະສານ Word 97-2003";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "ເປີດເອກະສານ XML (*.docx)";
+"Word 2007 Document" = "ເປີດເອກະສານ XML";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "ເອກະສານ OpenXPS (*.xps)";
-
-/* No comment provided by engineer. */
-"Show main window" = "ສະແດງໜ້າຕ່າງຫຼັກ";
-
-/* No comment provided by engineer. */
-"Close" = "ປິດ";
-
-/* No comment provided by engineer. */
-"Close saved" = "ປິດບັນທຶກແລ້ວ";
-
-/* No comment provided by engineer. */
-"Close all" = "ປິດທັງໝົດ";
-
-/* No comment provided by engineer. */
-"Show in folder" = "ສະແດງໃນໂຟນເດີ";
-
-/* No comment provided by engineer. */
-"Move to start" = "ຍ້າຍໄປເລີ່ມຕົ້ນ";
-
-/* No comment provided by engineer. */
-"Move to end" = "ຍ້າຍໄປຈຸດສິ້ນສຸດ";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "ຖອນປັກໝຸດແຖບ";
-
-/* No comment provided by engineer. */
-"Create new" = "ສ້າງໃໝ່";
+"XML Paper Specification" = "ເອກະສານ OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "ແມ່ນແລ້ວ";
@@ -234,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "ທ່ານເປີດໃຊ້ງານສໍາເລັດແລ້ວ %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "ການປ່ຽນແປງຂອງທ່ານຈະຖືກຍົກເລີກ ຖ້າຫາກທ່ານບໍ່ບັນທືກ.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "ການປ່ຽນແປງຂອງທ່ານຈະຖືກຍົກເລີກ ຖ້າຫາກທ່ານບໍ່ບັນທືກ.";

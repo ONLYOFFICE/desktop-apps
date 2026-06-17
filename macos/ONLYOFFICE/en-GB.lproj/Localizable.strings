@@ -14,6 +14,9 @@
 "Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
+"Canceled" = "Canceled";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Cannot open file of Digital Signature";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Cannot open folder of the file location.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Comma Separated Values (*.csv)";
+"Close" = "Close";
+
+/* No comment provided by engineer. */
+"Close all" = "Close all";
+
+/* No comment provided by engineer. */
+"Close saved" = "Close saved";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Comma Separated Values";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community version %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community version %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Create new";
 
 /* No comment provided by engineer. */
 "Create portal" = "Create portal";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Delete and Quit";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Digital Document (*.djvu)";
+"DjVu File" = "Digital Document";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Do you want to save the changes made to the document \"%@\"?";
@@ -44,19 +65,34 @@
 "Document %ld.pdf" = "Document %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML Document Template (*.dotx)";
+"Document template" = "Word Open XML Document Template";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Don't Save";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet (*.xls)";
+"Electronic Publication" = "Electronic Publication File";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML Spreadsheet (*.xlsx)";
+"Enterprise version %@" = "Enterprise version %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "FictionBook 2 File (*.fb2)";
+"Enterprise version %@ (%@-%@)" = "Enterprise version %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML Spreadsheet";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel Binary Workbook";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Failed to install theme";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2 File";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "File \"%@\" can not be open or not exist.";
@@ -77,16 +113,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "If you have already purchased %@, you should find your activation key in an email confirmation.";
 
 /* No comment provided by engineer. */
-"License Agreement" = "License Agreement";
+"JPG Image" = "JPG Image";
 
 /* No comment provided by engineer. */
-"Macro-enabled Presentation" = "Macro-enabled Presentation (*.pptm)";
+"kBps" = "kBps";
 
 /* No comment provided by engineer. */
-"Macro-enabled spreadsheet template" = "Macro-enabled Spreadsheet template (*.xltm)";
+"License Agreement" = "Licence Agreement";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket File (*.mobi)";
+"Macro-enabled Presentation" = "Macro-enabled Presentation";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Macro-enabled Spreadsheet template";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown File";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket File";
+
+/* No comment provided by engineer. */
+"Move to end" = "Move to end";
+
+/* No comment provided by engineer. */
+"Move to start" = "Move to start";
 
 /* No comment provided by engineer. */
 "new-document" = "New document";
@@ -113,43 +164,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE can not open the Private Key. Try opening another file.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument Document Template (*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE Document Form Template";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument Presentation Template (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE Fillable Online Form";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Template (*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF Form";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Document Template";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Presentation Template";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Template";
 
 /* No comment provided by engineer. */
 "Opening" = "Opening";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument Text File (*.odt)";
+"OpenOffice Document" = "OpenDocument Text File";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument Presentation (*.odp)";
+"OpenOffice Presentation" = "OpenDocument Presentation";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument Spreadsheet (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument Spreadsheet";
 
 /* No comment provided by engineer. */
-"PDF File" = "Portable Document (*.pdf)";
+"PDF File" = "Portable Document";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portable Document /A (*.pdf)";
+"PDF/A File" = "Portable Document /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Plain Text File (*.txt)";
+"Plain Text" = "Plain Text File";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentation (*.ppt)";
+"PNG Image" = "PNG Image";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML Presentation (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentation";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML Slide Show (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Office Open XML Presentation";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML Slide Show";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Preparing...";
@@ -158,7 +221,7 @@
 "Presentation %ld.pptx" = "Presentation %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML Presentation Template (*.potx)";
+"Presentation template" = "PowerPoint Open XML Presentation Template";
 
 /* No comment provided by engineer. */
 "Presenter View" = "Presenter View";
@@ -167,10 +230,13 @@
 "Quit %@" = "Quit %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Replace";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Review Changes...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text Format File (*.rtf)";
+"Rich Text Document" = "Rich Text Format File";
 
 /* No comment provided by engineer. */
 "Save" = "Save";
@@ -179,13 +245,25 @@
 "Save the document?" = "Save the document?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Select theme file";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Selected theme isn't valid";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Show in folder";
+
+/* No comment provided by engineer. */
+"Show main window" = "Show main window";
+
+/* No comment provided by engineer. */
 "Signature Details" = "Signature Details";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Spreadsheet %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML Spreadsheet Template (*.xltx)";
+"Spreadsheet template" = "Excel Open XML Spreadsheet Template";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Thank you for evaluating %@!";
@@ -194,13 +272,28 @@
 "The document \"%@\" must be built. Continue?" = "The document \"%@\" must be built. Continue?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Theme already exists. Replace it?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "This file doesn't contain theme";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "This theme file is not valid";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "To open the file location, it must be saved.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Unconfirmed";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Unpin tab";
+
+/* No comment provided by engineer. */
 "Untitled" = "Untitled";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio Drawing";
 
 /* No comment provided by engineer. */
 "Web Page" = "Web Page";
@@ -209,40 +302,13 @@
 "With access to pro features" = "With access to pro features";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Document (*.doc)";
+"Word 97-2003 Document" = "Word 97-2003 Document";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML Document (*.docx)";
+"Word 2007 Document" = "Office Open XML Document";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS Document (*.xps)";
-
-/* No comment provided by engineer. */
-"Show main window" = "Show main window";
-
-/* No comment provided by engineer. */
-"Close" = "Close";
-
-/* No comment provided by engineer. */
-"Close saved" = "Close saved";
-
-/* No comment provided by engineer. */
-"Close all" = "Close all";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Show in folder";
-
-/* No comment provided by engineer. */
-"Move to start" = "Move to start";
-
-/* No comment provided by engineer. */
-"Move to end" = "Move to end";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Unpin tab";
-
-/* No comment provided by engineer. */
-"Create new" = "Create new";
+"XML Paper Specification" = "OpenXPS Document";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";
@@ -252,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "You have successfully activated %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Your changes will be lost if you don't save them.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Your changes will be lost if you don’t save them.";

@@ -30,11 +30,11 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d day, after that you will not be able to create and edit documents.</string>
+			<string>ඔබ යෙදුමේ නැහැසුම් අනුවාදයක් භාවිතා කරයි.
+නැහැසුම් කාලය දවසකින් අවසන් වනු ඇත, ඉන් පසුව ඔබට ලේඛන සෑදීමට සහ සංස්කරණයට නොහැකි වනු ඇත.</string>
 			<key>other</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>ඔබ යෙදුමේ නැහැසුම් අනුවාදයක් භාවිතා කරයි.
+නැහැසුම් කාලය දවස් %d කින් අවසන් වනු ඇත, ඉන් පසුව ඔබට ලේඛන සෑදීමට සහ සංස්කරණයට නොහැකි වනු ඇත.</string>
 		</dict>
 	</dict>
 	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>

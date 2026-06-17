@@ -868,6 +868,15 @@
 		F15DF4F42F58D0050014C037 /* ASCProviders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCProviders.m; sourceTree = "<group>"; };
 		F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCHeaderButton.m; sourceTree = "<group>"; };
 		F164E3302F582BC700CC8D45 /* ASCHeaderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCHeaderButton.h; sourceTree = "<group>"; };
+		F1D31B212FE03FD9000B9112 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = no.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1D31B222FE03FD9000B9112 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = no.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1D31B2E2FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1D31B2F2FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1D31B302FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88DB2FE00FF80012CF8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		F1EB88DE2FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88DF2FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88E02FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
 		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
@@ -2828,6 +2837,9 @@
 				5A02294B2CAC14940011C6EC /* he */,
 				5AC644272D36901A00145A90 /* sq-AL */,
 				5AA2F5922DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88E02FE010FF0012CF8E /* ga-IE */,
+				F1D31B222FE03FD9000B9112 /* nb */,
+				F1D31B302FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2879,6 +2891,9 @@
 				5A02294A2CAC14940011C6EC /* he */,
 				5AC644262D36901A00145A90 /* sq-AL */,
 				5AA2F5912DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DF2FE010FF0012CF8E /* ga-IE */,
+				F1D31B212FE03FD9000B9112 /* nb */,
+				F1D31B2F2FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2931,6 +2946,8 @@
 				5A0229492CAC14940011C6EC /* he */,
 				5AC644252D36901A00145A90 /* sq-AL */,
 				5AA2F5902DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DE2FE010FF0012CF8E /* ga-IE */,
+				F1D31B2E2FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2985,6 +3002,7 @@
 				5A0229462CAC14940011C6EC /* he */,
 				5AC644222D36901A00145A90 /* sq-AL */,
 				5AA2F58D2DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DB2FE00FF80012CF8E /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
