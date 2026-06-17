@@ -87,6 +87,41 @@
 
 @implementation AppDelegate
 
+- (void)loadDocumentFormats {
+    NSMutableArray *words = [NSMutableArray array];
+    NSMutableArray *cells = [NSMutableArray array];
+    NSMutableArray *slides = [NSMutableArray array];
+    NSMutableArray *draws = [NSMutableArray array];
+
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"onlyoffice-docs-formats" ofType:@"json" inDirectory:@"converter"];
+    if (jsonPath) {
+        NSData *data = [NSData dataWithContentsOfFile:jsonPath];
+        if (data) {
+            NSError *error = nil;
+            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            if (!error && [json isKindOfClass:[NSArray class]]) {
+
+                NSString *name;
+                NSString *type;
+                for (NSDictionary *entry in (NSArray *)json) {
+                    name = entry[@"name"];
+                    type = entry[@"type"];
+                    if (!name || !type) continue;
+                    else if ([type isEqualToString:@"word"]) [words addObject:name];
+                    else if ([type isEqualToString:@"cell"]) [cells addObject:name];
+                    else if ([type isEqualToString:@"slide"]) [slides addObject:name];
+                    else if ([type isEqualToString:@"diagram"]) [draws addObject:name];
+                }
+            }
+        }
+    }
+
+    self.wordFormats = words.count ? [words copy] : [ASCConstants documents];
+    self.cellFormats = cells.count ? [cells copy] : [ASCConstants spreadsheets];
+    self.slideFormats = slides.count ? [slides copy] : [ASCConstants presentations];
+    self.diagramFormats = draws.count ? [draws copy] : [ASCConstants draws];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     
@@ -96,6 +131,7 @@
     
     self.editorWindowControllers = [NSMutableArray array];
     
+    [self loadDocumentFormats];
     [self updateAppAppearance];
     
 #ifndef _MAS
