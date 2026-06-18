@@ -10,13 +10,18 @@ export default function Sidebar() {
     <nav class="tool-menu">
       <MenuItem href="/" icon="#home" label={t("actHome")} end />
       <MenuItem href="/open" icon="#folder" label={t("actOpenLocal")} />
-      <MenuItem href="/templates" icon="#templates" label={t("actTemplates")} />
-      <div id="idx-sidebar-portals" class="connect" />
+      <MenuItem action="templates" href="/templates" icon="#templates" label={t("actTemplates")} />
+      <MenuItem action="clouds" href="/clouds" icon="#cloud" label={t("actClouds")} />
       <li class="menu-item devider" />
       <Show when={promoVisible()}>
-        <For each={promoButtons}>{(btn) => <MenuItem onClick={() => openPromo(btn.id)} icon={btn.icon} label={btn.text} />}</For>
+        <For each={promoButtons}>{
+          (btn) => <MenuItem class="promo-btn" onClick={() => openPromo(btn.id)}
+                            icon={btn.icon} label={btn.text} />
+        }
+        </For>
       </Show>
-      <MenuItem href="/settings/general" icon="#settings" label={t("actSettings")} />
+      <div class="menu-item separator" />
+      <MenuItem href="/settings/general" icon="#settings" label={t("actSettings")} action="settings" class="cls-btn" />
       <MenuItem onClick={openAbout} icon="#about" label={t("actAbout")} hidden={!aboutVisible()} />
     </nav>
   );

@@ -17,7 +17,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      /* gap: 8px; */
       height: 62px;
       color: var(--text-normal);
       font-size: 14px;
@@ -48,6 +48,15 @@
 
       &.selected {
         background: var(--background-toolbar);
+      }
+
+      .icon-inner-box {
+        height: 28px;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 20px;
       }
     }
 
