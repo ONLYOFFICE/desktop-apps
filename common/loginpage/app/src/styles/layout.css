@@ -1,4 +1,7 @@
-@import "./tokens.css";
+/* @import "./tokens.css"; */
+@import "./themes/colors.css";
+@import "./themes/colors_white.css";
+@import "./themes/colors_night.css";
 
 * {
   box-sizing: border-box;
