@@ -2,8 +2,8 @@ import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 
 export const AI_PANEL_DEFAULT_WIDTH = 400;
-export const AI_PANEL_MIN_WIDTH = 400;
-export const AI_CONTENT_MIN_WIDTH = 800;
+export const AI_PANEL_MIN_WIDTH = 300;
+export const AI_CONTENT_MIN_WIDTH = 200;
 
 const defaultAichat = {
   open: true,
