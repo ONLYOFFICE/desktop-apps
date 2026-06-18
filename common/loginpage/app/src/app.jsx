@@ -6,6 +6,7 @@ import { AiPanel, AiTogglePill, ResizeHandle } from "@/components/ai-panel";
 import { signalAppReady } from "@/sdk";
 import { initSettingsSync } from "@/services/settings-sync";
 import { initAbout } from "@/services/about";
+import { initPortals } from "@/services/portals";
 import { initAiPanel } from "@/services/ai-panel";
 import { settings } from "@/stores/settings";
 import { aichat } from "@/stores/aichat";
@@ -58,6 +59,7 @@ const routes = [
 export default function App() {
   initSettingsSync();
   initAbout();
+  initPortals();
   initAiPanel();
   onMount(signalAppReady);
   return <HashRouter root={Shell}>{routes}</HashRouter>;

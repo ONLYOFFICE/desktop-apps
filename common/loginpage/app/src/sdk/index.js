@@ -15,4 +15,5 @@ export {
 } from "./recents";
 export { createDocument, openLocal, openFolder, openRecentFile, openRecoveryFile, exploreFile, checkFiles, dropOfficeFiles } from "./files";
 export { signalAppReady } from "./app";
+export { getExternalClouds, sendProviderList, openPortal, logoutPortal, relpath } from "./portals";
 export { FileFormat, formatToEditor, parseFileFormat, fileExtensionToFileFormat } from "./format";
