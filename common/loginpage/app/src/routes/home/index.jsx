@@ -1,7 +1,7 @@
 import { Show, createSignal, onCleanup, onMount } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 import { t } from "@/services/l10n.js";
-import { listRecents, onRecentsChanged, parseRecent, pinRecent, removeRecent, clearRecents } from "@/sdk";
+import { listRecents, onRecentsChanged, onNativeMessage, parseRecent, pinRecent, removeRecent, clearRecents, checkFiles, appReady } from "@/sdk";
 import { DocTypeGrid } from "./components/DocTypeGrid.jsx";
 import { RecentList } from "./components/RecentList.jsx";
 import { FileDropZone } from "./components/FileDropZone.jsx";
@@ -14,14 +14,41 @@ function sortByPin(arr) {
   return arr;
 }
 
+const BATCH = 40;
+
 export default function Index() {
   const [recents, setRecents] = createStore([]);
   const [loaded, setLoaded] = createSignal(false);
+  const [visibleCount, setVisibleCount] = createSignal(BATCH);
+  let revealId = 0;
 
   const hasFiles = () => recents.length > 0;
+  const visibleRecents = () => recents.slice(0, visibleCount());
 
   function loadRecents(raw) {
-    setRecents(reconcile(sortByPin(parseRecent(toArray(raw))), { key: "uid" }));
+    const id = ++revealId;
+    const sorted = sortByPin(parseRecent(toArray(raw)));
+    setVisibleCount(Math.min(BATCH, sorted.length));
+    setRecents(reconcile(sorted, { key: "uid" }));
+
+    if (sorted.length > BATCH) {
+      let shown = BATCH;
+      function reveal() {
+        if (id !== revealId) return;
+        shown = Math.min(shown + BATCH, sorted.length);
+        setVisibleCount(shown);
+        if (shown < sorted.length) requestAnimationFrame(reveal);
+      }
+      requestAnimationFrame(reveal);
+    }
+  }
+
+  function sendCheckFiles() {
+    const pathByHash = {};
+    recents.forEach((f) => {
+      pathByHash[f.hash] = f.path;
+    });
+    Object.keys(pathByHash).length && checkFiles(pathByHash);
   }
 
   function togglePin(fileid) {
@@ -56,6 +83,7 @@ export default function Index() {
       .then((raw) => {
         loadRecents(raw);
         setLoaded(true);
+        if (appReady()) sendCheckFiles();
       })
       .catch(() => setLoaded(true));
 
@@ -64,8 +92,30 @@ export default function Index() {
       if (!loaded()) setLoaded(true);
     });
 
+    const unsubCommonMsgs = onNativeMessage((msg, param) => {
+      if (msg === "app:ready") {
+        sendCheckFiles();
+      } else if (msg === "files:checked") {
+        let checked;
+        try {
+          checked = JSON.parse(param);
+        } catch {
+          return;
+        }
+        if (!checked || typeof checked !== "object") return;
+        setRecents(
+          reconcile(
+            recents.map((r) => (r.hash in checked ? { ...r, exist: checked[r.hash] } : r)),
+            { key: "uid" },
+          ),
+        );
+      }
+    });
+
     onCleanup(() => {
+      ++revealId;
       unsubRecents();
+      unsubCommonMsgs();
     });
   });
 
@@ -86,7 +136,7 @@ export default function Index() {
       </Show>
 
       <section class="file-list-section">
-        <RecentList recents={recents} onTogglePin={togglePin} onRemove={markFileRemoved} onClear={clearAll} />
+        <RecentList recents={visibleRecents()} onTogglePin={togglePin} onRemove={markFileRemoved} onClear={clearAll} />
       </section>
     </div>
   );

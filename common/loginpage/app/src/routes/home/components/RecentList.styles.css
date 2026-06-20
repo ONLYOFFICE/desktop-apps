@@ -66,10 +66,12 @@
     /*  background: var(--highlight-scroll-track-hover);*/
     /*}*/
 
-    /* fixme: ask for actual status */
-
     &.lost {
-      opacity: 0.4;
+      opacity: 0.5;
+
+      .col-name .icon {
+        filter: grayscale(1);
+      }
     }
   }
 }

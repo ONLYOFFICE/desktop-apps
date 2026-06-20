@@ -95,6 +95,7 @@ export function parseRecent(arr) {
     const ext = dot >= 0 ? fullName.slice(dot) : "";
     const dir = p.slice(0, p.length - fullName.length - 1);
     const id = f.id;
+    const path = decodeHtml(p);
     files.push({
       uid: `file-${id}`,
       fileid: id,
@@ -105,14 +106,14 @@ export function parseRecent(arr) {
       ext,
       fullName,
       descr: dir,
-      path: decodeHtml(p),
+      path: path,
       date: f.modifyed || "",
       dateLabel: formatDate(f.modifyed),
       cloud: f.cloud || "",
       pinned: !!f.pin,
       crypted: !!f.crypted,
       exist: f.exist !== false,
-      hash: f.hash || 0,
+      hash: f.hash || hashCode(path),
     });
   }
   return files;

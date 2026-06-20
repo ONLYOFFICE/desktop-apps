@@ -33,7 +33,7 @@ function RecentRow(props) {
         class="row text-normal"
         classList={{
           pinned: props.model.pinned,
-          lost: !props.model.exist,
+          lost: props.model.exist === false,
         }}
         onClick={() => openRecentFile(props.model)}
       >
