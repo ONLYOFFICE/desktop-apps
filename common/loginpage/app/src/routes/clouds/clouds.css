@@ -104,7 +104,7 @@
 }
 
 .portal-row:hover .portal-actions,
-.portal-row:focus-within .portal-actions,
+/*.portal-row:focus-within .portal-actions,*/
 .portal-actions:has([data-expanded]) {
   opacity: 1;
   background-color: var(--highlight-button-hover);
