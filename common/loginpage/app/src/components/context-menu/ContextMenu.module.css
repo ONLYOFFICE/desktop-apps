@@ -30,6 +30,12 @@
     outline: none;
   }
 
+  &[aria-disabled="true"] {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: auto;
+  }
+
   &.negative {
     color: var(--text-negative);
   }
