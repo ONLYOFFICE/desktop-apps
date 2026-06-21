@@ -11,6 +11,7 @@ const defaultSettings = Object.freeze({
   launchMode: "tab",
   spellCheck: "auto",
   gpuMode: true,
+  promoButtons: true,
   useai: true,
 });
 

@@ -149,6 +149,8 @@ l10n.en = {
     settingsCountry: 'Country',
     settingsUserNamePlaceholder: 'Username',
     settingsGpuUseModeDescr: 'Improves performance on most devices. Disable if you experience display issues.',
+    settPromoButtons: 'Show ONLYOFFICE products recommendations',
+    settPromoButtonsDescr: 'Display ONLYOFFICE product recommendations in the navigation panel',
     settingsDisableAI: 'Disable AI features',
     settingsDisableAIDescr: 'Disable AI in application, remove all configured AI models and associated data.',
     settingsDisableAIButton: 'Disable AI',
