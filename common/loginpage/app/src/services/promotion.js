@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { settings } from "@/stores/settings";
 
 export const promoButtons = [
     {
