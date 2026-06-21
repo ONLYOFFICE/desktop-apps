@@ -80,6 +80,17 @@ const FALLBACK_LANGS = [
   { code: "zh_TW", name: "中文(繁體)", enname: "Chinese (Traditional)" },
 ];
 
+function injectCustomThemeCss(id, colors) {
+  if (!id || !colors) return;
+  const existing = document.querySelector(`style[data-theme-id="${id}"]`);
+  if (existing) existing.remove();
+  const vars = Object.entries(colors).map(([k, v]) => `--${k}: ${v};`).join(" ");
+  const el = document.createElement("style");
+  el.setAttribute("data-theme-id", id);
+  el.textContent = `:root .${id} { ${vars} }`;
+  document.head.appendChild(el);
+}
+
 function applyThemeToDom(storeThemeId) {
   const cssClass = STORE_TO_CSS_CLASS[storeThemeId] ?? "";
   const el = document.documentElement;
@@ -111,17 +122,41 @@ function nativeScalingToStore(raw) {
 }
 
 const [availableLangs, setAvailableLangs] = createSignal(FALLBACK_LANGS);
-export { availableLangs };
+const [langRestartPending, setLangRestartPending] = createSignal(false);
+const [customThemes, setCustomThemes] = createSignal([]);
+const [systemThemeEnabled, setSystemThemeEnabled] = createSignal(true);
+const [isDirty, setIsDirty] = createSignal(false);
+export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isDirty };
 
 let _needsRestart = () => false;
 let _toggleAI = () => {};
+let _applySettings = () => {};
 
 export const needsRestart = () => _needsRestart();
 export const toggleAI = () => _toggleAI();
+export const applySettings = () => _applySettings();
 
 export function initSettingsSync() {
   const [nativeSnapshot, setNativeSnapshot] = createSignal(null);
   let initialized = false;
+
+  const storedUsername = localStorage.getItem("username");
+  if (storedUsername) {
+    setSettings("userName", storedUsername);
+  } else {
+    cmd("settings:get", "username");
+  }
+
+  const nativevars = window.RendererProcessVariable;
+  if (nativevars?.theme?.system === "disabled") setSystemThemeEnabled(false);
+  if (nativevars?.localthemes?.length) {
+    const loaded = nativevars.localthemes.flatMap((t) => {
+      if (!t?.id) return [];
+      injectCustomThemeCss(t.id, t.colors);
+      return [{ value: t.id, label: t.name || t.id }];
+    });
+    if (loaded.length) setCustomThemes(loaded);
+  }
 
   _needsRestart = createMemo(() => {
     const snap = nativeSnapshot();
@@ -144,6 +179,15 @@ export function initSettingsSync() {
   createEffect(() => applyScaling(settings.scaling));
 
   createEffect(() => {
+    settings.lang; settings.scaling; settings.theme;
+    settings.checkUpdates; settings.launchMode; settings.spellCheck;
+    settings.gpuMode; settings.promoButtons; settings.userName;
+    if (!initialized) return;
+    setIsDirty(true);
+  });
+
+  _applySettings = () => {
+    const snap = nativeSnapshot();
     const lang = settings.lang;
     const scaling = settings.scaling;
     const theme = settings.theme;
@@ -152,14 +196,12 @@ export function initSettingsSync() {
     const spell = settings.spellCheck;
     const gpu = settings.gpuMode;
 
-    if (!initialized) return;
-
-    const snap = nativeSnapshot();
     const restart =
       snap !== null &&
       (lang !== (snap.locale?.current ?? lang) || scaling !== nativeScalingToStore(snap.uiscaling) || gpu !== !!snap.usegpu);
 
-    const payload = {
+    cmd("settings:apply", JSON.stringify({
+      username: settings.userName,
       lang,
       uitheme: STORE_TO_NATIVE[theme] ?? theme,
       autoupdatemode: updates,
@@ -167,12 +209,10 @@ export function initSettingsSync() {
       spellcheckdetect: spell,
       usegpu: gpu,
       restart,
-    };
-
-    payload.uiscaling = scaling === "auto" ? "0" : scaling;
-
-    cmd("settings:apply", JSON.stringify(payload));
-  });
+      uiscaling: scaling === "auto" ? "0" : scaling,
+    }));
+    setIsDirty(false);
+  };
 
   const unsub = onNativeMessage((msgCmd, param) => {
     if (msgCmd === "settings:init") {
@@ -202,8 +242,49 @@ export function initSettingsSync() {
         if (payload.usegpu != null) setSettings("gpuMode", !!payload.usegpu);
         if (payload.useai != null) setSettings("useai", !!payload.useai);
       });
+      if (payload.rtl === true) {
+        document.body.setAttribute("dir", "rtl");
+        document.body.classList.add("rtl");
+      }
+      if (payload.username) setSettings("userName", payload.username);
+      if (payload.locale?.restart) setLangRestartPending(true);
+
       initialized = true;
       setNativeSnapshot(payload);
+    } else if (msgCmd === "settings:username") {
+      if (param) setSettings("userName", param);
+    } else if (msgCmd === "settings:lang") {
+      if (param.startsWith("restart:")) setLangRestartPending(param === "restart:true");
+    } else if (msgCmd === "uitheme:added") {
+      let themes;
+      try {
+        themes = JSON.parse(param);
+      } catch {
+        return;
+      }
+      if (!themes) return;
+      const arr = Array.isArray(themes) ? themes : [themes];
+      const added = [];
+      for (const t of arr) {
+        if (!t?.id) continue;
+        injectCustomThemeCss(t.id, t.colors);
+        added.push({ value: t.id, label: t.name || t.id });
+      }
+      if (added.length) {
+        setCustomThemes((prev) => {
+          const next = prev.filter((x) => !added.some((a) => a.value === x.value));
+          return [...next, ...added];
+        });
+        setSettings("theme", added[0].value);
+      }
+    } else if (msgCmd === "renderervars:changed") {
+      let opts;
+      try {
+        opts = JSON.parse(htmlDecode(param));
+      } catch {
+        return;
+      }
+      if (opts?.theme?.system) setSystemThemeEnabled(opts.theme.system !== "disabled");
     } else if (msgCmd === "uitheme:changed") {
       setSettings("theme", NATIVE_TO_STORE[param] ?? param);
     }
