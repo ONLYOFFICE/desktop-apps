@@ -27,7 +27,27 @@
 .portal-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+}
+
+.portal-item-wrap {
+  overflow: hidden;
+  margin-bottom: 12px;
+  max-height: 120px;
+  transition:
+    max-height 200ms ease-out,
+    margin-bottom 200ms ease-out,
+    opacity 150ms ease-out;
+}
+
+.portal-item-wrap:last-child {
+  margin-bottom: 0;
+}
+
+.portal-item-wrap.removing {
+  max-height: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .portal-row {

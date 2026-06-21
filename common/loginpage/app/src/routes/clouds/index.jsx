@@ -99,12 +99,13 @@ function ConnectDialog(props) {
 }
 
 function PortalRow(props) {
+  const [menuOpen, setMenuOpen] = createSignal(false);
   const providerData = () => providers().find((p) => p.provider === props.portal.provider);
   const displayName = () => props.portal.portal.replace(/^https?:\/\//, "");
   const userInfo = () => (props.portal.email ? `${props.portal.user} (${props.portal.email})` : props.portal.user);
 
   return (
-    <div class="portal-row" onClick={() => openConnectedPortal(props.portal)}>
+    <div class="portal-row" onClick={() => !menuOpen() && openConnectedPortal(props.portal)}>
       <ProviderIcon provider={providerData()} type="connectionsList" />
       <div class="portal-info">
         <p class="portal-name" title={props.portal.portal}>
@@ -113,7 +114,7 @@ function PortalRow(props) {
         <p class="portal-user">{userInfo()}</p>
       </div>
       <div class="portal-actions">
-        <DropdownMenu placement="bottom-end">
+        <DropdownMenu placement="bottom-end" onOpenChange={setMenuOpen}>
           <DropdownMenu.Trigger class="btn-portal-action" onClick={(e) => e.stopPropagation()}>
             <svg class="icon">
               <use href="#more" />
@@ -121,8 +122,8 @@ function PortalRow(props) {
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Item onSelect={() => openConnectedPortal(props.portal)}>Open</DropdownMenu.Item>
-            <DropdownMenu.Item onSelect={() => logoutConnectedPortal(props.portal)}>Logout</DropdownMenu.Item>
-            <DropdownMenu.Item onSelect={() => forgetConnectedPortal(props.portal)}>Remove</DropdownMenu.Item>
+            <DropdownMenu.Item aria-disabled={props.portal.logged === false} onSelect={() => props.portal.logged !== false && logoutConnectedPortal(props.portal)}>Logout</DropdownMenu.Item>
+            <DropdownMenu.Item onSelect={() => props.onRemove(props.portal)}>Remove</DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu>
       </div>
@@ -140,8 +141,24 @@ function ProviderItem(props) {
   );
 }
 
+const REMOVE_DELAY = 300;
+
 export default function Clouds() {
   const [connectingProvider, setConnectingProvider] = createSignal(null);
+  const [removingIds, setRemovingIds] = createSignal(new Set());
+
+  function handleRemove(portal) {
+    if (removingIds().has(portal.portal)) return;
+    setRemovingIds((prev) => new Set([...prev, portal.portal]));
+    setTimeout(() => {
+      forgetConnectedPortal(portal);
+      setRemovingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(portal.portal);
+        return next;
+      });
+    }, REMOVE_DELAY);
+  }
 
   return (
     <div class="clouds-page">
@@ -149,7 +166,13 @@ export default function Clouds() {
         <section>
           <h2 class="clouds-section-title">Connected clouds</h2>
           <div class="portal-list">
-            <For each={portals()}>{(portal) => <PortalRow portal={portal} />}</For>
+            <For each={portals()}>
+              {(portal) => (
+                <div class="portal-item-wrap" classList={{ removing: removingIds().has(portal.portal) }}>
+                  <PortalRow portal={portal} onRemove={handleRemove} />
+                </div>
+              )}
+            </For>
           </div>
         </section>
       </Show>

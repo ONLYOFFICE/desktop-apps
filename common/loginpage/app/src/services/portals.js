@@ -1,7 +1,10 @@
 import { createSignal, onCleanup } from "solid-js";
-import { onNativeMessage } from "@/sdk/events.js";
+import { onNativeMessage, onAuthChecked } from "@/sdk/events.js";
 import { cmd } from "@/sdk/bridge.js";
-import { getExternalClouds, sendProviderList, openPortal as sdkOpenPortal, logoutPortal as sdkLogoutPortal } from "@/sdk/portals.js";
+import { getExternalClouds,
+        sendProviderList,
+        openPortal as sdkOpenPortal,
+        logoutPortal as sdkLogoutPortal } from "@/sdk/portals.js";
 
 const STORAGE_KEY = "portals";
 
@@ -47,9 +50,13 @@ export { providers, portals };
 export function initPortals() {
   const clouds = getExternalClouds();
   if (clouds.length) {
-    setProviders(clouds);
+    setProviders(sortProviders(clouds));
     sendProviderList(clouds);
   }
+
+  const _portals = portals();
+  if (!!_portals && _portals.length)
+    checkAuth(_portals);
 
   const unsub = onNativeMessage((cmd, param) => {
     if (cmd === "portal:login") {
@@ -79,7 +86,17 @@ export function initPortals() {
     }
   });
 
-  onCleanup(unsub);
+  const unsubOnAuth = onAuthChecked((obj) => {
+    if (!obj || typeof obj !== "object") return;
+    setPortals((prev) =>
+      prev.map((p) => {
+        const key = skipProtocol(p.portal);
+        if (!(key in obj)) return p;
+        return { ...p, logged: obj[key] !== "" };
+      }),
+    );
+  });
+  onCleanup(()=>{unsub(); unsubOnAuth();});
 }
 
 export function openConnectedPortal(portal) {
@@ -122,4 +139,31 @@ export function connectToProvider(provider, url) {
       entrypage: provider?.startPage ?? "/",
     }),
   );
+}
+
+function sortProviders(list = []) {
+    return list.slice().sort((a, b) => {
+        if (a.provider === 'onlyoffice' && b.provider !== 'onlyoffice') return -1;
+        if (b.provider === 'onlyoffice' && a.provider !== 'onlyoffice') return 1;
+
+        const aNoOrder = (a.order === undefined || a.order === null || a.order === '');
+        const bNoOrder = (b.order === undefined || b.order === null || b.order === '');
+
+        if (aNoOrder && !bNoOrder) return 1;
+        if (!aNoOrder && bNoOrder) return -1;
+        if (aNoOrder && bNoOrder) return 0;
+
+        return Number(a.order) - Number(b.order);
+    });
+}
+
+function checkAuth(portals) {
+  let auth_arr = {};
+  portals.forEach(p => {
+    const displayName = p.portal.replace(/^https?:\/\//, "");
+    auth_arr[displayName] = '';
+  });
+
+  const sdk = window.AscDesktopEditor;
+  sdk.checkAuth(auth_arr);
 }

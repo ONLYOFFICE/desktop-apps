@@ -23,3 +23,8 @@ export function openPortal(portal, provider, entrypage) {
 export function logoutPortal(domain, extra) {
   cmd("portal:logout", JSON.stringify({ domain, ...(extra ? { extra } : {}) }));
 }
+
+export function checkPortalsAuth(portals) {
+  const sdk = window.AscDesktopEditor;
+  sdk.checkAuth(portals);
+}

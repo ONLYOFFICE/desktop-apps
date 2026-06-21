@@ -14,3 +14,8 @@ export function onRecoversChanged(cb) {
   sdk.on("onupdaterecovers", cb);
   return () => sdk.remove("onupdaterecovers", cb);
 }
+
+export function onAuthChecked(cb) {
+  sdk.on("on_check_auth", cb);
+  return () => sdk.remove("on_check_auth", cb);
+}
