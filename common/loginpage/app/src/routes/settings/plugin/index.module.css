@@ -34,7 +34,7 @@
 .fieldRowAuto {
   display: flex;
   align-items: flex-start;
-  width: 560px;
+  /* width: 560px; */
   gap: 64px;
 }
 

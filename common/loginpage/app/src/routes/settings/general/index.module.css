@@ -57,7 +57,7 @@
 }
 
 .divider {
-  width: 560px;
+  /* width: 560px; */
   height: 1px;
   background: var(--border-divider);
   flex-shrink: 0;
@@ -66,7 +66,7 @@
 .fieldRowAuto {
   display: flex;
   align-items: flex-start;
-  width: 560px;
+  /* width: 560px; */
   gap: 64px;
 }
 
