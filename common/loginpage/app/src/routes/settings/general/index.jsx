@@ -172,8 +172,6 @@ export default function GeneralSettings() {
           </div>
         </div>
 
-        <div class={styles.divider} />
-
         <div class={styles.fieldRowAuto}>
           <label for="gpu-mode" class={styles.fieldLabelBlock}>
             {t("settGpuUseMode")} *<span class={styles.fieldDescription}>{t("settingsGpuUseModeDescr")}</span>
