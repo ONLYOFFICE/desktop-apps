@@ -1,19 +1,6 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
   max-width: 560px;
   margin-inline: auto;
-}
-
-.title {
-  > h1 {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 28px;
-    color: var(--text-normal);
-    margin: 0;
-  }
 }
 
 .form {

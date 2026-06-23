@@ -11,10 +11,28 @@
   overflow: hidden;
 }
 
+.header {
+  flex-shrink: 0;
+  padding: 24px 16px 0;
+}
+
+.headerInner {
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.headerTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--text-normal);
+  margin: 0;
+}
+
 .content {
   flex: 1;
   overflow-y: auto;
-  padding: 24px 16px 20px;
+  padding: 16px 16px 20px;
 }
 
 .footer {
@@ -88,3 +106,4 @@
 .selected {
   background: var(--highlight-button-hover);
 }
+

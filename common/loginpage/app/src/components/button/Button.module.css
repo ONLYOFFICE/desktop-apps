@@ -45,12 +45,14 @@
   color: var(--text-contrast-background);
   background-color: var(--background-accent-button);
 
-  &:hover {
-    background-color: var(--highlight-accent-button-hover);
-  }
+  &:not(:disabled) {
+    &:hover {
+      background-color: var(--highlight-accent-button-hover);
+    }
 
-  &:active {
-    background-color: var(--highlight-accent-button-pressed);
+    &:active {
+      background-color: var(--highlight-accent-button-pressed);
+    }
   }
 }
 

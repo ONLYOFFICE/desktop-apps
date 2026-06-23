@@ -66,11 +66,9 @@ export default function GeneralSettings() {
     });
   }
 
+
   return (
     <div class={styles.page}>
-      <div class={styles.title}>
-        <h1>{t("settingsGeneral")}</h1>
-      </div>
       <div class={styles.form}>
         <div class={styles.formHeader}>
           <button class={styles.resetLink} onClick={handleReset}>
