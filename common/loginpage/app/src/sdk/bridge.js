@@ -26,6 +26,7 @@ const _events = [
   "onChangeCryptoMode",
   "onfeaturesavailable",
   "onaddtemplates",
+  "onPluginEvent"
 ];
 
 for (const e of _events) {

@@ -1,5 +1,5 @@
 import { Show, createEffect, lazy, onMount } from "solid-js";
-import { HashRouter } from "@solidjs/router";
+import { HashRouter, useLocation } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
 import About from "./routes/about/index.jsx";
 import { AiPanel, AiTogglePill, ResizeHandle } from "@/components/ai-panel";
@@ -14,27 +14,32 @@ import "./styles/main.css";
 import "./styles/layout.css";
 
 function Shell(props) {
+  const location = useLocation();
+  const isSettings = () => location.pathname.startsWith("/settings");
+  const aiActive = () => settings.useai && aichat.open && !isSettings();
+
   createEffect(() => {
-    const width = settings.useai && aichat.open ? `${aichat.width}px` : "0px";
-    document.documentElement.style.setProperty("--ai-w", width);
+    document.documentElement.style.setProperty("--ai-w", aiActive() ? `${aichat.width}px` : "0px");
   });
 
   return (
-    <div class="shell" data-ai-open={aichat.open}>
+    <div class="shell" data-ai-open={aiActive()}>
       <div class="col-sidebar">
         <Sidebar />
       </div>
       <div class="col-center">
         {props.children}
-        <Show when={settings.useai && !aichat.open}>
-          <AiTogglePill />
-        </Show>
-        <Show when={settings.useai && aichat.open}>
-          <ResizeHandle />
+        <Show when={settings.useai}>
+          <div style={{ display: !aichat.open && !isSettings() ? "contents" : "none" }}>
+            <AiTogglePill />
+          </div>
+          <div style={{ display: aichat.open && !isSettings() ? "contents" : "none" }}>
+            <ResizeHandle />
+          </div>
         </Show>
       </div>
-      <Show when={settings.useai && aichat.open}>
-        <div class="col-ai">
+      <Show when={settings.useai}>
+        <div class="col-ai" style={{ display: aiActive() ? undefined : "none" }}>
           <AiPanel />
         </div>
       </Show>
@@ -52,7 +57,10 @@ const routes = [
   {
     path: "/settings",
     component: lazy(() => import("./routes/settings/layout.jsx")),
-    children: [{ path: "/general", component: lazy(() => import("./routes/settings/general/index.jsx")) }],
+    children: [
+      { path: "/general", component: lazy(() => import("./routes/settings/general/index.jsx")) },
+      { path: "/plugin/:pluginId/:section", component: lazy(() => import("./routes/settings/plugin/index.jsx")) },
+    ],
   },
 ];
 

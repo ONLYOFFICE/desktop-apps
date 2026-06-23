@@ -19,3 +19,8 @@ export function onAuthChecked(cb) {
   sdk.on("on_check_auth", cb);
   return () => sdk.remove("on_check_auth", cb);
 }
+
+export function onPluginEvent(cb) {
+  sdk.on("onPluginEvent", cb);
+  return () => sdk.remove("onPluginEvent", cb);
+}

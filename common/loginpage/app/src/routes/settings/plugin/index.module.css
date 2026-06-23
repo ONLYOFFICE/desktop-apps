@@ -1,0 +1,46 @@
+.page {
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  height: 36px;
+  gap: 64px;
+}
+
+.fieldLabel {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--text-normal);
+}
+
+.fieldControl {
+  > * {
+    width: 100%;
+  }
+}
+
+.fieldRowAuto {
+  display: flex;
+  align-items: flex-start;
+  width: 560px;
+  gap: 64px;
+}
+
+.fieldLabelBlock {
+  flex: 1;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-normal);
+}

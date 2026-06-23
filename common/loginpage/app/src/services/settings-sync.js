@@ -1,9 +1,11 @@
 import { createEffect, createMemo, createSignal, onCleanup, batch } from "solid-js";
 import { settings, setSettings } from "@/stores/settings";
+import { getPluginSettings } from "@/stores/plugin-settings";
 import { onNativeMessage } from "@/sdk/events";
 import { cmd } from "@/sdk/bridge";
 import { applyLocale } from "@/services/l10n";
 import { htmlDecode } from "@/utils/html";
+import { sendPluginSettings } from "@/sdk/app";
 
 const NATIVE_TO_STORE = {
   "theme-white": "modern-light",
@@ -125,8 +127,8 @@ const [availableLangs, setAvailableLangs] = createSignal(FALLBACK_LANGS);
 const [langRestartPending, setLangRestartPending] = createSignal(false);
 const [customThemes, setCustomThemes] = createSignal([]);
 const [systemThemeEnabled, setSystemThemeEnabled] = createSignal(true);
-const [isDirty, setIsDirty] = createSignal(false);
-export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isDirty };
+const [isOptsChanged, setIsOptsChanged] = createSignal(false);
+export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isOptsChanged, setIsOptsChanged };
 
 let _needsRestart = () => false;
 let _toggleAI = () => {};
@@ -183,7 +185,7 @@ export function initSettingsSync() {
     settings.checkUpdates; settings.launchMode; settings.spellCheck;
     settings.gpuMode; settings.promoButtons; settings.userName;
     if (!initialized) return;
-    setIsDirty(true);
+    setIsOptsChanged(true);
   });
 
   _applySettings = () => {
@@ -211,7 +213,14 @@ export function initSettingsSync() {
       restart,
       uiscaling: scaling === "auto" ? "0" : scaling,
     }));
-    setIsDirty(false);
+
+    const _plugin_opts = getPluginSettings();
+    if (!!_plugin_opts) {
+      console.log("plugin settings", _plugin_opts);
+      sendPluginSettings(_plugin_opts);
+    }
+
+    setIsOptsChanged(false);
   };
 
   const unsub = onNativeMessage((msgCmd, param) => {
