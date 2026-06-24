@@ -60,6 +60,9 @@ void CMainWindowImpl::refreshAboutVersion()
     QJsonObject _json_obj;
 
     auto _read_license_name = [](const QString& path) -> QString {
+        if (path.isEmpty())
+            return {};
+
         QFile f(path);
         if (!f.open(QIODevice::ReadOnly | QIODevice::Text))
             return {};
