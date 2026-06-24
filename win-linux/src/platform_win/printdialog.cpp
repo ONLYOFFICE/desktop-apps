@@ -39,8 +39,13 @@
 #include <private/qprintengine_win_p.h>
 #include "printdialog.h"
 #include "utils.h"
+#include "cthemes.h"
+#include "cascapplicationmanagerwrapper.h"
 #include "components/cmessage.h"
 
+#ifndef DWMWA_USE_IMMERSIVE_DARK_MODE
+# define DWMWA_USE_IMMERSIVE_DARK_MODE 20
+#endif
 #define MAXPAGERANGES 32
 #define PRINT_DIALOG_REG_KEY L"Software\\Microsoft\\Print\\UnifiedPrintDialog\0"
 #define PRINT_DIALOG_REG_VALUE L"PreferLegacyPrintDialog\0"
@@ -157,6 +162,25 @@ private:
     }
     virtual HRESULT STDMETHODCALLTYPE HandleMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam,
                                                        LRESULT *pResult) noexcept final {
+        switch (uMsg) {
+        case WM_INITDIALOG: {
+            if (Utils::getWinVersion() == Utils::WinVer::Win10 && GetCurrentTheme().isDark()) {
+                // Apply dark theme to title bar
+                if (HMODULE hDwmApi = GetModuleHandleA("dwmapi")) {
+                    HRESULT(WINAPI *pSetWindowAttribute)(HWND, DWORD, LPCVOID, DWORD) = nullptr;
+                    *(FARPROC*)&pSetWindowAttribute = GetProcAddress(hDwmApi, "DwmSetWindowAttribute");
+                    if (pSetWindowAttribute) {
+                        BOOL bDark = TRUE;
+                        HWND hwnd = GetAncestor(hDlg, GA_ROOT);
+                        pSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, &bDark, sizeof(bDark));
+                    }
+                }
+            }
+            break;
+        }
+        default:
+            break;
+        }
         return S_FALSE;
     }
     virtual HRESULT STDMETHODCALLTYPE InitDone() noexcept final {
