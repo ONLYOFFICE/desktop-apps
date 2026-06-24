@@ -473,7 +473,7 @@ void QtMsg::setContent( const QString& t)
 struct TaskDialogContext {
     TASKDIALOGCONFIG *pConfig;
     HICON hIcon;
-    bool useDark;
+    TaskDialogTheme::Theme theme;
 };
 
 static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
@@ -482,19 +482,19 @@ static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam,
 
     switch (msg) {
     case TDN_CREATED: {
-        if (pCtx->useDark)
-            TaskDialogTheme::AllowForTaskDialog(hwnd, pCtx->pConfig, TaskDialogTheme::Theme::Dark);
+        if (pCtx->theme != TaskDialogTheme::Theme::Light)
+            TaskDialogTheme::AllowForTaskDialog(hwnd, pCtx->pConfig, pCtx->theme);
 
         SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)pCtx->hIcon);
         SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)pCtx->hIcon);
         break;
     }
     case TDN_NAVIGATED:
-        if (pCtx->useDark)
-            TaskDialogTheme::AllowForTaskDialog(hwnd, (TASKDIALOGCONFIG*)lParam, TaskDialogTheme::Theme::Dark);
+        if (pCtx->theme != TaskDialogTheme::Theme::Light)
+            TaskDialogTheme::AllowForTaskDialog(hwnd, (TASKDIALOGCONFIG*)lParam, pCtx->theme);
         break;
     case TDN_DESTROYED:
-        if (pCtx->useDark)
+        if (pCtx->theme != TaskDialogTheme::Theme::Light)
             TaskDialogTheme::RemoveFromTaskDialog(hwnd);
         break;
     case TDN_HYPERLINK_CLICKED:
@@ -660,7 +660,15 @@ int showMessage(QWidget *parent, const QString &msg, MsgType msgType, MsgBtns ms
     BOOL chkState = (opts.checkBoxState) ? (BOOL)*opts.checkBoxState : FALSE;
 
     TaskDialogContext ctx;
-    ctx.useDark = (Utils::getWinVersion() >= Utils::WinVer::Win10 && GetCurrentTheme().isDark());
+    ctx.theme = TaskDialogTheme::Theme::Light;
+    if (Utils::getWinVersion() >= Utils::WinVer::Win10) {
+        const CTheme& theme = GetCurrentTheme();
+        ctx.theme = theme.isSystem()
+            ? TaskDialogTheme::Theme::System
+            : theme.isDark()
+                ? TaskDialogTheme::Theme::Dark
+                : TaskDialogTheme::Theme::Light;
+    }
     ctx.hIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(IDI_MAINICON), IMAGE_ICON,
                                   GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), LR_DEFAULTCOLOR);
 
