@@ -317,11 +317,11 @@ void CSvcManager::aboutToQuit(FnVoidVoid callback)
 
 void CSvcManager::init()
 {
-    m_pDownloader->onQueryResponse([=](int error, int lenght) {
+    m_pDownloader->onQueryResponse([=](int error, uint64_t lenght) {
         onQueryResponse(error, lenght);
     });
-    m_pDownloader->onComplete([=](int error) {
-        onCompleteSlot(error, m_pDownloader->GetFilePath());
+    m_pDownloader->onComplete([=](int error, const tstring &filePath) {
+        onCompleteSlot(error, filePath);
     });
     m_pDownloader->onProgress([=](int percent) {
         onProgressSlot(percent);
@@ -371,7 +371,7 @@ void CSvcManager::init()
             case MSG_RequestContentLenght: {
                 __GLOBAL_LOCK
                 if (m_pDownloader)
-                    m_pDownloader->queryContentLenght(m_packageData->packageUrl);
+                    m_pDownloader->queryContentLength(m_packageData->packageUrl);
                 NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + m_packageData->packageUrl);
                 break;
             }
@@ -437,10 +437,10 @@ void CSvcManager::init()
     });
 }
 
-void CSvcManager::onQueryResponse(const int error, const int lenght)
+void CSvcManager::onQueryResponse(const int error, const uint64_t lenght)
 {
     __UNLOCK
-    m_socket->sendMessage(MSG_RequestContentLenght, (error == 0) ? to_tstring(lenght) : _T(""));
+    m_socket->sendMessage(MSG_RequestContentLenght, (error == CDownloader::Success) ? to_tstring(lenght) : _T(""));
 }
 
 void CSvcManager::onCompleteUnzip(const int error)
@@ -501,7 +501,7 @@ void CSvcManager::onCompleteUnzip(const int error)
 void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 {
     __UNLOCK
-    if (error == 0) {
+    if (error == CDownloader::Success) {
         switch (m_downloadMode) {
         case Mode::CHECK_UPDATES: {
             __GLOBAL_LOCK // isUrlAccessible may take a long time to execute
@@ -528,6 +528,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 #else
                 JsonObject win = package.value(_T("linux_64")).toObject();
 #endif
+                bool prefer_secondary = NS_Utils::cmdArgContains(_T("--prefer-alternate-url"));
                 if (isVersionBHigherThanA(curr_version, version) && (version != m_ignVersion)) {
                     m_packageData->object = _T("app");
                     m_packageData->version = version;
@@ -552,7 +553,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
-                    m_packageData->packageUrl = ((url.empty() || !m_pDownloader->isUrlAccessible(url)) && !url2.empty()) ? url2 : url;
+                    bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
+                    m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
                     tstring hash = package_type.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
@@ -575,7 +577,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
-                    m_packageData->packageUrl = ((url.empty() || !m_pDownloader->isUrlAccessible(url)) && !url2.empty()) ? url2 : url;
+                    bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
+                    m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
                     tstring hash = package_type.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
@@ -617,19 +620,19 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
             break;
         }
     } else
-    if (error == 1) {
+    if (error == CDownloader::Aborted) {
         // Pause or Stop
     } else
-    if (error == -1) {
+    if (error == CDownloader::OutOfMemory) {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_OUT_MEM"));
     } else
-    if (error == -2) {
+    if (error == CDownloader::NetworkError) {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_CONN"));
     } else
-    if (error == -3) {
+    if (error == CDownloader::InvalidUrl) {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_URL"));
     } else
-    if (error == -4) {
+    if (error == CDownloader::FileOpError) {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_CREAT"));
     } else {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_INET"));

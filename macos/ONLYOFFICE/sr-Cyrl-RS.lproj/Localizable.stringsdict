@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>few</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>%d дана је преостало до истека лиценце.</string>
 			<key>many</key>
 			<string>%d days are left until the license expiration.</string>
 			<key>one</key>
@@ -38,8 +38,8 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>few</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>Користите пробну верзију апликације.
+Пробни период ће се завршити за %d дана, након тога нећете моћи да креирате и уређујете документе.</string>
 			<key>many</key>
 			<string>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
@@ -68,7 +68,7 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>few</key>
-			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<string>Имате %ld %@ докумената са непотврђеним променама. Желите ли да прегледате ове промене пре одустајања?</string>
 			<key>many</key>
 			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
 			<key>one</key>

@@ -58,5 +58,10 @@
 @property (nonatomic) NSUInteger spreadsheetNameCounter;
 @property (nonatomic) NSUInteger presentationNameCounter;
 @property (nonatomic) NSUInteger pdfNameCounter;
+
+@property (nonatomic, strong) NSArray *wordFormats;
+@property (nonatomic, strong) NSArray *cellFormats;
+@property (nonatomic, strong) NSArray *slideFormats;
+@property (nonatomic, strong) NSArray *diagramFormats;
 @end
 

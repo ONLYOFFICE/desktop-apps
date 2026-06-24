@@ -102,6 +102,11 @@
         <target>Anuluj</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Canceled" xml:space="preserve">
+        <source>Canceled</source>
+        <target state="translated">Anulowano</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
         <source>Cannot open file of Digital Signature</source>
         <target>Nie można otworzyć pliku Podpisu Cyfrowego</target>
@@ -117,9 +122,39 @@
         <target>Nie można otworzyć folderu lokalizacji pliku.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Close" xml:space="preserve">
+        <source>Close</source>
+        <target>Zamknij</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close all" xml:space="preserve">
+        <source>Close all</source>
+        <target>Zamknij wszystko</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close saved" xml:space="preserve">
+        <source>Close saved</source>
+        <target>Zamknij zapisane</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
         <target state="translated">Wartości rozdzielone przecinkiem</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Community version %@" xml:space="preserve">
+        <source>Community version %@</source>
+        <target state="translated">Wersja Community %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
+        <source>Community version %1$@ (%2$@-%3$@)</source>
+        <target state="translated">Wersja Community %1$@ (%2$@-%3$@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create new" xml:space="preserve">
+        <source>Create new</source>
+        <target>Utwórz nowy</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -167,6 +202,16 @@
         <target state="translated">Plik Electronic Publication</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Enterprise version %@" xml:space="preserve">
+        <source>Enterprise version %@</source>
+        <target state="translated">Wersja Enterprise %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
+        <source>Enterprise version %1$@ (%2$@-%3$@)</source>
+        <target state="translated">Wersja Enterprise %1$@ (%2$@-%3$@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Arkusz kalkulacyjny Excel 97-2003</target>
@@ -175,6 +220,16 @@
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
         <target state="translated">Arkusz kalkulacyjny Open Office XML</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel Binary Workbook" xml:space="preserve">
+        <source>Excel Binary Workbook</source>
+        <target state="translated">Arkusz kalkulacyjny binarny Excel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to install theme" xml:space="preserve">
+        <source>Failed to install theme</source>
+        <target state="translated">Nie udało się zainstalować motywu</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -197,11 +252,6 @@
         <target>Nie można otworzyć pliku.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="HTML File" xml:space="preserve">
-        <source>HTML File</source>
-        <target state="translated">Plik HyperText Markup Language</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target>Ukryj %@</target>
@@ -217,19 +267,44 @@
         <target>Jeśli zakupiłeś już %@, Twój klucz aktywacyjny powinien znajdować się w e-mailu potwierdzającym.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="JPG Image" xml:space="preserve">
+        <source>JPG Image</source>
+        <target state="translated">Obraz JPG</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
         <target>Umowa licencyjna</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="MHT File" xml:space="preserve">
-        <source>MHT File</source>
-        <target state="translated">Plik Web Page Archive</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
         <target state="translated">E-Book Mobipocket</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
+        <source>Macro-enabled Presentation</source>
+        <target state="translated">Prezentacja z obsługą makr</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
+        <source>Macro-enabled spreadsheet template</source>
+        <target state="translated">Szablon arkusza kalkulacyjnego z obsługą makr</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Markdown File" xml:space="preserve">
+        <source>Markdown File</source>
+        <target state="translated">Plik Markdown</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to end" xml:space="preserve">
+        <source>Move to end</source>
+        <target>Przenieś do końca</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to start" xml:space="preserve">
+        <source>Move to start</source>
+        <target>Przesuń, aby rozpocząć</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -240,6 +315,21 @@
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Document Form Template" xml:space="preserve">
+        <source>ONLYOFFICE Document Form Template</source>
+        <target state="translated">Szablon formularza dokumentu ONLYOFFICE</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
+        <source>ONLYOFFICE Fillable Online Form</source>
+        <target state="translated">Formularz online do wypełnienia ONLYOFFICE</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
+        <source>ONLYOFFICE Form Document</source>
+        <target state="translated">Formularz PDF ONLYOFFICE</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
@@ -297,6 +387,11 @@
         <target state="translated">Przenośny document /A</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="PNG Image" xml:space="preserve">
+        <source>PNG Image</source>
+        <target state="translated">Obraz PNG</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
         <target state="translated">Zwykły Tekst</target>
@@ -342,6 +437,11 @@
         <target>Zakończ %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Replace" xml:space="preserve">
+        <source>Replace</source>
+        <target state="translated">Zamień</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
         <target>Sprawdź Zmiany...</target>
@@ -360,6 +460,26 @@
       <trans-unit id="Save the document?" xml:space="preserve">
         <source>Save the document?</source>
         <target>Czy zapisać dokument?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select theme file" xml:space="preserve">
+        <source>Select theme file</source>
+        <target state="translated">Wybierz plik motywu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Selected theme isn't valid" xml:space="preserve">
+        <source>Selected theme isn't valid</source>
+        <target state="translated">Wybrany motyw jest nieprawidłowy</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show in folder" xml:space="preserve">
+        <source>Show in folder</source>
+        <target>Pokaż w folderze</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show main window" xml:space="preserve">
+        <source>Show main window</source>
+        <target>Pokaż główne okno</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Signature Details" xml:space="preserve">
@@ -387,6 +507,21 @@
         <target state="translated">Dokument "%@" musi zostać utworzony. Kontynuować?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
+        <source>Theme already exists. Replace it?</source>
+        <target state="translated">Motyw już istnieje. Zastąpić go?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This file doesn't contain theme" xml:space="preserve">
+        <source>This file doesn't contain theme</source>
+        <target state="translated">Ten plik nie zawiera motywu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This theme file is not valid" xml:space="preserve">
+        <source>This theme file is not valid</source>
+        <target state="translated">Ten plik motywu jest nieprawidłowy</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
         <source>To open the file location, it must be saved.</source>
         <target>Aby otworzyć lokalizację pliku, należy go zapisać.</target>
@@ -397,19 +532,24 @@
         <target>Niepotwierdzone</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Unpin tab" xml:space="preserve">
+        <source>Unpin tab</source>
+        <target>Odepnij kartę</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
         <target>Bez Nazwy</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Version %@ (%@)" xml:space="preserve">
-        <source>Version %1$@ (%2$@)</source>
-        <target>Wersja %1$@ (%2$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
         <target>Strona Internetowa</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="VSDX File" xml:space="preserve">
+        <source>VSDX File</source>
+        <target state="translated">Rysunek programu Visio</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -424,7 +564,7 @@
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">Dokument Open Office XML)</target>
+        <target>Dokument Open Office XML</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
@@ -445,6 +585,11 @@
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source>
         <target>Pomyślnie aktywowano % @.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
+        <source>Your changes will be lost if you don't save them.</source>
+        <target state="translated">Twoje zmiany zostaną utracone, jeśli ich nie zapiszesz.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
@@ -474,6 +619,11 @@ We have a special offer for you.</source>
 (pozostało %d dni)
 
 Mamy dla Ciebie specjalną ofertę.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="kBps" xml:space="preserve">
+        <source>kBps</source>
+        <target state="translated">kBps</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
@@ -600,7 +750,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
       </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
       </trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
@@ -622,6 +772,11 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <source>Transformations</source>
         <target>Transformacje</target>
         <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
+      </trans-unit>
+      <trans-unit id="3FX-nT-Klk.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="translated">Zamknij</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source>
@@ -687,11 +842,6 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <source>New</source>
         <target>Nowy</target>
         <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
-      </trans-unit>
-      <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
-        <source>none</source>
-        <target>żaden</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
       </trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source>
@@ -773,11 +923,6 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <target>Substytuty</target>
         <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
       </trans-unit>
-      <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
-        <source>User Name</source>
-        <target>Nazwa Użytkownika</target>
-        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
-      </trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source>
         <target>Pogrub</target>
@@ -835,7 +980,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
       </trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
       </trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
@@ -933,21 +1078,6 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <target>Z prawej do lewej</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
       </trans-unit>
-      <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
-        <source>Close</source>
-        <target>Zamknij</target>
-        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
-      </trans-unit>
-      <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
-        <source>none</source>
-        <target>żaden</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
-      </trans-unit>
-      <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
-        <source>Logout</source>
-        <target>Wyloguj się</target>
-        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
-      </trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source>
         <target>Indeks górny</target>
@@ -970,7 +1100,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
       </trans-unit>
       <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
         <source>Window</source>
-        <target>Okno</target>
+        <target state="translated">Okno</target>
         <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
       </trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title" xml:space="preserve">
@@ -1038,11 +1168,6 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <target>Wersja</target>
         <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
       </trans-unit>
-      <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
-        <source>Email:</source>
-        <target>E-mail:</target>
-        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
-      </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source>
         <target>Akapit</target>
@@ -1055,7 +1180,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
       </trans-unit>
       <trans-unit id="aUF-d1-5bR.title" xml:space="preserve">
         <source>Window</source>
-        <target>Okno</target>
+        <target state="translated">Okno</target>
         <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
       </trans-unit>
       <trans-unit id="aXa-aM-Jaq.title" xml:space="preserve">
@@ -1092,6 +1217,11 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <source>Use None</source>
         <target>Nie Używaj Żadnego</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
+      </trans-unit>
+      <trans-unit id="clr-Cl-d05.title" xml:space="preserve">
+        <source>Clear</source>
+        <target state="translated">Wyczyść</target>
+        <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source>
@@ -1185,7 +1315,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
       </trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
@@ -1198,6 +1328,11 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <target>Sprawdź Gramatykę Z Pisownią</target>
         <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
       </trans-unit>
+      <trans-unit id="ne5-Gy-5by.title" xml:space="preserve">
+        <source>PDF Form</source>
+        <target state="translated">PDF</target>
+        <note>Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by";</note>
+      </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source>
         <target>Ligatury</target>
@@ -1208,10 +1343,20 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <target>Otwórz Ostatni</target>
         <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
       </trans-unit>
+      <trans-unit id="ofn-Cl-d04.title" xml:space="preserve">
+        <source>Show in folder</source>
+        <target state="translated">Pokaż w folderze</target>
+        <note>Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04";</note>
+      </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source>
         <target>Poluzuj</target>
         <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
+      </trans-unit>
+      <trans-unit id="opn-Cl-d03.title" xml:space="preserve">
+        <source>Open</source>
+        <target state="translated">Otwórz</target>
+        <note>Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source>
@@ -1268,9 +1413,14 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <target>Kern</target>
         <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
       </trans-unit>
+      <trans-unit id="ttl-Cl-d03.title" xml:space="preserve">
+        <source>Downloads</source>
+        <target state="translated">Pobrane</target>
+        <note>Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03";</note>
+      </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
       </trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
@@ -1347,11 +1497,6 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <source>Show Substitutions</source>
         <target>Pokaż Substytuty</target>
         <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
-      </trans-unit>
-      <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
-        <source>Portal:</source>
-        <target>Portal:</target>
-        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
       </trans-unit>
     </body>
   </file>
