@@ -528,7 +528,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 #else
                 JsonObject win = package.value(_T("linux_64")).toObject();
 #endif
-                bool prefer_secondary = NS_Utils::cmdArgContains(_T("--prefer-secondary-url"));
+                bool prefer_secondary = NS_Utils::cmdArgContains(_T("--prefer-alternate-url"));
                 if (isVersionBHigherThanA(curr_version, version) && (version != m_ignVersion)) {
                     m_packageData->object = _T("app");
                     m_packageData->version = version;
