@@ -1,7 +1,0 @@
-{
-  "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "printWidth": 140,
-  "experimentalSortPackageJson": {
-    "sortScripts": true
-  }
-}
