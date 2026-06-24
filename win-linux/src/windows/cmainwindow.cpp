@@ -1389,7 +1389,7 @@ void CMainWindow::onKeyDown(void * eventData)
     case VK_TAB:
         if (m_pTabs->count()) {
             if (_is_ctrl) {
-                bool mruSwitchAllowed = true;
+                bool mruSwitchAllowed = false;
                 if (mruSwitchAllowed) {
                     m_pTabs->switchToNextMruTab(_is_shift);
                 } else {
