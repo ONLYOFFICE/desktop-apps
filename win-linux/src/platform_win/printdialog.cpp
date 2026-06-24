@@ -418,23 +418,23 @@ QDialog::DialogCode PrintDialog::exec()
 
     // Switch to legacy print dialog
     bool dialog_was_changed = false;
-#ifndef __OS_WIN_XP
-    if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
-        HKEY hKey = NULL;
-        if (RegOpenKeyEx(HKEY_CURRENT_USER, PRINT_DIALOG_REG_KEY, 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
-            DWORD pvData = 0, pcbData = sizeof(DWORD);
-            LSTATUS status = RegGetValue(hKey, NULL, PRINT_DIALOG_REG_VALUE, RRF_RT_REG_DWORD, NULL, &pvData, &pcbData);
-            if (status == ERROR_SUCCESS || status == ERROR_FILE_NOT_FOUND) {
-                if (pvData == 0) {
-                    pvData = 1;
-                    if (RegSetValueEx(hKey, PRINT_DIALOG_REG_VALUE, 0, REG_DWORD, (const BYTE*)&pvData, sizeof(DWORD)) == ERROR_SUCCESS)
-                        dialog_was_changed = true;
-                }
-            }
-            RegCloseKey(hKey);
-        }
-    }
-#endif
+// #ifndef __OS_WIN_XP
+//     if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
+//         HKEY hKey = NULL;
+//         if (RegOpenKeyEx(HKEY_CURRENT_USER, PRINT_DIALOG_REG_KEY, 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
+//             DWORD pvData = 0, pcbData = sizeof(DWORD);
+//             LSTATUS status = RegGetValue(hKey, NULL, PRINT_DIALOG_REG_VALUE, RRF_RT_REG_DWORD, NULL, &pvData, &pcbData);
+//             if (status == ERROR_SUCCESS || status == ERROR_FILE_NOT_FOUND) {
+//                 if (pvData == 0) {
+//                     pvData = 1;
+//                     if (RegSetValueEx(hKey, PRINT_DIALOG_REG_VALUE, 0, REG_DWORD, (const BYTE*)&pvData, sizeof(DWORD)) == ERROR_SUCCESS)
+//                         dialog_was_changed = true;
+//                 }
+//             }
+//             RegCloseKey(hKey);
+//         }
+//     }
+// #endif
 
     // Init dialog
     PRINTDLGEX dlg;
