@@ -240,240 +240,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Всички файлове (*.*)</translation>
+        <source>All files</source>
+        <translation>Всички файлове</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Open XML Документ (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Office Open XML Документ</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML Шаблон за документ (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML Шаблон за документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Word 97-2003 Документ (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Word 97-2003 Документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument Текстов файл (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>OpenDocument Текстов файл</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument Шаблон за документ (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument Шаблон за документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Документ с богат текст (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>Документ с богат текст</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Обикновен текстов файл (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Обикновен текстов файл</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>Езиков файл за маркиране на HyperText (*.html)</translation>
+        <source>HTML File</source>
+        <translation>Езиков файл за маркиране на HyperText</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>Архивен файл на уеб страница (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>Архивен файл на уеб страница</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>Файл с електронна публикация (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>Файл с електронна публикация</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>Файл FictionBook 2 (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>Файл FictionBook 2</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket Файл (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Mobipocket Файл</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE Онлайн формуляр за попълване (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE Онлайн формуляр за попълване</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE Шаблон на формуляр (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ONLYOFFICE Шаблон на формуляр</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Office Open XML Презентация (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Office Open XML Презентация</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97-2003 Презентация (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>PowerPoint 97-2003 Презентация</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML Шаблон за презентация (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML Шаблон за презентация</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>OpenDocument Презентация (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>OpenDocument Презентация</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument Шаблон за презентация (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument Шаблон за презентация</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Office Open XML слайдшоу (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Office Open XML слайдшоу</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>Макро-активиран Презентационен Файл (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>Макро-активиран Презентационен Файл</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Office Open XML Таблица (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Office Open XML Таблица</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML Шаблон за таблица (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML Шаблон за таблица</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Excel 97-2003 Таблица (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Excel 97-2003 Таблица</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>OpenDocument Електронна таблица (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>OpenDocument Електронна таблица</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument Шаблон за таблица (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument Шаблон за таблица</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML Документ (*.docx)</translation>
+        <translation>Office Open XML Документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Шаблон за документ (*.ott)</translation>
+        <translation>OpenDocument Шаблон за документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>PDF формуляр ONLYOFFICE (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>PDF формуляр ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Шаблон за презентация (*.otp)</translation>
+        <translation>OpenDocument Шаблон за презентация</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Макро-активиран Шаблон за таблица (*.xltm)</translation>
+        <translation>Макро-активиран Шаблон за таблица</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Двоичен файл на Excel (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Двоичен файл на Excel</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Шаблон за таблица (*.ots)</translation>
+        <translation>OpenDocument Шаблон за таблица</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Стойности, разделени със запетая (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Стойности, разделени със запетая</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Преносим документ (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Преносим документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Преносим документ /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Преносим документ /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Дигитален документ (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Дигитален документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS Документ (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS Документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG изображение (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG изображение</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio Чертеж (*.vsdx)</translation>
+        <translation>Visio Чертеж</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Visio Макро-активиран чертеж (*.vsdm)</translation>
+        <translation>Visio Макро-активиран чертеж</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio Шаблон (*.vssx)</translation>
+        <translation>Visio Шаблон</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Visio Макро-активиран шаблон (*.vssm)</translation>
+        <translation>Visio Макро-активиран шаблон</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio Шаблон  (*.vstx)</translation>
+        <translation>Visio Шаблон</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Visio Макро-активиран шаблон (*.vstm)</translation>
+        <translation>Visio Макро-активиран шаблон</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG изображение (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG изображение</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG изображение (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG изображение</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -502,8 +502,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 Файл (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 Файл</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -670,8 +670,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Плъгин файл (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Плъгин файл</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1124,14 +1124,14 @@
         <translation>Файл %1 не може да се отвори или не съществува.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">Всички поддържани файлове (*.txt *.csv)</translation>
+        <source>All supported files</source>
+        <translation type="vanished">Всички поддържани файлове</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Всички файлове (*.*)</translation>
+        <source>All files</source>
+        <translation>Всички файлове</translation>
     </message>
     <message>
         <source>All supported files</source>
@@ -1154,8 +1154,8 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML Файл (*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML Файл</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

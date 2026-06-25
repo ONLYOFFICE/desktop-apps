@@ -224,240 +224,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Tots els arxius (*.*)</translation>
+        <source>All files</source>
+        <translation>Tots els arxius</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Document Office Open XML (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Document Office Open XML</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Plantilla de document Word Open XML (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Plantilla de document Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Document Word 97-2003 (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Document Word 97-2003</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>Fitxer de text OpenDocument (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>Fitxer de text OpenDocument</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">Plantilla de document OpenDocument (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">Plantilla de document OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Document de text enriquit (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>Document de text enriquit</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Text pla (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Text pla</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>Fitxer HTML (*.html)</translation>
+        <source>HTML File</source>
+        <translation>Fitxer HTML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>Fitxer MHT (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>Fitxer MHT</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>Publicació electronica (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>Publicació electronica</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>Fitxer FictionBook (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>Fitxer FictionBook</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Llibre electrònic de butxaca (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Llibre electrònic de butxaca</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">Formulari d’emplenament en línia d’ONLYOFFICE (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">Formulari d’emplenament en línia d’ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>Plantilla de formulari ONLYOFFICE (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>Plantilla de formulari ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Presentació Office Open XML (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Presentació Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>Presentació PowerPoint 97-2003 (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>Presentació PowerPoint 97-2003</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">Plantilla de presentació PowerPoint Open XML (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">Plantilla de presentació PowerPoint Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>Presentació OpenDocument (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>Presentació OpenDocument</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">Plantilla de presentació OpenDocument (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">Plantilla de presentació OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Presentació de diapositives Office Open XML (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Presentació de diapositives Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>Fitxer de presentació macroactiva (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>Fitxer de presentació macroactiva</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Full de càlcul Office Open XML (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Full de càlcul Office Open XML</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Plantilla de full de càlcul Excel Open XML (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Plantilla de full de càlcul Excel Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Full de càlcul Excel 97-2003 (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Full de càlcul Excel 97-2003</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>Full de càlcul OpenDocument (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>Full de càlcul OpenDocument</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">Plantilla de full de càlcul OpenDocument (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">Plantilla de full de càlcul OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Document Office Open XML (*.docx)</translation>
+        <translation>Document Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>Plantilla de document OpenDocument (*.ott)</translation>
+        <translation>Plantilla de document OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>Formulari PDF ONLYOFFICE (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>Formulari PDF ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Plantilla de presentació OpenDocument (*.otp)</translation>
+        <translation>Plantilla de presentació OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Plantilla de full de càlcul amb macros (*.xltm)</translation>
+        <translation>Plantilla de full de càlcul amb macros</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Fitxer binari d&apos;Excel (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Fitxer binari d&apos;Excel</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Plantilla de full de càlcul OpenDocument (*.ots)</translation>
+        <translation>Plantilla de full de càlcul OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Valors separats per comes (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Valors separats per comes</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Document portàtil (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Document portàtil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Document portàtil /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Document portàtil /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Document digital (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Document digital</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>Document OpenXPS (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>Document OpenXPS</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>Imatge SVG (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>Imatge SVG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Dibuix de Visio (*.vsdx)</translation>
+        <translation>Dibuix de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Dibuix activat per macro de Visio (*.vsdm)</translation>
+        <translation>Dibuix activat per macro de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Plantilla de Visio (*.vssx)</translation>
+        <translation>Plantilla de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Plantilla activada per macro de Visio (*.vssm)</translation>
+        <translation>Plantilla activada per macro de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Plantilla de Visio (*.vstx)</translation>
+        <translation>Plantilla de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Plantilla activada per a macros de Visio (*.vstm)</translation>
+        <translation>Plantilla activada per a macros de Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>Imatge JPG (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>Imatge JPG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>Imatge PNG (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>Imatge PNG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -486,8 +486,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>Arxius %1 (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>Arxius %1</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -654,8 +654,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Fitxer de complements (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Fitxer de complements</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1109,13 +1109,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Tots els arxius (*.*)</translation>
+        <source>All files</source>
+        <translation>Tots els arxius</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>Fitxer XML (*.xml)</translation>
+        <source>XML File</source>
+        <translation>Fitxer XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

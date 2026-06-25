@@ -224,240 +224,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Tüm dosyalar (*.*)</translation>
+        <source>All files</source>
+        <translation>Tüm dosyalar</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Open XML Belgesi (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Office Open XML Belgesi</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML Belge şablonu (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML Belge şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Word 97-2003 Belgesi (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Word 97-2003 Belgesi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument Metin dosyası (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>OpenDocument Metin dosyası</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument Belge Şablonu (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument Belge Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Zengin Metin Format Dosyası (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>Zengin Metin Format Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Düz Metin Dosyası (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Düz Metin Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>Köprü Metni İşaretleme Dili Dosyası (*.html)</translation>
+        <source>HTML File</source>
+        <translation>Köprü Metni İşaretleme Dili Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>Web Sayfası Arşiv Dosyası (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>Web Sayfası Arşiv Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>Elektronik Yayın Dosyası (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>Elektronik Yayın Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>FictionBook 2 Dosyası (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>FictionBook 2 Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket e-kitap (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Mobipocket e-kitap</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE Doldurulabilir Çevrimiçi Form (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE Doldurulabilir Çevrimiçi Form</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE Belgesi Form Şablonu (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ONLYOFFICE Belgesi Form Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Office Open XML Sunumu (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Office Open XML Sunumu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97-2003 Sunumu (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>PowerPoint 97-2003 Sunumu</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML Sunum Şablonu (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML Sunum Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>OpenDocument Sunumu (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>OpenDocument Sunumu</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument Sunum Şablonu (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument Sunum Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Office Open XML Slayt Gösterisi (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Office Open XML Slayt Gösterisi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>Makro Etkinleştirilmiş Sunum Dosyası (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>Makro Etkinleştirilmiş Sunum Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Office Open XML Elektronik Tablosu (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Office Open XML Elektronik Tablosu</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML Tablo Şablonu (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML Tablo Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Excel 97-2003 Elektronik Tablosu (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Excel 97-2003 Elektronik Tablosu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>OpenDocument Tablosu (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>OpenDocument Tablosu</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument Tablo Şablonu (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument Tablo Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML Belgesi (*.docx)</translation>
+        <translation>Office Open XML Belgesi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Belge Şablonu (*.ott)</translation>
+        <translation>OpenDocument Belge Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE PDF Formu (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>ONLYOFFICE PDF Formu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Sunum Şablonu (*.otp)</translation>
+        <translation>OpenDocument Sunum Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Makro Etkinleştirilmiş Elektronik Tablo Şablonu (*.xltm)</translation>
+        <translation>Makro Etkinleştirilmiş Elektronik Tablo Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Excel Binary Dosyası (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Excel Binary Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Tablo Şablonu (*.ots)</translation>
+        <translation>OpenDocument Tablo Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Virgülle Ayrılmış Değerler (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Virgülle Ayrılmış Değerler</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Taşınabilir Belge (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Taşınabilir Belge</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Taşınabilir Belge /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Taşınabilir Belge /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Dijital Belge (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Dijital Belge</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS Belgesi (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS Belgesi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG Resmi (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG Resmi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio Çizimi (*.vsdx)</translation>
+        <translation>Visio Çizimi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Visio Makro Etkinleştirilmiş Çizim (*.vsdm)</translation>
+        <translation>Visio Makro Etkinleştirilmiş Çizim</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio Şablonu (*.vssx)</translation>
+        <translation>Visio Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Visio Makro Etkinleştirilmiş Şablon (*.vssm)</translation>
+        <translation>Visio Makro Etkinleştirilmiş Şablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio Şablonu (*.vstx)</translation>
+        <translation>Visio Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Visio Makro Etkinleştirilmiş Şablon (*.vstm)</translation>
+        <translation>Visio Makro Etkinleştirilmiş Şablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG Resmi (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG Resmi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG Resmi (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG Resmi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -486,8 +486,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 Dosyası (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -654,8 +654,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Plugin Dosyası (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Plugin Dosyası</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1092,8 +1092,8 @@
         <translation>%1 dosyası açılamıyor veya mevcut değil.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">Tüm desteklenen dosyalar (*.txt *.csv)</translation>
+        <source>All supported files</source>
+        <translation type="vanished">Tüm desteklenen dosyalar</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="118"/>
@@ -1113,13 +1113,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Tüm dosyalar (*.*)</translation>
+        <source>All files</source>
+        <translation>Tüm dosyalar</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML Dosyası (*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML Dosyası</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

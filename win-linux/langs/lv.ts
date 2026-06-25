@@ -224,240 +224,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Visi faili (*.*)</translation>
+        <source>All files</source>
+        <translation>Visi faili</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Open XML dokuments (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Office Open XML dokuments</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML Dokumenta veidne (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML Dokumenta veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Word 97-2003 dokuments (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Word 97-2003 dokuments</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument Teksta fails (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>OpenDocument Teksta fails</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument Dokumenta veidne (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument Dokumenta veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Bagātināta teksta formāta fails (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>Bagātināta teksta formāta fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Parasts Teksts (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Parasts Teksts</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>Hiperteksta atzīmes valodas fails (*.html)</translation>
+        <source>HTML File</source>
+        <translation>Hiperteksta atzīmes valodas fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>Tīmekļa lapas arhīva fails (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>Tīmekļa lapas arhīva fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>Elektronisko publikāciju fails (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>Elektronisko publikāciju fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>FictionBook 2 fails (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>FictionBook 2 fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket e-grāmata (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Mobipocket e-grāmata</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE aizpildāmā tiešsaistes veidlapa (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE aizpildāmā tiešsaistes veidlapa</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE veidlapas veidne (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ONLYOFFICE veidlapas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Office Open XML prezentācija (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Office Open XML prezentācija</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97-2003 prezentācija (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>PowerPoint 97-2003 prezentācija</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML Prezentācijas veidne (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML Prezentācijas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>OpenDocument Prezentācija (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>OpenDocument Prezentācija</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument Prezentācijas veidne (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument Prezentācijas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Office Open XML slaidrāde (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Office Open XML slaidrāde</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>Prezentācijas fails ar iespējotu makro (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>Prezentācijas fails ar iespējotu makro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Office Open XML izklājlapa (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Office Open XML izklājlapa</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML Izklājlapas veidne (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML Izklājlapas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Excel 97-2003 izklājlapa (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Excel 97-2003 izklājlapa</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>OpenDocument Izklājlapa (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>OpenDocument Izklājlapa</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument Izklājlapas veidne (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument Izklājlapas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML dokuments (*.docx)</translation>
+        <translation>Office Open XML dokuments</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Dokumenta veidne (*.ott)</translation>
+        <translation>OpenDocument Dokumenta veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE PDF veidlapa (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>ONLYOFFICE PDF veidlapa</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Prezentācijas veidne (*.otp)</translation>
+        <translation>OpenDocument Prezentācijas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Izklājlapas veidne ar iespējotu makro (*.xltm)</translation>
+        <translation>Izklājlapas veidne ar iespējotu makro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Excel binārais fails (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Excel binārais fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Izklājlapas veidne (*.ots)</translation>
+        <translation>OpenDocument Izklājlapas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Ar Komatiem Atdalītas Vērtības (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Ar Komatiem Atdalītas Vērtības</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Portatīvs dokuments (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Portatīvs dokuments</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Portatīvs dokuments /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Portatīvs dokuments /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Digitālais dokuments (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Digitālais dokuments</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS dokuments (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS dokuments</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG attēls (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG attēls</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio zīmēšana (*.vsdx)</translation>
+        <translation>Visio zīmēšana</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Makro iespējota Visio zīmēšana (*.vsdm)</translation>
+        <translation>Makro iespējota Visio zīmēšana</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio trafarets (*.vssx)</translation>
+        <translation>Visio trafarets</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Makro iespējota Visio trafarets (*.vssm)</translation>
+        <translation>Makro iespējota Visio trafarets</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio zīmēšanas veidne (*.vstx)</translation>
+        <translation>Visio zīmēšanas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Makro iespējota Visio zīmēšanas veidne (*.vstm)</translation>
+        <translation>Makro iespējota Visio zīmēšanas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG attēls (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG attēls</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG attēls (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG attēls</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -486,8 +486,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 Fails (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 Fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -654,8 +654,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Spraudņa fails (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Spraudņa fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1092,8 +1092,8 @@
         <translation>Failu %1 nevar atvērt vai tas neeksistē.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">Visi atbalstītie faili (*.txt *.csv)</translation>
+        <source>All supported files</source>
+        <translation type="vanished">Visi atbalstītie faili</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="118"/>
@@ -1113,13 +1113,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Visi faili (*.*)</translation>
+        <source>All files</source>
+        <translation>Visi faili</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML fails (*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML fails</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

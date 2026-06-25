@@ -224,240 +224,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Visi failai (*.*)</translation>
+        <source>All files</source>
+        <translation>Visi failai</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Atidaryti XML Dokumentą (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Office Atidaryti XML Dokumentą</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML Dokumento šablonas (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML Dokumento šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Word 97-2003 Dokumentas (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Word 97-2003 Dokumentas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument Tekstinis failas (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>OpenDocument Tekstinis failas</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument Dokumento šablonas (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument Dokumento šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Raiškiojo Teksto Formato Failas (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>Raiškiojo Teksto Formato Failas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Paprastas Tekstas (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Paprastas Tekstas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>HTML Failas (*.html)</translation>
+        <source>HTML File</source>
+        <translation>HTML Failas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>MHT Failas (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>MHT Failas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>EPUB Failas (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>EPUB Failas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>FB2 Failas (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>FB2 Failas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket el. knyga (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Mobipocket el. knyga</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE Užpildoma Internetinė Anketa (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE Užpildoma Internetinė Anketa</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE Anketos Šablonas (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ONLYOFFICE Anketos Šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Office Atidaryti XML Prezentacija (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Office Atidaryti XML Prezentacija</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97-2003 Prezentacija (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>PowerPoint 97-2003 Prezentacija</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML Prezentacijos šablonas (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML Prezentacijos šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>OpenDocument Prezentacija (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>OpenDocument Prezentacija</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument Prezentacijos šablonas (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument Prezentacijos šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Office Atidaryti XML Skaidrių Demonstraciją (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Office Atidaryti XML Skaidrių Demonstraciją</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>Pristatymo failas su įjungtomis makrokomandomis (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>Pristatymo failas su įjungtomis makrokomandomis</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Office Atidaryti XML Skaičiuoklę (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Office Atidaryti XML Skaičiuoklę</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML Skaičiuoklės šablonas (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML Skaičiuoklės šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Excel 97-2003 Skaičiuoklė (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Excel 97-2003 Skaičiuoklė</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>OpenDocument Skaičiuoklė (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>OpenDocument Skaičiuoklė</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument Skaičiuoklės šablonas (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument Skaičiuoklės šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Office Atidaryti XML Dokumentą (*.docx)</translation>
+        <translation>Office Atidaryti XML Dokumentą</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Dokumento šablonas (*.ott)</translation>
+        <translation>OpenDocument Dokumento šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE PDF forma (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>ONLYOFFICE PDF forma</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Prezentacijos šablonas (*.otp)</translation>
+        <translation>OpenDocument Prezentacijos šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Skaičiuoklės šablonas su makrokomandomis (*.xltm)</translation>
+        <translation>Skaičiuoklės šablonas su makrokomandomis</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Excel dvejetainis failas (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Excel dvejetainis failas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Skaičiuoklės šablonas (*.ots)</translation>
+        <translation>OpenDocument Skaičiuoklės šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Kableliais atskirtos reikšmės (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Kableliais atskirtos reikšmės</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Kilnojamas Dokumentas (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Kilnojamas Dokumentas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Kilnojamas Dokumentas /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Kilnojamas Dokumentas /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Skaitmeninis dokumentas (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Skaitmeninis dokumentas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>Dokumentas OpenXPS (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>Dokumentas OpenXPS</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG Nuotrauka (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG Nuotrauka</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio brėžinys (*.vsdx)</translation>
+        <translation>Visio brėžinys</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Visio makrokomandos įgalintas brėžinys (*.vsdm)</translation>
+        <translation>Visio makrokomandos įgalintas brėžinys</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio trafaretas (*.vssx)</translation>
+        <translation>Visio trafaretas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Visio makrokomandos įgalintas trafaretas (*.vssm)</translation>
+        <translation>Visio makrokomandos įgalintas trafaretas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio šablonas (*.vstx)</translation>
+        <translation>Visio šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Visio makrokomandos įgalintas šablonas (*.vstm)</translation>
+        <translation>Visio makrokomandos įgalintas šablonas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG Nuotrauka (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG Nuotrauka</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG Nuotrauka (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG Nuotrauka</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -486,8 +486,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 Failas (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 Failas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -654,8 +654,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Plugin Failas (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Plugin Failas</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1109,13 +1109,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Visi failai (*.*)</translation>
+        <source>All files</source>
+        <translation>Visi failai</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML failas (*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML failas</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

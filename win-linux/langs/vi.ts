@@ -224,240 +224,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Tất cả tập tin (*.*)</translation>
+        <source>All files</source>
+        <translation>Tất cả tập tin</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Tài liệu Office Open XML (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Tài liệu Office Open XML</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML Mẫu văn bản (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML Mẫu văn bản</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Tài liệu Word 97-2003 (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Tài liệu Word 97-2003</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument File văn bản (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>OpenDocument File văn bản</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument Mẫu văn bản (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument Mẫu văn bản</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Tệp định dạng văn bản đa dạng thức (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>Tệp định dạng văn bản đa dạng thức</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Tập tin văn bản thuần (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Tập tin văn bản thuần</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>Tập tin HyperText Markup Language (*.html)</translation>
+        <source>HTML File</source>
+        <translation>Tập tin HyperText Markup Language</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>Tập tin kho lưu trữ trang web (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>Tập tin kho lưu trữ trang web</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>Tập tin Electronic Publication (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>Tập tin Electronic Publication</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>Tập tin FictionBook 2 (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>Tập tin FictionBook 2</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Sách điện tử Mobipocket (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Sách điện tử Mobipocket</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">Biểu mẫu trực tuyến có thể điền ONLYOFFICE (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">Biểu mẫu trực tuyến có thể điền ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>Mẫu biểu mẫu tài liệu ONLYOFFICE (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>Mẫu biểu mẫu tài liệu ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Bản trình bày Office Open XML (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Bản trình bày Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>Bản trình bày PowerPoint 97-2003 (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>Bản trình bày PowerPoint 97-2003</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML Mẫu trình chiếu (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML Mẫu trình chiếu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>OpenDocument Trình chiếu (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>OpenDocument Trình chiếu</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument Mẫu trình chiếu (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument Mẫu trình chiếu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Trình chiếu Office Open XML (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Trình chiếu Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>Tập tin Bản Trình chiếu hỗ trợ macro (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>Tập tin Bản Trình chiếu hỗ trợ macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Bảng tính Office Open XML (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Bảng tính Office Open XML</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML Mẫu bảng tính (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML Mẫu bảng tính</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Bảng tính Excel 97-2003 (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Bảng tính Excel 97-2003</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>OpenDocument Bảng tính (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>OpenDocument Bảng tính</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument Mẫu bảng tính (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument Mẫu bảng tính</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Tài liệu Office Open XML (*.docx)</translation>
+        <translation>Tài liệu Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Mẫu văn bản (*.ott)</translation>
+        <translation>OpenDocument Mẫu văn bản</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>Mẫu PDF ONLYOFFICE (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>Mẫu PDF ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Mẫu trình chiếu (*.otp)</translation>
+        <translation>OpenDocument Mẫu trình chiếu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Mẫu Bảng tính hỗ trợ macro (*.xltm)</translation>
+        <translation>Mẫu Bảng tính hỗ trợ macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Tệp nhị phân Excel (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Tệp nhị phân Excel</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Mẫu bảng tính (*.ots)</translation>
+        <translation>OpenDocument Mẫu bảng tính</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Các giá trị được ngăn cách với nhau bằng dấu phẩy (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Các giá trị được ngăn cách với nhau bằng dấu phẩy</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Tài liệu di động (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Tài liệu di động</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Tài liệu di động /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Tài liệu di động /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Tài liệu kỹ thuật số (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Tài liệu kỹ thuật số</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>Tài liệu OpenXPS (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>Tài liệu OpenXPS</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>Hình ảnh SVG (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>Hình ảnh SVG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Vẽ Visio (*.vsdx)</translation>
+        <translation>Vẽ Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Vẽ có hỗ trợ macro trong Visio (*.vsdm)</translation>
+        <translation>Vẽ có hỗ trợ macro trong Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Mẫu Visio (*.vssx)</translation>
+        <translation>Mẫu Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Mẫu Visio hỗ trợ macro (*.vssm)</translation>
+        <translation>Mẫu Visio hỗ trợ macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Mẫu Visio (*.vstx)</translation>
+        <translation>Mẫu Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Mẫu Visio hỗ trợ macro (*.vstm)</translation>
+        <translation>Mẫu Visio hỗ trợ macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>Hình ảnh JPG (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>Hình ảnh JPG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>Hình ảnh PNG (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>Hình ảnh PNG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -486,8 +486,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>Tập tin %1 (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>Tập tin %1</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -654,8 +654,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Tập tin plugin (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Tập tin plugin</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1084,8 +1084,8 @@
         <translation>Không thê ̉ mở tập tin %1 hoặc tập tin không tồn tại.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">Tất cả các tập tin được hỗ trợ̣ (*.txt *.csv)</translation>
+        <source>All supported files</source>
+        <translation type="vanished">Tất cả các tập tin được hỗ trợ̣</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="118"/>
@@ -1105,13 +1105,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Tất cả tập tin (*.*)</translation>
+        <source>All files</source>
+        <translation>Tất cả tập tin</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>Tập tin XML (*.xml)</translation>
+        <source>XML File</source>
+        <translation>Tập tin XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

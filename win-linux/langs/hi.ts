@@ -224,240 +224,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>सभी फ़ाइलें (*.*)</translation>
+        <source>All files</source>
+        <translation>सभी फ़ाइलें</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">ऑफिस ओपन एक्सएमएल दस्तावेज़ (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">ऑफिस ओपन एक्सएमएल दस्तावेज़</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">दस्तावेज़ टेम्पलेट (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">दस्तावेज़ टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>वर्ड 97-2003 दस्तावेज़ (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>वर्ड 97-2003 दस्तावेज़</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>ओपनदस्तावेज़ टेक्स्ट दस्तावेज़ (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>ओपनदस्तावेज़ टेक्स्ट दस्तावेज़</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>रिच टेक्स्ट फॉर्मेट फ़ाइल (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>रिच टेक्स्ट फॉर्मेट फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>सादा टेक्स्ट (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>सादा टेक्स्ट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>एचटीएमएल फ़ाइल (*.html)</translation>
+        <source>HTML File</source>
+        <translation>एचटीएमएल फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>एमएचटी फ़ाइल (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>एमएचटी फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>ईपब फ़ाइल (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>ईपब फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>एफबी2 फ़ाइल (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>एफबी2 फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>मोबीपॉकेट ई-बुक (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>मोबीपॉकेट ई-बुक</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ओनलीऑफिस भरने योग्य ऑनलाइन फॉर्म (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ओनलीऑफिस भरने योग्य ऑनलाइन फॉर्म</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ओनलीऑफिस दस्तावेज़ फॉर्म टेम्पलेट (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ओनलीऑफिस दस्तावेज़ फॉर्म टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>ऑफिस ओपन एक्सएमएल प्रस्तुति (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>ऑफिस ओपन एक्सएमएल प्रस्तुति</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>पावरपॉइंट 97-2003 प्रस्तुति (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>पावरपॉइंट 97-2003 प्रस्तुति</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">प्रस्तुति टेम्पलेट (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">प्रस्तुति टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>ओपनदस्तावेज़ प्रस्तुति (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>ओपनदस्तावेज़ प्रस्तुति</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>ऑफिस ओपन एक्सएमएल स्लाइड शो (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>ऑफिस ओपन एक्सएमएल स्लाइड शो</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>मैक्रो-सक्षम प्रस्तुति फ़ाइल (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>मैक्रो-सक्षम प्रस्तुति फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>ऑफिस ओपन एक्सएमएल स्प्रेडशीट (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>ऑफिस ओपन एक्सएमएल स्प्रेडशीट</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">स्प्रेडशीट टेम्पलेट (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">स्प्रेडशीट टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>एक्सेल 97-2003 स्प्रेडशीट (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>एक्सेल 97-2003 स्प्रेडशीट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>ओपनदस्तावेज़ स्प्रेडशीट (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>ओपनदस्तावेज़ स्प्रेडशीट</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>ऑफिस ओपन एक्सएमएल दस्तावेज़ (*.docx)</translation>
+        <translation>ऑफिस ओपन एक्सएमएल दस्तावेज़</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट (*.ott)</translation>
+        <translation>ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>पीडीएफ फॉर्म ONLYOFFICE (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>पीडीएफ फॉर्म ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट (*.otp)</translation>
+        <translation>ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>मैक्रो-सक्षम स्प्रेडशीट का टेम्पलेट (*.xltm)</translation>
+        <translation>मैक्रो-सक्षम स्प्रेडशीट का टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Excel बाइनरी वर्कशीट (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Excel बाइनरी वर्कशीट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट (*.ots)</translation>
+        <translation>ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>अल्पविराम से विभाजित मान (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>अल्पविराम से विभाजित मान</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>पीडीएफ फ़ाइल (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>पीडीएफ फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>पीडीएफ/ए फ़ाइल (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>पीडीएफ/ए फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>डिजिटल दस्तावेज़ (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>डिजिटल दस्तावेज़</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS दस्तावेज़(*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS दस्तावेज़</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG छवि (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG छवि</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>विज़ियो ड्रॉइंग (*.vsdx)</translation>
+        <translation>विज़ियो ड्रॉइंग</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग (*.vsdm)</translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>विज़ियो स्टेंसिल (*.vssx)</translation>
+        <translation>विज़ियो स्टेंसिल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>मैक्रो-इनेबल्ड विज़ियो स्टेंसिल (*.vssm)</translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो स्टेंसिल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>विज़ियो ड्रॉइंग टेम्पलेट (*.vstx)</translation>
+        <translation>विज़ियो ड्रॉइंग टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग टेम्पलेट (*.vstm)</translation>
+        <translation>मैक्रो-इनेबल्ड विज़ियो ड्रॉइंग टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG छवि (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG छवि</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG छवि (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG छवि</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -486,8 +486,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 फ़ाइल (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -650,8 +650,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>प्लगइन फ़ाइल (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>प्लगइन फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1097,13 +1097,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>सभी फ़ाइलें (*.*)</translation>
+        <source>All files</source>
+        <translation>सभी फ़ाइलें</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>एक्सएमएल फ़ाइल (*.xml)</translation>
+        <source>XML File</source>
+        <translation>एक्सएमएल फ़ाइल</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

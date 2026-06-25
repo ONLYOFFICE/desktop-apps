@@ -240,244 +240,244 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>所有文件 (*.*)</translation>
+        <source>All files</source>
+        <translation>所有文件</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Open XML 文档(*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Office Open XML 文档</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word开放式XML文档模板(*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word开放式XML文档模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Word 97-2003 文档 (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Word 97-2003 文档</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument 文本文件 (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>OpenDocument 文本文件</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument文档模板(*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument文档模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>富文本格式 (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>富文本格式</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>纯文本文件 (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>纯文本文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>超文本标记语言文件 (*.html)</translation>
+        <source>HTML File</source>
+        <translation>超文本标记语言文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>网页存档文件 (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>网页存档文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>电子出版物文件 (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>电子出版物文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>小说书2文件 (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>小说书2文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket 文件 (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Mobipocket 文件</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE可填写的在线表格(*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE可填写的在线表格</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE 表单模板 (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ONLYOFFICE 表单模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Office Open XML 演示文稿 (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Office Open XML 演示文稿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97-2003 演示文稿 (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>PowerPoint 97-2003 演示文稿</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint开放式XML演示模板(*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint开放式XML演示模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>OpenDocument 演示文稿 (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>OpenDocument 演示文稿</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument演示模板(*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument演示模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Office Open XML 幻灯片 (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Office Open XML 幻灯片</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>支持宏的演示文稿 (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>支持宏的演示文稿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Office Open XML 电子表格 (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Office Open XML 电子表格</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel开放式XML电子表格模板(*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel开放式XML电子表格模板</translation>
     </message>
     <message>
-        <source>Macro-enabled spreadsheet template (*.xltm)</source>
+        <source>Macro-enabled spreadsheet template</source>
         <translation type="vanished">支持宏的电子表格模板（*.xltm）</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Excel 97-2003 电子表格 (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Excel 97-2003 电子表格</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>OpenDocument 电子表格 (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>OpenDocument 电子表格</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument电子表格模板(*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument电子表格模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML 文档 (*.docx)</translation>
+        <translation>Office Open XML 文档</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument 文档模板 (*.ott)</translation>
+        <translation>OpenDocument 文档模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE PDF 表单 (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>ONLYOFFICE PDF 表单</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument 演示模板 (*.otp)</translation>
+        <translation>OpenDocument 演示模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>支持宏的电子表格模板 (*.xltm)</translation>
+        <translation>支持宏的电子表格模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Excel 二进制文件 (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Excel 二进制文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument 电子表格模板 (*.ots)</translation>
+        <translation>OpenDocument 电子表格模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>逗号分隔值 (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>逗号分隔值</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>便携式文件 (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>便携式文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>便携式文件/A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>便携式文件/A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>数字文件 (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>数字文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS 文件 (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS 文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG 图像 (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG 图像</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio 绘图 (*.vsdx)</translation>
+        <translation>Visio 绘图</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Visio 启用宏的绘图 (*.vsdm)</translation>
+        <translation>Visio 启用宏的绘图</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio 模具 (*.vssx)</translation>
+        <translation>Visio 模具</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Visio 启用宏的模具 (*.vssm)</translation>
+        <translation>Visio 启用宏的模具</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio 模板 (*.vstx)</translation>
+        <translation>Visio 模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Visio 启用宏的模板 (*.vstm)</translation>
+        <translation>Visio 启用宏的模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG 图像 (*.jpg, *jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG 图像</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG 图像 (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG 图像</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -506,8 +506,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 文件 (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -674,7 +674,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
+        <source>Plugin file</source>
         <translation>插件文件（*.plugin)</translation>
     </message>
     <message>
@@ -1136,14 +1136,14 @@
         <translation>文件%1无法打开或不存在。</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
+        <source>All supported files</source>
         <translation type="vanished">所有支持的文件（*.txt *.csv）</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>所有文件 (*.*)</translation>
+        <source>All files</source>
+        <translation>所有文件</translation>
     </message>
     <message>
         <source>All supported files</source>
@@ -1166,8 +1166,8 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML 文件 (*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML 文件</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

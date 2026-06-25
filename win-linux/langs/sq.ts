@@ -212,236 +212,236 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Të gjithë skedarët (*.*)</translation>
+        <source>All files</source>
+        <translation>Të gjithë skedarët</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Open XML Document (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Office Open XML Document</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML Document Template (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML Document Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Dokumenti i Word 97-2003 (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Dokumenti i Word 97-2003</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>Skedari i tekstit OpenDocument (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>Skedari i tekstit OpenDocument</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument Document Template (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument Document Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Skedari i formatit të tekstit të pasur (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>Skedari i formatit të tekstit të pasur</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Skedari i tekstit të thjeshtë (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Skedari i tekstit të thjeshtë</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>Skedar i gjuhës së shenjave të hipertekstit (*.html)</translation>
+        <source>HTML File</source>
+        <translation>Skedar i gjuhës së shenjave të hipertekstit</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>Skedar i arkivit të faqes së internetit (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>Skedar i arkivit të faqes së internetit</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>Skedar i botimit elektronik (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>Skedar i botimit elektronik</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>Skedar i FictionBook 2 (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>Skedar i FictionBook 2</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Skedar Mobipocket (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Skedar Mobipocket</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE Fillable Online Form (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE Fillable Online Form</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>Formë shablloni ONLYOFFICE  (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>Formë shablloni ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Prezantimi Office Open XML (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Prezantimi Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>Prezantimi PowerPoint 97-2003 (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>Prezantimi PowerPoint 97-2003</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML Presentation Template (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML Presentation Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>Prezantimi OpenDocument (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>Prezantimi OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Shfaqje e slajdit Office Open XML (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Shfaqje e slajdit Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>Prezantim i aktivizuar me makro (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>Prezantim i aktivizuar me makro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Fletëllogaritëse Office Open XML (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Fletëllogaritëse Office Open XML</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML Spreadsheet Template (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML Spreadsheet Template</translation>
     </message>
     <message>
-        <source>Macro-enabled spreadsheet template (*.xltm)</source>
-        <translation type="vanished">Macro-enabled Spreadsheet Template (*.xltm)</translation>
+        <source>Macro-enabled spreadsheet template</source>
+        <translation type="vanished">Macro-enabled Spreadsheet Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Fletëllogaritëse Excel 97-2003 (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Fletëllogaritëse Excel 97-2003</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>Fletëllogaritëse OpenDocument (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>Fletëllogaritëse OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Dokument Office Open XML (*.docx)</translation>
+        <translation>Dokument Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>Shabllon dokumenti OpenDocument (*.ott)</translation>
+        <translation>Shabllon dokumenti OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>Formë PDF ONLYOFFICE (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>Formë PDF ONLYOFFICE</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Shabllon prezantimi OpenDocument (*.otp)</translation>
+        <translation>Shabllon prezantimi OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Shabllon fletëllogaritëses i aktivizuar me makro (*.xltm)</translation>
+        <translation>Shabllon fletëllogaritëses i aktivizuar me makro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Skedar Excel Binary (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Skedar Excel Binary</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Shabllon fletëllogaritëses OpenDocument (*.ots)</translation>
+        <translation>Shabllon fletëllogaritëses OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Vlera të ndara me presje(*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Vlera të ndara me presje</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Dokument portativ (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Dokument portativ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Dokument portativ /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Dokument portativ /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Dokument digjital (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Dokument digjital</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>Dokument OpenXPS (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>Dokument OpenXPS</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>Imazh SVG (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>Imazh SVG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Vizatim Visio (*.vsdx)</translation>
+        <translation>Vizatim Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Vizatim i aktivizuar me makro Visio (*.vsdm)</translation>
+        <translation>Vizatim i aktivizuar me makro Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Shabllon Visio (*.vssx)</translation>
+        <translation>Shabllon Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Shabllon i aktivizuar me makro Visio (*.vssm)</translation>
+        <translation>Shabllon i aktivizuar me makro Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Shabllon Visio (*.vstx)</translation>
+        <translation>Shabllon Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Shabllon i aktivizuar me makro Visio (*.vstm)</translation>
+        <translation>Shabllon i aktivizuar me makro Visio</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>Imazh JPG (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>Imazh JPG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>Imazh PNG (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>Imazh PNG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -470,8 +470,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 Skedar (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 Skedar</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -638,8 +638,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Skedar plugin (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Skedar plugin</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1042,13 +1042,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Të gjithë skedarët (*.*)</translation>
+        <source>All files</source>
+        <translation>Të gjithë skedarët</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>Skedar XML (*.xml)</translation>
+        <source>XML File</source>
+        <translation>Skedar XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

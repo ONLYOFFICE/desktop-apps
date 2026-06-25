@@ -236,244 +236,244 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>සියළු ගොනු (*.*)</translation>
+        <source>All files</source>
+        <translation>සියළු ගොනු</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">ඔෆිස් ඕපන් XML ලේඛනය (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">ඔෆිස් ඕපන් XML ලේඛනය</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">වර්ඩ් විවෘත XML ලේඛන අච්චුව (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">වර්ඩ් විවෘත XML ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>වර්ඩ් 97-2003 ලේඛනය (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>වර්ඩ් 97-2003 ලේඛනය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>ඕපන්ඩොකියුමන්ට් පෙළ ගොනුව (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>ඕපන්ඩොකියුමන්ට් පෙළ ගොනුව</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>පොහොසත් පෙළ ආකෘතිය ගොනුව (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>පොහොසත් පෙළ ආකෘතිය ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>සරල පෙළ ගොනුව (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>සරල පෙළ ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>HyperText Markup භාෂා ගොනුව (*.html)</translation>
+        <source>HTML File</source>
+        <translation>HyperText Markup භාෂා ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>වියමන පිටු සංරක්‍ෂණ ගොනුව (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>වියමන පිටු සංරක්‍ෂණ ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>විද්‍යුත් ප්‍රකාශන ගොනුව (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>විද්‍යුත් ප්‍රකාශන ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>ෆික්ෂන්බුක් 2 ගොනුව (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>ෆික්ෂන්බුක් 2 ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>මොබිපොකට් ගොනුව (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>මොබිපොකට් ගොනුව</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ඔන්ලිඔෆිස් මාර්ගගත පිරවිය හැකි ආකෘතිපත්‍රය (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ඔන්ලිඔෆිස් මාර්ගගත පිරවිය හැකි ආකෘතිපත්‍රය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ඔන්ලිඔෆිස් ආකෘතිපත්‍ර අච්චුව (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ඔන්ලිඔෆිස් ආකෘතිපත්‍ර අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>ඔෆිස් ඕපන් XML සමර්පණය (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>ඔෆිස් ඕපන් XML සමර්පණය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>පවර්පොයින්ට් 97-2003 සමර්පණය (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>පවර්පොයින්ට් 97-2003 සමර්පණය</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">පවර්පොයින් විවෘත XML සමර්පණ අච්චුව (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">පවර්පොයින් විවෘත XML සමර්පණ අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණය (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණය</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>ඔෆිස් ඕපන් XML ස්ලයිඩ් ෂෝ (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>ඔෆිස් ඕපන් XML ස්ලයිඩ් ෂෝ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>සාර්ව-සක්‍රිය සමර්පණ ගොනුව (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>සාර්ව-සක්‍රිය සමර්පණ ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>ඔෆිස් ඕපන් XML පැතුරුම්පත (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>ඔෆිස් ඕපන් XML පැතුරුම්පත</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">එක්සෙල් විවෘත XML පැතුරුම්පත් අච්චුව (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">එක්සෙල් විවෘත XML පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
-        <source>Macro-enabled spreadsheet template (*.xltm)</source>
-        <translation type="vanished">සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව (*.xltm)</translation>
+        <source>Macro-enabled spreadsheet template</source>
+        <translation type="vanished">සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>එක්සෙල් 97-2003 පැතුරුම්පත (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>එක්සෙල් 97-2003 පැතුරුම්පත</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>ඔෆිස් ඕපන් XML ලේඛනය (*.docx)</translation>
+        <translation>ඔෆිස් ඕපන් XML ලේඛනය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව (*.ott)</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE PDF පෝරමය (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>ONLYOFFICE PDF පෝරමය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව (*.otp)</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව (*.xltm)</translation>
+        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>XLSB ගොනුව (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>XLSB ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව (*.ots)</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>අල්පවිරාම මගින් වෙන් කළ අගයන් (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>අල්පවිරාම මගින් වෙන් කළ අගයන්</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>සුවහ ලේඛනය (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>සුවහ ලේඛනය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>සුවහ ලේඛනය /ඒ (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>සුවහ ලේඛනය /ඒ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>සංඛ්‍යාංක ලේඛනය (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>සංඛ්‍යාංක ලේඛනය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS ලේඛනය (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS ලේඛනය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG අනුරුව (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG අනුරුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio ඇඳීම (*.vsdx)</translation>
+        <translation>Visio ඇඳීම</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Visio මැක්‍රෝ-සක්‍රීය ඇඳීම (*.vsdm)</translation>
+        <translation>Visio මැක්‍රෝ-සක්‍රීය ඇඳීම</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio ස්ටෙන්සිල් (*.vssx)</translation>
+        <translation>Visio ස්ටෙන්සිල්</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Visio මැක්‍රෝ-සක්‍රීය ස්ටෙන්සිල් (*.vssm)</translation>
+        <translation>Visio මැක්‍රෝ-සක්‍රීය ස්ටෙන්සිල්</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio සැකිල්ල (*.vstx)</translation>
+        <translation>Visio සැකිල්ල</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Visio මැක්‍රෝ-සක්‍රීය සැකිල්ල (*.vstm)</translation>
+        <translation>Visio මැක්‍රෝ-සක්‍රීය සැකිල්ල</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG අනුරුව (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG අනුරුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG අනුරුව (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG අනුරුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -502,8 +502,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 ගොනුව (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -666,8 +666,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>පේනු ගොනුව (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>පේනු ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1100,14 +1100,14 @@
         <translation>%1 ගොනුව ඇරීමට නොහැකිය හෝ නොපවතී.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">සහාය දක්වන සියළු ගොනු (*.txt *.csv)</translation>
+        <source>All supported files</source>
+        <translation type="vanished">සහාය දක්වන සියළු ගොනු</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>සියළු ගොනු (*.*)</translation>
+        <source>All files</source>
+        <translation>සියළු ගොනු</translation>
     </message>
     <message>
         <source>All supported files</source>
@@ -1130,8 +1130,8 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML ගොනුව (*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

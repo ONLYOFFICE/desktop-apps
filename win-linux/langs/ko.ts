@@ -220,240 +220,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>모든 파일 (*.*)</translation>
+        <source>All files</source>
+        <translation>모든 파일</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Open XML 문서(*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Office Open XML 문서</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML 문서 템플릿(*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML 문서 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Word 97-2003 문서(*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Word 97-2003 문서</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>오픈도큐먼트 텍스트 문서(*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>오픈도큐먼트 텍스트 문서</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument 문서 템플릿(*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument 문서 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>서식이 있는 텍스트 형식 파일(*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>서식이 있는 텍스트 형식 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>일반 텍스트 파일(*.txt)</translation>
+        <source>TXT File</source>
+        <translation>일반 텍스트 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>하이퍼텍스트 마크업 언어 파일(*.html)</translation>
+        <source>HTML File</source>
+        <translation>하이퍼텍스트 마크업 언어 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>웹 페이지 아카이브 파일(*.mht)</translation>
+        <source>MHT File</source>
+        <translation>웹 페이지 아카이브 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>전자 출판물 파일(*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>전자 출판물 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>픽션북 2 파일(*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>픽션북 2 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>모비포켓 전자책(*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>모비포켓 전자책</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE 작성 가능한 온라인 양식(*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE 작성 가능한 온라인 양식</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE 문서 양식 템플릿 (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ONLYOFFICE 문서 양식 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Office Open XML 프레젠테이션(*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Office Open XML 프레젠테이션</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97-2003 프레젠테이션(*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>PowerPoint 97-2003 프레젠테이션</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML 프레젠테이션 템플릿(*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML 프레젠테이션 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>오픈도큐먼트 프레젠테이션(*.odp)</translation>
+        <source>ODP File</source>
+        <translation>오픈도큐먼트 프레젠테이션</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument프레젠테이션 템플릿 (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument프레젠테이션 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Office Open XML 슬라이드 쇼(*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Office Open XML 슬라이드 쇼</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>매크로 지원 프레젠테이션 파일(*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>매크로 지원 프레젠테이션 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Office Open XML 스프레드시트(*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Office Open XML 스프레드시트</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML 스프레드시트 템플릿(*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML 스프레드시트 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Excel 97-2003 스프레드시트(*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Excel 97-2003 스프레드시트</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>오픈도큐먼트 스프레드시트(*.ods)</translation>
+        <source>ODS File</source>
+        <translation>오픈도큐먼트 스프레드시트</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument 스프레드시트 템플릿 (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument 스프레드시트 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML 문서 (*.docx)</translation>
+        <translation>Office Open XML 문서</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument 문서 템플릿 (*.ott)</translation>
+        <translation>OpenDocument 문서 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE PDF 양식 (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>ONLYOFFICE PDF 양식</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument프레젠테이션 템플릿 (*.otp)</translation>
+        <translation>OpenDocument프레젠테이션 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>매크로 지원 스프레드시트 템플릿 (*.xltm)</translation>
+        <translation>매크로 지원 스프레드시트 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>엑셀 바이너리 파일(*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>엑셀 바이너리 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument 스프레드시트 템플릿 (*.ots)</translation>
+        <translation>OpenDocument 스프레드시트 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>쉼표로 구분된 데이터 파일(*.csv)</translation>
+        <source>CSV File</source>
+        <translation>쉼표로 구분된 데이터 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>휴대용 문서(*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>휴대용 문서</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>휴대용 문서 /A(*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>휴대용 문서 /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>디지털 문서(*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>디지털 문서</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS 문서(*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS 문서</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG 이미지(*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG 이미지</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio 드로잉 (*.vsdx)</translation>
+        <translation>Visio 드로잉</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Visio 매크로 사용 드로잉 (*.vsdm)</translation>
+        <translation>Visio 매크로 사용 드로잉</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio 스텐실 (*.vssx)</translation>
+        <translation>Visio 스텐실</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Visio 매크로 사용 스텐실 (*.vssm)</translation>
+        <translation>Visio 매크로 사용 스텐실</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio 템플릿 (*.vstx)</translation>
+        <translation>Visio 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Visio 매크로 사용 템플릿 (*.vstm)</translation>
+        <translation>Visio 매크로 사용 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG 이미지(*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG 이미지</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG 이미지(*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG 이미지</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -482,8 +482,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 파일 (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -650,8 +650,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>플러그인 파일 (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>플러그인 파일</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1080,8 +1080,8 @@
         <translation>%1 파일이 열리지 않거나 존재하지 않습니다.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">모든 지원 파일(*.txt *.csv)</translation>
+        <source>All supported files</source>
+        <translation type="vanished">모든 지원 파일</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="118"/>
@@ -1101,13 +1101,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>모든 파일 (*.*)</translation>
+        <source>All files</source>
+        <translation>모든 파일</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML 파일(*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML 파일</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

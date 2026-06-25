@@ -236,240 +236,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Alle filer (*.*)</translation>
+        <source>All files</source>
+        <translation>Alle filer</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Open XML-dokument (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Office Open XML-dokument</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML Dokumentskabelon (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML Dokumentskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Word 97-2003-dokument (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Word 97-2003-dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument Tekstfil (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>OpenDocument Tekstfil</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument Dokumentskabelon (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument Dokumentskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Rich Text Format-fil (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>Rich Text Format-fil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Almindelig tekst (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Almindelig tekst</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>HyperText Markup Language File (*.html)</translation>
+        <source>HTML File</source>
+        <translation>HyperText Markup Language File</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>Web Page Archive File (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>Web Page Archive File</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>Electronic Publication File (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>Electronic Publication File</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>FictionBook 2 File (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>FictionBook 2 File</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket e-bog (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Mobipocket e-bog</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE udfyldbar onlineformular (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE udfyldbar onlineformular</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE formularskabelon (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ONLYOFFICE formularskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Office Open XML-præsentation (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Office Open XML-præsentation</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97-2003-præsentation (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>PowerPoint 97-2003-præsentation</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML Præsentationsskabelon (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML Præsentationsskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>OpenDocument Præsentation (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>OpenDocument Præsentation</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument Præsentationsskabelon (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument Præsentationsskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Office Open XML-diasshow (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Office Open XML-diasshow</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation>Macro-enabled præsentationsfil (*.pptm)</translation>
+        <source>Macro-enabled Presentation File</source>
+        <translation>Macro-enabled præsentationsfil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Office Open XML-regneark (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Office Open XML-regneark</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML Regnearksskabelon (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML Regnearksskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Excel 97-2003-regneark (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Excel 97-2003-regneark</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>OpenDocument Regneark (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>OpenDocument Regneark</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument Regnearksskabelon (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument Regnearksskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML-dokument (*.docx)</translation>
+        <translation>Office Open XML-dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Dokumentskabelon  (*.ott)</translation>
+        <translation>OpenDocument Dokumentskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE PDF-formular (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>ONLYOFFICE PDF-formular</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Præsentationsskabelon (*.otp)</translation>
+        <translation>OpenDocument Præsentationsskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Macro-enabled regnearksskabelon (*.xltm)</translation>
+        <translation>Macro-enabled regnearksskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Excel binær fil (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Excel binær fil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Regnearksskabelon (*.ots)</translation>
+        <translation>OpenDocument Regnearksskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Kommaseparerede værdier (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Kommaseparerede værdier</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Portable Document (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Portable Document</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Portable Document /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Portable Document /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Digitalt dokument (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Digitalt dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS-dokument (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS-dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG-billede (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG-billede</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio-tegning (*.vsdx)</translation>
+        <translation>Visio-tegning</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Visio Macro-aktiveret tegning (*.vsdm)</translation>
+        <translation>Visio Macro-aktiveret tegning</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio-sjablon (*.vssx)</translation>
+        <translation>Visio-sjablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Visio Makro-aktiveret stencil (*.vssm)</translation>
+        <translation>Visio Makro-aktiveret stencil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio-skabelon (*.vstx)</translation>
+        <translation>Visio-skabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Visio Makro-aktiveret skabelon (*.vstm)</translation>
+        <translation>Visio Makro-aktiveret skabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG-billede (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG-billede</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG-billede (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG-billede</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -498,8 +498,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 Fil (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 Fil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -666,8 +666,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Plugin fil (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Plugin fil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1112,14 +1112,14 @@
         <translation>Fil %1 kan ikke åbnes eller eksisterer ikke.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">Alle understøttede filer (*.txt *.csv)</translation>
+        <source>All supported files</source>
+        <translation type="vanished">Alle understøttede filer</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Alle filer (*.*)</translation>
+        <source>All files</source>
+        <translation>Alle filer</translation>
     </message>
     <message>
         <source>All supported files</source>
@@ -1142,8 +1142,8 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML-dokument (*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML-dokument</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>

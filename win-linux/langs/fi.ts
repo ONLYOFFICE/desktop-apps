@@ -224,240 +224,240 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="73"/>
-        <source>All files (*.*)</source>
-        <translation>Kaikki tiedostot (*.*)</translation>
+        <source>All files</source>
+        <translation>Kaikki tiedostot</translation>
     </message>
     <message>
-        <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Officen avoin XML-asiakirja (*.docx)</translation>
+        <source>DOCX Document</source>
+        <translation type="vanished">Officen avoin XML-asiakirja</translation>
     </message>
     <message>
-        <source>Document template (*.dotx)</source>
-        <translation type="vanished">Word Open XML-asiakirjamalli (*.dotx)</translation>
+        <source>Document template</source>
+        <translation type="vanished">Word Open XML-asiakirjamalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Word 97–2003-asiakirja (*.doc)</translation>
+        <source>DOC Document</source>
+        <translation>Word 97–2003-asiakirja</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument dokumentti (*.odt)</translation>
+        <source>ODT Document</source>
+        <translation>OpenDocument dokumentti</translation>
     </message>
     <message>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="vanished">OpenDocument-asiakirjamalli (*.ott)</translation>
+        <source>OpenDocument Document template</source>
+        <translation type="vanished">OpenDocument-asiakirjamalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>RTF-muotoinen tiedosto (*.rtf)</translation>
+        <source>RTF File</source>
+        <translation>RTF-muotoinen tiedosto</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Pelkkä Teksti (*.txt)</translation>
+        <source>TXT File</source>
+        <translation>Pelkkä Teksti</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
-        <source>HTML File (*.html)</source>
-        <translation>HyperText-merkintäkielitiedosto (*.html)</translation>
+        <source>HTML File</source>
+        <translation>HyperText-merkintäkielitiedosto</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
-        <source>MHT File (*.mht)</source>
-        <translation>Verkkosivun arkistotiedosto (*.mht)</translation>
+        <source>MHT File</source>
+        <translation>Verkkosivun arkistotiedosto</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="84"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>Sähköinen julkaisutiedosto (*.epub)</translation>
+        <source>EPUB File</source>
+        <translation>Sähköinen julkaisutiedosto</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>FictionBook 2 tiedosto (*.fb2)</translation>
+        <source>FB2 File</source>
+        <translation>FictionBook 2 tiedosto</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket e-book (*.mobi)</translation>
+        <source>MOBI File</source>
+        <translation>Mobipocket e-book</translation>
     </message>
     <message>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="vanished">ONLYOFFICE täytettävä online-lomake (*.oform)</translation>
+        <source>OFORM Document</source>
+        <translation type="vanished">ONLYOFFICE täytettävä online-lomake</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="88"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE-asiakirjalomakemalli (*.docxf)</translation>
+        <source>DOCXF Document</source>
+        <translation>ONLYOFFICE-asiakirjalomakemalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>Officen avoin XML-esitys (*.pptx)</translation>
+        <source>PPTX File</source>
+        <translation>Officen avoin XML-esitys</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97–2003-esitys (*.ppt)</translation>
+        <source>PPT File</source>
+        <translation>PowerPoint 97–2003-esitys</translation>
     </message>
     <message>
-        <source>Presentation template (*.potx)</source>
-        <translation type="vanished">PowerPoint Open XML-esityksenmalli (*.potx)</translation>
+        <source>Presentation template</source>
+        <translation type="vanished">PowerPoint Open XML-esityksenmalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
-        <source>ODP File (*.odp)</source>
-        <translation>OpenDocument esitys (*.odp)</translation>
+        <source>ODP File</source>
+        <translation>OpenDocument esitys</translation>
     </message>
     <message>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="vanished">OpenDocument-esitysmalli (*.otp)</translation>
+        <source>OpenDocument Presentation Template</source>
+        <translation type="vanished">OpenDocument-esitysmalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>Officen avoin XML-diaesitys (*.ppsx)</translation>
+        <source>PPSX File</source>
+        <translation>Officen avoin XML-diaesitys</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
-        <source>Macro-enabled Presentation File (*.pptm)</source>
+        <source>Macro-enabled Presentation File</source>
         <translation>Makrokäyttöinen esitysmalli (*pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="99"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>Officen avoin XML-asiakirja (*.xlsx)</translation>
+        <source>XLSX File</source>
+        <translation>Officen avoin XML-asiakirja</translation>
     </message>
     <message>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation type="vanished">Excel Open XML-laskentataulukkomalli (*.xltx)</translation>
+        <source>Spreadsheet template</source>
+        <translation type="vanished">Excel Open XML-laskentataulukkomalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
-        <source>XLS File (*.xls)</source>
-        <translation>Excel 97–2003-laskentataulukko (*.xls)</translation>
+        <source>XLS File</source>
+        <translation>Excel 97–2003-laskentataulukko</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
-        <source>ODS File (*.ods)</source>
-        <translation>OpenDocument laskentataulukko (*.ods)</translation>
+        <source>ODS File</source>
+        <translation>OpenDocument laskentataulukko</translation>
     </message>
     <message>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="vanished">OpenDocument-laskentataulukkomalli (*.ots)</translation>
+        <source>OpenDocument Spreadsheet Template</source>
+        <translation type="vanished">OpenDocument-laskentataulukkomalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation>Officen avoin XML-asiakirja (*.docx)</translation>
+        <translation>Officen avoin XML-asiakirja</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument-asiakirjamalli (*.ott)</translation>
+        <translation>OpenDocument-asiakirjamalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
-        <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE PDF-lomake (*.pdf)</translation>
+        <source>ONLYOFFICE Form Document</source>
+        <translation>ONLYOFFICE PDF-lomake</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
-        <source>Markdown File (*.md)</source>
+        <source>Markdown File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument-esitysmalli (*.otp)</translation>
+        <translation>OpenDocument-esitysmalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Makrokäyttöinen laskentataulukkomalli (*.xltm)</translation>
+        <translation>Makrokäyttöinen laskentataulukkomalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
-        <source>XLSB File (*.xlsb)</source>
-        <translation>Excelin binaaritiedosto (*.xlsb)</translation>
+        <source>XLSB File</source>
+        <translation>Excelin binaaritiedosto</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument-laskentataulukkomalli (*.ots)</translation>
+        <translation>OpenDocument-laskentataulukkomalli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
-        <source>CSV File (*.csv)</source>
-        <translation>Pilkulla erotetut arvot (*.csv)</translation>
+        <source>CSV File</source>
+        <translation>Pilkulla erotetut arvot</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="108"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>Kannettava asiakirja (*.pdf)</translation>
+        <source>PDF File</source>
+        <translation>Kannettava asiakirja</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="109"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>Kannettava asiakirja /A (*.pdf)</translation>
+        <source>PDFA File</source>
+        <translation>Kannettava asiakirja /A</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="110"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>Digitaalinen asiakirja (*.djvu)</translation>
+        <source>DJVU File</source>
+        <translation>Digitaalinen asiakirja</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="111"/>
-        <source>XPS File (*.xps)</source>
-        <translation>OpenXPS-asiakirja (*.xps)</translation>
+        <source>XPS File</source>
+        <translation>OpenXPS-asiakirja</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
-        <source>SVG Image (*.svg)</source>
-        <translation>SVG-kuva (*.svg)</translation>
+        <source>SVG Image</source>
+        <translation>SVG-kuva</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="114"/>
         <source>VSDX File</source>
-        <translation>Visio-piirustus (*.vsdx)</translation>
+        <translation>Visio-piirustus</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="115"/>
         <source>VSDM File</source>
-        <translation>Visio-makrokäyttöinen piirustus (*.vsdm)</translation>
+        <translation>Visio-makrokäyttöinen piirustus</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="116"/>
         <source>VSSX File</source>
-        <translation>Visio-stensiili (*.vssx)</translation>
+        <translation>Visio-stensiili</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="117"/>
         <source>VSSM File</source>
-        <translation>Visio-makrokäyttöinen stensiili (*.vssm)</translation>
+        <translation>Visio-makrokäyttöinen stensiili</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="118"/>
         <source>VSTX File</source>
-        <translation>Visio-malli (*.vstx)</translation>
+        <translation>Visio-malli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
-        <translation>Visio-makrokäyttöinen malli (*.vstm)</translation>
+        <translation>Visio-makrokäyttöinen malli</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation>JPG-kuva (*.jpg *.jpeg)</translation>
+        <source>JPG Image</source>
+        <translation>JPG-kuva</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image (*.png)</source>
-        <translation>PNG-kuva (*.png)</translation>
+        <source>PNG Image</source>
+        <translation>PNG-kuva</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -486,8 +486,8 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
-        <source>%1 File (*.%2)</source>
-        <translation>%1 Tiedosto (*.%2)</translation>
+        <source>%1 File</source>
+        <translation>%1 Tiedosto</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="309"/>
@@ -654,8 +654,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="410"/>
         <location filename="../src/components/cfiledialog.cpp" line="419"/>
-        <source>Plugin file (*.plugin)</source>
-        <translation>Liitännäistiedosto (*.plugin)</translation>
+        <source>Plugin file</source>
+        <translation>Liitännäistiedosto</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
@@ -1084,8 +1084,8 @@
         <translation>Tiedostoa %1 ei voi avata, tai sitä ei ole.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">Kaikki tuetut tiedostot (*.txt *.csv)</translation>
+        <source>All supported files</source>
+        <translation type="vanished">Kaikki tuetut tiedostot</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="118"/>
@@ -1105,13 +1105,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>All files (*.*)</source>
-        <translation>Kaikki tiedostot (*.*)</translation>
+        <source>All files</source>
+        <translation>Kaikki tiedostot</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="280"/>
-        <source>XML File (*.xml)</source>
-        <translation>XML-tiedosto (*.xml)</translation>
+        <source>XML File</source>
+        <translation>XML-tiedosto</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>
