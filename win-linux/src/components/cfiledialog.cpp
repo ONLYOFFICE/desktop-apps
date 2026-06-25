@@ -368,8 +368,15 @@ QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
 {
     QString selected = tr("All Images") + " (*.jpeg *.jpg *.jpe *.jfif *.jif *.png *.gif *.bmp *.tiff *.tif *.heif *.heic *.svg *.webp *.avif)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg *.jpe *.jfif *.jif);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"
-                                              "Tiff (*.tiff *.tif);;Heif (*.heif *.heic);;Webp (*.webp);;Avif (*.avif)"));
+    filter.append(";;" + selected + ";;" +
+                  tr("JPG Image") + " (*.jpeg *.jpg *.jpe *.jfif *.jif)" + ";;" +
+                  tr("PNG Image") + " (*.png)" + ";;" +
+                  tr("GIF Image") + " (*.gif)" + ";;" +
+                  tr("BMP Image") + " (*.bmp)" + ";;" +
+                  tr("TIFF Image") + " (*.tiff *.tif)" + ";;" +
+                  tr("HEIF Image") + " (*.heif *.heic)" + ";;" +
+                  tr("WEBP Image") + " (*.webp)" + ";;" +
+                  tr("AVIF Image") + " (*.avif)");
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
     auto result = modalOpen(path, filter, &selected, false);
@@ -381,8 +388,15 @@ QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
 {
     QString selected = tr("All Images") + " (*.jpeg *.jpg *.jpe *.jfif *.jif *.png *.gif *.bmp *.tiff *.tif *.heif *.heic *.svg *.webp *.avif)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg *.jpe *.jfif *.jif);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"
-                                              "Tiff (*.tiff *.tif);;Heif (*.heif *.heic);;Webp (*.webp);;Avif (*.avif)"));
+    filter.append(";;" + selected + ";;" +
+                  tr("JPG Image") + " (*.jpeg *.jpg *.jpe *.jfif *.jif)" + ";;" +
+                  tr("PNG Image") + " (*.png)" + ";;" +
+                  tr("GIF Image") + " (*.gif)" + ";;" +
+                  tr("BMP Image") + " (*.bmp)" + ";;" +
+                  tr("TIFF Image") + " (*.tiff *.tif)" + ";;" +
+                  tr("HEIF Image") + " (*.heif *.heic)" + ";;" +
+                  tr("WEBP Image") + " (*.webp)" + ";;" +
+                  tr("AVIF Image") + " (*.avif)");
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
     auto result = modalOpen(path, filter, &selected, true);
