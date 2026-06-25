@@ -228,12 +228,15 @@
         <translation>Tots els arxius</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation type="vanished">Document Office Open XML</translation>
+        <translation>Document Office Open XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="351"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>Document template</source>
-        <translation type="vanished">Plantilla de document Word Open XML</translation>
+        <translation>Plantilla de document Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
@@ -246,8 +249,9 @@
         <translation>Fitxer de text OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation type="vanished">Plantilla de document OpenDocument</translation>
+        <translation>Plantilla de document OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
@@ -304,8 +308,10 @@
         <translation>Presentació PowerPoint 97-2003</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="349"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Presentation template</source>
-        <translation type="vanished">Plantilla de presentació PowerPoint Open XML</translation>
+        <translation>Plantilla de presentació PowerPoint Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -313,8 +319,9 @@
         <translation>Presentació OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="vanished">Plantilla de presentació OpenDocument</translation>
+        <translation>Plantilla de presentació OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -332,8 +339,10 @@
         <translation>Full de càlcul Office Open XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>Spreadsheet template</source>
-        <translation type="vanished">Plantilla de full de càlcul Excel Open XML</translation>
+        <translation>Plantilla de full de càlcul Excel Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -346,18 +355,9 @@
         <translation>Full de càlcul OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="vanished">Plantilla de full de càlcul OpenDocument</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
-        <source>DOCX Document</source>
-        <translation>Document Office Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
-        <source>OpenDocument Document template</source>
-        <translation>Plantilla de document OpenDocument</translation>
+        <translation>Plantilla de full de càlcul OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
@@ -370,11 +370,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="95"/>
-        <source>OpenDocument Presentation Template</source>
-        <translation>Plantilla de presentació OpenDocument</translation>
-    </message>
-    <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
         <translation>Plantilla de full de càlcul amb macros</translation>
@@ -383,11 +378,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
         <source>XLSB File</source>
         <translation>Fitxer binari d&apos;Excel</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
-        <source>OpenDocument Spreadsheet Template</source>
-        <translation>Plantilla de full de càlcul OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
@@ -451,11 +441,15 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>JPG Image</source>
         <translation>Imatge JPG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>PNG Image</source>
         <translation>Imatge PNG</translation>
     </message>
@@ -515,18 +509,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Visio diagram</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
-        <source>JPG Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
-        <location filename="../src/components/cfiledialog.cpp" line="393"/>
-        <source>PNG Image</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
@@ -608,24 +590,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="467"/>
         <source>All supported files</source>
         <translation>Tots els fitxers admesos</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="346"/>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
-        <source>Spreadsheet template</source>
-        <translation>Plantilla de full de càlcul Excel Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="349"/>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
-        <source>Presentation template</source>
-        <translation>Plantilla de presentació PowerPoint Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="351"/>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
-        <source>Document template</source>
-        <translation>Plantilla de document Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="372"/>

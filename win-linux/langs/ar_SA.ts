@@ -224,12 +224,15 @@
         <translation>كل الملفات</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation type="vanished">Office Open XML مستند</translation>
+        <translation>Office Open XML مستند</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="351"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>Document template</source>
-        <translation type="vanished">قالب وورد</translation>
+        <translation>قالب وورد</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
@@ -242,8 +245,9 @@
         <translation>ملف نصي ليبري أوفس</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation type="vanished">مستند ليبري أوفس</translation>
+        <translation>مستند ليبري أوفس</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
@@ -300,8 +304,10 @@
         <translation>عرض بوربوينت 97-2003</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="349"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Presentation template</source>
-        <translation type="vanished">قالب عرض بوربوينت</translation>
+        <translation>قالب عرض بوربوينت</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -324,12 +330,15 @@
         <translation>Office Open XML جدول بياني</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>Spreadsheet template</source>
-        <translation type="vanished">قالب جدول إكسل</translation>
+        <translation>قالب جدول إكسل</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="vanished">قالب جدول إكسيل مع خاصية الماكرو</translation>
+        <translation>قالب جدول إكسيل مع خاصية الماكرو</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -340,16 +349,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>ODS File</source>
         <translation>جدول ليبري أوفس</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
-        <source>DOCX Document</source>
-        <translation>مستند وورد</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
-        <source>OpenDocument Document template</source>
-        <translation>مستند ليبري أوفس</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
@@ -365,11 +364,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
         <translation>قالب عرض ليبري أوفس</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="101"/>
-        <source>Macro-enabled spreadsheet template</source>
-        <translation>قالب جدول إكسيل مع خاصية الماكرو</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
@@ -443,11 +437,15 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>JPG Image</source>
         <translation>صورة بخلفية</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>PNG Image</source>
         <translation>صورة بلا خلفية</translation>
     </message>
@@ -502,18 +500,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="465"/>
         <source>Presentations</source>
         <translation>عروض تقديمية</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
-        <source>JPG Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
-        <location filename="../src/components/cfiledialog.cpp" line="393"/>
-        <source>PNG Image</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
@@ -600,24 +586,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="467"/>
         <source>All supported files</source>
         <translation>كل الملفات المدعومة</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="346"/>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
-        <source>Spreadsheet template</source>
-        <translation>قالب جدول إكسل</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="349"/>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
-        <source>Presentation template</source>
-        <translation>قالب عرض بوربوينت</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="351"/>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
-        <source>Document template</source>
-        <translation>قالب وورد</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="372"/>

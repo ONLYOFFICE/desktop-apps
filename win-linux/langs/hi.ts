@@ -228,12 +228,15 @@
         <translation>सभी फ़ाइलें</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation type="vanished">ऑफिस ओपन एक्सएमएल दस्तावेज़</translation>
+        <translation>ऑफिस ओपन एक्सएमएल दस्तावेज़</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="351"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>Document template</source>
-        <translation type="vanished">दस्तावेज़ टेम्पलेट</translation>
+        <translation>दस्तावेज़ टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
@@ -246,8 +249,9 @@
         <translation>ओपनदस्तावेज़ टेक्स्ट दस्तावेज़</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation type="vanished">ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट</translation>
+        <translation>ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
@@ -304,8 +308,10 @@
         <translation>पावरपॉइंट 97-2003 प्रस्तुति</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="349"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Presentation template</source>
-        <translation type="vanished">प्रस्तुति टेम्पलेट</translation>
+        <translation>प्रस्तुति टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -313,8 +319,9 @@
         <translation>ओपनदस्तावेज़ प्रस्तुति</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="vanished">ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट</translation>
+        <translation>ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -332,8 +339,10 @@
         <translation>ऑफिस ओपन एक्सएमएल स्प्रेडशीट</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>Spreadsheet template</source>
-        <translation type="vanished">स्प्रेडशीट टेम्पलेट</translation>
+        <translation>स्प्रेडशीट टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -346,18 +355,9 @@
         <translation>ओपनदस्तावेज़ स्प्रेडशीट</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="vanished">ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
-        <source>DOCX Document</source>
-        <translation>ऑफिस ओपन एक्सएमएल दस्तावेज़</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
-        <source>OpenDocument Document template</source>
-        <translation>ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट</translation>
+        <translation>ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
@@ -370,11 +370,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="95"/>
-        <source>OpenDocument Presentation Template</source>
-        <translation>ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट</translation>
-    </message>
-    <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
         <translation>मैक्रो-सक्षम स्प्रेडशीट का टेम्पलेट</translation>
@@ -383,11 +378,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
         <source>XLSB File</source>
         <translation>Excel बाइनरी वर्कशीट</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
-        <source>OpenDocument Spreadsheet Template</source>
-        <translation>ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
@@ -451,11 +441,15 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>JPG Image</source>
         <translation>JPG छवि</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>PNG Image</source>
         <translation>PNG छवि</translation>
     </message>
@@ -515,18 +509,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Visio diagram</source>
         <translation>विज़ियो डायग्राम</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
-        <source>JPG Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
-        <location filename="../src/components/cfiledialog.cpp" line="393"/>
-        <source>PNG Image</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
@@ -608,24 +590,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="467"/>
         <source>All supported files</source>
         <translation>सभी सहायक फ़ाइलें</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="346"/>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
-        <source>Spreadsheet template</source>
-        <translation>स्प्रेडशीट टेम्पलेट</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="349"/>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
-        <source>Presentation template</source>
-        <translation>प्रस्तुति टेम्पलेट</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="351"/>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
-        <source>Document template</source>
-        <translation>दस्तावेज़ टेम्पलेट</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="372"/>

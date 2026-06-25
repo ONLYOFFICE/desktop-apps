@@ -228,12 +228,15 @@
         <translation>Gach comhad</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation type="vanished">Doiciméad Office Open XML</translation>
+        <translation>Doiciméad Office Open XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="351"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>Document template</source>
-        <translation type="vanished">Teimpléad doiciméad Word Open XML</translation>
+        <translation>Teimpléad doiciméad Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
@@ -246,8 +249,9 @@
         <translation>Comhad Téacs OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation type="vanished">Teimpléad doiciméad OpenDocument</translation>
+        <translation>Teimpléad doiciméad OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
@@ -304,8 +308,10 @@
         <translation>Cur i láthair PowerPoint 97-2003</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="349"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Presentation template</source>
-        <translation type="vanished">Teimpléad cur i láthair PowerPoint Open XML</translation>
+        <translation>Teimpléad cur i láthair PowerPoint Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -313,8 +319,9 @@
         <translation>Láithreoireacht OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="vanished">Teimpléad cur i láthair OpenDocument</translation>
+        <translation>Teimpléad cur i láthair OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -332,8 +339,10 @@
         <translation>Scarbhileog Office Open XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>Spreadsheet template</source>
-        <translation type="vanished">Teimpléad scarbhileog Excel Open XML</translation>
+        <translation>Teimpléad scarbhileog Excel Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -346,8 +355,9 @@
         <translation>Scarbhileog OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="vanished">Teimpléad scarbhileog OpenDocument</translation>
+        <translation>Teimpléad scarbhileog OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
@@ -376,20 +386,17 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>JPG Image</source>
         <translation>Íomha JPG</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
-        <source>JPG Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="122"/>
         <location filename="../src/components/cfiledialog.cpp" line="373"/>
         <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>PNG Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Íomha PNG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
@@ -438,20 +445,6 @@
         <translation>Roghnaigh Fillteán</translation>
     </message>
     <message>
-        <source>JPG Image</source>
-        <translation type="vanished">Íomha JPG</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
-        <source>DOCX Document</source>
-        <translation>Doiciméad Office Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
-        <source>OpenDocument Document template</source>
-        <translation>Teimpléad doiciméad OpenDocument</translation>
-    </message>
-    <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>ONLYOFFICE Form Document</source>
         <translation>Foirm PDF ONLYOFFICE</translation>
@@ -462,11 +455,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="95"/>
-        <source>OpenDocument Presentation Template</source>
-        <translation>Teimpléad cur i láthair OpenDocument</translation>
-    </message>
-    <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
         <translation>Macra-chumasaithe Spreadsheet teimpléid</translation>
@@ -475,11 +463,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
         <source>XLSB File</source>
         <translation>Comhad dénártha Excel</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
-        <source>OpenDocument Spreadsheet Template</source>
-        <translation>Teimpléad scarbhileog OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="112"/>
@@ -515,11 +498,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="119"/>
         <source>VSTM File</source>
         <translation>Teimpléad Macra-cumasaithe Visio</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <source>PNG Image</source>
-        <translation>Íomha PNG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="184"/>
@@ -622,24 +600,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="467"/>
         <source>All supported files</source>
         <translation>Tá gach comhad tacaithe</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="346"/>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
-        <source>Spreadsheet template</source>
-        <translation>Teimpléad scarbhileog Excel Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="349"/>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
-        <source>Presentation template</source>
-        <translation>Teimpléad cur i láthair PowerPoint Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="351"/>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
-        <source>Document template</source>
-        <translation>Teimpléad doiciméad Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="372"/>

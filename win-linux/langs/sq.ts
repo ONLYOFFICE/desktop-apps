@@ -216,12 +216,15 @@
         <translation>Të gjithë skedarët</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation type="vanished">Office Open XML Document</translation>
+        <translation>Office Open XML Document</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="351"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>Document template</source>
-        <translation type="vanished">Word Open XML Document Template</translation>
+        <translation>Word Open XML Document Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
@@ -234,8 +237,9 @@
         <translation>Skedari i tekstit OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation type="vanished">OpenDocument Document Template</translation>
+        <translation>OpenDocument Document Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
@@ -292,8 +296,10 @@
         <translation>Prezantimi PowerPoint 97-2003</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="349"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Presentation template</source>
-        <translation type="vanished">PowerPoint Open XML Presentation Template</translation>
+        <translation>PowerPoint Open XML Presentation Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -316,12 +322,15 @@
         <translation>Fletëllogaritëse Office Open XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>Spreadsheet template</source>
-        <translation type="vanished">Excel Open XML Spreadsheet Template</translation>
+        <translation>Excel Open XML Spreadsheet Template</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="vanished">Macro-enabled Spreadsheet Template</translation>
+        <translation>Macro-enabled Spreadsheet Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -332,16 +341,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>ODS File</source>
         <translation>Fletëllogaritëse OpenDocument</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
-        <source>DOCX Document</source>
-        <translation>Dokument Office Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
-        <source>OpenDocument Document template</source>
-        <translation>Shabllon dokumenti OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
@@ -357,11 +356,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
         <translation>Shabllon prezantimi OpenDocument</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="101"/>
-        <source>Macro-enabled spreadsheet template</source>
-        <translation>Shabllon fletëllogaritëses i aktivizuar me makro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
@@ -435,11 +429,15 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>JPG Image</source>
         <translation>Imazh JPG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>PNG Image</source>
         <translation>Imazh PNG</translation>
     </message>
@@ -499,18 +497,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Visio diagram</source>
         <translation>Diagrami i Visio-s</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
-        <source>JPG Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
-        <location filename="../src/components/cfiledialog.cpp" line="393"/>
-        <source>PNG Image</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
@@ -592,24 +578,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="467"/>
         <source>All supported files</source>
         <translation>Të gjithë skedarët e mbështetur</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="346"/>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
-        <source>Spreadsheet template</source>
-        <translation>Shabllon fletëllogaritëse Excel Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="349"/>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
-        <source>Presentation template</source>
-        <translation>Shabllon prezantimi PowerPoint Open XML</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="351"/>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
-        <source>Document template</source>
-        <translation>Shabllon i dokumentit Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="372"/>

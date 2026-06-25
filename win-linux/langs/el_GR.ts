@@ -228,12 +228,15 @@
         <translation>Όλα τα αρχεία</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation type="vanished">Έγγραφο Office με ανοιχτή μορφή XML</translation>
+        <translation>Έγγραφο Office με ανοιχτή μορφή XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="351"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>Document template</source>
-        <translation type="vanished">Πρότυπο εγγράφου Word με ανοιχτή μορφή XML</translation>
+        <translation>Πρότυπο εγγράφου Word με ανοιχτή μορφή XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
@@ -246,8 +249,9 @@
         <translation>Αρχείο κειμένου OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation type="vanished">Πρότυπο εγγράφου OpenDocument</translation>
+        <translation>Πρότυπο εγγράφου OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
@@ -304,8 +308,10 @@
         <translation>Παρουσίαση PowerPoint 97-2003</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="349"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Presentation template</source>
-        <translation type="vanished">Πρότυπο παρουσίασης PowerPoint με ανοιχτή μορφή XML</translation>
+        <translation>Πρότυπο παρουσίασης PowerPoint με ανοιχτή μορφή XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -313,8 +319,9 @@
         <translation>Παρουσίαση OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="vanished">Πρότυπο παρουσίασης OpenDocument</translation>
+        <translation>Πρότυπο παρουσίασης OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -332,8 +339,10 @@
         <translation>Υπολογιστικό φύλλο Office με ανοιχτή μορφή XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>Spreadsheet template</source>
-        <translation type="vanished">Πρότυπο υπολογιστικού φύλλου Excel με ανοιχτή μορφή XML</translation>
+        <translation>Πρότυπο υπολογιστικού φύλλου Excel με ανοιχτή μορφή XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -346,19 +355,9 @@
         <translation>Υπολογιστικό φύλλο OpenDocument</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="vanished">Πρότυπο υπολογιστικού φύλλου OpenDocument</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
-        <source>DOCX Document</source>
-        <translation>Έγγραφο Office με ανοιχτή μορφή XML</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
-        <source>OpenDocument Document template</source>
-        <translatorcomment>Πρότυπο παρουσίασης OpenDocument</translatorcomment>
-        <translation>Πρότυπο εγγράφου OpenDocument</translation>
+        <translation>Πρότυπο υπολογιστικού φύλλου OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
@@ -371,11 +370,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="95"/>
-        <source>OpenDocument Presentation Template</source>
-        <translation>Πρότυπο παρουσίασης OpenDocument</translation>
-    </message>
-    <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
         <translation>Πρότυπο λογιστικού φύλλου με δυνατότητα χρήσης μακροεντολών</translation>
@@ -384,11 +378,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
         <source>XLSB File</source>
         <translation>Δυαδικό αρχείο Excel</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
-        <source>OpenDocument Spreadsheet Template</source>
-        <translation>Πρότυπο υπολογιστικού φύλλου OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
@@ -452,11 +441,15 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>JPG Image</source>
         <translation>Εικόνα JPG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>PNG Image</source>
         <translation>Εικόνα PNG</translation>
     </message>
@@ -516,18 +509,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Visio diagram</source>
         <translation>Διάγραμμα Visio</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
-        <source>JPG Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
-        <location filename="../src/components/cfiledialog.cpp" line="393"/>
-        <source>PNG Image</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
@@ -609,24 +590,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="467"/>
         <source>All supported files</source>
         <translation>Όλα τα υποστηριζόμενα αρχεία</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="346"/>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
-        <source>Spreadsheet template</source>
-        <translation>Πρότυπο υπολογιστικού φύλλου Excel με ανοιχτή μορφή XML</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="349"/>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
-        <source>Presentation template</source>
-        <translation>Πρότυπο παρουσίασης PowerPoint με ανοιχτή μορφή XML</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="351"/>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
-        <source>Document template</source>
-        <translation>Πρότυπο εγγράφου Word με ανοιχτή μορφή XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="372"/>

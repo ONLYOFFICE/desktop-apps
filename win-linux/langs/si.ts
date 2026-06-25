@@ -240,12 +240,15 @@
         <translation>සියළු ගොනු</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation type="vanished">ඔෆිස් ඕපන් XML ලේඛනය</translation>
+        <translation>ඔෆිස් ඕපන් XML ලේඛනය</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="351"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>Document template</source>
-        <translation type="vanished">වර්ඩ් විවෘත XML ලේඛන අච්චුව</translation>
+        <translation>වර්ඩ් විවෘත XML ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
@@ -258,8 +261,9 @@
         <translation>ඕපන්ඩොකියුමන්ට් පෙළ ගොනුව</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation type="vanished">ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
@@ -316,8 +320,10 @@
         <translation>පවර්පොයින්ට් 97-2003 සමර්පණය</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="349"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Presentation template</source>
-        <translation type="vanished">පවර්පොයින් විවෘත XML සමර්පණ අච්චුව</translation>
+        <translation>පවර්පොයින් විවෘත XML සමර්පණ අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -325,8 +331,9 @@
         <translation>ඕපන්ඩොකියුමන්ට් සමර්පණය</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="vanished">ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -344,12 +351,15 @@
         <translation>ඔෆිස් ඕපන් XML පැතුරුම්පත</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>Spreadsheet template</source>
-        <translation type="vanished">එක්සෙල් විවෘත XML පැතුරුම්පත් අච්චුව</translation>
+        <translation>එක්සෙල් විවෘත XML පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="vanished">සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
+        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -362,18 +372,9 @@
         <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="vanished">ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
-        <source>DOCX Document</source>
-        <translation>ඔෆිස් ඕපන් XML ලේඛනය</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
-        <source>OpenDocument Document template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
@@ -386,24 +387,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="95"/>
-        <source>OpenDocument Presentation Template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="101"/>
-        <source>Macro-enabled spreadsheet template</source>
-        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
-    </message>
-    <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
         <source>XLSB File</source>
         <translation>XLSB ගොනුව</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
-        <source>OpenDocument Spreadsheet Template</source>
-        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
@@ -467,11 +453,15 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>JPG Image</source>
         <translation>JPG අනුරුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>PNG Image</source>
         <translation>PNG අනුරුව</translation>
     </message>
@@ -531,18 +521,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Visio diagram</source>
         <translation>Visio රූප සටහන</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
-        <source>JPG Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
-        <location filename="../src/components/cfiledialog.cpp" line="393"/>
-        <source>PNG Image</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
@@ -624,24 +602,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="467"/>
         <source>All supported files</source>
         <translation>සහාය දක්වන සියළු ගොනු</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="346"/>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
-        <source>Spreadsheet template</source>
-        <translation>එක්සෙල් විවෘත XML පැතුරුම්පත් අච්චුව</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="349"/>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
-        <source>Presentation template</source>
-        <translation>පවර්පොයින් විවෘත XML සමර්පණ අච්චුව</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="351"/>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
-        <source>Document template</source>
-        <translation>වර්ඩ් විවෘත XML ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="372"/>
@@ -1108,10 +1068,6 @@
         <location filename="../src/ceditortools.cpp" line="280"/>
         <source>All files</source>
         <translation>සියළු ගොනු</translation>
-    </message>
-    <message>
-        <source>All supported files</source>
-        <translation type="obsolete">සහාය දක්වන සියළු ගොනු</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="118"/>

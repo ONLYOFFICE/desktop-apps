@@ -224,12 +224,15 @@
         <translation>ຟາຍທັງ ໝົດ</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="75"/>
         <source>DOCX Document</source>
-        <translation type="vanished">ເປີດເອກະສານ XML</translation>
+        <translation>ເປີດເອກະສານ XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="351"/>
+        <location filename="../src/components/cfiledialog.cpp" line="76"/>
         <source>Document template</source>
-        <translation type="vanished">ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word</translation>
+        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="77"/>
@@ -242,8 +245,9 @@
         <translation>ເປີດເອກະສານໄຟລ໌ Text</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>OpenDocument Document template</source>
-        <translation type="vanished">ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ</translation>
+        <translation>ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
@@ -300,8 +304,10 @@
         <translation>ນຳສະເໜີ PowerPoint 97-2003</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="349"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Presentation template</source>
-        <translation type="vanished">ເປີດໄຟລ໌ XML ໃນຮູບແບບນຳສະເໜີ PowerPoint</translation>
+        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບນຳສະເໜີ PowerPoint</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -309,8 +315,9 @@
         <translation>ເປິດເອກະສານນຳສະເໜີ</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="vanished">ເປີດເອກະສານ ໃນຮູບແບບນຳສະເໜີ</translation>
+        <translation>ເປີດເອກະສານ ໃນຮູບແບບນຳສະເໜີ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
@@ -328,12 +335,15 @@
         <translation>ເປີດຕາຕະລາງ XML</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>Spreadsheet template</source>
-        <translation type="vanished">ເປີດໄຟລ໌ XML ໃນຮູບແບບຕາຕະລາງ Excel</translation>
+        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບຕາຕະລາງ Excel</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="vanished">ແມ່ແບບສະເປຣດຊີດທີ່ເປີດໃຊ້ Macro</translation>
+        <translation>ແມ່ແບບສະເປຣດຊີດທີ່ເປີດໃຊ້ Macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -346,18 +356,9 @@
         <translation>ເປີດເອກະສານໃນຮູບແບບຕາຕະລາງ</translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="vanished">ເປີດເອກະສານໃນຮູບແບບຂອງຕາຕະລາງ</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="75"/>
-        <source>DOCX Document</source>
-        <translation>ເປີດເອກະສານ XML</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="79"/>
-        <source>OpenDocument Document template</source>
-        <translation>ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ</translation>
+        <translation>ເປີດເອກະສານໃນຮູບແບບຂອງຕາຕະລາງ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
@@ -370,24 +371,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="95"/>
-        <source>OpenDocument Presentation Template</source>
-        <translation>ເປີດເອກະສານ ໃນຮູບແບບນຳສະເໜີ</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="101"/>
-        <source>Macro-enabled spreadsheet template</source>
-        <translation>ແມ່ແບບສະເປຣດຊີດທີ່ເປີດໃຊ້ Macro</translation>
-    </message>
-    <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
         <source>XLSB File</source>
         <translation>ແຜ່ນວຽກ Excel Binary</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="105"/>
-        <source>OpenDocument Spreadsheet Template</source>
-        <translation>ເປີດເອກະສານໃນຮູບແບບຂອງຕາຕະລາງ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
@@ -451,11 +437,15 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>JPG Image</source>
         <translation>ຮູບພາບ JPG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>PNG Image</source>
         <translation>ຮູບພາບແບບPNG</translation>
     </message>
@@ -515,18 +505,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="317"/>
         <source>Visio diagram</source>
         <translation>ແຜນວາດ Visio</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
-        <source>JPG Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
-        <location filename="../src/components/cfiledialog.cpp" line="393"/>
-        <source>PNG Image</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
@@ -608,24 +586,6 @@
         <location filename="../src/components/cfiledialog.cpp" line="467"/>
         <source>All supported files</source>
         <translation>ໄຟລ໌ທີ່ຮອງຮັບທັງໝົດ</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="346"/>
-        <location filename="../src/components/cfiledialog.cpp" line="100"/>
-        <source>Spreadsheet template</source>
-        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບຕາຕະລາງ Excel</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="349"/>
-        <location filename="../src/components/cfiledialog.cpp" line="93"/>
-        <source>Presentation template</source>
-        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບນຳສະເໜີ PowerPoint</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="351"/>
-        <location filename="../src/components/cfiledialog.cpp" line="76"/>
-        <source>Document template</source>
-        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="372"/>
