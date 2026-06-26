@@ -3,7 +3,7 @@ import { settings, setSettings, themesMap } from "@/stores/settings";
 import { getPluginSettings } from "@/stores/plugin-settings";
 import { onNativeMessage } from "@/sdk/events";
 import { cmd } from "@/sdk/bridge";
-import { applyLocale } from "@/services/l10n";
+import { applyLocale, getTranslationFor } from "@/services/l10n";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/sdk/app";
 
@@ -50,12 +50,13 @@ function nativeScalingToStore(raw) {
   return value === "" || value === "0" ? "auto" : value;
 }
 
-const [availableLangs, setAvailableLangs] = createSignal(FALLBACK_LANGS);
+const [availableLangs, setAvailableLangs] = createSignal([]);
 const [langRestartPending, setLangRestartPending] = createSignal(false);
 const [customThemes, setCustomThemes] = createSignal([]);
 const [systemThemeEnabled, setSystemThemeEnabled] = createSignal(true);
 const [isOptsChanged, setIsOptsChanged] = createSignal(false);
-export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isOptsChanged, setIsOptsChanged };
+const [pendingApplyText, setPendingApplyText] = createSignal(null);
+export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isOptsChanged, setIsOptsChanged, pendingApplyText };
 
 let _needsRestart = () => false;
 let _toggleAI = () => {};
@@ -103,7 +104,7 @@ export function initSettingsSync() {
     cmd("settings:apply", JSON.stringify({ useai: newValue }));
   };
 
-  createEffect(() => applyLocale(settings.lang));
+  createEffect(() => setPendingApplyText(getTranslationFor(settings.lang, 'setBtnApply')));
   createEffect(() => applyScaling(settings.scaling));
 
   createEffect(() => {
@@ -126,8 +127,12 @@ export function initSettingsSync() {
 
     const restart =
       snap !== null &&
-      (lang !== (snap.locale?.current ?? lang) || scaling !== nativeScalingToStore(snap.uiscaling) || gpu !== !!snap.usegpu);
+      (settings.useai !== !!snap.useai ||
+       scaling !== nativeScalingToStore(snap.uiscaling) ||
+       gpu !== !!snap.usegpu);
+
     applyThemeToDom(typeof settings.theme === 'string' ? settings.theme : '');
+    applyLocale(lang);
 
     cmd("settings:apply", JSON.stringify({
       username: settings.userName,

@@ -38,3 +38,17 @@ export function isRTL(code) {
   const rtl = ["ar", "he", "ur"];
   return rtl.some((l) => code.startsWith(l));
 }
+
+export function getTranslationFor(locale, key) {
+  const correct = locale.replaceAll("-", "_");
+  let table = window.l10n?.[correct];
+  if (!table) {
+    const code = /^\w{2}/.exec(correct)?.[0];
+    if (code) {
+      for (const l in window.l10n || {}) {
+        if (l.startsWith(code)) { table = window.l10n[l]; break; }
+      }
+    }
+  }
+  return table?.[key] ?? null;
+}

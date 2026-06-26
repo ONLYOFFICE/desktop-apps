@@ -3,7 +3,7 @@ import styles from "./layout.module.css";
 import { t } from "@/services/l10n.js";
 import { A, useLocation } from "@solidjs/router";
 import { Button } from "@/components";
-import { isOptsChanged, applySettings } from "@/services/settings-sync";
+import { isOptsChanged, applySettings, pendingApplyText } from "@/services/settings-sync";
 import { pluginConfigs } from "@/stores/plugin-settings";
 
 export default function SettingsLayout(props) {
@@ -62,7 +62,7 @@ export default function SettingsLayout(props) {
         <footer class={styles.footer}>
           <div class={styles.footerInner}>
             <Button variant="accent" disabled={!isOptsChanged()} onClick={onApplyClick}>
-              {t("setBtnApply")}
+              {pendingApplyText() ?? t("setBtnApply")}
             </Button>
             <span class={styles.footerNote}>{"* — " + t("settAfterRestart")}</span>
           </div>

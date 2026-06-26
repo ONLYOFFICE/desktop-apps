@@ -1,4 +1,4 @@
-import { createMemo, batch } from "solid-js";
+import { createMemo, batch, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
@@ -95,15 +95,17 @@ export default function GeneralSettings() {
           </div>
         </div>
 
-        <div class={styles.fieldRow}>
-          <span class={styles.fieldLabel}>{t("settLanguage")} *</span>
-          <div class={styles.fieldControl}>
-            <Select options={languageOptions()} value={settings.lang} onChange={(v) => setSettings("lang", v)} disallowEmptySelection>
-              <Select.Trigger class={styles.fullWidth} />
-              <Select.Content />
-            </Select>
+        <Show when={languageOptions().length}>
+          <div class={styles.fieldRow}>
+            <span class={styles.fieldLabel}>{t("settLanguage")}</span>
+            <div class={styles.fieldControl}>
+              <Select options={languageOptions()} value={settings.lang} onChange={(v) => setSettings("lang", v)} disallowEmptySelection>
+                <Select.Trigger class={styles.fullWidth} />
+                <Select.Content />
+              </Select>
+            </div>
           </div>
-        </div>
+        </Show>
 
         <div class={styles.fieldRow}>
           <span class={styles.fieldLabel}>{t("settScaling")} *</span>
@@ -188,7 +190,7 @@ export default function GeneralSettings() {
 
         <div class={styles.fieldRowAuto}>
           <div class={styles.fieldLabelBlock}>
-            <span class={styles.fieldLabel}>{t(settings.useai ? "settingsDisableAI" : "settingsEnableAI")}</span>
+            <span class={styles.fieldLabel}>{t(settings.useai ? "settingsDisableAI" : "settingsEnableAI")} *</span>
             <span class={styles.fieldDescription}>{t(settings.useai ? "settingsDisableAIDescr" : "settingsEnableAIDescr")}</span>
           </div>
           <div class={styles.fieldControlEnd}>
