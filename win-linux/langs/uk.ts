@@ -367,7 +367,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>Markdown File</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл Markdown</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
@@ -514,37 +514,37 @@
         <location filename="../src/components/cfiledialog.cpp" line="374"/>
         <location filename="../src/components/cfiledialog.cpp" line="394"/>
         <source>GIF Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення GIF</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="375"/>
         <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <source>BMP Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення BMP</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="376"/>
         <location filename="../src/components/cfiledialog.cpp" line="396"/>
         <source>TIFF Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення TIFF</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="377"/>
         <location filename="../src/components/cfiledialog.cpp" line="397"/>
         <source>HEIF Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення HEIF</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="378"/>
         <location filename="../src/components/cfiledialog.cpp" line="398"/>
         <source>WEBP Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення WEBP</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="379"/>
         <location filename="../src/components/cfiledialog.cpp" line="399"/>
         <source>AVIF Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Зображення AVIF</translation>
     </message>
     <message>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
@@ -624,7 +624,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="428"/>
         <source>Templates</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблони</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="484"/>
@@ -701,7 +701,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1553"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation type="unfinished">%1 вже існує.&lt;br&gt;Замінити?</translation>
+        <translation>%1 вже існує.&lt;br&gt;Замінити?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1653"/>
@@ -1275,7 +1275,7 @@
         <location filename="../src/components/cprintprogress.cpp" line="101"/>
         <source>Cancel</source>
         <comment>CPrintProgress</comment>
-        <translation type="unfinished">Відмінити</translation>
+        <translation>Відмінити</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
