@@ -6,6 +6,7 @@
     "build": "vite build --config ./build/vite.config.js",
     "build:all": "npm i --prefix ./noconnect && vite build --config ./noconnect/vite.config.js && vite build --config ./build/vite.config.js",
     "dev": "vite --config ./build/vite.config.js",
+    "sprites": "node ./build/generate-sprites.js",
     "fmt": "oxfmt",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix"
