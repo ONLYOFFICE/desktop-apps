@@ -1,0 +1,43 @@
+.open-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.open-page .cnt-title {
+  height: 80px;
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 8px;
+  width: fit-content;
+  min-width: 0;
+  margin: 0 auto;
+  display: grid;
+
+  > h1 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    width: 712px;
+  }
+}
+
+.open-page .file-drop-section {
+  max-width: 864px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.open-page .file-list-section {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  margin-inline: 32px;
+  margin-bottom: 0;
+}
+
+.open-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding: 16px 32px 32px;
+}

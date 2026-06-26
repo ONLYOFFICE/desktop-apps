@@ -1,0 +1,62 @@
+import { createStore } from "solid-js/store";
+import { makePersisted } from "@solid-primitives/storage";
+
+export const THEME_ID_DEFAULT_LIGHT = 'theme-white';
+export const THEME_ID_DEFAULT_DARK = 'theme-night';
+
+const THEME_TYPE_LIGHT = 'light';
+const THEME_TYPE_DARK = 'dark';
+const THEME_TYPE_SYSTEM = 'system';
+
+export const themesMap = {
+        'theme-system': {
+            // text: utils.Lang.settOptThemeSystem,
+            type: THEME_TYPE_SYSTEM,
+        },
+        'theme-light': {
+            // text: utils.Lang.settOptThemeLight,
+            type: 'light',
+        },
+        'theme-classic-light': {
+            // text: utils.Lang.settOptThemeClassicLight,
+            type: 'light',
+        },
+        'theme-dark': {
+            // text: utils.Lang.settOptThemeDark,
+            type: 'dark',
+        },
+        'theme-contrast-dark': {
+            // text: utils.Lang.settOptThemeContrastDark,
+            type: 'dark',
+        },
+        'theme-gray': {
+            // text: utils.Lang.settOptThemeGray,
+            type: 'light',
+        },
+        'theme-white': {
+            // text: utils.Lang.settOptThemeWhite,
+            type: 'light',
+        },
+        'theme-night': {
+            // text: utils.Lang.settOptThemeNight,
+            type: 'dark',
+        },
+    }
+
+const defaultSettings = Object.freeze({
+  userName: "",
+  country: "GB",
+  lang: "en",
+  scaling: "auto",
+  checkUpdates: "ask",
+  theme: THEME_ID_DEFAULT_LIGHT,
+  launchMode: "tab",
+  spellCheck: "auto",
+  gpuMode: true,
+  promoButtons: true,
+  useai: true,
+});
+
+const [settings, setSettings] = makePersisted(createStore({ ...defaultSettings }), { name: "settings" });
+
+export { settings, setSettings, defaultSettings };

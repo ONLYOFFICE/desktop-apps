@@ -1,0 +1,21 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255,255,255,0.4);
+  z-index: 200;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 201;
+  background: var(--background-action-panel);
+  color: var(--text-normal);
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  max-height: 90vh;
+  /*overflow-y: auto;*/
+  min-width: 320px;
+}

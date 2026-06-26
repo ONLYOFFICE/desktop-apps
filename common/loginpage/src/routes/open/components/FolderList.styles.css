@@ -1,0 +1,115 @@
+#box-recent-folders {
+  display: flex;
+  flex-direction: column;
+}
+
+#box-recent-folders .file-list-head,
+#box-recent-folders .file-list-body .row {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(320px, 1fr) 320px;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 80px;
+}
+
+#box-recent-folders .file-list-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--background-action-panel);
+  padding-bottom: 4px;
+  font-weight: 600;
+}
+
+#box-recent-folders .file-list-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+#box-recent-folders .file-list-body .row {
+  position: relative;
+  border-radius: 4px;
+  padding: 8px 80px 8px 16px;
+  cursor: pointer;
+}
+
+#box-recent-folders .file-list-body .row:nth-child(even) {
+  background: var(--background-normal-element-light);
+}
+
+#box-recent-folders .file-list-body .row:hover {
+  background: var(--highlight-button-hover);
+}
+
+#box-recent-folders .col-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+#box-recent-folders .col-name .icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+#box-recent-folders .col-name .icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+#box-recent-folders .col-name .name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+#box-recent-folders .col-location {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#box-recent-folders .col-actions {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+  display: flex;
+  gap: 4px;
+}
+
+#box-recent-folders .col-actions button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: var(--background-action-panel);
+  border: 1px solid var(--border-divider);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+}
+
+#box-recent-folders .col-actions button svg.icon {
+  fill: var(--background-icon-normal);
+  stroke: var(--icon-normal);
+  color: var(--icon-normal);
+  width: 24px;
+  height: 24px;
+}
+
+#box-recent-folders .col-actions .pin {
+  opacity: 0;
+}
+
+#box-recent-folders .file-list-body .row.pinned .col-actions .pin {
+  opacity: 1;
+}
+
+#box-recent-folders .file-list-body .row:hover .col-actions .pin {
+  opacity: 1;
+}

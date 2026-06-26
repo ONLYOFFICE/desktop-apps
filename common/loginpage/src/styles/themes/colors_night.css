@@ -1,0 +1,56 @@
+
+:root {
+    .theme-night {
+        --background-normal: #222;
+        --background-normal-element: #4b4b4b;
+        --background-normal-element-light: #4b4b4b;
+        --background-tabbar: #404040;
+        --background-primary-button: #4E8AFB;
+        --background-scroll-thumb: #555;
+        --background-action-panel: #404040;
+        --background-icon-normal: #efefef;
+
+        --highlight-button-hover: rgba(255, 255, 255, 0.12);
+        --highlight-button-pressed: rgba(255, 255, 255, 0.2);
+        --highlight-button-pressed-hover: #f7f7f7;
+        --highlight-primary-button-hover: #306AD9;
+        --highlight-primary-button-pressed: #1B55C1;
+        --highlight-header-button-hover: fade(#000, 20%);
+        --highlight-text-select: #96c8fd;
+        --highlight-scroll-thumb-hover: #606060;
+        --highlight-scroll-track-hover: fade(#fff, 3%);
+        --highlight-sidebar-item-pressed: #404040;
+
+        --border-tabbar: #2a2a2a;
+        --border-divider: #505050;
+        --border-regular-control: #686868;
+        --border-control-focus: #306AD9;
+        --border-sidebar: var(--border-tabbar);
+        --border-sidebar-icon: transparent;
+
+        --text-normal: #F3F3F3;
+        --text-normal-pressed: #F3F3F3;
+        --text-secondary: #cbcbcb;
+        --text-tertiary: #b2b2b2;
+        --text-link: #aecbff;
+        --text-inverse: #fff;
+        --text-contrast-background: #fff;
+        --text-negative: #FF8A81;
+
+        --icon-normal: #efefef;
+
+        --disabled-element-opacity: .3;
+        --theme-inverted-image-filter: invert(1);
+        --shadow-sidebar-item-pressed: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+        --layout-list-items-gap: 0;
+        --action-active-font-weight: 500;
+
+        --chb-check-mark-background: var(--icon-normal);
+        --chb-background-normal: var(--background-normal);
+        --chb-background-checked: var(--background-normal);
+        --chb-border-normal: var(--border-regular-control);
+        --chb-border-checked: #949494;
+
+        --font-family-base: "Segoe UI";
+    }
+}

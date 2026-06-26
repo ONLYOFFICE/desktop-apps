@@ -1,0 +1,112 @@
+/* @import "./tokens.css"; */
+@import "./themes/colors.css";
+@import "./themes/colors_white.css";
+@import "./themes/colors_night.css";
+@import "./themes/colors_gray.css";
+@import "./themes/colors_dark.css";
+@import "./themes/colors_contrast_dark.css";
+@import "./themes/colors_classic.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  cursor: default;
+  font-family: var(--font-family-base, Arial, Helvetica, "Helvetica Neue", sans-serif);
+}
+
+input,
+button {
+  font-family: "Open Sans", sans-serif;
+}
+
+.text-normal {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+#wrap {
+  overflow: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: var(--background-normal-element);
+}
+
+/* fixme: choose one, wrap or root */
+
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: var(--background-normal-element);
+  font-family: Arial, Helvetica, "Helvetica Neue", sans-serif;
+}
+
+h3,
+caption {
+  font-weight: 100;
+  font-size: 24px;
+}
+
+h4 {
+  font-weight: 100;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: calc(62px + 8px) minmax(0, 1fr);
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+
+  &[data-ai-open="true"] {
+    grid-template-columns: calc(62px + 8px) minmax(0, 1fr) var(--ai-w, 400px);
+  }
+}
+
+html.ai-resizing,
+html.ai-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+.col-sidebar {
+  overflow-y: auto;
+  padding: 8px 0 8px 8px;
+}
+
+.col-center {
+  position: relative;
+  height: 100dvh;
+  color: var(--text-normal);
+  padding: 8px 8px 8px 0;
+
+  > div:first-child {
+    border-radius: 8px;
+    background: var(--background-action-panel);
+  }
+}
+
+.col-ai {
+  height: 100%;
+  padding: 8px 8px 8px 0;
+  margin-left: -4px;
+
+  > * {
+    border-radius: 8px;
+    background: var(--background-action-panel);
+    overflow: hidden;
+  }
+}
+
+.scrollable {
+  overflow-y: auto;
+}
+
+::-webkit-input-placeholder {
+  color: var(--text-tertiary);
+}

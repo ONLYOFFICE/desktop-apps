@@ -1,0 +1,48 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.root[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.control {
+  width: 30px;
+  height: 16px;
+  border-radius: 99px;
+  background: var(--chb-border-normal);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.control[data-checked] {
+  background: var(--chb-background-checked);
+}
+
+.thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--chb-check-mark-background, #ffffff);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.15s;
+}
+
+.control[data-checked] .thumb {
+  transform: translateX(14px);
+}
+
+.label {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-normal);
+  cursor: inherit;
+  user-select: none;
+}

@@ -1,0 +1,56 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.recent-panel-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding: 32px;
+  padding-top: 0;
+  background: var(--background-action-panel);
+  height: 100%;
+  overflow-y: auto;
+  color: var(--text-normal);
+}
+
+.cnt-title {
+  height: 80px;
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 8px;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 0;
+  margin: 0 auto;
+  display: grid;
+
+  > h1 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    width: 712px;
+  }
+}
+
+.new-doc-section {
+  overflow-x: auto;
+  margin-bottom: 48px;
+}
+
+.file-drop-section {
+  max-width: 864px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.file-list-section {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  margin-inline: 32px;
+  margin-bottom: 32px;
+}

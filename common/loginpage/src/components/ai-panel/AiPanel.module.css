@@ -1,0 +1,59 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  color: var(--text-normal);
+}
+
+.resizeHandle {
+  position: absolute;
+  right: 1.5px;
+  top: 8px;
+  bottom: 8px;
+  width: 5px;
+  border-radius: 9999px;
+  cursor: col-resize;
+  z-index: 2;
+  touch-action: none;
+}
+
+.resizeHandle:hover,
+.resizeHandle:active {
+  background: var(--border-control-focus);
+  opacity: 0.35;
+}
+
+.frame {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: 0 none;
+}
+
+:global(html.ai-resizing) .frame {
+  pointer-events: none;
+}
+
+.pill.pill {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  width: unset;
+  gap: 4px;
+  border-radius: 9999px;
+}
+
+.pill:hover {
+  background: var(--highlight-button-hover);
+}
+
+.pillIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--icon-normal);
+}
