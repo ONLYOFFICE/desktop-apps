@@ -2,6 +2,10 @@
 @import "./themes/colors.css";
 @import "./themes/colors_white.css";
 @import "./themes/colors_night.css";
+@import "./themes/colors_gray.css";
+@import "./themes/colors_dark.css";
+@import "./themes/colors_contrast_dark.css";
+@import "./themes/colors_classic.css";
 
 * {
   box-sizing: border-box;

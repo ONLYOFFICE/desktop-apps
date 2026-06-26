@@ -1,5 +1,5 @@
 import { createEffect, createMemo, createSignal, onCleanup, batch } from "solid-js";
-import { settings, setSettings } from "@/stores/settings";
+import { settings, setSettings, themesMap } from "@/stores/settings";
 import { getPluginSettings } from "@/stores/plugin-settings";
 import { onNativeMessage } from "@/sdk/events";
 import { cmd } from "@/sdk/bridge";
@@ -7,80 +7,6 @@ import { applyLocale } from "@/services/l10n";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/sdk/app";
 
-const NATIVE_TO_STORE = {
-  "theme-white": "modern-light",
-  "theme-night": "modern-dark",
-  "theme-light": "light",
-  "theme-classic-light": "classic-light",
-  "theme-dark": "dark",
-  "theme-gray": "gray",
-  "theme-system": "system",
-  "theme-contrast-dark": "contrast-dark",
-};
-
-const STORE_TO_NATIVE = Object.fromEntries(Object.entries(NATIVE_TO_STORE).map(([k, v]) => [v, k]));
-
-const STORE_TO_CSS_CLASS = {
-  "modern-light": "",
-  "modern-dark": "theme-dark-modern",
-  light: "theme-light",
-  "classic-light": "theme-light",
-  dark: "theme-dark",
-  gray: "theme-gray",
-  "contrast-dark": "theme-contrast-dark",
-  system: "",
-};
-
-const FALLBACK_LANGS = [
-  { code: "ar_SA", name: "العربية", enname: "Arabic (Saudi Arabia)" },
-  { code: "be", name: "Беларуская", enname: "Belarusian" },
-  { code: "bg", name: "Български", enname: "Bulgarian" },
-  { code: "ca", name: "Català", enname: "Catalan" },
-  { code: "cs", name: "Čeština", enname: "Czech" },
-  { code: "da", name: "Dansk", enname: "Danish" },
-  { code: "de", name: "Deutsch", enname: "German" },
-  { code: "el", name: "Ελληνικά", enname: "Greek" },
-  { code: "en", name: "English (US)", enname: "English (United States)" },
-  { code: "en_GB", name: "English (UK)", enname: "English (United Kingdom)" },
-  { code: "es", name: "Español", enname: "Spanish" },
-  { code: "et", name: "Eesti", enname: "Estonian" },
-  { code: "fi", name: "Suomi", enname: "Finnish" },
-  { code: "fr", name: "Français", enname: "French" },
-  { code: "ga", name: "Gaeilge", enname: "Irish" },
-  { code: "gl", name: "Galego", enname: "Galician" },
-  { code: "he", name: "עברית", enname: "Hebrew" },
-  { code: "hi", name: "हिन्दी", enname: "Hindi" },
-  { code: "hr", name: "Hrvatski", enname: "Croatian" },
-  { code: "hu", name: "Magyar", enname: "Hungarian" },
-  { code: "hy", name: "Հայերեն", enname: "Armenian" },
-  { code: "id", name: "Bahasa Indonesia", enname: "Indonesian" },
-  { code: "it", name: "Italiano", enname: "Italian" },
-  { code: "ja", name: "日本語", enname: "Japanese" },
-  { code: "ko", name: "한국어", enname: "Korean" },
-  { code: "lo", name: "ລາວ", enname: "Lao" },
-  { code: "lt", name: "Lietuvių", enname: "Lithuanian" },
-  { code: "lv", name: "Latviešu", enname: "Latvian" },
-  { code: "nl", name: "Nederlands", enname: "Dutch" },
-  { code: "no", name: "Norsk", enname: "Norwegian" },
-  { code: "pl", name: "Polski", enname: "Polish" },
-  { code: "pt_BR", name: "Português (Brasil)", enname: "Portuguese (Brazil)" },
-  { code: "pt_PT", name: "Português (Portugal)", enname: "Portuguese (Portugal)" },
-  { code: "ro", name: "Română", enname: "Romanian" },
-  { code: "ru", name: "Русский", enname: "Russian" },
-  { code: "si", name: "සිංහල", enname: "Sinhala" },
-  { code: "sk", name: "Slovenčina", enname: "Slovak" },
-  { code: "sl", name: "Slovenščina", enname: "Slovenian" },
-  { code: "sq", name: "Shqip", enname: "Albanian" },
-  { code: "sr_Cyrl_RS", name: "Српски (ћирилица)", enname: "Serbian (Cyrillic)" },
-  { code: "sr_Latn_RS", name: "Srpski (latinica)", enname: "Serbian (Latin)" },
-  { code: "sv", name: "Svenska", enname: "Swedish" },
-  { code: "tr", name: "Türkçe", enname: "Turkish" },
-  { code: "uk", name: "Українська", enname: "Ukrainian" },
-  { code: "ur", name: "اردو", enname: "Urdu" },
-  { code: "vi", name: "Tiếng Việt", enname: "Vietnamese" },
-  { code: "zh_CN", name: "中文(简体)", enname: "Chinese (Simplified)" },
-  { code: "zh_TW", name: "中文(繁體)", enname: "Chinese (Traditional)" },
-];
 
 function injectCustomThemeCss(id, colors) {
   if (!id || !colors) return;
@@ -93,15 +19,16 @@ function injectCustomThemeCss(id, colors) {
   document.head.appendChild(el);
 }
 
-function applyThemeToDom(storeThemeId) {
-  const cssClass = STORE_TO_CSS_CLASS[storeThemeId] ?? "";
-  const el = document.documentElement;
+function applyThemeToDom(id) {
+  const el = document.body;
   el.className = el.className.replace(/theme-[\w-]+/gi, "").trim();
-  if (cssClass) el.classList.add(cssClass);
+  if (id) {
+    el.classList.add(id, `theme-type-${!!themesMap[id]?themesMap[id].type:'light'}`);
+  }
 }
 
 function applyScaling(scaling) {
-  const html = document.documentElement;
+  const html = document.body;
   html.className = html.className.replace(/\bscale-\d+\b/g, "").trim();
 
   if (scaling === "auto") {
@@ -176,7 +103,6 @@ export function initSettingsSync() {
     cmd("settings:apply", JSON.stringify({ useai: newValue }));
   };
 
-  createEffect(() => applyThemeToDom(settings.theme));
   createEffect(() => applyLocale(settings.lang));
   createEffect(() => applyScaling(settings.scaling));
 
@@ -192,7 +118,7 @@ export function initSettingsSync() {
     const snap = nativeSnapshot();
     const lang = settings.lang;
     const scaling = settings.scaling;
-    const theme = settings.theme;
+    // const theme = settings.theme;
     const updates = settings.checkUpdates;
     const launch = settings.launchMode;
     const spell = settings.spellCheck;
@@ -201,16 +127,17 @@ export function initSettingsSync() {
     const restart =
       snap !== null &&
       (lang !== (snap.locale?.current ?? lang) || scaling !== nativeScalingToStore(snap.uiscaling) || gpu !== !!snap.usegpu);
+    applyThemeToDom(typeof settings.theme === 'string' ? settings.theme : '');
 
     cmd("settings:apply", JSON.stringify({
       username: settings.userName,
       lang,
-      uitheme: STORE_TO_NATIVE[theme] ?? theme,
+      uitheme: settings.theme,
       autoupdatemode: updates,
       docopenmode: launch,
       spellcheckdetect: spell,
       usegpu: gpu,
-      restart,
+      restart: _needsRestart(),
       uiscaling: scaling === "auto" ? "0" : scaling,
     }));
 
@@ -244,7 +171,7 @@ export function initSettingsSync() {
       batch(() => {
         if (payload.locale?.current) setSettings("lang", payload.locale.current);
         if ("uiscaling" in payload) setSettings("scaling", nativeScalingToStore(payload.uiscaling));
-        if (payload.uitheme) setSettings("theme", NATIVE_TO_STORE[payload.uitheme] ?? payload.uitheme);
+        if (payload.uitheme) setSettings("theme", payload.uitheme);
         if (payload.autoupdatemode) setSettings("checkUpdates", payload.autoupdatemode);
         if (payload.docopenmode) setSettings("launchMode", payload.docopenmode);
         if (payload.spellcheckdetect) setSettings("spellCheck", payload.spellcheckdetect);
@@ -295,7 +222,7 @@ export function initSettingsSync() {
       }
       if (opts?.theme?.system) setSystemThemeEnabled(opts.theme.system !== "disabled");
     } else if (msgCmd === "uitheme:changed") {
-      setSettings("theme", NATIVE_TO_STORE[param] ?? param);
+      setSettings("theme", param);
     }
   });
 
