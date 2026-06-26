@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d day are left until the license expiration.</string>
+			<string>%d day are left until the licence expiration.</string>
 			<key>other</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>%d days are left until the licence expiration.</string>
 		</dict>
 	</dict>
 	<key>You are using a trial version of the application.

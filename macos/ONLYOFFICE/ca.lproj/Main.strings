@@ -16,6 +16,9 @@
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC"; */
 "2oI-Rn-ZJC.title" = "Transformacions";
 
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk"; */
+"3FX-nT-Klk.title" = "Tanca";
+
 /* Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg"; */
 "3IN-sU-3Bg.title" = "Ortografia";
 
@@ -54,9 +57,6 @@
 
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS"; */
 "9aQ-wl-gjS.title" = "Nou";
-
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B"; */
-"9i7-kj-42B.title" = "cap";
 
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
 "9ic-FL-obx.title" = "Substitucions";
@@ -112,6 +112,9 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l"; */
 "CJU-dx-a9l.title" = "Reconeixements";
 
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05"; */
+"clr-Cl-d05.title" = "Esborra";
+
 /* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
 "cqv-fj-IhA.title" = "Selecció";
 
@@ -150,9 +153,6 @@
 
 /* Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum"; */
 "FKE-Sm-Kum.title" = "Ajuda del producte";
-
-/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi"; */
-"FoF-wl-Dxi.title" = "Nom d'usuari";
 
 /* Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27"; */
 "GB9-OM-e27.title" = "Negreta";
@@ -259,6 +259,9 @@
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "Copiar la regla";
 
+/* Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by"; */
+"ne5-Gy-5by.title" = "PDF";
+
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
 "NMo-om-nkz.title" = "Serveis";
 
@@ -274,11 +277,17 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
 "oas-Oc-fiZ.title" = "Obre Recents";
 
+/* Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04"; */
+"ofn-Cl-d04.title" = "Mostra a la carpeta";
+
 /* Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1"; */
 "ogc-rX-tC1.title" = "Deixar anar";
 
 /* Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "Ocultar ONLYOFFICE";
+
+/* Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03"; */
+"opn-Cl-d03.title" = "Obre";
 
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
 "OwM-mh-QMV.title" = "Cercar l'anterior";
@@ -319,15 +328,6 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "Guions intel·ligents";
 
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj"; */
-"Riu-oE-8dj.title" = "Tancar";
-
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ"; */
-"Rkd-xb-FRJ.title" = "cap";
-
-/* Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh"; */
-"RmO-tv-UKh.title" = "Sortir";
-
 /* Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF"; */
 "Rqc-34-cIF.title" = "Superíndex";
 
@@ -354,6 +354,9 @@
 
 /* Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS"; */
 "tRr-pd-1PS.title" = "Detectors de dades";
+
+/* Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03"; */
+"ttl-Cl-d03.title" = "Descàrregues";
 
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
 "tXI-mr-wws.title" = "Obre Recents";
@@ -445,12 +448,6 @@
 /* Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1"; */
 "ZM1-6Q-yy1.title" = "Alinear a l'esquerra";
 
-/* Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl"; */
-"Zsi-3o-ASl.title" = "Correu electrònic:";
-
 /* Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH"; */
 "ZvO-Gk-QUH.title" = "Paràgraf";
-
-/* Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N"; */
-"zwS-9G-S0N.title" = "Portal:";
 

@@ -1,33 +1,36 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * Copyright (C) Ascensio System SIA, 2009-2026
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
- * version 3 as published by the Free Software Foundation. In accordance with
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
- * that Ascensio System SIA expressly excludes the warranty of non-infringement
- * of any third-party rights.
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
  *
  * This program is distributed WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
- * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
  *
- * You can contact Ascensio System SIA at 20A-12 Ernesta Birznieka-Upisha
- * street, Riga, Latvia, EU, LV-1050.
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
  *
- * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
  * Section 5 of the GNU AGPL version 3.
  *
- * Pursuant to Section 7(b) of the License you must retain the original Product
- * logo when distributing the program. Pursuant to Section 7(e) we decline to
- * grant you any rights under trademark law for use of our trademarks.
+ * No trademark rights are granted under this License.
  *
- * All the Product's GUI elements, including illustrations and icon sets, as
- * well as technical writing content are licensed under the terms of the
- * Creative Commons Attribution-ShareAlike 4.0 International. See the License
- * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 
 #include <windows.h>
@@ -36,8 +39,13 @@
 #include <private/qprintengine_win_p.h>
 #include "printdialog.h"
 #include "utils.h"
+#include "cthemes.h"
+#include "cascapplicationmanagerwrapper.h"
 #include "components/cmessage.h"
 
+#ifndef DWMWA_USE_IMMERSIVE_DARK_MODE
+# define DWMWA_USE_IMMERSIVE_DARK_MODE 20
+#endif
 #define MAXPAGERANGES 32
 #define PRINT_DIALOG_REG_KEY L"Software\\Microsoft\\Print\\UnifiedPrintDialog\0"
 #define PRINT_DIALOG_REG_VALUE L"PreferLegacyPrintDialog\0"
@@ -154,6 +162,25 @@ private:
     }
     virtual HRESULT STDMETHODCALLTYPE HandleMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam,
                                                        LRESULT *pResult) noexcept final {
+        switch (uMsg) {
+        case WM_INITDIALOG: {
+            if (Utils::getWinVersion() == Utils::WinVer::Win10 && GetCurrentTheme().isDark()) {
+                // Apply dark theme to title bar
+                if (HMODULE hDwmApi = GetModuleHandleA("dwmapi")) {
+                    HRESULT(WINAPI *pSetWindowAttribute)(HWND, DWORD, LPCVOID, DWORD) = nullptr;
+                    *(FARPROC*)&pSetWindowAttribute = GetProcAddress(hDwmApi, "DwmSetWindowAttribute");
+                    if (pSetWindowAttribute) {
+                        BOOL bDark = TRUE;
+                        HWND hwnd = GetAncestor(hDlg, GA_ROOT);
+                        pSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, &bDark, sizeof(bDark));
+                    }
+                }
+            }
+            break;
+        }
+        default:
+            break;
+        }
         return S_FALSE;
     }
     virtual HRESULT STDMETHODCALLTYPE InitDone() noexcept final {
@@ -391,23 +418,23 @@ QDialog::DialogCode PrintDialog::exec()
 
     // Switch to legacy print dialog
     bool dialog_was_changed = false;
-#ifndef __OS_WIN_XP
-    if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
-        HKEY hKey = NULL;
-        if (RegOpenKeyEx(HKEY_CURRENT_USER, PRINT_DIALOG_REG_KEY, 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
-            DWORD pvData = 0, pcbData = sizeof(DWORD);
-            LSTATUS status = RegGetValue(hKey, NULL, PRINT_DIALOG_REG_VALUE, RRF_RT_REG_DWORD, NULL, &pvData, &pcbData);
-            if (status == ERROR_SUCCESS || status == ERROR_FILE_NOT_FOUND) {
-                if (pvData == 0) {
-                    pvData = 1;
-                    if (RegSetValueEx(hKey, PRINT_DIALOG_REG_VALUE, 0, REG_DWORD, (const BYTE*)&pvData, sizeof(DWORD)) == ERROR_SUCCESS)
-                        dialog_was_changed = true;
-                }
-            }
-            RegCloseKey(hKey);
-        }
-    }
-#endif
+// #ifndef __OS_WIN_XP
+//     if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
+//         HKEY hKey = NULL;
+//         if (RegOpenKeyEx(HKEY_CURRENT_USER, PRINT_DIALOG_REG_KEY, 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
+//             DWORD pvData = 0, pcbData = sizeof(DWORD);
+//             LSTATUS status = RegGetValue(hKey, NULL, PRINT_DIALOG_REG_VALUE, RRF_RT_REG_DWORD, NULL, &pvData, &pcbData);
+//             if (status == ERROR_SUCCESS || status == ERROR_FILE_NOT_FOUND) {
+//                 if (pvData == 0) {
+//                     pvData = 1;
+//                     if (RegSetValueEx(hKey, PRINT_DIALOG_REG_VALUE, 0, REG_DWORD, (const BYTE*)&pvData, sizeof(DWORD)) == ERROR_SUCCESS)
+//                         dialog_was_changed = true;
+//                 }
+//             }
+//             RegCloseKey(hKey);
+//         }
+//     }
+// #endif
 
     // Init dialog
     PRINTDLGEX dlg;

@@ -1,5 +1,9 @@
 ﻿; -- Installer Common --
 
+#define ReadFileData(str Ext, str Key) \
+  ReadIni(AddBackslash(SourcePath) + "associations.ini", Ext, Key)
+#define protected i 0
+
 #ifndef BRANDING_DIR
 #define BRANDING_DIR '.'
 #endif
@@ -153,7 +157,7 @@ Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl;
 #endif
 Name: zh_CN; MessagesFile: compiler:Languages\ChineseSimplified.isl;
 ;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;
-;Name: hr; MessagesFile: compiler:Languages\Croatian.isl;
+Name: hr; MessagesFile: compiler:Languages\Croatian.isl;
 Name: da; MessagesFile: compiler:Languages\Danish.isl;
 ;Name: hi; MessagesFile: compiler:Languages\Hindi.islu;
 Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;
@@ -189,10 +193,6 @@ ur.RightToLeft=yes
 [CustomMessages]
 #include '_messages.iss'
 
-[Dirs]
-Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
-
-
 [Files]
 Source: "vc_redist.{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vc_redist.{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
@@ -210,7 +210,7 @@ Source: "{#BRANDING_DIR}\..\common\license\commercial\LICENSE.txt"; DestDir: {ap
 #else
 Source: "{#BRANDING_DIR}\..\common\license\opensource\LICENSE.txt"; DestDir: {app};
 #endif
-Source: "{#BRANDING_DIR}\..\common\license\3dparty\3DPARTYLICENSE"; DestDir: {app};
+Source: "{#BRANDING_DIR}\..\common\license\3dparty\3DPARTYLICENSE"; DestDir: {app}; DestName: "3DPARTYLICENSE.txt";
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
@@ -220,7 +220,6 @@ Type: files; Name: "{group}\{#sOldAppIconName}.lnk";
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescription: {cm:AdditionalIcons};
 ;Name: fileassoc; Description: {cm:AssociateCaption};   GroupDescription: {cm:AssociateDescription};
-
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
@@ -239,10 +238,12 @@ Name: "{group}\{cm:jumpDOCXF}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 17
 Filename: {app}\{#iconsExe}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runasoriginaluser;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait
 ;Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
-
-[Ini]
-;Filename: {app}\opts; Section: app; Key: lang; String: {language};
-
+#sub LoopRunAssoc
+#define iExt FA_ARR[i]
+#define iProgID ASCC_REG_PREFIX + "." + ReadFileData(iExt, "ProgID")
+Filename: "{app}\{#iconsExe}"; Parameters: "--assoc .{#iExt}:{#iProgId}"; Flags: nowait runasoriginaluser; MinVersion: 10.0; Check: isAssociateExtension({#i})
+#endsub
+#for {i = 0; i < DimOf(FA_ARR); i++} LoopRunAssoc
 
 [Registry]
 ;Root: HKLM; Subkey: {#APP_REG_PATH};  Flags: uninsdeletekey;
@@ -254,21 +255,68 @@ Root: HKLM; Subkey: "{#APP_REG_PATH}"; ValueType: "string"; ValueName: "PackageA
 Root: HKLM; Subkey: "{#APP_REG_PATH}"; ValueType: "string"; ValueName: "PackageEdition"; ValueData: "{#PACKAGE_EDITION}"; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: "{#APP_REG_PATH}"; ValueType: "string"; ValueName: "PackageType";    ValueData: "inno";               Flags: uninsdeletevalue;
 
-Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      Flags: uninsdeletekey
-Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      ValueType: string; ValueName:; ValueData: {#ASSOC_APP_FRIENDLY_NAME};
-Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\DefaultIcon;          ValueType: string; ValueName:; ValueData: "{app}\{#iconsExe},0";
-Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open\command;   ValueType: string; ValueName:; ValueData: """{app}\{#iconsExe}"" ""%1""";
-Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open;           ValueType: string; ValueName: FriendlyAppName; ValueData: {#ASSOC_APP_FRIENDLY_NAME};
+; Default Apps
+Root: HKLM; Subkey: "Software\RegisteredApplications"; ValueType: string; ValueName: "{#ASCC_REG_REGISTERED_APP_NAME}"; ValueData: "{#APP_REG_PATH}\Capabilities"; Flags: uninsdeletevalue
 
-#ifdef _ONLYOFFICE
-Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}"; ValueType: "string"; ValueData: "URL:{#sAppName} Protocol"; Flags: uninsdeletekey;
-Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}"; ValueType: "string"; ValueName: "URL Protocol"; ValueData: "";
-Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\DefaultIcon"; ValueType: "string"; ValueData: "{app}\{#iconsExe},0";
-Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; ValueType: "string"; ValueData: """{app}\{#iconsExe}"" ""%1""";
+Root: HKLM; Subkey: "{#APP_REG_PATH}\Capabilities"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "{#APP_REG_PATH}\Capabilities"; ValueType: string; ValueName: "ApplicationIcon"; ValueData: "{app}\{#iconsExe},0"
+Root: HKLM; Subkey: "{#APP_REG_PATH}\Capabilities"; ValueType: string; ValueName: "ApplicationName"; ValueData: "{#sAppName}"
+Root: HKLM; Subkey: "{#APP_REG_PATH}\Capabilities"; ValueType: string; ValueName: "ApplicationDescription"; ValueData: "{cm:defprogAppDescription}"
+
+#sub LoopCapabilities
+#define iExt FA_ARR[i]
+#define iProgID ASCC_REG_PREFIX + "." + ReadFileData(iExt, "ProgID")
+Root: HKLM; Subkey: "{#APP_REG_PATH}\Capabilities\FileAssociations"; ValueType: string; ValueName: ".{#iExt}"; ValueData: "{#iProgID}"
+#endsub
+#for {i = 0; i < DimOf(FA_ARR); i++} LoopCapabilities
+Root: HKLM; Subkey: "{#APP_REG_PATH}\Capabilities\URLAssociations"; ValueType: string; ValueName: "{#sAppProtocol}"; ValueData: "{#ASSOC_PROG_ID}"
+
+; Classes
+Root: HKLM; Subkey: "Software\Classes\{#ASSOC_PROG_ID}"; ValueType: string; ValueData: "{#ASSOC_APP_FRIENDLY_NAME}"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Classes\{#ASSOC_PROG_ID}\DefaultIcon"; ValueType: string; ValueData: "{app}\{#iconsExe},0"
+Root: HKLM; Subkey: "Software\Classes\{#ASSOC_PROG_ID}\shell\open"; ValueType: string; ValueName: "FriendlyAppName"; ValueData: "{#ASSOC_APP_FRIENDLY_NAME}"
+Root: HKLM; Subkey: "Software\Classes\{#ASSOC_PROG_ID}\shell\open\command"; ValueType: string; ValueData: """{app}\{#iconsExe}"" ""%1"""
+
+#sub LoopClassesProgIds
+#define iExt FA_ARR[i]
+#define iProgID ASCC_REG_PREFIX + "." + ReadFileData(iExt, "ProgID")
+Root: HKLM; Subkey: "Software\Classes\{#iProgID}"; ValueType: string; ValueData: "{#ReadFileData(iExt,'TypeName')}"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Classes\{#iProgID}"; ValueType: string; ValueName: "FriendlyTypeName"; ValueData: "@{app}\{#iconsExe},-{#ReadFileData(iExt,'FriendlyTypeNameResource')}"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Classes\{#iProgID}"; ValueType: string; ValueName: "AppUserModelID"; ValueData: "{#APP_USER_MODEL_ID}"
+Root: HKLM; Subkey: "Software\Classes\{#iProgID}\Application"; ValueType: string; ValueName: "ApplicationName"; ValueData: "{#sAppName}"
+Root: HKLM; Subkey: "Software\Classes\{#iProgID}\Application"; ValueType: string; ValueName: "ApplicationIcon"; ValueData: "{app}\{#iconsExe},33"; MinVersion: 10.0; OnlyBelowVersion: 10.0.22000
+#if ReadFileData(iExt,'IconResource') != ""
+Root: HKLM; Subkey: "Software\Classes\{#iProgID}\DefaultIcon"; ValueType: string; ValueData: "{app}\{#iconsExe},{#ReadFileData(iExt,'IconResource')}"
 #endif
+Root: HKLM; Subkey: "Software\Classes\{#iProgID}\shell\open\command"; ValueType: string; ValueData: """{app}\{#iconsExe}"" ""%1"""
+#endsub
+#for {i = 0; i < DimOf(FA_ARR); i++} LoopClassesProgIds
+
+Root: HKLM; Subkey: "Software\Classes\{#sAppProtocol}"; ValueType: string; ValueData: "URL:{#sAppName} Protocol"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Classes\{#sAppProtocol}"; ValueType: string; ValueName: "URL Protocol"
+Root: HKLM; Subkey: "Software\Classes\{#sAppProtocol}\DefaultIcon"; ValueType: string; ValueData: "{app}\{#iconsExe},0"
+Root: HKLM; Subkey: "Software\Classes\{#sAppProtocol}\shell\open\command"; ValueType: string; ValueData: """{app}\{#iconsExe}"" ""%1"""
+
+#sub LoopClassesExt
+#define iExt FA_ARR[i]
+#define iProgID ASCC_REG_PREFIX + "." + ReadFileData(iExt, "ProgID")
+Root: HKCU; Subkey: "Software\Classes\.{#iExt}"; ValueType: string; ValueData: "{#iProgID}"; Flags: dontcreatekey uninsdeletekeyifempty uninsdeletevalue; Check: isAssociateExtension({#i})
+Root: HKLM; Subkey: "Software\Classes\.{#iExt}"; ValueType: string; ValueData: "{#iProgID}"; Flags: uninsdeletekeyifempty uninsdeletevalue; Check: isAssociateExtension({#i})
+Root: HKLM; Subkey: "Software\Classes\.{#iExt}\OpenWithProgIds"; ValueType: string; ValueName: "{#iProgID}"; Flags: uninsdeletekeyifempty uninsdeletevalue
+#endsub
+#for {i = 0; i < DimOf(FA_ARR); i++} LoopClassesExt
+
+#sub LoopShellNew
+#define iExt SN_ARR[i]
+#define iProgID ASCC_REG_PREFIX + "." + ReadFileData(iExt, "ProgID")
+Root: HKLM; Subkey: "Software\Classes\.{#iExt}\{#iProgID}"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Classes\.{#iExt}\{#iProgID}\ShellNew"; ValueType: string; ValueName: "FileName"; ValueData: "{app}\converter\empty\{cm:EmptyLangDir}\new.{#iExt}"
+Root: HKLM; Subkey: "Software\Classes\.{#iExt}\{#iProgID}\ShellNew"; ValueType: string; ValueName: "MenuText"; ValueData: "@{app}\{#iconsExe},-{#ReadFileData(iExt,'MenuText')}"
+Root: HKLM; Subkey: "Software\Classes\.{#iExt}\{#iProgID}\ShellNew"; ValueType: string; ValueName: "ItemName"; ValueData: "@{app}\{#iconsExe},-{#ReadFileData(iExt,'ItemName')}"
+#endsub
+#for {i = 0; i < DimOf(SN_ARR); i++} LoopShellNew
 
 [UninstallDelete]
-Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
 Type: filesandordirs; Name: "{app}\..\{#UPD_PATH}";
 Type: files; Name: "{app}\svcrestart.bat";
 

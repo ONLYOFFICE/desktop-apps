@@ -1,34 +1,37 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * Copyright (C) Ascensio System SIA, 2009-2026
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
- * version 3 as published by the Free Software Foundation. In accordance with
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
- * that Ascensio System SIA expressly excludes the warranty of non-infringement
- * of any third-party rights.
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
  *
  * This program is distributed WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
- * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
  *
- * You can contact Ascensio System SIA at 20A-12 Ernesta Birznieka-Upisha
- * street, Riga, Latvia, EU, LV-1050.
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
  *
- * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
  * Section 5 of the GNU AGPL version 3.
  *
- * Pursuant to Section 7(b) of the License you must retain the original Product
- * logo when distributing the program. Pursuant to Section 7(e) we decline to
- * grant you any rights under trademark law for use of our trademarks.
+ * No trademark rights are granted under this License.
  *
- * All the Product's GUI elements, including illustrations and icon sets, as
- * well as technical writing content are licensed under the terms of the
- * Creative Commons Attribution-ShareAlike 4.0 International. See the License
- * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
 #include "components/asctabwidget.h"
 #include <QHBoxLayout>
@@ -134,14 +137,19 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
+    , m_isMruRemoveLocked(false)
+    , m_isMruUpdateLocked(false)
     , m_isTabPinAllowed(true)
 //    , m_tabIconSize(16, 16)
+    , m_mruTimer(nullptr)
     , m_pBar(_pBar)
 {
     m_pBar->setObjectName("asc_editors_tabbar");
     setProperty("active", false);
     // setProperty("empty", true);
     m_pBar->setProperty("active", false);
+
+    m_mruList.append(nullptr); // Adding nullptr as a Main Tab
 
     static int _dropedindex = -1;
     QObject::connect(this, &CAscTabWidget::currentChanged, this, [=](int index) {
@@ -166,6 +174,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 
                 QTimer::singleShot(0, this, [=]() {
                     if (widget(index)) {
+                        m_mruList.removeAll(widget(index));
                         widget(index)->deleteLater();
                     }
                 });
@@ -174,7 +183,9 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     });
     auto turnOffAltHints = [=](int old_index, int index) {
         QTimer::singleShot(0, this, [=]() {
-            setCurrentIndex(index);
+            if (index != old_index) {
+                setCurrentIndex(index);
+            }
         });
         if (old_index > -1 && panel(old_index))
             AscAppManager::sendCommandTo(panel(old_index)->cef(), L"althints:show", L"false");
@@ -189,6 +200,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         if (from < 0 || from >= count() || to < 0 || to >= count() || from == to)
             return;
         auto wgt = widget(from);
+        m_isMruRemoveLocked = true;
         blockSignals(true);
         removeWidget(wgt);
         insertWidget(to, wgt);
@@ -207,12 +219,14 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
             }
         }
         blockSignals(false);
+        m_isMruRemoveLocked = false;
     });
     QObject::connect(m_pBar, &CTabBar::tabsSwapped, this, [=](int from, int to) {
         if (from == to || !indexIsValid(from) || !indexIsValid(to))
             return;
         auto wgt_from = widget(from);
         auto wgt_to = widget(to);
+        m_isMruRemoveLocked = true;
         blockSignals(true);
         removeWidget(wgt_from);
         removeWidget(wgt_to);
@@ -224,6 +238,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         if (to == m_pBar->currentIndex())
             QStackedWidget::setCurrentIndex(from);
         blockSignals(false);
+        m_isMruRemoveLocked = false;
     });
 }
 
@@ -547,6 +562,13 @@ int CAscTabWidget::insertWidget(int index, QWidget* widget)
     int actual_index = QStackedWidget::insertWidget(index, widget);
     emit editorInserted(actual_index, count());
     return actual_index;
+}
+
+void CAscTabWidget::removeWidget(QWidget *widget)
+{
+    if (!m_isMruRemoveLocked)
+        m_mruList.removeAll(widget);
+    QStackedWidget::removeWidget(widget);
 }
 
 void CAscTabWidget::setCustomWindowParams(bool iscustom)
@@ -972,7 +994,12 @@ void CAscTabWidget::activate(bool a)
     if (property("active").toBool() != a) {
         this->setProperty("active", a);
         m_pBar->activate(a);
+        if (!a && !m_isMruUpdateLocked) {
+            m_mruList.removeAll(nullptr);
+            m_mruList.prepend(nullptr);
+        }
     }
+    m_isMruUpdateLocked = false;
 //    m_pBar->polish();
 }
 
@@ -1311,6 +1338,51 @@ void CAscTabWidget::setCurrentIndex(int index)
 {
     QStackedWidget::setCurrentIndex(index);
     m_pBar->setCurrentIndex(index);
+    if (QWidget* w = widget(index)) {
+        m_mruList.removeAll(w);
+        m_mruList.prepend(w);
+    }
+}
+
+void CAscTabWidget::switchToNextMruTab(bool reverse)
+{
+    if (!m_mruTimer) {
+        m_mruTimer = new QTimer(this);
+        m_mruTimer->setSingleShot(false);
+        m_mruTimer->setInterval(100);
+        connect(m_mruTimer, &QTimer::timeout, this, [=]() {
+            if (!(QGuiApplication::queryKeyboardModifiers() & Qt::ControlModifier)) {
+                m_mruTimer->stop();
+                QWidget* cur = isActiveWidget() ? currentWidget() : nullptr;
+                m_mruList.removeAll(cur);
+                m_mruList.prepend(cur);
+            }
+        });
+    }
+    if (!m_mruTimer->isActive())
+        m_mruTimer->start();
+
+    const int mru_size = m_mruList.size();
+    if (mru_size < 2)
+        return;
+
+    QWidget* cur = isActiveWidget() ? currentWidget() : nullptr;
+    int pos = m_mruList.indexOf(cur);
+    if (pos == -1)
+        return;
+
+    pos = (pos + (reverse ? -1 : 1) + mru_size) % mru_size;
+    if (QWidget* w = m_mruList.at(pos)) {
+        int index = -1;
+        if ((index = indexOf(w)) != -1) {
+            AscAppManager::getInstance().mainWindow()->toggleButtonMain(false);
+            QStackedWidget::setCurrentWidget(w);
+            m_pBar->setCurrentIndex(index);
+        }
+    } else {
+        m_isMruUpdateLocked = true;
+        AscAppManager::getInstance().mainWindow()->toggleButtonMain(true);
+    }
 }
 
 void CAscTabWidget::applyUITheme(const std::wstring& theme)

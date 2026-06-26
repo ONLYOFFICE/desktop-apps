@@ -14,6 +14,9 @@
 "Cancel" = "Annuleren";
 
 /* No comment provided by engineer. */
+"Canceled" = "Geannuleerd";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Kan het bestand van de Digitale Handtekening niet openen";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Kan de map van de bestandslocatie niet openen.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Komma-Gescheiden Waarden (*.csv)";
+"Close" = "Sluiten";
+
+/* No comment provided by engineer. */
+"Close all" = "Alles sluiten";
+
+/* No comment provided by engineer. */
+"Close saved" = "Opgeslagen sluiten";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Komma-Gescheiden Waarden";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community-versie %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community-versie %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Nieuw maken";
 
 /* No comment provided by engineer. */
 "Create portal" = "Maak een portaal";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Verwijderen en Afsluiten";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Digitaal Document (*.djvu)";
+"DjVu File" = "Digitaal Document";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Wilt u de veranderingen die in het document \"%@\" zijn aangebracht, opslaan?";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "Document %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML Document Sjabloon (*.dotx)";
+"Document template" = "Word Open XML Document Sjabloon";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet (*.xls)";
+"Don't Save" = "Niet opslaan";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML Spreadsheet (*.xlsx)";
+"Electronic Publication" = "Elektronische publicatie";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise-versie %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "Enterprise-versie %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML-spreadsheet";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel binair werkblad";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Installatie van thema mislukt";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2-bestand";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Bestand \"%@\" kan niet open zijn of niet bestaan.";
@@ -71,16 +113,37 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Als u al %@ hebt gekocht, moet u uw activeringssleutel terugvinden in een e-mailbevestiging.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG-afbeelding";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Licentieovereenkomst";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-book (*.mobi)";
+"Macro-enabled Presentation" = "Presentatie met macro's";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Sjabloon voor spreadsheet met macro's";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown-bestand";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"Move to end" = "Ga naar het einde";
+
+/* No comment provided by engineer. */
+"Move to start" = "Verplaats naar de startpagina";
 
 /* No comment provided by engineer. */
 "new-document" = "Nieuw document";
 
 /* No comment provided by engineer. */
-"new-pdfform" = "Nieuw PDF";
+"new-pdfform" = "Nieuw";
 
 /* No comment provided by engineer. */
 "new-presentation" = "Nieuwe presentatie";
@@ -101,43 +164,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan de Privésleutel niet openen. Probeer een ander bestand te openen.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument Document Sjabloon (*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE Documentformuliersjabloon";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument Presentatie Sjabloon (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE Invulbaar online formulier";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Sjabloon (*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF-formulier";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Document Sjabloon";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Presentatie Sjabloon";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Sjabloon";
 
 /* No comment provided by engineer. */
 "Opening" = "Openen";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument Tekstbestand (*.odt)";
+"OpenOffice Document" = "OpenDocument Tekstbestand";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument Presentatie (*.odp)";
+"OpenOffice Presentation" = "OpenDocument Presentatie";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument Spreadsheet (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument Spreadsheet";
 
 /* No comment provided by engineer. */
-"PDF File" = "Portable Document (*.pdf)";
+"PDF File" = "Portable Document";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portable Document /A (*.pdf)";
+"PDF/A File" = "Portable Document /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Standaard Tekstbestand (*.txt)";
+"Plain Text" = "Standaard Tekstbestand";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentatie (*.ppt)";
+"PNG Image" = "PNG-afbeelding";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML Presentatie (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentatie";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML Diavoorstelling (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Office Open XML-presentatie";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML-diavoorstelling";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Voorbereiden...";
@@ -146,16 +221,22 @@
 "Presentation %ld.pptx" = "Presentatie %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML Presentatie Sjabloon (*.potx)";
+"Presentation template" = "PowerPoint Open XML Presentatie Sjabloon";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Presentatieweergave";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Afsluiten %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Vervangen";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Veranderingen Beoordelen...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text Format Bestand (*.rtf)";
+"Rich Text Document" = "Rich Text Format Bestand";
 
 /* No comment provided by engineer. */
 "Save" = "Opslaan";
@@ -164,10 +245,25 @@
 "Save the document?" = "Het document opslaan?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Themabestand selecteren";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Geselecteerd thema is niet geldig";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Weergeven in map";
+
+/* No comment provided by engineer. */
+"Show main window" = "Toon het hoofdvenster";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Handtekeninggegevens";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Spreadsheet %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML Spreadsheet Sjabloon (*.xltx)";
+"Spreadsheet template" = "Excel Open XML Spreadsheet Sjabloon";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Bedankt voor het beoordelen van %@!";
@@ -176,52 +272,43 @@
 "The document \"%@\" must be built. Continue?" = "Het document \"%@\" moet worden gebouwd. Doorgaan?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Thema bestaat al. Vervangen?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Dit bestand bevat geen thema";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Dit themabestand is niet geldig";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Om de bestandslocatie te openen, moet deze worden opgeslagen.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Onbevestigd";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Tab losmaken";
+
+/* No comment provided by engineer. */
 "Untitled" = "Zonder titel";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio-tekening";
 
 /* No comment provided by engineer. */
 "Web Page" = "Webpagina";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Document (*.doc)";
+"With access to pro features" = "Met toegang tot professionele functies";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML Document (*.docx)";
+"Word 97-2003 Document" = "Word 97-2003 Document";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS-document (*.xps)";
+"Word 2007 Document" = "Office Open XML-document";
 
 /* No comment provided by engineer. */
-"Show main window" = "Toon het hoofdvenster";
-
-/* No comment provided by engineer. */
-"Close" = "Sluiten";
-
-/* No comment provided by engineer. */
-"Close saved" = "Opgeslagen sluiten";
-
-/* No comment provided by engineer. */
-"Close all" = "Alles sluiten";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Weergeven in map";
-
-/* No comment provided by engineer. */
-"Move to start" = "Verplaats naar de startpagina";
-
-/* No comment provided by engineer. */
-"Move to end" = "Ga naar het einde";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Tab losmaken";
-
-/* No comment provided by engineer. */
-"Create new" = "Nieuw maken";
+"XML Paper Specification" = "OpenXPS Document";
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";
@@ -231,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "U hebt met succes %@ geactiveerd.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Uw wijzigingen gaan verloren als u ze niet opslaat.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Uw wijzigingen gaan verloren als u ze niet opslaat.";

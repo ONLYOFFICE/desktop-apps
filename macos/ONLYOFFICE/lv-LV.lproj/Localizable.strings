@@ -14,6 +14,9 @@
 "Cancel" = "Atcelt";
 
 /* No comment provided by engineer. */
+"Canceled" = "Atcelts";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Nevar atvērt Digitālā Paraksta failu";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Nevar atvērt faila atrašanās vietas mapi.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Ar Komatiem Atdalītas Vērtības (*.csv)";
+"Close" = "Aizvērt";
+
+/* No comment provided by engineer. */
+"Close all" = "Aizvērt visu";
+
+/* No comment provided by engineer. */
+"Close saved" = "Aizvērt saglabāto";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Ar Komatiem Atdalītas Vērtības";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community versija %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community versija %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Izveidot jaunu";
 
 /* No comment provided by engineer. */
 "Create portal" = "Izveidot portālu";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Dzēst un Iziet";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Digitālais dokuments (*.djvu)";
+"DjVu File" = "Digitālais dokuments";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Vai jūs vēlaties saglabāt dokumentā \"%@\" veiktās izmaiņas?";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "Dokuments %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML Dokumenta veidne (*.dotx)";
+"Document template" = "Word Open XML Dokumenta veidne";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 izklājlapa (*.xls)";
+"Don't Save" = "Nesaglabāt";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML izklājlapa (*.xlsx)";
+"Electronic Publication" = "Elektroniska publikācija";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise versija %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "Enterprise versija %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 izklājlapa";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML izklājlapa";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel binārā izklājlapa";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Neizdevās instalēt tēmu";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2 fails";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Failu \"%@\" nevar atvērt vai tas nepastāv.";
@@ -68,10 +110,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Ja esat jau iegādājies %@, jums vajadzētu atrast jūsu aktivizācijas atslēgu apstiprinājuma e-pastā.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG attēls";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Licences Līgums";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-grāmata (*.mobi)";
+"Macro-enabled Presentation" = "Prezentācija ar iespējotu makro";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Izklājlapas veidne ar iespējotu makro";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown fails";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-grāmata";
+
+/* No comment provided by engineer. */
+"Move to end" = "Pārvietot uz beigām";
+
+/* No comment provided by engineer. */
+"Move to start" = "Pārvietot, lai sāktu";
 
 /* No comment provided by engineer. */
 "new-document" = "Jauns dokuments";
@@ -98,43 +161,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nevar atvērt Privāto Atslēgu. Mēģiniet atvērt citu failu.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument Dokumenta veidne (*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE dokumenta veidlapas veidne";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument Prezentācijas veidne (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE aizpildāma tiešsaistes veidlapa";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument Izklājlapas veidne (*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF veidlapa";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Dokumenta veidne";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Prezentācijas veidne";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Izklājlapas veidne";
 
 /* No comment provided by engineer. */
 "Opening" = "Notiek atvēršana";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument Teksta fails (*.odt)";
+"OpenOffice Document" = "OpenDocument Teksta fails";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument Prezentācija (*.odp)";
+"OpenOffice Presentation" = "OpenDocument Prezentācija";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument Izklājlapa (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument Izklājlapa";
 
 /* No comment provided by engineer. */
-"PDF File" = "Portatīvs dokuments (*.pdf)";
+"PDF File" = "Portatīvs dokuments";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portatīvs dokuments /A (*.pdf)";
+"PDF/A File" = "Portatīvs dokuments /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Parasts Teksts (*.txt)";
+"Plain Text" = "Parasts Teksts";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 prezentācija (*.ppt)";
+"PNG Image" = "PNG attēls";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML prezentācija (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 prezentācija";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML slaidrāde (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Office Open XML prezentācija";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML slaidrāde";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Notiek sagatavošana...";
@@ -143,16 +218,22 @@
 "Presentation %ld.pptx" = "Prezentācija %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML Prezentācijas veidne (*.potx)";
+"Presentation template" = "PowerPoint Open XML Prezentācijas veidne";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Prezentētāja Skats";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Iziet %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Aizstāt";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Apskatīt Izmaiņas...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Bagātināta teksta formāta fails (*.rtf)";
+"Rich Text Document" = "Bagātināta teksta formāta fails";
 
 /* No comment provided by engineer. */
 "Save" = "Saglabāt";
@@ -161,10 +242,25 @@
 "Save the document?" = "Vai saglabāt dokumentu?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Atlasīt tēmas failu";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Atlasītā tēma nav derīga";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Rādīt mapē";
+
+/* No comment provided by engineer. */
+"Show main window" = "Rādīt galveno logu";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Paraksta dati";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Izklājlapa %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML Izklājlapas veidne (*.xltx)";
+"Spreadsheet template" = "Excel Open XML Izklājlapas veidne";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Paldies, ka novērtējāt %@!";
@@ -173,52 +269,43 @@
 "The document \"%@\" must be built. Continue?" = "Dokumentam \"%@\" jābūt izveidotam. Turpināt?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Tēma jau pastāv. Vai aizstāt to?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Šajā failā nav tēmas";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Šis tēmas fails nav derīgs";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Lai atvērtu faila atrašanās vietu, tam jābūt saglabātam.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Neapstiprināts";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Atspraust cilni";
+
+/* No comment provided by engineer. */
 "Untitled" = "Bez nosaukuma";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Zīmēšana Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Web Lapa";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 dokuments (*.doc)";
+"With access to pro features" = "Ar piekļuvi profesionālajām funkcijām";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML dokuments (*.docx)";
+"Word 97-2003 Document" = "Word 97-2003 dokuments";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS dokuments (*.xps)";
+"Word 2007 Document" = "Office Open XML dokuments";
 
 /* No comment provided by engineer. */
-"Show main window" = "Rādīt galveno logu";
-
-/* No comment provided by engineer. */
-"Close" = "Aizvērt";
-
-/* No comment provided by engineer. */
-"Close saved" = "Aizvērt saglabāto";
-
-/* No comment provided by engineer. */
-"Close all" = "Aizvērt visu";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Rādīt mapē";
-
-/* No comment provided by engineer. */
-"Move to start" = "Pārvietot, lai sāktu";
-
-/* No comment provided by engineer. */
-"Move to end" = "Pārvietot uz beigām";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Atspraust cilni";
-
-/* No comment provided by engineer. */
-"Create new" = "Izveidot jaunu";
+"XML Paper Specification" = "OpenXPS dokuments";
 
 /* No comment provided by engineer. */
 "Yes" = "Jā";
@@ -228,6 +315,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Jūs esat veiksmīgi aktivizējis %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Jūsu veiktās izmaiņas būs zaudētas, ja tās nesaglabāsiet.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Jūsu veiktās izmaiņas būs zaudētas, ja tās nesaglabāsiet.";

@@ -1,104 +1,42 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * Copyright (C) Ascensio System SIA, 2009-2026
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
- * version 3 as published by the Free Software Foundation. In accordance with
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
- * that Ascensio System SIA expressly excludes the warranty of non-infringement
- * of any third-party rights.
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
  *
  * This program is distributed WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
- * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
  *
- * You can contact Ascensio System SIA at 20A-12 Ernesta Birznieka-Upisha
- * street, Riga, Latvia, EU, LV-1050.
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
  *
- * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
  * Section 5 of the GNU AGPL version 3.
  *
- * Pursuant to Section 7(b) of the License you must retain the original Product
- * logo when distributing the program. Pursuant to Section 7(e) we decline to
- * grant you any rights under trademark law for use of our trademarks.
+ * No trademark rights are granted under this License.
  *
- * All the Product's GUI elements, including illustrations and icon sets, as
- * well as technical writing content are licensed under the terms of the
- * Creative Commons Attribution-ShareAlike 4.0 International. See the License
- * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-#include "cdownloader.h"
-#include <Windows.h>
-#include <Winhttp.h>
+#include "classes/cdownloader.h"
+#include "httptransaction_p.h"
 #include <future>
 
-#define DNL_OK         0
-#define DNL_ABORT      1
-#define DNL_URL_ERR    2
-#define DNL_CONN_ERR   3
-#define DNL_OUT_MEM    4
-#define DNL_CREAT_ERR  5
-#define DNL_OTHER_ERR  6
-
-
-struct Connection {
-    ~Connection() {
-        if (hRequest) WinHttpCloseHandle(hRequest);
-        if (hConnect) WinHttpCloseHandle(hConnect);
-        if (hSession) WinHttpCloseHandle(hSession);
-    }
-    HINTERNET hSession = NULL, hConnect = NULL, hRequest = NULL;
-};
-
-static int initConnection(const wstring &url, DWORD &dwFileSize, Connection &conn)
-{
-    URL_COMPONENTS urlComp;
-    ZeroMemory(&urlComp, sizeof(urlComp));
-    urlComp.dwStructSize = sizeof(urlComp);
-    urlComp.dwHostNameLength = 1;
-    urlComp.dwUrlPathLength = 1;
-    if (!WinHttpCrackUrl(url.c_str(), (DWORD)url.length(), 0, &urlComp))
-        return DNL_URL_ERR;
-
-    wstring url_host(urlComp.lpszHostName, urlComp.dwHostNameLength);
-    wstring url_path(urlComp.lpszUrlPath, urlComp.dwUrlPathLength);
-
-    conn.hSession = WinHttpOpen(L"WinHTTP Example/1.0", WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0);
-    if (!conn.hSession)
-        return DNL_OTHER_ERR;
-
-    DWORD dwEnabledProtocols = WINHTTP_FLAG_SECURE_PROTOCOL_TLS1 | WINHTTP_FLAG_SECURE_PROTOCOL_TLS1_1 | WINHTTP_FLAG_SECURE_PROTOCOL_TLS1_2;
-    WinHttpSetOption(conn.hSession, WINHTTP_OPTION_SECURE_PROTOCOLS, &dwEnabledProtocols, sizeof(DWORD));
-
-    conn.hConnect = WinHttpConnect(conn.hSession, url_host.c_str(), INTERNET_DEFAULT_HTTPS_PORT, 0);
-    if (!conn.hConnect)
-        return DNL_CONN_ERR;
-
-    conn.hRequest = WinHttpOpenRequest(conn.hConnect, L"GET", url_path.c_str(), NULL, WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES, WINHTTP_FLAG_SECURE);
-    if (!conn.hRequest)
-        return DNL_CONN_ERR;
-
-    if (!WinHttpSendRequest(conn.hRequest, WINHTTP_NO_ADDITIONAL_HEADERS, 0, WINHTTP_NO_REQUEST_DATA, 0, 0, 0))
-        return DNL_OTHER_ERR;
-
-    if (!WinHttpReceiveResponse(conn.hRequest, NULL))
-        return DNL_CONN_ERR;
-
-    DWORD dwStatusCode = 0, dwSize = sizeof(DWORD);
-    if (!WinHttpQueryHeaders(conn.hRequest, WINHTTP_QUERY_STATUS_CODE | WINHTTP_QUERY_FLAG_NUMBER, NULL, &dwStatusCode, &dwSize, WINHTTP_NO_HEADER_INDEX))
-        return DNL_CONN_ERR;
-
-    if (dwStatusCode >= HTTP_STATUS_BAD_REQUEST)
-        return DNL_CONN_ERR;
-
-    if (!WinHttpQueryHeaders(conn.hRequest, WINHTTP_QUERY_CONTENT_LENGTH | WINHTTP_QUERY_FLAG_NUMBER, NULL, &dwFileSize, &dwSize, WINHTTP_NO_HEADER_INDEX))
-        dwFileSize = 0;
-
-    return DNL_OK;
-}
 
 class CDownloaderPrivate
 {
@@ -108,154 +46,214 @@ public:
     ~CDownloaderPrivate()
     {}
 
-    int downloadToFile()
+    int mapToInternalError(DWORD res)
     {
-        DWORD dwSize = 0, dwProgress = 0, dwProgressMax = 0;
-        Connection conn;
-        int result = initConnection(m_url, dwProgressMax, conn);
-        if (result != DNL_OK)
-            return result;
+        if ((res & ERROR_BIT_29) != 0)
+            return CDownloader::NetworkError;
 
-        HANDLE hFile = CreateFile(m_filePath.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-        if (hFile == INVALID_HANDLE_VALUE)
-            return DNL_CREAT_ERR;
+        switch (res) {
+        case ERROR_SUCCESS:
+            return CDownloader::Success;
 
-        int prev_percent = -1;
-        do {
-            if (!m_run) {
-                result = DNL_ABORT;
-                break;
-            }
+        case ERROR_CANCELLED:
+        case ERROR_OPERATION_ABORTED:
+        case ERROR_WINHTTP_OPERATION_CANCELLED:
+            return CDownloader::Aborted;
 
-            dwSize = 0;
-            if (!WinHttpQueryDataAvailable(conn.hRequest, &dwSize)) {
-                result = DNL_CONN_ERR;
-                break;
-            }
+        case ERROR_OUTOFMEMORY:
+        case ERROR_NOT_ENOUGH_MEMORY:
+            return CDownloader::OutOfMemory;
 
-            LPSTR lpBuffer = new char[dwSize];
-            if (!lpBuffer) {
-                result = DNL_OUT_MEM;
-                break;
-            }
+        case ERROR_WINHTTP_INVALID_URL:
+        case ERROR_WINHTTP_UNRECOGNIZED_SCHEME:
+            return CDownloader::InvalidUrl;
 
-            DWORD dwDownloaded = 0;
-            if (!WinHttpReadData(conn.hRequest, (LPVOID)lpBuffer, dwSize, &dwDownloaded)) {
-                result = DNL_CONN_ERR;
-                delete[] lpBuffer;
-                break;
-            }
+        case ERROR_WINHTTP_NAME_NOT_RESOLVED:
+        case ERROR_WINHTTP_CANNOT_CONNECT:
+        case ERROR_WINHTTP_CONNECTION_ERROR:
+        case ERROR_WINHTTP_TIMEOUT:
+        case ERROR_WINHTTP_RESEND_REQUEST:
+        case ERROR_WINHTTP_REDIRECT_FAILED:
+        case ERROR_WINHTTP_HEADER_NOT_FOUND:
+        case ERROR_WINHTTP_SECURE_FAILURE:
+        case ERROR_WINHTTP_SECURE_CERT_DATE_INVALID:
+        case ERROR_WINHTTP_SECURE_CERT_CN_INVALID:
+        case ERROR_WINHTTP_SECURE_CERT_REVOKED:
+        case ERROR_WINHTTP_SECURE_CERT_REV_FAILED:
+            return CDownloader::NetworkError;
 
-            DWORD dwBytesWritten = 0;
-            BOOL write_res = WriteFile(hFile, lpBuffer, dwDownloaded, &dwBytesWritten, NULL);
-            delete[] lpBuffer;
-            if (!write_res || dwBytesWritten != dwDownloaded) {
-                result = DNL_OUT_MEM;
-                break;
-            }
+        case ERROR_INVALID_HANDLE:
+        case ERROR_INVALID_NAME:
+        case ERROR_FILE_NOT_FOUND:
+        case ERROR_PATH_NOT_FOUND:
+        case ERROR_BAD_PATHNAME:
+        case ERROR_ACCESS_DENIED:
+        case ERROR_ALREADY_EXISTS:
+        case ERROR_CANNOT_MAKE:
+        case ERROR_WRITE_FAULT:
+        case ERROR_WRITE_PROTECT:
+        case ERROR_NOT_READY:
+        case ERROR_HANDLE_DISK_FULL:
+        case ERROR_DISK_FULL:
+        case ERROR_DEV_NOT_EXIST:
+        case ERROR_DIR_NOT_EMPTY:
+        case ERROR_LOCK_VIOLATION:
+        case ERROR_SHARING_VIOLATION:
+            return CDownloader::FileOpError;
 
-            if (dwProgressMax != 0 && m_progress_callback) {
-                dwProgress += dwDownloaded;
-                int percent = static_cast<int>((100.0 * dwProgress) / dwProgressMax);
-                if (percent != prev_percent) {
-                    m_progress_callback(percent);
-                    prev_percent = percent;
-                }
-            }
-
-        } while (dwSize > 0);
-
-        CloseHandle(hFile);
-        if (result == DNL_ABORT)
-            DeleteFile(m_filePath.c_str());
-        return result;
+        default:
+            return CDownloader::UnknownError;
+        }
     }
-    FnVoidIntInt m_query_callback = nullptr;
-    FnVoidInt m_complete_callback = nullptr,
-              m_progress_callback = nullptr;
-    wstring   m_url,
-              m_filePath;
+
+    FnVoidIntInt  m_query_callback = nullptr;
+    FnVoidIntStr  m_complete_callback = nullptr;
+    FnVoidInt     m_progress_callback = nullptr;
+
+    int m_prev_percent = -1;
+
     std::future<void> m_future;
-    std::atomic_bool  m_run,
-                      m_lock;
+    std::atomic_bool  m_run{true},
+                      m_lock{false};
 };
+
 
 CDownloader::CDownloader() :
     pimpl(new CDownloaderPrivate)
-{
-    pimpl->m_run = true;
-    pimpl->m_lock = false;
-}
+{}
 
 CDownloader::~CDownloader()
 {
     pimpl->m_run = false;
     if (pimpl->m_future.valid())
         pimpl->m_future.wait();
-    delete pimpl, pimpl = nullptr;
+
+    delete pimpl; pimpl = nullptr;
 }
 
-bool CDownloader::isUrlAccessible(const wstring &url)
+bool CDownloader::isUrlAccessible(const tstring &url)
 {
     if (url.empty())
         return false;
 
-    DWORD dwFileSize = 0;
-    Connection conn;
-    int hr = initConnection(url, dwFileSize, conn);
-    return hr == DNL_OK;
+    HTTPTransaction tsn(url);
+    tsn.setOption(HTTPTransaction::HeadOnly);
+    tsn.setOption(HTTPTransaction::FollowRedirects);
+    if (tsn.perform() != ERROR_SUCCESS)
+        return false;
+
+    return true;
 }
 
-void CDownloader::queryContentLenght(const wstring &url)
+void CDownloader::queryContentLength(const tstring &url)
 {
-    if (url.empty() || pimpl->m_lock)
+    if (url.empty())
+    {
+        if (pimpl->m_query_callback)
+            pimpl->m_query_callback(CDownloader::InvalidUrl, 0);
         return;
+    }
 
-    pimpl->m_lock = true;
+    bool expected = false;
+    if (!pimpl->m_lock.compare_exchange_strong(expected, true))
+    {
+        if (pimpl->m_query_callback)
+            pimpl->m_query_callback(CDownloader::Aborted, 0);
+        return;
+    }
+
     pimpl->m_future = std::async(std::launch::async, [=]() {
-        DWORD dwFileSize = 0;
-        Connection conn;
-        int hr = initConnection(url, dwFileSize, conn);
-        int error = (hr == DNL_OK) ? 0 :
-                    (hr == DNL_CONN_ERR) ? -2 :
-                    (hr == DNL_URL_ERR) ? -3 : -5;
+        ULONGLONG dwFileSize = 0;
+
+        HTTPTransaction tsn(url);
+        tsn.setOption(HTTPTransaction::HeadOnly);
+        tsn.setOption(HTTPTransaction::FollowRedirects);
+        DWORD res = tsn.perform();
+        if (res == ERROR_SUCCESS)
+            res = tsn.getContentLength(dwFileSize);
+
+        int error = pimpl->mapToInternalError(res);
 
         if (pimpl->m_query_callback)
-            pimpl->m_query_callback(error, dwFileSize);
+            pimpl->m_query_callback(error, (uint64_t)dwFileSize);
+
         pimpl->m_lock = false;
     });
 }
 
 void CDownloader::downloadFile(const std::wstring &url, const std::wstring &filePath)
 {
-    pimpl->m_url.clear();
-    pimpl->m_filePath.clear();
-    if (url.empty() || filePath.empty() || pimpl->m_lock)
+    if (url.empty())
+    {
+        if (pimpl->m_complete_callback)
+            pimpl->m_complete_callback(CDownloader::InvalidUrl, tstring());
         return;
+    }
 
-    pimpl->m_url = url;
-    pimpl->m_filePath = filePath;
-    start();
-}
-
-void CDownloader::start()
-{
-    if (pimpl->m_url.empty() || pimpl->m_filePath.empty() || pimpl->m_lock)
+    if (filePath.empty())
+    {
+        if (pimpl->m_complete_callback)
+            pimpl->m_complete_callback(CDownloader::FileOpError, tstring());
         return;
+    }
+
+    bool expected = false;
+    if (!pimpl->m_lock.compare_exchange_strong(expected, true))
+    {
+        if (pimpl->m_complete_callback)
+            pimpl->m_complete_callback(CDownloader::Aborted, tstring());
+        return;
+    }
 
     pimpl->m_run = true;
-    pimpl->m_lock = true;
+
     pimpl->m_future = std::async(std::launch::async, [=]() {
-        int hr = pimpl->downloadToFile();
-        int error = (hr == DNL_OK) ? 0 :
-                    (hr == DNL_ABORT) ? 1 :
-                    (hr == DNL_OUT_MEM) ? -1 :
-                    (hr == DNL_CONN_ERR) ? -2 :
-                    (hr == DNL_URL_ERR) ? -3 :
-                    (hr == DNL_CREAT_ERR) ? -4 : -5;
+        pimpl->m_prev_percent = -1;
+        DWORD res = ERROR_SUCCESS;
+
+        HANDLE hFile = CreateFile(filePath.c_str(), GENERIC_WRITE | DELETE, 0, NULL,
+                                  CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        if (hFile != INVALID_HANDLE_VALUE) {
+            HTTPTransaction tsn(url);
+            tsn.setFileHandle(hFile);
+            tsn.setProgressCallback(
+                +[](void* pData, ULONGLONG dltotal, ULONGLONG dlnow) -> DWORD
+                {
+                    CDownloaderPrivate *pimpl = (CDownloaderPrivate*)pData;
+                    if (dltotal > 0 && pimpl->m_progress_callback)
+                    {
+                        int percent = static_cast<int>((100.0 * dlnow) / dltotal);
+                        if (percent != pimpl->m_prev_percent)
+                        {
+                            pimpl->m_progress_callback(percent);
+                            pimpl->m_prev_percent = percent;
+                        }
+                    }
+
+                    if (pimpl->m_run == false)
+                        return ERROR_CANCELLED;
+
+                    return ERROR_SUCCESS;
+                });
+            tsn.setProgressData(pimpl);
+            tsn.setOption(HTTPTransaction::Writedata);
+            tsn.setOption(HTTPTransaction::FollowRedirects);
+            res = tsn.perform();
+
+            if (res != ERROR_SUCCESS)
+            {
+                FILE_DISPOSITION_INFO fdi = { TRUE };
+                SetFileInformationByHandle(hFile, FileDispositionInfo, &fdi, sizeof(fdi));
+            }
+            CloseHandle(hFile);
+
+        } else res = GetLastError();
+
+        int error = pimpl->mapToInternalError(res);
 
         if (pimpl->m_complete_callback)
-            pimpl->m_complete_callback(error);
+            pimpl->m_complete_callback(error, filePath);
+
         pimpl->m_lock = false;
     });
 }
@@ -265,17 +263,12 @@ void CDownloader::stop()
     pimpl->m_run = false;
 }
 
-wstring CDownloader::GetFilePath()
-{
-    return pimpl->m_filePath;
-}
-
 void CDownloader::onQueryResponse(FnVoidIntInt callback)
 {
     pimpl->m_query_callback = callback;
 }
 
-void CDownloader::onComplete(FnVoidInt callback)
+void CDownloader::onComplete(FnVoidIntStr callback)
 {
     pimpl->m_complete_callback = callback;
 }

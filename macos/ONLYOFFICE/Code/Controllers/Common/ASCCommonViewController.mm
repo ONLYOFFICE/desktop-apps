@@ -1,34 +1,37 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * Copyright (C) Ascensio System SIA, 2009-2026
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
- * version 3 as published by the Free Software Foundation. In accordance with
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
- * that Ascensio System SIA expressly excludes the warranty of non-infringement
- * of any third-party rights.
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
  *
  * This program is distributed WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
- * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
  *
- * You can contact Ascensio System SIA at 20A-12 Ernesta Birznieka-Upisha
- * street, Riga, Latvia, EU, LV-1050.
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
  *
- * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
  * Section 5 of the GNU AGPL version 3.
  *
- * Pursuant to Section 7(b) of the License you must retain the original Product
- * logo when distributing the program. Pursuant to Section 7(e) we decline to
- * grant you any rights under trademark law for use of our trademarks.
+ * No trademark rights are granted under this License.
  *
- * All the Product's GUI elements, including illustrations and icon sets, as
- * well as technical writing content are licensed under the terms of the
- * Creative Commons Attribution-ShareAlike 4.0 International. See the License
- * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
 //
 //  ASCCommonViewController.m
@@ -118,6 +121,8 @@
     addObserverFor(CEFEventNameEditorOpenFolder, @selector(onCEFEditorOpenFolder:));
     addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
+    addObserverFor(CEFEventNameAddUserTemplateFiles, @selector(onAddUserTemplateFiles:));
+    addObserverFor(CEFEventNameAddUserTemplateFolder, @selector(onAddUserTemplateFolder:));
     
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -790,35 +795,30 @@
 - (void)onCEFDownload:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
-        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         NSValue * eventData = params[@"data"];
         
-        if (nil == appManager || nil == eventData)
+        if (nil == eventData)
             return;
         
         NSEditorApi::CAscDownloadFileInfo * pDownloadFileInfo = (NSEditorApi::CAscDownloadFileInfo *)[eventData pointerValue];
         
-        NSString * idx = [NSString stringWithFormat:@"%d", pDownloadFileInfo->get_Id()];
+        NSString * idx = [NSString stringWithFormat:@"%u", pDownloadFileInfo->get_IdDownload()];
+        NSString * path = [NSString stringWithstdwstring:pDownloadFileInfo->get_FilePath()];
         
-        if (pDownloadFileInfo->get_IsComplete()) {
-            [[ASCDownloadController sharedInstance] removeDownload:idx];
-        } else if (pDownloadFileInfo->get_IsCanceled()) {
-            [[ASCDownloadController sharedInstance] removeDownload:idx];
-        } else {
+        if (path && [path length] > 0) {
             id download = [[ASCDownloadController sharedInstance] downloadWithId:idx];
             
             if (nil == download) {
-                NSString * path = [NSString stringWithstdwstring:pDownloadFileInfo->get_FilePath()];
-                NSString * fileName = NSLocalizedString(@"Unconfirmed", nil);
                 
-                if (path && [path length] > 0) {
-                    fileName = [path lastPathComponent];
+                if (!pDownloadFileInfo->get_IsCanceled()) {
+                    NSString * fileName = [path lastPathComponent];
+                    [[ASCDownloadController sharedInstance] addDownload:idx fileName:fileName];
                 }
                 
-                [[ASCDownloadController sharedInstance] addDownload:idx fileName:fileName];
+            } else {
+                [[ASCDownloadController sharedInstance] updateDownload:idx data:eventData];
             }
             
-            [[ASCDownloadController sharedInstance] updateDownload:idx data:eventData];
         }
     }
 }
@@ -1287,6 +1287,10 @@
 //}
 
 - (void)tabs:(ASCTabsControl *)control didAddTab:(ASCTabView *)tab {
+    [self tabs:control didInsertTab:tab atIndex:-1];
+}
+
+- (void)tabs:(ASCTabsControl *)control didInsertTab:(ASCTabView *)tab atIndex:(NSInteger)index {
     if (tab.params) {
         BOOL isReattaching = [tab.params[@"reattaching"] boolValue];
         NSCefView *existingCefView = (NSCefView *)tab.webView;
@@ -1441,7 +1445,13 @@
 
         NSTabViewItem * item = [[NSTabViewItem alloc] initWithIdentifier:tab.uuid];
         item.label = tab.title;
-        [self.tabView addTabViewItem:item];
+        if (index < 0) {
+            [self.tabView addTabViewItem:item];
+        } else {
+            NSUInteger tabViewCount = self.tabView.tabViewItems.count;
+            NSUInteger visualIndex = MIN((NSUInteger)index, tabViewCount);
+            [self.tabView insertTabViewItem:item atIndex:visualIndex];
+        }
         [item.view addSubview:cefView];
         [cefView autoPinEdgesToSuperviewEdges];
         
@@ -1716,6 +1726,106 @@
 - (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(nullable NSTabViewItem *)tabViewItem {
     [self tabView:tabView dimTabViewItem:tabViewItem delay:0.1];
     return true;
+}
+
+#pragma mark -
+#pragma mark User Templates
+
+- (void)importUserTemplates:(NSArray<NSString *> *)filePaths {
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    NSString * templatesDir = [NSString stringWithstdwstring:appManager->m_oSettings.user_templates_path];
+
+    NSError * error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtPath:templatesDir
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+
+    BOOL templatesUpdated = NO;
+
+    for (NSString * srcFilePath in filePaths) {
+        NSString * fileName = [srcFilePath lastPathComponent];
+        NSString * dstFilePath = [templatesDir stringByAppendingPathComponent:fileName];
+
+        if ([[NSFileManager defaultManager] fileExistsAtPath:dstFilePath]) {
+            NSAlert * alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
+            [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"%@ already exists.\nDo you want to replace it?", nil), fileName]];
+            [alert setAlertStyle:NSAlertStyleWarning];
+
+            if ([alert runModal] != NSAlertFirstButtonReturn)
+                continue;
+
+            [[NSFileManager defaultManager] removeItemAtPath:dstFilePath error:nil];
+        }
+
+        [[NSFileManager defaultManager] copyItemAtPath:srcFilePath toPath:dstFilePath error:nil];
+        if (!templatesUpdated)
+            templatesUpdated = YES;
+    }
+
+    if (templatesUpdated) {
+        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+        pCommand->put_Command(L"templates");
+        pCommand->put_Param(L"update:local");
+
+        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+
+        CAscApplicationManager * pAppManager = [NSAscApplicationWorker getAppManager];
+        pAppManager->SetEventToAllMainWindows(pEvent);
+    }
+}
+
+- (void)onAddUserTemplateFiles:(NSNotification *)notification {
+    NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+    openPanel.canChooseFiles = YES;
+    openPanel.canChooseDirectories = NO;
+    openPanel.allowsMultipleSelection = YES;
+    openPanel.allowedFileTypes = @[@"dotx", @"xltx", @"potx", @"pdf"];
+
+    if ([openPanel runModal] != NSModalResponseOK)
+        return;
+
+    NSArray<NSURL *> * selectedURLs = openPanel.URLs;
+    if (selectedURLs.count == 0)
+        return;
+
+    NSMutableArray<NSString *> * filePaths = [NSMutableArray array];
+    for (NSURL * url in selectedURLs) {
+        [filePaths addObject:url.path];
+    }
+
+    [self importUserTemplates:filePaths];
+}
+
+- (void)onAddUserTemplateFolder:(NSNotification *)notification {
+    NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+    openPanel.canChooseFiles = NO;
+    openPanel.canChooseDirectories = YES;
+    openPanel.allowsMultipleSelection = NO;
+
+    if ([openPanel runModal] != NSModalResponseOK)
+        return;
+
+    NSString * selectedFolder = openPanel.URL.path;
+    if (!selectedFolder || selectedFolder.length == 0)
+        return;
+
+    NSArray<NSString *> * extensions = @[@"dotx", @"xltx", @"potx", @"pdf"];
+    NSMutableArray<NSString *> * filePaths = [NSMutableArray array];
+
+    NSDirectoryEnumerator<NSString *> * enumerator = [[NSFileManager defaultManager] enumeratorAtPath:selectedFolder];
+    for (NSString * relativePath in enumerator) {
+        NSString * ext = relativePath.pathExtension.lowercaseString;
+        if ([extensions containsObject:ext]) {
+            [filePaths addObject:[selectedFolder stringByAppendingPathComponent:relativePath]];
+        }
+    }
+
+    if (filePaths.count > 0)
+        [self importUserTemplates:filePaths];
 }
 
 #pragma mark -

@@ -13,17 +13,17 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>few</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>%d أيام متبقية لانتهاء الترخيص.</string>
 			<key>many</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>%d أيام متبقية لانتهاء الترخيص.</string>
 			<key>one</key>
 			<string>%d يوم متبقي لانتهاء الترخيص.</string>
 			<key>other</key>
 			<string>%d أيام متبقية لانتهاء الترخيص.</string>
 			<key>two</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>%d أيام متبقية لانتهاء الترخيص.</string>
 			<key>zero</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>%d أيام متبقية لانتهاء الترخيص.</string>
 		</dict>
 	</dict>
 	<key>You are using a trial version of the application.
@@ -38,11 +38,11 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>few</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>أنت تستخدم نسخة تجريبية من التطبيق.
+مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</string>
 			<key>many</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>أنت تستخدم نسخة تجريبية من التطبيق.
+مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</string>
 			<key>one</key>
 			<string>أنت تستخدم نسخة تجريبية من التطبيق.
 مدة التجريب ستنتهي بعد %d يوم، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</string>
@@ -50,11 +50,11 @@ The trial period will end in %d days, after that you will not be able to create 
 			<string>أنت تستخدم نسخة تجريبية من التطبيق.
 مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</string>
 			<key>two</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>أنت تستخدم نسخة تجريبية من التطبيق.
+مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</string>
 			<key>zero</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>أنت تستخدم نسخة تجريبية من التطبيق.
+مدة التجريب ستنتهي بعد %d أيام، بعدها لن تستطيع أن تنشئ أو تعدل على المستندات.</string>
 		</dict>
 	</dict>
 	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
@@ -68,17 +68,17 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>few</key>
-			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<string>لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</string>
 			<key>many</key>
-			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<string>لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</string>
 			<key>one</key>
 			<string>لديك %ld %@ مستند بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</string>
 			<key>other</key>
 			<string>لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</string>
 			<key>two</key>
-			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<string>لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</string>
 			<key>zero</key>
-			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<string>لديك %ld %@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟</string>
 		</dict>
 	</dict>
 </dict>

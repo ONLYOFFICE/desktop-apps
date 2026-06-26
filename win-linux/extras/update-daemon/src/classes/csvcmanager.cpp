@@ -1,33 +1,36 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * Copyright (C) Ascensio System SIA, 2009-2026
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
- * version 3 as published by the Free Software Foundation. In accordance with
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
- * that Ascensio System SIA expressly excludes the warranty of non-infringement
- * of any third-party rights.
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
  *
  * This program is distributed WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
- * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
  *
- * You can contact Ascensio System SIA at 20A-12 Ernesta Birznieka-Upisha
- * street, Riga, Latvia, EU, LV-1050.
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
  *
- * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
  * Section 5 of the GNU AGPL version 3.
  *
- * Pursuant to Section 7(b) of the License you must retain the original Product
- * logo when distributing the program. Pursuant to Section 7(e) we decline to
- * grant you any rights under trademark law for use of our trademarks.
+ * No trademark rights are granted under this License.
  *
- * All the Product's GUI elements, including illustrations and icon sets, as
- * well as technical writing content are licensed under the terms of the
- * Creative Commons Attribution-ShareAlike 4.0 International. See the License
- * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 
 #include "csvcmanager.h"
@@ -314,11 +317,11 @@ void CSvcManager::aboutToQuit(FnVoidVoid callback)
 
 void CSvcManager::init()
 {
-    m_pDownloader->onQueryResponse([=](int error, int lenght) {
+    m_pDownloader->onQueryResponse([=](int error, uint64_t lenght) {
         onQueryResponse(error, lenght);
     });
-    m_pDownloader->onComplete([=](int error) {
-        onCompleteSlot(error, m_pDownloader->GetFilePath());
+    m_pDownloader->onComplete([=](int error, const tstring &filePath) {
+        onCompleteSlot(error, filePath);
     });
     m_pDownloader->onProgress([=](int percent) {
         onProgressSlot(percent);
@@ -368,7 +371,7 @@ void CSvcManager::init()
             case MSG_RequestContentLenght: {
                 __GLOBAL_LOCK
                 if (m_pDownloader)
-                    m_pDownloader->queryContentLenght(m_packageData->packageUrl);
+                    m_pDownloader->queryContentLength(m_packageData->packageUrl);
                 NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + m_packageData->packageUrl);
                 break;
             }
@@ -434,17 +437,17 @@ void CSvcManager::init()
     });
 }
 
-void CSvcManager::onQueryResponse(const int error, const int lenght)
+void CSvcManager::onQueryResponse(const int error, const uint64_t lenght)
 {
     __UNLOCK
-    m_socket->sendMessage(MSG_RequestContentLenght, (error == 0) ? to_tstring(lenght) : _T(""));
+    m_socket->sendMessage(MSG_RequestContentLenght, (error == CDownloader::Success) ? to_tstring(lenght) : _T(""));
 }
 
 void CSvcManager::onCompleteUnzip(const int error)
 {
     __UNLOCK
     if (error == UNZIP_OK) {
-        // Сreate a file about successful unpacking for use in subsequent launches
+        // Create a file about successful unpacking for use in subsequent launches
         const tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
         list<tstring> successList{m_newVersion};
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
@@ -498,7 +501,7 @@ void CSvcManager::onCompleteUnzip(const int error)
 void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 {
     __UNLOCK
-    if (error == 0) {
+    if (error == CDownloader::Success) {
         switch (m_downloadMode) {
         case Mode::CHECK_UPDATES: {
             __GLOBAL_LOCK // isUrlAccessible may take a long time to execute
@@ -525,6 +528,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 #else
                 JsonObject win = package.value(_T("linux_64")).toObject();
 #endif
+                bool prefer_secondary = NS_Utils::cmdArgContains(_T("--prefer-alternate-url"));
                 if (isVersionBHigherThanA(curr_version, version) && (version != m_ignVersion)) {
                     m_packageData->object = _T("app");
                     m_packageData->version = version;
@@ -549,7 +553,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
-                    m_packageData->packageUrl = ((url.empty() || !m_pDownloader->isUrlAccessible(url)) && !url2.empty()) ? url2 : url;
+                    bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
+                    m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
                     tstring hash = package_type.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
@@ -572,7 +577,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
-                    m_packageData->packageUrl = ((url.empty() || !m_pDownloader->isUrlAccessible(url)) && !url2.empty()) ? url2 : url;
+                    bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
+                    m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
                     tstring hash = package_type.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
@@ -614,19 +620,19 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
             break;
         }
     } else
-    if (error == 1) {
+    if (error == CDownloader::Aborted) {
         // Pause or Stop
     } else
-    if (error == -1) {
+    if (error == CDownloader::OutOfMemory) {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_OUT_MEM"));
     } else
-    if (error == -2) {
+    if (error == CDownloader::NetworkError) {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_CONN"));
     } else
-    if (error == -3) {
+    if (error == CDownloader::InvalidUrl) {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_URL"));
     } else
-    if (error == -4) {
+    if (error == CDownloader::FileOpError) {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_CREAT"));
     } else {
         m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_INET"));

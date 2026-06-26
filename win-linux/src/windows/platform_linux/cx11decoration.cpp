@@ -1,34 +1,37 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * Copyright (C) Ascensio System SIA, 2009-2026
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
- * version 3 as published by the Free Software Foundation. In accordance with
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
- * that Ascensio System SIA expressly excludes the warranty of non-infringement
- * of any third-party rights.
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
  *
  * This program is distributed WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
- * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
  *
- * You can contact Ascensio System SIA at 20A-12 Ernesta Birznieka-Upisha
- * street, Riga, Latvia, EU, LV-1050.
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
  *
- * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
  * Section 5 of the GNU AGPL version 3.
  *
- * Pursuant to Section 7(b) of the License you must retain the original Product
- * logo when distributing the program. Pursuant to Section 7(e) we decline to
- * grant you any rights under trademark law for use of our trademarks.
+ * No trademark rights are granted under this License.
  *
- * All the Product's GUI elements, including illustrations and icon sets, as
- * well as technical writing content are licensed under the terms of the
- * Creative Commons Attribution-ShareAlike 4.0 International. See the License
- * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
 #include "cx11decoration.h"
 #include "windows/cwindowbase.h"
@@ -40,6 +43,7 @@
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
 #include <X11/Xutil.h>
+#include <X11/Xatom.h>
 #include "platform_linux/xcbutils.h"
 
 #define CUSTOM_BORDER_WIDTH MAIN_WINDOW_BORDER_WIDTH
@@ -302,7 +306,7 @@ CX11Decoration::CX11Decoration(QWidget * w)
     , m_motionTimer(nullptr)
     , m_currentCursor(0)
     , m_decoration(true)
-    , m_nBorderSize(CUSTOM_BORDER_WIDTH)
+    , m_frameMargin(CUSTOM_BORDER_WIDTH)
     , m_bIsMaximized(false)
     , m_startSize(QSize())
 {
@@ -311,7 +315,9 @@ CX11Decoration::CX11Decoration(QWidget * w)
 
     need_to_check_motion = guess_window_manager() == WM_KWIN;
     dpi_ratio = Utils::getScreenDpiRatioByWidget(w);
-    m_nBorderSize = CUSTOM_BORDER_WIDTH * dpi_ratio;
+    m_frameMargin = QX11Info::isCompositingManagerRunning()
+        ? int(SHADOW_WIDTH * dpi_ratio) + int(WINDOW_THIN_BORDER_WIDTH * dpi_ratio)
+        : int(CUSTOM_BORDER_WIDTH * dpi_ratio);
 }
 
 CX11Decoration::~CX11Decoration()
@@ -359,7 +365,7 @@ int CX11Decoration::hitTest(int x, int y) const
         return -1;
 
     QRect rect = m_window->rect();
-    int bw = m_nBorderSize, bbw = m_nBorderSize;
+    int bw = m_frameMargin, bbw = m_frameMargin;
     int w = rect.width(), h = rect.height();
 
     QRect rc_top_left       = rect.adjusted(0, 0, -(w-bbw), -(h-bbw));
@@ -434,7 +440,7 @@ void CX11Decoration::dispatchMouseDown(QMouseEvent *e)
         QRect oTitleRect = m_title->geometry();
 
         if (!m_bIsMaximized)
-            oTitleRect.adjust(m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1);
+            oTitleRect.adjust(m_frameMargin + 1, m_frameMargin + 1, m_frameMargin + 1, m_frameMargin + 1);
 
         m_nDirection = oTitleRect.contains(e->pos()) ?
                         k_NET_WM_MOVERESIZE_MOVE : hitTest(e->pos().x(), e->pos().y());
@@ -549,7 +555,7 @@ void CX11Decoration::switchDecoration(bool on)
     }
 }
 
-bool CX11Decoration::isDecorated()
+bool CX11Decoration::isDecorated() const
 {
     return m_decoration;
 }
@@ -562,7 +568,9 @@ void CX11Decoration::setMaximized(bool bVal)
 void CX11Decoration::onDpiChanged(double f)
 {
     dpi_ratio = f;
-    m_nBorderSize = CUSTOM_BORDER_WIDTH * dpi_ratio;
+    m_frameMargin = QX11Info::isCompositingManagerRunning()
+        ? int(SHADOW_WIDTH * f) + int(WINDOW_THIN_BORDER_WIDTH * f)
+        : int(CUSTOM_BORDER_WIDTH * f);
 }
 
 bool CX11Decoration::isNativeFocus()
@@ -570,9 +578,41 @@ bool CX11Decoration::isNativeFocus()
     return XcbUtils::isNativeFocus(m_window->winId());
 }
 
-int CX11Decoration::customWindowBorderWith()
+int CX11Decoration::effectiveFrameMargin() const
 {
-    return CUSTOM_BORDER_WIDTH;
+    return ( m_decoration || m_window->isMaximized() ) ? 0 : m_frameMargin;
+}
+
+void CX11Decoration::updateFrameExtents()
+{
+    Display *disp = QX11Info::display();
+    if (!disp) return;
+
+    Window wnd = (Window)m_window->winId();
+
+    int x = 0;
+    int y1 = 0;
+    int y2 = 0;
+    const int frameMargin = effectiveFrameMargin();
+
+    if (frameMargin != 0) {
+        x = frameMargin - int(WINDOW_THIN_BORDER_WIDTH * dpi_ratio);
+        y1 = x - int(SHADOW_OFFSET_Y * dpi_ratio);
+        y2 = x + int(SHADOW_OFFSET_Y * dpi_ratio);
+    }
+    long extents[4] = { x, x, y1, y2 }; // left right top bottom
+
+    Atom atomNet = XInternAtom(disp, "_NET_FRAME_EXTENTS", False);
+    if (atomNet != None) {
+        XChangeProperty(disp, wnd, atomNet, XA_CARDINAL, 32,
+                        PropModeReplace, (unsigned char*)extents, 4);
+    }
+
+    Atom atomGtk = XInternAtom(disp, "_GTK_FRAME_EXTENTS", False);
+    if (atomGtk != None) {
+        XChangeProperty(disp, wnd, atomGtk, XA_CARDINAL, 32,
+                        PropModeReplace, (unsigned char*)extents, 4);
+    }
 }
 
 void CX11Decoration::raiseWindow()

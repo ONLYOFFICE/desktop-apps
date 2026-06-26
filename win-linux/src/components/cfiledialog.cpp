@@ -1,34 +1,37 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * Copyright (C) Ascensio System SIA, 2009-2026
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
- * version 3 as published by the Free Software Foundation. In accordance with
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
- * that Ascensio System SIA expressly excludes the warranty of non-infringement
- * of any third-party rights.
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
  *
  * This program is distributed WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
- * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
  *
- * You can contact Ascensio System SIA at 20A-12 Ernesta Birznieka-Upisha
- * street, Riga, Latvia, EU, LV-1050.
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
  *
- * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
  * Section 5 of the GNU AGPL version 3.
  *
- * Pursuant to Section 7(b) of the License you must retain the original Product
- * logo when distributing the program. Pursuant to Section 7(e) we decline to
- * grant you any rights under trademark law for use of our trademarks.
+ * No trademark rights are granted under this License.
  *
- * All the Product's GUI elements, including illustrations and icon sets, as
- * well as technical writing content are licensed under the terms of the
- * Creative Commons Attribution-ShareAlike 4.0 International. See the License
- * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
 #include "components/cfiledialog.h"
 #include <QFileDialog>
@@ -39,6 +42,8 @@
 #include "../Common/OfficeFileFormats.h"
 #include <QList>
 #include <QMimeDatabase>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
@@ -115,6 +120,18 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image (*.jpg *.jpeg)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image (*.png)");
+
+    // read supported input formats
+    QFile file(":/formats.json");
+    if (file.open(QIODevice::ReadOnly)) {
+        const QByteArray data = file.readAll();
+        file.close();
+
+        QJsonParseError error;
+        const QJsonDocument doc = QJsonDocument::fromJson(data, &error);
+        if (error.error == QJsonParseError::NoError && doc.isArray())
+            m_jsonFormats = doc.array();
+    }
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()
@@ -251,21 +268,53 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
     }
 }
 
+QString CFileDialogWrapper::getSupportedFiltersByEditor(const QString &type) const
+{
+    QStringList extensions;
+    for (const QJsonValue &val : m_jsonFormats) {
+        const QJsonObject obj = val.toObject();
+        if (obj.value(QLatin1String("type")).toString() == type)
+            extensions << QStringLiteral("*.") + obj.value(QLatin1String("name")).toString();
+    }
+
+    if (extensions.length())
+        return extensions.join(QLatin1Char(' '));
+    else {
+        if (type == "word")
+            return "*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 "
+                   "*.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.docxf *.oform "
+                   "*.sxw *.stw *.xps *.oxps *.pages *.hwp *.hwpx";
+        else if (type == "cell")
+            return "*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers";
+        else if (type == "slide")
+            return "*.pptx *.ppt *.odp *.odg *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot "
+                   "*.potm *.fodp *.dps *.dpt *.sxi *.key";
+        else if (type == "diagram")
+            return "*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm";
+    }
+}
+
 QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& filter, QString * selected, bool multi)
 {
     QString _filter_ = filter;
     QString _sel_filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
+
+        QString _word_formats = getSupportedFiltersByEditor("word"),
+                _cell_formats = getSupportedFiltersByEditor("cell"),
+                _slide_formats = getSupportedFiltersByEditor("slide"),
+                _draw_formats = getSupportedFiltersByEditor("diagram");
+
         _filter_ =  tr("Text documents") +
 #ifndef __LOCK_OFORM_FORMATS
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.docxf *.oform *.sxw *.stw *.xps *.oxps *.pages *.hwp *.hwpx);;" +
+                        " ("+ _word_formats + ");;" +
 #else
                         " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.sxw *.stw *.xps *.oxps);;" +
 #endif
-                    tr("Spreadsheets") + " (*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.odg *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi *.key);;" +
-                    tr("Visio diagram") + " (*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm);;" +
+                    tr("Spreadsheets") + " (" + _cell_formats + ");;" +
+                    tr("Presentations") + " (" + _slide_formats + ");;" +
+                    tr("Visio diagram") + " (" + _draw_formats + ");;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv *.tsv)";
 //#ifdef __linux__
@@ -317,9 +366,10 @@ QString CFileDialogWrapper::modalOpenSingle(const QString& path, const QString& 
 
 QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
 {
-    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp *.tiff *.tif *.heif *.heic *.svg)";
+    QString selected = tr("All Images") + " (*.jpeg *.jpg *.jpe *.jfif *.jif *.png *.gif *.bmp *.tiff *.tif *.heif *.heic *.svg *.webp *.avif)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)"));
+    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg *.jpe *.jfif *.jif);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"
+                                              "Tiff (*.tiff *.tif);;Heif (*.heif *.heic);;Webp (*.webp);;Avif (*.avif)"));
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
     auto result = modalOpen(path, filter, &selected, false);
@@ -329,9 +379,10 @@ QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
 
 QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
 {
-    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp *.heif *.heic *.svg)";
+    QString selected = tr("All Images") + " (*.jpeg *.jpg *.jpe *.jfif *.jif *.png *.gif *.bmp *.tiff *.tif *.heif *.heic *.svg *.webp *.avif)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)"));
+    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg *.jpe *.jfif *.jif);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"
+                                              "Tiff (*.tiff *.tif);;Heif (*.heif *.heic);;Webp (*.webp);;Avif (*.avif)"));
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
     auto result = modalOpen(path, filter, &selected, true);
@@ -355,6 +406,14 @@ QStringList CFileDialogWrapper::modalOpenPlugins(const QString& path)
     _filter.append(";;" + _plugins_filter);
 
     return modalOpen(path, _filter, &_plugins_filter, true);
+}
+
+QStringList CFileDialogWrapper::modalOpenTemplates(const QString& path)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Templates") + " (*.dotx *.xltx *.potx *.pdf);;");
+
+    return modalOpen(path, filter, &filter, true);
 }
 
 QStringList CFileDialogWrapper::modalOpenDocuments(const QString& path, bool multi)

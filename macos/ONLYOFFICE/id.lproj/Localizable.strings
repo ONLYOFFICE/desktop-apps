@@ -14,6 +14,9 @@
 "Cancel" = "Batal";
 
 /* No comment provided by engineer. */
+"Canceled" = "Dibatalkan";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Tidak dapat membuka file Tanda Tangan Digital";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Tidak dapat membuka folder lokasi file.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Nilai Koma Terpisah (*.csv)";
+"Close" = "Menutup";
+
+/* No comment provided by engineer. */
+"Close all" = "Tutup semua";
+
+/* No comment provided by engineer. */
+"Close saved" = "Tutup tersimpan";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Nilai Koma Terpisah";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Versi Community %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Versi Community %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Buat yang baru";
 
 /* No comment provided by engineer. */
 "Create portal" = "Buat portal";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Hapus dan Keluar";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Dokumen Digital (*.djvu)";
+"DjVu File" = "Dokumen Digital";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Simpan perubahan pada dokumen \"%@\"?";
@@ -44,19 +65,34 @@
 "Document %ld.pdf" = "Dokumen %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Dokumen templat Word Open XML (*.dotx)";
+"Document template" = "Dokumen templat Word Open XML";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Jangan Simpan";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Lembar bentang Excel 97-2003 (*.xls)";
+"Electronic Publication" = "File Electronic Publication";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Lembar bentang Office Open XML (*.xlsx)";
+"Enterprise version %@" = "Versi Enterprise %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "File FictionBook 2 (*.fb2)";
+"Enterprise version %@ (%@-%@)" = "Versi Enterprise %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Lembar bentang Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Lembar bentang Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Lembar kerja biner Excel";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Gagal memasang tema";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "File FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "File \"%@\" tidak dapat dibuka atau tidak ada.";
@@ -74,10 +110,31 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Jika Anda telah membeli %@, Anda akan mendapatkan kunci aktivasi di email konfirmasi.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "Gambar JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Perjanjian Lisensi";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "E-book mobipocket (*.mobi)";
+"Macro-enabled Presentation" = "Presentasi yang Diaktifkan Makro";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Templat spreadsheet yang Diaktifkan Makro";
+
+/* No comment provided by engineer. */
+"Markdown File" = "File Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "E-book mobipocket";
+
+/* No comment provided by engineer. */
+"Move to end" = "Pindah ke akhir";
+
+/* No comment provided by engineer. */
+"Move to start" = "Pindahkan ke awal";
 
 /* No comment provided by engineer. */
 "new-document" = "Dokumen baru";
@@ -104,43 +161,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE tidak dapat membuka Kunci Pribadi. Coba buka file lain.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Templat Dokumen OpenDocument (*.ott)";
+"ONLYOFFICE Document Form Template" = "Templat Formulir Dokumen ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Templat Presentasi OpenDocument (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "Formulir Online ONLYOFFICE yang Dapat Diisi";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Templat Lembar Bentang OpenDocument (*.ots)";
+"ONLYOFFICE Form Document" = "Formulir PDF ONLYOFFICE";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Templat Dokumen OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Templat Presentasi OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Templat Lembar Bentang OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Membuka";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "File Teks OpenDocument (*.odt)";
+"OpenOffice Document" = "File Teks OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Presentasi OpenDocument (*.odp)";
+"OpenOffice Presentation" = "Presentasi OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Lembar Bentang OpenDocument (*.ods)";
+"OpenOffice Spreadsheet" = "Lembar Bentang OpenDocument";
 
 /* No comment provided by engineer. */
-"PDF File" = "Portable Document (*.pdf)";
+"PDF File" = "Portable Document";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portable Document /A (*.pdf)";
+"PDF/A File" = "Portable Document /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Teks Biasa (*.txt)";
+"Plain Text" = "Teks Biasa";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Presentasi PowerPoint 97-2003 (*.ppt)";
+"PNG Image" = "Gambar PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Presentasi Office Open XML (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "Presentasi PowerPoint 97-2003";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Peragaan Slide Office Open XML (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Presentasi Office Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Peragaan Slide Office Open XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Menyiapkan...";
@@ -149,16 +218,22 @@
 "Presentation %ld.pptx" = "Presentasi %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Templat Presentasi PowerPoint Open XML (*.potx)";
+"Presentation template" = "Templat Presentasi PowerPoint Open XML";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Tampilan Penyaji";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Keluar %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Ganti";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Peninjauan Berubah...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Dokumen Rich Text (*.rtf)";
+"Rich Text Document" = "Dokumen Rich Text";
 
 /* No comment provided by engineer. */
 "Save" = "Simpan";
@@ -167,10 +242,25 @@
 "Save the document?" = "Simpan dokumen?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Pilih file tema";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Tema yang dipilih tidak valid";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Tampilkan di dalam folder";
+
+/* No comment provided by engineer. */
+"Show main window" = "Tampilkan jendela utama";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Detail Tanda Tangan";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Lembar Bentang %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Templat lembar bentang Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Templat lembar bentang Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Terima kasih telah mengevaluasi %@!";
@@ -179,52 +269,43 @@
 "The document \"%@\" must be built. Continue?" = "Dokumen \"%@\" harus dibuat. Lanjutkan?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Tema sudah ada. Ganti?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "File ini tidak berisi tema";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "File tema ini tidak valid";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Untuk membuka lokasi file, file harus disimpan.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Belum dikonfirmasi";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Lepaskan pin tab";
+
+/* No comment provided by engineer. */
 "Untitled" = "Tanpa Judul";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Gambar Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Halaman Web";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Dokumen Word 97-2003 (*.doc)";
+"With access to pro features" = "Dengan akses ke fitur pro";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Dokumen Office Open XML (*.docx)";
+"Word 97-2003 Document" = "Dokumen Word 97-2003";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Dokumen OpenXPS (*.xps)";
+"Word 2007 Document" = "Dokumen Office Open XML";
 
 /* No comment provided by engineer. */
-"Show main window" = "Tampilkan jendela utama";
-
-/* No comment provided by engineer. */
-"Close" = "Menutup";
-
-/* No comment provided by engineer. */
-"Close saved" = "Tutup tersimpan";
-
-/* No comment provided by engineer. */
-"Close all" = "Tutup semua";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Tampilkan di dalam folder";
-
-/* No comment provided by engineer. */
-"Move to start" = "Pindahkan ke awal";
-
-/* No comment provided by engineer. */
-"Move to end" = "Pindah ke akhir";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Lepaskan pin tab";
-
-/* No comment provided by engineer. */
-"Create new" = "Buat yang baru";
+"XML Paper Specification" = "Dokumen OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "Ya";
@@ -234,6 +315,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Anda telah berhasil mengaktifkan %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Perubahan akan hilang jika Anda tidak menyimpannya.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Perubahan akan hilang jika Anda tidak menyimpannya.";

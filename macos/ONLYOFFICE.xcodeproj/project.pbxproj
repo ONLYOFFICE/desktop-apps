@@ -80,6 +80,9 @@
 		5AC461B92E4E141100FD2689 /* license in Resources */ = {isa = PBXBuildFile; fileRef = 5AC461B72E4E12F600FD2689 /* license */; };
 		5AC461BA2E4E15E700FD2689 /* license in Resources */ = {isa = PBXBuildFile; fileRef = 5AC461B72E4E12F600FD2689 /* license */; };
 		5AC461BB2E4E160D00FD2689 /* license in Resources */ = {isa = PBXBuildFile; fileRef = 5AC461B72E4E12F600FD2689 /* license */; };
+		5A0000002F0A00000000AA02 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 5A0000002F0A00000000AA01 /* styles */; };
+		5A0000002F0A00000000AA03 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 5A0000002F0A00000000AA01 /* styles */; };
+		5A0000002F0A00000000AA04 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 5A0000002F0A00000000AA01 /* styles */; };
 		5ACC12852BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
 		5ACC12862BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
 		5ACC12872BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
@@ -799,14 +802,14 @@
 		5AA2F5822D5B824300C9DDC9 /* file-hwpx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-hwpx.icns"; sourceTree = "<group>"; };
 		5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-hwp.icns"; sourceTree = "<group>"; };
 		5AA2F58A2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
-		5AA2F58B2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5AA2F58C2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ur; path = ur.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		5AA2F58D2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Main.strings; sourceTree = "<group>"; };
-		5AA2F58E2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/MoveApplication.strings; sourceTree = "<group>"; };
-		5AA2F58F2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = "ur.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
-		5AA2F5902DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5AA2F5912DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5AA2F5922DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5AA2F58B2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5AA2F58C2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "ur-PK"; path = "ur-PK.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5AA2F58D2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/Main.strings"; sourceTree = "<group>"; };
+		5AA2F58E2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5AA2F58F2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5AA2F5902DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5AA2F5912DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5AA2F5922DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCThemesController.m; sourceTree = "<group>"; };
 		5AAE527028B53C1F001E31F4 /* ASCThemesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCThemesController.h; sourceTree = "<group>"; };
 		5AAFF09E2989B70400D433B5 /* si */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = si; path = "si.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
@@ -833,6 +836,7 @@
 		5ABE02582B22699F0031328E /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5ABE02592B22699F0031328E /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5AC461B72E4E12F600FD2689 /* license */ = {isa = PBXFileReference; lastKnownFileType = folder; name = license; path = Vendor/ONLYOFFICE/license; sourceTree = SOURCE_ROOT; };
+		5A0000002F0A00000000AA01 /* styles */ = {isa = PBXFileReference; lastKnownFileType = folder; name = styles; path = ONLYOFFICE/Resources/styles; sourceTree = SOURCE_ROOT; };
 		5AC6441F2D36901900145A90 /* sq-AL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-AL"; path = "sq-AL.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5AC644202D36901900145A90 /* sq-AL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-AL"; path = "sq-AL.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5AC644212D36901900145A90 /* sq-AL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "sq-AL"; path = "sq-AL.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -864,6 +868,15 @@
 		F15DF4F42F58D0050014C037 /* ASCProviders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCProviders.m; sourceTree = "<group>"; };
 		F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCHeaderButton.m; sourceTree = "<group>"; };
 		F164E3302F582BC700CC8D45 /* ASCHeaderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCHeaderButton.h; sourceTree = "<group>"; };
+		F1D31B212FE03FD9000B9112 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = no.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1D31B222FE03FD9000B9112 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = no.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1D31B2E2FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1D31B2F2FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1D31B302FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88DB2FE00FF80012CF8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		F1EB88DE2FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88DF2FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88E02FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
 		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
@@ -1495,6 +1508,7 @@
 				FC09073D1C1855A400D9E881 /* editors */,
 				FC3B777A1BB28CE900DB9705 /* login */,
 				5AC461B72E4E12F600FD2689 /* license */,
+				5A0000002F0A00000000AA01 /* styles */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2018,7 +2032,6 @@
 				he,
 				"sq-AL",
 				"ur-PK",
-				ur,
 			);
 			mainGroup = FCBC425F1B9D650400405301;
 			productRefGroup = FCBC42691B9D650400405301 /* Products */;
@@ -2039,6 +2052,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC461BA2E4E15E700FD2689 /* license in Resources */,
+				5A0000002F0A00000000AA03 /* styles in Resources */,
 				5AFA1CF3277A6DA600619952 /* file-oform.icns in Resources */,
 				FC0BD6C9258B63F700C47F95 /* file-otp.icns in Resources */,
 				FCB4C78026DD02960012C20D /* InfoPlist.strings in Resources */,
@@ -2105,6 +2119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC461BB2E4E160D00FD2689 /* license in Resources */,
+				5A0000002F0A00000000AA04 /* styles in Resources */,
 				5AFA1CF4277A6DF100619952 /* file-docxf.icns in Resources */,
 				FCB4C70526DD018B0012C20D /* file-otp.icns in Resources */,
 				FCB4C77D26DD027B0012C20D /* InfoPlist.strings in Resources */,
@@ -2171,6 +2186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC461B92E4E141100FD2689 /* license in Resources */,
+				5A0000002F0A00000000AA02 /* styles in Resources */,
 				5AFA1CF2277A6D4C00619952 /* file-oform.icns in Resources */,
 				5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */,
 				FCA3F3092570EC9500DCAB12 /* file-otp.icns in Resources */,
@@ -2247,7 +2263,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n\n# Copy some more resources\ncp -vR \"${BASE_DIR}/../common/converter/onlyoffice-docs-formats.json\" \"${DST_DIR}/converter/onlyoffice-docs-formats.json\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC0BD6F6258B63F700C47F95 /* Rename symbols */ = {
@@ -2318,7 +2334,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\nrsync -av \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\nrsync -av \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n\n# Copy some more resources\ncp -vR \"${BASE_DIR}/../common/converter/onlyoffice-docs-formats.json\" \"${DST_DIR}/converter/onlyoffice-docs-formats.json\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C6BB26DD018B0012C20D /* Copy Library */ = {
@@ -2333,7 +2349,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n\n# Copy some more resources\ncp -vR \"${BASE_DIR}/../common/converter/onlyoffice-docs-formats.json\" \"${DST_DIR}/converter/onlyoffice-docs-formats.json\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C73226DD018B0012C20D /* Rename symbols */ = {
@@ -2715,7 +2731,7 @@
 				5A02293F2C7770E00011C6EC /* en-GB */,
 				5A0229482CAC14940011C6EC /* he */,
 				5AC644242D36901A00145A90 /* sq-AL */,
-				5AA2F58F2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58F2DC16E7E00C9DDC9 /* ur-PK */,
 			);
 			name = "Presentation-Reporter.storyboard";
 			sourceTree = "<group>";
@@ -2769,7 +2785,7 @@
 				5A02293E2C7770E00011C6EC /* en-GB */,
 				5A0229472CAC14940011C6EC /* he */,
 				5AC644232D36901A00145A90 /* sq-AL */,
-				5AA2F58E2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58E2DC16E7E00C9DDC9 /* ur-PK */,
 			);
 			name = MoveApplication.strings;
 			sourceTree = "<group>";
@@ -2820,7 +2836,10 @@
 				5A0229422C7770E00011C6EC /* en-GB */,
 				5A02294B2CAC14940011C6EC /* he */,
 				5AC644272D36901A00145A90 /* sq-AL */,
-				5AA2F5922DC16E7E00C9DDC9 /* ur */,
+				5AA2F5922DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88E02FE010FF0012CF8E /* ga-IE */,
+				F1D31B222FE03FD9000B9112 /* nb */,
+				F1D31B302FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2871,7 +2890,10 @@
 				5A0229412C7770E00011C6EC /* en-GB */,
 				5A02294A2CAC14940011C6EC /* he */,
 				5AC644262D36901A00145A90 /* sq-AL */,
-				5AA2F5912DC16E7E00C9DDC9 /* ur */,
+				5AA2F5912DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DF2FE010FF0012CF8E /* ga-IE */,
+				F1D31B212FE03FD9000B9112 /* nb */,
+				F1D31B2F2FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2923,7 +2945,9 @@
 				5A0229402C7770E00011C6EC /* en-GB */,
 				5A0229492CAC14940011C6EC /* he */,
 				5AC644252D36901A00145A90 /* sq-AL */,
-				5AA2F5902DC16E7E00C9DDC9 /* ur */,
+				5AA2F5902DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DE2FE010FF0012CF8E /* ga-IE */,
+				F1D31B2E2FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2977,7 +3001,8 @@
 				5A02293D2C7770E00011C6EC /* en-GB */,
 				5A0229462CAC14940011C6EC /* he */,
 				5AC644222D36901A00145A90 /* sq-AL */,
-				5AA2F58D2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58D2DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DB2FE00FF80012CF8E /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -3031,7 +3056,7 @@
 				5A02293C2C7770E00011C6EC /* en-GB */,
 				5A0229452CAC14940011C6EC /* he */,
 				5AC644212D36901900145A90 /* sq-AL */,
-				5AA2F58C2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58C2DC16E7E00C9DDC9 /* ur-PK */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -3140,7 +3165,7 @@
 				5A02293B2C7770E00011C6EC /* en-GB */,
 				5A0229442CAC14940011C6EC /* he */,
 				5AC644202D36901900145A90 /* sq-AL */,
-				5AA2F58B2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58B2DC16E7E00C9DDC9 /* ur-PK */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

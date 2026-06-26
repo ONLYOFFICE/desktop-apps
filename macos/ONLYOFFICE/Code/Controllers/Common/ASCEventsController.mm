@@ -1,34 +1,37 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * Copyright (C) Ascensio System SIA, 2009-2026
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
- * version 3 as published by the Free Software Foundation. In accordance with
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
- * that Ascensio System SIA expressly excludes the warranty of non-infringement
- * of any third-party rights.
+ * version 3 as published by the Free Software Foundation, together with the
+ * additional terms provided in the LICENSE file.
  *
  * This program is distributed WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
- * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. For
+ * details, see the GNU AGPL at: https://www.gnu.org/licenses/agpl-3.0.html
  *
- * You can contact Ascensio System SIA at 20A-12 Ernesta Birznieka-Upisha
- * street, Riga, Latvia, EU, LV-1050.
+ * You can contact Ascensio System SIA by email at info@onlyoffice.com
+ * or by postal mail at 20A-6 Ernesta Birznieka-Upisha Street, Riga,
+ * LV-1050, Latvia, European Union.
  *
- * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under
+ * The interactive user interfaces in modified versions of the Program
+ * are required to display Appropriate Legal Notices in accordance with
  * Section 5 of the GNU AGPL version 3.
  *
- * Pursuant to Section 7(b) of the License you must retain the original Product
- * logo when distributing the program. Pursuant to Section 7(e) we decline to
- * grant you any rights under trademark law for use of our trademarks.
+ * No trademark rights are granted under this License.
  *
- * All the Product's GUI elements, including illustrations and icon sets, as
- * well as technical writing content are licensed under the terms of the
- * Creative Commons Attribution-ShareAlike 4.0 International. See the License
- * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ * All non-code elements of the Product, including illustrations,
+ * icon sets, and technical writing content, are licensed under the
+ * Creative Commons Attribution-ShareAlike 4.0 International License:
+ * https://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ * This license applies only to such non-code elements and does not
+ * modify or replace the licensing terms applicable to the Program's
+ * source code, which remains licensed under the GNU Affero General
+ * Public License v3.
+ *
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
 //
 //  ASCEventsController.m
@@ -920,6 +923,103 @@ public:
 //                                    }
 //                                }
 //                            }
+                        } else if (cmd.find(L"add:templates") != std::wstring::npos) {
+                            if ( param == L"local" ) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddUserTemplateFiles
+                                                                                    object:nil
+                                                                                  userInfo:nil];
+                            } else if ( param == L"local:folder" ) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddUserTemplateFolder
+                                                                                    object:nil
+                                                                                  userInfo:nil];
+                            }
+                        } else if (cmd.find(L"uitheme:add") != std::wstring::npos) {
+                            NSOpenPanel *panel = [NSOpenPanel openPanel];
+                            panel.canChooseFiles = YES;
+                            panel.canChooseDirectories = NO;
+                            panel.allowsMultipleSelection = NO;
+                            panel.allowedFileTypes = @[@"json"];
+                            panel.title = NSLocalizedString(@"Select theme file", nil);
+
+                            if ([panel runModal] != NSModalResponseOK) break;
+
+                            NSString *filePath = panel.URL.path;
+                            NSError *jsonError = nil;
+                            NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+
+                            if (!fileData) {
+                                NSAlert *alert = [[NSAlert alloc] init];
+                                [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+                                [alert setMessageText:NSLocalizedString(@"This theme file is not valid", nil)];
+                                [alert setAlertStyle:NSAlertStyleWarning];
+                                [alert runModal];
+                                break;
+                            }
+
+                            id jsonRoot = [NSJSONSerialization JSONObjectWithData:fileData
+                                                                         options:0
+                                                                           error:&jsonError];
+                            if (jsonError || ![jsonRoot isKindOfClass:[NSDictionary class]]) {
+                                NSAlert *alert = [[NSAlert alloc] init];
+                                [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+                                [alert setMessageText:NSLocalizedString(@"This file doesn't contain theme", nil)];
+                                [alert setAlertStyle:NSAlertStyleWarning];
+                                [alert runModal];
+                                break;
+                            }
+
+                            NSDictionary *jsonObj = (NSDictionary *)jsonRoot;
+
+                            if (![ASCThemesController validateTheme:jsonObj]) {
+                                NSAlert *alert = [[NSAlert alloc] init];
+                                [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+                                [alert setMessageText:NSLocalizedString(@"Selected theme isn't valid", nil)];
+                                [alert setAlertStyle:NSAlertStyleWarning];
+                                [alert runModal];
+                                break;
+                            }
+
+                            if ([ASCThemesController checkDestinationThemeFileExist:filePath]) {
+                                NSAlert *confirm = [[NSAlert alloc] init];
+                                [confirm addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
+                                [confirm addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                                [confirm setMessageText:NSLocalizedString(@"Theme already exists. Replace it?", nil)];
+                                [confirm setAlertStyle:NSAlertStyleWarning];
+                                if ([confirm runModal] != NSAlertFirstButtonReturn) break;
+                            }
+
+                            if ([ASCThemesController addLocalTheme:jsonObj filePath:filePath]) {
+                                NSArray *localThemes = [ASCThemesController localThemesToJson];
+                                if (localThemes.count > 0) {
+                                    [[ASCEditorJSVariables instance] setVariable:@"localthemes" withArray:localThemes];
+                                    [[ASCEditorJSVariables instance] apply];
+                                }
+
+                                NSArray *newThemes = @[jsonObj];
+                                NSData *themesData = [NSJSONSerialization dataWithJSONObject:newThemes
+                                                                                    options:0
+                                                                                      error:nil];
+                                if (themesData) {
+                                    NSString *themesStr = [[NSString alloc] initWithData:themesData
+                                                                                encoding:NSUTF8StringEncoding];
+                                    CAscApplicationManager *appManager = [NSAscApplicationWorker getAppManager];
+
+                                    NSEditorApi::CAscExecCommandJS *pCommand = new NSEditorApi::CAscExecCommandJS;
+                                    pCommand->put_Command(L"uitheme:added");
+                                    pCommand->put_Param([themesStr stdwstring]);
+
+                                    NSEditorApi::CAscMenuEvent *pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                                    pEvent->m_pData = pCommand;
+                                    appManager->SetEventToAllMainWindows(pEvent);
+                                }
+                            } else {
+                                NSAlert *alert = [[NSAlert alloc] init];
+                                [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+                                [alert setMessageText:NSLocalizedString(@"Failed to install theme", nil)];
+                                [alert setAlertStyle:NSAlertStyleCritical];
+                                [alert runModal];
+                            }
+
                         } else if (cmd.find(L"uitheme:changed") != std::wstring::npos) {
                             if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
                                 if ( NSString * newTheme = json[@"name"] ) {

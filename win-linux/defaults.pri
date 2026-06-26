@@ -1,4 +1,3 @@
-
 QT  += core gui widgets printsupport
 QT  += svg
 
@@ -193,7 +192,7 @@ PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 
-ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, OFDFile, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
 include($$CORE_ROOT_DIR/../desktop-sdk/ChromiumBasedEditors/videoplayerlib/videoplayerlib_deps.pri)
 
 core_linux {
@@ -311,8 +310,10 @@ core_windows {
         DEFINES += __OS_WIN_XP
     } else {
         HEADERS += $$PWD/src/platform_win/wintoastlib.h \
+                   $$PWD/src/platform_win/taskdialogtheme.h \
                    $$PWD/src/components/cnotification.h
         SOURCES += $$PWD/src/platform_win/wintoastlib.cpp \
+                   $$PWD/src/platform_win/taskdialogtheme.cpp \
                    $$PWD/src/components/cnotification.cpp
     }
 }
@@ -331,6 +332,13 @@ build_xp {
 
 exists($$PWD/../common/loginpage/deploy/noconnect.html) {
     RESOURCES += $$PWD/extras.qrc
+}
+
+exists($$PWD/../../document-formats/onlyoffice-docs-formats.json) {
+    copy_formats_json.target = copy_formats_json
+    copy_formats_json.commands = $$QMAKE_COPY $$shell_path($$PWD/../../document-formats/onlyoffice-docs-formats.json) $$shell_path($$PWD/../common/converter/)
+    QMAKE_EXTRA_TARGETS += copy_formats_json
+    PRE_TARGETDEPS += copy_formats_json
 }
 
 OBJECTS_DIR = $$DESTDIR/obj

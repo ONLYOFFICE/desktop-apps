@@ -14,6 +14,9 @@
 "Cancel" = "Avbryt";
 
 /* No comment provided by engineer. */
+"Canceled" = "Avbrutt";
+
+/* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Kan ikke åpne filen for digital signatur";
 
 /* No comment provided by engineer. */
@@ -23,7 +26,25 @@
 "Cannot open folder of the file location." = "Kan ikke åpne mappen for filplasseringen.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Kommadelte verdier (*.csv)";
+"Close" = "Lukk";
+
+/* No comment provided by engineer. */
+"Close all" = "Lukk alle";
+
+/* No comment provided by engineer. */
+"Close saved" = "Lukk lagret";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Kommadelte verdier";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community-versjon %@";
+
+/* No comment provided by engineer. */
+"Community version %@ (%@-%@)" = "Community-versjon %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Create new" = "Opprett nytt";
 
 /* No comment provided by engineer. */
 "Create portal" = "Opprett portal";
@@ -32,7 +53,7 @@
 "Delete and Quit" = "Slett og avslutt";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Digitalt document (*.djvu)";
+"DjVu File" = "Digitalt document";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Vil du lagre endringene som er gjort i dokumentet \"%@\"?";
@@ -44,13 +65,34 @@
 "Document %ld.pdf" = "Dokument %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML-dokumentmal (*.dotx)";
+"Document template" = "Word Open XML-dokumentmal";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003-regneark (*.xls)";
+"Don't Save" = "Ikke lagre";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML-regneark (*.xlsx)";
+"Electronic Publication" = "Elektronisk publisering";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise-versjon %@";
+
+/* No comment provided by engineer. */
+"Enterprise version %@ (%@-%@)" = "Enterprise-versjon %1$@ (%2$@-%3$@)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003-regneark";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML-regneark";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel binær regneark";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Klarte ikke å installere tema";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2-fil";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Filen \"%@\" kan ikke åpnes eller finnes ikke.";
@@ -68,16 +110,37 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Hvis du allerede har kjøpt %@, skal du kunne finne aktiveringsnøkkelen i en e-postbekreftelse.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG-bilde";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Lisensavtale";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-bok (*.mobi)";
+"Macro-enabled Presentation" = "Makroaktivert presentasjon";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Makroaktivert regneark-mal";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown-fil";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-bok";
+
+/* No comment provided by engineer. */
+"Move to end" = "Flytt til slutten";
+
+/* No comment provided by engineer. */
+"Move to start" = "Flytt til starten";
 
 /* No comment provided by engineer. */
 "new-document" = "Nytt dokument";
 
 /* No comment provided by engineer. */
-"new-pdfform" = "Nytt PDF";
+"new-pdfform" = "Ny PDF";
 
 /* No comment provided by engineer. */
 "new-presentation" = "Ny presentasjon";
@@ -98,43 +161,55 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan ikke åpne den private nøkkelen. Prøv å åpne en annen fil.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument dokumentmal (*.ott)";
+"ONLYOFFICE Document Form Template" = "ONLYOFFICE-dokumentskjemamal";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument presentasjonsmal (*.otp)";
+"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE-utfyllbart nettskjema";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument regneark-mal (*.ots)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF-skjema";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument dokumentmal";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument presentasjonsmal";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument regneark-mal";
 
 /* No comment provided by engineer. */
 "Opening" = "Åpner";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument-tekstfil (*.odt)";
+"OpenOffice Document" = "OpenDocument-tekstfil";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument-presentasjon (*.odp)";
+"OpenOffice Presentation" = "OpenDocument-presentasjon";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument-regneark (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument-regneark";
 
 /* No comment provided by engineer. */
-"PDF File" = "Portable Document (*.pdf)";
+"PDF File" = "Portable Document";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portable Document /A (*.pdf)";
+"PDF/A File" = "Portable Document /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Ren tekst (*.txt)";
+"Plain Text" = "Ren tekst";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-presentasjon (*.ppt)";
+"PNG Image" = "PNG-bilde";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML-presentasjon (*.pptx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-presentasjon";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML-lysbildefremvisning (*.ppsx)";
+"PowerPoint 2007 Presentation" = "Office Open XML-presentasjon";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML-lysbildefremvisning";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Forbereder...";
@@ -143,16 +218,22 @@
 "Presentation %ld.pptx" = "Presentasjon %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML-presentasjonsmal (*.potx)";
+"Presentation template" = "PowerPoint Open XML-presentasjonsmal";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Presentasjonsvisning";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Avslutt %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Erstatt";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Se gjennom endringer...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rikt tekstformat-fil (*.rtf)";
+"Rich Text Document" = "Rikt tekstformat-fil";
 
 /* No comment provided by engineer. */
 "Save" = "Lagre";
@@ -161,10 +242,25 @@
 "Save the document?" = "Lagre dokumentet?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Velg temafil";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Valgt tema er ikke gyldig";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Vis i mappe";
+
+/* No comment provided by engineer. */
+"Show main window" = "Vis hovedvindu";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Signaturdetaljer";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Regneark %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML-regnearkmal (*.xltx)";
+"Spreadsheet template" = "Excel Open XML-regnearkmal";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Takk for at du evaluerte %@!";
@@ -173,52 +269,43 @@
 "The document \"%@\" must be built. Continue?" = "Dokumentet \"%@\" må bygges. Continue?";
 
 /* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Temaet finnes allerede. Erstatt det?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Denne filen inneholder ikke tema";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Denne temafilen er ikke gyldig";
+
+/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "For å kunne åpne filplasseringen, må den lagres.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Ikke bekreftet";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Løsne fanen";
+
+/* No comment provided by engineer. */
 "Untitled" = "Uten tittel";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio-tegning";
 
 /* No comment provided by engineer. */
 "Web Page" = "Nettsted";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003-dokument (*.doc)";
+"With access to pro features" = "Med tilgang til pro-funksjoner";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML-dokument (*.docx)";
+"Word 97-2003 Document" = "Word 97-2003-dokument";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS-dokument (*.xps)";
+"Word 2007 Document" = "Office Open XML-dokument";
 
 /* No comment provided by engineer. */
-"Show main window" = "Vis hovedvindu";
-
-/* No comment provided by engineer. */
-"Close" = "Lukk";
-
-/* No comment provided by engineer. */
-"Close saved" = "Lukk lagret";
-
-/* No comment provided by engineer. */
-"Close all" = "Lukk alle";
-
-/* No comment provided by engineer. */
-"Show in folder" = "Vis i mappe";
-
-/* No comment provided by engineer. */
-"Move to start" = "Flytt til start";
-
-/* No comment provided by engineer. */
-"Move to end" = "Flytt til slutten";
-
-/* No comment provided by engineer. */
-"Unpin tab" = "Løsne fanen";
-
-/* No comment provided by engineer. */
-"Create new" = "Opprett ny";
+"XML Paper Specification" = "OpenXPS-dokument";
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";
@@ -228,6 +315,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Du har aktivert %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Endringene dine vil gå tapt hvis du ikke lagrer dem.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Endringene dine vil gå tapt hvis du ikke lagrer dem.";
