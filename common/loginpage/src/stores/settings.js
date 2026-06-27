@@ -1,12 +1,14 @@
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 
-export const THEME_ID_DEFAULT_LIGHT = 'theme-white';
-export const THEME_ID_DEFAULT_DARK = 'theme-night';
+export const defs = {
+  THEME_ID_DEFAULT_LIGHT = 'theme-white',
+  THEME_ID_DEFAULT_DARK = 'theme-night',
 
-const THEME_TYPE_LIGHT = 'light';
-const THEME_TYPE_DARK = 'dark';
-const THEME_TYPE_SYSTEM = 'system';
+  THEME_TYPE_LIGHT = 'light',
+  THEME_TYPE_DARK = 'dark',
+  THEME_TYPE_SYSTEM = 'system',
+}
 
 export const themesMap = {
         'theme-system': {

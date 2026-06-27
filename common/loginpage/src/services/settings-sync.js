@@ -1,5 +1,5 @@
 import { createEffect, createMemo, createSignal, onCleanup, batch } from "solid-js";
-import { settings, setSettings, themesMap } from "@/stores/settings";
+import { settings, setSettings, themesMap, defs as themeDefs } from "@/stores/settings";
 import { getPluginSettings } from "@/stores/plugin-settings";
 import { onNativeMessage } from "@/sdk/events";
 import { cmd } from "@/sdk/bridge";
@@ -19,11 +19,38 @@ function injectCustomThemeCss(id, colors) {
   document.head.appendChild(el);
 }
 
+    const get_default_theme_for_type = type => type == themeDefs.THEME_TYPE_DARK ? themeDefs.THEME_ID_DEFAULT_DARK : themeDefs.THEME_ID_DEFAULT_LIGHT;
+
+    const get_system_theme_type = () => {
+        const nativevars = window.RendererProcessVariable;
+        if ( nativevars.theme && !!nativevars.theme.system ) {
+            return nativevars.theme.system !== 'disabled' ? nativevars.theme.system : themeDefs.THEME_TYPE_LIGHT;
+        } else {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? themeDefs.THEME_TYPE_DARK : themeDefs.THEME_TYPE_LIGHT;
+        }
+    }
+
+    const is_system_theme_dark = function () {
+        return get_system_theme_type() == 'dark';
+    }
+
+    const is_theme_system = function (id) {
+        return id == 'theme-system'
+    }
+
+    const relevant_theme_id = function (id) {
+        if ( is_theme_system(id) )
+            return get_default_theme_for_type(is_system_theme_dark() ? themeDefs.THEME_TYPE_DARK : themeDefs.THEME_TYPE_LIGHT);
+        return id;
+    }
+
 function applyThemeToDom(id) {
-  const el = document.body;
-  el.className = el.className.replace(/theme-[\w-]+/gi, "").trim();
   if (id) {
-    el.classList.add(id, `theme-type-${!!themesMap[id]?themesMap[id].type:'light'}`);
+    const theme_id = relevant_theme_id(id);
+
+    const el = document.body;
+    el.className = el.className.replace(/theme-[\w-]+/gi, "").trim();
+    el.classList.add(theme_id, `theme-type-${!!themesMap[theme_id]?themesMap[theme_id].type:'light'}`);
   }
 }
 
@@ -131,7 +158,7 @@ export function initSettingsSync() {
        scaling !== nativeScalingToStore(snap.uiscaling) ||
        gpu !== !!snap.usegpu);
 
-    applyThemeToDom(typeof settings.theme === 'string' ? settings.theme : '');
+    // applyThemeToDom(typeof settings.theme === 'string' ? settings.theme : '');
     applyLocale(lang);
 
     cmd("settings:apply", JSON.stringify({
@@ -225,9 +252,10 @@ export function initSettingsSync() {
       } catch {
         return;
       }
-      if (opts?.theme?.system) setSystemThemeEnabled(opts.theme.system !== "disabled");
+      // if (opts?.theme?.system) setSystemThemeEnabled(opts.theme.system !== "disabled");
     } else if (msgCmd === "uitheme:changed") {
       setSettings("theme", param);
+      applyThemeToDom(settings.theme);
     }
   });
 

@@ -2,7 +2,7 @@ import { createMemo, batch, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
-import { availableLangs, toggleAI } from "@/services/settings-sync";
+import { availableLangs, toggleAI, systemThemeEnabled } from "@/services/settings-sync";
 import styles from "./index.module.css";
 
 export default function GeneralSettings() {
@@ -37,6 +37,7 @@ export default function GeneralSettings() {
   ]);
 
   const themeOptions = createMemo(() => [
+    systemThemeEnabled() &&
     { value: "theme-system", label: t("settOptThemeSystem") },
     { value: "theme-white", label: t("settOptThemeWhite") },
     { value: "theme-night", label: t("settOptThemeNight") },
@@ -45,7 +46,7 @@ export default function GeneralSettings() {
     { value: "theme-dark", label: t("settOptThemeDark") },
     { value: "theme-gray", label: t("settOptThemeGray") },
     { value: "theme-contrast-dark", label: t("settOptThemeContrastDark") },
-  ]);
+  ].filter(Boolean));
 
   const openFileOptions = createMemo(() => [
     { value: "tab", label: t("settOptLaunchInTab") },
