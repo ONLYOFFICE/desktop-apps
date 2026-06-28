@@ -2,18 +2,18 @@ import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 
 export const defs = {
-  THEME_ID_DEFAULT_LIGHT = 'theme-white',
-  THEME_ID_DEFAULT_DARK = 'theme-night',
+  THEME_ID_DEFAULT_LIGHT: 'theme-white',
+  THEME_ID_DEFAULT_DARK: 'theme-night',
 
-  THEME_TYPE_LIGHT = 'light',
-  THEME_TYPE_DARK = 'dark',
-  THEME_TYPE_SYSTEM = 'system',
+  THEME_TYPE_LIGHT: 'light',
+  THEME_TYPE_DARK:'dark',
+  THEME_TYPE_SYSTEM: 'system',
 }
 
 export const themesMap = {
         'theme-system': {
             // text: utils.Lang.settOptThemeSystem,
-            type: THEME_TYPE_SYSTEM,
+            type: defs.THEME_TYPE_SYSTEM,
         },
         'theme-light': {
             // text: utils.Lang.settOptThemeLight,
@@ -51,7 +51,7 @@ const defaultSettings = Object.freeze({
   lang: "en",
   scaling: "auto",
   checkUpdates: "ask",
-  theme: THEME_ID_DEFAULT_LIGHT,
+  theme: defs.THEME_ID_DEFAULT_LIGHT,
   launchMode: "tab",
   spellCheck: "auto",
   gpuMode: true,

@@ -114,6 +114,7 @@ export function initSettingsSync() {
     });
     if (loaded.length) setCustomThemes(loaded);
   }
+  applyThemeToDom(settings.theme);
 
   _needsRestart = createMemo(() => {
     const snap = nativeSnapshot();
