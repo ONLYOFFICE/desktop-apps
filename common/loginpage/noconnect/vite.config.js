@@ -38,6 +38,7 @@ function noconnectPlugin() {
         compress: true,
         mangle: true,
       })
+      mkdirSync(deployDir, { recursive: true })
       writeFileSync(join(deployDir, 'noconnect.js'), minJs)
 
       let html = readFileSync(join(__dirname, 'index.html.deploy'), 'utf-8')
@@ -63,7 +64,6 @@ function noconnectPlugin() {
         removeComments: true,
       })
 
-      mkdirSync(deployDir, { recursive: true })
       writeFileSync(join(deployDir, 'noconnect.html'), result)
     },
   }
