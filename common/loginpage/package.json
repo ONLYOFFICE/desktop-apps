@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "vite build --config ./build/vite.config.js",
-    "build:all": "npm i --prefix ./noconnect && vite build --config ./noconnect/vite.config.js && vite build --config ./build/vite.config.js",
+    "build:all": "vite build --config ./noconnect/vite.config.js && vite build --config ./build/vite.config.js",
     "dev": "vite --config ./build/vite.config.js",
     "sprites": "node ./build/generate-sprites.js",
     "fmt": "oxfmt",
@@ -19,14 +19,14 @@
     "@solid-primitives/storage": "^4.3.4",
     "@solidjs/router": "^0.16.1",
     "html-minifier-terser": "^7.2.0",
-    "solid-js": "^1.9.12"
-  },
-  "devDependencies": {
+    "solid-js": "^1.9.12",
     "lightningcss": "^1.32.0",
     "oxfmt": "0.2.0",
     "oxlint": "1.16.0",
     "vite": "6.2.7",
     "vite-plugin-singlefile": "^2.3.3",
     "vite-plugin-solid": "^2.11.12"
+  },
+  "devDependencies": {
   }
 }
