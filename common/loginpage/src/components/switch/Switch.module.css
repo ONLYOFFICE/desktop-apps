@@ -21,14 +21,14 @@
 }
 
 .control[data-checked] {
-  background: var(--chb-background-checked);
+  background: var(--background-accent-button);
 }
 
 .thumb {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--chb-check-mark-background, #ffffff);
+  background: var(--background-action-panel, #ffffff);
   position: absolute;
   top: 2px;
   left: 2px;
