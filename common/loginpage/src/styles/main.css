@@ -9,6 +9,25 @@ body {
   overflow: hidden;
 }
 
+:root {
+    .pixel-ratio__1_25 {
+        --pixel-ratio: 1.25;
+        --scaled-one-px: calc(1px / 1.25);
+    }
+
+    .pixel-ratio__1_5 {
+        --pixel-ratio: 1.5;
+        --scaled-one-px: calc(1px / 1.5);
+    }
+
+    .pixel-ratio__1_75 {
+        --pixel-ratio: 1.75;
+        --scaled-one-px: calc(1px / 1.75);
+    }
+}
+
+/* @scaled-one-px: var(--scaled-one-px, 1px); */
+
 #wrap {
   position: absolute;
   left: 0;
@@ -53,4 +72,10 @@ body {
   font-family: "Open Sans";
   src: url("../../../../core-fonts/opensans/OpenSans-Bold.ttf");
   font-weight: bold;
+}
+
+.rtl-font {
+    &[applang^=ar], &[applang^=ur] {
+        --font-family-base-custom: system-ui, -apple-system, "Geeza Pro", "Segoe UI", "Traditional Arabic", "Noto Sans";
+    }
 }
