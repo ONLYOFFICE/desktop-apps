@@ -54,20 +54,52 @@ function applyThemeToDom(id) {
   }
 }
 
-function applyScaling(scaling) {
-  const html = document.body;
-  html.className = html.className.replace(/\bscale-\d+\b/g, "").trim();
+// function applyScaling(scaling) {
+  // const html = document.body;
+  // html.className = html.className.replace(/\bscale-\d+\b/g, "").trim();
 
-  if (scaling === "auto") {
-    document.body.style.zoom = "";
-    return;
-  }
+  // if (scaling === "auto") {
+  //   document.body.style.zoom = "";
+  //   return;
+  // }
 
-  const value = parseInt(scaling, 10);
-  if (isNaN(value)) return;
+  // const value = parseInt(scaling, 10);
+  // if (isNaN(value)) return;
 
-  if (value !== 100) html.classList.add(`scale-${value}`);
-  document.body.style.zoom = value / 100;
+  // if (value !== 100) html.classList.add(`scale-${value}`);
+  // document.body.style.zoom = value / 100;
+// }
+
+function checkScaling() {
+    const matches = {
+        'pixel-ratio__1': `screen (-webkit-max-device-pixel-ratio: 1.24)`,
+        'pixel-ratio__1_25': `screen and (-webkit-min-device-pixel-ratio: 1.25) and (-webkit-max-device-pixel-ratio: 1.49),
+                                screen and (min-resolution: 1.25dppx) and (max-resolution: 1.49dppx)`,
+        'pixel-ratio__1_5': `screen and (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.74),
+                                screen and (min-resolution: 1.5dppx) and (max-resolution: 1.74dppx)`,
+        'pixel-ratio__1_75': `screen and (-webkit-min-device-pixel-ratio: 1.75) and (-webkit-max-device-pixel-ratio: 1.99),
+                                screen and (min-resolution: 1.75dppx) and (max-resolution: 1.99dppx)`,
+        'pixel-ratio__2': `screen and (-webkit-min-device-pixel-ratio: 2) and (-webkit-max-device-pixel-ratio: 2.24),
+                                screen and (min-resolution: 2dppx) and (max-resolution: 2.24dppx),
+                                screen and (min-resolution: 192dpi) and (max-resolution: 215dpi)`,
+        'pixel-ratio__2_5': `screen and (-webkit-min-device-pixel-ratio: 2.25), screen and (min-resolution: 2.25dppx),
+                                screen and (min-resolution: 216dpi)`,
+    };
+
+    for (var c in matches) {
+        const media_query_list = window.matchMedia(matches[c]);
+        media_query_list.addEventListener('change', function(cls, e) {
+            if ( e.matches ) {
+                document.body.className = document.body.className.replace(/pixel-ratio__[\d_]+/gi, '').trim();
+                document.body.classList.add(cls);
+            }
+        }.bind(this, c));
+
+        if ( media_query_list.matches ) {
+            document.body.classList.add(c);
+            // break;
+        }
+    }
 }
 
 function nativeScalingToStore(raw) {
@@ -96,6 +128,8 @@ export const applySettings = () => _applySettings();
 export function initSettingsSync() {
   const [nativeSnapshot, setNativeSnapshot] = createSignal(null);
   let initialized = false;
+
+  checkScaling();
 
   const storedUsername = localStorage.getItem("username");
   if (storedUsername) {
@@ -133,7 +167,7 @@ export function initSettingsSync() {
   };
 
   createEffect(() => setPendingApplyText(getTranslationFor(settings.lang, 'setBtnApply')));
-  createEffect(() => applyScaling(settings.scaling));
+  // createEffect(() => applyScaling(settings.scaling));
 
   createEffect(() => {
     settings.lang; settings.scaling; settings.theme;
