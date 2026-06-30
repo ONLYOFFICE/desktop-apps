@@ -483,6 +483,11 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="../src/components/cfiledialog.cpp" line="318"/>
+        <source>Crossplatform</source>
+        <translation>Crossplatform documents</translation>
+    </message>
+    <message>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</source>
         <translation type="vanished">Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)</translation>
     </message>

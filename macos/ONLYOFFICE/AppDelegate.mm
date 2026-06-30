@@ -91,6 +91,7 @@
     NSMutableArray *words = [NSMutableArray array];
     NSMutableArray *cells = [NSMutableArray array];
     NSMutableArray *slides = [NSMutableArray array];
+    NSMutableArray *pdfs = [NSMutableArray array];
     NSMutableArray *draws = [NSMutableArray array];
 
     NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"onlyoffice-docs-formats" ofType:@"json" inDirectory:@"converter"];
@@ -110,6 +111,7 @@
                     else if ([type isEqualToString:@"word"]) [words addObject:name];
                     else if ([type isEqualToString:@"cell"]) [cells addObject:name];
                     else if ([type isEqualToString:@"slide"]) [slides addObject:name];
+                    else if ([type isEqualToString:@"pdf"]) [pdfs addObject:name];
                     else if ([type isEqualToString:@"diagram"]) [draws addObject:name];
                 }
             }
@@ -119,6 +121,7 @@
     self.wordFormats = words.count ? [words copy] : [ASCConstants documents];
     self.cellFormats = cells.count ? [cells copy] : [ASCConstants spreadsheets];
     self.slideFormats = slides.count ? [slides copy] : [ASCConstants presentations];
+    self.crossFormats = slides.count ? [pdfs copy] : [];
     self.diagramFormats = draws.count ? [draws copy] : [ASCConstants draws];
 }
 

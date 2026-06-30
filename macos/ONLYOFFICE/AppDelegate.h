@@ -62,6 +62,7 @@
 @property (nonatomic, strong) NSArray *wordFormats;
 @property (nonatomic, strong) NSArray *cellFormats;
 @property (nonatomic, strong) NSArray *slideFormats;
+@property (nonatomic, strong) NSArray *crossFormats;
 @property (nonatomic, strong) NSArray *diagramFormats;
 @end
 

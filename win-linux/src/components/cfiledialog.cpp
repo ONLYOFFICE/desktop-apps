@@ -304,6 +304,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
         QString _word_formats = getSupportedFiltersByEditor("word"),
                 _cell_formats = getSupportedFiltersByEditor("cell"),
                 _slide_formats = getSupportedFiltersByEditor("slide"),
+                _pdf_formats = getSupportedFiltersByEditor("pdf"),
                 _draw_formats = getSupportedFiltersByEditor("diagram");
 
         _filter_ =  tr("Text documents") +
@@ -314,6 +315,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 #endif
                     tr("Spreadsheets") + " (" + _cell_formats + ");;" +
                     tr("Presentations") + " (" + _slide_formats + ");;" +
+                    tr("Crossplatform") + " (" + _pdf_formats + ");;" +
                     tr("Visio diagram") + " (" + _draw_formats + ");;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv *.tsv)";
