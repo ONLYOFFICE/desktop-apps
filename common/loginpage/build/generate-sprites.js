@@ -8,8 +8,6 @@ const ROOT = join(_dirname, "..");
 // Mirrors grunt svg_sprite config from build/sprites/sprites.js.
 // Sources and dest names must match the grunt tasks exactly.
 const SPRITE_CONFIGS = [
-  { pattern: "res/img/connect*.svg",         dest: "res/img/generated/connect.svg",       postProcess: fixFillWhite },
-  { pattern: "res/img/welcome*.svg",         dest: "res/img/generated/welcome.svg" },
   { pattern: "res/img/formats-svg/*.svg",    dest: "res/img/generated/formats.svg" },
   { pattern: "res/img/common-svg/*.svg",     dest: "res/img/generated/common.svg" },
   { pattern: "res/img/update_status/*.svg",  dest: "res/img/generated/update_status.svg" },
