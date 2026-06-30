@@ -6,6 +6,7 @@
 @import "./themes/colors_dark.css";
 @import "./themes/colors_contrast_dark.css";
 @import "./themes/colors_classic.css";
+@import "./components/loader.css";
 
 * {
   box-sizing: border-box;
