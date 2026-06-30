@@ -43,11 +43,11 @@
       }
 
       &:active {
-        background: var(--background-toolbar);
+        background: var(--highlight-button-pressed);
       }
 
       &.selected {
-        background: var(--background-toolbar);
+        background: var(--highlight-button-pressed);
       }
 
       .icon-inner-box {
