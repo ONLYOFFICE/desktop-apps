@@ -27,4 +27,8 @@
     opacity: 0.4;
     cursor: not-allowed;
   }
+
+  &[data-invalid] {
+    border-color: var(--border-error, #c7170e);
+  }
 }

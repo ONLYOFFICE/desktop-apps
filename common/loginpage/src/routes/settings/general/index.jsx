@@ -2,7 +2,8 @@ import { createMemo, batch, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
-import { availableLangs, toggleAI, systemThemeEnabled } from "@/services/settings-sync";
+import { availableLangs, toggleAI, systemThemeEnabled, userNameError, setUserNameError } from "@/services/settings-sync";
+import { cmd } from "@/sdk/bridge";
 import styles from "./index.module.css";
 
 export default function GeneralSettings() {
@@ -60,11 +61,7 @@ export default function GeneralSettings() {
   ]);
 
   function handleReset() {
-    batch(() => {
-      for (const [k, v] of Object.entries(defaultSettings)) {
-        setSettings(k, v);
-      }
-    });
+    cmd("settings:get", "username");
   }
 
 
@@ -80,7 +77,12 @@ export default function GeneralSettings() {
         <div class={styles.fieldRow}>
           <span class={styles.fieldLabel}>{t("settUserName")}</span>
           <div class={styles.fieldControl}>
-            <TextField class={styles.fullWidth} value={settings.userName} onChange={(v) => setSettings("userName", v)}>
+            <TextField
+              class={styles.fullWidth}
+              value={settings.userName}
+              validationState={userNameError() ? "invalid" : "valid"}
+              onChange={(v) => { setUserNameError(false); setSettings("userName", v); }}
+            >
               <TextField.Input placeholder={t("settingsUserNamePlaceholder")} />
             </TextField>
           </div>

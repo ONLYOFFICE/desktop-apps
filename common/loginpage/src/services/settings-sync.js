@@ -115,7 +115,8 @@ const [customThemes, setCustomThemes] = createSignal([]);
 const [systemThemeEnabled, setSystemThemeEnabled] = createSignal(true);
 const [isOptsChanged, setIsOptsChanged] = createSignal(false);
 const [pendingApplyText, setPendingApplyText] = createSignal(null);
-export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isOptsChanged, setIsOptsChanged, pendingApplyText };
+const [userNameError, setUserNameError] = createSignal(false);
+export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isOptsChanged, setIsOptsChanged, pendingApplyText, userNameError, setUserNameError };
 
 let _needsRestart = () => false;
 let _toggleAI = () => {};
@@ -177,7 +178,27 @@ export function initSettingsSync() {
     setIsOptsChanged(true);
   });
 
+  const _validate_user_name = name => {
+    if (!name || !name.length)
+      return false;
+
+      // return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
+
+      /*  @winxpsupport
+       *  we use chrome ver 49 on win xp,
+       *  that version has no support for unicode in regexp
+       */
+      if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) return true;
+      else return (new RegExp('^[\\p{L}\\p{M}\\p{N}\'"«»()_+=&^%$#@!~*\\/.\\- ]+$', 'iu')).test(name)
+    };
+
   _applySettings = () => {
+    if (!_validate_user_name(settings.userName)) {
+      setUserNameError(true);
+      return;
+    }
+    setUserNameError(false);
+
     const snap = nativeSnapshot();
     const lang = settings.lang;
     const scaling = settings.scaling;
@@ -255,7 +276,10 @@ export function initSettingsSync() {
       initialized = true;
       setNativeSnapshot(payload);
     } else if (msgCmd === "settings:username") {
-      if (param) setSettings("userName", param);
+      if (param && param.length) {
+        setSettings("userName", param);
+        setUserNameError(false);
+      }
     } else if (msgCmd === "settings:lang") {
       if (param.startsWith("restart:")) setLangRestartPending(param === "restart:true");
     } else if (msgCmd === "uitheme:added") {
