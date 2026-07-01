@@ -7,7 +7,7 @@
 #box-recent-folders .file-list-body .row {
   display: grid;
   gap: 8px;
-  grid-template-columns: minmax(320px, 1fr) 320px;
+  grid-template-columns: minmax(200px, 1fr) 1.3fr;
   align-items: center;
   padding-left: 16px;
   padding-right: 80px;

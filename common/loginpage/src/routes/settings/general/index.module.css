@@ -12,7 +12,7 @@
 
 .fieldRow {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: minmax(150px,180px) 1fr;
   align-items: center;
   height: 36px;
   gap: 64px;
@@ -27,6 +27,8 @@
 }
 
 .fieldControl {
+  min-width: 0;
+
   > * {
     width: 100%;
   }
