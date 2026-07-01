@@ -85,6 +85,11 @@
   fill: var(--icon-normal);
 }
 
+.tool-menu i.icon {
+  display: block;
+  background-repeat: no-repeat;
+}
+
 .tool-menu a[action] svg.icon:not(.icon-colored) {
   fill: var(--background-icon-normal);
   stroke: var(--icon-normal);

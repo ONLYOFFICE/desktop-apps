@@ -1,9 +1,14 @@
 import { render } from "solid-js/web";
 import App from "./app.jsx";
 import { initLocale } from "./services/l10n";
+import { initDisplay } from "./services/display";
 import { onNativeMessage, dropOfficeFiles } from "./sdk";
+import "./styles/sprites/toolicons@1.25x.css";
+import "./styles/sprites/toolicons@1.5x.css";
+import "./styles/sprites/toolicons@1.75x.css";
 
 initLocale();
+initDisplay();
 
 const dispose = render(() => <App />, document.getElementById("root"));
 

@@ -1,8 +1,11 @@
-import { Match, Show, Switch, splitProps } from "solid-js";
+import { Match, Show, Switch, createSignal, splitProps } from "solid-js";
 import { A } from "@solidjs/router";
+import { usePngIcons } from "@/services/display";
 
 export function MenuItem(props) {
   const [local] = splitProps(props, ["href", "onClick", "icon", "label", "end", "hidden", "action", "class"]);
+
+  const [pngvisible, setPngVisible] = createSignal();
 
   return (
     <li class="menu-item" classList={{ hidden: local.hidden }}>
@@ -11,9 +14,9 @@ export function MenuItem(props) {
           <A href={local.href} activeClass="selected" end={local.end} action={local.action} class={local.class}>
             <Show when={local.icon}>
               <div class="icon-inner-box">
-                <svg class="icon">
-                  <use href={local.icon} />
-                </svg>
+                <Show when={usePngIcons()} fallback={<svg class="icon"><use href={local.icon} /></svg>}>
+                  <i class={`icon tool-icon ${local.icon.slice(1)}`} />
+                </Show>
               </div>
             </Show>
             <span class="text">{local.label}</span>
@@ -23,9 +26,9 @@ export function MenuItem(props) {
           <button class="menu-btn" onClick={local.onClick} class={local.class}>
             <Show when={local.icon}>
               <div class="icon-inner-box">
-                <svg class="icon">
-                  <use href={local.icon} />
-                </svg>
+                <Show when={usePngIcons()} fallback={<svg class="icon"><use href={local.icon} /></svg>}>
+                  <i class={`icon tool-icon ${local.icon.slice(1)}`} />
+                </Show>
               </div>
             </Show>
             <span class="text">{local.label}</span>
