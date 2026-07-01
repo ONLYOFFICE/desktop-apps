@@ -26,7 +26,7 @@ export const promoButtons = [
     },
 ];
 
-export const promoVisible = () => settings.promoButtons !== false;
+export const promoVisible = () => /*settings.promoButtons !==*/ false;
 
 export function openPromo(id) {
     const obj = promoButtons.find(b => b.id === id);

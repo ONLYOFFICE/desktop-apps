@@ -20,7 +20,7 @@ export default function Sidebar() {
         }
         </For>
       </Show>
-      <div class="menu-item separator" />
+      {/* <div class="menu-item separator" /> */}
       <MenuItem href="/settings/general" icon="#settings" label={t("actSettings")} action="settings" class="cls-btn" />
       <MenuItem onClick={openAbout} icon="#about" label={t("actAbout")} hidden={!aboutVisible()} />
     </nav>
