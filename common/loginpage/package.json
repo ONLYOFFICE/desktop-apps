@@ -25,7 +25,8 @@
     "oxlint": "1.16.0",
     "vite": "6.2.7",
     "vite-plugin-singlefile": "^2.3.3",
-    "vite-plugin-solid": "^2.11.12"
+    "vite-plugin-solid": "^2.11.12",
+    "pngjs": "^7.0.0"
   },
   "devDependencies": {
   }

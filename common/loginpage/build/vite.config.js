@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 import { minify } from "html-minifier-terser";
 import solid from "vite-plugin-solid";
 import { viteSingleFile } from "vite-plugin-singlefile";
-import { generateSpritesPlugin } from "./generate-sprites.js";
+import { generateSvgSpritesPlugin, generatePngSpritesPlugin } from "./generate-sprites.js";
 
 const DEV_PORT = 3000;
 const _dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -225,7 +225,8 @@ export default defineConfig(({ mode }) => ({
     cors: { origin: "*" },
   },
   plugins: [
-    generateSpritesPlugin(),
+    generateSvgSpritesPlugin(),
+    generatePngSpritesPlugin(),
     lessColors(),
     injectSprites(),
     inlineExternalHtmlResources(),
