@@ -54,11 +54,13 @@
   flex-shrink: 0;
   width: 32px;
   height: 32px;
+  display: flex;
+  align-items: center;
 }
 
 #box-recent-folders .col-name .icon svg {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 21px;
 }
 
 #box-recent-folders .col-name .name {
