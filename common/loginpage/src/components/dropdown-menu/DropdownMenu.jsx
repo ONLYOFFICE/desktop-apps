@@ -1,6 +1,7 @@
 import { Show, splitProps } from "solid-js";
 import { DropdownMenu as DropdownMenuPrimitive } from "@kobalte/core/dropdown-menu";
 import { mergeClass } from "@/utils/classes";
+import { usePngIcons } from "@/services/display";
 import styles from "../context-menu/ContextMenu.module.css";
 
 function Root(props) {
@@ -25,9 +26,9 @@ function Item(props) {
   return (
     <DropdownMenuPrimitive.Item classList={mergeClass(styles.menuItem, props.class)} {...rest}>
       <Show when={props.icon}>
-        <svg class={styles.menuIcon}>
-          <use href={props.icon} />
-        </svg>
+        <Show when={usePngIcons()} fallback={<svg class={styles.menuIcon}><use href={props.icon} /></svg>}>
+          <i class={`${styles.menuIcon} tool-icon__20 ${props.icon.slice(1)}`} />
+        </Show>
       </Show>
       {props.children}
     </DropdownMenuPrimitive.Item>

@@ -2,6 +2,7 @@ import { For, Show } from "solid-js";
 import { exploreFile, openRecentFile } from "@/sdk";
 import { t } from "@/services/l10n";
 import { ContextMenu, DropdownMenu } from "@/components";
+import { usePngIcons } from "@/services/display";
 import "./RecentList.styles.css";
 
 function FileMenuItems(props) {
@@ -39,9 +40,12 @@ function RecentRow(props) {
       >
         <div class="col-name" title={props.model.fullName}>
           <div class="icon">
-            <svg class="icon">
-              <use href={`#${props.model.type === "folder" ? "folder-small" : props.model.format}`} />
-            </svg>
+            <Show
+              when={usePngIcons() && props.model.type !== "folder"}
+              fallback={<svg class="icon"><use href={`#${props.model.type === "folder" ? "folder-small" : props.model.format}`} /></svg>}
+            >
+              <i class={`doc-format ${props.model.format}`} />
+            </Show>
             <Show when={props.model.crypted}>
               <svg class="icon shield">
                 <use href="#shield" />
@@ -69,16 +73,16 @@ function RecentRow(props) {
               props.onTogglePin(props.model.fileid);
             }}
           >
-            <svg class="icon">
-              <use href="#pin" />
-            </svg>
+            <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#pin" /></svg>}>
+              <i class="icon tool-icon pin" />
+            </Show>
           </button>
           <Show when={props.model.type !== "folder"}>
             <DropdownMenu>
               <DropdownMenu.Trigger class="more" onClick={(e) => e.stopPropagation()}>
-                <svg class="icon">
-                  <use href="#more" />
-                </svg>
+                <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#more" /></svg>}>
+                  <i class="icon tool-icon more" />
+                </Show>
               </DropdownMenu.Trigger>
               <DropdownMenu.Content onContextMenu={(e) => e.stopPropagation()}>
                 <FileMenuItems

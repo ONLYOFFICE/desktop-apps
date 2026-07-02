@@ -51,6 +51,11 @@
   flex-shrink: 0;
   fill: var(--text-normal-pressed);
   color: var(--text-normal-pressed);
+
+  &:is(i) {
+    display: block;
+    background-repeat: no-repeat;
+  }
 }
 
 .menuSeparator {

@@ -135,6 +135,9 @@ const PNG_SPRITE_CONFIGS = [
   { iconsDir: "res/img/toolicons20/1.25x", spriteName: "toolicons20", scale: 1.25, wrapperClass: ".pixel-ratio__1_25", iconClasses: [".tool-icon__20"], positionClass: ".tool-icon__20" },
   { iconsDir: "res/img/toolicons20/1.5x",  spriteName: "toolicons20", scale: 1.5,  wrapperClass: ".pixel-ratio__1_5",  iconClasses: [".tool-icon__20"], positionClass: null },
   { iconsDir: "res/img/toolicons20/1.75x", spriteName: "toolicons20", scale: 1.75, wrapperClass: ".pixel-ratio__1_75", iconClasses: [".tool-icon__20"], positionClass: null },
+  { iconsDir: "res/img/formats/1.25x", spriteName: "formats", scale: 1.25, wrapperClass: ".pixel-ratio__1_25", iconClasses: [".doc-format"], positionClass: ".doc-format" },
+  { iconsDir: "res/img/formats/1.5x",  spriteName: "formats", scale: 1.5,  wrapperClass: ".pixel-ratio__1_5",  iconClasses: [".doc-format"], positionClass: null },
+  { iconsDir: "res/img/formats/1.75x", spriteName: "formats", scale: 1.75, wrapperClass: ".pixel-ratio__1_75", iconClasses: [".doc-format"], positionClass: null },
 ];
 
 const CSS_OUT_DIR = "src/styles/sprites";

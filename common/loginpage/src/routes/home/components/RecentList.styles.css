@@ -102,6 +102,13 @@
       width: 24px;
       height: 24px;
     }
+
+    i.icon {
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+    }
   }
 }
 
@@ -117,8 +124,16 @@
     height: 32px;
 
     svg {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 30px;
+    }
+
+    i {
+      display: block;
+      width: 24px;
+      height: 30px;
+      background-repeat: no-repeat;
+      /* background-position: center; */
     }
   }
 
