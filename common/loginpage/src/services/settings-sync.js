@@ -215,11 +215,11 @@ export function initSettingsSync() {
        gpu !== !!snap.usegpu);
 
     // applyThemeToDom(typeof settings.theme === 'string' ? settings.theme : '');
-    applyLocale(lang);
+    // applyLocale(lang);
 
     cmd("settings:apply", JSON.stringify({
       username: settings.userName,
-      lang,
+      langid: settings.lang,
       uitheme: settings.theme,
       autoupdatemode: updates,
       docopenmode: launch,
