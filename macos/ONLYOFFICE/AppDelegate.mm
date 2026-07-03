@@ -121,7 +121,7 @@
     self.wordFormats = words.count ? [words copy] : [ASCConstants documents];
     self.cellFormats = cells.count ? [cells copy] : [ASCConstants spreadsheets];
     self.slideFormats = slides.count ? [slides copy] : [ASCConstants presentations];
-    self.crossFormats = slides.count ? [pdfs copy] : [];
+    self.crossFormats = slides.count ? [pdfs copy] : [NSMutableArray new];
     self.diagramFormats = draws.count ? [draws copy] : [ASCConstants draws];
 }
 
