@@ -108,6 +108,11 @@ public:
 #endif
     void doOpenLocalFile(COpenOptions&);
     void handleWindowAction(const std::wstring& action);
+#ifdef USE_ADDON_MODE
+    void sendAddonStatusToStartPage(const QString& text = QString(),
+                                    const QString& icon = QString(),
+                                    bool buttonLock = false);
+#endif
     virtual void setScreenScalingFactor(double, bool resize = true) final;
     virtual void updateScalingFactor(double) final;
 

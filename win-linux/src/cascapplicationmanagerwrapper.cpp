@@ -406,6 +406,34 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
         } else
 #endif
+#ifdef USE_ADDON_MODE
+        if ( !(cmd.find(L"addon:status") == std::wstring::npos) ) {     // params: query
+            if (m_private->m_pAddonManager) {
+                if (!m_private->m_bUpgradeInProgress)
+                {
+                    if (m_pMainWindow)
+                        m_pMainWindow->sendAddonStatusToStartPage();
+                }
+                return true;
+            }
+        } else
+        if ( !(cmd.find(L"addon:action") == std::wstring::npos) ) {     // params: install
+            if (m_private->m_pAddonManager) {
+                const wstring param = pData->get_Param();
+                CAddonManager::Action action =
+                    param == L"install"
+                        ? CAddonManager::Action::Install
+                        : param == L"uninstall"
+                              ? CAddonManager::Action::Uninstall
+                              : CAddonManager::Action::None;
+
+                m_private->m_bUpgradeInProgress = true;
+                syncUpgradeButtons();
+                m_private->m_pAddonManager->doAction(action);
+                return true;
+            }
+        } else
+#endif
         if ( cmd.compare(L"title:button") == 0 ) {
             map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(event->get_SenderId());
             if ( it != m_receivers.cend() ) {
@@ -1201,6 +1229,53 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
     }
 #endif
 
+#ifdef USE_ADDON_MODE
+    if (!m_private->m_pAddonManager) {
+        m_private->m_pAddonManager = new CAddonManager(this);
+
+        connect(m_private->m_pAddonManager, &CAddonManager::installFinished, this,
+                [this](bool success)
+                {
+                    m_private->m_bUpgradeInProgress = false;
+                    syncUpgradeButtons();
+                    if (m_pMainWindow)
+                    {
+                        if (success)
+                            m_pMainWindow->sendAddonStatusToStartPage();
+                        else
+                            m_pMainWindow->sendAddonStatusToStartPage(tr("Installation failed",
+                                                                      "CAddonManager"), "error");
+                    }
+                });
+
+        connect(m_private->m_pAddonManager, &CAddonManager::uninstallFinished, this,
+                [this]()
+                {
+                    m_private->m_bUpgradeInProgress = false;
+                    syncUpgradeButtons();
+                    if (m_pMainWindow)
+                        m_pMainWindow->sendAddonStatusToStartPage();
+                });
+
+        connect(m_private->m_pAddonManager, &CAddonManager::progressChanged, this,
+                [this](int progress)
+                {
+                    if (m_pMainWindow)
+                        m_pMainWindow->sendAddonStatusToStartPage(tr("Installing... %1%", "CAddonManager")
+                                                      .arg(progress), "load", true);
+                });
+    }
+    if (uid < 0) {
+        QTimer::singleShot(50, this, [=]() {
+            if (!m_private->m_bUpgradeInProgress)
+            {
+                if (m_pMainWindow)
+                    m_pMainWindow->sendAddonStatusToStartPage();
+            }
+        });
+    }
+#endif
+
 #ifdef _WIN32
     Association::instance().chekForAssociations(uid);
 #endif
@@ -1797,6 +1872,51 @@ const CEditorWindow * CAscApplicationManagerWrapper::editorWindowFromHandle(size
     return nullptr;
 }
 
+#ifdef USE_ADDON_MODE
+CAddonManager* CAscApplicationManagerWrapper::addonManager()
+{
+    APP_CAST(_app)
+    return _app.m_private->m_pAddonManager;
+}
+
+bool CAscApplicationManagerWrapper::upgradeInProgress()
+{
+    APP_CAST(_app)
+    return _app.m_private->m_bUpgradeInProgress;
+}
+
+void CAscApplicationManagerWrapper::setUpgradeInProgress(bool upgradeInProgress)
+{
+    APP_CAST(_app)
+    _app.m_private->m_bUpgradeInProgress = upgradeInProgress;
+}
+
+void CAscApplicationManagerWrapper::syncUpgradeButtons()
+{
+    APP_CAST(_app);
+
+    if (_app.m_pMainWindow) {
+        if (_app.addonManager()->isInstalled()) {
+            _app.m_pMainWindow->hideUpgradeButton();
+        } else {
+            _app.m_pMainWindow->initUpgradeButton();
+            _app.m_pMainWindow->syncUpgradeButton();
+            _app.m_pMainWindow->showUpgradeButton();
+        }
+    }
+
+    for (const auto &editor : _app.m_vecEditors) {
+        CEditorWindow *editorWindow = reinterpret_cast<CEditorWindow*>(editor);
+        if (_app.addonManager()->isInstalled()) {
+            editorWindow->hideUpgradeButton();
+        } else {
+            editorWindow->initUpgradeButton();
+            editorWindow->syncUpgradeButton();
+            editorWindow->showUpgradeButton();
+        }
+    }
+}
+#endif
 
 void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPoint& pt)
 {

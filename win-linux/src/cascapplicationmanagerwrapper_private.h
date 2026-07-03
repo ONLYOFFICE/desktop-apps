@@ -64,6 +64,9 @@
 # include "platform_linux/cdialogopenssl.h"
 #endif
 
+#ifdef USE_ADDON_MODE
+# include "caddonmanager.h"
+#endif
 
 class CAscApplicationManagerWrapper_Private
 {
@@ -78,7 +81,16 @@ public:
         m_printData = std::make_shared<CPrintData>();
     }
 
-    virtual ~CAscApplicationManagerWrapper_Private() {}
+    virtual ~CAscApplicationManagerWrapper_Private()
+    {
+#ifdef USE_ADDON_MODE
+        if (m_pAddonManager)
+        {
+            delete m_pAddonManager;
+            m_pAddonManager = nullptr;
+        }
+#endif
+    }
 
     virtual void initializeApp() {
         m_printData->setAppDataPath(m_appmanager.m_oSettings.app_data_path);
@@ -586,6 +598,11 @@ public:
     std::shared_ptr<CPrintData> m_printData;
 #ifndef _CAN_SCALE_IMMEDIATELY
     std::wstring uiscaling;
+#endif
+
+#ifdef USE_ADDON_MODE
+    CAddonManager *m_pAddonManager = nullptr;
+    bool m_bUpgradeInProgress = false;
 #endif
 };
 

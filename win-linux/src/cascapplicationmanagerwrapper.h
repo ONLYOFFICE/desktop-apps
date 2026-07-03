@@ -99,6 +99,7 @@ enum class CScalingFactor
     SCALING_FACTOR_5
 };
 
+class CAddonManager;
 class CAscApplicationManagerWrapper;
 class CAscApplicationManagerWrapper_Private;
 typedef CAscApplicationManagerWrapper AscAppManager;
@@ -189,6 +190,12 @@ public:
     static void             editorWindowMoving(const size_t, const QPoint&);
     static CMainWindow *    mainWindow();
     static const CEditorWindow *  editorWindowFromHandle(size_t);
+#ifdef USE_ADDON_MODE
+    static CAddonManager*   addonManager();
+    static bool             upgradeInProgress();
+    static void             setUpgradeInProgress(bool);
+    static void             syncUpgradeButtons();
+#endif
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = L"");
     static void             sendCommandToAllEditors(const std::wstring& cmd, const std::wstring& args = L"");

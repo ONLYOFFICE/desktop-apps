@@ -45,6 +45,7 @@
 #include "version.h"
 #include "components/cmessage.h"
 #include "ctabundockevent.h"
+#include "caddonmanager.h"
 #include <qtcomp/qdesktopwidget.h>
 #include <QGridLayout>
 #include <QTimer>
@@ -1193,6 +1194,15 @@ void CMainWindow::onDocumentReady(int uid)
             m_pTabs->setFocusedView();
     }
     AscAppManager::getInstance().onDocumentReady(uid);
+
+#ifdef USE_ADDON_MODE
+    CAddonManager *am = AscAppManager::addonManager();
+    if ( uid < 0 && am && !am->isInstalled() ) {
+        initUpgradeButton();
+        syncUpgradeButton();
+        showUpgradeButton();
+    }
+#endif
 }
 
 void CMainWindow::onDocumentLoadFinished(int uid)
@@ -1761,3 +1771,28 @@ void CMainWindow::handleWindowAction(const std::wstring& action)
         }
     }
 }
+
+#ifdef USE_ADDON_MODE
+void CMainWindow::sendAddonStatusToStartPage(const QString& text, const QString& icon, bool buttonLock)
+{
+    CAddonManager *am = AscAppManager::addonManager();
+    bool installed = am ? am->isInstalled() : false;
+
+    QJsonObject jsn;
+    jsn["version"]   = QString(VER_FILEVERSION_STR);
+    jsn["installed"] = installed;
+    jsn["restart"]   = am ? am->restartRequired() : false;
+    jsn["license"]   = QJsonObject({{"url", URL_BSL_LICENSE}});
+    jsn["text"]      = text;
+
+    if (!icon.isEmpty())
+        jsn["icon"] = icon;
+
+    jsn["button"] = QJsonObject({
+        {"action", installed ? "uninstall" : "install"},
+        {"lock", buttonLock ? "true" : "false"}
+    });
+
+    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:status", Utils::stringifyJson(jsn));
+}
+#endif

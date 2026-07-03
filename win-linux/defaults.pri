@@ -163,6 +163,13 @@ updmodule:!build_xp {
     SOURCES += $$PWD/src/cupdatemanager.cpp
 }
 
+!disable_addon_mode {
+    DEFINES += USE_ADDON_MODE
+
+    HEADERS += $$PWD/src/caddonmanager.h
+    SOURCES += $$PWD/src/caddonmanager.cpp
+}
+
 RESOURCES += $$PWD/resources.qrc
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 

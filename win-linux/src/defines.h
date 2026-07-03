@@ -86,6 +86,14 @@
 #define DOWNLOAD_PAGE "https://www.onlyoffice.com/en/download-desktop.aspx"
 #define RELEASE_NOTES "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md"
 
+// Enterprise addon (Business Source License)
+#define URL_BSL_LICENSE         "https://mariadb.com/bsl11/"
+#define ADDON_BSL_NAME          "BSL 1.1"
+// TODO: point to the real Enterprise addon archive distributed by ONLYOFFICE
+#define URL_ADDON_ENTERPRISE    ""
+#define ADDON_ENTERPRISE_ID     "enterprise"
+#define ADDON_INSTALL_SUBDIR    "/addons"
+
 #ifdef __linux
 typedef unsigned char BYTE;
 #else
