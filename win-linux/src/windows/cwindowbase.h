@@ -68,7 +68,7 @@ class CPushButton;
 class CWindowBase : public QMainWindow
 {
 public:
-    explicit CWindowBase(const QRect&);
+    explicit CWindowBase(QWidget *parent = nullptr, const QRect &rc = QRect());
     virtual ~CWindowBase();   
 
     static QRect startRect(const QRect &rc, double &dpi);

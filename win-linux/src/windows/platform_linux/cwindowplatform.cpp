@@ -77,8 +77,8 @@ void AscMainPanel::resizeEvent(QResizeEvent *re)
 }
 
 
-CWindowPlatform::CWindowPlatform(const QRect &rect) :
-    CWindowBase(rect),
+CWindowPlatform::CWindowPlatform(QWidget *parent, const QRect &rect) :
+    CWindowBase(parent, rect),
     CX11Decoration(this),
     m_efectiveFrameMargin(0),
     m_isWindowActive(false)

@@ -211,8 +211,8 @@ static bool isThemeActive()
     return IsThemeActive ? (bool)IsThemeActive() : true;
 }
 
-CWindowPlatform::CWindowPlatform(const QRect &rect) :
-    CWindowBase(rect),
+CWindowPlatform::CWindowPlatform(QWidget *parent, const QRect &rect) :
+    CWindowBase(parent, rect),
     m_dpi(1.0),
     m_hWnd(nullptr),
     m_resAreaWidth(MAIN_WINDOW_BORDER_WIDTH),

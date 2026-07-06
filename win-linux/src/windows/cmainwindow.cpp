@@ -71,7 +71,7 @@ using namespace std::placeholders;
 using namespace NSEditorApi;
 
 CMainWindow::CMainWindow(const QRect &rect) :
-    CWindowPlatform(rect),
+    CWindowPlatform(nullptr, rect),
     CScalingWrapper(m_dpiRatio),
     m_savePortal(QString())
 {

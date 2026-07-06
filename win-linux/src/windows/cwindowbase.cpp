@@ -73,8 +73,8 @@ public:
 };
 
 
-CWindowBase::CWindowBase(const QRect& rect)
-    : QMainWindow(nullptr)
+CWindowBase::CWindowBase(QWidget *parent, const QRect& rect)
+    : QMainWindow(parent)
     , m_pTopButtons(3, nullptr)
     , pimpl{new CWindowBasePrivate}
 {

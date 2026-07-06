@@ -55,7 +55,7 @@ struct FRAME {
 class CWindowPlatform : public CWindowBase
 {
 public:
-    explicit CWindowPlatform(const QRect&);
+    explicit CWindowPlatform(QWidget *parent = nullptr, const QRect &rc = QRect());
     virtual ~CWindowPlatform();
 
 //    void toggleBorderless(bool);
