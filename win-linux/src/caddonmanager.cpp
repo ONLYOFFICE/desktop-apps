@@ -100,6 +100,11 @@ public:
         emit q_ptr->uninstallFinished();
     }
 
+    void stop()
+    {
+        resetDownloader();
+    }
+
     void finishInstall(bool success)
     {
         bInstalling = false;
@@ -191,6 +196,8 @@ void CAddonManager::doAction(Action action)
     } else if (action == Action::Uninstall) {
         if (isInstalled())
             pimpl->uninstall();
+    } else if (action == Action::Stop) {
+        pimpl->stop();
     }
 }
 
