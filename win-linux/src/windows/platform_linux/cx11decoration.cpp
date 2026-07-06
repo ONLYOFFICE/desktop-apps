@@ -361,7 +361,7 @@ void CX11Decoration::freeCursors()
 
 int CX11Decoration::hitTest(int x, int y) const
 {
-    if (m_bIsMaximized)
+    if (m_bIsMaximized || !m_bIsResizable)
         return -1;
 
     QRect rect = m_window->rect();
@@ -558,6 +558,16 @@ void CX11Decoration::switchDecoration(bool on)
 bool CX11Decoration::isDecorated() const
 {
     return m_decoration;
+}
+
+void CX11Decoration::setResizable(bool isResizable)
+{
+    m_bIsResizable = isResizable;
+}
+
+bool CX11Decoration::isResizable() const
+{
+    return m_bIsResizable;
 }
 
 void CX11Decoration::setMaximized(bool bVal)

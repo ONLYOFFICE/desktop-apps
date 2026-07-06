@@ -57,6 +57,7 @@ public:
     explicit CWindowPlatform(QWidget *parent = nullptr, const QRect &rc = QRect());
     virtual ~CWindowPlatform();
 
+    void setResizable(bool);
     void bringToTop();
     void show(bool);
     virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) final;

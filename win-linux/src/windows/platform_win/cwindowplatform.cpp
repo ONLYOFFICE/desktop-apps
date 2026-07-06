@@ -267,10 +267,17 @@ CWindowPlatform::~CWindowPlatform()
 //    }
 //}
 
-//void CWindowPlatform::toggleResizeable()
-//{
-//    m_isResizeable = !m_isResizeable;
-//}
+void CWindowPlatform::setResizable(bool isResizable)
+{
+    if (m_isResizeable != isResizable)
+    {
+        m_isResizeable = isResizable;
+        LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
+        ::SetWindowLong(m_hWnd, GWL_STYLE, m_isResizeable
+                                            ? style | WS_MAXIMIZEBOX
+                                            : style & ~WS_MAXIMIZEBOX);
+    }
+}
 
 void CWindowPlatform::bringToTop()
 {
@@ -470,7 +477,19 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_NCHITTEST: {
-        if (m_borderless && m_isResizeable) {
+        if (!m_isResizeable)
+        {
+            LRESULT hit = DefWindowProc(m_hWnd, msg->message, msg->wParam, msg->lParam);
+            if (hit == HTBOTTOM || hit == HTLEFT || hit == HTRIGHT || hit == HTTOP ||
+                hit == HTBOTTOMLEFT || hit == HTBOTTOMRIGHT || hit == HTTOPLEFT || hit == HTTOPRIGHT)
+            {
+                *result = HTCLIENT;
+                return true;
+            }
+        }
+
+        if (m_borderless)
+        {
             *result = 0;
             RECT rect;
             GetWindowRect(msg->hwnd, &rect);
