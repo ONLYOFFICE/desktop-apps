@@ -111,8 +111,9 @@ public:
 
         if (success)
         {
-            AscAppManager::getInstance().InstallMainAddon(sTmpPath.toStdWString());
-            bRestartRequired = true;
+            int res = AscAppManager::getInstance().InstallMainAddon(sTmpPath.toStdWString());
+            success = (res == 0);
+            bRestartRequired = success;
         }
 
         QFile::remove(sTmpPath);
