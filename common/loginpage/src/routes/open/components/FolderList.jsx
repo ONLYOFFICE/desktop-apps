@@ -2,6 +2,7 @@ import { For, Show } from "solid-js";
 import { openFolder } from "@/sdk";
 import { t } from "@/services/l10n";
 import "./FolderList.styles.css";
+import { usePngIcons } from "@/services/display";
 
 function FolderRow(props) {
   return (
@@ -25,9 +26,12 @@ function FolderRow(props) {
             props.onTogglePin(props.folder.full);
           }}
         >
-          <svg class="icon">
+          {/* <svg class="icon">
             <use href="#pin" />
-          </svg>
+          </svg> */}
+          <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#pin" /></svg>}>
+            <i class="icon tool-icon pin" />
+          </Show>
         </button>
       </div>
     </div>
