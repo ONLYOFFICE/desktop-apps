@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 import { t } from "@/services/l10n.js";
-import { aboutOpen, closeAbout, versionInfo, updatesOn, updateStatus, execUpdateAction } from "@/services/about.js";
+import { aboutOpen, closeAbout, versionInfo, updatesOn, updateStatus, execUpdateAction, addonInfo } from "@/services/about.js";
 import { Dialog, Button } from "@/components";
 import "./about.css";
 
@@ -30,10 +30,39 @@ export default function About() {
                     </span>{" "}
                     {versionInfo().version}
                   </p>
+                  <Show when={versionInfo().edition}>
+                    <div class="about-field" innerHTML={versionInfo().edition} />
+                  </Show>
                 </div>
               </section>
 
-              <div class="about-separator" />
+              <Show when={addonInfo()}>
+                <div class="about-separator" />
+                <section class="about-approw">
+                  <div class="about-logo">
+                    <svg class="ver-logo">
+                      <use href="#kit-logo-light" />
+                      <use href="#kit-logo-dark" />
+                    </svg>
+                  </div>
+                  <div class="about-appinfo">
+                    <p class="about-appname">{addonInfo().name}</p>
+                    <p class="about-version">{t("strVersion", "Version")} {addonInfo().version}</p>
+                    <Show when={addonInfo().license?.url}>
+                      <p class="about-field about-license" style={{margin:0}}>
+                        {t("strLicensedUnder")}{" "}
+                        <a class="about-link" href={addonInfo().license.url} target="_blank" rel="noreferrer">
+                          {addonInfo().license.title ?? addonInfo().license.url}
+                        </a>
+                      </p>
+                    </Show>
+                  </div>
+                </section>
+              </Show>
+
+              <Show when={updatesOn()}>
+                <div class="about-separator" />
+              </Show>
 
               <Show when={updatesOn()}>
                 <section class="about-updates">
@@ -56,9 +85,6 @@ export default function About() {
               </Show>
 
               <div class="about-copyright">
-                <Show when={versionInfo().edition}>
-                  <div class="about-field" innerHTML={versionInfo().edition} />
-                </Show>
                 <Show when={versionInfo().changelog}>
                   <div class="about-field">
                     <a class="about-link" href={versionInfo().changelog} target="_blank" rel="noreferrer">
@@ -66,16 +92,16 @@ export default function About() {
                     </a>
                   </div>
                 </Show>
-                <Show when={versionInfo().link}>
-                  <div class="about-field">
-                    <a class="about-link" href={versionInfo().link} target="_blank" rel="noreferrer">
+                <div class="about-footer-row">
+                  <Show when={versionInfo().rights}>
+                    <div class="about-field about-rights">{versionInfo().rights}</div>
+                  </Show>
+                  <Show when={versionInfo().link}>
+                    <a class="about-link about-field" href={versionInfo().link} target="_blank" rel="noreferrer">
                       {versionInfo().site}
                     </a>
-                  </div>
-                </Show>
-                <Show when={versionInfo().rights}>
-                  <div class="about-field about-rights">{versionInfo().rights}</div>
-                </Show>
+                  </Show>
+                </div>
               </div>
             </div>
           </Show>

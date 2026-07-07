@@ -14,7 +14,7 @@ const SPRITE_CONFIGS = [
   { pattern: "res/img/formats-svg/*.svg",    dest: "res/img/generated/formats.svg" },
   { pattern: "res/img/common-svg/*.svg",     dest: "res/img/generated/common.svg" },
   { pattern: "res/img/update_status/*.svg",  dest: "res/img/generated/update_status.svg" },
-  { pattern: "res/img/idx-logo*.svg",        dest: "res/img/generated/logo.svg" },
+  { pattern: "res/img/*-logo*.svg",           dest: "res/img/generated/logo.svg" },
   { pattern: "res/img/template-type/*.svg",  dest: "res/img/generated/templatetype.svg" },
   { pattern: "res/img/toolicons/1x/*.svg",   dest: "res/img/generated/toolicons.svg" },
   { pattern: "res/img/toolicons20/1x/*.svg", dest: "res/img/generated/toolicons20.svg" },

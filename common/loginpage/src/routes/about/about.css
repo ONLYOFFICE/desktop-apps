@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px 12px;
-  border-bottom: 1px solid var(--border-divider);
+  /*border-bottom: 1px solid var(--border-divider);*/
 }
 
 .dlg-title {
@@ -65,7 +65,7 @@
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 30px;
 }
 
 .about-approw {
@@ -84,7 +84,7 @@
   display: block;
 }
 
-/* Theme-aware logo: show light/dark symbol based on active theme class */
+/* Theme-aware logos: show light/dark symbol based on active theme class */
 .ver-logo use:nth-child(2) {
   display: none;
 }
@@ -216,6 +216,14 @@
   text-decoration: underline;
 }
 
-.about-rights {
+.about-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
   margin-top: 4px;
+}
+
+.about-rights {
+  flex: 1;
 }

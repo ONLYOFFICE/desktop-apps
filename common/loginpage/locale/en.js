@@ -194,4 +194,5 @@ l10n.en = {
     settingsEnableAIDescr: 'Enable AI in the application to add models and use AI-powered functionality',
     settingsEnableAIButton: 'Enable AI',
     aiChatPillLabel: 'AI chat',
+    strLicensedUnder: 'Licensed under',
 }

@@ -8,10 +8,11 @@ const [aboutVisible, setAboutVisible] = createSignal(false);
 const [versionInfo, setVersionInfo] = createSignal(null);
 const [updatesOn, setUpdatesOn] = createSignal(false);
 const [updateStatus, setUpdateStatus] = createSignal(null);
+const [addonInfo, setAddonInfo] = createSignal(null);
 
 let _pendingUpdateAction = null;
 
-export { aboutOpen, aboutVisible, versionInfo, updatesOn, updateStatus };
+export { aboutOpen, aboutVisible, versionInfo, updatesOn, updateStatus, addonInfo };
 
 export function openAbout() {
   setAboutOpen(true);
@@ -38,6 +39,11 @@ export function initAbout() {
         if (ext.trim()) opts.version += ` (${ext.trim()})`;
         setVersionInfo(opts);
         setAboutVisible(true);
+      } catch {}
+    } else if (/addon:status/.test(сmd)) {
+      try {
+        const info = JSON.parse(htmlDecode(param));
+        if (info?.installed) setAddonInfo(info);
       } catch {}
     } else if (/^updates:turn/.test(сmd)) {
       setUpdatesOn(param === "on");
