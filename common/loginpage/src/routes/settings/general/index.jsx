@@ -2,9 +2,10 @@ import { createMemo, batch, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
-import { availableLangs, toggleAI, systemThemeEnabled, userNameError, setUserNameError } from "@/services/settings-sync";
+import { availableLangs, toggleAI, systemThemeEnabled, userNameError, setUserNameError, uninstallAddon } from "@/services/settings-sync";
 import { cmd } from "@/sdk/bridge";
 import styles from "./index.module.css";
+import { addonInfo } from "@/services/about";
 
 export default function GeneralSettings() {
   const countryOptions = createMemo(() => [
@@ -202,6 +203,22 @@ export default function GeneralSettings() {
             </Button>
           </div>
         </div>
+
+        <Show when={addonInfo()}>
+          <div class={styles.divider} />
+
+          <div class={styles.fieldRowAuto}>
+            <div class={styles.fieldLabelBlock}>
+              <span class={styles.fieldLabel}>{t("settRemoveAddon")} *</span>
+              <span class={styles.fieldDescription}>{t("descrRemoveAddon")}</span>
+            </div>
+            <div class={styles.fieldControlEnd}>
+              <Button variant="accent" onClick={uninstallAddon}>
+                {t("btnUninstAddon")}
+              </Button>
+            </div>
+          </div>
+        </Show>
       </div>
     </div>
   );

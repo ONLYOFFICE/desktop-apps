@@ -46,6 +46,7 @@ l10n.en = {
     btnLogin: 'Login',
     btnBrowse: 'Browse',
     btnNext: 'Next',
+    btnUninstAddon: 'Uninstall',
     portalEmptyTitle: 'Connect to your cloud',
     portalEmptyDescr: 'Store your documents in the cloud and access them any time, from anywhere. Share and collaborate on them. Chat in your doc, add comments or share it for review.',
     portalEmptyAdv1: 'Don\'t have a cloud account yet? Go online with ONLYOFFICE Cloud Service and <br />try collaborative capabilities for free.',
@@ -193,6 +194,8 @@ l10n.en = {
     settingsEnableAI: 'Enable AI features',
     settingsEnableAIDescr: 'Enable AI in the application to add models and use AI-powered functionality',
     settingsEnableAIButton: 'Enable AI',
+    settRemoveAddon: 'Go beyond standard editing',
+    descrRemoveAddon: 'ONLYOFFICE Pro Kit and more',
     aiChatPillLabel: 'AI chat',
     strLicensedUnder: 'Licensed under',
 }

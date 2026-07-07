@@ -121,10 +121,12 @@ export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, i
 let _needsRestart = () => false;
 let _toggleAI = () => {};
 let _applySettings = () => {};
+let _removeAddon = () => {};
 
 export const needsRestart = () => _needsRestart();
 export const toggleAI = () => _toggleAI();
 export const applySettings = () => _applySettings();
+export const uninstallAddon = () => _removeAddon();
 
 export function initSettingsSync() {
   const [nativeSnapshot, setNativeSnapshot] = createSignal(null);
@@ -165,6 +167,10 @@ export function initSettingsSync() {
     const newValue = !settings.useai;
     setSettings("useai", newValue);
     cmd("settings:apply", JSON.stringify({ useai: newValue }));
+  };
+
+  _removeAddon = () => {
+    cmd("addon:action", "uninstall");
   };
 
   createEffect(() => setPendingApplyText(getTranslationFor(settings.lang, 'setBtnApply')));
