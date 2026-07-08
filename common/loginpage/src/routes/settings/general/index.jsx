@@ -190,9 +190,9 @@ export default function GeneralSettings() {
           <Switch id="promo-buttons" checked={settings.promoButtons !== false} onChange={(v) => setSettings("promoButtons", v)} />
         </div> */}
 
-        <div class={styles.divider} />
+        {/* <div class={styles.divider} /> */}
 
-        <div class={styles.fieldRowAuto}>
+        {/* <div class={styles.fieldRowAuto}>
           <div class={styles.fieldLabelBlock}>
             <span class={styles.fieldLabel}>{t(settings.useai ? "settingsDisableAI" : "settingsEnableAI")} *</span>
             <span class={styles.fieldDescription}>{t(settings.useai ? "settingsDisableAIDescr" : "settingsEnableAIDescr")}</span>
@@ -202,7 +202,7 @@ export default function GeneralSettings() {
               {t(settings.useai ? "settingsDisableAIButton" : "settingsEnableAIButton")}
             </Button>
           </div>
-        </div>
+        </div> */}
 
         <Show when={addonInfo()}>
           <div class={styles.divider} />
