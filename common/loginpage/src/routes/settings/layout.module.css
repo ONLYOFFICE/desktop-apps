@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
 .header {
@@ -53,6 +54,19 @@
   font-size: 12px;
   line-height: 16px;
   color: var(--text-secondary);
+}
+
+.constIframe {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.constIframeActive {
+  display: block;
 }
 
 .sidebar {
