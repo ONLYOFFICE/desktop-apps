@@ -99,12 +99,19 @@ if ($Sign) {
             (($Arch -eq "arm64") -and ($env:PROCESSOR_ARCHITECTURE -eq "ARM64"))
     )
     {
-        Write-Host ".\vlc-cache-gen $PWD\plugins"
-        & .\vlc-cache-gen "$PWD\plugins"
-        if ($LastExitCode -ne 0) { throw }
+        if (Test-Path -LiteralPath "vlc-cache-gen.exe")
+        {
+            Write-Host ".\vlc-cache-gen $PWD\plugins"
+            & .\vlc-cache-gen "$PWD\plugins"
+            if ($LastExitCode -ne 0) { throw }
 
-        Write-Host "DELETE: vlc-cache-gen.exe"
-        Remove-Item -Force -LiteralPath "vlc-cache-gen.exe"
+            Write-Host "DELETE: vlc-cache-gen.exe"
+            Remove-Item -Force -LiteralPath "vlc-cache-gen.exe"
+        }
+        else
+        {
+            Write-Host "SKIP: vlc-cache-gen.exe not found"
+        }
     }
 
     Set-Location $PSScriptRoot
