@@ -11,8 +11,8 @@ export function initLocale() {
   if (inParams.lang) applyLocale(inParams.lang);
 }
 
-export function t(key) {
-  return translations()[key] ?? key;
+export function t(key, defstring) {
+  return translations()[key] ?? defstring ?? key;
 }
 
 export function applyLocale(locale) {
