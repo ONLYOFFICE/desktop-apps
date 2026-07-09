@@ -10,7 +10,7 @@ function FolderRow(props) {
       <div class="col-name" title={props.folder.name}>
         <div class="icon">
           <svg class="icon">
-            <use href="#folder-small" />
+            <use href="#foldergray" />
           </svg>
         </div>
         <p class="name">{props.folder.name}</p>
