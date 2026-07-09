@@ -8,7 +8,6 @@ import { initSettingsSync } from "@/services/settings-sync";
 import { initAbout } from "@/services/about";
 import { initPortals } from "@/services/portals";
 import { initAiPanel } from "@/services/ai-panel";
-import { settings } from "@/stores/settings";
 import { aichat } from "@/stores/aichat";
 import "./styles/main.css";
 import "./styles/layout.css";
@@ -16,7 +15,7 @@ import "./styles/layout.css";
 function Shell(props) {
   const location = useLocation();
   const isSettings = () => location.pathname.startsWith("/settings");
-  const aiActive = () => settings.useai && aichat.open && !isSettings();
+  const aiActive = () => aichat.available && aichat.open && !isSettings();
 
   createEffect(() => {
     document.documentElement.style.setProperty("--ai-w", aiActive() ? `${aichat.width}px` : "0px");
@@ -29,7 +28,7 @@ function Shell(props) {
       </div>
       <div class="col-center">
         {props.children}
-        <Show when={settings.useai}>
+        <Show when={aichat.available}>
           <div style={{ display: !aichat.open && !isSettings() ? "contents" : "none" }}>
             <AiTogglePill />
           </div>
@@ -38,7 +37,7 @@ function Shell(props) {
           </div>
         </Show>
       </div>
-      <Show when={settings.useai}>
+      <Show when={aichat.available}>
         <div class="col-ai" style={{ display: aiActive() ? undefined : "none" }}>
           <AiPanel />
         </div>

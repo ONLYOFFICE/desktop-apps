@@ -9,6 +9,7 @@ const defaultAichat = {
   open: true,
   width: AI_PANEL_DEFAULT_WIDTH,
   url: "",
+  available: false,
 };
 
 const persistedKeys = ["open", "width"];
@@ -42,6 +43,10 @@ export function collapsePanel() {
 
 export function expandPanel() {
   setAichat("open", true);
+}
+
+export function setChatAvialable(value) {
+  setAichat("available", value);
 }
 
 export { aichat, setAichat, defaultAichat };

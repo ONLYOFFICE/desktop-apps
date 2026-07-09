@@ -2,6 +2,7 @@ import { createSignal, onCleanup } from "solid-js";
 import { onNativeMessage } from "@/sdk/events";
 import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
+import { setChatAvialable } from "@/stores/aichat";
 
 const [aboutOpen, setAboutOpen] = createSignal(false);
 const [aboutVisible, setAboutVisible] = createSignal(false);
@@ -27,8 +28,8 @@ export function execUpdateAction() {
 }
 
 export function initAbout() {
-  const unsub = onNativeMessage((сmd, param) => {
-    if (/app:version/.test(сmd)) {
+  const unsub = onNativeMessage((cmd, param) => {
+    if (/app:version/.test(cmd)) {
       try {
         const opts = JSON.parse(htmlDecode(param));
         if (!opts.site && opts.link) opts.site = opts.link.replace(/^https?:\/\//, "");
@@ -43,7 +44,8 @@ export function initAbout() {
     } else if (/addon:status/.test(cmd)) {
       try {
         const info = JSON.parse(htmlDecode(param));
-        if (info?.installed) setAddonInfo(info);
+        setAddonInfo(info);
+        setChatAvialable(info?.installed);
       } catch {}
     } else if (/^updates:turn/.test(cmd)) {
       setUpdatesOn(param === "on");
