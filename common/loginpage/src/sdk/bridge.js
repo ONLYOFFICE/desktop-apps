@@ -35,6 +35,6 @@ for (const e of _events) {
   };
 }
 
-export function cmd(name, param) {
+export function command(name, param) {
   sdk.execCommand(name, typeof param === "string" ? param : JSON.stringify(param));
 }

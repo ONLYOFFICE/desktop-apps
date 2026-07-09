@@ -1,9 +1,9 @@
 import { createSignal } from "solid-js";
-import { cmd } from "./bridge";
+import { command } from "./bridge";
 import { onNativeMessage } from "./events";
 
 export function signalAppReady() {
-  cmd("app:onready", "");
+  command("app:onready", "");
 }
 
 const [appReady, setAppReady] = createSignal(false);

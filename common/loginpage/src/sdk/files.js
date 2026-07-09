@@ -1,21 +1,21 @@
-import { cmd } from "./bridge";
+import { command } from "./bridge";
 
 const sdk = window.AscDesktopEditor;
 
 export function createDocument(kind) {
-  cmd("create:new", kind);
+  command("create:new", kind);
 }
 
 export function openLocal() {
-  cmd("open:folder", "");
+  command("open:folder", "");
 }
 
 export function openFolder(path) {
-  cmd("open:folder", path);
+  command("open:folder", path);
 }
 
 export function openRecentFile(model) {
-  cmd("open:recent", {
+  command("open:recent", {
     id: model.fileid,
     name: model.name,
     path: model.path,
@@ -27,7 +27,7 @@ export function openRecentFile(model) {
 }
 
 export function openRecoveryFile(model) {
-  cmd("open:recent", {
+  command("open:recent", {
     id: model.fileid,
     name: model.name,
     path: model.path,
@@ -39,7 +39,7 @@ export function openRecoveryFile(model) {
 }
 
 export function exploreFile(model) {
-  cmd("files:explore", {
+  command("files:explore", {
     path: model.path,
     id: model.fileid,
     hash: model.hash,
@@ -47,7 +47,7 @@ export function exploreFile(model) {
 }
 
 export function checkFiles(hashMap) {
-  cmd("files:check", hashMap);
+  command("files:check", hashMap);
 }
 
 export function dropOfficeFiles() {

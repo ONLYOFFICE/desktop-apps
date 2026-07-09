@@ -1,6 +1,6 @@
 import { createSignal, onCleanup } from "solid-js";
 import { onNativeMessage } from "@/sdk/events";
-import { cmd } from "@/sdk/bridge";
+import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
 
 const [aboutOpen, setAboutOpen] = createSignal(false);
@@ -23,7 +23,7 @@ export function closeAbout() {
 }
 
 export function execUpdateAction() {
-  if (_pendingUpdateAction) cmd("updates:action", _pendingUpdateAction);
+  if (_pendingUpdateAction) command("updates:action", _pendingUpdateAction);
 }
 
 export function initAbout() {
@@ -40,14 +40,14 @@ export function initAbout() {
         setVersionInfo(opts);
         setAboutVisible(true);
       } catch {}
-    } else if (/addon:status/.test(сmd)) {
+    } else if (/addon:status/.test(cmd)) {
       try {
         const info = JSON.parse(htmlDecode(param));
         if (info?.installed) setAddonInfo(info);
       } catch {}
-    } else if (/^updates:turn/.test(сmd)) {
+    } else if (/^updates:turn/.test(cmd)) {
       setUpdatesOn(param === "on");
-    } else if (/updates:status/.test(сmd)) {
+    } else if (/updates:status/.test(cmd)) {
       try {
         const info = JSON.parse(param);
         setUpdateStatus(info);

@@ -3,7 +3,7 @@ import { t } from "@/services/l10n";
 import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
 import { availableLangs, toggleAI, systemThemeEnabled, userNameError, setUserNameError, uninstallAddon } from "@/services/settings-sync";
-import { cmd } from "@/sdk/bridge";
+import { command } from "@/sdk/bridge";
 import styles from "./index.module.css";
 import { addonInfo } from "@/services/about";
 
@@ -62,7 +62,7 @@ export default function GeneralSettings() {
   ]);
 
   function handleReset() {
-    cmd("settings:get", "username");
+    command("settings:get", "username");
   }
 
 

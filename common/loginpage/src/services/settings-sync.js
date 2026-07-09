@@ -2,7 +2,7 @@ import { createEffect, createMemo, createSignal, onCleanup, batch } from "solid-
 import { settings, setSettings, themesMap, defs as themeDefs } from "@/stores/settings";
 import { getPluginSettings } from "@/stores/plugin-settings";
 import { onNativeMessage } from "@/sdk/events";
-import { cmd } from "@/sdk/bridge";
+import { command } from "@/sdk/bridge";
 import { applyLocale, getTranslationFor } from "@/services/l10n";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/sdk/app";
@@ -138,7 +138,7 @@ export function initSettingsSync() {
   if (storedUsername) {
     setSettings("userName", storedUsername);
   } else {
-    cmd("settings:get", "username");
+    command("settings:get", "username");
   }
 
   const nativevars = window.RendererProcessVariable;
@@ -166,11 +166,11 @@ export function initSettingsSync() {
   _toggleAI = () => {
     const newValue = !settings.useai;
     setSettings("useai", newValue);
-    cmd("settings:apply", JSON.stringify({ useai: newValue }));
+    command("settings:apply", JSON.stringify({ useai: newValue }));
   };
 
   _removeAddon = () => {
-    cmd("addon:action", "uninstall");
+    command("addon:action", "uninstall");
   };
 
   createEffect(() => setPendingApplyText(getTranslationFor(settings.lang, 'setBtnApply')));
@@ -223,7 +223,7 @@ export function initSettingsSync() {
     // applyThemeToDom(typeof settings.theme === 'string' ? settings.theme : '');
     // applyLocale(lang);
 
-    cmd("settings:apply", JSON.stringify({
+    command("settings:apply", JSON.stringify({
       username: settings.userName,
       langid: settings.lang,
       uitheme: settings.theme,

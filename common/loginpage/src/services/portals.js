@@ -1,6 +1,6 @@
 import { createSignal, onCleanup } from "solid-js";
 import { onNativeMessage, onAuthChecked } from "@/sdk/events.js";
-import { cmd } from "@/sdk/bridge.js";
+import { command } from "@/sdk/bridge.js";
 import { getExternalClouds,
         sendProviderList,
         openPortal as sdkOpenPortal,
@@ -130,7 +130,7 @@ export function forgetConnectedPortal(portal) {
 }
 
 export function connectToProvider(provider, url) {
-  cmd(
+  command(
     "auth:outer",
     JSON.stringify({
       type: "outer",

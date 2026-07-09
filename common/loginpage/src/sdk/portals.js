@@ -1,4 +1,4 @@
-import { cmd } from "./bridge.js";
+import { command } from "./bridge.js";
 
 // export const relpath = !/mac os/i.test(navigator.userAgent) ? "." : "..";
 export const relpath = !/mac os/i.test(navigator.userAgent) ? ".." : "..";
@@ -13,15 +13,15 @@ export function getExternalClouds() {
 }
 
 export function sendProviderList(list) {
-  cmd("provider:list", JSON.stringify(list));
+  command("provider:list", JSON.stringify(list));
 }
 
 export function openPortal(portal, provider, entrypage) {
-  cmd("portal:open", JSON.stringify({ portal, provider, entrypage }));
+  command("portal:open", JSON.stringify({ portal, provider, entrypage }));
 }
 
 export function logoutPortal(domain, extra) {
-  cmd("portal:logout", JSON.stringify({ domain, ...(extra ? { extra } : {}) }));
+  command("portal:logout", JSON.stringify({ domain, ...(extra ? { extra } : {}) }));
 }
 
 export function checkPortalsAuth(portals) {

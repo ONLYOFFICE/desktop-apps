@@ -1,4 +1,4 @@
-import { cmd } from "./bridge";
+import { command } from "./bridge";
 import { parseFileFormat } from "./format";
 import { formatDate } from "@/utils/formatDate.js";
 
@@ -27,7 +27,7 @@ export function listRecovers() {
 }
 
 export function pinRecent(id, pinned) {
-  cmd("recent:pinned", { id, pinned });
+  command("recent:pinned", { id, pinned });
 }
 
 export function removeRecent(id) {
