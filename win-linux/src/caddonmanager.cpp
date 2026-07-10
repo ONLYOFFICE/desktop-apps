@@ -37,6 +37,10 @@
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
+#ifdef _WIN32
+# include <tchar.h>
+# include <wininet.h>
+#endif
 
 #include <QFile>
 #include "../../../core/DesktopEditor/common/Directory.h"
@@ -75,6 +79,9 @@ public:
 
         // CFileDownloader writes directly to the target path and reports through its
         // own worker thread, so the callbacks are marshaled back to the GUI thread.
+#ifdef _WIN32
+        DeleteUrlCacheEntryW(_T(URL_ADDON_ENTERPRISE));
+#endif
         pDownloader = new CFileDownloader(QString(URL_ADDON_ENTERPRISE).toStdWString(), false);
         pDownloader->SetFilePath(sTmpPath.toStdWString());
         pDownloader->SetEvent_OnProgress(
