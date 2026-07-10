@@ -195,6 +195,7 @@ public:
     static bool             upgradeInProgress();
     static void             setUpgradeInProgress(bool);
     static void             syncUpgradeButtons();
+    static void             showUpgradeDialog(QWidget *parent, double dpiRatio);
 #endif
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = L"");

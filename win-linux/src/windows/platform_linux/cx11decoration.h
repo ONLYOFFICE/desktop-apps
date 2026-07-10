@@ -68,6 +68,8 @@ public:
     void turnOn();
     void turnOff();
     bool isDecorated() const;
+    void setResizable(bool);
+    bool isResizable() const;
     void setMaximized(bool);
     void setMinimized();
     void raiseWindow();
@@ -90,6 +92,7 @@ private:
     bool m_decoration;
     int m_frameMargin;
     bool m_bIsMaximized;
+    bool m_bIsResizable = true;
     bool need_to_check_motion = false;
     QSize m_startSize;
 

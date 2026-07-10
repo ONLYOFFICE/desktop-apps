@@ -37,6 +37,10 @@
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
+#ifdef _WIN32
+# include <tchar.h>
+# include <wininet.h>
+#endif
 
 #include <QFile>
 #include "../../../core/DesktopEditor/common/Directory.h"
@@ -71,10 +75,15 @@ public:
         resetDownloader();
 
         bInstalling = true;
+        nLastProgress = -1;
+
         emit q_ptr->progressChanged(0);
 
         // CFileDownloader writes directly to the target path and reports through its
         // own worker thread, so the callbacks are marshaled back to the GUI thread.
+#ifdef _WIN32
+        DeleteUrlCacheEntryW(_T(URL_ADDON_ENTERPRISE));
+#endif
         pDownloader = new CFileDownloader(QString(URL_ADDON_ENTERPRISE).toStdWString(), false);
         pDownloader->SetFilePath(sTmpPath.toStdWString());
         pDownloader->SetEvent_OnProgress(
@@ -100,14 +109,20 @@ public:
         emit q_ptr->uninstallFinished();
     }
 
+    void stop()
+    {
+        resetDownloader();
+    }
+
     void finishInstall(bool success)
     {
         bInstalling = false;
 
         if (success)
         {
-            AscAppManager::getInstance().InstallMainAddon(sTmpPath.toStdWString());
-            bRestartRequired = true;
+            int res = AscAppManager::getInstance().InstallMainAddon(sTmpPath.toStdWString());
+            success = (res == 0);
+            bRestartRequired = success;
         }
 
         QFile::remove(sTmpPath);
@@ -134,6 +149,7 @@ public:
     // after an application restart (plugins are read at startup).
     bool  bRestartRequired = false;
     bool  bInstalling = false;
+    int   nLastProgress = -1;
     
     CAddonManager *q_ptr;
 
@@ -146,7 +162,11 @@ private slots:
         else if (percent > 100)
             percent = 100;
 
-        emit q_ptr->progressChanged(percent);
+        if (percent > nLastProgress)
+        {
+            nLastProgress = percent;
+            emit q_ptr->progressChanged(percent);
+        }
     }
 
     void onComplete(int error)
@@ -191,6 +211,8 @@ void CAddonManager::doAction(Action action)
     } else if (action == Action::Uninstall) {
         if (isInstalled())
             pimpl->uninstall();
+    } else if (action == Action::Stop) {
+        pimpl->stop();
     }
 }
 

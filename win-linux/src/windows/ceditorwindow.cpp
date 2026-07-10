@@ -48,7 +48,7 @@
 
 
 CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
-    : CWindowPlatform(rect)
+    : CWindowPlatform(nullptr, rect)
     , CScalingWrapper(m_dpiRatio)
     , d_ptr(new CEditorWindowPrivate(this))
 {
@@ -56,7 +56,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 }
 
 CEditorWindow::CEditorWindow(const QRect &rect, const COpenOptions &opts)
-    : CWindowPlatform(rect)
+    : CWindowPlatform(nullptr, rect)
     , CScalingWrapper(m_dpiRatio)
 {
     if (CTabPanel *panel = CEditorTools::createEditorPanel(opts, this)) {

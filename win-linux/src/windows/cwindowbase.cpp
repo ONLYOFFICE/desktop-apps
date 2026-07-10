@@ -73,8 +73,8 @@ public:
 };
 
 
-CWindowBase::CWindowBase(const QRect& rect)
-    : QMainWindow(nullptr)
+CWindowBase::CWindowBase(QWidget *parent, const QRect& rect)
+    : QMainWindow(parent)
     , m_pTopButtons(3, nullptr)
     , pimpl{new CWindowBasePrivate}
 {
@@ -166,7 +166,7 @@ void CWindowBase::initUpgradeButton()
     connect(m_pButtonUpgrade, &QPushButton::clicked, this, [=]() {
         AscAppManager::setUpgradeInProgress(true);
         AscAppManager::syncUpgradeButtons();
-        // TODO: handle the event
+        AscAppManager::showUpgradeDialog(this, m_dpiRatio);
     });
 }
 

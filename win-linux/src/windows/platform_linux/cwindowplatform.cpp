@@ -77,8 +77,8 @@ void AscMainPanel::resizeEvent(QResizeEvent *re)
 }
 
 
-CWindowPlatform::CWindowPlatform(const QRect &rect) :
-    CWindowBase(rect),
+CWindowPlatform::CWindowPlatform(QWidget *parent, const QRect &rect) :
+    CWindowBase(parent, rect),
     CX11Decoration(this),
     m_efectiveFrameMargin(0),
     m_isWindowActive(false)
@@ -108,6 +108,21 @@ CWindowPlatform::~CWindowPlatform()
 }
 
 /** Public **/
+
+void CWindowPlatform::setResizable(bool isResizable)
+{
+    if (CX11Decoration::isResizable() != isResizable) {
+        CX11Decoration::setResizable(isResizable);
+        if (CX11Decoration::isDecorated()) {
+            if (isResizable) {
+                setMinimumSize(0, 0);
+                setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+            } else {
+                setFixedSize(size());
+            }
+        }
+    }
+}
 
 void CWindowPlatform::bringToTop()
 {
@@ -324,7 +339,7 @@ void CWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
 
 void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *me)
 {
-    if (m_boxTitleBtns) {
+    if (m_boxTitleBtns && CX11Decoration::isResizable()) {
         QRect titleRect = m_boxTitleBtns->geometry().translated(m_efectiveFrameMargin, m_efectiveFrameMargin);
         if (titleRect.contains(me->pos()))
             onMaximizeEvent();

@@ -420,16 +420,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         if ( !(cmd.find(L"addon:action") == std::wstring::npos) ) {     // params: install
             if (m_private->m_pAddonManager) {
                 const wstring param = pData->get_Param();
-                CAddonManager::Action action =
-                    param == L"install"
-                        ? CAddonManager::Action::Install
-                        : param == L"uninstall"
-                              ? CAddonManager::Action::Uninstall
-                              : CAddonManager::Action::None;
-
-                m_private->m_bUpgradeInProgress = true;
-                syncUpgradeButtons();
-                m_private->m_pAddonManager->doAction(action);
+                if (param == L"install")
+                {
+                    m_private->m_bUpgradeInProgress = true;
+                    syncUpgradeButtons();
+                    if (m_pMainWindow)
+                        showUpgradeDialog(m_pMainWindow, m_pMainWindow->m_dpiRatio);
+                }
+                else if (param == L"uninstall")
+                {
+                    m_private->m_bUpgradeInProgress = true;
+                    syncUpgradeButtons();
+                    m_private->m_pAddonManager->doAction(CAddonManager::Action::Uninstall);
+                }
                 return true;
             }
         } else
@@ -1238,11 +1241,19 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                 {
                     m_private->m_bUpgradeInProgress = false;
                     syncUpgradeButtons();
-                    if (m_pMainWindow)
+
+                    if (success)
                     {
-                        if (success)
+                        if (m_private->m_upgradeDialog)
+                            m_private->m_upgradeDialog->showFinalPage();
+                        if (m_pMainWindow)
                             m_pMainWindow->sendAddonStatusToStartPage();
-                        else
+                    }
+                    else
+                    {
+                        if (m_private->m_upgradeDialog)
+                            m_private->m_upgradeDialog->showStartPage();
+                        if (m_pMainWindow)
                             m_pMainWindow->sendAddonStatusToStartPage(tr("Installation failed",
                                                                       "CAddonManager"), "error");
                     }
@@ -1260,6 +1271,9 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
         connect(m_private->m_pAddonManager, &CAddonManager::progressChanged, this,
                 [this](int progress)
                 {
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->setProgress(progress);
+
                     if (m_pMainWindow)
                         m_pMainWindow->sendAddonStatusToStartPage(tr("Installing... %1%", "CAddonManager")
                                                       .arg(progress), "load", true);
@@ -1915,6 +1929,51 @@ void CAscApplicationManagerWrapper::syncUpgradeButtons()
             editorWindow->showUpgradeButton();
         }
     }
+}
+
+void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, double dpiRatio)
+{
+    APP_CAST(_app);
+
+    QSize size(334 * dpiRatio, 400 * dpiRatio);
+    QRect rc(QPoint(0, 0), size);
+    rc.moveCenter(parent->geometry().center());
+
+#ifdef __linux__
+    WindowHelper::CParentDisable oDisabler(parent);
+#endif
+    _app.m_private->m_upgradeDialog = new UpgradeDialog(parent, rc);
+    _app.m_private->m_upgradeDialog->setModal();
+    _app.m_private->m_upgradeDialog->setEnabled(true);
+    _app.m_private->m_upgradeDialog->setResizable(false);
+    _app.connect(_app.m_private->m_upgradeDialog, &UpgradeDialog::installClicked, &_app,
+        [&_app]()
+        {
+            _app.m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
+        });
+    int result = _app.m_private->m_upgradeDialog->exec();
+    delete _app.m_private->m_upgradeDialog;
+    _app.m_private->m_upgradeDialog = nullptr;
+
+    switch (result)
+    {
+    case UpgradeDialog::RestartNow:
+    {
+        _app.m_private->m_needRestart = true;
+        AscAppManager::closeAppWindows();
+        break;
+    }    
+    case UpgradeDialog::Rejected:
+    {
+        _app.m_private->m_pAddonManager->doAction(CAddonManager::Action::Stop);
+        _app.m_private->m_bUpgradeInProgress = false;
+        syncUpgradeButtons();
+        break;
+    }
+    case UpgradeDialog::RestartLater:
+    default:
+        break;
+    }    
 }
 #endif
 

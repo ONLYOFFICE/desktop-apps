@@ -45,7 +45,7 @@ public:
     explicit CAddonManager(QObject *parent = nullptr);
     ~CAddonManager();
 
-    enum class Action { None, Install, Uninstall };
+    enum class Action { None, Install, Uninstall, Stop };
 
     // Entry points called from the start-page command dispatcher.
     void doAction(Action action); // page button was clicked
