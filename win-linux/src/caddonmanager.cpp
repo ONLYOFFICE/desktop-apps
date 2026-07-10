@@ -75,6 +75,8 @@ public:
         resetDownloader();
 
         bInstalling = true;
+        nLastProgress = -1;
+
         emit q_ptr->progressChanged(0);
 
         // CFileDownloader writes directly to the target path and reports through its
@@ -147,6 +149,7 @@ public:
     // after an application restart (plugins are read at startup).
     bool  bRestartRequired = false;
     bool  bInstalling = false;
+    int   nLastProgress = -1;
     
     CAddonManager *q_ptr;
 
@@ -159,7 +162,11 @@ private slots:
         else if (percent > 100)
             percent = 100;
 
-        emit q_ptr->progressChanged(percent);
+        if (percent > nLastProgress)
+        {
+            nLastProgress = percent;
+            emit q_ptr->progressChanged(percent);
+        }
     }
 
     void onComplete(int error)
