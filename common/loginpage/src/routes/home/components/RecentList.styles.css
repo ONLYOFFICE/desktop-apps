@@ -182,6 +182,10 @@
   }
 }
 
+.file-list-body .row:has(.more[data-expanded]) .col-actions .more {
+  opacity: 1;
+}
+
 @container (max-width: 980px) {
   #box-recent {
     .file-list-head,

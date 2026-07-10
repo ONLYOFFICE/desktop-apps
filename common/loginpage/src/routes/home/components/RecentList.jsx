@@ -36,7 +36,9 @@ function RecentRow(props) {
           pinned: props.model.pinned,
           lost: props.model.exist === false,
         }}
-        onClick={() => openRecentFile(props.model)}
+        onClick={() => {
+          openRecentFile(props.model);
+        }}
       >
         <div class="col-name" title={props.model.fullName}>
           <div class="icon">
@@ -78,13 +80,13 @@ function RecentRow(props) {
             </Show>
           </button>
           <Show when={props.model.type !== "folder"}>
-            <DropdownMenu>
+            <DropdownMenu onOpenChange={(open) => {}}>
               <DropdownMenu.Trigger class="more" onClick={(e) => e.stopPropagation()}>
                 <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#more" /></svg>}>
                   <i class="icon tool-icon more" />
                 </Show>
               </DropdownMenu.Trigger>
-              <DropdownMenu.Content onContextMenu={(e) => e.stopPropagation()}>
+              <DropdownMenu.Content onClick={(e) => e.stopPropagation()} onContextMenu={(e) => e.stopPropagation()}>
                 <FileMenuItems
                   menu={DropdownMenu}
                   model={props.model}
