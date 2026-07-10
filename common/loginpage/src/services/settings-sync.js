@@ -2,8 +2,8 @@ import { createEffect, createMemo, createSignal, onCleanup, batch } from "solid-
 import { settings, setSettings, themesMap, defs as themeDefs } from "@/stores/settings";
 import { getPluginSettings } from "@/stores/plugin-settings";
 import { onNativeMessage } from "@/sdk/events";
+import { applyLocale, getTranslationFor, isRTL } from "@/services/l10n";
 import { command } from "@/sdk/bridge";
-import { applyLocale, getTranslationFor } from "@/services/l10n";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/sdk/app";
 
@@ -122,11 +122,13 @@ let _needsRestart = () => false;
 let _toggleAI = () => {};
 let _applySettings = () => {};
 let _removeAddon = () => {};
+let _textDirectionChanged = () => {};
 
 export const needsRestart = () => _needsRestart();
 export const toggleAI = () => _toggleAI();
 export const applySettings = () => _applySettings();
 export const uninstallAddon = () => _removeAddon();
+export const textDirectionChanged = () => _textDirectionChanged();
 
 export function initSettingsSync() {
   const [nativeSnapshot, setNativeSnapshot] = createSignal(null);
@@ -157,11 +159,19 @@ export function initSettingsSync() {
     const snap = nativeSnapshot();
     if (!snap) return false;
     return (
-      settings.lang !== (snap.locale?.current ?? settings.lang) ||
+      _textDirectionChanged() ||
+      langRestartPending() ||
       settings.scaling !== nativeScalingToStore(snap.uiscaling) ||
       settings.gpuMode !== !!snap.usegpu
     );
   });
+
+  _textDirectionChanged = createMemo(() => {
+    const snap = nativeSnapshot();
+    if (!snap) return false;
+
+    return isRTL(settings.lang) !== isRTL(snap.locale?.current ?? settings.lang);
+  })
 
   _toggleAI = () => {
     const newValue = !settings.useai;
@@ -222,6 +232,7 @@ export function initSettingsSync() {
 
     // applyThemeToDom(typeof settings.theme === 'string' ? settings.theme : '');
     // applyLocale(lang);
+    !langRestartPending() && !_textDirectionChanged() && applyLocale(lang);
 
     command("settings:apply", JSON.stringify({
       username: settings.userName,

@@ -2,7 +2,7 @@ import { createMemo, batch, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
-import { availableLangs, toggleAI, systemThemeEnabled, userNameError, setUserNameError, uninstallAddon } from "@/services/settings-sync";
+import { availableLangs, toggleAI, systemThemeEnabled, userNameError, setUserNameError, uninstallAddon, textDirectionChanged } from "@/services/settings-sync";
 import { command } from "@/sdk/bridge";
 import styles from "./index.module.css";
 import { addonInfo } from "@/services/about";
@@ -101,7 +101,7 @@ export default function GeneralSettings() {
 
         <Show when={languageOptions().length}>
           <div class={styles.fieldRow}>
-            <span class={styles.fieldLabel}>{t("settLanguage")}</span>
+            <span class={styles.fieldLabel}>{t("settLanguage")}{textDirectionChanged() && ' *'}</span>
             <div class={styles.fieldControl}>
               <Select options={languageOptions()} value={settings.lang} onChange={(v) => setSettings("lang", v)} disallowEmptySelection>
                 <Select.Trigger class={styles.fullWidth} />
