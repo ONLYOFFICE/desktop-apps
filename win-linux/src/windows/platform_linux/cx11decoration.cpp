@@ -434,7 +434,7 @@ void CX11Decoration::checkCursor(QPoint & p)
 
 void CX11Decoration::dispatchMouseDown(QMouseEvent *e)
 {
-    if (m_decoration) return;
+    if (m_decoration || ! m_title) return;
 
     if (e->buttons() == Qt::LeftButton) {
         QRect oTitleRect = m_title->geometry();
