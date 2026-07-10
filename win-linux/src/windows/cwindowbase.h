@@ -89,6 +89,7 @@ public:
     virtual void applyTheme(const std::wstring&);
 
 protected:
+    friend class CAscApplicationManagerWrapper;
 #ifdef __linux__
     friend class AscMainPanel;
 #endif

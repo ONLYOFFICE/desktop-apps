@@ -166,8 +166,14 @@ updmodule:!build_xp {
 !disable_addon_mode {
     DEFINES += USE_ADDON_MODE
 
-    HEADERS += $$PWD/src/caddonmanager.h
-    SOURCES += $$PWD/src/caddonmanager.cpp
+    HEADERS += \
+        $$PWD/src/caddonmanager.h \
+        $$PWD/src/dialogs/ui_upgradedialog.h \
+        $$PWD/src/dialogs/upgradedialog.h
+
+    SOURCES += \
+        $$PWD/src/caddonmanager.cpp \
+        $$PWD/src/dialogs/upgradedialog.cpp
 }
 
 RESOURCES += $$PWD/resources.qrc

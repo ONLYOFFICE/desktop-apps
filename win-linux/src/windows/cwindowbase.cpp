@@ -166,7 +166,7 @@ void CWindowBase::initUpgradeButton()
     connect(m_pButtonUpgrade, &QPushButton::clicked, this, [=]() {
         AscAppManager::setUpgradeInProgress(true);
         AscAppManager::syncUpgradeButtons();
-        // TODO: handle the event
+        AscAppManager::showUpgradeDialog(this, m_dpiRatio);
     });
 }
 

@@ -66,6 +66,7 @@
 
 #ifdef USE_ADDON_MODE
 # include "caddonmanager.h"
+# include "dialogs/upgradedialog.h"
 #endif
 
 class CAscApplicationManagerWrapper_Private
@@ -602,6 +603,7 @@ public:
 
 #ifdef USE_ADDON_MODE
     CAddonManager *m_pAddonManager = nullptr;
+    UpgradeDialog *m_upgradeDialog = nullptr;
     bool m_bUpgradeInProgress = false;
 #endif
 };

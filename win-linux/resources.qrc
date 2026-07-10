@@ -142,6 +142,10 @@
         <file alias="buttons.svg">res/icons/webeditor/buttons.svg</file>
         <file alias="secure.svg">res/icons/webeditor/secureicon.svg</file>
     </qresource>
+    <qresource prefix="/addon/icons">
+        <file alias="check.svg">res/icons/addon/check.svg</file>
+        <file alias="pro-tools.svg">res/icons/addon/pro-tools.svg</file>
+    </qresource>
     <qresource prefix="/menu/icons">
         <file alias="iconssmall_1x.png">res/icons/menu/iconssmall.png</file>
         <file alias="iconssmall_1.25x.png">res/icons/menu/iconssmall@1.25x.png</file>
@@ -159,6 +163,7 @@
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
         <file alias="download.qss">res/styles/download.qss</file>
         <file alias="openssl.qss">res/styles/openssl.qss</file>
+        <file alias="upgradedialog.qss">res/styles/upgradedialog.qss</file>
     </qresource>
     <qresource prefix="/styles@1.5x">
         <file alias="styles.qss">res/styles/styles@1.5x.qss</file>
