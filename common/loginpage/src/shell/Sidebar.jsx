@@ -2,12 +2,17 @@ import { For, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { openAbout, aboutVisible } from "@/services/about";
 import { openPromo, promoVisible, promoButtons } from "@/services/promotion";
+import { aichat, expandPanel } from "@/stores/aichat";
 import { MenuItem } from "./MenuItem.jsx";
 import "./Sidebar.styles.css";
 
 export default function Sidebar() {
   return (
     <nav class="tool-menu">
+      <Show when={aichat.available}>
+        <MenuItem onClick={() => expandPanel()} icon="#aichat" label={t("actAiChat")} />
+        <li class="menu-item separator" />
+      </Show>
       <MenuItem href="/" icon="#home" label={t("actHome")} end />
       <MenuItem href="/open" icon="#folder" label={t("actOpenLocal")} />
       <MenuItem action="templates" href="/templates" icon="#templates" label={t("actTemplates")} />

@@ -101,6 +101,7 @@ l10n.en = {
     actPreviewTemplates: 'Template',
     actClouds: 'Clouds',
     actHome: 'Home',
+    actAiChat: 'AI chat',
     licKeyHolder: 'input activation key',
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
@@ -196,6 +197,5 @@ l10n.en = {
     settingsEnableAIButton: 'Enable AI',
     settRemoveAddon: 'Go beyond standard editing',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit and more',
-    aiChatPillLabel: 'AI chat',
     strLicensedUnder: 'Licensed under',
 }
