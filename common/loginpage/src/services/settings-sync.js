@@ -116,16 +116,15 @@ const [systemThemeEnabled, setSystemThemeEnabled] = createSignal(true);
 const [isOptsChanged, setIsOptsChanged] = createSignal(false);
 const [pendingApplyText, setPendingApplyText] = createSignal(null);
 const [userNameError, setUserNameError] = createSignal(false);
-export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isOptsChanged, setIsOptsChanged, pendingApplyText, userNameError, setUserNameError };
+const [appliedUseAi, setAppliedUseAi] = createSignal(settings.useai);
+export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isOptsChanged, setIsOptsChanged, pendingApplyText, userNameError, setUserNameError, appliedUseAi };
 
 let _needsRestart = () => false;
-let _toggleAI = () => {};
 let _applySettings = () => {};
 let _removeAddon = () => {};
 let _textDirectionChanged = () => {};
 
 export const needsRestart = () => _needsRestart();
-export const toggleAI = () => _toggleAI();
 export const applySettings = () => _applySettings();
 export const uninstallAddon = () => _removeAddon();
 export const textDirectionChanged = () => _textDirectionChanged();
@@ -173,11 +172,6 @@ export function initSettingsSync() {
     return isRTL(settings.lang) !== isRTL(snap.locale?.current ?? settings.lang);
   })
 
-  _toggleAI = () => {
-    const newValue = !settings.useai;
-    setSettings("useai", newValue);
-    command("settings:apply", JSON.stringify({ useai: newValue }));
-  };
 
   _removeAddon = () => {
     command("addon:action", "uninstall");
@@ -190,6 +184,7 @@ export function initSettingsSync() {
     settings.lang; settings.scaling; settings.theme;
     settings.checkUpdates; settings.launchMode; settings.spellCheck;
     settings.gpuMode; settings.promoButtons; settings.userName;
+    settings.useai;
     if (!initialized) return;
     setIsOptsChanged(true);
   });
@@ -242,6 +237,7 @@ export function initSettingsSync() {
       docopenmode: launch,
       spellcheckdetect: spell,
       usegpu: gpu,
+      useai: settings.useai,
       restart: _needsRestart(),
       uiscaling: scaling === "auto" ? "0" : scaling,
     }));
@@ -252,6 +248,7 @@ export function initSettingsSync() {
       sendPluginSettings(_plugin_opts);
     }
 
+    setAppliedUseAi(settings.useai);
     setIsOptsChanged(false);
   };
 
@@ -281,7 +278,10 @@ export function initSettingsSync() {
         if (payload.docopenmode) setSettings("launchMode", payload.docopenmode);
         if (payload.spellcheckdetect) setSettings("spellCheck", payload.spellcheckdetect);
         if (payload.usegpu != null) setSettings("gpuMode", !!payload.usegpu);
-        if (payload.useai != null) setSettings("useai", !!payload.useai);
+        if (payload.useai != null) {
+          setSettings("useai", !!payload.useai);
+          setAppliedUseAi(!!payload.useai);
+        }
       });
       if (payload.rtl === true) {
         document.body.setAttribute("dir", "rtl");

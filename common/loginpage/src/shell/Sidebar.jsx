@@ -3,14 +3,24 @@ import { t } from "@/services/l10n";
 import { openAbout, aboutVisible } from "@/services/about";
 import { openPromo, promoVisible, promoButtons } from "@/services/promotion";
 import { aichat, expandChatPanel } from "@/stores/aichat";
+import { appliedUseAi } from "@/services/settings-sync";
 import { MenuItem } from "./MenuItem.jsx";
 import "./Sidebar.styles.css";
+import { command } from "@/sdk/bridge.js";
+
+const clickAiChat = () => {
+  if (aichat.available) {
+    expandChatPanel();
+  } else {
+    command('addon', 'advert');
+  }
+};
 
 export default function Sidebar() {
   return (
     <nav class="tool-menu">
-      <Show when={aichat.available}>
-        <MenuItem onClick={() => expandPanel()} icon="#aichat" label={t("actAiChat")} />
+      <Show when={appliedUseAi()}>
+        <MenuItem onClick={clickAiChat} icon="#aichat" label={t("actAiChat")} />
         <li class="menu-item separator" />
       </Show>
       <MenuItem href="/" icon="#home" label={t("actHome")} end />

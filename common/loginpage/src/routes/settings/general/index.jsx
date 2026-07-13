@@ -2,7 +2,13 @@ import { createMemo, batch, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
-import { availableLangs, toggleAI, systemThemeEnabled, userNameError, setUserNameError, uninstallAddon, textDirectionChanged } from "@/services/settings-sync";
+import { availableLangs,
+        systemThemeEnabled,
+        userNameError,
+        setUserNameError,
+        uninstallAddon,
+        textDirectionChanged,
+        setIsOptsChanged } from "@/services/settings-sync";
 import { command } from "@/sdk/bridge";
 import styles from "./index.module.css";
 import { addonInfo } from "@/services/about";
@@ -177,6 +183,13 @@ export default function GeneralSettings() {
         </div>
 
         <div class={styles.fieldRowAuto}>
+          <label for="chb-use-ai" class={styles.fieldLabelBlock}>
+            {t("settingsEnableAI")} *<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
+          </label>
+          <Switch id="chb-use-ai" checked={settings.useai !== false} onChange={(v) => setSettings("useai", v)} />
+        </div>
+
+        <div class={styles.fieldRowAuto}>
           <label for="gpu-mode" class={styles.fieldLabelBlock}>
             {t("settGpuUseMode")} *<span class={styles.fieldDescription}>{t("settingsGpuUseModeDescr")}</span>
           </label>
@@ -192,19 +205,7 @@ export default function GeneralSettings() {
 
         {/* <div class={styles.divider} /> */}
 
-        {/* <div class={styles.fieldRowAuto}>
-          <div class={styles.fieldLabelBlock}>
-            <span class={styles.fieldLabel}>{t(settings.useai ? "settingsDisableAI" : "settingsEnableAI")} *</span>
-            <span class={styles.fieldDescription}>{t(settings.useai ? "settingsDisableAIDescr" : "settingsEnableAIDescr")}</span>
-          </div>
-          <div class={styles.fieldControlEnd}>
-            <Button variant="accent" onClick={toggleAI}>
-              {t(settings.useai ? "settingsDisableAIButton" : "settingsEnableAIButton")}
-            </Button>
-          </div>
-        </div> */}
-
-        <Show when={addonInfo()}>
+        <Show when={addonInfo()?.installed}>
           <div class={styles.divider} />
 
           <div class={styles.fieldRowAuto}>
