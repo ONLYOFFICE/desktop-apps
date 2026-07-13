@@ -1,7 +1,7 @@
 import { onCleanup } from "solid-js";
 import { onNativeMessage, onPluginEvent } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
-import { setPanelUrl, collapsePanel } from "@/stores/aichat";
+import { setPanelUrl, collapseChatPanel } from "@/stores/aichat";
 import { registerPlugin } from "@/stores/plugin-settings";
 
 const AI_PLUGIN_IDS = ["F2402876-659F-47FB-A646-67B49F2B5AAA", "9DC93CDB-B576-4F0C-B55E-FCC9C48DD777"];
@@ -34,7 +34,7 @@ export function initAiPanel() {
 
   function onPluginEvent(msg={}) {
       if (msg.type == "collapse"){
-        collapsePanel();
+        collapseChatPanel();
       } else if (msg.type == "settings") {
         console.log("plugin settings", msg);
         registerPlugin(msg);

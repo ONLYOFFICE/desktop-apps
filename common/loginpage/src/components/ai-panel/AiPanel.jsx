@@ -1,5 +1,5 @@
 import { onCleanup, onMount } from "solid-js";
-import { aichat, collapsePanel, expandPanel } from "@/stores/aichat";
+import { aichat } from "@/stores/aichat";
 import { t } from "@/services/l10n";
 import styles from "./AiPanel.module.css";
 

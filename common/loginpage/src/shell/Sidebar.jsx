@@ -2,7 +2,7 @@ import { For, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { openAbout, aboutVisible } from "@/services/about";
 import { openPromo, promoVisible, promoButtons } from "@/services/promotion";
-import { aichat, expandPanel } from "@/stores/aichat";
+import { aichat, expandChatPanel } from "@/stores/aichat";
 import { MenuItem } from "./MenuItem.jsx";
 import "./Sidebar.styles.css";
 

@@ -37,11 +37,11 @@ export function setPanelUrl(url) {
   setAichat("url", url ?? "");
 }
 
-export function collapsePanel() {
+export function collapseChatPanel() {
   setAichat("open", false);
 }
 
-export function expandPanel() {
+export function expandChatPanel() {
   setAichat("open", true);
 }
 
