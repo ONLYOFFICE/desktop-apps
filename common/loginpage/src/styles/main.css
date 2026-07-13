@@ -79,3 +79,21 @@ body {
         --font-family-base-custom: system-ui, -apple-system, "Geeza Pro", "Segoe UI", "Traditional Arabic", "Noto Sans";
     }
 }
+
+.tool-icon {
+    /* width: 24px; */
+    /* height: 24px; */
+
+    .theme-type-dark & {
+        background-position-x: -24px;
+    }
+}
+
+.tool-icon__20 {
+    /* width: 20px; */
+    /* height: 20px; */
+
+    .theme-type-dark & {
+        background-position-x: -20px;
+    }
+}
