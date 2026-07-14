@@ -143,7 +143,7 @@ public:
         if (result != ERROR_SUCCESS)
             return result;
 
-        if (dwStatus >= HTTP_STATUS_BAD_REQUEST)
+        if (dwStatus < HTTP_STATUS_OK || dwStatus >= HTTP_STATUS_AMBIGUOUS)
             return ERROR_BIT_29 | dwStatus;
 
         if (nOptions & Options::Writedata)
