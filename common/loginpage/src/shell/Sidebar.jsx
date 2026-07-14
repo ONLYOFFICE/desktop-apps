@@ -15,13 +15,14 @@ export default function Sidebar() {
     if (aichat.available) {
       navigate("/ai");
     } else {
-      command('addon', 'advert');
+      command('addon:action', 'install');
     }
   };
 
   return (
     <nav class="tool-menu">
       <Show when={appliedUseAi()}>
+        {/* <MenuItem href="/ai" icon="#aichat" label={t("actAiChat")} /> */}
         <MenuItem onClick={clickAiChat} icon="#aichat" label={t("actAiChat")} />
         <li class="menu-item separator" />
       </Show>

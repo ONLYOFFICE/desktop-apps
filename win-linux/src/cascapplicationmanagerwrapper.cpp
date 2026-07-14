@@ -588,11 +588,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 QJsonObject objRoot = jdoc.object();
                 SetRecentPin(objRoot["id"].toInt(), objRoot["pinned"].toBool(false));
             }
-        } else
-        if ( !(cmd.find(L"addon") == std::wstring::npos) ) {
-            if ( pData->get_Param() == L"advert" ) {
-                showUpgradeDialog(mainWindow(), 1);
-            }
         }
 
         break; }
