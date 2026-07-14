@@ -33,11 +33,9 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-#include "classes/cdownloader.h"
-#include <curl/curl.h>
+#include "cdownloader.h"
+#include "private/httptransaction_p.h"
 #include <future>
-
-#define MAX_REDIRECTS_ALLOWED 0L
 
 
 class CDownloaderPrivate
@@ -48,46 +46,59 @@ public:
     ~CDownloaderPrivate()
     {}
 
-    int mapToInternalError(CURLcode res)
+    int mapToInternalError(DWORD res)
     {
-        switch (res)
-        {
-        case CURLE_OK:
-            return CDownloader::Success;
-
-        case CURLE_ABORTED_BY_CALLBACK:
-            return CDownloader::Aborted;
-
-        case CURLE_OUT_OF_MEMORY:
-        case CURLE_FAILED_INIT:
-            return CDownloader::OutOfMemory;
-
-        case CURLE_URL_MALFORMAT:
-        case CURLE_UNSUPPORTED_PROTOCOL:
-            return CDownloader::InvalidUrl;
-
-        case CURLE_COULDNT_RESOLVE_PROXY:
-        case CURLE_COULDNT_RESOLVE_HOST:
-        case CURLE_COULDNT_CONNECT:
-        case CURLE_WEIRD_SERVER_REPLY:
-        case CURLE_REMOTE_ACCESS_DENIED:
-        case CURLE_GOT_NOTHING:
-        case CURLE_LOGIN_DENIED:
-        case CURLE_AUTH_ERROR:
-        case CURLE_HTTP_RETURNED_ERROR:
-        case CURLE_TOO_MANY_REDIRECTS:
-        case CURLE_OPERATION_TIMEDOUT:
-        case CURLE_SEND_ERROR:
-        case CURLE_RECV_ERROR:
-        case CURLE_SSL_CONNECT_ERROR:
-        case CURLE_SSL_CERTPROBLEM:
-        case CURLE_SSL_CIPHER:
-        case CURLE_SSL_CACERT_BADFILE:
-        case CURLE_SSL_INVALIDCERTSTATUS:
-        case CURLE_PEER_FAILED_VERIFICATION:
+        if ((res & ERROR_BIT_29) != 0)
             return CDownloader::NetworkError;
 
-        case CURLE_WRITE_ERROR:
+        switch (res) {
+        case ERROR_SUCCESS:
+            return CDownloader::Success;
+
+        case ERROR_CANCELLED:
+        case ERROR_OPERATION_ABORTED:
+        case ERROR_WINHTTP_OPERATION_CANCELLED:
+            return CDownloader::Aborted;
+
+        case ERROR_OUTOFMEMORY:
+        case ERROR_NOT_ENOUGH_MEMORY:
+            return CDownloader::OutOfMemory;
+
+        case ERROR_WINHTTP_INVALID_URL:
+        case ERROR_WINHTTP_UNRECOGNIZED_SCHEME:
+            return CDownloader::InvalidUrl;
+
+        case ERROR_WINHTTP_NAME_NOT_RESOLVED:
+        case ERROR_WINHTTP_CANNOT_CONNECT:
+        case ERROR_WINHTTP_CONNECTION_ERROR:
+        case ERROR_WINHTTP_TIMEOUT:
+        case ERROR_WINHTTP_RESEND_REQUEST:
+        case ERROR_WINHTTP_REDIRECT_FAILED:
+        case ERROR_WINHTTP_HEADER_NOT_FOUND:
+        case ERROR_WINHTTP_SECURE_FAILURE:
+        case ERROR_WINHTTP_SECURE_CERT_DATE_INVALID:
+        case ERROR_WINHTTP_SECURE_CERT_CN_INVALID:
+        case ERROR_WINHTTP_SECURE_CERT_REVOKED:
+        case ERROR_WINHTTP_SECURE_CERT_REV_FAILED:
+            return CDownloader::NetworkError;
+
+        case ERROR_INVALID_HANDLE:
+        case ERROR_INVALID_NAME:
+        case ERROR_FILE_NOT_FOUND:
+        case ERROR_PATH_NOT_FOUND:
+        case ERROR_BAD_PATHNAME:
+        case ERROR_ACCESS_DENIED:
+        case ERROR_ALREADY_EXISTS:
+        case ERROR_CANNOT_MAKE:
+        case ERROR_WRITE_FAULT:
+        case ERROR_WRITE_PROTECT:
+        case ERROR_NOT_READY:
+        case ERROR_HANDLE_DISK_FULL:
+        case ERROR_DISK_FULL:
+        case ERROR_DEV_NOT_EXIST:
+        case ERROR_DIR_NOT_EMPTY:
+        case ERROR_LOCK_VIOLATION:
+        case ERROR_SHARING_VIOLATION:
             return CDownloader::FileOpError;
 
         default:
@@ -125,17 +136,13 @@ bool CDownloader::isUrlAccessible(const tstring &url)
     if (url.empty())
         return false;
 
-    CURLcode res = CURLE_FAILED_INIT;
-    if (CURL *curl = curl_easy_init()) {
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-        curl_easy_setopt(curl, CURLOPT_MAXREDIRS, MAX_REDIRECTS_ALLOWED);
-        curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
-        res = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
-    }
-    return res == CURLE_OK;
+    HTTPTransaction tsn(url);
+    tsn.setOption(HTTPTransaction::HeadOnly);
+    tsn.setOption(HTTPTransaction::FollowRedirects);
+    if (tsn.perform() != ERROR_SUCCESS)
+        return false;
+
+    return true;
 }
 
 void CDownloader::queryContentLength(const tstring &url)
@@ -156,31 +163,25 @@ void CDownloader::queryContentLength(const tstring &url)
     }
 
     pimpl->m_future = std::async(std::launch::async, [=]() {
-        curl_off_t fileSize = 0;
-        CURLcode res = CURLE_FAILED_INIT;
-        if (CURL *curl = curl_easy_init()) {
-            curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-            curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
-            curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-            curl_easy_setopt(curl, CURLOPT_MAXREDIRS, MAX_REDIRECTS_ALLOWED);
-            curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
-            res = curl_easy_perform(curl);
-            if (res == CURLE_OK) {
-                curl_easy_getinfo(curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD_T, &fileSize);
-                if (fileSize < 0) fileSize = 0;
-            }
-            curl_easy_cleanup(curl);
-        }
+        ULONGLONG dwFileSize = 0;
+
+        HTTPTransaction tsn(url);
+        tsn.setOption(HTTPTransaction::HeadOnly);
+        tsn.setOption(HTTPTransaction::FollowRedirects);
+        DWORD res = tsn.perform();
+        if (res == ERROR_SUCCESS)
+            res = tsn.getContentLength(dwFileSize);
+
         int error = pimpl->mapToInternalError(res);
 
         if (pimpl->m_query_callback)
-            pimpl->m_query_callback(error, (uint64_t)fileSize);
+            pimpl->m_query_callback(error, (uint64_t)dwFileSize);
 
         pimpl->m_lock = false;
     });
 }
 
-void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
+void CDownloader::downloadFile(const std::wstring &url, const std::wstring &filePath)
 {
     if (url.empty())
     {
@@ -207,46 +208,46 @@ void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
     pimpl->m_run = true;
 
     pimpl->m_future = std::async(std::launch::async, [=]() {
-        CURLcode res = CURLE_FAILED_INIT;
-        if (FILE *fp = fopen(filePath.c_str(), "wb")) {
-            if (CURL *curl = curl_easy_init()) {
-                pimpl->m_prev_percent = -1;
-                curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-                curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-                curl_easy_setopt(curl, CURLOPT_MAXREDIRS, MAX_REDIRECTS_ALLOWED);
-                curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
-                curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-                curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0);
-                curl_easy_setopt(curl, CURLOPT_XFERINFOFUNCTION,
-                    +[](void *user_data, curl_off_t dltotal, curl_off_t dlnow, curl_off_t, curl_off_t) -> int
+        pimpl->m_prev_percent = -1;
+        DWORD res = ERROR_SUCCESS;
+
+        HANDLE hFile = CreateFile(filePath.c_str(), GENERIC_WRITE | DELETE, 0, NULL,
+                                  CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        if (hFile != INVALID_HANDLE_VALUE) {
+            HTTPTransaction tsn(url);
+            tsn.setFileHandle(hFile);
+            tsn.setProgressCallback(
+                +[](void* pData, ULONGLONG dltotal, ULONGLONG dlnow) -> DWORD
+                {
+                    CDownloaderPrivate *pimpl = (CDownloaderPrivate*)pData;
+                    if (dltotal > 0 && pimpl->m_progress_callback)
                     {
-                        CDownloaderPrivate *pimpl = (CDownloaderPrivate*)user_data;
-                        if (dltotal > 0 && pimpl->m_progress_callback)
+                        int percent = static_cast<int>((100.0 * dlnow) / dltotal);
+                        if (percent != pimpl->m_prev_percent)
                         {
-                            int percent = static_cast<int>((100.0 * dlnow) / dltotal);
-                            if (percent != pimpl->m_prev_percent)
-                            {
-                                pimpl->m_progress_callback(percent);
-                                pimpl->m_prev_percent = percent;
-                            }
+                            pimpl->m_progress_callback(percent);
+                            pimpl->m_prev_percent = percent;
                         }
+                    }
 
-                        if (pimpl->m_run == false)
-                            return CURLE_ABORTED_BY_CALLBACK;
+                    if (pimpl->m_run == false)
+                        return ERROR_CANCELLED;
 
-                        return CURLE_OK;
-                    });
-                curl_easy_setopt(curl, CURLOPT_XFERINFODATA, (void*)pimpl);
-                res = curl_easy_perform(curl);
-                curl_easy_cleanup(curl);
+                    return ERROR_SUCCESS;
+                });
+            tsn.setProgressData(pimpl);
+            tsn.setOption(HTTPTransaction::Writedata);
+            tsn.setOption(HTTPTransaction::FollowRedirects);
+            res = tsn.perform();
+
+            if (res != ERROR_SUCCESS)
+            {
+                FILE_DISPOSITION_INFO fdi = { TRUE };
+                SetFileInformationByHandle(hFile, FileDispositionInfo, &fdi, sizeof(fdi));
             }
+            CloseHandle(hFile);
 
-            fclose(fp);
-            if (res != CURLE_OK)
-                remove(filePath.c_str());
-
-        } else
-            res = CURLE_WRITE_ERROR;
+        } else res = GetLastError();
 
         int error = pimpl->mapToInternalError(res);
 

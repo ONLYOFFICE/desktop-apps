@@ -37,7 +37,7 @@
 #define CSVCMANAGER_H
 
 #include "classes/csocket.h"
-#include "classes/cdownloader.h"
+#include "cdownloader.h"
 #include <future>
 #ifdef _WIN32
 # include "classes/platform_win/cunzip.h"
