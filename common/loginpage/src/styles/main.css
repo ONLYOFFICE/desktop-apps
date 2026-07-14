@@ -97,3 +97,22 @@ body {
         background-position-x: -20px;
     }
 }
+
+.oforms-root,
+* {
+    ::-webkit-scrollbar-track {
+      background-color: var(--background-normal);
+
+      &:hover {
+        background-color: var(--highlight-scroll-track-hover);
+      }
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--background-scroll-thumb);
+
+      &:hover {
+        background-color: var(--highlight-scroll-thumb-hover);
+      }
+    }
+}

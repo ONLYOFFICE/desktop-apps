@@ -18,6 +18,7 @@
 .btnDefault {
   background: transparent;
   border: 1px solid var(--border-regular-control);
+  color: var(--text-normal);
 
   &:hover {
     background-color: var(--highlight-button-hover);

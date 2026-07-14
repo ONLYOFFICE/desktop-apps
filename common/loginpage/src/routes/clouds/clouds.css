@@ -58,7 +58,7 @@
   border-radius: 6px;
   cursor: pointer;
   position: relative;
-  border: 1px solid var(--border-tabbar, #cbcbcb);
+  border: 1px solid var(--border-devider, #cbcbcb);
 }
 
 .portal-row:hover {
@@ -177,7 +177,7 @@
   border: none;
   width: 100%;
   text-align: left;
-  border: 1px solid var(--border-tabbar, #cbcbcb);
+  border: 1px solid var(--border-devider, #cbcbcb);
 }
 
 .provider-item:hover {

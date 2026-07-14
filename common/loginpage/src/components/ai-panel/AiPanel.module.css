@@ -35,25 +35,3 @@
 :global(html.ai-resizing) .frame {
   pointer-events: none;
 }
-
-.pill.pill {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 50;
-  display: inline-flex;
-  align-items: center;
-  width: unset;
-  gap: 4px;
-  border-radius: 9999px;
-}
-
-.pill:hover {
-  background: var(--highlight-button-hover);
-}
-
-.pillIcon {
-  width: 24px;
-  height: 24px;
-  color: var(--icon-normal);
-}
