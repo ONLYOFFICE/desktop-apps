@@ -30,6 +30,21 @@ message($$PLATFORM_BUILD)
     }
 #}
 
+!disable_addon_mode {
+    ENV_URL_APPCAST_MAIN = $$(DESKTOP_URL_UPDATES_MAIN_CHANNEL)
+    !isEmpty(ENV_URL_APPCAST_MAIN) {
+        DEFINES += URL_APPCAST_UPDATES=L\\\"$${ENV_URL_APPCAST_MAIN}\\\"
+    }
+
+    ENV_URL_APPCAST_DEV = $$(DESKTOP_URL_UPDATES_DEV_CHANNEL)
+    !isEmpty(ENV_URL_APPCAST_DEV) {
+        DEFINES += URL_APPCAST_DEV_CHANNEL=L\\\"$${ENV_URL_APPCAST_DEV}\\\"
+    }
+
+    message(appcast url: $$ENV_URL_APPCAST_MAIN)
+    message(appcast dev url: $$ENV_URL_APPCAST_DEV)
+}
+
 core_windows {
     RC_FILE = $$PWD/version.rc
     OTHER_FILES += $$PWD/version.rc
