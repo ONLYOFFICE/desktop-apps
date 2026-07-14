@@ -1,5 +1,5 @@
 import { createEffect, createMemo, createSignal, onCleanup, batch } from "solid-js";
-import { settings, setSettings, themesMap, defs as themeDefs } from "@/stores/settings";
+import { settings, setSettings, themesMap, defs as settDefs } from "@/stores/settings";
 import { getPluginSettings } from "@/stores/plugin-settings";
 import { onNativeMessage } from "@/sdk/events";
 import { applyLocale, getTranslationFor, isRTL } from "@/services/l10n";
@@ -19,14 +19,14 @@ function injectCustomThemeCss(id, colors) {
   document.head.appendChild(el);
 }
 
-    const get_default_theme_for_type = type => type == themeDefs.THEME_TYPE_DARK ? themeDefs.THEME_ID_DEFAULT_DARK : themeDefs.THEME_ID_DEFAULT_LIGHT;
+    const get_default_theme_for_type = type => type == settDefs.THEME_TYPE_DARK ? settDefs.THEME_ID_DEFAULT_DARK : settDefs.THEME_ID_DEFAULT_LIGHT;
 
     const get_system_theme_type = () => {
         const nativevars = window.RendererProcessVariable;
         if ( nativevars.theme && !!nativevars.theme.system ) {
-            return nativevars.theme.system !== 'disabled' ? nativevars.theme.system : themeDefs.THEME_TYPE_LIGHT;
+            return nativevars.theme.system !== 'disabled' ? nativevars.theme.system : settDefs.THEME_TYPE_LIGHT;
         } else {
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? themeDefs.THEME_TYPE_DARK : themeDefs.THEME_TYPE_LIGHT;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? settDefs.THEME_TYPE_DARK : settDefs.THEME_TYPE_LIGHT;
         }
     }
 
@@ -40,7 +40,7 @@ function injectCustomThemeCss(id, colors) {
 
     const relevant_theme_id = function (id) {
         if ( is_theme_system(id) )
-            return get_default_theme_for_type(is_system_theme_dark() ? themeDefs.THEME_TYPE_DARK : themeDefs.THEME_TYPE_LIGHT);
+            return get_default_theme_for_type(is_system_theme_dark() ? settDefs.THEME_TYPE_DARK : settDefs.THEME_TYPE_LIGHT);
         return id;
     }
 
