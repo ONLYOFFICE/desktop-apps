@@ -34,7 +34,7 @@
  */
 
 #include "cdownloader.h"
-#include "private/httptransaction_p.h"
+#include "private/httptransaction_win32_p.h"
 #include <thread>
 #include <atomic>
 

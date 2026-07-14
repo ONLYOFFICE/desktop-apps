@@ -69,7 +69,7 @@ core_windows {
                $$PWD/src/platform_win/svccontrol.h \
                $$PWD/src/classes/platform_win/capplication.h \
                $$PWD/src/classes/platform_win/cunzip.h \
-               $$COMMON_ROOT_DIR/private/httptransaction_p.h \
+               $$COMMON_ROOT_DIR/private/httptransaction_win32_p.h \
                $$PWD/src/classes/platform_win/ctimer.h
 
     SOURCES += $$PWD/src/platform_win/main.cpp \
