@@ -39,6 +39,7 @@
 #include <string>
 #include <functional>
 #include <cstdint>
+#include <memory>
 #ifdef _WIN32
 # define tstring std::wstring
 #else
@@ -83,7 +84,7 @@ public:
     void onProgress(FnVoidInt callback);
 
 private:
-    CDownloaderPrivate *pimpl = nullptr;
+    std::shared_ptr<CDownloaderPrivate> pimpl;
 };
 
 #endif // CDOWNLOADER_H

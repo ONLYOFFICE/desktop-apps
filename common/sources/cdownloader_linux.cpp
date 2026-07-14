@@ -35,7 +35,8 @@
 
 #include "cdownloader.h"
 #include <curl/curl.h>
-#include <future>
+#include <thread>
+#include <atomic>
 
 #define MAX_REDIRECTS_ALLOWED 0L
 
@@ -101,23 +102,18 @@ public:
 
     int m_prev_percent = -1;
 
-    std::future<void> m_future;
     std::atomic_bool  m_run{true},
                       m_lock{false};
 };
 
 
 CDownloader::CDownloader() :
-    pimpl(new CDownloaderPrivate)
+    pimpl(std::make_shared<CDownloaderPrivate>())
 {}
 
 CDownloader::~CDownloader()
 {
     pimpl->m_run = false;
-    if (pimpl->m_future.valid())
-        pimpl->m_future.wait();
-
-    delete pimpl; pimpl = nullptr;
 }
 
 bool CDownloader::isUrlAccessible(const tstring &url)
@@ -155,7 +151,8 @@ void CDownloader::queryContentLength(const tstring &url)
         return;
     }
 
-    pimpl->m_future = std::async(std::launch::async, [=]() {
+    auto pimpl_copy = pimpl;
+    std::thread([pimpl_copy, url]() {
         curl_off_t fileSize = 0;
         CURLcode res = CURLE_FAILED_INIT;
         if (CURL *curl = curl_easy_init()) {
@@ -171,13 +168,13 @@ void CDownloader::queryContentLength(const tstring &url)
             }
             curl_easy_cleanup(curl);
         }
-        int error = pimpl->mapToInternalError(res);
+        int error = pimpl_copy->mapToInternalError(res);
 
-        if (pimpl->m_query_callback)
-            pimpl->m_query_callback(error, (uint64_t)fileSize);
+        if (pimpl_copy->m_run && pimpl_copy->m_query_callback)
+            pimpl_copy->m_query_callback(error, (uint64_t)fileSize);
 
-        pimpl->m_lock = false;
-    });
+        pimpl_copy->m_lock = false;
+    }).detach();
 }
 
 void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
@@ -206,11 +203,12 @@ void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
 
     pimpl->m_run = true;
 
-    pimpl->m_future = std::async(std::launch::async, [=]() {
+    auto pimpl_copy = pimpl;
+    std::thread([pimpl_copy, url, filePath]() {
         CURLcode res = CURLE_FAILED_INIT;
         if (FILE *fp = fopen(filePath.c_str(), "wb")) {
             if (CURL *curl = curl_easy_init()) {
-                pimpl->m_prev_percent = -1;
+                pimpl_copy->m_prev_percent = -1;
                 curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
                 curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
                 curl_easy_setopt(curl, CURLOPT_MAXREDIRS, MAX_REDIRECTS_ALLOWED);
@@ -236,7 +234,7 @@ void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
 
                         return CURLE_OK;
                     });
-                curl_easy_setopt(curl, CURLOPT_XFERINFODATA, (void*)pimpl);
+                curl_easy_setopt(curl, CURLOPT_XFERINFODATA, (void*)pimpl_copy.get());
                 res = curl_easy_perform(curl);
                 curl_easy_cleanup(curl);
             }
@@ -248,13 +246,13 @@ void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
         } else
             res = CURLE_WRITE_ERROR;
 
-        int error = pimpl->mapToInternalError(res);
+        int error = pimpl_copy->mapToInternalError(res);
 
-        if (pimpl->m_complete_callback)
-            pimpl->m_complete_callback(error, filePath);
+        if (pimpl_copy->m_run && pimpl_copy->m_complete_callback)
+            pimpl_copy->m_complete_callback(error, filePath);
 
-        pimpl->m_lock = false;
-    });
+        pimpl_copy->m_lock = false;
+    }).detach();
 }
 
 void CDownloader::stop()

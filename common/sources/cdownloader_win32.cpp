@@ -35,7 +35,8 @@
 
 #include "cdownloader.h"
 #include "private/httptransaction_p.h"
-#include <future>
+#include <thread>
+#include <atomic>
 
 
 class CDownloaderPrivate
@@ -112,23 +113,18 @@ public:
 
     int m_prev_percent = -1;
 
-    std::future<void> m_future;
     std::atomic_bool  m_run{true},
                       m_lock{false};
 };
 
 
 CDownloader::CDownloader() :
-    pimpl(new CDownloaderPrivate)
+    pimpl(std::make_shared<CDownloaderPrivate>())
 {}
 
 CDownloader::~CDownloader()
 {
     pimpl->m_run = false;
-    if (pimpl->m_future.valid())
-        pimpl->m_future.wait();
-
-    delete pimpl; pimpl = nullptr;
 }
 
 bool CDownloader::isUrlAccessible(const tstring &url)
@@ -162,7 +158,8 @@ void CDownloader::queryContentLength(const tstring &url)
         return;
     }
 
-    pimpl->m_future = std::async(std::launch::async, [=]() {
+    auto pimpl_copy = pimpl;
+    std::thread([pimpl_copy, url]() {
         ULONGLONG dwFileSize = 0;
 
         HTTPTransaction tsn(url);
@@ -172,13 +169,13 @@ void CDownloader::queryContentLength(const tstring &url)
         if (res == ERROR_SUCCESS)
             res = tsn.getContentLength(dwFileSize);
 
-        int error = pimpl->mapToInternalError(res);
+        int error = pimpl_copy->mapToInternalError(res);
 
-        if (pimpl->m_query_callback)
-            pimpl->m_query_callback(error, (uint64_t)dwFileSize);
+        if (pimpl_copy->m_run && pimpl_copy->m_query_callback)
+            pimpl_copy->m_query_callback(error, (uint64_t)dwFileSize);
 
-        pimpl->m_lock = false;
-    });
+        pimpl_copy->m_lock = false;
+    }).detach();
 }
 
 void CDownloader::downloadFile(const std::wstring &url, const std::wstring &filePath)
@@ -207,8 +204,9 @@ void CDownloader::downloadFile(const std::wstring &url, const std::wstring &file
 
     pimpl->m_run = true;
 
-    pimpl->m_future = std::async(std::launch::async, [=]() {
-        pimpl->m_prev_percent = -1;
+    auto pimpl_copy = pimpl;
+    std::thread([pimpl_copy, url, filePath]() {
+        pimpl_copy->m_prev_percent = -1;
         DWORD res = ERROR_SUCCESS;
 
         HANDLE hFile = CreateFile(filePath.c_str(), GENERIC_WRITE | DELETE, 0, NULL,
@@ -235,7 +233,7 @@ void CDownloader::downloadFile(const std::wstring &url, const std::wstring &file
 
                     return ERROR_SUCCESS;
                 });
-            tsn.setProgressData(pimpl);
+            tsn.setProgressData(pimpl_copy.get());
             tsn.setOption(HTTPTransaction::Writedata);
             tsn.setOption(HTTPTransaction::FollowRedirects);
             res = tsn.perform();
@@ -249,13 +247,13 @@ void CDownloader::downloadFile(const std::wstring &url, const std::wstring &file
 
         } else res = GetLastError();
 
-        int error = pimpl->mapToInternalError(res);
+        int error = pimpl_copy->mapToInternalError(res);
 
-        if (pimpl->m_complete_callback)
-            pimpl->m_complete_callback(error, filePath);
+        if (pimpl_copy->m_run && pimpl_copy->m_complete_callback)
+            pimpl_copy->m_complete_callback(error, filePath);
 
-        pimpl->m_lock = false;
-    });
+        pimpl_copy->m_lock = false;
+    }).detach();
 }
 
 void CDownloader::stop()
