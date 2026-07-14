@@ -1,7 +1,7 @@
 import { onCleanup } from "solid-js";
-import { onNativeMessage, onPluginEvent } from "@/sdk/events";
+import { onNativeMessage } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
-import { setPanelUrl, collapseChatPanel } from "@/stores/aichat";
+import { setPanelUrl } from "@/stores/aichat";
 import { registerPlugin } from "@/stores/plugin-settings";
 
 const AI_PLUGIN_IDS = ["F2402876-659F-47FB-A646-67B49F2B5AAA", "9DC93CDB-B576-4F0C-B55E-FCC9C48DD777"];
@@ -21,24 +21,11 @@ export function initAiPanel() {
     if (isAiPlugin(opts?.id) && opts?.url) setPanelUrl(opts.url);
   });
 
-  // const unsubPlugin = onPluginEvent((data) => {
-  //   let event;
-  //   try {
-  //     event = typeof data === "string" ? JSON.parse(data) : data;
-  //   } catch {
-  //     return;
-  //   }
-  //   if (event?.type === "collapsed") collapsePanel();
-  //   if (event?.type === "settings") registerPlugin(event);
-  // });
-
-  function onPluginEvent(msg={}) {
-      if (msg.type == "collapse"){
-        collapseChatPanel();
-      } else if (msg.type == "settings") {
-        console.log("plugin settings", msg);
-        registerPlugin(msg);
-      }
+  function onPluginEvent(msg = {}) {
+    if (msg.type === "settings") {
+      console.log("plugin settings", msg);
+      registerPlugin(msg);
+    }
   }
 
   function onMessage(e) {
@@ -48,7 +35,6 @@ export function initAiPanel() {
     } catch {
       return;
     }
-
     if (msg.event === "onPluginEvent") {
       onPluginEvent(msg.data);
     }
@@ -58,7 +44,6 @@ export function initAiPanel() {
 
   onCleanup(() => {
     unsubMessage();
-    // unsubPlugin();
-    () => window.removeEventListener("message", onMessage);
+    window.removeEventListener("message", onMessage);
   });
 }

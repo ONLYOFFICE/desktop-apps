@@ -1,8 +1,8 @@
-import { Show, createEffect, lazy, onMount } from "solid-js";
+import { Show, lazy, onMount } from "solid-js";
 import { HashRouter, useLocation } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
 import About from "./routes/about/index.jsx";
-import { AiPanel, ResizeHandle } from "@/components/ai-panel";
+import { AiPanel } from "@/components/ai-panel";
 import { signalAppReady } from "@/sdk";
 import { initSettingsSync } from "@/services/settings-sync";
 import { initAbout } from "@/services/about";
@@ -14,31 +14,23 @@ import "./styles/layout.css";
 
 function Shell(props) {
   const location = useLocation();
-  const isSettings = () => location.pathname.startsWith("/settings");
-  const aiActive = () => aichat.available && aichat.open && !isSettings();
-
-  createEffect(() => {
-    document.documentElement.style.setProperty("--ai-w", aiActive() ? `${aichat.width}px` : "0px");
-  });
+  const isAiSelected = () => location.pathname.startsWith("/ai");
 
   return (
-    <div class="shell" data-ai-open={aiActive()}>
+    <div class="shell">
       <div class="col-sidebar">
         <Sidebar />
       </div>
       <div class="col-center">
-        {props.children}
+        <div style={{ display: isAiSelected() ? "none" : undefined }}>
+          {props.children}
+        </div>
         <Show when={aichat.available}>
-          <div style={{ display: aichat.open && !isSettings() ? "contents" : "none" }}>
-            <ResizeHandle />
+          <div style={{ display: isAiSelected() ? undefined : "none" }}>
+            <AiPanel />
           </div>
         </Show>
       </div>
-      <Show when={aichat.available}>
-        <div class="col-ai" style={{ display: aiActive() ? undefined : "none" }}>
-          <AiPanel />
-        </div>
-      </Show>
       <About />
     </div>
   );
@@ -47,6 +39,7 @@ function Shell(props) {
 /** @type {import("@solidjs/router").RouteDefinition[]} */
 const routes = [
   { path: "/", component: lazy(() => import("./routes/home/index.jsx")) },
+  { path: "/ai", component: lazy(() => import("./routes/ai/index.jsx")) },
   { path: "/open", component: lazy(() => import("./routes/open/index.jsx")) },
   { path: "/templates", component: lazy(() => import("./routes/templates/index.jsx")) },
   { path: "/clouds/*", component: lazy(() => import("./routes/clouds/index.jsx")) },

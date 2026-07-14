@@ -1,22 +1,24 @@
 import { For, Show } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 import { t } from "@/services/l10n";
 import { openAbout, aboutVisible } from "@/services/about";
 import { openPromo, promoVisible, promoButtons } from "@/services/promotion";
-import { aichat, expandChatPanel } from "@/stores/aichat";
 import { appliedUseAi } from "@/services/settings-sync";
 import { MenuItem } from "./MenuItem.jsx";
-import "./Sidebar.styles.css";
 import { command } from "@/sdk/bridge.js";
-
-const clickAiChat = () => {
-  if (aichat.available) {
-    expandChatPanel();
-  } else {
-    command('addon', 'advert');
-  }
-};
+import { aichat } from "@/stores/aichat.js";
+import "./Sidebar.styles.css";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+  const clickAiChat = () => {
+    if (aichat.available) {
+      navigate("/ai");
+    } else {
+      command('addon', 'advert');
+    }
+  };
+
   return (
     <nav class="tool-menu">
       <Show when={appliedUseAi()}>
