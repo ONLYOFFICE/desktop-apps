@@ -8,6 +8,9 @@ export const defs = {
   THEME_TYPE_LIGHT: 'light',
   THEME_TYPE_DARK:'dark',
   THEME_TYPE_SYSTEM: 'system',
+
+  EDITOR_MODE_TAB:      'tab',
+  EDITOR_MODE_WINDOW:   'window',
 }
 
 export const themesMap = {
@@ -52,7 +55,7 @@ const defaultSettings = Object.freeze({
   scaling: "auto",
   checkUpdates: "ask",
   theme: defs.THEME_ID_DEFAULT_LIGHT,
-  launchMode: "tab",
+  launchMode: defs.EDITOR_MODE_TAB,
   spellCheck: "auto",
   gpuMode: true,
   promoButtons: true,

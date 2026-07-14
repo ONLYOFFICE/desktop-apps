@@ -234,7 +234,7 @@ export function initSettingsSync() {
       langid: settings.lang,
       uitheme: settings.theme,
       autoupdatemode: updates,
-      docopenmode: launch,
+      editorwindowmode: launch == settDefs.EDITOR_MODE_WINDOW,
       spellcheckdetect: spell,
       usegpu: gpu,
       useai: settings.useai,
@@ -275,7 +275,7 @@ export function initSettingsSync() {
         if ("uiscaling" in payload) setSettings("scaling", nativeScalingToStore(payload.uiscaling));
         if (payload.uitheme) setSettings("theme", payload.uitheme);
         if (payload.autoupdatemode) setSettings("checkUpdates", payload.autoupdatemode);
-        if (payload.docopenmode) setSettings("launchMode", payload.docopenmode);
+        if (payload.editorwindowmode) setSettings("launchMode", payload.editorwindowmode ? settDefs.EDITOR_MODE_WINDOW : settDefs.EDITOR_MODE_TAB);
         if (payload.spellcheckdetect) setSettings("spellCheck", payload.spellcheckdetect);
         if (payload.usegpu != null) setSettings("gpuMode", !!payload.usegpu);
         if (payload.useai != null) {
