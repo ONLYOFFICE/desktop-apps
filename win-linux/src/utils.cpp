@@ -51,6 +51,8 @@
 #include <QStorageInfo>
 #include <QPrinterInfo>
 #include <QProcess>
+#include <QCryptographicHash>
+#include <QUuid>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
@@ -519,6 +521,50 @@ QString Utils::uniqFileName(const QString& path)
     }
 
     return path;
+}
+
+QString Utils::targetArchitecture()
+{
+#if defined(_M_ARM64) || defined(__aarch64__)
+    return "arm64";
+#elif defined(_M_X64) || defined(__x86_64__)
+    return "x64";
+#elif defined(_M_IX86)
+    return "x86";
+#else
+# error Unsupported architecture
+#endif
+}
+
+QString Utils::getFileHash(const QString &fileName)
+{
+    if (fileName.isEmpty())
+        return {};
+
+    QFile file(fileName);
+    if (file.open(QFile::ReadOnly))
+    {
+        QCryptographicHash hash(QCryptographicHash::Md5);
+        if (hash.addData(&file))
+        {
+            file.close();
+            return QString(hash.result().toHex()).toLower();
+        }
+        file.close();
+    }
+    return {};
+}
+
+QString Utils::generateTmpFileName(const QString &ext)
+{
+    const QString fileName =
+        QString(FILE_PREFIX)
+        + QUuid::createUuid().toString().remove('{').remove('}')
+        + "_"
+        + Utils::targetArchitecture()
+        + ext;
+
+    return QDir::temp().filePath(fileName);
 }
 
 QString Utils::getPortalName(const QString& url)

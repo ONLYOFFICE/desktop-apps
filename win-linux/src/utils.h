@@ -110,6 +110,9 @@ public:
     static void replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace);
     static bool isFileLocal(const QString&);
     static QString uniqFileName(const QString& path);
+    static QString targetArchitecture();
+    static QString getFileHash(const QString &fileName);
+    static QString generateTmpFileName(const QString &ext);
     static bool makepath(const QString&);
     static bool writeFile(const QString &filePath, const QByteArray &data);
 
