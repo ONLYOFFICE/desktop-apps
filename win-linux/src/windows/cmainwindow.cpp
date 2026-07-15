@@ -1194,15 +1194,6 @@ void CMainWindow::onDocumentReady(int uid)
             m_pTabs->setFocusedView();
     }
     AscAppManager::getInstance().onDocumentReady(uid);
-
-#ifdef USE_ADDON_MODE
-    CAddonManager *am = AscAppManager::addonManager();
-    if ( uid < 0 && am && !am->isInstalled() ) {
-        initUpgradeButton();
-        syncUpgradeButton();
-        showUpgradeButton();
-    }
-#endif
 }
 
 void CMainWindow::onDocumentLoadFinished(int uid)

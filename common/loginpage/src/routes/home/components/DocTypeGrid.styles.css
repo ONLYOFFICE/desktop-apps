@@ -23,7 +23,7 @@
   padding: 24px 32px 16px;
 
   border-radius: 12px;
-  background: var(--background-normal-element);
+  background: var(--background-normal-element-light);
 
   &:hover {
     background: var(--highlight-button-hover);

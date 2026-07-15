@@ -423,14 +423,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 if (param == L"install")
                 {
                     m_private->m_bUpgradeInProgress = true;
-                    syncUpgradeButtons();
                     if (m_pMainWindow)
                         showUpgradeDialog(m_pMainWindow, m_pMainWindow->m_dpiRatio);
                 }
                 else if (param == L"uninstall")
                 {
                     m_private->m_bUpgradeInProgress = true;
-                    syncUpgradeButtons();
                     m_private->m_pAddonManager->doAction(CAddonManager::Action::Uninstall);
                 }
                 return true;
@@ -1240,7 +1238,6 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                 [this](int result)
                 {
                     m_private->m_bUpgradeInProgress = false;
-                    syncUpgradeButtons();
 
                     if (result == CAddonManager::Success)
                     {
@@ -1306,7 +1303,6 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                 [this]()
                 {
                     m_private->m_bUpgradeInProgress = false;
-                    syncUpgradeButtons();
                     if (m_pMainWindow)
                         m_pMainWindow->sendAddonStatusToStartPage();
                 });
@@ -1948,32 +1944,6 @@ void CAscApplicationManagerWrapper::setUpgradeInProgress(bool upgradeInProgress)
     _app.m_private->m_bUpgradeInProgress = upgradeInProgress;
 }
 
-void CAscApplicationManagerWrapper::syncUpgradeButtons()
-{
-    APP_CAST(_app);
-
-    if (_app.m_pMainWindow) {
-        if (_app.addonManager()->isInstalled()) {
-            _app.m_pMainWindow->hideUpgradeButton();
-        } else {
-            _app.m_pMainWindow->initUpgradeButton();
-            _app.m_pMainWindow->syncUpgradeButton();
-            _app.m_pMainWindow->showUpgradeButton();
-        }
-    }
-
-    for (const auto &editor : _app.m_vecEditors) {
-        CEditorWindow *editorWindow = reinterpret_cast<CEditorWindow*>(editor);
-        if (_app.addonManager()->isInstalled()) {
-            editorWindow->hideUpgradeButton();
-        } else {
-            editorWindow->initUpgradeButton();
-            editorWindow->syncUpgradeButton();
-            editorWindow->showUpgradeButton();
-        }
-    }
-}
-
 void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, double dpiRatio)
 {
     APP_CAST(_app);
@@ -2010,7 +1980,6 @@ void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, double dp
     {
         _app.m_private->m_pAddonManager->doAction(CAddonManager::Action::Stop);
         _app.m_private->m_bUpgradeInProgress = false;
-        syncUpgradeButtons();
         break;
     }
     case UpgradeDialog::RestartLater:

@@ -194,7 +194,6 @@ public:
     static CAddonManager*   addonManager();
     static bool             upgradeInProgress();
     static void             setUpgradeInProgress(bool);
-    static void             syncUpgradeButtons();
     static void             showUpgradeDialog(QWidget *parent, double dpiRatio);
 #endif
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
