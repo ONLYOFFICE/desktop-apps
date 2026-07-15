@@ -128,21 +128,23 @@ public:
         emit q_ptr->uninstallFinished();
     }
 
-    void finishInstall(bool success)
+    void finishInstall(int result)
     {
         bInstalling = false;
 
-        if (success)
+        if (result == Result::Success)
         {
             int res = AscAppManager::getInstance().InstallMainAddon(sTmpPath.toStdWString());
-            success = (res == 0);
-            bRestartRequired = success;
+            bRestartRequired = (res == 0);
+
+            if (!bRestartRequired)
+                result = Result::ExtractionFailed;
         }
 
         QFile::remove(sTmpPath);
         sTmpPath.clear();
 
-        emit q_ptr->installFinished(success);
+        emit q_ptr->installFinished(result);
     }
 
     void startDownload(const tstring& url, const tstring& filePath)
@@ -216,11 +218,11 @@ private slots:
             {
                 if (!sTmpPath.isEmpty() && Utils::getFileHash(sTmpPath) == packageData.hash)
                 {
-                    finishInstall(true);
+                    finishInstall(Result::Success);
                 }
                 else
                 {
-                    finishInstall(false);
+                    finishInstall(Result::Md5Mismatch);
                 }
                 break;
             }
@@ -230,7 +232,31 @@ private slots:
         }
         else
         {
-            finishInstall(false);
+            int result = 0;
+            switch (error)
+            {
+            case CDownloader::Aborted:
+                result = DownloadAborted;
+                break;
+            case CDownloader::OutOfMemory:
+                result = DownloadOutOfMemory;
+                break;
+            case CDownloader::NetworkError:
+                result = DownloadNetworkError;
+                break;
+            case CDownloader::InvalidUrl:
+                result = DownloadInvalidUrl;
+                break;
+            case CDownloader::FileOpError:
+                result = DownloadFileOpError;
+                break;
+            case CDownloader::UnknownError:
+            default:
+                result = DownloadUnknownError;
+                break;
+            }
+
+            finishInstall(result);
         }
     }
 
@@ -297,15 +323,11 @@ private:
 
             if (isNewerVersion(currVersion, version))
             {
-                bInstalling = false;
-                emit q_ptr->compatibilityFailed(
-                    tr("To install the add-on, update the application to the latest version."));
+                finishInstall(Result::AppVersionTooOld);
             }
             else if (isNewerVersion(version, currVersion))
             {
-                bInstalling = false;
-                emit q_ptr->compatibilityFailed(
-                    tr("No compatible add-on version is available for this version of the application."));
+                finishInstall(Result::AddonVersionMismatch);
             }
             else
             {
@@ -335,7 +357,7 @@ private:
         }
 
 metadataFailed:
-        finishInstall(false);
+        finishInstall(Result::InvalidMetadata);
     }
 };
 

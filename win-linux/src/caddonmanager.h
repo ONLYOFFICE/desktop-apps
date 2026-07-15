@@ -47,6 +47,22 @@ public:
 
     enum class Action { None, Install, Uninstall, Stop };
 
+    enum Result
+    {
+        Success               =  0,
+        DownloadAborted       =  1,
+        DownloadOutOfMemory   = -1,
+        DownloadNetworkError  = -2,
+        DownloadInvalidUrl    = -3,
+        DownloadFileOpError   = -4,
+        DownloadUnknownError  = -5,
+        Md5Mismatch           = -6,
+        ExtractionFailed      = -7,
+        InvalidMetadata       = -8,
+        AppVersionTooOld      = -9,
+        AddonVersionMismatch  = -10,
+    };
+
     // Entry points called from the start-page command dispatcher.
     void doAction(Action action); // page button was clicked
     bool isInstalled() const;
@@ -54,9 +70,8 @@ public:
 
 signals:
     void progressChanged(int progress);
-    void installFinished(bool success);
+    void installFinished(int result);
     void uninstallFinished();
-    void compatibilityFailed(const QString &error);
 
 private:
     class CAddonManagerPrivate;
