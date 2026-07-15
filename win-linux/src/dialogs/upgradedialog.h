@@ -66,6 +66,7 @@ public:
     void setProgress(int percent);
     void showStartPage();
     void showFinalPage();
+    void showErrorPage(const QString &message);
     int exec();
 
     virtual void applyTheme(const std::wstring&) final;

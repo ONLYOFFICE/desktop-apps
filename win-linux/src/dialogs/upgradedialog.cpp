@@ -95,8 +95,16 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
             ui->stackedWidget->setCurrentIndex(1);
             emit installClicked();
         });
+    connect(ui->btnTryAgain, &QPushButton::clicked, this,
+        [this]()
+        {
+            ui->labelTitle->setVisible(true);
+            ui->stackedWidget->setCurrentIndex(1);
+            emit installClicked();
+        });
     connect(ui->btnRestartNow, &QPushButton::clicked, this, &UpgradeDialog::acceptRestartNow);
     connect(ui->btnRestartLater, &QPushButton::clicked, this, &UpgradeDialog::acceptRestartLater);
+    connect(ui->btnCancel, &QPushButton::clicked, this, &UpgradeDialog::reject);
 }
 
 UpgradeDialog::~UpgradeDialog()
@@ -128,6 +136,13 @@ void UpgradeDialog::showFinalPage()
 {
     ui->stackedWidget->setCurrentIndex(2);
     ui->btnRestartNow->setFocus();
+}
+
+void UpgradeDialog::showErrorPage(const QString &message)
+{
+    ui->stackedWidget->setCurrentIndex(3);
+    ui->labelErrorInfo->setText(message);
+    ui->btnTryAgain->setFocus();
 }
 
 int UpgradeDialog::exec()

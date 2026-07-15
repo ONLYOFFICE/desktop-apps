@@ -28,21 +28,27 @@ QAbstractButton {font-weight: normal;}
 QPushButton::menu-indicator {width: 0px; height: 0px;}
 #labelTitle {font-weight: bold;}
 
+#btnCancel,
 #btnDeclineInstall,
 #btnRestartLater {color: %3; background: transparent;}
 
+#btnCancel:hover,
 #btnDeclineInstall:hover,
 #btnRestartLater:hover {background: %4;}
 
+#btnCancel:pressed,
 #btnDeclineInstall:pressed,
 #btnRestartLater:pressed {background: %5;}
 
+#btnTryAgain,
 #btnAcceptInstall,
 #btnRestartNow {color: %7; background: #4473ca;}
 
+#btnTryAgain:hover,
 #btnAcceptInstall:hover,
 #btnRestartNow:hover {background: %4;}
 
+#btnTryAgain:pressed,
 #btnAcceptInstall:pressed,
 #btnRestartNow:pressed {background: %5;}
 
