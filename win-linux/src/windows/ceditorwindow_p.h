@@ -44,7 +44,6 @@
 #include "components/cmenu.h"
 #include "defines.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
-#include "caddonmanager.h"
 #include <QDir>
 #include <QUuid>
 #include <QJsonDocument>
@@ -273,11 +272,6 @@ public:
                 diffW -= iconuser->width() + spacing*dpiRatio;
             }
         }
-#ifdef USE_ADDON_MODE
-        if (window->m_pButtonUpgrade) {
-            diffW -= window->m_pButtonUpgrade->width() + spacing*dpiRatio;
-        }
-#endif
         QMargins mrg(0, 0, 0, 2*dpiRatio);
         if (AscAppManager::isRtlEnabled())
             diffW > 0 ? mrg.setLeft(diffW) : mrg.setRight(-diffW);
@@ -465,16 +459,6 @@ public:
             if (window->isActiveWindow())
                 window->focus();
             AscAppManager::getInstance().onDocumentReady(uid);
-
-#ifdef USE_ADDON_MODE
-            CAddonManager *am = AscAppManager::addonManager();
-            if (am && !am->isInstalled()) {
-                window->initUpgradeButton();
-                window->syncUpgradeButton();
-                window->showUpgradeButton();
-                centerTitle(window->m_dpiRatio);
-            }
-#endif
     }
 
     void onDocumentName(void * data) override

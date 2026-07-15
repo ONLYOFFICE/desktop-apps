@@ -77,13 +77,6 @@ public:
     QWidget * mainPanel() const;
     bool isCustomWindowStyle();
     void updateScaling(bool resize = true);
-#ifdef USE_ADDON_MODE
-    void initUpgradeButton();
-    void syncUpgradeButton();
-    void showUpgradeButton();
-    void hideUpgradeButton();
-    void applyUpgradeButtonStyle();
-#endif
     virtual void adjustGeometry() = 0;
     virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) = 0;
     virtual void applyTheme(const std::wstring&);
@@ -112,9 +105,6 @@ protected:
     virtual void focus();
 
     QVector<CPushButton*> m_pTopButtons;
-#ifdef USE_ADDON_MODE
-    QPushButton   *m_pButtonUpgrade = nullptr;
-#endif
     CElipsisLabel *m_labelTitle = nullptr;
     QWidget       *m_pMainPanel = nullptr,
                   *m_boxTitleBtns = nullptr,

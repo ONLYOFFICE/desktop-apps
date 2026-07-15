@@ -38,7 +38,6 @@
 #include "iconfactory.h"
 #include "defines.h"
 #include "utils.h"
-#include "caddonmanager.h"
 #include <QApplication>
 #include <clangater.h>
 
@@ -248,13 +247,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
             pTopLayout->insertSpacerItem(pos + 1, pIconSpacer);
         }
 
-#ifdef USE_ADDON_MODE
-        CAddonManager *am = AscAppManager::addonManager();
-        if (am && !am->isInstalled()) {
-            initUpgradeButton();
-            syncUpgradeButton();
-        }
-#endif
         d_ptr->customizeTitleLabel();
     } else {
 //        QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));

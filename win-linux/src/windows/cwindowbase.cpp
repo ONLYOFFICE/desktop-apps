@@ -146,66 +146,6 @@ void CWindowBase::updateScaling(bool resize)
     }
 }
 
-#ifdef USE_ADDON_MODE
-void CWindowBase::initUpgradeButton()
-{
-    if (m_pButtonUpgrade || !m_boxTitleBtns)
-        return;
-
-    m_pButtonUpgrade = new QPushButton(m_boxTitleBtns);
-    m_pButtonUpgrade->setObjectName("buttonUpgrade");
-    m_pButtonUpgrade->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    m_pButtonUpgrade->setText(tr("Get Pro"));
-
-    QHBoxLayout *layout = static_cast<QHBoxLayout*>(m_boxTitleBtns->layout());
-    int index = qMax(0, layout->count() - m_pTopButtons.size());
-    layout->insertWidget(index, m_pButtonUpgrade);
-
-    applyUpgradeButtonStyle();
-
-    connect(m_pButtonUpgrade, &QPushButton::clicked, this, [=]() {
-        AscAppManager::setUpgradeInProgress(true);
-        AscAppManager::syncUpgradeButtons();
-        AscAppManager::showUpgradeDialog(this, m_dpiRatio);
-    });
-}
-
-void CWindowBase::syncUpgradeButton()
-{
-    if (m_pButtonUpgrade)
-        m_pButtonUpgrade->setEnabled(!AscAppManager::upgradeInProgress());
-}
-
-void CWindowBase::showUpgradeButton()
-{
-    if (m_pButtonUpgrade)
-        m_pButtonUpgrade->show();
-}
-
-void CWindowBase::hideUpgradeButton()
-{
-    if (m_pButtonUpgrade)
-        m_pButtonUpgrade->hide();
-}
-
-void CWindowBase::applyUpgradeButtonStyle()
-{
-    if (m_pButtonUpgrade)
-        m_pButtonUpgrade->setStyleSheet(
-            QString("#buttonUpgrade {border-radius: %1px;"
-                    "color: #ffffff; background: #4473ca;"
-                    "padding-left: %2px; padding-right: %2px;"
-                    "margin-left: %3px; margin-right: %3px;"
-                    "font-weight: bold;}"
-                    "#buttonUpgrade:hover {background: #dd4473ca;}"
-                    "#buttonUpgrade:pressed {background: #ee4473ca;}"
-                    "#buttonUpgrade:disabled {background: #554473ca;}")
-                .arg(QString::number(6 * m_dpiRatio),
-                     QString::number(8 * m_dpiRatio),
-                     QString::number(6 * m_dpiRatio)));
-}
-#endif
-
 void CWindowBase::applyTheme(const std::wstring& theme)
 {
     Q_UNUSED(theme)
@@ -339,11 +279,6 @@ void CWindowBase::setScreenScalingFactor(double factor, bool resize)
             foreach (auto pBtn, m_pTopButtons)
                 pBtn->setFixedSize(small_btn_size);
         }
-
-#ifdef USE_ADDON_MODE
-        if (m_pButtonUpgrade)
-            applyUpgradeButtonStyle();
-#endif
     }
 }
 
