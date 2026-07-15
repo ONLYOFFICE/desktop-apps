@@ -46,6 +46,13 @@
 # include <wininet.h>
 #endif
 
+#ifndef URL_APPCAST_UPDATES
+# define URL_APPCAST_UPDATES L""
+#endif
+#ifndef URL_APPCAST_DEV_CHANNEL
+# define URL_APPCAST_DEV_CHANNEL L""
+#endif
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 # define SKIP_EMPTY Qt::SkipEmptyParts
 #else
