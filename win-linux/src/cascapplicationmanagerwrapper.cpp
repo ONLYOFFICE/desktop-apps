@@ -1252,7 +1252,8 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                     else
                     {
                         if (m_private->m_upgradeDialog)
-                            m_private->m_upgradeDialog->showStartPage();
+                            m_private->m_upgradeDialog->showErrorPage(
+                                tr("An error occurred while installing the add-on."));
                         if (m_pMainWindow)
                             m_pMainWindow->sendAddonStatusToStartPage(tr("Installation failed",
                                                                       "CAddonManager"), "error");
@@ -1277,6 +1278,13 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                     if (m_pMainWindow)
                         m_pMainWindow->sendAddonStatusToStartPage(tr("Installing... %1%", "CAddonManager")
                                                       .arg(progress), "load", true);
+                });
+
+        connect(m_private->m_pAddonManager, &CAddonManager::compatibilityFailed, this,
+                [this](const QString &error)
+                {
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->showErrorPage(error);
                 });
     }
     if (uid < 0) {

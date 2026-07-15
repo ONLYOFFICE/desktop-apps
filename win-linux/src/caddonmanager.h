@@ -56,6 +56,7 @@ signals:
     void progressChanged(int progress);
     void installFinished(bool success);
     void uninstallFinished();
+    void compatibilityFailed(const QString &error);
 
 private:
     class CAddonManagerPrivate;

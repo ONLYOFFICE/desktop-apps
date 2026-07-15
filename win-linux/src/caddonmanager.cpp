@@ -297,11 +297,15 @@ private:
 
             if (isNewerVersion(currVersion, version))
             {
-                // TODO: show a message about the need to update the application
+                bInstalling = false;
+                emit q_ptr->compatibilityFailed(
+                    tr("To install the add-on, update the application to the latest version."));
             }
             else if (isNewerVersion(version, currVersion))
             {
-                // TODE: show message about missing update
+                bInstalling = false;
+                emit q_ptr->compatibilityFailed(
+                    tr("No compatible add-on version is available for this version of the application."));
             }
             else
             {
@@ -314,6 +318,7 @@ private:
                 bool primary_bad = (url.isEmpty() || !pDownloader->isUrlAccessible(QStrToTStr(url)));
                 bool prefer_secondary = InputArgs::contains(L"--prefer-alternate-url");
                 QString packageUrl = (!url2.isEmpty() && (primary_bad || prefer_secondary)) ? url2 : url;
+                CLogger::log("Download from URL:\n" + url);
 
                 QString hash = platform.value("md5").toString();
 
