@@ -273,7 +273,10 @@ export function initSettingsSync() {
       batch(() => {
         if (payload.locale?.current) setSettings("lang", payload.locale.current);
         if ("uiscaling" in payload) setSettings("scaling", nativeScalingToStore(payload.uiscaling));
-        if (payload.uitheme) setSettings("theme", payload.uitheme);
+        if (payload.uitheme) {
+          setSettings("theme", payload.uitheme);
+          applyThemeToDom(payload.uitheme);
+        }
         if (payload.autoupdatemode) setSettings("checkUpdates", payload.autoupdatemode);
         if (payload.editorwindowmode) setSettings("launchMode", payload.editorwindowmode ? settDefs.EDITOR_MODE_WINDOW : settDefs.EDITOR_MODE_TAB);
         if (payload.spellcheckdetect) setSettings("spellCheck", payload.spellcheckdetect);
