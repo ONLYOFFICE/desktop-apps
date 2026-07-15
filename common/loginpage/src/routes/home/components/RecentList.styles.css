@@ -165,8 +165,7 @@
 }
 
 .col-actions {
-  .pin,
-  .more {
+  .btn-recents-tool {
     opacity: 0;
   }
 }
@@ -176,8 +175,7 @@
 }
 
 .file-list-body .row:hover .col-actions {
-  .pin,
-  .more {
+  .btn-recents-tool {
     opacity: 1;
   }
 }

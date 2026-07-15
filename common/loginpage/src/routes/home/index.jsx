@@ -5,6 +5,8 @@ import { listRecents, onRecentsChanged, onNativeMessage, parseRecent, pinRecent,
 import { DocTypeGrid } from "./components/DocTypeGrid.jsx";
 import { RecentList } from "./components/RecentList.jsx";
 import { FileDropZone } from "./components/FileDropZone.jsx";
+import { aichat } from "@/stores/aichat.js";
+import { command } from "@/sdk/bridge.js";
 import "@/styles/components/home.css";
 
 const toArray = (v) => (Array.isArray(v) ? v : []);
@@ -78,6 +80,14 @@ export default function Index() {
     setRecents(reconcile([], { key: "uid" }));
   }
 
+  function addToChat() {
+    if (aichat.available) {
+      // navigate("/ai");
+    } else {
+      command('addon:action', 'install');
+    }
+  }
+
   onMount(() => {
     listRecents()
       .then((raw) => {
@@ -136,7 +146,11 @@ export default function Index() {
       </Show>
 
       <section class="file-list-section">
-        <RecentList recents={visibleRecents()} onTogglePin={togglePin} onRemove={markFileRemoved} onClear={clearAll} />
+        <RecentList recents={visibleRecents()}
+                    onTogglePin={togglePin}
+                    onRemove={markFileRemoved}
+                    onClear={clearAll}
+                    onAddToChat={addToChat} />
       </section>
     </div>
   );

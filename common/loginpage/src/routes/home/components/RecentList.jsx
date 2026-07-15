@@ -69,7 +69,18 @@ function RecentRow(props) {
         </Show>
         <div class="col-actions">
           <button
-            class="pin"
+            class="btn-recents-tool aichat"
+            onClick={(e) => {
+              e.stopPropagation();
+              props.onAddToChat(props.model.fileid);
+            }}
+          >
+            <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#aichat_rcl" /></svg>}>
+              <i class="icon tool-icon aichat" />
+            </Show>
+          </button>
+          <button
+            class="btn-recents-tool pin"
             onClick={(e) => {
               e.stopPropagation();
               props.onTogglePin(props.model.fileid);
@@ -81,7 +92,7 @@ function RecentRow(props) {
           </button>
           <Show when={props.model.type !== "folder"}>
             <DropdownMenu onOpenChange={(open) => {}}>
-              <DropdownMenu.Trigger class="more" onClick={(e) => e.stopPropagation()}>
+              <DropdownMenu.Trigger class="btn-recents-tool more" onClick={(e) => e.stopPropagation()}>
                 <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#more" /></svg>}>
                   <i class="icon tool-icon more" />
                 </Show>
@@ -126,7 +137,11 @@ export function RecentList(props) {
         </div>
         <div class="file-list-body scrollable">
           <For each={recents()}>
-            {(model) => <RecentRow model={model} onTogglePin={props.onTogglePin} onRemove={props.onRemove} onClear={props.onClear} />}
+            {(model) => <RecentRow model={model}
+                                onTogglePin={props.onTogglePin}
+                                onRemove={props.onRemove}
+                                onClear={props.onClear}
+                                onAddToChat={props.onAddToChat} />}
           </For>
         </div>
       </div>
