@@ -263,16 +263,16 @@ private:
         {
             QJsonObject addon = root.value("addon").toObject();
             if (addon.isEmpty())
-                goto installFailed;
+                goto metadataFailed;
 
             QString currVersion = QString::fromLatin1(VER_FILEVERSION_STR);
             QString version = addon.value("version").toString();
             if (version.isEmpty())
-                goto installFailed;
+                goto metadataFailed;
 
             QJsonObject package = addon.value("package").toObject();
             if (package.isEmpty())
-                goto installFailed;
+                goto metadataFailed;
 #ifdef _WIN32
 # if defined(_M_ARM64)
             QJsonObject platform = package.value("win_arm64").toObject();
@@ -293,7 +293,7 @@ private:
 # endif
 #endif
             if (platform.isEmpty())
-                goto installFailed;
+                goto metadataFailed;
 
             if (isNewerVersion(currVersion, version))
             {
@@ -312,7 +312,7 @@ private:
                 QString url = platform.value("url").toString();
                 QString url2 = platform.value("url2").toString();
                 if (url.isEmpty() && url2.isEmpty())
-                    goto installFailed;
+                    goto metadataFailed;
 
                 CLogger::log("Primary package URL: " + url + "\nSecondary package URL: " + url2);
                 bool primary_bad = (url.isEmpty() || !pDownloader->isUrlAccessible(QStrToTStr(url)));
@@ -333,7 +333,7 @@ private:
             return;
         }
 
-installFailed:
+metadataFailed:
         finishInstall(false);
     }
 };
