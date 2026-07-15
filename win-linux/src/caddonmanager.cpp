@@ -325,6 +325,7 @@ private:
                 packageData.version = version;
                 packageData.hash = hash.toLower();
 
+                QFile::remove(sTmpPath);
                 nDownloadMode = DownloadPackage;
                 sTmpPath = Utils::generateTmpFileName(".zip");
                 startDownload(QStrToTStr(packageUrl), QStrToTStr(sTmpPath));
