@@ -1,20 +1,20 @@
 import { For, Show } from "solid-js";
-import { useNavigate } from "@solidjs/router";
 import { t } from "@/services/l10n";
 import { openAbout, aboutVisible } from "@/services/about";
 import { openPromo, promoVisible, promoButtons } from "@/services/promotion";
 import { appliedUseAi } from "@/services/settings-sync";
 import { MenuItem } from "./MenuItem.jsx";
 import { command } from "@/sdk/bridge.js";
-import { aichat } from "@/stores/aichat.js";
+import { aichat, closeSidePanel } from "@/stores/aichat.js";
 import "./Sidebar.styles.css";
 
 export default function Sidebar() {
-  const navigate = useNavigate();
-  const clickAiChat = () => {
+  const clickAiChat = (e) => {
     if (aichat.available) {
-      navigate("/ai");
+      closeSidePanel();
+      // href handles navigation
     } else {
+      e.preventDefault();
       command('addon:action', 'install');
     }
   };
@@ -22,8 +22,7 @@ export default function Sidebar() {
   return (
     <nav class="tool-menu">
       <Show when={appliedUseAi()}>
-        {/* <MenuItem href="/ai" icon="#aichat" label={t("actAiChat")} /> */}
-        <MenuItem onClick={clickAiChat} icon="#aichat" label={t("actAiChat")} />
+        <MenuItem href="/ai" onClick={clickAiChat} icon="#aichat" label={t("actAiChat")} />
         <li class="menu-item separator" />
       </Show>
       <MenuItem href="/" icon="#home" label={t("actHome")} end />

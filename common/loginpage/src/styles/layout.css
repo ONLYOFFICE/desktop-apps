@@ -63,6 +63,18 @@ h4 {
   gap: 4px;
   width: 100%;
   height: 100%;
+
+  &.shell--chat-panel-side {
+    grid-template-columns: calc(62px + 8px) minmax(0, 1fr) var(--chat-w, 400px);
+  }
+
+  &.shell--chat-panel-full .col-center {
+    display: none;
+  }
+
+  &.shell--chat-panel-full .col-ai {
+    grid-column: 2;
+  }
 }
 
 .col-sidebar {
@@ -85,8 +97,19 @@ h4 {
   }
 }
 
+.col-ai {
+  position: relative;
+  height: 100dvh;
+  padding: 8px 8px 8px 0;
+  /* overflow: visible so ResizeHandle can extend into the gap between panels */
+}
+
 .scrollable {
   overflow-y: auto;
+}
+
+html.ai-resizing * {
+  cursor: col-resize !important;
 }
 
 ::-webkit-input-placeholder {

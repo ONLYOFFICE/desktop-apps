@@ -1,8 +1,9 @@
-import { Show, lazy, onMount } from "solid-js";
+import { Show, lazy, createEffect, onMount } from "solid-js";
 import { HashRouter, useLocation } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
 import About from "./routes/about/index.jsx";
 import { AiPanel } from "@/components/ai-panel";
+import { ResizeHandle } from "@/components/ai-panel/ResizeHandle.jsx";
 import { signalAppReady } from "@/sdk";
 import { initSettingsSync } from "@/services/settings-sync";
 import { initAbout } from "@/services/about";
@@ -14,23 +15,38 @@ import "./styles/layout.css";
 
 function Shell(props) {
   const location = useLocation();
-  const isAiSelected = () => location.pathname.startsWith("/ai");
+  const isChatSelected = () => location.pathname.startsWith("/ai");
+  const isSettingsSelected = () => location.pathname.startsWith("/settings");
+  const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && !isSettingsSelected();
+  const isChatExpanded = () => isChatSelected() && aichat.available;
+  const showAiCol = () => showSidePanel() || isChatExpanded();
+
+  createEffect(() => {
+    document.body.style.setProperty("--chat-w", `${aichat.width}px`);
+  });
 
   return (
-    <div class="shell">
+    <div
+      class="shell"
+      classList={{
+        "shell--chat-panel-side": showSidePanel(),
+        "shell--chat-panel-full": isChatExpanded(),
+      }}
+    >
       <div class="col-sidebar">
         <Sidebar />
       </div>
       <div class="col-center">
-        <div style={{ display: isAiSelected() ? "none" : undefined }}>
-          {props.children}
-        </div>
-        <Show when={aichat.available}>
-          <div style={{ display: isAiSelected() ? undefined : "none" }}>
-            <AiPanel />
-          </div>
-        </Show>
+        {props.children}
       </div>
+      <Show when={aichat.available}>
+        <div class="col-ai" style={{ display: showAiCol() ? undefined : "none" }}>
+          <Show when={showSidePanel()}>
+            <ResizeHandle />
+          </Show>
+          <AiPanel />
+        </div>
+      </Show>
       <About />
     </div>
   );

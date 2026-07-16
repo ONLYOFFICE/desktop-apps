@@ -1,7 +1,7 @@
 import { onCleanup } from "solid-js";
 import { onNativeMessage } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
-import { setPanelUrl } from "@/stores/aichat";
+import { setPanelUrl, openSidePanel, closeSidePanel } from "@/stores/aichat";
 import { registerPlugin } from "@/stores/plugin-settings";
 
 const AI_PLUGIN_IDS = ["F2402876-659F-47FB-A646-67B49F2B5AAA", "9DC93CDB-B576-4F0C-B55E-FCC9C48DD777"];
@@ -23,8 +23,15 @@ export function initAiPanel() {
 
   function onPluginEvent(msg = {}) {
     if (msg.type === "settings") {
-      console.log("plugin settings", msg);
       registerPlugin(msg);
+    } else if (msg.type === "expand") {
+      closeSidePanel();
+      window.location.hash = "#/ai";
+    } else if (msg.type === "minimize") {
+      openSidePanel();
+      window.location.hash = "#/";
+    } else if (msg.type === "collapse") {
+      closeSidePanel();
     }
   }
 

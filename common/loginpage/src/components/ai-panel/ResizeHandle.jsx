@@ -12,7 +12,7 @@ export function ResizeHandle() {
 
   function onMove(e) {
     width = Math.round(Math.min(Math.max(shellRight - e.clientX, AI_PANEL_MIN_WIDTH), maxWidth));
-    document.documentElement.style.setProperty("--ai-w", `${width}px`);
+    document.body.style.setProperty("--chat-w", `${width}px`);
   }
 
   function onUp(e) {
@@ -20,7 +20,7 @@ export function ResizeHandle() {
     handleEl.removeEventListener("pointermove", onMove);
     handleEl.removeEventListener("pointerup", onUp);
     handleEl.removeEventListener("pointercancel", onUp);
-    document.documentElement.classList.remove("ai-resizing");
+    document.body.classList.remove("chat-resizing");
     setAichat("width", width);
   }
 
@@ -30,7 +30,7 @@ export function ResizeHandle() {
     shellRight = rect.right;
     maxWidth = Math.max(AI_PANEL_MIN_WIDTH, rect.width - SHELL_LEFT - AI_CONTENT_MIN_WIDTH);
     handleEl.setPointerCapture(e.pointerId);
-    document.documentElement.classList.add("ai-resizing");
+    document.body.classList.add("chat-resizing");
     handleEl.addEventListener("pointermove", onMove);
     handleEl.addEventListener("pointerup", onUp);
     handleEl.addEventListener("pointercancel", onUp);
