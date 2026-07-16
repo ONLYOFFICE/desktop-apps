@@ -86,6 +86,14 @@ public:
     QSpacerItem *page3SpacerHCenter;
     QPushButton *btnRestartNow;
 
+    QVBoxLayout *page4VLayout;
+    QLabel *labelError;
+    QLabel *labelErrorInfo;
+    QSpacerItem *page4SpacerVBottom;
+    QPushButton *btnCancel;
+    QSpacerItem *page4SpacerHCenter;
+    QPushButton *btnTryAgain;
+
     void setupUi(QMainWindow *upgradeDialog, double dpi)
     {
         upgradeDialog->setObjectName(QString::fromUtf8("UpgradeDialog"));        
@@ -244,6 +252,54 @@ public:
         page3VLayout->addLayout(page3HLayout);
         stackedWidget->addWidget(page3);
 
+        /** Page 4 **/
+        QWidget *page4 = new QWidget();
+        page4->setObjectName(QString::fromUtf8("page4"));
+        page4VLayout = new QVBoxLayout(page4);
+        page4VLayout->setSpacing(12 * dpi);
+
+        labelError = new QLabel(page4);
+        labelError->setObjectName(QString::fromUtf8("labelError"));
+        labelError->setAlignment(Qt::AlignCenter);
+        page4VLayout->addWidget(labelError);
+
+        QSpacerItem *page4SpacerVTop = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        page4VLayout->addItem(page4SpacerVTop);
+
+        labelErrorInfo = new QLabel(page4);
+        labelErrorInfo->setObjectName(QString::fromUtf8("labelErrorInfo"));
+        labelErrorInfo->setAlignment(Qt::AlignCenter);
+        labelErrorInfo->setWordWrap(true);
+        page4VLayout->addWidget(labelErrorInfo);
+
+        page4SpacerVBottom = new QSpacerItem(20, 6 * dpi, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        page4VLayout->addItem(page4SpacerVBottom);
+
+        QHBoxLayout *page4HLayout = new QHBoxLayout();
+        QSpacerItem *page4SpacerHLeft = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        page4HLayout->addItem(page4SpacerHLeft);
+
+        btnCancel = new QPushButton(page4);
+        btnCancel->setObjectName(QString::fromUtf8("btnCancel"));
+        btnCancel->setFixedHeight(28 * dpi);
+        page4HLayout->addWidget(btnCancel);
+
+        page4SpacerHCenter = new QSpacerItem(6 * dpi, 10, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        page4HLayout->addItem(page4SpacerHCenter);
+
+        btnTryAgain = new QPushButton(page4);
+        btnTryAgain->setObjectName(QString::fromUtf8("btnTryAgain"));
+        btnTryAgain->setFixedHeight(28 * dpi);
+        btnTryAgain->setDefault(true);
+        btnTryAgain->setAutoDefault(true);
+        page4HLayout->addWidget(btnTryAgain);
+
+        QSpacerItem *page4SpacerHRight = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        page4HLayout->addItem(page4SpacerHRight);
+
+        page4VLayout->addLayout(page4HLayout);
+        stackedWidget->addWidget(page4);
+
         /** Central widget **/
         centralVLayout->addWidget(stackedWidget);
         upgradeDialog->setCentralWidget(centralwidget);
@@ -324,6 +380,12 @@ public:
             "I'll do it later", nullptr));
         btnRestartNow->setText(QCoreApplication::translate("UpgradeDialog",
             "Restart now", nullptr));
+        labelError->setText(QCoreApplication::translate("UpgradeDialog",
+            "Installation failed", nullptr));
+        btnCancel->setText(QCoreApplication::translate("UpgradeDialog",
+            "Cancel", nullptr));
+        btnTryAgain->setText(QCoreApplication::translate("UpgradeDialog",
+            "Try again", nullptr));
     } // retranslateUi
 
 private:

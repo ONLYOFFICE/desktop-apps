@@ -1235,24 +1235,67 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
         m_private->m_pAddonManager = new CAddonManager(this);
 
         connect(m_private->m_pAddonManager, &CAddonManager::installFinished, this,
-                [this](bool success)
+                [this](int result)
                 {
                     m_private->m_bUpgradeInProgress = false;
 
-                    if (success)
+                    if (result == CAddonManager::Success)
                     {
                         if (m_private->m_upgradeDialog)
                             m_private->m_upgradeDialog->showFinalPage();
                         if (m_pMainWindow)
                             m_pMainWindow->sendAddonStatusToStartPage();
                     }
+                    else if (result == CAddonManager::DownloadAborted)
+                    {
+                        // Aborted
+                    }
                     else
                     {
-                        if (m_private->m_upgradeDialog)
-                            m_private->m_upgradeDialog->showStartPage();
                         if (m_pMainWindow)
                             m_pMainWindow->sendAddonStatusToStartPage(tr("Installation failed",
                                                                       "CAddonManager"), "error");
+
+                        QString msg;
+                        switch (result)
+                        {
+                        case CAddonManager::AddonVersionMismatch:
+                            msg = tr("No compatible add-on version is available for this version of"
+                                     " the application.");
+                            break;
+                        case CAddonManager::AppVersionTooOld:
+                            msg = tr("To install the add-on, update the application to the latest"
+                                     " version.");
+                            break;
+                        case CAddonManager::ExtractionFailed:
+                            msg = tr("An error occurred while unpacking the archive");
+                            break;
+                        case CAddonManager::InvalidMetadata:
+                            msg = tr("The add-on information is invalid or incomplete.");
+                            break;
+                        case CAddonManager::Md5Mismatch:
+                            msg = tr("The add-on package is corrupted or has been modified.");
+                            break;
+                        case CAddonManager::DownloadOutOfMemory:
+                            msg = tr("Not enough memory to complete the add-on download.");
+                            break;
+                        case CAddonManager::DownloadNetworkError:
+                            msg = tr("Failed to download the add-on due to a network error.");
+                            break;
+                        case CAddonManager::DownloadInvalidUrl:
+                            msg = tr("The add-on download URL is invalid.");
+                            break;
+                        case CAddonManager::DownloadFileOpError:
+                            msg = tr("Failed to save the downloaded add-on package.");
+                            break;
+                        case CAddonManager::DownloadUnknownError:
+                        default:
+                            msg = tr("An unexpected error occurred while installing the add-on.");
+                            break;
+                        }
+
+                        if (m_private->m_upgradeDialog)
+                            m_private->m_upgradeDialog->showErrorPage(msg);
                     }
                 });
 

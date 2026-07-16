@@ -59,6 +59,7 @@ TRANSLATIONS = ./langs/en.ts \
 CORE_ROOT_DIR = $$PWD/../../core
 BASEEDITORS_PATH = $$PWD/../../desktop-sdk/ChromiumBasedEditors
 CORE_3DPARTY_PATH = $$PWD/../../core/Common/3dParty
+COMMON_PATH = $$PWD/../common/sources
 
 CONFIG += core_no_dst
 include($$CORE_ROOT_DIR/Common/base.pri)
@@ -72,6 +73,7 @@ INCLUDEPATH += \
     $$BASEEDITORS_PATH/lib/qt_wrapper/include \
     $$CORE_ROOT_DIR/DesktopEditor \
     $$CORE_ROOT_DIR/Common \
+    $$COMMON_PATH \
     $$PWD/src
 
 HEADERS += \
@@ -167,6 +169,7 @@ updmodule:!build_xp {
     DEFINES += USE_ADDON_MODE
 
     HEADERS += \
+        $$COMMON_PATH/cdownloader.h \
         $$PWD/src/caddonmanager.h \
         $$PWD/src/dialogs/ui_upgradedialog.h \
         $$PWD/src/dialogs/upgradedialog.h
@@ -248,6 +251,13 @@ core_linux {
     PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xcb-shape libnotify
     LIBS += -lX11 -lcups
 
+    !disable_addon_mode {
+        SOURCES += \
+            $$COMMON_PATH/cdownloader_linux.cpp
+
+        LIBS += -lcurl
+    }
+
     cef_version_107 {
         LIBS += $$PWD/../../build_tools/tools/linux/sysroot/ubuntu14/libdbus-1.so.3
     } else {
@@ -318,6 +328,13 @@ core_windows {
             -lnetapi32 \
             -lrpcrt4
 #            -lOpenGL32
+
+    !disable_addon_mode {
+        SOURCES += \
+            $$COMMON_PATH/cdownloader_win32.cpp
+
+        LIBS += -lwinhttp
+    }
 
     build_xp {
         DEFINES += __OS_WIN_XP

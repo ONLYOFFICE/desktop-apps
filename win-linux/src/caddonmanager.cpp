@@ -38,19 +38,22 @@
 #include "utils.h"
 #include "clogger.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "Network/FileTransporter/include/FileTransporter.h"
+#include "cdownloader.h"
 #include <QFile>
 #include <QJsonObject>
 #ifdef _WIN32
 # include <tchar.h>
-# include <wininet.h>
+# define QStrToTStr(str) str.toStdWString()
+#else
+# define _T(str) str
+# define QStrToTStr(str) str.toStdString()
 #endif
 
 #ifndef URL_APPCAST_UPDATES
-# define URL_APPCAST_UPDATES L""
+# define URL_APPCAST_UPDATES ""
 #endif
 #ifndef URL_APPCAST_DEV_CHANNEL
-# define URL_APPCAST_DEV_CHANNEL L""
+# define URL_APPCAST_DEV_CHANNEL ""
 #endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
@@ -58,8 +61,6 @@
 #else
 # define SKIP_EMPTY QString::SkipEmptyParts
 #endif
-
-using NSNetwork::NSFileTransport::CFileDownloader;
 
 
 class CAddonManager::CAddonManagerPrivate : public QObject
@@ -85,9 +86,9 @@ class CAddonManager::CAddonManagerPrivate : public QObject
 
     } packageData;
 
-    CFileDownloader *pDownloader = nullptr;
+    CDownloader *pDownloader = nullptr;
     QString sTmpPath;
-    std::wstring sMetadataUrl;
+    tstring sMetadataUrl;
     int nDownloadMode = DownloadMetadata;
 
 public:
@@ -96,8 +97,8 @@ public:
         , q_ptr(parent)
     {
         sMetadataUrl = InputArgs::contains(L"--appcast-dev-channel")
-                           ? URL_APPCAST_DEV_CHANNEL
-                           : URL_APPCAST_UPDATES;
+                           ? _T(URL_APPCAST_DEV_CHANNEL)
+                           : _T(URL_APPCAST_UPDATES);
     }
 
     ~CAddonManagerPrivate()
@@ -114,7 +115,7 @@ public:
         bInstalling = true;
         emit q_ptr->progressChanged(0);
 
-        startDownload(sMetadataUrl, sTmpPath.toStdWString());
+        startDownload(sMetadataUrl, QStrToTStr(sTmpPath));
     }
 
     void uninstall()
@@ -127,56 +128,53 @@ public:
         emit q_ptr->uninstallFinished();
     }
 
-    void finishInstall(bool success)
+    void finishInstall(int result)
     {
         bInstalling = false;
 
-        if (success)
+        if (result == Result::Success)
         {
             int res = AscAppManager::getInstance().InstallMainAddon(sTmpPath.toStdWString());
-            success = (res == 0);
-            bRestartRequired = success;
+            bRestartRequired = (res == 0);
+
+            if (!bRestartRequired)
+                result = Result::ExtractionFailed;
         }
 
         QFile::remove(sTmpPath);
         sTmpPath.clear();
 
-        emit q_ptr->installFinished(success);
+        emit q_ptr->installFinished(result);
     }
 
-    void startDownload(const std::wstring& url, const std::wstring& filePath)
+    void startDownload(const tstring& url, const tstring& filePath)
     {
-        nLastProgress = -1;
         resetDownloader();
-#ifdef _WIN32
-        // Clear cache to force downloading the latest version.
-        DeleteUrlCacheEntryW(url.c_str());
-#endif
-        // CFileDownloader writes directly to the target path and reports through its
-        // own worker thread, so the callbacks are marshaled back to the GUI thread.
-        pDownloader = new CFileDownloader(url, false);
-        pDownloader->SetFilePath(filePath);
 
-        pDownloader->SetEvent_OnProgress(
+        // CDownloader writes directly to the target path and reports through its
+        // own worker thread, so the callbacks are marshaled back to the GUI thread.
+        pDownloader = new CDownloader;
+
+        pDownloader->onProgress(
             [this](int percent)
             {
                 QMetaObject::invokeMethod(this, "onProgress", Qt::QueuedConnection, Q_ARG(int, percent));
             });
 
-        pDownloader->SetEvent_OnComplete(
-            [this](int error)
+        pDownloader->onComplete(
+            [this](int error, const tstring&)
             {
                 QMetaObject::invokeMethod(this, "onComplete", Qt::QueuedConnection, Q_ARG(int, error));
             });
 
-        pDownloader->Start(0);
+        pDownloader->downloadFile(url, filePath);
     }
 
     void resetDownloader()
     {
         if (pDownloader)
         {
-            pDownloader->Stop();
+            pDownloader->stop();
             delete pDownloader;
             pDownloader = nullptr;
         }
@@ -190,7 +188,6 @@ public:
     // after an application restart (plugins are read at startup).
     bool  bRestartRequired = false;
     bool  bInstalling = false;
-    int   nLastProgress = -1;
     
     CAddonManager *q_ptr;
 
@@ -201,23 +198,14 @@ private slots:
         if (nDownloadMode == DownloadMetadata)
             return;
 
-        if (percent < 0)
-            percent = 0;
-        else if (percent > 100)
-            percent = 100;
-
-        if (percent > nLastProgress)
-        {
-            nLastProgress = percent;
-            emit q_ptr->progressChanged(percent);
-        }
+        emit q_ptr->progressChanged(percent);
     }
 
     void onComplete(int error)
     {
         // The downloader is not deleted here (it is still unwinding its worker thread);
         // it is torn down on the next install() call or in the destructor.
-        if (error == 0)
+        if (error == CDownloader::Success)
         {
             switch (nDownloadMode)
             {
@@ -230,11 +218,11 @@ private slots:
             {
                 if (!sTmpPath.isEmpty() && Utils::getFileHash(sTmpPath) == packageData.hash)
                 {
-                    finishInstall(true);
+                    finishInstall(Result::Success);
                 }
                 else
                 {
-                    finishInstall(false);
+                    finishInstall(Result::Md5Mismatch);
                 }
                 break;
             }
@@ -244,7 +232,31 @@ private slots:
         }
         else
         {
-            finishInstall(false);
+            int result = 0;
+            switch (error)
+            {
+            case CDownloader::Aborted:
+                result = DownloadAborted;
+                break;
+            case CDownloader::OutOfMemory:
+                result = DownloadOutOfMemory;
+                break;
+            case CDownloader::NetworkError:
+                result = DownloadNetworkError;
+                break;
+            case CDownloader::InvalidUrl:
+                result = DownloadInvalidUrl;
+                break;
+            case CDownloader::FileOpError:
+                result = DownloadFileOpError;
+                break;
+            case CDownloader::UnknownError:
+            default:
+                result = DownloadUnknownError;
+                break;
+            }
+
+            finishInstall(result);
         }
     }
 
@@ -277,16 +289,16 @@ private:
         {
             QJsonObject addon = root.value("addon").toObject();
             if (addon.isEmpty())
-                goto installFailed;
+                goto metadataFailed;
 
             QString currVersion = QString::fromLatin1(VER_FILEVERSION_STR);
             QString version = addon.value("version").toString();
             if (version.isEmpty())
-                goto installFailed;
+                goto metadataFailed;
 
             QJsonObject package = addon.value("package").toObject();
             if (package.isEmpty())
-                goto installFailed;
+                goto metadataFailed;
 #ifdef _WIN32
 # if defined(_M_ARM64)
             QJsonObject platform = package.value("win_arm64").toObject();
@@ -307,43 +319,45 @@ private:
 # endif
 #endif
             if (platform.isEmpty())
-                goto installFailed;
+                goto metadataFailed;
 
             if (isNewerVersion(currVersion, version))
             {
-                // TODO: show a message about the need to update the application
+                finishInstall(Result::AppVersionTooOld);
             }
             else if (isNewerVersion(version, currVersion))
             {
-                // TODE: show message about missing update
+                finishInstall(Result::AddonVersionMismatch);
             }
             else
             {
                 QString url = platform.value("url").toString();
                 QString url2 = platform.value("url2").toString();
                 if (url.isEmpty() && url2.isEmpty())
-                    goto installFailed;
+                    goto metadataFailed;
 
                 CLogger::log("Primary package URL: " + url + "\nSecondary package URL: " + url2);
-                bool primary_bad = (url.isEmpty() /*|| !m_pDownloader->isUrlAccessible(url)*/);
+                bool primary_bad = (url.isEmpty() || !pDownloader->isUrlAccessible(QStrToTStr(url)));
                 bool prefer_secondary = InputArgs::contains(L"--prefer-alternate-url");
                 QString packageUrl = (!url2.isEmpty() && (primary_bad || prefer_secondary)) ? url2 : url;
+                CLogger::log("Download from URL:\n" + url);
 
                 QString hash = platform.value("md5").toString();
 
                 packageData.version = version;
                 packageData.hash = hash.toLower();
 
+                QFile::remove(sTmpPath);
                 nDownloadMode = DownloadPackage;
                 sTmpPath = Utils::generateTmpFileName(".zip");
-                startDownload(packageUrl.toStdWString(), sTmpPath.toStdWString());
+                startDownload(QStrToTStr(packageUrl), QStrToTStr(sTmpPath));
             }
 
             return;
         }
 
-installFailed:
-        finishInstall(false);
+metadataFailed:
+        finishInstall(Result::InvalidMetadata);
     }
 };
 
