@@ -40,32 +40,12 @@
 #include "clangater.h"
 #include "utils.h"
 
-namespace
-{
-    QSize minimumWindowSize(double dpi)
-    {
-        QSize minSize(334, 400);
-        minSize *= dpi;
-    #ifdef __linux__
-        if ( WindowHelper::shouldUseThinFrame() ) {
-            int d = 2 * SHADOW_WIDTH * dpi;
-            minSize += QSize(d, d);
-        }
-    #endif
-        return minSize;
-    }
-}
 
 UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
-    : CWindowPlatform(parent, rc)
+    : CAscDialog(parent, rc)
     , ui(new Ui::UpgradeDialog)
-    , m_loop(new QEventLoop)
-    , m_result(DialogCode::Rejected)
 {    
-    setWindowFlags(windowFlags() | Qt::Dialog);
     ui->setupUi(this, m_dpiRatio);
-    setMinimumSize(minimumWindowSize(m_dpiRatio));
-    setMaximumSize(minimumWindowSize(m_dpiRatio));
 
     ui->labelTitle->setVisible(false);
     ui->progressBar->setMinimum(0);
@@ -109,16 +89,10 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
 
 UpgradeDialog::~UpgradeDialog()
 {
-    delete m_loop;
-    m_loop = nullptr;
+
 }
 
 /** Public **/
-
-void UpgradeDialog::setModal()
-{
-    setWindowModality(Qt::ApplicationModal);
-}
 
 void UpgradeDialog::setProgress(int percent)
 {
@@ -145,62 +119,16 @@ void UpgradeDialog::showErrorPage(const QString &message)
     ui->btnTryAgain->setFocus();
 }
 
-int UpgradeDialog::exec()
-{
-    show(false);
-    m_loop->exec();
-    hide();
-    return m_result;
-}
-
 /** Protected **/
-
-bool UpgradeDialog::event(QEvent *ev)
-{
-    switch (ev->type())
-    {
-    case QEvent::Close:
-    {
-        if (m_loop->isRunning())
-        {
-            reject();
-            return true;
-        }
-        break;
-    }
-    default:
-        break;
-    }
-
-    return CWindowPlatform::event(ev);
-}
-
-void UpgradeDialog::onLayoutDirectionChanged()
-{}
 
 /** Private **/
 
-void UpgradeDialog::setScreenScalingFactor(double factor, bool resize)
-{
-    CWindowPlatform::setScreenScalingFactor(factor, resize);
-    setMinimumSize(minimumWindowSize(m_dpiRatio));
-    setMaximumSize(minimumWindowSize(m_dpiRatio));
-}
-
-void UpgradeDialog::reject()
-{
-    m_result = DialogCode::Rejected;
-    m_loop->exit();
-}
-
 void UpgradeDialog::acceptRestartNow()
 {
-    m_result = DialogCode::RestartNow;
-    m_loop->exit();
+    accept(DialogCode::RestartNow);
 }
 
 void UpgradeDialog::acceptRestartLater()
 {
-    m_result = DialogCode::RestartLater;
-    m_loop->exit();
+    accept(DialogCode::RestartLater);
 }

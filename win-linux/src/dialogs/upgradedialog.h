@@ -36,11 +36,7 @@
 #ifndef UPGRADEDIALOG_H
 #define UPGRADEDIALOG_H
 
-#ifdef _WIN32
-# include "windows/platform_win/cwindowplatform.h"
-#else
-# include "windows/platform_linux/cwindowplatform.h"
-#endif
+#include "ascdialog.h"
 
 namespace Ui
 {
@@ -48,7 +44,7 @@ namespace Ui
 }
 
 class QEventLoop;
-class UpgradeDialog : public CWindowPlatform
+class UpgradeDialog : public CAscDialog
 {
     Q_OBJECT
 public:
@@ -57,34 +53,23 @@ public:
 
     enum DialogCode
     {
-        RestartNow,
-        RestartLater,
-        Rejected
+        RestartNow = 2,
+        RestartLater = 3
     };
 
-    void setModal();
     void setProgress(int percent);
     void showStartPage();
     void showFinalPage();
     void showErrorPage(const QString &message);
-    int exec();
 
 signals:
     void installClicked();
 
-protected:
-    virtual bool event(QEvent*) override;
-    virtual void onLayoutDirectionChanged() final;
-
 private:
-    virtual void setScreenScalingFactor(double, bool resize = true) final;
-    void reject();
     void acceptRestartNow();
     void acceptRestartLater();
 
     Ui::UpgradeDialog *ui;
-    QEventLoop *m_loop;
-    int m_result;
 };
 
 #endif // UPGRADEDIALOG_H
