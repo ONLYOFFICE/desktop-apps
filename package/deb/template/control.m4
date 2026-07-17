@@ -12,12 +12,12 @@ Provides: M4_PACKAGE_OPENSOURCE
 Depends:
 ifelse(M4_PACKAGE_EDITION, full,
 ` x11-common,
-  curl | wget,
+  curl,
   fonts-dejavu | ttf-dejavu'
 ,
 ` x11-common,
   libasound2,
-  curl | wget,
+  curl,
   desktop-file-utils,
   gstreamer1.0-libav,
   gstreamer1.0-plugins-ugly,
