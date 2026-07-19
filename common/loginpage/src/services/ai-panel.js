@@ -9,6 +9,19 @@ const AI_PLUGIN_IDS = ["F2402876-659F-47FB-A646-67B49F2B5AAA", "9DC93CDB-B576-4F
 // native sends brace-wrapped GUIDs ({GUID}), so substring-match, not equality
 const isAiPlugin = (id) => !!id && AI_PLUGIN_IDS.some((guid) => id.toUpperCase().includes(guid));
 
+export function sendPluginVisibility(opts) {
+  const iframe = document.getElementById("idx-plugin-frame");
+  if (iframe && iframe.contentWindow) {
+    let obj = {
+      event: "onPluginEvent",
+      data: {
+        type: opts,// "minimized" || "expanded",
+      }
+    };
+    iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
+  }
+}
+
 export function initAiPanel() {
   const unsubMessage = onNativeMessage((cmd, param) => {
     if (cmd !== "panel:external") return;

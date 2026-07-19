@@ -1,5 +1,6 @@
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
+import { sendPluginVisibility } from "@/services/ai-panel";
 
 export const AI_PANEL_DEFAULT_WIDTH = 400;
 export const AI_PANEL_MIN_WIDTH = 300;
@@ -39,6 +40,7 @@ export function setPanelUrl(url) {
 
 export function openSidePanel() {
   setAichat("open", true);
+  sendPluginVisibility("minimized");
 }
 
 export function closeSidePanel() {
