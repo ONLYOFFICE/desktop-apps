@@ -69,8 +69,6 @@ public:
     void showErrorPage(const QString &message);
     int exec();
 
-    virtual void applyTheme(const std::wstring&) final;
-
 signals:
     void installClicked();
 

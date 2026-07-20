@@ -153,11 +153,6 @@ int UpgradeDialog::exec()
     return m_result;
 }
 
-void UpgradeDialog::applyTheme(const std::wstring& theme)
-{
-    CWindowPlatform::applyTheme(theme);
-}
-
 /** Protected **/
 
 bool UpgradeDialog::event(QEvent *ev)
