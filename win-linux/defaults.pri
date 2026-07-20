@@ -171,11 +171,13 @@ updmodule:!build_xp {
     HEADERS += \
         $$COMMON_PATH/cdownloader.h \
         $$PWD/src/caddonmanager.h \
+        $$PWD/src/dialogs/ascdialog.h \
         $$PWD/src/dialogs/ui_upgradedialog.h \
         $$PWD/src/dialogs/upgradedialog.h
 
     SOURCES += \
         $$PWD/src/caddonmanager.cpp \
+        $$PWD/src/dialogs/ascdialog.cpp \
         $$PWD/src/dialogs/upgradedialog.cpp
 }
 
