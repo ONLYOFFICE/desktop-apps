@@ -113,13 +113,14 @@ void CWindowPlatform::setResizable(bool isResizable)
 {
     if (CX11Decoration::isResizable() != isResizable) {
         CX11Decoration::setResizable(isResizable);
-        if (CX11Decoration::isDecorated()) {
-            if (isResizable) {
-                setMinimumSize(0, 0);
-                setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
-            } else {
-                setFixedSize(size());
-            }
+        if (isResizable)
+        {
+            setMinimumSize(0, 0);
+            setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+        }
+        else
+        {
+            setFixedSize(size());
         }
     }
 }

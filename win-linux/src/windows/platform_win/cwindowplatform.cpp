@@ -276,6 +276,15 @@ void CWindowPlatform::setResizable(bool isResizable)
         ::SetWindowLong(m_hWnd, GWL_STYLE, m_isResizeable
                                             ? style | WS_MAXIMIZEBOX
                                             : style & ~WS_MAXIMIZEBOX);
+        if (isResizable)
+        {
+            setMinimumSize(0, 0);
+            setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+        }
+        else
+        {
+            setFixedSize(size());
+        }
     }
 }
 
