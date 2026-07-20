@@ -39,6 +39,7 @@ export function setPanelUrl(url) {
 }
 
 export function openSidePanel() {
+  console.log("show chat in side panel");
   setAichat("open", true);
   sendPluginVisibility("minimized");
 }
