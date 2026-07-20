@@ -55,19 +55,6 @@ public:
         : is_custom_window_(WindowHelper::isCustomWindowStyle())
     {}
 
-    QSize minimumWindowSize(double dpi)
-    {
-        QSize minSize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT);
-        minSize *= dpi;
-#ifdef __linux__
-        if ( WindowHelper::shouldUseThinFrame() ) {
-            int d = 2 * SHADOW_WIDTH * dpi;
-            minSize += QSize(d, d);
-        }
-#endif
-        return minSize;
-    }
-
     bool is_custom_window_ = false;
     bool window_activated = false;
 };
@@ -81,7 +68,10 @@ CWindowBase::CWindowBase(QWidget *parent, const QRect& rect)
     setWindowIcon(Utils::appIcon());
     m_shouldUseThinFrame = WindowHelper::shouldUseThinFrame();
     m_window_rect = startRect(rect, m_dpiRatio);
-    setMinimumSize(pimpl->minimumWindowSize(m_dpiRatio));
+
+    const QRect minRect = adjustWindowRect(QRect(0, 0, WINDOW_MIN_WIDTH * m_dpiRatio,
+                                                 WINDOW_MIN_HEIGHT * m_dpiRatio), m_dpiRatio);
+    setMinimumSize(minRect.size());
 #ifdef __linux__
     setGeometry(m_window_rect); // for Windows is set in CWindowPlatform
 #endif
@@ -120,6 +110,19 @@ QSize CWindowBase::expectedContentSize(const QRect &rc, bool extended)
     }
 #endif
     return win_rc.adjusted(brd, extended ? brd : TITLE_HEIGHT * dpi + brd, -brd, -brd).size();
+}
+
+QRect CWindowBase::adjustWindowRect(const QRect &rc, double dpi) const
+{
+#ifdef __linux__
+    if (WindowHelper::shouldUseThinFrame())
+    {
+        const int shadow = SHADOW_WIDTH * dpi;
+        return QRect(rc.x() - shadow, rc.y() - shadow,
+                     rc.width() + 2 * shadow, rc.height() + 2 * shadow);
+    }
+#endif
+    return rc;
 }
 
 QWidget * CWindowBase::handle() const
@@ -262,7 +265,9 @@ bool CWindowBase::event(QEvent *event)
 void CWindowBase::setScreenScalingFactor(double factor, bool resize)
 {
     if (resize && !isMaximized()) {
-        setMinimumSize(pimpl->minimumWindowSize(factor));
+        const QRect minRect = adjustWindowRect(QRect(0, 0, WINDOW_MIN_WIDTH * factor,
+                                                     WINDOW_MIN_HEIGHT * factor), factor);
+        setMinimumSize(minRect.size());
         double change_factor = factor / m_dpiRatio;
         QRect _src_rect = geometry();
         double dest_width_change = _src_rect.width() * (1 - change_factor);

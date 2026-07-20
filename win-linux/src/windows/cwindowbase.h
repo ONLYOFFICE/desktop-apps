@@ -73,6 +73,7 @@ public:
 
     static QRect startRect(const QRect &rc, double &dpi);
     static QSize expectedContentSize(const QRect &rc, bool extended = false);
+    QRect adjustWindowRect(const QRect &rc, double dpi) const;
     QWidget * handle() const;
     QWidget * mainPanel() const;
     bool isCustomWindowStyle();
