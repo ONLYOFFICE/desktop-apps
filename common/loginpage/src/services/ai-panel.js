@@ -1,7 +1,7 @@
 import { onCleanup } from "solid-js";
 import { onNativeMessage } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
-import { setPanelUrl, openSidePanel, closeSidePanel } from "@/stores/aichat";
+import { setPanelUrl, openSidePanel, closeSidePanel, setChatAvialable } from "@/stores/aichat";
 import { registerPlugin } from "@/stores/plugin-settings";
 
 const AI_PLUGIN_IDS = ["F2402876-659F-47FB-A646-67B49F2B5AAA", "9DC93CDB-B576-4F0C-B55E-FCC9C48DD777"];
@@ -31,12 +31,17 @@ export function initAiPanel() {
     } catch {
       return;
     }
-    if (isAiPlugin(opts?.id) && opts?.url) setPanelUrl(opts.url);
+    if (isAiPlugin(opts?.id) && opts?.url) {
+      setChatAvialable(true);
+      setPanelUrl(opts.url);
+    }
   });
 
   function onPluginEvent(msg = {}) {
     if (msg.type === "settings") {
       registerPlugin(msg);
+    } else if (msg.type === "settings:open") {
+      window.location.hash = "#/settings";
     } else if (msg.type === "expand") {
       closeSidePanel();
       window.location.hash = "#/ai";
