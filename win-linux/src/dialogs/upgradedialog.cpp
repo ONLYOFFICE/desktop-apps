@@ -78,7 +78,7 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
     if ( html_path.isEmpty() )
         html_path = qApp->applicationDirPath() + QStringLiteral("/addon.html");
 
-    QString url_additional = "?lang=" + CLangater::getCurrentLangCode() + "&mode=intro";
+    QString url_additional = "?lang=" + CLangater::getCurrentLangCode() + "&page=intro";
 
     const QString addonUrl = QStringLiteral("file:///") + html_path + url_additional;
     contentCefView->GetCefView()->load(addonUrl.toStdWString());

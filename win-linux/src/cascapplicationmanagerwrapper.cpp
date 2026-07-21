@@ -452,6 +452,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     m_private->m_bUpgradeInProgress = true;
                     m_private->m_pAddonManager->doAction(CAddonManager::Action::Uninstall);
                 }
+                else if (param == L"restart")
+                {
+                    /* clicked "restart now" after addon was installed */
+                }
                 return true;
             }
         } else
