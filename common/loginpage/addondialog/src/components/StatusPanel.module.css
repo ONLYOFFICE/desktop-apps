@@ -1,0 +1,107 @@
+.panel {
+  width: 480px;
+  height: 304px;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background-panel, #fff);
+  color: var(--text-normal, rgba(0, 0, 0, 0.8));
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 20px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.status {
+  margin: 0 0 16px;
+  font-size: 14px;
+}
+
+.message {
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.note {
+  margin: 0 0 16px;
+  font-size: 14px;
+}
+
+.progressTrack {
+  width: 200px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--background-normal-element, #efefef);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--background-accent-button, #3483db);
+  transition: width 0.3s ease;
+}
+
+.indeterminate {
+  width: 40%;
+  animation: indeterminate 1.2s ease-in-out infinite;
+}
+
+@keyframes indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btnOutline,
+.btnPrimary {
+  min-width: 140px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btnOutline {
+  background: transparent;
+  border: 1px solid var(--border-regular-control, #c0c0c0);
+  color: var(--text-normal, rgba(0, 0, 0, 0.8));
+}
+
+.btnOutline:hover {
+  background: var(--highlight-button-hover, #e0e0e0);
+}
+
+.btnPrimary {
+  background: var(--background-accent-button, #3483db);
+  color: #fff;
+}
+
+.btnPrimary:hover {
+  background: var(--highlight-accent-button-hover, #5293e2);
+}
