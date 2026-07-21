@@ -218,7 +218,7 @@ CWindowPlatform::CWindowPlatform(QWidget *parent, const QRect &rect) :
     m_resAreaWidth(MAIN_WINDOW_BORDER_WIDTH),
     m_borderless(true),
     m_closed(false),
-    m_isResizeable(true)
+    m_isResizable(true)
 //    m_allowMaximize(true)
 {
     m_isThemeActive = isThemeActive();
@@ -269,11 +269,11 @@ CWindowPlatform::~CWindowPlatform()
 
 void CWindowPlatform::setResizable(bool isResizable)
 {
-    if (m_isResizeable != isResizable)
+    if (m_isResizable != isResizable)
     {
-        m_isResizeable = isResizable;
+        m_isResizable = isResizable;
         LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
-        ::SetWindowLong(m_hWnd, GWL_STYLE, m_isResizeable
+        ::SetWindowLong(m_hWnd, GWL_STYLE, m_isResizable
                                             ? style | WS_MAXIMIZEBOX
                                             : style & ~WS_MAXIMIZEBOX);
         if (isResizable)
@@ -486,7 +486,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_NCHITTEST: {
-        if (!m_isResizeable)
+        if (!m_isResizable)
         {
             LRESULT hit = DefWindowProc(m_hWnd, msg->message, msg->wParam, msg->lParam);
             if (hit == HTBOTTOM || hit == HTLEFT || hit == HTRIGHT || hit == HTTOP ||

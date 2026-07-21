@@ -85,7 +85,7 @@ private:
     FRAME m_frame;
     bool m_borderless,
          m_closed,
-         m_isResizeable,
+         m_isResizable,
 //         m_allowMaximize,
          m_isMaximized = false,
          m_isThemeActive = true,
