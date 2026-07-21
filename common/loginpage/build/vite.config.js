@@ -146,10 +146,10 @@ function inlineExternalHtmlResources() {
           }
         });
 
-        const html = String(htmlAsset.source).replace(
-          "</body>",
-          `    ${tags.join("\n    ")}\n  </body>`,
-        );
+        // Use a function to avoid $& / $' / $` special replacement patterns
+        // corrupting script content (e.g. $& in oforms.js → </body>).
+        const insertion = `    ${tags.join("\n    ")}\n  </body>`;
+        const html = String(htmlAsset.source).replace("</body>", () => insertion);
 
         htmlAsset.source = await minify(html, {
           collapseWhitespace: true,
@@ -158,7 +158,8 @@ function inlineExternalHtmlResources() {
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true,
           minifyCSS: true,
-          minifyJS: true,
+          // inlined scripts (oforms.js etc.) are pre-minified; re-running terser on them corrupts the output.
+          // minifyJS: true,
         });
       },
     },
