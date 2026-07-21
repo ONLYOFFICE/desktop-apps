@@ -1,4 +1,4 @@
-import { Show, lazy, createEffect, onMount } from "solid-js";
+import { Show, For, lazy, createEffect, onMount } from "solid-js";
 import { HashRouter, useLocation } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
 import About from "./routes/about/index.jsx";
@@ -10,6 +10,7 @@ import { initAbout } from "@/services/about";
 import { initPortals } from "@/services/portals";
 import { initAiPanel } from "@/services/ai-panel";
 import { aichat } from "@/stores/aichat";
+import { extPlugins, pluginRouteId } from "@/stores/ext-plugins";
 import "./styles/main.css";
 import "./styles/layout.css";
 
@@ -38,6 +39,20 @@ function Shell(props) {
       </div>
       <div class="col-center">
         {props.children}
+        <For each={extPlugins()}>
+          {(plugin) => {
+            const isActive = () =>
+              location.pathname === `/plugin/${pluginRouteId(plugin.id)}`;
+            return (
+              <div
+                class="ext-plugin-frame"
+                classList={{ "ext-plugin-frame--active": isActive() }}
+              >
+                <iframe src={plugin.url} title={plugin.name} />
+              </div>
+            );
+          }}
+        </For>
       </div>
       <Show when={aichat.available}>
         <div class="col-ai" style={{ display: showAiCol() ? undefined : "none" }}>
@@ -56,6 +71,7 @@ function Shell(props) {
 const routes = [
   { path: "/", component: lazy(() => import("./routes/home/index.jsx")) },
   { path: "/ai", component: lazy(() => import("./routes/ai/index.jsx")) },
+  { path: "/plugin/:pluginId", component: lazy(() => import("./routes/plugin/index.jsx")) },
   { path: "/open", component: lazy(() => import("./routes/open/index.jsx")) },
   { path: "/templates", component: lazy(() => import("./routes/templates/index.jsx")) },
   { path: "/clouds/*", component: lazy(() => import("./routes/clouds/index.jsx")) },

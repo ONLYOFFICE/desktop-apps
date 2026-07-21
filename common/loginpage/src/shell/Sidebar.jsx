@@ -1,5 +1,6 @@
 import { For, Show } from "solid-js";
 import { t } from "@/services/l10n";
+import { extPlugins, pluginRouteId } from "@/stores/ext-plugins";
 import { openAbout, aboutVisible } from "@/services/about";
 import { openPromo, promoVisible, promoButtons } from "@/services/promotion";
 import { appliedUseAi } from "@/services/settings-sync";
@@ -32,6 +33,15 @@ export default function Sidebar() {
       <MenuItem href="/open" icon="#folder" label={t("actOpenLocal")} />
       <MenuItem action="templates" href="/templates" icon="#templates" label={t("actTemplates")} />
       <MenuItem action="clouds" href="/clouds" icon="#cloud" label={t("actClouds")} />
+      <For each={extPlugins()}>
+        {(plugin) => (
+          <MenuItem
+            href={`/plugin/${pluginRouteId(plugin.id)}`}
+            icon="#plugin"
+            label={plugin.name}
+          />
+        )}
+      </For>
       <li class="menu-item devider" />
       <Show when={promoVisible()}>
         <For each={promoButtons}>{

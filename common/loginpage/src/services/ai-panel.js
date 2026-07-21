@@ -3,6 +3,7 @@ import { onNativeMessage } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
 import { setPanelUrl, openSidePanel, closeSidePanel, setChatAvialable } from "@/stores/aichat";
 import { registerPlugin } from "@/stores/plugin-settings";
+import { addExtPlugin } from "@/stores/ext-plugins";
 
 const AI_PLUGIN_IDS = ["F2402876-659F-47FB-A646-67B49F2B5AAA", "9DC93CDB-B576-4F0C-B55E-FCC9C48DD777"];
 
@@ -34,6 +35,8 @@ export function initAiPanel() {
     if (isAiPlugin(opts?.id) && opts?.url) {
       setChatAvialable(true);
       setPanelUrl(opts.url);
+    } else if (opts?.url) {
+      addExtPlugin({ id: opts.id, name: opts.name || opts.id, url: opts.url });
     }
   });
 
