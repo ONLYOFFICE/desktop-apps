@@ -45,6 +45,7 @@
 
 UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
     : CAscDialog(parent, rc)
+    , m_pParent(parent)
     , m_bDialogActivated(false)
 {
     setFocusPolicy(Qt::StrongFocus);
@@ -109,6 +110,19 @@ void UpgradeDialog::showStartPage()
     QJsonObject jsn;
     jsn["page"] = "install";
     AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
+
+    const bool wasResizable = isResizable();
+    if (!wasResizable)
+        setResizable(true);
+
+    QSize size(480 * m_dpiRatio, 304 * m_dpiRatio);
+    QRect rc(QPoint(0, 0), size);
+    if (m_pParent)
+        rc.moveCenter(m_pParent->geometry().center());
+    setGeometry(adjustWindowRect(rc, m_dpiRatio));
+
+    if (!wasResizable)
+        setResizable(false);
 }
 
 void UpgradeDialog::showFinalPage()

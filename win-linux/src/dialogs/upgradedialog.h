@@ -64,6 +64,7 @@ protected:
 signals:
 
 private:
+    QWidget *m_pParent;
     bool m_bDialogActivated;
 };
 
