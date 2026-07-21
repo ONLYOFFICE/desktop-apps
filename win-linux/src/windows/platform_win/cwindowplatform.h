@@ -59,6 +59,7 @@ public:
     virtual ~CWindowPlatform();
 
 //    void toggleBorderless(bool);
+    bool isResizable() const;
     void setResizable(bool);
     void bringToTop();
     virtual void show(bool);

@@ -257,6 +257,11 @@ CWindowPlatform::~CWindowPlatform()
     m_closed = true;
 }
 
+bool CWindowPlatform::isResizable() const
+{
+    return m_isResizable;
+}
+
 /** Public **/
 
 //void CWindowPlatform::toggleBorderless(bool showmax)
