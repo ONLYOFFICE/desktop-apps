@@ -58,12 +58,17 @@ public:
     void showFinalPage();
     void showErrorPage(const QString &message);
 
+protected:
+    virtual void showEvent(QShowEvent*) override;
+
 signals:
     void installClicked();
 
 private:
     void acceptRestartNow();
     void acceptRestartLater();
+
+    bool m_bDialogActivated;
 };
 
 #endif // UPGRADEDIALOG_H

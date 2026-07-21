@@ -38,11 +38,14 @@
 #include "qcefview.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <QVBoxLayout>
+#include "utils.h"
 
 
 UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
     : CAscDialog(parent, rc)
+    , m_bDialogActivated(false)
 {
+    setFocusPolicy(Qt::StrongFocus);
     m_pMainPanel = new AscMainPanel(this);
     m_pMainPanel->setObjectName(QString::fromUtf8("mainPanel"));
 
@@ -100,6 +103,25 @@ void UpgradeDialog::showErrorPage(const QString &message)
 }
 
 /** Protected **/
+
+void UpgradeDialog::showEvent(QShowEvent *ev)
+{
+    CAscDialog::showEvent(ev);
+    if ( !m_bDialogActivated )
+    {
+        m_bDialogActivated = true;
+
+#ifdef _WIN32
+        // HACK: CEF randomly steals window activation after loading.
+        // Without this delay the dialog disappears behind other windows.
+        QTimer::singleShot(100, this,
+            [this]()
+            {
+                WindowHelper::bringToTop((HWND)winId());
+            });
+#endif
+    }
+}
 
 /** Private **/
 
