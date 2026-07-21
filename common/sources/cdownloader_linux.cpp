@@ -35,6 +35,7 @@
 
 #include "cdownloader.h"
 #include <curl/curl.h>
+#include <curl/curlver.h>
 #include <thread>
 #include <atomic>
 
@@ -70,11 +71,17 @@ public:
         case CURLE_COULDNT_RESOLVE_PROXY:
         case CURLE_COULDNT_RESOLVE_HOST:
         case CURLE_COULDNT_CONNECT:
+#if CURL_AT_LEAST_VERSION(7, 51, 0)
         case CURLE_WEIRD_SERVER_REPLY:
+#else
+        case CURLE_FTP_WEIRD_SERVER_REPLY:
+#endif
         case CURLE_REMOTE_ACCESS_DENIED:
         case CURLE_GOT_NOTHING:
         case CURLE_LOGIN_DENIED:
+#if CURL_AT_LEAST_VERSION(7, 66, 0)
         case CURLE_AUTH_ERROR:
+#endif
         case CURLE_HTTP_RETURNED_ERROR:
         case CURLE_TOO_MANY_REDIRECTS:
         case CURLE_OPERATION_TIMEDOUT:
@@ -153,7 +160,11 @@ void CDownloader::queryContentLength(const tstring &url)
 
     auto pimpl_copy = pimpl;
     std::thread([pimpl_copy, url]() {
+#if CURL_AT_LEAST_VERSION(7, 55, 0)
         curl_off_t fileSize = 0;
+#else
+        double fileSize = 0;
+#endif
         CURLcode res = CURLE_FAILED_INIT;
         if (CURL *curl = curl_easy_init()) {
             curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -163,7 +174,11 @@ void CDownloader::queryContentLength(const tstring &url)
             curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L);
             res = curl_easy_perform(curl);
             if (res == CURLE_OK) {
+#if CURL_AT_LEAST_VERSION(7, 55, 0)
                 curl_easy_getinfo(curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD_T, &fileSize);
+#else
+                curl_easy_getinfo(curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &fileSize);
+#endif
                 if (fileSize < 0) fileSize = 0;
             }
             curl_easy_cleanup(curl);
