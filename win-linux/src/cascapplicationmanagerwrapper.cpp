@@ -423,6 +423,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 if (param == L"install")
                 {
                     /* "accept and install" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->showStartPage();
+                    m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
                 }
                 else if (param == L"intro")
                 {
@@ -433,6 +436,16 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 else if (param == L"postpone")
                 {
                     /* "may be later" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->reject();
+                }
+                else if (param == L"dismiss")
+                {
+                    /* "don't show again" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->reject();
+
+                    // TODO: add impl "don't show again"
                 }
                 else if (param == L"uninstall")
                 {
@@ -1968,11 +1981,6 @@ void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent)
     _app.m_private->m_upgradeDialog->setModal();
     _app.m_private->m_upgradeDialog->setEnabled(true);
     _app.m_private->m_upgradeDialog->setResizable(false);
-    _app.connect(_app.m_private->m_upgradeDialog, &UpgradeDialog::installClicked, &_app,
-        [&_app]()
-        {
-            _app.m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
-        });
     int result = _app.m_private->m_upgradeDialog->exec();
     delete _app.m_private->m_upgradeDialog;
     _app.m_private->m_upgradeDialog = nullptr;

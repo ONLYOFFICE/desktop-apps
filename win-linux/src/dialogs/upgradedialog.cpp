@@ -95,22 +95,39 @@ UpgradeDialog::~UpgradeDialog()
 
 void UpgradeDialog::setProgress(int percent)
 {
+    QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
 
+    QJsonObject jsn;
+    jsn["progress"] = QString::number(percent);
+    AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 }
 
 void UpgradeDialog::showStartPage()
 {
+    QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
 
+    QJsonObject jsn;
+    jsn["page"] = "install";
+    AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 }
 
 void UpgradeDialog::showFinalPage()
 {
+    QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
 
+    QJsonObject jsn;
+    jsn["page"] = "complete";
+    AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 }
 
 void UpgradeDialog::showErrorPage(const QString &message)
 {
+    QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
 
+    QJsonObject jsn;
+    jsn["page"] = "error";
+    jsn["message"] = message;
+    AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 }
 
 /** Protected **/
@@ -135,13 +152,3 @@ void UpgradeDialog::showEvent(QShowEvent *ev)
 }
 
 /** Private **/
-
-void UpgradeDialog::acceptRestartNow()
-{
-    accept(DialogCode::RestartNow);
-}
-
-void UpgradeDialog::acceptRestartLater()
-{
-    accept(DialogCode::RestartLater);
-}

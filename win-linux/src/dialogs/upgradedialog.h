@@ -62,12 +62,8 @@ protected:
     virtual void showEvent(QShowEvent*) override;
 
 signals:
-    void installClicked();
 
 private:
-    void acceptRestartNow();
-    void acceptRestartLater();
-
     bool m_bDialogActivated;
 };
 
