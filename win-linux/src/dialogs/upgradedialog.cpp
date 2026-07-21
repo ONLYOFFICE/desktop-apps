@@ -105,6 +105,9 @@ void UpgradeDialog::setProgress(int percent)
 
 void UpgradeDialog::showStartPage()
 {
+    // HACK: Avoid visible position change when updating the geometry of an already shown dialog.
+    setWindowOpacity(0.0);
+
     QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
 
     QJsonObject jsn;
@@ -123,6 +126,13 @@ void UpgradeDialog::showStartPage()
 
     if (!wasResizable)
         setResizable(false);
+
+    // Restore visibility after applying the new dialog geometry.
+    QTimer::singleShot(100, this,
+        [this]()
+        {
+            setWindowOpacity(1.0);
+        });
 }
 
 void UpgradeDialog::showFinalPage()
