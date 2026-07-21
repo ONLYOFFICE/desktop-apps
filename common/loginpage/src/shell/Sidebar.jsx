@@ -19,7 +19,7 @@ export default function Sidebar() {
       // href handles navigation
     } else {
       e.preventDefault();
-      command('addon:action', 'install');
+      command('addon:action', 'intro');
     }
   };
 

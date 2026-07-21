@@ -422,9 +422,17 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 const wstring param = pData->get_Param();
                 if (param == L"install")
                 {
+                    /* "accept and install" clicked */
+                }
+                else if (param == L"intro")
+                {
                     m_private->m_bUpgradeInProgress = true;
                     if (m_pMainWindow)
                         showUpgradeDialog(m_pMainWindow);
+                }
+                else if (param == L"postpone")
+                {
+                    /* "may be later" clicked */
                 }
                 else if (param == L"uninstall")
                 {
@@ -1949,7 +1957,7 @@ void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent)
     APP_CAST(_app);
 
     double dpiRatio = parent ? Utils::getScreenDpiRatioByWidget(parent) : 1.0;
-    QSize size(480 * dpiRatio, 697 * dpiRatio);
+    QSize size(480 * dpiRatio, 700 * dpiRatio);
     QRect rc(QPoint(0, 0), size);
     rc.moveCenter(parent->geometry().center());
 

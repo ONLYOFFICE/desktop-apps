@@ -39,6 +39,8 @@
 #include "cascapplicationmanagerwrapper.h"
 #include <QVBoxLayout>
 #include "utils.h"
+#include "defines.h"
+#include "clangater.h"
 
 
 UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
@@ -67,8 +69,17 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
     const QColor color = GetCurrentTheme().color(CTheme::ColorRole::ecrWindowBackground);
     contentCefView->SetBackgroundCefColor(uchar(color.red()), uchar(color.green()), uchar(color.blue()));
 
-    const QString addonUrl = QStringLiteral("file:///") + qApp->applicationDirPath() +
-                             QStringLiteral("/addon.html");
+    GET_REGISTRY_USER(reg_user);
+    QString html_path;
+#if defined(QT_DEBUG)
+    html_path = reg_user.value("addonpage").value<QString>();
+#endif
+    if ( html_path.isEmpty() )
+        html_path = qApp->applicationDirPath() + QStringLiteral("/addon.html");
+
+    QString url_additional = "?lang=" + CLangater::getCurrentLangCode() + "&mode=intro";
+
+    const QString addonUrl = QStringLiteral("file:///") + html_path + url_additional;
     contentCefView->GetCefView()->load(addonUrl.toStdWString());
 }
 
