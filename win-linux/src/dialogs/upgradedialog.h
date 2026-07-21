@@ -38,10 +38,6 @@
 
 #include "ascdialog.h"
 
-namespace Ui
-{
-    class UpgradeDialog;
-}
 
 class QEventLoop;
 class UpgradeDialog : public CAscDialog
@@ -68,8 +64,6 @@ signals:
 private:
     void acceptRestartNow();
     void acceptRestartLater();
-
-    Ui::UpgradeDialog *ui;
 };
 
 #endif // UPGRADEDIALOG_H

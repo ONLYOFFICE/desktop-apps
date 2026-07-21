@@ -35,88 +35,68 @@
 
 
 #include "upgradedialog.h"
-#include "ui_upgradedialog.h"
+#include "qcefview.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "clangater.h"
-#include "utils.h"
+#include <QVBoxLayout>
 
 
 UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
     : CAscDialog(parent, rc)
-    , ui(new Ui::UpgradeDialog)
-{    
-    ui->setupUi(this, m_dpiRatio);
+{
+    m_pMainPanel = new AscMainPanel(this);
+    m_pMainPanel->setObjectName(QString::fromUtf8("mainPanel"));
 
-    ui->labelTitle->setVisible(false);
-    ui->progressBar->setMinimum(0);
-    ui->progressBar->setMaximum(100);
+    QVBoxLayout *centralVLayout = new QVBoxLayout(m_pMainPanel);
+    centralVLayout->setSpacing(0);
+    centralVLayout->setContentsMargins(0, 0, 0, 0);
 
-    ui->centralwidget->setProperty("rtl", AscAppManager::isRtlEnabled());
-    ui->centralwidget->setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
-    ui->centralwidget->setProperty("zoom", QString::number(m_dpiRatio) + "x");
-    ui->centralwidget->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().id()));
+    QCefView *contentCefView = AscAppManager::createViewer(m_pMainPanel, rc.size());
+    contentCefView->setObjectName("contentCefView");
+    contentCefView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    centralVLayout->addWidget(contentCefView);
+    setCentralWidget(m_pMainPanel);
 
-    QString css = Utils::readStylesheets(":/styles/upgradedialog.qss");
-    ui->centralwidget->setStyleSheet(css.arg(GetColorQValueByRole(ecrDownloadWidgetBackground),
-                                             GetColorQValueByRole(ecrDownloadWidgetBorder),
-                                             GetColorQValueByRole(ecrTextNormal),
-                                             GetColorQValueByRole(ecrButtonHoverBackground),
-                                             GetColorQValueByRole(ecrButtonPressedBackground),
-                                             GetColorQValueByRole(ecrBorderControlFocus),
-                                             GetColorQValueByRole(ecrTextPretty),
-                                             GetColorQValueByRole(ecrDownloadProgressBarChunk),
-                                             GetColorQValueByRole(ecrDownloadProgressBarBackground)));
+    m_pMainView = contentCefView;
 
-    connect(ui->btnDeclineInstall, &QPushButton::clicked, this, &UpgradeDialog::reject);
-    connect(ui->btnAcceptInstall, &QPushButton::clicked, this,
-        [this]()
-        {
-            ui->labelTitle->setVisible(true);
-            ui->stackedWidget->setCurrentIndex(1);
-            emit installClicked();
-        });
-    connect(ui->btnTryAgain, &QPushButton::clicked, this,
-        [this]()
-        {
-            ui->labelTitle->setVisible(true);
-            ui->stackedWidget->setCurrentIndex(1);
-            emit installClicked();
-        });
-    connect(ui->btnRestartNow, &QPushButton::clicked, this, &UpgradeDialog::acceptRestartNow);
-    connect(ui->btnRestartLater, &QPushButton::clicked, this, &UpgradeDialog::acceptRestartLater);
-    connect(ui->btnCancel, &QPushButton::clicked, this, &UpgradeDialog::reject);
+    AscAppManager &app = AscAppManager::getInstance();
+    contentCefView->Create(&app, cvwtSimple);
+
+    const QColor color = GetCurrentTheme().color(CTheme::ColorRole::ecrWindowBackground);
+    contentCefView->SetBackgroundCefColor(uchar(color.red()), uchar(color.green()), uchar(color.blue()));
+
+    const QString addonUrl = QStringLiteral("file:///") + qApp->applicationDirPath() +
+                             QStringLiteral("/addon.html");
+    contentCefView->GetCefView()->load(addonUrl.toStdWString());
 }
 
 UpgradeDialog::~UpgradeDialog()
 {
-
+    AscAppManager &app = AscAppManager::getInstance();
+    QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
+    app.DestroyCefView(contentCefView->GetCefView()->GetId());
+    m_pMainView = nullptr;
 }
 
 /** Public **/
 
 void UpgradeDialog::setProgress(int percent)
 {
-    ui->progressBar->setValue(percent);
+
 }
 
 void UpgradeDialog::showStartPage()
 {
-    ui->labelTitle->setVisible(false);
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->btnAcceptInstall->setFocus();
+
 }
 
 void UpgradeDialog::showFinalPage()
 {
-    ui->stackedWidget->setCurrentIndex(2);
-    ui->btnRestartNow->setFocus();
+
 }
 
 void UpgradeDialog::showErrorPage(const QString &message)
 {
-    ui->stackedWidget->setCurrentIndex(3);
-    ui->labelErrorInfo->setText(message);
-    ui->btnTryAgain->setFocus();
+
 }
 
 /** Protected **/

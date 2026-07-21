@@ -163,7 +163,6 @@
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
         <file alias="download.qss">res/styles/download.qss</file>
         <file alias="openssl.qss">res/styles/openssl.qss</file>
-        <file alias="upgradedialog.qss">res/styles/upgradedialog.qss</file>
     </qresource>
     <qresource prefix="/styles@1.5x">
         <file alias="styles.qss">res/styles/styles@1.5x.qss</file>
