@@ -331,7 +331,9 @@ export function initSettingsSync() {
       } catch {
         return;
       }
-      // if (opts?.theme?.system) setSystemThemeEnabled(opts.theme.system !== "disabled");
+      if (opts?.theme?.system) {
+        window.RendererProcessVariable.theme.system = opts.theme.system;
+      }
     } else if (msgCmd === "uitheme:changed") {
       setSettings("theme", param);
       applyThemeToDom(settings.theme);
