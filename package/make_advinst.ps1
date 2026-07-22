@@ -120,9 +120,8 @@ Push-Location "advinst"
 
 Write-Host "`n[ Create package.config ]"
 
-Write-Host "WRITE: ..\$BuildDir\desktop\converter\package.config"
-Write-Output "package=msi" `
-    | Out-File -Encoding ASCII "..\$BuildDir\desktop\converter\package.config"
+Write-Host "WRITE: package.config"
+Write-Output "package=msi" | Out-File -Encoding ASCII "package.config"
 
 ####
 
@@ -149,6 +148,7 @@ $AdvInstConfig += `
     "UpdateFile APPDIR\updatesvc.exe ..\$BuildDir\desktop\updatesvc.exe", `
     "NewSync APPDIR ..\$BuildDir\desktop -existingfiles keep -feature Files", `
     "NewSync APPDIR\$PluginManagerPath ..\$BuildDir\desktop\$PluginManagerPath -existingfiles delete -feature PluginManager", `
+    "AddFile APPDIR\converter package.config", `
     "AddFile APPDIR ..\$LicensePath\3dparty\3DPARTYLICENSE", `
     "UpdateFile APPDIR\3DPARTYLICENSE -name 3DPARTYLICENSE.txt"
 if ($Target -ne "commercial") {
