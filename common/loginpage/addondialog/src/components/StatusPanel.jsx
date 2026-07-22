@@ -40,12 +40,12 @@ export function StatusPanel(props) {
         <Match when={props.page === "error"}>
           <p class={styles.message}>{t("addonInstallFailedTitle")}</p>
           <p class={styles.note}>{addonStatus()?.message}</p>
-        </Match>
           <div class={styles.actions}>
             <button type="button" class={styles.btnOutline} onClick={closeDialog}>
               {t("addonBtnClose", "Close")}
             </button>
           </div>
+        </Match>
       </Switch>
     </div>
   );
