@@ -7,7 +7,7 @@
   align-items: center;
   gap: 16px;
   overflow-y: auto;
-  background: var(--background-panel, #fff);
+  background: var(--background-action-panel, #fff);
   color: var(--text-normal, rgba(0, 0, 0, 0.8));
   font-family: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
   text-align: center;
@@ -93,4 +93,5 @@
 
 .devider {
   flex-grow: 1;
+  margin: -16px 0;
 }
