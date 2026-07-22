@@ -455,6 +455,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 else if (param == L"restart")
                 {
                     /* clicked "restart now" after addon was installed */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->accept(UpgradeDialog::RestartNow);
                 }
                 return true;
             }
