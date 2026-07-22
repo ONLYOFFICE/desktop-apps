@@ -4,6 +4,8 @@ import slide1 from "../../assets/img/courusel1.svg";
 import slide2 from "../../assets/img/courusel2.svg";
 import slide3 from "../../assets/img/courusel3.svg";
 import slide4 from "../../assets/img/courusel4.svg";
+import slide5 from "../../assets/img/courusel5.svg";
+import slide6 from "../../assets/img/courusel6.svg";
 import styles from "./Carousel.module.css";
 
 const SLIDES = [
@@ -11,6 +13,8 @@ const SLIDES = [
   { image: slide2, key: "addonSlide2" },
   { image: slide3, key: "addonSlide3" },
   { image: slide4, key: "addonSlide4" },
+  { image: slide4, key: "addonSlide5" },
+  { image: slide4, key: "addonSlide6" },
 ];
 
 export function Carousel() {
