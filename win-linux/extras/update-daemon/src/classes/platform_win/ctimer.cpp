@@ -34,18 +34,39 @@
  */
 
 #include "ctimer.h"
+#include <Windows.h>
+#include <unordered_map>
 
 
-FnVoidVoid _callback = nullptr;
-
-
-VOID CALLBACK Timerproc(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
+class CTimer::CTimerPrivate
 {
-    if (_callback)
-        _callback();
-}
+public:
+    CTimerPrivate() = default;
+    ~CTimerPrivate() = default;
+
+    static VOID CALLBACK timerProc(HWND, UINT, UINT_PTR id, DWORD)
+    {
+        auto it = timerMap.find(id);
+        if (it != timerMap.end())
+        {
+            auto* pimpl = it->second;
+            if (pimpl->callback)
+                pimpl->callback();
+        }
+    }
+
+    // Maps Win32 timer IDs to CTimerPrivate instances.
+    // Required because SetTimer() does not provide a user data pointer to timerProc.
+    static std::unordered_map<UINT_PTR, CTimerPrivate*> timerMap;
+    std::function<void(void)> callback;
+    UINT_PTR timerId = 0;
+};
+
+std::unordered_map<UINT_PTR, CTimer::CTimerPrivate*> CTimer::CTimerPrivate::timerMap = {};
+
 
 CTimer::CTimer()
+    : pimpl(new CTimerPrivate)
 {
 
 }
@@ -53,19 +74,33 @@ CTimer::CTimer()
 CTimer::~CTimer()
 {
     stop();
+    delete pimpl; pimpl = nullptr;
+}
+
+bool CTimer::isActive() const
+{
+    return pimpl->timerId != 0;
 }
 
 void CTimer::stop()
 {
-    if (timerId != 0) {
-        KillTimer(NULL, timerId);
-        timerId = 0;
+    if (pimpl->timerId != 0)
+    {
+        KillTimer(nullptr, pimpl->timerId);
+        CTimerPrivate::timerMap.erase(pimpl->timerId);
+        pimpl->timerId = 0;
     }
 }
 
-void CTimer::start(unsigned int timeout, FnVoidVoid callback)
+bool CTimer::start(unsigned int timeout, std::function<void(void)> callback)
 {
     stop();
-    _callback = callback;
-    timerId = SetTimer(NULL, 0, timeout, Timerproc);
+    pimpl->callback = std::move(callback);
+    pimpl->timerId = SetTimer(nullptr, 0, timeout, CTimerPrivate::timerProc);
+
+    if (pimpl->timerId == 0)
+        return false;
+
+    CTimerPrivate::timerMap.emplace(pimpl->timerId, pimpl);
+    return true;
 }

@@ -36,10 +36,7 @@
 #ifndef CTIMER_H
 #define CTIMER_H
 
-#include <Windows.h>
 #include <functional>
-
-typedef std::function<void(void)> FnVoidVoid;
 
 
 class CTimer
@@ -48,13 +45,18 @@ public:
     CTimer();
     ~CTimer();
 
+    CTimer(const CTimer&) = delete;
+    CTimer& operator=(const CTimer&) = delete;
+
+    bool isActive() const;
     void stop();
 
     /* callback */
-    void start(unsigned int timeout, FnVoidVoid callback);
+    bool start(unsigned int timeout, std::function<void(void)> callback);
 
 private:
-    UINT_PTR timerId = 0;
+    class CTimerPrivate;
+    CTimerPrivate *pimpl = nullptr;
 };
 
 #endif // CTIMER_H
