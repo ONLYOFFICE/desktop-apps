@@ -51,8 +51,11 @@ platform :mac do
     if edition && !edition.empty? then package_name += "-#{edition}" end
     package_name += "-#{git_suffix}-#{version_number}-#{app_build_number}"
 
+    addon_mode_xcarg = ""
     if edition != "Enterprise"
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/opensource/LICENSE.html ../Vendor/ONLYOFFICE/license/LICENSE.html")
+      desc 'Define USE_ADDON_MODE macro for non-Enterprise editions'
+      addon_mode_xcarg = " GCC_PREPROCESSOR_DEFINITIONS='$(inherited) USE_ADDON_MODE'"
     else
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
     end
@@ -78,6 +81,8 @@ platform :mac do
 
     UI.message("appcast url: #{url_appcast_main}")
     UI.message("appcast dev url: #{url_appcast_dev}")
+
+    xcargs += addon_mode_xcarg
 
     desc 'Build for developer id and notarize'
     gym(
