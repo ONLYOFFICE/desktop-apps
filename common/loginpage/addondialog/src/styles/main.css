@@ -6,6 +6,10 @@ body {
   overflow: hidden;
 }
 
+body {
+  user-select: none;
+}
+
 *,
 *::before,
 *::after {
