@@ -68,6 +68,8 @@ public:
     bool isInstalled() const;
     bool restartRequired() const;
 
+    static QString errorMessageForResult(int result);
+
 signals:
     void progressChanged(int progress);
     void installFinished(int result);
