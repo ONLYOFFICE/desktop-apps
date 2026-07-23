@@ -3198,6 +3198,8 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_V8_VERSION,
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-v8/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3244,6 +3246,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_V8_VERSION,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-v8/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3290,6 +3294,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_ARM_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-arm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3336,6 +3342,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_ARM_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-arm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3462,6 +3470,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3508,6 +3518,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
