@@ -13,8 +13,8 @@ const SLIDES = [
   { image: slide2, key: "addonSlide2" },
   { image: slide3, key: "addonSlide3" },
   { image: slide4, key: "addonSlide4" },
-  { image: slide4, key: "addonSlide5" },
-  { image: slide4, key: "addonSlide6" },
+  { image: slide5, key: "addonSlide5" },
+  { image: slide6, key: "addonSlide6" },
 ];
 
 export function Carousel() {

@@ -31,19 +31,18 @@
 .imageRow {
   display: flex;
   align-items: center;
-  gap: 2px;
 }
 
 .image {
-  width: 372px;
-  height: 291px;
+  width: 400px;
+  height: 300px;
   display: block;
 }
 
 .navBtn {
   flex: none;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   padding: 0;
   border-radius: 50%;
   /* border: 1px solid var(--border-regular-control, #c0c0c0); */
