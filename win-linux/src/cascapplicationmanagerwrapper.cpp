@@ -458,6 +458,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->accept(UpgradeDialog::RestartNow);
                 }
+                else if (param == L"close")
+                {
+                    /* "close" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->reject();
+                }
                 return true;
             }
         } else
