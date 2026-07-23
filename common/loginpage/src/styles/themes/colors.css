@@ -60,5 +60,7 @@
     --chb-background-checked: var(--background-normal);
     --chb-border-normal: var(--border-regular-control);
     --chb-border-checked: var(--border-regular-control);
+
+    --font-family-base: "Segoe UI";
 }
 
