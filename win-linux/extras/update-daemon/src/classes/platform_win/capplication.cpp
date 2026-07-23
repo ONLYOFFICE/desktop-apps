@@ -34,32 +34,69 @@
  */
 
 #include "capplication.h"
+#include <Windows.h>
+#include <atomic>
+#include <stdexcept>
 
+
+struct CApplication::CApplicationPrivate
+{
+    std::atomic<bool> exiting{false};
+    DWORD mainThreadId = 0;
+    static CApplication* instance;
+};
+
+CApplication* CApplication::CApplicationPrivate::instance = nullptr;
 
 CApplication::CApplication()
+    : pimpl(new CApplicationPrivate)
 {
-    mainThreadId = GetCurrentThreadId();
+    if (CApplicationPrivate::instance)
+        throw std::runtime_error("CApplication already exists");
+
+    pimpl->mainThreadId = GetCurrentThreadId();
+
+    // Initialize the message queue for PostThreadMessage().
+    MSG msg;
+    PeekMessage(&msg, nullptr, WM_NULL, WM_NULL, PM_NOREMOVE);
+
+    CApplicationPrivate::instance = this;
 }
 
 CApplication::~CApplication()
 {
+    CApplicationPrivate::instance = nullptr;
+    delete pimpl; pimpl = nullptr;
+}
 
+CApplication* CApplication::instance()
+{
+    return CApplicationPrivate::instance;
 }
 
 int CApplication::exec()
 {
     MSG msg = {};
     BOOL ret;
-    while ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
+
+    while ((ret = GetMessage(&msg, nullptr, 0, 0)) != 0)
+    {
         if (ret == -1)
-            break;
+        {
+            return -1;
+        }
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
-    return (int)msg.wParam;
+
+    return static_cast<int>(msg.wParam);
 }
 
 void CApplication::exit(int code)
 {
-    PostThreadMessage(mainThreadId, WM_QUIT, code, 0);
+    bool expected = false;
+    if (!pimpl->exiting.compare_exchange_strong(expected, true))
+        return;
+
+    PostThreadMessage(pimpl->mainThreadId, WM_QUIT, code, 0);
 }
