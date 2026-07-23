@@ -43,6 +43,7 @@
 
 #import "ASCHelper.h"
 #import "ASCExternalController.h"
+#import <CommonCrypto/CommonDigest.h>
 
 static NSMutableDictionary * localSettings;
 
@@ -213,6 +214,61 @@ static NSMutableDictionary * localSettings;
             return;
         }
     }
+}
+
++ (BOOL)processArgsContain:(NSString *)arg {
+    return [[[NSProcessInfo processInfo] arguments] containsObject:arg];
+}
+
++ (NSString *)generateTmpFileName:(NSString *)ext {
+    NSString *fileName = [NSString stringWithFormat:@"onlyoffice_%@%@",
+                          [[NSUUID UUID] UUIDString], ext];
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
+}
+
++ (NSString *)fileMd5Hash:(NSString *)filePath {
+    if (filePath.length == 0)
+        return nil;
+
+    NSFileHandle *handle = [NSFileHandle fileHandleForReadingAtPath:filePath];
+    if (!handle)
+        return nil;
+
+    CC_MD5_CTX ctx;
+    CC_MD5_Init(&ctx);
+
+    BOOL done = NO;
+    while (!done) {
+        @autoreleasepool {
+            NSData *data = [handle readDataOfLength:1024 * 1024];
+            if (data.length > 0)
+                CC_MD5_Update(&ctx, data.bytes, (CC_LONG)data.length);
+            else
+                done = YES;
+        }
+    }
+    [handle closeFile];
+
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5_Final(digest, &ctx);
+
+    NSMutableString *hash = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [hash appendFormat:@"%02x", digest[i]];
+
+    return [hash lowercaseString];
+}
+
++ (NSDictionary *)parseJsonFile:(NSString *)path {
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    if (!data)
+        return nil;
+
+    id root = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    if (![root isKindOfClass:[NSDictionary class]])
+        return nil;
+
+    return (NSDictionary *)root;
 }
 
 @end

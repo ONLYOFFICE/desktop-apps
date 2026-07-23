@@ -118,6 +118,12 @@
 		F14CD3C32EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F14CD3C42EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F14CD3C52EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
+		F14E22E62FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22E72FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22E82FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22F12FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
+		F14E22F22FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
+		F14E22F32FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
 		F15C17322EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17332EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17342EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
@@ -862,6 +868,10 @@
 		F1376CA32EF581FA00EC5E08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Separate-Editor.storyboard"; sourceTree = "<group>"; };
 		F14CD3C12EB73EBC00D476FE /* ASCEditorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindow.h; sourceTree = "<group>"; };
 		F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCEditorWindow.m; sourceTree = "<group>"; };
+		F14E22E42FEE70C4004EC652 /* ASCAddonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCAddonManager.h; sourceTree = "<group>"; };
+		F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCAddonManager.mm; sourceTree = "<group>"; };
+		F14E22EF2FEE70C4004EC652 /* cdownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cdownloader.h; path = ../common/sources/cdownloader.h; sourceTree = SOURCE_ROOT; };
+		F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = cdownloader_mac.mm; path = ../common/sources/cdownloader_mac.mm; sourceTree = SOURCE_ROOT; };
 		F15C17302EBCA75000D266C7 /* NSCefData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefData.h; sourceTree = "<group>"; };
 		F15C17312EBCA75000D266C7 /* NSCefData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefData.mm; sourceTree = "<group>"; };
 		F15DF4F32F58D0050014C037 /* ASCProviders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCProviders.h; sourceTree = "<group>"; };
@@ -1797,6 +1807,10 @@
 		FCF289742150E820002FD438 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */,
+				F14E22E42FEE70C4004EC652 /* ASCAddonManager.h */,
+				F14E22EF2FEE70C4004EC652 /* cdownloader.h */,
+				F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */,
 				F15DF4F32F58D0050014C037 /* ASCProviders.h */,
 				F15DF4F42F58D0050014C037 /* ASCProviders.m */,
 				FCA9A18E1BA6DC6000ABF3AB /* ASCCommonViewController.h */,
@@ -2457,6 +2471,8 @@
 				FC2C43A225D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FC0BD69B258B63F700C47F95 /* ASCTouchBarController.m in Sources */,
 				FC0BD69C258B63F700C47F95 /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E82FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F32FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FC0BD69D258B63F700C47F95 /* AnalyticsHelper.m in Sources */,
 				FC2C43B125D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */,
 				FC0BD69E258B63F700C47F95 /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2539,6 +2555,8 @@
 				FCB4C6D226DD018B0012C20D /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FCB4C6D326DD018B0012C20D /* ASCTouchBarController.m in Sources */,
 				FCB4C6D426DD018B0012C20D /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E62FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F12FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FCB4C6D526DD018B0012C20D /* AnalyticsHelper.m in Sources */,
 				FCB4C6D626DD018B0012C20D /* ASCCertificateQLPreviewController.m in Sources */,
 				FCB4C6D726DD018B0012C20D /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2621,6 +2639,8 @@
 				FC2C43A125D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FCCC2FE621E5E1CA00FB9209 /* ASCTouchBarController.m in Sources */,
 				FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E72FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F22FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FC2C43B025D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */,
 				FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
