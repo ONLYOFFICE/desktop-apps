@@ -121,7 +121,8 @@ if ($CompanyName -eq "onlyoffice") {
 }
 if ($Target -notlike "*update") {
     $InnoArgs += "/DPACKAGE_CONFIG=$PackageConfig",
-        "/DVC_REDIST=$VCRedistSource"
+        "/DVC_REDIST=$VCRedistSource",
+        "/DOUTPUT_DIR=$InnoSourceDir"
 }
 switch ($Target) {
     "commercial" {
@@ -149,5 +150,11 @@ if ($Debug) {
 Write-Host "iscc $InnoArgs $IssFile"
 & iscc $InnoArgs $IssFile
 if ($LastExitCode -ne 0) { throw }
+
+if ($Target -notlike "*update") {
+    $BuiltInnoFile = "$InnoSourceDir\$InnoFile"
+    Write-Host "MOVE: $BuiltInnoFile > $InnoFile"
+    Move-Item -Force -LiteralPath "$BuiltInnoFile" -Destination "$InnoFile"
+}
 
 Pop-Location
