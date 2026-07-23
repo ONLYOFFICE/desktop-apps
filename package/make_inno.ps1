@@ -27,6 +27,14 @@ $InnoFile = switch ($Target) {
     "xp"         { "$CompanyName-$ProductName-XP-$Version-$Arch.exe" }
     default      { "$CompanyName-$ProductName-$Version-$Arch.exe" }
 }
+$InnoSourceDir = switch ($Target) {
+    "commercial" { "Enterprise" }
+    "standalone" { "Standalone" }
+    default      { "Community" }
+}
+$InnoPackageDir = "inno\$InnoSourceDir"
+$PackageConfig = "$InnoSourceDir\package.config"
+$VCRedistSource = "$InnoSourceDir\vc_redist.$Arch.exe"
 
 Write-Host @"
 Version     = $Version
@@ -63,7 +71,12 @@ $env:Path = "$InnoPath;$env:Path"
 if ($Target -notlike "*update") {
     Write-Host "`n[ Download VCRedist $Arch ]"
 
-    $VCRedist = "inno\vc_redist.$Arch.exe"
+    if (-not (Test-Path "$InnoPackageDir")) {
+        Write-Host "CREATE DIR: $InnoPackageDir"
+        New-Item -ItemType Directory -Force -Path "$InnoPackageDir" |
+            Out-Null
+    }
+    $VCRedist = "inno\$VCRedistSource"
     $VCRedistUrl = switch -Wildcard ("$Arch-$Target") {
         # Microsoft Visual C++ 2015-2019 Redistributable - 14.27.29114
         "x64-xp" { "https://download.visualstudio.microsoft.com/download/pr/722d59e4-0671-477e-b9b1-b8da7d4bd60b/591CBE3A269AFBCC025681B968A29CD191DF3C6204712CBDC9BA1CB632BA6068/VC_redist.x64.exe"; Break }
@@ -89,8 +102,8 @@ Push-Location "inno"
 if ($Target -notlike "*update") {
     Write-Host "`n[ Create package.config ]"
 
-    Write-Host "WRITE: package.config"
-    Write-Output "package=exe" | Out-File -Encoding ASCII "package.config"
+    Write-Host "WRITE: $PackageConfig"
+    Write-Output "package=exe" | Out-File -Encoding ASCII "$PackageConfig"
 }
 
 ####
@@ -105,6 +118,10 @@ if ($BrandingDir) {
 }
 if ($CompanyName -eq "onlyoffice") {
     $InnoArgs += "/D_ONLYOFFICE"
+}
+if ($Target -notlike "*update") {
+    $InnoArgs += "/DPACKAGE_CONFIG=$PackageConfig",
+        "/DVC_REDIST=$VCRedistSource"
 }
 switch ($Target) {
     "commercial" {
