@@ -4,7 +4,7 @@ import { Carousel } from "./Carousel";
 import { postponeAddon, dismissAddon } from "@/services/addon";
 import styles from "./IntroPanel.module.css";
 
-const LICENSE_URL = "https://testinfo.eu/license";
+const LICENSE_URL = "https://mariadb.com/bsl11";
 
 export function IntroPanel(props) {
   const licenseParts = createMemo(() => t("addonLicenseText").split("$1"));
