@@ -169,4 +169,50 @@ static NSMutableDictionary * localSettings;
     }
 }
 
++ (void)restartApp {
+    NSString * scriptPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"apprestart.sh"];
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSError * error = nil;
+
+    if ([fileManager fileExistsAtPath:scriptPath] && ![fileManager removeItemAtPath:scriptPath error:&error]) {
+        NSLog(@"An error occurred while deleting: %@ (%@)", scriptPath, [error localizedDescription]);
+        return;
+    }
+
+    NSString * bundlePath = [[NSBundle mainBundle] bundlePath];
+    pid_t pid = [[NSProcessInfo processInfo] processIdentifier];
+    NSString * script = [NSString stringWithFormat:
+                         @"#!/bin/bash\n"
+                         @"while kill -0 %d 2>/dev/null; do sleep 0.2; done\n"
+                         @"open \"%@\"\n"
+                         @"rm -- \"$0\"\n",
+                         pid, bundlePath];
+
+    if (![script writeToFile:scriptPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
+        NSLog(@"An error occurred while creating: %@ (%@)", scriptPath, [error localizedDescription]);
+        return;
+    }
+
+    NSTask * task = [[NSTask alloc] init];
+    if (@available(macOS 10.13, *)) {
+        [task setExecutableURL:[NSURL fileURLWithPath:@"/bin/sh"]];
+        [task setArguments:@[scriptPath]];
+
+        if (![task launchAndReturnError:&error]) {
+            NSLog(@"An error occurred while restarting the app! (%@)", [error localizedDescription]);
+            return;
+        }
+    } else {
+        [task setLaunchPath:@"/bin/sh"];
+        [task setArguments:@[scriptPath]];
+
+        @try {
+            [task launch];
+        } @catch (NSException * exception) {
+            NSLog(@"An error occurred while restarting the app! (%@)", [exception reason]);
+            return;
+        }
+    }
+}
+
 @end

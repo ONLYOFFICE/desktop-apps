@@ -83,6 +83,7 @@
 @property (nonatomic, assign) BOOL terminationAlreadyHandled;
 @property (nonatomic, assign) BOOL hasFilesToOpenOnLaunch;
 @property (nonatomic, assign) BOOL terminationDialogPending;
+@property (nonatomic, assign) BOOL needsRestart;
 @end
 
 @implementation AppDelegate
@@ -392,6 +393,9 @@
         return NSTerminateCancel;
     
     self.terminationAlreadyHandled = YES;
+    if (self.needsRestart) {
+        [ASCHelper restartApp];
+    }
     return NSTerminateNow;
 }
 

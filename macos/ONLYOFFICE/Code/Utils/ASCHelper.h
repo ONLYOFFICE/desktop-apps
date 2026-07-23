@@ -57,4 +57,5 @@
 + (void)createCloudPath;
 + (NSString *)appName;
 + (NSString *)appNameShort;
++ (void)restartApp;
 @end
