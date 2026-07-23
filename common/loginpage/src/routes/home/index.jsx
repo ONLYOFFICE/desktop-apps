@@ -8,6 +8,7 @@ import { FileDropZone } from "./components/FileDropZone.jsx";
 import { aichat } from "@/stores/aichat.js";
 import { command } from "@/sdk/bridge.js";
 import "@/styles/components/home.css";
+import { sendPluginVisibility } from "@/services/ai-panel.js";
 
 const toArray = (v) => (Array.isArray(v) ? v : []);
 
@@ -83,8 +84,9 @@ export default function Index() {
   function addToChat() {
     if (aichat.available) {
       // navigate("/ai");
+      sendPluginVisibility("minimized");
     } else {
-      command('addon:action', 'install');
+      command('addon:action', 'intro');
     }
   }
 
