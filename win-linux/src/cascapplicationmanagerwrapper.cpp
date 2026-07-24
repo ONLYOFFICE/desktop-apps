@@ -1298,7 +1298,10 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                 {
                     m_private->m_bUpgradeInProgress = false;
                     if (m_pMainWindow)
+                    {
                         m_pMainWindow->sendAddonStatusToStartPage();
+                        showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Complete);
+                    }
                 });
 
         connect(m_private->m_pAddonManager, &CAddonManager::progressChanged, this,
