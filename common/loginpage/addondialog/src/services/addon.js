@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js";
 import { command, onNativeMessage } from "./bridge";
 import { htmlDecode } from "@/utils/html";
-import { setPanel } from "@/App";
+import { setViewPanel } from "@/App";
 
 // "addon:action" (install/uninstall) and the "addon:status" status/progress
 // event already exist in the native protocol (see cascapplicationmanagerwrapper.cpp
@@ -46,7 +46,7 @@ export function initAddonStatus() {
       setAddonStatus(status);
 
       if (status.page) {
-        setPanel(status.page);
+        setViewPanel(status.page);
       } else if (!!status.progress) {
         console.log("progress", status.progress);
         /* progress event */

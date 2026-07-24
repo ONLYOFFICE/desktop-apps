@@ -15,3 +15,13 @@ body {
 *::after {
   box-sizing: border-box;
 }
+
+.panel-error {
+  .icon-logo {
+    margin-bottom: 10px;
+  }
+
+  .message {
+    margin-bottom: 12px;
+  }
+}

@@ -105,3 +105,7 @@
 .btnPrimary:hover {
   background: var(--highlight-accent-button-hover, #5293e2);
 }
+
+.devider {
+  flex-grow: 1;
+}

@@ -10,12 +10,19 @@ const PANEL_SIZES = {
 };
 
 const [panel, setPanel] = createSignal("intro");
-export { setPanel };
+
+export function setViewPanel(p) {
+  setPanel(p);
+
+  const el = document.body;
+  el.className = el.className.replace(/panel-[\w-]+/gi, "").trim();
+  el.classList.add(`panel-${p}`);
+}
 
 export default function App() {
   const page = inputArgs()?.page;
   if (!!page)
-    setPanel(page)
+    setViewPanel(page)
 
   createEffect(() => {
     const size = panel()=="intro" ? PANEL_SIZES.intro : PANEL_SIZES.default;
@@ -28,7 +35,7 @@ export default function App() {
 
   function handleInstall() {
     installAddon();
-    // setPanel("install");
+    // setViewPanel("install");
   }
 
   return (
