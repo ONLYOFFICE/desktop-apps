@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
 }
 
 - (BOOL)restartRequired {
-    return self.restartRequired;
+    return _restartRequired;
 }
 
 - (void)doAction:(ASCAddonManagerAction)action {
