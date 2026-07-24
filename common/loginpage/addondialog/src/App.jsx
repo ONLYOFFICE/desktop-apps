@@ -14,8 +14,8 @@ export { setPanel };
 
 export default function App() {
   const page = inputArgs()?.page;
-  if (page == "install")
-    setPanel("install")
+  if (!!page)
+    setPanel(page)
 
   createEffect(() => {
     const size = panel()=="intro" ? PANEL_SIZES.intro : PANEL_SIZES.default;

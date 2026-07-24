@@ -58,5 +58,5 @@ export function initAddonStatus() {
 }
 
 export function progressPercentFromStatus(status) {
-  return !!status.progress ? Math.min(100, parseInt(status.progress, 10)) : null;
+  return !!status?.progress ? Math.min(100, parseInt(status.progress, 10)) : null;
 }
