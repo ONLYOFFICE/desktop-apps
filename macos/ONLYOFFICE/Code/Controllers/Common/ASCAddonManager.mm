@@ -227,7 +227,9 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
     self.pDownloader->onComplete(
         [weakSelf](int error, const tstring&)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            // HACK: Give the HTML UI time to render the final 100% progress update before completing.
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 300 * NSEC_PER_MSEC),
+                           dispatch_get_main_queue(), ^{
                 [weakSelf onComplete:error];
             });
         });
