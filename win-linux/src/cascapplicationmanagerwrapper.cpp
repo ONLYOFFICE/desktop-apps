@@ -433,7 +433,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     if (m_pMainWindow)
                         showUpgradeDialog(m_pMainWindow);
                 }
-                else if (param == L"postpone")
+                else if (param == L"postpone" || param == L"close")
                 {
                     /* "may be later" clicked */
                     if (m_private->m_upgradeDialog)
