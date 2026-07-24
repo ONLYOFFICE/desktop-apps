@@ -45,7 +45,8 @@
 const QSize UpgradeDialog::IntroPageSize(480, 700);
 const QSize UpgradeDialog::InstallPageSize(480, 304);
 
-UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
+
+UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc, int page)
     : CAscDialog(parent, rc)
     , m_bDialogActivated(false)
 {
@@ -79,7 +80,8 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
     if ( html_path.isEmpty() )
         html_path = qApp->applicationDirPath() + QStringLiteral("/addon.html");
 
-    QString url_additional = "?lang=" + CLangater::getCurrentLangCode() + "&page=intro";
+    QString url_additional = QString("?lang=%1&page=%2").arg(
+        CLangater::getCurrentLangCode(), pageToString(page));
 
     const QString addonUrl = QString("file:///%1%2").arg(html_path, url_additional);
     contentCefView->GetCefView()->load(addonUrl.toStdWString());

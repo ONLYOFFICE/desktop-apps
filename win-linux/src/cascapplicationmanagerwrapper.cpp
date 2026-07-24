@@ -1938,19 +1938,21 @@ void CAscApplicationManagerWrapper::setUpgradeInProgress(bool upgradeInProgress)
     _app.m_private->m_bUpgradeInProgress = upgradeInProgress;
 }
 
-void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent)
+void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, int page)
 {
     APP_CAST(_app);
 
     double dpiRatio = parent ? Utils::getScreenDpiRatioByWidget(parent) : 1.0;
-    QSize size(UpgradeDialog::IntroPageSize);
+    QSize size = (page == UpgradeDialog::Page::Intro)
+                     ? UpgradeDialog::IntroPageSize
+                     : UpgradeDialog::InstallPageSize;
     QRect rc(QPoint(0, 0), size * dpiRatio);
     rc.moveCenter(parent->geometry().center());
 
 #ifdef __linux__
     WindowHelper::CParentDisable oDisabler(parent);
 #endif
-    _app.m_private->m_upgradeDialog = new UpgradeDialog(parent, rc);
+    _app.m_private->m_upgradeDialog = new UpgradeDialog(parent, rc, page);
     _app.m_private->m_upgradeDialog->setModal();
     _app.m_private->m_upgradeDialog->setEnabled(true);
     _app.m_private->m_upgradeDialog->setResizable(false);
