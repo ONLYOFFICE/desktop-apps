@@ -42,10 +42,11 @@
 #include "defines.h"
 #include "clangater.h"
 
+const QSize UpgradeDialog::IntroPageSize(480, 700);
+const QSize UpgradeDialog::InstallPageSize(480, 304);
 
 UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
     : CAscDialog(parent, rc)
-    , m_pParent(parent)
     , m_bDialogActivated(false)
 {
     setFocusPolicy(Qt::StrongFocus);
@@ -80,7 +81,7 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc)
 
     QString url_additional = "?lang=" + CLangater::getCurrentLangCode() + "&page=intro";
 
-    const QString addonUrl = QStringLiteral("file:///") + html_path + url_additional;
+    const QString addonUrl = QString("file:///%1%2").arg(html_path, url_additional);
     contentCefView->GetCefView()->load(addonUrl.toStdWString());
 }
 
@@ -105,34 +106,13 @@ void UpgradeDialog::setProgress(int percent)
 
 void UpgradeDialog::showStartPage()
 {
-    // HACK: Avoid visible position change when updating the geometry of an already shown dialog.
-    setWindowOpacity(0.0);
-
     QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
 
     QJsonObject jsn;
-    jsn["page"] = "install";
+    jsn["page"] = pageToString(Page::Install);
     AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 
-    const bool wasResizable = isResizable();
-    if (!wasResizable)
-        setResizable(true);
-
-    QSize size(480 * m_dpiRatio, 304 * m_dpiRatio);
-    QRect rc(QPoint(0, 0), size);
-    if (m_pParent)
-        rc.moveCenter(m_pParent->geometry().center());
-    setGeometry(adjustWindowRect(rc, m_dpiRatio));
-
-    if (!wasResizable)
-        setResizable(false);
-
-    // Restore visibility after applying the new dialog geometry.
-    QTimer::singleShot(100, this,
-        [this]()
-        {
-            setWindowOpacity(1.0);
-        });
+    applyGeometry(InstallPageSize);
 }
 
 void UpgradeDialog::showFinalPage()
@@ -140,7 +120,7 @@ void UpgradeDialog::showFinalPage()
     QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
 
     QJsonObject jsn;
-    jsn["page"] = "complete";
+    jsn["page"] = pageToString(Page::Complete);
     AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 }
 
@@ -149,7 +129,7 @@ void UpgradeDialog::showErrorPage(const QString &message)
     QCefView *contentCefView = qobject_cast<QCefView*>(m_pMainView);
 
     QJsonObject jsn;
-    jsn["page"] = "error";
+    jsn["page"] = pageToString(Page::Error);
     jsn["message"] = message;
     AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 }
@@ -176,3 +156,40 @@ void UpgradeDialog::showEvent(QShowEvent *ev)
 }
 
 /** Private **/
+
+void UpgradeDialog::applyGeometry(const QSize &baseSize)
+{
+    // HACK: Avoid visible position change when updating the geometry of an already shown dialog.
+    setWindowOpacity(0.0);
+
+    const bool wasResizable = isResizable();
+    if (!wasResizable)
+        setResizable(true);
+
+    QRect rc(QPoint(0, 0), baseSize * m_dpiRatio);
+    if (QWidget *parent = parentWidget())
+        rc.moveCenter(parent->geometry().center());
+    setGeometry(adjustWindowRect(rc, m_dpiRatio));
+
+    if (!wasResizable)
+        setResizable(false);
+
+    // Restore visibility after applying the new dialog geometry.
+    QTimer::singleShot(100, this,
+        [this]()
+        {
+            setWindowOpacity(1.0);
+        });
+}
+
+QString UpgradeDialog::pageToString(int page)
+{
+    switch (page)
+    {
+    case Page::Install:  return QStringLiteral("install");
+    case Page::Complete: return QStringLiteral("complete");
+    case Page::Error:    return QStringLiteral("error");
+    case Page::Intro:
+    default:             return QStringLiteral("intro");
+    }
+}

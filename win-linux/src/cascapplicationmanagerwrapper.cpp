@@ -1943,8 +1943,8 @@ void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent)
     APP_CAST(_app);
 
     double dpiRatio = parent ? Utils::getScreenDpiRatioByWidget(parent) : 1.0;
-    QSize size(480 * dpiRatio, 700 * dpiRatio);
-    QRect rc(QPoint(0, 0), size);
+    QSize size(UpgradeDialog::IntroPageSize);
+    QRect rc(QPoint(0, 0), size * dpiRatio);
     rc.moveCenter(parent->geometry().center());
 
 #ifdef __linux__

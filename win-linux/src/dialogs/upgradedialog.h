@@ -49,9 +49,12 @@ public:
 
     enum DialogCode
     {
-        RestartNow = 2,
-        RestartLater = 3
+        RestartNow   = CAscDialog::Rejected + 1,
+        RestartLater = CAscDialog::Rejected + 2,
     };
+
+    static const QSize IntroPageSize;
+    static const QSize InstallPageSize;
 
     void setProgress(int percent);
     void showStartPage();
@@ -64,7 +67,9 @@ protected:
 signals:
 
 private:
-    QWidget *m_pParent;
+    void applyGeometry(const QSize &baseSize);
+    static QString pageToString(int page);
+
     bool m_bDialogActivated;
 };
 
