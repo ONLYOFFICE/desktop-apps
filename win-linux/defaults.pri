@@ -232,6 +232,10 @@ core_linux {
                 $$PWD/src/platform_linux/xcbutils.cpp \
                 $$PWD/extras/update-daemon/src/classes/ipcsocket.cpp
 
+    updmodule:!build_xp {
+        HEADERS += $$PWD/extras/update-daemon/src/classes/ipcupdateprotocol.h
+    }
+
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xcb-shape libnotify
     LIBS += -lX11 -lcups
@@ -273,7 +277,8 @@ core_windows {
 
     updmodule:!build_xp {
         INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
-        HEADERS += $$PWD/extras/update-daemon/src/classes/ipcsocket.h
+        HEADERS += $$PWD/extras/update-daemon/src/classes/ipcsocket.h \
+                   $$PWD/extras/update-daemon/src/classes/ipcupdateprotocol.h
         SOURCES += $$PWD/extras/update-daemon/src/classes/ipcsocket.cpp
     }
 

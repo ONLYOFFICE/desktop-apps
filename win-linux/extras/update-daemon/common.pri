@@ -17,6 +17,7 @@ INCLUDEPATH += $$PWD/../../src/prop
 
 HEADERS += $$PWD/src/version.h \
            $$PWD/src/classes/ipcsocket.h \
+           $$PWD/src/classes/ipcupdateprotocol.h \
            $$PWD/src/classes/csvcmanager.h \
            $$PWD/src/classes/cjson_p.h \
            $$PWD/src/classes/cjson.h \

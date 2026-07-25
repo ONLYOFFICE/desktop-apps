@@ -47,6 +47,7 @@
 #include "clogger.h"
 #include "components/cnotification.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "ipcupdateprotocol.h"
 #include <QCryptographicHash>
 #ifdef _WIN32
 # define DAEMON_NAME L"/updatesvc.exe"

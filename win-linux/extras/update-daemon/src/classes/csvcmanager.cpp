@@ -42,6 +42,7 @@
 #include <numeric>
 #include "version.h"
 #include "classes/cjson.h"
+#include "classes/ipcupdateprotocol.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 #ifdef _WIN32

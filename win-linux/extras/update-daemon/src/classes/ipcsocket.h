@@ -58,26 +58,6 @@ using std::size_t;
 typedef std::function<void(void*, size_t)> FnVoidData;
 typedef std::function<void(const char*)> FnVoidCharPtr;
 
-
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError,
-    MSG_RequestContentLenght,
-    MSG_UnzipProgress,
-    MSG_SetLanguage,
-    MSG_StartReplacingService,
-    MSG_StartInstallPackage
-};
-
 class IPCSocket
 {
 public:
