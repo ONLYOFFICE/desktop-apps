@@ -34,44 +34,75 @@
  */
 
 #include "capplication.h"
-#include "platform_linux/utils.h"
-#include "classes/translator.h"
-#include <iostream>
-#include <SDL2/SDL.h>
+#include <glib.h>
+#include <atomic>
+#include <stdexcept>
 
+
+struct CApplication::CApplicationPrivate
+{
+    std::atomic<bool> exiting{false};
+    std::atomic<int> exitCode{0};
+    GMainLoop *loop = nullptr;
+    GMainContext *context = nullptr;
+    static CApplication* instance;
+};
+
+CApplication* CApplication::CApplicationPrivate::instance = nullptr;
 
 CApplication::CApplication()
+    : pimpl(new CApplicationPrivate)
 {
-    if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER) != 0)
-        NS_Logger::WriteLog(_TR(MESSAGE_TEXT_ERR16) + _T(" ") + SDL_GetError(), true);
+    if (CApplicationPrivate::instance)
+        throw std::runtime_error("CApplication already exists");
+
+    pimpl->context = g_main_context_default();
+    if (!pimpl->context)
+        throw std::runtime_error("Failed to get default GMainContext");
+
+    pimpl->loop = g_main_loop_new(pimpl->context, FALSE);
+    if (!pimpl->loop)
+        throw std::runtime_error("Failed to create GLib main loop");
+
+    CApplicationPrivate::instance = this;
 }
 
 CApplication::~CApplication()
 {
-    SDL_Quit();
+    CApplicationPrivate::instance = nullptr;
+
+    if (pimpl->loop)
+        g_main_loop_unref(pimpl->loop);
+
+    delete pimpl; pimpl = nullptr;
+}
+
+CApplication* CApplication::instance()
+{
+    return CApplicationPrivate::instance;
 }
 
 int CApplication::exec()
 {
-    int exit_code = 1;
-    SDL_Event event;
-    while (m_run && SDL_WaitEvent(&event)) {
-        switch (event.type) {
-            case SDL_QUIT:
-                exit_code = event.user.code;
-                break;
-            default:
-                break;
-        }
-    }
-    return exit_code;
+    g_main_loop_run(pimpl->loop);
+    return pimpl->exitCode.load(std::memory_order_relaxed);
 }
 
 void CApplication::exit(int code)
 {
-    m_run = false;
-    SDL_Event event;
-    event.type = SDL_QUIT;
-    event.user.code = code;
-    SDL_PushEvent(&event);
+    bool expected = false;
+    if (!pimpl->exiting.compare_exchange_strong(expected, true))
+        return;
+
+    pimpl->exitCode.store(code, std::memory_order_relaxed);
+
+    g_main_context_invoke(
+        pimpl->context,
+        +[](gpointer data) -> gboolean
+        {
+            auto* pimpl = static_cast<CApplicationPrivate*>(data);
+            g_main_loop_quit(pimpl->loop);
+            return G_SOURCE_REMOVE;
+        },
+        pimpl);
 }

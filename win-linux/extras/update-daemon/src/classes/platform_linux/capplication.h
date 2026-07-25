@@ -36,8 +36,6 @@
 #ifndef CAPPLICATION_H
 #define CAPPLICATION_H
 
-#include <atomic>
-
 
 class CApplication
 {
@@ -45,11 +43,17 @@ public:
     CApplication();
     ~CApplication();
 
+    CApplication(const CApplication&) = delete;
+    CApplication& operator=(const CApplication&) = delete;
+
+    static CApplication* instance();
+
     int exec();
     void exit(int);
 
 private:
-    std::atomic_bool m_run{true};
+    struct CApplicationPrivate;
+    CApplicationPrivate *pimpl = nullptr;
 };
 
 #endif // CAPPLICATION_H
