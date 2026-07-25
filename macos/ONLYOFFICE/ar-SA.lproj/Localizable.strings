@@ -59,10 +59,10 @@
 "FictionBook File" = "ملف فكشنبوك 2 (*.fb2)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "\"%@\" غير قابل للفتح أو غير موجود.";
+"File \"%@\" cannot be opened or does not exist." = "\"%@\" غير قابل للفتح أو غير موجود.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "غير قادر على فتح الملف.";
+"File cannot be opened." = "غير قادر على فتح الملف.";
 
 /* No comment provided by engineer. */
 "File Format:" = "صيغة الملف:";

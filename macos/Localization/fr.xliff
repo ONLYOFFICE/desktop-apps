@@ -187,8 +187,8 @@
         <target state="translated">Fichier FictionBook 2</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
-        <source>File "%@" can not be open or not exist.</source>
+      <trans-unit id="File &quot;%@&quot; cannot be opened or does not exist." xml:space="preserve">
+        <source>File "%@" cannot be opened or does not exist.</source>
         <target>Le fichier "%@" ne peut pas être ouvert ou n'existe pas.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
@@ -197,8 +197,8 @@
         <target>Format de fichier :</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="File can not be open." xml:space="preserve">
-        <source>File can not be open.</source>
+      <trans-unit id="File cannot be opened." xml:space="preserve">
+        <source>File cannot be opened.</source>
         <target>Le fichier ne peut pas être ouvert.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>

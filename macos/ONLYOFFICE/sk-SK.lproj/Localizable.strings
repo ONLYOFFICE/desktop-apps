@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Tabuľka Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Súbor \"%@\" sa nedá otvoriť alebo neexistuje.";
+"File \"%@\" cannot be opened or does not exist." = "Súbor \"%@\" sa nedá otvoriť alebo neexistuje.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Súbor sa nedá otvoriť.";
+"File cannot be opened." = "Súbor sa nedá otvoriť.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Formát súboru:";

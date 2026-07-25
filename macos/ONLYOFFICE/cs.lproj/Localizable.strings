@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Tabulkový procesor Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Soubor „%@“ není možné otevřít nebo neexistuje.";
+"File \"%@\" cannot be opened or does not exist." = "Soubor „%@“ není možné otevřít nebo neexistuje.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Soubor se nedaří otevřít.";
+"File cannot be opened." = "Soubor se nedaří otevřít.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Formát souboru:";

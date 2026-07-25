@@ -56,10 +56,10 @@
 "FictionBook File" = "Fitxer FictionBook (*.fb2)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "L'arxiu \"%@\" no es pot obrir o no existeix.";
+"File \"%@\" cannot be opened or does not exist." = "L'arxiu \"%@\" no es pot obrir o no existeix.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "No es pot obrir el fitxer.";
+"File cannot be opened." = "No es pot obrir el fitxer.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Format del fitxer:";

@@ -160,8 +160,8 @@
         <target state="translated">Folha de cálculo XML Open Office</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
-        <source>File "%@" can not be open or not exist.</source>
+      <trans-unit id="File &quot;%@&quot; cannot be opened or does not exist." xml:space="preserve">
+        <source>File "%@" cannot be opened or does not exist.</source>
         <target state="translated">Ficheiro "%@" não pode ser aberto ou não existe.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
@@ -170,8 +170,8 @@
         <target state="translated">Formato do Ficheiro:</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="File can not be open." xml:space="preserve">
-        <source>File can not be open.</source>
+      <trans-unit id="File cannot be opened." xml:space="preserve">
+        <source>File cannot be opened.</source>
         <target state="translated">Este ficheiro não pode ser aberto.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>

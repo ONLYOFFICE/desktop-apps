@@ -59,10 +59,10 @@
 "FictionBook File" = "FictionBook 2ファイル (*.fb2)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "ファイル \"%@\" が開けないか、または存在しません。";
+"File \"%@\" cannot be opened or does not exist." = "ファイル \"%@\" が開けないか、または存在しません。";
 
 /* No comment provided by engineer. */
-"File can not be open." = "ファイルが開けません。";
+"File cannot be opened." = "ファイルが開けません。";
 
 /* No comment provided by engineer. */
 "File Format:" = "ファイル形式；";

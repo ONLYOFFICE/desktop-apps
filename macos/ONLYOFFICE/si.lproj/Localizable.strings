@@ -59,10 +59,10 @@
 "FictionBook File" = "ෆික්ෂන්බුක් 2 ගොනුව (*.fb2)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "\"%@\" ගොනුව ඇරීමට නොහැකිය හෝ නොපවතී.";
+"File \"%@\" cannot be opened or does not exist." = "\"%@\" ගොනුව ඇරීමට නොහැකිය හෝ නොපවතී.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "ගොනුව ඇරීමට නොහැකියි.";
+"File cannot be opened." = "ගොනුව ඇරීමට නොහැකියි.";
 
 /* No comment provided by engineer. */
 "File Format:" = "ගොනුවේ ආකෘතිය:";

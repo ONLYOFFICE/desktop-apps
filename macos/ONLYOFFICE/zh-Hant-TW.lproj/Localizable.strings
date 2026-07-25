@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML 試算表(*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "檔案 \"%@\" 無法開啟或不存在。";
+"File \"%@\" cannot be opened or does not exist." = "檔案 \"%@\" 無法開啟或不存在。";
 
 /* No comment provided by engineer. */
-"File can not be open." = "檔案無法開啟。";
+"File cannot be opened." = "檔案無法開啟。";
 
 /* No comment provided by engineer. */
 "File Format:" = "檔案格式​​:";

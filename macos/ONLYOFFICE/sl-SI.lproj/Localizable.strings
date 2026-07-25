@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML preglednica (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Datoteke \"%@\" ni možno odpreti ali ne obstaja.";
+"File \"%@\" cannot be opened or does not exist." = "Datoteke \"%@\" ni možno odpreti ali ne obstaja.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Datoteke ni možno odpreti.";
+"File cannot be opened." = "Datoteke ni možno odpreti.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Format datoteke:";

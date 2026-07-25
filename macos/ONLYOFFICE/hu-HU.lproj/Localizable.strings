@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML számolótábla (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "\"%@\" fájl nem nyitható meg vagy nem létezik.";
+"File \"%@\" cannot be opened or does not exist." = "\"%@\" fájl nem nyitható meg vagy nem létezik.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "A fájl nem nyitható meg.";
+"File cannot be opened." = "A fájl nem nyitható meg.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Fájlformátum:";

@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office avatud XML arvutustabel (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Faili „%@“ ei saa avada või seda ei eksisteeri.";
+"File \"%@\" cannot be opened or does not exist." = "Faili „%@“ ei saa avada või seda ei eksisteeri.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Faili ei saa avada.";
+"File cannot be opened." = "Faili ei saa avada.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Faili formaat:";

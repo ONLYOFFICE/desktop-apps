@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Foaia de calcul Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Fișierul \"%@\" nu se poate deschide sau nu nu există.";
+"File \"%@\" cannot be opened or does not exist." = "Fișierul \"%@\" nu se poate deschide sau nu nu există.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Fișierul nu se poate deschide.";
+"File cannot be opened." = "Fișierul nu se poate deschide.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Format de fișier:";

@@ -50,10 +50,10 @@
 "Excel 2007 Spreadsheet" = "ऑफिस ओपन एक्सएमएल स्प्रेडशीट (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "फ़ाइल \"%@\" को खोला नहीं जा सकता या यह मौजूद नहीं है।";
+"File \"%@\" cannot be opened or does not exist." = "फ़ाइल \"%@\" को खोला नहीं जा सकता या यह मौजूद नहीं है।";
 
 /* No comment provided by engineer. */
-"File can not be open." = "फ़ाइल को खोला नहीं जा सकता है।";
+"File cannot be opened." = "फ़ाइल को खोला नहीं जा सकता है।";
 
 /* No comment provided by engineer. */
 "File Format:" = "फ़ाइल प्रारूप:";

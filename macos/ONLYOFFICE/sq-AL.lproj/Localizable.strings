@@ -59,10 +59,10 @@
 "FictionBook File" = "Skedari i FictionBook";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Skedari \"%@\" nuk mund të jetë i hapur ose nuk ekziston.";
+"File \"%@\" cannot be opened or does not exist." = "Skedari \"%@\" nuk mund të jetë i hapur ose nuk ekziston.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Skedari nuk mund të hapet.";
+"File cannot be opened." = "Skedari nuk mund të hapet.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Formati i skedarit:";

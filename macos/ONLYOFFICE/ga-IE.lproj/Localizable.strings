@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Scarbhileog Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Ní féidir an comhad \"%@\" a oscailt nó gan a bheith ann.";
+"File \"%@\" cannot be opened or does not exist." = "Ní féidir an comhad \"%@\" a oscailt nó gan a bheith ann.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Ní féidir an comhad a oscailt.";
+"File cannot be opened." = "Ní féidir an comhad a oscailt.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Formáid Comhad:";

@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML Таблица (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Файл \"%@\" не може да бъде отворен или не съществува.";
+"File \"%@\" cannot be opened or does not exist." = "Файл \"%@\" не може да бъде отворен или не съществува.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Файлът не може да бъде отворен.";
+"File cannot be opened." = "Файлът не може да бъде отворен.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Формат на файла:";

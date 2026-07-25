@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML Spreadsheet (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Bestand \"%@\" kan niet open zijn of niet bestaan.";
+"File \"%@\" cannot be opened or does not exist." = "Bestand \"%@\" kan niet open zijn of niet bestaan.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Het bestand kan niet open zijn.";
+"File cannot be opened." = "Het bestand kan niet open zijn.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Bestandsformaat:";

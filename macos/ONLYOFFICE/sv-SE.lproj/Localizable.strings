@@ -35,10 +35,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML-kalkylblad (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Filen \"%@\" kan inte öppnas eller finns inte.";
+"File \"%@\" cannot be opened or does not exist." = "Filen \"%@\" kan inte öppnas eller finns inte.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Filen kan inte öppnas.";
+"File cannot be opened." = "Filen kan inte öppnas.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Filformat:";
