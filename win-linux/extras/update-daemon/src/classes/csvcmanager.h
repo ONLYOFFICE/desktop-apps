@@ -36,7 +36,7 @@
 #ifndef CSVCMANAGER_H
 #define CSVCMANAGER_H
 
-#include "classes/csocket.h"
+#include "classes/ipcsocket.h"
 #include <future>
 #ifdef _WIN32
 # include "classes/platform_win/cdownloader.h"
@@ -87,7 +87,7 @@ private:
     int          m_downloadMode,
                  m_packageType;
     future<void> m_future_clear;
-    CSocket     *m_socket = nullptr;
+    IPCSocket   *m_socket = nullptr;
     CDownloader *m_pDownloader = nullptr;
     CUnzip      *m_pUnzip = nullptr;
 

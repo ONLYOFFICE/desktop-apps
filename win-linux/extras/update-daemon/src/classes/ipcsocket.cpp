@@ -33,7 +33,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-#include "csocket.h"
+#include "ipcsocket.h"
 #include <future>
 #include <sstream>
 
@@ -108,11 +108,11 @@ static bool initSocket(u_short port, SOCKET &tmpd, SockAddr &addr, int &ret, std
     return true;
 }
 
-class CSocket::CSocketPrv
+class IPCSocket::IPCSocketPrv
 {
 public:
-    CSocketPrv();
-    ~CSocketPrv();
+    IPCSocketPrv();
+    ~IPCSocketPrv();
 
     bool createSocket(u_short port);
     bool connectToSocket(u_short port);
@@ -132,16 +132,16 @@ public:
                      m_socket_created;
 };
 
-CSocket::CSocketPrv::CSocketPrv()
+IPCSocket::IPCSocketPrv::IPCSocketPrv()
 {
     m_run = true;
     m_socket_created = false;
 }
 
-CSocket::CSocketPrv::~CSocketPrv()
+IPCSocket::IPCSocketPrv::~IPCSocketPrv()
 {}
 
-bool CSocket::CSocketPrv::createSocket(u_short port)
+bool IPCSocket::IPCSocketPrv::createSocket(u_short port)
 {
     int ret;
     SOCKET tmpd;
@@ -161,7 +161,7 @@ bool CSocket::CSocketPrv::createSocket(u_short port)
     return false;
 }
 
-bool CSocket::CSocketPrv::connectToSocket(u_short port)
+bool IPCSocket::IPCSocketPrv::connectToSocket(u_short port)
 {
     int ret;
     SOCKET tmpd;
@@ -190,7 +190,7 @@ bool CSocket::CSocketPrv::connectToSocket(u_short port)
     return false;
 }
 
-void CSocket::CSocketPrv::startReadMessages()
+void IPCSocket::IPCSocketPrv::startReadMessages()
 {
     while (m_run) {
         char rcvBuf[BUFFSIZE] = {0};
@@ -211,7 +211,7 @@ void CSocket::CSocketPrv::startReadMessages()
     // Dropped out of daemon loop.
 }
 
-void CSocket::CSocketPrv::closeSocket(SOCKET &socket)
+void IPCSocket::IPCSocketPrv::closeSocket(SOCKET &socket)
 {
     if (socket >= 0) {
         shutdown(socket, SD_BOTH);
@@ -220,14 +220,14 @@ void CSocket::CSocketPrv::closeSocket(SOCKET &socket)
     }
 }
 
-void CSocket::CSocketPrv::postError(const char *error)
+void IPCSocket::IPCSocketPrv::postError(const char *error)
 {
     if (m_error_callback)
         m_error_callback(error);
 }
 
-CSocket::CSocket(int sender_port, int receiver_port, bool retry_connect, bool use_unique_addr) :
-    pimpl(new CSocketPrv)
+IPCSocket::IPCSocket(int sender_port, int receiver_port, bool retry_connect, bool use_unique_addr) :
+    pimpl(new IPCSocketPrv)
 {
     pimpl->m_use_unique_addr = use_unique_addr;
     pimpl->m_sender_port = sender_port;
@@ -245,7 +245,7 @@ CSocket::CSocket(int sender_port, int receiver_port, bool retry_connect, bool us
     });
 }
 
-CSocket::~CSocket()
+IPCSocket::~IPCSocket()
 {
     pimpl->m_run = false;
     pimpl->closeSocket(pimpl->sender_fd);
@@ -259,12 +259,12 @@ CSocket::~CSocket()
 #endif
 }
 
-bool CSocket::isPrimaryInstance()
+bool IPCSocket::isPrimaryInstance()
 {
     return pimpl->m_socket_created;
 }
 
-bool CSocket::sendMessage(void *data, size_t size)
+bool IPCSocket::sendMessage(void *data, size_t size)
 {
     if (!data || size > BUFFSIZE - 1)
         return false;
@@ -292,7 +292,7 @@ bool CSocket::sendMessage(void *data, size_t size)
     return true;
 }
 
-bool CSocket::sendMessage(int cmd, const tstring &param1, const tstring &param2)
+bool IPCSocket::sendMessage(int cmd, const tstring &param1, const tstring &param2)
 {
     tstring str = std::to_tstring(cmd) + _T("|") + (param1.empty() ? _T("null") : param1) +
                   _T("|") + (param2.empty() ? _T("null") : param2);
@@ -300,17 +300,17 @@ bool CSocket::sendMessage(int cmd, const tstring &param1, const tstring &param2)
     return sendMessage((void*)str.c_str(), sz);
 }
 
-void CSocket::onMessageReceived(FnVoidData callback)
+void IPCSocket::onMessageReceived(FnVoidData callback)
 {
     pimpl->m_received_callback = callback;
 }
 
-void CSocket::onError(FnVoidCharPtr callback)
+void IPCSocket::onError(FnVoidCharPtr callback)
 {
     pimpl->m_error_callback = callback;
 }
 
-int CSocket::parseMessage(void *data, std::vector<tstring> &params)
+int IPCSocket::parseMessage(void *data, std::vector<tstring> &params)
 {
     tstring str((const tchar*)data), tmp;
     tstringstream wss(str);

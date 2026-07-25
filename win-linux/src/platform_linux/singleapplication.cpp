@@ -35,7 +35,7 @@
 
 #include "cascapplicationmanagerwrapper.h"
 #include "singleapplication.h"
-#include "csocket.h"
+#include "ipcsocket.h"
 #include "utils.h"
 #include "defines.h"
 #include <QSessionManager>
@@ -122,7 +122,7 @@ static void onSessionSignal(GDBusConnection*, const gchar*, const gchar*, const 
 SingleApplication::SingleApplication(int &argc, char *argv[]) :
     QApplication(argc, argv)
 {
-    m_socket = new CSocket(0, Utils::getInstAppPort(), false, true);
+    m_socket = new IPCSocket(0, Utils::getInstAppPort(), false, true);
     if (m_socket->isPrimaryInstance()) {
         m_isPrimary = true;
         m_socket->onMessageReceived([=](void *buff, size_t size) {
@@ -167,7 +167,7 @@ bool SingleApplication::sendMessage(const QByteArray &msg)
     if (m_isPrimary)
         return false;
 
-    CSocket socket(Utils::getInstAppPort(), 0, false, true);
+    IPCSocket socket(Utils::getInstAppPort(), 0, false, true);
     return socket.sendMessage((void*)msg.data(), msg.size());
 }
 

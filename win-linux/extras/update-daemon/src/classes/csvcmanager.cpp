@@ -288,7 +288,7 @@ CSvcManager::CSvcManager():
     m_savedPackageData(new SavedPackageData),
     m_downloadMode(Mode::CHECK_UPDATES),
     m_packageType(Package::Portable),
-    m_socket(new CSocket(APP_PORT, SVC_PORT)),
+    m_socket(new IPCSocket(APP_PORT, SVC_PORT)),
     m_pDownloader(new CDownloader),
     m_pUnzip(new CUnzip)
 {

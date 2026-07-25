@@ -217,7 +217,7 @@ core_linux {
                 $$PWD/src/platform_linux/gtkprintdialog.h \
                 $$PWD/src/platform_linux/gtkutils.h \
                 $$PWD/src/platform_linux/xcbutils.h \
-                $$PWD/extras/update-daemon/src/classes/csocket.h
+                $$PWD/extras/update-daemon/src/classes/ipcsocket.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 $$PWD/src/windows/platform_linux/cwindowplatform.cpp \
@@ -230,7 +230,7 @@ core_linux {
                 $$PWD/src/platform_linux/gtkprintdialog.cpp \
                 $$PWD/src/platform_linux/gtkutils.cpp \
                 $$PWD/src/platform_linux/xcbutils.cpp \
-                $$PWD/extras/update-daemon/src/classes/csocket.cpp
+                $$PWD/extras/update-daemon/src/classes/ipcsocket.cpp
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xcb-shape libnotify
@@ -273,8 +273,8 @@ core_windows {
 
     updmodule:!build_xp {
         INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
-        HEADERS += $$PWD/extras/update-daemon/src/classes/csocket.h
-        SOURCES += $$PWD/extras/update-daemon/src/classes/csocket.cpp
+        HEADERS += $$PWD/extras/update-daemon/src/classes/ipcsocket.h
+        SOURCES += $$PWD/extras/update-daemon/src/classes/ipcsocket.cpp
     }
 
     LIBS += -lwininet \

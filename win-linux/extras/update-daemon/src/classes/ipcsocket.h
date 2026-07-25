@@ -33,8 +33,8 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
+#ifndef IPCSOCKET_H
+#define IPCSOCKET_H
 
 #include <string>
 #include <vector>
@@ -78,11 +78,11 @@ enum MsgCommands {
     MSG_StartInstallPackage
 };
 
-class CSocket
+class IPCSocket
 {
 public:
-    CSocket(int sender_port, int receiver_port, bool retry_connect = true, bool use_unique_addr = false);
-    ~CSocket();
+    IPCSocket(int sender_port, int receiver_port, bool retry_connect = true, bool use_unique_addr = false);
+    ~IPCSocket();
 
     /* callback */
     bool isPrimaryInstance();
@@ -93,8 +93,8 @@ public:
     int  parseMessage(void *data, std::vector<tstring> &params);
 
 private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
+    class IPCSocketPrv;
+    IPCSocketPrv *pimpl = nullptr;
 };
 
-#endif // CSOCKET_H
+#endif // IPCSOCKET_H

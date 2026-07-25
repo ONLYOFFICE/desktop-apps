@@ -43,7 +43,7 @@
 # define __STDC_WANT_LIB_EXT1__ 1
 #endif
 #include <ctime>
-#include "csocket.h"
+#include "ipcsocket.h"
 
 #ifdef _WIN32
 # define QStrToTStr(a) a.toStdWString()
@@ -135,7 +135,7 @@ private:
     class DialogSchedule;
     DialogSchedule *m_dialogSchedule = nullptr;
 
-    CSocket *m_socket = nullptr;
+    IPCSocket *m_socket = nullptr;
 
 private slots:
     void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);

@@ -44,7 +44,7 @@
 #pragma pop_macro("signals")
 
 
-class CSocket;
+class IPCSocket;
 class SingleApplication : public QApplication
 {
     Q_OBJECT
@@ -62,7 +62,7 @@ private slots:
     void invokeSignal(const QString&);
 
 private:
-    CSocket *m_socket = nullptr;
+    IPCSocket *m_socket = nullptr;
     GDBusConnection *m_conn = nullptr;
     std::string m_client_id;
     uint    m_subscrId = 0;

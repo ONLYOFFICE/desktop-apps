@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
             }
             std::locale::global(std::locale(""));
             Translator::instance().init(NS_Utils::GetAppLanguage(), "/langs/langs.bin");
-            CSocket socket(0, INSTANCE_SVC_PORT);
+            IPCSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;
 

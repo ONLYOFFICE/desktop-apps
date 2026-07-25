@@ -337,7 +337,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
     m_packageData(new PackageData),
     m_savedPackageData(new SavedPackageData),
     m_dialogSchedule(new DialogSchedule(this)),
-    m_socket(new CSocket(SVC_PORT, APP_PORT))
+    m_socket(new IPCSocket(SVC_PORT, APP_PORT))
 {
     // =========== Set updates URL ============
     if ( Utils::updatesAllowed() ) {
@@ -368,7 +368,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
         if (IsPackage(Portable)) {
             int pid = GetPid();
             std::string msg = std::to_string(pid);
-            CSocket sock(INSTANCE_SVC_PORT, 0);
+            IPCSocket sock(INSTANCE_SVC_PORT, 0);
             sock.sendMessage((void*)msg.c_str(), msg.length() + 1);
             tstring args = _T("--run-as-app ") + std::to_tstring(pid);
             for (const auto &arg : InputArgs::arguments())
@@ -389,7 +389,7 @@ CUpdateManager::~CUpdateManager()
     delete m_dialogSchedule, m_dialogSchedule = nullptr;
     delete m_socket, m_socket = nullptr;
     if (IsPackage(Portable)) {
-        CSocket sock(INSTANCE_SVC_PORT, 0);
+        IPCSocket sock(INSTANCE_SVC_PORT, 0);
         const char msg[] = "stop";
         sock.sendMessage((void*)msg, sizeof(msg));
     }

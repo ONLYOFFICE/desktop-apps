@@ -109,7 +109,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
             }
             std::locale::global(std::locale(""));
             Translator::instance().init(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
-            CSocket socket(0, INSTANCE_SVC_PORT);
+            IPCSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;
 
