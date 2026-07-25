@@ -35,7 +35,6 @@
 
 #include "ipcsocket.h"
 #include <future>
-#include <sstream>
 
 #ifdef _WIN32
 # define _WINSOCK_DEPRECATED_NO_WARNINGS
@@ -294,7 +293,7 @@ bool IPCSocket::sendMessage(void *data, size_t size)
 
 bool IPCSocket::sendMessage(int cmd, const tstring &param1, const tstring &param2)
 {
-    tstring str = std::to_tstring(cmd) + _T("|") + (param1.empty() ? _T("null") : param1) +
+    tstring str = to_tstring(cmd) + _T("|") + (param1.empty() ? _T("null") : param1) +
                   _T("|") + (param2.empty() ? _T("null") : param2);
     size_t sz = str.size() * sizeof(str.front());
     return sendMessage((void*)str.c_str(), sz);

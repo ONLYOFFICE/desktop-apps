@@ -36,22 +36,9 @@
 #ifndef IPCSOCKET_H
 #define IPCSOCKET_H
 
-#include <string>
+#include "tstring.h"
 #include <vector>
 #include <functional>
-#ifdef _WIN32
-# include <tchar.h>
-# define tchar wchar_t
-# define tstringstream std::wstringstream
-# define tstring std::wstring
-# define to_tstring to_wstring
-#else
-# define _T(str) str
-# define tchar char
-# define tstringstream std::stringstream
-# define tstring std::string
-# define to_tstring to_string
-#endif
 
 using std::size_t;
 

@@ -36,14 +36,7 @@
 #ifndef CJSON_H
 #define CJSON_H
 
-#include <string>
-#ifdef _WIN32
-# include <tchar.h>
-# define tstring std::wstring
-#else
-# define _T(str) str
-# define tstring std::string
-#endif
+#include "tstring.h"
 
 class JsonObject;
 class JsonObjectPrivate;

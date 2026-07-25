@@ -36,17 +36,8 @@
 #ifndef TRANSLATOR_H
 #define TRANSLATOR_H
 
+#include "tstring.h"
 #include <unordered_map>
-#include <string>
-#ifdef _WIN32
-# include <tchar.h>
-# define tchar wchar_t
-# define tstring std::wstring
-#else
-# define _T(str) str
-# define tchar char
-# define tstring std::string
-#endif
 
 #define _TR(str) Translator::instance().tr(_T(#str))
 

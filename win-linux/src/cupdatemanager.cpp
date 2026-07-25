@@ -371,7 +371,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
             std::string msg = std::to_string(pid);
             IPCSocket sock(INSTANCE_SVC_PORT, 0);
             sock.sendMessage((void*)msg.c_str(), msg.length() + 1);
-            tstring args = _T("--run-as-app ") + std::to_tstring(pid);
+            tstring args = _T("--run-as-app ") + to_tstring(pid);
             for (const auto &arg : InputArgs::arguments())
                 args.append(_T(" ") + WStrToTStr(arg));
             runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, args);
