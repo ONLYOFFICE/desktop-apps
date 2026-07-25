@@ -7,23 +7,24 @@ import styles from "./index.module.css";
 export default function PluginSettings() {
   const params = useParams();
   const pluginId = () => decodeURIComponent(params.pluginId);
-  const sectionName = () => decodeURIComponent(params.section);
+  const sectionId = () => decodeURIComponent(params.section);
 
-  const sectionValue = () => {
+  const currentSection = () => {
     const plugin = pluginConfigs().find((p) => p.id === pluginId());
-    return plugin?.sections[sectionName()] ?? [];
+    return plugin?.sections.find((s) => s.id === sectionId());
   };
 
-  const isUrl = () => typeof sectionValue() === "string";
+  const sectionItems = () => currentSection()?.items ?? [];
+  const isUrl = () => !!currentSection()?.url;
 
   return (
     <Show when={!isUrl()}>
       <div class={styles.page}>
         <div class={styles.form}>
-          <For each={sectionValue()}>
+          <For each={sectionItems()}>
             {(item) => {
-              const value = () => getPluginValue(pluginId(), sectionName(), item.id);
-              const onChange = (v) => setPluginValue(pluginId(), sectionName(), item.id, v);
+              const value = () => getPluginValue(pluginId(), sectionId(), item.id);
+              const onChange = (v) => setPluginValue(pluginId(), sectionId(), item.id, v);
 
               if (item.type === "combobox") {
                 return (

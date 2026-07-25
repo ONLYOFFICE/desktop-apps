@@ -10,21 +10,24 @@ export default function SettingsLayout(props) {
   const location = useLocation();
 
   const headerTitle = () => {
-    const path = location.pathname;
-    if (path.startsWith("/settings/plugin/")) {
-      return decodeURIComponent(path.split("/").pop() ?? "");
-    }
-    return t("settingsGeneral");
+    const parts = location.pathname.split("/");
+    if (parts[2] !== "plugin") return t("settingsGeneral");
+    const pluginId = decodeURIComponent(parts[3] ?? "");
+    const sectionId = decodeURIComponent(parts[4] ?? "");
+    const plugin = pluginConfigs().find((p) => p.id === pluginId);
+    const section = plugin?.sections.find((s) => s.id === sectionId);
+    return section?.text ?? t("settingsGeneral");
   };
 
   const currentIframeKey = () => {
     const parts = location.pathname.split("/");
     if (parts[2] !== "plugin") return null;
     const pluginId = decodeURIComponent(parts[3] ?? "");
-    const section = decodeURIComponent(parts[4] ?? "");
+    const sectionId = decodeURIComponent(parts[4] ?? "");
     const plugin = pluginConfigs().find((p) => p.id === pluginId);
-    if (typeof plugin?.sections[section] !== "string") return null;
-    return `${pluginId}/${section}`;
+    const section = plugin?.sections.find((s) => s.id === sectionId);
+    if (!section?.url) return null;
+    return `${pluginId}/${sectionId}`;
   };
 
   const isIframePage = () => currentIframeKey() !== null;
@@ -32,16 +35,16 @@ export default function SettingsLayout(props) {
   const iframePages = () => {
     const pages = [];
     for (const plugin of pluginConfigs()) {
-      for (const [section, value] of Object.entries(plugin.sections)) {
-        if (typeof value === "string") {
-          pages.push({ key: `${plugin.id}/${section}`, url: value });
+      for (const section of plugin.sections) {
+        if (section.url) {
+          pages.push({ key: `${plugin.id}/${section.id}`, url: section.url });
         }
       }
     }
     return pages;
   };
 
-  const onApplyClick = e => {
+  const onApplyClick = () => {
     applySettings();
   };
 
@@ -59,16 +62,21 @@ export default function SettingsLayout(props) {
           </li>
           <For each={pluginConfigs()}>
             {(plugin) => (
-              <For each={Object.keys(plugin.sections)}>
-                {(sectionName) => (
+              <For each={plugin.sections}>
+                {(section) => (
                   <li class={styles.item}>
-                    <A
-                      href={`/settings/plugin/${encodeURIComponent(plugin.id)}/${encodeURIComponent(sectionName)}`}
-                      activeClass={styles.selected}
-                      end
+                    <Show
+                      when={!section.disabled}
+                      fallback={<span class={styles.itemDisabled}>{section.text}</span>}
                     >
-                      {sectionName}
-                    </A>
+                      <A
+                        href={`/settings/plugin/${encodeURIComponent(plugin.id)}/${encodeURIComponent(section.id)}`}
+                        activeClass={styles.selected}
+                        end
+                      >
+                        {section.text}
+                      </A>
+                    </Show>
                   </li>
                 )}
               </For>

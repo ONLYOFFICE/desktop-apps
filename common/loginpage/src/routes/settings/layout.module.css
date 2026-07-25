@@ -128,3 +128,13 @@ main {
   background: var(--highlight-button-hover);
 }
 
+.itemDisabled {
+  display: block;
+  padding: 12px 8px;
+  border-radius: 4px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+  line-height: 20px;
+  cursor: default;
+}
+
