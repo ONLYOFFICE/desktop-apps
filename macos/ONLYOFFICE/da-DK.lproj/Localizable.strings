@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML-regneark (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Fil \"%@\" kan ikke åbnes eller eksisterer ikke.";
+"File \"%@\" cannot be opened or does not exist." = "Fil \"%@\" kan ikke åbnes eller eksisterer ikke.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "File kan ikke åbnes.";
+"File cannot be opened." = "File kan ikke åbnes.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Filformat:";

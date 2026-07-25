@@ -167,8 +167,8 @@
         <target state="translated">Office Open XML Proračunska tablica</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
-        <source>File "%@" can not be open or not exist.</source>
+      <trans-unit id="File &quot;%@&quot; cannot be opened or does not exist." xml:space="preserve">
+        <source>File "%@" cannot be opened or does not exist.</source>
         <target>Datoteka "%@" se ne može otvoriti ili ne postoji.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
@@ -177,8 +177,8 @@
         <target>Format datoteke:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="File can not be open." xml:space="preserve">
-        <source>File can not be open.</source>
+      <trans-unit id="File cannot be opened." xml:space="preserve">
+        <source>File cannot be opened.</source>
         <target>Datoteka se ne može otvoriti.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>

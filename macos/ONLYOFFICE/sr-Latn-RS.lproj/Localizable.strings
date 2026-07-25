@@ -59,10 +59,10 @@
 "FictionBook File" = "KnjigaFikcije 2 fajl (*.fb2)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Fajl \"%@\" ne može biti otvoren ili ne postoji.";
+"File \"%@\" cannot be opened or does not exist." = "Fajl \"%@\" ne može biti otvoren ili ne postoji.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Fajl ne može biti otvoren.";
+"File cannot be opened." = "Fajl ne može biti otvoren.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Fajl format:";

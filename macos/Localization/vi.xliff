@@ -157,16 +157,16 @@
         <source>FictionBook File</source>
         <target state="translated">Tập tin FictionBook 2</target>
       </trans-unit>
-      <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
-        <source>File "%@" can not be open or not exist.</source>
+      <trans-unit id="File &quot;%@&quot; cannot be opened or does not exist." xml:space="preserve">
+        <source>File "%@" cannot be opened or does not exist.</source>
         <target state="translated">Không thể mở tập tin "%@" hoặc nó không tồn tại.</target>
       </trans-unit>
       <trans-unit id="File Format:" xml:space="preserve">
         <source>File Format:</source>
         <target state="translated">Định dạng tập tin:</target>
       </trans-unit>
-      <trans-unit id="File can not be open." xml:space="preserve">
-        <source>File can not be open.</source>
+      <trans-unit id="File cannot be opened." xml:space="preserve">
+        <source>File cannot be opened.</source>
         <target state="translated">Không thể mở tập tin.</target>
       </trans-unit>
       <trans-unit id="HTML File" xml:space="preserve">

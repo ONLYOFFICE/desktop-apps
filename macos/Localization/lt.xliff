@@ -126,16 +126,16 @@
         <source>Excel 2007 Spreadsheet</source>
         <target state="translated">Office Atidaryti XML Skaičiuoklę</target>
       </trans-unit>
-      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
-        <source>File "%@" can not be open or not exist.</source>
+      <trans-unit id="File &quot;%@&quot; cannot be opened or does not exist.">
+        <source>File "%@" cannot be opened or does not exist.</source>
         <target>Failas "%@" negali būti aitdarytas arba neegzistuoja.</target>
       </trans-unit>
       <trans-unit id="File Format:">
         <source>File Format:</source>
         <target>Failo formatas:</target>
       </trans-unit>
-      <trans-unit id="File can not be open.">
-        <source>File can not be open.</source>
+      <trans-unit id="File cannot be opened.">
+        <source>File cannot be opened.</source>
         <target>Failas negali būti atidarytas.</target>
       </trans-unit>
       <trans-unit id="Hide %@">

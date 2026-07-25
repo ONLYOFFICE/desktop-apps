@@ -59,10 +59,10 @@
 "FictionBook File" = "فکشن بک فائل";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "فائل \"%@\" کھلی نہیں ہوسکتی ہے یا موجود نہیں ہے۔";
+"File \"%@\" cannot be opened or does not exist." = "فائل \"%@\" کھلی نہیں ہوسکتی ہے یا موجود نہیں ہے۔";
 
 /* No comment provided by engineer. */
-"File can not be open." = "فائل کھلی نہیں ہو سکتی۔";
+"File cannot be opened." = "فائل کھلی نہیں ہو سکتی۔";
 
 /* No comment provided by engineer. */
 "File Format:" = "فائل کی شکل:";

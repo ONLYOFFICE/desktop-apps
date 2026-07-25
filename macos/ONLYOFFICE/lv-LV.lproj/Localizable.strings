@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML izklājlapa (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Failu \"%@\" nevar atvērt vai tas nepastāv.";
+"File \"%@\" cannot be opened or does not exist." = "Failu \"%@\" nevar atvērt vai tas nepastāv.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Failu nevar atvērt.";
+"File cannot be opened." = "Failu nevar atvērt.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Faila Formāts:";

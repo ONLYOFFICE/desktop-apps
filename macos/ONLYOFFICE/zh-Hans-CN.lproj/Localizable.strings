@@ -59,10 +59,10 @@
 "FictionBook File" = "小说书2文件（*.fb2)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "文件“%@”无法打开或不存在。";
+"File \"%@\" cannot be opened or does not exist." = "文件“%@”无法打开或不存在。";
 
 /* No comment provided by engineer. */
-"File can not be open." = "无法打开文件。";
+"File cannot be opened." = "无法打开文件。";
 
 /* No comment provided by engineer. */
 "File Format:" = "文件格式：";

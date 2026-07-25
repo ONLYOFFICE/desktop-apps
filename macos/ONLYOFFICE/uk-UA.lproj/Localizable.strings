@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Електронна таблиця Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Файл \"%@\" неможливо відкрити або він не існує.";
+"File \"%@\" cannot be opened or does not exist." = "Файл \"%@\" неможливо відкрити або він не існує.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Файл неможливо відкрити.";
+"File cannot be opened." = "Файл неможливо відкрити.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Формат файлу:";

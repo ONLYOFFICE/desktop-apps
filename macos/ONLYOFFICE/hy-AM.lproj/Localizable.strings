@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML աղյուսակ (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Ֆայլ \"%@\"-ը գոյություն չունի, կամ հնարավոր չէ այն բացել։";
+"File \"%@\" cannot be opened or does not exist." = "Ֆայլ \"%@\"-ը գոյություն չունի, կամ հնարավոր չէ այն բացել։";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Հնարավոր չէ բացել ֆայլը։";
+"File cannot be opened." = "Հնարավոր չէ բացել ֆայլը։";
 
 /* No comment provided by engineer. */
 "File Format:" = "Ֆայլի ֆորմատ՝";

@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Officen avoin XML-asiakirja (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Tiedostoa \"%@\" ei voida avata tai sitä ei ole.";
+"File \"%@\" cannot be opened or does not exist." = "Tiedostoa \"%@\" ei voida avata tai sitä ei ole.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Tiedostoa ei voida avata.";
+"File cannot be opened." = "Tiedostoa ei voida avata.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Tiedostotyyppi:";

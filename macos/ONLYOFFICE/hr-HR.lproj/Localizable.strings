@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML Proračunska tablica (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Datoteka \"%@\" se ne može otvoriti ili ne postoji.";
+"File \"%@\" cannot be opened or does not exist." = "Datoteka \"%@\" se ne može otvoriti ili ne postoji.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Datoteka se ne može otvoriti.";
+"File cannot be opened." = "Datoteka se ne može otvoriti.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Format datoteke:";

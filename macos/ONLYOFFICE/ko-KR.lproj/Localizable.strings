@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML 스프레드시트(*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "\"%@\" 파일이 존재하지 않거나 열 수 없습니다.";
+"File \"%@\" cannot be opened or does not exist." = "\"%@\" 파일이 존재하지 않거나 열 수 없습니다.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "파일을 열 수 없습니다.";
+"File cannot be opened." = "파일을 열 수 없습니다.";
 
 /* No comment provided by engineer. */
 "File Format:" = "파일 형식:";

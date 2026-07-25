@@ -53,10 +53,10 @@
 "Excel 2007 Spreadsheet" = "ເປີດຕາຕະລາງ XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "ຟາຍ \"%@\" ບໍ່ມີ ຫຼື ບໍ່ສາມາດເປີດ.";
+"File \"%@\" cannot be opened or does not exist." = "ຟາຍ \"%@\" ບໍ່ມີ ຫຼື ບໍ່ສາມາດເປີດ.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "ຟາຍບໍ່່ສາມາດເປີດ.";
+"File cannot be opened." = "ຟາຍບໍ່່ສາມາດເປີດ.";
 
 /* No comment provided by engineer. */
 "File Format:" = "ຮູບແບບຟາຍ";

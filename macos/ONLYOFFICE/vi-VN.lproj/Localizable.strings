@@ -56,10 +56,10 @@
 "FictionBook File" = "Tập tin FictionBook 2 (*.fb2)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Không thể mở tập tin \"%@\" hoặc nó không tồn tại.";
+"File \"%@\" cannot be opened or does not exist." = "Không thể mở tập tin \"%@\" hoặc nó không tồn tại.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Không thể mở tập tin.";
+"File cannot be opened." = "Không thể mở tập tin.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Định dạng tập tin:";

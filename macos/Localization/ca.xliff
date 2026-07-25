@@ -172,8 +172,8 @@
         <target state="translated">Fitxer FictionBook</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
-        <source>File "%@" can not be open or not exist.</source>
+      <trans-unit id="File &quot;%@&quot; cannot be opened or does not exist." xml:space="preserve">
+        <source>File "%@" cannot be opened or does not exist.</source>
         <target state="translated">L'arxiu "%@" no es pot obrir o no existeix.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
@@ -182,8 +182,8 @@
         <target state="translated">Format del fitxer:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="File can not be open." xml:space="preserve">
-        <source>File can not be open.</source>
+      <trans-unit id="File cannot be opened." xml:space="preserve">
+        <source>File cannot be opened.</source>
         <target state="translated">No es pot obrir el fitxer.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>

@@ -798,8 +798,8 @@
     if (!canOpen) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
-        [alert setMessageText:NSLocalizedString(@"File can not be open.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"File \"%@\" can not be open or not exist.", nil), path]];
+        [alert setMessageText:NSLocalizedString(@"File cannot be opened.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"File \"%@\" cannot be opened or does not exist.", nil), path]];
         [alert setAlertStyle:NSAlertStyleCritical];
         [alert beginSheetModalForWindow:[NSApp mainWindow]  completionHandler:^(NSModalResponse returnCode) {
             if (tab) {

@@ -50,10 +50,10 @@
 "Excel 2007 Spreadsheet" = "Office Open XML Elektronik Tablosu (*.xlsx)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = " \"%@\" dosyası açılamıyor veya mevcut değil.";
+"File \"%@\" cannot be opened or does not exist." = " \"%@\" dosyası açılamıyor veya mevcut değil.";
 
 /* No comment provided by engineer. */
-"File can not be open." = "Dosya açılamıyor.";
+"File cannot be opened." = "Dosya açılamıyor.";
 
 /* No comment provided by engineer. */
 "File Format:" = "Dosya Formatı:";
