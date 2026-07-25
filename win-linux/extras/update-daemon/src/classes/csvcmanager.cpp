@@ -42,6 +42,7 @@
 #include <numeric>
 #include "version.h"
 #include "classes/cjson.h"
+#include "classes/ipcsocket.h"
 #include "classes/ipcupdateprotocol.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -50,6 +51,8 @@
 #  define WIN32_LEAN_AND_MEAN
 # endif
 # include "platform_win/utils.h"
+# include "classes/platform_win/cdownloader.h"
+# include "classes/platform_win/cunzip.h"
 # include "classes/translator.h"
 # include <codecvt>
 # include <Windows.h>
@@ -68,6 +71,8 @@
 # define sleep(a) Sleep(a)
 #else
 # include "platform_linux/utils.h"
+# include "classes/platform_linux/cdownloader.h"
+# include "classes/platform_linux/cunzip.h"
 # include <unistd.h>
 # include <fnmatch.h>
 # include <uuid/uuid.h>

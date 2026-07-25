@@ -36,19 +36,16 @@
 #ifndef CSVCMANAGER_H
 #define CSVCMANAGER_H
 
-#include "classes/ipcsocket.h"
+#include "tstring.h"
+#include <functional>
 #include <future>
-#ifdef _WIN32
-# include "classes/platform_win/cdownloader.h"
-# include "classes/platform_win/cunzip.h"
-#else
-# include "classes/platform_linux/cdownloader.h"
-# include "classes/platform_linux/cunzip.h"
-#endif
 
 typedef std::function<void(void)> FnVoidVoid;
 using std::future;
 
+class CUnzip;
+class CDownloader;
+class IPCSocket;
 
 class CSvcManager
 {

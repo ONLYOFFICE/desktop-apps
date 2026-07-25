@@ -39,6 +39,7 @@
 #include "platform_win/svccontrol.h"
 #include "classes/platform_win/capplication.h"
 #include "classes/platform_win/ctimer.h"
+#include "classes/ipcsocket.h"
 #include "classes/csvcmanager.h"
 #include "classes/translator.h"
 #include "../../src/defines.h"

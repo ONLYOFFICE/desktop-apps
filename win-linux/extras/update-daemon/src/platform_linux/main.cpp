@@ -36,6 +36,7 @@
 #include "platform_linux/utils.h"
 #include "classes/platform_linux/capplication.h"
 #include "classes/platform_linux/ctimer.h"
+#include "classes/ipcsocket.h"
 #include "classes/csvcmanager.h"
 #include "classes/translator.h"
 #include "version.h"
