@@ -34,16 +34,31 @@
  */
 
 #include "ctimer.h"
+#include <glib.h>
 
 
-Uint32 timerCallback(Uint32 interval, void *param) {
-    FnVoidVoid *callback = (FnVoidVoid*)param;
-    if (callback && *callback)
-        (*callback)();
-    return interval;
-}
+class CTimer::CTimerPrivate
+{
+public:
+    CTimerPrivate() = default;
+    ~CTimerPrivate() = default;
+
+    static gboolean timerCallback(gpointer data)
+    {
+        auto* pimpl = static_cast<CTimerPrivate*>(data);
+        if (pimpl->callback)
+            pimpl->callback();
+
+        return G_SOURCE_CONTINUE;
+    }
+
+    std::function<void(void)> callback;
+    guint timerId = 0;
+};
+
 
 CTimer::CTimer()
+    : pimpl(new CTimerPrivate)
 {
 
 }
@@ -51,18 +66,27 @@ CTimer::CTimer()
 CTimer::~CTimer()
 {
     stop();
+    delete pimpl; pimpl = nullptr;
+}
+
+bool CTimer::isActive() const
+{
+    return pimpl->timerId != 0;
 }
 
 void CTimer::stop()
 {
-    if (timerID != 0) {
-        SDL_RemoveTimer(timerID);
-        timerID = 0;
+    if (pimpl->timerId != 0)
+    {
+        g_source_remove(pimpl->timerId);
+        pimpl->timerId = 0;
     }
 }
 
-void CTimer::start(unsigned int timeout, FnVoidVoid callback)
+bool CTimer::start(unsigned int timeout, std::function<void(void)> callback)
 {
     stop();
-    timerID = SDL_AddTimer(timeout, timerCallback, (void*)&callback);
+    pimpl->callback = std::move(callback);    
+    pimpl->timerId = g_timeout_add(timeout, CTimerPrivate::timerCallback, pimpl);
+    return pimpl->timerId != 0;
 }
