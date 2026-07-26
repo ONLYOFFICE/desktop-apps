@@ -2,7 +2,7 @@ import { onCleanup } from "solid-js";
 import { onNativeMessage } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
 import { setPanelUrl, openSidePanel, closeSidePanel, setChatAvialable } from "@/stores/aichat";
-import { registerPlugin } from "@/stores/plugin-settings";
+import { registerPlugin, selectPluginSection, setPluginSectionsDisabled } from "@/stores/plugin-settings";
 import { addExtPlugin } from "@/stores/ext-plugins";
 
 const AI_PLUGIN_IDS = ["F2402876-659F-47FB-A646-67B49F2B5AAA", "9DC93CDB-B576-4F0C-B55E-FCC9C48DD777"];
@@ -43,6 +43,14 @@ export function initAiPanel() {
   function onPluginEvent(msg = {}) {
     if (msg.type === "settings") {
       registerPlugin(msg);
+    } else if (msg.type === "settings:select") {
+      selectPluginSection(msg.id);
+    } else if (msg.type === "settings:disable") {
+      setPluginSectionsDisabled(msg.id, true);
+      // window.location.hash = "#/settings/general";
+    } else if (msg.type === "settings:enable") {
+      setPluginSectionsDisabled(msg.id, false);
+      // window.location.hash = "#/settings/general";
     } else if (msg.type === "settings:open") {
       window.location.hash = "#/settings";
     } else if (msg.type === "expand") {
