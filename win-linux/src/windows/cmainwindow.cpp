@@ -1785,6 +1785,6 @@ void CMainWindow::sendAddonStatusToStartPage(const QString& text, const QString&
         {"lock", buttonLock ? "true" : "false"}
     });
 
-    // AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:status", Utils::stringifyJson(jsn));
+    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:status", Utils::stringifyJson(jsn));
 }
 #endif
