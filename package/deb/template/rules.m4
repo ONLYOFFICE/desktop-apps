@@ -12,5 +12,7 @@ override_dh_strip_nondeterminism:
 override_dh_shlibdeps:
 	dh_shlibdeps --no-act
 
+DPKG_THREADS ?= $(shell n=$$(nproc); [ $$n -lt 4 ] && echo $$n || echo 4)
+
 override_dh_builddeb:
-	dh_builddeb -- -z9 -Zxz --threads-max=$(shell nproc)
+	dh_builddeb -- -z9 -Zxz --threads-max=$(DPKG_THREADS)
