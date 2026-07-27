@@ -1274,6 +1274,11 @@
     
     if (tab) {
         [self.tabView selectTabViewItemWithIdentifier:tab.uuid];
+        
+        NSCefView * cefView = [self cefViewWithTab:tab];
+        if (cefView) {
+            [cefView focus];
+        }
     } else {
         NSTabViewItem * item = [self.tabView selectedTabViewItem];
         if ( ![[item identifier]  isEqual:rootTabId] ) {
