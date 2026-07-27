@@ -42,6 +42,7 @@ IDI_ICON38      ICON    DISCARDABLE "./res/icons/xlsm.ico"
 IDI_ICON39      ICON    DISCARDABLE "./res/icons/pages.ico"
 IDI_ICON40      ICON    DISCARDABLE "./res/icons/numbers.ico"
 IDI_ICON41      ICON    DISCARDABLE "./res/icons/key.ico"
+IDI_ICON42      ICON    DISCARDABLE "./res/icons/md.ico"
 
 #include <windows.h>
 #include "src/version.h"

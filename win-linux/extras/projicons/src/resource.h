@@ -39,6 +39,7 @@
 #define IDI_ICON39  139
 #define IDI_ICON40  140
 #define IDI_ICON41  141
+#define IDI_ICON42  142
 
 #define IDS_DOCX  1000
 #define IDS_XLSX  1001
