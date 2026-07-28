@@ -12,6 +12,7 @@ import { availableLangs,
 import { command } from "@/sdk/bridge";
 import styles from "./index.module.css";
 import { addonInfo } from "@/services/about";
+import { aichat } from "@/stores/aichat";
 
 export default function GeneralSettings() {
   const countryOptions = createMemo(() => [
@@ -184,7 +185,7 @@ export default function GeneralSettings() {
 
         <div class={styles.fieldRowAuto}>
           <label for="chb-use-ai" class={styles.fieldLabelBlock}>
-            {t("settingsEnableAI")} *<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
+            {t("settingsEnableAI")}{aichat.available && ' *'}<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
           </label>
           <Switch id="chb-use-ai" checked={settings.useai !== false} onChange={(v) => setSettings("useai", v)} />
         </div>

@@ -6,6 +6,7 @@ import { applyLocale, getTranslationFor, isRTL } from "@/services/l10n";
 import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/sdk/app";
+import { aichat } from "@/stores/aichat";
 
 
 function injectCustomThemeCss(id, colors) {
@@ -119,12 +120,10 @@ const [userNameError, setUserNameError] = createSignal(false);
 const [appliedUseAi, setAppliedUseAi] = createSignal(settings.useai);
 export { availableLangs, langRestartPending, customThemes, systemThemeEnabled, isOptsChanged, setIsOptsChanged, pendingApplyText, userNameError, setUserNameError, appliedUseAi };
 
-let _needsRestart = () => false;
 let _applySettings = () => {};
 let _removeAddon = () => {};
 let _textDirectionChanged = () => {};
 
-export const needsRestart = () => _needsRestart();
 export const applySettings = () => _applySettings();
 export const uninstallAddon = () => _removeAddon();
 export const textDirectionChanged = () => _textDirectionChanged();
@@ -154,16 +153,6 @@ export function initSettingsSync() {
   }
   applyThemeToDom(settings.theme);
 
-  _needsRestart = createMemo(() => {
-    const snap = nativeSnapshot();
-    if (!snap) return false;
-    return (
-      _textDirectionChanged() ||
-      langRestartPending() ||
-      settings.scaling !== nativeScalingToStore(snap.uiscaling) ||
-      settings.gpuMode !== !!snap.usegpu
-    );
-  });
 
   _textDirectionChanged = createMemo(() => {
     const snap = nativeSnapshot();
@@ -213,20 +202,20 @@ export function initSettingsSync() {
     const snap = nativeSnapshot();
     const lang = settings.lang;
     const scaling = settings.scaling;
-    // const theme = settings.theme;
     const updates = settings.checkUpdates;
     const launch = settings.launchMode;
     const spell = settings.spellCheck;
-    const gpu = settings.gpuMode;
 
-    const restart =
-      snap !== null &&
-      (settings.useai !== !!snap.useai ||
-       scaling !== nativeScalingToStore(snap.uiscaling) ||
-       gpu !== !!snap.usegpu);
+    let restart = false;
+    if (snap !== null) {
+      restart = (aichat.available && settings.useai !== !!snap.useai) ||
+                  scaling !== nativeScalingToStore(snap.uiscaling) ||
+                  settings.gpuMode !== !!snap.usegpu;
+    }
 
-    // applyThemeToDom(typeof settings.theme === 'string' ? settings.theme : '');
-    // applyLocale(lang);
+    snap.useai = settings.useai;
+    snap.usegpu = settings.gpuMode;
+
     !langRestartPending() && !_textDirectionChanged() && applyLocale(lang);
 
     command("settings:apply", JSON.stringify({
@@ -236,9 +225,9 @@ export function initSettingsSync() {
       autoupdatemode: updates,
       editorwindowmode: launch == settDefs.EDITOR_MODE_WINDOW,
       spellcheckdetect: spell,
-      usegpu: gpu,
+      usegpu: settings.gpuMode,
       useai: settings.useai,
-      restart: _needsRestart(),
+      restart: restart,
       uiscaling: scaling === "auto" ? "0" : scaling,
     }));
 
