@@ -1770,7 +1770,7 @@ void CMainWindow::sendAddonStatusToStartPage(const QString& text, const QString&
     bool installed = am ? am->isInstalled() : false;
 
     QJsonObject jsn;
-    jsn["name"]      = "ONLYOFFICE Pro Kit";
+    jsn["name"]      = "ONLYOFFICE AI Tools";
     jsn["version"]   = QString(VER_FILEVERSION_STR);
     jsn["installed"] = installed;
     jsn["restart"]   = am ? am->restartRequired() : false;
