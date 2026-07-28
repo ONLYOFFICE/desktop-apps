@@ -22,6 +22,12 @@
 #ifndef BUILD_DIR
 #define BUILD_DIR '..\build\' + ARCH
 #endif
+#ifndef PACKAGE_CONFIG
+#define PACKAGE_CONFIG 'package.config'
+#endif
+#ifndef VC_REDIST
+#define VC_REDIST 'vc_redist.' + ARCH + '.exe'
+#endif
 #ifndef OUTPUT_DIR
 #define OUTPUT_DIR '.'
 #endif
@@ -194,7 +200,7 @@ ur.RightToLeft=yes
 #include '_messages.iss'
 
 [Files]
-Source: "vc_redist.{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
+Source: "{#VC_REDIST}"; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vc_redist.{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
   Check: not CheckVCRedist;
 
@@ -204,7 +210,7 @@ Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: ignoreversion recursesubdi
 #endif
 Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: recursesubdirs signonce;
 Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: recursesubdirs signonce;
-Source: "package.config"; DestDir: {app}\converter;
+Source: "{#PACKAGE_CONFIG}"; DestDir: {app}\converter;
 #if PACKAGE_EDITION == "Enterprise"
 Source: "{#BRANDING_DIR}\..\common\license\commercial\LICENSE.txt"; DestDir: {app}; DestName: "EULA.txt";
 #else

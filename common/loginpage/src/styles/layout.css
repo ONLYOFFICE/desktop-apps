@@ -14,12 +14,12 @@
 
 body {
   cursor: default;
-  font-family: var(--font-family-base, Arial, Helvetica, "Helvetica Neue", sans-serif);
+  font-family: var(--font-family-base-custom, var(--font-family-base)), Arial, Helvetica, "Helvetica Neue", sans-serif;
 }
 
 input,
 button {
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-family-base-custom, var(--font-family-base)), Arial, Helvetica, "Helvetica Neue", sans-serif;
 }
 
 .text-normal {
@@ -42,7 +42,7 @@ button {
   height: 100%;
   display: flex;
   background-color: var(--background-normal);
-  font-family: Arial, Helvetica, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family-base-custom, var(--font-family-base)), Arial, Helvetica, "Helvetica Neue", sans-serif;
 }
 
 h3,

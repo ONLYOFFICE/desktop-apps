@@ -433,7 +433,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     if (m_pMainWindow)
                         showUpgradeDialog(m_pMainWindow);
                 }
-                else if (param == L"postpone")
+                else if (param == L"postpone" || param == L"close")
                 {
                     /* "may be later" clicked */
                     if (m_private->m_upgradeDialog)
@@ -457,6 +457,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     /* clicked "restart now" after addon was installed */
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->accept(UpgradeDialog::RestartNow);
+                }
+                else if (param == L"close")
+                {
+                    /* "close" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->reject();
                 }
                 return true;
             }
@@ -1279,50 +1285,11 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                     }
                     else
                     {
-                        if (m_pMainWindow)
-                            m_pMainWindow->sendAddonStatusToStartPage(tr("Installation failed",
-                                                                      "CAddonManager"), "error");
-
-                        QString msg;
-                        switch (result)
-                        {
-                        case CAddonManager::AddonVersionMismatch:
-                            msg = tr("No compatible add-on version is available for this version of"
-                                     " the application.");
-                            break;
-                        case CAddonManager::AppVersionTooOld:
-                            msg = tr("To install the add-on, update the application to the latest"
-                                     " version.");
-                            break;
-                        case CAddonManager::ExtractionFailed:
-                            msg = tr("An error occurred while unpacking the archive");
-                            break;
-                        case CAddonManager::InvalidMetadata:
-                            msg = tr("The add-on information is invalid or incomplete.");
-                            break;
-                        case CAddonManager::Md5Mismatch:
-                            msg = tr("The add-on package is corrupted or has been modified.");
-                            break;
-                        case CAddonManager::DownloadOutOfMemory:
-                            msg = tr("Not enough memory to complete the add-on download.");
-                            break;
-                        case CAddonManager::DownloadNetworkError:
-                            msg = tr("Failed to download the add-on due to a network error.");
-                            break;
-                        case CAddonManager::DownloadInvalidUrl:
-                            msg = tr("The add-on download URL is invalid.");
-                            break;
-                        case CAddonManager::DownloadFileOpError:
-                            msg = tr("Failed to save the downloaded add-on package.");
-                            break;
-                        case CAddonManager::DownloadUnknownError:
-                        default:
-                            msg = tr("An unexpected error occurred while installing the add-on.");
-                            break;
-                        }
-
+                        const QString msg = CAddonManager::errorMessageForResult(result);
                         if (m_private->m_upgradeDialog)
                             m_private->m_upgradeDialog->showErrorPage(msg);
+                        if (m_pMainWindow)
+                            m_pMainWindow->sendAddonStatusToStartPage(msg, "error");
                     }
                 });
 
@@ -1331,7 +1298,10 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                 {
                     m_private->m_bUpgradeInProgress = false;
                     if (m_pMainWindow)
+                    {
                         m_pMainWindow->sendAddonStatusToStartPage();
+                        showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Complete);
+                    }
                 });
 
         connect(m_private->m_pAddonManager, &CAddonManager::progressChanged, this,
@@ -1971,19 +1941,21 @@ void CAscApplicationManagerWrapper::setUpgradeInProgress(bool upgradeInProgress)
     _app.m_private->m_bUpgradeInProgress = upgradeInProgress;
 }
 
-void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent)
+void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, int page)
 {
     APP_CAST(_app);
 
     double dpiRatio = parent ? Utils::getScreenDpiRatioByWidget(parent) : 1.0;
-    QSize size(480 * dpiRatio, 700 * dpiRatio);
-    QRect rc(QPoint(0, 0), size);
+    QSize size = (page == UpgradeDialog::Page::Intro)
+                     ? UpgradeDialog::IntroPageSize
+                     : UpgradeDialog::InstallPageSize;
+    QRect rc(QPoint(0, 0), size * dpiRatio);
     rc.moveCenter(parent->geometry().center());
 
 #ifdef __linux__
     WindowHelper::CParentDisable oDisabler(parent);
 #endif
-    _app.m_private->m_upgradeDialog = new UpgradeDialog(parent, rc);
+    _app.m_private->m_upgradeDialog = new UpgradeDialog(parent, rc, page);
     _app.m_private->m_upgradeDialog->setModal();
     _app.m_private->m_upgradeDialog->setEnabled(true);
     _app.m_private->m_upgradeDialog->setResizable(false);

@@ -205,6 +205,11 @@
   font-size: 13px;
   line-height: 18px;
   color: var(--text-secondary);
+
+  a.link {
+    color: var(--text-link, #2080e5);
+    text-decoration: none;
+  }
 }
 
 .about-link {

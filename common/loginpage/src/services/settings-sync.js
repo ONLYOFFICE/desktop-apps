@@ -290,6 +290,11 @@ export function initSettingsSync() {
         document.body.setAttribute("dir", "rtl");
         document.body.classList.add("rtl");
       }
+      if (payload.locale?.current) {
+        if (isRTL(payload.locale.current)) document.body.classList.add("rtl-font");
+        document.body.setAttribute("applang", payload.locale.current);
+      }
+
       if (payload.username) setSettings("userName", payload.username);
       if (payload.locale?.restart) setLangRestartPending(true);
 

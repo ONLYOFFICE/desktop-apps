@@ -22,6 +22,7 @@
   height: 8px;
   border-radius: 50%;
   background: var(--border-regular-control, #c0c0c0);
+  cursor: pointer;
 }
 
 .dotActive {
@@ -37,6 +38,7 @@
   width: 400px;
   height: 300px;
   display: block;
+  cursor: pointer;
 }
 
 .navBtn {

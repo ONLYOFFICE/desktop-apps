@@ -18,7 +18,7 @@
 }
 
 .fieldLabel {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family-base-custom, var(--font-family-base)), Arial, Helvetica, "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;

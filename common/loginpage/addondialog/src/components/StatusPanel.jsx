@@ -10,7 +10,7 @@ export function StatusPanel(props) {
   return (
     <div class={styles.panel}>
       <h1 class={styles.title}>{t("addonInstallingTitle", "AI Tools")}</h1>
-      <img class={styles.icon} src={logo} width="80" height="80" alt="" />
+      <img class={`${styles.icon} icon-logo`} src={logo} width="80" height="80" alt="" />
 
       <Switch>
         <Match when={props.page === "install"}>
@@ -38,8 +38,9 @@ export function StatusPanel(props) {
         </Match>
 
         <Match when={props.page === "error"}>
-          <p class={styles.message}>{t("addonInstallFailedTitle")}</p>
-          <p class={styles.note}>{addonStatus()?.message}</p>
+          <p class={`${styles.message} message`}>{t("addonInstallFailedTitle")}</p>
+          <p class={`${styles.note} note`}>{addonStatus()?.message}</p>
+          <div class={styles.devider}></div>
           <div class={styles.actions}>
             <button type="button" class={styles.btnOutline} onClick={closeDialog}>
               {t("addonBtnClose", "Close")}

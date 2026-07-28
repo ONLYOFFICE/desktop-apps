@@ -44,6 +44,10 @@ export function initAbout() {
     } else if (/addon:status/.test(cmd)) {
       try {
         const info = JSON.parse(htmlDecode(param));
+        if (info?.version) {
+          info.version = info.version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<9?1:mn-8});
+        }
+
         setAddonInfo(info);
         setChatAvialable(info?.installed);
       } catch {}

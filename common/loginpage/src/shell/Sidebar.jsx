@@ -13,7 +13,6 @@ import { sendPluginVisibility } from "@/services/ai-panel.js";
 export default function Sidebar() {
   const clickAiChat = (e) => {
     if (aichat.available) {
-      console.log("set chat expanded");
       closeSidePanel();
       sendPluginVisibility("expanded");
       // href handles navigation
