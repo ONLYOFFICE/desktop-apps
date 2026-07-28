@@ -8,7 +8,8 @@ import { availableLangs,
         setUserNameError,
         uninstallAddon,
         textDirectionChanged,
-        setIsOptsChanged } from "@/services/settings-sync";
+        setIsOptsChanged,
+        langRestartPending} from "@/services/settings-sync";
 import { command } from "@/sdk/bridge";
 import styles from "./index.module.css";
 import { addonInfo } from "@/services/about";
@@ -108,7 +109,7 @@ export default function GeneralSettings() {
 
         <Show when={languageOptions().length}>
           <div class={styles.fieldRow}>
-            <span class={styles.fieldLabel}>{t("settLanguage")}{textDirectionChanged() && ' *'}</span>
+            <span class={styles.fieldLabel}>{t("settLanguage")}{(textDirectionChanged() || langRestartPending()) && ' *'}</span>
             <div class={styles.fieldControl}>
               <Select options={languageOptions()} value={settings.lang} onChange={(v) => setSettings("lang", v)} disallowEmptySelection>
                 <Select.Trigger class={styles.fullWidth} />
