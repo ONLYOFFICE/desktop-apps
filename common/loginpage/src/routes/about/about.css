@@ -1,26 +1,27 @@
 .about-dialog {
   width: 570px;
+  padding-bottom: 24px;
+  box-shadow: 0px 8px 16px 0px #040f1b29, 0px 0px 4px 0px #040f1b1f;
 }
 
 .dlg-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px 12px;
+  padding: 16px 16px 16px 32px;
   /*border-bottom: 1px solid var(--border-divider);*/
 }
 
 .dlg-title {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
+  font-size: 18px;
+  font-weight: 700;
   margin: 0;
   color: var(--text-normal);
 }
 
 .dlg-close {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   background: none;
   border: none;
@@ -42,8 +43,8 @@
 .dlg-close::after {
   content: "";
   position: absolute;
-  width: 12px;
-  height: 1.5px;
+  width: 14px;
+  height: 1px;
   background: currentColor;
   border-radius: 1px;
 }
@@ -57,7 +58,7 @@
 }
 
 .dlg-body {
-  padding: 20px;
+  padding: 8px 32px 0;
 }
 
 /* About content */
@@ -65,7 +66,7 @@
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 8px;
 }
 
 .about-approw {
@@ -79,8 +80,8 @@
 }
 
 .ver-logo {
-  width: 64px;
-  height: 64px;
+  width: 44px;
+  height: 44px;
   display: block;
 }
 
@@ -109,21 +110,21 @@
 
 .about-appname {
   margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 16px;
   color: var(--text-normal);
 }
 
 .about-version {
   margin: 0;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 20px;
   color: var(--text-secondary);
 }
 
 .about-edition-label {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .about-separator {
@@ -137,6 +138,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-bottom: 8px;
 }
 
 .update-status-row {
@@ -177,9 +179,10 @@
 }
 
 .update-status-text {
-  font-size: 13px;
-  line-height: 18px;
-  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--text-normal);
 }
 
 .update-action-row {
@@ -189,7 +192,6 @@
 
 .update-action-row button {
   width: auto;
-  padding-inline: 24px;
   border-radius: 4px;
 }
 
@@ -198,21 +200,33 @@
 .about-copyright {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  padding-top: 4px;
 }
 
 .about-field {
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
   color: var(--text-secondary);
 
   a.link {
     color: var(--text-link, #2080e5);
     text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
+.about-field.about-license {
+  color: var(--text-normal);
+}
+
 .about-link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
   color: var(--text-link, #2080e5);
   text-decoration: none;
 }
@@ -225,10 +239,10 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 12px;
 }
 
 .about-rights {
   flex: 1;
+  color: var(--text-tertiary);
 }

@@ -17,7 +17,7 @@ export default function About() {
             <div class="about-content">
               <section class="about-approw">
                 <div class={`about-logo ${versionInfo().logocls ?? ""}`}>
-                  <svg class="ver-logo">
+                  <svg class="ver-logo" viewBox="0 0 52 45">
                     <use href="#idx-logo-light" />
                     <use href="#idx-logo-dark" />
                   </svg>
@@ -31,7 +31,7 @@ export default function About() {
                     {versionInfo().version}
                   </p>
                   <Show when={versionInfo().edition}>
-                    <div class="about-field" innerHTML={versionInfo().edition} />
+                    <div class="about-field about-license" innerHTML={versionInfo().edition} />
                   </Show>
                 </div>
               </section>
@@ -40,7 +40,7 @@ export default function About() {
                 <div class="about-separator" />
                 <section class="about-approw">
                   <div class="about-logo">
-                    <svg class="ver-logo">
+                    <svg class="ver-logo" viewBox="0 0 52 45">
                       <use href="#kit-logo-light" />
                       <use href="#kit-logo-dark" />
                     </svg>
