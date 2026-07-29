@@ -56,10 +56,21 @@
 static const NSSize kASCUpgradeIntroSize   = { 480, 700 };
 static const NSSize kASCUpgradeInstallSize = { 480, 304 };
 
+static NSString *ASCUpgradePageToString(ASCUpgradePage page) {
+    switch (page) {
+        case ASCUpgradePageInstall:  return @"install";
+        case ASCUpgradePageComplete: return @"complete";
+        case ASCUpgradePageError:    return @"error";
+        case ASCUpgradePageIntro:
+        default:                     return @"intro";
+    }
+}
+
 @interface ASCUpgradeController () <NSWindowDelegate>
 
 @property (nonatomic, strong) NSCefView *cefView;
 @property (nonatomic, assign) ASCUpgradeDialogResult modalResult;
+@property (nonatomic, assign) BOOL pageLoaded;
 
 @end
 
@@ -79,13 +90,6 @@ static const NSSize kASCUpgradeInstallSize = { 480, 304 };
 
     [self.view addSubview:self.cefView];
     [self.cefView autoPinEdgesToSuperviewEdges];
-
-    NSString *exeDir = [[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent];
-    NSString *htmlPath = [exeDir stringByAppendingPathComponent:@"../Resources/login/addon.html"];
-    NSString *urlAdditional = [NSString stringWithFormat:@"?lang=%@&page=intro", [ASCLinguist appLanguageCode]];
-    NSString *addonUrl = [NSString stringWithFormat:@"file:///%@%@", htmlPath, urlAdditional];
-
-    [self.cefView loadWithUrl:addonUrl];
 }
 
 - (void)dealloc {
@@ -95,6 +99,22 @@ static const NSSize kASCUpgradeInstallSize = { 480, 304 };
             appManager->DestroyCefView((int)self.cefView.uuid);
         }
         [self.cefView internalClean];
+    }
+}
+
+- (void)viewWillAppear {
+    [super viewWillAppear];
+
+    if (!self.pageLoaded) {
+        self.pageLoaded = YES;
+
+        NSString *exeDir = [[[NSBundle mainBundle] executablePath] stringByDeletingLastPathComponent];
+        NSString *htmlPath = [exeDir stringByAppendingPathComponent:@"../Resources/login/addon.html"];
+        NSString *urlAdditional = [NSString stringWithFormat:@"?lang=%@&page=%@",
+                                   [ASCLinguist appLanguageCode], ASCUpgradePageToString(self.initialPage)];
+        NSString *addonUrl = [NSString stringWithFormat:@"file:///%@%@", htmlPath, urlAdditional];
+
+        [self.cefView loadWithUrl:addonUrl];
     }
 }
 
@@ -112,7 +132,9 @@ static const NSSize kASCUpgradeInstallSize = { 480, 304 };
 
     window.delegate = self;
 
-    [self resizeWindowToSize:kASCUpgradeIntroSize];
+    [self resizeWindowToSize:(self.initialPage == ASCUpgradePageIntro)
+                                 ? kASCUpgradeIntroSize
+                                 : kASCUpgradeInstallSize];
 }
 
 #pragma mark - Public Methods
@@ -136,16 +158,16 @@ static const NSSize kASCUpgradeInstallSize = { 480, 304 };
 }
 
 - (void)showStartPage {
-    [self sendAddonStatus:@{@"page": @"install"}];
+    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageInstall)}];
     [self resizeWindowToSize:kASCUpgradeInstallSize];
 }
 
 - (void)showFinalPage {
-    [self sendAddonStatus:@{@"page": @"complete"}];
+    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageComplete)}];
 }
 
 - (void)showErrorPage:(NSString *)message {
-    [self sendAddonStatus:@{@"page": @"error",
+    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageError),
                             @"message": message ?: @""}];
 }
 

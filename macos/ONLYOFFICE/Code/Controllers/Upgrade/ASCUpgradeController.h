@@ -54,7 +54,16 @@ typedef NS_ENUM(NSInteger, ASCUpgradeDialogResult) {
     ASCUpgradeDialogResultRestartLater,
 };
 
+typedef NS_ENUM(NSInteger, ASCUpgradePage) {
+    ASCUpgradePageIntro,
+    ASCUpgradePageInstall,
+    ASCUpgradePageComplete,
+    ASCUpgradePageError,
+};
+
 @interface ASCUpgradeController : NSViewController
+
+@property (nonatomic, assign) ASCUpgradePage initialPage;
 
 - (void)accept:(ASCUpgradeDialogResult)result;
 - (void)reject;

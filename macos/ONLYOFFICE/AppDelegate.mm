@@ -92,7 +92,7 @@
 #ifdef USE_ADDON_MODE
 @property (nonatomic, assign) BOOL upgradeInProgress;
 @property (nonatomic, weak) ASCUpgradeController *upgradeController;
-- (void)showUpgradeDialog:(NSWindow *)parentWindow;
+- (void)showUpgradeDialog:(NSWindow *)parentWindow page:(ASCUpgradePage)page;
 #endif
 @end
 
@@ -1929,6 +1929,9 @@
 #ifdef USE_ADDON_MODE
 - (void)onAddonUninstallFinished:(NSNotification *)notification {
     self.upgradeInProgress = NO;
+    [self performSelector:@selector(showUpgradeDialogWithPage:)
+               withObject:@(ASCUpgradePageComplete)
+               afterDelay:0];
 }
 
 - (void)onCEFAddonAction:(NSNotification *)notification {
@@ -1941,8 +1944,8 @@
         self.upgradeInProgress = YES;
 
         // Defer the dialog to the next main run loop iteration.
-        [self performSelector:@selector(showUpgradeDialog:)
-                   withObject:[self getMainWindow]
+        [self performSelector:@selector(showUpgradeDialogWithPage:)
+                   withObject:@(ASCUpgradePageIntro)
                    afterDelay:0];
 
     } else if ([action isEqualToString:@"install"]) {
@@ -1984,10 +1987,15 @@
     }
 }
 
-- (void)showUpgradeDialog:(NSWindow *)parentWindow {
+- (void)showUpgradeDialogWithPage:(NSNumber *)page {
+    [self showUpgradeDialog:[self getMainWindow] page:(ASCUpgradePage)page.integerValue];
+}
+
+- (void)showUpgradeDialog:(NSWindow *)parentWindow page:(ASCUpgradePage)page {
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Upgrade-Dialog" bundle:nil];
     NSWindowController *windowController = [storyboard instantiateControllerWithIdentifier:@"ASCUpgradeWindowControllerId"];
     ASCUpgradeController *upgradeController = (ASCUpgradeController *)windowController.contentViewController;
+    upgradeController.initialPage = page;
 
     id progressObserver = [[NSNotificationCenter defaultCenter]
                                        addObserverForName:ASCAddonManagerProgressChangedNotification
