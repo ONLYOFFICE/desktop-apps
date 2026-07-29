@@ -23,7 +23,7 @@ export function postponeAddon() {
 }
 
 export function dismissAddon() {
-  command("addon:action", "dismiss");
+  command("addon:action", "disable");
 }
 
 export function restartNow() {

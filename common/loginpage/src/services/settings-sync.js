@@ -296,6 +296,15 @@ export function initSettingsSync() {
       }
     } else if (msgCmd === "settings:lang") {
       if (param.startsWith("restart:")) setLangRestartPending(param === "restart:true");
+    } else if (msgCmd === "addon:action") {
+      if (param == "disable") {
+        const state = isOptsChanged();
+
+        setSettings("useai", false);
+        setAppliedUseAi(false);
+
+        !state && setIsOptsChanged(false);
+      }
     } else if (msgCmd === "uitheme:added") {
       let themes;
       try {
