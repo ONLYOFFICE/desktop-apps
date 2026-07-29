@@ -43,6 +43,10 @@ export function initAddonStatus() {
     if (cmd !== "addon:status") return;
     try {
       const status = JSON.parse(htmlDecode(param));
+      if (status.progress == undefined && addonStatus().progress != undefined) {
+        status.progress = addonStatus().progress;
+      }
+
       setAddonStatus(status);
 
       if (status.page) {
