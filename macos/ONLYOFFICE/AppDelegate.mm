@@ -68,6 +68,11 @@
 #import "PureLayout.h"
 #import "ascprinter.h"
 
+#ifdef USE_ADDON_MODE
+# import "ASCAddonManager.h"
+# import "ASCUpgradeController.h"
+#endif
+
 #ifndef _MAS
     #import "PFMoveApplication.h"
 #endif
@@ -83,6 +88,12 @@
 @property (nonatomic, assign) BOOL terminationAlreadyHandled;
 @property (nonatomic, assign) BOOL hasFilesToOpenOnLaunch;
 @property (nonatomic, assign) BOOL terminationDialogPending;
+@property (nonatomic, assign) BOOL needsRestart;
+#ifdef USE_ADDON_MODE
+@property (nonatomic, assign) BOOL upgradeInProgress;
+@property (nonatomic, weak) ASCUpgradeController *upgradeController;
+- (void)showUpgradeDialog:(NSWindow *)parentWindow;
+#endif
 @end
 
 @implementation AppDelegate
@@ -174,6 +185,11 @@
     addObserverFor(ASCEventNameEditorWindowMoving, @selector(onEditorWindowMoving:));
     addObserverFor(ASCEventNameEditorWindowEndMoving, @selector(onEditorWindowEndMoving:));
         
+#ifdef USE_ADDON_MODE
+    addObserverFor(ASCAddonManagerUninstallFinishedNotification, @selector(onAddonUninstallFinished:));
+    addObserverFor(CEFEventNameAddonAction, @selector(onCEFAddonAction:));
+#endif
+
     // Google Analytics
     
 #ifdef _PRODUCT_ONLYOFFICE
@@ -392,6 +408,9 @@
         return NSTerminateCancel;
     
     self.terminationAlreadyHandled = YES;
+    if (self.needsRestart) {
+        [ASCHelper restartApp];
+    }
     return NSTerminateNow;
 }
 
@@ -1903,5 +1922,136 @@
                        withObject:event
                        afterDelay:0.016];
 }
+
+#pragma mark -
+#pragma mark Upgrade Support
+
+#ifdef USE_ADDON_MODE
+- (void)onAddonUninstallFinished:(NSNotification *)notification {
+    self.upgradeInProgress = NO;
+}
+
+- (void)onCEFAddonAction:(NSNotification *)notification {
+    NSString *action = notification.userInfo[@"action"];
+    if (!action) {
+        return;
+    }
+
+    if ([action isEqualToString:@"intro"]) {
+        self.upgradeInProgress = YES;
+
+        // Defer the dialog to the next main run loop iteration.
+        [self performSelector:@selector(showUpgradeDialog:)
+                   withObject:[self getMainWindow]
+                   afterDelay:0];
+
+    } else if ([action isEqualToString:@"install"]) {
+        /* "accept and install" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController showStartPage];
+
+            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionInstall];
+        }
+
+    } else if ([action isEqualToString:@"postpone"]) {
+        /* "may be later" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController reject];
+        }
+
+    } else if ([action isEqualToString:@"dismiss"]) {
+        /* "don't show again" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController reject];
+        }
+        // TODO: add impl "don't show again"
+
+    } else if ([action isEqualToString:@"uninstall"]) {
+        self.upgradeInProgress = YES;
+        [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionUninstall];
+
+    } else if ([action isEqualToString:@"restart"]) {
+        /* clicked "restart now" after addon was installed */
+        if (self.upgradeController) {
+            [self.upgradeController accept:ASCUpgradeDialogResultRestartNow];
+        }
+
+    } else if ([action isEqualToString:@"close"]) {
+        /* "close" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController reject];
+        }
+    }
+}
+
+- (void)showUpgradeDialog:(NSWindow *)parentWindow {
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Upgrade-Dialog" bundle:nil];
+    NSWindowController *windowController = [storyboard instantiateControllerWithIdentifier:@"ASCUpgradeWindowControllerId"];
+    ASCUpgradeController *upgradeController = (ASCUpgradeController *)windowController.contentViewController;
+
+    id progressObserver = [[NSNotificationCenter defaultCenter]
+                                       addObserverForName:ASCAddonManagerProgressChangedNotification
+                                                   object:nil
+                                                    queue:[NSOperationQueue mainQueue]
+                                               usingBlock:^(NSNotification *note) {
+        NSNumber *progress = note.userInfo[@"progress"];
+        [upgradeController setProgress:[progress integerValue]];
+    }];
+
+    id installObserver = [[NSNotificationCenter defaultCenter]
+                                      addObserverForName:ASCAddonManagerInstallFinishedNotification
+                                                  object:nil
+                                                   queue:[NSOperationQueue mainQueue]
+                                              usingBlock:^(NSNotification *note) {
+        self.upgradeInProgress = NO;
+
+        ASCAddonManagerResult result = (ASCAddonManagerResult)[note.userInfo[@"result"] integerValue];
+        if (result == ASCAddonManagerResultSuccess) {
+            [upgradeController showFinalPage];
+        } else if (result == ASCAddonManagerResultDownloadAborted) {
+            // Aborted
+        } else {
+            NSString *msg = [ASCAddonManager errorMessageForResult:result];
+            [upgradeController showErrorPage:msg];
+        }
+    }];
+
+    self.upgradeController = upgradeController;
+
+    NSWindow *upgradeWindow = windowController.window;
+    if (parentWindow) {
+        NSRect parentFrame = parentWindow.frame;
+        NSRect windowFrame = upgradeWindow.frame;
+        CGFloat newX = parentFrame.origin.x + (parentFrame.size.width - windowFrame.size.width) / 2.0;
+        CGFloat newY = parentFrame.origin.y + (parentFrame.size.height - windowFrame.size.height) / 2.0;
+        [upgradeWindow setFrameOrigin:NSMakePoint(newX, newY)];
+    } else {
+        [upgradeWindow center];
+    }
+
+    [upgradeWindow makeKeyAndOrderFront:nil];
+    NSInteger result = [upgradeController exec];
+    self.upgradeController = nil;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:progressObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:installObserver];
+
+    switch (result) {
+        case ASCUpgradeDialogResultRestartNow: {
+            self.needsRestart = YES;
+            [NSApp terminate:self];
+            break;
+        }
+        case ASCUpgradeDialogResultRejected: {
+            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionStop];
+            self.upgradeInProgress = NO;
+            break;
+        }
+        case ASCUpgradeDialogResultRestartLater:
+        default:
+            break;
+    }
+}
+#endif
 
 @end

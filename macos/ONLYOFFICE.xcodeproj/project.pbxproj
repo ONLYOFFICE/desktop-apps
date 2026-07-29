@@ -112,12 +112,21 @@
 		F12F85D32EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D42EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D52EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
+		F13726FC3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */; };
+		F13726FD3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */; };
+		F13726FE3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */; };
 		F1376CA42EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
 		F1376CA52EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
 		F1376CA62EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
 		F14CD3C32EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F14CD3C42EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F14CD3C52EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
+		F14E22E62FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22E72FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22E82FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22F12FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
+		F14E22F22FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
+		F14E22F32FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
 		F15C17322EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17332EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17342EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
@@ -127,6 +136,9 @@
 		F164E3312F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
 		F164E3322F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
 		F164E3332F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
+		F1CA1BB63002427F00CB7ABD /* ASCUpgradeController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */; };
+		F1CA1BB73002427F00CB7ABD /* ASCUpgradeController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */; };
+		F1CA1BB83002427F00CB7ABD /* ASCUpgradeController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
 		FC0BD686258B63F700C47F95 /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
@@ -859,15 +871,22 @@
 		F121296E2F36360C00BFB54F /* ASCEditorTitleBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorTitleBarController.h; sourceTree = "<group>"; };
 		F12F85D12EB6A38400370877 /* ASCEditorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindowController.h; sourceTree = "<group>"; };
 		F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEditorWindowController.mm; sourceTree = "<group>"; };
+		F13726FB3000DECB00AFF4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Upgrade-Dialog.storyboard"; sourceTree = "<group>"; };
 		F1376CA32EF581FA00EC5E08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Separate-Editor.storyboard"; sourceTree = "<group>"; };
 		F14CD3C12EB73EBC00D476FE /* ASCEditorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindow.h; sourceTree = "<group>"; };
 		F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCEditorWindow.m; sourceTree = "<group>"; };
+		F14E22E42FEE70C4004EC652 /* ASCAddonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCAddonManager.h; sourceTree = "<group>"; };
+		F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCAddonManager.mm; sourceTree = "<group>"; };
+		F14E22EF2FEE70C4004EC652 /* cdownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cdownloader.h; path = ../common/sources/cdownloader.h; sourceTree = SOURCE_ROOT; };
+		F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = cdownloader_mac.mm; path = ../common/sources/cdownloader_mac.mm; sourceTree = SOURCE_ROOT; };
 		F15C17302EBCA75000D266C7 /* NSCefData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefData.h; sourceTree = "<group>"; };
 		F15C17312EBCA75000D266C7 /* NSCefData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefData.mm; sourceTree = "<group>"; };
 		F15DF4F32F58D0050014C037 /* ASCProviders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCProviders.h; sourceTree = "<group>"; };
 		F15DF4F42F58D0050014C037 /* ASCProviders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCProviders.m; sourceTree = "<group>"; };
 		F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCHeaderButton.m; sourceTree = "<group>"; };
 		F164E3302F582BC700CC8D45 /* ASCHeaderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCHeaderButton.h; sourceTree = "<group>"; };
+		F1CA1BB43002427E00CB7ABD /* ASCUpgradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCUpgradeController.h; sourceTree = "<group>"; };
+		F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCUpgradeController.mm; sourceTree = "<group>"; };
 		F1D31B212FE03FD9000B9112 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = no.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F1D31B222FE03FD9000B9112 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = no.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F1D31B2E2FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1227,6 +1246,15 @@
 			path = EditorWindow;
 			sourceTree = "<group>";
 		};
+		F1CA1BB93002463900CB7ABD /* Upgrade */ = {
+			isa = PBXGroup;
+			children = (
+				F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */,
+				F1CA1BB43002427E00CB7ABD /* ASCUpgradeController.h */,
+			);
+			path = Upgrade;
+			sourceTree = "<group>";
+		};
 		FC035A5A24855E1900AF820F /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -1289,6 +1317,7 @@
 		FC29CD421F979946003F4136 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */,
 				F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */,
 				FCBC42771B9D650500405301 /* Main.storyboard */,
 				FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */,
@@ -1763,6 +1792,7 @@
 		FCF289722150E6A1002FD438 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F1CA1BB93002463900CB7ABD /* Upgrade */,
 				F10175902EAB739E00C6C1B8 /* License */,
 				F12F85D02EB6A38400370877 /* EditorWindow */,
 				FCF289742150E820002FD438 /* Common */,
@@ -1797,6 +1827,10 @@
 		FCF289742150E820002FD438 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */,
+				F14E22E42FEE70C4004EC652 /* ASCAddonManager.h */,
+				F14E22EF2FEE70C4004EC652 /* cdownloader.h */,
+				F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */,
 				F15DF4F32F58D0050014C037 /* ASCProviders.h */,
 				F15DF4F42F58D0050014C037 /* ASCProviders.m */,
 				FCA9A18E1BA6DC6000ABF3AB /* ASCCommonViewController.h */,
@@ -2095,6 +2129,7 @@
 				FC0BD6E4258B63F700C47F95 /* Images.xcassets in Resources */,
 				5AA2F5862D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2C2CFD1441000972EF /* file-pages.icns in Resources */,
+				F13726FE3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */,
 				5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */,
 				FC0BD6E5258B63F700C47F95 /* Localizable.strings in Resources */,
 				FC0BD6E6258B63F700C47F95 /* Localizable.stringsdict in Resources */,
@@ -2162,6 +2197,7 @@
 				FCB4C71E26DD018B0012C20D /* converter in Resources */,
 				5AA2F5842D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2A2CFD1441000972EF /* file-pages.icns in Resources */,
+				F13726FC3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */,
 				FCB4C71F26DD018B0012C20D /* file-ods.icns in Resources */,
 				FCB4C72026DD018B0012C20D /* Images.xcassets in Resources */,
 				FCB4C72126DD018B0012C20D /* Localizable.strings in Resources */,
@@ -2229,6 +2265,7 @@
 				FC0907411C186A7A00D9E881 /* converter in Resources */,
 				5AA2F5852D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2B2CFD1441000972EF /* file-pages.icns in Resources */,
+				F13726FD3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */,
 				FC98AF201E94E16A00718A12 /* file-ods.icns in Resources */,
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
 				FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */,
@@ -2436,6 +2473,7 @@
 				FC0BD68A258B63F700C47F95 /* ASCSavePanelWithFormatController.m in Sources */,
 				FC0BD68B258B63F700C47F95 /* ASCCommonViewController.mm in Sources */,
 				FC0BD68C258B63F700C47F95 /* AnalyticsEvent.m in Sources */,
+				F1CA1BB83002427F00CB7ABD /* ASCUpgradeController.mm in Sources */,
 				FC0BD68D258B63F700C47F95 /* ASCTitleWindowController.mm in Sources */,
 				FC0BD68E258B63F700C47F95 /* NSDictionary+Extensions.m in Sources */,
 				F12F85D52EB6A38400370877 /* ASCEditorWindowController.mm in Sources */,
@@ -2457,6 +2495,8 @@
 				FC2C43A225D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FC0BD69B258B63F700C47F95 /* ASCTouchBarController.m in Sources */,
 				FC0BD69C258B63F700C47F95 /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E82FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F32FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FC0BD69D258B63F700C47F95 /* AnalyticsHelper.m in Sources */,
 				FC2C43B125D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */,
 				FC0BD69E258B63F700C47F95 /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2518,6 +2558,7 @@
 				FCB4C6C126DD018B0012C20D /* ASCSavePanelWithFormatController.m in Sources */,
 				FCB4C6C226DD018B0012C20D /* ASCCommonViewController.mm in Sources */,
 				FCB4C6C326DD018B0012C20D /* AnalyticsEvent.m in Sources */,
+				F1CA1BB63002427F00CB7ABD /* ASCUpgradeController.mm in Sources */,
 				FCB4C6C426DD018B0012C20D /* ASCTitleWindowController.mm in Sources */,
 				FCB4C6C526DD018B0012C20D /* NSDictionary+Extensions.m in Sources */,
 				F12F85D32EB6A38400370877 /* ASCEditorWindowController.mm in Sources */,
@@ -2539,6 +2580,8 @@
 				FCB4C6D226DD018B0012C20D /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FCB4C6D326DD018B0012C20D /* ASCTouchBarController.m in Sources */,
 				FCB4C6D426DD018B0012C20D /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E62FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F12FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FCB4C6D526DD018B0012C20D /* AnalyticsHelper.m in Sources */,
 				FCB4C6D626DD018B0012C20D /* ASCCertificateQLPreviewController.m in Sources */,
 				FCB4C6D726DD018B0012C20D /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2600,6 +2643,7 @@
 				FCC77C7C206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */,
 				FCA9A1901BA6DC6000ABF3AB /* ASCCommonViewController.mm in Sources */,
 				FCFE61E21CAD02D4000D2418 /* AnalyticsEvent.m in Sources */,
+				F1CA1BB73002427F00CB7ABD /* ASCUpgradeController.mm in Sources */,
 				FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */,
 				FC64391B21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */,
 				F12F85D42EB6A38400370877 /* ASCEditorWindowController.mm in Sources */,
@@ -2621,6 +2665,8 @@
 				FC2C43A125D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FCCC2FE621E5E1CA00FB9209 /* ASCTouchBarController.m in Sources */,
 				FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E72FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F22FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FC2C43B025D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */,
 				FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2674,6 +2720,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F13726FB3000DECB00AFF4FE /* Base */,
+			);
+			name = "Upgrade-Dialog.storyboard";
+			sourceTree = "<group>";
+		};
 		F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3198,6 +3252,8 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_V8_VERSION,
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-v8/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3244,6 +3300,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_V8_VERSION,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-v8/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3290,6 +3348,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_ARM_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-arm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3336,6 +3396,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_ARM_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-arm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3462,6 +3524,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3508,6 +3572,8 @@
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";

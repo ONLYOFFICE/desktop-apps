@@ -51,8 +51,11 @@ platform :mac do
     if edition && !edition.empty? then package_name += "-#{edition}" end
     package_name += "-#{git_suffix}-#{version_number}-#{app_build_number}"
 
+    addon_mode_xcarg = ""
     if edition != "Enterprise"
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/opensource/LICENSE.html ../Vendor/ONLYOFFICE/license/LICENSE.html")
+      desc 'Define USE_ADDON_MODE macro for non-Enterprise editions'
+      addon_mode_xcarg = " GCC_PREPROCESSOR_DEFINITIONS='$(inherited) USE_ADDON_MODE'"
     else
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
     end
@@ -63,6 +66,24 @@ platform :mac do
       sh("cp -fv #{formats_src} ../../common/converter/")
     end
 
+    desc 'Pass URLs'
+    xcargs = "URL_WEBAPPS_HELP=https://download.onlyoffice.com/install/desktop/editors/help/v7.2.0-1/apps"
+
+    url_appcast_main = ENV["DESKTOP_URL_UPDATES_MAIN_CHANNEL"]
+    unless url_appcast_main.to_s.empty?
+      xcargs += " URL_APPCAST_UPDATES=#{url_appcast_main}"
+    end
+
+    url_appcast_dev = ENV["DESKTOP_URL_UPDATES_DEV_CHANNEL"]
+    unless url_appcast_dev.to_s.empty?
+      xcargs += " URL_APPCAST_DEV_CHANNEL=#{url_appcast_dev}"
+    end
+
+    UI.message("appcast url: #{url_appcast_main}")
+    UI.message("appcast dev url: #{url_appcast_dev}")
+
+    xcargs += addon_mode_xcarg
+
     desc 'Build for developer id and notarize'
     gym(
       scheme: scheme,
@@ -71,7 +92,7 @@ platform :mac do
       output_directory: build,
       codesigning_identity: ENV["CODESIGNING_IDENTITY"],
       export_method: 'developer-id',
-      xcargs: "URL_WEBAPPS_HELP=https://download.onlyoffice.com/install/desktop/editors/help/v7.2.0-1/apps",
+      xcargs: xcargs,
       skip_package_pkg: true
     )
 

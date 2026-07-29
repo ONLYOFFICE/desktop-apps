@@ -163,6 +163,7 @@ static NSString * const CEFEventNameWebAppsFeatures         = @"CEF_webAppsFeatu
 static NSString * const CEFEventNameWebTitleChanged         = @"CEF_webTitleChanged";
 static NSString * const CEFEventNameAddUserTemplateFiles    = @"CEF_addUserTemplateFiles";
 static NSString * const CEFEventNameAddUserTemplateFolder   = @"CEF_addUserTemplateFolder";
+static NSString * const CEFEventNameAddonAction             = @"CEF_addonAction";
 
 @interface ASCConstants : NSObject
 
