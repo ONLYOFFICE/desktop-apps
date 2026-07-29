@@ -31,7 +31,14 @@ export default function About() {
                     {versionInfo().version}
                   </p>
                   <Show when={versionInfo().edition}>
-                    <div class="about-field" innerHTML={versionInfo().edition} />
+                    <div
+                      class="about-field"
+                      innerHTML={versionInfo().edition}
+                      onClick={(e) => {
+                        const a = e.target.closest("a");
+                        if (a) e.preventDefault();
+                      }}
+                    />
                   </Show>
                 </div>
               </section>
