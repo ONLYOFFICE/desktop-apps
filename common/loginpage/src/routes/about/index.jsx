@@ -36,7 +36,7 @@ export default function About() {
                 </div>
               </section>
 
-              <Show when={addonInfo()}>
+              <Show when={addonInfo()?.installed}>
                 <div class="about-separator" />
                 <section class="about-approw">
                   <div class="about-logo">
