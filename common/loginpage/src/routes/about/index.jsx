@@ -18,8 +18,7 @@ export default function About() {
               <section class="about-approw">
                 <div class={`about-logo ${versionInfo().logocls ?? ""}`}>
                   <svg class="ver-logo" viewBox="0 0 52 45">
-                    <use href="#idx-logo-light" />
-                    <use href="#idx-logo-dark" />
+                    <use href="#idx-logo"/>
                   </svg>
                 </div>
                 <div class="about-appinfo">
@@ -41,8 +40,7 @@ export default function About() {
                 <section class="about-approw">
                   <div class="about-logo">
                     <svg class="ver-logo" viewBox="0 0 44 44">
-                      <use href="#ai-tools-logo-light" />
-                      <use href="#ai-tools-logo-dark" />
+                      <use href="#ai-tools-logo"/>
                     </svg>
                   </div>
                   <div class="about-appinfo">
