@@ -47,7 +47,8 @@ export function initAddonStatus() {
         status.progress = addonStatus().progress;
       }
 
-      setAddonStatus(status);
+      if (addonStatus()?.page !== "error" || status.page === "error")
+        setAddonStatus(status);
 
       if (status.page) {
         setViewPanel(status.page);
