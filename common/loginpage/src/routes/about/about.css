@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  border-radius: 3px;
+  border-radius: 4px;
   flex-shrink: 0;
 }
 
@@ -71,8 +71,7 @@
 
 .about-approw {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 .about-logo {
@@ -128,6 +127,12 @@
 }
 
 .about-separator {
+  padding: 4px 2px;
+}
+
+.about-separator::before {
+  content: "";
+  display: block;
   height: 1px;
   background: var(--border-divider);
 }
@@ -145,6 +150,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 2px 0;
 }
 
 .update-icon {
@@ -192,6 +198,7 @@
 
 .update-action-row button {
   width: auto;
+  height: 32px;
   border-radius: 4px;
 }
 
@@ -200,6 +207,7 @@
 .about-copyright {
   display: flex;
   flex-direction: column;
+  gap: 2px;
   padding-top: 4px;
 }
 
@@ -239,7 +247,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 12px;
+  gap: 10px;
 }
 
 .about-rights {

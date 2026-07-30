@@ -40,9 +40,9 @@ export default function About() {
                 <div class="about-separator" />
                 <section class="about-approw">
                   <div class="about-logo">
-                    <svg class="ver-logo" viewBox="0 0 52 45">
-                      <use href="#kit-logo-light" />
-                      <use href="#kit-logo-dark" />
+                    <svg class="ver-logo" viewBox="0 0 44 44">
+                      <use href="#ai-tools-logo-light" />
+                      <use href="#ai-tools-logo-dark" />
                     </svg>
                   </div>
                   <div class="about-appinfo">
