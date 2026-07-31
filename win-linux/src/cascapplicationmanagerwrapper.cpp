@@ -439,12 +439,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->reject();
                 }
-                else if (param == L"dismiss")
+                else if (param == L"disable")
                 {
                     /* "don't show again" clicked */
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->reject();
 
+                    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:action", "disable");
                     // TODO: add impl "don't show again"
                 }
                 else if (param == L"uninstall")
@@ -1968,7 +1969,11 @@ void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, int page)
     case UpgradeDialog::RestartNow:
     {
         _app.m_private->m_needRestart = true;
-        AscAppManager::closeAppWindows();
+        QTimer::singleShot(100, &_app,
+            []()
+            {
+                AscAppManager::closeAppWindows();
+            });
         break;
     }    
     case UpgradeDialog::Rejected:

@@ -30,12 +30,19 @@ export default function About() {
                     {versionInfo().version}
                   </p>
                   <Show when={versionInfo().edition}>
-                    <div class="about-field about-license" innerHTML={versionInfo().edition} />
+                    <div
+                      class="about-field about-license"
+                      innerHTML={versionInfo().edition}
+                      onClick={(e) => {
+                        const a = e.target.closest("a");
+                        if (a) e.preventDefault();
+                      }}
+                    />
                   </Show>
                 </div>
               </section>
 
-              <Show when={addonInfo()}>
+              <Show when={addonInfo()?.installed}>
                 <div class="about-separator" />
                 <section class="about-approw">
                   <div class="about-logo">

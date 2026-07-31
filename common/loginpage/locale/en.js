@@ -92,7 +92,7 @@ l10n.en = {
     newForm: 'PDF',
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
-    actOpenLocal: 'Open local file',
+    actOpenLocal: 'Open',
     actConnectTo: 'Connect to cloud',
     actActivate: 'Activate',
     actAbout: 'About',
