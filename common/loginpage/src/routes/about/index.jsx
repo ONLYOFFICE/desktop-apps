@@ -17,9 +17,8 @@ export default function About() {
             <div class="about-content">
               <section class="about-approw">
                 <div class={`about-logo ${versionInfo().logocls ?? ""}`}>
-                  <svg class="ver-logo">
-                    <use href="#idx-logo-light" />
-                    <use href="#idx-logo-dark" />
+                  <svg class="ver-logo" viewBox="0 0 52 45">
+                    <use href="#idx-logo"/>
                   </svg>
                 </div>
                 <div class="about-appinfo">
@@ -32,7 +31,7 @@ export default function About() {
                   </p>
                   <Show when={versionInfo().edition}>
                     <div
-                      class="about-field"
+                      class="about-field about-license"
                       innerHTML={versionInfo().edition}
                       onClick={(e) => {
                         const a = e.target.closest("a");
@@ -47,9 +46,8 @@ export default function About() {
                 <div class="about-separator" />
                 <section class="about-approw">
                   <div class="about-logo">
-                    <svg class="ver-logo">
-                      <use href="#kit-logo-light" />
-                      <use href="#kit-logo-dark" />
+                    <svg class="ver-logo" viewBox="0 0 44 44">
+                      <use href="#ai-tools-logo"/>
                     </svg>
                   </div>
                   <div class="about-appinfo">
