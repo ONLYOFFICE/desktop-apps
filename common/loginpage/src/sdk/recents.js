@@ -83,7 +83,7 @@ export function togglePinnedFolder(path) {
 export function parseRecent(arr) {
   const files = [];
   for (const f of arr || []) {
-    let p = f.path || "";
+    let p = !!f.path ? decodeHtml(f.path) : "";
     if (isWin && /^\w:[\\/]/.test(p) && /\\{2,}/.test(p)) {
       p = p.replace(/\\{2,}/g, "\\");
     }
