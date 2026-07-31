@@ -2,12 +2,10 @@
   width: 570px;
   padding-bottom: 24px;
   box-shadow: 0px 8px 16px 0px #040f1b29, 0px 0px 4px 0px #040f1b1f;
-}
-
-.theme-dark .about-dialog,
-.theme-night .about-dialog,
-.theme-contrast-dark .about-dialog {
-  border: 1px solid var(--border-divider);
+  
+  .theme-type-dark & {
+    border: 1px solid var(--border-divider);
+  }
 }
 
 .dlg-header {
