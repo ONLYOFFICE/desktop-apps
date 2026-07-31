@@ -516,7 +516,11 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                 tstring curr_version = m_currVersion;
                 tstring svc_version = root.value(_T("serviceVersion")).toTString();
                 tstring curr_svc_version = _T(VER_FILEVERSION_STR);
-                JsonObject package = root.value(_T("package")).toObject();
+
+                bool is_community = NS_Utils::IsCommunityEdition(NS_File::appPath());
+                JsonObject package = root.value(is_community
+                                                    ? _T("package")
+                                                    : _T("packageEnterprise")).toObject();
 #ifdef _WIN32
 # if defined(_M_ARM64)
                 JsonObject win = package.value(_T("win_arm64")).toObject();
