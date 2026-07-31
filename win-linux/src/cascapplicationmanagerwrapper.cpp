@@ -1969,7 +1969,11 @@ void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, int page)
     case UpgradeDialog::RestartNow:
     {
         _app.m_private->m_needRestart = true;
-        AscAppManager::closeAppWindows();
+        QTimer::singleShot(100, &_app,
+            []()
+            {
+                AscAppManager::closeAppWindows();
+            });
         break;
     }    
     case UpgradeDialog::Rejected:
