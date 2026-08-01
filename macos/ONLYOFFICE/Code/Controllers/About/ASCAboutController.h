@@ -44,5 +44,11 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ASCAboutController : NSViewController
+
+@property (nonatomic, assign) BOOL aiToolsHidden;
+@property (nonatomic, strong) NSString *aiToolsVersion;
+
 - (IBAction)onLicenseButtonClick:(id)sender;
+- (IBAction)onAiLicenseButtonClick:(id)sender;
+- (IBAction)onWebsiteButtonClick:(id)sender;
 @end
