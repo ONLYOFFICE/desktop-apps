@@ -103,7 +103,7 @@ const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An er
            *TXT_ERR_CHECK       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while check updates: the Update Service is not installed or is not running!"),
            *TXT_ERR_LOAD        = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: the Update Service is not installed or is not running!"),
            *TXT_ERR_UNZIP       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unzip updates: the Update Service is not installed or is not running!"),
-           *TXT_ERR_JSON        = QT_TRANSLATE_NOOP("CUpdateManager", "Error opening JSON file."),
+           *TXT_ERR_JSON        = QT_TRANSLATE_NOOP("CUpdateManager", "The update information is invalid or incomplete."),
            *TXT_ERR_MD5         = QT_TRANSLATE_NOOP("CUpdateManager", "Update package error: md5 sum does not match the original."),
 
            *BTN_TXT_CHECK    = QT_TRANSLATE_NOOP("CUpdateManager", "Check for updates"),

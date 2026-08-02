@@ -511,8 +511,13 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                 tstring json = std::accumulate(lst.begin(), lst.end(), tstring());
                 JsonDocument doc(json);
                 JsonObject root = doc.object();
+                if (root.isEmpty())
+                    goto metadataFinished;
 
                 tstring version = root.value(_T("version")).toTString();
+                if (version.empty())
+                    goto metadataFinished;
+
                 tstring curr_version = m_currVersion;
                 tstring svc_version = root.value(_T("serviceVersion")).toTString();
                 tstring curr_svc_version = _T(VER_FILEVERSION_STR);
@@ -521,6 +526,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                 JsonObject package = root.value(is_community
                                                     ? _T("package")
                                                     : _T("packageEnterprise")).toObject();
+                if (package.isEmpty())
+                    goto metadataFinished;
 #ifdef _WIN32
 # if defined(_M_ARM64)
                 JsonObject platform = package.value(_T("win_arm64")).toObject();
@@ -532,6 +539,9 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 #else
                 JsonObject platform = package.value(_T("linux_64")).toObject();
 #endif
+                if (platform.isEmpty())
+                    goto metadataFinished;
+
                 bool prefer_secondary = NS_Utils::cmdArgContains(_T("--prefer-alternate-url"));
                 if (isVersionBHigherThanA(curr_version, version) && (version != m_ignVersion)) {
                     m_packageData->object = _T("app");
@@ -556,6 +566,9 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 #endif
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
+                    if (url.empty() && url2.empty())
+                        goto metadataFinished;
+
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
                     bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
                     m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
@@ -580,6 +593,9 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     JsonObject package_type = platform.value(_T("serviceArchive")).toObject();
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
+                    if (url.empty() && url2.empty())
+                        goto metadataFinished;
+
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
                     bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
                     m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
@@ -608,6 +624,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
             } else {
                 // read error
             }
+
+metadataFinished:
             __UNLOCK
             m_socket->sendMessage(MSG_LoadCheckFinished, out_json);
             break;
