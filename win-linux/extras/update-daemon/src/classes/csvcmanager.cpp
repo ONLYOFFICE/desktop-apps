@@ -110,6 +110,21 @@ auto currentArch()->tstring
 #endif
 }
 
+JsonObject platformPackage(const JsonObject &package)
+{
+#ifdef _WIN32
+# if defined(_M_ARM64)
+    return package.value(_T("win_arm64")).toObject();
+# elif defined(_M_X64)
+    return package.value(_T("win_64")).toObject();
+# elif defined(_M_IX86)
+    return package.value(_T("win_32")).toObject();
+# endif
+#else
+    return package.value(_T("linux_64")).toObject();
+#endif
+}
+
 auto generateTmpFileName(const tstring &ext)->tstring
 {
     tstring uuid_tstr;
@@ -528,17 +543,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                                                     : _T("packageEnterprise")).toObject();
                 if (package.isEmpty())
                     goto metadataFinished;
-#ifdef _WIN32
-# if defined(_M_ARM64)
-                JsonObject platform = package.value(_T("win_arm64")).toObject();
-# elif defined(_M_X64)
-                JsonObject platform = package.value(_T("win_64")).toObject();
-# elif defined(_M_IX86)
-                JsonObject platform = package.value(_T("win_32")).toObject();
-# endif
-#else
-                JsonObject platform = package.value(_T("linux_64")).toObject();
-#endif
+
+                JsonObject platform = platformPackage(package);
                 if (platform.isEmpty())
                     goto metadataFinished;
 
