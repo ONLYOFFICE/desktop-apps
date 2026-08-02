@@ -88,7 +88,7 @@ JsonValue& JsonValue::operator=(const JsonValue &jval)
     return *this;
 }
 
-JsonObject JsonValue::toObject()
+JsonObject JsonValue::toObject() const
 {
     JsonObject jobj;
     if (pimpl->val && pimpl->val->type == json_type_object)
@@ -96,7 +96,7 @@ JsonObject JsonValue::toObject()
     return jobj;
 }
 
-tstring JsonValue::toTString()
+tstring JsonValue::toTString() const
 {
     tstring str;
     if (pimpl->val && pimpl->val->type == json_type_string) {
@@ -133,7 +133,7 @@ JsonObject& JsonObject::operator=(const JsonObject &jobj)
     return *this;
 }
 
-JsonValue JsonObject::value(const tstring &key)
+JsonValue JsonObject::value(const tstring &key) const
 {
     std::string utf8_key = TStrToUtf8(key);
     JsonValue jval;
@@ -159,7 +159,7 @@ bool JsonObject::isEmpty() const
     return size() == 0;
 }
 
-bool JsonObject::contains(const tstring &key)
+bool JsonObject::contains(const tstring &key) const
 {
     std::string utf8_key = TStrToUtf8(key);
     json_object_element_s *element;
@@ -189,7 +189,7 @@ JsonDocument::~JsonDocument()
     delete pimpl, pimpl = nullptr;
 }
 
-JsonObject JsonDocument::object()
+JsonObject JsonDocument::object() const
 {
     JsonObject obj;
     if (pimpl->root && pimpl->root->type == json_type_object && pimpl->root->payload)
