@@ -36,6 +36,7 @@
 #include "cprintdata.h"
 #include "utils.h"
 #include "defines.h"
+#include "cupsavailability.h"
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -46,6 +47,7 @@
 #ifdef __linux__
 # include <cups/cups.h>
 # include <cups/ppd.h>
+# include <QDir>
 #endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
@@ -194,9 +196,16 @@ public:
             if ( native.contains("printer") ) {
                 QString printerName = native["printer"].toString();
                 if ( !printerName.isEmpty() ) {
-                    QPrinterInfo info{QPrinterInfo::printerInfo(printerName)};
-                    if ( !info.isNull() )
-                        printer_info = info;
+#ifdef __linux__
+                    if (!cupsLocalSocketAvailable() && !cupsRemoteServerConfigured())
+                        printer_info = QPrinterInfo();
+                    else
+#endif
+                    {
+                        QPrinterInfo info{QPrinterInfo::printerInfo(printerName)};
+                        if ( !info.isNull() )
+                            printer_info = info;
+                    }
                 }
             }
 
@@ -355,6 +364,13 @@ public:
             }
         }
 #else
+#ifdef __linux__
+        if (!cupsLocalSocketAvailable() && !cupsRemoteServerConfigured()) {
+            QJsonObject rootObject;
+            rootObject["printers"] = printersArray;
+            return rootObject;
+        }
+#endif
         cups_dest_t *dests = nullptr;
         int num_dests = cupsGetDests(&dests);
         if (dests) {
@@ -465,6 +481,10 @@ auto CPrintData::init(int senderid, NSEditorApi::CAscPrintEnd * data) -> void
 auto CPrintData::printerInfo() const -> QPrinterInfo
 {
     if ( m_priv->printer_info.printerName().isEmpty() ) {
+#ifdef __linux__
+        if (!cupsLocalSocketAvailable() && !cupsRemoteServerConfigured())
+            return QPrinterInfo();
+#endif
         GET_REGISTRY_USER(reg_user);
 
         QString last_printer_name = reg_user.value("lastPrinterName").toString();
