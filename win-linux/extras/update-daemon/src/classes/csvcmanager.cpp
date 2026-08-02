@@ -523,26 +523,26 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                                                     : _T("packageEnterprise")).toObject();
 #ifdef _WIN32
 # if defined(_M_ARM64)
-                JsonObject win = package.value(_T("win_arm64")).toObject();
+                JsonObject platform = package.value(_T("win_arm64")).toObject();
 # elif defined(_M_X64)
-                JsonObject win = package.value(_T("win_64")).toObject();
+                JsonObject platform = package.value(_T("win_64")).toObject();
 # elif defined(_M_IX86)
-                JsonObject win = package.value(_T("win_32")).toObject();
+                JsonObject platform = package.value(_T("win_32")).toObject();
 # endif
 #else
-                JsonObject win = package.value(_T("linux_64")).toObject();
+                JsonObject platform = package.value(_T("linux_64")).toObject();
 #endif
                 bool prefer_secondary = NS_Utils::cmdArgContains(_T("--prefer-alternate-url"));
                 if (isVersionBHigherThanA(curr_version, version) && (version != m_ignVersion)) {
                     m_packageData->object = _T("app");
                     m_packageData->version = version;
                     m_packageData->fileType = _T("archive");
-                    JsonObject package_type = win.value(_T("archive")).toObject();
+                    JsonObject package_type = platform.value(_T("archive")).toObject();
 #ifdef _WIN32
                     if (m_packageType != Portable) {
                         const tstring install_key = m_packageType == MSI ? _T("msi") : _T("iss");
-                        if (win.contains(install_key)) {
-                            JsonObject install_type = win.value(install_key).toObject();
+                        if (platform.contains(install_key)) {
+                            JsonObject install_type = platform.value(install_key).toObject();
                             if (install_type.contains(_T("maxVersion"))) {
                                 tstring maxVersion = install_type.value(_T("maxVersion")).toTString();
                                 if (!isVersionBHigherThanA(maxVersion, curr_version)) {
@@ -577,7 +577,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     m_packageData->object = _T("svc");
                     m_packageData->version = svc_version;
                     m_packageData->fileType = _T("archive");
-                    JsonObject package_type = win.value(_T("serviceArchive")).toObject();
+                    JsonObject package_type = platform.value(_T("serviceArchive")).toObject();
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
