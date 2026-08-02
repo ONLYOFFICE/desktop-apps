@@ -149,6 +149,16 @@ JsonValue JsonObject::value(const tstring &key)
     return jval;
 }
 
+size_t JsonObject::size() const
+{
+    return pimpl->obj ? pimpl->obj->length : 0;
+}
+
+bool JsonObject::isEmpty() const
+{
+    return size() == 0;
+}
+
 bool JsonObject::contains(const tstring &key)
 {
     std::string utf8_key = TStrToUtf8(key);

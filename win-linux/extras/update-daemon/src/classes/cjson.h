@@ -75,6 +75,8 @@ public:
 
     JsonObject& operator=(const JsonObject&);
     JsonValue value(const tstring&);
+    size_t size() const;
+    bool isEmpty() const;
     bool contains(const tstring&);
 
 private:
