@@ -567,6 +567,13 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                         const tstring install_key = m_packageType == MSI ? _T("msi") : _T("iss");
                         if (platform.contains(install_key)) {
                             JsonObject install_type = platform.value(install_key).toObject();
+
+                            // "maxVersion" is the highest installed app version that is still
+                            // updated via the installer package (msi/iss). If the currently
+                            // installed version is less than or equal to "maxVersion", the
+                            // installer package is used; otherwise the update occurs using
+                            // the archive. If the field is absent, the installer package
+                            // is never used and the archive is always applied.
                             if (install_type.contains(_T("maxVersion"))) {
                                 tstring maxVersion = install_type.value(_T("maxVersion")).toTString();
                                 if (!isVersionBHigherThanA(maxVersion, curr_version)) {
@@ -595,6 +602,12 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     // const tstring lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
                     // JsonValue changelog = release_notes.value(lang);
 
+                    // "minVersion" is the lowest installed app version that can be updated
+                    // through the update system. If the currently installed version is lower than
+                    // "minVersion", the update is reported as not installable: the user is only
+                    // notified about the new version and has to update manually.
+                    // If the field is absent or empty, any version can be updated through the
+                    // update system.
                     tstring min_version = root.value(_T("minVersion")).toTString();
                     if (!min_version.empty() && isVersionBHigherThanA(curr_version, min_version))
                         m_packageData->isInstallable = false;
