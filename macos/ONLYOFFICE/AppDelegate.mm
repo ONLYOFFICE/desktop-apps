@@ -51,6 +51,7 @@
 #import "ASCEditorWindowController.h"
 #import "ASCEditorWindow.h"
 #import "ASCTitleWindow.h"
+#import "ASCAboutController.h"
 #import "ASCSharedSettings.h"
 #import "ASCTabView.h"
 #import "NSString+Extensions.h"
@@ -736,7 +737,25 @@
         ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
         
         NSWindowController * windowController = [controller.storyboard instantiateControllerWithIdentifier:@"ASCAboutWindowControllerId"];
-        [NSApp runModalForWindow:windowController.window];
+        NSWindow * aboutWindow = windowController.window;
+        
+        NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        // TODO: replace with the real version of the add-on
+        NSString *appVersion = [NSString stringWithFormat:@"%@.%@",
+                   [infoDictionary objectForKey:@"CFBundleShortVersionString"],
+                   [infoDictionary objectForKey:@"ASCBundleBuildNumber"]];
+        
+        ASCAboutController *aboutController = (ASCAboutController *)aboutWindow.contentViewController;
+        aboutController.aiToolsHidden = ![[ASCAddonManager sharedManager] isInstalled];
+        aboutController.aiToolsVersion = appVersion;
+        
+        NSRect parentFrame = mainWindow.frame;
+        NSRect childFrame = aboutWindow.frame;
+        [aboutWindow setFrameOrigin:NSMakePoint(NSMidX(parentFrame) - childFrame.size.width / 2,
+                                                NSMidY(parentFrame) - childFrame.size.height / 2)];
+        // Show the window first to apply the coordinates
+        [aboutWindow makeKeyAndOrderFront:nil];
+        [NSApp runModalForWindow:aboutWindow];
     }
 }
 
