@@ -534,8 +534,16 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     goto metadataFinished;
 
                 tstring curr_version = m_currVersion;
-                tstring svc_version = root.value(_T("serviceVersion")).toTString();
+
+                tstring svc_version;
                 tstring curr_svc_version = _T(VER_FILEVERSION_STR);
+
+                JsonObject service = root.value(_T("service")).toObject();
+                if (!service.isEmpty()) {
+                    svc_version = service.value(_T("version")).toTString();
+                    if (svc_version.empty())
+                        goto metadataFinished;
+                }
 
                 bool is_community = NS_Utils::IsCommunityEdition(NS_File::appPath());
                 JsonObject package = root.value(is_community
@@ -593,19 +601,26 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 
                 } else
                 if (isVersionBHigherThanA(curr_svc_version, svc_version)) {
+                    JsonObject package = service.value(_T("package")).toObject();
+                    if (package.isEmpty())
+                        goto metadataFinished;
+
+                    JsonObject platform = platformPackage(package);
+                    if (platform.isEmpty())
+                        goto metadataFinished;
+
                     m_packageData->object = _T("svc");
                     m_packageData->version = svc_version;
                     m_packageData->fileType = _T("archive");
-                    JsonObject package_type = platform.value(_T("serviceArchive")).toObject();
-                    tstring url = package_type.value(_T("url")).toTString();
-                    tstring url2 = package_type.value(_T("url2")).toTString();
+                    tstring url = platform.value(_T("url")).toTString();
+                    tstring url2 = platform.value(_T("url2")).toTString();
                     if (url.empty() && url2.empty())
                         goto metadataFinished;
 
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
                     bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
                     m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
-                    tstring hash = package_type.value(_T("md5")).toTString();
+                    tstring hash = platform.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
 
