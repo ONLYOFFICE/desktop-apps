@@ -1,4 +1,45 @@
 define(`_NAME',ONLYOFFICE)dnl
+define(`_NAME_ar',ONLYOFFICE)dnl
+define(`_NAME_be',ONLYOFFICE)dnl
+define(`_NAME_bg',ONLYOFFICE)dnl
+define(`_NAME_ca',ONLYOFFICE)dnl
+define(`_NAME_cs',ONLYOFFICE)dnl
+define(`_NAME_da',ONLYOFFICE)dnl
+define(`_NAME_de',ONLYOFFICE)dnl
+define(`_NAME_el',ONLYOFFICE)dnl
+define(`_NAME_es',ONLYOFFICE)dnl
+define(`_NAME_fi',ONLYOFFICE)dnl
+define(`_NAME_fr',ONLYOFFICE)dnl
+define(`_NAME_gl',ONLYOFFICE)dnl
+define(`_NAME_he',ONLYOFFICE)dnl
+define(`_NAME_hu',ONLYOFFICE)dnl
+define(`_NAME_hy',ONLYOFFICE)dnl
+define(`_NAME_id',ONLYOFFICE)dnl
+define(`_NAME_it',ONLYOFFICE)dnl
+define(`_NAME_ja',ONLYOFFICE)dnl
+define(`_NAME_ko',ONLYOFFICE)dnl
+define(`_NAME_lo',ONLYOFFICE)dnl
+define(`_NAME_lv',ONLYOFFICE)dnl
+define(`_NAME_nb',ONLYOFFICE)dnl
+define(`_NAME_nl',ONLYOFFICE)dnl
+define(`_NAME_pl',ONLYOFFICE)dnl
+define(`_NAME_pt',ONLYOFFICE)dnl
+define(`_NAME_ptbr',ONLYOFFICE)dnl
+define(`_NAME_ro',ONLYOFFICE)dnl
+define(`_NAME_ru',ONLYOFFICE)dnl
+define(`_NAME_si',ONLYOFFICE)dnl
+define(`_NAME_sk',ONLYOFFICE)dnl
+define(`_NAME_sl',ONLYOFFICE)dnl
+define(`_NAME_sq',ONLYOFFICE)dnl
+define(`_NAME_sr',ONLYOFFICE)dnl
+define(`_NAME_srlat',ONLYOFFICE)dnl
+define(`_NAME_sv',ONLYOFFICE)dnl
+define(`_NAME_tr',ONLYOFFICE)dnl
+define(`_NAME_uk',ONLYOFFICE)dnl
+define(`_NAME_ur',ONLYOFFICE)dnl
+define(`_NAME_vi',ONLYOFFICE)dnl
+define(`_NAME_zhcn',ONLYOFFICE)dnl
+define(`_NAME_zhtw',ONLYOFFICE)dnl
 define(`_GENERICNAME',Document Editor)dnl
 define(`_GENERICNAME_ru',Редактор документов)dnl
 define(`_COMMENT',Edit office documents)dnl
