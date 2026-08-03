@@ -529,10 +529,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                 if (root.isEmpty())
                     goto metadataFinished;
 
-                tstring version = root.value(_T("version")).toTString();
-                if (version.empty())
-                    goto metadataFinished;
-
+                tstring version;
                 tstring curr_version = m_currVersion;
 
                 tstring svc_version;
@@ -550,6 +547,13 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                                                     ? _T("package")
                                                     : _T("packageEnterprise")).toObject();
                 if (package.isEmpty())
+                    goto metadataFinished;
+
+                version = is_community
+                              ? root.value(_T("version")).toTString()
+                              : package.value(_T("version")).toTString();
+
+                if (version.empty())
                     goto metadataFinished;
 
                 JsonObject platform = platformPackage(package);
