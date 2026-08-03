@@ -52,7 +52,6 @@
     position: relative;
     border-radius: 4px;
     padding: 8px 120px 8px 16px;
-    cursor: pointer;
 
     &:nth-child(even) {
       background: var(--background-normal-element-light);
