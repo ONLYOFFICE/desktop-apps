@@ -19,11 +19,11 @@
 }
 
 .clouds-section-title {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 20px;
   color: var(--text-normal);
-  margin: 0 0 8px;
+  margin: 0 0 16px;
 }
 
 /* Connected portals list */
