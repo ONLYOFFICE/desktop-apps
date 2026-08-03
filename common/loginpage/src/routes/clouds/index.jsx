@@ -120,7 +120,7 @@ function PortalRow(props) {
               <use href="#more" />
             </svg>
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content>
+          <DropdownMenu.Content class="iconless">
             <DropdownMenu.Item onSelect={() => openConnectedPortal(props.portal)}>Open</DropdownMenu.Item>
             <DropdownMenu.Item aria-disabled={props.portal.logged === false} onSelect={() => props.portal.logged !== false && logoutConnectedPortal(props.portal)}>Logout</DropdownMenu.Item>
             <DropdownMenu.Item onSelect={() => props.onRemove(props.portal)}>Remove</DropdownMenu.Item>

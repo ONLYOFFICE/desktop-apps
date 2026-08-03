@@ -32,7 +32,6 @@
   position: relative;
   border-radius: 4px;
   padding: 8px 80px 8px 16px;
-  cursor: pointer;
 }
 
 #box-recent-folders .file-list-body .row:nth-child(even) {

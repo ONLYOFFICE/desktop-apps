@@ -41,7 +41,7 @@
   }
 }
 
-.menu:has(.menuIcon) .menu-item:not(:has(.menuIcon)) {
+.menu:has(.menuIcon) .menuItem:not(:has(.menuIcon)) {
   padding-left: calc(8px + 20px + 4px);
 }
 
@@ -56,6 +56,10 @@
     display: block;
     background-repeat: no-repeat;
   }
+}
+
+.menu:global(.iconless) .menuItem {
+  padding-inline: 16px;
 }
 
 .menuSeparator {
