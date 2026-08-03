@@ -85,6 +85,8 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF]   = tr("ONLYOFFICE Form Document (*.pdf)");
 	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]       = tr("DOCXF Document (*.docxf)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MD]          = tr("Markdown File (*.md)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTM]        = tr("Macro-enabled Document Template (*.dotm)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM]       = tr("ONLYOFFICE Form (*.oform)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
@@ -93,6 +95,8 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_OTP]    = tr("OpenDocument Presentation Template") + " (*.otp)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX]   = tr("PPSX File (*.ppsx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTM]   = tr("Macro-enabled Presentation File (*.pptm)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_POTM]   = tr("Macro-enabled Presentation Template (*.potm)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSM]   = tr("Macro-enabled PPS File (*.ppsm)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX]    = tr("XLSX File (*.xlsx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTX]    = tr("Spreadsheet template") + " (*.xltx)";
@@ -102,12 +106,16 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_ODS]     = tr("ODS File (*.ods)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_OTS]     = tr("OpenDocument Spreadsheet Template") + " (*.ots)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV]     = tr("CSV File (*.csv)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_TSV]     = tr("TSV File (*.tsv)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_SCSV]    = tr("SCSV File (*.csv)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSM]    = tr("Macro-enabled Spreadsheet File (*.xlsm)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF]   = tr("PDF File (*.pdf)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA]  = tr("PDFA File (*.pdf)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]   = tr("SVG Image (*.svg)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_OFD]   = tr("OFD File (*.ofd)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSDX]           = tr("VSDX File") + " (*.vsdx)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSDM]           = tr("VSDM File") + " (*.vsdm)";
@@ -472,8 +480,13 @@ void CFileDialogWrapper::setFormats(std::vector<int>& vf)
     if ( vf.size() ) {
         std::vector<int>::iterator i = vf.begin();
         m_filters = m_mapFilters.value(*(i++));
+        if ( m_filters.isEmpty() )
+            m_filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
         while (i != vf.end()) {
-            m_filters += ";;" + m_mapFilters.value(*(i++));
+            QString _filter = m_mapFilters.value(*(i++));
+            if ( _filter.isEmpty() )
+                _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+            m_filters += ";;" + _filter;
         }
     }
 }
