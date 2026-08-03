@@ -10,6 +10,7 @@
 
 /* fixme: ask for actual status */
 #box-recovery {
+  margin-bottom: 32px;
   .file-list-body,
   .file-list-head {
     .col-location,
@@ -22,6 +23,14 @@
   .file-list-body .row {
     grid-template-columns: auto;
   }
+}
+
+.list-section-title {
+  padding: 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-normal);
+  margin-bottom: 16px;
 }
 
 .file-list-head,

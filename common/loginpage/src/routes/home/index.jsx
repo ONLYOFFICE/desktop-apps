@@ -1,9 +1,23 @@
 import { Show, createSignal, onCleanup, onMount } from "solid-js";
 import { createStore, reconcile } from "solid-js/store";
 import { t } from "@/services/l10n.js";
-import { listRecents, onRecentsChanged, onNativeMessage, parseRecent, pinRecent, removeRecent, clearRecents, checkFiles, appReady } from "@/sdk";
+import { listRecents,
+        onRecentsChanged,
+        onRecoversChanged,
+        onNativeMessage,
+        parseRecent,
+        pinRecent,
+        removeRecent,
+        clearRecents,
+        checkFiles,
+        listRecovers,
+        removeRecover,
+        clearRecovers,
+        openRecoveryFile,
+        appReady } from "@/sdk";
 import { DocTypeGrid } from "./components/DocTypeGrid.jsx";
 import { RecentList } from "./components/RecentList.jsx";
+import { RecoverList } from "./components/RecoverList.jsx";
 import { FileDropZone } from "./components/FileDropZone.jsx";
 import { aichat } from "@/stores/aichat.js";
 import { command } from "@/sdk/bridge.js";
@@ -21,11 +35,13 @@ const BATCH = 40;
 
 export default function Index() {
   const [recents, setRecents] = createStore([]);
+  const [recovers, setRecovers] = createSignal([]);
   const [loaded, setLoaded] = createSignal(false);
   const [visibleCount, setVisibleCount] = createSignal(BATCH);
   let revealId = 0;
 
   const hasFiles = () => recents.length > 0;
+  const hasRecovers = () => recovers().length > 0;
   const visibleRecents = () => recents.slice(0, visibleCount());
 
   function loadRecents(raw) {
@@ -81,6 +97,24 @@ export default function Index() {
     setRecents(reconcile([], { key: "uid" }));
   }
 
+  function loadRecovers(raw) {
+    setRecovers(parseRecent(toArray(raw)));
+  }
+
+  function openRecover(model) {
+    openRecoveryFile(model);
+  }
+
+  function removeRecoverItem(fileid) {
+    removeRecover(fileid);
+    setRecovers(recovers().filter((r) => r.fileid !== fileid));
+  }
+
+  function clearAllRecovers() {
+    clearRecovers();
+    setRecovers([]);
+  }
+
   function addToChat() {
     if (aichat.available) {
       // navigate("/ai");
@@ -99,10 +133,14 @@ export default function Index() {
       })
       .catch(() => setLoaded(true));
 
+    listRecovers().then(loadRecovers).catch(() => {});
+
     const unsubRecents = onRecentsChanged((p) => {
       loadRecents(p);
       if (!loaded()) setLoaded(true);
     });
+
+    const unsubRecovers = onRecoversChanged(loadRecovers);
 
     const unsubCommonMsgs = onNativeMessage((msg, param) => {
       if (msg === "app:ready") {
@@ -127,6 +165,7 @@ export default function Index() {
     onCleanup(() => {
       ++revealId;
       unsubRecents();
+      unsubRecovers();
       unsubCommonMsgs();
     });
   });
@@ -148,11 +187,20 @@ export default function Index() {
       </Show>
 
       <section class="file-list-section">
-        <RecentList recents={visibleRecents()}
-                    onTogglePin={togglePin}
-                    onRemove={markFileRemoved}
-                    onClear={clearAll}
-                    onAddToChat={addToChat} />
+        <RecoverList
+          recovers={recovers()}
+          onOpen={openRecover}
+          onRemove={removeRecoverItem}
+          onClear={clearAllRecovers}
+        />
+        <RecentList
+          recents={visibleRecents()}
+          heading={hasRecovers() ? t("recents", "Recents") : undefined}
+          onTogglePin={togglePin}
+          onRemove={markFileRemoved}
+          onClear={clearAll}
+          onAddToChat={addToChat}
+        />
       </section>
     </div>
   );
