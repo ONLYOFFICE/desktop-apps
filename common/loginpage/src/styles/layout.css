@@ -98,7 +98,7 @@ h4 {
 }
 
 .ext-plugin-frame {
-  position: absolute;
+  /* position: absolute; */
   top: 8px;
   right: 8px;
   bottom: 8px;
