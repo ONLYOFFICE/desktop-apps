@@ -1074,7 +1074,7 @@
                                                     <constraint firstAttribute="height" constant="64" id="aiC-Ab-t09"/>
                                                     <constraint firstAttribute="width" constant="64" id="aiC-Ab-t10"/>
                                                 </constraints>
-                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="aiC-Ab-t11"/>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="icon-ai-tools_normal" id="aiC-Ab-t11"/>
                                             </imageView>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiS-Ab-t12" userLabel="AI Tools Info Stack">
                                                 <rect key="frame" x="80" y="4" width="312" height="64"/>
@@ -1669,6 +1669,7 @@ DQ
     </scenes>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
+        <image name="icon-ai-tools_normal" width="32" height="32"/>
         <image name="logo-tab-dark" width="86" height="20"/>
     </resources>
 </document>
