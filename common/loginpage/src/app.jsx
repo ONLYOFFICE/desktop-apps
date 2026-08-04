@@ -16,7 +16,7 @@ import "./styles/layout.css";
 
 function Shell(props) {
   const location = useLocation();
-  const isChatSelected = () => location.pathname === "/ai";
+  const isChatSelected = () => location.pathname === "/aichat";
   const isAiToolsSelected = () => location.pathname.startsWith("/aitools");
   const isSettingsSelected = () => location.pathname.startsWith("/settings");
   const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && !isAiToolsSelected() && !isSettingsSelected();
@@ -74,7 +74,7 @@ function Shell(props) {
 /** @type {import("@solidjs/router").RouteDefinition[]} */
 const routes = [
   { path: "/", component: lazy(() => import("./routes/home/index.jsx")) },
-  { path: "/ai", component: lazy(() => import("./routes/ai/index.jsx")) },
+  { path: "/aichat", component: lazy(() => import("./routes/aichat/index.jsx")) },
   { path: "/aitools", component: lazy(() => import("./routes/aitools/index.jsx")) },
   { path: "/plugin/:pluginId", component: lazy(() => import("./routes/plugin/index.jsx")) },
   { path: "/open", component: lazy(() => import("./routes/open/index.jsx")) },

@@ -35,7 +35,7 @@ export default function Sidebar() {
   return (
     <nav class="tool-menu">
       <Show when={appliedUseAi()}>
-        <MenuItem href="/ai" onClick={clickAiChat} icon="#aichat" label={t("actAiChat")} />
+        <MenuItem href="/aichat" onClick={clickAiChat} icon="#aichat" label={t("actAiChat")} />
         <li class="menu-item separator" />
       </Show>
       <MenuItem href="/" icon="#home" label={t("actHome")} end />

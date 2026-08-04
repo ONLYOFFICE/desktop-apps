@@ -55,7 +55,7 @@ export function initAiPanel() {
       window.location.hash = "#/settings";
     } else if (msg.type === "expand") {
       closeSidePanel();
-      window.location.hash = "#/ai";
+      window.location.hash = "#/aichat";
     } else if (msg.type === "minimize") {
       openSidePanel();
       window.location.hash = "#/";
