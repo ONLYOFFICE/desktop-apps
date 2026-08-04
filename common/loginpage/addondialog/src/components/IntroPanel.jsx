@@ -4,7 +4,7 @@ import { Carousel } from "./Carousel";
 import { postponeAddon, dismissAddon } from "@/services/addon";
 import styles from "./IntroPanel.module.css";
 
-const LICENSE_URL = "https://docspace.onlyoffice.com/s/3QSnsXL9wVbFySk";
+const LICENSE_URL = "https://docspace.onlyoffice.com/s/jPfGKDyBYTRK4JM";
 
 export function IntroPanel(props) {
   const licenseParts = createMemo(() => t("addonLicenseText").split("$1"));
