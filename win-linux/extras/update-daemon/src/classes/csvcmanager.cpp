@@ -110,6 +110,21 @@ auto currentArch()->tstring
 #endif
 }
 
+JsonObject platformPackage(const JsonObject &package)
+{
+#ifdef _WIN32
+# if defined(_M_ARM64)
+    return package.value(_T("win_arm64")).toObject();
+# elif defined(_M_X64)
+    return package.value(_T("win_64")).toObject();
+# elif defined(_M_IX86)
+    return package.value(_T("win_32")).toObject();
+# endif
+#else
+    return package.value(_T("linux_64")).toObject();
+#endif
+}
+
 auto generateTmpFileName(const tstring &ext)->tstring
 {
     tstring uuid_tstr;
@@ -511,38 +526,54 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                 tstring json = std::accumulate(lst.begin(), lst.end(), tstring());
                 JsonDocument doc(json);
                 JsonObject root = doc.object();
+                if (root.isEmpty())
+                    goto metadataFinished;
 
                 tstring version = root.value(_T("version")).toTString();
+                if (version.empty())
+                    goto metadataFinished;
+
                 tstring curr_version = m_currVersion;
-                tstring svc_version = root.value(_T("serviceVersion")).toTString();
+
+                tstring svc_version;
                 tstring curr_svc_version = _T(VER_FILEVERSION_STR);
+
+                JsonObject service = root.value(_T("service")).toObject();
+                if (!service.isEmpty()) {
+                    svc_version = service.value(_T("version")).toTString();
+                    if (svc_version.empty())
+                        goto metadataFinished;
+                }
 
                 bool is_community = NS_Utils::IsCommunityEdition(NS_File::appPath());
                 JsonObject package = root.value(is_community
                                                     ? _T("package")
                                                     : _T("packageEnterprise")).toObject();
-#ifdef _WIN32
-# if defined(_M_ARM64)
-                JsonObject win = package.value(_T("win_arm64")).toObject();
-# elif defined(_M_X64)
-                JsonObject win = package.value(_T("win_64")).toObject();
-# elif defined(_M_IX86)
-                JsonObject win = package.value(_T("win_32")).toObject();
-# endif
-#else
-                JsonObject win = package.value(_T("linux_64")).toObject();
-#endif
+                if (package.isEmpty())
+                    goto metadataFinished;
+
+                JsonObject platform = platformPackage(package);
+                if (platform.isEmpty())
+                    goto metadataFinished;
+
                 bool prefer_secondary = NS_Utils::cmdArgContains(_T("--prefer-alternate-url"));
                 if (isVersionBHigherThanA(curr_version, version) && (version != m_ignVersion)) {
                     m_packageData->object = _T("app");
                     m_packageData->version = version;
                     m_packageData->fileType = _T("archive");
-                    JsonObject package_type = win.value(_T("archive")).toObject();
+                    JsonObject package_type = platform.value(_T("archive")).toObject();
 #ifdef _WIN32
                     if (m_packageType != Portable) {
                         const tstring install_key = m_packageType == MSI ? _T("msi") : _T("iss");
-                        if (win.contains(install_key)) {
-                            JsonObject install_type = win.value(install_key).toObject();
+                        if (platform.contains(install_key)) {
+                            JsonObject install_type = platform.value(install_key).toObject();
+
+                            // "maxVersion" is the highest installed app version that is still
+                            // updated via the installer package (msi/iss). If the currently
+                            // installed version is less than or equal to "maxVersion", the
+                            // installer package is used; otherwise the update occurs using
+                            // the archive. If the field is absent, the installer package
+                            // is never used and the archive is always applied.
                             if (install_type.contains(_T("maxVersion"))) {
                                 tstring maxVersion = install_type.value(_T("maxVersion")).toTString();
                                 if (!isVersionBHigherThanA(maxVersion, curr_version)) {
@@ -556,6 +587,9 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 #endif
                     tstring url = package_type.value(_T("url")).toTString();
                     tstring url2 = package_type.value(_T("url2")).toTString();
+                    if (url.empty() && url2.empty())
+                        goto metadataFinished;
+
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
                     bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
                     m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
@@ -568,22 +602,38 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                     // const tstring lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
                     // JsonValue changelog = release_notes.value(lang);
 
+                    // "minVersion" is the lowest installed app version that can be updated
+                    // through the update system. If the currently installed version is lower than
+                    // "minVersion", the update is reported as not installable: the user is only
+                    // notified about the new version and has to update manually.
+                    // If the field is absent or empty, any version can be updated through the
+                    // update system.
                     tstring min_version = root.value(_T("minVersion")).toTString();
                     if (!min_version.empty() && isVersionBHigherThanA(curr_version, min_version))
                         m_packageData->isInstallable = false;
 
                 } else
                 if (isVersionBHigherThanA(curr_svc_version, svc_version)) {
+                    JsonObject package = service.value(_T("package")).toObject();
+                    if (package.isEmpty())
+                        goto metadataFinished;
+
+                    JsonObject platform = platformPackage(package);
+                    if (platform.isEmpty())
+                        goto metadataFinished;
+
                     m_packageData->object = _T("svc");
                     m_packageData->version = svc_version;
                     m_packageData->fileType = _T("archive");
-                    JsonObject package_type = win.value(_T("serviceArchive")).toObject();
-                    tstring url = package_type.value(_T("url")).toTString();
-                    tstring url2 = package_type.value(_T("url2")).toTString();
+                    tstring url = platform.value(_T("url")).toTString();
+                    tstring url2 = platform.value(_T("url2")).toTString();
+                    if (url.empty() && url2.empty())
+                        goto metadataFinished;
+
                     NS_Logger::WriteLog(_T("Primary package URL: ") + url + _T("\nSecondary package URL: ") + url2);
                     bool primary_bad = (url.empty() || !m_pDownloader->isUrlAccessible(url));
                     m_packageData->packageUrl = (!url2.empty() && (primary_bad || prefer_secondary)) ? url2 : url;
-                    tstring hash = package_type.value(_T("md5")).toTString();
+                    tstring hash = platform.value(_T("md5")).toTString();
                     std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
                     m_packageData->hash = hash;
 
@@ -608,6 +658,8 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
             } else {
                 // read error
             }
+
+metadataFinished:
             __UNLOCK
             m_socket->sendMessage(MSG_LoadCheckFinished, out_json);
             break;

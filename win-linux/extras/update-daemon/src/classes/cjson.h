@@ -58,8 +58,8 @@ public:
     ~JsonValue();
 
     JsonValue& operator=(const JsonValue&);
-    JsonObject toObject();
-    tstring toTString();
+    JsonObject toObject() const;
+    tstring toTString() const;
 
 private:
     friend class JsonObject;
@@ -74,8 +74,10 @@ public:
     ~JsonObject();
 
     JsonObject& operator=(const JsonObject&);
-    JsonValue value(const tstring&);
-    bool contains(const tstring&);
+    JsonValue value(const tstring&) const;
+    size_t size() const;
+    bool isEmpty() const;
+    bool contains(const tstring&) const;
 
 private:
     friend class JsonDocument;
@@ -89,7 +91,7 @@ public:
     JsonDocument(const tstring&);
     ~JsonDocument();
 
-    JsonObject object();
+    JsonObject object() const;
 
 private:
     JsonDocument();
