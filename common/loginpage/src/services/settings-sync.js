@@ -210,7 +210,8 @@ export function initSettingsSync() {
     if (snap !== null) {
       restart = (aichat.available && settings.useai !== !!snap.useai) ||
                   scaling !== nativeScalingToStore(snap.uiscaling) ||
-                  settings.gpuMode !== !!snap.usegpu;
+                  settings.gpuMode !== !!snap.usegpu ||
+                  textDirectionChanged() || langRestartPending();
     }
 
     snap.useai = settings.useai;
