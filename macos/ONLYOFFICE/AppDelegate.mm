@@ -748,8 +748,10 @@
         ASCAboutController *aboutController = (ASCAboutController *)aboutWindow.contentViewController;
 #ifdef USE_ADDON_MODE
         aboutController.aiToolsHidden = ![[ASCAddonManager sharedManager] isInstalled];
-#endif
         aboutController.aiToolsVersion = appVersion;
+#else
+        aboutController.aiToolsHidden = YES;
+#endif
         
         NSRect parentFrame = mainWindow.frame;
         NSRect childFrame = aboutWindow.frame;
