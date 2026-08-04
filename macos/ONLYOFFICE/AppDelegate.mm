@@ -746,7 +746,9 @@
                    [infoDictionary objectForKey:@"ASCBundleBuildNumber"]];
         
         ASCAboutController *aboutController = (ASCAboutController *)aboutWindow.contentViewController;
+#ifdef USE_ADDON_MODE
         aboutController.aiToolsHidden = ![[ASCAddonManager sharedManager] isInstalled];
+#endif
         aboutController.aiToolsVersion = appVersion;
         
         NSRect parentFrame = mainWindow.frame;
