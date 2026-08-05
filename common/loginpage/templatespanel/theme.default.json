@@ -75,6 +75,7 @@
   "sidebar-item-border-color": "var(--border-regular-control)",
   "sidebar-item-header-count-background-color": "var(--border-regular-control)",
   "sidebar-item-header-count-color": "var(--text-inverse)",
+  "sidebar-item-header-heading-color": "var(--text-normal)",
   "sidebar-item-header-heading-sub-color": "var(--text-tertiary)",
   "sidebar-item-header-icon-sub-color": "var(--icon-normal)",
   "sidebar-item-options-btn-background-color-hover": "var(--highlight-button-hover)",
