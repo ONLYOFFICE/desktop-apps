@@ -1,7 +1,8 @@
-import { Show, For, lazy, createEffect, onMount } from "solid-js";
+import { Show, For, lazy, createEffect, createSignal, onMount } from "solid-js";
 import { HashRouter, useLocation } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
 import About from "./routes/about/index.jsx";
+import HomePanel from "./routes/home/index.jsx";
 import { AiPanel } from "@/components/ai-panel";
 import { ResizeHandle } from "@/components/ai-panel/ResizeHandle.jsx";
 import { signalAppReady } from "@/sdk";
@@ -11,15 +12,21 @@ import { initPortals } from "@/services/portals";
 import { initAiPanel } from "@/services/ai-panel";
 import { aichat } from "@/stores/aichat";
 import { extPlugins, pluginRouteId } from "@/stores/ext-plugins";
+
+const TemplatesPanel = lazy(() => import("./routes/templates/index.jsx"));
 import "./styles/main.css";
 import "./styles/layout.css";
 
 function Shell(props) {
   const location = useLocation();
+  const isHomeSelected = () => location.pathname === "/";
+  const isTemplatesSelected = () => location.pathname.startsWith("/templates");
+  const [templatesMounted, setTemplatesMounted] = createSignal(false);
+  createEffect(() => { if (isTemplatesSelected()) setTemplatesMounted(true); });
   const isChatSelected = () => location.pathname === "/aichat";
   const isAiToolsSelected = () => location.pathname.startsWith("/aitools");
   const isSettingsSelected = () => location.pathname.startsWith("/settings");
-  const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && !isAiToolsSelected() && !isSettingsSelected();
+  const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && /*!isAiToolsSelected() &&*/ !isSettingsSelected();
   const isChatExpanded = () => isChatSelected() && aichat.available;
   const showAiCol = () => showSidePanel() || isChatExpanded();
 
@@ -39,7 +46,15 @@ function Shell(props) {
         <Sidebar />
       </div>
       <div class="col-center">
+        <div class="home-panel" classList={{ "panel-active": isHomeSelected() }}>
+          <HomePanel />
+        </div>
         {props.children}
+        <Show when={templatesMounted()}>
+          <div class="templates-panel" classList={{ "panel-active": isTemplatesSelected() }}>
+            <TemplatesPanel />
+          </div>
+        </Show>
         <div class="ext-plugin-frame" classList={{ "ext-plugin-frame--active": isAiToolsSelected() }}>
           <iframe src="https://maxkadushkin.github.io/underconstruction/" title="ONLYOFFICE" />
         </div>
@@ -73,12 +88,12 @@ function Shell(props) {
 
 /** @type {import("@solidjs/router").RouteDefinition[]} */
 const routes = [
-  { path: "/", component: lazy(() => import("./routes/home/index.jsx")) },
+  { path: "/", component: () => null },
   { path: "/aichat", component: lazy(() => import("./routes/aichat/index.jsx")) },
   { path: "/aitools", component: lazy(() => import("./routes/aitools/index.jsx")) },
   { path: "/plugin/:pluginId", component: lazy(() => import("./routes/plugin/index.jsx")) },
   { path: "/open", component: lazy(() => import("./routes/open/index.jsx")) },
-  { path: "/templates", component: lazy(() => import("./routes/templates/index.jsx")) },
+  { path: "/templates", component: () => null },
   { path: "/clouds/*", component: lazy(() => import("./routes/clouds/index.jsx")) },
   {
     path: "/settings",

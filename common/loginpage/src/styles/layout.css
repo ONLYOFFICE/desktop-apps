@@ -97,6 +97,13 @@ h4 {
   }
 }
 
+.home-panel,
+.templates-panel {
+  &:not(.panel-active) {
+    display: none;
+  }
+}
+
 .ext-plugin-frame {
   /* position: absolute; */
   top: 8px;
