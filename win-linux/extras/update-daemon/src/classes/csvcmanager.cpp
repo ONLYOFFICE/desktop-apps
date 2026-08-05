@@ -549,10 +549,7 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
                 if (package.isEmpty())
                     goto metadataFinished;
 
-                version = is_community
-                              ? root.value(_T("version")).toTString()
-                              : package.value(_T("version")).toTString();
-
+                version = package.value(_T("version")).toTString();
                 if (version.empty())
                     goto metadataFinished;
 
