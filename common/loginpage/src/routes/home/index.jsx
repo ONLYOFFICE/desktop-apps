@@ -195,7 +195,7 @@ export default function Index() {
         />
         <RecentList
           recents={visibleRecents()}
-          heading={hasRecovers() ? t("recents", "Recents") : undefined}
+          heading={hasRecovers() ? t("listRecentFileTitle", "Recents") : undefined}
           onTogglePin={togglePin}
           onRemove={markFileRemoved}
           onClear={clearAll}
