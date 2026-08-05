@@ -42,6 +42,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ASCApplicationManager.h"
 #import "ASCConstants.h"
 #import "ASCSavePanelWithFormatController.h"
 #import "ASCCertificatePreviewController.h"
@@ -1982,12 +1983,12 @@
             [self.upgradeController reject];
         }
 
-    } else if ([action isEqualToString:@"dismiss"]) {
+    } else if ([action isEqualToString:@"disable"]) {
         /* "don't show again" clicked */
         if (self.upgradeController) {
             [self.upgradeController reject];
         }
-        // TODO: add impl "don't show again"
+        ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:action", L"disable");
 
     } else if ([action isEqualToString:@"uninstall"]) {
         self.upgradeInProgress = YES;
