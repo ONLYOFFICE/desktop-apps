@@ -70,3 +70,23 @@ void ASCApplicationManager::StartSaveDialog(const std::wstring& sName, unsigned 
 void ASCApplicationManager::EndSaveDialog(const std::wstring& sName, unsigned int nId) {
     CAscApplicationManager::EndSaveDialog(sName, nId);
 }
+
+void ASCApplicationManager::sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args) {
+    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+    pCommand->put_Command(cmd);
+    if ( !args.empty() )
+        pCommand->put_Param(args);
+
+    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+
+    if ( target ) {
+        if ( target->GetType() == cvwtEditor )
+            pCommand->put_FrameName(L"frameEditor");
+
+        target->Apply(pEvent);
+    } else {
+        if ( CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager] )
+            appManager->SetEventToAllMainWindows(pEvent);
+    }
+}

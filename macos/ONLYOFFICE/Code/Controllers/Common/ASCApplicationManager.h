@@ -45,7 +45,10 @@
 #define ASCApplicationManager_h
 
 #include <stdio.h>
+#include <string>
 #import "mac_application.h"
+
+#define SEND_TO_ALL_START_PAGE nullptr
 
 class ASCApplicationManager : public CAscApplicationManager {
 public:
@@ -53,6 +56,8 @@ public:
     
     virtual void StartSaveDialog(const std::wstring& sName, unsigned int nId);
     virtual void EndSaveDialog(const std::wstring& sPath, unsigned int nId);
+
+    static void sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = {});
 };
 
 #endif /* ASCApplicationManager_h */
