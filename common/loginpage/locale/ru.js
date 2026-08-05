@@ -153,7 +153,7 @@ l10n.ru = {
     settingsGpuUseModeDescr: 'Улучшает производительность на большинстве устройств. Отключите, если возникают проблемы с отображением.',
     settingsEnableAI: 'Включить функции ИИ',
     settingsEnableAIDescr: 'Включите ИИ в приложении для добавления моделей и использования функций на основе ИИ',
-    settRemoveAddon: 'Выйдите за рамки стандартного редактирования',
+    settRemoveAddon: 'Не ограничивайтесь стандартным редактированием',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit и многое другое',
-    strLicensedUnder: 'Лицензия',
+    strLicensedUnder: 'По лицензии',
 }
