@@ -112,6 +112,7 @@
 .itemSubtext {
   color: var(--text-secondary);
   font-size: 12px;
+  opacity: .7;
 }
 
 .itemIndicator {

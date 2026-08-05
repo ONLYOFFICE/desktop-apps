@@ -82,7 +82,7 @@ export function RecoverList(props) {
   return (
     <Show when={recovers().length > 0}>
       <div id="box-recovery">
-        <div class="list-section-title">{t("recovers", "Recovers")}</div>
+        <div class="list-section-title">{t("listRecoveryTitle", "Recovers")}</div>
         <div class="file-list-head text-normal">
           <div class="col-name">{t("colFileName")}</div>
         </div>
