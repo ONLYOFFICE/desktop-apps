@@ -130,6 +130,9 @@ export function RecentList(props) {
   return (
     <Show when={hasRecents()}>
       <div id="box-recent">
+        <Show when={props.heading}>
+          <div class="list-section-title">{props.heading}</div>
+        </Show>
         <div class="file-list-head text-normal">
           <div class="col-name">{t("colFileName")}</div>
           <div class="col-location">{t("colLocation")}</div>

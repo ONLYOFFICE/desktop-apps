@@ -23,7 +23,7 @@ export function postponeAddon() {
 }
 
 export function dismissAddon() {
-  command("addon:action", "dismiss");
+  command("addon:action", "disable");
 }
 
 export function restartNow() {
@@ -43,11 +43,12 @@ export function initAddonStatus() {
     if (cmd !== "addon:status") return;
     try {
       const status = JSON.parse(htmlDecode(param));
-      if (status.progress == undefined && addonStatus().progress != undefined) {
+      if (status.progress == undefined && addonStatus()?.progress != undefined) {
         status.progress = addonStatus().progress;
       }
 
-      setAddonStatus(status);
+      if (addonStatus()?.page !== "error" || status.page === "error")
+        setAddonStatus(status);
 
       if (status.page) {
         setViewPanel(status.page);

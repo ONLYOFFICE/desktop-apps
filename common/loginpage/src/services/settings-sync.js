@@ -210,7 +210,8 @@ export function initSettingsSync() {
     if (snap !== null) {
       restart = (aichat.available && settings.useai !== !!snap.useai) ||
                   scaling !== nativeScalingToStore(snap.uiscaling) ||
-                  settings.gpuMode !== !!snap.usegpu;
+                  settings.gpuMode !== !!snap.usegpu ||
+                  textDirectionChanged() || langRestartPending();
     }
 
     snap.useai = settings.useai;
@@ -296,6 +297,15 @@ export function initSettingsSync() {
       }
     } else if (msgCmd === "settings:lang") {
       if (param.startsWith("restart:")) setLangRestartPending(param === "restart:true");
+    } else if (msgCmd === "addon:action") {
+      if (param == "disable") {
+        const state = isOptsChanged();
+
+        setSettings("useai", false);
+        setAppliedUseAi(false);
+
+        !state && setIsOptsChanged(false);
+      }
     } else if (msgCmd === "uitheme:added") {
       let themes;
       try {

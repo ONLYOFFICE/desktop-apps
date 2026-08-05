@@ -16,9 +16,10 @@ import "./styles/layout.css";
 
 function Shell(props) {
   const location = useLocation();
-  const isChatSelected = () => location.pathname.startsWith("/ai");
+  const isChatSelected = () => location.pathname === "/aichat";
+  const isAiToolsSelected = () => location.pathname.startsWith("/aitools");
   const isSettingsSelected = () => location.pathname.startsWith("/settings");
-  const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && !isSettingsSelected();
+  const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && !isAiToolsSelected() && !isSettingsSelected();
   const isChatExpanded = () => isChatSelected() && aichat.available;
   const showAiCol = () => showSidePanel() || isChatExpanded();
 
@@ -39,6 +40,9 @@ function Shell(props) {
       </div>
       <div class="col-center">
         {props.children}
+        <div class="ext-plugin-frame" classList={{ "ext-plugin-frame--active": isAiToolsSelected() }}>
+          <iframe src="https://maxkadushkin.github.io/underconstruction/" title="ONLYOFFICE" />
+        </div>
         <For each={extPlugins()}>
           {(plugin) => {
             const isActive = () =>
@@ -70,7 +74,8 @@ function Shell(props) {
 /** @type {import("@solidjs/router").RouteDefinition[]} */
 const routes = [
   { path: "/", component: lazy(() => import("./routes/home/index.jsx")) },
-  { path: "/ai", component: lazy(() => import("./routes/ai/index.jsx")) },
+  { path: "/aichat", component: lazy(() => import("./routes/aichat/index.jsx")) },
+  { path: "/aitools", component: lazy(() => import("./routes/aitools/index.jsx")) },
   { path: "/plugin/:pluginId", component: lazy(() => import("./routes/plugin/index.jsx")) },
   { path: "/open", component: lazy(() => import("./routes/open/index.jsx")) },
   { path: "/templates", component: lazy(() => import("./routes/templates/index.jsx")) },

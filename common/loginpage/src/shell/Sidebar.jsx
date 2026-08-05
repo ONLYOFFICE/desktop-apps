@@ -22,16 +22,29 @@ export default function Sidebar() {
     }
   };
 
+  const clickAiTools = (e) => {
+    if (aichat.available) {
+      closeSidePanel();
+      // href handles navigation
+    } else {
+      e.preventDefault();
+      command('addon:action', 'intro');
+    }
+  };
+
   return (
     <nav class="tool-menu">
       <Show when={appliedUseAi()}>
-        <MenuItem href="/ai" onClick={clickAiChat} icon="#aichat" label={t("actAiChat")} />
+        <MenuItem href="/aichat" onClick={clickAiChat} icon="#aichat" label={t("actAiChat")} />
         <li class="menu-item separator" />
       </Show>
       <MenuItem href="/" icon="#home" label={t("actHome")} end />
       <MenuItem href="/open" icon="#folder" label={t("actOpenLocal")} />
       <MenuItem action="templates" href="/templates" icon="#templates" label={t("actTemplates")} />
       <MenuItem action="clouds" href="/clouds" icon="#cloud" label={t("actClouds")} />
+      <Show when={appliedUseAi()}>
+        <MenuItem href="/aitools" onClick={clickAiTools} icon="#aitools" label={t("actAiTools", "AI Tools")} />
+      </Show>
       <For each={extPlugins()}>
         {(plugin) => (
           <MenuItem

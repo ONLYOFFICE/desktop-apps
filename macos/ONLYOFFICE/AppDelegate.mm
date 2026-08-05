@@ -42,6 +42,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ASCApplicationManager.h"
 #import "ASCConstants.h"
 #import "ASCSavePanelWithFormatController.h"
 #import "ASCCertificatePreviewController.h"
@@ -51,6 +52,7 @@
 #import "ASCEditorWindowController.h"
 #import "ASCEditorWindow.h"
 #import "ASCTitleWindow.h"
+#import "ASCAboutController.h"
 #import "ASCSharedSettings.h"
 #import "ASCTabView.h"
 #import "NSString+Extensions.h"
@@ -736,7 +738,29 @@
         ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
         
         NSWindowController * windowController = [controller.storyboard instantiateControllerWithIdentifier:@"ASCAboutWindowControllerId"];
-        [NSApp runModalForWindow:windowController.window];
+        NSWindow * aboutWindow = windowController.window;
+        
+        NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        // TODO: replace with the real version of the add-on
+        NSString *appVersion = [NSString stringWithFormat:@"%@.%@",
+                   [infoDictionary objectForKey:@"CFBundleShortVersionString"],
+                   [infoDictionary objectForKey:@"ASCBundleBuildNumber"]];
+        
+        ASCAboutController *aboutController = (ASCAboutController *)aboutWindow.contentViewController;
+#ifdef USE_ADDON_MODE
+        aboutController.aiToolsHidden = ![[ASCAddonManager sharedManager] isInstalled];
+        aboutController.aiToolsVersion = appVersion;
+#else
+        aboutController.aiToolsHidden = YES;
+#endif
+        
+        NSRect parentFrame = mainWindow.frame;
+        NSRect childFrame = aboutWindow.frame;
+        [aboutWindow setFrameOrigin:NSMakePoint(NSMidX(parentFrame) - childFrame.size.width / 2,
+                                                NSMidY(parentFrame) - childFrame.size.height / 2)];
+        // Show the window first to apply the coordinates
+        [aboutWindow makeKeyAndOrderFront:nil];
+        [NSApp runModalForWindow:aboutWindow];
     }
 }
 
@@ -1962,12 +1986,12 @@
             [self.upgradeController reject];
         }
 
-    } else if ([action isEqualToString:@"dismiss"]) {
+    } else if ([action isEqualToString:@"disable"]) {
         /* "don't show again" clicked */
         if (self.upgradeController) {
             [self.upgradeController reject];
         }
-        // TODO: add impl "don't show again"
+        ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:action", L"disable");
 
     } else if ([action isEqualToString:@"uninstall"]) {
         self.upgradeInProgress = YES;

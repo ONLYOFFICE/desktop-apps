@@ -36,6 +36,7 @@
   overflow-y: auto;
   padding: 16px 16px 20px;
   background-color: var(--background-action-panel);
+  min-height: inherit;
 }
 
 main {

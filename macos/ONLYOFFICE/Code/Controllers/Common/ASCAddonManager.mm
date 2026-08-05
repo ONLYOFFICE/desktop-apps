@@ -349,15 +349,12 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
         if (![package isKindOfClass:[NSDictionary class]] || package.count == 0)
             break;
 
-#if defined(__aarch64__) || defined(__arm64__)
+#if _V8_VERSION
+        NSDictionary *platform = package[@"macos_v8"];
+#elif _X86_64_ONLY
+        NSDictionary *platform = package[@"macos_x86_64"];
+#elif _ARM_ONLY
         NSDictionary *platform = package[@"macos_arm"];
-#elif defined(__x86_64__)
-        NSDictionary *platform = nil;
-        if (@available(macOS 10.13, *)) {
-            platform = package[@"macos_x86_64"];
-        } else {
-            platform = package[@"macos_v8"];
-        }
 #else
 # error Unsupported architecture
 #endif

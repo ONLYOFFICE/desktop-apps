@@ -25,7 +25,7 @@ export function StatusPanel(props) {
         </Match>
 
         <Match when={props.page === "complete"}>
-          <p class={styles.message}>{t("addonInstalledTitle")}</p>
+          <p class={styles.message}>{addonStatus()?.message || t("addonInstalledTitle")}</p>
           <p class={styles.note}>{t("addonRestartNeeded")}</p>
           <div class={styles.actions}>
             <button type="button" class={styles.btnOutline} onClick={postponeAddon}>

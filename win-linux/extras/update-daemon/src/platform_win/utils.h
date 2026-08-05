@@ -61,6 +61,7 @@ wstring cmdArgsAsString();
 wstring GetLastErrorAsString();
 int ShowMessage(wstring str, bool showError = false);
 wstring GetAppLanguage();
+bool IsCommunityEdition(const wstring &basePath);
 }
 
 namespace NS_File

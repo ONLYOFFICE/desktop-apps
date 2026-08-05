@@ -7,6 +7,10 @@
   overflow-y: auto;
   height: 100%;
   box-sizing: border-box;
+
+  .col-center & {
+    overflow-y: auto;
+  }
 }
 
 .clouds-page > section {
@@ -15,11 +19,11 @@
 }
 
 .clouds-section-title {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 20px;
   color: var(--text-normal);
-  margin: 0 0 8px;
+  margin: 0 0 16px;
 }
 
 /* Connected portals list */
@@ -153,8 +157,8 @@
 }
 
 .btn-portal-action .icon {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   fill: currentColor;
 }
 
