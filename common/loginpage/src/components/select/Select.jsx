@@ -5,6 +5,7 @@ import styles from "./Select.module.css";
 
 const getItemValue = (o) => o?.value ?? o;
 const getItemLabel = (o) => o?.label ?? String(o ?? "");
+const getItemSublabel = (o) => o?.sublabel;
 
 function Root(props) {
   const [local, rest] = splitProps(props, ["onChange", "options", "value", "class"]);
@@ -18,7 +19,12 @@ function Root(props) {
       value={local.value ?? null}
       itemComponent={(itemProps) => (
         <SelectPrimitive.Item item={itemProps.item} class={styles.item}>
-          <SelectPrimitive.ItemLabel>{getItemLabel(itemProps.item.rawValue)}</SelectPrimitive.ItemLabel>
+          <SelectPrimitive.ItemLabel class={styles.itemLabel}>
+            <span>{getItemLabel(itemProps.item.rawValue)}</span>
+            {getItemSublabel(itemProps.item.rawValue) && (
+              <span class={styles.itemSubtext}>{getItemSublabel(itemProps.item.rawValue)}</span>
+            )}
+          </SelectPrimitive.ItemLabel>
           <SelectPrimitive.ItemIndicator class={styles.itemIndicator}>
             <svg viewBox="0 0 16 16" aria-hidden="true">
               <path

@@ -21,7 +21,11 @@ export default function GeneralSettings() {
     { value: "US", label: "United States" },
   ]);
 
-  const languageOptions = createMemo(() => availableLangs().map((l) => ({ value: l.code, label: l.name })));
+  const languageOptions = createMemo(() => availableLangs().map((l) => ({
+    value: l.code,
+    label: l.name,
+    sublabel: l.enname,
+  })));
 
   const scalingOptions = createMemo(() => [
     { value: "auto", label: t("settOptScalingAuto") },

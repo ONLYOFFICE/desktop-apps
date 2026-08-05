@@ -103,10 +103,22 @@
   }
 }
 
-.item-indicator {
+.itemLabel {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.itemSubtext {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.itemIndicator {
   display: flex;
   align-items: center;
   width: 16px;
   height: 16px;
+  margin-left: 5px;
   color: var(--icon-normal);
 }
