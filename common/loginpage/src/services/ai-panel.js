@@ -3,6 +3,7 @@ import { onNativeMessage } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
 import { setPanelUrl, openSidePanel, closeSidePanel, setChatAvialable } from "@/stores/aichat";
 import { registerPlugin, selectPluginSection, setPluginSectionsDisabled } from "@/stores/plugin-settings";
+import { openPluginModal, closePluginModal } from "@/stores/plugin-modals";
 import { addExtPlugin } from "@/stores/ext-plugins";
 
 const AI_PLUGIN_IDS = ["F2402876-659F-47FB-A646-67B49F2B5AAA", "9DC93CDB-B576-4F0C-B55E-FCC9C48DD777"];
@@ -59,6 +60,10 @@ export function initAiPanel() {
     } else if (msg.type === "minimize") {
       openSidePanel();
       window.location.hash = "#/";
+    } else if (msg.type === "modal:open") {
+      openPluginModal(msg.id, msg.url, msg.width, msg.height);
+    } else if (msg.type === "modal:close") {
+      closePluginModal(msg.id);
     } else if (msg.type === "collapse") {
       closeSidePanel();
     }

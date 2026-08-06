@@ -2,6 +2,7 @@ import { Show, For, lazy, createEffect, createSignal, onMount } from "solid-js";
 import { HashRouter, useLocation } from "@solidjs/router";
 import Sidebar from "./shell/Sidebar";
 import About from "./routes/about/index.jsx";
+import { PluginModal } from "@/components/plugin-modal/PluginModal";
 import HomePanel from "./routes/home/index.jsx";
 import { AiPanel } from "@/components/ai-panel";
 import { ResizeHandle } from "@/components/ai-panel/ResizeHandle.jsx";
@@ -82,6 +83,7 @@ function Shell(props) {
         </div>
       </Show>
       <About />
+      <PluginModal />
     </div>
   );
 }
