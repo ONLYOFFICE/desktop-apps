@@ -172,8 +172,7 @@ export function initSettingsSync() {
   createEffect(() => {
     settings.lang; settings.scaling; settings.theme;
     settings.checkUpdates; settings.launchMode; settings.spellCheck;
-    settings.gpuMode; settings.promoButtons; settings.userName;
-    settings.useai;
+    settings.gpuMode; settings.userName; settings.useai;
     if (!initialized) return;
     setIsOptsChanged(true);
   });

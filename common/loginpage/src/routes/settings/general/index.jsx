@@ -202,15 +202,6 @@ export default function GeneralSettings() {
           <Switch id="gpu-mode" checked={settings.gpuMode} onChange={(v) => setSettings("gpuMode", v)} />
         </div>
 
-        {/* <div class={styles.fieldRowAuto}>
-          <label for="promo-buttons" class={styles.fieldLabelBlock}>
-            {t("settPromoButtons")}<span class={styles.fieldDescription}>{t("settPromoButtonsDescr")}</span>
-          </label>
-          <Switch id="promo-buttons" checked={settings.promoButtons !== false} onChange={(v) => setSettings("promoButtons", v)} />
-        </div> */}
-
-        {/* <div class={styles.divider} /> */}
-
         <Show when={addonInfo()?.installed}>
           <div class={styles.divider} />
 

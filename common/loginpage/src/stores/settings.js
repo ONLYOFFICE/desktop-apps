@@ -58,7 +58,6 @@ const defaultSettings = Object.freeze({
   launchMode: defs.EDITOR_MODE_TAB,
   spellCheck: "auto",
   gpuMode: true,
-  promoButtons: true,
   useai: true,
 });
 

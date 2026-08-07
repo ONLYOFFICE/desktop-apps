@@ -2,7 +2,6 @@ import { For, Show } from "solid-js";
 import { t } from "@/services/l10n";
 import { extPlugins, pluginRouteId } from "@/stores/ext-plugins";
 import { openAbout, aboutVisible } from "@/services/about";
-import { openPromo, promoVisible, promoButtons } from "@/services/promotion";
 import { appliedUseAi } from "@/services/settings-sync";
 import { MenuItem } from "./MenuItem.jsx";
 import { command } from "@/sdk/bridge.js";
@@ -55,14 +54,6 @@ export default function Sidebar() {
         )}
       </For>
       <li class="menu-item devider" />
-      <Show when={promoVisible()}>
-        <For each={promoButtons}>{
-          (btn) => <MenuItem class={btn.cls} onClick={() => openPromo(btn.id)}
-                            icon={btn.icon} label={btn.text} />
-        }
-        </For>
-      </Show>
-      {/* <div class="menu-item separator" /> */}
       <MenuItem href="/settings/general" icon="#settings" label={t("actSettings")} action="settings" class="cls-btn" />
       <MenuItem onClick={openAbout} icon="#about" label={t("actAbout")} hidden={!aboutVisible()} />
     </nav>
