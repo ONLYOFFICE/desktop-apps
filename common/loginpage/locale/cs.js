@@ -23,7 +23,7 @@ l10n.cs = {
     menuFileExplore: 'Ukázat ve složce',
     menuRemoveModel: 'Odstranit ze seznamu',
     menuClear: 'Vymazat',
-    menuLogout: 'Logout',
+    menuLogout: 'Odhlásit se',
     menuFilePin: 'Připnout',
     menuFileUnpin: 'Odepnout',
     textMyComputer: 'Můj počítač',

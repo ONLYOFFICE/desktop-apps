@@ -147,7 +147,7 @@ l10n.el = {
     dropZoneTitle: 'Δεν υπάρχουν αρχεία ακόμα',
     dropZoneText: 'Σύρετε και αποθέστε αρχεία εδώ ή ανοίξτε ένα',
     dropZoneOpenAction: 'Άνοιγμα αρχείου',
-    settingsGeneral: "Γενικά",
+    settingsGeneral: "Γενικές",
     settingsCountry: 'Χώρα',
     settingsUserNamePlaceholder: 'Όνομα χρήστη',
     settingsGpuUseModeDescr: 'Βελτιώνει την απόδοση στις περισσότερες συσκευές. Απενεργοποιήστε εάν αντιμετωπίζετε προβλήματα εμφάνισης.',
