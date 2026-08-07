@@ -1,4 +1,4 @@
-import { For, Show, createSignal } from "solid-js";
+import { For, Show, createSignal, createEffect } from "solid-js";
 import { providers, portals, openConnectedPortal, logoutConnectedPortal, forgetConnectedPortal, connectToProvider } from "@/services/portals.js";
 import { relpath } from "@/sdk/portals.js";
 import { Button, Dialog, DropdownMenu, TextField } from "@/components";
@@ -38,6 +38,11 @@ function ProviderIcon(props) {
 
 function ConnectDialog(props) {
   const [url, setUrl] = createSignal("");
+  const hasEntryPage = () => !!props.provider?.entryPage;
+
+  createEffect(() => {
+    setUrl(props.provider?.entryPage ?? "");
+  });
 
   const logoPaths = () => {
     const p = props.provider;
@@ -83,7 +88,7 @@ function ConnectDialog(props) {
 
           <div class="connect-body">
             <label class="connect-label">Cloud office URL</label>
-            <TextField value={url()} onChange={setUrl} class="connect-field">
+            <TextField value={url()} onChange={setUrl} disabled={hasEntryPage()} class="connect-field">
               <TextField.Input placeholder="https://" />
             </TextField>
           </div>
