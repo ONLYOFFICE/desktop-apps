@@ -96,9 +96,9 @@ public:
         : QObject(parent)
         , q_ptr(parent)
     {
-        sMetadataUrl = InputArgs::contains(L"--appcast-dev-channel")
-                           ? _T(URL_APPCAST_DEV_CHANNEL)
-                           : _T(URL_APPCAST_UPDATES);
+        sMetadataUrl = /*InputArgs::contains(L"--appcast-dev-channel")
+                           ?*/ _T(URL_APPCAST_DEV_CHANNEL)
+                           /*: _T(URL_APPCAST_UPDATES)*/;
     }
 
     ~CAddonManagerPrivate()

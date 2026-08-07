@@ -100,9 +100,9 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
         _installing = NO;
         _restartRequired = NO;
         _downloadMode = ASCAddonDownloadMetadata;
-        _metadataUrl = [ASCHelper processArgsContain:@"--appcast-dev-channel"]
-                           ? URL_APPCAST_DEV_CHANNEL
-                           : URL_APPCAST_UPDATES;
+        _metadataUrl = /*[ASCHelper processArgsContain:@"--appcast-dev-channel"]
+                           ?*/ URL_APPCAST_DEV_CHANNEL
+                           /*: URL_APPCAST_UPDATES*/;
     }
     return self;
 }
