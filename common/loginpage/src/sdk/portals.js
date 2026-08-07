@@ -1,7 +1,6 @@
 import { command } from "./bridge.js";
 
-// export const relpath = !/mac os/i.test(navigator.userAgent) ? "." : "..";
-export const relpath = import.meta.env.PROD ? "." : "..";
+export const relpath = !/mac os/i.test(navigator.userAgent) && import.meta.env.PROD ? "." : "..";
 
 export function getExternalClouds() {
   try {

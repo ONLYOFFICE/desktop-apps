@@ -279,12 +279,10 @@
 
 /* Theme-aware provider images */
 
-:root:not(.theme-dark):not(.theme-dark-modern):not(.theme-contrast-dark) .icon__dark {
+:root:not(.theme-type-dark) .icon__light {
   display: none;
 }
 
-:root.theme-dark .icon__light,
-:root.theme-dark-modern .icon__light,
-:root.theme-contrast-dark .icon__light {
+:root.theme-type-dark .icon__dark {
   display: none;
 }
