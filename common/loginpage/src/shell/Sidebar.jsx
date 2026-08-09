@@ -1,4 +1,5 @@
-import { For, Show } from "solid-js";
+import { For, Show, createSignal, createEffect } from "solid-js";
+import { useLocation } from "@solidjs/router";
 import { t } from "@/services/l10n";
 import { extPlugins, pluginRouteId } from "@/stores/ext-plugins";
 import { openAbout, aboutVisible } from "@/services/about";
@@ -10,6 +11,11 @@ import "./Sidebar.styles.css";
 import { sendPluginVisibility } from "@/services/ai-panel.js";
 
 export default function Sidebar() {
+  const location = useLocation();
+  const isSettingsActive = () => location.pathname.startsWith("/settings");
+  const [settingsHref, setSettingsHref] = createSignal("/settings/general");
+  createEffect(() => { if (isSettingsActive()) setSettingsHref(location.pathname); });
+
   const clickAiChat = (e) => {
     if (aichat.available) {
       closeSidePanel();
@@ -54,7 +60,7 @@ export default function Sidebar() {
         )}
       </For>
       <li class="menu-item devider" />
-      <MenuItem href="/settings/general" icon="#settings" label={t("actSettings")} action="settings" class="cls-btn" />
+      <MenuItem href={settingsHref()} icon="#settings" label={t("actSettings")} action="settings" class="cls-btn" isActive={isSettingsActive} />
       <MenuItem onClick={openAbout} icon="#about" label={t("actAbout")} hidden={!aboutVisible()} />
     </nav>
   );

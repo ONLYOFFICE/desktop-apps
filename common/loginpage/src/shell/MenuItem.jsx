@@ -3,7 +3,7 @@ import { A } from "@solidjs/router";
 import { usePngIcons } from "@/services/display";
 
 export function MenuItem(props) {
-  const [local] = splitProps(props, ["href", "onClick", "icon", "label", "end", "hidden", "action", "class"]);
+  const [local] = splitProps(props, ["href", "onClick", "icon", "label", "end", "hidden", "action", "class", "isActive"]);
 
   const [pngvisible, setPngVisible] = createSignal();
 
@@ -11,7 +11,7 @@ export function MenuItem(props) {
     <li class="menu-item" classList={{ hidden: local.hidden }}>
       <Switch>
         <Match when={local.href}>
-          <A href={local.href} onClick={local.onClick} activeClass="selected" end={local.end} action={local.action} class={local.class}>
+          <A href={local.href} onClick={local.onClick} activeClass="selected" end={local.end} action={local.action} class={local.class} classList={{ selected: local.isActive?.() }}>
             <Show when={local.icon}>
               <div class="icon-inner-box">
                 <Show when={usePngIcons()} fallback={<svg class="icon"><use href={local.icon} /></svg>}>
