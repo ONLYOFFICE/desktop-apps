@@ -39,6 +39,7 @@
   height: 300px;
   display: block;
   cursor: pointer;
+  -webkit-user-drag: none;
 }
 
 .navBtn {
