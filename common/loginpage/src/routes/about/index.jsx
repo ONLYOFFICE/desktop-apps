@@ -78,7 +78,7 @@ export default function About() {
                       </svg>
                       <span class="update-status-text">{updateStatus().text}</span>
                     </div>
-                    <Show when={updateStatus().button?.text}>
+                    <Show when={updateStatus().button}>
                       <div class="update-action-row">
                         <Button variant="accent" onClick={execUpdateAction} disabled={updateStatus().button.lock === "true"}>
                           {updateStatus().button.text}

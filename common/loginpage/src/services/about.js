@@ -56,6 +56,15 @@ export function initAbout() {
     } else if (/updates:status/.test(cmd)) {
       try {
         const info = JSON.parse(param);
+        if (updateStatus()?.button) {
+          !info.button && (info.button = {});
+          if (!info.button.text && updateStatus().button.text) {
+            info.button.text = updateStatus().button.text;
+          }
+          if (info.button.lock===undefined && updateStatus().button.lock!==undefined) {
+            info.button.lock = updateStatus().button.lock;
+          }
+        }
         setUpdateStatus(info);
         if (info.button?.action) _pendingUpdateAction = info.button.action;
       } catch {}
