@@ -11,7 +11,7 @@ export function MenuItem(props) {
     <li class="menu-item" classList={{ hidden: local.hidden }}>
       <Switch>
         <Match when={local.href}>
-          <A href={local.href} onClick={local.onClick} activeClass="selected" end={local.end} action={local.action} class={local.class} classList={{ selected: local.isActive?.() }}>
+          <A href={local.href} onClick={local.onClick} activeClass={local.isActive ? "" : "selected"} end={local.end} action={local.action} class={local.class} classList={local.isActive ? { selected: local.isActive() } : undefined}>
             <Show when={local.icon}>
               <div class="icon-inner-box">
                 <Show when={usePngIcons()} fallback={<svg class="icon"><use href={local.icon} /></svg>}>
