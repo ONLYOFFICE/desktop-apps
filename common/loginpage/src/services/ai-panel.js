@@ -37,6 +37,26 @@ export function sendPluginSettings(opts) {
     iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
   }
 }
+
+export function sendFileToChat(path, type, name) {
+  const iframe = document.getElementById("idx-plugin-frame");
+  if (iframe && iframe.contentWindow) {
+    let file = {path: path};
+    type != undefined && (file.type = type);
+    name != undefined && (file.title = name);
+
+    const obj = {
+      event: "onPluginEvent",
+      data: {
+        type: "attach:file",
+        // requestId: "",
+        files: [file],
+      }
+    };
+    iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
+  }
+}
+
 export function initAiPanel() {
   const unsubMessage = onNativeMessage((cmd, param) => {
     if (cmd !== "panel:external") return;

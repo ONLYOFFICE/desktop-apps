@@ -72,7 +72,7 @@ function RecentRow(props) {
             class="btn-recents-tool aichat"
             onClick={(e) => {
               e.stopPropagation();
-              props.onAddToChat(props.model.fileid);
+              props.onAddToChat(props.model);
             }}
           >
             <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#aichat_rcl" /></svg>}>

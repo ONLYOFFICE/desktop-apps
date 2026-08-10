@@ -19,10 +19,10 @@ import { DocTypeGrid } from "./components/DocTypeGrid.jsx";
 import { RecentList } from "./components/RecentList.jsx";
 import { RecoverList } from "./components/RecoverList.jsx";
 import { FileDropZone } from "./components/FileDropZone.jsx";
-import { aichat } from "@/stores/aichat.js";
+import { aichat, openSidePanel } from "@/stores/aichat.js";
 import { command } from "@/sdk/bridge.js";
 import "@/styles/components/home.css";
-import { sendPluginVisibility } from "@/services/ai-panel.js";
+import { sendFileToChat, sendPluginVisibility } from "@/services/ai-panel.js";
 
 const toArray = (v) => (Array.isArray(v) ? v : []);
 
@@ -115,10 +115,12 @@ export default function Index() {
     setRecovers([]);
   }
 
-  function addToChat() {
+  function addToChat(model) {
     if (aichat.available) {
       // navigate("/ai");
+      sendFileToChat(model.path, model.type, model.fullName);
       sendPluginVisibility("minimized");
+      openSidePanel();
     } else {
       command('addon:action', 'intro');
     }
