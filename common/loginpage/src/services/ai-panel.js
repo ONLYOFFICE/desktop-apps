@@ -24,6 +24,19 @@ export function sendPluginVisibility(opts) {
   }
 }
 
+export function sendPluginSettings(opts) {
+  const iframe = document.getElementById("idx-plugin-frame");
+  if (iframe && iframe.contentWindow) {
+    let obj = {
+      event: "onPluginEvent",
+      data: {
+        type: "settings",
+        items: opts
+      }
+    };
+    iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
+  }
+}
 export function initAiPanel() {
   const unsubMessage = onNativeMessage((cmd, param) => {
     if (cmd !== "panel:external") return;

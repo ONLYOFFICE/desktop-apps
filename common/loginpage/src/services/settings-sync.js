@@ -5,7 +5,7 @@ import { onNativeMessage } from "@/sdk/events";
 import { applyLocale, getTranslationFor, isRTL } from "@/services/l10n";
 import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
-import { sendPluginSettings } from "@/sdk/app";
+import { sendPluginSettings } from "@/services/ai-panel";
 import { aichat } from "@/stores/aichat";
 
 
