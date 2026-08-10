@@ -38,10 +38,17 @@ function ProviderIcon(props) {
 
 function ConnectDialog(props) {
   const [url, setUrl] = createSignal("");
+  const [error, setError] = createSignal("");
+  const [checking, setChecking] = createSignal(false);
   const hasEntryPage = () => !!props.provider?.entryPage;
+  let inputRef;
 
   createEffect(() => {
     setUrl(props.provider?.entryPage ?? "");
+    setError("");
+    if (props.provider && !hasEntryPage()) {
+      setTimeout(() => inputRef?.focus(), 150);
+    }
   });
 
   const logoPaths = () => {
@@ -58,19 +65,53 @@ function ConnectDialog(props) {
 
   function handleClose() {
     setUrl("");
+    setError("");
     props.onClose();
   }
 
-  function handleConnect() {
-    const val = url().trim();
-    if (!val) return;
-    connectToProvider(props.provider, val);
-    handleClose();
+  function isValidUrl(str) {
+    try { new URL(str); return true; } catch { return false; }
+  }
+
+  function getCandidates(raw) {
+    const s = raw.trim();
+    if (!s) return [];
+    if (/^https?:\/\//i.test(s)) return [s];
+    return [`https://${s}`, `http://${s}`];
+  }
+
+  async function handleConnect() {
+    if (checking()) return;
+    if (hasEntryPage()) {
+      connectToProvider(props.provider, props.provider.entryPage);
+      handleClose();
+    }
+
+    const candidates = getCandidates(url()).filter(isValidUrl);
+    if (!candidates.length) {
+      setError("Invalid URL");
+      return;
+    }
+    const checkPath = props.provider?.check?.url ?? "";
+    setChecking(true);
+    try {
+      for (const candidate of candidates) {
+        try {
+          await fetch(candidate + checkPath, { method: "HEAD", signal: AbortSignal.timeout(5000) });
+          connectToProvider(props.provider, candidate);
+          handleClose();
+          return;
+        } catch {}
+      }
+      setError("Server is not accessible");
+    } finally {
+      setChecking(false);
+    }
   }
 
   return (
     <Dialog open={!!props.provider} onOpenChange={(open) => !open && handleClose()}>
-      <Dialog.Content class="connect-dialog">
+      <Dialog.Content class="connect-dialog" onKeyDown={(e) => e.key === "Enter" && e.target.tagName !== "BUTTON" && handleConnect()}>
         <div class="dlg-header">
           <Dialog.Title class="dlg-title">Connect to {props.provider?.name}</Dialog.Title>
           <Dialog.CloseButton class="dlg-close" />
@@ -88,15 +129,30 @@ function ConnectDialog(props) {
 
           <div class="connect-body">
             <label class="connect-label">Cloud office URL</label>
-            <TextField value={url()} onChange={setUrl} disabled={hasEntryPage()} class="connect-field">
-              <TextField.Input placeholder="https://" />
-            </TextField>
+            <div class="url-field-wrap" classList={{ "url-field-wrap--error": !!error() }}>
+              <TextField
+                value={url()}
+                onChange={(val) => { setUrl(val); setError(""); }}
+                disabled={hasEntryPage()}
+                class="connect-field"
+              >
+                <TextField.Input
+                  ref={inputRef}
+                  placeholder="https://"
+                />
+              </TextField>
+              <Show when={error()}>
+                <span class="url-error-icon" title={error()}>
+                  <svg class="icon"><use href="#warning" /></svg>
+                </span>
+              </Show>
+            </div>
           </div>
         </div>
 
         <div class="connect-footer">
           <Button onClick={handleClose}>Cancel</Button>
-          <Button variant="accent" onClick={handleConnect}>Connect</Button>
+          <Button tabIndex="1" variant="accent" onClick={handleConnect} disabled={checking()}>Connect</Button>
         </div>
       </Dialog.Content>
     </Dialog>

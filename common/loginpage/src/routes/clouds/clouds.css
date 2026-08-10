@@ -277,6 +277,33 @@
   padding: 16px 20px 20px;
 }
 
+.url-field-wrap {
+  position: relative;
+}
+
+.url-field-wrap--error .connect-field input {
+  border-color: var(--text-negative);
+  padding-right: 32px;
+}
+
+.url-error-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  color: var(--text-negative);
+  pointer-events: auto;
+  cursor: default;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+}
+
 /* Theme-aware provider images */
 
 body:not(.theme-type-dark) .icon__dark {
