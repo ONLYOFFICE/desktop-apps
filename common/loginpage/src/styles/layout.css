@@ -80,6 +80,10 @@ h4 {
 .col-sidebar {
   overflow-y: auto;
   padding: 8px 0 8px 8px;
+
+  body.rtl & {
+    padding: 8px 8px 8px 0;
+  }
 }
 
 .col-center {
@@ -94,6 +98,10 @@ h4 {
     background: var(--background-action-panel);
     height: 100%;
     overflow: hidden;
+  }
+
+  body.rtl & {
+    padding: 8px 0 8px 8px;
   }
 }
 
