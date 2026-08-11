@@ -38,8 +38,8 @@
 
 #include "components/cmessage.h"
 #include <functional>
+#include <initializer_list>
 
-#define mbNone  MsgBtns(-1)
 #define NOTIF_FAILED    -2
 //#define NOTIF_DISMISSED -3
 
@@ -52,7 +52,12 @@ public:
     CNotification& operator=(const CNotification&) = delete;
     static CNotification& instance();
     bool init();
-    bool show(const QString &msg, const QString &content, MsgBtns dlgBtns = mbNone, const FnVoidInt &callback = nullptr);
+
+    bool show(const QString &msg, const QString &content);
+    bool show(const QString &msg, const QString &content,
+              CMessage::Buttons dlgBtns, const FnVoidInt &callback);
+    bool show(const QString &msg, const QString &content,
+              std::initializer_list<QString> btns, const FnVoidInt &callback);
     void clear();
 
 private:
