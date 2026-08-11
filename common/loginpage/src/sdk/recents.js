@@ -148,7 +148,7 @@ export function parseRecentDirs(arr, t) {
     const m = reFolderName.exec(full);
     const name = m ? m[1] : full;
     const parent = m ? full.slice(0, full.length - name.length - 1) : t ? t("textMyComputer") : "My Computer";
-    const id = hashCode(full);
+    const id = Math.abs(hashCode(full));
     const isPinned = isPinnedFolder(full);
     out.push({
       uid: `folder-${id}`,
