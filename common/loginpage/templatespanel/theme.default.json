@@ -99,5 +99,7 @@
   "switch-background-color-hover": "var(--highlight-button-hover)",
   "switch-color-checked": "var(--highlight-button-hover)",
   "switch-shadow-color-hover": "var(--border-tabbar)",
-  "switch-text-color": "var(--text-normal)"
+  "switch-text-color": "var(--text-normal)",
+  "template-modal-wrapper-background-color": "var(--background-action-panel)",
+  "template-modal-wrapper-border-color": "var(--border-regular-control)"
 }
