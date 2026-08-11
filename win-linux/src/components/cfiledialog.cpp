@@ -230,11 +230,11 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
                 QWidget * _mess_parent = (QWidget *)parent();
                 int _answ = CMessage::showMessage(_mess_parent,
                                                   tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName().toHtmlEscaped()),
-                                                  MsgType::MSG_WARN, MsgBtns::mbYesNo);
-                if ( MODAL_RESULT_NO == _answ ) {
+                                                  CMessage::Icon::Warning, CMessage::Buttons::YesNo);
+                if ( CMessage::Result::No == _answ ) {
                     continue;
                 } else
-                if ( MODAL_RESULT_YES != _answ ) {
+                if ( CMessage::Result::Yes != _answ ) {
                     fileName.clear();
                 }
             }

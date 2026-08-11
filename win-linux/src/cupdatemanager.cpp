@@ -898,7 +898,7 @@ void CUpdateManager::showUpdateMessage(QWidget *parent, bool forceModal, int res
             if (CNotification::instance().show(title,
                         QString("%1\n%2: %3\n%4: %5").arg(name, tr("Current version"),
                         curr_version, tr("New version"), m_packageData->version),
-                        MsgBtns::mbSkipRemindDownload, [=](int res) {
+                        {tr("Skip"), tr("Later"), tr("Download")}, [=](int res) {
                             QMetaObject::invokeMethod(this, "showUpdateMessage", Qt::QueuedConnection, Q_ARG(QWidget*, parent), Q_ARG(bool, res == NOTIF_FAILED), Q_ARG(int, res));
                         })) {
                 __UNLOCK
@@ -908,21 +908,27 @@ void CUpdateManager::showUpdateMessage(QWidget *parent, bool forceModal, int res
 
         QString content = QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)")
                               .arg(name, tr("Current version"), curr_version, tr("New version"), m_packageData->version, text, m_packageData->fileSize);
-        CMessageOpts opts;
+        CMessage::Config opts;
         opts.contentText = QString("%1\n").arg(content);
         if (!QString(RELEASE_NOTES).isEmpty())
             opts.linkText =  LINK_TEXT;
-        result = CMessage::showMessage(parent, title, MsgType::MSG_BRAND, MsgBtns::mbSkipRemindDownload, opts);
+        CMessage msg(parent);
+        msg.setText(title);
+        msg.setIcon(CMessage::Icon::Brand);
+        msg.setButtons({tr("Skip this version"), tr("Remind me later"), tr("Download update")});
+        msg.setDefaultButton(CMessage::DefaultButton::ThirdButton);
+        msg.setConfig(opts);
+        result = msg.exec();
         __UNLOCK
     }
     switch (result) {
-    case MsgRes::MODAL_RESULT_DOWNLOAD:
+    case CMessage::Result::ThirdButton: // Download
         if (m_packageData->isInstallable)
             loadUpdates();
         else
             Utils::openUrl(DOWNLOAD_PAGE);
         break;
-    case MsgRes::MODAL_RESULT_SKIPVER: {
+    case CMessage::Result::FirstButton: { // Skip
         skipVersion();
         refreshStartPage({"success", {TXT_UPDATED}, BTN_TXT_CHECK, "check", "false"});
         m_pLastCheckMsgTimer->start();
@@ -944,7 +950,7 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent, bool forceModal, i
             if (CNotification::instance().show(title,
                         QString("%1\n%2: %3\n%4: %5").arg(name, tr("Current version"),
                         curr_version, tr("New version"), m_packageData->version),
-                        MsgBtns::mbInslaterRestart, [=](int res) {
+                        {tr("Later"), tr("Restart")}, [=](int res) {
                             QMetaObject::invokeMethod(this, "showStartInstallMessage", Qt::QueuedConnection, Q_ARG(QWidget*, parent), Q_ARG(bool, res == NOTIF_FAILED), Q_ARG(int, res));
                         })) {
                 __UNLOCK
@@ -955,21 +961,27 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent, bool forceModal, i
         QString content = QString("%1\n%2: %3\n%4: %5\n%6")
                               .arg(name, tr("Current version"), curr_version, tr("New version"), m_packageData->version,
                                    tr("To finish updating, restart the app"));
-        CMessageOpts opts;
+        CMessage::Config opts;
         opts.contentText = QString("%1\n").arg(content);
         if (!QString(RELEASE_NOTES).isEmpty())
             opts.linkText =  LINK_TEXT;
-        result = CMessage::showMessage(parent, title, MsgType::MSG_BRAND, MsgBtns::mbInslaterRestart, opts);
+        CMessage msg(parent);
+        msg.setText(title);
+        msg.setIcon(CMessage::Icon::Brand);
+        msg.setButtons({tr("Later"), tr("Restart Now")});
+        msg.setDefaultButton(CMessage::DefaultButton::SecondButton);
+        msg.setConfig(opts);
+        result = msg.exec();
          __UNLOCK
     }
     switch (result) {
-    case MsgRes::MODAL_RESULT_RESTART: {
+    case CMessage::Result::SecondButton: { // Restart Now
         m_startUpdateOnClose = true;
         m_restartAfterUpdate = true;
         AscAppManager::closeAppWindows();
         break;
     }
-    case MsgRes::MODAL_RESULT_INSLATER: {
+    case CMessage::Result::FirstButton: { // Later
 #ifdef _WIN32
         m_startUpdateOnClose = (m_packageData->fileType == "archive");
 #else
