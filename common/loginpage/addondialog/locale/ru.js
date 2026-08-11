@@ -1,22 +1,32 @@
 export default {
-  addonTitle: "Get AI tools for next-level productivity",
-  addonDescr: "AI Tools replace the previous AI plugin and now includes all of its AI features.",
-  addonSlide1: "Slide 1",
-  addonSlide2: "Slide 2",
-  addonSlide3: "Slide 3",
-  addonSlide4: "Slide 4",
-  addonPrevSlide: "Previous",
-  addonNextSlide: "Next",
-  addonLicenseText: "By continuing, you understand and agree to our $1.",
-  addonLicenseLink: "License Agreement",
-  addonBtnLater: "May be later",
-  addonBtnInstall: "Accept & Install",
-  addonDontShow: "Don't show me AI Tools",
-  addonInstallingTitle: "AI Tools",
-  addonInstalling: "Installing...",
-  addonInstalledTitle: "Successfully installed",
-  addonRestartNeeded: "Application needs to restart",
-  addonBtnRestartLater: "I'll do it later",
-  addonBtnRestartNow: "Restart now",
-  addonInstallFailedTitle: "Installation failed",
+  addonTitle: "Выйдите за рамки стандартного редактирования с AI Tools",
+  addonDescr:
+    "Экономьте время и работайте продуктивнее в ONLYOFFICE Docs с помощью дополнительного слоя ИИ для документов, таблиц, презентаций и PDF-файлов.",
+  addonSlide1:
+    "Работайте быстрее во всех редакторах — используйте ИИ в документах, таблицах, презентациях и PDF-файлах с помощью пользовательских провайдеров, MCP и веб-поиска.",
+  addonSlide2:
+    "Создавайте документы и формы с меньшими усилиями — генерируйте контент, автоматически добавляйте поля и структурируйте формы за считанные минуты.",
+  addonSlide3:
+    "Повышайте качество контента — переписывайте текст, переводите содержимое, создавайте краткие изложения и адаптируйте формулировки для любой аудитории.",
+  addonSlide4:
+    "Автоматизируйте рутинные задачи — извлекайте данные, обрабатывайте информацию и сокращайте объём повторяющейся ручной работы.",
+  addonSlide5:
+    "Работайте с PDF более эффективно — редактируйте PDF-файлы с помощью ИИ и распознавайте таблицы для удобного повторного использования данных.",
+  addonSlide6:
+    "Включите AI Tools, чтобы экономить время, сократить объём ручной работы и делать больше со своими документами.",
+  addonPrevSlide: "Назад",
+  addonNextSlide: "Далее",
+  addonLicenseText: "Продолжая, вы понимаете и принимаете наше $1",
+  addonLicenseLink: "Лицензионное соглашение",
+  addonBtnLater: "Может быть позже",
+  addonBtnInstall: "Принять и установить",
+  addonDontShow: "Больше не показывать ONLYOFFICE AI Tools",
+  addonInstallingTitle: "ONLYOFFICE AI Tools",
+  addonInstalling: "Установка...",
+  addonInstalledTitle: "Успешно установлено",
+  addonRestartNeeded: "Необходимо перезапустить приложение",
+  addonBtnRestartLater: "Сделаю это позже",
+  addonBtnRestartNow: "Перезапустить сейчас",
+  addonInstallFailedTitle: "Установка не удалась",
+  addonBtnClose: "Закрыть",
 };

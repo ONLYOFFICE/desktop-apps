@@ -1,22 +1,32 @@
 export default {
-  addonTitle: "Get AI tools for next-level productivity",
-  addonDescr: "AI Tools replace the previous AI plugin and now includes all of its AI features.",
-  addonSlide1: "Slide 1",
-  addonSlide2: "Slide 2",
-  addonSlide3: "Slide 3",
-  addonSlide4: "Slide 4",
-  addonPrevSlide: "Previous",
-  addonNextSlide: "Next",
-  addonLicenseText: "By continuing, you understand and agree to our $1.",
-  addonLicenseLink: "License Agreement",
-  addonBtnLater: "May be later",
-  addonBtnInstall: "Accept & Install",
-  addonDontShow: "Don't show me AI Tools",
-  addonInstallingTitle: "AI Tools",
-  addonInstalling: "Installing...",
-  addonInstalledTitle: "Successfully installed",
-  addonRestartNeeded: "Application needs to restart",
-  addonBtnRestartLater: "I'll do it later",
-  addonBtnRestartNow: "Restart now",
-  addonInstallFailedTitle: "Installation failed",
+  addonTitle: "AI මෙවලම් සමඟ සම්මත සංස්කරණයෙන් ඔබ්බට යන්න",
+  addonDescr:
+    "ලේඛන, පැතුරුම්පත්, ප්‍රස්තුති සහ PDF සඳහා විකල්ප AI ස්තරයක් සමඟින් ONLYOFFICE Docs හි කාලය ඉතිරි කර වඩාත් දක්ෂ ලෙස වැඩ කරන්න.",
+  addonSlide1:
+    "සියලුම සංස්කාරක හරහා වඩා ඉක්මනින් වැඩ කරන්න — අභිරුචි සැපයුම්කරුවන්, MCP සහ වෙබ් සෙවීම සමඟින් ලේඛන, පැතුරුම්පත්, ප්‍රස්තුති සහ PDF හි AI භාවිතා කරන්න.",
+  addonSlide2:
+    "අඩු ප්‍රයත්නයකින් ලේඛන සහ පෝරම සාදන්න — අන්තර්ගතය ජනනය කරන්න, ක්ෂේත්‍ර ස්වයංක්‍රීයව එක් කරන්න, සහ මිනිත්තු කිහිපයකින් පෝරම සංයුති කරන්න.",
+  addonSlide3:
+    "අන්තර්ගත ගුණාත්මකභාවය වැඩිදියුණු කරන්න — පෙළ නැවත ලියන්න, අන්තර්ගතය පරිවර්තනය කරන්න, තොරතුරු සාරාංශ කරන්න, සහ ඕනෑම ප්‍රේක්ෂකයන් සඳහා වචන අනුවර්තනය කරන්න.",
+  addonSlide4:
+    "එදිනෙදා කාර්යයන් ස්වයංක්‍රීය කරන්න — දත්ත උකහා ගන්න, තොරතුරු සැකසන්න, සහ පුනරාවර්තන අතින් කරන කාර්යයන් අඩු කරන්න.",
+  addonSlide5:
+    "PDF වඩාත් කාර්යක්ෂමව හසුරුවන්න — AI සහායෙන් PDF සංස්කරණය කරන්න සහ දත්ත පහසුවෙන් නැවත භාවිතා කිරීම සඳහා වගු හඳුනා ගන්න.",
+  addonSlide6:
+    "කාලය ඉතිරි කර, අතින් කරන කාර්යයන් අඩු කර, ඔබේ ලේඛන සමඟ වැඩි යමක් කිරීමට AI Tools සක්‍රීය කරන්න.",
+  addonPrevSlide: "පෙර",
+  addonNextSlide: "ඊළඟ",
+  addonLicenseText: "ඉදිරියට යාමෙන්, ඔබ අපගේ $1 තේරුම් ගෙන එයට එකඟ වේ",
+  addonLicenseLink: "බලපත්‍ර ගිවිසුම",
+  addonBtnLater: "පසුව බලමු",
+  addonBtnInstall: "පිළිගෙන ස්ථාපනය කරන්න",
+  addonDontShow: "මට ONLYOFFICE AI Tools නොපෙන්වන්න",
+  addonInstallingTitle: "ONLYOFFICE AI Tools",
+  addonInstalling: "ස්ථාපනය කරමින්...",
+  addonInstalledTitle: "සාර්ථකව ස්ථාපනය කරන ලදී",
+  addonRestartNeeded: "යෙදුම නැවත ආරම්භ කළ යුතුය",
+  addonBtnRestartLater: "මම එය පසුව කරන්නෙමි",
+  addonBtnRestartNow: "දැන් නැවත ආරම්භ කරන්න",
+  addonInstallFailedTitle: "ස්ථාපනය අසාර්ථක විය",
+  addonBtnClose: "වසන්න",
 };

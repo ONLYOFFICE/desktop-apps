@@ -20,7 +20,7 @@ export function IntroPanel(props) {
 
       <p class={styles.license}>
         {licenseParts()[0]}
-        <br/>
+        {/* <br/> */}
         <a class={styles.licenseLink} href={LICENSE_URL} target="_blank" rel="noreferrer">
           {t("addonLicenseLink")}
         </a>

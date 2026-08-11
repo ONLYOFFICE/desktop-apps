@@ -1,22 +1,32 @@
 export default {
-  addonTitle: "Get AI tools for next-level productivity",
-  addonDescr: "AI Tools replace the previous AI plugin and now includes all of its AI features.",
-  addonSlide1: "Slide 1",
-  addonSlide2: "Slide 2",
-  addonSlide3: "Slide 3",
-  addonSlide4: "Slide 4",
-  addonPrevSlide: "Previous",
-  addonNextSlide: "Next",
-  addonLicenseText: "By continuing, you understand and agree to our $1.",
-  addonLicenseLink: "License Agreement",
-  addonBtnLater: "May be later",
-  addonBtnInstall: "Accept & Install",
-  addonDontShow: "Don't show me AI Tools",
-  addonInstallingTitle: "AI Tools",
-  addonInstalling: "Installing...",
-  addonInstalledTitle: "Successfully installed",
-  addonRestartNeeded: "Application needs to restart",
-  addonBtnRestartLater: "I'll do it later",
-  addonBtnRestartNow: "Restart now",
-  addonInstallFailedTitle: "Installation failed",
+  addonTitle: "Vá além da edição padrão com o AI Tools",
+  addonDescr:
+    "Poupe tempo e trabalhe de forma mais inteligente no ONLYOFFICE Docs com uma camada opcional de IA para documentos, folhas de cálculo, apresentações e PDF.",
+  addonSlide1:
+    "Trabalhe mais rápido em todos os editores — utilize a IA em documentos, folhas de cálculo, apresentações e PDF com fornecedores personalizados, MCP e pesquisa na Web.",
+  addonSlide2:
+    "Crie documentos e formulários com menos esforço — gere conteúdo, adicione campos automaticamente e estruture formulários em minutos.",
+  addonSlide3:
+    "Melhore a qualidade do conteúdo — reescreva textos, traduza conteúdo, resuma informações e adapte a linguagem a qualquer público.",
+  addonSlide4:
+    "Automatize tarefas rotineiras — extraia dados, processe informações e reduza o trabalho manual repetitivo.",
+  addonSlide5:
+    "Trabalhe com PDF de forma mais eficiente — edite ficheiros PDF com assistência de IA e reconheça tabelas para facilitar a reutilização de dados.",
+  addonSlide6:
+    "Ative o AI Tools para poupar tempo, reduzir o trabalho manual e conseguir fazer mais com os seus documentos.",
+  addonPrevSlide: "Anterior",
+  addonNextSlide: "Seguinte",
+  addonLicenseText: "Ao continuar, compreende e concorda com o nosso $1",
+  addonLicenseLink: "Contrato de Licença",
+  addonBtnLater: "Talvez mais tarde",
+  addonBtnInstall: "Aceitar e instalar",
+  addonDontShow: "Não me mostrar o ONLYOFFICE AI Tools",
+  addonInstallingTitle: "ONLYOFFICE AI Tools",
+  addonInstalling: "A instalar...",
+  addonInstalledTitle: "Instalado com sucesso",
+  addonRestartNeeded: "A aplicação tem de ser reiniciada",
+  addonBtnRestartLater: "Faço isso mais tarde",
+  addonBtnRestartNow: "Reiniciar agora",
+  addonInstallFailedTitle: "A instalação falhou",
+  addonBtnClose: "Fechar",
 };
