@@ -13,11 +13,13 @@ Depends:
 ifelse(M4_PACKAGE_EDITION, full,
 ` x11-common,
   curl,
+  libcups2 | libcups2t64,
   fonts-dejavu | ttf-dejavu'
 ,
 ` x11-common,
   libasound2,
   curl,
+  libcups2 | libcups2t64,
   desktop-file-utils,
   gstreamer1.0-libav,
   gstreamer1.0-plugins-ugly,
