@@ -1301,7 +1301,25 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                     if (m_pMainWindow)
                     {
                         m_pMainWindow->sendAddonStatusToStartPage();
-                        showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Complete);
+                        // showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Complete);
+                        CMessage msg(m_pMainWindow);
+                        msg.setText(tr("ONLYOFFICE AI Tools successfully uninstalled"));
+                        msg.setIcon(CMessage::Icon::Info);
+                        msg.setButtons({tr("I'll do it later"), tr("Restart now")});
+                        msg.setDefaultButton(CMessage::DefaultButton::SecondButton);
+                        CMessage::Config cfg;
+                        cfg.contentText = tr("Application needs to restart");
+                        msg.setConfig(cfg);
+                        int result = msg.exec();
+                        if (result == CMessage::Result::SecondButton)
+                        {
+                            m_private->m_needRestart = true;
+                            QTimer::singleShot(100, this,
+                                []()
+                                {
+                                    AscAppManager::closeAppWindows();
+                                });
+                        }
                     }
                 });
 
