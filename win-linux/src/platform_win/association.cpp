@@ -241,7 +241,7 @@ void Association::AssociationPrivate::showAssociationMessage(QWidget *parent, co
 #ifndef __OS_WIN_XP
         if (!forceModal && AscAppManager::notificationSupported()) {
             if (CNotification::instance().show(QObject::tr("Set Default App"), msg,
-                       MsgBtns::mbYesDefNo, [=](int res) {
+                       CMessage::Buttons::YesDefNo, [=](int res) {
                             QMetaObject::invokeMethod(this, "showAssociationMessage", Qt::QueuedConnection, Q_ARG(QWidget*, parent),
                                 Q_ARG(std::vector<std::wstring>, unassocFileExts), Q_ARG(bool, res == NOTIF_FAILED), Q_ARG(int, res));
                        })) {
@@ -249,17 +249,17 @@ void Association::AssociationPrivate::showAssociationMessage(QWidget *parent, co
             }
         }
 #endif
-        CMessageOpts opts;
+        CMessage::Config opts;
         opts.checkBoxState = &m_ignoreAssocMsg;
-        opts.chekBoxText = QObject::tr("Do not show this message again");
-        result = CMessage::showMessage(parent, msg, MsgType::MSG_INFO, MsgBtns::mbYesDefNo, opts);
+        opts.checkBoxText = QObject::tr("Do not show this message again");
+        result = CMessage::showMessage(parent, msg, CMessage::Icon::Info, CMessage::Buttons::YesDefNo, opts);
         if (m_ignoreAssocMsg) {
             GET_REGISTRY_USER(reg_user)
             reg_user.setValue("ignoreAssocMsg", true);
         }
     }
 
-    if (result == MODAL_RESULT_YES) {
+    if (result == CMessage::Result::Yes) {
         associate(unassocFileExts);
 //         return;
 //         if (Utils::getWinVersion() >= Utils::WinVer::Win10) {

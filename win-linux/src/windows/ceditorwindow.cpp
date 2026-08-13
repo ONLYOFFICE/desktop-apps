@@ -120,7 +120,7 @@ int CEditorWindow::closeWindow()
 
     CTabPanel * panel = d_ptr.get()->panel();
 
-    int _reply = MODAL_RESULT_YES;
+    int _reply = CMessage::Result::Yes;
     if ( (panel->data()->hasChanges() || panel->hasUncommittedChanges()) && !panel->data()->closed() ) {
         if (windowState() == Qt::WindowMinimized)
             showNormal();
@@ -129,27 +129,27 @@ int CEditorWindow::closeWindow()
 
         _reply = CMessage::showMessage(handle(),
                                        tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)),
-                                       MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
+                                       CMessage::Icon::Warning, CMessage::Buttons::YesDefNoCancel);
 //            modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
         switch (_reply) {
-        case MODAL_RESULT_NO:
-            _reply = MODAL_RESULT_YES;
+        case CMessage::Result::No:
+            _reply = CMessage::Result::Yes;
             break;
-        case MODAL_RESULT_CANCEL:
-            return MODAL_RESULT_CANCEL;
+        case CMessage::Result::Cancel:
+            return CMessage::Result::Cancel;
 
-        case MODAL_RESULT_YES:
+        case CMessage::Result::Yes:
         default:
             panel->data()->close();
             panel->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
             Utils::processMoreEvents(100);
 
-            _reply = MODAL_RESULT_NO;
+            _reply = CMessage::Result::No;
             break;
         }
     }
 
-    if ( _reply == MODAL_RESULT_YES ) {
+    if ( _reply == CMessage::Result::Yes ) {
         panel->data()->close();
         d_ptr.get()->onDocumentSave(panel->cef()->GetId());
 
@@ -466,7 +466,7 @@ void CEditorWindow::focus()
 void CEditorWindow::onCloseEvent()
 {
     if ( m_pMainView ) {
-        if ( closeWindow() == MODAL_RESULT_YES ) {
+        if ( closeWindow() == CMessage::Result::Yes ) {
             hide();
         }
     }
