@@ -1314,11 +1314,7 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                         if (result == CMessage::Result::SecondButton)
                         {
                             m_private->m_needRestart = true;
-                            QTimer::singleShot(100, this,
-                                []()
-                                {
-                                    AscAppManager::closeAppWindows();
-                                });
+                            AscAppManager::closeAppWindows();
                         }
                     }
                 });
