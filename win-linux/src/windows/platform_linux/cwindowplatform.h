@@ -57,6 +57,7 @@ public:
     explicit CWindowPlatform(QWidget *parent = nullptr, const QRect &rc = QRect());
     virtual ~CWindowPlatform();
 
+    bool isResizable() const;
     void setResizable(bool);
     void bringToTop();
     void show(bool);
