@@ -78,6 +78,8 @@ public:
     QWidget * mainPanel() const;
     bool isCustomWindowStyle();
     void updateScaling(bool resize = true);
+    virtual bool isResizable() const = 0;
+    virtual void setResizable(bool) = 0;
     virtual void adjustGeometry() = 0;
     virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) = 0;
     virtual void applyTheme(const std::wstring&);
@@ -116,6 +118,7 @@ protected:
     QRect          m_window_rect;
     int            m_toolbtn_height = TOOLBTN_HEIGHT;
     bool           m_shouldUseThinFrame;
+    bool           m_ignoreMinSize = false;
 
     virtual void showEvent(QShowEvent *);
 

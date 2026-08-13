@@ -109,6 +109,11 @@ CWindowPlatform::~CWindowPlatform()
 
 /** Public **/
 
+bool CWindowPlatform::isResizable() const
+{
+    return CX11Decoration::isResizable();
+}
+
 void CWindowPlatform::setResizable(bool isResizable)
 {
     if (CX11Decoration::isResizable() != isResizable) {

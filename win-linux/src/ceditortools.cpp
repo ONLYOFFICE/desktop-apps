@@ -550,8 +550,8 @@ namespace CEditorTools
                 case AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV: {
                     int res = CMessage::showMessage(_parent,
                                                     QCoreApplication::translate("CEditorWindow", "Some data will lost.<br>Continue?"),
-                                                    MsgType::MSG_WARN, MsgBtns::mbOkDefCancel);
-                    _allowed = (MODAL_RESULT_OK == res);
+                                                    CMessage::Icon::Warning, CMessage::Buttons::OkDefCancel);
+                    _allowed = (CMessage::Result::Ok == res);
                     break; }
                 default: break;
                 }

@@ -59,8 +59,8 @@ public:
     virtual ~CWindowPlatform();
 
 //    void toggleBorderless(bool);
-    bool isResizable() const;
-    void setResizable(bool);
+    virtual bool isResizable() const override;
+    virtual void setResizable(bool) override;
     void bringToTop();
     virtual void show(bool);
     virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) final;
