@@ -1,4 +1,4 @@
-l10n.cs = {
+export default {
     welWelcome: 'Vítejte v ONLYOFFICE Desktop Editors!',
     welDescr: 'Práce na dokumentech offline nebo propojení sady do cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Potřebujete pomoct? Navštivte naše $1.',

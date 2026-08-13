@@ -1,4 +1,4 @@
-l10n.sr_Latn_RS = {
+export default {
     welWelcome: 'Dobro došli u ONLYOFFICE Desktop Uređivače!',
     welDescr: 'Radite na dokumentima oflajn ili konektujte paket na svoj oblak: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Treba vam pomoć? Posetite naš $1.',

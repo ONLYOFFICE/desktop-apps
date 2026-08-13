@@ -1,4 +1,4 @@
-l10n.ru = {
+export default {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
     welDescr: 'Работайте с документами офлайн или подключитесь к облаку: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Требуется помощь? Обратитесь в наш $1.',

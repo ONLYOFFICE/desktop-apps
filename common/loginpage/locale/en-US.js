@@ -33,8 +33,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-var l10n = l10n || {};
-l10n.en = {
+export default {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Need help? Visit our $1.',

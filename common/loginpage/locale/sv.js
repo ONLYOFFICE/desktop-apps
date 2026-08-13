@@ -1,4 +1,4 @@
-l10n.sv = {
+export default {
     welWelcome: 'Välkommen till ONLYOFFICE Desktop Editors!',
     welDescr: 'Arbeta med dokument offline eller anslut sviten till ditt moln: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Behöver du hjälp? Besök vårt $1.',

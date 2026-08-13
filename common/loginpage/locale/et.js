@@ -1,4 +1,4 @@
-l10n.et = {
+export default {
     welWelcome: 'Tere tulemast ONLYOFFICE Töölaua Redigeerijad!',
     welDescr: 'Tööta oma dokumentide kallal võrgust väljas või ühenda omale sobiliku pilvega: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Vajad abi? Külasta meie $1.',

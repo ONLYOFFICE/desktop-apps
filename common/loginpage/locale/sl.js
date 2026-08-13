@@ -1,4 +1,4 @@
-l10n.sl = {
+export default {
     welWelcome: 'Dobrodošli pri ONLYOFFICE namiznih urejevalnikih!',
     welDescr: 'Delaj z dokumenti brez povezave ali paket poveži s svojim oblakom: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Potrebujete pomoč? Obiščite naš $1.',

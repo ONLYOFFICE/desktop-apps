@@ -1,4 +1,4 @@
-l10n.ca = {
+export default {
     welWelcome: 'Benvingut/da a ONLYOFFICE Desktop Editors!',
     welDescr: 'Treballa sense connexió als teus documents o connecta la suite al teu núvol: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Necessites ajuda? Visita el nostre $1.',

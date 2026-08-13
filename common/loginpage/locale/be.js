@@ -1,4 +1,4 @@
-l10n.be = {
+export default {
     welWelcome: 'Вітаем у ONLYOFFICE Desktop Editors!',
     welDescr: 'Працуйце з дакументамі ў аўтаномным рэжыме або падлучыцеся да воблака: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Патрэбна дапамога? Наведайце наш $1.',

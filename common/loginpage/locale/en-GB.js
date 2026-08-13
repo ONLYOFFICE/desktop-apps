@@ -1,4 +1,4 @@
-l10n.en_GB = {
+export default {
     welWelcome: 'Welcome to ONLYOFFICE!',
     welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Need help? Visit our $1.',

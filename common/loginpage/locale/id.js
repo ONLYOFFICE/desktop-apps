@@ -1,4 +1,4 @@
-l10n.id = {
+export default {
     welWelcome: 'Selamat Datang di ONLYOFFICE Desktop Editors!',
     welDescr: 'Mengerjakan dokumen secara luring atau menghubungkannya ke cloud Anda: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Butuh bantuan? Kunjungi $1 kami.',

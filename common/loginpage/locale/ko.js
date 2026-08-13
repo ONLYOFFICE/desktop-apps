@@ -1,4 +1,4 @@
-l10n.ko = {
+export default {
     welWelcome: 'ONLYOFFICE 데스크톱 에디터에 오신 것을 환영합니다!',
     welDescr: '오프라인에서 문서 작업을 하시거나 클라우드에 도구 모음을 연결하세요: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: '도움이 필요하신가요? $1 를 방문하세요.',

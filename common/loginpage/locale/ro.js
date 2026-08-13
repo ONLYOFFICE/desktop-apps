@@ -1,4 +1,4 @@
-l10n.ro = {
+export default {
     welWelcome: 'Bine ați venit la ONLYOFFICE Desktop Editors!',
     welDescr: 'Lucrați la documente offline sau conecta suitați suitã la cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Aveți nevoie de ajutor? Vizitează $1.',

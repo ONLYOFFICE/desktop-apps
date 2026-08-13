@@ -1,4 +1,4 @@
-l10n.hr = {
+export default {
     welWelcome: 'Dobrodošli u ONLYOFFICE uređivače radne površine!',
     welDescr: 'Radite na dokumentima izvanmrežno ili povežite paket na svoj oblak: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Trebate pomoć? Posjetite naš $1.',

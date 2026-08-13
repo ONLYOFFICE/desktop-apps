@@ -1,4 +1,4 @@
-l10n.sk = {
+export default {
     welWelcome: 'Vitajte v ONLYOFFICE Desktop Editors!',
     welDescr: 'Pracujte s dokumentmi offline alebo pripojte balík k vášmu cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Potrebujete pomoc? Navštívte naše $1.',
