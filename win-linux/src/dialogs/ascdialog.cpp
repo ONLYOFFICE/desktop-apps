@@ -42,6 +42,7 @@ CAscDialog::CAscDialog(QWidget *parent, const QRect &rc)
     , m_loop(new QEventLoop)
     , m_result(DialogCode::Rejected)
 {
+    m_ignoreMinSize = true;
     setWindowFlags(windowFlags() | Qt::Dialog);
     setMinimumSize(0, 0);
     setGeometry(adjustWindowRect(rc, m_dpiRatio));

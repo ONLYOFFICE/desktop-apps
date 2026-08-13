@@ -116,6 +116,7 @@ protected:
     QRect          m_window_rect;
     int            m_toolbtn_height = TOOLBTN_HEIGHT;
     bool           m_shouldUseThinFrame;
+    bool           m_ignoreMinSize = false;
 
     virtual void showEvent(QShowEvent *);
 
