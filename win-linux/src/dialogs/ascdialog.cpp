@@ -108,8 +108,3 @@ void CAscDialog::onLayoutDirectionChanged()
 
 /** Private **/
 
-void CAscDialog::setScreenScalingFactor(double factor, bool resize)
-{
-    CWindowPlatform::setScreenScalingFactor(factor, resize);
-    setMinimumSize(0,0);
-}

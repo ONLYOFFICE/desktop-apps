@@ -67,8 +67,6 @@ protected:
     virtual void onLayoutDirectionChanged() final;
 
 private:
-    virtual void setScreenScalingFactor(double, bool resize = true) final;
-
     QEventLoop *m_loop;
     int m_result;
 };
