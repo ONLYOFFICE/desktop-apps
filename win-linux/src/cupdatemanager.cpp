@@ -78,6 +78,9 @@
                           CLogger::log("Locking and further execution:" + FUNCTION_INFO);
 #define __UNLOCK m_lock = false; CLogger::log("Unlocked in:" + FUNCTION_INFO);
 
+// TODO: Remove in version 10.1
+#define CHECK_UPDATES_ONCE_ON_STARTUP
+
 using std::vector;
 
 const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unpacking the archive"),
@@ -489,8 +492,10 @@ void CUpdateManager::checkUpdates(bool manualCheck)
     reg_user.beginGroup("Updates");
     reg_user.setValue("last_check", static_cast<qlonglong>(m_lastCheck));
     reg_user.endGroup();
+#ifndef CHECK_UPDATES_ONCE_ON_STARTUP
     if (getUpdateMode() != UpdateMode::DISABLE)
         m_pIntervalStartTimer->start();
+#endif
 
     __GLOBAL_LOCK
 
@@ -519,6 +524,11 @@ void CUpdateManager::updateNeededCheking()
 {
     if (m_pIntervalTimer) {
         m_pIntervalTimer->stop();
+
+#ifdef CHECK_UPDATES_ONCE_ON_STARTUP
+        if (!m_manualCheck)
+            checkUpdates();
+#else
         int elapsed_time = int(time(nullptr) - m_lastCheck);
         if (elapsed_time > m_interval) {
             checkUpdates();
@@ -527,6 +537,7 @@ void CUpdateManager::updateNeededCheking()
             m_pIntervalTimer->setInterval(remaining_time < CHECK_ON_STARTUP_MS + 1000 ? CHECK_ON_STARTUP_MS + 1000 : remaining_time);
             m_pIntervalTimer->start();
         }
+#endif
     }
 }
 
