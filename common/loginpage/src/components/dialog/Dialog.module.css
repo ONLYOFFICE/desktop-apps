@@ -1,8 +1,12 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 200;
+}
+
+:global(body.theme-type-dark) .overlay {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .content {
