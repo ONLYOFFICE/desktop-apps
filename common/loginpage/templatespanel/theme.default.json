@@ -102,5 +102,10 @@
   "switch-shadow-color-hover": "var(--border-tabbar)",
   "switch-text-color": "var(--text-normal)",
   "template-modal-wrapper-background-color": "var(--background-action-panel)",
-  "template-modal-wrapper-border-color": "var(--border-regular-control)"
+  "template-modal-wrapper-border-color": "var(--border-regular-control)",
+  "template-modal-btn-secondary-border-color": "var(--border-divider)",
+  "template-modal-btn-secondary-color": "var(--text-normal)",
+  "template-modal-btn-secondary-background-color": "var(--background-action-panel)",
+  "template-modal-btn-primary-background-color": "var(--background-primary-button)",
+  "template-modal-btn-primary-color": "var(--text-inverse)"
 }
