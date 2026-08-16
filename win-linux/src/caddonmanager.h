@@ -67,6 +67,8 @@ public:
     void doAction(Action action); // page button was clicked
     bool isInstalled() const;
     bool restartRequired() const;
+    void installFromBundle(const QString& path);
+    QString appcastUrl() const;
 
     static QString errorMessageForResult(int result);
 

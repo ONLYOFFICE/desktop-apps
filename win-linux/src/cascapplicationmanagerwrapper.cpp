@@ -417,6 +417,21 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 return true;
             }
         } else
+        if ( !(cmd.find(L"addon:install") == std::wstring::npos) ) {     // params: install
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                if (objRoot["status"].toString() == "downloaded") {
+                    QString hash = objRoot["md5"].toString();
+                    QString tmpPath = objRoot["tempfile"].toString();
+                    if (!hash.isEmpty() && Utils::getFileHash(tmpPath) == hash) {
+                        addonManager()->installFromBundle(tmpPath);
+                    }
+                }
+            }
+        } else
         if ( !(cmd.find(L"addon:action") == std::wstring::npos) ) {     // params: install
             if (m_private->m_pAddonManager) {
                 const wstring param = pData->get_Param();
@@ -425,7 +440,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     /* "accept and install" clicked */
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->showStartPage();
-                    m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
+                    // m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
                 }
                 else if (param == L"intro")
                 {
@@ -1003,7 +1018,7 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
     additional.append("&osver=winxp");
 #endif
 
-    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
+    std::wstring start_path = (HTML_SCHEME + data_path + additional).toStdWString();
     _startPanel->GetCefView()->load(start_path);
 
 

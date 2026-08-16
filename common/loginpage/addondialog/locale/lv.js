@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Nerādīt man ONLYOFFICE AI rīkus",
   addonInstallingTitle: "ONLYOFFICE AI rīki",
   addonInstalling: "Instalē...",
+  addonDownloading: "Lejupielādē...",
   addonInstalledTitle: "Veiksmīgi instalēts",
   addonRestartNeeded: "Nepieciešams restartēt programmu",
   addonBtnRestartLater: "Izdarīšu to vēlāk",

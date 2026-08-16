@@ -87,9 +87,11 @@ class CAddonManager::CAddonManagerPrivate : public QObject
     } packageData;
 
     CDownloader *pDownloader = nullptr;
+    int nDownloadMode = DownloadMetadata;
+
+public:
     QString sTmpPath;
     tstring sMetadataUrl;
-    int nDownloadMode = DownloadMetadata;
 
 public:
     CAddonManagerPrivate(CAddonManager *parent)
@@ -441,6 +443,32 @@ void CAddonManager::doAction(Action action)
     } else if (action == Action::Stop) {
         pimpl->resetDownloader();
     }
+}
+
+void CAddonManager::installFromBundle(const QString& path)
+{
+    if (!path.isEmpty())
+    {
+        std::wstring _t_ext = L".zip",
+            _t_path = path.toStdWString();
+        if (0 != _t_path.compare(_t_path.length() - _t_ext.length(), _t_ext.length(), _t_ext))
+        {
+            _t_path += L".zip";
+            if (!QFile::rename(path, QString::fromStdWString(_t_path)))
+            {
+                pimpl->finishInstall(Result::ExtractionFailed);
+                return;
+            }
+        }
+
+        pimpl->sTmpPath = QString::fromStdWString(_t_path);
+        pimpl->finishInstall(Result::Success);
+    }
+}
+
+QString CAddonManager::appcastUrl() const
+{
+    return QString::fromStdWString(pimpl->sMetadataUrl);
 }
 
 #include "caddonmanager.moc"

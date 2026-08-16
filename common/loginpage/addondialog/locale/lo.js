@@ -16,6 +16,7 @@ export default {
   addonDontShow: "ບໍ່ຕ້ອງສະແດງ ONLYOFFICE AI Tools ໃຫ້ຂ້ອຍເບິ່ງອີກ",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "ກຳລັງຕິດຕັ້ງ...",
+  addonDownloading: "ກຳລັງດາວໂຫລດ...",
   addonInstalledTitle: "ຕິດຕັ້ງສຳເລັດແລ້ວ",
   addonRestartNeeded: "ແອັບພລິເຄຊັນຕ້ອງໄດ້ຣີສະຕາດ",
   addonBtnRestartLater: "ຈະເຮັດພາຍຫຼັງ",

@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Bana ONLYOFFICE AI Tools'u bir daha gösterme",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Yükleniyor...",
+  addonDownloading: "İndiriliyor...",
   addonInstalledTitle: "Başarıyla yüklendi",
   addonRestartNeeded: "Uygulamanın yeniden başlatılması gerekiyor",
   addonBtnRestartLater: "Bunu daha sonra yapacağım",

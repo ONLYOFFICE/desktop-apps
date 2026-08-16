@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Ne jelenjen meg többé az ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Telepítés...",
+  addonDownloading: "Letöltés...",
   addonInstalledTitle: "Sikeres telepítés",
   addonRestartNeeded: "Az alkalmazást újra kell indítani",
   addonBtnRestartLater: "Később megteszem",

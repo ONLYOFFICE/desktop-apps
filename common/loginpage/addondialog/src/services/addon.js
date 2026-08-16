@@ -1,7 +1,9 @@
 import { createSignal } from "solid-js";
 import { command, onNativeMessage } from "./bridge";
 import { htmlDecode } from "@/utils/html";
+import { Downloader } from "../../../src/utils/downloader";
 import { setViewPanel } from "@/App";
+import { t } from "./l10n";
 
 // "addon:action" (install/uninstall) and the "addon:status" status/progress
 // event already exist in the native protocol (see cascapplicationmanagerwrapper.cpp
@@ -38,8 +40,32 @@ export function resizeDialog(width, height) {
   command("addon:resize", { width, height });
 }
 
+function downloadAddon(url, fileName, size, md5) {
+  const downloader = new Downloader({
+    url,
+    // fileName,
+    size,
+    onProgress: ({ percent }) => {
+      setAddonStatus((prev) => ({ ...(prev ?? {}), progress: percent }));
+    },
+    onComplete: (filePath) => {
+      if (md5 !== undefined) {
+        setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonInstalling") }));
+        command("addon:install", { status: "downloaded", tempfile: filePath, md5 });
+      }
+    },
+    onError: (err) => {
+      setViewPanel("error");
+      setAddonStatus((prev) => ({ ...(prev ?? {}), message: err.message }));
+    },
+  });
+  downloader.start().catch(() => {
+    // already surfaced via onError
+  });
+}
+
 export function initAddonStatus() {
-  return onNativeMessage((cmd, param) => {
+  return onNativeMessage(async (cmd, param) => {
     if (cmd !== "addon:status") return;
     try {
       const status = JSON.parse(htmlDecode(param));
@@ -52,6 +78,31 @@ export function initAddonStatus() {
 
       if (status.page) {
         setViewPanel(status.page);
+
+        if (status.page === "install") {
+          const { appcast, package: pkg, tempfile } = status;
+          if (!appcast || !appcast.length) {
+            setViewPanel("error");
+            setAddonStatus((prev) => ({ ...(prev ?? {}), message: 'appcast fetch failed: url is empty'}));
+            return;
+          }
+
+          try {
+            const res = await fetch(`onlyoffice-proxy://${appcast}`);
+            if (!res.ok)
+              throw new Error(`appcast fetch failed: ${res.status}`);
+
+            const json = await res.json();
+            const pkgBlock = json?.addon?.package?.[pkg];
+            if (!pkgBlock?.url) throw new Error(`package "${pkg}" not found in appcast`);
+            setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonDownloading") }));
+            downloadAddon(pkgBlock.url, tempfile, pkgBlock.size, pkgBlock.md5);
+          } catch (err) {
+            setViewPanel("error");
+            setAddonStatus((prev) => ({ ...(prev ?? {}), message: err.message }));
+            return;
+          }
+        }
       } else if (!!status.progress) {
         console.log("progress", status.progress);
         /* progress event */

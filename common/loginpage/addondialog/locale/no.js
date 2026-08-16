@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Ikke vis meg ONLYOFFICE AI-verktøy",
   addonInstallingTitle: "ONLYOFFICE AI-verktøy",
   addonInstalling: "Installerer...",
+  addonDownloading: "Laster ned...",
   addonInstalledTitle: "Installasjonen var vellykket",
   addonRestartNeeded: "Programmet må startes på nytt",
   addonBtnRestartLater: "Jeg gjør det senere",

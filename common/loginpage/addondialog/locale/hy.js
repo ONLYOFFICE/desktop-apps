@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Այլևս ցույց չտալ ONLYOFFICE AI Tools-ը",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Տեղադրում...",
+  addonDownloading: "Ներբեռնում...",
   addonInstalledTitle: "Հաջողությամբ տեղադրվեց",
   addonRestartNeeded: "Անհրաժեշտ է վերագործարկել հավելվածը",
   addonBtnRestartLater: "Կանեմ դա ավելի ուշ",

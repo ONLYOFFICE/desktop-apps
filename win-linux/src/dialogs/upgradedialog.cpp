@@ -41,6 +41,8 @@
 #include "utils.h"
 #include "defines.h"
 #include "clangater.h"
+#include <QDir>
+#include "caddonmanager.h"
 
 const QSize UpgradeDialog::IntroPageSize(480, 700);
 const QSize UpgradeDialog::InstallPageSize(480, 304);
@@ -83,7 +85,8 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc, int page)
     QString url_additional = QString("?lang=%1&page=%2").arg(
         CLangater::getCurrentLangCode(), pageToString(page));
 
-    const QString addonUrl = QString("file:///%1%2").arg(html_path, url_additional);
+    const QString addonUrl = HTML_SCHEME + QString("%1%2").arg(html_path, url_additional);
+
     contentCefView->GetCefView()->load(addonUrl.toStdWString());
 }
 
@@ -112,6 +115,9 @@ void UpgradeDialog::showStartPage()
 
     QJsonObject jsn;
     jsn["page"] = pageToString(Page::Install);
+    jsn["appcast"] = AscAppManager::addonManager()->appcastUrl();
+    // jsn["appcast"] = "https://download.onlyoffice.com/install/desktop/editors/windows/onlyoffice/appcastdev.json";
+    jsn["package"] = "win_64";
     AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 
     applyGeometry(InstallPageSize);

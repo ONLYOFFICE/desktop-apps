@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Не показувати ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Встановлення...",
+  addonDownloading: "Завантаження...",
   addonInstalledTitle: "Успішно встановлено",
   addonRestartNeeded: "Потрібно перезапустити застосунок",
   addonBtnRestartLater: "Я зроблю це пізніше",

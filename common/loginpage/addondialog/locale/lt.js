@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Nerodyti ONLYOFFICE AI įrankių",
   addonInstallingTitle: "ONLYOFFICE AI įrankiai",
   addonInstalling: "Diegiama...",
+  addonDownloading: "Atsisiunčiama...",
   addonInstalledTitle: "Sėkmingai įdiegta",
   addonRestartNeeded: "Reikia paleisti programą iš naujo",
   addonBtnRestartLater: "Padarysiu tai vėliau",

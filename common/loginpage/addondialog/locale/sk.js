@@ -23,6 +23,7 @@ export default {
   addonDontShow: "Nezobrazovať mi ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Inštaluje sa...",
+  addonDownloading: "Sťahuje sa...",
   addonInstalledTitle: "Úspešne nainštalované",
   addonRestartNeeded: "Aplikáciu je potrebné restartovať",
   addonBtnRestartLater: "Urobím to neskôr",

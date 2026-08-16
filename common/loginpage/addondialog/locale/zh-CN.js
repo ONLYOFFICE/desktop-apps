@@ -16,6 +16,7 @@ export default {
   addonDontShow: "不再显示 ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "正在安装...",
+  addonDownloading: "正在下载...",
   addonInstalledTitle: "安装成功",
   addonRestartNeeded: "应用程序需要重新启动",
   addonBtnRestartLater: "稍后重启",

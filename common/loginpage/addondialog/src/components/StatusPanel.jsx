@@ -14,7 +14,7 @@ export function StatusPanel(props) {
 
       <Switch>
         <Match when={props.page === "install"}>
-          <p class={styles.status}>{t("addonInstalling")}</p>
+          <p class={styles.status}>{addonStatus()?.message || t("addonInstalling")}</p>
           <div class={styles.progressTrack}>
             <div
               class={styles.progressBar}

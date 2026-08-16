@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Ná taispeáin ONLYOFFICE AI Tools dom níos mó",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Ag suiteáil...",
+  addonDownloading: "Ag íoslódáil...",
   addonInstalledTitle: "Suiteáladh go rathúil",
   addonRestartNeeded: "Caithfidh an feidhmchlár atosú",
   addonBtnRestartLater: "Déanfaidh mé é níos déanaí",

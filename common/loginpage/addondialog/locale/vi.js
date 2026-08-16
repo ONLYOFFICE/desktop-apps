@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Không hiển thị ONLYOFFICE AI Tools nữa",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Đang cài đặt...",
+  addonDownloading: "Đang tải xuống...",
   addonInstalledTitle: "Đã cài đặt thành công",
   addonRestartNeeded: "Ứng dụng cần khởi động lại",
   addonBtnRestartLater: "Tôi sẽ làm sau",

@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Не приказуј ми ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Инсталирање...",
+  addonDownloading: "Преузимање...",
   addonInstalledTitle: "Успешно инсталирано",
   addonRestartNeeded: "Апликацију је потребно поново покренути",
   addonBtnRestartLater: "Урадићу то касније",
