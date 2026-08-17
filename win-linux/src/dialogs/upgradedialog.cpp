@@ -116,8 +116,27 @@ void UpgradeDialog::showStartPage()
     QJsonObject jsn;
     jsn["page"] = pageToString(Page::Install);
     jsn["appcast"] = AscAppManager::addonManager()->appcastUrl();
-    // jsn["appcast"] = "https://download.onlyoffice.com/install/desktop/editors/windows/onlyoffice/appcastdev.json";
+
+#ifdef _WIN32
+# if defined(_M_ARM64)
+    jsn["package"] = "win_arm64";
+# elif defined(_M_X64)
     jsn["package"] = "win_64";
+# elif defined(_M_IX86)
+    jsn["package"] = "win_32";
+# else
+#  error Unsupported architecture
+# endif
+#else
+# if defined(__aarch64__)
+    jsn["package"] = "linux_aarch64";
+# elif defined(__x86_64__)
+    jsn["package"] = "linux_x86_64";
+# else
+#  error Unsupported architecture
+# endif
+#endif
+
     AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 
     applyGeometry(InstallPageSize);
