@@ -149,6 +149,14 @@ static float kASCEditorWindowDefaultTrafficButtonsLeftMargin = 0;
     layoutStandartButtons(self.standardButtonsFullscreen, ![self isFullScreen]);
 }
 
+- (void)rightMouseDown:(NSEvent *)event {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editorTitleBar:didRequestContextMenuAtPoint:)]) {
+        [self.delegate editorTitleBar:self didRequestContextMenuAtPoint:[NSEvent mouseLocation]];
+    } else {
+        [super rightMouseDown:event];
+    }
+}
+
 - (void)windowDidResize:(NSNotification *)notification {
     [self doLayout];
 }

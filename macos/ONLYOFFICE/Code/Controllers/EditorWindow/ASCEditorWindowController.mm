@@ -63,7 +63,7 @@ static const CGFloat kToolButtonWidth  = 40.0;
 static const CGFloat kToolButtonHeight = 28.0;
 static const CGFloat kIconSize         = 20.0;
 
-@interface ASCEditorWindowController () <NSWindowDelegate> {
+@interface ASCEditorWindowController () <NSWindowDelegate, ASCEditorTitleBarControllerDelegate> {
     id mouseUpMonitor;
 }
 
@@ -292,6 +292,88 @@ typedef NS_ENUM(NSInteger, EditorHeaderLayout) {
                                                            constant:0]];
 
     [self.titlebarController setupWithWindow:window];
+    self.titlebarController.delegate = self;
+}
+
+#pragma mark -
+#pragma mark Title bar context menu
+
+- (void)editorTitleBar:(ASCEditorTitleBarController *)controller didRequestContextMenuAtPoint:(NSPoint)screenPoint {
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Editor Window Context Menu"];
+    [menu setAutoenablesItems:NO];
+
+    // Close window
+    NSMenuItem *closeItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Close", nil)
+                                                       action:@selector(menuCloseWindow:)
+                                                keyEquivalent:@""];
+    closeItem.target = self;
+    [menu addItem:closeItem];
+
+    [menu addItem:[NSMenuItem separatorItem]];
+
+    // Show in folder
+    NSMenuItem *showInFolderItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Show in folder", nil)
+                                                              action:@selector(menuShowInFolder:)
+                                                       keyEquivalent:@""];
+    showInFolderItem.target = self;
+
+    // Enable only for local files
+    NSString *filePath = [self documentFilePath];
+    BOOL isLocalFile = filePath && filePath.length > 0 && [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    [showInFolderItem setEnabled:isLocalFile];
+    [menu addItem:showInFolderItem];
+
+    [menu addItem:[NSMenuItem separatorItem]];
+
+    // Pin to tab
+    NSMenuItem *pinToTabItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Pin to tab", nil)
+                                                          action:@selector(menuPinToTab:)
+                                                   keyEquivalent:@""];
+    pinToTabItem.target = self;
+    [menu addItem:pinToTabItem];
+
+    [menu popUpMenuPositioningItem:nil atLocation:screenPoint inView:nil];
+}
+
+- (NSString *)documentFilePath {
+    NSCefData *cefData = [self cefData];
+    if (!cefData) {
+        return nil;
+    }
+
+    NSString *filePath = cefData.path;
+    if (filePath.length == 0) {
+        filePath = cefData.url;
+    }
+    return filePath;
+}
+
+- (void)menuCloseWindow:(NSMenuItem *)sender {
+    [self.window performClose:nil];
+}
+
+- (void)menuShowInFolder:(NSMenuItem *)sender {
+    NSString *filePath = [self documentFilePath];
+    if (filePath.length > 0 && [[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[NSURL fileURLWithPath:filePath]]];
+    }
+}
+
+- (void)menuPinToTab:(NSMenuItem *)sender {
+    AppDelegate *app = (AppDelegate *)[NSApp delegate];
+    ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+
+    [window orderOut:nil];
+    [app presentMainWindow];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSWindow *mainWindow = app.mainWindowController.window;
+        BOOL isRtl = [[NSApplication sharedApplication] userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft;
+        NSPoint attachPoint = mainWindow
+            ? NSMakePoint(isRtl ? NSMinX(mainWindow.frame) : NSMaxX(mainWindow.frame), NSMaxY(mainWindow.frame))
+            : NSZeroPoint;
+        [app pinWindowToTab:window atPoint:attachPoint];
+    });
 }
 
 - (void)windowDidMove:(NSNotification *)notification {

@@ -39,8 +39,17 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ASCEditorTitleBarController;
+
+@protocol ASCEditorTitleBarControllerDelegate <NSObject>
+@optional
+- (void)editorTitleBar:(ASCEditorTitleBarController *)controller didRequestContextMenuAtPoint:(NSPoint)screenPoint;
+@end
+
 @interface ASCEditorTitleBarController : NSViewController
 
 - (void)setupWithWindow:(NSWindow *)window;
+
+@property (nonatomic, weak) id <ASCEditorTitleBarControllerDelegate> delegate;
 
 @end

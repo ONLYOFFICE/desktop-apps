@@ -44,12 +44,15 @@
 #import <Cocoa/Cocoa.h>
 #import "mac_application.h"
 
+@class ASCEditorWindow;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 - (BOOL)shouldTerminateApplication;
 - (void)safeCloseEditorWindows;
 - (void)presentMainWindow;
 - (NSWindow *)editorWindowFromCef:(NSView *)cefView withFrame:(NSRect)windowFrame;
 - (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event;
+- (void)pinWindowToTab:(ASCEditorWindow *)window atPoint:(NSPoint)screenPoint;
 
 @property (nonatomic) BOOL waitingForTerminateApp;
 @property (nonatomic) NSWindowController *mainWindowController;
