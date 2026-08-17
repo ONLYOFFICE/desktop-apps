@@ -468,7 +468,11 @@ void CAddonManager::installFromBundle(const QString& path)
 
 QString CAddonManager::appcastUrl() const
 {
+#ifdef _WIN32
     return QString::fromStdWString(pimpl->sMetadataUrl);
+#else
+    return QString::fromStdString(pimpl->sMetadataUrl);
+#endif
 }
 
 #include "caddonmanager.moc"
