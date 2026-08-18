@@ -38,7 +38,7 @@
 #include "utils.h"
 #include "clogger.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "cdownloader.h"
+// #include "cdownloader.h"
 #include <QFile>
 #include <QJsonObject>
 #ifdef _WIN32
@@ -47,6 +47,12 @@
 #else
 # define _T(str) str
 # define QStrToTStr(str) str.toStdString()
+#endif
+
+#ifdef _WIN32
+# define tstring std::wstring
+#else
+# define tstring std::string
 #endif
 
 #ifndef URL_APPCAST_UPDATES
@@ -62,6 +68,19 @@
 # define SKIP_EMPTY QString::SkipEmptyParts
 #endif
 
+namespace CDownloader
+{
+    enum Result
+    {
+        Success      =  0,
+        Aborted      =  1,
+        OutOfMemory  = -1,
+        NetworkError = -2,
+        InvalidUrl   = -3,
+        FileOpError  = -4,
+        UnknownError = -5
+    };
+}
 
 class CAddonManager::CAddonManagerPrivate : public QObject
 {
@@ -86,7 +105,7 @@ class CAddonManager::CAddonManagerPrivate : public QObject
 
     } packageData;
 
-    CDownloader *pDownloader = nullptr;
+    // CDownloader *pDownloader = nullptr;
     int nDownloadMode = DownloadMetadata;
 
 public:
@@ -155,6 +174,7 @@ public:
 
         // CDownloader writes directly to the target path and reports through its
         // own worker thread, so the callbacks are marshaled back to the GUI thread.
+        /*
         pDownloader = new CDownloader;
 
         pDownloader->onProgress(
@@ -170,16 +190,19 @@ public:
             });
 
         pDownloader->downloadFile(url, filePath);
+        */
     }
 
     void resetDownloader()
     {
+        /*
         if (pDownloader)
         {
             pDownloader->stop();
             delete pDownloader;
             pDownloader = nullptr;
         }
+        */
     }
 
     void writeMarker()
@@ -339,7 +362,7 @@ private:
                     goto metadataFailed;
 
                 CLogger::log("Primary package URL: " + url + "\nSecondary package URL: " + url2);
-                bool primary_bad = (url.isEmpty() || !pDownloader->isUrlAccessible(QStrToTStr(url)));
+                bool primary_bad = (url.isEmpty() /*|| !pDownloader->isUrlAccessible(QStrToTStr(url))*/);
                 bool prefer_secondary = InputArgs::contains(L"--prefer-alternate-url");
                 QString packageUrl = (!url2.isEmpty() && (primary_bad || prefer_secondary)) ? url2 : url;
                 CLogger::log("Download from URL:\n" + url);

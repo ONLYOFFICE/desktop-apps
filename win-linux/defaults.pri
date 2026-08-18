@@ -252,12 +252,12 @@ core_linux {
     PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xcb-shape libnotify
     LIBS += -lX11 -lcups
 
-    !disable_addon_mode {
-        SOURCES += \
-            $$COMMON_PATH/cdownloader_linux.cpp
+    # !disable_addon_mode {
+        # SOURCES += \
+            # $$COMMON_PATH/cdownloader_linux.cpp
 
-        LIBS += -lcurl
-    }
+        # LIBS += -lcurl
+    # }
 
     cef_version_107 {
         LIBS += $$PWD/../../build_tools/tools/linux/sysroot/ubuntu14/libdbus-1.so.3
