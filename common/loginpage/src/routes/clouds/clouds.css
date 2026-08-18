@@ -62,7 +62,7 @@
   border-radius: 6px;
   cursor: pointer;
   position: relative;
-  border: 1px solid var(--border-devider, #cbcbcb);
+  border: 1px solid var(--border-regular-control, #cfcfcf);
 }
 
 .portal-row:hover {
@@ -181,7 +181,7 @@
   border: none;
   width: 100%;
   text-align: start;
-  border: 1px solid var(--border-devider, #cbcbcb);
+  border: 1px solid var(--border-divider, #cbcbcb);
 }
 
 .provider-item:hover {
