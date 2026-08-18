@@ -17,8 +17,14 @@ import { aichat } from "@/stores/aichat";
 
 export default function GeneralSettings() {
   const countryOptions = createMemo(() => [
-    { value: "GB", label: "Great Britain" },
+    { value: "GB", label: "United Kingdom" },
     { value: "US", label: "United States" },
+    { value: "DE", label: "Germany" },
+    { value: "FR", label: "France" },
+    { value: "ES", label: "Spain" },
+    { value: "IT", label: "Italy" },
+    { value: "IN", label: "India" },
+    { value: "CN", label: "China" },
   ]);
 
   const languageOptions = createMemo(() => availableLangs().map((l) => ({

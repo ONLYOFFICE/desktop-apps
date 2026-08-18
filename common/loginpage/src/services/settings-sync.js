@@ -7,6 +7,7 @@ import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/services/ai-panel";
 import { aichat } from "@/stores/aichat";
+import { sendTemplatesSettings } from "@/routes/templates";
 
 
 function injectCustomThemeCss(id, colors) {
@@ -134,6 +135,9 @@ export function initSettingsSync() {
 
   checkScaling();
 
+  const country = localStorage.getItem("sett-country") || "US";
+  setSettings("country", country);
+
   const storedUsername = localStorage.getItem("username");
   if (storedUsername) {
     setSettings("userName", storedUsername);
@@ -173,6 +177,7 @@ export function initSettingsSync() {
     settings.lang; settings.scaling; settings.theme;
     settings.checkUpdates; settings.launchMode; settings.spellCheck;
     settings.gpuMode; settings.userName; settings.useai;
+    settings.country;
     if (!initialized) return;
     setIsOptsChanged(true);
   });
@@ -230,6 +235,9 @@ export function initSettingsSync() {
       restart: restart,
       uiscaling: scaling === "auto" ? "0" : scaling,
     }));
+
+    localStorage.setItem("sett-country", settings.country);
+    sendTemplatesSettings({country: settings.country});
 
     const _plugin_opts = getPluginSettings();
     if (!!_plugin_opts) {

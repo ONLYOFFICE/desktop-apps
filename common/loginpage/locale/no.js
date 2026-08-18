@@ -1,4 +1,4 @@
-l10n.no = {
+export default {
     welWelcome: 'Velkommen til ONLYOFFICE redigeringsprogrammer for PC!',
     welDescr: 'Arbeid med dokumenter offline eller koble suiten til din skykonto: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Trenger du hjelp? Gå til vårt $1.',

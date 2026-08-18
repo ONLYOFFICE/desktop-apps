@@ -1,4 +1,4 @@
-l10n.he = {
+export default {
     welWelcome: 'ברוכים הבאים לעורכי שולחן העבודה של ONLYOFFICE!',
     welDescr: 'לעבוד על מסמכים במצב לא מקוון או לחבר את החבילה לענן שלך: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'צריך עזרה? בקר באתר שלנו ב-$1',

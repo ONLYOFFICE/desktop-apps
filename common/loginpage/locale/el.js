@@ -1,4 +1,4 @@
-l10n.el = {
+export default {
     welWelcome: 'Καλώς ήλθατε στο ONLYOFFICE Desktop Editors!',
     welDescr: 'Εργαστείτε εκτός σύνδεσης με έγγραφα ή συνδέστε τη σουίτα στο cloud σας: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Χρειάζεστε βοήθεια; Επισκεφτείτε το $1 μας.',

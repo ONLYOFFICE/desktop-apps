@@ -1,4 +1,4 @@
-l10n.ur = {
+export default {
     welWelcome: 'ONLYOFFICE ڈیسک ٹاپ ایڈیٹرز میں خوش آمدید!',
     welDescr: 'دستاویزات پر آف لائن کام کریں یا سویٹ کو اپنے کلاؤڈ سے جوڑیں: ONLYOFFICE، ownCloud، Nextcloud',
     welNeedHelp: 'مدد کی ضرورت ہے؟ ہمارے $1 پر جائیں۔',

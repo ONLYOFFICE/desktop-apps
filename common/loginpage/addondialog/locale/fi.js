@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Älä näytä minulle ONLYOFFICE AI Tools -ilmoitusta",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Asennetaan...",
+  addonDownloading: "Ladataan...",
   addonInstalledTitle: "Asennus onnistui",
   addonRestartNeeded: "Sovellus on käynnistettävä uudelleen",
   addonBtnRestartLater: "Teen sen myöhemmin",

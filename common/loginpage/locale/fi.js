@@ -1,4 +1,4 @@
-l10n.fi = {
+export default {
     welWelcome: 'Tervetuloa ONLYOFFICE Työpöytä Editoriin!',
     welDescr: 'Työskentele ilman verkkoyhteyttä tai yhdistä pilveesi: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Tarvitsetko apua? Käy osoitteessa $1.',

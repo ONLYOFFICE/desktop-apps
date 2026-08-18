@@ -1,4 +1,4 @@
-l10n.ja = {
+export default {
     welWelcome: 'ONLYOFFICE デスクトップ エディターにようこそ!',
     welDescr: 'ドキュメントをオフラインで使用するか、お使いのクラウドへスイートを接続: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'ご不明な点がございましたら、 $1 をご覧ください',

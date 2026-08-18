@@ -97,7 +97,7 @@ function ConnectDialog(props) {
     try {
       for (const candidate of candidates) {
         try {
-          await fetch(candidate + checkPath, { method: "HEAD", signal: AbortSignal.timeout(5000) });
+          await fetch('onlyoffice-proxy://' + candidate + checkPath, { method: "HEAD", signal: AbortSignal.timeout(5000) });
           connectToProvider(props.provider, candidate);
           handleClose();
           return;

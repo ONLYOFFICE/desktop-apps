@@ -1,10 +1,17 @@
 import { createSignal } from "solid-js";
 import { parseQueryParams } from "@/utils/url";
 
+const l10n = {};
+const localeModules = import.meta.glob("../../locale/*.js", { eager: true });
+for (const path in localeModules) {
+  const code = path.match(/([^/]+)\.js$/)[1];
+  l10n[code.replaceAll("-", "_")] = localeModules[path].default;
+}
+
 const [translations, setTranslations] = createSignal({});
 
 export function initLocale() {
-  const en = window.l10n?.en ?? {};
+  const en = l10n?.en ?? {};
   setTranslations({ ...en });
 
   const inParams = parseQueryParams();
@@ -17,14 +24,14 @@ export function t(key, defstring) {
 
 export function applyLocale(locale) {
   const correct = locale.replaceAll("-", "_");
-  let table = window.l10n?.[correct];
+  let table = l10n?.[correct];
 
   if (!table) {
     const code = /^\w{2}/.exec(correct)?.[0];
     if (code) {
-      for (const l in window.l10n || {}) {
+      for (const l in l10n || {}) {
         if (l.startsWith(code)) {
-          table = window.l10n[l];
+          table = l10n[l];
           break;
         }
       }
@@ -41,12 +48,12 @@ export function isRTL(code) {
 
 export function getTranslationFor(locale, key) {
   const correct = locale.replaceAll("-", "_");
-  let table = window.l10n?.[correct];
+  let table = l10n?.[correct];
   if (!table) {
     const code = /^\w{2}/.exec(correct)?.[0];
     if (code) {
-      for (const l in window.l10n || {}) {
-        if (l.startsWith(code)) { table = window.l10n[l]; break; }
+      for (const l in l10n || {}) {
+        if (l.startsWith(code)) { table = l10n[l]; break; }
       }
     }
   }

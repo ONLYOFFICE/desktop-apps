@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Ära näita mulle ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Installimine...",
+  addonDownloading: "Allalaadimine...",
   addonInstalledTitle: "Installimine õnnestus",
   addonRestartNeeded: "Rakendus vajab taaskäivitamist",
   addonBtnRestartLater: "Tehen seda hiljem",

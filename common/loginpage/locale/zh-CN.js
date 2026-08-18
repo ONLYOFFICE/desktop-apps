@@ -1,4 +1,4 @@
-l10n.zh_CN = {
+export default {
     welWelcome: '欢迎使用ONLYOFFICE桌面编辑软件！',
     welDescr: '脱机处理文档或连接套件到云：ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: '需要帮助吗? 请访问我们的 $1.',

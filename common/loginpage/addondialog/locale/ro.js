@@ -23,6 +23,7 @@ export default {
   addonDontShow: "Nu mă mai afișa ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Se instalează...",
+  addonDownloading: "Se descarcă...",
   addonInstalledTitle: "Instalat cu succes",
   addonRestartNeeded: "Aplicația trebuie repornită",
   addonBtnRestartLater: "O voi face mai târziu",

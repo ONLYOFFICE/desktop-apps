@@ -1,4 +1,4 @@
-l10n.vi = {
+export default {
     welWelcome: 'Chào mừng đến với ONLYOFFICE Editors cho máy tính!',
     welDescr: 'Làm việc với các tài liệu khi không kết nối mạng hay kết nối bộ công cụ với đám mây của bạn: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Cần trợ giúp? Truy cập $1.',

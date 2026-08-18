@@ -16,6 +16,7 @@ export default {
   addonDontShow: "ONLYOFFICE AI Tools nicht mehr anzeigen",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Wird installiert...",
+  addonDownloading: "Wird heruntergeladen...",
   addonInstalledTitle: "Erfolgreich installiert",
   addonRestartNeeded: "Anwendung muss neu gestartet werden",
   addonBtnRestartLater: "Später erledigen",

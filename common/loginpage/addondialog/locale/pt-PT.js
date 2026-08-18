@@ -23,6 +23,7 @@ export default {
   addonDontShow: "Não me mostrar o ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "A instalar...",
+  addonDownloading: "A transferir...",
   addonInstalledTitle: "Instalado com sucesso",
   addonRestartNeeded: "A aplicação tem de ser reiniciada",
   addonBtnRestartLater: "Faço isso mais tarde",

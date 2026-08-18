@@ -264,15 +264,26 @@ bool CWindowBase::event(QEvent *event)
 
 void CWindowBase::setScreenScalingFactor(double factor, bool resize)
 {
-    if (resize && !isMaximized()) {
-        const QRect minRect = adjustWindowRect(QRect(0, 0, WINDOW_MIN_WIDTH * factor,
-                                                     WINDOW_MIN_HEIGHT * factor), factor);
-        setMinimumSize(minRect.size());
+    const bool wasResizable = isResizable();
+    if ((resize || !wasResizable) && !isMaximized()) {
+        if (!wasResizable)
+            setResizable(true);
+
+        if (!m_ignoreMinSize)
+        {
+            const QRect minRect = adjustWindowRect(QRect(0, 0, WINDOW_MIN_WIDTH * factor,
+                                                         WINDOW_MIN_HEIGHT * factor), factor);
+            setMinimumSize(minRect.size());
+        }
+
         double change_factor = factor / m_dpiRatio;
         QRect _src_rect = geometry();
         double dest_width_change = _src_rect.width() * (1 - change_factor);
         QRect _dest_rect = QRect{_src_rect.translated(int(dest_width_change/2), 0).topLeft(), _src_rect.size() * change_factor};
         setGeometry(_dest_rect);
+
+        if (!wasResizable)
+            setResizable(false);
     }
     m_dpiRatio = factor;
     if (m_boxTitleBtns) {

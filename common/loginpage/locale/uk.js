@@ -1,4 +1,4 @@
-l10n.uk = {
+export default {
     welWelcome: 'Ласкаво просимо до десктопних редакторів ONLYOFFICE!',
     welDescr: 'Працюйте над документами в автономному режимі чи підключіть програмний комплекс до хмари ONLYOFFICE, ownCloud або Nextcloud.',
     welNeedHelp: 'Потрібна допомога? Відвідайте наш $1.',

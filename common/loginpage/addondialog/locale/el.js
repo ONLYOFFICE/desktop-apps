@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Να μην εμφανίζονται τα ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Εγκατάσταση...",
+  addonDownloading: "Λήψη...",
   addonInstalledTitle: "Επιτυχής εγκατάσταση",
   addonRestartNeeded: "Η εφαρμογή πρέπει να επανεκκινηθεί",
   addonBtnRestartLater: "Θα το κάνω αργότερα",

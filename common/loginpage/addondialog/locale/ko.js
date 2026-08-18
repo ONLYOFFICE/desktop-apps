@@ -16,6 +16,7 @@ export default {
   addonDontShow: "ONLYOFFICE AI Tools를 다시 표시하지 않음",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "설치 중...",
+  addonDownloading: "다운로드 중...",
   addonInstalledTitle: "설치가 완료되었습니다",
   addonRestartNeeded: "애플리케이션을 다시 시작해야 합니다",
   addonBtnRestartLater: "나중에 다시 시작하겠습니다",

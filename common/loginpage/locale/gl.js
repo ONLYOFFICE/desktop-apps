@@ -1,4 +1,4 @@
-l10n.gl = {
+export default {
     welWelcome: 'Dámosche a benvida aos editores de escritorio ONLYOFFICE!',
     welDescr: 'Traballa en documentos sen conexión ou conecta a suite á túa nube: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Necesitas axuda? Visita o noso $1.',

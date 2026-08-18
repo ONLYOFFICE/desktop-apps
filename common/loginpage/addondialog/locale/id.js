@@ -16,6 +16,7 @@ export default {
   addonDontShow: "Jangan tampilkan ONLYOFFICE AI Tools lagi",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "Menginstal...",
+  addonDownloading: "Mengunduh...",
   addonInstalledTitle: "Berhasil dipasang",
   addonRestartNeeded: "Aplikasi perlu dimulai ulang",
   addonBtnRestartLater: "Nanti saja",

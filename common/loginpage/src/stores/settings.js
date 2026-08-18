@@ -50,7 +50,7 @@ export const themesMap = {
 
 const defaultSettings = Object.freeze({
   userName: "",
-  country: "GB",
+  country: "US",
   lang: "en",
   scaling: "auto",
   checkUpdates: "ask",

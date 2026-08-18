@@ -577,9 +577,9 @@ public:
     {
         int reply = CMessage::showMessage(window->handle(),
                                           CEditorWindow::tr("Document must be saved to continue.<br>Save the document?"),
-                                          MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
+                                          CMessage::Icon::Confirm, CMessage::Buttons::YesDefNo);
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
-        pData->put_Value(reply == MODAL_RESULT_YES);
+        pData->put_Value(reply == CMessage::Result::Yes);
 
         CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
         pEvent->m_pData = pData;

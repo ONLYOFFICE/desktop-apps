@@ -1,4 +1,4 @@
-l10n.lv = {
+export default {
     welWelcome: 'Esiet sveicināti ONLYOFFICE Darbvirsmas Redaktoros!',
     welDescr: 'Strādājiet ar dokumentiem bezsaistē vai pieslēdziet komplektu savam mākonim: ONLYOFFICE, ownCloud, Nextcloud',
     welNeedHelp: 'Vai nepieciešama palīdzība? Apmeklējiet mūsu $1.',

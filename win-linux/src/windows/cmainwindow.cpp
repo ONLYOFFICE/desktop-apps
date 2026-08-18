@@ -314,14 +314,14 @@ void CMainWindow::close()
                 for (int i = 0; i < m_pTabs->count(); i++) {
                     if (!m_pTabs->modifiedByIndex(i)) {
                         bool dontAskAgain = false;
-                        CMessageOpts opts;
+                        CMessage::Config opts;
                         opts.checkBoxState = &dontAskAgain;
-                        opts.chekBoxText = tr("Don't ask again.");
+                        opts.checkBoxText = tr("Don't ask again.");
                         int res = CMessage::showMessage(this, tr("More than one document is open.<br>Close the window anyway?"),
-                                                           MsgType::MSG_WARN, MsgBtns::mbYesNo, opts);
+                                                           CMessage::Icon::Warning, CMessage::Buttons::YesNo, opts);
                         if (dontAskAgain)
                             reg_user.setValue("ignoreMsgAboutOpenTabs", true);
-                        if (res != MODAL_RESULT_YES) {
+                        if (res != CMessage::Result::Yes) {
                             AscAppManager::cancelClose();
                             return;
                         }
@@ -335,13 +335,13 @@ void CMainWindow::close()
             if ( !m_pTabs->closedByIndex(i) ) {
                 if ( !m_pTabs->isProcessed(i) ) {
                     int _result = trySaveDocument(i);
-                    if ( _result == MODAL_RESULT_NO ) {
+                    if ( _result == CMessage::Result::No ) {
                         if (i == 0)
                             hide();
                         m_pTabs->editorCloseRequest(i);
                         onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
                     } else
-                    if ( _result == MODAL_RESULT_CANCEL ) {
+                    if ( _result == CMessage::Result::Cancel ) {
                         AscAppManager::cancelClose();
                         return;
                     }
@@ -677,7 +677,7 @@ void CMainWindow::onTabCloseRequest(int index)
     if ( m_pTabs->isProcessed(index) ) {
         return;
     } else {
-        if ( trySaveDocument(index) == MODAL_RESULT_NO ) {
+        if ( trySaveDocument(index) == CMessage::Result::No ) {
             m_pTabs->editorCloseRequest(index);
             onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
         }
@@ -705,7 +705,7 @@ int CMainWindow::tabCloseRequest(int index)
         onFullScreen(-1, false);
         if ( !m_pTabs->isProcessed(index) ) {
             int _result = trySaveDocument(index);
-            if ( _result == MODAL_RESULT_NO ) {
+            if ( _result == CMessage::Result::No ) {
                 m_pTabs->editorCloseRequest(index);
                 onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
             }
@@ -716,30 +716,30 @@ int CMainWindow::tabCloseRequest(int index)
         }
     }
 
-    return MODAL_RESULT_YES;
+    return CMessage::Result::Yes;
 }
 
 int CMainWindow::trySaveDocument(int index)
 {
-    if (m_pTabs->closedByIndex(index)) return MODAL_RESULT_YES;
+    if (m_pTabs->closedByIndex(index)) return CMessage::Result::Yes;
 
-    int modal_res = MODAL_RESULT_NO;
+    int modal_res = CMessage::Result::No;
     if ( m_pTabs->modifiedByIndex(index) ) {
         toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
         modal_res = CMessage::showMessage(this, getSaveMessage().arg(m_pTabs->titleByIndex(index).toHtmlEscaped()),
-                                          MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
+                                          CMessage::Icon::Warning, CMessage::Buttons::YesDefNoCancel);
         switch (modal_res) {
-        case MODAL_RESULT_NO: break;
-        case MODAL_RESULT_CANCEL: modal_res = MODAL_RESULT_CANCEL; break;
-        case MODAL_RESULT_YES:
+        case CMessage::Result::No: break;
+        case CMessage::Result::Cancel: modal_res = CMessage::Result::Cancel; break;
+        case CMessage::Result::Yes:
         default:{
             m_pTabs->editorCloseRequest(index);
             m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
             Utils::processMoreEvents(100);
 
-            modal_res = MODAL_RESULT_YES;
+            modal_res = CMessage::Result::Yes;
             break;}
         }
     }
@@ -875,7 +875,7 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
             }
 
             for (int i(m_pTabs->count()); !(--i < 0);) {
-                int _answer = MODAL_RESULT_NO;
+                int _answer = CMessage::Result::No;
 
                 CAscTabData& _doc = *m_pTabs->panel(i)->data();
                 if ( _doc.isViewType(cvwtEditor) && !_doc.closed() &&
@@ -883,13 +883,13 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
                 {
                     if ( _doc.hasChanges() || m_pTabs->panel(i)->hasUncommittedChanges() ) {
                         _answer = trySaveDocument(i);
-                        if ( _answer == MODAL_RESULT_CANCEL) {
+                        if ( _answer == CMessage::Result::Cancel) {
                             AscAppManager::cancelClose();
                             return;
                         }
                     }
 
-                    if ( _answer != MODAL_RESULT_YES ) {
+                    if ( _answer != CMessage::Result::Yes ) {
                         m_pTabs->editorCloseRequest(i);
                         onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
                     }
@@ -991,8 +991,8 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
         QFileInfo _info(opts.url);
         if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
             int modal_res = CMessage::showMessage(this, tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
-                                                  MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
-            if (modal_res == MODAL_RESULT_YES) {
+                                                  CMessage::Icon::Warning, CMessage::Buttons::YesDefNo);
+            if (modal_res == CMessage::Result::Yes) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
             }
 
@@ -1046,11 +1046,11 @@ void CMainWindow::onLocalFileLocation(QString path)
             Utils::openFileLocation(_path);
         } else {
             int res = CMessage::showMessage(this, QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
-                                                MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
-            if ( res == MODAL_RESULT_YES )
+                                                CMessage::Icon::Warning, CMessage::Buttons::YesDefNo);
+            if ( res == CMessage::Result::Yes )
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
             else
-            if ( res == MODAL_RESULT_NO ) {
+            if ( res == CMessage::Result::No ) {
                 int uid = objRoot["hash"].toInt();
                 AscAppManager::getInstance().onFileChecked(_info.fileName(), uid, false);
             }
@@ -1233,9 +1233,9 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
 void CMainWindow::onDocumentSaveInnerRequest(int id)
 {
     int modal_res = CMessage::showMessage(this, tr("Document must be saved to continue.<br>Save the document?"),
-                                          MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
+                                          CMessage::Icon::Confirm, CMessage::Buttons::YesDefNo);
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
-    pData->put_Value(modal_res == MODAL_RESULT_YES);
+    pData->put_Value(modal_res == CMessage::Result::Yes);
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
     pEvent->m_pData = pData;
@@ -1265,7 +1265,7 @@ void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
 {
     int index = m_pTabs->tabIndexByView(id);
     if ( !(index < 0) ) {
-            int _answer = MODAL_RESULT_NO;
+            int _answer = CMessage::Result::No;
             if ( isfragmented ) {
                 static const bool _skip_user_warning = !InputArgs::contains(L"--warning-doc-fragmented");
                 if ( _skip_user_warning ) {
@@ -1288,7 +1288,7 @@ void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
                 onDocumentFragmentedBuild(id, 0);
             }
 
-            if ( _answer == MODAL_RESULT_CANCEL ) {
+            if ( _answer == CMessage::Result::Cancel ) {
                 AscAppManager::cancelClose();
             }
     }
@@ -1552,8 +1552,8 @@ void CMainWindow::importUserTemplates(const QStringList &filePaths)
 
         if (QFile::exists(dstFilePath)) {
             int res = CMessage::showMessage(this, tr("%1 already exists.<br>Do you want to replace it?").arg(fi.fileName().toHtmlEscaped()),
-                                            MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
-            if (res != MODAL_RESULT_YES)
+                                            CMessage::Icon::Warning, CMessage::Buttons::YesDefNo);
+            if (res != CMessage::Result::Yes)
                 continue;
         }
 

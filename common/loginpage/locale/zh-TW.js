@@ -1,4 +1,4 @@
-l10n.zh_TW = {
+export default {
     welWelcome: '歡迎使用 ONLYOFFICE 桌面編輯器！',
     welDescr: '以離線方式在文件上工作，或將套件連線至您的雲端：ONLYOFFICE, ownCloud, Nextcloud',
     welNeedHelp: '需要幫助？請造訪我們的 $1.',

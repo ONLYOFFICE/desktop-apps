@@ -1,4 +1,4 @@
-l10n.de = {
+export default {
     welWelcome: 'Willkommen in ONLYOFFICE Desktop-Editoren!',
     welDescr: 'Arbeiten Sie offline an Dokumenten oder verbinden Sie die Suite mit Ihrer Cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Brauchen Sie Hilfe? Besuchen Sie unser $1.',

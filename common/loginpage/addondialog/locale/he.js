@@ -16,6 +16,7 @@ export default {
   addonDontShow: "אל תציגו לי את ONLYOFFICE AI Tools",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "מתקין...",
+  addonDownloading: "מוריד...",
   addonInstalledTitle: "ההתקנה הושלמה בהצלחה",
   addonRestartNeeded: "יש להפעיל מחדש את האפליקציה",
   addonBtnRestartLater: "אעשה זאת מאוחר יותר",

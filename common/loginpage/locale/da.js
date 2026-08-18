@@ -1,4 +1,4 @@
-l10n.da = {
+export default {
     welWelcome: 'Velkommen til ONLYOFFICE Skrivebordseditor!',
     welDescr: 'Arbejd på dokumenter offline eller forbind pakken til din cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Brug for hjælp? Besøg vores $1.',

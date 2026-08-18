@@ -1,4 +1,4 @@
-l10n.sq = {
+export default {
     welWelcome: 'Mirësevini në ONLYOFFICE Desktop Editors!',
     welDescr: 'Punoni me dokumente jashtë linje ose lidhni paketën me renë tuaj kompjuterike: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Keni nevojë për ndihmë? Vizitoni $1.',

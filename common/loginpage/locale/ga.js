@@ -1,4 +1,4 @@
-l10n.ga = {
+export default {
     welWelcome: 'Fáilte chuig ONLYOFFICE Eagarthóirí Deisce!',
     welDescr: 'Oibrigh ar dhoiciméid as líne nó ceangail an tsraith le do scamall: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'An bhfuil cabhair uait? Tabhair cuairt ar ár $1.',

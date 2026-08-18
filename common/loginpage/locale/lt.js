@@ -1,4 +1,4 @@
-l10n.lt = {
+export default {
     welWelcome: 'Sveiki atvykę ONLYOFFICE Desktop Editors!',
     welDescr: 'Dirbkite su dokumentais neprisijungę prie ryšio arba prisijunkite prie "cloud" sistemų: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Reikia pagalbos? Apsilankykite mūsų $1.',

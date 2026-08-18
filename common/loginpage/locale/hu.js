@@ -1,4 +1,4 @@
-l10n.hu = {
+export default {
     welWelcome: 'Üdvözöljük az ONLYOFFICE Desktop Editor-ban!',
     welDescr: 'Dolgozzon offline módon a dokumentumain, vagy rendelje hozzá a programcsomagját a felhőhöz: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Segítségre van szüksége? Látogassa meg $1.',

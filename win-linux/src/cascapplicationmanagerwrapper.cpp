@@ -417,6 +417,21 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 return true;
             }
         } else
+        if ( !(cmd.find(L"addon:install") == std::wstring::npos) ) {     // params: install
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                if (objRoot["status"].toString() == "downloaded") {
+                    QString hash = objRoot["md5"].toString();
+                    QString tmpPath = objRoot["tempfile"].toString();
+                    if (!hash.isEmpty() && Utils::getFileHash(tmpPath) == hash) {
+                        addonManager()->installFromBundle(tmpPath);
+                    }
+                }
+            }
+        } else
         if ( !(cmd.find(L"addon:action") == std::wstring::npos) ) {     // params: install
             if (m_private->m_pAddonManager) {
                 const wstring param = pData->get_Param();
@@ -425,7 +440,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     /* "accept and install" clicked */
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->showStartPage();
-                    m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
+                    // m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
                 }
                 else if (param == L"intro")
                 {
@@ -503,8 +518,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         if ( m_themes->checkDestinationThemeFileExist(file_path) ) {
                             int res = CMessage::showMessage(mainWindow(),
                                                             QObject::tr("File %1 is already loaded. Replace it?").arg(QFileInfo(file_path).fileName()),
-                                                            MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
-                            if ( res == MODAL_RESULT_NO )
+                                                            CMessage::Icon::Confirm, CMessage::Buttons::YesDefNo);
+                            if ( res == CMessage::Result::No )
                                 return true;
                         }
 
@@ -1003,7 +1018,7 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
     additional.append("&osver=winxp");
 #endif
 
-    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
+    std::wstring start_path = (HTML_SCHEME + data_path + additional).toStdWString();
     _startPanel->GetCefView()->load(start_path);
 
 
@@ -1301,7 +1316,21 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                     if (m_pMainWindow)
                     {
                         m_pMainWindow->sendAddonStatusToStartPage();
-                        showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Complete);
+                        // showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Complete);
+                        CMessage msg(m_pMainWindow);
+                        msg.setText(tr("ONLYOFFICE AI Tools successfully uninstalled"));
+                        msg.setIcon(CMessage::Icon::Info);
+                        msg.setButtons({tr("I'll do it later"), tr("Restart now")});
+                        msg.setDefaultButton(CMessage::DefaultButton::SecondButton);
+                        CMessage::Config cfg;
+                        cfg.contentText = tr("Application needs to restart");
+                        msg.setConfig(cfg);
+                        int result = msg.exec();
+                        if (result == CMessage::Result::SecondButton)
+                        {
+                            m_private->m_needRestart = true;
+                            AscAppManager::closeAppWindows();
+                        }
                     }
                 });
 
@@ -1709,11 +1738,11 @@ void CAscApplicationManagerWrapper::launchAppClose()
                 if ( it != m_vecEditors.end() ) {
                     CEditorWindow * _editor = reinterpret_cast<CEditorWindow *>(*it);
 
-                    if ( _editor && _editor->closeWindow() == MODAL_RESULT_CANCEL )
+                    if ( _editor && _editor->closeWindow() == CMessage::Result::Cancel )
                         AscAppManager::cancelClose();
                 }
             } else {
-                if ( AscAppManager::mainWindow()->tabCloseRequest() == MODAL_RESULT_CANCEL )
+                if ( AscAppManager::mainWindow()->tabCloseRequest() == CMessage::Result::Cancel )
                     AscAppManager::cancelClose();
             }
         } else {
@@ -2294,8 +2323,8 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 #endif
         if (objRoot.contains("restart") && objRoot["restart"].toBool()) {
             QTimer::singleShot(500, this, [=]() {
-                if (MODAL_RESULT_YES == CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
-                                                              MsgType::MSG_INFO, MsgBtns::mbYesDefNo)) {
+                if (CMessage::Result::Yes == CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
+                                                              CMessage::Icon::Info, CMessage::Buttons::YesDefNo)) {
                     m_private.get()->m_needRestart = true;
                     AscAppManager::closeAppWindows();
                 }
@@ -2612,7 +2641,7 @@ void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
     } else {
         CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
         int res = _e->closeWindow();
-        if ( res == MODAL_RESULT_CANCEL ) {
+        if ( res == CMessage::Result::Cancel ) {
             AscAppManager::getInstance().closeQueue().cancel();
         } else {
             AscAppManager::getInstance().closeQueue().leave(t);

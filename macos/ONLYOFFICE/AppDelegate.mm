@@ -1953,9 +1953,20 @@
 #ifdef USE_ADDON_MODE
 - (void)onAddonUninstallFinished:(NSNotification *)notification {
     self.upgradeInProgress = NO;
-    [self performSelector:@selector(showUpgradeDialogWithPage:)
-               withObject:@(ASCUpgradePageComplete)
-               afterDelay:0];
+//    [self performSelector:@selector(showUpgradeDialogWithPage:)
+//               withObject:@(ASCUpgradePageComplete)
+//               afterDelay:0];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:NSLocalizedString(@"I'll do it later", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Restart now", nil)];
+    [alert setMessageText:NSLocalizedString(@"ONLYOFFICE AI Tools successfully uninstalled", nil)];
+    [alert setInformativeText:NSLocalizedString(@"Application needs to restart", nil)];
+    [alert setAlertStyle:NSAlertStyleInformational];
+    NSInteger result = [alert runModal];
+    if (result == NSAlertSecondButtonReturn) {
+        self.needsRestart = YES;
+        [NSApp terminate:self];
+    }
 }
 
 - (void)onCEFAddonAction:(NSNotification *)notification {

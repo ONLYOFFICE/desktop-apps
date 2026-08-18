@@ -67,6 +67,7 @@
 #define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"
 #define APP_PROTOCOL "oo-office"
 #define FILE_PREFIX "onlyoffice_"
+#define HTML_SCHEME "onlyoffice://plugin/"
 
 #define URL_SITE                "http://www.onlyoffice.com"
 #define URL_SIGNUP              "https://onlyoffice.com/registration.aspx?desktop=true"

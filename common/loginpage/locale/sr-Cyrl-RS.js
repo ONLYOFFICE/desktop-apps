@@ -1,4 +1,4 @@
-l10n.sr_Cyrl_RS = {
+export default {
     welWelcome: 'Добро дошли у ONLYOFFICE Десктоп Уређиваче!',
     welDescr: 'Радите на документима офлајн или конектујте пакет на свој облак: ONLYOFFICE, ownCloud, Nextcloud.',
     welNeedHelp: 'Треба вам помоћ? Посетите наш $1.',

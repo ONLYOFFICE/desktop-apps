@@ -41,6 +41,8 @@
 #include "utils.h"
 #include "defines.h"
 #include "clangater.h"
+#include <QDir>
+#include "caddonmanager.h"
 
 const QSize UpgradeDialog::IntroPageSize(480, 700);
 const QSize UpgradeDialog::InstallPageSize(480, 304);
@@ -83,7 +85,8 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc, int page)
     QString url_additional = QString("?lang=%1&page=%2").arg(
         CLangater::getCurrentLangCode(), pageToString(page));
 
-    const QString addonUrl = QString("file:///%1%2").arg(html_path, url_additional);
+    const QString addonUrl = HTML_SCHEME + QString("%1%2").arg(html_path, url_additional);
+
     contentCefView->GetCefView()->load(addonUrl.toStdWString());
 }
 
@@ -112,6 +115,28 @@ void UpgradeDialog::showStartPage()
 
     QJsonObject jsn;
     jsn["page"] = pageToString(Page::Install);
+    jsn["appcast"] = AscAppManager::addonManager()->appcastUrl();
+
+#ifdef _WIN32
+# if defined(_M_ARM64)
+    jsn["package"] = "win_arm64";
+# elif defined(_M_X64)
+    jsn["package"] = "win_64";
+# elif defined(_M_IX86)
+    jsn["package"] = "win_32";
+# else
+#  error Unsupported architecture
+# endif
+#else
+# if defined(__aarch64__)
+    jsn["package"] = "linux_aarch64";
+# elif defined(__x86_64__)
+    jsn["package"] = "linux_x86_64";
+# else
+#  error Unsupported architecture
+# endif
+#endif
+
     AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 
     applyGeometry(InstallPageSize);

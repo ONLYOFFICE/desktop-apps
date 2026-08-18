@@ -16,6 +16,7 @@ export default {
   addonDontShow: "मुझे ONLYOFFICE AI Tools न दिखाएं",
   addonInstallingTitle: "ONLYOFFICE AI Tools",
   addonInstalling: "इंस्टॉल हो रहा है...",
+  addonDownloading: "डाउनलोड हो रहा है...",
   addonInstalledTitle: "सफलतापूर्वक इंस्टॉल हुआ",
   addonRestartNeeded: "एप्लिकेशन को पुनरारंभ करने की आवश्यकता है",
   addonBtnRestartLater: "मैं यह बाद में करूंगा",

@@ -16,6 +16,7 @@ export default {
   addonDontShow: "عدم إظهار أدوات ONLYOFFICE للذكاء الاصطناعي لي مرة أخرى",
   addonInstallingTitle: "أدوات ONLYOFFICE للذكاء الاصطناعي",
   addonInstalling: "جارٍ التثبيت...",
+  addonDownloading: "جارٍ التنزيل...",
   addonInstalledTitle: "تم التثبيت بنجاح",
   addonRestartNeeded: "يلزم إعادة تشغيل التطبيق",
   addonBtnRestartLater: "سأفعل ذلك لاحقًا",
