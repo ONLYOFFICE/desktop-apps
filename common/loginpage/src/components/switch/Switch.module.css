@@ -33,10 +33,19 @@
   top: 2px;
   left: 2px;
   transition: transform 0.15s;
+
+  :global(body.rtl) & {
+    left: auto;
+    right: 2px;
+  }
 }
 
 .control[data-checked] .thumb {
   transform: translateX(14px);
+
+  :global(body.rtl) & {
+    transform: translateX(-14px);
+  }
 }
 
 .label {
