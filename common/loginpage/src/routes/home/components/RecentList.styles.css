@@ -41,6 +41,11 @@
   align-items: center;
   padding-left: 16px;
   padding-right: 120px;
+
+  body.rtl & {
+    padding-left: 120px;
+    padding-right: 16px;
+  }
 }
 
 .file-list-head {
@@ -91,6 +96,11 @@
   right: 16px;
   display: flex;
   gap: 4px;
+
+  body.rtl & {
+    right: auto;
+    left: 16px;
+  }
 
   button {
     width: 24px;
