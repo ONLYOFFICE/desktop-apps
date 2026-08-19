@@ -29,7 +29,8 @@ export const FileFormat = {
   FILE_DOCUMENT_OFORM_PDF: FILE_DOCUMENT + 0x0017,
   FILE_DOCUMENT_PAGES: FILE_DOCUMENT + 0x0018,
   FILE_DOCUMENT_HWP: FILE_DOCUMENT + 0x0019,
-  FILE_DOCUMENT_HWPX: FILE_DOCUMENT + 0x0020,
+  FILE_DOCUMENT_HWPX: FILE_DOCUMENT + 0x001a,
+  FILE_DOCUMENT_MD: FILE_DOCUMENT + 0x001c,
   FILE_DOCUMENT_XML: FILE_DOCUMENT + 0x0030,
 
   FILE_PRESENTATION: FILE_PRESENTATION,
@@ -97,6 +98,7 @@ const formatToString = Object.freeze({
   [FileFormat.FILE_DOCUMENT_PAGES]: "pages",
   [FileFormat.FILE_DOCUMENT_HWP]: "hwp",
   [FileFormat.FILE_DOCUMENT_HWPX]: "hwpx",
+  [FileFormat.FILE_DOCUMENT_MD]: "md",
 
   [FileFormat.FILE_SPREADSHEET_XLS]: "xls",
   [FileFormat.FILE_SPREADSHEET_XLTX]: "xltx",
@@ -158,6 +160,7 @@ const extensionToFormat = Object.freeze({
   pages: FileFormat.FILE_DOCUMENT_PAGES,
   hwp: FileFormat.FILE_DOCUMENT_HWP,
   hwpx: FileFormat.FILE_DOCUMENT_HWPX,
+  md: FileFormat.FILE_DOCUMENT_MD,
 
   xls: FileFormat.FILE_SPREADSHEET_XLS,
   xltx: FileFormat.FILE_SPREADSHEET_XLTX,
