@@ -48,6 +48,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding-block: 1px;
 }
 
 .value[data-placeholder-shown] {
