@@ -1,7 +1,6 @@
 .btn {
-  width: 96px;
+  min-width: 96px;
   height: 36px;
-  min-width: 48px;
   border-radius: 4px;
   border: none;
   padding: 3px 12px 4px;
