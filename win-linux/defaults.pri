@@ -169,7 +169,7 @@ updmodule:!build_xp {
     DEFINES += USE_ADDON_MODE
 
     HEADERS += \
-        $$COMMON_PATH/cdownloader.h \
+        # $$COMMON_PATH/cdownloader.h \
         $$PWD/src/caddonmanager.h \
         $$PWD/src/dialogs/ascdialog.h \
         $$PWD/src/dialogs/upgradedialog.h
@@ -330,12 +330,12 @@ core_windows {
             -lrpcrt4
 #            -lOpenGL32
 
-    !disable_addon_mode {
-        SOURCES += \
-            $$COMMON_PATH/cdownloader_win32.cpp
+    # !disable_addon_mode {
+    #     SOURCES += \
+    #         $$COMMON_PATH/cdownloader_win32.cpp
 
-        LIBS += -lwinhttp
-    }
+    #     LIBS += -lwinhttp
+    # }
 
     build_xp {
         DEFINES += __OS_WIN_XP
