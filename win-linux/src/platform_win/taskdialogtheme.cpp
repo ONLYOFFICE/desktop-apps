@@ -257,6 +257,22 @@ static HTHEME _OpenThemeDataForDpi(HWND hwnd, LPCWSTR pszClassList, UINT dpi)
     return hTheme;
 }
 
+static bool IsRTLLayout(HWND hwnd)
+{
+    return (GetWindowLongPtrW(hwnd, GWL_EXSTYLE) & WS_EX_LAYOUTRTL) != 0;
+}
+
+static void SyncBufferLayout(HDC hdcTarget, HDC hdcBuf, HWND hwnd)
+{
+    DWORD layout = GetLayout(hdcTarget);
+    if (layout == GDI_ERROR)
+        layout = 0;
+    if ((layout & LAYOUT_RTL) || IsRTLLayout(hwnd))
+    {
+        SetLayout(hdcBuf, LAYOUT_RTL | LAYOUT_BITMAPORIENTATIONPRESERVED);
+    }
+}
+
 static bool IsDarkThemeActive(const wchar_t* dark, const wchar_t* base)
 {
     HTHEME hD = OpenThemeData(nullptr, dark);
@@ -367,6 +383,13 @@ static bool QueryElements(HWND hwnd, std::vector<UIAElementInfo>& out)
         pChild->get_CurrentBoundingRectangle(&info.rect);
         ScreenToClient(hwnd, reinterpret_cast<POINT*>(&info.rect.left));
         ScreenToClient(hwnd, reinterpret_cast<POINT*>(&info.rect.right));
+
+        if (info.rect.left > info.rect.right)
+        {
+            const LONG tmp = info.rect.left;
+            info.rect.left = info.rect.right;
+            info.rect.right = tmp;
+        }
 
         { CComBSTR b; pChild->get_CurrentAutomationId(&b); if (b) info.automationId = (LPCWSTR)b; }
         { CComBSTR b; pChild->get_CurrentName(&b);         if (b) info.name = (LPCWSTR)b; }
@@ -525,6 +548,21 @@ static void PaintDirectUI(HWND hwnd, HDC hdcWin, DirectUIState& s)
         return;
     }
 
+    SyncBufferLayout(hdcWin, hdcBuf, hwnd);
+
+    DWORD dcLayout = GetLayout(hdcWin);
+    if (dcLayout == GDI_ERROR) dcLayout = 0;
+    const bool mirrored = (dcLayout & LAYOUT_RTL) || IsRTLLayout(hwnd);
+    bool dlgRtl = mirrored;
+    if (!dlgRtl)
+    {
+        if (HWND hRoot = GetAncestor(hwnd, GA_ROOT))
+            dlgRtl = IsRTLLayout(hRoot);
+        if (!dlgRtl && s.pCfg)
+            dlgRtl = (s.pCfg->dwFlags & TDF_RTL_LAYOUT) != 0;
+    }
+    const bool rtlVisual = dlgRtl && !mirrored;
+
     // ── 1. Native render ─────────────────────────────────────────────────────
     DefSubclassProc(hwnd, WM_PRINTCLIENT, (WPARAM)hdcBuf, PRF_CLIENT);
 
@@ -619,7 +657,10 @@ static void PaintDirectUI(HWND hwnd, HDC hdcWin, DirectUIState& s)
                 GetThemePartSize(s.hTD, hdcBuf, TDLG_EXPANDOBUTTON,
                     TDLGEBS_NORMAL, nullptr, TS_TRUE, &sz);
                 RECT rcGlyph = el.rect;
-                rcGlyph.right = el.rect.left + sz.cx + 3;
+                if (rtlVisual)
+                    rcGlyph.left = el.rect.right - sz.cx - 3;
+                else
+                    rcGlyph.right = el.rect.left + sz.cx + 3;
 
                 int st;
                 if (press && s.isExpanded) st = TDLGEBS_EXPANDEDPRESSED;
@@ -642,12 +683,25 @@ static void PaintDirectUI(HWND hwnd, HDC hdcWin, DirectUIState& s)
                 GetThemePartSize(s.hButton, hdcBuf, BP_CHECKBOX,
                     CBS_UNCHECKEDNORMAL, nullptr, TS_DRAW, &cs);
                 const int mg = (el.rect.bottom - el.rect.top - cs.cy) / 3;
-                RECT rcGlyph = {
-                    el.rect.left + mg + 1,
-                    el.rect.top + mg + 1,
-                    el.rect.left + mg + 1 + cs.cx,
-                    el.rect.bottom
-                };
+                RECT rcGlyph;
+                if (rtlVisual)
+                {
+                    rcGlyph = {
+                        el.rect.right - mg - 1 - cs.cx,
+                        el.rect.top + mg + 1,
+                        el.rect.right - mg - 1,
+                        el.rect.bottom
+                    };
+                }
+                else
+                {
+                    rcGlyph = {
+                        el.rect.left + mg + 1,
+                        el.rect.top + mg + 1,
+                        el.rect.left + mg + 1 + cs.cx,
+                        el.rect.bottom
+                    };
+                }
 
                 int st;
                 if (press && s.isChecked) st = CBS_CHECKEDPRESSED;
@@ -679,7 +733,8 @@ static void PaintDirectUI(HWND hwnd, HDC hdcWin, DirectUIState& s)
             RECT   rcText = el.rect;
             int    uiPart = 0;
             HBRUSH brBg = s.brPrimary;
-            DWORD  dtFlags = DT_LEFT | DT_VCENTER | DT_WORDBREAK | DT_NOPREFIX;
+            DWORD  dtFlags = (rtlVisual ? (DT_RIGHT | DT_RTLREADING) : DT_LEFT)
+                             | DT_VCENTER | DT_WORDBREAK | DT_NOPREFIX;
 
             if (el.automationId == L"MainInstruction")
             {
@@ -709,11 +764,15 @@ static void PaintDirectUI(HWND hwnd, HDC hdcWin, DirectUIState& s)
                 MARGINS vtextMargins = {};
                 GetThemeMargins(s.hTD, hdcBuf, TDLG_VERIFICATIONTEXT, 0,
                     TMT_CONTENTMARGINS, &el.rect, &vtextMargins);
-                rcText.left += sz.cx + vtextMargins.cxLeftWidth - 2;
+                if (rtlVisual)
+                    rcText.right -= sz.cx + vtextMargins.cxLeftWidth - 2;
+                else
+                    rcText.left += sz.cx + vtextMargins.cxLeftWidth - 2;
                 rcText.top += 1;
                 uiPart = TDLG_EXPANDOTEXT;
                 brBg = s.brSecondary;
-                dtFlags = DT_LEFT | DT_VCENTER | DT_NOPREFIX;
+                dtFlags = (rtlVisual ? (DT_RIGHT | DT_RTLREADING) : DT_LEFT)
+                          | DT_VCENTER | DT_NOPREFIX;
             }
             else if (el.automationId == L"VerificationCheckBox" && s.hButton && s.hTD)
             {
@@ -723,11 +782,15 @@ static void PaintDirectUI(HWND hwnd, HDC hdcWin, DirectUIState& s)
                 MARGINS textMargins = {};
                 GetThemeMargins(s.hTD, hdcBuf, TDLG_VERIFICATIONTEXT, 0,
                     TMT_CONTENTMARGINS, &el.rect, &textMargins);
-                rcText.left = el.rect.left + cs.cx + textMargins.cxLeftWidth + 3;
+                if (rtlVisual)
+                    rcText.right = el.rect.right - cs.cx - textMargins.cxLeftWidth - 3;
+                else
+                    rcText.left = el.rect.left + cs.cx + textMargins.cxLeftWidth + 3;
                 rcText.top += 5;
                 uiPart = TDLG_VERIFICATIONTEXT;
                 brBg = s.brSecondary;
-                dtFlags = DT_LEFT | DT_VCENTER | DT_NOPREFIX;
+                dtFlags = (rtlVisual ? (DT_RIGHT | DT_RTLREADING) : DT_LEFT)
+                          | DT_VCENTER | DT_NOPREFIX;
             }
 
             if (uiPart == 0) continue;
@@ -924,6 +987,8 @@ static LRESULT CALLBACK RadioSubclassProc(
             EndPaint(hwnd, &ps);
             return 0;
         }
+
+        SyncBufferLayout(hdc, hdcBuf, hwnd);
 
         DefSubclassProc(hwnd, WM_PRINTCLIENT, (WPARAM)hdcBuf, PRF_CLIENT);
         wchar_t text[256] = {};
