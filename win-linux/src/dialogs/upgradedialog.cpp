@@ -43,6 +43,7 @@
 #include "clangater.h"
 #include <QDir>
 #include "caddonmanager.h"
+#include <qtcomp/qdesktopwidget.h>
 
 const QSize UpgradeDialog::IntroPageSize(480, 700);
 const QSize UpgradeDialog::InstallPageSize(480, 304);
@@ -194,8 +195,20 @@ void UpgradeDialog::applyGeometry(const QSize &baseSize)
         setResizable(true);
 
     QRect rc(QPoint(0, 0), baseSize * m_dpiRatio);
-    if (QWidget *parent = parentWidget())
+    QWidget *parent = parentWidget();
+    if (parent)
         rc.moveCenter(parent->geometry().center());
+
+    const QRect scrRc = QtComp::DesktopWidget::availableGeometry(parent ? parent : this);
+    if (rc.bottom() > scrRc.bottom())
+        rc.moveBottom(scrRc.bottom());
+    if (rc.top() < scrRc.top())
+        rc.moveTop(scrRc.top());
+    if (rc.right() > scrRc.right())
+        rc.moveRight(scrRc.right());
+    if (rc.left() < scrRc.left())
+        rc.moveLeft(scrRc.left());
+
     setGeometry(adjustWindowRect(rc, m_dpiRatio));
 
     if (!wasResizable)

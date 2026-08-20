@@ -1982,6 +1982,16 @@ void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, int page)
     QRect rc(QPoint(0, 0), size * dpiRatio);
     rc.moveCenter(parent->geometry().center());
 
+    const QRect scrRc = QtComp::DesktopWidget::availableGeometry(parent);
+    if (rc.bottom() > scrRc.bottom())
+        rc.moveBottom(scrRc.bottom());
+    if (rc.top() < scrRc.top())
+        rc.moveTop(scrRc.top());
+    if (rc.right() > scrRc.right())
+        rc.moveRight(scrRc.right());
+    if (rc.left() < scrRc.left())
+        rc.moveLeft(scrRc.left());
+
 #ifdef __linux__
     WindowHelper::CParentDisable oDisabler(parent);
 #endif
