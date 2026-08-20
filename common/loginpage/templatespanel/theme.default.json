@@ -106,6 +106,12 @@
   "template-modal-btn-secondary-border-color": "var(--border-divider)",
   "template-modal-btn-secondary-color": "var(--text-normal)",
   "template-modal-btn-secondary-background-color": "var(--background-action-panel)",
+  "template-modal-btn-secondary-background-color-hover": "var(--highlight-button-hover)",
+  "template-modal-btn-secondary-background-color-pressed": "var(--highlight-button-pressed)",
   "template-modal-btn-primary-background-color": "var(--background-primary-button)",
-  "template-modal-btn-primary-color": "var(--text-inverse)"
+  "template-modal-btn-primary-background-color-hover": "var(--highlight-primary-button-hover)",
+  "template-modal-btn-primary-background-color-pressed": "var(--highlight-primary-button-pressed)",
+  "template-modal-btn-primary-color": "var(--text-inverse)",
+  "template-modal-tag-border-color": "var(--border-divider)",
+  "template-modal-tag-color": "var(--text-secondary)"
 }
