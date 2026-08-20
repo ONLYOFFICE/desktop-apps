@@ -7,6 +7,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 LOGINPAGE_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
 ROOT_DIR = os.path.abspath(os.path.join(LOGINPAGE_DIR, "..", "..", ".."))
 BUILD_TOOLS_SCRIPTS_DIR = os.path.join(ROOT_DIR, "build_tools", "scripts")
+TEMPLATES_PROJECT_DIR = os.path.join(ROOT_DIR, "oforms.onlyoffice.com", "embed")
 
 sys.path.insert(0, BUILD_TOOLS_SCRIPTS_DIR)
 import base
@@ -35,10 +36,20 @@ def build_project(directory):
   npm_build(directory)
   return
 
+def build_templates_project(directory):
+  ret = base.cmd_in_dir(directory, "npm", ["run", "install:all"])
+  ret = base.cmd_in_dir(directory, "npm", ["run", "build"])
+
+  if ret == 0:
+    base.copy_file(directory + "/dist/oforms.js", LOGINPAGE_DIR + "/templatespanel/oforms.js")
+    base.copy_file(directory + "/dist/oforms.css", LOGINPAGE_DIR + "/templatespanel/oforms.css")
+  return ret
+
 def main():
   base.print_info("Build projects for the desktop's Start page")
   for directory in PROJECTS:
     build_project(directory)
+  build_templates_project(TEMPLATES_PROJECT_DIR)
   base.print_info("All projects built successfully")
   return
 
