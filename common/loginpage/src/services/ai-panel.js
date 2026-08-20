@@ -1,7 +1,7 @@
 import { onCleanup } from "solid-js";
 import { onNativeMessage } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
-import { setPanelUrl, openSidePanel, closeSidePanel, setChatAvialable } from "@/stores/aichat";
+import { setPanelUrl, openSidePanel, closeSidePanel, setChatAvialable, setAichat } from "@/stores/aichat";
 import { registerPlugin, selectPluginSection, setPluginSectionsDisabled } from "@/stores/plugin-settings";
 import { openPluginModal, closePluginModal } from "@/stores/plugin-modals";
 import { addExtPlugin } from "@/stores/ext-plugins";
@@ -57,6 +57,21 @@ export function sendFileToChat(path, type, name) {
   }
 }
 
+export function sendTextToChat(t) {
+  const iframe = document.getElementById("idx-plugin-frame");
+  if (iframe && iframe.contentWindow) {
+    const obj = {
+      event: "onPluginEvent",
+      data: {
+        type: "attach:text",
+        text: t,
+        forseSend: false,
+      }
+    };
+    iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
+  }
+}
+
 export function initAiPanel() {
   const unsubMessage = onNativeMessage((cmd, param) => {
     if (cmd !== "panel:external") return;
@@ -89,6 +104,7 @@ export function initAiPanel() {
       window.location.hash = "#/settings";
     } else if (msg.type === "expand") {
       closeSidePanel();
+      setAichat("expanded",true);
       window.location.hash = "#/aichat";
     } else if (msg.type === "minimize") {
       openSidePanel();

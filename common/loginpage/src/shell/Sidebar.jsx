@@ -6,9 +6,9 @@ import { openAbout, aboutVisible } from "@/services/about";
 import { appliedUseAi } from "@/services/settings-sync";
 import { MenuItem } from "./MenuItem.jsx";
 import { command } from "@/sdk/bridge.js";
-import { aichat, closeSidePanel } from "@/stores/aichat.js";
+import { aichat, closeSidePanel, openFullAIPanel } from "@/stores/aichat.js";
 import "./Sidebar.styles.css";
-import { sendPluginVisibility } from "@/services/ai-panel.js";
+// import { sendPluginVisibility } from "@/services/ai-panel.js";
 
 export default function Sidebar() {
   const location = useLocation();
@@ -19,7 +19,8 @@ export default function Sidebar() {
   const clickAiChat = (e) => {
     if (aichat.available) {
       closeSidePanel();
-      sendPluginVisibility("expanded");
+      openFullAIPanelPanel();
+      // sendPluginVisibility("expanded");
       // href handles navigation
     } else {
       e.preventDefault();
@@ -29,7 +30,7 @@ export default function Sidebar() {
 
   const clickAiTools = (e) => {
     if (aichat.available) {
-      closeSidePanel();
+      // closeSidePanel();
       // href handles navigation
     } else {
       e.preventDefault();
