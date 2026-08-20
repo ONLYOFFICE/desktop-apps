@@ -229,16 +229,21 @@
 /* Connect dialog */
 
 .connect-dialog {
-  width: 400px;
+  width: 480px;
   display: flex;
   flex-direction: column;
+  
+  .dlg-header {
+    padding-block: 12px;
+    padding-inline: 24px 14px;
+  }
 }
 
 .connect-inner {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 20px 20px 0;
+  padding: 24px;
 }
 
 .connect-logo {
@@ -273,8 +278,24 @@
 .connect-footer {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
-  padding: 16px 20px 20px;
+  gap: 16px;
+  padding: 14px 24px;
+}
+
+.connect-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--text-link);
+  cursor: pointer;
+  text-align: start;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .url-field-wrap {

@@ -1,6 +1,8 @@
 import { For, Show, createSignal, createEffect } from "solid-js";
 import { providers, portals, openConnectedPortal, logoutConnectedPortal, forgetConnectedPortal, connectToProvider } from "@/services/portals.js";
 import { relpath } from "@/sdk/portals.js";
+import { command } from "@/sdk/bridge.js";
+import { t } from "@/services/l10n.js";
 import { Button, Dialog, DropdownMenu, TextField } from "@/components";
 import "./clouds.css";
 
@@ -41,6 +43,7 @@ function ConnectDialog(props) {
   const [error, setError] = createSignal("");
   const [checking, setChecking] = createSignal(false);
   const hasEntryPage = () => !!props.provider?.entryPage;
+  const isOnlyoffice = () => props.provider?.provider === "onlyoffice";
   let inputRef;
 
   createEffect(() => {
@@ -69,6 +72,11 @@ function ConnectDialog(props) {
     props.onClose();
   }
 
+  function handleCreatePortal() {
+    command("portal:create", "");
+    handleClose();
+  }
+
   function isValidUrl(str) {
     try { new URL(str); return true; } catch { return false; }
   }
@@ -89,7 +97,7 @@ function ConnectDialog(props) {
 
     const candidates = getCandidates(url()).filter(isValidUrl);
     if (!candidates.length) {
-      setError("Invalid URL");
+      setError(t("errInvalidUrl", "Invalid URL"));
       return;
     }
     const checkPath = props.provider?.check?.url ?? "";
@@ -103,7 +111,7 @@ function ConnectDialog(props) {
           return;
         } catch {}
       }
-      setError("Server is not accessible");
+      setError(t("errServerNotAccessible", "Server is not accessible"));
     } finally {
       setChecking(false);
     }
@@ -113,7 +121,9 @@ function ConnectDialog(props) {
     <Dialog open={!!props.provider} onOpenChange={(open) => !open && handleClose()}>
       <Dialog.Content class="connect-dialog" onKeyDown={(e) => e.key === "Enter" && e.target.tagName !== "BUTTON" && handleConnect()}>
         <div class="dlg-header">
-          <Dialog.Title class="dlg-title">Connect to {props.provider?.name}</Dialog.Title>
+          <Dialog.Title class="dlg-title">
+            {t("dlgConnectToTitle", "Connect to $1").replace("$1", props.provider?.name ?? "")}
+          </Dialog.Title>
           <Dialog.CloseButton class="dlg-close" />
         </div>
 
@@ -128,7 +138,7 @@ function ConnectDialog(props) {
           </Show>
 
           <div class="connect-body">
-            <label class="connect-label">Cloud office URL</label>
+            <label class="connect-label">{t("pshPortal")}</label>
             <div class="url-field-wrap" classList={{ "url-field-wrap--error": !!error() }}>
               <TextField
                 value={url()}
@@ -147,12 +157,17 @@ function ConnectDialog(props) {
                 </span>
               </Show>
             </div>
+            <Show when={isOnlyoffice()}>
+              <button type="button" class="connect-link" onClick={handleCreatePortal}>
+                {t("linkNoPortal", "Don't have an ONLYOFFICE cloud? Create one")}
+              </button>
+            </Show>
           </div>
         </div>
 
         <div class="connect-footer">
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button tabIndex="1" variant="accent" onClick={handleConnect} disabled={checking()}>Connect</Button>
+          <Button onClick={handleClose}>{t("btnCancel", "Cancel")}</Button>
+          <Button tabIndex="1" variant="accent" onClick={handleConnect} disabled={checking()}>{t("btnConnectAction", "Connect")}</Button>
         </div>
       </Dialog.Content>
     </Dialog>
@@ -182,9 +197,9 @@ function PortalRow(props) {
             </svg>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content class="iconless">
-            <DropdownMenu.Item onSelect={() => openConnectedPortal(props.portal)}>Open</DropdownMenu.Item>
-            <DropdownMenu.Item aria-disabled={props.portal.logged === false} onSelect={() => props.portal.logged !== false && logoutConnectedPortal(props.portal)}>Logout</DropdownMenu.Item>
-            <DropdownMenu.Item onSelect={() => props.onRemove(props.portal)}>Remove</DropdownMenu.Item>
+            <DropdownMenu.Item onSelect={() => openConnectedPortal(props.portal)}>{t("menuFileOpen")}</DropdownMenu.Item>
+            <DropdownMenu.Item aria-disabled={props.portal.logged === false} onSelect={() => props.portal.logged !== false && logoutConnectedPortal(props.portal)}>{t("menuLogout")}</DropdownMenu.Item>
+            <DropdownMenu.Item onSelect={() => props.onRemove(props.portal)}>{t("menuRemoveModel")}</DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu>
       </div>
@@ -197,7 +212,7 @@ function ProviderItem(props) {
     <div class="provider-item">
       <ProviderIcon provider={props.provider} type="connectionsList" />
       <span class="provider-name">{props.provider.name}</span>
-      <Button variant="default" class="provider-connect-btn" onClick={() => props.onConnect(props.provider)}>Connect</Button>
+      <Button variant="default" class="provider-connect-btn" onClick={() => props.onConnect(props.provider)}>{t("btnConnectAction", "Connect")}</Button>
     </div>
   );
 }
@@ -225,7 +240,7 @@ export default function Clouds() {
     <div class="clouds-page">
       <Show when={portals().length > 0}>
         <section>
-          <h2 class="clouds-section-title">Connected clouds</h2>
+          <h2 class="clouds-section-title">{t("portalListTitle")}</h2>
           <div class="portal-list">
             <For each={portals()}>
               {(portal) => (
@@ -239,7 +254,7 @@ export default function Clouds() {
       </Show>
 
       <section>
-        <h2 class="clouds-section-title">Available clouds</h2>
+        <h2 class="clouds-section-title">{t("portalAvailableTitle", "Available clouds")}</h2>
         <div class="provider-list">
           <For each={providers()}>
             {(provider) => <ProviderItem provider={provider} onConnect={setConnectingProvider} />}
