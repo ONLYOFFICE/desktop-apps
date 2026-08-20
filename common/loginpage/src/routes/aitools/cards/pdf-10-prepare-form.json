@@ -1,0 +1,9 @@
+{
+  "id": "prepare-form",
+  "group": "pdf",
+  "prompt": "Please create fillable form fields in the attached PDF document. Identify appropriate places for text fields, checkboxes, dropdowns, and signature fields.",
+  "en": {
+    "title": "Prepare Form",
+    "description": "Create fillable fields in a PDF form"
+  }
+}

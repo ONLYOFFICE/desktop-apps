@@ -1,0 +1,9 @@
+{
+  "id": "convert-pdf",
+  "group": "pdf",
+  "prompt": "Please convert the attached PDF to the requested format (Word, Excel, or other). Preserve the original layout, tables, and formatting as accurately as possible.",
+  "en": {
+    "title": "Convert PDF",
+    "description": "Convert PDF to Word, Excel, or other formats"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "merge-pdf",
+  "group": "pdf",
+  "prompt": "Please merge the attached PDF files into a single document. Align styles and formatting for a consistent result across the merged file.",
+  "en": {
+    "title": "Merge PDF",
+    "description": "Merge files into one, with style alignment option"
+  }
+}

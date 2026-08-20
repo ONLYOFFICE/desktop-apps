@@ -1,0 +1,9 @@
+{
+  "id": "add-comments",
+  "group": "pdf",
+  "prompt": "Please add annotations, highlights, and notes to the attached PDF. Describe what you would like to annotate and where.",
+  "en": {
+    "title": "Add Comments",
+    "description": "Add notes, highlights, and annotations to a PDF"
+  }
+}

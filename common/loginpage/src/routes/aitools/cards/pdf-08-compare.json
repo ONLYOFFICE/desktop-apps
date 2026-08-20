@@ -1,0 +1,9 @@
+{
+  "id": "compare-pdfs",
+  "group": "pdf",
+  "prompt": "Please compare the two attached PDF files and highlight all differences between them, including text changes, added or removed content, and formatting differences.",
+  "en": {
+    "title": "Compare PDFs",
+    "description": "Compare two PDFs and highlight differences"
+  }
+}

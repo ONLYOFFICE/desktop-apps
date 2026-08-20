@@ -1,0 +1,9 @@
+{
+  "id": "extract-images",
+  "group": "pdf",
+  "prompt": "Please extract all images from the attached PDF file and provide them as separate image files.",
+  "en": {
+    "title": "Extract Images",
+    "description": "Extract images from a PDF file"
+  }
+}

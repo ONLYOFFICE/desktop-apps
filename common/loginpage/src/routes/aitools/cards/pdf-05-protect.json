@@ -1,0 +1,9 @@
+{
+  "id": "protect-pdf",
+  "group": "pdf",
+  "prompt": "Please add password protection to the attached PDF. Specify your desired password, or I will generate a secure one for you.",
+  "en": {
+    "title": "Protect PDF",
+    "description": "Add password protection to a PDF file"
+  }
+}

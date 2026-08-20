@@ -1,0 +1,9 @@
+{
+  "id": "convert-to-epub",
+  "group": "word",
+  "prompt": "Please convert the attached document into EPUB format, preserving the structure, headings, and formatting so it reads well on e-readers.",
+  "en": {
+    "title": "Convert to EPUB",
+    "description": "Convert your document into a book"
+  }
+}

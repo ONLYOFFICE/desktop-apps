@@ -1,0 +1,9 @@
+{
+  "id": "convert-to-csv",
+  "group": "cell",
+  "prompt": "Please convert the attached spreadsheet to CSV format. If it has multiple sheets, let me know which one to convert or export all sheets as separate CSV files.",
+  "en": {
+    "title": "Convert to CSV",
+    "description": "Convert your file to CSV format"
+  }
+}
