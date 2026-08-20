@@ -19,7 +19,7 @@ export default function Sidebar() {
   const clickAiChat = (e) => {
     if (aichat.available) {
       closeSidePanel();
-      openFullAIPanelPanel();
+      openFullAIPanel();
       // sendPluginVisibility("expanded");
       // href handles navigation
     } else {
