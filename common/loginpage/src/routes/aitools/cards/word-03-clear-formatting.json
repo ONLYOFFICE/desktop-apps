@@ -1,0 +1,9 @@
+{
+  "id": "clear-formatting",
+  "group": "word",
+  "prompt": "Please remove all custom formatting from the attached document including styles, fonts, colors, and spacing, leaving clean consistently formatted plain text.",
+  "en": {
+    "title": "Clear Formatting",
+    "description": "Clean styles, fonts, and colors"
+  }
+}

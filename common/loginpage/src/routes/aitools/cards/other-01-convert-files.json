@@ -1,0 +1,9 @@
+{
+  "id": "convert-files",
+  "group": "other",
+  "prompt": "Please convert the attached file to the requested format. Specify the target format and I will convert it while preserving as much of the original content and structure as possible.",
+  "en": {
+    "title": "Convert Files",
+    "description": "Convert files between different formats"
+  }
+}

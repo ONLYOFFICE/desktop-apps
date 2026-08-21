@@ -1,0 +1,9 @@
+{
+  "id": "convert-to-ods",
+  "group": "cell",
+  "prompt": "Please convert the attached spreadsheet to ODS (OpenDocument Spreadsheet) format, preserving all data, formulas, and formatting.",
+  "en": {
+    "title": "Convert to ODS",
+    "description": "Convert your file to ODS format"
+  }
+}

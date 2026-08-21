@@ -9,6 +9,8 @@ for (const path in localeModules) {
 }
 
 const [translations, setTranslations] = createSignal({});
+const [langCode, setLangCode] = createSignal({});
+export { langCode };
 
 export function initLocale() {
   const en = l10n?.en ?? {};
@@ -31,6 +33,7 @@ export function applyLocale(locale) {
     if (code) {
       for (const l in l10n || {}) {
         if (l.startsWith(code)) {
+          setLangCode(l);
           table = l10n[l];
           break;
         }

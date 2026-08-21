@@ -1,0 +1,9 @@
+{
+  "id": "ocr",
+  "group": "other",
+  "prompt": "Please extract all text from the attached scanned document or image using OCR. Return the result as editable text, preserving the original structure and layout where possible.",
+  "en": {
+    "title": "OCR",
+    "description": "Extract text from scanned documents and images"
+  }
+}

@@ -19,7 +19,7 @@ import { DocTypeGrid } from "./components/DocTypeGrid.jsx";
 import { RecentList } from "./components/RecentList.jsx";
 import { RecoverList } from "./components/RecoverList.jsx";
 import { FileDropZone } from "./components/FileDropZone.jsx";
-import { aichat, openSidePanel } from "@/stores/aichat.js";
+import { aichat, openFullAIPanel, openSidePanel } from "@/stores/aichat.js";
 import { command } from "@/sdk/bridge.js";
 import "@/styles/components/home.css";
 import { sendFileToChat, sendPluginVisibility } from "@/services/ai-panel.js";
@@ -119,8 +119,14 @@ export default function Index() {
     if (aichat.available) {
       // navigate("/ai");
       sendFileToChat(model.path, model.type, model.fullName);
-      sendPluginVisibility("minimized");
-      openSidePanel();
+      if (!aichat.expanded) {
+        sendPluginVisibility("minimized");
+        openSidePanel();
+      } else {
+        sendPluginVisibility("expanded");
+        openFullAIPanel();
+        window.location.hash = "#/aichat";
+      }
     } else {
       command('addon:action', 'intro');
     }

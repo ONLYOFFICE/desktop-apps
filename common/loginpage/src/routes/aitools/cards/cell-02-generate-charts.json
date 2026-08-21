@@ -1,0 +1,9 @@
+{
+  "id": "generate-charts",
+  "group": "cell",
+  "prompt": "Please analyze the data in the attached spreadsheet and generate appropriate charts or visualizations. Suggest the best chart types for the data and explain what each chart shows.",
+  "en": {
+    "title": "Generate Charts",
+    "description": "Generate charts from spreadsheet data"
+  }
+}

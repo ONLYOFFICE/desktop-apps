@@ -1,0 +1,9 @@
+{
+  "id": "compare-documents",
+  "group": "word",
+  "prompt": "Please compare the two attached documents and highlight all differences between them, including text changes, insertions, deletions, and formatting differences.",
+  "en": {
+    "title": "Compare Documents",
+    "description": "Compare and highlight differences between document versions"
+  }
+}

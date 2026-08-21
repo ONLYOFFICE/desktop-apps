@@ -1,0 +1,9 @@
+{
+  "id": "remove-duplicates",
+  "group": "cell",
+  "prompt": "Please remove all duplicate rows or entries from the attached spreadsheet and return the cleaned data.",
+  "en": {
+    "title": "Remove Duplicates",
+    "description": "Remove duplicate rows or cells"
+  }
+}

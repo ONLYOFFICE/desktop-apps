@@ -1,0 +1,9 @@
+{
+  "id": "fill-sign",
+  "group": "pdf",
+  "prompt": "Please fill in the form fields in the attached PDF with the provided information and add a signature where required.",
+  "en": {
+    "title": "Fill & Sign",
+    "description": "Fill in form fields and sign a PDF"
+  }
+}

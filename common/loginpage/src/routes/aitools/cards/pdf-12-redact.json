@@ -1,0 +1,9 @@
+{
+  "id": "redact-pdf",
+  "group": "pdf",
+  "prompt": "Please permanently redact all sensitive information from the attached PDF, such as names, addresses, phone numbers, and other personal or confidential data.",
+  "en": {
+    "title": "Redact PDF",
+    "description": "Permanently remove sensitive information from a PDF"
+  }
+}

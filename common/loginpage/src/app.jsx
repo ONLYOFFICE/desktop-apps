@@ -25,9 +25,8 @@ function Shell(props) {
   const [templatesMounted, setTemplatesMounted] = createSignal(false);
   createEffect(() => { if (isTemplatesSelected()) setTemplatesMounted(true); });
   const isChatSelected = () => location.pathname === "/aichat";
-  const isAiToolsSelected = () => location.pathname.startsWith("/aitools");
   const isSettingsSelected = () => location.pathname.startsWith("/settings");
-  const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && /*!isAiToolsSelected() &&*/ !isSettingsSelected();
+  const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && !isSettingsSelected();
   const isChatExpanded = () => isChatSelected() && aichat.available;
   const showAiCol = () => showSidePanel() || isChatExpanded();
 
@@ -56,9 +55,6 @@ function Shell(props) {
             <TemplatesPanel />
           </div>
         </Show>
-        <div class="ext-plugin-frame" classList={{ "ext-plugin-frame--active": isAiToolsSelected() }}>
-          <iframe src="https://maxkadushkin.github.io/underconstruction/" title="ONLYOFFICE" />
-        </div>
         <For each={extPlugins()}>
           {(plugin) => {
             const isActive = () =>

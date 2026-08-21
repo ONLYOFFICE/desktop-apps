@@ -1,0 +1,9 @@
+{
+  "id": "compress-pdf",
+  "group": "pdf",
+  "prompt": "Please compress the attached PDF to reduce its file size while maintaining acceptable visual quality.",
+  "en": {
+    "title": "Compress PDF",
+    "description": "Reduce file size while keeping quality"
+  }
+}
