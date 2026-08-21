@@ -64,6 +64,21 @@ function downloadAddon(url, fileName, size, md5) {
   });
 }
 
+function compareVersions(v1, v2) {
+    const parts1 = v1.split('.').map(Number);
+    const parts2 = v2.split('.').map(Number);
+    const maxLength = Math.max(parts1.length, parts2.length);
+
+    for (let i = 0; i < maxLength; i++) {
+        const num1 = parts1[i] || 0;
+        const num2 = parts2[i] || 0;
+
+        if (num1 > num2) return 1;  // v1 is greater
+        if (num1 < num2) return -1; // v2 is greater
+    }
+    return 0; // Versions are equal
+}
+
 export function initAddonStatus() {
   return onNativeMessage(async (cmd, param) => {
     if (cmd !== "addon:status") return;
@@ -80,7 +95,7 @@ export function initAddonStatus() {
         setViewPanel(status.page);
 
         if (status.page === "install") {
-          const { appcast, package: pkg, tempfile } = status;
+          const { appcast, package: pkg, version: app_version } = status;
           if (!appcast || !appcast.length) {
             setViewPanel("error");
             setAddonStatus((prev) => ({ ...(prev ?? {}), message: 'appcast fetch failed: url is empty'}));
@@ -93,6 +108,16 @@ export function initAddonStatus() {
               throw new Error(`appcast fetch failed: ${res.status}`);
 
             const json = await res.json();
+            const server_version = json?.addon?.version;
+            if (!!server_version && !!app_version) {
+              const cmpr = compareVersions(server_version, app_version);
+              if (cmpr > 0)
+                throw new Error(t("errorInstallVersionHigh", 'Version of addon for installing is not compatible with current version of the app. Please, update the app and try again'));
+              else if (cmpr < 0)
+                throw new Error(t("errorInstallVersionLow", 'Version of addon for installing is not compatible with current version of the app.'));
+            } else if (!server_version || !app_version)
+                throw new Error(t("errorInstallVersionLow", 'Version of addon for installing is not compatible with current version of the app.'));
+
             const pkgBlock = json?.addon?.package?.[pkg];
             if (!pkgBlock?.url) throw new Error(`package "${pkg}" not found in appcast`);
             setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonDownloading") }));

@@ -43,6 +43,7 @@
 #include "clangater.h"
 #include <QDir>
 #include "caddonmanager.h"
+#include "version.h"
 #include <qtcomp/qdesktopwidget.h>
 
 const QSize UpgradeDialog::IntroPageSize(480, 700);
@@ -117,6 +118,7 @@ void UpgradeDialog::showStartPage()
     QJsonObject jsn;
     jsn["page"] = pageToString(Page::Install);
     jsn["appcast"] = AscAppManager::addonManager()->appcastUrl();
+    jsn["version"] = VER_FILEVERSION_STR;
 
 #ifdef _WIN32
 # if defined(_M_ARM64)
