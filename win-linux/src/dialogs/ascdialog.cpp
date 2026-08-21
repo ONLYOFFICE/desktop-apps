@@ -35,6 +35,7 @@
 
 #include "ascdialog.h"
 #include <QEventLoop>
+#include <QKeyEvent>
 
 
 CAscDialog::CAscDialog(QWidget *parent, const QRect &rc)
@@ -90,6 +91,15 @@ bool CAscDialog::event(QEvent *ev)
     case QEvent::Close:
     {
         if (m_loop->isRunning())
+        {
+            reject();
+            return true;
+        }
+        break;
+    }
+    case QEvent::KeyPress:
+    {
+        if (static_cast<QKeyEvent*>(ev)->key() == Qt::Key_Escape && m_loop->isRunning())
         {
             reject();
             return true;
