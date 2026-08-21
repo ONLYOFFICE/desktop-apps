@@ -195,7 +195,8 @@
 
     self.parentView = controlView;
 
-    CGFloat rectangleCornerRadius = 0;
+    CGFloat rectangleCornerRadius = 6;
+    CGFloat tabSpacing = 2;
     
     // Color Declarations
     NSColor * color;
@@ -209,43 +210,13 @@
 
     self.isLight = [color isLight] || ([ASCThemesController isDarkWindowAppearance] ? false : [color alphaComponent] < 0.5);
 
-    // Rectangle Drawing
-    NSRect rectangleRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width, cellFrame.size.height);
-    NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
-    NSBezierPath* rectanglePath = [NSBezierPath bezierPath];
-    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect))
-                                              radius: rectangleCornerRadius
-                                          startAngle: 180
-                                            endAngle: 270];
-    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(rectangleInnerRect), NSMinY(rectangleInnerRect))
-                                              radius: rectangleCornerRadius
-                                          startAngle: 270
-                                            endAngle: 360];
-    [rectanglePath lineToPoint: NSMakePoint(NSMaxX(rectangleRect), NSMaxY(rectangleRect))];
-    [rectanglePath lineToPoint: NSMakePoint(NSMinX(rectangleRect), NSMaxY(rectangleRect))];
-    [rectanglePath closePath];
+    // Rounded Rectangle Drawing
+    NSRect rectangleRect = NSInsetRect(cellFrame, tabSpacing, 0);
+    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRoundedRect: rectangleRect
+                                                                  xRadius: rectangleCornerRadius
+                                                                  yRadius: rectangleCornerRadius];
     [color setFill];
     [rectanglePath fill];
-
-    if (!self.state) {
-        // Bottom Line Drawing
-        NSBezierPath* bottomRectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(rectangleRect), NSHeight(rectangleRect), NSWidth(rectangleRect), 1)];
-        [self.inactiveBorderColor setFill];
-        [bottomRectanglePath fill];
-    }
-
-    if (true/*!self.state*/) {
-        NSColor * lineColor = kColorRGBA(0, 0, 0, 0.2);
-        [lineColor setFill];
-
-        if ( [self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
-            NSBezierPath * leftRectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 1, NSHeight(rectangleRect))];
-            [leftRectanglePath fill];
-        } else {
-            NSBezierPath * rightRectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMaxX(rectangleRect) - 1, 0, 1, NSHeight(rectangleRect))];
-            [rightRectanglePath fill];
-        }
-    }
 
     if (self.title) {
         [self drawTitle:[self attributedTitle] withFrame:cellFrame inView:controlView];

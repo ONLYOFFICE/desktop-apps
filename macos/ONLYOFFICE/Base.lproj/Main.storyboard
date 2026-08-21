@@ -1513,7 +1513,7 @@
                                     <constraint firstAttribute="height" constant="38" id="vsg-cC-UPz"/>
                                 </constraints>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="qbs-Vm-fo1">
+                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qbs-Vm-fo1">
                                 <rect key="frame" x="80" y="0.0" width="1" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="3Er-9p-AD1">
@@ -1545,7 +1545,7 @@
                                     <action selector="onOnlyofficeButton:" target="9zi-Wa-ufJ" id="fWV-oh-658"/>
                                 </connections>
                             </button>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="XZA-xX-bBL">
+                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XZA-xX-bBL">
                                 <rect key="frame" x="190" y="0.0" width="1" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="70z-be-Jiz">
@@ -1571,7 +1571,7 @@
                             <constraint firstItem="iPF-st-gBJ" firstAttribute="leading" secondItem="XZA-xX-bBL" secondAttribute="trailing" id="Ray-vs-abM"/>
                             <constraint firstAttribute="bottom" secondItem="qbs-Vm-fo1" secondAttribute="bottom" id="Xu5-r9-Buc"/>
                             <constraint firstAttribute="bottom" secondItem="iPF-st-gBJ" secondAttribute="bottom" id="Zgl-o8-K6a"/>
-                            <constraint firstAttribute="bottom" secondItem="afO-TB-NDv" secondAttribute="bottom" id="c5c-ZH-RwQ"/>
+                            <constraint firstAttribute="bottom" secondItem="afO-TB-NDv" secondAttribute="bottom" constant="2" id="c5c-ZH-RwQ"/>
                             <constraint firstAttribute="bottom" secondItem="XZA-xX-bBL" secondAttribute="bottom" id="qqP-zT-odp"/>
                             <constraint firstItem="qbs-Vm-fo1" firstAttribute="leading" secondItem="Imu-er-1JF" secondAttribute="leading" constant="80" id="rgY-1y-j3Y"/>
                             <constraint firstAttribute="trailing" secondItem="M3X-hR-EHh" secondAttribute="trailing" id="trl-DL-dbt"/>

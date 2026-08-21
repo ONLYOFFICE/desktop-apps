@@ -299,7 +299,7 @@ static float kASCRTLTabsRightMargin = 0;
     layoutStandartButtons(self.standardButtonsDefaults, [self isFullScreen]);
     layoutStandartButtons(self.standardButtonsFullscreen, ![self isFullScreen]);
 
-    self.tabsControl.frame  = CGRectMake(rtlDependedTabsLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
+    self.tabsControl.frame  = CGRectMake(rtlDependedTabsLeftOffset, 2, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
