@@ -45,6 +45,7 @@ function ConnectDialog(props) {
   const hasEntryPage = () => !!props.provider?.entryPage;
   const isOnlyoffice = () => props.provider?.provider === "onlyoffice";
   let inputRef;
+  const URL_PROXY_SCHEME = 'onlyoffice-proxy://';
 
   createEffect(() => {
     setUrl(props.provider?.entryPage ?? "");
@@ -88,11 +89,23 @@ function ConnectDialog(props) {
     return [`https://${s}`, `http://${s}`];
   }
 
+  async function fetch_with_proxy(url, forcebreak) {
+    try {
+      await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(5000) });
+      return true;
+    } catch {
+      if (forcebreak !== true)
+        return fetch_with_proxy(`${URL_PROXY_SCHEME}${url}`, true);
+      else throw new Error();
+    }
+  }
+
   async function handleConnect() {
     if (checking()) return;
     if (hasEntryPage()) {
       connectToProvider(props.provider, props.provider.entryPage);
       handleClose();
+      return;
     }
 
     const candidates = getCandidates(url()).filter(isValidUrl);
@@ -100,12 +113,16 @@ function ConnectDialog(props) {
       setError(t("errInvalidUrl", "Invalid URL"));
       return;
     }
-    const checkPath = props.provider?.check?.url ?? "";
+
+    let checkPath = props.provider?.check?.url ?? "";
+    if (checkPath.length && checkPath.at(0) != '/')
+      checkPath = '/' + checkPath;
+
     setChecking(true);
     try {
       for (const candidate of candidates) {
         try {
-          await fetch('onlyoffice-proxy://' + candidate + checkPath, { method: "HEAD", signal: AbortSignal.timeout(5000) });
+          await fetch_with_proxy(candidate + checkPath);
           connectToProvider(props.provider, candidate);
           handleClose();
           return;
