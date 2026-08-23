@@ -431,6 +431,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     }
                 }
             }
+            return true;
         } else
         if ( !(cmd.find(L"addon:action") == std::wstring::npos) ) {     // params: install
             if (m_private->m_pAddonManager) {
