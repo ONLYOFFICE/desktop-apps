@@ -1,7 +1,7 @@
 import { Switch, Match, createMemo } from "solid-js";
 import { t } from "@/services/l10n";
 import { addonStatus, progressPercentFromStatus, restartNow, closeDialog, postponeAddon } from "@/services/addon";
-import logo from "../../assets/img/logo.svg";
+import logoSvg from "../../assets/img/logo.svg?raw";
 import styles from "./StatusPanel.module.css";
 
 export function StatusPanel(props) {
@@ -10,7 +10,7 @@ export function StatusPanel(props) {
   return (
     <div class={styles.panel}>
       <h1 class={styles.title}>{t("addonInstallingTitle", "AI Tools")}</h1>
-      <img class={`${styles.icon} icon-logo`} src={logo} width="80" height="80" alt="" />
+      <div class={styles.icon} innerHTML={logoSvg} />
 
       <Switch>
         <Match when={props.page === "install"}>

@@ -22,7 +22,17 @@
   width: 80px;
   height: 80px;
   margin-bottom: 16px;
-  display: block;
+  flex-shrink: 0;
+
+  svg {
+    width: 80px;
+    height: 80px;
+    display: block;
+  }
+
+  .icon-normal {
+    color: var(--icon-normal);
+  }
 }
 
 .status {
