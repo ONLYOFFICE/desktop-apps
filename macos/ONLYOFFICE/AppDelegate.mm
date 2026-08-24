@@ -2037,6 +2037,19 @@
             [self.upgradeController accept:ASCUpgradeDialogResultRestartNow];
         }
 
+    } else if ([action isEqualToString:@"askrestart"]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [[alert.buttons objectAtIndex:1] setAccessibilityFocused:YES];
+        [alert setMessageText:@"You need to restart the application to finish ONLYOFFICE AI Tools installation.\nRestart now?"];
+        [alert setAlertStyle:NSAlertStyleInformational];
+        
+        NSInteger code = [alert runModalSheet];
+        if (code == NSAlertFirstButtonReturn) {
+            self.needsRestart = YES;
+            [NSApp terminate:self];
+        }
     } else if ([action isEqualToString:@"close"]) {
         /* "close" clicked */
         if (self.upgradeController) {
