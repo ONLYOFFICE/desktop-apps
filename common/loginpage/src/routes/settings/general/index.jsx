@@ -129,15 +129,17 @@ export default function GeneralSettings() {
           </div>
         </Show>
 
-        <div class={styles.fieldRow}>
-          <span class={styles.fieldLabel}>{t("settScaling")} *</span>
-          <div class={styles.fieldControl}>
-            <Select options={scalingOptions()} value={settings.scaling} onChange={(v) => setSettings("scaling", v)} disallowEmptySelection>
-              <Select.Trigger class={styles.fullWidth} />
-              <Select.Content />
-            </Select>
+        <Show when={!settings.scalinghidden}>
+          <div class={styles.fieldRow}>
+            <span class={styles.fieldLabel}>{t("settScaling")} *</span>
+            <div class={styles.fieldControl}>
+              <Select options={scalingOptions()} value={settings.scaling} onChange={(v) => setSettings("scaling", v)} disallowEmptySelection>
+                <Select.Trigger class={styles.fullWidth} />
+                <Select.Content />
+              </Select>
+            </div>
           </div>
-        </div>
+        </Show>
 
         <div class={styles.fieldRow}>
           <span class={styles.fieldLabel}>{t("settAUpdateMode")}</span>
