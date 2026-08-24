@@ -126,7 +126,7 @@ static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/jPf
         // Version
         [self.versionText setStringValue:[NSString stringWithFormat:
                                               [self appEdition],
-                                              [self shortAppVersion]]];
+                                              [ASCAboutController shortAppVersion]]];
 
         NSClickGestureRecognizer *click = [[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(onVersionClick:)];
         [self.versionText addGestureRecognizer:click];
@@ -263,12 +263,12 @@ static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/jPf
     [button setAttributedTitle:attrTitle];
 }
 
-- (NSString *)shortAppVersion {
++ (NSString *)shortAppVersion {
     NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
     return [infoDictionary objectForKey:@"CFBundleShortVersionString"];
 }
 
-- (NSString *)fullAppVersion {
++ (NSString *)fullAppVersion {
     NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
     return [NSString stringWithFormat:@"%@.%@",
                [infoDictionary objectForKey:@"CFBundleShortVersionString"],
@@ -286,7 +286,7 @@ static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/jPf
 - (void)onVersionClick:(NSTextField *)sender {
     [self.versionText setStringValue:[NSString stringWithFormat:
                                           [self appEdition],
-                                          [self fullAppVersion]]];
+                                          [ASCAboutController fullAppVersion]]];
     
 #if _V8_VERSION
     [self.versionText setStringValue:[NSString stringWithFormat:@"%@ (x86)", [self.versionText stringValue]]];

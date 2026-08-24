@@ -611,6 +611,12 @@ public:
                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId],
                                                                                          @"action": [NSString stringWithstdwstring:param]
                                                                                          }];
+                        } else if (cmd.find(L"addon:install") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddonInstallation
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"info": [[NSString stringWithstdwstring:param] dictionary]
+                                                                                         }];
 #endif
                         } else if (cmd.find(L"app:onready") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartPageReady

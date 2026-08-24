@@ -120,6 +120,10 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
     return _restartRequired;
 }
 
+- (NSString *)appcastUrl {
+    return _metadataUrl;
+}
+
 - (void)doAction:(ASCAddonManagerAction)action {
     if (self.installing)
         return;
@@ -206,6 +210,11 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ASCAddonManagerInstallFinishedNotification
                                                         object:self
                                                       userInfo:@{@"result": @(result)}];
+}
+
+- (void)installFromBundle:(NSString*)path {
+    self.tmpPath = path;
+    [self finishInstall:ASCAddonManagerResultSuccess];
 }
 
 - (void)startDownload:(NSString *)url filePath:(NSString *)filePath {

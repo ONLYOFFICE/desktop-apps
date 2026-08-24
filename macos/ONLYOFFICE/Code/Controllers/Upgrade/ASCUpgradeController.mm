@@ -50,6 +50,8 @@
 #import "ASCLinguist.h"
 #import "NSDictionary+Extensions.h"
 #import "PureLayout.h"
+#import "ASCAddonManager.h"
+#import "ASCAboutController.h"
 #import "mac_application.h"
 
 
@@ -112,7 +114,7 @@ static NSString *ASCUpgradePageToString(ASCUpgradePage page) {
         NSString *htmlPath = [exeDir stringByAppendingPathComponent:@"../Resources/login/addon.html"];
         NSString *urlAdditional = [NSString stringWithFormat:@"?lang=%@&page=%@",
                                    [ASCLinguist appLanguageCode], ASCUpgradePageToString(self.initialPage)];
-        NSString *addonUrl = [NSString stringWithFormat:@"file:///%@%@", htmlPath, urlAdditional];
+        NSString *addonUrl = [NSString stringWithFormat:@"onlyoffice://plugin/%@%@", htmlPath, urlAdditional];
 
         [self.cefView loadWithUrl:addonUrl];
     }
@@ -158,7 +160,20 @@ static NSString *ASCUpgradePageToString(ASCUpgradePage page) {
 }
 
 - (void)showStartPage {
-    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageInstall)}];
+#if _V8_VERSION
+    NSString *platform = @"macos_v8";
+#elif _X86_64_ONLY
+    NSString *platform = @"macos_x86_64";
+#elif _ARM_ONLY
+    NSString *platform = @"macos_arm";
+#else
+# error Unsupported architecture
+#endif
+
+    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageInstall),
+                            @"appcast": [[ASCAddonManager sharedManager] appcastUrl],
+                            @"version": [ASCAboutController fullAppVersion],
+                            @"package": platform}];
     [self resizeWindowToSize:kASCUpgradeInstallSize];
 }
 

@@ -204,9 +204,9 @@
         }
         
         loginPage.queryItems            = @[countryCode, portalAddress];
-        loginPage.scheme                = NSURLFileScheme;
         
-        [self.cefStartPageView loadWithUrl:[loginPage string]];
+        NSString *url = [NSString stringWithFormat:@"onlyoffice://plugin/%@", [loginPage string]];
+        [self.cefStartPageView loadWithUrl:url];
     }
 }
 

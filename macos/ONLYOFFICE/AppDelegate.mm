@@ -190,6 +190,7 @@
 #ifdef USE_ADDON_MODE
     addObserverFor(ASCAddonManagerUninstallFinishedNotification, @selector(onAddonUninstallFinished:));
     addObserverFor(CEFEventNameAddonAction, @selector(onCEFAddonAction:));
+    addObserverFor(CEFEventNameAddonInstallation, @selector(onCEFAddonInstalling:));
 #endif
 
     // Google Analytics
@@ -1951,6 +1952,28 @@
 #pragma mark Upgrade Support
 
 #ifdef USE_ADDON_MODE
+- (void)onCEFAddonInstalling:(NSNotification *)notification {
+    NSDictionary * params = (NSDictionary *)(notification.userInfo[@"info"]);
+    if ( [params[@"status"] isEqual:@"downloaded"] ) {
+        NSString *_tmpPath = params[@"tempfile"];
+        if ([[ASCHelper fileMd5Hash:_tmpPath] isEqual:params[@"md5"]]) {
+            NSString * ext = [_tmpPath pathExtension];
+            if ([[_tmpPath pathExtension] isNotEqualTo:@".zip"]) {
+                NSString *currPath = _tmpPath;
+                _tmpPath = [currPath stringByAppendingPathExtension:@"zip"];
+                
+                NSError *err = nil;
+                BOOL res = [[NSFileManager defaultManager] moveItemAtPath:currPath toPath:_tmpPath error:&err];
+                if (!res || err) {
+                    return;
+                }
+            }
+
+            [[ASCAddonManager sharedManager] installFromBundle:_tmpPath];
+        }
+    }
+}
+
 - (void)onAddonUninstallFinished:(NSNotification *)notification {
     self.upgradeInProgress = NO;
 //    [self performSelector:@selector(showUpgradeDialogWithPage:)
@@ -1988,7 +2011,7 @@
         if (self.upgradeController) {
             [self.upgradeController showStartPage];
 
-            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionInstall];
+//            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionInstall];
         }
 
     } else if ([action isEqualToString:@"postpone"]) {
