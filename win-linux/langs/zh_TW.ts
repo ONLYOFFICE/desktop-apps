@@ -4,6 +4,11 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="483"/>
+        <source>You must restart the application to finish addon installation.</source>
+        <translation type="unfinished">您必須重新啟動應用程式才能完成 ONLYOFFICE AI Tools 的安裝。要立即重新啟動嗎？</translation>
+    </message>
+    <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1521"/>
         <source>Presenter View</source>
         <translation>簡報者檢視畫面</translation>

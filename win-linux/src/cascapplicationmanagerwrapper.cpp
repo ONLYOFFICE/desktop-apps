@@ -475,6 +475,16 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->accept(UpgradeDialog::RestartNow);
                 }
+                else if (param == L"askrestart")
+                {
+                    if (CMessage::Result::Yes == CMessage::showMessage(mainWindow(),
+                                                            tr("You must restart the application to finish addon installation."),
+                                                                CMessage::Icon::Info, CMessage::Buttons::YesDefNo))
+                    {
+                        m_private->m_needRestart = true;
+                        AscAppManager::closeAppWindows();
+                    }
+                }
                 else if (param == L"close")
                 {
                     /* "close" clicked */

@@ -22,6 +22,11 @@
         <translation>You need to restart the application for the settings to take effect. Restart now?</translation>
     </message>
     <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="483"/>
+        <source>You must restart the application to finish addon installation.</source>
+        <translation>You need to restart the application to finish ONLYOFFICE AI Tools installation. Restart now?</translation>
+    </message>
+    <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2441"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2444"/>
         <source>Document%1.docx</source>

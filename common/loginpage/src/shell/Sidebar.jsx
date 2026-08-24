@@ -2,7 +2,7 @@ import { For, Show, createSignal, createEffect } from "solid-js";
 import { useLocation } from "@solidjs/router";
 import { t } from "@/services/l10n";
 import { extPlugins, pluginRouteId } from "@/stores/ext-plugins";
-import { openAbout, aboutVisible } from "@/services/about";
+import { openAbout, aboutVisible, addonInfo } from "@/services/about";
 import { appliedUseAi } from "@/services/settings-sync";
 import { MenuItem } from "./MenuItem.jsx";
 import { command } from "@/sdk/bridge.js";
@@ -18,10 +18,15 @@ export default function Sidebar() {
 
   const clickAiChat = (e) => {
     if (aichat.available) {
-      closeSidePanel();
-      openFullAIPanel();
-      // sendPluginVisibility("expanded");
-      // href handles navigation
+      if (addonInfo.restart === true) {
+        e.preventDefault();
+        command('addon:action', 'askrestart');
+      } else {
+        closeSidePanel();
+        openFullAIPanel();
+        // sendPluginVisibility("expanded");
+        // href handles navigation
+      }
     } else {
       e.preventDefault();
       command('addon:action', 'intro');
