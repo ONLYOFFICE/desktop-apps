@@ -269,8 +269,10 @@ export function initSettingsSync() {
 
       batch(() => {
         if (payload.locale?.current) setSettings("lang", payload.locale.current);
-        if ("uiscaling" in payload)
+        if ("uiscaling" in payload) {
           setSettings("scaling", nativeScalingToStore(payload.uiscaling));
+          setSettings("scalinglocked", false);
+        }
         else setSettings("scalinglocked", true);
         if (payload.uitheme) {
           setSettings("theme", payload.uitheme);
