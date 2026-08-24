@@ -1,11 +1,18 @@
 .doc-type-grid {
   display: grid;
   place-items: center;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
-  min-width: 0;
-  width: fit-content;
+  width: 100%;
+  max-width: 712px;
   margin: 0 auto;
+}
+
+@container work-area (width < 600px) {
+  .doc-type-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 352px;
+  }
 }
 
 .doc-type-item {
@@ -18,9 +25,10 @@
   cursor: pointer;
 
   position: relative;
-  width: 172px;
+  width: 100%;
+  max-width: 172px;
   height: 172px;
-  padding: 24px 32px 16px;
+  padding: 24px 12px 16px;
 
   border-radius: 12px;
   background: var(--background-normal-element-light);
@@ -56,13 +64,20 @@
 
   .icon {
     width: 108px;
-    height: 100px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 27 / 25;
     filter: drop-shadow(0px 1px 2px #0000004d);
   }
 
   .title {
+    max-width: 100%;
     font-size: 14px;
     line-height: 20px;
     color: var(--text-normal);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
