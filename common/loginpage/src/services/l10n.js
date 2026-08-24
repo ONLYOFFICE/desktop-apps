@@ -41,7 +41,7 @@ export function applyLocale(locale) {
     }
   }
 
-  if (table) setTranslations((prev) => ({ ...prev, ...table }));
+  if (table) setTranslations({ ...(l10n.en ?? {}), ...table });
 }
 
 export function isRTL(code) {
