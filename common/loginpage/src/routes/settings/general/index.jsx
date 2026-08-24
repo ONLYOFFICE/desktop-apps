@@ -129,7 +129,7 @@ export default function GeneralSettings() {
           </div>
         </Show>
 
-        <Show when={!settings.scalinghidden}>
+        <Show when={!settings.scalinglocked}>
           <div class={styles.fieldRow}>
             <span class={styles.fieldLabel}>{t("settScaling")} *</span>
             <div class={styles.fieldControl}>

@@ -271,7 +271,7 @@ export function initSettingsSync() {
         if (payload.locale?.current) setSettings("lang", payload.locale.current);
         if ("uiscaling" in payload)
           setSettings("scaling", nativeScalingToStore(payload.uiscaling));
-        else setSettings("scalinghidden", true);
+        else setSettings("scalinglocked", true);
         if (payload.uitheme) {
           setSettings("theme", payload.uitheme);
           applyThemeToDom(payload.uitheme);
