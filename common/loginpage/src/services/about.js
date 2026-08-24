@@ -45,7 +45,7 @@ export function initAbout() {
       try {
         const info = JSON.parse(htmlDecode(param));
         if (info?.version) {
-          info.version = info.version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<9?1:mn-8});
+          info.version = info.version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<10?1:mn-9});
         }
 
         setAddonInfo(info);
