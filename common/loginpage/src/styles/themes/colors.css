@@ -61,6 +61,6 @@
     --chb-border-normal: var(--border-regular-control);
     --chb-border-checked: var(--border-regular-control);
 
-    --font-family-base: "Segoe UI";
+    --font-family-base: Arial, Helvetica, "Helvetica Neue", sans-serif;
 }
 

@@ -56,5 +56,7 @@
         --chb-background-checked: var(--background-normal);
         --chb-border-normal: var(--border-regular-control);
         --chb-border-checked: #7f7f7f;
+
+        --font-family-base: "Segoe UI";
    }
 }
