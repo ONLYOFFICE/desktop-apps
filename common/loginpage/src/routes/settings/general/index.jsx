@@ -59,13 +59,13 @@ export default function GeneralSettings() {
   const themeOptions = createMemo(() => [
     systemThemeEnabled() &&
     { value: "theme-system", label: t("settOptThemeSystem") },
-    { value: "theme-white", label: t("settOptThemeWhite") },
-    { value: "theme-night", label: t("settOptThemeNight") },
     { value: "theme-light", label: t("settOptThemeLight") },
     { value: "theme-classic-light", label: t("settOptThemeClassicLight") },
     { value: "theme-dark", label: t("settOptThemeDark") },
-    { value: "theme-gray", label: t("settOptThemeGray") },
     { value: "theme-contrast-dark", label: t("settOptThemeContrastDark") },
+    { value: "theme-gray", label: t("settOptThemeGray") },
+    { value: "theme-white", label: t("settOptThemeWhite") },
+    { value: "theme-night", label: t("settOptThemeNight") },
   ].filter(Boolean));
 
   const openFileOptions = createMemo(() => [
