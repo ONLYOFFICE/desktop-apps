@@ -40,7 +40,7 @@ export function resizeDialog(width, height) {
   command("addon:resize", { width, height });
 }
 
-function downloadAddon(url, fileName, size, md5) {
+function downloadAddon(url, size, md5) {
   const downloader = new Downloader({
     url,
     // fileName,
@@ -121,7 +121,7 @@ export function initAddonStatus() {
             const pkgBlock = json?.addon?.package?.[pkg];
             if (!pkgBlock?.url) throw new Error(`package "${pkg}" not found in appcast`);
             setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonDownloading") }));
-            downloadAddon(pkgBlock.url, tempfile, pkgBlock.size, pkgBlock.md5);
+            downloadAddon(pkgBlock.url, pkgBlock.size, pkgBlock.md5);
           } catch (err) {
             setViewPanel("error");
             setAddonStatus((prev) => ({ ...(prev ?? {}), message: err.message }));
