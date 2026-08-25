@@ -51,7 +51,7 @@ def main():
   base.print_info("Build projects for the desktop's Start page")
   for directory in PROJECTS:
     build_project(directory)
-  # build_templates_project(TEMPLATES_PROJECT_DIR)
+  build_templates_project(TEMPLATES_PROJECT_DIR)
   base.print_info("All projects built successfully")
   return
 
