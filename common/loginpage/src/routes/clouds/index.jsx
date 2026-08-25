@@ -193,7 +193,7 @@ function ConnectDialog(props) {
 
 function PortalRow(props) {
   const [menuOpen, setMenuOpen] = createSignal(false);
-  const providerData = () => providers().find((p) => p.provider === props.portal.provider);
+  const providerData = () => providers().find((p) => p.provider === props.portal.provider.toLowerCase());
   const displayName = () => props.portal.portal.replace(/^https?:\/\//, "");
   const userInfo = () => (props.portal.email ? `${props.portal.user} (${props.portal.email})` : props.portal.user);
 
