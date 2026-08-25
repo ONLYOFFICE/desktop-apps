@@ -65,7 +65,7 @@ export default {
     actPreviewTemplates: 'Šablona',
     actClouds: 'Cloudy',
     actHome: 'Domů',
-    actAiChat: 'AI chat',
+    actAiChat: 'AI Сhat',
     licKeyHolder: 'vstupní aktivační klíč',
     btnActivate: 'Aktivovat',
     licGetLicense: 'Získat licenci',

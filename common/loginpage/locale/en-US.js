@@ -100,7 +100,7 @@ export default {
     actPreviewTemplates: 'Template',
     actClouds: 'Clouds',
     actHome: 'Home',
-    actAiChat: 'AI chat',
+    actAiChat: 'AI Chat',
     licKeyHolder: 'input activation key',
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
