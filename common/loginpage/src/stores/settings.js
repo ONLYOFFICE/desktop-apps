@@ -52,8 +52,6 @@ const defaultSettings = Object.freeze({
   userName: "",
   country: "US",
   lang: "en",
-  scaling: "auto",
-  checkUpdates: "ask",
   theme: defs.THEME_ID_DEFAULT_LIGHT,
   launchMode: defs.EDITOR_MODE_TAB,
   spellCheck: "auto",

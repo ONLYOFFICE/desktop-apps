@@ -223,18 +223,21 @@ export function initSettingsSync() {
 
     !langRestartPending() && !_textDirectionChanged() && applyLocale(lang);
 
-    command("settings:apply", JSON.stringify({
+    const new_settings = {
       username: settings.userName,
       langid: settings.lang,
       uitheme: settings.theme,
-      autoupdatemode: updates,
       editorwindowmode: launch == settDefs.EDITOR_MODE_WINDOW,
       spellcheckdetect: spell,
       usegpu: settings.gpuMode,
       useai: settings.useai,
       restart: restart,
-      uiscaling: scaling === "auto" ? "0" : scaling,
-    }));
+    };
+    if (!!scaling)
+      new_settings.uiscaling = scaling === "auto" ? "0" : scaling;
+    if (!!updates)
+      new_settings.autoupdatemode = updates;
+    command("settings:apply", JSON.stringify(new_settings));
 
     localStorage.setItem("sett-country", settings.country);
     sendTemplatesSettings({country: settings.country});
@@ -268,17 +271,13 @@ export function initSettingsSync() {
       }
 
       batch(() => {
+        setSettings("scaling", "uiscaling" in payload ? nativeScalingToStore(payload.uiscaling) : undefined);
+        setSettings("checkUpdates", !!payload.updates?.mode ? payload.updates.mode : undefined);
         if (payload.locale?.current) setSettings("lang", payload.locale.current);
-        if ("uiscaling" in payload) {
-          setSettings("scaling", nativeScalingToStore(payload.uiscaling));
-          setSettings("scalinglocked", false);
-        }
-        else setSettings("scalinglocked", true);
         if (payload.uitheme) {
           setSettings("theme", payload.uitheme);
           applyThemeToDom(payload.uitheme);
         }
-        if (payload.autoupdatemode) setSettings("checkUpdates", payload.autoupdatemode);
         if (payload.editorwindowmode) setSettings("launchMode", payload.editorwindowmode ? settDefs.EDITOR_MODE_WINDOW : settDefs.EDITOR_MODE_TAB);
         if (payload.spellcheckdetect) setSettings("spellCheck", payload.spellcheckdetect);
         if (payload.usegpu != null) setSettings("gpuMode", !!payload.usegpu);

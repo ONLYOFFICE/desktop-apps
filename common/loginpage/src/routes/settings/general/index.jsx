@@ -129,7 +129,7 @@ export default function GeneralSettings() {
           </div>
         </Show>
 
-        <Show when={!settings.scalinglocked}>
+        <Show when={settings.scaling}>
           <div class={styles.fieldRow}>
             <span class={styles.fieldLabel}>{t("settScaling")} *</span>
             <div class={styles.fieldControl}>
@@ -141,20 +141,22 @@ export default function GeneralSettings() {
           </div>
         </Show>
 
-        <div class={styles.fieldRow}>
-          <span class={styles.fieldLabel}>{t("settAUpdateMode")}</span>
-          <div class={styles.fieldControl}>
-            <Select
-              options={updatesOptions()}
-              value={settings.checkUpdates}
-              onChange={(v) => setSettings("checkUpdates", v)}
-              disallowEmptySelection
-            >
-              <Select.Trigger class={styles.fullWidth} />
-              <Select.Content />
-            </Select>
+        <Show when={!!settings.checkUpdates}>
+          <div class={styles.fieldRow}>
+            <span class={styles.fieldLabel}>{t("settAUpdateMode")}</span>
+            <div class={styles.fieldControl}>
+              <Select
+                options={updatesOptions()}
+                value={settings.checkUpdates}
+                onChange={(v) => setSettings("checkUpdates", v)}
+                disallowEmptySelection
+              >
+                <Select.Trigger class={styles.fullWidth} />
+                <Select.Content />
+              </Select>
+            </div>
           </div>
-        </div>
+        </Show>
 
         <div class={styles.fieldRow}>
           <span class={styles.fieldLabel}>{t("settUITheme")}</span>
