@@ -347,6 +347,8 @@ export function initSettingsSync() {
       }
       if (opts?.theme?.system) {
         window.RendererProcessVariable.theme.system = opts.theme.system;
+        if (is_theme_system(settings.theme))
+          applyThemeToDom(settings.theme);
       }
     } else if (msgCmd === "uitheme:changed") {
       setSettings("theme", param);
