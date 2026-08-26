@@ -103,7 +103,7 @@ export function initAddonStatus() {
           }
 
           try {
-            const res = await fetch(`onlyoffice-proxy://${appcast}`);
+            const res = await fetch(`onlyoffice-proxy://${appcast}`, {cache: 'no-cache'});
             if (!res.ok)
               throw new Error(`appcast fetch failed: ${res.status}`);
 
