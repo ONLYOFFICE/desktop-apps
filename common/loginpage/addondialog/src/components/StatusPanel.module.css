@@ -16,13 +16,13 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: none;
   background: transparent;
   color: var(--text-secondary, rgba(0, 0, 0, 0.6));
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1;
   cursor: pointer;
 }
