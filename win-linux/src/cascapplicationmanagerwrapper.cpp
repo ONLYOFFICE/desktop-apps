@@ -428,6 +428,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     QString tmpPath = objRoot["tempfile"].toString();
                     if (!hash.isEmpty() && Utils::getFileHash(tmpPath) == hash) {
                         addonManager()->installFromBundle(tmpPath);
+                    } else {
+                        if (m_private->m_upgradeDialog)
+                            m_private->m_upgradeDialog->showErrorPage("Downloaded file is broken");
                     }
                 }
             }
