@@ -16,6 +16,10 @@
 }
 
 .doc-type-item {
+  overflow: visible;
+  container-type: inline-size;
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -27,7 +31,9 @@
   position: relative;
   width: 100%;
   max-width: 172px;
-  height: 172px;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1 / 1;
   padding: 24px 12px 16px;
 
   border-radius: 12px;
@@ -47,15 +53,15 @@
     left: 15px;
     display: flex;
     align-items: center;
-    padding: 5px 6px;
-    border-radius: 6px;
+    padding: 3.378cqw 4.054cqw;
+    border-radius: 4.054cqw;
     background: var(--format-bg-winxp);
     background: conic-gradient(from 225deg at 50% 50%, var(--format-bg-start) 0deg, var(--format-bg-end) 360deg);
     z-index: 1;
 
     span {
       color: var(--text-contrast-background);
-      font-size: 16px;
+      font-size: 10.811cqw;
       font-weight: 700;
       transform: translateY(calc(1px / 2));
       line-height: 1;
@@ -71,6 +77,7 @@
   }
 
   .title {
+    flex-shrink: 0;
     max-width: 100%;
     font-size: 14px;
     line-height: 20px;
