@@ -58,6 +58,11 @@ platform :mac do
       addon_mode_xcarg = " GCC_PREPROCESSOR_DEFINITIONS='$(inherited) USE_ADDON_MODE'"
     else
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
+      set_info_plist_value(
+        path: "ONLYOFFICE/Resources/#{scheme}/Info.plist",
+        key: "SUFeedURL",
+        value: "https://download.onlyoffice.com/install/desktop/editors-enterprise/mac/#{git_suffix}/onlyoffice.xml"
+      )
     end
 
     desc 'Copy json with supported formats'
