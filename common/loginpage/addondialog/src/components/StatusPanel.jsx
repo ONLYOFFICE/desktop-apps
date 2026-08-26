@@ -9,6 +9,9 @@ export function StatusPanel(props) {
 
   return (
     <div class={styles.panel}>
+      <button type="button" class={styles.close} onClick={closeDialog} aria-label={t("addonBtnClose", "Close")} title={t("addonBtnClose", "Close")}>
+        <span aria-hidden="true">&#x2715;</span>
+      </button>
       <h1 class={styles.title}>{t("addonInstallingTitle", "AI Tools")}</h1>
       <div class={styles.icon} innerHTML={logoSvg} />
 

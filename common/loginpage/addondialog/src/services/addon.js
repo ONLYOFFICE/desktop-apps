@@ -16,6 +16,9 @@ import { t } from "./l10n";
 const [addonStatus, setAddonStatus] = createSignal(null);
 export { addonStatus };
 
+let activeDownload = null;
+let activeRequestController = null;
+
 export function installAddon() {
   command("addon:action", "install");
 }
@@ -33,6 +36,17 @@ export function restartNow() {
 }
 
 export function closeDialog() {
+  if (activeRequestController) {
+    activeRequestController.abort();
+    activeRequestController = null;
+  }
+
+  if (activeDownload) {
+    activeDownload.canceled = true;
+    activeDownload.downloader.abort();
+    activeDownload = null;
+  }
+
   command("addon:action", "close");
 }
 
@@ -41,26 +55,34 @@ export function resizeDialog(width, height) {
 }
 
 function downloadAddon(url, size, md5) {
+  const operation = { canceled: false, downloader: null };
   const downloader = new Downloader({
     url,
     // fileName,
     size,
     onProgress: ({ percent }) => {
+      if (operation.canceled) return;
       setAddonStatus((prev) => ({ ...(prev ?? {}), progress: percent }));
     },
     onComplete: (filePath) => {
+      if (operation.canceled) return;
       if (md5 !== undefined) {
         setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonInstalling") }));
         command("addon:install", { status: "downloaded", tempfile: filePath, md5 });
       }
     },
     onError: (err) => {
+      if (operation.canceled) return;
       setViewPanel("error");
       setAddonStatus((prev) => ({ ...(prev ?? {}), message: err.message }));
     },
   });
+  operation.downloader = downloader;
+  activeDownload = operation;
   downloader.start().catch(() => {
     // already surfaced via onError
+  }).finally(() => {
+    if (activeDownload === operation) activeDownload = null;
   });
 }
 
@@ -103,7 +125,10 @@ export function initAddonStatus() {
           }
 
           try {
-            const res = await fetch(`onlyoffice-proxy://${appcast}`);
+            const requestController = new AbortController();
+            activeRequestController = requestController;
+            const res = await fetch(`onlyoffice-proxy://${appcast}`, { signal: requestController.signal });
+            activeRequestController = null;
             if (!res.ok)
               throw new Error(`appcast fetch failed: ${res.status}`);
 
@@ -123,6 +148,7 @@ export function initAddonStatus() {
             setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonDownloading") }));
             downloadAddon(pkgBlock.url, pkgBlock.size, pkgBlock.md5);
           } catch (err) {
+            if (err.name === "AbortError") return;
             setViewPanel("error");
             setAddonStatus((prev) => ({ ...(prev ?? {}), message: err.message }));
             return;
