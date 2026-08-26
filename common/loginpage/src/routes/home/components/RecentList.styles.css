@@ -215,3 +215,40 @@
     }
   }
 }
+
+@container (max-width: 700px) {
+  #box-recent {
+    .file-list-head,
+    .file-list-body .row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .file-list-body .row {
+      padding: 8px 0 8px 16px;
+    }
+
+    .col-actions {
+      .btn-recents-tool.aichat,
+      .btn-recents-tool.pin {
+        display: none;
+      }
+    }
+
+    .col-date {
+      display: none;
+    }
+  }
+}
+
+@container (max-width: 450px) {
+  #box-recent {
+    .file-list-head,
+    .file-list-body .row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .col-actions {
+      display: none;
+    }
+  }
+}
