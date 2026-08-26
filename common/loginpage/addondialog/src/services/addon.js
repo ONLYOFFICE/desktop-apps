@@ -17,7 +17,7 @@ const [addonStatus, setAddonStatus] = createSignal(null);
 export { addonStatus };
 
 let activeDownload = null;
-let activeRequestController = null;
+let activeRequest = null;
 
 export function installAddon() {
   command("addon:action", "install");
@@ -36,9 +36,10 @@ export function restartNow() {
 }
 
 export function closeDialog() {
-  if (activeRequestController) {
-    activeRequestController.abort();
-    activeRequestController = null;
+  if (activeRequest) {
+    activeRequest.canceled = true;
+    activeRequest.controller.abort();
+    activeRequest = null;
   }
 
   if (activeDownload) {
@@ -124,11 +125,12 @@ export function initAddonStatus() {
             return;
           }
 
+          let request;
           try {
-            const requestController = new AbortController();
-            activeRequestController = requestController;
-            const res = await fetch(`onlyoffice-proxy://${appcast}`, { signal: requestController.signal });
-            activeRequestController = null;
+            request = { canceled: false, controller: new AbortController() };
+            activeRequest = request;
+            const res = await fetch(`onlyoffice-proxy://${appcast}`, { signal: request.controller.signal });
+            if (activeRequest === request) activeRequest = null;
             if (!res.ok)
               throw new Error(`appcast fetch failed: ${res.status}`);
 
@@ -148,10 +150,12 @@ export function initAddonStatus() {
             setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonDownloading") }));
             downloadAddon(pkgBlock.url, pkgBlock.size, pkgBlock.md5);
           } catch (err) {
-            if (err.name === "AbortError") return;
+            if (request?.canceled) return;
             setViewPanel("error");
             setAddonStatus((prev) => ({ ...(prev ?? {}), message: err.message }));
             return;
+          } finally {
+            if (activeRequest === request) activeRequest = null;
           }
         }
       } else if (!!status.progress) {
