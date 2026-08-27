@@ -9,6 +9,9 @@ function FileMenuItems(props) {
   const Menu = props.menu;
   return (
     <>
+      <Menu.Item icon="#aichat20" onSelect={() => props.onAddToChat(props.model)}>
+        {t("actAiChat")}
+      </Menu.Item>
       <Menu.Item icon="#gofolder" onSelect={() => exploreFile(props.model)}>
         {t("menuFileExplore")}
       </Menu.Item>
@@ -101,6 +104,7 @@ function RecentRow(props) {
                 <FileMenuItems
                   menu={DropdownMenu}
                   model={props.model}
+                  onAddToChat={props.onAddToChat}
                   onTogglePin={props.onTogglePin}
                   onRemove={props.onRemove}
                   onClear={props.onClear}
@@ -114,6 +118,7 @@ function RecentRow(props) {
         <FileMenuItems
           menu={ContextMenu}
           model={props.model}
+          onAddToChat={props.onAddToChat}
           onTogglePin={props.onTogglePin}
           onRemove={props.onRemove}
           onClear={props.onClear}

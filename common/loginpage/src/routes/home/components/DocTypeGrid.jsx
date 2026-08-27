@@ -48,7 +48,7 @@ export function DocTypeGrid(props) {
             >
               <span>{item.formatLabel.value}</span>
             </div>
-            <svg class="icon">
+            <svg class="icon" viewBox="0 0 108 100">
               <use href={item.icon} />
             </svg>
             <div class="title">{t(item.titleKey)}</div>

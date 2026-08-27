@@ -65,7 +65,7 @@ h4 {
   height: 100%;
 
   &.shell--chat-panel-side {
-    grid-template-columns: calc(62px + 8px) minmax(0, 1fr) var(--chat-w, 400px);
+    grid-template-columns: calc(62px + 8px) minmax(320px, 1fr) minmax(0, var(--chat-w, 400px));
   }
 
   &.shell--chat-panel-full .col-center {
