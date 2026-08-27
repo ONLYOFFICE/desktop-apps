@@ -15,7 +15,6 @@ import base
 # order matters: loginpage itself must be built last, since its build
 # depends on addondialog/noconnect deploy artifacts
 PROJECTS = [
-#  os.path.join(ROOT_DIR, "oforms.onlyoffice.com"),
   os.path.join(LOGINPAGE_DIR, "addondialog"),
   os.path.join(LOGINPAGE_DIR, "noconnect"),
   LOGINPAGE_DIR,
@@ -49,9 +48,9 @@ def build_templates_project(directory):
 
 def main():
   base.print_info("Build projects for the desktop's Start page")
+  build_templates_project(TEMPLATES_PROJECT_DIR)
   for directory in PROJECTS:
     build_project(directory)
-  build_templates_project(TEMPLATES_PROJECT_DIR)
   base.print_info("All projects built successfully")
   return
 
