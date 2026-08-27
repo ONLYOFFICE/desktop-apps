@@ -141,7 +141,8 @@ export function initSettingsSync() {
   const storedUsername = localStorage.getItem("username");
   if (storedUsername) {
     setSettings("userName", storedUsername);
-  } else {
+    localStorage.removeItem("username");
+  } else if (!settings.userName) {
     command("settings:get", "username");
   }
 
