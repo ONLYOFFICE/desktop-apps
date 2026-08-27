@@ -45,17 +45,15 @@
 
 .resetLink {
   position: absolute;
+  top: 12px;
   background: none;
   border: none;
   padding: 0;
   font-size: 14px;
   line-height: 18px;
-  color: var(--text-link);
+  color: var(--text-secondary);
   cursor: pointer;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
 }
 
 .divider {
