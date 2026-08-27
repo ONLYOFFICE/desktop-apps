@@ -65,7 +65,7 @@ export default {
     actPreviewTemplates: 'Шаблон',
     actClouds: 'Облака',
     actHome: 'Главная',
-    actAiChat: 'ИИ-чат',
+    actAiChat: 'ИИ Чат',
     licKeyHolder: 'введите ключ активации',
     btnActivate: 'Активировать',
     licGetLicense: 'Получить ключ активации',

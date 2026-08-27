@@ -32,6 +32,7 @@
   "language-switcher-option-background-color-hover": "var(--highlight-button-hover)",
   "main-background": "var(--background-action-panel)",
   "main-count-color": "var(--text-tertiary)",
+  "main-filters-button-icon-color": "var(--icon-normal)",
   "main-heading-color": "var(--text-normal)",
   "main-section-heading-link-color-hover": "var(--text-link)",
   "main-subheading-color": "var(--text-secondary)",

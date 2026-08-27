@@ -213,9 +213,9 @@ export function initSettingsSync() {
     let restart = false;
     if (snap !== null) {
       restart = (aichat.available && settings.useai !== !!snap.useai) ||
-                  scaling !== nativeScalingToStore(snap.uiscaling) ||
+                  (!!scaling && scaling !== nativeScalingToStore(snap.uiscaling)) ||
                   settings.gpuMode !== !!snap.usegpu ||
-                  textDirectionChanged() || langRestartPending();
+                  textDirectionChanged() || (langRestartPending() && snap.locale.current != lang);
     }
 
     snap.useai = settings.useai;
@@ -273,7 +273,6 @@ export function initSettingsSync() {
       batch(() => {
         setSettings("scaling", "uiscaling" in payload ? nativeScalingToStore(payload.uiscaling) : undefined);
         setSettings("checkUpdates", !!payload.updates?.mode ? payload.updates.mode : undefined);
-        if (payload.locale?.current) setSettings("lang", payload.locale.current);
         if (payload.uitheme) {
           setSettings("theme", payload.uitheme);
           applyThemeToDom(payload.uitheme);
@@ -291,6 +290,7 @@ export function initSettingsSync() {
         document.body.classList.add("rtl");
       }
       if (payload.locale?.current) {
+        setSettings("lang", payload.locale.current);
         if (isRTL(payload.locale.current)) document.body.classList.add("rtl-font");
         document.body.setAttribute("applang", payload.locale.current);
       }
@@ -347,6 +347,8 @@ export function initSettingsSync() {
       }
       if (opts?.theme?.system) {
         window.RendererProcessVariable.theme.system = opts.theme.system;
+        if (is_theme_system(settings.theme))
+          applyThemeToDom(settings.theme);
       }
     } else if (msgCmd === "uitheme:changed") {
       setSettings("theme", param);

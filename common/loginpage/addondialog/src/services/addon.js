@@ -129,7 +129,10 @@ export function initAddonStatus() {
           try {
             request = { canceled: false, controller: new AbortController() };
             activeRequest = request;
-            const res = await fetch(`onlyoffice-proxy://${appcast}`, { signal: request.controller.signal });
+            const res = await fetch(`onlyoffice-proxy://${appcast}`, {
+              signal: request.controller.signal,
+              cache: "no-cache",
+            });
             if (activeRequest === request) activeRequest = null;
             if (!res.ok)
               throw new Error(`appcast fetch failed: ${res.status}`);
