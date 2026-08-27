@@ -9,7 +9,7 @@ function FileMenuItems(props) {
   const Menu = props.menu;
   return (
     <>
-      <Menu.Item icon="#aichat" onSelect={() => props.onAddToChat(props.model)}>
+      <Menu.Item icon="#aichat20" onSelect={() => props.onAddToChat(props.model)}>
         {t("actAiChat")}
       </Menu.Item>
       <Menu.Item icon="#gofolder" onSelect={() => exploreFile(props.model)}>
