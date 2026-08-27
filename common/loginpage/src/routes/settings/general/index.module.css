@@ -53,7 +53,10 @@
   line-height: 18px;
   color: var(--text-secondary);
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .divider {
