@@ -268,6 +268,18 @@ export function initSettingsSync() {
           enname: info.enname,
         }));
         if (langs.length > 0) setAvailableLangs(langs);
+
+        if ( payload.locale?.current ) {
+          if (!payload.locale.langs[payload.locale.current]) {
+            let l = Object.keys(payload.locale.langs).find(code => code.startsWith(payload.locale.current) || payload.locale.current.startsWith(code));
+            if (!!l) payload.locale.current = l;
+            else {
+              const def_lang = 'en-US';
+              l = Object.keys(payload.locale.langs).find(code => code.startsWith(def_lang) || def_lang.startsWith(code));
+              if (!!l) payload.locale.current = l;
+            }
+          }
+        }
       }
 
       batch(() => {
