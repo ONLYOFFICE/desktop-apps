@@ -1,4 +1,4 @@
-import { Switch, Match, createMemo } from "solid-js";
+import { Switch, Match, createMemo, onMount } from "solid-js";
 import { t } from "@/services/l10n";
 import { addonStatus, progressPercentFromStatus, restartNow, closeDialog, postponeAddon } from "@/services/addon";
 import logoSvg from "../../assets/img/logo.svg?raw";
@@ -6,9 +6,22 @@ import styles from "./StatusPanel.module.css";
 
 export function StatusPanel(props) {
   const percent = createMemo(() => progressPercentFromStatus(addonStatus()));
+  let panel;
+
+  onMount(() => panel.focus());
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeDialog();
+    }
+  };
 
   return (
-    <div class={styles.panel}>
+    <div ref={panel} class={styles.panel} tabIndex="-1" onKeyDown={handleKeyDown}>
+      <button type="button" class={styles.close} onClick={closeDialog} aria-label={t("addonBtnClose", "Close")} title={t("addonBtnClose", "Close")}>
+        <span aria-hidden="true">&#x2715;</span>
+      </button>
       <h1 class={styles.title}>{t("addonInstallingTitle", "AI Tools")}</h1>
       <div class={styles.icon} innerHTML={logoSvg} />
 
