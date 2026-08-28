@@ -110,6 +110,7 @@ export function parseRecent(arr) {
       date: f.modifyed || "",
       dateLabel: formatDate(f.modifyed),
       cloud: f.cloud || "",
+      islocal: !/^https?:\/\//.test(path),
       pinned: !!f.pin,
       crypted: !!f.crypted,
       exist: f.exist !== false,

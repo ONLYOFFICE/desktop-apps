@@ -71,17 +71,19 @@ function RecentRow(props) {
           </div>
         </Show>
         <div class="col-actions">
-          <button
-            class="btn-recents-tool aichat"
-            onClick={(e) => {
-              e.stopPropagation();
-              props.onAddToChat(props.model);
-            }}
-          >
-            <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#aichat_rcl" /></svg>}>
-              <i class="icon tool-icon aichat" />
-            </Show>
-          </button>
+          <Show when={props.model.islocal}>
+            <button
+              class="btn-recents-tool aichat"
+              onClick={(e) => {
+                e.stopPropagation();
+                props.onAddToChat(props.model);
+              }}
+            >
+              <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#aichat_rcl" /></svg>}>
+                <i class="icon tool-icon aichat" />
+              </Show>
+            </button>
+          </Show>
           <button
             class="btn-recents-tool pin"
             onClick={(e) => {
