@@ -1,9 +1,7 @@
 import { render } from "solid-js/web";
 import App from "./app.jsx";
 import "../noconnect/styles.css";
-import "../templatespanel/oforms.css";
 import "./services/noconnect-init.js";
-import "./services/oforms-init.js";
 import { initLocale } from "./services/l10n";
 import { initDisplay } from "./services/display";
 import { onNativeMessage, dropOfficeFiles } from "./sdk";

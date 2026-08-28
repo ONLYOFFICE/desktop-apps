@@ -1,24 +1,30 @@
-import { onMount, onCleanup } from "solid-js";
-import "../../../templatespanel/oforms.css";
-import "./templates.css";
-import defaultTheme from "../../../templatespanel/theme.default.json";
+import { onMount } from "solid-js";
 import { settings } from "@/stores/settings";
+import "./templates.css";
+import { langCode } from "@/services/l10n";
+
+const TEMPLATES_URL = "https://oforms-new.pages.dev/?hide=lang";
+
+let iframeEl = null;
 
 export function sendTemplatesSettings(opts) {
-  if ( OformsEmbed ) {
-    if ( !!opts.country && OformsEmbed.setCountry )
-      OformsEmbed.setCountry(opts.country);
+  if (iframeEl?.contentWindow && opts.country) {
+    iframeEl.contentWindow.postMessage({ type: "settings", country: opts.country }, "*");
   }
 }
 
 export default function Templates() {
-  onMount(() => {
-    OformsEmbed.render("#oforms-root", {locale: "en", theme: defaultTheme, country: settings.country});
-  });
+  let src = TEMPLATES_URL;
+  // if (settings.country) src += `?country=${encodeURIComponent(settings.country)}`;
 
   return (
     <div class="stub-page">
-      <div id="oforms-root" />
+      <iframe
+        ref={(el) => { iframeEl = el; }}
+        id="idx-tmpls-frame"
+        src={src}
+        title="Templates"
+      />
     </div>
   );
 }
