@@ -3,7 +3,7 @@ import { settings } from "@/stores/settings";
 import "./templates.css";
 import { langCode } from "@/services/l10n";
 
-const TEMPLATES_URL = "https://oforms-new.pages.dev/?hide=lang";
+const TEMPLATES_URL = "https://oforms-new.pages.dev/";
 
 let iframeEl = null;
 
@@ -14,7 +14,10 @@ export function sendTemplatesSettings(opts) {
 }
 
 export default function Templates() {
-  let src = TEMPLATES_URL;
+  const site_url = new URL(TEMPLATES_URL);
+  site_url.searchParams.set("hide", "lang");
+  site_url.searchParams.set("lang", langCode);
+
   // if (settings.country) src += `?country=${encodeURIComponent(settings.country)}`;
 
   return (
@@ -22,7 +25,7 @@ export default function Templates() {
       <iframe
         ref={(el) => { iframeEl = el; }}
         id="idx-tmpls-frame"
-        src={src}
+        src={site_url.toString()}
         title="Templates"
       />
     </div>
