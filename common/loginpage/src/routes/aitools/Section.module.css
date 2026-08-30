@@ -4,7 +4,8 @@
 
 .title {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
+  line-height: 20px;
   margin: 0 0 12px;
   color: var(--text-normal);
 }

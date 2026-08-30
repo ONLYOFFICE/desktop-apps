@@ -15,6 +15,8 @@
 
 .header {
   flex-shrink: 0;
+  overflow: hidden;
+  scrollbar-gutter: stable;
   padding: 24px 16px 0;
 }
 
@@ -34,6 +36,7 @@
 .content {
   flex: 1;
   overflow-y: auto;
+  scrollbar-gutter: stable;
   padding: 16px 16px 20px;
   background-color: var(--background-action-panel);
   min-height: inherit;
@@ -45,6 +48,8 @@ main {
 
 .footer {
   flex-shrink: 0;
+  overflow: hidden;
+  scrollbar-gutter: stable;
   padding: 12px 16px;
   border-top: 1px solid var(--border-divider);
 }
@@ -90,7 +95,7 @@ main {
 
 .heading {
   height: 32px;
-  padding-inline: 12px;
+  padding-inline: 8px;
 
   > span {
     font-weight: 700;
