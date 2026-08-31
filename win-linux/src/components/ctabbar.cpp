@@ -36,6 +36,7 @@
 #include "components/ctabbar.h"
 #include "components/canimatedicon.h"
 #include "components/cmenu.h"
+#include "utils.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <QApplication>
 #include <QHBoxLayout>
@@ -87,6 +88,7 @@ public:
     CMenu *menu = nullptr;
     QString text;
     QString tabcolor;
+    double dpi_ratio = 1.0;
     int tab_width = -1;
     int index = -1;
 
@@ -282,9 +284,11 @@ void Tab::resizeEvent(QResizeEvent *event)
     int new_width = event->size().width();
     if (tab_width < 0) {
         tab_width = new_width;
+        dpi_ratio = Utils::getScreenDpiRatioByWidget(window());
     } else {
         if (tab_width != new_width) {
             tab_width = new_width;
+            dpi_ratio = Utils::getScreenDpiRatioByWidget(window());
             SKIP_EVENTS_QUEUE([=]() {
                 emit onTabWidthChanged(tab_width);
             });
@@ -341,6 +345,7 @@ public:
     int getIntersectedOffset(int index);
     int getIntersectedIndex(int direction, int &offsetX);
     int getLayoutsIntersectedIndex(Tab *tab, int &offsetX);
+    int tabSpacing();
     int cellWidth();
     int nextTabPosByPrev(int index);
 //    int prevTabPosByNext(int index);
@@ -366,6 +371,7 @@ public:
     Tab* movedTab = nullptr;
     bool lock = false;
     bool isActive = false;
+    double dpiRatio = 1.0;
     int animationInProgress = 0;
     int movedTabPosX = 0;
     int movedTabPressPosX = 0;
@@ -451,10 +457,17 @@ int CTabBar::CTabBarPrivate::getLayoutsIntersectedIndex(Tab *tab, int &offsetX)
     return -1;
 }
 
+int CTabBar::CTabBarPrivate::tabSpacing()
+{
+    if (!tabList.isEmpty())
+        dpiRatio = tabList[0]->dpi_ratio;
+    return int(TABSPACING * dpiRatio);
+}
+
 int CTabBar::CTabBarPrivate::cellWidth()
 {
     Q_ASSERT(!tabList.isEmpty());
-    return tabList[0]->width() + TABSPACING;
+    return tabList[0]->width() + tabSpacing();
 }
 
 //int CTabBar::CTabBarPrivate::prevTabPosByNext(int index)
@@ -466,7 +479,7 @@ int CTabBar::CTabBarPrivate::cellWidth()
 int CTabBar::CTabBarPrivate::nextTabPosByPrev(int index)
 {
     Q_ASSERT(index > -1 && index < tabList.size());
-    return _tabRect(index).right() + TABSPACING + 1;
+    return _tabRect(index).right() + tabSpacing() + 1;
 }
 
 void CTabBar::CTabBarPrivate::slide(int from, int to, int offset, int animation_ms)
@@ -523,7 +536,7 @@ void CTabBar::CTabBarPrivate::scrollTo(int index)
 
     if (!tabArea->rect().contains(_tabRect(index))) {
         int x = _tabRect(index).x();
-        int offsetX = (x > 0) ? x - tabArea->width() + cellWidth() : x;
+        int offsetX = (x > 0) ? x - tabArea->width() + cellWidth() : x - tabSpacing();
         slide(0, tabList.size() - 1, -1 * offsetX, ANIMATION_DEFAULT_MS);
     } else {
         changeScrollerState();
@@ -555,7 +568,7 @@ void CTabBar::CTabBarPrivate::onTabWidthChanged(int width)
         iconSize = tabList[0]->icon_label->size();
 
     for (int i = 0; i < tabList.size(); i++) {
-        int posX = i * cellWidth();
+        int posX = tabSpacing() + i * cellWidth();
         tabList[i]->move(posX, 0);
 
         if (QIcon *icon = tabList[i]->tab_icon)
@@ -583,7 +596,7 @@ void CTabBar::CTabBarPrivate::changeScrollerState()
 
     allowScroll = false;
     for (int i = 0; i < tabList.size(); i++) {
-        if (_tabRect(i).right() + TABSPACING > tabArea->rect().right()) {
+        if (_tabRect(i).right() + tabSpacing() > tabArea->rect().right()) {
             allowScroll = true;
             break;
         }
@@ -609,7 +622,7 @@ void CTabBar::CTabBarPrivate::recalcWidth()
 {
     int minWidth = (tabList.isEmpty()) ? 0 : cellWidth();
     tabArea->setMinimumWidth(minWidth);
-    tabArea->setMaximumWidth(minWidth * tabList.size());
+    tabArea->setMaximumWidth(tabList.isEmpty() ? 0 : tabSpacing() + minWidth * tabList.size());
     owner->setMaximumWidth(tabArea->maximumWidth() + scrollFrame->maximumWidth());
     PROCESSEVENTS();
 }
@@ -695,7 +708,7 @@ int CTabBar::addTab(const QString &text)
     d->movedTab = nullptr;
     d->movedTabIndex = -1;
     const int lastIndex = d->tabList.size() - 1;
-    const int posX = (lastIndex == -1) ? 0 : d->nextTabPosByPrev(lastIndex);
+    const int posX = (lastIndex == -1) ? d->tabSpacing() : d->nextTabPosByPrev(lastIndex);
     Tab *tab = d->createTab(posX, text);
     tab->index = lastIndex + 1;
     d->tabList.append(tab);
@@ -827,7 +840,7 @@ void CTabBar::removeTab(int index)
     d->movedTab = nullptr;
     d->movedTabIndex = -1;
     d->tabList[index]->hide();
-    if (d->_tabRect(0).x() <= d->tabArea->x() - d->cellWidth()) {
+    if (d->_tabRect(0).x() <= d->tabArea->x() - d->cellWidth() + d->tabSpacing()) {
         const int prevIndex = index - 1;
         if (prevIndex > -1) {
             d->slide(0, prevIndex, d->cellWidth(), ANIMATION_DEFAULT_MS);
@@ -1130,16 +1143,16 @@ void CTabBar::resizeEvent(QResizeEvent *event)
     for (int i = 0; i < d->tabList.size(); i++)
         d->tabList[i]->setFixedHeight(d->tabArea->height());
 
-    int tabsWidth = d->tabList.isEmpty() ? 0 : count() * d->cellWidth();
+    int tabsWidth = d->tabList.isEmpty() ? 0 : d->tabSpacing() + count() * d->cellWidth();
     bool visible = (tabsWidth > d->tabArea->width());
     d->leftButton->setVisible(visible);
     d->rightButton->setVisible(visible);
 
     const int lastIndex = d->tabList.size() - 1;
     const int offsetX = (lastIndex == -1) ? 0 : d->tabArea->rect().right() - d->_tabRect(lastIndex).right();
-    if (offsetX > TABSPACING) {
+    if (offsetX > d->tabSpacing()) {
         for (int i = 0; i < d->tabList.size(); i++)
-            d->tabList[i]->move(d->_tabRect(i).x() + offsetX - TABSPACING, 0);
+            d->tabList[i]->move(d->_tabRect(i).x() + offsetX - d->tabSpacing(), 0);
     }
     d->changeScrollerState();
 }
@@ -1240,7 +1253,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             QPoint oldCurPos = QCursor::pos();
                             d->tabLayouts.clear();
                             for (int j = 0; j < d->tabList.size(); j++) {
-                                d->tabLayouts.append(d->_tabRect(j).translated(-1 * offset, 0).adjusted(0,0,TABSPACING,0));
+                                d->tabLayouts.append(d->_tabRect(j).translated(-1 * offset, 0).adjusted(0,0,d->tabSpacing(),0));
                                 if (j != i)
                                     d->tabList[j]->stackUnder(d->movedTab);
                             }
