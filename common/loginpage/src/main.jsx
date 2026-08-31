@@ -4,7 +4,7 @@ import "../noconnect/styles.css";
 import "./services/noconnect-init.js";
 import { initLocale } from "./services/l10n";
 import { initDisplay } from "./services/display";
-import { onNativeMessage, dropOfficeFiles } from "./sdk";
+import { onNativeMessage, dropOfficeFiles, openLocal } from "./sdk";
 import "./styles/sprites/toolicons@1.25x.css";
 import "./styles/sprites/toolicons@1.5x.css";
 import "./styles/sprites/toolicons@1.75x.css";
@@ -36,6 +36,15 @@ onNativeMessage((cmd) => {
   if (cmd === "app:ready") {
     const mask = document.getElementById("loading-mask");
     if (mask) mask.style.display = "none";
+  }
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && e.which == 79) {
+    const hash = window.location.hash;
+    if (hash === "#/" || hash === "#/open") {
+      openLocal();
+    }
   }
 });
 
