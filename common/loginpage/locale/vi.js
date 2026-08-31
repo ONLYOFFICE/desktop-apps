@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Vượt ra ngoài chỉnh sửa tiêu chuẩn',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit và nhiều hơn nữa',
     strLicensedUnder: 'Được cấp phép theo',
+    tplNoInternet: 'Các mẫu trực tuyến không khả dụng do sự cố kết nối Internet. Bạn có thể tạo tài liệu mới bằng các tùy chọn ở trên.',
 }

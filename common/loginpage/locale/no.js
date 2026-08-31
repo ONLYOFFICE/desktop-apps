@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Gå utover standard redigering',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit og mer',
     strLicensedUnder: 'Lisensiert under',
+    tplNoInternet: 'Nettbaserte maler er ikke tilgjengelige på grunn av problemer med internettforbindelsen. Du kan opprette nye dokumenter ved hjelp av alternativene ovenfor.',
 }

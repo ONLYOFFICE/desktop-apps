@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'معیاری ترمیم سے آگے جائیں',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit اور مزید',
     strLicensedUnder: 'کے تحت لائسنس یافتہ',
+    tplNoInternet: 'انٹرنیٹ کنکشن کے مسائل کی وجہ سے آن لائن ٹیمپلیٹس دستیاب نہیں ہیں۔ آپ اوپر دیے گئے اختیارات کا استعمال کرکے نئی دستاویزات بنا سکتے ہیں۔',
 }

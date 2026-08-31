@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'ໄປໄກກວ່າການແກ້ໄຂມາດຕະຖານ',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit ແລະ ອື່ນໆ',
     strLicensedUnder: 'ໄດ້ຮັບໃບອະນຸຍາດພາຍໃຕ້',
+    tplNoInternet: 'ແມ່ແບບອອນລາຍບໍ່ສາມາດໃຊ້ງານໄດ້ເນື່ອງຈາກບັນຫາການເຊື່ອມຕໍ່ອິນເຕີເນັດ. ທ່ານສາມາດສ້າງເອກະສານໃໝ່ໄດ້ໂດຍໃຊ້ຕົວເລືອກຂ້າງເທິງ.',
 }

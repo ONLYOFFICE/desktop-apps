@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'צא מעבר לעריכה הסטנדרטית',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit ועוד',
     strLicensedUnder: 'מורשה תחת',
+    tplNoInternet: 'תבניות מקוונות אינן זמינות עקב בעיות בחיבור לאינטרנט. תוכל ליצור מסמכים חדשים באמצעות האפשרויות שלמעלה.',
 }

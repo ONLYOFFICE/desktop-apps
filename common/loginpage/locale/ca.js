@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Aneu més enllà de l\'edició estàndard',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit i més',
     strLicensedUnder: 'Llicenciat sota',
+    tplNoInternet: 'Les plantilles en línia no estan disponibles a causa de problemes de connexió a Internet. Podeu crear nous documents amb les opcions anteriors.',
 }

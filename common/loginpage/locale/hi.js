@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'मानक संपादन से आगे जाएँ',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit और अधिक',
     strLicensedUnder: 'के अंतर्गत लाइसेंस प्राप्त',
+    tplNoInternet: 'इंटरनेट कनेक्शन समस्याओं के कारण ऑनलाइन टेम्पलेट उपलब्ध नहीं हैं। आप ऊपर दिए गए विकल्पों का उपयोग करके नए दस्तावेज़ बना सकते हैं।',
 }

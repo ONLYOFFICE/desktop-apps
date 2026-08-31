@@ -191,4 +191,5 @@ export default {
     settRemoveAddon: 'Go beyond standard editing',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit and more',
     strLicensedUnder: 'Licensed under',
+    tplNoInternet: "Online templates aren't available because of some internet connection problems. You can create new documents using the options above.",
 }

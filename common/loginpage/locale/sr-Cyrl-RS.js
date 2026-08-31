@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Идите даље од стандардног уређивања',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit и више',
     strLicensedUnder: 'Лиценцирано под',
+    tplNoInternet: 'Онлајн шаблони нису доступни због проблема са интернет везом. Можете да креирате нове документе помоћу горе наведених опција.',
 }

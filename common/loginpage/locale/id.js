@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Melampaui pengeditan standar',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit dan lainnya',
     strLicensedUnder: 'Dilisensikan di bawah',
+    tplNoInternet: 'Templat online tidak tersedia karena masalah koneksi internet. Anda dapat membuat dokumen baru menggunakan opsi di atas.',
 }

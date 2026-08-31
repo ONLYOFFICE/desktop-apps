@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Překročte hranice standardního úpravy',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit a další',
     strLicensedUnder: 'Licencováno pod',
+    tplNoInternet: 'Online šablony nejsou dostupné kvůli problémům s připojením k internetu. Nové dokumenty můžete vytvářet pomocí výše uvedených možností.',
 }

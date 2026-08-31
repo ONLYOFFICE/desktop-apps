@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Pojdite onkraj standardnega urejanja',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit in več',
     strLicensedUnder: 'Licencirano pod',
+    tplNoInternet: 'Spletne predloge niso na voljo zaradi težav z internetno povezavo. Nove dokumente lahko ustvarite z možnostmi zgoraj.',
 }

@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Надхвърлете стандартното редактиране',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit и още',
     strLicensedUnder: 'Лицензирано под',
+    tplNoInternet: 'Онлайн шаблоните не са достъпни поради проблеми с интернет връзката. Можете да създавате нови документи с помощта на опциите по-горе.',
 }

@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Mine kaugemale standardsest redigeerimisest',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit ja muud',
     strLicensedUnder: 'Litsentseeritud all',
+    tplNoInternet: 'Võrgumallid pole saadaval internetiühenduse probleemide tõttu. Saate luua uusi dokumente ülaltoodud valikute abil.',
 }

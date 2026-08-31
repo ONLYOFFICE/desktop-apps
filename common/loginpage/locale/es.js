@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Ve más allá de la edición estándar',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit y más',
     strLicensedUnder: 'Con licencia bajo',
+    tplNoInternet: 'Las plantillas en línea no están disponibles debido a problemas de conexión a Internet. Puede crear nuevos documentos utilizando las opciones anteriores.',
 }

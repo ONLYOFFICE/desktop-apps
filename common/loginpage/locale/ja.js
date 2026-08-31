@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: '標準的な編集を超える',
     descrRemoveAddon: 'ONLYOFFICE Pro Kitとその他',
     strLicensedUnder: 'ライセンス',
+    tplNoInternet: 'インターネット接続の問題により、オンラインテンプレートは利用できません。上記のオプションを使用して新しいドキュメントを作成できます。',
 }

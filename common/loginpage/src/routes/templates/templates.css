@@ -1,17 +1,49 @@
-.stub-page {
+.templates-page {
   height: 100%;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-#oforms-root {
-  height: 100%;
-  overflow: auto;
+.templates-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--text-normal);
+  margin: 0 0 28px;
+}
+
+.templates-title--online {
+  padding: 28px 48px 16px;
+  flex-shrink: 0;
+  margin-bottom: 16px;
 }
 
 #idx-tmpls-frame {
-  /* flex: 1; */
+  flex: 1;
   width: 100%;
-  height: 100%;
   min-height: 0;
   border: 0 none;
+}
+
+.templates-offline-wrap {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  padding: 28px 48px;
+  box-sizing: border-box;
+}
+
+.templates-offline-content {
+  width: 100%;
+  max-width: 712px;
+}
+
+.templates-offline-msg {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin: 80px 0 0;
 }

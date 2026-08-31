@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Depășiți editarea standard',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit și mai mult',
     strLicensedUnder: 'Licențiat sub',
+    tplNoInternet: 'Șabloanele online nu sunt disponibile din cauza problemelor de conectare la internet. Puteți crea documente noi folosind opțiunile de mai sus.',
 }

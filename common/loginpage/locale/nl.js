@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Ga verder dan standaard bewerking',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit en meer',
     strLicensedUnder: 'Gelicentieerd onder',
+    tplNoInternet: 'Online sjablonen zijn niet beschikbaar vanwege internetverbindingsproblemen. U kunt nieuwe documenten aanmaken met de bovenstaande opties.',
 }

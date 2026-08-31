@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Gå bortom standardredigering',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit och mer',
     strLicensedUnder: 'Licensierad under',
+    tplNoInternet: 'Onlinemallar är inte tillgängliga på grund av problem med internetanslutningen. Du kan skapa nya dokument med alternativen ovan.',
 }

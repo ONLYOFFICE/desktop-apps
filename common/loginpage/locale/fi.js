@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Ylitä tavallinen muokkaus',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit ja paljon muuta',
     strLicensedUnder: 'Lisensoitu',
+    tplNoInternet: 'Verkkopohjaisia malleja ei ole saatavilla Internet-yhteysongelmien vuoksi. Voit luoda uusia asiakirjoja yllä olevien vaihtoehtojen avulla.',
 }

@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Perženkite standartinio redagavimo ribas',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit ir daugiau',
     strLicensedUnder: 'Licencijuota pagal',
+    tplNoInternet: 'Internetiniai šablonai nepasiekiami dėl interneto ryšio problemų. Galite kurti naujus dokumentus naudodami aukščiau esančias parinktis.',
 }

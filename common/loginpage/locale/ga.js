@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Téigh thar an eagarthóireacht chaighdeánach',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit agus níos mó',
     strLicensedUnder: 'Ceadúnaithe faoi',
+    tplNoInternet: 'Níl teimpléid ar líne ar fáil mar gheall ar fhadhbanna le nasc idirlín. Is féidir leat cáipéisí nua a chruthú ag baint úsáide as na roghanna thuas.',
 }

@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Standart düzenlemenin ötesine geçin',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit ve daha fazlası',
     strLicensedUnder: 'Lisanslı',
+    tplNoInternet: 'İnternet bağlantısı sorunları nedeniyle çevrimiçi şablonlar kullanılamıyor. Yukarıdaki seçenekleri kullanarak yeni belgeler oluşturabilirsiniz.',
 }

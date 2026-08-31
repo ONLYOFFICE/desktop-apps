@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'සාමාන්‍ය සංස්කරණය ඉක්මවා යන්න',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit සහ තවත්',
     strLicensedUnder: 'යටතේ බලපත්‍ර ලබා ඇත',
+    tplNoInternet: 'අන්තර්ජාල සම්බන්ධතා ගැටළු නිසා සබැඳි සැකිලි ලබා ගත නොහැක. ඉහත විකල්ප භාවිතා කර ඔබට නව ලේඛන සාදා ගත හැකිය.',
 }

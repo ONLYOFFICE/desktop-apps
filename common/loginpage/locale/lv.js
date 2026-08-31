@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Ejiet tālāk par standarta rediģēšanu',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit un vairāk',
     strLicensedUnder: 'Licencēts saskaņā ar',
+    tplNoInternet: 'Tiešsaistes veidnes nav pieejamas interneta savienojuma problēmu dēļ. Varat izveidot jaunus dokumentus, izmantojot iepriekš minētās opcijas.',
 }

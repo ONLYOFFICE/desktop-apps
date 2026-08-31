@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Lépjen túl a szokásos szerkesztésen',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit és még több',
     strLicensedUnder: 'Licenc alatt',
+    tplNoInternet: 'Az online sablonok nem érhetők el az internetkapcsolat problémái miatt. Új dokumentumokat hozhat létre a fenti lehetőségek segítségével.',
 }

@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Wyjdź poza standardową edycję',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit i więcej',
     strLicensedUnder: 'Licencjonowane na podstawie',
+    tplNoInternet: 'Szablony online nie są dostępne z powodu problemów z połączeniem internetowym. Nowe dokumenty możesz tworzyć, korzystając z powyższych opcji.',
 }

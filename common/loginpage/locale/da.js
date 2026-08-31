@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Gå ud over standard redigering',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit og mere',
     strLicensedUnder: 'Licenseret under',
+    tplNoInternet: 'Online-skabeloner er ikke tilgængelige på grund af problemer med internetforbindelsen. Du kan oprette nye dokumenter ved hjælp af indstillingerne ovenfor.',
 }

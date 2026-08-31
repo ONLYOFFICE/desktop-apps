@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'Gehen Sie über die Standardbearbeitung hinaus',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit und mehr',
     strLicensedUnder: 'Lizenziert unter',
+    tplNoInternet: 'Online-Vorlagen sind aufgrund von Internetverbindungsproblemen nicht verfügbar. Sie können neue Dokumente mit den obigen Optionen erstellen.',
 }

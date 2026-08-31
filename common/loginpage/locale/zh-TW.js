@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: '超越標準編輯',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit 及更多',
     strLicensedUnder: '授權於',
+    tplNoInternet: '由於網路連線問題，線上範本目前無法使用。您可以使用上方的選項建立新文件。',
 }

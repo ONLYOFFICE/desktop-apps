@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: '표준 편집을 넘어서세요',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit 및 기타',
     strLicensedUnder: '라이선스',
+    tplNoInternet: '인터넷 연결 문제로 인해 온라인 템플릿을 사용할 수 없습니다. 위의 옵션을 사용하여 새 문서를 만들 수 있습니다.',
 }

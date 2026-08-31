@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: '超越标准编辑',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit 及更多',
     strLicensedUnder: '许可协议',
+    tplNoInternet: '由于网络连接问题，在线模板暂不可用。您可以使用上方的选项创建新文档。',
 }

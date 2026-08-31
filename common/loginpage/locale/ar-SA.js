@@ -156,4 +156,5 @@ export default {
     settRemoveAddon: 'تجاوز التحرير القياسي',
     descrRemoveAddon: 'ONLYOFFICE Pro Kit والمزيد',
     strLicensedUnder: 'مرخص بموجب',
+    tplNoInternet: 'قوالب الإنترنت غير متاحة بسبب مشاكل في الاتصال بالإنترنت. يمكنك إنشاء مستندات جديدة باستخدام الخيارات أعلاه.',
 }
