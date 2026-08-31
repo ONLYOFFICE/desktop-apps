@@ -214,7 +214,7 @@ static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/jPf
         if (match) {
             NSString *numberString = [_aiToolsVersion substringWithRange:match.range];
             NSInteger number = numberString.integerValue;
-            NSInteger replacement = number < 9 ? 1 : number - 8;
+            NSInteger replacement = number < 10 ? 1 : number - 9;
             
             version = [_aiToolsVersion stringByReplacingCharactersInRange:match.range
                                            withString:[NSString stringWithFormat:@"%ld",
