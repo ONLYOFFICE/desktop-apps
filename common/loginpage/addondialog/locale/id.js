@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Mulai ulang sekarang",
   addonInstallFailedTitle: "Instalasi gagal",
   addonBtnClose: "Tutup",
+  errorInstallVersionHigh: "Tidak ada versi add-on yang kompatibel untuk diinstal. Harap perbarui aplikasi ke versi %1 dan coba lagi",
+  errorInstallVersionLow: "Tidak ada versi add-on (%1) yang kompatibel untuk diinstal. Harap hubungi %mail",
+  errorInstallVersionUnknown: "Tidak dapat menginstal add-on versi tidak diketahui. Harap hubungi %mail",
 };

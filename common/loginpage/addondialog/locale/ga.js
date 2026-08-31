@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Atosaigh anois",
   addonInstallFailedTitle: "Theip ar an suiteáil",
   addonBtnClose: "Dún",
+  errorInstallVersionHigh: "Níl aon leagan comhoiriúnach den bhreiseán ar fáil le suiteáil. Déan nuashonrú ar an bhfeidhlire go leagan %1 agus déan iarracht arís",
+  errorInstallVersionLow: "Níl aon leagan comhoiriúnach den bhreiseán (%1) ar fáil le suiteáil. Déan teagmháil le %mail",
+  errorInstallVersionUnknown: "Ní féidir breiseán de leagan anaithnid a shuiteáil. Déan teagmháil le %mail",
 };

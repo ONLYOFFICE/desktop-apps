@@ -52,7 +52,7 @@ export function StatusPanel(props) {
 
         <Match when={props.page === "error"}>
           <p class={`${styles.message} message`}>{t("addonInstallFailedTitle")}</p>
-          <p class={`${styles.note} note`}>{addonStatus()?.message}</p>
+          <p class={`${styles.note} note`} innerHTML={addonStatus()?.message} />
           <div class={styles.devider}></div>
           <div class={styles.actions}>
             <button type="button" class={styles.btnOutline} onClick={closeDialog}>

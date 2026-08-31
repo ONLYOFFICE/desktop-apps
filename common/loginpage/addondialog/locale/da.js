@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Genstart nu",
   addonInstallFailedTitle: "Installationen mislykkedes",
   addonBtnClose: "Luk",
+  errorInstallVersionHigh: "Der er ingen kompatibel version af tilføjelsen til installation. Opdater venligst appen til version %1 og prøv igen",
+  errorInstallVersionLow: "Der er ingen kompatibel version af tilføjelsen (%1) til installation. Kontakt venligst %mail",
+  errorInstallVersionUnknown: "Kan ikke installere tilføjelse af ukendt version. Kontakt venligst %mail",
 };

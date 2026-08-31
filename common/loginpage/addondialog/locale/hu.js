@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Újraindítás most",
   addonInstallFailedTitle: "A telepítés sikertelen",
   addonBtnClose: "Bezárás",
+  errorInstallVersionHigh: "Nincs telepítésre kompatibilis verzió a bővítményből. Frissítse az alkalmazást a(z) %1 verzióra, és próbálja újra",
+  errorInstallVersionLow: "Nincs telepítésre kompatibilis bővítmény-verzió (%1). Vegye fel a kapcsolatot a %mail címen",
+  errorInstallVersionUnknown: "Ismeretlen verziójú bővítmény nem telepíthető. Vegye fel a kapcsolatot a %mail címen",
 };

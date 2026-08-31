@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "ຣີສະຕາດດຽວນີ້",
   addonInstallFailedTitle: "ການຕິດຕັ້ງລົ້ມເຫຼວ",
   addonBtnClose: "ປິດ",
+  errorInstallVersionHigh: "ບໍ່ມີເວີຊັນທີ່ເຂົ້າກັນໄດ້ຂອງ add-on ສຳລັບການຕິດຕັ້ງ. ກະລຸນາອັບເດດແອັບໄປເປັນເວີຊັນ %1 ແລ້ວລອງໃໝ່",
+  errorInstallVersionLow: "ບໍ່ມີເວີຊັນທີ່ເຂົ້າກັນໄດ້ຂອງ add-on (%1) ສຳລັບການຕິດຕັ້ງ. ກະລຸນາຕິດຕໍ່ %mail",
+  errorInstallVersionUnknown: "ບໍ່ສາມາດຕິດຕັ້ງ add-on ທີ່ມີເວີຊັນທີ່ບໍ່ຮູ້ຈັກໄດ້. ກະລຸນາຕິດຕໍ່ %mail",
 };

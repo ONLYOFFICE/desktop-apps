@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "立即重新啟動",
   addonInstallFailedTitle: "安裝失敗",
   addonBtnClose: "關閉",
+  errorInstallVersionHigh: "沒有可安裝的相容附加元件版本。請將應用程式更新至版本 %1，然後重試",
+  errorInstallVersionLow: "沒有可安裝的相容附加元件版本 (%1)。請聯絡 %mail",
+  errorInstallVersionUnknown: "無法安裝未知版本的附加元件。請聯絡 %mail",
 };

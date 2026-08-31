@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "إعادة التشغيل الآن",
   addonInstallFailedTitle: "فشل التثبيت",
   addonBtnClose: "إغلاق",
+  errorInstallVersionHigh: "لا توجد نسخة متوافقة من الإضافة للتثبيت. يرجى تحديث التطبيق إلى الإصدار %1 والمحاولة مرة أخرى",
+  errorInstallVersionLow: "لا توجد نسخة متوافقة من الإضافة (%1) للتثبيت. يرجى التواصل مع %mail",
+  errorInstallVersionUnknown: "تعذّر تثبيت الإضافة ذات الإصدار غير المعروف. يرجى التواصل مع %mail",
 };

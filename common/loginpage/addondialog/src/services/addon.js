@@ -140,13 +140,20 @@ export function initAddonStatus() {
             const json = await res.json();
             const server_version = json?.addon?.version;
             if (!!server_version && !!app_version) {
+              const addon_version = server_version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<10?1:mn-9});
               const cmpr = compareVersions(server_version, app_version);
-              if (cmpr > 0)
-                throw new Error(t("errorInstallVersionHigh", 'Version of addon for installing is not compatible with current version of the app. Please, update the app and try again'));
-              else if (cmpr < 0)
-                throw new Error(t("errorInstallVersionLow", 'Version of addon for installing is not compatible with current version of the app.'));
-            } else if (!server_version || !app_version)
-                throw new Error(t("errorInstallVersionLow", 'Version of addon for installing is not compatible with current version of the app.'));
+              if (cmpr > 0) {
+                throw new Error(t("errorInstallVersionHigh").replace("%1", server_version));
+              } else if (cmpr < 0) {
+                throw new Error(t("errorInstallVersionLow")
+                      .replace("%1", addon_version)
+                      .replace("%mail", '<a href="mailto:support@onlyoffice.com">support team</a>')
+                );
+              }
+            } else if (!server_version || !app_version) {
+                throw new Error(t("errorInstallVersionUnknown")
+                      .replace("%mail", '<a href="mailto:support@onlyoffice.com">support team</a>'));
+            }
 
             const pkgBlock = json?.addon?.package?.[pkg];
             if (!pkgBlock?.url) throw new Error(`package "${pkg}" not found in appcast`);

@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Reinicia ara",
   addonInstallFailedTitle: "Ha fallat la instal·lació",
   addonBtnClose: "Tanca",
+  errorInstallVersionHigh: "No hi ha cap versió compatible del complement per instal·lar. Actualitzeu l'aplicació a la versió %1 i torneu-ho a provar",
+  errorInstallVersionLow: "No hi ha cap versió compatible del complement (%1) per instal·lar. Poseu-vos en contacte amb %mail",
+  errorInstallVersionUnknown: "No es pot instal·lar el complement d'una versió desconeguda. Poseu-vos en contacte amb %mail",
 };

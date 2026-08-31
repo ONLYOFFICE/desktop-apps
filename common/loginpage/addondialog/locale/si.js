@@ -30,4 +30,7 @@ export default {
   addonBtnRestartNow: "දැන් නැවත ආරම්භ කරන්න",
   addonInstallFailedTitle: "ස්ථාපනය අසාර්ථක විය",
   addonBtnClose: "වසන්න",
+  errorInstallVersionHigh: "ස්ථාපනය කිරීමට ගැලපෙන add-on අනුවාදයක් නොමැත. කරුණාකර යෙදුම %1 අනුවාදයට යාවත්කාලීන කර නැවත උත්සාහ කරන්න",
+  errorInstallVersionLow: "ස්ථාපනය කිරීමට (%1) ගැලපෙන add-on අනුවාදයක් නොමැත. කරුණාකර %mail සම්බන්ධ කරගන්න",
+  errorInstallVersionUnknown: "නොදන්නා අනුවාදයේ add-on ස්ථාපනය කළ නොහැක. කරුණාකර %mail සම්බන්ධ කරගන්න",
 };

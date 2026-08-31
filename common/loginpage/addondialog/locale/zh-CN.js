@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "立即重启",
   addonInstallFailedTitle: "安装失败",
   addonBtnClose: "关闭",
+  errorInstallVersionHigh: "没有可安装的兼容插件版本。请将应用更新至版本 %1，然后重试",
+  errorInstallVersionLow: "没有可安装的兼容插件版本 (%1)。请联系 %mail",
+  errorInstallVersionUnknown: "无法安装未知版本的插件。请联系 %mail",
 };

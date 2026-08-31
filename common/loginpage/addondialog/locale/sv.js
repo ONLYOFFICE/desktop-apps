@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Starta om nu",
   addonInstallFailedTitle: "Installationen misslyckades",
   addonBtnClose: "Stäng",
+  errorInstallVersionHigh: "Det finns ingen kompatibel version av tillägget att installera. Uppdatera appen till version %1 och försök igen",
+  errorInstallVersionLow: "Det finns ingen kompatibel version av tillägget (%1) att installera. Kontakta %mail",
+  errorInstallVersionUnknown: "Kan inte installera tillägget med okänd version. Kontakta %mail",
 };

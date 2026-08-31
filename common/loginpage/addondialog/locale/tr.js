@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Şimdi yeniden başlat",
   addonInstallFailedTitle: "Yükleme başarısız oldu",
   addonBtnClose: "Kapat",
+  errorInstallVersionHigh: "Yüklenecek eklentinin uyumlu sürümü bulunmamaktadır. Lütfen uygulamayı %1 sürümüne güncelleyin ve tekrar deneyin",
+  errorInstallVersionLow: "Yüklenecek eklentinin (%1) uyumlu sürümü bulunmamaktadır. Lütfen %mail ile iletişime geçin",
+  errorInstallVersionUnknown: "Bilinmeyen sürümdeki eklenti yüklenemiyor. Lütfen %mail ile iletişime geçin",
 };

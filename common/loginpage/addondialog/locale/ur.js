@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "ابھی دوبارہ شروع کریں",
   addonInstallFailedTitle: "تنصیب ناکام ہو گئی",
   addonBtnClose: "بند کریں",
+  errorInstallVersionHigh: "انسٹال کرنے کے لیے ایڈ-آن کا کوئی مطابق ورژن نہیں ہے۔ براہ کرم ایپ کو ورژن %1 میں اپڈیٹ کریں اور دوبارہ کوشش کریں",
+  errorInstallVersionLow: "انسٹال کرنے کے لیے ایڈ-آن (%1) کا کوئی مطابق ورژن نہیں ہے۔ براہ کرم %mail سے رابطہ کریں",
+  errorInstallVersionUnknown: "نامعلوم ورژن کا ایڈ-آن انسٹال نہیں کیا جا سکتا۔ براہ کرم %mail سے رابطہ کریں",
 };

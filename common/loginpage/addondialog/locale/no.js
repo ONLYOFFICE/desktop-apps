@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Start på nytt nå",
   addonInstallFailedTitle: "Installasjonen mislyktes",
   addonBtnClose: "Lukk",
+  errorInstallVersionHigh: "Det finnes ingen kompatibel versjon av tillegget for installasjon. Oppdater appen til versjon %1 og prøv igjen",
+  errorInstallVersionLow: "Det finnes ingen kompatibel versjon av tillegget (%1) for installasjon. Ta kontakt med %mail",
+  errorInstallVersionUnknown: "Kan ikke installere tillegget med ukjent versjon. Ta kontakt med %mail",
 };

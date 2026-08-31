@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "지금 다시 시작",
   addonInstallFailedTitle: "설치에 실패했습니다",
   addonBtnClose: "닫기",
+  errorInstallVersionHigh: "설치할 수 있는 호환 가능한 버전의 애드온이 없습니다. 앱을 버전 %1로 업데이트하고 다시 시도해 주세요",
+  errorInstallVersionLow: "설치할 수 있는 호환 가능한 버전의 애드온 (%1)이 없습니다. %mail에 문의하세요",
+  errorInstallVersionUnknown: "알 수 없는 버전의 애드온은 설치할 수 없습니다. %mail에 문의하세요",
 };

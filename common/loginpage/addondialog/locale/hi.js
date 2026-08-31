@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "अभी पुनरारंभ करें",
   addonInstallFailedTitle: "इंस्टॉलेशन विफल",
   addonBtnClose: "बंद करें",
+  errorInstallVersionHigh: "इंस्टॉल करने के लिए ऐड-ऑन का कोई संगत संस्करण नहीं है। कृपया ऐप को संस्करण %1 में अपडेट करें और पुनः प्रयास करें",
+  errorInstallVersionLow: "इंस्टॉल करने के लिए ऐड-ऑन (%1) का कोई संगत संस्करण नहीं है। कृपया %mail से संपर्क करें",
+  errorInstallVersionUnknown: "अज्ञात संस्करण का ऐड-ऑन इंस्टॉल नहीं किया जा सकता। कृपया %mail से संपर्क करें",
 };

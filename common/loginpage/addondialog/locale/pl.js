@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Uruchom ponownie teraz",
   addonInstallFailedTitle: "Instalacja nie powiodła się",
   addonBtnClose: "Zamknij",
+  errorInstallVersionHigh: "Nie ma zgodnej wersji dodatku do zainstalowania. Zaktualizuj aplikację do wersji %1 i spróbuj ponownie",
+  errorInstallVersionLow: "Nie ma zgodnej wersji dodatku (%1) do zainstalowania. Skontaktuj się z %mail",
+  errorInstallVersionUnknown: "Nie można zainstalować dodatku nieznanej wersji. Skontaktuj się z %mail",
 };

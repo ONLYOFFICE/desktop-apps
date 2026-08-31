@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Riavvia ora",
   addonInstallFailedTitle: "Installazione non riuscita",
   addonBtnClose: "Chiudi",
+  errorInstallVersionHigh: "Non esiste una versione compatibile del componente aggiuntivo da installare. Aggiorna l'app alla versione %1 e riprova",
+  errorInstallVersionLow: "Non esiste una versione compatibile del componente aggiuntivo (%1) da installare. Contatta %mail",
+  errorInstallVersionUnknown: "Impossibile installare il componente aggiuntivo di versione sconosciuta. Contatta %mail",
 };

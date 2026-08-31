@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Перезапустити зараз",
   addonInstallFailedTitle: "Встановлення не вдалося",
   addonBtnClose: "Закрити",
+  errorInstallVersionHigh: "Немає сумісної версії доповнення для встановлення. Будь ласка, оновіть програму до версії %1 і повторіть спробу",
+  errorInstallVersionLow: "Немає сумісної версії доповнення (%1) для встановлення. Будь ласка, зверніться до %mail",
+  errorInstallVersionUnknown: "Неможливо встановити доповнення невідомої версії. Будь ласка, зверніться до %mail",
 };

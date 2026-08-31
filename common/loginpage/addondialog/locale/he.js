@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "הפעל מחדש כעת",
   addonInstallFailedTitle: "ההתקנה נכשלה",
   addonBtnClose: "סגור",
+  errorInstallVersionHigh: "אין גרסה תואמת של ההרחבה להתקנה. אנא עדכן את האפליקציה לגרסה %1 ונסה שוב",
+  errorInstallVersionLow: "אין גרסה תואמת של ההרחבה (%1) להתקנה. אנא צור קשר עם %mail",
+  errorInstallVersionUnknown: "לא ניתן להתקין הרחבה עם גרסה לא ידועה. אנא צור קשר עם %mail",
 };

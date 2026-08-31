@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Nu opnieuw starten",
   addonInstallFailedTitle: "Installatie mislukt",
   addonBtnClose: "Sluiten",
+  errorInstallVersionHigh: "Er is geen compatibele versie van de add-on om te installeren. Werk de app bij naar versie %1 en probeer het opnieuw",
+  errorInstallVersionLow: "Er is geen compatibele versie van de add-on (%1) om te installeren. Neem contact op met %mail",
+  errorInstallVersionUnknown: "Kan de add-on met een onbekende versie niet installeren. Neem contact op met %mail",
 };

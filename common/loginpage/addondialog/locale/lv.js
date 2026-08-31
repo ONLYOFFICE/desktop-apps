@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Restartēt tagad",
   addonInstallFailedTitle: "Instalācija neizdevās",
   addonBtnClose: "Aizvērt",
+  errorInstallVersionHigh: "Nav pieejama saderīga pievienojumprogrammas versija instalēšanai. Lūdzu, atjauniniet lietotni uz versiju %1 un mēģiniet vēlreiz",
+  errorInstallVersionLow: "Nav pieejama saderīga pievienojumprogrammas (%1) versija instalēšanai. Lūdzu, sazinieties ar %mail",
+  errorInstallVersionUnknown: "Nevar instalēt pievienojumprogrammu ar nezināmu versiju. Lūdzu, sazinieties ar %mail",
 };

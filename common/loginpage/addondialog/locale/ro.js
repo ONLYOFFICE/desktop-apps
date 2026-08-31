@@ -30,4 +30,7 @@ export default {
   addonBtnRestartNow: "Repornește acum",
   addonInstallFailedTitle: "Instalarea a eșuat",
   addonBtnClose: "Închide",
+  errorInstallVersionHigh: "Nu există nicio versiune compatibilă a suplimentului pentru instalare. Actualizați aplicația la versiunea %1 și încercați din nou",
+  errorInstallVersionLow: "Nu există nicio versiune compatibilă a suplimentului (%1) pentru instalare. Contactați %mail",
+  errorInstallVersionUnknown: "Suplimentul cu versiunea necunoscută nu poate fi instalat. Contactați %mail",
 };

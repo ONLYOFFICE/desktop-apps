@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Перазапусціць зараз",
   addonInstallFailedTitle: "Памылка ўстаноўкі",
   addonBtnClose: "Закрыць",
+  errorInstallVersionHigh: "Няма сумяшчальнай версіі дадатку для ўсталявання. Калі ласка, абновіце прыкладанне да версіі %1 і паўтарыце спробу",
+  errorInstallVersionLow: "Няма сумяшчальнай версіі дадатку (%1) для ўсталявання. Калі ласка, звяжыцеся з %mail",
+  errorInstallVersionUnknown: "Немагчыма ўсталяваць дадатак невядомай версіі. Калі ласка, звяжыцеся з %mail",
 };

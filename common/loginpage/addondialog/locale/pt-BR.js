@@ -30,4 +30,7 @@ export default {
   addonBtnRestartNow: "Reiniciar agora",
   addonInstallFailedTitle: "Falha na instalação",
   addonBtnClose: "Fechar",
+  errorInstallVersionHigh: "Não há versão compatível do complemento para instalação. Atualize o aplicativo para a versão %1 e tente novamente",
+  errorInstallVersionLow: "Não há versão compatível do complemento (%1) para instalação. Entre em contato com %mail",
+  errorInstallVersionUnknown: "Não é possível instalar o complemento de versão desconhecida. Entre em contato com %mail",
 };

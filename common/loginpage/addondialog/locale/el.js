@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Επανεκκίνηση τώρα",
   addonInstallFailedTitle: "Η εγκατάσταση απέτυχε",
   addonBtnClose: "Κλείσιμο",
+  errorInstallVersionHigh: "Δεν υπάρχει συμβατή έκδοση του πρόσθετου για εγκατάσταση. Ενημερώστε την εφαρμογή στην έκδοση %1 και δοκιμάστε ξανά",
+  errorInstallVersionLow: "Δεν υπάρχει συμβατή έκδοση του πρόσθετου (%1) για εγκατάσταση. Επικοινωνήστε με %mail",
+  errorInstallVersionUnknown: "Δεν είναι δυνατή η εγκατάσταση πρόσθετου άγνωστης έκδοσης. Επικοινωνήστε με %mail",
 };

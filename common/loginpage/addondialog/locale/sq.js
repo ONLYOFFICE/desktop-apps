@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Rinis tani",
   addonInstallFailedTitle: "Instalimi dështoi",
   addonBtnClose: "Mbyll",
+  errorInstallVersionHigh: "Nuk ka asnjë version kompatibël të shtesës për instalim. Ju lutemi përditësoni aplikacionin në versionin %1 dhe provoni përsëri",
+  errorInstallVersionLow: "Nuk ka asnjë version kompatibël të shtesës (%1) për instalim. Ju lutemi kontaktoni %mail",
+  errorInstallVersionUnknown: "Nuk mund të instalohet shtesa me version të panjohur. Ju lutemi kontaktoni %mail",
 };

@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Jetzt neu starten",
   addonInstallFailedTitle: "Installation fehlgeschlagen",
   addonBtnClose: "Schließen",
+  errorInstallVersionHigh: "Es gibt keine kompatible Version des Add-ons zur Installation. Bitte aktualisieren Sie die App auf Version %1 und versuchen Sie es erneut",
+  errorInstallVersionLow: "Es gibt keine kompatible Version des Add-ons (%1) zur Installation. Bitte wenden Sie sich an %mail",
+  errorInstallVersionUnknown: "Das Add-on einer unbekannten Version kann nicht installiert werden. Bitte wenden Sie sich an %mail",
 };

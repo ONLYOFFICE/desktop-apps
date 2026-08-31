@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Restartovat nyní",
   addonInstallFailedTitle: "Instalace se nezdařila",
   addonBtnClose: "Zavřít",
+  errorInstallVersionHigh: "Není k dispozici žádná kompatibilní verze doplňku k instalaci. Aktualizujte aplikaci na verzi %1 a zkuste to znovu",
+  errorInstallVersionLow: "Není k dispozici žádná kompatibilní verze doplňku (%1) k instalaci. Kontaktujte %mail",
+  errorInstallVersionUnknown: "Nelze nainstalovat doplněk neznámé verze. Kontaktujte %mail",
 };

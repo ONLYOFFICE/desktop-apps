@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Redémarrer maintenant",
   addonInstallFailedTitle: "Échec de l'installation",
   addonBtnClose: "Fermer",
+  errorInstallVersionHigh: "Il n'existe pas de version compatible de l'extension à installer. Veuillez mettre à jour l'application vers la version %1 et réessayer",
+  errorInstallVersionLow: "Il n'existe pas de version compatible de l'extension (%1) à installer. Veuillez contacter %mail",
+  errorInstallVersionUnknown: "Impossible d'installer l'extension de version inconnue. Veuillez contacter %mail",
 };

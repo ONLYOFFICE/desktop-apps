@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Рестартирай сега",
   addonInstallFailedTitle: "Инсталирането е неуспешно",
   addonBtnClose: "Затвори",
+  errorInstallVersionHigh: "Няма съвместима версия на добавката за инсталиране. Моля, актуализирайте приложението до версия %1 и опитайте отново",
+  errorInstallVersionLow: "Няма съвместима версия на добавката (%1) за инсталиране. Моля, свържете се с %mail",
+  errorInstallVersionUnknown: "Не може да се инсталира добавка с неизвестна версия. Моля, свържете се с %mail",
 };

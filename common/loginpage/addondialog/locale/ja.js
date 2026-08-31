@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "今すぐ再起動",
   addonInstallFailedTitle: "インストールに失敗しました",
   addonBtnClose: "閉じる",
+  errorInstallVersionHigh: "インストール可能な互換バージョンのアドオンがありません。アプリをバージョン %1 に更新してから再試行してください",
+  errorInstallVersionLow: "インストール可能な互換バージョンのアドオン (%1) がありません。%mail までお問い合わせください",
+  errorInstallVersionUnknown: "不明なバージョンのアドオンはインストールできません。%mail までお問い合わせください",
 };

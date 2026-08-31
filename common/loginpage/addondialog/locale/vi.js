@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Khởi động lại ngay",
   addonInstallFailedTitle: "Cài đặt không thành công",
   addonBtnClose: "Đóng",
+  errorInstallVersionHigh: "Không có phiên bản tiện ích tương thích nào để cài đặt. Vui lòng cập nhật ứng dụng lên phiên bản %1 và thử lại",
+  errorInstallVersionLow: "Không có phiên bản tiện ích (%1) tương thích nào để cài đặt. Vui lòng liên hệ %mail",
+  errorInstallVersionUnknown: "Không thể cài đặt tiện ích có phiên bản không xác định. Vui lòng liên hệ %mail",
 };

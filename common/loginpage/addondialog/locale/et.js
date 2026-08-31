@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Taaskäivita kohe",
   addonInstallFailedTitle: "Installimine ebaõnnestus",
   addonBtnClose: "Sulge",
+  errorInstallVersionHigh: "Installimiseks ei ole ühtegi ühilduvat pistikprogrammi versiooni. Palun uuendage rakendus versioonile %1 ja proovige uuesti",
+  errorInstallVersionLow: "Installimiseks ei ole ühtegi ühilduvat pistikprogrammi versiooni (%1). Palun võtke ühendust %mail",
+  errorInstallVersionUnknown: "Tundmatu versiooniga pistikprogrammi ei saa installida. Palun võtke ühendust %mail",
 };

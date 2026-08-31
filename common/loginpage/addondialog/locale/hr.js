@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Ponovno pokreni sada",
   addonInstallFailedTitle: "Instalacija nije uspjela",
   addonBtnClose: "Zatvori",
+  errorInstallVersionHigh: "Ne postoji kompatibilna verzija dodatka za instalaciju. Molimo ažurirajte aplikaciju na verziju %1 i pokušajte ponovo",
+  errorInstallVersionLow: "Ne postoji kompatibilna verzija dodatka (%1) za instalaciju. Molimo kontaktirajte %mail",
+  errorInstallVersionUnknown: "Nije moguće instalirati dodatak nepoznate verzije. Molimo kontaktirajte %mail",
 };

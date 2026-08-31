@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Paleisti iš naujo dabar",
   addonInstallFailedTitle: "Diegimas nepavyko",
   addonBtnClose: "Uždaryti",
+  errorInstallVersionHigh: "Nėra suderinamos priedo versijos diegimui. Atnaujinkite programą į versiją %1 ir bandykite dar kartą",
+  errorInstallVersionLow: "Nėra suderinamos priedo (%1) versijos diegimui. Susisiekite su %mail",
+  errorInstallVersionUnknown: "Negalima įdiegti nežinomos versijos priedo. Susisiekite su %mail",
 };

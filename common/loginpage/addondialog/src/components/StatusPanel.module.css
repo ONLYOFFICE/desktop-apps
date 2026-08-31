@@ -77,6 +77,16 @@
 .note {
   margin: 0 0 16px;
   font-size: 14px;
+
+  a {
+    color: var(--text-link, #445799);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 .progressTrack {

@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Käynnistä uudelleen nyt",
   addonInstallFailedTitle: "Asennus epäonnistui",
   addonBtnClose: "Sulje",
+  errorInstallVersionHigh: "Asennettavaksi ei ole saatavilla yhteensopivaa lisäosan versiota. Päivitä sovellus versioon %1 ja yritä uudelleen",
+  errorInstallVersionLow: "Asennettavaksi ei ole saatavilla yhteensopivaa lisäosan versiota (%1). Ota yhteyttä osoitteeseen %mail",
+  errorInstallVersionUnknown: "Tuntemattoman version lisäosaa ei voi asentaa. Ota yhteyttä osoitteeseen %mail",
 };

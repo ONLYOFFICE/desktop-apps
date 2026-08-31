@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Znova zaženi zdaj",
   addonInstallFailedTitle: "Namestitev ni uspela",
   addonBtnClose: "Zapri",
+  errorInstallVersionHigh: "Na voljo ni nobene združljive različice dodatka za namestitev. Posodobite aplikacijo na različico %1 in poskusite znova",
+  errorInstallVersionLow: "Na voljo ni nobene združljive različice dodatka (%1) za namestitev. Stopite v stik z %mail",
+  errorInstallVersionUnknown: "Ni mogoče namestiti dodatka neznane različice. Stopite v stik z %mail",
 };

@@ -23,4 +23,7 @@ export default {
   addonBtnRestartNow: "Վերագործարկել հիմա",
   addonInstallFailedTitle: "Տեղադրումը ձախողվեց",
   addonBtnClose: "Փակել",
+  errorInstallVersionHigh: "Տեղադրման համար ոչ մի համատեղելի հավելման տարբերակ չկա։ Խնդրում ենք թարմացնել հավելվածը %1 տարբերակին և կրկին փորձել",
+  errorInstallVersionLow: "Տեղադրման համար ոչ մի համատեղելի հավելման (%1) տարբերակ չկա։ Խնդրում ենք կապ հաստատել %mail-ի հետ",
+  errorInstallVersionUnknown: "Հնարավոր չէ տեղադրել անհայտ տարբերակի հավելումը։ Խնդրում ենք կապ հաստատել %mail-ի հետ",
 };
