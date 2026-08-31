@@ -760,6 +760,12 @@ public:
                                 }
 
                                 [[ASCEditorJSVariables instance] applyParameters];
+
+                                if ( [json objectForKey:@"restart"] != nil && [json[@"restart"] boolValue] ) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameSettingsNeedRestart
+                                                                                        object:nil
+                                                                                      userInfo:nil];
+                                }
                             }
                         } else if (cmd.find(L"encrypt:isneedbuild") != std::wstring::npos) {
                             bool isFragmented = pData->get_Param() == L"true" ? true : false;

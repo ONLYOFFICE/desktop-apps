@@ -108,6 +108,7 @@ static NSString * const ASCEventNameOpenAppLinks            = @"UI_openAppLinks"
 static NSString * const ASCEventNameChangedUITheme          = @"UI_changedUITheme";
 static NSString * const ASCEventNameChangedSystemTheme      = @"UI_changedSystemTheme";
 static NSString * const ASCEventNameRecoveryFiles           = @"UI_recoveryFiles";
+static NSString * const ASCEventNameSettingsNeedRestart     = @"UI_settingsNeedRestart";
 
 // CEF types
 static NSString * const CEFOpenFileFilterImage              = @"images";

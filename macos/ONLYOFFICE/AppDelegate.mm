@@ -186,6 +186,7 @@
     addObserverFor(ASCEventNameRecoveryFiles, @selector(onRecoveryFiles:));
     addObserverFor(ASCEventNameEditorWindowMoving, @selector(onEditorWindowMoving:));
     addObserverFor(ASCEventNameEditorWindowEndMoving, @selector(onEditorWindowEndMoving:));
+    addObserverFor(ASCEventNameSettingsNeedRestart, @selector(onSettingsNeedRestart:));
         
 #ifdef USE_ADDON_MODE
     addObserverFor(ASCAddonManagerUninstallFinishedNotification, @selector(onAddonUninstallFinished:));
@@ -1775,6 +1776,22 @@
             }
         });
     }
+}
+
+- (void)onSettingsNeedRestart:(NSNotification *)notification {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert setMessageText:NSLocalizedString(@"You must restart the application for the settings to take effect.", nil)];
+        [alert setAlertStyle:NSAlertStyleInformational];
+
+        NSInteger result = [alert runModal];
+        if (result == NSAlertFirstButtonReturn) {
+            self.needsRestart = YES;
+            [NSApp terminate:self];
+        }
+    });
 }
 
 -(void)onRecoveryFiles:(NSNotification *)notification {
