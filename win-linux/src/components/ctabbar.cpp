@@ -46,6 +46,7 @@
 #include <QParallelAnimationGroup>
 #include <QResizeEvent>
 #include <QStylePainter>
+#include <QPainterPath>
 #include <QStyle>
 #include <QTimer>
 
@@ -53,7 +54,8 @@
 #define ANIMATION_DEFAULT_MS  0
 #define ANIMATION_SCROLL_MS   60
 #define ANIMATION_MOVE_TAB_MS 350
-#define TABSPACING 0
+#define TABSPACING 4
+#define TAB_BORDER_RADIUS 6
 #define DEFAULT_ICON_SIZE QSize(16,16)
 #define _tabRect(i) tabList[i]->geometry()
 #define tabIndex(i) tabList[i]->index
@@ -302,8 +304,12 @@ void Tab::paintEvent(QPaintEvent *ev)
 //        if (tabBar && tabBar->property("active").toBool())
         {
             QStylePainter p(this);
+            p.setRenderHint(QPainter::Antialiasing);
+            const qreal radius = TAB_BORDER_RADIUS * dpi_ratio;
             int left = AscAppManager::isRtlEnabled() ? frameWidth() : 0;
-            p.fillRect(rect().adjusted(left, 0, left ? 0 : -frameWidth(), 0), QBrush(QColor(tabcolor)));
+            QPainterPath path;
+            path.addRoundedRect(QRectF(rect().adjusted(left, 0, left ? 0 : -frameWidth(), 0)), radius, radius);
+            p.fillPath(path, QBrush(QColor(tabcolor)));
         }
     } else {
         QFrame::paintEvent(ev);

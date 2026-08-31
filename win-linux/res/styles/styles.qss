@@ -72,20 +72,21 @@ QPushButton#toolButtonMain {
     font-size: 10px;
     font-family: 'Open Sans',sans-serif;
     font-weight: bold;
-    border-left: 0px;
-    border-right: 1px solid %7;
+    /*border-left: 0px;*/
+    border: 1px solid %7;
+    border-radius: 6px;
     qproperty-icon: url(:/logo_light.png);
 }
-#mainPanel[rtl=true] QPushButton#toolButtonMain {border-right: 0px; border-left: 1px solid %7;}
+/*#mainPanel[rtl=true] QPushButton#toolButtonMain {border: 1px solid %7;}*/
 
 QPushButton#toolButtonMain[class=active] {background: %7;}
 /*QPushButton#toolButtonMain[class=active],
 QPushButton#toolButtonMain[class=active]:hover {color: %6;}*/
 QPushButton#toolButtonMain[class=normal],
-QPushButton#toolButtonMain[class=normal]:hover {/*color: %7;*/ border-bottom: 0 none;}
-QPushButton#toolButtonMain[class=normal] {background: %5; border-color: %6;}
+QPushButton#toolButtonMain[class=normal]:hover {/*color: %7;*/ /*border-bottom: 0 none;*/}
+QPushButton#toolButtonMain[class=normal] {background: %5; border-color: %5;}
 QPushButton#toolButtonMain[class=normal]:hover {background: %3;}
-#mainPanel[rtl=true] QPushButton#toolButtonMain[class=normal] {border-color: %6;}
+#mainPanel[rtl=true] QPushButton#toolButtonMain[class=normal] {border-color: %5;}
 
 QPushButton::menu-indicator {width: 0px; height: 0px;}
 

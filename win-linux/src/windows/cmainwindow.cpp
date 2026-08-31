@@ -475,7 +475,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 
     // Set custom TabBar
     CTabBar *pTabBar = new CTabBar(m_boxTitleBtns);
-    pBoxTitleBtnsLayout->insertWidget(0, pTabBar, 0, Qt::AlignBottom);
+    pBoxTitleBtnsLayout->insertWidget(0, pTabBar, 0, Qt::AlignVCenter);
     QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     sizePolicy.setHorizontalStretch(10);
     pTabBar->setSizePolicy(sizePolicy);
@@ -485,7 +485,8 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
     m_pButtonMain->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    pBoxTitleBtnsLayout->insertWidget(0, m_pButtonMain, 0, Qt::AlignBottom);
+    pBoxTitleBtnsLayout->insertWidget(0, m_pButtonMain, 0, Qt::AlignVCenter);
+    pBoxTitleBtnsLayout->insertSpacing(0, int(BUTTON_MAIN_LEFT_MARGIN * m_dpiRatio));
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     QPalette palette;
@@ -1608,6 +1609,14 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     }*/
     m_boxTitleBtns->setFixedHeight(int((m_shouldUseThinFrame ? m_toolbtn_height : TOOLBTN_HEIGHT) * m_dpiRatio));
     m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TOOLBTN_HEIGHT * dpiratio));
+    if (QLayout *lut = m_boxTitleBtns->layout()) {
+        if (QLayoutItem *item = lut->itemAt(0)) {
+            if (QSpacerItem *spacer = item->spacerItem()) {
+                spacer->changeSize(int(BUTTON_MAIN_LEFT_MARGIN * dpiratio), 0, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                lut->invalidate();
+            }
+        }
+    }
     m_pTabs->tabBar()->setFixedHeight(int(TOOLBTN_HEIGHT * m_dpiRatio));
     m_pMainPanel->setProperty("zoom", QString::number(dpiratio) + "x");
     QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");

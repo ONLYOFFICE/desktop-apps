@@ -22,11 +22,11 @@ QPushButton#toolButtonClose[kde=true][extended-title=true] {padding: 0px 6px 7px
 #mainPanel[rtl=true] QPushButton#toolButtonMinimize[kde=true][extended-title=true],
 #mainPanel[rtl=true] QPushButton#toolButtonClose[kde=true][extended-title=true] {padding: 0px 0px 7px 6px;}
 
-QPushButton#toolButtonMain {border-right-width: 1px; qproperty-icon: url(:/logo_light_1.25x.png);}
+QPushButton#toolButtonMain {border-width: 1px; border-radius: 8px; qproperty-icon: url(:/logo_light_1.25x.png);}
 QPushButton#toolButtonMain[theme=light] {border-width: 1px; border-bottom: 0 none;}
 QPushButton#toolButtonMain[class=normal],
 QPushButton#toolButtonMain[class=normal]:hover {border-bottom-width: 1px;}
-#mainPanel[rtl=true] QPushButton#toolButtonMain {border-left-width: 1px;}
+/*#mainPanel[rtl=true] QPushButton#toolButtonMain {border-width: 1px;}*/
 
 QPushButton#toolButtonDownload {border-right-width: 1px; max-width: 50px; width: 50px; max-height: 35px; height: 35px;}
 #mainPanel[rtl=true] QPushButton#toolButtonDownload {border-left-width: 1px;}
