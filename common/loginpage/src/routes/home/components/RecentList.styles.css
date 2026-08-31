@@ -26,11 +26,18 @@
 }
 
 .list-section-title {
-  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  padding: 4px 16px 12px;
+  margin-bottom: 0;
+
   font-size: 20px;
   font-weight: 600;
   color: var(--text-normal);
-  margin-bottom: 16px;
+
+  background: var(--background-action-panel);
 }
 
 .file-list-head,
@@ -50,7 +57,7 @@
 
 .file-list-head {
   position: sticky;
-  top: 0;
+  top: 42px;
   z-index: 1;
   background: var(--background-action-panel);
   padding-bottom: 4px;
