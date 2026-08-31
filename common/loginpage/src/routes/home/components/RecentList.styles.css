@@ -57,11 +57,16 @@
 
 .file-list-head {
   position: sticky;
-  top: 42px;
+  top: 0;
   z-index: 1;
   background: var(--background-action-panel);
   padding-bottom: 4px;
   font-weight: 600;
+}
+
+#box-recent > .list-section-title + .file-list-head,
+#box-recovery > .list-section-title + .file-list-head {
+  top: 42px;
 }
 
 .file-list-body {
