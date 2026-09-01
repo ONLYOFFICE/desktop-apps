@@ -469,8 +469,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
                 else if (param == L"uninstall")
                 {
-                    m_private->m_bUpgradeInProgress = true;
-                    m_private->m_pAddonManager->doAction(CAddonManager::Action::Uninstall);
+                    CMessage msg(mainWindow());
+                    msg.setText(tr("Are you sure you want to uninstall ONLYOFFICE AI Tools?"));
+                    msg.setIcon(CMessage::Icon::Confirm);
+                    msg.setButtons(CMessage::Buttons::YesNo);
+                    msg.setDefaultButton(CMessage::DefaultButton::SecondButton);
+                    CMessage::Config cfg;
+                    cfg.contentText = tr("All related data, including connected AI keys and request history, will be removed.");
+                    msg.setConfig(cfg);
+                    if (msg.exec() == CMessage::Result::Yes)
+                    {
+                        m_private->m_bUpgradeInProgress = true;
+                        m_private->m_pAddonManager->doAction(CAddonManager::Action::Uninstall);
+                    }
                 }
                 else if (param == L"restart")
                 {
