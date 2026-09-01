@@ -2049,7 +2049,7 @@
         [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
         [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
         [alert setMessageText:NSLocalizedString(@"Are you sure you want to uninstall ONLYOFFICE AI Tools?", nil)];
-        [alert setInformativeText:NSLocalizedString(@"All related data, including connected AI keys and request history, will be removed.", nil)];
+        [alert setInformativeText:NSLocalizedString(@"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.", nil)];
         [alert setAlertStyle:NSAlertStyleWarning];
 
         NSInteger code = [alert runModalSheet];
