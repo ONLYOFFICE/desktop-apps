@@ -9,7 +9,7 @@ for (const path in localeModules) {
 }
 
 const [translations, setTranslations] = createSignal({});
-const [langCode, setLangCode] = createSignal({});
+const [langCode, setLangCode] = createSignal('en-US');
 export { langCode };
 
 export function initLocale() {
@@ -26,14 +26,15 @@ export function t(key, defstring) {
 
 export function applyLocale(locale) {
   const correct = locale.replaceAll("-", "_");
-  let table = l10n?.[correct];
+  let table = l10n?.[correct],
+      new_lang = locale;
 
   if (!table) {
     const code = /^\w{2}/.exec(correct)?.[0];
     if (code) {
       for (const l in l10n || {}) {
         if (l.startsWith(code)) {
-          setLangCode(l);
+          new_lang = l;
           table = l10n[l];
           break;
         }
@@ -41,7 +42,10 @@ export function applyLocale(locale) {
     }
   }
 
-  if (table) setTranslations({ ...(l10n.en ?? {}), ...table });
+  if (table) {
+    setLangCode(new_lang);
+    setTranslations({ ...(l10n.en ?? {}), ...table });
+  }
 }
 
 export function isRTL(code) {

@@ -29,7 +29,7 @@ export default function Templates() {
 
   const site_url = new URL(TEMPLATES_URL);
   site_url.searchParams.set("hide", "lang");
-  site_url.searchParams.set("lang", langCode);
+  site_url.searchParams.set("lang", langCode());
   const src = site_url.toString();
 
   return (
