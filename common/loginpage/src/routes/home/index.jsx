@@ -22,7 +22,7 @@ import { FileDropZone } from "./components/FileDropZone.jsx";
 import { aichat, openFullAIPanel, openSidePanel } from "@/stores/aichat.js";
 import { command } from "@/sdk/bridge.js";
 import "@/styles/components/home.css";
-import { sendFileToChat, sendPluginVisibility } from "@/services/ai-panel.js";
+import { sendChatRecentsChanged, sendFileToChat, sendPluginVisibility } from "@/services/ai-panel.js";
 
 const toArray = (v) => (Array.isArray(v) ? v : []);
 
@@ -145,6 +145,7 @@ export default function Index() {
 
     const unsubRecents = onRecentsChanged((p) => {
       loadRecents(p);
+      sendChatRecentsChanged();
       if (!loaded()) setLoaded(true);
     });
 

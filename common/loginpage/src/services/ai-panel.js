@@ -72,6 +72,19 @@ export function sendTextToChat(t) {
   }
 }
 
+export function sendChatRecentsChanged() {
+  const iframe = document.getElementById("idx-plugin-frame");
+  if (iframe && iframe.contentWindow) {
+    const obj = {
+      event: "onPluginEvent",
+      data: {
+        type: "recents:changed",
+      }
+    };
+    iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
+  }
+}
+
 export function initAiPanel() {
   const unsubMessage = onNativeMessage((cmd, param) => {
     if (cmd !== "panel:external") return;
