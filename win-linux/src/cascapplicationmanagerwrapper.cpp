@@ -475,7 +475,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     msg.setButtons(CMessage::Buttons::YesNo);
                     msg.setDefaultButton(CMessage::DefaultButton::SecondButton);
                     CMessage::Config cfg;
-                    cfg.contentText = tr("All related data, including connected AI keys and request history, will be removed.");
+                    cfg.contentText = tr("AI Tools features will be unavailable after uninstalling. "
+                                         "All AI settings (including API keys) will not be removed.");
                     msg.setConfig(cfg);
                     if (msg.exec() == CMessage::Result::Yes)
                     {
