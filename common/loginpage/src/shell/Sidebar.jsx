@@ -18,7 +18,7 @@ export default function Sidebar() {
 
   const clickAiChat = (e) => {
     if (aichat.available) {
-      if (addonInfo().restart === true) {
+      if (addonInfo()?.restart === true) {
         e.preventDefault();
         command('addon:action', 'askrestart');
       } else {
@@ -35,7 +35,7 @@ export default function Sidebar() {
 
   const clickAiTools = (e) => {
     if (aichat.available) {
-      if (addonInfo().restart === true) {
+      if (addonInfo()?.restart === true) {
         e.preventDefault();
         command('addon:action', 'askrestart');
       }
