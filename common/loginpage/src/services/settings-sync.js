@@ -290,7 +290,7 @@ export function initSettingsSync() {
           setSettings("theme", payload.uitheme);
           applyThemeToDom(payload.uitheme);
         }
-        if (payload.editorwindowmode) setSettings("launchMode", payload.editorwindowmode ? settDefs.EDITOR_MODE_WINDOW : settDefs.EDITOR_MODE_TAB);
+        if (payload.editorwindowmode != null) setSettings("launchMode", payload.editorwindowmode ? settDefs.EDITOR_MODE_WINDOW : settDefs.EDITOR_MODE_TAB);
         if (payload.spellcheckdetect) setSettings("spellCheck", payload.spellcheckdetect);
         if (payload.usegpu != null) setSettings("gpuMode", !!payload.usegpu);
         if (payload.useai != null) {
