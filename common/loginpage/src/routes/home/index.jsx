@@ -163,7 +163,7 @@ export default function Index() {
         } catch {
           return;
         }
-        console.log("files:checked", checked);
+
         if (!checked || typeof checked !== "object") return;
         setRecents(
           reconcile(
