@@ -72,17 +72,44 @@ export function sendTextToChat(t) {
   }
 }
 
-export function sendChatRecentsChanged() {
+function chatMessage(data) {
   const iframe = document.getElementById("idx-plugin-frame");
   if (iframe && iframe.contentWindow) {
     const obj = {
       event: "onPluginEvent",
-      data: {
-        type: "recents:changed",
-      }
+      data: data
     };
     iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
   }
+}
+
+export function sendChatRecentsChanged() {
+  chatMessage({
+    type: "recents:changed",
+  });
+}
+
+let chatReady = false;
+const pendingStatuses = new Map();
+
+export function sendFileStatusToChat(model) {
+  if (!chatReady) {
+    pendingStatuses.set(model.id, model);
+    return;
+  }
+  chatMessage({
+    type: 'recents:available',
+    files: [{ exist: model.exist, id: model.id, path: model.path }],
+  });
+}
+
+function flushPendingStatuses() {
+  if (pendingStatuses.size === 0) return;
+  chatMessage({
+    type: 'recents:available',
+    files: [...pendingStatuses.values()].map(m => ({ exist: m.exist, id: m.id, path: m.path })),
+  });
+  pendingStatuses.clear();
 }
 
 export function initAiPanel() {
@@ -128,6 +155,9 @@ export function initAiPanel() {
       closePluginModal(msg.id);
     } else if (msg.type === "collapse") {
       closeSidePanel();
+    } else if (msg.type === "ai-plugin:ready") {
+      chatReady = true;
+      flushPendingStatuses();
     }
   }
 

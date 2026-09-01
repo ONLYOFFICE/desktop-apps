@@ -22,7 +22,7 @@ import { FileDropZone } from "./components/FileDropZone.jsx";
 import { aichat, openFullAIPanel, openSidePanel } from "@/stores/aichat.js";
 import { command } from "@/sdk/bridge.js";
 import "@/styles/components/home.css";
-import { sendChatRecentsChanged, sendFileToChat, sendPluginVisibility } from "@/services/ai-panel.js";
+import { sendChatRecentsChanged, sendFileStatusToChat, sendFileToChat, sendPluginVisibility } from "@/services/ai-panel.js";
 
 const toArray = (v) => (Array.isArray(v) ? v : []);
 
@@ -55,8 +55,10 @@ export default function Index() {
       function reveal() {
         if (id !== revealId) return;
         shown = Math.min(shown + BATCH, sorted.length);
+
         setVisibleCount(shown);
         if (shown < sorted.length) requestAnimationFrame(reveal);
+        else sendCheckFiles();
       }
       requestAnimationFrame(reveal);
     }
@@ -161,10 +163,18 @@ export default function Index() {
         } catch {
           return;
         }
+        console.log("files:checked", checked);
         if (!checked || typeof checked !== "object") return;
         setRecents(
           reconcile(
-            recents.map((r) => (r.hash in checked ? { ...r, exist: checked[r.hash] } : r)),
+            recents.map((r) => {
+              if (r.hash in checked) {
+                const m = {...r, exist: checked[r.hash]};
+                sendFileStatusToChat(m);
+                return m;
+              }
+              return r
+            }),
             { key: "uid" },
           ),
         );
