@@ -1,7 +1,7 @@
 import { createSignal, createEffect, onMount, onCleanup, Switch, Match } from "solid-js";
 import { IntroPanel } from "./components/IntroPanel";
 import { StatusPanel } from "./components/StatusPanel";
-import { resizeDialog, initAddonStatus, initEscapeClose, installAddon } from "./services/addon";
+import { resizeDialog, initAddonStatus, installAddon, closeDialog } from "./services/addon";
 import { inputArgs } from "./services/url";
 
 const PANEL_SIZES = {
@@ -31,7 +31,15 @@ export default function App() {
 
   onMount(() => {
     onCleanup(initAddonStatus());
-    onCleanup(initEscapeClose());
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeDialog();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    onCleanup(() => document.removeEventListener("keydown", handleKeyDown));
   });
 
   function handleInstall() {
