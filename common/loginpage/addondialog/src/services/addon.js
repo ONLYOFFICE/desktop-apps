@@ -55,6 +55,18 @@ export function resizeDialog(width, height) {
   command("addon:resize", { width, height });
 }
 
+export function initEscapeClose() {
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeDialog();
+    }
+  };
+
+  document.addEventListener("keydown", handleKeyDown);
+  return () => document.removeEventListener("keydown", handleKeyDown);
+}
+
 function downloadAddon(url, size, md5) {
   const operation = { canceled: false, downloader: null };
   const downloader = new Downloader({

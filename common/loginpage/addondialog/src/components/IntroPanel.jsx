@@ -1,26 +1,16 @@
-import { createMemo, onMount } from "solid-js";
+import { createMemo } from "solid-js";
 import { t } from "@/services/l10n";
 import { Carousel } from "./Carousel";
-import { postponeAddon, dismissAddon, closeDialog } from "@/services/addon";
+import { postponeAddon, dismissAddon } from "@/services/addon";
 import styles from "./IntroPanel.module.css";
 
 const LICENSE_URL = "https://docspace.onlyoffice.com/s/jPfGKDyBYTRK4JM";
 
 export function IntroPanel(props) {
   const licenseParts = createMemo(() => t("addonLicenseText").split("$1"));
-  let panel;
-
-  onMount(() => panel.focus());
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closeDialog();
-    }
-  };
 
   return (
-    <div ref={panel} class={styles.panel} tabIndex="-1" onKeyDown={handleKeyDown}>
+    <div class={styles.panel}>
       <h1 class={styles.title}>{t("addonTitle")}</h1>
       <p class={styles.descr}>{t("addonDescr")}</p>
 

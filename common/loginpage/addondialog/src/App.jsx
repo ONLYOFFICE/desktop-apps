@@ -1,7 +1,7 @@
 import { createSignal, createEffect, onMount, onCleanup, Switch, Match } from "solid-js";
 import { IntroPanel } from "./components/IntroPanel";
 import { StatusPanel } from "./components/StatusPanel";
-import { resizeDialog, initAddonStatus, installAddon } from "./services/addon";
+import { resizeDialog, initAddonStatus, initEscapeClose, installAddon } from "./services/addon";
 import { inputArgs } from "./services/url";
 
 const PANEL_SIZES = {
@@ -31,6 +31,7 @@ export default function App() {
 
   onMount(() => {
     onCleanup(initAddonStatus());
+    onCleanup(initEscapeClose());
   });
 
   function handleInstall() {
