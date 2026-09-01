@@ -2028,8 +2028,18 @@
         ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:action", L"disable");
 
     } else if ([action isEqualToString:@"uninstall"]) {
-        self.upgradeInProgress = YES;
-        [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionUninstall];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [alert setMessageText:NSLocalizedString(@"Are you sure you want to uninstall ONLYOFFICE AI Tools?", nil)];
+        [alert setInformativeText:NSLocalizedString(@"All related data, including connected AI keys and request history, will be removed.", nil)];
+        [alert setAlertStyle:NSAlertStyleWarning];
+
+        NSInteger code = [alert runModalSheet];
+        if (code == NSAlertSecondButtonReturn) {
+            self.upgradeInProgress = YES;
+            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionUninstall];
+        }
 
     } else if ([action isEqualToString:@"restart"]) {
         /* clicked "restart now" after addon was installed */
