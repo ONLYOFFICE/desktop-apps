@@ -42,6 +42,7 @@
         --text-contrast-background: #fff;
 
         --icon-normal: fade(#000, 80%);
+        --icon-blue: var(--text-link);
 
         --disabled-element-opacity: .4;
         --theme-inverted-image-filter: none;

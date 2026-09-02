@@ -43,6 +43,7 @@
         --text-negative: var(--text-normal);
 
         --icon-normal: fade(#fff, 80%);
+        --icon-blue: var(--text-link);
 
         --disabled-element-opacity: .3;
         --theme-inverted-image-filter: invert(1);

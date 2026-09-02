@@ -43,6 +43,7 @@
         --text-negative: #D01C28;
 
         --icon-normal: #383838;
+        --icon-blue: var(--text-link);
 
         --disabled-element-opacity: .4;
         --theme-inverted-image-filter: none;

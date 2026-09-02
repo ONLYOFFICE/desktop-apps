@@ -38,6 +38,7 @@
         --text-negative: #FF8A81;
 
         --icon-normal: #efefef;
+        --icon-blue: var(--text-link);
 
         --disabled-element-opacity: .3;
         --theme-inverted-image-filter: invert(1);

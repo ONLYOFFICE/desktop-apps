@@ -116,3 +116,13 @@ body {
       }
     }
 }
+
+.icon-normal {
+    fill: transparent;
+    stroke: var(--icon-normal, #383838);
+}
+
+.icon-blue {
+    fill: transparent;
+    stroke: var(--icon-blue, #306AD9);
+}
