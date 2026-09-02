@@ -6,7 +6,7 @@
   padding-bottom: 4px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  outline: none;
   border: 1px solid var(--border-color);
   box-shadow:
     0 8px 16px 0 #040f1b14,
@@ -17,17 +17,17 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 32px;
+  height: 36px;
   padding: 4px 8px;
   color: var(--text-normal-pressed);
   font-size: 14px;
   line-height: 20px;
   cursor: pointer;
   border: none;
+  outline: none;
 
   &[data-highlighted] {
     background: var(--highlight-button-hover);
-    outline: none;
   }
 
   &[aria-disabled="true"] {
@@ -64,6 +64,6 @@
 
 .menuSeparator {
   height: 1px;
-  margin: 0;
+  margin: 4px 0;
   border-color: var(--border-color);
 }
