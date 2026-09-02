@@ -102,6 +102,56 @@ function compareVersions(v1, v2) {
     return 0; // Versions are equal
 }
 
+export async function startInstall({ appcast, package: pkg, version: app_version }) {
+  if (!appcast || !appcast.length) {
+    setViewPanel("error");
+    setAddonStatus((prev) => ({ ...(prev ?? {}), message: 'appcast fetch failed: url is empty' }));
+    return;
+  }
+
+  let request;
+  try {
+    request = { canceled: false, controller: new AbortController() };
+    activeRequest = request;
+    const res = await fetch(`onlyoffice-proxy://${appcast}`, {
+      signal: request.controller.signal,
+      cache: "no-cache",
+    });
+    if (activeRequest === request) activeRequest = null;
+    if (!res.ok)
+      throw new Error(`appcast fetch failed: ${res.status}`);
+
+    const json = await res.json();
+    const server_version = json?.addon?.version;
+    if (!!server_version && !!app_version) {
+      const addon_version = server_version.replace(/^\d+/, m => { const mn = parseInt(m); return mn < 10 ? 1 : mn - 9; });
+      const cmpr = compareVersions(server_version, app_version);
+      if (cmpr > 0) {
+        throw new Error(t("errorInstallVersionHigh").replace("%1", server_version));
+      } else if (cmpr < 0) {
+        throw new Error(t("errorInstallVersionLow")
+          .replace("%1", addon_version)
+          .replace("%mail", '<a href="mailto:support@onlyoffice.com">support team</a>')
+        );
+      }
+    } else if (!server_version || !app_version) {
+      throw new Error(t("errorInstallVersionUnknown")
+        .replace("%mail", '<a href="mailto:support@onlyoffice.com">support team</a>'));
+    }
+
+    const pkgBlock = json?.addon?.package?.[pkg];
+    if (!pkgBlock?.url) throw new Error(`package "${pkg}" not found in appcast`);
+    setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonDownloading") }));
+    downloadAddon(pkgBlock.url, pkgBlock.size, pkgBlock.md5);
+  } catch (err) {
+    if (request?.canceled) return;
+    setViewPanel("error");
+    setAddonStatus((prev) => ({ ...(prev ?? {}), message: err.message }));
+  } finally {
+    if (activeRequest === request) activeRequest = null;
+  }
+}
+
 export function initAddonStatus() {
   return onNativeMessage(async (cmd, param) => {
     if (cmd !== "addon:status") return;
@@ -116,57 +166,8 @@ export function initAddonStatus() {
 
       if (status.page) {
         setViewPanel(status.page);
-
         if (status.page === "install") {
-          const { appcast, package: pkg, version: app_version } = status;
-          if (!appcast || !appcast.length) {
-            setViewPanel("error");
-            setAddonStatus((prev) => ({ ...(prev ?? {}), message: 'appcast fetch failed: url is empty'}));
-            return;
-          }
-
-          let request;
-          try {
-            request = { canceled: false, controller: new AbortController() };
-            activeRequest = request;
-            const res = await fetch(`onlyoffice-proxy://${appcast}`, {
-              signal: request.controller.signal,
-              cache: "no-cache",
-            });
-            if (activeRequest === request) activeRequest = null;
-            if (!res.ok)
-              throw new Error(`appcast fetch failed: ${res.status}`);
-
-            const json = await res.json();
-            const server_version = json?.addon?.version;
-            if (!!server_version && !!app_version) {
-              const addon_version = server_version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<10?1:mn-9});
-              const cmpr = compareVersions(server_version, app_version);
-              if (cmpr > 0) {
-                throw new Error(t("errorInstallVersionHigh").replace("%1", server_version));
-              } else if (cmpr < 0) {
-                throw new Error(t("errorInstallVersionLow")
-                      .replace("%1", addon_version)
-                      .replace("%mail", '<a href="mailto:support@onlyoffice.com">support team</a>')
-                );
-              }
-            } else if (!server_version || !app_version) {
-                throw new Error(t("errorInstallVersionUnknown")
-                      .replace("%mail", '<a href="mailto:support@onlyoffice.com">support team</a>'));
-            }
-
-            const pkgBlock = json?.addon?.package?.[pkg];
-            if (!pkgBlock?.url) throw new Error(`package "${pkg}" not found in appcast`);
-            setAddonStatus((prev) => ({ ...(prev ?? {}), message: t("addonDownloading") }));
-            downloadAddon(pkgBlock.url, pkgBlock.size, pkgBlock.md5);
-          } catch (err) {
-            if (request?.canceled) return;
-            setViewPanel("error");
-            setAddonStatus((prev) => ({ ...(prev ?? {}), message: err.message }));
-            return;
-          } finally {
-            if (activeRequest === request) activeRequest = null;
-          }
+          startInstall(status);
         }
       } else if (!!status.progress) {
         console.log("progress", status.progress);
