@@ -211,7 +211,8 @@
   }
 }
 
-.file-list-body .row:has(.more[data-expanded]) .col-actions .more {
+.file-list-body .row:has(.more[data-expanded]) .col-actions .more,
+.file-list-body .row[data-expanded] .col-actions .more {
   opacity: 1;
 }
 
