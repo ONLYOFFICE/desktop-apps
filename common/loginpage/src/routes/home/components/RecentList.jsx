@@ -9,9 +9,11 @@ function FileMenuItems(props) {
   const Menu = props.menu;
   return (
     <>
-      <Menu.Item icon="#aichat20" onSelect={() => props.onAddToChat(props.model)}>
-        {t("actAiChat")}
-      </Menu.Item>
+      <Show when={props.model.islocal}>
+        <Menu.Item icon="#aichat20" onSelect={() => props.onAddToChat(props.model)}>
+          {t("actAiChat")}
+        </Menu.Item>
+      </Show>
       <Menu.Item icon="#gofolder" onSelect={() => exploreFile(props.model)}>
         {t("menuFileExplore")}
       </Menu.Item>
