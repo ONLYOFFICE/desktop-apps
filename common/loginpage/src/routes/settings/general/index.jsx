@@ -107,6 +107,7 @@ export default function GeneralSettings() {
           </div>
         </div>
 
+        <Show when={false}>
         <div class={styles.fieldRow}>
           <span class={styles.fieldLabel}>{t("settingsCountry")}</span>
           <div class={styles.fieldControl}>
@@ -116,6 +117,7 @@ export default function GeneralSettings() {
             </Select>
           </div>
         </div>
+        </Show>
 
         <Show when={languageOptions().length}>
           <div class={styles.fieldRow}>
