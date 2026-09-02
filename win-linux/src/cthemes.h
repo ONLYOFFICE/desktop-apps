@@ -104,6 +104,8 @@ public:
         , ecrToolTipBorder
         , ecrToolTipBackground
         , ecrTabDivider
+        , ecrTabCloseHoverDarkBackground
+        , ecrTabCloseHoverLightBackground
         , ecrTabThemeType
     };
 

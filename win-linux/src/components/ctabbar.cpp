@@ -249,9 +249,16 @@ void Tab::refreshTextColor()
 
 void Tab::refreshCloseButton()
 {
-    bool _is_app_theme_dark = AscAppManager::themes().current().isDark(),
+    const CTheme & _app_theme = AscAppManager::themes().current();
+    bool _is_app_theme_dark = _app_theme.isDark(),
          _is_tab_theme_dark = tab_theme_type == "dark";
 
+    QString _hover_bg = QString::fromStdWString(_is_app_theme_dark ?
+                            _app_theme.value(CTheme::ColorRole::ecrTabCloseHoverLightBackground) :
+                            _app_theme.value(CTheme::ColorRole::ecrTabCloseHoverDarkBackground));
+    QString _active_hover_bg = QString::fromStdWString(_is_tab_theme_dark ?
+                            _app_theme.value(CTheme::ColorRole::ecrTabCloseHoverLightBackground) :
+                            _app_theme.value(CTheme::ColorRole::ecrTabCloseHoverDarkBackground));
     QString _image_normal = _is_app_theme_dark ? ":/tabbar/icons/close_active_normal.svg" : ":/tabbar/icons/close_normal.svg";
     QString _image_hover = _is_app_theme_dark ? ":/tabbar/icons/close_active_hover.svg" : ":/tabbar/icons/close_hover.svg";
     QString _image_pressed = _is_app_theme_dark ? ":/tabbar/icons/close_active_pressed.svg" : ":/tabbar/icons/close_pressed.svg";
@@ -260,11 +267,11 @@ void Tab::refreshCloseButton()
     QString _image_active_pressed = _is_tab_theme_dark ? ":/tabbar/icons/close_active_pressed.svg" : ":/tabbar/icons/close_pressed.svg";
 
     QString _styles = "[hovered=true] #tabButton{image:url(" + _image_normal + ");}"
-                        "[hovered=true] #tabButton:hover{image:url(" + _image_hover + ");}"
-                        "[hovered=true] #tabButton:pressed{image:url(" + _image_pressed + ");}"
+                        "[hovered=true] #tabButton:hover{image:url(" + _image_hover + ");background:" + _hover_bg + ";}"
+                        "[hovered=true] #tabButton:pressed{image:url(" + _image_pressed + ");background:" + _hover_bg + ";}"
                         "[selected=true] #tabButton{image:url(" + _image_active_normal + ");}"
-                        "[selected=true] #tabButton:hover{image:url(" + _image_active_hover + ");}"
-                        "[selected=true] #tabButton:pressed{image:url(" + _image_active_pressed + ");}";
+                        "[selected=true] #tabButton:hover{image:url(" + _image_active_hover + ");background:" + _active_hover_bg + ";}"
+                        "[selected=true] #tabButton:pressed{image:url(" + _image_active_pressed + ");background:" + _active_hover_bg + ";}";
 //                        "CTabBar[active=false] Tab[selected=true] #tabButton{image:url(" + _image_normal + ");}"
 //                        "CTabBar[active=false] Tab[selected=true] #tabButton:hover{image:url(" + _image_hover + ");}"
 //                        "CTabBar[active=false] Tab[selected=true] #tabButton:pressed{image:url(" + _image_pressed + ");}"
