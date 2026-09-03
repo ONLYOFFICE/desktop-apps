@@ -615,6 +615,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             return true;
         } else
+        if ( !(cmd.find(L"open:license") == std::wstring::npos) ) {
+            if ( !pData->get_Param().empty() )
+                Utils::openUrl(QString::fromStdWString(pData->get_Param()));
+        } else
         if ( !(cmd.find(L"open:template") == std::wstring::npos) ) {
             if ( pData->get_Param() == L"external" ) {
                 static QByteArray _json_to_open;

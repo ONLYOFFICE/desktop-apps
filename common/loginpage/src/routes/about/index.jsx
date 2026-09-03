@@ -1,10 +1,34 @@
-import { Show } from "solid-js";
+import { Show, createMemo } from "solid-js";
 import { t } from "@/services/l10n.js";
 import { aboutOpen, closeAbout, versionInfo, updatesOn, updateStatus, execUpdateAction, addonInfo } from "@/services/about.js";
 import { Dialog, Button } from "@/components";
 import "./about.css";
+import { command } from "@/sdk/bridge";
+
+function parseLicenseInfo(html) {
+  if (!html) return null;
+  const anchorMatch = html.match(/<a\s([\s\S]*?)>([\s\S]*?)<\/a>/i);
+  if (!anchorMatch) return { prefix: html.replace(/<[^>]+>/g, "").trim(), url: null, linkText: null };
+
+  const attrStr = anchorMatch[1];
+  const linkText = anchorMatch[2].replace(/<[^>]+>/g, "").trim();
+  const prefix = html.slice(0, html.search(/<a\s/i)).replace(/<[^>]+>/g, "").trim();
+
+  const onclickMatch = attrStr.match(/onclick=["']window\.open\(['"]([^'"]+)['"]\)/i);
+  let url = onclickMatch ? onclickMatch[1] : null;
+  if (!url) {
+    const hrefMatch = attrStr.match(/href=["']([^"'#][^"']*)["']/i);
+    url = hrefMatch ? hrefMatch[1] : null;
+  }
+
+  return { prefix, url, linkText };
+}
 
 export default function About() {
+  const licenseInfo = createMemo(() =>
+    versionInfo()?.edition ? parseLicenseInfo(versionInfo().edition) : null
+  );
+
   return (
     <Dialog open={aboutOpen()} onOpenChange={(isOpen) => !isOpen && closeAbout()}>
       <Dialog.Content class="about-dialog">
@@ -29,15 +53,21 @@ export default function About() {
                     </span>{" "}
                     {versionInfo().version}
                   </p>
-                  <Show when={versionInfo().edition}>
-                    <div
-                      class="about-field about-license"
-                      innerHTML={versionInfo().edition}
-                      onClick={(e) => {
-                        const a = e.target.closest("a");
-                        if (a) e.preventDefault();
-                      }}
-                    />
+                  <Show when={licenseInfo()}>
+                    <div class="about-field about-license">
+                      <Show when={licenseInfo().prefix}>
+                        {licenseInfo().prefix}{" "}
+                      </Show>
+                      <Show when={licenseInfo().url}>
+                        <a
+                          class="about-link"
+                          href="#"
+                          onClick={(e) => { e.preventDefault(); command("open:license", licenseInfo().url); }}
+                        >
+                          {licenseInfo().linkText}
+                        </a>
+                      </Show>
+                    </div>
                   </Show>
                 </div>
               </section>
