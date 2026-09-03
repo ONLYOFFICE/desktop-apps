@@ -155,6 +155,7 @@ export function initAiPanel() {
       closePluginModal(msg.id);
     } else if (msg.type === "collapse") {
       closeSidePanel();
+      document.getElementById("idx-plugin-frame")?.blur();
     } else if (msg.type === "ai-plugin:ready") {
       chatReady = true;
       flushPendingStatuses();
