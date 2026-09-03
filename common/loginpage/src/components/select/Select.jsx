@@ -8,7 +8,7 @@ const getItemLabel = (o) => o?.label ?? String(o ?? "");
 const getItemSublabel = (o) => o?.sublabel;
 
 function Root(props) {
-  const [local, rest] = splitProps(props, ["onChange", "options", "value", "class"]);
+  const [local, rest] = splitProps(props, ["onChange", "options", "value", "class", "stacked"]);
 
   return (
     <SelectPrimitive
@@ -18,7 +18,7 @@ function Root(props) {
       optionTextValue={getItemLabel}
       value={local.value ?? null}
       itemComponent={(itemProps) => (
-        <SelectPrimitive.Item item={itemProps.item} class={styles.item}>
+        <SelectPrimitive.Item item={itemProps.item} class={local.stacked ? `${styles.item} ${styles.itemStacked}` : styles.item}>
           <SelectPrimitive.ItemLabel class={styles.itemLabel}>
             <span>{getItemLabel(itemProps.item.rawValue)}</span>
             {getItemSublabel(itemProps.item.rawValue) && (

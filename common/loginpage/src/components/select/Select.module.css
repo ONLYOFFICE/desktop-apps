@@ -117,6 +117,15 @@
   opacity: .7;
 }
 
+.itemStacked {
+  height: auto;
+  
+  .itemLabel {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
 .itemIndicator {
   display: flex;
   align-items: center;
