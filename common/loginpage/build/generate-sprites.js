@@ -135,9 +135,9 @@ const PNG_SPRITE_CONFIGS = [
   { iconsDir: "res/img/toolicons20/1.25x", spriteName: "toolicons20", scale: 1.25, wrapperClass: ".pixel-ratio__1_25", iconClasses: [".tool-icon__20"], positionClass: ".tool-icon__20" },
   { iconsDir: "res/img/toolicons20/1.5x",  spriteName: "toolicons20", scale: 1.5,  wrapperClass: ".pixel-ratio__1_5",  iconClasses: [".tool-icon__20"], positionClass: null },
   { iconsDir: "res/img/toolicons20/1.75x", spriteName: "toolicons20", scale: 1.75, wrapperClass: ".pixel-ratio__1_75", iconClasses: [".tool-icon__20"], positionClass: null },
-  { iconsDir: "res/img/formats/1.25x", spriteName: "formats", scale: 1.25, wrapperClass: ".pixel-ratio__1_25", iconClasses: [".doc-format"], positionClass: ".doc-format", scopePositions: true },
-  { iconsDir: "res/img/formats/1.5x",  spriteName: "formats", scale: 1.5,  wrapperClass: ".pixel-ratio__1_5",  iconClasses: [".doc-format"], positionClass: ".doc-format", scopePositions: true },
-  { iconsDir: "res/img/formats/1.75x", spriteName: "formats", scale: 1.75, wrapperClass: ".pixel-ratio__1_75", iconClasses: [".doc-format"], positionClass: ".doc-format", scopePositions: true },
+  { iconsDir: "res/img/formats/1.25x", spriteName: "formats", scale: 1.25, wrapperClass: ".pixel-ratio__1_25", iconClasses: [".doc-format"], positionClass: ".doc-format", horizontal: true },
+  { iconsDir: "res/img/formats/1.5x",  spriteName: "formats", scale: 1.5,  wrapperClass: ".pixel-ratio__1_5",  iconClasses: [".doc-format"], positionClass: null, horizontal: true },
+  { iconsDir: "res/img/formats/1.75x", spriteName: "formats", scale: 1.75, wrapperClass: ".pixel-ratio__1_75", iconClasses: [".doc-format"], positionClass: null, horizontal: true },
 ];
 
 const CSS_OUT_DIR = "src/styles/sprites";
@@ -160,11 +160,11 @@ function getPngFiles(dir) {
   }
 }
 
-function composePng(files) {
+function composePng(files, horizontal) {
   const { PNG } = _require("pngjs");
   const pngs = files.map(f => PNG.sync.read(readFileSync(f)));
-  const width = Math.max(...pngs.map(p => p.width));
-  const totalHeight = pngs.reduce((h, p) => h + p.height, 0);
+  const width = horizontal ? pngs.reduce((w, p) => w + p.width, 0) : Math.max(...pngs.map(p => p.width));
+  const totalHeight = horizontal ? Math.max(...pngs.map(p => p.height)) : pngs.reduce((h, p) => h + p.height, 0);
 
   const out = new PNG({ width, height: totalHeight });
   out.data.fill(0);
@@ -173,18 +173,18 @@ function composePng(files) {
   let y = 0;
   for (const png of pngs) {
     yOffsets.push(y);
-    PNG.bitblt(png, out, 0, 0, png.width, png.height, 0, y);
-    y += png.height;
+    PNG.bitblt(png, out, 0, 0, png.width, png.height, horizontal ? y : 0, horizontal ? 0 : y);
+    y += horizontal ? png.width : png.height;
   }
 
-  return { buffer: PNG.sync.write(out), width, yOffsets };
+  return { buffer: PNG.sync.write(out), width, totalHeight, yOffsets };
 }
 
 function buildPngSprite(config) {
   const files = getPngFiles(config.iconsDir);
   if (!files.length) return;
 
-  const { buffer, width, yOffsets } = composePng(files);
+  const { buffer, width, totalHeight, yOffsets } = composePng(files, config.horizontal);
 
   // PNG sprite sheet
   const pngDest = join(ROOT, "res/img/generated", `${config.spriteName}@${config.scale}x.png`);
@@ -193,22 +193,22 @@ function buildPngSprite(config) {
 
   // CSS — background-image embedded as base64 (mirrors grunt destCss with data-uri)
   const base64 = buffer.toString("base64");
-  const cssWidth = width / config.scale;
+  const axis = config.horizontal ? "x" : "y";
+  const size = config.horizontal ? `auto ${px(totalHeight / config.scale)}` : `${px(width / config.scale)} auto`;
   const selectors = config.iconClasses.map(c => `${config.wrapperClass} ${c}`).join(",\n");
 
   let css = `${selectors} {\n`;
   css += `    background-image: url('data:image/png;base64,${base64}');\n`;
-  css += `    background-size: ${px(cssWidth)} auto;\n`;
+  css += `    background-size: ${size};\n`;
   css += `}\n`;
 
   // Per-icon background-position-y — only in 1.25x; positions are in CSS px and
   // remain correct for 1.5x/1.75x because icon CSS size is fixed across scales.
   if (config.positionClass) {
-    const prefix = config.scopePositions ? `${config.wrapperClass} ` : "";
     for (let i = 0; i < files.length; i++) {
       const name = basename(files[i], ".png");
       const offsetCss = yOffsets[i] === 0 ? "0" : px(-(yOffsets[i] / config.scale));
-      css += `${prefix}${config.positionClass}.${name} { background-position-y: ${offsetCss}; }\n`;
+      css += `${config.positionClass}.${name} { background-position-${axis}: ${offsetCss}; }\n`;
     }
   }
 
