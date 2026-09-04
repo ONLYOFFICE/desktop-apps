@@ -17,14 +17,15 @@ import { aichat } from "@/stores/aichat";
 
 export default function GeneralSettings() {
   const countryOptions = createMemo(() => [
-    { value: "GB", label: "United Kingdom" },
-    { value: "US", label: "United States" },
-    { value: "DE", label: "Germany" },
-    { value: "FR", label: "France" },
-    { value: "ES", label: "Spain" },
-    { value: "IT", label: "Italy" },
-    { value: "IN", label: "India" },
-    { value: "CN", label: "China" },
+    { value: "en", label: "United States", sublabel: "" },
+    { value: "zh", label: "中國", sublabel: "China" },
+    { value: "es", label: "España", sublabel: "Spain" },
+    { value: "de", label: "Duitsland", sublabel: "Germany" },
+    { value: "pt", label: "Portugal", sublabel: "Portugal" },
+    { value: "fr", label: "France", sublabel: "France" },
+    { value: "it", label: "Italia", sublabel: "Italy" },
+    { value: "ja", label: "日本", sublabel: "Japan" },
+    { value: "ar", label: "المملكة العربية السعودية", sublabel: "Saudi Arabia" },
   ]);
 
   const languageOptions = createMemo(() => availableLangs().map((l) => ({
@@ -107,16 +108,16 @@ export default function GeneralSettings() {
           </div>
         </div>
 
-        <Show when={false}>
-        <div class={styles.fieldRow}>
-          <span class={styles.fieldLabel}>{t("settingsCountry")}</span>
-          <div class={styles.fieldControl}>
-            <Select options={countryOptions()} value={settings.country} onChange={(v) => setSettings("country", v)} disallowEmptySelection>
-              <Select.Trigger class={styles.fullWidth} />
-              <Select.Content />
-            </Select>
+        <Show when={countryOptions().length}>
+          <div class={styles.fieldRow}>
+            <span class={styles.fieldLabel}>{t("settingsCountry")}</span>
+            <div class={styles.fieldControl}>
+              <Select options={countryOptions()} value={settings.country} onChange={(v) => setSettings("country", v)} disallowEmptySelection>
+                <Select.Trigger class={styles.fullWidth} />
+                <Select.Content />
+              </Select>
+            </div>
           </div>
-        </div>
         </Show>
 
         <Show when={languageOptions().length}>

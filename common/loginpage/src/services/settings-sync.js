@@ -135,9 +135,6 @@ export function initSettingsSync() {
 
   checkScaling();
 
-  const country = localStorage.getItem("sett-country") || "US";
-  setSettings("country", country);
-
   const storedUsername = localStorage.getItem("username");
   if (storedUsername) {
     setSettings("userName", storedUsername);
@@ -158,6 +155,8 @@ export function initSettingsSync() {
   }
   applyThemeToDom(settings.theme);
 
+  // const country = localStorage.getItem("sett-country") || "US";
+  setSettings("country", nativevars?.country ?? "en");
 
   _textDirectionChanged = createMemo(() => {
     const snap = nativeSnapshot();
@@ -210,6 +209,7 @@ export function initSettingsSync() {
     const updates = settings.checkUpdates;
     const launch = settings.launchMode;
     const spell = settings.spellCheck;
+    const country= settings.country;
 
     let restart = false;
     if (snap !== null) {
@@ -233,6 +233,7 @@ export function initSettingsSync() {
       usegpu: settings.gpuMode,
       useai: settings.useai,
       restart: restart,
+      country: country,
     };
     if (!!scaling)
       new_settings.uiscaling = scaling === "auto" ? "0" : scaling;
@@ -240,7 +241,7 @@ export function initSettingsSync() {
       new_settings.autoupdatemode = updates;
     command("settings:apply", JSON.stringify(new_settings));
 
-    localStorage.setItem("sett-country", settings.country);
+    // localStorage.setItem("sett-country", settings.country);
     sendTemplatesSettings({country: settings.country});
 
     const _plugin_opts = getPluginSettings();

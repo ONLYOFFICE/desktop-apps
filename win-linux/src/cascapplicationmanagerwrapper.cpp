@@ -1638,6 +1638,8 @@ void CAscApplicationManagerWrapper::initializeApp()
     EditorJSVariables::setVariable("rtl", _is_rtl ? "yes" : "no");
 
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
+    std::wstring _country = userSettings(L"country");
+    EditorJSVariables::setVariable("country", QString::fromStdWString(!_country.empty() ? _country : L"en"));
 
     std::vector<std::pair<std::string, std::string>> layouts = _app.GetKeyboardLayoutList();
     QJsonObject kbLangs;
@@ -2353,6 +2355,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("useai") ) {
             setUserSettings(L"disable-ai", objRoot["useai"].toBool(true) ? L"0" : L"1");
+        }
+
+        if ( objRoot.contains("country") ) {
+            setUserSettings(L"country", objRoot["country"].toString().toStdWString());
         }
 
 #ifdef _UPDMODULE
