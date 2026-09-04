@@ -49,6 +49,31 @@
 const QSize UpgradeDialog::IntroPageSize(480, 700);
 const QSize UpgradeDialog::InstallPageSize(480, 304);
 
+namespace
+{
+    QString getPlatformPackageName()
+    {
+#ifdef _WIN32
+# if defined(_M_ARM64)
+        return QStringLiteral("win_arm64");
+# elif defined(_M_X64)
+        return QStringLiteral("win_64");
+# elif defined(_M_IX86)
+        return QStringLiteral("win_32");
+# else
+#  error Unsupported architecture
+# endif
+#else
+# if defined(__aarch64__)
+        return QStringLiteral("linux_aarch64");
+# elif defined(__x86_64__)
+        return QStringLiteral("linux_x86_64");
+# else
+#  error Unsupported architecture
+# endif
+#endif
+    }
+}
 
 UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc, int page)
     : CAscDialog(parent, rc)
@@ -119,26 +144,7 @@ void UpgradeDialog::showStartPage()
     jsn["page"] = pageToString(Page::Install);
     jsn["appcast"] = AscAppManager::addonManager()->appcastUrl();
     jsn["version"] = VER_FILEVERSION_STR;
-
-#ifdef _WIN32
-# if defined(_M_ARM64)
-    jsn["package"] = "win_arm64";
-# elif defined(_M_X64)
-    jsn["package"] = "win_64";
-# elif defined(_M_IX86)
-    jsn["package"] = "win_32";
-# else
-#  error Unsupported architecture
-# endif
-#else
-# if defined(__aarch64__)
-    jsn["package"] = "linux_aarch64";
-# elif defined(__x86_64__)
-    jsn["package"] = "linux_x86_64";
-# else
-#  error Unsupported architecture
-# endif
-#endif
+    jsn["package"] = getPlatformPackageName();
 
     AscAppManager::sendCommandTo(contentCefView, "addon:status", Utils::stringifyJson(jsn));
 
