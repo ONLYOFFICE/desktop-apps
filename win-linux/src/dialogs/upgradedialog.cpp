@@ -112,6 +112,14 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc, int page)
     QString url_additional = QString("?lang=%1&page=%2").arg(
         CLangater::getCurrentLangCode(), pageToString(page));
 
+    if (page == Page::Install)
+    {
+        QString install_params = QString("&appcast=%1&version=%2&package=%3").arg(
+            AscAppManager::addonManager()->appcastUrl(), VER_FILEVERSION_STR,
+            getPlatformPackageName());
+        url_additional.append(install_params);
+    }
+
     const QString addonUrl = HTML_SCHEME + QString("%1%2").arg(html_path, url_additional);
 
     contentCefView->GetCefView()->load(addonUrl.toStdWString());
