@@ -468,7 +468,8 @@ void CAddonManager::doAction(Action action)
         return;
 
     if (action == Action::Install) {
-        if (!isInstalled())
+        QString version;
+        if (!isInstalled(&version) || version != QString(VER_FILEVERSION_STR))
             pimpl->install();
     } else if (action == Action::Uninstall) {
         if (isInstalled())

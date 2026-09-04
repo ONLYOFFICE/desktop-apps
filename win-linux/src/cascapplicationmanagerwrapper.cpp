@@ -1380,7 +1380,26 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
             if (!m_private->m_bUpgradeInProgress)
             {
                 if (m_pMainWindow)
+                {
                     m_pMainWindow->sendAddonStatusToStartPage();
+
+                    QString version;
+                    if (m_private->m_pAddonManager->isInstalled(&version) &&
+                            !version.isEmpty() && version != QString(VER_FILEVERSION_STR))
+                    {
+                        int result = CMessage::showMessage(m_pMainWindow,
+                                        tr("The installed AI Tools component is incompatible with "
+                                           "this version of the application. Please update the AI "
+                                           "Tools component to continue."),
+                                        CMessage::Icon::Info, CMessage::Buttons::YesDefNo);
+                        if (result == CMessage::Result::Yes)
+                        {
+                            m_private->m_bUpgradeInProgress = true;
+                            m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
+                            showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Install);
+                        }
+                    }
+                }
             }
         });
     }
