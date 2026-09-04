@@ -756,6 +756,10 @@ public:
                                     appManager->GetUserSettings()->Set(L"spell-check-input-mode", [json[@"spellcheckdetect"] isEqualToString:@"off"] ? L"0" : L"1");
                                 }
 
+                                if ( [json objectForKey:@"country"] != nil ) {
+                                    appManager->GetUserSettings()->Set(L"country", [[json[@"country"] stringValue] stdwstring]);
+                                }
+
                                 [[ASCEditorJSVariables instance] applyParameters];
 
                                 if ( [json objectForKey:@"restart"] != nil && [json[@"restart"] boolValue] ) {

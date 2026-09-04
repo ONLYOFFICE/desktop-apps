@@ -95,6 +95,11 @@
         [keybLangs setObject:[ASCLinguist keyboardLanguages] forKey:@"langs"];
         [_jsVariables setObject:keybLangs forKey:@"keyboard"];
         [_jsVariables setValue:[ASCLinguist appLanguageCode] forKey:@"lang"];
+
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+        std::wstring wcntr{appManager->GetUserSettings()->Get(L"country")};
+        NSString * nscntr = [NSString stringWithstdwstring:!wcntr.empty()?wcntr:L"en"];
+        [_jsVariables setValue:nscntr forKey:@"country"];
     }
 
     return self;
