@@ -399,9 +399,19 @@ CAddonManager::~CAddonManager()
     pimpl = nullptr;
 }
 
-bool CAddonManager::isInstalled() const
+bool CAddonManager::isInstalled(QString *version) const
 {
-	return CAscApplicationManagerWrapper::getInstance().CheckMainAddon();
+    std::string sVersion;
+    const bool bInstalled = CAscApplicationManagerWrapper::getInstance().CheckMainAddon(&sVersion);
+
+    if (version)
+    {
+        version->clear();
+        if (bInstalled)
+            *version = QString::fromStdString(sVersion);
+    }
+
+    return bInstalled;
 }
 
 bool CAddonManager::restartRequired() const
