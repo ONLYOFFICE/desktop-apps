@@ -51,9 +51,9 @@ export default function GeneralSettings() {
   ]);
 
   const updatesOptions = createMemo(() => [
-    { value: "ask", label: t("settOptAUpdateAsk") },
-    { value: "silent", label: t("settOptAUpdateSilent") },
-    { value: "disabled", label: t("settOptAUpdateDisabled") },
+    { value: "silent", label: t("settOptAUpdateSilent"), sublabel: t("settOptDescAUpdateSilent") },
+    { value: "ask", label: t("settOptAUpdateAsk"), sublabel: t("settOptDescAUpdateAsk") },
+    { value: "disabled", label: t("settOptAUpdateDisabled"), sublabel: t("settOptDescDisabled") },
   ]);
 
   const themeOptions = createMemo(() => [
@@ -152,6 +152,7 @@ export default function GeneralSettings() {
                 value={settings.checkUpdates}
                 onChange={(v) => setSettings("checkUpdates", v)}
                 disallowEmptySelection
+                stacked
               >
                 <Select.Trigger class={styles.fullWidth} />
                 <Select.Content />
