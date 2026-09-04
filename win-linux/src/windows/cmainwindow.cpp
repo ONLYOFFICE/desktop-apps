@@ -1604,7 +1604,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/
-    m_boxTitleBtns->setFixedHeight(int((m_shouldUseThinFrame ? m_toolbtn_height : TOOLBTN_HEIGHT) * m_dpiRatio));
+    m_boxTitleBtns->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
     m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TOOLBTN_HEIGHT * dpiratio));
     if (QLayout *lut = m_boxTitleBtns->layout()) {
         if (QLayoutItem *item = lut->itemAt(0)) {
@@ -1737,19 +1737,36 @@ void CMainWindow::onLayoutDirectionChanged()
 
 void CMainWindow::applyWindowState()
 {
+    m_toolbtn_height = isMaximized() ? TOOLBTN_HEIGHT + CAPTION_EXTRA_HEIGHT :
+                           m_shouldUseThinFrame ? TOOLBTN_HEIGHT_WIN10 : TOOLBTN_HEIGHT;
+    m_boxTitleBtns->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
+
     if ( m_shouldUseThinFrame ) {
-        m_toolbtn_height = isMaximized() ? TOOLBTN_HEIGHT : TOOLBTN_HEIGHT_WIN10;
         m_pMainPanel->setProperty("extended-title", !isMaximized());
         m_pMainPanel->style()->polish(m_pMainPanel);
-        m_boxTitleBtns->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
 
         if (m_pWidgetDownload && m_pWidgetDownload->toolButton())
             m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
 
         foreach (auto *btn, m_pTopButtons) {
-            btn->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
             btn->setProperty("extended-title", !isMaximized());
             btn->style()->polish(btn);
+        }
+    }
+    const int btn_height = isMaximized() ? m_toolbtn_height - CAPTION_EXTRA_HEIGHT : m_toolbtn_height;
+    if (m_pTopButtons[BtnType::Btn_Minimize]) {
+        foreach (auto *btn, m_pTopButtons)
+            btn->setFixedHeight(int(btn_height * m_dpiRatio));
+    }
+    if (QHBoxLayout *lut = qobject_cast<QHBoxLayout*>(m_boxTitleBtns->layout())) {
+        const Qt::Alignment align = isMaximized() ? Qt::AlignTop : Qt::AlignVCenter;
+        if (m_pButtonMain)
+            lut->setAlignment(m_pButtonMain, align);
+        if (m_pTabs && m_pTabs->tabBar())
+            lut->setAlignment(m_pTabs->tabBar(), align);
+        if (m_pTopButtons[BtnType::Btn_Minimize]) {
+            foreach (auto *btn, m_pTopButtons)
+                lut->setAlignment(btn, align);
         }
     }
     CWindowBase::applyWindowState();
