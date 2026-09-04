@@ -365,7 +365,7 @@ private:
                 bool primary_bad = (url.isEmpty() /*|| !pDownloader->isUrlAccessible(QStrToTStr(url))*/);
                 bool prefer_secondary = InputArgs::contains(L"--prefer-alternate-url");
                 QString packageUrl = (!url2.isEmpty() && (primary_bad || prefer_secondary)) ? url2 : url;
-                CLogger::log("Download from URL:\n" + url);
+                CLogger::log("Download from URL:\n" + packageUrl);
 
                 QString hash = platform.value("md5").toString();
 
