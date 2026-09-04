@@ -9,7 +9,7 @@ let iframeEl = null;
 
 export function sendTemplatesSettings(opts) {
   if (iframeEl?.contentWindow && opts.country) {
-    iframeEl.contentWindow.postMessage({ type: "settings", country: opts.country }, "*");
+    iframeEl.contentWindow.postMessage({ type: "country", value: opts.country }, "*");
   }
 }
 
