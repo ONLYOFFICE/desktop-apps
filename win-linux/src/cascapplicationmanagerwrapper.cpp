@@ -1370,9 +1370,9 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->setProgress(progress);
 
-                    if (m_pMainWindow)
-                        m_pMainWindow->sendAddonStatusToStartPage(tr("Installing... %1%", "CAddonManager")
-                                                      .arg(progress), "load", true);
+                    // if (m_pMainWindow)
+                    //     m_pMainWindow->sendAddonStatusToStartPage(tr("Installing... %1%", "CAddonManager")
+                    //                                   .arg(progress), "load", true);
                 });
     }
     if (uid < 0) {
