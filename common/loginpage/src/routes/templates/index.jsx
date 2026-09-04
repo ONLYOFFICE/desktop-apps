@@ -13,6 +13,12 @@ export function sendTemplatesSettings(opts) {
   }
 }
 
+export function sendTemplatesTheme(themeType) {
+  if (iframeEl?.contentWindow) {
+    iframeEl.contentWindow.postMessage({ type: "theme", value: themeType }, "*");
+  }
+}
+
 export default function Templates() {
   const [isOnline, setIsOnline] = createSignal(navigator.onLine);
 

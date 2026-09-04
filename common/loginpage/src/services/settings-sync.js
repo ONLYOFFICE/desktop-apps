@@ -7,7 +7,7 @@ import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/services/ai-panel";
 import { aichat } from "@/stores/aichat";
-import { sendTemplatesSettings } from "@/routes/templates";
+import { sendTemplatesSettings, sendTemplatesTheme } from "@/routes/templates";
 
 
 function injectCustomThemeCss(id, colors) {
@@ -366,6 +366,9 @@ export function initSettingsSync() {
     } else if (msgCmd === "uitheme:changed") {
       setSettings("theme", param);
       applyThemeToDom(settings.theme);
+
+      const themeType = themesMap[settings.theme]?.type ?? 'light';
+      sendTemplatesTheme(themeType);
     }
   });
 
