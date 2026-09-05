@@ -951,6 +951,7 @@
         pEvent->m_pData = pCommand;
         appManager->SetEventToAllMainWindows(pEvent);
         
+        Boolean updateThemeInEditor = [[ASCThemesController currentThemeId] isEqualToString:uiThemeSystem];
         for (int uuid : appManager->GetViewsId()) {
             CCefView * cef = appManager->GetViewById((int)uuid);
             if (cef && cef->GetType() == cvwtEditor) {
@@ -962,6 +963,17 @@
                 pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                 pEvent->m_pData = pCommand;
                 cef->Apply(pEvent);
+
+                if ( updateThemeInEditor) {
+                    pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_FrameName(L"frameEditor");
+                    pCommand->put_Command(L"uitheme:changed");
+                    pCommand->put_Param(L"theme-system");
+
+                    pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent->m_pData = pCommand;
+                    cef->Apply(pEvent);
+                }
             }
         }
         
