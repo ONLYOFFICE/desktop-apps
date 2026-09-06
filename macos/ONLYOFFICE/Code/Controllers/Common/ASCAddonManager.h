@@ -80,6 +80,7 @@ extern NSNotificationName const ASCAddonManagerUninstallFinishedNotification;
 - (void)doAction:(ASCAddonManagerAction)action;
 - (void)installFromBundle:(NSString*)path;
 - (BOOL)isInstalled;
+- (BOOL)isInstalled:(NSString * _Nullable * _Nullable)version;
 - (BOOL)restartRequired;
 - (NSString *)appcastUrl;
 + (NSString *)errorMessageForResult:(ASCAddonManagerResult)result;

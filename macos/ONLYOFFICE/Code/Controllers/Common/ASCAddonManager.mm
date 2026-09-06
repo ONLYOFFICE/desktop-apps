@@ -112,8 +112,20 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
 }
 
 - (BOOL)isInstalled {
+    return [self isInstalled:nil];
+}
+
+- (BOOL)isInstalled:(NSString * _Nullable * _Nullable)version {
     CAscApplicationManager *appManager = [NSAscApplicationWorker getAppManager];
-    return appManager->CheckMainAddon();
+
+    std::string sVersion;
+    const BOOL bInstalled = appManager->CheckMainAddon(&sVersion);
+
+    if (version) {
+        *version = bInstalled ? [NSString stringWithUTF8String:sVersion.c_str()] : @"";
+    }
+
+    return bInstalled;
 }
 
 - (BOOL)restartRequired {
