@@ -126,6 +126,15 @@ static NSString *ASCUpgradePlatformPackageName(void) {
         NSString *htmlPath = [exeDir stringByAppendingPathComponent:@"../Resources/login/addon.html"];
         NSString *urlAdditional = [NSString stringWithFormat:@"?lang=%@&page=%@",
                                    [ASCLinguist appLanguageCode], ASCUpgradePageToString(self.initialPage)];
+
+        if (self.initialPage == ASCUpgradePageInstall) {
+            NSString *installParams = [NSString stringWithFormat:@"&appcast=%@&version=%@&package=%@",
+                                       [[ASCAddonManager sharedManager] appcastUrl],
+                                       [ASCAboutController fullAppVersion],
+                                       ASCUpgradePlatformPackageName()];
+            urlAdditional = [urlAdditional stringByAppendingString:installParams];
+        }
+
         NSString *addonUrl = [NSString stringWithFormat:@"onlyoffice://plugin/%@%@", htmlPath, urlAdditional];
 
         [self.cefView loadWithUrl:addonUrl];
