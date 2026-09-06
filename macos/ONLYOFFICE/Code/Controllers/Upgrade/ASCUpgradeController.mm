@@ -68,6 +68,18 @@ static NSString *ASCUpgradePageToString(ASCUpgradePage page) {
     }
 }
 
+static NSString *ASCUpgradePlatformPackageName(void) {
+#if _V8_VERSION
+    return @"macos_v8";
+#elif _X86_64_ONLY
+    return @"macos_x86_64";
+#elif _ARM_ONLY
+    return @"macos_arm";
+#else
+# error Unsupported architecture
+#endif
+}
+
 @interface ASCUpgradeController () <NSWindowDelegate>
 
 @property (nonatomic, strong) NSCefView *cefView;
@@ -160,20 +172,10 @@ static NSString *ASCUpgradePageToString(ASCUpgradePage page) {
 }
 
 - (void)showStartPage {
-#if _V8_VERSION
-    NSString *platform = @"macos_v8";
-#elif _X86_64_ONLY
-    NSString *platform = @"macos_x86_64";
-#elif _ARM_ONLY
-    NSString *platform = @"macos_arm";
-#else
-# error Unsupported architecture
-#endif
-
     [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageInstall),
                             @"appcast": [[ASCAddonManager sharedManager] appcastUrl],
                             @"version": [ASCAboutController fullAppVersion],
-                            @"package": platform}];
+                            @"package": ASCUpgradePlatformPackageName()}];
     [self resizeWindowToSize:kASCUpgradeInstallSize];
 }
 
