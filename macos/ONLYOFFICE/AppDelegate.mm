@@ -192,6 +192,7 @@
     addObserverFor(ASCAddonManagerUninstallFinishedNotification, @selector(onAddonUninstallFinished:));
     addObserverFor(CEFEventNameAddonAction, @selector(onCEFAddonAction:));
     addObserverFor(CEFEventNameAddonInstallation, @selector(onCEFAddonInstalling:));
+    addObserverFor(CEFEventNameStartPageReady, @selector(onStartPageReadyCheckAddon:));
 #endif
 
     // Google Analytics
@@ -2093,6 +2094,34 @@
 
 - (void)showUpgradeDialogWithPage:(NSNumber *)page {
     [self showUpgradeDialog:[self getMainWindow] page:(ASCUpgradePage)page.integerValue];
+}
+
+- (void)onStartPageReadyCheckAddon:(NSNotification *)notification {
+    if (self.upgradeInProgress) {
+        return;
+    }
+
+    NSString *version = nil;
+    if ([[ASCAddonManager sharedManager] isInstalled:&version] &&
+            version.length > 0 && ![version isEqualToString:[ASCAboutController fullAppVersion]]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert setMessageText:NSLocalizedString(@"The installed AI Tools component is incompatible with "
+                                                 "this version of the application. Please update the AI "
+                                                 "Tools component to continue.", nil)];
+        [alert setAlertStyle:NSAlertStyleInformational];
+
+        NSInteger code = [alert runModal];
+        if (code == NSAlertFirstButtonReturn) {
+            self.upgradeInProgress = YES;
+            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionInstall];
+
+            [self performSelector:@selector(showUpgradeDialogWithPage:)
+                       withObject:@(ASCUpgradePageInstall)
+                       afterDelay:0];
+        }
+    }
 }
 
 - (void)showUpgradeDialog:(NSWindow *)parentWindow page:(ASCUpgradePage)page {
