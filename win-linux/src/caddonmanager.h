@@ -65,7 +65,7 @@ public:
 
     // Entry points called from the start-page command dispatcher.
     void doAction(Action action); // page button was clicked
-    bool isInstalled() const;
+    bool isInstalled(QString *version = nullptr) const;
     bool restartRequired() const;
     void installFromBundle(const QString& path);
     QString appcastUrl() const;

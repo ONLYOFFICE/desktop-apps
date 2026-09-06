@@ -43,6 +43,7 @@
 
 #import "ASCTabCloseButtonCell.h"
 #import "ASCTabViewCell.h"
+#import "NSColor+Extensions.h"
 
 @interface ASCTabCloseButtonCell ()
 
@@ -94,6 +95,23 @@
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+    if (self.isHover) {
+        NSColor * backgroundColor;
+
+        if (@available(macOS 10.13, *)) {
+            backgroundColor = [self isParentLight]
+                ? [NSColor colorNamed:@"tab-closeHoverDarkColor"]
+                : [NSColor colorNamed:@"tab-closeHoverLightColor"];
+        } else {
+            backgroundColor = [self isParentLight]
+                ? UIColorFromRGBA(0x000000, 0.2)
+                : UIColorFromRGBA(0xffffff, 0.2);
+        }
+
+        [backgroundColor setFill];
+        NSRectFillUsingOperation(cellFrame, NSCompositingOperationSourceOver);
+    }
+
     if (self.image && self.imagePosition != NSNoImage) {
         [self drawImage:self.image withFrame:cellFrame inView:controlView];
     }

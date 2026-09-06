@@ -112,8 +112,20 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
 }
 
 - (BOOL)isInstalled {
+    return [self isInstalled:nil];
+}
+
+- (BOOL)isInstalled:(NSString * _Nullable * _Nullable)version {
     CAscApplicationManager *appManager = [NSAscApplicationWorker getAppManager];
-    return appManager->CheckMainAddon();
+
+    std::string sVersion;
+    const BOOL bInstalled = appManager->CheckMainAddon(&sVersion);
+
+    if (version) {
+        *version = bInstalled ? [NSString stringWithUTF8String:sVersion.c_str()] : @"";
+    }
+
+    return bInstalled;
 }
 
 - (BOOL)restartRequired {
@@ -129,7 +141,8 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
         return;
 
     if (action == ASCAddonManagerActionInstall) {
-        if (![self isInstalled])
+        NSString *version = nil;
+        if (![self isInstalled:&version] || ![version isEqualToString:[self appVersion]])
             [self install];
     } else if (action == ASCAddonManagerActionUninstall) {
         if ([self isInstalled])
@@ -346,10 +359,7 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
         if (![addon isKindOfClass:[NSDictionary class]] || addon.count == 0)
             break;
 
-        NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
-        NSString *currVersion = [NSString stringWithFormat:@"%@.%@",
-                                 [infoDictionary objectForKey:@"CFBundleShortVersionString"],
-                                 [infoDictionary objectForKey:@"ASCBundleBuildNumber"]];
+        NSString *currVersion = [self appVersion];
         NSString *version = addon[@"version"];
         if (![version isKindOfClass:[NSString class]] || version.length == 0)
             break;
@@ -406,6 +416,13 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
 }
 
 #pragma mark - Helper Methods
+
+- (NSString *)appVersion {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    return [NSString stringWithFormat:@"%@.%@",
+            [infoDictionary objectForKey:@"CFBundleShortVersionString"],
+            [infoDictionary objectForKey:@"ASCBundleBuildNumber"]];
+}
 
 - (void)postProgressChanged:(int)progress {
     [[NSNotificationCenter defaultCenter] postNotificationName:ASCAddonManagerProgressChangedNotification
