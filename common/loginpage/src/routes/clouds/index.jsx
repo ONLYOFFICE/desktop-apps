@@ -1,4 +1,4 @@
-import { For, Show, createSignal, createEffect } from "solid-js";
+import { For, Show, createSignal, createEffect, createMemo } from "solid-js";
 import { providers, portals, openConnectedPortal, logoutConnectedPortal, forgetConnectedPortal, connectToProvider } from "@/services/portals.js";
 import { relpath } from "@/sdk/portals.js";
 import { command } from "@/sdk/bridge.js";
@@ -240,6 +240,16 @@ export default function Clouds() {
   const [connectingProvider, setConnectingProvider] = createSignal(null);
   const [removingIds, setRemovingIds] = createSignal(new Set());
 
+  const connectedProviders = createMemo(() =>
+    new Set(portals().map((p) => p.provider.toLowerCase()))
+  );
+
+  const visibleProviders = createMemo(() =>
+    providers().filter((p) =>
+      !p.entryPage || !connectedProviders().has(p.provider.toLowerCase())
+    )
+  );
+
   function handleRemove(portal) {
     if (removingIds().has(portal.portal)) return;
     setRemovingIds((prev) => new Set([...prev, portal.portal]));
@@ -273,7 +283,7 @@ export default function Clouds() {
       <section>
         <h2 class="clouds-section-title">{t("portalAvailableTitle", "Available clouds")}</h2>
         <div class="provider-list">
-          <For each={providers()}>
+          <For each={visibleProviders()}>
             {(provider) => <ProviderItem provider={provider} onConnect={setConnectingProvider} />}
           </For>
         </div>
