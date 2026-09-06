@@ -365,7 +365,7 @@ private:
                 bool primary_bad = (url.isEmpty() /*|| !pDownloader->isUrlAccessible(QStrToTStr(url))*/);
                 bool prefer_secondary = InputArgs::contains(L"--prefer-alternate-url");
                 QString packageUrl = (!url2.isEmpty() && (primary_bad || prefer_secondary)) ? url2 : url;
-                CLogger::log("Download from URL:\n" + url);
+                CLogger::log("Download from URL:\n" + packageUrl);
 
                 QString hash = platform.value("md5").toString();
 
@@ -399,9 +399,19 @@ CAddonManager::~CAddonManager()
     pimpl = nullptr;
 }
 
-bool CAddonManager::isInstalled() const
+bool CAddonManager::isInstalled(QString *version) const
 {
-	return CAscApplicationManagerWrapper::getInstance().CheckMainAddon();
+    std::string sVersion;
+    const bool bInstalled = CAscApplicationManagerWrapper::getInstance().CheckMainAddon(&sVersion);
+
+    if (version)
+    {
+        version->clear();
+        if (bInstalled)
+            *version = QString::fromStdString(sVersion);
+    }
+
+    return bInstalled;
 }
 
 bool CAddonManager::restartRequired() const
@@ -458,7 +468,8 @@ void CAddonManager::doAction(Action action)
         return;
 
     if (action == Action::Install) {
-        if (!isInstalled())
+        QString version;
+        if (!isInstalled(&version) || version != QString(VER_FILEVERSION_STR))
             pimpl->install();
     } else if (action == Action::Uninstall) {
         if (isInstalled())
