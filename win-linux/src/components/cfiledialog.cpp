@@ -282,7 +282,7 @@ QString CFileDialogWrapper::getSupportedFiltersByEditor(const QString &type) con
     else {
         if (type == "word")
             return "*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 "
-                   "*.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.docxf *.oform "
+                   "*.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md "
                    "*.sxw *.stw *.xps *.oxps *.pages *.hwp *.hwpx";
         else if (type == "cell")
             return "*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers";
@@ -307,12 +307,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                 _pdf_formats = getSupportedFiltersByEditor("pdf"),
                 _draw_formats = getSupportedFiltersByEditor("diagram");
 
-        _filter_ =  tr("Text documents") +
-#ifndef __LOCK_OFORM_FORMATS
-                        " ("+ _word_formats + ");;" +
-#else
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.sxw *.stw *.xps *.oxps);;" +
-#endif
+        _filter_ =  tr("Text documents") + " ("+ _word_formats + ");;" +
                     tr("Spreadsheets") + " (" + _cell_formats + ");;" +
                     tr("Presentations") + " (" + _slide_formats + ");;" +
                     tr("Crossplatform") + " (" + _pdf_formats + ");;" +
@@ -458,11 +453,7 @@ QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool
 
 QStringList CFileDialogWrapper::modalOpenForEncrypt(const QString& path, bool multi)
 {
-#ifndef __LOCK_OFORM_FORMATS
-    QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx *.oform);;" +
-#else
     QString _filter = tr("Text documents") + " (*.docx *.docm *.dotm *.dotx);;" +
-#endif
                         tr("Spreadsheets") + " (*.xlsx *.xlsm *.xltm *.xltx);;" +
                         tr("Presentations") + " (*.potm *.potx *.ppsm *.pptm *.ppsx *.pptx)";
 

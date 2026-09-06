@@ -471,30 +471,6 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>docxf</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-docxf</string>
-			<key>CFBundleTypeName</key>
-			<string>ONLYOFFICE Document Form Template</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>oform</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-oform</string>
-			<key>CFBundleTypeName</key>
-			<string>ONLYOFFICE Fillable Online Form</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
 				<string>xlsm</string>
 			</array>
 			<key>CFBundleTypeName</key>
