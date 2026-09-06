@@ -750,8 +750,14 @@
         
         ASCAboutController *aboutController = (ASCAboutController *)aboutWindow.contentViewController;
 #ifdef USE_ADDON_MODE
-        aboutController.aiToolsHidden = ![[ASCAddonManager sharedManager] isInstalled];
-        aboutController.aiToolsVersion = appVersion;
+        NSString *addonVersion = nil;
+        BOOL isInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
+        aboutController.aiToolsHidden = !isInstalled;
+        if (isInstalled) {
+            aboutController.aiToolsVersion = addonVersion ?: appVersion;
+        } else {
+            aboutController.aiToolsVersion = @"";
+        }
 #else
         aboutController.aiToolsHidden = YES;
 #endif
