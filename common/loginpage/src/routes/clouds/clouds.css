@@ -60,7 +60,7 @@
   gap: 10px;
   padding: 6px 8px;
   border-radius: 6px;
-  /* cursor: pointer; */
+  cursor: pointer;
   position: relative;
   border: 1px solid var(--border-regular-control, #cfcfcf);
 }
@@ -176,7 +176,7 @@
   gap: 10px;
   padding: 6px 8px;
   border-radius: 6px;
-  /* cursor: pointer; */
+  cursor: pointer;
   background: none;
   border: none;
   width: 100%;
@@ -224,6 +224,12 @@
   flex-shrink: 0;
   width: auto;
   padding-inline: 16px;
+  border: 0 none;
+
+  &:hover {
+    background: none;
+    text-decoration: underline;
+  }
 }
 
 /* Connect dialog */

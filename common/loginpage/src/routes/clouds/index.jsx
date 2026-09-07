@@ -226,10 +226,10 @@ function PortalRow(props) {
 
 function ProviderItem(props) {
   return (
-    <div class="provider-item">
+    <div class="provider-item" onClick={() => props.onConnect(props.provider)}>
       <ProviderIcon provider={props.provider} type="connectionsList" />
       <span class="provider-name">{props.provider.name}</span>
-      <Button variant="default" class="provider-connect-btn" onClick={() => props.onConnect(props.provider)}>{t("btnConnectAction", "Connect")}</Button>
+      <Button variant="default" class="provider-connect-btn" onClick={(e) => { /*e.stopPropagation(); props.onConnect(props.provider);*/ }}>{t("btnConnectAction", "Connect")}</Button>
     </div>
   );
 }
