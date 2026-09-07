@@ -98,7 +98,7 @@
 
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         std::wstring wcntr{appManager->GetUserSettings()->Get(L"country")};
-        NSString * nscntr = [NSString stringWithstdwstring:!wcntr.empty() ? wcntr : [ASCLinguist appLanguageCode]];
+        NSString * nscntr = [NSString stringWithstdwstring:!wcntr.empty() ? wcntr : [[ASCLinguist appLanguageCode] stdwstring]];
         [_jsVariables setValue:nscntr forKey:@"country"];
     }
 
