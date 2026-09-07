@@ -1796,7 +1796,7 @@ void CMainWindow::sendAddonStatusToStartPage(const QString& text, const QString&
 
     QJsonObject jsn;
     jsn["name"]      = "ONLYOFFICE AI Tools";
-    jsn["version"]   = version;
+    jsn["version"]   = !version.isEmpty() ? version : VER_FILEVERSION_STR;
     jsn["installed"] = installed;
     jsn["restart"]   = am ? am->restartRequired() : false;
     jsn["license"]   = QJsonObject({{"title","Commercial"},{"url", URL_BSL_LICENSE}});
