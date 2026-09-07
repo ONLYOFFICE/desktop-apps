@@ -9,8 +9,15 @@ const TEMPLATES_URL_2 = "https://oforms-new.site.dev/";
 let iframeEl = null;
 
 export function sendTemplatesSettings(opts) {
-  if (iframeEl?.contentWindow && opts.country) {
-    iframeEl.contentWindow.postMessage({ type: "country", value: opts.country }, "*");
+  if (iframeEl?.contentWindow && opts) {
+    iframeEl.contentWindow.postMessage(opts, "*");
+  }
+}
+
+export function sendTemplatesCountry(code) {
+  if (iframeEl?.contentWindow && code) {
+    // sendTemplatesSettings({type: "country", value: code});
+    sendTemplatesSettings({type: "locale", value: code});
   }
 }
 

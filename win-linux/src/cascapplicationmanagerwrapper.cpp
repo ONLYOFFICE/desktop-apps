@@ -1658,7 +1658,8 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     std::wstring _country = userSettings(L"country");
-    EditorJSVariables::setVariable("country", QString::fromStdWString(!_country.empty() ? _country : L"en"));
+    EditorJSVariables::setVariable("country", !_country.empty() ?
+            QString::fromStdWString(_country) : CLangater::getCurrentLangCode());
 
     std::vector<std::pair<std::string, std::string>> layouts = _app.GetKeyboardLayoutList();
     QJsonObject kbLangs;
@@ -2377,7 +2378,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         }
 
         if ( objRoot.contains("country") ) {
-            setUserSettings(L"country", objRoot["country"].toString().toStdWString());
+            QString _tmpl_country_code = objRoot["country"].toString();
+            setUserSettings(L"country", _tmpl_country_code.toStdWString());
+            EditorJSVariables::setVariable("country", _tmpl_country_code);
         }
 
 #ifdef _UPDMODULE

@@ -758,6 +758,7 @@ public:
 
                                 if ( [json objectForKey:@"country"] != nil ) {
                                     appManager->GetUserSettings()->Set(L"country", [[json[@"country"] stringValue] stdwstring]);
+                                    [[ASCEditorJSVariables instance] setVariable:@"country" withString:[json[@"country"] stringValue]];
                                 }
 
                                 [[ASCEditorJSVariables instance] applyParameters];

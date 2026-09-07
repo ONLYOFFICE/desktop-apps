@@ -7,7 +7,8 @@ import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/services/ai-panel";
 import { aichat } from "@/stores/aichat";
-import { sendTemplatesSettings, sendTemplatesTheme } from "@/routes/templates";
+import { sendTemplatesCountry, sendTemplatesTheme } from "@/routes/templates";
+import { TemplatesCountrySet } from "@/data/countries";
 
 
 function injectCustomThemeCss(id, colors) {
@@ -155,8 +156,8 @@ export function initSettingsSync() {
   }
   applyThemeToDom(settings.theme);
 
-  // const country = localStorage.getItem("sett-country") || "US";
-  setSettings("country", nativevars?.country ?? "en");
+  const nativeCountry = !!nativevars?.country ? nativevars.country.slice(0,2) : 'en';
+  setSettings("country", TemplatesCountrySet.has(nativeCountry) ? nativeCountry : "en");
 
   _textDirectionChanged = createMemo(() => {
     const snap = nativeSnapshot();
@@ -242,7 +243,7 @@ export function initSettingsSync() {
     command("settings:apply", JSON.stringify(new_settings));
 
     // localStorage.setItem("sett-country", settings.country);
-    sendTemplatesSettings({country: settings.country});
+    sendTemplatesCountry(settings.country);
 
     const _plugin_opts = getPluginSettings();
     if (!!_plugin_opts) {

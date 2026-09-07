@@ -14,19 +14,10 @@ import { command } from "@/sdk/bridge";
 import styles from "./index.module.css";
 import { addonInfo } from "@/services/about";
 import { aichat } from "@/stores/aichat";
+import { TEMPLATES_COUNTRY_ARRAY } from "@/data/countries";
 
 export default function GeneralSettings() {
-  const countryOptions = createMemo(() => [
-    { value: "en", label: "United States", sublabel: "" },
-    { value: "zh", label: "中國", sublabel: "China" },
-    { value: "es", label: "España", sublabel: "Spain" },
-    { value: "de", label: "Duitsland", sublabel: "Germany" },
-    { value: "pt", label: "Portugal", sublabel: "Portugal" },
-    { value: "fr", label: "France", sublabel: "France" },
-    { value: "it", label: "Italia", sublabel: "Italy" },
-    { value: "ja", label: "日本", sublabel: "Japan" },
-    { value: "ar", label: "المملكة العربية السعودية", sublabel: "Saudi Arabia" },
-  ]);
+  const countryOptions = createMemo(() => TEMPLATES_COUNTRY_ARRAY);
 
   const languageOptions = createMemo(() => availableLangs().map((l) => ({
     value: l.code,
