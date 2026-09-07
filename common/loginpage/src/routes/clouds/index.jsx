@@ -45,6 +45,7 @@ function ConnectDialog(props) {
   const hasEntryPage = () => !!props.provider?.entryPage;
   const isOnlyoffice = () => props.provider?.provider === "onlyoffice";
   let inputRef;
+  let contentRef;
   const URL_PROXY_SCHEME = 'onlyoffice-proxy://';
 
   createEffect(() => {
@@ -52,6 +53,8 @@ function ConnectDialog(props) {
     setError("");
     if (props.provider && !hasEntryPage()) {
       setTimeout(() => inputRef?.focus(), 150);
+    } else if (props.provider && hasEntryPage()) {
+      setTimeout(() => contentRef?.focus(), 150);
     }
   });
 
@@ -136,7 +139,7 @@ function ConnectDialog(props) {
 
   return (
     <Dialog open={!!props.provider} onOpenChange={(open) => !open && handleClose()}>
-      <Dialog.Content class="connect-dialog" onKeyDown={(e) => e.key === "Enter" && e.target.tagName !== "BUTTON" && handleConnect()}>
+      <Dialog.Content ref={contentRef} class="connect-dialog" onKeyDown={(e) => e.key === "Enter" && e.target.tagName !== "BUTTON" && handleConnect()}>
         <div class="dlg-header">
           <Dialog.Title class="dlg-title">
             {t("dlgConnectToTitle", "Connect to $1").replace("$1", props.provider?.name ?? "")}
