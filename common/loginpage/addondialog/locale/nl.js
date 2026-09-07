@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Ga verder dan standaard bewerken met AI Tools",
-  addonDescr: "Bespaar tijd en werk slimmer in ONLYOFFICE Docs met een optionele AI-laag voor documenten, spreadsheets, presentaties en pdf's.",
-  addonSlide1: "Werk sneller in alle editors — gebruik AI in documenten, spreadsheets, presentaties en pdf's met aangepaste providers, MCP en webzoekopdrachten.",
+  addonDescr: "Bespaar tijd en werk slimmer in ONLYOFFICE Docs met een optionele AI-laag voor documenten, spreadsheets, presentaties en PDF's.",
+  addonSlide1: "Werk sneller in alle editors door AI te gebruiken in bestanden van elk type, met aangepaste providers, MCP en zoeken op het web.",
   addonSlide2: "Maak documenten en formulieren met minder moeite — genereer inhoud, voeg automatisch velden toe en structureer formulieren in enkele minuten.",
   addonSlide3: "Verbeter de kwaliteit van inhoud — herschrijf tekst, vertaal inhoud, vat informatie samen en pas de formulering aan voor elke doelgroep.",
   addonSlide4: "Automatiseer routinetaken — extraheer gegevens, verwerk informatie en verminder repetitief handmatig werk.",

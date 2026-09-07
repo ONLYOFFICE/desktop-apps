@@ -1,7 +1,7 @@
 export default {
   addonTitle: "AI Tools ile standart düzenlemenin ötesine geçin",
-  addonDescr: "ONLYOFFICE Docs'ta belgeler, e-tablolar, sunumlar ve PDF'ler için isteğe bağlı bir AI katmanıyla zamandan tasarruf edin ve daha akıllıca çalışın.",
-  addonSlide1: "Tüm düzenleyicilerde daha hızlı çalışın – özel sağlayıcılar, MCP ve web araması ile belgelerde, e-tablolarda, sunumlarda ve PDF'lerde AI kullanın.",
+  addonDescr: "ONLYOFFICE Docs'ta belgeler, elektronik tablolar, sunumlar ve PDF dosyaları için ek bir katmanla çalışırken zaman ve emek tasarrufu yapın.",
+  addonSlide1: "Özel sağlayıcılar, MCP ve web araması ile her tür dosyada yapay zeka kullanarak tüm editörlerde daha hızlı çalışın.",
   addonSlide2: "Belge ve formları daha az emekle oluşturun – içerik üretin, alanları otomatik olarak ekleyin ve formları dakikalar içinde yapılandırın.",
   addonSlide3: "İçerik kalitesini artırın – metni yeniden yazın, içeriği çevirin, bilgileri özetleyin ve ifadeleri her türlü hedef kitleye uyarlayın.",
   addonSlide4: "Rutin görevleri otomatikleştirin – veri çıkarın, bilgileri işleyin ve tekrarlayan manuel işleri azaltın.",

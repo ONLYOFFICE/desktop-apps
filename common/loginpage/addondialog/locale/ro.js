@@ -1,9 +1,9 @@
 export default {
   addonTitle: "Mergeți dincolo de editarea standard cu AI Tools",
   addonDescr:
-    "Economisiți timp și lucrați mai inteligent în ONLYOFFICE Docs cu un strat opțional de inteligență artificială pentru documente, foi de calcul, prezentări și PDF-uri.",
+    "Economisiți timp și efort lucrând în ONLYOFFICE Docs cu un nivel suplimentar pentru documente, foi de calcul, prezentări și fișiere PDF.",
   addonSlide1:
-    "Lucrați mai rapid în toate editoarele — utilizați AI în documente, foi de calcul, prezentări și PDF-uri cu furnizori personalizați, MCP și căutare pe web.",
+    "Lucrați mai rapid în toate editorele folosind AI în fișiere de orice tip, cu furnizori personalizați, MCP și căutare pe web.",
   addonSlide2:
     "Creați documente și formulare cu mai puțin efort — generați conținut, adăugați câmpuri automat și structurați formulare în câteva minute.",
   addonSlide3:

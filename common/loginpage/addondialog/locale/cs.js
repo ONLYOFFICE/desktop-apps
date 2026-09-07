@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Posuňte úpravy dokumentů na novou úroveň s AI Tools",
-  addonDescr: "Ušetřete čas a pracujte chytřeji v ONLYOFFICE Docs díky volitelné vrstvě AI pro dokumenty, tabulky, prezentace a soubory PDF.",
-  addonSlide1: "Pracujte rychleji ve všech editorech — používejte AI v dokumentech, tabulkách, prezentacích a souborech PDF s vlastními poskytovateli, MCP a vyhledáváním na webu.",
+  addonDescr: "Ušetřete čas a úsilí při práci v ONLYOFFICE Docs s další vrstvou pro dokumenty, tabulky, prezentace a soubory PDF.",
+  addonSlide1: "Pracujte rychleji ve všech editorech pomocí AI v souborech jakéhokoli typu, s vlastními poskytovateli, MCP a webovým vyhledáváním.",
   addonSlide2: "Vytvářejte dokumenty a formuláře s menší námahou — generujte obsah, automaticky přidávejte pole a strukturujte formuláře během několika minut.",
   addonSlide3: "Zlepšete kvalitu obsahu — přepisujte text, překládejte obsah, shrnujte informace a upravujte formulace pro jakékoli publikum.",
   addonSlide4: "Automatizujte rutinní úkoly — extrahujte data, zpracovávejte informace a omezte opakující se manuální práci.",

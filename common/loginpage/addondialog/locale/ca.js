@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Supera l'edició estàndard amb AI Tools",
-  addonDescr: "Estalvia temps i treballa de manera més intel·ligent a ONLYOFFICE Docs amb una capa opcional d'IA per a documents, fulls de càlcul, presentacions i PDF.",
-  addonSlide1: "Treballa més ràpid a tots els editors — utilitza la IA en documents, fulls de càlcul, presentacions i PDF amb proveïdors personalitzats, MCP i cerca web.",
+  addonDescr: "Estalvieu temps i esforços treballant a ONLYOFFICE Docs amb una capa addicional per a documents, fulls de càlcul, presentacions i fitxers PDF.",
+  addonSlide1: "Treballeu més ràpidament a tots els editors utilitzant IA en qualsevol tipus de fitxer, amb proveïdors personalitzats, MCP i cerca web.",
   addonSlide2: "Crea documents i formularis amb menys esforç — genera contingut, afegeix camps automàticament i estructura formularis en minuts.",
   addonSlide3: "Millora la qualitat del contingut — reescriu text, tradueix contingut, resumeix informació i adapta la redacció a qualsevol audiència.",
   addonSlide4: "Automatitza tasques rutinàries — extreu dades, processa informació i redueix el treball manual repetitiu.",

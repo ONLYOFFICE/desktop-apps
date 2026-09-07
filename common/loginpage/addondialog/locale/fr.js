@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Allez plus loin que l'édition standard avec les outils IA",
   addonDescr: "Gagnez du temps et travaillez plus intelligemment dans ONLYOFFICE Docs grâce à une couche IA optionnelle pour les documents, feuilles de calcul, présentations et fichiers PDF.",
-  addonSlide1: "Travaillez plus vite dans tous les éditeurs — utilisez l'IA dans les documents, feuilles de calcul, présentations et fichiers PDF avec des fournisseurs personnalisés, MCP et la recherche web.",
+  addonSlide1: "Travaillez plus rapidement dans tous les éditeurs en utilisant l'IA dans des fichiers de tout type, avec des fournisseurs personnalisés, MCP et la recherche web.",
   addonSlide2: "Créez des documents et des formulaires plus facilement — générez du contenu, ajoutez des champs automatiquement et structurez des formulaires en quelques minutes.",
   addonSlide3: "Améliorez la qualité du contenu — réécrivez du texte, traduisez du contenu, résumez des informations et adaptez le style à n'importe quel public.",
   addonSlide4: "Automatisez les tâches répétitives — extrayez des données, traitez des informations et réduisez le travail manuel répétitif.",

@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Lampaui pengeditan standar dengan AI Tools",
   addonDescr: "Hemat waktu dan bekerja lebih cerdas di ONLYOFFICE Docs dengan lapisan AI opsional untuk dokumen, spreadsheet, presentasi, dan PDF.",
-  addonSlide1: "Bekerja lebih cepat di semua editor — gunakan AI dalam dokumen, spreadsheet, presentasi, dan PDF dengan penyedia khusus, MCP, dan pencarian web.",
+  addonSlide1: "Bekerja lebih cepat di semua editor menggunakan AI dalam file jenis apa pun, dengan penyedia khusus, MCP, dan pencarian web.",
   addonSlide2: "Buat dokumen dan formulir dengan lebih sedikit usaha — hasilkan konten, tambahkan bidang secara otomatis, dan susun formulir dalam hitungan menit.",
   addonSlide3: "Tingkatkan kualitas konten — tulis ulang teks, terjemahkan konten, ringkas informasi, dan sesuaikan gaya bahasa untuk audiens apa pun.",
   addonSlide4: "Otomatiskan tugas rutin — ekstrak data, proses informasi, dan kurangi pekerjaan manual yang berulang.",

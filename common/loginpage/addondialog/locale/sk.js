@@ -3,7 +3,7 @@ export default {
   addonDescr:
     "Ušetrite čas a pracujte efektívnejšie v ONLYOFFICE Docs s voliteľnou vrstvou AI pre dokumenty, tabuľky, prezentácie a PDF súbory.",
   addonSlide1:
-    "Pracujte rýchlejšie vo všetkých editoroch — používajte AI v dokumentoch, tabuľkách, prezentáciách a PDF súboroch s vlastnými poskytovateľmi, MCP a webovým vyhľadávaním.",
+    "Pracujte rýchlejšie vo všetkých editoroch pomocou AI v súboroch akéhokoľvek typu, s vlastnými poskytovateľmi, MCP a webovým vyhľadávaním.",
   addonSlide2:
     "Vytvárajte dokumenty a formuláre s menším úsilím — generujte obsah, automaticky pridávajte polia a štruktúrujte formuláre v priebehu minút.",
   addonSlide3:

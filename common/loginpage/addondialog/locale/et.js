@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Jõudke standardsest redigeerimisest kaugemale AI Tools abil",
-  addonDescr: "Säästke aega ja töötage targemalt ONLYOFFICE Docsis valikulise AI-kihi abil, mis toetab dokumente, arvutustabeleid, esitlusi ja PDF-faile.",
-  addonSlide1: "Töötage kiiremini kõigis redaktorites — kasutage AI-d dokumentides, arvutustabelites, esitlustes ja PDF-failides kohandatud teenusepakkujate, MCP-i ja veebiotsingu abil.",
+  addonDescr: "Säästke aega ja vaeva ONLYOFFICE Docs-is töötades täiendava kihiga dokumentide, arvutustabelite, esitluste ja PDF-failide jaoks.",
+  addonSlide1: "Töötage kiiremini kõigis redaktorites, kasutades AI-d mis tahes tüüpi failide puhul, kohandatud pakkujate, MCP ja veebi otsimisega.",
   addonSlide2: "Looge dokumente ja vorme väiksema vaevaga — genereerige sisu, lisage välju automaatselt ja struktureerige vorme minutitega.",
   addonSlide3: "Parandage sisu kvaliteeti — kirjutage tekst ümber, tõlkige sisu, koostage kokkuvõtteid ja kohandage sõnastust vastavalt sihtrühmale.",
   addonSlide4: "Automatiseerige rutiinseid ülesandeid — eraldage andmeid, töödelge teavet ja vähendage korduvat käsitsitööd.",

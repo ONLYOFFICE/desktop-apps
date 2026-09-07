@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Panāciet tālāk par standarta redigēšanu ar AI rīkiem",
-  addonDescr: "Ietaupiet laiku un strādājiet efektīvāk ONLYOFFICE Docs, izmantojot izvēles AI slāni dokumentiem, izklājlapām, prezentācijām un PDF failiem.",
-  addonSlide1: "Strādājiet ātrāk visos redaktoros — izmantojiet AI dokumentos, izklājlapās, prezentācijās un PDF failos ar pielāgotiem pakalpojumu sniedzējiem, MCP un tīmekļa meklēšanu.",
+  addonDescr: "Ietaupiet laiku un pūles, strādājot ONLYOFFICE Docs ar papildu slāni dokumentiem, izklājlapām, prezentācijām un PDF failiem.",
+  addonSlide1: "Strādājiet ātrāk visos redaktoros, izmantojot AI jebkura veida failiem, ar pielāgotiem nodrošinātājiem, MCP un tīmekļa meklēšanu.",
   addonSlide2: "Veidojiet dokumentus un formas ar mazāku piepūli — ģenerējiet saturu, automātiski pievienojiet laukus un strukturējiet formas dažu minūšu laikā.",
   addonSlide3: "Uzlabojiet satura kvalitāti — pārrakstiet tekstu, tulkojiet saturu, apkopojiet informāciju un pielāgojiet formulējumu jebkurai auditorijai.",
   addonSlide4: "Automatizējiet ikdienas uzdevumus — izvelciet datus, apstrādājiet informāciju un samaziniet atkārtotu manuālu darbu.",

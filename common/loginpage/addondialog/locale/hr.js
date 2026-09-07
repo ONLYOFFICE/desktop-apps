@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Idite dalje od standardnog uređivanja s alatima AI",
   addonDescr: "Uštedite vrijeme i radite pametnije u ONLYOFFICE Docs uz dodatni AI sloj za dokumente, proračunske tablice, prezentacije i PDF datoteke.",
-  addonSlide1: "Radite brže u svim uređivačima — koristite AI u dokumentima, proračunskim tablicama, prezentacijama i PDF datotekama uz prilagođene davatelje usluga, MCP i pretraživanje weba.",
+  addonSlide1: "Radite brže u svim urednicima koristeći AI u datotekama bilo koje vrste, s prilagođenim davateljima usluga, MCP-om i pretraživanjem weba.",
   addonSlide2: "Izrađujte dokumente i obrasce uz manje truda — generirajte sadržaj, automatski dodajte polja i strukturirajte obrasce u nekoliko minuta.",
   addonSlide3: "Poboljšajte kvalitetu sadržaja — prepisujte tekst, prevodite sadržaj, sažimajte informacije i prilagodite izričaj bilo kojoj publici.",
   addonSlide4: "Automatizirajte rutinske zadatke — izdvajajte podatke, obrađujte informacije i smanjite repetitivan ručni rad.",

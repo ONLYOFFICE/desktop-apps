@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Téigh níos faide ná an eagarthóireacht chaighdeánach le Uirlisí AI",
-  addonDescr: "Sábháil am agus oibrigh ar bhealach níos cliste in ONLYOFFICE Docs le sraith AI roghnach do dhoiciméid, scarbhileoga, láithreoirí, agus PDFanna.",
-  addonSlide1: "Oibrigh níos gasta ar fud gach eagarthóra — bain úsáid as AI i ndoiciméid, scarbhileoga, láithreoirí, agus PDFanna le soláthraithe saincheaptha, MCP, agus cuardach gréasáin.",
+  addonDescr: "Sábháil am agus iarracht agus tú ag obair in ONLYOFFICE Docs le ciseal breise do dhoiciméid, scarbhileoga, láithriúcháin agus comhaid PDF.",
+  addonSlide1: "Oibrigh níos tapúla i ngach eagarthóir trí AI a úsáid i gcomhaid de chineál ar bith, le soláthraithe saincheaptha, MCP agus cuardach gréasáin.",
   addonSlide2: "Cruthaigh doiciméid agus foirmeacha le níos lú iarrachta — gin ábhar, cuir réimsí leis go huathoibríoch, agus struchtúraigh foirmeacha i gceann nóiméad.",
   addonSlide3: "Feabhsaigh cáilíocht an ábhair — athscríobh téacs, aistrigh ábhar, achoimrigh faisnéis, agus cuir an friotal in oiriúint do lucht éisteachta ar bith.",
   addonSlide4: "Uathoibrigh tascanna rúitíneach — bain sonraí, próiseáil faisnéis, agus laghdaigh obair láimhe athráite.",

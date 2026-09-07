@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Gå längre än vanlig redigering med AI Tools",
   addonDescr: "Spara tid och arbeta smartare i ONLYOFFICE Docs med ett valfritt AI-lager för dokument, kalkylblad, presentationer och PDF-filer.",
-  addonSlide1: "Arbeta snabbare i alla redigerare – använd AI i dokument, kalkylblad, presentationer och PDF-filer med anpassade leverantörer, MCP och webbsökning.",
+  addonSlide1: "Arbeta snabbare i alla editorer genom att använda AI i filer av alla typer, med anpassade leverantörer, MCP och webbsökning.",
   addonSlide2: "Skapa dokument och formulär med mindre ansträngning – generera innehåll, lägg till fält automatiskt och strukturera formulär på några minuter.",
   addonSlide3: "Förbättra innehållets kvalitet – skriv om text, översätt innehåll, sammanfatta information och anpassa formuleringen för valfri målgrupp.",
   addonSlide4: "Automatisera rutinuppgifter – extrahera data, bearbeta information och minska repetitivt manuellt arbete.",
