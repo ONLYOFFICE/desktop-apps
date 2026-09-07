@@ -313,9 +313,8 @@ void Tab::paintEvent(QPaintEvent *ev)
             QStylePainter p(this);
             p.setRenderHint(QPainter::Antialiasing);
             const qreal radius = TAB_BORDER_RADIUS * dpi_ratio;
-            int left = AscAppManager::isRtlEnabled() ? frameWidth() : 0;
             QPainterPath path;
-            path.addRoundedRect(QRectF(rect().adjusted(left, 0, left ? 0 : -frameWidth(), 0)), radius, radius);
+            path.addRoundedRect(QRectF(rect()), radius, radius);
             p.fillPath(path, QBrush(QColor(tabcolor)));
         }
     } else {
