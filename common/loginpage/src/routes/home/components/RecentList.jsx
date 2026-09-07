@@ -1,4 +1,4 @@
-import { For, Show } from "solid-js";
+import { createEffect, createSignal, For, onCleanup, Show } from "solid-js";
 import { exploreFile, openRecentFile } from "@/sdk";
 import { t } from "@/services/l10n";
 import { ContextMenu, DropdownMenu } from "@/components";
@@ -33,10 +33,30 @@ function FileMenuItems(props) {
 }
 
 function RecentRow(props) {
+  const [menuOpen, setMenuOpen] = createSignal(false);
+
+  let rowEl;
+  let moreEl;
+
+  const isMoreHidden = () =>
+    moreEl.offsetParent === null || getComputedStyle(moreEl).visibility === "hidden";
+
+  createEffect(() => {
+    if (!menuOpen() || !rowEl || !moreEl) return;
+
+    const observer = new ResizeObserver(() => {
+      if (isMoreHidden()) setMenuOpen(false);
+    });
+
+    observer.observe(rowEl);
+    onCleanup(() => observer.disconnect());
+  });
+
   return (
     <ContextMenu>
       <ContextMenu.Trigger
         as="div"
+        ref={(el) => (rowEl = el)}
         class="row text-normal"
         classList={{
           pinned: props.model.pinned,
@@ -99,8 +119,8 @@ function RecentRow(props) {
             </Show>
           </button>
           <Show when={props.model.type !== "folder"}>
-            <DropdownMenu onOpenChange={(open) => {}}>
-              <DropdownMenu.Trigger class="btn-recents-tool more" onClick={(e) => e.stopPropagation()}>
+            <DropdownMenu open={menuOpen()} onOpenChange={setMenuOpen}>
+              <DropdownMenu.Trigger ref={(el) => (moreEl = el)} class="btn-recents-tool more" onClick={(e) => e.stopPropagation()}>
                 <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#more" /></svg>}>
                   <i class="icon tool-icon more" />
                 </Show>
