@@ -29,7 +29,7 @@ export function sendTemplatesTheme(themeType) {
 
 function makeIframeUrl(base) {
   const u = new URL(base);
-  u.searchParams.set("hide", "lang");
+  // u.searchParams.set("hide", "lang");
   u.searchParams.set("lang", langCode());
   return u.toString();
 }
