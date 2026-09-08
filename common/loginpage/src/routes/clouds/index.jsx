@@ -51,10 +51,8 @@ function ConnectDialog(props) {
   createEffect(() => {
     setUrl(props.provider?.entryPage ?? "");
     setError("");
-    if (props.provider && !hasEntryPage()) {
-      setTimeout(() => inputRef?.focus(), 150);
-    } else if (props.provider && hasEntryPage()) {
-      setTimeout(() => contentRef?.focus(), 150);
+    if (props.provider) {
+      setTimeout(() => (hasEntryPage() ? contentRef : inputRef)?.focus(), 150);
     }
   });
 
