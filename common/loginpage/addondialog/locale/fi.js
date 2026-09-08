@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Mene tavallista muokkausta pidemmälle AI Toolsin avulla",
-  addonDescr: "Säästä aikaa ja työskentele fiksummin ONLYOFFICE Docsissa valinnaisen AI-tason avulla asiakirjoja, laskentataulukoita, esityksiä ja PDF-tiedostoja varten.",
-  addonSlide1: "Työskentele nopeammin kaikissa editoreissa käyttämällä tekoälyä minkä tahansa tyyppisissä tiedostoissa mukautettujen palveluntarjoajien, MCP:n ja verkkohaun avulla.",
+  addonDescr: "Säästä aikaa ONLYOFFICE Docsissa valinnaisella AI-tasolla asiakirjoja, laskentataulukoita, esityksiä ja PDF-tiedostoja varten.",
+  addonSlide1: "Työskentele nopeammin kaikissa editoreissa tekoälyn avulla mukautettujen palveluntarjoajien, MCP:n ja verkkohaun kanssa.",
   addonSlide2: "Luo asiakirjoja ja lomakkeita vaivattomammin — luo sisältöä, lisää kenttiä automaattisesti ja jäsennä lomakkeita minuuteissa.",
   addonSlide3: "Paranna sisällön laatua — kirjoita tekstiä uudelleen, käännä sisältöä, tiivistä tietoa ja mukauta sanamuotoa eri yleisöille.",
   addonSlide4: "Automatisoi rutiinitehtäviä — poimi tietoja, käsittele tietoa ja vähennä toistuvaa manuaalista työtä.",

@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Vá além da edição padrão com o AI Tools",
   addonDescr:
-    "Poupe tempo e esforço ao trabalhar no ONLYOFFICE Docs com uma camada adicional para documentos, folhas de cálculo, apresentações e ficheiros PDF.",
+    "Poupe tempo no ONLYOFFICE Docs com uma camada adicional para documentos, folhas de cálculo, apresentações e ficheiros PDF.",
   addonSlide1:
     "Trabalhe mais rapidamente em todos os editores utilizando IA em ficheiros de qualquer tipo, com fornecedores personalizados, MCP e pesquisa na web.",
   addonSlide2:

@@ -1,6 +1,6 @@
 export default {
   addonTitle: "Wykorzystaj więcej niż standardowa edycja dzięki AI Tools",
-  addonDescr: "Oszczędzaj czas i wysiłek podczas pracy w ONLYOFFICE Docs dzięki dodatkowej warstwie dla dokumentów, arkuszy kalkulacyjnych, prezentacji i plików PDF.",
+  addonDescr: "Oszczędzaj czas w ONLYOFFICE Docs dzięki dodatkowej warstwie dla dokumentów, arkuszy, prezentacji i plików PDF.",
   addonSlide1: "Pracuj szybciej we wszystkich edytorach, używając AI w plikach dowolnego typu, z niestandardowymi dostawcami, MCP i wyszukiwaniem w sieci.",
   addonSlide2: "Twórz dokumenty i formularze z mniejszym wysiłkiem — generuj treści, automatycznie dodawaj pola i twórz strukturę formularzy w kilka minut.",
   addonSlide3: "Podnieś jakość treści — przepisuj tekst, tłumacz treści, podsumowuj informacje i dostosowuj sformułowania do każdej grupy odbiorców.",

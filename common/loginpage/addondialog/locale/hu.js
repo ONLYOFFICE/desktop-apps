@@ -1,6 +1,6 @@
 export default {
   addonTitle: "Lépjen túl a hagyományos szerkesztésen az AI Tools segítségével",
-  addonDescr: "Takarítson meg időt és energiát az ONLYOFFICE Docs használatakor egy további réteggel a dokumentumokhoz, táblázatokhoz, prezentációkhoz és PDF-fájlokhoz.",
+  addonDescr: "Takarítson meg időt az ONLYOFFICE Docs használatakor egy extra réteggel dokumentumokhoz, táblázatokhoz, prezentációkhoz és PDF-ekhez.",
   addonSlide1: "Dolgozzon gyorsabban minden szerkesztőben, AI-t használva bármilyen típusú fájlhoz, egyéni szolgáltatókkal, MCP-vel és webes kereséssel.",
   addonSlide2: "Készítsen dokumentumokat és űrlapokat kevesebb erőfeszítéssel – generáljon tartalmat, adjon hozzá mezőket automatikusan, és strukturálja az űrlapokat percek alatt.",
   addonSlide3: "Javítsa a tartalom minőségét – írja át a szövegeket, fordítson tartalmat, foglalja össze az információkat, és igazítsa a megfogalmazást bármely közönséghez.",

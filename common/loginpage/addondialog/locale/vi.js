@@ -1,7 +1,7 @@
 export default {
   addonTitle: "Vượt xa khả năng chỉnh sửa thông thường với AI Tools",
   addonDescr: "Tiết kiệm thời gian và công sức khi làm việc trong ONLYOFFICE Docs với một lớp bổ sung cho tài liệu, bảng tính, bản trình bày và tệp PDF.",
-  addonSlide1: "Làm việc nhanh hơn trên mọi trình soạn thảo — sử dụng AI trong tài liệu văn bản, bảng tính, bản trình chiếu và PDF với nhà cung cấp tùy chỉnh, MCP và tìm kiếm trên web.",
+  addonSlide1: "Làm việc nhanh hơn trên mọi trình soạn thảo với AI, nhà cung cấp tùy chỉnh, MCP và tìm kiếm web.",
   addonSlide2: "Tạo tài liệu và biểu mẫu dễ dàng hơn — tạo nội dung, tự động thêm trường dữ liệu và xây dựng cấu trúc biểu mẫu chỉ trong vài phút.",
   addonSlide3: "Nâng cao chất lượng nội dung — viết lại văn bản, dịch nội dung, tóm tắt thông tin và điều chỉnh cách diễn đạt cho phù hợp với từng đối tượng.",
   addonSlide4: "Tự động hóa các công việc thường ngày — trích xuất dữ liệu, xử lý thông tin và giảm thiểu công việc thủ công lặp lại.",
