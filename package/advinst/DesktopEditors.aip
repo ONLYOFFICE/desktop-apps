@@ -2137,6 +2137,28 @@
     <ROW Registry="reg_fa_progid_appusermodelid__xltx" Root="0" Key="[ExtPfx].Xltx" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xltx"/>
     <ROW Registry="reg_fa_progid_appusermodelid__xml" Root="0" Key="[ExtPfx].Xml" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xml"/>
     <ROW Registry="reg_fa_progid_appusermodelid__xps" Root="0" Key="[ExtPfx].Xps" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xps"/>
+    <ROW Registry="reg_fa_progid_icon__docm" Root="0" Key="[ExtPfx].Docm\DefaultIcon" Value="[#DesktopEditors.exe],42" Component_="c_reg_fa_progid__docm"/>
+    <ROW Registry="reg_fa_progid_icon__dot" Root="0" Key="[ExtPfx].Dot\DefaultIcon" Value="[#DesktopEditors.exe],43" Component_="c_reg_fa_progid__dot"/>
+    <ROW Registry="reg_fa_progid_icon__dotm" Root="0" Key="[ExtPfx].Dotm\DefaultIcon" Value="[#DesktopEditors.exe],44" Component_="c_reg_fa_progid__dotm"/>
+    <ROW Registry="reg_fa_progid_icon__fodp" Root="0" Key="[ExtPfx].Fodp\DefaultIcon" Value="[#DesktopEditors.exe],45" Component_="c_reg_fa_progid__fodp"/>
+    <ROW Registry="reg_fa_progid_icon__md" Root="0" Key="[ExtPfx].Md\DefaultIcon" Value="[#DesktopEditors.exe],41" Component_="c_reg_fa_progid__md"/>
+    <ROW Registry="reg_fa_progid_icon__odg" Root="0" Key="[ExtPfx].Odg\DefaultIcon" Value="[#DesktopEditors.exe],46" Component_="c_reg_fa_progid__odg"/>
+    <ROW Registry="reg_fa_progid_icon__otp" Root="0" Key="[ExtPfx].Otp\DefaultIcon" Value="[#DesktopEditors.exe],47" Component_="c_reg_fa_progid__otp"/>
+    <ROW Registry="reg_fa_progid_icon__ots" Root="0" Key="[ExtPfx].Ots\DefaultIcon" Value="[#DesktopEditors.exe],48" Component_="c_reg_fa_progid__ots"/>
+    <ROW Registry="reg_fa_progid_icon__ott" Root="0" Key="[ExtPfx].Ott\DefaultIcon" Value="[#DesktopEditors.exe],49" Component_="c_reg_fa_progid__ott"/>
+    <ROW Registry="reg_fa_progid_icon__potm" Root="0" Key="[ExtPfx].Potm\DefaultIcon" Value="[#DesktopEditors.exe],50" Component_="c_reg_fa_progid__potm"/>
+    <ROW Registry="reg_fa_progid_icon__potx" Root="0" Key="[ExtPfx].Potx\DefaultIcon" Value="[#DesktopEditors.exe],51" Component_="c_reg_fa_progid__potx"/>
+    <ROW Registry="reg_fa_progid_icon__ppsm" Root="0" Key="[ExtPfx].Ppsm\DefaultIcon" Value="[#DesktopEditors.exe],52" Component_="c_reg_fa_progid__ppsm"/>
+    <ROW Registry="reg_fa_progid_icon__tsv" Root="0" Key="[ExtPfx].Tsv\DefaultIcon" Value="[#DesktopEditors.exe],53" Component_="c_reg_fa_progid__tsv"/>
+    <ROW Registry="reg_fa_progid_icon__vsdm" Root="0" Key="[ExtPfx].Vsdm\DefaultIcon" Value="[#DesktopEditors.exe],54" Component_="c_reg_fa_progid__vsdm"/>
+    <ROW Registry="reg_fa_progid_icon__vssm" Root="0" Key="[ExtPfx].Vssm\DefaultIcon" Value="[#DesktopEditors.exe],55" Component_="c_reg_fa_progid__vssm"/>
+    <ROW Registry="reg_fa_progid_icon__vssx" Root="0" Key="[ExtPfx].Vssx\DefaultIcon" Value="[#DesktopEditors.exe],56" Component_="c_reg_fa_progid__vssx"/>
+    <ROW Registry="reg_fa_progid_icon__vstm" Root="0" Key="[ExtPfx].Vstm\DefaultIcon" Value="[#DesktopEditors.exe],57" Component_="c_reg_fa_progid__vstm"/>
+    <ROW Registry="reg_fa_progid_icon__vstx" Root="0" Key="[ExtPfx].Vstx\DefaultIcon" Value="[#DesktopEditors.exe],58" Component_="c_reg_fa_progid__vstx"/>
+    <ROW Registry="reg_fa_progid_icon__xlt" Root="0" Key="[ExtPfx].Xlt\DefaultIcon" Value="[#DesktopEditors.exe],59" Component_="c_reg_fa_progid__xlt"/>
+    <ROW Registry="reg_fa_progid_icon__xltm" Root="0" Key="[ExtPfx].Xltm\DefaultIcon" Value="[#DesktopEditors.exe],60" Component_="c_reg_fa_progid__xltm"/>
+    <ROW Registry="reg_fa_progid_icon__xltx" Root="0" Key="[ExtPfx].Xltx\DefaultIcon" Value="[#DesktopEditors.exe],61" Component_="c_reg_fa_progid__xltx"/>
+    <ROW Registry="reg_fa_progid_icon__xml" Root="0" Key="[ExtPfx].Xml\DefaultIcon" Value="[#DesktopEditors.exe],62" Component_="c_reg_fa_progid__xml"/>
     <ROW Registry="reg_fa_progid_icon__csv" Root="0" Key="[ExtPfx].Csv\DefaultIcon" Value="[#DesktopEditors.exe],24" Component_="c_reg_fa_progid__csv"/>
     <ROW Registry="reg_fa_progid_icon__djvu" Root="0" Key="[ExtPfx].DjVu\DefaultIcon" Value="[#DesktopEditors.exe],4" Component_="c_reg_fa_progid__djvu"/>
     <ROW Registry="reg_fa_progid_icon__doc" Root="0" Key="[ExtPfx].Document.1\DefaultIcon" Value="[#DesktopEditors.exe],11" Component_="c_reg_fa_progid__doc"/>
@@ -2170,6 +2192,28 @@
     <ROW Registry="reg_fa_progid_icon__xlsm" Root="0" Key="[ExtPfx].Xlsm\DefaultIcon" Value="[#DesktopEditors.exe],37" Component_="c_reg_fa_progid__xlsm"/>
     <ROW Registry="reg_fa_progid_icon__xlsx" Root="0" Key="[ExtPfx].Sheet.12\DefaultIcon" Value="[#DesktopEditors.exe],10" Component_="c_reg_fa_progid__xlsx"/>
     <ROW Registry="reg_fa_progid_icon__xps" Root="0" Key="[ExtPfx].Xps\DefaultIcon" Value="[#DesktopEditors.exe],6" Component_="c_reg_fa_progid__xps"/>
+    <ROW Registry="reg_fa_progid_icon_k__docm" Root="0" Key="[ExtPfx].Docm\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__dot" Root="0" Key="[ExtPfx].Dot\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__dotm" Root="0" Key="[ExtPfx].Dotm\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__fodp" Root="0" Key="[ExtPfx].Fodp\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__md" Root="0" Key="[ExtPfx].Md\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__odg" Root="0" Key="[ExtPfx].Odg\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__otp" Root="0" Key="[ExtPfx].Otp\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__ots" Root="0" Key="[ExtPfx].Ots\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__ott" Root="0" Key="[ExtPfx].Ott\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__potm" Root="0" Key="[ExtPfx].Potm\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__potx" Root="0" Key="[ExtPfx].Potx\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__ppsm" Root="0" Key="[ExtPfx].Ppsm\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__tsv" Root="0" Key="[ExtPfx].Tsv\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__vsdm" Root="0" Key="[ExtPfx].Vsdm\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__vssm" Root="0" Key="[ExtPfx].Vssm\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__vssx" Root="0" Key="[ExtPfx].Vssx\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__vstm" Root="0" Key="[ExtPfx].Vstm\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__vstx" Root="0" Key="[ExtPfx].Vstx\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__xlt" Root="0" Key="[ExtPfx].Xlt\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__xltm" Root="0" Key="[ExtPfx].Xltm\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__xltx" Root="0" Key="[ExtPfx].Xltx\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__xml" Root="0" Key="[ExtPfx].Xml\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__csv" Root="0" Key="[ExtPfx].Csv\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__djvu" Root="0" Key="[ExtPfx].DjVu\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__doc" Root="0" Key="[ExtPfx].Document.1\DefaultIcon" Name="\"/>

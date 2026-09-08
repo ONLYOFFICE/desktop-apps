@@ -40,6 +40,27 @@
 #define IDI_ICON40  140
 #define IDI_ICON41  141
 #define IDI_ICON42  142
+#define IDI_ICON43  143
+#define IDI_ICON44  144
+#define IDI_ICON45  145
+#define IDI_ICON46  146
+#define IDI_ICON47  147
+#define IDI_ICON48  148
+#define IDI_ICON49  149
+#define IDI_ICON50  150
+#define IDI_ICON51  151
+#define IDI_ICON52  152
+#define IDI_ICON53  153
+#define IDI_ICON54  154
+#define IDI_ICON55  155
+#define IDI_ICON56  156
+#define IDI_ICON57  157
+#define IDI_ICON58  158
+#define IDI_ICON59  159
+#define IDI_ICON60  160
+#define IDI_ICON61  161
+#define IDI_ICON62  162
+#define IDI_ICON63  163
 
 #define IDS_DOCX  1000
 #define IDS_XLSX  1001
