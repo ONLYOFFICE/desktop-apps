@@ -73,7 +73,7 @@ CTabBar #tabScroll>QToolButton {max-height: 28px;}
 Tab {min-width: 41px; max-width: 135px; width: 135px; height: 28px;}
 Tab #tabIcon {padding: 0px; min-width: 15px; min-height: 15px; max-width: 15px; max-height: 15px;}
 Tab #tabText {font-size: 11px;}
-Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2px;}
+Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px;}
 #mainPanel[rtl-font=true][unix=true] Tab #tabText {font-size: 12px;}
 
 /* 1.25x */
@@ -82,7 +82,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="1.25x"] Tab {min-width: 51px; max-width: 169px; width: 169px; height: 35px; border-width: 1px; border-radius: 8px;}
 #mainPanel[zoom="1.25x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 19px; min-height: 19px; max-width: 19px; max-height: 19px;}
 #mainPanel[zoom="1.25x"] Tab #tabText {font-size: 14px;}
-#mainPanel[zoom="1.25x"] Tab #tabButton {width: 20px; max-width: 20px; max-height: 20px; border-width: 2px;}
+#mainPanel[zoom="1.25x"] Tab #tabButton {width: 20px; max-width: 20px; max-height: 20px;}
 /*#mainPanel[zoom="1.25x"][rtl=true] Tab {border-width: 1px;}*/
 #mainPanel[zoom="1.25x"][rtl-font=true][unix=true] Tab #tabText {font-size: 15px;}
 
@@ -92,7 +92,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="1.5x"] Tab {min-width: 62px; max-width: 203px; width: 203px; height: 42px; border-width: 2px; border-radius: 9px;}
 #mainPanel[zoom="1.5x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 24px; min-height: 24px; max-width: 24px; max-height: 24px;}
 #mainPanel[zoom="1.5x"] Tab #tabText {font-size: 15px;}
-#mainPanel[zoom="1.5x"] Tab #tabButton {width: 24px; max-width: 24px; max-height: 24px; border-width: 2px;}
+#mainPanel[zoom="1.5x"] Tab #tabButton {width: 24px; max-width: 24px; max-height: 24px;}
 /*#mainPanel[zoom="1.5x"][rtl=true] Tab {border-width: 2px;}*/
 #mainPanel[zoom="1.5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 17px;}
 
@@ -102,7 +102,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="1.75x"] Tab {min-width: 72px; max-width: 236px; width: 236px; height: 49px; border-width: 2px; border-radius: 11px;}
 #mainPanel[zoom="1.75x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 28px; min-height: 28px; max-width: 28px; max-height: 28px;}
 #mainPanel[zoom="1.75x"] Tab #tabText {font-size: 18px;}
-#mainPanel[zoom="1.75x"] Tab #tabButton {width: 28px; max-width: 28px; max-height: 28px; border-width: 2px;}
+#mainPanel[zoom="1.75x"] Tab #tabButton {width: 28px; max-width: 28px; max-height: 28px;}
 /*#mainPanel[zoom="1.75x"][rtl=true] Tab {border-width: 2px;}*/
 #mainPanel[zoom="1.75x"][rtl-font=true][unix=true] Tab #tabText {font-size: 19px;}
 
@@ -112,7 +112,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2x"] Tab {min-width: 82px; max-width: 270px; width: 270px; height: 56px; border-width: 2px; border-radius: 12px;}
 #mainPanel[zoom="2x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 32px; min-height: 32px; max-width: 32px; max-height: 32px;}
 #mainPanel[zoom="2x"] Tab #tabText {font-size: 20px;}
-#mainPanel[zoom="2x"] Tab #tabButton {width: 32px; max-width: 32px; max-height: 32px; border-width: 2px;}
+#mainPanel[zoom="2x"] Tab #tabButton {width: 32px; max-width: 32px; max-height: 32px;}
 /*#mainPanel[zoom="2x"][rtl=true] Tab {border-width: 2px;}*/
 #mainPanel[zoom="2x"][rtl-font=true][unix=true] Tab #tabText {font-size: 22px;}
 
@@ -122,7 +122,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2.25x"] Tab {min-width: 92px; max-width: 304px; width: 304px; height: 63px; border-width: 2px; border-radius: 14px;}
 #mainPanel[zoom="2.25x"] Tab #tabIcon {padding-left: 9px; padding-right: 9px; min-width: 36px; min-height: 36px; max-width: 36px; max-height: 36px;}
 #mainPanel[zoom="2.25x"] Tab #tabText {font-size: 23px;}
-#mainPanel[zoom="2.25x"] Tab #tabButton {width: 36px; max-width: 36px; max-height: 36px; border-width: 2px;}
+#mainPanel[zoom="2.25x"] Tab #tabButton {width: 36px; max-width: 36px; max-height: 36px;}
 /*#mainPanel[zoom="2.25x"][rtl=true] Tab {border-width: 2px;}*/
 #mainPanel[zoom="2.25x"][rtl-font=true][unix=true] Tab #tabText {font-size: 25px;}
 
@@ -132,7 +132,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2.5x"] Tab {min-width: 103px; max-width: 338px; width: 338px; height: 70px; border-width: 3px; border-radius: 15px;}
 #mainPanel[zoom="2.5x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 40px; min-height: 40px; max-width: 40px; max-height: 40px;}
 #mainPanel[zoom="2.5x"] Tab #tabText {font-size: 25px;}
-#mainPanel[zoom="2.5x"] Tab #tabButton {width: 40px; max-width: 40px; max-height: 40px; border-width: 2px;}
+#mainPanel[zoom="2.5x"] Tab #tabButton {width: 40px; max-width: 40px; max-height: 40px;}
 /*#mainPanel[zoom="2.5x"][rtl=true] Tab {border-width: 3px;}*/
 #mainPanel[zoom="2.5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 27px;}
 
@@ -142,7 +142,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2.75x"] Tab {min-width: 113px; max-width: 371px; width: 371px; height: 77px; border-width: 3px; border-radius: 17px;}
 #mainPanel[zoom="2.75x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 44px; min-height: 44px; max-width: 44px; max-height: 44px;}
 #mainPanel[zoom="2.75x"] Tab #tabText {font-size: 28px;}
-#mainPanel[zoom="2.75x"] Tab #tabButton {width: 44px; max-width: 44px; max-height: 44px; border-width: 2px;}
+#mainPanel[zoom="2.75x"] Tab #tabButton {width: 44px; max-width: 44px; max-height: 44px;}
 /*#mainPanel[zoom="2.75x"][rtl=true] Tab {border-width: 3px;}*/
 #mainPanel[zoom="2.75x"][rtl-font=true][unix=true] Tab #tabText {font-size: 30px;}
 
@@ -152,7 +152,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="3x"] Tab {min-width: 123px; max-width: 405px; width: 405px; height: 84px; border-width: 3px; border-radius: 18px;}
 #mainPanel[zoom="3x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 48px; min-height: 48px; max-width: 48px; max-height: 48px;}
 #mainPanel[zoom="3x"] Tab #tabText {font-size: 30px;}
-#mainPanel[zoom="3x"] Tab #tabButton {width: 48px; max-width: 48px; max-height: 48px; border-width: 2px;}
+#mainPanel[zoom="3x"] Tab #tabButton {width: 48px; max-width: 48px; max-height: 48px;}
 /*#mainPanel[zoom="3x"][rtl=true] Tab {border-width: 3px;}*/
 #mainPanel[zoom="3x"][rtl-font=true][unix=true] Tab #tabText {font-size: 34px;}
 
@@ -162,7 +162,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="3.5x"] Tab {min-width: 144px; max-width: 473px; width: 473px; height: 98px; border-width: 4px; border-radius: 21px;}
 #mainPanel[zoom="3.5x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 56px; min-height: 56px; max-width: 56px; max-height: 56px;}
 #mainPanel[zoom="3.5x"] Tab #tabText {font-size: 35px;}
-#mainPanel[zoom="3.5x"] Tab #tabButton {width: 56px; max-width: 56px; max-height: 56px; border-width: 2px;}
+#mainPanel[zoom="3.5x"] Tab #tabButton {width: 56px; max-width: 56px; max-height: 56px;}
 /*#mainPanel[zoom="3.5x"][rtl=true] Tab {border-width: 4px;}*/
 #mainPanel[zoom="3.5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 39px;}
 
@@ -172,7 +172,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="4x"] Tab {min-width: 164px; max-width: 540px; width: 540px; height: 112px; border-width: 4px; border-radius: 24px;}
 #mainPanel[zoom="4x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 64px; min-height: 64px; max-width: 64px; max-height: 64px;}
 #mainPanel[zoom="4x"] Tab #tabText {font-size: 40px;}
-#mainPanel[zoom="4x"] Tab #tabButton {width: 64px; max-width: 64px; max-height: 64px; border-width: 2px;}
+#mainPanel[zoom="4x"] Tab #tabButton {width: 64px; max-width: 64px; max-height: 64px;}
 /*#mainPanel[zoom="4x"][rtl=true] Tab {border-width: 4px;}*/
 #mainPanel[zoom="4x"][rtl-font=true][unix=true] Tab #tabText {font-size: 44px;}
 
@@ -182,7 +182,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="4.5x"] Tab {min-width: 185px; max-width: 608px; width: 608px; height: 126px; border-width: 5px; border-radius: 27px;}
 #mainPanel[zoom="4.5x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 72px; min-height: 72px; max-width: 72px; max-height: 72px;}
 #mainPanel[zoom="4.5x"] Tab #tabText {font-size: 45px;}
-#mainPanel[zoom="4.5x"] Tab #tabButton {width: 72px; max-width: 72px; max-height: 72px; border-width: 2px;}
+#mainPanel[zoom="4.5x"] Tab #tabButton {width: 72px; max-width: 72px; max-height: 72px;}
 /*#mainPanel[zoom="4.5x"][rtl=true] Tab {border-width: 5px;}*/
 #mainPanel[zoom="4.5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 49px;}
 
@@ -192,6 +192,6 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="5x"] Tab {min-width: 205px; max-width: 675px; width: 675px; height: 140px; border-width: 5px; border-radius: 30px;}
 #mainPanel[zoom="5x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 80px; min-height: 80px; max-width: 80px; max-height: 80px;}
 #mainPanel[zoom="5x"] Tab #tabText {font-size: 50px;}
-#mainPanel[zoom="5x"] Tab #tabButton {width: 80px; max-width: 80px; max-height: 80px; border-width: 2px;}
+#mainPanel[zoom="5x"] Tab #tabButton {width: 80px; max-width: 80px; max-height: 80px;}
 /*#mainPanel[zoom="5x"][rtl=true] Tab {border-width: 5px;}*/
 #mainPanel[zoom="5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 55px;}
