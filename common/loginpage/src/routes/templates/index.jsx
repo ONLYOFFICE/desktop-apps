@@ -54,6 +54,7 @@ export default function Templates() {
     const setOffline = () => { clearTimeout(timer); setIsOnline(false); };
     window.addEventListener("online", setOnline);
     window.addEventListener("offline", setOffline);
+    if (navigator.onLine) check(true);
     onCleanup(() => {
       clearTimeout(timer);
       window.removeEventListener("online", setOnline);
