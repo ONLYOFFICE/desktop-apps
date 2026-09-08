@@ -40,11 +40,22 @@ export default function Templates() {
   let triedFallback = false;
 
   onMount(() => {
-    const setOnline = () => setIsOnline(true);
-    const setOffline = () => setIsOnline(false);
+    let timer;
+    const check = async (retry) => {
+      try {
+        await fetch(TEMPLATES_URL_1, {signal: AbortSignal.timeout(5000)});
+        setIsOnline(true);
+      } catch {
+        setIsOnline(false);
+        if (retry) timer = setTimeout(() => check(false), 5000);
+      }
+    };
+    const setOnline = () => { clearTimeout(timer); check(true); };
+    const setOffline = () => { clearTimeout(timer); setIsOnline(false); };
     window.addEventListener("online", setOnline);
     window.addEventListener("offline", setOffline);
     onCleanup(() => {
+      clearTimeout(timer);
       window.removeEventListener("online", setOnline);
       window.removeEventListener("offline", setOffline);
     });
