@@ -139,7 +139,6 @@ function ConnectDialog(props) {
       return await tryWithProxy(portalUrl);
     } catch (e) {
       if (e.status === 404) {
-        // 404: retry with opposite protocol (https↔http)
         const alt = portalUrl.startsWith("https://")
           ? portalUrl.replace("https://", "http://")
           : portalUrl.replace("http://", "https://");
