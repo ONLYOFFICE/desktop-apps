@@ -194,17 +194,17 @@ export default function GeneralSettings() {
         </div>
 
         <div class={styles.fieldRowAuto}>
-          <label for="chb-use-ai" class={styles.fieldLabelBlock}>
-            {t("settingsEnableAI")}{aichat.available && ' *'}<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
-          </label>
-          <Switch id="chb-use-ai" checked={settings.useai !== false} onChange={(v) => setSettings("useai", v)} />
-        </div>
-
-        <div class={styles.fieldRowAuto}>
           <label for="gpu-mode" class={styles.fieldLabelBlock}>
             {t("settGpuUseMode")} *<span class={styles.fieldDescription}>{t("settingsGpuUseModeDescr")}</span>
           </label>
           <Switch id="gpu-mode" checked={settings.gpuMode} onChange={(v) => setSettings("gpuMode", v)} />
+        </div>
+
+        <div class={styles.fieldRowAuto}>
+          <label for="chb-use-ai" class={styles.fieldLabelBlock}>
+            {t("settingsEnableAI")}{aichat.available && ' *'}<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
+          </label>
+          <Switch id="chb-use-ai" checked={settings.useai !== false} onChange={(v) => setSettings("useai", v)} />
         </div>
 
         <Show when={addonInfo()?.installed}>
@@ -214,6 +214,15 @@ export default function GeneralSettings() {
             <div class={styles.fieldLabelBlock}>
               <span class={styles.fieldLabel}>{t("settRemoveAddon")} *</span>
               <span class={styles.fieldDescription}>{t("descrRemoveAddon")}</span>
+
+              <Show when={addonInfo().license?.url}>
+                <p class="about-field about-license" style={{margin:0}}>
+                  {t("strLicensedUnder")}{" "}
+                  <a class="about-link" href={addonInfo().license.url} target="_blank" rel="noreferrer">
+                    {addonInfo().license.title ?? addonInfo().license.url}
+                  </a>
+                </p>
+              </Show>
             </div>
             <div class={styles.fieldControlEnd}>
               <Button variant="accent" onClick={uninstallAddon}>
