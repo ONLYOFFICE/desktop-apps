@@ -2113,9 +2113,14 @@
         return;
     }
 
-    NSString *version = nil;
-    if ([[ASCAddonManager sharedManager] isInstalled:&version] &&
-            version.length > 0 && ![version isEqualToString:[ASCAboutController fullAppVersion]]) {
+    NSString *addonVersion = nil,
+            *appVersion = [ASCAboutController fullAppVersion];
+    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
+    NSDictionary *jsonObj = @{@"installed": @(isAddonInstalled),
+                                @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+
+    if (isAddonInstalled && addonVersion.length > 0 && ![addonVersion isEqualToString:appVersion]) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
         [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];

@@ -48,6 +48,12 @@ export function initAbout() {
           info.version = info.version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<10?1:mn-9});
         }
 
+        if (info.installed == undefined)
+          info.installed = addonInfo().installed;
+
+        if (info.restart == undefined)
+          info.restart = addonInfo().restart;
+
         setAddonInfo(info);
         setChatAvialable(info?.installed);
       } catch {}
