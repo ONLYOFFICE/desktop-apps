@@ -2,11 +2,11 @@
     "id": "theme-dark",
     "type": "dark",
     "values": {
-        "brand-word": "#2a2a2a",
-        "brand-slide": "#2a2a2a",
-        "brand-cell": "#2a2a2a",
-        "brand-pdf": "#2a2a2a",
-        "brand-draw": "#2a2a2a",
+        "brand-word": "#636363",
+        "brand-slide": "#636363",
+        "brand-cell": "#636363",
+        "brand-pdf": "#636363",
+        "brand-draw": "#636363",
 
         "window-background": "#282828",
         "window-border": "#616161",

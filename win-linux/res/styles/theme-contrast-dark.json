@@ -2,11 +2,11 @@
     "id": "theme-contrast-dark",
     "type": "dark",
     "values": {
-        "brand-word": "#1e1e1e",
-        "brand-slide": "#1e1e1e",
-        "brand-cell": "#1e1e1e",
-        "brand-pdf": "#1e1e1e",
-        "brand-draw": "1e1e1e",
+        "brand-word": "#5E5E5E",
+        "brand-slide": "#5E5E5E",
+        "brand-cell": "#5E5E5E",
+        "brand-pdf": "#5E5E5E",
+        "brand-draw": "5E5E5E",
 
         "window-background": "#181818",
         "window-border": "#616161",
