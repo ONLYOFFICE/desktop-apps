@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">אירעה שגיאה בפריסת הארכיון</translation>
+        <translation>אירעה שגיאה בפריסת הארכיון</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">עליך להפעיל מחדש את היישום כדי להשלים את התקנת ONLYOFFICE AI Tools. להפעיל מחדש כעת?</translation>
+        <translation>עליך להפעיל מחדש את היישום כדי להשלים את התקנת ONLYOFFICE AI Tools. להפעיל מחדש כעת?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -864,22 +864,22 @@
     <message>
         <location filename="../src/components/cmessage.h" line="128"/>
         <source>OK</source>
-        <translation type="unfinished">בסדר</translation>
+        <translation>בסדר</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="129"/>
         <source>Yes</source>
-        <translation type="unfinished">כן</translation>
+        <translation>כן</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="130"/>
         <source>No</source>
-        <translation type="unfinished">לֹא</translation>
+        <translation>לֹא</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">ביטול</translation>
+        <translation>ביטול</translation>
     </message>
 </context>
 <context>
@@ -1104,29 +1104,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">לדלג</translation>
+        <translation>לדלג</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">מאוחר יותר</translation>
+        <translation>מאוחר יותר</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">הורדה</translation>
+        <translation>הורדה</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">דלג על גרסה זו</translation>
+        <translation>דלג על גרסה זו</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">הזכר לי מאוחר יותר</translation>
+        <translation>הזכר לי מאוחר יותר</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1136,7 +1136,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">הפעל מחדש עכשיו</translation>
+        <translation>הפעל מחדש עכשיו</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>

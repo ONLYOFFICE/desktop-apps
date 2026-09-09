@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Terjadi kesalahan saat membuka arsip</translation>
+        <translation>Terjadi kesalahan saat membuka arsip</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Anda harus me-restart aplikasi untuk menyelesaikan penginstalan ONLYOFFICE AI Tools. Restart sekarang?</translation>
+        <translation>Anda harus me-restart aplikasi untuk menyelesaikan penginstalan ONLYOFFICE AI Tools. Restart sekarang?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1124,29 +1124,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Lewati</translation>
+        <translation>Lewati</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Nanti</translation>
+        <translation>Nanti</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Unduh</translation>
+        <translation>Unduh</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Lewati versi ini</translation>
+        <translation>Lewati versi ini</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Ingatkan saya nanti</translation>
+        <translation>Ingatkan saya nanti</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1156,7 +1156,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Restart Sekarang</translation>
+        <translation>Restart sekarang</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>

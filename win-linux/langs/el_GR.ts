@@ -1129,29 +1129,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Παράλειψη</translation>
+        <translation>Παράλειψη</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Αργότερα</translation>
+        <translation>Αργότερα</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Λήψη</translation>
+        <translation>Λήψη</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Παράλειψη αυτής της έκδοσης</translation>
+        <translation>Παράλειψη αυτής της έκδοσης</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Υπενθύμιση αργότερα</translation>
+        <translation>Υπενθύμιση αργότερα</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1161,7 +1161,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Επανεκκίνηση τώρα</translation>
+        <translation>Επανεκκίνηση τώρα</translation>
     </message>
     <message>
         <source>Update version</source>

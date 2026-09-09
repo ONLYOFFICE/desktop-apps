@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">解压压缩包时发生错误</translation>
+        <translation>解压压缩包时发生错误</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">需要重新启动应用程序才能完成 ONLYOFFICE AI Tools 的安装。要立即重启吗？</translation>
+        <translation>需要重新启动应用程序才能完成 ONLYOFFICE AI Tools 的安装。要立即重启吗？</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1156,29 +1156,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">跳过</translation>
+        <translation>跳过</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">稍后</translation>
+        <translation>稍后</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">下载</translation>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">跳过此版本</translation>
+        <translation>跳过此版本</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">稍后提醒我</translation>
+        <translation>稍后提醒我</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1188,7 +1188,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">立即重启</translation>
+        <translation>立即重启</translation>
     </message>
     <message>
         <source>Update version</source>

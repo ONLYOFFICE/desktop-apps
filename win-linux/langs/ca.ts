@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">S&apos;ha produït un error en desempaquetar l&apos;arxiu</translation>
+        <translation>S&apos;ha produït un error en desempaquetar l&apos;arxiu</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Heu de reiniciar l&apos;aplicació per finalitzar la instal·lació d&apos;ONLYOFFICE AI Tools. Voleu reiniciar ara?</translation>
+        <translation>Heu de reiniciar l&apos;aplicació per finalitzar la instal·lació d&apos;ONLYOFFICE AI Tools. Voleu reiniciar ara?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1128,29 +1128,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Ometre</translation>
+        <translation>Ometre</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Després</translation>
+        <translation>Després</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Descarregar</translation>
+        <translation>Descarregar</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Ometre aquesta versió</translation>
+        <translation>Ometre aquesta versió</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Recorda&apos;m-ho més tard</translation>
+        <translation>Recorda&apos;m-ho més tard</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1160,7 +1160,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Reiniciar ara</translation>
+        <translation>Reiniciar ara</translation>
     </message>
     <message>
         <source>Update version</source>

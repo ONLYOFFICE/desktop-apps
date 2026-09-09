@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">संग्रह को अनपैक करते समय कोई त्रुटि हुई है</translation>
+        <translation>संग्रह को अनपैक करते समय कोई त्रुटि हुई है</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">ONLYOFFICE AI Tools इंस्टॉलेशन पूरा करने के लिए आपको एप्लिकेशन को रीस्टार्ट करना होगा। क्या अभी रीस्टार्ट करें?</translation>
+        <translation>ONLYOFFICE AI Tools इंस्टॉलेशन पूरा करने के लिए आपको एप्लिकेशन को रीस्टार्ट करना होगा। क्या अभी रीस्टार्ट करें?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1124,29 +1124,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">छोड़ दें</translation>
+        <translation>छोड़ दें</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">बाद में</translation>
+        <translation>बाद में</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">डाउनलोड करना</translation>
+        <translation>डाउनलोड करना</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">इस संस्करण को छोड़ दें</translation>
+        <translation>इस संस्करण को छोड़ दें</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">मुझे बाद में याद दिलाना</translation>
+        <translation>मुझे बाद में याद दिलाना</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1156,7 +1156,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">अभी रीस्टार्ट करें</translation>
+        <translation>अभी रीस्टार्ट करें</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>

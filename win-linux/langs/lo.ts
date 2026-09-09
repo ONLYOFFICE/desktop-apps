@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">ເກີດຄວາມຜິດພາດໃນຂະນະທີ່ກຳລັງແຍກໄຟລ໌ເກັບມ້ຽນ</translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນຂະນະທີ່ກຳລັງແຍກໄຟລ໌ເກັບມ້ຽນ</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">ທ່ານຕ້ອງເປີດແອັບພລິເຄຊັນຄືນໃໝ່ເພື່ອສຳເລັດການຕິດຕັ້ງ ONLYOFFICE AI Tools. ຕ້ອງການເປີດຄືນໃໝ່ດຽວນີ້ບໍ?</translation>
+        <translation>ທ່ານຕ້ອງເປີດແອັບພລິເຄຊັນຄືນໃໝ່ເພື່ອສຳເລັດການຕິດຕັ້ງ ONLYOFFICE AI Tools. ຕ້ອງການເປີດຄືນໃໝ່ດຽວນີ້ບໍ?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1096,29 +1096,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">ຂ້າມ</translation>
+        <translation>ຂ້າມ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">ຕໍ່ມາ</translation>
+        <translation>ຕໍ່ມາ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">ດາວໂຫຼດ</translation>
+        <translation>ດາວໂຫຼດ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">ຂ້າມເວີຊັ້ນນີ້</translation>
+        <translation>ຂ້າມເວີຊັ້ນນີ້</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">ເຕືອນຂ້ອຍໃນພາຍຫຼັງ</translation>
+        <translation>ເຕືອນຂ້ອຍໃນພາຍຫຼັງ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1128,7 +1128,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">ເລີ່ມຕົ້ນໃໝ່ດຽວນີ້</translation>
+        <translation>ເລີ່ມຕົ້ນໃໝ່ດຽວນີ້</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>

@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Đã xảy ra lỗi khi giải nén kho lưu trữ</translation>
+        <translation>Đã xảy ra lỗi khi giải nén kho lưu trữ</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Bạn phải khởi động lại ứng dụng để hoàn tất cài đặt ONLYOFFICE AI Tools. Bạn có muốn khởi động lại ngay bây giờ không?</translation>
+        <translation>Bạn phải khởi động lại ứng dụng để hoàn tất cài đặt ONLYOFFICE AI Tools. Bạn có muốn khởi động lại ngay bây giờ không?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1128,29 +1128,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Bỏ qua</translation>
+        <translation>Bỏ qua</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Cài đặt sau</translation>
+        <translation>Sau đó</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Tải xuống</translation>
+        <translation>Tải xuống</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Bỏ qua phiên bản này</translation>
+        <translation>Bỏ qua phiên bản này</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Nhắc tôi sau</translation>
+        <translation>Nhắc tôi sau</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1160,7 +1160,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Lưu và Khởi động lại ngay</translation>
+        <translation>Khởi động lại ngay</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>

@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Arşivi açarken bir hata oluştu</translation>
+        <translation>Arşivi açarken bir hata oluştu</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">ONLYOFFICE AI Tools kurulumunu tamamlamak için uygulamayı yeniden başlatmanız gerekmektedir. Şimdi yeniden başlatılsın mı?</translation>
+        <translation>ONLYOFFICE AI Tools kurulumunu tamamlamak için uygulamayı yeniden başlatmanız gerekmektedir. Şimdi yeniden başlatılsın mı?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1128,29 +1128,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Atla</translation>
+        <translation>Atla</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Sonra</translation>
+        <translation>Sonra</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">İndirmek</translation>
+        <translation>İndirmek</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Bu versiyonu atla</translation>
+        <translation>Bu versiyonu atla</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Bana daha sonra hatırlat</translation>
+        <translation>Bana daha sonra hatırlat</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1160,7 +1160,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Şimdi Yeniden Başlat</translation>
+        <translation>Şimdi Yeniden Başlat</translation>
     </message>
     <message>
         <source>Update version</source>

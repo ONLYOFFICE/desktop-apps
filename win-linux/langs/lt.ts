@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Klaida įvyko išpakuojant archyvą</translation>
+        <translation>Klaida įvyko išpakuojant archyvą</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Norėdami užbaigti ONLYOFFICE AI Tools diegimą, turite iš naujo paleisti programą. Ar norite paleisti iš naujo dabar?</translation>
+        <translation>Norėdami užbaigti ONLYOFFICE AI Tools diegimą, turite iš naujo paleisti programą. Ar norite paleisti iš naujo dabar?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1128,29 +1128,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Praleisti</translation>
+        <translation>Praleisti</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Vėliau</translation>
+        <translation>Vėliau</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Atsisiųsti</translation>
+        <translation>Atsisiųsti</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Praleisti šią versiją</translation>
+        <translation>Praleisti šią versiją</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Priminti vėliau</translation>
+        <translation>Priminti vėliau</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1160,7 +1160,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Paleisti iš naujo dabar</translation>
+        <translation>Paleisti iš naujo dabar</translation>
     </message>
     <message>
         <source>Update version</source>

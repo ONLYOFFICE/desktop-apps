@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Atpakojot arhīvu, radās kļūda</translation>
+        <translation>Atpakojot arhīvu, radās kļūda</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Lai pabeigtu ONLYOFFICE AI Tools instalāciju, programma ir jārestartē. Vai restartēt tagad?</translation>
+        <translation>Lai pabeigtu ONLYOFFICE AI Tools instalāciju, programma ir jārestartē. Vai restartēt tagad?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1128,29 +1128,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Izlaist</translation>
+        <translation>Izlaist</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Vēlāk</translation>
+        <translation>Vēlāk</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Lejupielādēt</translation>
+        <translation>Lejupielādēt</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Izlaist šo versiju</translation>
+        <translation>Izlaist šo versiju</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Atgādināt man vēlāk</translation>
+        <translation>Atgādināt man vēlāk</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1160,7 +1160,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Restartēt tagad</translation>
+        <translation>Restartēt tagad</translation>
     </message>
     <message>
         <source>Update version</source>

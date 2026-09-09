@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">හැකිළුම දිග හැරීමේදී දෝෂයක් සිදු විය</translation>
+        <translation>හැකිළුම දිග හැරීමේදී දෝෂයක් සිදු විය</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">ONLYOFFICE AI Tools ස්ථාපනය සම්පූර්ණ කිරීමට ඔබ යෙදුම නැවත ආරම්භ කළ යුතුය. දැන් නැවත ආරම්භ කරන්නද?</translation>
+        <translation>ONLYOFFICE AI Tools ස්ථාපනය සම්පූර්ණ කිරීමට ඔබ යෙදුම නැවත ආරම්භ කළ යුතුය. දැන් නැවත ආරම්භ කරන්නද?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1128,29 +1128,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">මඟහරින්න</translation>
+        <translation>මඟහරින්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">පසුව ස්ථාපනය කරන්න</translation>
+        <translation>පසුව</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">බාගත කරන්න</translation>
+        <translation>බාගත කරන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">මෙම අනුවාදය මඟහරින්න</translation>
+        <translation>මෙම අනුවාදය මඟහරින්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">පසුව මතක් කරන්න</translation>
+        <translation>පසුව මතක් කරන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1160,7 +1160,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">යළි අරඹන්න</translation>
+        <translation>දැන් නැවත ආරම්භ කරන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>

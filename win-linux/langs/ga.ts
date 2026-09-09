@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Tharla earráid agus an chartlann á díphacáil</translation>
+        <translation>Tharla earráid agus an chartlann á díphacáil</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Ní mór duit an feidhmchlár a atosú chun suiteáil ONLYOFFICE AI Tools a chríochnú. An bhfuil fonn ort atosú anois?</translation>
+        <translation>Ní mór duit an feidhmchlár a atosú chun suiteáil ONLYOFFICE AI Tools a chríochnú. An bhfuil fonn ort atosú anois?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1124,29 +1124,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Scipeáil</translation>
+        <translation>Scipeáil</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Níos déanaí</translation>
+        <translation>Níos déanaí</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Íoslódáil</translation>
+        <translation>Íoslódáil</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Scipeáil an leagan seo</translation>
+        <translation>Scipeáil an leagan seo</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Cuir i gcuimhne dom níos déanaí</translation>
+        <translation>Cuir i gcuimhne dom níos déanaí</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1156,7 +1156,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Atosaigh anois</translation>
+        <translation>Atosaigh anois</translation>
     </message>
     <message>
         <source>Update version</source>

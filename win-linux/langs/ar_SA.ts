@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">خطأ أثناء فك ضغط الملف المضغوط</translation>
+        <translation>خطأ أثناء فك ضغط الملف المضغوط</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">يجب إعادة تشغيل التطبيق لإتمام تثبيت ONLYOFFICE AI Tools. هل تريد إعادة التشغيل الآن؟</translation>
+        <translation>يجب إعادة تشغيل التطبيق لإتمام تثبيت ONLYOFFICE AI Tools. هل تريد إعادة التشغيل الآن؟</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -868,22 +868,22 @@
     <message>
         <location filename="../src/components/cmessage.h" line="128"/>
         <source>OK</source>
-        <translation type="unfinished">حسنًا</translation>
+        <translation>حسنًا</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="129"/>
         <source>Yes</source>
-        <translation type="unfinished">نعم</translation>
+        <translation>نعم</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="130"/>
         <source>No</source>
-        <translation type="unfinished">لا</translation>
+        <translation>لا</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">إلغاء</translation>
+        <translation>إلغاء</translation>
     </message>
 </context>
 <context>
@@ -962,7 +962,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">أعد التشغيل الآن</translation>
+        <translation>أعد التشغيل الآن</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
@@ -1117,29 +1117,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">تخطي</translation>
+        <translation>تخطي</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">لاحقًا</translation>
+        <translation>لاحقًا</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">تحميل</translation>
+        <translation>تحميل</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">تخطي هذه النسخة</translation>
+        <translation>تخطي هذه النسخة</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">ذكرني لاحقًا</translation>
+        <translation>ذكرني لاحقًا</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>

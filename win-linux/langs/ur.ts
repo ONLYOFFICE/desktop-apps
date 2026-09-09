@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">آرکائیو کو پیک کھولتے وقت ایک خرابی پیش آگئی</translation>
+        <translation>آرکائیو کو پیک کھولتے وقت ایک خرابی پیش آگئی</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">ONLYOFFICE AI Tools کی تنصیب مکمل کرنے کے لیے آپ کو ایپلیکیشن کو دوبارہ شروع کرنے کی ضرورت ہے۔ ابھی دوبارہ شروع کریں؟</translation>
+        <translation>ONLYOFFICE AI Tools کی تنصیب مکمل کرنے کے لیے آپ کو ایپلیکیشن کو دوبارہ شروع کرنے کی ضرورت ہے۔ ابھی دوبارہ شروع کریں؟</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -860,22 +860,22 @@
     <message>
         <location filename="../src/components/cmessage.h" line="128"/>
         <source>OK</source>
-        <translation type="unfinished">ٹھیک ہے</translation>
+        <translation>ٹھیک ہے</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="129"/>
         <source>Yes</source>
-        <translation type="unfinished">جی ہاں</translation>
+        <translation>جی ہاں</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="130"/>
         <source>No</source>
-        <translation type="unfinished">نہیں</translation>
+        <translation>نہیں</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>منسوخ کریں۔</translation>
     </message>
 </context>
 <context>
@@ -1092,29 +1092,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">چھوڑیں۔</translation>
+        <translation>چھوڑیں۔</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">بعد میں</translation>
+        <translation>بعد میں</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">ڈاؤن لوڈ کریں۔</translation>
+        <translation>ڈاؤن لوڈ کریں۔</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">اس ورژن کو چھوڑ دیں۔</translation>
+        <translation>اس ورژن کو چھوڑ دیں۔</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">مجھے بعد میں یاد دلائیں۔</translation>
+        <translation>مجھے بعد میں یاد دلائیں۔</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1124,7 +1124,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">ابھی دوبارہ شروع کریں۔</translation>
+        <translation>ابھی دوبارہ شروع کریں۔</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>

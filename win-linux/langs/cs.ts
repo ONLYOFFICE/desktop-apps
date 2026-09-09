@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Při rozbalování archivu došlo k chybě</translation>
+        <translation>Při rozbalování archivu došlo k chybě</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Aby se dokončila instalace doplňku ONLYOFFICE AI Tools, je nutné aplikaci restartovat. Restartovat nyní?</translation>
+        <translation>Aby se dokončila instalace doplňku ONLYOFFICE AI Tools, je nutné aplikaci restartovat. Restartovat nyní?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1148,29 +1148,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Přeskočit</translation>
+        <translation>Přeskočit</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Instalace později</translation>
+        <translation>Později</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Stáhnout</translation>
+        <translation>Stáhnout</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Přeskočit tuto verzi</translation>
+        <translation>Přeskočit tuto verzi</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Připomeňte mi to později</translation>
+        <translation>Připomeňte mi to později</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1180,7 +1180,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Restartovat nyní</translation>
+        <translation>Restartovat nyní</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>

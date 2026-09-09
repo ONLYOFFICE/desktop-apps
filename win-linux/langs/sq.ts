@@ -16,7 +16,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Ka ndodhur një gabim gjatë çpaketimit të arkivit</translation>
+        <translation>Ka ndodhur një gabim gjatë çpaketimit të arkivit</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Duhet të ristartoni aplikacionin për të përfunduar instalimin e ONLYOFFICE AI Tools. Dëshironi ta ristartoni tani?</translation>
+        <translation>Duhet të ristartoni aplikacionin për të përfunduar instalimin e ONLYOFFICE AI Tools. Dëshironi ta ristartoni tani?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -1092,29 +1092,29 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Skip</source>
-        <translation type="unfinished">Kalojeni</translation>
+        <translation>Kalojeni</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <location filename="../src/cupdatemanager.cpp" line="964"/>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Later</source>
-        <translation type="unfinished">Më vonë</translation>
+        <translation>Më vonë</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="912"/>
         <source>Download</source>
-        <translation type="unfinished">Shkarko</translation>
+        <translation>Shkarko</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Skip this version</source>
-        <translation type="unfinished">Kalojeni këtë version</translation>
+        <translation>Kalojeni këtë version</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Remind me later</source>
-        <translation type="unfinished">Më kujto më vonë</translation>
+        <translation>Më kujto më vonë</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="974"/>
@@ -1124,7 +1124,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="982"/>
         <source>Restart Now</source>
-        <translation type="unfinished">Rinisni tani</translation>
+        <translation>Rinisni tani</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="904"/>
