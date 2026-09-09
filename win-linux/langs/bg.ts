@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="428"/>
         <source>No compatible add-on version is available for this version of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Няма налична съвместима версия на добавката за тази версия на приложението.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="432"/>
         <source>To install the add-on, update the application to the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>За да инсталирате добавката, актуализирайте приложението до най-новата версия.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
@@ -21,37 +21,37 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
         <source>The add-on information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Информацията за добавката е невалидна или непълна.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="442"/>
         <source>The add-on package is corrupted or has been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пакетът на добавката е повреден или е бил променен.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="445"/>
         <source>Not enough memory to complete the add-on download.</source>
-        <translation type="unfinished"></translation>
+        <translation>Недостатъчно памет за завършване на изтеглянето на добавката.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="448"/>
         <source>Failed to download the add-on due to a network error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешно изтегляне на добавката поради мрежова грешка.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="451"/>
         <source>The add-on download URL is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>URL адресът за изтегляне на добавката е невалиден.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неуспешно записване на изтегления пакет на добавката.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
         <source>An unexpected error occurred while installing the add-on.</source>
-        <translation type="unfinished"></translation>
+        <translation>Възникна неочаквана грешка при инсталирането на добавката.</translation>
     </message>
 </context>
 <context>
@@ -85,37 +85,37 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
-        <translation type="unfinished"></translation>
+        <translation>Сигурни ли сте, че искате да деинсталирате ONLYOFFICE AI Tools?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Функциите на AI Tools ще бъдат недостъпни след деинсталирането. Всички настройки на ИИ (включително API ключовете) няма да бъдат премахнати.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE AI Tools е деинсталиран успешно</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>I&apos;ll do it later</source>
-        <translation type="unfinished"></translation>
+        <translation>Ще го направя по-късно</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>Restart now</source>
-        <translation type="unfinished"></translation>
+        <translation>Рестартирай сега</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
         <source>Application needs to restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Приложението трябва да се рестартира</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Инсталираният компонент AI Tools е несъвместим с тази версия на приложението. Моля, актуализирайте компонента AI Tools, за да продължите.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
@@ -616,7 +616,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Crossplatform</source>
-        <translation type="unfinished"></translation>
+        <translation>Кросплатформен</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="314"/>
@@ -979,7 +979,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>The update information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Информацията за актуализацията е невалидна или непълна.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="114"/>

@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="428"/>
         <source>No compatible add-on version is available for this version of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Для гэтай версіі праграмы няма сумяшчальнай версіі дадатку.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="432"/>
         <source>To install the add-on, update the application to the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Каб усталяваць дадатак, абнавіце праграму да апошняй версіі.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
@@ -21,37 +21,37 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
         <source>The add-on information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Звесткі пра дадатак несапраўдныя або няпоўныя.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="442"/>
         <source>The add-on package is corrupted or has been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пакет дадатку пашкоджаны або быў зменены.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="445"/>
         <source>Not enough memory to complete the add-on download.</source>
-        <translation type="unfinished"></translation>
+        <translation>Недастаткова памяці для завяршэння загрузкі дадатку.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="448"/>
         <source>Failed to download the add-on due to a network error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не ўдалося загрузіць дадатак з-за памылкі сеткі.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="451"/>
         <source>The add-on download URL is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>URL-адрас загрузкі дадатку несапраўдны.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не ўдалося захаваць спампаваны пакет дадатку.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
         <source>An unexpected error occurred while installing the add-on.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пры ўсталяванні дадатку ўзнікла непрадбачаная памылка.</translation>
     </message>
 </context>
 <context>
@@ -85,37 +85,37 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы ўпэўнены, што хочаце выдаліць ONLYOFFICE AI Tools?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Функцыі AI Tools будуць недаступны пасля выдалення. Усе налады AI (у тым ліку ключы API) не будуць выдалены.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE AI Tools паспяхова выдалены</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>I&apos;ll do it later</source>
-        <translation type="unfinished"></translation>
+        <translation>Зраблю гэта пазней</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>Restart now</source>
-        <translation type="unfinished"></translation>
+        <translation>Перазапусціць зараз</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
         <source>Application needs to restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Праграма патрабуе перазапуску</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Усталяваны кампанент AI Tools несумяшчальны з гэтай версіяй праграмы. Калі ласка, абнавіце кампанент AI Tools, каб працягнуць.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
@@ -600,7 +600,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Crossplatform</source>
-        <translation type="unfinished"></translation>
+        <translation>Кросплатформавы</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="314"/>
@@ -959,7 +959,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>The update information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Звесткі пра абнаўленне несапраўдныя або няпоўныя.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="114"/>

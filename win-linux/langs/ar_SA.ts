@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="428"/>
         <source>No compatible add-on version is available for this version of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>لا يتوفر إصدار متوافق من الوظيفة الإضافية لهذا الإصدار من التطبيق.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="432"/>
         <source>To install the add-on, update the application to the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>لتثبيت الوظيفة الإضافية، قم بتحديث التطبيق إلى أحدث إصدار.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
@@ -21,37 +21,37 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
         <source>The add-on information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>معلومات الوظيفة الإضافية غير صالحة أو غير مكتملة.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="442"/>
         <source>The add-on package is corrupted or has been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>حزمة الوظيفة الإضافية تالفة أو تم تعديلها.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="445"/>
         <source>Not enough memory to complete the add-on download.</source>
-        <translation type="unfinished"></translation>
+        <translation>الذاكرة غير كافية لإكمال تنزيل الوظيفة الإضافية.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="448"/>
         <source>Failed to download the add-on due to a network error.</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل تنزيل الوظيفة الإضافية بسبب خطأ في الشبكة.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="451"/>
         <source>The add-on download URL is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>عنوان URL لتنزيل الوظيفة الإضافية غير صالح.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation type="unfinished"></translation>
+        <translation>فشل حفظ حزمة الوظيفة الإضافية التي تم تنزيلها.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
         <source>An unexpected error occurred while installing the add-on.</source>
-        <translation type="unfinished"></translation>
+        <translation>حدث خطأ غير متوقع أثناء تثبيت الوظيفة الإضافية.</translation>
     </message>
 </context>
 <context>
@@ -81,37 +81,37 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
-        <translation type="unfinished"></translation>
+        <translation>هل أنت متأكد أنك تريد إلغاء تثبيت ONLYOFFICE AI Tools؟</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>ستكون ميزات AI Tools غير متاحة بعد إلغاء التثبيت. لن تتم إزالة جميع إعدادات الذكاء الاصطناعي (بما في ذلك مفاتيح API).</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>تم إلغاء تثبيت ONLYOFFICE AI Tools بنجاح</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>I&apos;ll do it later</source>
-        <translation type="unfinished"></translation>
+        <translation>سأقوم بذلك لاحقاً</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>Restart now</source>
-        <translation type="unfinished"></translation>
+        <translation>أعد التشغيل الآن</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
         <source>Application needs to restart</source>
-        <translation type="unfinished"></translation>
+        <translation>يحتاج التطبيق إلى إعادة التشغيل</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>مكوّن AI Tools المثبت غير متوافق مع هذا الإصدار من التطبيق. يرجى تحديث مكوّن AI Tools للمتابعة.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
@@ -596,7 +596,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Crossplatform</source>
-        <translation type="unfinished"></translation>
+        <translation>متعدد المنصات</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="371"/>
@@ -951,7 +951,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>The update information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>معلومات التحديث غير صالحة أو غير مكتملة.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="114"/>
