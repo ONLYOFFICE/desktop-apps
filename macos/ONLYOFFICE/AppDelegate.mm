@@ -755,7 +755,7 @@
         BOOL isInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
         aboutController.aiToolsHidden = !isInstalled;
         if (isInstalled) {
-            aboutController.aiToolsVersion = addonVersion ?: appVersion;
+            aboutController.aiToolsVersion = (addonVersion && addonVersion.length > 0) ? addonVersion : appVersion;
         } else {
             aboutController.aiToolsVersion = @"";
         }
