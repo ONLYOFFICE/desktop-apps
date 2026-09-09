@@ -46,7 +46,7 @@ function ConnectDialog(props) {
   const isOnlyoffice = () => props.provider?.provider === "onlyoffice";
   let inputRef;
   let contentRef;
-  const URL_PROXY_SCHEME = 'onlyoffice-proxy://';
+  // const URL_PROXY_SCHEME = 'onlyoffice-proxy://';
 
   createEffect(() => {
     setUrl(props.provider?.entryPage ?? "");
@@ -79,8 +79,20 @@ function ConnectDialog(props) {
     handleClose();
   }
 
-  function isValidUrl(str) {
-    try { new URL(str); return true; } catch { return false; }
+  function isUrlValid(url) {
+    try {
+      const re_wrong_symb = /([\s\r\n\t\\]|%(?!\d{2}))/;
+      if (!url.length || re_wrong_symb.test(url) ||
+                !/^(https?:\/\/)?([^@\/\s]{1,63})\/[^\s]*/.test(url+'/') )
+      {
+        throw new Error('wrong symbol in url');
+      }
+
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   function getCandidates(raw) {
@@ -90,14 +102,52 @@ function ConnectDialog(props) {
     return [`https://${s}`, `http://${s}`];
   }
 
-  async function fetch_with_proxy(url, forcebreak) {
-    try {
-      await fetch(url, { method: "HEAD", signal: AbortSignal.timeout(5000) });
+  async function checkPortal(portalUrl) {
+    const check_url = props.provider?.check?.url;
+    if (!check_url)
       return true;
-    } catch {
-      if (forcebreak !== true)
-        return fetch_with_proxy(`${URL_PROXY_SCHEME}${url}`, true);
-      else throw new Error();
+
+    const checkPath = check_url.startsWith('/') ? check_url : '/' + check_url;
+    const checkHeaders = props.provider?.check?.headers;
+
+    const doFetch = async (target) => {
+      const opts = { method: "HEAD", signal: AbortSignal.timeout(5000) };
+      if (checkHeaders) opts.headers = checkHeaders;
+      const res = await fetch(target, opts);
+      if (res.status === 404) {
+        const err = new Error("not_found");
+        err.status = 404;
+        throw err;
+      }
+      return true; // using 2xx / 3xx (followed) / other codes as portal reachable
+    };
+
+    const isDnsError = (e) => e.message?.includes('ERR_NAME_NOT_RESOLVED') ||
+                                e.message?.includes('ERR_NAME_RESOLUTION_FAILED');
+
+    const tryWithProxy = async (base) => {
+      const target = base + checkPath;
+      try {
+        return await doFetch(target);
+      } catch (e) {
+        // if (e.status === 404 || isDnsError(e)) throw e; // 404 for protocol flip, DNS — proxy won't help
+        // return await doFetch(`${URL_PROXY_SCHEME}${target}`); // other network error try with proxy
+      }
+    };
+
+    try {
+      return await tryWithProxy(portalUrl);
+    } catch (e) {
+      if (e.status === 404) {
+        // 404: retry with opposite protocol (https↔http)
+        const alt = portalUrl.startsWith("https://")
+          ? portalUrl.replace("https://", "http://")
+          : portalUrl.replace("http://", "https://");
+        try {
+          return await tryWithProxy(alt);
+        } catch {}
+      }
+      return false;
     }
   }
 
@@ -109,25 +159,20 @@ function ConnectDialog(props) {
       return;
     }
 
-    const candidates = getCandidates(url()).filter(isValidUrl);
+    const candidates = getCandidates(url()).filter(isUrlValid);
     if (!candidates.length) {
       setError(t("errInvalidUrl", "Invalid URL"));
       return;
     }
 
-    let checkPath = props.provider?.check?.url ?? "";
-    if (checkPath.length && checkPath.at(0) != '/')
-      checkPath = '/' + checkPath;
-
     setChecking(true);
     try {
       for (const candidate of candidates) {
-        try {
-          await fetch_with_proxy(candidate + checkPath);
+        if (await checkPortal(candidate)) {
           connectToProvider(props.provider, candidate);
           handleClose();
           return;
-        } catch {}
+        }
       }
       setError(t("errServerNotAccessible", "Server is not accessible"));
     } finally {
