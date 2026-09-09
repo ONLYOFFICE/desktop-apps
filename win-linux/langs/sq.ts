@@ -2,14 +2,67 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sq_AL">
 <context>
+    <name>CAddonManager</name>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="428"/>
+        <source>No compatible add-on version is available for this version of the application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="432"/>
+        <source>To install the add-on, update the application to the latest version.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="436"/>
+        <source>An error occurred while unpacking the archive</source>
+        <translation type="unfinished">Ka ndodhur një gabim gjatë çpaketimit të arkivit</translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="439"/>
+        <source>The add-on information is invalid or incomplete.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="442"/>
+        <source>The add-on package is corrupted or has been modified.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="445"/>
+        <source>Not enough memory to complete the add-on download.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="448"/>
+        <source>Failed to download the add-on due to a network error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="451"/>
+        <source>The add-on download URL is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="454"/>
+        <source>Failed to save the downloaded add-on package.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/caddonmanager.cpp" line="458"/>
+        <source>An unexpected error occurred while installing the add-on.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="483"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
         <translation type="unfinished">Duhet të ristartoni aplikacionin për të përfunduar instalimin e ONLYOFFICE AI Tools. Dëshironi ta ristartoni tani?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1521"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
         <source>Presenter View</source>
         <translation>Pamja prezantuese</translation>
     </message>
@@ -22,23 +75,58 @@
         <translation type="vanished">All the editor windows will be closed. Do you want to continue?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2106"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
+        <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
+        <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
+        <source>ONLYOFFICE AI Tools successfully uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
+        <source>I&apos;ll do it later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
+        <source>Restart now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
+        <source>Application needs to restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
+        <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation>Duhet të ristartoni aplikacionin që të hyjnë në fuqi cilësimet. Dëshironi ta ristartoni tani?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2441"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2444"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2729"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2732"/>
         <source>Document%1.docx</source>
         <translation>Dokumenti%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2448"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2736"/>
         <source>Book%1.xlsx</source>
         <translation>Libri%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2450"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2738"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezantimi%1.pptx</translation>
     </message>
@@ -46,7 +134,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="990"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1098"/>
         <location filename="../src/components/asctabwidget.cpp" line="726"/>
         <source>Document</source>
         <translation>Po hapet...</translation>
@@ -434,15 +522,15 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="121"/>
-        <location filename="../src/components/cfiledialog.cpp" line="372"/>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
+        <location filename="../src/components/cfiledialog.cpp" line="369"/>
+        <location filename="../src/components/cfiledialog.cpp" line="389"/>
         <source>JPG Image</source>
         <translation>Imazh JPG</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="122"/>
-        <location filename="../src/components/cfiledialog.cpp" line="373"/>
-        <location filename="../src/components/cfiledialog.cpp" line="393"/>
+        <location filename="../src/components/cfiledialog.cpp" line="370"/>
+        <location filename="../src/components/cfiledialog.cpp" line="390"/>
         <source>PNG Image</source>
         <translation>Imazh PNG</translation>
     </message>
@@ -477,65 +565,69 @@
         <translation>%1 Skedar</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="309"/>
-        <location filename="../src/components/cfiledialog.cpp" line="436"/>
-        <location filename="../src/components/cfiledialog.cpp" line="460"/>
-        <location filename="../src/components/cfiledialog.cpp" line="462"/>
+        <location filename="../src/components/cfiledialog.cpp" line="310"/>
+        <location filename="../src/components/cfiledialog.cpp" line="433"/>
+        <location filename="../src/components/cfiledialog.cpp" line="456"/>
         <source>Text documents</source>
         <translation>Dokumente tekstuale</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="315"/>
-        <location filename="../src/components/cfiledialog.cpp" line="444"/>
-        <location filename="../src/components/cfiledialog.cpp" line="464"/>
+        <location filename="../src/components/cfiledialog.cpp" line="311"/>
+        <location filename="../src/components/cfiledialog.cpp" line="441"/>
+        <location filename="../src/components/cfiledialog.cpp" line="457"/>
         <source>Spreadsheets</source>
         <translation>Fletëllogaritëset</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="316"/>
-        <location filename="../src/components/cfiledialog.cpp" line="452"/>
-        <location filename="../src/components/cfiledialog.cpp" line="465"/>
+        <location filename="../src/components/cfiledialog.cpp" line="312"/>
+        <location filename="../src/components/cfiledialog.cpp" line="449"/>
+        <location filename="../src/components/cfiledialog.cpp" line="458"/>
         <source>Presentations</source>
         <translation>Prezantime</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="317"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
+        <source>Crossplatform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="314"/>
         <source>Visio diagram</source>
         <translation>Diagrami i Visio-s</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="374"/>
-        <location filename="../src/components/cfiledialog.cpp" line="394"/>
+        <location filename="../src/components/cfiledialog.cpp" line="371"/>
+        <location filename="../src/components/cfiledialog.cpp" line="391"/>
         <source>GIF Image</source>
         <translation>Imazh GIF</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="375"/>
-        <location filename="../src/components/cfiledialog.cpp" line="395"/>
+        <location filename="../src/components/cfiledialog.cpp" line="372"/>
+        <location filename="../src/components/cfiledialog.cpp" line="392"/>
         <source>BMP Image</source>
         <translation>Imazh BMP</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="376"/>
-        <location filename="../src/components/cfiledialog.cpp" line="396"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
+        <location filename="../src/components/cfiledialog.cpp" line="393"/>
         <source>TIFF Image</source>
         <translation>Imazh TIFF</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="377"/>
-        <location filename="../src/components/cfiledialog.cpp" line="397"/>
+        <location filename="../src/components/cfiledialog.cpp" line="374"/>
+        <location filename="../src/components/cfiledialog.cpp" line="394"/>
         <source>HEIF Image</source>
         <translation>Imazh HEIF</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="378"/>
-        <location filename="../src/components/cfiledialog.cpp" line="398"/>
+        <location filename="../src/components/cfiledialog.cpp" line="375"/>
+        <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <source>WEBP Image</source>
         <translation>Imazh WEBP</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="379"/>
-        <location filename="../src/components/cfiledialog.cpp" line="399"/>
+        <location filename="../src/components/cfiledialog.cpp" line="376"/>
+        <location filename="../src/components/cfiledialog.cpp" line="396"/>
         <source>AVIF Image</source>
         <translation>Imazh AVIF</translation>
     </message>
@@ -548,39 +640,39 @@
         <translation type="vanished">Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="585"/>
+        <location filename="../src/components/cfiledialog.cpp" line="578"/>
         <source>Unknown image format.</source>
         <translation>Format i panjohur i imazhit.</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="586"/>
+        <location filename="../src/components/cfiledialog.cpp" line="579"/>
         <source>Unknown video format.</source>
         <translation>Format i panjohur i videos.</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="587"/>
+        <location filename="../src/components/cfiledialog.cpp" line="580"/>
         <source>Unknown audio format.</source>
         <translation>Format i panjohur audio.</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="587"/>
+        <location filename="../src/components/cfiledialog.cpp" line="580"/>
         <source>Unknown format.</source>
         <translation>Format i panjohur.</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="318"/>
+        <location filename="../src/components/cfiledialog.cpp" line="315"/>
         <source>Web Page</source>
         <translation>Faqe interneti</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="319"/>
+        <location filename="../src/components/cfiledialog.cpp" line="316"/>
         <source>Text files</source>
         <translation>Skedarë teksti</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
-        <location filename="../src/components/cfiledialog.cpp" line="321"/>
-        <location filename="../src/components/cfiledialog.cpp" line="467"/>
+        <location filename="../src/components/cfiledialog.cpp" line="318"/>
+        <location filename="../src/components/cfiledialog.cpp" line="460"/>
         <source>All supported files</source>
         <translation>Të gjithë skedarët e mbështetur</translation>
     </message>
@@ -590,13 +682,13 @@
         <translation>Skedari i temës</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="339"/>
+        <location filename="../src/components/cfiledialog.cpp" line="336"/>
         <source>Open Document</source>
         <translation>Hapni dokumentin</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="369"/>
-        <location filename="../src/components/cfiledialog.cpp" line="389"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="386"/>
         <source>All Images</source>
         <translation>Të gjitha fotot</translation>
     </message>
@@ -609,28 +701,28 @@
         <translation type="vanished">Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="410"/>
-        <location filename="../src/components/cfiledialog.cpp" line="419"/>
+        <location filename="../src/components/cfiledialog.cpp" line="407"/>
+        <location filename="../src/components/cfiledialog.cpp" line="416"/>
         <source>Plugin file</source>
         <translation>Skedar plugin</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="428"/>
+        <location filename="../src/components/cfiledialog.cpp" line="425"/>
         <source>Templates</source>
         <translation>Shabllone</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="484"/>
+        <location filename="../src/components/cfiledialog.cpp" line="477"/>
         <source>Video file</source>
         <translation>Skedar video</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="489"/>
+        <location filename="../src/components/cfiledialog.cpp" line="482"/>
         <source>Audio file</source>
         <translation>Skedar audio</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="508"/>
+        <location filename="../src/components/cfiledialog.cpp" line="501"/>
         <source>Select Folder</source>
         <translation>Selektoni dosjen</translation>
     </message>
@@ -638,39 +730,39 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="86"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="642"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="87"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="641"/>
         <source>Main Window</source>
         <translation>Dritarja kryesore</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="319"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="320"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Më shumë se një dokument është hapur.&lt;br&gt;Dëshironi ta mbyllni dritaren tani?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="318"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="319"/>
         <source>Don&apos;t ask again.</source>
         <translation>Mos pyet përsëri.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="968"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="1008"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="967"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1007"/>
         <source>File format not supported.</source>
         <translation>Formati i skedarit nuk është i mbështetur.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="992"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="991"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 nuk është i disponueshëm. Mund të jetë riemëruar, lëvizur ose fshirë.&lt;br&gt;Dëshironi ta fshini nga lista?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1070"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1069"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumenti duhet të ruhet përpara se të vazhdojë.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1234"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1233"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokumenti duhet të  ruhet përpara se të vazhdojë.&lt;br&gt;Ruajeni dokumentin?</translation>
     </message>
@@ -687,17 +779,17 @@
         <translation type="vanished">Nuk ka faqe të cilat janë vendosur për t’u printuar.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1488"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1487"/>
         <source>Sign Up</source>
         <translation>Krijoni portalin</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1553"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1552"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 ekziston tashmë.&lt;br&gt;Dëshironi ta zëvendësoni atë?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1653"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1660"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 është modifikuar.&lt;br&gt;Dëshironi të ruani ndryshimet?</translation>
     </message>
@@ -705,12 +797,12 @@
 <context>
     <name>CMainWindowImpl</name>
     <message>
-        <location filename="../src/prop/cmainwindowimpl.cpp" line="128"/>
+        <location filename="../src/prop/cmainwindowimpl.cpp" line="131"/>
         <source>Licensed under</source>
         <translation>Licesuar nën</translation>
     </message>
     <message>
-        <location filename="../src/prop/cmainwindowimpl.cpp" line="112"/>
+        <location filename="../src/prop/cmainwindowimpl.cpp" line="115"/>
         <source>License Agreement</source>
         <translation>Marrëveshja e licencës</translation>
     </message>
@@ -764,6 +856,29 @@
     </message>
 </context>
 <context>
+    <name>CMessage</name>
+    <message>
+        <location filename="../src/components/cmessage.h" line="128"/>
+        <source>OK</source>
+        <translation type="unfinished">OK</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmessage.h" line="129"/>
+        <source>Yes</source>
+        <translation type="unfinished">Po</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmessage.h" line="130"/>
+        <source>No</source>
+        <translation type="unfinished">Jo</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cmessage.h" line="131"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Anuloni</translation>
+    </message>
+</context>
+<context>
     <name>CPrintProgress</name>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="228"/>
@@ -778,107 +893,114 @@
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="109"/>
+        <location filename="../src/cupdatemanager.cpp" line="112"/>
         <source>Check for updates</source>
         <translation>Kontrolloni për përditësime</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="101"/>
+        <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Unable to check update: URL not defined.</source>
         <translation>Nuk mund të kontrollohet përditësimi: URL-ja nuk është e përcaktuar.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="84"/>
+        <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Update failed: out of memory!</source>
         <translation>Përditësimi dështoi: pa memorie!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="85"/>
+        <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Update failed: server connection error!</source>
         <translation>Përditësimi dështoi: gabim i lidhjes së serverit!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="86"/>
+        <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Update failed: wrong URL!</source>
         <translation>Përditësimi dështoi: URL e gabuar!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="87"/>
+        <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Update failed: unable to create file!</source>
         <translation>Përditësimi dështoi: nuk mund të krijojë skedar!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="88"/>
+        <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Update failed: network error!</source>
         <translation>Përditësimi dështoi: gabim rrjeti!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="99"/>
+        <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>To finish updating, restart app</source>
         <translation>Për të përfunduar azhurimin, rindizni aplikacionin</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="111"/>
+        <location filename="../src/cupdatemanager.cpp" line="109"/>
+        <source>The update information is invalid or incomplete.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="114"/>
+        <location filename="../src/cupdatemanager.cpp" line="964"/>
         <source>Restart</source>
         <translation>Rindizni</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="93"/>
+        <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>Checking for updates...</source>
         <translation>Po kontrollohen përditësimet...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="100"/>
+        <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Updates are not allowed!</source>
         <translation>Përditësimet nuk lejohet!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="504"/>
+        <location filename="../src/cupdatemanager.cpp" line="509"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>Ky konfigurim dosjeje nuk lejon përditësime! Emri i dosjes duhet të jetë: </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="96"/>
+        <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>Downloading new version %1 (%2%)</source>
         <translation>Po shkarkohet versioni i ri %1 (%2%)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="112"/>
+        <location filename="../src/cupdatemanager.cpp" line="115"/>
         <source>Cancel</source>
         <translation>Anuloni</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="102"/>
+        <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation>Ka ndodhur një gabim gjatë ngarkimit të përditësimeve: paketa URL është bosh!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="107"/>
+        <location filename="../src/cupdatemanager.cpp" line="110"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation>Gabim në paketën e përditësimeve: shuma md5 nuk përputhet me origjinalen.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="97"/>
+        <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>Preparing update...</source>
         <translation>Po përgatitet përditësimi...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="94"/>
+        <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>Update is available (version %1)</source>
         <translation>Përditësimi është i disponueshëm (versioni %1)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="110"/>
+        <location filename="../src/cupdatemanager.cpp" line="113"/>
+        <location filename="../src/cupdatemanager.cpp" line="929"/>
         <source>Download update</source>
         <translation>Shkarkoni përditësimin</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="92"/>
+        <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>Current version is up to date</source>
         <translation>Versioni aktual është i përditësuar</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="83"/>
+        <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>An error occurred while unpacking the archive</source>
         <translation>Ka ndodhur një gabim gjatë çpaketimit të arkivit</translation>
     </message>
@@ -903,83 +1025,114 @@
         <translation type="vanished">Dështoi shkarkimi i përditësimit: gabim rrjeti!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="89"/>
+        <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>A service error has occurred!</source>
         <translation>Ka ndodhur një gabim shërbimi!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="91"/>
+        <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>Last check performed %1</source>
         <translation>Kontrolli i fundit është kryer %1</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="95"/>
+        <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Service update is available (version %1)</source>
         <translation>Përditësimi i shërbimit është në dispozicion (versioni %1)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="98"/>
+        <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Preparing update (%1%)</source>
         <translation>Po përgatitet përditësimi (%1%)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="103"/>
+        <location filename="../src/cupdatemanager.cpp" line="106"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
         <translation>Ka ndodhur një gabim gjatë kontrollimit të përditësimit: shërbimi i përditësimit nuk është i instaluar ose nuk është duke funksionuar!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="104"/>
+        <location filename="../src/cupdatemanager.cpp" line="107"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
         <translation>Ka ndodhur një gabim gjatë ngarkimit të përditësimeve: shërbimi i përditësimit nuk është i instaluar ose nuk është duke funksionuar!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="105"/>
+        <location filename="../src/cupdatemanager.cpp" line="108"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
         <translation>Ka ndodhur një gabim  gjatë çpaketimit të përditësimeve: shërbimi i përditësimit nuk është i instaluar ose nuk është duke funksionuar!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="106"/>
         <source>Error opening JSON file.</source>
-        <translation>Gabim gjatë hapjes së skedarit JSON.</translation>
+        <translation type="vanished">Gabim gjatë hapjes së skedarit JSON.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="894"/>
+        <location filename="../src/cupdatemanager.cpp" line="905"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
         <translation>Versioni aktual nuk mbështet instalimin e këtij përditësimi direkt. Për të instaluar përditësime, mund të shkarkoni paketën e nevojshme nga faqja zyrtare.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="896"/>
+        <location filename="../src/cupdatemanager.cpp" line="907"/>
         <source>Update is available</source>
         <translation>Përditësimi është i disponueshëm</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="899"/>
         <location filename="../src/cupdatemanager.cpp" line="910"/>
-        <location filename="../src/cupdatemanager.cpp" line="945"/>
-        <location filename="../src/cupdatemanager.cpp" line="956"/>
+        <location filename="../src/cupdatemanager.cpp" line="921"/>
+        <location filename="../src/cupdatemanager.cpp" line="962"/>
+        <location filename="../src/cupdatemanager.cpp" line="973"/>
         <source>Current version</source>
         <translation>Versioni aktual</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="900"/>
-        <location filename="../src/cupdatemanager.cpp" line="910"/>
-        <location filename="../src/cupdatemanager.cpp" line="946"/>
-        <location filename="../src/cupdatemanager.cpp" line="956"/>
+        <location filename="../src/cupdatemanager.cpp" line="911"/>
+        <location filename="../src/cupdatemanager.cpp" line="921"/>
+        <location filename="../src/cupdatemanager.cpp" line="963"/>
+        <location filename="../src/cupdatemanager.cpp" line="973"/>
         <source>New version</source>
         <translation>Versioni i ri</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="957"/>
+        <location filename="../src/cupdatemanager.cpp" line="912"/>
+        <source>Skip</source>
+        <translation type="unfinished">Kalojeni</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="912"/>
+        <location filename="../src/cupdatemanager.cpp" line="964"/>
+        <location filename="../src/cupdatemanager.cpp" line="982"/>
+        <source>Later</source>
+        <translation type="unfinished">Më vonë</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="912"/>
+        <source>Download</source>
+        <translation type="unfinished">Shkarko</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="929"/>
+        <source>Skip this version</source>
+        <translation type="unfinished">Kalojeni këtë version</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="929"/>
+        <source>Remind me later</source>
+        <translation type="unfinished">Më kujto më vonë</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="974"/>
         <source>To finish updating, restart the app</source>
         <translation>Për të përfunduar përditësimin, ritni aplikacionin</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="893"/>
+        <location filename="../src/cupdatemanager.cpp" line="982"/>
+        <source>Restart Now</source>
+        <translation type="unfinished">Rinisni tani</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="904"/>
         <source>Would you like to download update now?</source>
         <translation>Dëshironi të shkarkoni përditësimin tani?</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="942"/>
+        <location filename="../src/cupdatemanager.cpp" line="959"/>
         <source>Update is ready to install</source>
         <translation>Përditësimi është gati për t’u instaluar</translation>
     </message>
@@ -987,13 +1140,13 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="255"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="1047"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="268"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1046"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 nuk është i disponueshëm. Mund të jetë rinovuar, zhvendosur ose fshirë.&lt;br&gt;Dëshironi ta fshini skedarin nga lista?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="329"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="342"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Skedari %1 nuk mund të hapet ose nuk ekziston.</translation>
     </message>
@@ -1025,7 +1178,7 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="410"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="957"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="956"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Aksesi në skedar ‘%1’ është mohuar!</translation>
     </message>
@@ -1035,41 +1188,32 @@
         <translation>Lexo vetëm</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="86"/>
         <source>Skip this version</source>
-        <translation>Kalojeni këtë version</translation>
+        <translation type="vanished">Kalojeni këtë version</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="87"/>
         <source>Remind me later</source>
-        <translation>Më kujto më vonë</translation>
+        <translation type="vanished">Më kujto më vonë</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="88"/>
         <source>Install update</source>
-        <translation>Instaloni përditësimin</translation>
+        <translation type="vanished">Instaloni përditësimin</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="89"/>
-        <location filename="../src/components/cnotification.cpp" line="73"/>
-        <location filename="../src/components/cnotification.cpp" line="75"/>
         <source>Later</source>
-        <translation>Më vonë</translation>
+        <translation type="vanished">Më vonë</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="90"/>
         <source>Restart Now</source>
-        <translation>Rinisni tani</translation>
+        <translation type="vanished">Rinisni tani</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="91"/>
         <source>Save and Install Now</source>
-        <translation>Instaloni</translation>
+        <translation type="vanished">Instaloni</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="92"/>
         <source>Download update</source>
-        <translation>Shkarkoni përditësimin</translation>
+        <translation type="vanished">Shkarkoni përditësimin</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="76"/>
@@ -1081,64 +1225,46 @@
         <translation type="vanished">An error occurred while start installing updates!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="758"/>
+        <location filename="../src/cupdatemanager.cpp" line="769"/>
         <source>An error occurred while start install updates: Update Service not found!</source>
         <translation>Një gabim ndodhi gjatë fillimit të instalimit të përditësimeve: servisi i përditësimit nuk u gjend!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="768"/>
+        <location filename="../src/cupdatemanager.cpp" line="779"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>Një gabim ndodhi gjatë fillimit të zëvëndësimit të skedarëve: servisi i përditësimit nuk u gjend!</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="78"/>
-        <location filename="../src/components/cnotification.cpp" line="64"/>
         <source>Cancel</source>
-        <translation>Anuloni</translation>
+        <translation type="vanished">Anuloni</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="79"/>
-        <location filename="../src/components/cnotification.cpp" line="65"/>
         <source>Yes</source>
-        <translation>Po</translation>
+        <translation type="vanished">Po</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="80"/>
-        <location filename="../src/components/cnotification.cpp" line="66"/>
         <source>No</source>
-        <translation>Jo</translation>
+        <translation type="vanished">Jo</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="81"/>
-        <location filename="../src/components/cmessage.cpp" line="265"/>
-        <location filename="../src/components/cnotification.cpp" line="67"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="vanished">OK</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="82"/>
-        <location filename="../src/components/cnotification.cpp" line="68"/>
-        <location filename="../src/components/cnotification.cpp" line="72"/>
         <source>Skip</source>
-        <translation>Kalojeni</translation>
+        <translation type="vanished">Kalojeni</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="83"/>
-        <location filename="../src/components/cnotification.cpp" line="69"/>
         <source>Buy Now</source>
-        <translation>Blini tani</translation>
+        <translation type="vanished">Blini tani</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="84"/>
-        <location filename="../src/components/cnotification.cpp" line="70"/>
         <source>Activate</source>
-        <translation>Aktivizoni</translation>
+        <translation type="vanished">Aktivizoni</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="85"/>
-        <location filename="../src/components/cnotification.cpp" line="71"/>
         <source>Continue</source>
-        <translation>Vazhdoni</translation>
+        <translation type="vanished">Vazhdoni</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1203"/>
@@ -1150,7 +1276,7 @@
         <translation type="vanished">App can&apos;t work correctly under admin rights.</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="442"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="546"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>Skedari %1 është ngarkuar tashmë. Zëvëndësojeni atë?</translation>
     </message>
@@ -1176,12 +1302,12 @@
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="592"/>
-        <location filename="../src/platform_win/printdialog.cpp" line="568"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="592"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
         <translation>Shtrirja e specifikuar %1-%2 kalon kufijtë e dokumentit: numri maksimal i faqeve është %3</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/printdialog.cpp" line="526"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="550"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
         <translation>Nuk mund të hapet dialogu i printimit:&lt;br&gt;%1</translation>
     </message>
@@ -1235,20 +1361,16 @@
         <translation>Ka dokumente të paruajtura</translation>
     </message>
     <message>
-        <location filename="../src/components/cnotification.cpp" line="74"/>
-        <location filename="../src/components/cnotification.cpp" line="77"/>
         <source>Install</source>
-        <translation>Instalo</translation>
+        <translation type="vanished">Instalo</translation>
     </message>
     <message>
-        <location filename="../src/components/cnotification.cpp" line="76"/>
         <source>Restart</source>
-        <translation>Rindizni</translation>
+        <translation type="vanished">Rindizni</translation>
     </message>
     <message>
-        <location filename="../src/components/cnotification.cpp" line="78"/>
         <source>Download</source>
-        <translation>Shkarko</translation>
+        <translation type="vanished">Shkarko</translation>
     </message>
 </context>
 </TS>
