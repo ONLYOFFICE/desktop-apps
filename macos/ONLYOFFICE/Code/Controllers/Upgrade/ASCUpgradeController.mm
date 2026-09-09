@@ -55,7 +55,7 @@
 #import "mac_application.h"
 
 
-static const NSSize kASCUpgradeIntroSize   = { 480, 700 };
+static const NSSize kASCUpgradeIntroSize   = { 480, 646 };
 static const NSSize kASCUpgradeInstallSize = { 480, 304 };
 
 static NSString *ASCUpgradePageToString(ASCUpgradePage page) {

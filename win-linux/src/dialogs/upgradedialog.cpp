@@ -46,7 +46,7 @@
 #include "version.h"
 #include <qtcomp/qdesktopwidget.h>
 
-const QSize UpgradeDialog::IntroPageSize(480, 700);
+const QSize UpgradeDialog::IntroPageSize(480, 646);
 const QSize UpgradeDialog::InstallPageSize(480, 304);
 
 namespace
