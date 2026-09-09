@@ -78,8 +78,7 @@ $AssociationList = @(
     "pages", "numbers", "key",
     "djvu", "fb2", "pdf", "rtf", "xps", "oxps",
     "epub", "html", "xml",
-    "md", "txt", "csv", "tsv",
-    "docxf"
+    "md", "txt", "csv", "tsv"
 )
 $LicensePath = "common\license"
 $PluginManagerPath = "editors\sdkjs-plugins\{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}"

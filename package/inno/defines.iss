@@ -31,7 +31,7 @@
 #define ASSOC_PROG_ID                   "ASC.Editors"
 #define ASSOC_APP_FRIENDLY_NAME         "ONLYOFFICE Editors"
 
-#dim FA_ARR[51] { \
+#dim FA_ARR[50] { \
   "doc", \
   "dot", \
   "docx", \
@@ -81,8 +81,7 @@
   "epub", \
   "md", \
   "csv", \
-  "tsv", \
-  "docxf" \
+  "tsv" \
 }
 
 #dim SN_ARR[4] { \

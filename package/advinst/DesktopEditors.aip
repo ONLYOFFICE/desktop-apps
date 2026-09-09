@@ -53,7 +53,6 @@
     <ROW Property="REGISTER_DOC" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOCM" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOCX" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_DOCXF" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOTM" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOTX" Value="1" Type="4" ValueLocId="-"/>
@@ -134,7 +133,6 @@
     <ROW Component="c_reg_fa_cap__doc" ComponentId="{2A868F5D-AEBD-4D31-80A1-FDBCDFB97D1F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__doc"/>
     <ROW Component="c_reg_fa_cap__docm" ComponentId="{CD0FA924-54A5-4A42-8FD6-56A73D2CA486}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__docm"/>
     <ROW Component="c_reg_fa_cap__docx" ComponentId="{8784A8FD-7EE8-4B44-9F60-95E914F1600B}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__docx"/>
-    <ROW Component="c_reg_fa_cap__docxf" ComponentId="{8C1919C9-4099-4138-9919-5BF546875E28}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1" KeyPath="reg_fa_cap__docxf"/>
     <ROW Component="c_reg_fa_cap__dot" ComponentId="{843CC5B7-2D4E-4A5D-B270-D80875E05946}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__dot"/>
     <ROW Component="c_reg_fa_cap__dotm" ComponentId="{0052FB32-B329-4EF0-87A7-37421E5BE4F4}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__dotm"/>
     <ROW Component="c_reg_fa_cap__dotx" ComponentId="{FF857C91-7A72-4512-9767-F464EFB6D84B}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__dotx"/>
@@ -189,7 +187,6 @@
     <ROW Component="c_reg_fa_ext__doc" ComponentId="{7E93A963-B5BE-49AE-B1E7-84BEFD636CF0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__doc"/>
     <ROW Component="c_reg_fa_ext__docm" ComponentId="{583F7417-1923-4914-A376-04AD60EEEF58}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__docm"/>
     <ROW Component="c_reg_fa_ext__docx" ComponentId="{D22E5964-CF70-4635-B355-1A4763C4DAB9}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__docx"/>
-    <ROW Component="c_reg_fa_ext__docxf" ComponentId="{96C8B91D-4E10-46CB-B3C7-95074E7B534B}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__docxf"/>
     <ROW Component="c_reg_fa_ext__dot" ComponentId="{234C1815-86CE-46CF-AD12-78EECA3FF7B2}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__dot"/>
     <ROW Component="c_reg_fa_ext__dotm" ComponentId="{767E64A4-4589-431C-82F7-D64526C3A84B}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__dotm"/>
     <ROW Component="c_reg_fa_ext__dotx" ComponentId="{2AC1C78E-120B-40E2-9337-6E31CEB5E174}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__dotx"/>
@@ -248,7 +245,6 @@
     <ROW Component="c_reg_fa_openwith__doc" ComponentId="{F1B1CEDC-E7A4-42F4-9512-346E4EED0485}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__doc"/>
     <ROW Component="c_reg_fa_openwith__docm" ComponentId="{7E8B33E3-6CE6-43C8-8A01-645424EB05BC}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__docm"/>
     <ROW Component="c_reg_fa_openwith__docx" ComponentId="{8D60A970-F1DE-46C0-986B-491240D8C639}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__docx"/>
-    <ROW Component="c_reg_fa_openwith__docxf" ComponentId="{2672E8D9-C1AE-41F2-8942-C76E9D1E19EE}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1" KeyPath="reg_fa_openwith__docxf"/>
     <ROW Component="c_reg_fa_openwith__dot" ComponentId="{76EEF5AE-E458-4FD6-912B-3C08918C971A}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__dot"/>
     <ROW Component="c_reg_fa_openwith__dotm" ComponentId="{A11C56A9-7B9B-4F8C-85AE-BCCDF354260A}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__dotm"/>
     <ROW Component="c_reg_fa_openwith__dotx" ComponentId="{B7867252-0271-4E4F-99A8-FDAD18905F8F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__dotx"/>
@@ -303,7 +299,6 @@
     <ROW Component="c_reg_fa_progid__doc" ComponentId="{BB4434E5-5FD8-402D-902D-ADD8C37AAD53}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__doc"/>
     <ROW Component="c_reg_fa_progid__docm" ComponentId="{E20B586B-536F-442D-A9D6-ED2D10BE513C}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__docm"/>
     <ROW Component="c_reg_fa_progid__docx" ComponentId="{774A38A3-9F19-468B-B4C3-D3424699F26A}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__docx"/>
-    <ROW Component="c_reg_fa_progid__docxf" ComponentId="{117282AF-42CA-4B71-A00F-57BAE73A59A9}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1" KeyPath="reg_fa_progid__docxf"/>
     <ROW Component="c_reg_fa_progid__dot" ComponentId="{8B739EE8-5794-42EC-9981-F69A8BEB4786}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__dot"/>
     <ROW Component="c_reg_fa_progid__dotm" ComponentId="{BD2F31CF-8C4B-4359-8888-5D4AC14CD4B7}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__dotm"/>
     <ROW Component="c_reg_fa_progid__dotx" ComponentId="{26189452-0BFF-4C01-80DA-7CD818D02140}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__dotx"/>
@@ -358,7 +353,6 @@
     <ROW Component="c_reg_fa_progid_app__doc" ComponentId="{95FE71B1-0656-422E-8D5B-25C4D16E451E}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__doc"/>
     <ROW Component="c_reg_fa_progid_app__docm" ComponentId="{AF06F05F-4D3D-4BE2-9ED6-C6500B754FF7}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__docm"/>
     <ROW Component="c_reg_fa_progid_app__docx" ComponentId="{9232B8CA-234E-4802-9503-E69E862B6D17}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__docx"/>
-    <ROW Component="c_reg_fa_progid_app__docxf" ComponentId="{82D17D51-7FE7-401D-8C18-29BFB603BA48}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__docxf"/>
     <ROW Component="c_reg_fa_progid_app__dot" ComponentId="{C6742AC6-B48A-4625-A605-591873794F48}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__dot"/>
     <ROW Component="c_reg_fa_progid_app__dotm" ComponentId="{D1AD501B-084A-4573-AFF9-BF48B53436CE}" Directory_="APPDIR" Attributes="260" Condition="VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__dotm"/>
     <ROW Component="c_reg_fa_progid_app__dotx" ComponentId="{35150CF2-D652-4118-A77C-608F956B4BD5}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1 AND VersionNT = 1000" KeyPath="reg_fa_progid_app_icon__dotx"/>
@@ -421,7 +415,6 @@
     <ROW Feature="FA_DOC" Feature_Parent="RegFileTypeAssociations" Title=".doc" Display="3" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_DOCM" Feature_Parent="RegFileTypeAssociations" Title=".docm" Display="11" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_DOCX" Feature_Parent="RegFileTypeAssociations" Title=".docx" Display="7" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_DOCXF" Feature_Parent="RegFileTypeAssociations" Title=".docxf" Display="111" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_DOT" Feature_Parent="RegFileTypeAssociations" Title=".dot" Display="5" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_DOTM" Feature_Parent="RegFileTypeAssociations" Title=".dotm" Display="13" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_DOTX" Feature_Parent="RegFileTypeAssociations" Title=".dotx" Display="9" Level="4" Directory_="APPDIR" Attributes="0"/>
@@ -617,7 +610,6 @@
     <ROW Property="REGISTER_DOC" Value="1"/>
     <ROW Property="REGISTER_DOCM" Value="1"/>
     <ROW Property="REGISTER_DOCX" Value="1"/>
-    <ROW Property="REGISTER_DOCXF" Value="1"/>
     <ROW Property="REGISTER_DOT" Value="1"/>
     <ROW Property="REGISTER_DOTM" Value="1"/>
     <ROW Property="REGISTER_DOTX" Value="1"/>
@@ -676,7 +668,6 @@
     <ROW Feature_="FA_DOC" Level="1" Condition="REGISTER_DOC = 1"/>
     <ROW Feature_="FA_DOCM" Level="1" Condition="REGISTER_DOCM = 1"/>
     <ROW Feature_="FA_DOCX" Level="1" Condition="REGISTER_DOCX = 1"/>
-    <ROW Feature_="FA_DOCXF" Level="1" Condition="FORMS = 1 AND REGISTER_DOCXF = 1"/>
     <ROW Feature_="FA_DOT" Level="1" Condition="REGISTER_DOT = 1"/>
     <ROW Feature_="FA_DOTM" Level="1" Condition="REGISTER_DOTM = 1"/>
     <ROW Feature_="FA_DOTX" Level="1" Condition="REGISTER_DOTX = 1"/>
@@ -853,7 +844,6 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_md" Type="CheckBox" X="135" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_MD" Text=".md" Order="6200" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_csv" Type="CheckBox" X="185" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_CSV" Text=".csv" Order="6300" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_tsv" Type="CheckBox" X="235" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_TSV" Text=".tsv" Order="6400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="285" Y="192" Width="48" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="6500" TextLocId="-"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
@@ -937,7 +927,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="ShortcutsDlg" Control_="StartupShorcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
     <ROW Dialog_="ShortcutsDlg" Control_="StartmenuShortcutsCheckBox" Action="Show" Condition="(Not Installed)"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="CheckBox_docxf" Action="Hide" Condition="FORMS &lt;&gt; 1"/>
     <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#(((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))) OR AiReadmeLink@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
@@ -1029,7 +1018,6 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_TXT]" Argument="1" Condition="AI_INSTALL" Ordering="50"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_CSV]" Argument="1" Condition="AI_INSTALL" Ordering="51"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_TSV]" Argument="1" Condition="AI_INSTALL" Ordering="52"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOCXF]" Argument="1" Condition="AI_INSTALL" Ordering="53"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOC]" Argument="{}" Condition="AI_INSTALL" Ordering="0"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCX]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCM]" Argument="{}" Condition="AI_INSTALL" Ordering="2"/>
@@ -1083,7 +1071,6 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_TXT]" Argument="{}" Condition="AI_INSTALL" Ordering="50"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_TSV]" Argument="{}" Condition="AI_INSTALL" Ordering="51"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_CSV]" Argument="{}" Condition="AI_INSTALL" Ordering="52"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCXF]" Argument="{}" Condition="AI_INSTALL" Ordering="53"/>
     <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_RollbackPrereq" Condition="1" Ordering="105"/>
     <ROW Dialog_="ExitDialog" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="303"/>
     <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="106"/>
@@ -1130,7 +1117,6 @@
     <ROW Action="Assoc__doc" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.doc:[ExtPfx].Document.1&quot;"/>
     <ROW Action="Assoc__docm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.docm:[ExtPfx].Docm&quot;"/>
     <ROW Action="Assoc__docx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.docx:[ExtPfx].Document.12&quot;"/>
-    <ROW Action="Assoc__docxf" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.docxf:[ExtPfx].Docxf&quot;"/>
     <ROW Action="Assoc__dot" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.dot:[ExtPfx].Dot&quot;"/>
     <ROW Action="Assoc__dotm" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.dotm:[ExtPfx].Dotm&quot;"/>
     <ROW Action="Assoc__dotx" Type="210" Source="DesktopEditors.exe" Target="--assoc &quot;.dotx:[ExtPfx].Dotx&quot;"/>
@@ -1195,7 +1181,6 @@
     <ROW Feature_="FA_DOC" Component_="c_reg_fa_ext__doc"/>
     <ROW Feature_="FA_DOCM" Component_="c_reg_fa_ext__docm"/>
     <ROW Feature_="FA_DOCX" Component_="c_reg_fa_ext__docx"/>
-    <ROW Feature_="FA_DOCXF" Component_="c_reg_fa_ext__docxf"/>
     <ROW Feature_="FA_DOT" Component_="c_reg_fa_ext__dot"/>
     <ROW Feature_="FA_DOTM" Component_="c_reg_fa_ext__dotm"/>
     <ROW Feature_="FA_DOTX" Component_="c_reg_fa_ext__dotx"/>
@@ -1256,7 +1241,6 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__doc"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__docm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__docx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__docxf"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__dot"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__dotm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__dotx"/>
@@ -1315,7 +1299,6 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__doc"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__docm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__docx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_openwith__docxf"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__dot"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__dotm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__dotx"/>
@@ -1370,7 +1353,6 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__doc"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__docm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__docx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__docxf"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__dot"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__dotm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__dotx"/>
@@ -1425,7 +1407,6 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__doc"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__docm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__docx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__docxf"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__dot"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__dotm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid_app__dotx"/>
@@ -1512,7 +1493,6 @@
     <ROW Action="Assoc__doc" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOC = 3 )" Sequence="6605"/>
     <ROW Action="Assoc__docm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOCM = 3 )" Sequence="6606"/>
     <ROW Action="Assoc__docx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOCX = 3 )" Sequence="6607"/>
-    <ROW Action="Assoc__docxf" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOCXF = 3 )" Sequence="6608"/>
     <ROW Action="Assoc__dot" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOT = 3 )" Sequence="6609"/>
     <ROW Action="Assoc__dotm" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOTM = 3 )" Sequence="6610"/>
     <ROW Action="Assoc__dotx" Condition="( NOT Installed ) AND ( VersionNT &gt;= 602 AND &amp;FA_DOTX = 3 )" Sequence="6611"/>
@@ -1647,7 +1627,6 @@
     <ROW Registry="reg_fa_cap__doc" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\FileAssociations" Name=".doc" Value="[ExtPfx].Document.1" Component_="c_reg_fa_cap__doc"/>
     <ROW Registry="reg_fa_cap__docm" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\FileAssociations" Name=".docm" Value="[ExtPfx].Docm" Component_="c_reg_fa_cap__docm"/>
     <ROW Registry="reg_fa_cap__docx" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\FileAssociations" Name=".docx" Value="[ExtPfx].Document.12" Component_="c_reg_fa_cap__docx"/>
-    <ROW Registry="reg_fa_cap__docxf" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\FileAssociations" Name=".docxf" Value="[ExtPfx].Docxf" Component_="c_reg_fa_cap__docxf"/>
     <ROW Registry="reg_fa_cap__dot" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\FileAssociations" Name=".dot" Value="[ExtPfx].Dot" Component_="c_reg_fa_cap__dot"/>
     <ROW Registry="reg_fa_cap__dotm" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\FileAssociations" Name=".dotm" Value="[ExtPfx].Dotm" Component_="c_reg_fa_cap__dotm"/>
     <ROW Registry="reg_fa_cap__dotx" Root="-1" Key="Software\[CompanyPath]\[DesktopPath]\Capabilities\FileAssociations" Name=".dotx" Value="[ExtPfx].Dotx" Component_="c_reg_fa_cap__dotx"/>
@@ -1702,7 +1681,6 @@
     <ROW Registry="reg_fa_ext__doc" Root="0" Key=".doc" Value="[ExtPfx].Document.1" Component_="c_reg_fa_ext__doc"/>
     <ROW Registry="reg_fa_ext__docm" Root="0" Key=".docm" Value="[ExtPfx].Docm" Component_="c_reg_fa_ext__docm"/>
     <ROW Registry="reg_fa_ext__docx" Root="0" Key=".docx" Value="[ExtPfx].Document.12" Component_="c_reg_fa_ext__docx"/>
-    <ROW Registry="reg_fa_ext__docxf" Root="0" Key=".docxf" Value="[ExtPfx].Docxf" Component_="c_reg_fa_ext__docxf"/>
     <ROW Registry="reg_fa_ext__dot" Root="0" Key=".dot" Value="[ExtPfx].Dot" Component_="c_reg_fa_ext__dot"/>
     <ROW Registry="reg_fa_ext__dotm" Root="0" Key=".dotm" Value="[ExtPfx].Dotm" Component_="c_reg_fa_ext__dotm"/>
     <ROW Registry="reg_fa_ext__dotx" Root="0" Key=".dotx" Value="[ExtPfx].Dotx" Component_="c_reg_fa_ext__dotx"/>
@@ -1757,7 +1735,6 @@
     <ROW Registry="reg_fa_openwith__doc" Root="0" Key=".doc\OpenWithProgIds" Name="[ExtPfx].Document.1" Component_="c_reg_fa_openwith__doc"/>
     <ROW Registry="reg_fa_openwith__docm" Root="0" Key=".docm\OpenWithProgIds" Name="[ExtPfx].Docm" Component_="c_reg_fa_openwith__docm"/>
     <ROW Registry="reg_fa_openwith__docx" Root="0" Key=".docx\OpenWithProgIds" Name="[ExtPfx].Document.12" Component_="c_reg_fa_openwith__docx"/>
-    <ROW Registry="reg_fa_openwith__docxf" Root="0" Key=".docxf\OpenWithProgIds" Name="[ExtPfx].Docxf" Component_="c_reg_fa_openwith__docxf"/>
     <ROW Registry="reg_fa_openwith__dot" Root="0" Key=".dot\OpenWithProgIds" Name="[ExtPfx].Dot" Component_="c_reg_fa_openwith__dot"/>
     <ROW Registry="reg_fa_openwith__dotm" Root="0" Key=".dotm\OpenWithProgIds" Name="[ExtPfx].Dotm" Component_="c_reg_fa_openwith__dotm"/>
     <ROW Registry="reg_fa_openwith__dotx" Root="0" Key=".dotx\OpenWithProgIds" Name="[ExtPfx].Dotx" Component_="c_reg_fa_openwith__dotx"/>
@@ -1812,7 +1789,6 @@
     <ROW Registry="reg_fa_openwith_k__doc" Root="0" Key=".doc\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__docm" Root="0" Key=".docm\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__docx" Root="0" Key=".docx\OpenWithProgIds" Name="\"/>
-    <ROW Registry="reg_fa_openwith_k__docxf" Root="0" Key=".docxf\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__dot" Root="0" Key=".dot\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__dotm" Root="0" Key=".dotm\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__dotx" Root="0" Key=".dotx\OpenWithProgIds" Name="\"/>
@@ -1867,7 +1843,6 @@
     <ROW Registry="reg_fa_progid__doc" Root="0" Key="[ExtPfx].Document.1" Value="Word 97-2003 Document" Component_="c_reg_fa_progid__doc"/>
     <ROW Registry="reg_fa_progid__docm" Root="0" Key="[ExtPfx].Docm" Value="Word 97-2003 Macro-Enabled Document" Component_="c_reg_fa_progid__docm"/>
     <ROW Registry="reg_fa_progid__docx" Root="0" Key="[ExtPfx].Document.12" Value="Microsoft Word Document" Component_="c_reg_fa_progid__docx"/>
-    <ROW Registry="reg_fa_progid__docxf" Root="0" Key="[ExtPfx].Docxf" Value="ONLYOFFICE Form Template" Component_="c_reg_fa_progid__docxf"/>
     <ROW Registry="reg_fa_progid__dot" Root="0" Key="[ExtPfx].Dot" Value="Word 97-2003 Template" Component_="c_reg_fa_progid__dot"/>
     <ROW Registry="reg_fa_progid__dotm" Root="0" Key="[ExtPfx].Dotm" Value="Word 97-2003 Macro-Enabled Template" Component_="c_reg_fa_progid__dotm"/>
     <ROW Registry="reg_fa_progid__dotx" Root="0" Key="[ExtPfx].Dotx" Value="Microsoft Word Document Template" Component_="c_reg_fa_progid__dotx"/>
@@ -1922,7 +1897,6 @@
     <ROW Registry="reg_fa_progid_app__doc" Root="0" Key="[ExtPfx].Document.1\Application" Name="\"/>
     <ROW Registry="reg_fa_progid_app__docm" Root="0" Key="[ExtPfx].Docm\Application" Name="\"/>
     <ROW Registry="reg_fa_progid_app__docx" Root="0" Key="[ExtPfx].Document.12\Application" Name="\"/>
-    <ROW Registry="reg_fa_progid_app__docxf" Root="0" Key="[ExtPfx].Docxf\Application" Name="\"/>
     <ROW Registry="reg_fa_progid_app__dot" Root="0" Key="[ExtPfx].Dot\Application" Name="\"/>
     <ROW Registry="reg_fa_progid_app__dotm" Root="0" Key="[ExtPfx].Dotm\Application" Name="\"/>
     <ROW Registry="reg_fa_progid_app__dotx" Root="0" Key="[ExtPfx].Dotx\Application" Name="\"/>
@@ -1977,7 +1951,6 @@
     <ROW Registry="reg_fa_progid_app_icon__doc" Root="0" Key="[ExtPfx].Document.1\Application" Name="ApplicationIcon" Value="[#DesktopEditors.exe],33" Component_="c_reg_fa_progid_app__doc"/>
     <ROW Registry="reg_fa_progid_app_icon__docm" Root="0" Key="[ExtPfx].Docm\Application" Name="ApplicationIcon" Value="[#DesktopEditors.exe],33" Component_="c_reg_fa_progid_app__docm"/>
     <ROW Registry="reg_fa_progid_app_icon__docx" Root="0" Key="[ExtPfx].Document.12\Application" Name="ApplicationIcon" Value="[#DesktopEditors.exe],33" Component_="c_reg_fa_progid_app__docx"/>
-    <ROW Registry="reg_fa_progid_app_icon__docxf" Root="0" Key="[ExtPfx].Docxf\Application" Name="ApplicationIcon" Value="[#DesktopEditors.exe],33" Component_="c_reg_fa_progid_app__docxf"/>
     <ROW Registry="reg_fa_progid_app_icon__dot" Root="0" Key="[ExtPfx].Dot\Application" Name="ApplicationIcon" Value="[#DesktopEditors.exe],33" Component_="c_reg_fa_progid_app__dot"/>
     <ROW Registry="reg_fa_progid_app_icon__dotm" Root="0" Key="[ExtPfx].Dotm\Application" Name="ApplicationIcon" Value="[#DesktopEditors.exe],33" Component_="c_reg_fa_progid_app__dotm"/>
     <ROW Registry="reg_fa_progid_app_icon__dotx" Root="0" Key="[ExtPfx].Dotx\Application" Name="ApplicationIcon" Value="[#DesktopEditors.exe],33" Component_="c_reg_fa_progid_app__dotx"/>
@@ -2032,7 +2005,6 @@
     <ROW Registry="reg_fa_progid_app_name__doc" Root="0" Key="[ExtPfx].Document.1\Application" Name="ApplicationName" Value="[AppName]" Component_="c_reg_fa_progid__doc"/>
     <ROW Registry="reg_fa_progid_app_name__docm" Root="0" Key="[ExtPfx].Docm\Application" Name="ApplicationName" Value="[AppName]" Component_="c_reg_fa_progid__docm"/>
     <ROW Registry="reg_fa_progid_app_name__docx" Root="0" Key="[ExtPfx].Document.12\Application" Name="ApplicationName" Value="[AppName]" Component_="c_reg_fa_progid__docx"/>
-    <ROW Registry="reg_fa_progid_app_name__docxf" Root="0" Key="[ExtPfx].Docxf\Application" Name="ApplicationName" Value="[AppName]" Component_="c_reg_fa_progid__docxf"/>
     <ROW Registry="reg_fa_progid_app_name__dot" Root="0" Key="[ExtPfx].Dot\Application" Name="ApplicationName" Value="[AppName]" Component_="c_reg_fa_progid__dot"/>
     <ROW Registry="reg_fa_progid_app_name__dotm" Root="0" Key="[ExtPfx].Dotm\Application" Name="ApplicationName" Value="[AppName]" Component_="c_reg_fa_progid__dotm"/>
     <ROW Registry="reg_fa_progid_app_name__dotx" Root="0" Key="[ExtPfx].Dotx\Application" Name="ApplicationName" Value="[AppName]" Component_="c_reg_fa_progid__dotx"/>
@@ -2087,7 +2059,6 @@
     <ROW Registry="reg_fa_progid_appusermodelid__doc" Root="0" Key="[ExtPfx].Document.1" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__doc"/>
     <ROW Registry="reg_fa_progid_appusermodelid__docm" Root="0" Key="[ExtPfx].Docm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__docm"/>
     <ROW Registry="reg_fa_progid_appusermodelid__docx" Root="0" Key="[ExtPfx].Document.12" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__docx"/>
-    <ROW Registry="reg_fa_progid_appusermodelid__docxf" Root="0" Key="[ExtPfx].Docxf" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__docxf"/>
     <ROW Registry="reg_fa_progid_appusermodelid__dot" Root="0" Key="[ExtPfx].Dot" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__dot"/>
     <ROW Registry="reg_fa_progid_appusermodelid__dotm" Root="0" Key="[ExtPfx].Dotm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__dotm"/>
     <ROW Registry="reg_fa_progid_appusermodelid__dotx" Root="0" Key="[ExtPfx].Dotx" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__dotx"/>
@@ -2163,7 +2134,6 @@
     <ROW Registry="reg_fa_progid_icon__djvu" Root="0" Key="[ExtPfx].DjVu\DefaultIcon" Value="[#DesktopEditors.exe],4" Component_="c_reg_fa_progid__djvu"/>
     <ROW Registry="reg_fa_progid_icon__doc" Root="0" Key="[ExtPfx].Document.1\DefaultIcon" Value="[#DesktopEditors.exe],11" Component_="c_reg_fa_progid__doc"/>
     <ROW Registry="reg_fa_progid_icon__docx" Root="0" Key="[ExtPfx].Document.12\DefaultIcon" Value="[#DesktopEditors.exe],7" Component_="c_reg_fa_progid__docx"/>
-    <ROW Registry="reg_fa_progid_icon__docxf" Root="0" Key="[ExtPfx].Docxf\DefaultIcon" Value="[#DesktopEditors.exe],13" Component_="c_reg_fa_progid__docxf"/>
     <ROW Registry="reg_fa_progid_icon__dotx" Root="0" Key="[ExtPfx].Dotx\DefaultIcon" Value="[#DesktopEditors.exe],30" Component_="c_reg_fa_progid__dotx"/>
     <ROW Registry="reg_fa_progid_icon__epub" Root="0" Key="[ExtPfx].Epub\DefaultIcon" Value="[#DesktopEditors.exe],28" Component_="c_reg_fa_progid__epub"/>
     <ROW Registry="reg_fa_progid_icon__fb2" Root="0" Key="[ExtPfx].Fb2\DefaultIcon" Value="[#DesktopEditors.exe],29" Component_="c_reg_fa_progid__fb2"/>
@@ -2218,7 +2188,6 @@
     <ROW Registry="reg_fa_progid_icon_k__djvu" Root="0" Key="[ExtPfx].DjVu\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__doc" Root="0" Key="[ExtPfx].Document.1\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__docx" Root="0" Key="[ExtPfx].Document.12\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__docxf" Root="0" Key="[ExtPfx].Docxf\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__dotx" Root="0" Key="[ExtPfx].Dotx\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__epub" Root="0" Key="[ExtPfx].Epub\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__fb2" Root="0" Key="[ExtPfx].Fb2\DefaultIcon" Name="\"/>
@@ -2252,7 +2221,6 @@
     <ROW Registry="reg_fa_progid_k__doc" Root="0" Key="[ExtPfx].Document.1" Name="\"/>
     <ROW Registry="reg_fa_progid_k__docm" Root="0" Key="[ExtPfx].Docm" Name="\"/>
     <ROW Registry="reg_fa_progid_k__docx" Root="0" Key="[ExtPfx].Document.12" Name="\"/>
-    <ROW Registry="reg_fa_progid_k__docxf" Root="0" Key="[ExtPfx].Docxf" Name="\"/>
     <ROW Registry="reg_fa_progid_k__dot" Root="0" Key="[ExtPfx].Dot" Name="\"/>
     <ROW Registry="reg_fa_progid_k__dotm" Root="0" Key="[ExtPfx].Dotm" Name="\"/>
     <ROW Registry="reg_fa_progid_k__dotx" Root="0" Key="[ExtPfx].Dotx" Name="\"/>
@@ -2307,7 +2275,6 @@
     <ROW Registry="reg_fa_progid_shell_k__doc" Root="0" Key="[ExtPfx].Document.1\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__docm" Root="0" Key="[ExtPfx].Docm\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__docx" Root="0" Key="[ExtPfx].Document.12\shell" Name="\"/>
-    <ROW Registry="reg_fa_progid_shell_k__docxf" Root="0" Key="[ExtPfx].Docxf\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__dot" Root="0" Key="[ExtPfx].Dot\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__dotm" Root="0" Key="[ExtPfx].Dotm\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__dotx" Root="0" Key="[ExtPfx].Dotx\shell" Name="\"/>
@@ -2362,7 +2329,6 @@
     <ROW Registry="reg_fa_progid_shell_open_command__doc" Root="0" Key="[ExtPfx].Document.1\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__doc"/>
     <ROW Registry="reg_fa_progid_shell_open_command__docm" Root="0" Key="[ExtPfx].Docm\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__docm"/>
     <ROW Registry="reg_fa_progid_shell_open_command__docx" Root="0" Key="[ExtPfx].Document.12\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__docx"/>
-    <ROW Registry="reg_fa_progid_shell_open_command__docxf" Root="0" Key="[ExtPfx].Docxf\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__docxf"/>
     <ROW Registry="reg_fa_progid_shell_open_command__dot" Root="0" Key="[ExtPfx].Dot\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__dot"/>
     <ROW Registry="reg_fa_progid_shell_open_command__dotm" Root="0" Key="[ExtPfx].Dotm\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__dotm"/>
     <ROW Registry="reg_fa_progid_shell_open_command__dotx" Root="0" Key="[ExtPfx].Dotx\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__dotx"/>
@@ -2417,7 +2383,6 @@
     <ROW Registry="reg_fa_progid_shell_open_command_k__doc" Root="0" Key="[ExtPfx].Document.1\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__docm" Root="0" Key="[ExtPfx].Docm\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__docx" Root="0" Key="[ExtPfx].Document.12\shell\open\command" Name="\"/>
-    <ROW Registry="reg_fa_progid_shell_open_command_k__docxf" Root="0" Key="[ExtPfx].Docxf\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__dot" Root="0" Key="[ExtPfx].Dot\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__dotm" Root="0" Key="[ExtPfx].Dotm\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__dotx" Root="0" Key="[ExtPfx].Dotx\shell\open\command" Name="\"/>
@@ -2472,7 +2437,6 @@
     <ROW Registry="reg_fa_progid_shell_open_k__doc" Root="0" Key="[ExtPfx].Document.1\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__docm" Root="0" Key="[ExtPfx].Docm\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__docx" Root="0" Key="[ExtPfx].Document.12\shell\open" Name="\"/>
-    <ROW Registry="reg_fa_progid_shell_open_k__docxf" Root="0" Key="[ExtPfx].Docxf\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__dot" Root="0" Key="[ExtPfx].Dot\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__dotm" Root="0" Key="[ExtPfx].Dotm\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__dotx" Root="0" Key="[ExtPfx].Dotx\shell\open" Name="\"/>
@@ -2527,7 +2491,6 @@
     <ROW Registry="reg_fa_type_k__doc" Root="0" Key=".doc" Name="\"/>
     <ROW Registry="reg_fa_type_k__docm" Root="0" Key=".docm" Name="\"/>
     <ROW Registry="reg_fa_type_k__docx" Root="0" Key=".docx" Name="\"/>
-    <ROW Registry="reg_fa_type_k__docxf" Root="0" Key=".docxf" Name="\"/>
     <ROW Registry="reg_fa_type_k__dot" Root="0" Key=".dot" Name="\"/>
     <ROW Registry="reg_fa_type_k__dotm" Root="0" Key=".dotm" Name="\"/>
     <ROW Registry="reg_fa_type_k__dotx" Root="0" Key=".dotx" Name="\"/>
