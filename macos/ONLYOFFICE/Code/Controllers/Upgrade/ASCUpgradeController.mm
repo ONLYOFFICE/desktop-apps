@@ -189,7 +189,9 @@ static NSString *ASCUpgradePlatformPackageName(void) {
 }
 
 - (void)showFinalPage {
-    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageComplete)}];
+    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageComplete),
+                            @"installed": @([[ASCAddonManager sharedManager] isInstalled:nil]),
+                            @"restart": @([[ASCAddonManager sharedManager] restartRequired])}];
 }
 
 - (void)showErrorPage:(NSString *)message {

@@ -2011,6 +2011,10 @@
 }
 
 - (void)onAddonUninstallFinished:(NSNotification *)notification {
+    NSDictionary *jsonObj = @{@"installed": @([[ASCAddonManager sharedManager] isInstalled:nil]),
+                                @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+
     self.upgradeInProgress = NO;
 //    [self performSelector:@selector(showUpgradeDialogWithPage:)
 //               withObject:@(ASCUpgradePageComplete)
@@ -2166,6 +2170,10 @@
         ASCAddonManagerResult result = (ASCAddonManagerResult)[note.userInfo[@"result"] integerValue];
         if (result == ASCAddonManagerResultSuccess) {
             [upgradeController showFinalPage];
+
+            NSDictionary *jsonObj = @{@"installed": @([[ASCAddonManager sharedManager] isInstalled:nil]),
+                                        @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+            ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
         } else if (result == ASCAddonManagerResultDownloadAborted) {
             // Aborted
         } else {
