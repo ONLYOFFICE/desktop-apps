@@ -465,6 +465,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         m_private->m_upgradeDialog->reject();
 
                     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:action", "disable");
+                    setUserSettings(L"disable-ai", L"1");
                     // TODO: add impl "don't show again"
                 }
                 else if (param == L"uninstall")
