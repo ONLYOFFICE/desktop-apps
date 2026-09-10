@@ -2020,13 +2020,13 @@
 //               withObject:@(ASCUpgradePageComplete)
 //               afterDelay:0];
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:NSLocalizedString(@"I'll do it later", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Restart now", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"I'll do it later", nil)];
     [alert setMessageText:NSLocalizedString(@"ONLYOFFICE AI Tools successfully uninstalled", nil)];
     [alert setInformativeText:NSLocalizedString(@"Application needs to restart", nil)];
     [alert setAlertStyle:NSAlertStyleInformational];
     NSInteger result = [alert runModal];
-    if (result == NSAlertSecondButtonReturn) {
+    if (result == NSAlertFirstButtonReturn) {
         self.needsRestart = YES;
         [NSApp terminate:self];
     }
@@ -2094,9 +2094,9 @@
         [[alert.buttons objectAtIndex:1] setAccessibilityFocused:YES];
         [alert setMessageText:@"You need to restart the application to finish ONLYOFFICE AI Tools installation.\nRestart now?"];
         [alert setAlertStyle:NSAlertStyleInformational];
-        
+
         NSInteger code = [alert runModalSheet];
-        if (code == NSAlertFirstButtonReturn) {
+        if (code == NSAlertSecondButtonReturn) {
             self.needsRestart = YES;
             [NSApp terminate:self];
         }
