@@ -13,6 +13,8 @@ function Root(props) {
   return (
     <SelectPrimitive
       classList={mergeClass(styles.root, local.class)}
+      placement="bottom-start"
+      flip="bottom-end top-start top-end"
       options={local.options ?? []}
       optionValue={getItemValue}
       optionTextValue={getItemLabel}
