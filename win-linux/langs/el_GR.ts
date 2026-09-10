@@ -6,52 +6,52 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="428"/>
         <source>No compatible add-on version is available for this version of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν υπάρχει διαθέσιμη συμβατή έκδοση του πρόσθετου για αυτήν την έκδοση της εφαρμογής.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="432"/>
         <source>To install the add-on, update the application to the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Για να εγκαταστήσετε το πρόσθετο, ενημερώστε την εφαρμογή στην πιο πρόσφατη έκδοση.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
         <source>An error occurred while unpacking the archive</source>
-        <translation type="unfinished">Εμφανίστηκε σφάλμα κατά την αποσυμπίεση του αρχείου</translation>
+        <translation>Εμφανίστηκε σφάλμα κατά την αποσυμπίεση του αρχείου</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
         <source>The add-on information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Οι πληροφορίες του πρόσθετου είναι μη έγκυρες ή ελλιπείς.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="442"/>
         <source>The add-on package is corrupted or has been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το πακέτο πρόσθετου είναι κατεστραμμένο ή έχει τροποποιηθεί.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="445"/>
         <source>Not enough memory to complete the add-on download.</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν υπάρχει αρκετή μνήμη για την ολοκλήρωση της λήψης του πρόσθετου.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="448"/>
         <source>Failed to download the add-on due to a network error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αποτυχία λήψης του πρόσθετου λόγω σφάλματος δικτύου.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="451"/>
         <source>The add-on download URL is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το URL λήψης του πρόσθετου δεν είναι έγκυρο.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αποτυχία αποθήκευσης του ληφθέντος πακέτου πρόσθετου.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
         <source>An unexpected error occurred while installing the add-on.</source>
-        <translation type="unfinished"></translation>
+        <translation>Παρουσιάστηκε απρόσμενο σφάλμα κατά την εγκατάσταση του πρόσθετου.</translation>
     </message>
 </context>
 <context>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="496"/>
         <source>You must restart the application to finish addon installation.</source>
-        <translation type="unfinished">Πρέπει να επανεκκινήσετε την εφαρμογή για να ολοκληρωθεί η εγκατάσταση του ONLYOFFICE AI Tools. Θέλετε να γίνει επανεκκίνηση τώρα;</translation>
+        <translation>Πρέπει να επανεκκινήσετε την εφαρμογή για να ολοκληρωθεί η εγκατάσταση του ONLYOFFICE AI Tools. Θέλετε να γίνει επανεκκίνηση τώρα;</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1728"/>
@@ -85,37 +85,37 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
-        <translation type="unfinished"></translation>
+        <translation>Είστε βέβαιοι ότι θέλετε να απεγκαταστήσετε το ONLYOFFICE AI Tools;</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Οι λειτουργίες του AI Tools δεν θα είναι διαθέσιμες μετά την απεγκατάσταση. Όλες οι ρυθμίσεις AI (συμπεριλαμβανομένων των κλειδιών API) δεν θα αφαιρεθούν.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>Το ONLYOFFICE AI Tools απεγκαταστάθηκε επιτυχώς</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>I&apos;ll do it later</source>
-        <translation type="unfinished"></translation>
+        <translation>Θα το κάνω αργότερα</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>Restart now</source>
-        <translation type="unfinished"></translation>
+        <translation>Επανεκκίνηση τώρα</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
         <source>Application needs to restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Η εφαρμογή χρειάζεται επανεκκίνηση</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το εγκατεστημένο στοιχείο AI Tools είναι ασύμβατο με αυτήν την έκδοση της εφαρμογής. Ενημερώστε το στοιχείο AI Tools για να συνεχίσετε.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
@@ -600,7 +600,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Crossplatform</source>
-        <translation type="unfinished"></translation>
+        <translation>Διαπλατφορμικό</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="314"/>
@@ -960,7 +960,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>The update information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Οι πληροφορίες ενημέρωσης είναι μη έγκυρες ή ελλιπείς.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="114"/>
