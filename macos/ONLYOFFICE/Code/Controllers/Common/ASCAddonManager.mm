@@ -119,7 +119,8 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
     CAscApplicationManager *appManager = [NSAscApplicationWorker getAppManager];
 
     std::string sVersion;
-    const BOOL bInstalled = appManager->CheckMainAddon(&sVersion);
+    const BOOL bCompatible = appManager->CheckMainAddon(&sVersion);
+    const BOOL bInstalled = bCompatible || !sVersion.empty();
 
     if (version) {
         *version = bInstalled ? [NSString stringWithUTF8String:sVersion.c_str()] : @"";
