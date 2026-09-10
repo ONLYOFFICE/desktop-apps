@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Förbättrar prestandan på de flesta enheter. Inaktivera om du upplever visningsproblem.',
     settingsEnableAI: 'Aktivera AI-funktioner',
     settingsEnableAIDescr: 'Aktivera AI i applikationen för att lägga till modeller och använda AI-driven funktionalitet',
-    settRemoveAddon: 'Gå bortom standardredigering',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit och mer',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI i alla redigerare, smarta formulär, anpassade leverantörer, avancerad PDF',
     strLicensedUnder: 'Licensierad under',
     tplNoInternet: 'Onlinemallar är inte tillgängliga på grund av problem med internetanslutningen. Du kan skapa nya dokument med alternativen ovan.',
 }

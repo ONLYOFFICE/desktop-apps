@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'يحسن الأداء على معظم الأجهزة. قم بتعطيله إذا واجهت مشاكل في العرض.',
     settingsEnableAI: 'تفعيل ميزات الذكاء الاصطناعي',
     settingsEnableAIDescr: 'قم بتفعيل الذكاء الاصطناعي في التطبيق لإضافة النماذج واستخدام الوظائف المدعومة بالذكاء الاصطناعي',
-    settRemoveAddon: 'تجاوز التحرير القياسي',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit والمزيد',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: ذكاء اصطناعي في جميع المحررين، نماذج ذكية، مزودون مخصصون، PDF متقدم',
     strLicensedUnder: 'مرخص بموجب',
     tplNoInternet: 'قوالب الإنترنت غير متاحة بسبب مشاكل في الاتصال بالإنترنت. يمكنك إنشاء مستندات جديدة باستخدام الخيارات أعلاه.',
 }

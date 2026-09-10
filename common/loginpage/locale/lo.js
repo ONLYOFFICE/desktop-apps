@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'ປັບປຸງປະສິດທິພາບໃນອຸປະກອນສ່ວນໃຫຍ່. ປິດໃຊ້ງານຖ້າທ່ານພົບບັນຫາການສະແດງຜົນ.',
     settingsEnableAI: 'ເປີດໃຊ້ງານຄຸນສົມບັດ AI',
     settingsEnableAIDescr: 'ເປີດໃຊ້ AI ໃນແອັບພລິເຄຊັນເພື່ອເພີ່ມໂມເດລ ແລະ ໃຊ້ຟັງຊັນທີ່ຂັບເຄື່ອນດ້ວຍ AI',
-    settRemoveAddon: 'ໄປໄກກວ່າການແກ້ໄຂມາດຕະຖານ',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit ແລະ ອື່ນໆ',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI ໃນທຸກບັນນາທິການ, ແບບຟອມສະຫຼາດ, ຜູ້ໃຫ້ບໍລິການກຳນົດເອງ, PDF ຂັ້ນສູງ',
     strLicensedUnder: 'ໄດ້ຮັບໃບອະນຸຍາດພາຍໃຕ້',
     tplNoInternet: 'ແມ່ແບບອອນລາຍບໍ່ສາມາດໃຊ້ງານໄດ້ເນື່ອງຈາກບັນຫາການເຊື່ອມຕໍ່ອິນເຕີເນັດ. ທ່ານສາມາດສ້າງເອກະສານໃໝ່ໄດ້ໂດຍໃຊ້ຕົວເລືອກຂ້າງເທິງ.',
 }

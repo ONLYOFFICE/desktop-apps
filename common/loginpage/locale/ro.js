@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Îmbunătățește performanța pe majoritatea dispozitivelor. Dezactivați dacă întâmpinați probleme de afișare.',
     settingsEnableAI: 'Activare funcții IA',
     settingsEnableAIDescr: 'Activați IA în aplicație pentru a adăuga modele și a utiliza funcționalități bazate pe IA',
-    settRemoveAddon: 'Depășiți editarea standard',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit și mai mult',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI în toate editoarele, formulare inteligente, furnizori personalizați, PDF avansat',
     strLicensedUnder: 'Licențiat sub',
     tplNoInternet: 'Șabloanele online nu sunt disponibile din cauza problemelor de conectare la internet. Puteți crea documente noi folosind opțiunile de mai sus.',
 }

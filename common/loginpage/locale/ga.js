@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Feabhsaíonn sé feidhmíocht ar an gcuid is mó de ghléasanna. Díchumasaigh má bhíonn fadhbanna taispeána agat.',
     settingsEnableAI: 'Cumasaigh gnéithe AI',
     settingsEnableAIDescr: 'Cumasaigh AI san fheidhmchlár chun samhlacha a chur leis agus feidhmiúlacht faoi chumhacht AI a úsáid',
-    settRemoveAddon: 'Téigh thar an eagarthóireacht chaighdeánach',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit agus níos mó',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI ar fud gach eagarthóir, foirmeacha cliste, soláthraithe saincheaptha, PDF ardleibhéil',
     strLicensedUnder: 'Ceadúnaithe faoi',
     tplNoInternet: 'Níl teimpléid ar líne ar fáil mar gheall ar fhadhbanna le nasc idirlín. Is féidir leat cáipéisí nua a chruthú ag baint úsáide as na roghanna thuas.',
 }

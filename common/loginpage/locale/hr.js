@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Poboljšava performanse na većini uređaja. Onemogućite ako imate probleme s prikazom.',
     settingsEnableAI: 'Omogući AI značajke',
     settingsEnableAIDescr: 'Omogućite AI u aplikaciji za dodavanje modela i korištenje AI funkcionalnosti',
-    settRemoveAddon: 'Idite dalje od standardnog uređivanja',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit i više',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI u svim urednicima, pametni obrasci, prilagođeni pružatelji, napredni PDF',
     strLicensedUnder: 'Licencirano pod',
     tplNoInternet: 'Online predlošci nisu dostupni zbog problema s internetskom vezom. Nove dokumente možete stvoriti pomoću gore navedenih opcija.',
 }

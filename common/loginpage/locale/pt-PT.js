@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Melhora o desempenho na maioria dos dispositivos. Desative se tiver problemas de visualização.',
     settingsEnableAI: 'Ativar funcionalidades de IA',
     settingsEnableAIDescr: 'Ative a IA na aplicação para adicionar modelos e utilizar funcionalidades com IA',
-    settRemoveAddon: 'Vá além da edição padrão',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit e muito mais',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: IA em todos os editores, formulários inteligentes, fornecedores personalizados, PDF avançado',
     strLicensedUnder: 'Licenciado sob',
     tplNoInternet: 'Os modelos online não estão disponíveis devido a problemas de ligação à Internet. Pode criar novos documentos usando as opções acima.',
 }

@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Verbessert die Leistung auf den meisten Geräten. Deaktivieren Sie dies, wenn Anzeigeprobleme auftreten.',
     settingsEnableAI: 'KI-Funktionen aktivieren',
     settingsEnableAIDescr: 'Aktivieren Sie KI in der Anwendung, um Modelle hinzuzufügen und KI-gestützte Funktionen zu nutzen',
-    settRemoveAddon: 'Gehen Sie über die Standardbearbeitung hinaus',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit und mehr',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: KI in allen Editoren, Smart-Formulare, benutzerdefinierte Anbieter, erweitertes PDF',
     strLicensedUnder: 'Lizenziert unter',
     tplNoInternet: 'Online-Vorlagen sind aufgrund von Internetverbindungsproblemen nicht verfügbar. Sie können neue Dokumente mit den obigen Optionen erstellen.',
 }

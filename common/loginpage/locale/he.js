@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'משפר ביצועים ברוב המכשירים. השבת אם אתה חווה בעיות תצוגה.',
     settingsEnableAI: 'הפעל תכונות AI',
     settingsEnableAIDescr: 'הפעל AI באפליקציה כדי להוסיף מודלים ולהשתמש בפונקציונליות מבוססת AI',
-    settRemoveAddon: 'צא מעבר לעריכה הסטנדרטית',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit ועוד',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: בינה מלאכותית בכל העורכים, טפסים חכמים, ספקים מותאמים, PDF מתקדם',
     strLicensedUnder: 'מורשה תחת',
     tplNoInternet: 'תבניות מקוונות אינן זמינות עקב בעיות בחיבור לאינטרנט. תוכל ליצור מסמכים חדשים באמצעות האפשרויות שלמעלה.',
 }

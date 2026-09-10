@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Meningkatkan performa di sebagian besar perangkat. Nonaktifkan jika Anda mengalami masalah tampilan.',
     settingsEnableAI: 'Aktifkan fitur AI',
     settingsEnableAIDescr: 'Aktifkan AI dalam aplikasi untuk menambahkan model dan menggunakan fungsionalitas bertenaga AI',
-    settRemoveAddon: 'Melampaui pengeditan standar',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit dan lainnya',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI di semua editor, formulir cerdas, penyedia khusus, PDF lanjutan',
     strLicensedUnder: 'Dilisensikan di bawah',
     tplNoInternet: 'Templat online tidak tersedia karena masalah koneksi internet. Anda dapat membuat dokumen baru menggunakan opsi di atas.',
 }

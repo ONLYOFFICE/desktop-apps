@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'ほとんどのデバイスでパフォーマンスが向上します。表示に問題が発生した場合は無効にしてください。',
     settingsEnableAI: 'AI機能を有効にする',
     settingsEnableAIDescr: 'アプリケーションでAIを有効にして、モデルを追加しAI搭載の機能を使用する',
-    settRemoveAddon: '標準的な編集を超える',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kitとその他',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: すべてのエディターでAI、スマートフォーム、カスタムプロバイダー、高度なPDF',
     strLicensedUnder: 'ライセンス',
     tplNoInternet: 'インターネット接続の問題により、オンラインテンプレートは利用できません。上記のオプションを使用して新しいドキュメントを作成できます。',
 }

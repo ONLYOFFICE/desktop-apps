@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'බොහෝ උපාංගවල කාර්යක්ෂමතාව වැඩිදියුණු කරයි. සංදර්ශන ගැටළු ඇත්නම් අක්‍රිය කරන්න.',
     settingsEnableAI: 'AI විශේෂාංග සක්‍රිය කරන්න',
     settingsEnableAIDescr: 'ආකෘති එකතු කිරීමට සහ AI-ශක්තිය ලත් කාර්යක්ෂමතාව භාවිතා කිරීමට යෙදුමේ AI සක්‍රිය කරන්න',
-    settRemoveAddon: 'සාමාන්‍ය සංස්කරණය ඉක්මවා යන්න',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit සහ තවත්',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: සියලු සංස්කාරකවල AI, ස්මාර්ට් පෝරම, අභිරුචි සපයන්නන්, උසස් PDF',
     strLicensedUnder: 'යටතේ බලපත්‍ර ලබා ඇත',
     tplNoInternet: 'අන්තර්ජාල සම්බන්ධතා ගැටළු නිසා සබැඳි සැකිලි ලබා ගත නොහැක. ඉහත විකල්ප භාවිතා කර ඔබට නව ලේඛන සාදා ගත හැකිය.',
 }

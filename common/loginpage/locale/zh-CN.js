@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: '提升大多数设备的性能。如果遇到显示问题，请禁用此功能。',
     settingsEnableAI: '启用 AI 功能',
     settingsEnableAIDescr: '在应用程序中启用 AI 以添加模型并使用 AI 驱动的功能',
-    settRemoveAddon: '超越标准编辑',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit 及更多',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: 所有编辑器中的AI、智能表单、自定义提供商、高级PDF',
     strLicensedUnder: '许可协议',
     tplNoInternet: '由于网络连接问题，在线模板暂不可用。您可以使用上方的选项创建新文档。',
 }
