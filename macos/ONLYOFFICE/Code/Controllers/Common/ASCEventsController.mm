@@ -603,7 +603,6 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFilesCheck
                                                                                 object:nil
                                                                               userInfo:[[NSString stringWithstdwstring:param] dictionary]];
-#ifdef USE_ADDON_MODE
                         } else if (cmd.find(L"addon:action") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddonAction
                                                                                 object:nil
@@ -611,6 +610,7 @@ public:
                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId],
                                                                                          @"action": [NSString stringWithstdwstring:param]
                                                                                          }];
+#ifdef USE_ADDON_MODE
                         } else if (cmd.find(L"addon:install") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddonInstallation
                                                                                 object:nil
