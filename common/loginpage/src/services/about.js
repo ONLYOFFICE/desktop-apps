@@ -27,6 +27,14 @@ export function execUpdateAction() {
   if (_pendingUpdateAction) command("updates:action", _pendingUpdateAction);
 }
 
+export function setAddonNeedRestart(restart) {
+  if (addonInfo()?.restart != restart) {
+    const info = addonInfo();
+    info.restart = restart;
+    setAddonInfo(info);
+  }
+}
+
 export function initAbout() {
   const unsub = onNativeMessage((cmd, param) => {
     if (/app:version/.test(cmd)) {
@@ -48,14 +56,14 @@ export function initAbout() {
           info.version = info.version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<10?1:mn-9});
         }
 
-        if (info.installed == undefined)
+        if (info.installed == undefined && addonInfo()?.installed)
           info.installed = addonInfo().installed;
 
-        if (info.restart == undefined)
+        if (info.restart == undefined && addonInfo()?.restart)
           info.restart = addonInfo().restart;
 
         setAddonInfo(info);
-        setChatAvialable(info?.installed);
+        setChatAvialable(info?.installed || info?.integrated);
       } catch {}
     } else if (/^updates:turn/.test(cmd)) {
       setUpdatesOn(param === "on");

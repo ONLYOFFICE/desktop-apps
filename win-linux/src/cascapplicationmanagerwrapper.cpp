@@ -436,9 +436,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
             return true;
         } else
+#endif
         if ( !(cmd.find(L"addon:action") == std::wstring::npos) ) {     // params: install
+            const wstring param = pData->get_Param();
+#ifdef USE_ADDON_MODE
             if (m_private->m_pAddonManager) {
-                const wstring param = pData->get_Param();
                 if (param == L"install")
                 {
                     /* "accept and install" clicked */
@@ -491,16 +493,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->accept(UpgradeDialog::RestartNow);
                 }
-                else if (param == L"askrestart")
-                {
-                    if (CMessage::Result::Yes == CMessage::showMessage(mainWindow(),
-                                                            tr("You must restart the application to finish addon installation."),
-                                                                CMessage::Icon::Info, CMessage::Buttons::YesDefNo))
-                    {
-                        m_private->m_needRestart = true;
-                        AscAppManager::closeAppWindows();
-                    }
-                }
                 else if (param == L"close")
                 {
                     /* "close" clicked */
@@ -508,9 +500,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         m_private->m_upgradeDialog->reject();
                 }
                 return true;
+            } else
+#endif
+            if (param == L"askrestart")
+            {
+                if (CMessage::Result::Yes == CMessage::showMessage(mainWindow(),
+                                                                   tr("You must restart the application to finish addon installation."),
+                                                                   CMessage::Icon::Info, CMessage::Buttons::YesDefNo))
+                {
+                    m_private->m_needRestart = true;
+                    AscAppManager::closeAppWindows();
+                }
             }
         } else
-#endif
         if ( cmd.compare(L"title:button") == 0 ) {
             map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(event->get_SenderId());
             if ( it != m_receivers.cend() ) {
@@ -1404,6 +1406,8 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
             }
         });
     }
+#else
+    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:status", Utils::stringifyJson({{"integrated",true}}));
 #endif
 
 #ifdef _WIN32
