@@ -1,4 +1,4 @@
-import { createSignal, onCleanup } from "solid-js";
+import { createSignal, createEffect, on, onCleanup } from "solid-js";
 import { onNativeMessage, onAuthChecked } from "@/sdk/events.js";
 import { command } from "@/sdk/bridge.js";
 import { getExternalClouds,
@@ -47,6 +47,15 @@ const [portals, setPortals] = createSignal(readStorage());
 
 export { providers, portals };
 
+// The desktop bridge answers `AscDesktopEditor.getClouds()` (asked from plugin
+// frames, e.g. the AI chat) by evaluating `PortalsStore.portals()`
+if (typeof window !== "undefined") {
+  window.PortalsStore = {
+    portals: () =>
+      portals().map(({ portal, provider, user, email, logged }) => ({ portal, provider, user, email, logged })),
+  };
+}
+
 export function initPortals() {
   const clouds = getExternalClouds();
   if (clouds.length) {
@@ -57,6 +66,12 @@ export function initPortals() {
   const _portals = portals();
   if (!!_portals && _portals.length)
     checkAuth(_portals);
+
+  // Tell every frame (the AI chat plugin in particular) that the connected
+  // clouds changed; the bridge broadcasts `window.onUpdateClouds()`.
+  createEffect(on(portals, () => {
+    window.AscDesktopEditor?.updateClouds?.();
+  }, { defer: true }));
 
   const unsub = onNativeMessage((cmd, param) => {
     if (cmd === "portal:login") {
@@ -77,6 +92,9 @@ export function initPortals() {
 
       upsertStorage(info);
       setPortals(readStorage());
+      // `logged` is only ever set by an auth check; a portal signed in during
+      // the session would otherwise stay unknown until the next start.
+      checkAuth([info]);
     } else if (cmd === "portal:logout") {
       const name = skipProtocol(param);
       setPortals((prev) => prev.map((p) => (skipProtocol(p.portal) === name ? { ...p, logged: false } : p)));
