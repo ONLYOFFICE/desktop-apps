@@ -51,9 +51,6 @@ function ConnectDialog(props) {
   createEffect(() => {
     setUrl(props.provider?.entryPage ?? "");
     setError("");
-    if (props.provider) {
-      setTimeout(() => (hasEntryPage() ? contentRef : inputRef)?.focus(), 150);
-    }
   });
 
   const logoPaths = () => {
@@ -181,7 +178,7 @@ function ConnectDialog(props) {
 
   return (
     <Dialog open={!!props.provider} onOpenChange={(open) => !open && handleClose()}>
-      <Dialog.Content ref={contentRef} class="connect-dialog" onKeyDown={(e) => e.key === "Enter" && e.target.tagName !== "BUTTON" && handleConnect()}>
+      <Dialog.Content ref={contentRef} class="connect-dialog" onKeyDown={(e) => e.key === "Enter" && e.target.tagName !== "BUTTON" && handleConnect()} onOpenAutoFocus={(e) => {e.preventDefault(); (hasEntryPage() ? contentRef : inputRef)?.focus();}}>
         <div class="dlg-header">
           <Dialog.Title class="dlg-title">
             {t("dlgConnectToTitle", "Connect to $1").replace("$1", props.provider?.name ?? "")}
