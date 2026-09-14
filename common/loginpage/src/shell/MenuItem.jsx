@@ -11,7 +11,7 @@ export function MenuItem(props) {
     <li class="menu-item" classList={{ hidden: local.hidden }}>
       <Switch>
         <Match when={local.href}>
-          <A href={local.href} onClick={local.onClick} tabindex="-1" activeClass={local.isActive ? "" : "selected"} end={local.end} action={local.action} class={local.class} classList={local.isActive ? { selected: local.isActive() } : undefined}>
+          <A href={local.href} onClick={local.onClick} activeClass={local.isActive ? "" : "selected"} end={local.end} action={local.action} class={local.class} classList={local.isActive ? { selected: local.isActive() } : undefined}>
             <Show when={local.icon}>
               <div class="icon-inner-box">
                 <Show when={usePngIcons()} fallback={<svg class="icon"><use href={local.icon} /></svg>}>
@@ -23,7 +23,7 @@ export function MenuItem(props) {
           </A>
         </Match>
         <Match when={local.onClick}>
-          <button class="menu-btn" onClick={local.onClick} tabindex="-1" class={local.class}>
+          <button class="menu-btn" onClick={local.onClick} class={local.class}>
             <Show when={local.icon}>
               <div class="icon-inner-box">
                 <Show when={usePngIcons()} fallback={<svg class="icon"><use href={local.icon} /></svg>}>
