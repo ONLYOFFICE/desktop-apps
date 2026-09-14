@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="428"/>
         <source>No compatible add-on version is available for this version of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ehhez az alkalmazásverzióhoz nem érhető el kompatibilis bővítményverzió.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="432"/>
         <source>To install the add-on, update the application to the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>A bővítmény telepítéséhez frissítse az alkalmazást a legújabb verzióra.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
@@ -21,37 +21,37 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
         <source>The add-on information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>A bővítmény adatai érvénytelenek vagy hiányosak.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="442"/>
         <source>The add-on package is corrupted or has been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>A bővítménycsomag sérült vagy módosítottak.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="445"/>
         <source>Not enough memory to complete the add-on download.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs elegendő memória a bővítmény letöltésének befejezéséhez.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="448"/>
         <source>Failed to download the add-on due to a network error.</source>
-        <translation type="unfinished"></translation>
+        <translation>A bővítmény letöltése hálózati hiba miatt meghiúsult.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="451"/>
         <source>The add-on download URL is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>A bővítmény letöltési URL-je érvénytelen.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation type="unfinished"></translation>
+        <translation>A letöltött bővítménycsomag mentése meghiúsult.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
         <source>An unexpected error occurred while installing the add-on.</source>
-        <translation type="unfinished"></translation>
+        <translation>Váratlan hiba történt a bővítmény telepítése közben.</translation>
     </message>
 </context>
 <context>
@@ -85,37 +85,37 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
-        <translation type="unfinished"></translation>
+        <translation>Biztosan el szeretné távolítani az ONLYOFFICE AI Tools alkalmazást?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az AI Tools funkciói az eltávolítás után nem lesznek elérhetők. Az összes AI-beállítás (beleértve az API-kulcsokat) nem törlődik.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>Az ONLYOFFICE AI Tools sikeresen eltávolítva</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>I&apos;ll do it later</source>
-        <translation type="unfinished"></translation>
+        <translation>Később csinálom meg</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>Restart now</source>
-        <translation type="unfinished"></translation>
+        <translation>Újraindítás most</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
         <source>Application needs to restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Az alkalmazást újra kell indítani</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>A telepített AI Tools összetevő nem kompatibilis az alkalmazás ezen verziójával. A folytatáshoz frissítse az AI Tools összetevőt.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
@@ -600,7 +600,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Crossplatform</source>
-        <translation type="unfinished"></translation>
+        <translation>Platformfüggetlen</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="314"/>
@@ -959,7 +959,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>The update information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>A frissítési adatok érvénytelenek vagy hiányosak.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="114"/>

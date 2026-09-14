@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="428"/>
         <source>No compatible add-on version is available for this version of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Այս հավելվածի տարբերակի համար հասանելի չէ հարմար հավելման տարբերակ:</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="432"/>
         <source>To install the add-on, update the application to the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Հավելումը տեղադրելու համար թարմացրեք հավելվածը վերջին տարբերակին:</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
@@ -21,37 +21,37 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
         <source>The add-on information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Հավելման տեղեկությունները անվավեր են կամ թերի:</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="442"/>
         <source>The add-on package is corrupted or has been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Հավելման փաթեթը վնասված է կամ փոփոխված:</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="445"/>
         <source>Not enough memory to complete the add-on download.</source>
-        <translation type="unfinished"></translation>
+        <translation>Հավելման ներբեռնումն ավարտելու համար հիշողությունը բավականաչափ չէ:</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="448"/>
         <source>Failed to download the add-on due to a network error.</source>
-        <translation type="unfinished"></translation>
+        <translation>Հավելման ներբեռնումն ձախողվեց ցանցի սխալի պատճառով:</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="451"/>
         <source>The add-on download URL is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Հավելման ներբեռնման URL-ն անվավեր է:</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
         <source>An unexpected error occurred while installing the add-on.</source>
-        <translation type="unfinished"></translation>
+        <translation>Հավելումը տեղադրելիս տեղի ունեցավ անսպասելի սխալ:</translation>
     </message>
 </context>
 <context>
@@ -85,37 +85,37 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
-        <translation type="unfinished"></translation>
+        <translation>Վստա՞հ եք, որ ցանկանում եք տեղահանել ONLYOFFICE AI Tools-ը:</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>AI Tools-ի գործառույթները հասանելի չեն լինի տեղահանումից հետո: AI-ի բոլոր կարգաբերումները (ներառյալ API բանալիները) չեն հեռացվի:</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE AI Tools-ը հաջողությամբ տեղահանվեց</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>I&apos;ll do it later</source>
-        <translation type="unfinished"></translation>
+        <translation>Կանեմ դա ավելի ուշ</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>Restart now</source>
-        <translation type="unfinished"></translation>
+        <translation>Վերագործարկեք Հիմա</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
         <source>Application needs to restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Հավելվածը պետք է վերագործարկվի</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>Տեղադրված AI Tools բաղադրիչը անհամատեղելի է հավելվածի այս տարբերակի հետ: Շարունակելու համար թարմացրեք AI Tools բաղադրիչը:</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
@@ -600,7 +600,8 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Crossplatform</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Չեղարկել</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="371"/>
@@ -963,7 +964,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>The update information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման վերաբերյալ տեղեկատվությունն անվավեր է կամ թերի։</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="114"/>
