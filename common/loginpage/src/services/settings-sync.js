@@ -6,7 +6,7 @@ import { applyLocale, getTranslationFor, isRTL } from "@/services/l10n";
 import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/services/ai-panel";
-import { aichat } from "@/stores/aichat";
+import { aichat, closeSidePanel } from "@/stores/aichat";
 import { sendTemplatesCountry, sendTemplatesTheme } from "@/routes/templates";
 import { TemplatesCountrySet } from "@/data/countries";
 import { setAddonNeedRestart } from "./about";
@@ -255,6 +255,8 @@ export function initSettingsSync() {
       console.log("plugin settings", _plugin_opts);
       sendPluginSettings(_plugin_opts);
     }
+    if (!settings.useai)
+      closeSidePanel();
 
     setAppliedUseAi(settings.useai);
     setIsOptsChanged(false);
