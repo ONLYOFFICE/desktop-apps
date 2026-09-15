@@ -137,6 +137,12 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
 }
 
 - (void)doAction:(ASCAddonManagerAction)action {
+    if (action == ASCAddonManagerActionStop) {
+        [self resetDownloader];
+        self.installing = NO;
+        return;
+    }
+
     if (self.installing)
         return;
 
@@ -147,8 +153,6 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
     } else if (action == ASCAddonManagerActionUninstall) {
         if ([self isInstalled])
             [self uninstall];
-    } else if (action == ASCAddonManagerActionStop) {
-        [self resetDownloader];
     }
 }
 
