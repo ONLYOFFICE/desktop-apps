@@ -1399,7 +1399,6 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                         if (result == CMessage::Result::Yes)
                         {
                             m_private->m_bUpgradeInProgress = true;
-                            m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
                             showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Install);
                         }
                     }

@@ -402,7 +402,8 @@ CAddonManager::~CAddonManager()
 bool CAddonManager::isInstalled(QString *version) const
 {
     std::string sVersion;
-    const bool bInstalled = CAscApplicationManagerWrapper::getInstance().CheckMainAddon(&sVersion);
+    const bool bCompatible = CAscApplicationManagerWrapper::getInstance().CheckMainAddon(&sVersion);
+    const bool bInstalled = bCompatible || !sVersion.empty();
 
     if (version)
     {
