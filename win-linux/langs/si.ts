@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="428"/>
         <source>No compatible add-on version is available for this version of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>මෙම යෙදුම් අනුවාදය සඳහා අනුකූල ඇඩ්-ඔන් අනුවාදයක් නොමැත.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="432"/>
         <source>To install the add-on, update the application to the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>ඇඩ්-ඔන් ස්ථාපනය කිරීමට, යෙදුම නවතම අනුවාදයට යාවත්කාලීන කරන්න.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
@@ -21,37 +21,37 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
         <source>The add-on information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>ඇඩ්-ඔන් තොරතුරු අවලංගු හෝ අසම්පූර්ණ වේ.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="442"/>
         <source>The add-on package is corrupted or has been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>ඇඩ්-ඔන් පැකේජය දූෂිත හෝ වෙනස් කර ඇත.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="445"/>
         <source>Not enough memory to complete the add-on download.</source>
-        <translation type="unfinished"></translation>
+        <translation>ඇඩ්-ඔන් බාගැනීම සම්පූර්ණ කිරීමට ප්‍රමාණවත් මතකයක් නොමැත.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="448"/>
         <source>Failed to download the add-on due to a network error.</source>
-        <translation type="unfinished"></translation>
+        <translation>ජාල දෝෂයක් හේතුවෙන් ඇඩ්-ඔන් බාගැනීමට අසමත් විය.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="451"/>
         <source>The add-on download URL is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>ඇඩ්-ඔන් බාගැනීමේ URL අවලංගු වේ.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation type="unfinished"></translation>
+        <translation>බාගත කළ ඇඩ්-ඔන් පැකේජය සුරැකීමට අසමත් විය.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
         <source>An unexpected error occurred while installing the add-on.</source>
-        <translation type="unfinished"></translation>
+        <translation>ඇඩ්-ඔන් ස්ථාපනය කිරීමේදී අනපේක්ෂිත දෝෂයක් සිදු විය.</translation>
     </message>
 </context>
 <context>
@@ -81,37 +81,37 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
-        <translation type="unfinished"></translation>
+        <translation>ඔබට ONLYOFFICE AI Tools අස්ථාපනය කිරීමට අවශ්‍ය බව ඔබ ස්ථිරද?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>අස්ථාපනය කිරීමෙන් පසු AI Tools විශේෂාංග නොලැබෙනු ඇත. සියලු AI සැකසුම් (API යතුරු ඇතුළුව) ඉවත් නොකෙරේ.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE AI Tools සාර්ථකව අස්ථාපනය කරන ලදී</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>I&apos;ll do it later</source>
-        <translation type="unfinished"></translation>
+        <translation>මම එය පසුව කරන්නම්</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>Restart now</source>
-        <translation type="unfinished"></translation>
+        <translation>දැන් නැවත ආරම්භ කරන්න</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
         <source>Application needs to restart</source>
-        <translation type="unfinished"></translation>
+        <translation>යෙදුම නැවත ආරම්භ කළ යුතුය</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>ස්ථාපිත AI Tools සංරචකය මෙම යෙදුම් අනුවාදය සමඟ නොගැලපේ. දිගටම කරගෙන යාමට AI Tools සංරචකය යාවත්කාලීන කරන්න.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
@@ -612,7 +612,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Crossplatform</source>
-        <translation type="unfinished"></translation>
+        <translation>හරස් වේදිකාව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="314"/>
@@ -971,7 +971,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>The update information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලීන තොරතුරු අවලංගු හෝ අසම්පූර්ණ වේ.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="114"/>

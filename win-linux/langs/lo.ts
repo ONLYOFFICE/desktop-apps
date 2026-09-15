@@ -6,12 +6,12 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="428"/>
         <source>No compatible add-on version is available for this version of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>ບໍ່ມີເວີຊັນ add-on ທີ່ເຂົ້າກັນໄດ້ສໍາລັບເວີຊັນຂອງແອັບພລິເຄຊັນນີ້.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="432"/>
         <source>To install the add-on, update the application to the latest version.</source>
-        <translation type="unfinished"></translation>
+        <translation>ເພື່ອຕິດຕັ້ງ add-on, ອັບເດດແອັບພລິເຄຊັນເປັນເວີຊັນລ່າສຸດ.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="436"/>
@@ -21,37 +21,37 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="439"/>
         <source>The add-on information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຂໍ້ມູນ add-on ບໍ່ຖືກຕ້ອງຫຼືບໍ່ຄົບຖ້ວນ.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="442"/>
         <source>The add-on package is corrupted or has been modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>ແພັກເກັດ add-on ເສຍຫາຍຫຼືຖືກດັດແກ້.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="445"/>
         <source>Not enough memory to complete the add-on download.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຄວາມຈໍາບໍ່ພຽງພໍໃນການດາວໂຫຼດ add-on ສໍາເລັດ.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="448"/>
         <source>Failed to download the add-on due to a network error.</source>
-        <translation type="unfinished"></translation>
+        <translation>ດາວໂຫຼດ add-on ລົ້ມເຫລວເນື່ອງຈາກຄວາມຜິດພາດຂອງເຄືອຂ່າຍ.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="451"/>
         <source>The add-on download URL is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>URL ດາວໂຫຼດ add-on ບໍ່ຖືກຕ້ອງ.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation type="unfinished"></translation>
+        <translation>ບັນທຶກແພັກເກັດ add-on ທີ່ດາວໂຫຼດລົ້ມເຫລວ.</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
         <source>An unexpected error occurred while installing the add-on.</source>
-        <translation type="unfinished"></translation>
+        <translation>ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຄາດຄິດໃນລະຫວ່າງການຕິດຕັ້ງ add-on.</translation>
     </message>
 </context>
 <context>
@@ -85,37 +85,37 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="473"/>
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
-        <translation type="unfinished"></translation>
+        <translation>ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການຖອດຖອນ ONLYOFFICE AI Tools?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="478"/>
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຄຸນສົມບັດ AI Tools ຈະບໍ່ສາມາດໃຊ້ງານໄດ້ຫຼັງຈາກຖອດຖອນ. ການຕັ້ງຄ່າ AI ທັງໝົດ (ລວມທັງລະຫັດ API) ຈະບໍ່ຖືກລຶບ.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1351"/>
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE AI Tools ຖືກຖອດຖອນສໍາເລັດແລ້ວ</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>I&apos;ll do it later</source>
-        <translation type="unfinished"></translation>
+        <translation>ຂ້ອຍຈະເຮັດມັນໃນພາຍຫຼັງ</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1353"/>
         <source>Restart now</source>
-        <translation type="unfinished"></translation>
+        <translation>ເລີ່ມຕົ້ນໃໝ່ດຽວນີ້</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1356"/>
         <source>Application needs to restart</source>
-        <translation type="unfinished"></translation>
+        <translation>ແອັບພລິເຄຊັນຕ້ອງການເລີ່ມຕົ້ນໃໝ່</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation type="unfinished"></translation>
+        <translation>ສ່ວນປະກອບ AI Tools ທີ່ຕິດຕັ້ງໄວ້ບໍ່ເຂົ້າກັນໄດ້ກັບເວີຊັນຂອງແອັບພລິເຄຊັນນີ້. ກະລຸນາອັບເດດສ່ວນປະກອບ AI Tools ເພື່ອດໍາເນີນການຕໍ່.</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
@@ -596,7 +596,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Crossplatform</source>
-        <translation type="unfinished"></translation>
+        <translation>ຂ້າມແພລດຟອມ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="314"/>
@@ -947,7 +947,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>The update information is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>ຂໍ້ມູນການອັບເດດບໍ່ຖືກຕ້ອງຫຼືບໍ່ຄົບຖ້ວນ.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="114"/>
