@@ -464,6 +464,12 @@ QString CAddonManager::errorMessageForResult(int result)
 
 void CAddonManager::doAction(Action action)
 {
+    if (action == Action::Stop) {
+        pimpl->resetDownloader();
+        pimpl->bInstalling = false;
+        return;
+    }
+
     if (pimpl->bInstalling)
         return;
 
@@ -474,8 +480,6 @@ void CAddonManager::doAction(Action action)
     } else if (action == Action::Uninstall) {
         if (isInstalled())
             pimpl->uninstall();
-    } else if (action == Action::Stop) {
-        pimpl->resetDownloader();
     }
 }
 
