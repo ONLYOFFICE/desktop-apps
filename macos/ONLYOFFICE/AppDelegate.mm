@@ -2012,7 +2012,6 @@
         NSInteger code = [alert runModal];
         if (code == NSAlertFirstButtonReturn) {
             self.upgradeInProgress = YES;
-            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionInstall];
 
             [self performSelector:@selector(showUpgradeDialogWithPage:)
                        withObject:@(ASCUpgradePageInstall)
