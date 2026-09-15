@@ -4,12 +4,13 @@ import { t } from "@/services/l10n";
 import { ContextMenu, DropdownMenu } from "@/components";
 import { usePngIcons } from "@/services/display";
 import "./RecentList.styles.css";
+import { appliedUseAi } from "@/services/settings-sync";
 
 function FileMenuItems(props) {
   const Menu = props.menu;
   return (
     <>
-      <Show when={props.model.islocal}>
+      <Show when={props.model.islocal && appliedUseAi()}>
         <Menu.Item icon="#aichat20" onSelect={() => props.onAddToChat(props.model)}>
           {t("actAiChat")}
         </Menu.Item>
@@ -73,7 +74,7 @@ function RecentRow(props) {
           </div>
         </Show>
         <div class="col-actions">
-          <Show when={props.model.islocal}>
+          <Show when={props.model.islocal && appliedUseAi()}>
             <button
               class="btn-recents-tool aichat"
               onClick={(e) => {
