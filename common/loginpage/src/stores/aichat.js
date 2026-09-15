@@ -54,6 +54,10 @@ export function openFullAIPanel() {
   sendPluginVisibility("expanded");
 }
 
+export function openChatPanel() {
+  aichat.expanded ? openFullAIPanel() : openSidePanel();
+}
+
 export function setChatAvialable(value) {
   setAichat("available", value);
 }
