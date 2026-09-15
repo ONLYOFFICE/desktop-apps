@@ -46,7 +46,7 @@ function ConnectDialog(props) {
   const isOnlyoffice = () => props.provider?.provider === "onlyoffice";
   let inputRef;
   let contentRef;
-  // const URL_PROXY_SCHEME = 'onlyoffice-proxy://';
+  const URL_PROXY_SCHEME = 'onlyoffice-proxy://';
 
   createEffect(() => {
     setUrl(props.provider?.entryPage ?? "");
@@ -127,8 +127,8 @@ function ConnectDialog(props) {
       try {
         return await doFetch(target);
       } catch (e) {
-        // if (e.status === 404 || isDnsError(e)) throw e; // 404 for protocol flip, DNS — proxy won't help
-        // return await doFetch(`${URL_PROXY_SCHEME}${target}`); // other network error try with proxy
+        if (e.status === 404 || isDnsError(e)) throw e; // 404 for protocol flip, DNS — proxy won't help
+        return await doFetch(`${URL_PROXY_SCHEME}${target}`); // other network error try with proxy
       }
     };
 
