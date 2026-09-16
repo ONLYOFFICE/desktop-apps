@@ -127,7 +127,6 @@ export default function Index() {
       } else {
         sendPluginVisibility("expanded");
         openFullAIPanel();
-        window.location.hash = "#/aichat";
       }
     } else {
       command('addon:action', 'intro');
