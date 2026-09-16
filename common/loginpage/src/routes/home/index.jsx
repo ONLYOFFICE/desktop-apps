@@ -39,6 +39,7 @@ export default function Index() {
   const [loaded, setLoaded] = createSignal(false);
   const [visibleCount, setVisibleCount] = createSignal(BATCH);
   let revealId = 0;
+  let checkId = 0;
 
   const hasFiles = () => recents.length > 0;
   const hasRecovers = () => recovers().length > 0;
@@ -65,11 +66,25 @@ export default function Index() {
   }
 
   function sendCheckFiles() {
-    const pathByHash = {};
-    recents.forEach((f) => {
-      pathByHash[f.hash] = f.path;
-    });
-    Object.keys(pathByHash).length && checkFiles(pathByHash);
+    const id = ++checkId;
+    const files = recents.slice();
+    if (!files.length) return;
+
+    let i = 0;
+    function sendNextChunk() {
+      if (id !== checkId) return;
+      const chunk = files.slice(i, i + 40);
+      i += 40;
+
+      const pathByHash = {};
+      chunk.forEach((f) => {
+        pathByHash[f.hash] = f.path;
+      });
+      checkFiles(pathByHash);
+
+      if (i < files.length) setTimeout(sendNextChunk, 30);
+    }
+    sendNextChunk();
   }
 
   function togglePin(fileid) {
@@ -182,6 +197,7 @@ export default function Index() {
 
     onCleanup(() => {
       ++revealId;
+      ++checkId;
       unsubRecents();
       unsubRecovers();
       unsubCommonMsgs();
