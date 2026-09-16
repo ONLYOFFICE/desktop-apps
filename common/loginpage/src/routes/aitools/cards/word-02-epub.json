@@ -1,9 +1,244 @@
 {
-  "id": "convert-to-epub",
+  "id": {
+    "title": "Konversi ke EPUB",
+    "description": "Ubah dokumen Anda menjadi sebuah buku",
+    "usertext": "Pilih dokumen atau jelaskan di mana menemukannya"
+  },
   "group": "word",
   "prompt": "Please convert the attached document into EPUB format, preserving the structure, headings, and formatting so it reads well on e-readers.",
   "en": {
     "title": "Convert to EPUB",
-    "description": "Convert your document into a book"
+    "description": "Convert your document into a book",
+    "usertext": "Select a document or describe where to find it"
+  },
+  "ar-SA": {
+    "title": "تحويل إلى EPUB",
+    "description": "تحويل مستندك إلى كتاب",
+    "usertext": "اختر مستنداً أو صف مكان وجوده"
+  },
+  "be": {
+    "title": "Пераўтварыць у EPUB",
+    "description": "Пераўтварыць дакумент у кнігу",
+    "usertext": "Выберыце дакумент або апішыце, дзе яго знайсці"
+  },
+  "bg": {
+    "title": "Конвертиране в EPUB",
+    "description": "Конвертирайте документа си в книга",
+    "usertext": "Изберете документ или опишете къде да го намерите"
+  },
+  "ca": {
+    "title": "Convertir a EPUB",
+    "description": "Convertiu el vostre document en un llibre",
+    "usertext": "Seleccioneu un document o descriviu on trobar-lo"
+  },
+  "cs": {
+    "title": "Převést do EPUB",
+    "description": "Převeďte svůj dokument na knihu",
+    "usertext": "Vyberte dokument nebo popište, kde ho najít"
+  },
+  "da": {
+    "title": "Konverter til EPUB",
+    "description": "Konverter dit dokument til en bog",
+    "usertext": "Vælg et dokument eller beskriv, hvor du finder det"
+  },
+  "de": {
+    "title": "In EPUB konvertieren",
+    "description": "Ihr Dokument in ein Buch umwandeln",
+    "usertext": "Wählen Sie ein Dokument aus oder beschreiben Sie, wo Sie es finden"
+  },
+  "el": {
+    "title": "Μετατροπή σε EPUB",
+    "description": "Μετατρέψτε το έγγραφό σας σε βιβλίο",
+    "usertext": "Επιλέξτε ένα έγγραφο ή περιγράψτε πού να το βρείτε"
+  },
+  "en-GB": {
+    "title": "Convert to EPUB",
+    "description": "Convert your document into a book",
+    "usertext": "Select a document or describe where to find it"
+  },
+  "es": {
+    "title": "Convertir a EPUB",
+    "description": "Convierta su documento en un libro",
+    "usertext": "Seleccione un documento o describa dónde encontrarlo"
+  },
+  "et": {
+    "title": "Teisendamine EPUB-i",
+    "description": "Teisendage oma dokument raamatuks",
+    "usertext": "Valige dokument või kirjeldage, kust seda leida"
+  },
+  "fi": {
+    "title": "Muunna EPUB:ksi",
+    "description": "Muunna asiakirjasi kirjaksi",
+    "usertext": "Valitse asiakirja tai kuvaile, mistä se löytyy"
+  },
+  "fr": {
+    "title": "Convertir en EPUB",
+    "description": "Convertissez votre document en livre",
+    "usertext": "Sélectionnez un document ou décrivez où le trouver"
+  },
+  "ga": {
+    "title": "Tiontaigh go EPUB",
+    "description": "Tiontaigh do cháipéis go leabhar",
+    "usertext": "Roghnaigh cáipéis nó cuir síos ar cá bhfuil sí"
+  },
+  "gl": {
+    "title": "Converter a EPUB",
+    "description": "Converta o seu documento nun libro",
+    "usertext": "Seleccione un documento ou describa onde atopalo"
+  },
+  "he": {
+    "title": "המרה ל-EPUB",
+    "description": "המר את המסמך שלך לספר",
+    "usertext": "בחר מסמך או תאר היכן למצוא אותו"
+  },
+  "hi": {
+    "title": "EPUB में बदलें",
+    "description": "अपने दस्तावेज़ को किताब में बदलें",
+    "usertext": "कोई दस्तावेज़ चुनें या बताएं कि इसे कहां खोजें"
+  },
+  "hr": {
+    "title": "Pretvori u EPUB",
+    "description": "Pretvorite dokument u knjigu",
+    "usertext": "Odaberite dokument ili opišite gdje ga pronaći"
+  },
+  "hu": {
+    "title": "Konvertálás EPUB-ba",
+    "description": "Dokumentum könyvvé konvertálása",
+    "usertext": "Válasszon dokumentumot, vagy írja le, hol található"
+  },
+  "hy": {
+    "title": "Փոխարկել EPUB-ի",
+    "description": "Փոխարկեք ձեր փաստաթուղթը գրքի",
+    "usertext": "Ընտրեք փաստաթուղթ կամ նկարագրեք, թե որտեղ կարելի է գտնել այն"
+  },
+  "it": {
+    "title": "Converti in EPUB",
+    "description": "Converti il tuo documento in un libro",
+    "usertext": "Seleziona un documento o descrivi dove trovarlo"
+  },
+  "ja": {
+    "title": "EPUBに変換",
+    "description": "文書を電子書籍に変換",
+    "usertext": "文書を選択するか、どこにあるか説明してください"
+  },
+  "ko": {
+    "title": "EPUB으로 변환",
+    "description": "문서를 책으로 변환",
+    "usertext": "문서를 선택하거나 파일 위치를 설명하세요"
+  },
+  "lo": {
+    "title": "ແປງເປັນ EPUB",
+    "description": "ແປງເອກະສານຂອງທ່ານເປັນໜັງສື",
+    "usertext": "ເລືອກເອກະສານ ຫຼືອະທິບາຍວ່າຈະຫາມັນໄດ້ທີ່ໃດ"
+  },
+  "lt": {
+    "title": "Konvertuoti į EPUB",
+    "description": "Konvertuokite dokumentą į knygą",
+    "usertext": "Pasirinkite dokumentą arba apibūdinkite, kur jį rasti"
+  },
+  "lv": {
+    "title": "Konvertēt uz EPUB",
+    "description": "Konvertējiet dokumentu grāmatā",
+    "usertext": "Atlasiet dokumentu vai aprakstiet, kur to atrast"
+  },
+  "nl": {
+    "title": "Converteren naar EPUB",
+    "description": "Converteer uw document naar een boek",
+    "usertext": "Selecteer een document of beschrijf waar u het kunt vinden"
+  },
+  "no": {
+    "title": "Konverter til EPUB",
+    "description": "Konverter dokumentet ditt til en bok",
+    "usertext": "Velg et dokument eller beskriv hvor du finner det"
+  },
+  "pl": {
+    "title": "Konwertuj do EPUB",
+    "description": "Konwertuj dokument do formatu książki",
+    "usertext": "Wybierz dokument lub opisz, gdzie go znaleźć"
+  },
+  "pt-BR": {
+    "title": "Converter para EPUB",
+    "description": "Converta seu documento em um livro",
+    "usertext": "Selecione um documento ou descreva onde encontrá-lo"
+  },
+  "pt-PT": {
+    "title": "Converter para EPUB",
+    "description": "Converta o seu documento num livro",
+    "usertext": "Selecione um documento ou descreva onde o encontrar"
+  },
+  "ro": {
+    "title": "Convertire în EPUB",
+    "description": "Convertiți documentul în carte",
+    "usertext": "Selectați un document sau descrieți unde să îl găsiți"
+  },
+  "ru": {
+    "title": "Конвертировать в EPUB",
+    "description": "Преобразуйте документ в книгу",
+    "usertext": "Выберите документ или опишите, где его найти"
+  },
+  "si": {
+    "title": "EPUB ලෙස පරිවර්තනය",
+    "description": "ඔබේ ලේඛනය පොතකට පරිවර්තනය කරන්න",
+    "usertext": "ලේඛනයක් තෝරන්න හෝ එය සොයා ගන්නේ කොතැනින්ද යන්න විස්තර කරන්න"
+  },
+  "sk": {
+    "title": "Previesť do EPUB",
+    "description": "Preveďte dokument na knihu",
+    "usertext": "Vyberte dokument alebo opíšte, kde ho nájsť"
+  },
+  "sl": {
+    "title": "Pretvori v EPUB",
+    "description": "Pretvorite dokument v knjigo",
+    "usertext": "Izberite dokument ali opišite, kje ga najti"
+  },
+  "sq": {
+    "title": "Konverto në EPUB",
+    "description": "Konverto dokumentin tuaj në libër",
+    "usertext": "Zgjidhni një dokument ose përshkruani ku ta gjeni"
+  },
+  "sr-Cyrl-RS": {
+    "title": "Претвори у EPUB",
+    "description": "Претворите документ у књигу",
+    "usertext": "Изаберите документ или опишите где да га нађете"
+  },
+  "sr-Latn-RS": {
+    "title": "Pretvori u EPUB",
+    "description": "Pretvorite dokument u knjigu",
+    "usertext": "Izaberite dokument ili opišite gde da ga nađete"
+  },
+  "sv": {
+    "title": "Konvertera till EPUB",
+    "description": "Konvertera ditt dokument till en bok",
+    "usertext": "Välj ett dokument eller beskriv var du hittar det"
+  },
+  "tr": {
+    "title": "EPUB'a Dönüştür",
+    "description": "Belgenizi bir kitaba dönüştürün",
+    "usertext": "Bir belge seçin veya nerede bulunduğunu açıklayın"
+  },
+  "uk": {
+    "title": "Конвертувати в EPUB",
+    "description": "Перетворіть документ на книгу",
+    "usertext": "Виберіть документ або опишіть, де його знайти"
+  },
+  "ur": {
+    "title": "EPUB میں تبدیل کریں",
+    "description": "اپنی دستاویز کو کتاب میں تبدیل کریں",
+    "usertext": "دستاویز منتخب کریں یا بتائیں کہ اسے کہاں تلاش کریں"
+  },
+  "vi": {
+    "title": "Chuyển đổi sang EPUB",
+    "description": "Chuyển đổi tài liệu của bạn thành sách",
+    "usertext": "Chọn tài liệu hoặc mô tả nơi tìm nó"
+  },
+  "zh-CN": {
+    "title": "转换为 EPUB",
+    "description": "将文档转换为电子书",
+    "usertext": "选择文档或描述文件位置"
+  },
+  "zh-TW": {
+    "title": "轉換為 EPUB",
+    "description": "將文件轉換為電子書",
+    "usertext": "選擇文件或描述檔案位置"
   }
 }

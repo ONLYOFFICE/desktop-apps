@@ -57,7 +57,7 @@ export function sendFileToChat(path, type, name) {
   }
 }
 
-export function sendTextToChat(t) {
+export function sendTextToChat(t, c) {
   const iframe = document.getElementById("idx-plugin-frame");
   if (iframe && iframe.contentWindow) {
     const obj = {
@@ -68,6 +68,7 @@ export function sendTextToChat(t) {
         forseSend: false,
       }
     };
+    c && (obj.data.prompt = t, obj.data.text = c);
     iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
   }
 }

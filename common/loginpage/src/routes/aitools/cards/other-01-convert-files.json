@@ -1,9 +1,244 @@
 {
-  "id": "convert-files",
+  "id": {
+    "title": "Konversi File",
+    "description": "Konversi file antar format yang berbeda",
+    "usertext": "Pilih file dan tentukan format tujuan"
+  },
   "group": "other",
   "prompt": "Please convert the attached file to the requested format. Specify the target format and I will convert it while preserving as much of the original content and structure as possible.",
   "en": {
     "title": "Convert Files",
-    "description": "Convert files between different formats"
+    "description": "Convert files between different formats",
+    "usertext": "Select a file and specify the target format"
+  },
+  "ar-SA": {
+    "title": "تحويل الملفات",
+    "description": "تحويل الملفات بين التنسيقات المختلفة",
+    "usertext": "حدد ملفاً وحدد التنسيق المطلوب"
+  },
+  "be": {
+    "title": "Канвертаваць файлы",
+    "description": "Канвертаваць файлы паміж рознымі фарматамі",
+    "usertext": "Выберыце файл і ўкажыце мэтавы фармат"
+  },
+  "bg": {
+    "title": "Конвертиране на файлове",
+    "description": "Конвертиране на файлове между различни формати",
+    "usertext": "Изберете файл и посочете целевия формат"
+  },
+  "ca": {
+    "title": "Convertir fitxers",
+    "description": "Convertir fitxers entre diferents formats",
+    "usertext": "Seleccioneu un fitxer i especifiqueu el format de destinació"
+  },
+  "cs": {
+    "title": "Převést soubory",
+    "description": "Převést soubory mezi různými formáty",
+    "usertext": "Vyberte soubor a zadejte cílový formát"
+  },
+  "da": {
+    "title": "Konverter filer",
+    "description": "Konverter filer mellem forskellige formater",
+    "usertext": "Vælg en fil og angiv målformatet"
+  },
+  "de": {
+    "title": "Dateien konvertieren",
+    "description": "Dateien zwischen verschiedenen Formaten konvertieren",
+    "usertext": "Datei auswählen und Zielformat angeben"
+  },
+  "el": {
+    "title": "Μετατροπή αρχείων",
+    "description": "Μετατροπή αρχείων μεταξύ διαφορετικών μορφών",
+    "usertext": "Επιλέξτε αρχείο και καθορίστε τη μορφή προορισμού"
+  },
+  "en-GB": {
+    "title": "Convert Files",
+    "description": "Convert files between different formats",
+    "usertext": "Select a file and specify the target format"
+  },
+  "es": {
+    "title": "Convertir archivos",
+    "description": "Convertir archivos entre diferentes formatos",
+    "usertext": "Selecciona un archivo y especifica el formato de destino"
+  },
+  "et": {
+    "title": "Teisenda failid",
+    "description": "Teisenda faile eri vormingute vahel",
+    "usertext": "Vali fail ja täpsusta sihtvormingut"
+  },
+  "fi": {
+    "title": "Muunna tiedostoja",
+    "description": "Muunna tiedostoja eri muotojen välillä",
+    "usertext": "Valitse tiedosto ja määritä kohdemuoto"
+  },
+  "fr": {
+    "title": "Convertir les fichiers",
+    "description": "Convertir des fichiers entre différents formats",
+    "usertext": "Sélectionnez un fichier et spécifiez le format cible"
+  },
+  "ga": {
+    "title": "Tiontaigh Comhaid",
+    "description": "Tiontaigh comhaid idir formáidí éagsúla",
+    "usertext": "Roghnaigh comhad agus sonraigh an formáid sprice"
+  },
+  "gl": {
+    "title": "Converter ficheiros",
+    "description": "Converter ficheiros entre diferentes formatos",
+    "usertext": "Selecciona un ficheiro e especifica o formato de destino"
+  },
+  "he": {
+    "title": "המרת קבצים",
+    "description": "המרת קבצים בין פורמטים שונים",
+    "usertext": "בחר קובץ וציין את פורמט היעד"
+  },
+  "hi": {
+    "title": "फ़ाइलें कनवर्ट करें",
+    "description": "विभिन्न प्रारूपों के बीच फ़ाइलें कनवर्ट करें",
+    "usertext": "फ़ाइल चुनें और लक्ष्य प्रारूप निर्दिष्ट करें"
+  },
+  "hr": {
+    "title": "Pretvori datoteke",
+    "description": "Pretvaranje datoteka između različitih formata",
+    "usertext": "Odaberite datoteku i odredite ciljni format"
+  },
+  "hu": {
+    "title": "Fájlok konvertálása",
+    "description": "Fájlok konvertálása különböző formátumok között",
+    "usertext": "Válasszon fájlt, és adja meg a célformátumot"
+  },
+  "hy": {
+    "title": "Փոխակերպել ֆայլերը",
+    "description": "Փոխակերպել ֆայլերը տարբեր ձևաչափերի միջև",
+    "usertext": "Ընտրեք ֆայլ և նշեք թիրախային ձևաչափը"
+  },
+  "it": {
+    "title": "Converti file",
+    "description": "Converti file tra diversi formati",
+    "usertext": "Seleziona un file e specifica il formato di destinazione"
+  },
+  "ja": {
+    "title": "ファイルを変換",
+    "description": "異なる形式間でファイルを変換",
+    "usertext": "ファイルを選択して対象の形式を指定してください"
+  },
+  "ko": {
+    "title": "파일 변환",
+    "description": "다양한 형식 간 파일 변환",
+    "usertext": "파일을 선택하고 대상 형식을 지정하세요"
+  },
+  "lo": {
+    "title": "ປ່ຽນໄຟລ໌",
+    "description": "ປ່ຽນໄຟລ໌ລະຫວ່າງຮູບແບບຕ່າງໆ",
+    "usertext": "ເລືອກໄຟລ໌ ແລະ ລະບຸຮູບແບບເປົ້າໝາຍ"
+  },
+  "lt": {
+    "title": "Konvertuoti failus",
+    "description": "Konvertuoti failus tarp skirtingų formatų",
+    "usertext": "Pasirinkite failą ir nurodykite tikslinį formatą"
+  },
+  "lv": {
+    "title": "Konvertēt failus",
+    "description": "Konvertēt failus starp dažādiem formātiem",
+    "usertext": "Atlasiet failu un norādiet mērķa formātu"
+  },
+  "nl": {
+    "title": "Bestanden converteren",
+    "description": "Bestanden converteren tussen verschillende indelingen",
+    "usertext": "Selecteer een bestand en geef het doelformaat op"
+  },
+  "no": {
+    "title": "Konverter filer",
+    "description": "Konverter filer mellom ulike formater",
+    "usertext": "Velg en fil og angi målformat"
+  },
+  "pl": {
+    "title": "Konwertuj pliki",
+    "description": "Konwertuj pliki między różnymi formatami",
+    "usertext": "Wybierz plik i określ format docelowy"
+  },
+  "pt-BR": {
+    "title": "Converter Arquivos",
+    "description": "Converter arquivos entre diferentes formatos",
+    "usertext": "Selecione um arquivo e especifique o formato de destino"
+  },
+  "pt-PT": {
+    "title": "Converter Ficheiros",
+    "description": "Converter ficheiros entre diferentes formatos",
+    "usertext": "Selecione um ficheiro e especifique o formato de destino"
+  },
+  "ro": {
+    "title": "Convertiți fișiere",
+    "description": "Convertiți fișiere între diferite formate",
+    "usertext": "Selectați un fișier și specificați formatul de destinație"
+  },
+  "ru": {
+    "title": "Конвертировать файлы",
+    "description": "Конвертировать файлы между различными форматами",
+    "usertext": "Выберите файл и укажите целевой формат"
+  },
+  "si": {
+    "title": "ගොනු පරිවර්තනය කරන්න",
+    "description": "විවිධ ආකෘති අතර ගොනු පරිවර්තනය කරන්න",
+    "usertext": "ගොනුවක් තෝරා ඉලක්ක ආකෘතිය සඳහන් කරන්න"
+  },
+  "sk": {
+    "title": "Previesť súbory",
+    "description": "Previesť súbory medzi rôznymi formátmi",
+    "usertext": "Vyberte súbor a zadajte cieľový formát"
+  },
+  "sl": {
+    "title": "Pretvori datoteke",
+    "description": "Pretvorba datotek med različnimi formati",
+    "usertext": "Izberite datoteko in določite ciljni format"
+  },
+  "sq": {
+    "title": "Konverto skedarë",
+    "description": "Konverto skedarë midis formateve të ndryshme",
+    "usertext": "Zgjidhni një skedar dhe specifikoni formatin e synuar"
+  },
+  "sr-Cyrl-RS": {
+    "title": "Конвертуј фајлове",
+    "description": "Конвертовање фајлова између различитих формата",
+    "usertext": "Изаберите фајл и наведите циљни формат"
+  },
+  "sr-Latn-RS": {
+    "title": "Konvertuj fajlove",
+    "description": "Konvertovanje fajlova između različitih formata",
+    "usertext": "Izaberite fajl i navedite ciljni format"
+  },
+  "sv": {
+    "title": "Konvertera filer",
+    "description": "Konvertera filer mellan olika format",
+    "usertext": "Välj en fil och ange målformatet"
+  },
+  "tr": {
+    "title": "Dosyaları Dönüştür",
+    "description": "Farklı formatlar arasında dosyaları dönüştür",
+    "usertext": "Bir dosya seçin ve hedef formatı belirtin"
+  },
+  "uk": {
+    "title": "Конвертувати файли",
+    "description": "Конвертувати файли між різними форматами",
+    "usertext": "Виберіть файл і вкажіть цільовий формат"
+  },
+  "ur": {
+    "title": "فائلیں تبدیل کریں",
+    "description": "مختلف فارمیٹ کے درمیان فائلیں تبدیل کریں",
+    "usertext": "فائل منتخب کریں اور ہدف فارمیٹ بتائیں"
+  },
+  "vi": {
+    "title": "Chuyển đổi tệp",
+    "description": "Chuyển đổi tệp giữa các định dạng khác nhau",
+    "usertext": "Chọn tệp và chỉ định định dạng mục tiêu"
+  },
+  "zh-CN": {
+    "title": "转换文件",
+    "description": "在不同格式之间转换文件",
+    "usertext": "选择文件并指定目标格式"
+  },
+  "zh-TW": {
+    "title": "轉換檔案",
+    "description": "在不同格式之間轉換檔案",
+    "usertext": "選取檔案並指定目標格式"
   }
 }

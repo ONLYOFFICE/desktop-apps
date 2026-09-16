@@ -20,6 +20,7 @@ export function buildTools() {
       id: card.id,
       title: loc.title ?? card.id,
       description: loc.description ?? '',
+      usertext: loc.usertext ?? '',
       prompt: card.prompt ?? '',
       icon: card.icon,
     });

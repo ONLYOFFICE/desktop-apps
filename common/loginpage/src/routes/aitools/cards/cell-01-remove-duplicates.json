@@ -1,9 +1,244 @@
 {
-  "id": "remove-duplicates",
+  "id": {
+    "title": "Hapus Duplikat",
+    "description": "Hapus baris atau sel yang duplikat",
+    "usertext": "Pilih spreadsheet atau jelaskan di mana menemukannya"
+  },
   "group": "cell",
   "prompt": "Please remove all duplicate rows or entries from the attached spreadsheet and return the cleaned data.",
   "en": {
     "title": "Remove Duplicates",
-    "description": "Remove duplicate rows or cells"
+    "description": "Remove duplicate rows or cells",
+    "usertext": "Select a spreadsheet or describe where to find it"
+  },
+  "ar-SA": {
+    "title": "إزالة التكرارات",
+    "description": "إزالة الصفوف أو الخلايا المكررة",
+    "usertext": "حدد جدول بيانات أو صف مكانه"
+  },
+  "be": {
+    "title": "Выдаліць дублікаты",
+    "description": "Выдаліць дублікаты радкоў або вочак",
+    "usertext": "Выберыце табліцу або апішыце, дзе яна знаходзіцца"
+  },
+  "bg": {
+    "title": "Премахване на дубликати",
+    "description": "Премахване на дублирани редове или клетки",
+    "usertext": "Изберете таблица или опишете къде да я намерите"
+  },
+  "ca": {
+    "title": "Eliminar duplicats",
+    "description": "Eliminar files o cel·les duplicades",
+    "usertext": "Seleccioneu un full de càlcul o descriviu on trobar-lo"
+  },
+  "cs": {
+    "title": "Odebrat duplicity",
+    "description": "Odebrat duplicitní řádky nebo buňky",
+    "usertext": "Vyberte tabulku nebo popište, kde ji najít"
+  },
+  "da": {
+    "title": "Fjern dubletter",
+    "description": "Fjern dublet rækker eller celler",
+    "usertext": "Vælg et regneark eller beskriv, hvor du finder det"
+  },
+  "de": {
+    "title": "Duplikate entfernen",
+    "description": "Doppelte Zeilen oder Zellen entfernen",
+    "usertext": "Tabelle auswählen oder beschreiben, wo sie zu finden ist"
+  },
+  "el": {
+    "title": "Κατάργηση διπλότυπων",
+    "description": "Κατάργηση διπλότυπων γραμμών ή κελιών",
+    "usertext": "Επιλέξτε υπολογιστικό φύλλο ή περιγράψτε πού να το βρείτε"
+  },
+  "en-GB": {
+    "title": "Remove Duplicates",
+    "description": "Remove duplicate rows or cells",
+    "usertext": "Select a spreadsheet or describe where to find it"
+  },
+  "es": {
+    "title": "Eliminar duplicados",
+    "description": "Eliminar filas o celdas duplicadas",
+    "usertext": "Selecciona una hoja de cálculo o describe dónde encontrarla"
+  },
+  "et": {
+    "title": "Eemalda duplikaadid",
+    "description": "Eemalda duplikaatread või -lahtrid",
+    "usertext": "Vali arvutustabel või kirjelda, kust see leida"
+  },
+  "fi": {
+    "title": "Poista kaksoiskappaleet",
+    "description": "Poista kaksoiskappaleet riveistä tai soluista",
+    "usertext": "Valitse laskentataulukko tai kuvaile, mistä se löytyy"
+  },
+  "fr": {
+    "title": "Supprimer les doublons",
+    "description": "Supprimer les lignes ou cellules en double",
+    "usertext": "Sélectionnez une feuille de calcul ou décrivez où la trouver"
+  },
+  "ga": {
+    "title": "Bain Dúblaigh",
+    "description": "Bain sraitheanna nó cealla dúblacha",
+    "usertext": "Roghnaigh scarbhileog nó cuir síos ar cá bhfuil sí"
+  },
+  "gl": {
+    "title": "Eliminar duplicados",
+    "description": "Eliminar filas ou celas duplicadas",
+    "usertext": "Selecciona unha folla de cálculo ou describe onde atopala"
+  },
+  "he": {
+    "title": "הסרת כפילויות",
+    "description": "הסרת שורות או תאים כפולים",
+    "usertext": "בחר גיליון אלקטרוני או תאר היכן למצוא אותו"
+  },
+  "hi": {
+    "title": "डुप्लिकेट हटाएं",
+    "description": "डुप्लिकेट पंक्तियां या सेल हटाएं",
+    "usertext": "स्प्रेडशीट चुनें या बताएं कि इसे कहां खोजें"
+  },
+  "hr": {
+    "title": "Ukloni duplikate",
+    "description": "Ukloni dvostruke retke ili ćelije",
+    "usertext": "Odaberite proračunsku tablicu ili opišite gdje je pronaći"
+  },
+  "hu": {
+    "title": "Ismétlődések eltávolítása",
+    "description": "Ismétlődő sorok vagy cellák eltávolítása",
+    "usertext": "Válasszon táblázatot, vagy írja le, hol találja"
+  },
+  "hy": {
+    "title": "Հեռացնել կրկնությունները",
+    "description": "Հեռացնել կրկնվող տողերը կամ բջիջները",
+    "usertext": "Ընտրեք աղյուսակ կամ նկարագրեք, թե որտեղ գտնել"
+  },
+  "it": {
+    "title": "Rimuovi duplicati",
+    "description": "Rimuovi righe o celle duplicate",
+    "usertext": "Seleziona un foglio di calcolo o descrivi dove trovarlo"
+  },
+  "ja": {
+    "title": "重複を削除",
+    "description": "重複した行またはセルを削除",
+    "usertext": "スプレッドシートを選択するか、場所を説明してください"
+  },
+  "ko": {
+    "title": "중복 제거",
+    "description": "중복 행 또는 셀 제거",
+    "usertext": "스프레드시트를 선택하거나 위치를 설명하세요"
+  },
+  "lo": {
+    "title": "ລຶບລາຍການຊໍ້າ",
+    "description": "ລຶບແຖວຫຼືຕາລາງທີ່ຊໍ້າກັນ",
+    "usertext": "ເລືອກຕາຕະລາງ ຫຼື ອະທິບາຍວ່າຈະຊອກຫາມັນຢູ່ໃສ"
+  },
+  "lt": {
+    "title": "Pašalinti dublikatus",
+    "description": "Pašalinti pasikartojančias eilutes ar ląsteles",
+    "usertext": "Pasirinkite skaičiuoklę arba aprašykite, kur ją rasti"
+  },
+  "lv": {
+    "title": "Noņemt dublikātus",
+    "description": "Noņemt dublētās rindas vai šūnas",
+    "usertext": "Atlasiet izklājlapu vai aprakstiet, kur to atrast"
+  },
+  "nl": {
+    "title": "Duplicaten verwijderen",
+    "description": "Dubbele rijen of cellen verwijderen",
+    "usertext": "Selecteer een spreadsheet of beschrijf waar u het kunt vinden"
+  },
+  "no": {
+    "title": "Fjern duplikater",
+    "description": "Fjern duplikatrader eller -celler",
+    "usertext": "Velg et regneark eller beskriv hvor du finner det"
+  },
+  "pl": {
+    "title": "Usuń duplikaty",
+    "description": "Usuń zduplikowane wiersze lub komórki",
+    "usertext": "Wybierz arkusz kalkulacyjny lub opisz, gdzie go znaleźć"
+  },
+  "pt-BR": {
+    "title": "Remover Duplicatas",
+    "description": "Remover linhas ou células duplicadas",
+    "usertext": "Selecione uma planilha ou descreva onde encontrá-la"
+  },
+  "pt-PT": {
+    "title": "Remover Duplicados",
+    "description": "Remover linhas ou células duplicadas",
+    "usertext": "Selecione uma folha de cálculo ou descreva onde encontrá-la"
+  },
+  "ro": {
+    "title": "Eliminare duplicate",
+    "description": "Eliminați rândurile sau celulele duplicate",
+    "usertext": "Selectați un tabel sau descrieți unde să îl găsiți"
+  },
+  "ru": {
+    "title": "Удалить дубликаты",
+    "description": "Удалить повторяющиеся строки или ячейки",
+    "usertext": "Выберите таблицу или опишите, где её найти"
+  },
+  "si": {
+    "title": "අනුපිටපත් ඉවත් කරන්න",
+    "description": "අනුපිටපත් පේළි හෝ කොටු ඉවත් කරන්න",
+    "usertext": "ස්ප්‍රෙඩ්ෂීට් එකක් තෝරන්න හෝ එය කොතැනද යන්න විස්තර කරන්න"
+  },
+  "sk": {
+    "title": "Odstrániť duplikáty",
+    "description": "Odstrániť duplicitné riadky alebo bunky",
+    "usertext": "Vyberte tabuľku alebo popíšte, kde ju nájsť"
+  },
+  "sl": {
+    "title": "Odstrani podvojene",
+    "description": "Odstrani podvojene vrstice ali celice",
+    "usertext": "Izberite preglednico ali opišite, kje jo najti"
+  },
+  "sq": {
+    "title": "Hiq dublikatat",
+    "description": "Hiq rreshtat ose qelizat e dyfishta",
+    "usertext": "Zgjidhni një fletëllogaritëse ose përshkruani ku ta gjeni"
+  },
+  "sr-Cyrl-RS": {
+    "title": "Уклони дупликате",
+    "description": "Уклони дупликате редова или ћелија",
+    "usertext": "Изаберите табелу или опишите где да је пронађете"
+  },
+  "sr-Latn-RS": {
+    "title": "Ukloni duplikate",
+    "description": "Ukloni duplikate redova ili ćelija",
+    "usertext": "Izaberite tabelu ili opišite gde da je pronađete"
+  },
+  "sv": {
+    "title": "Ta bort dubbletter",
+    "description": "Ta bort duplicerade rader eller celler",
+    "usertext": "Välj ett kalkylblad eller beskriv var det finns"
+  },
+  "tr": {
+    "title": "Yinelenenleri Kaldır",
+    "description": "Yinelenen satır veya hücreleri kaldır",
+    "usertext": "Bir elektronik tablo seçin veya nerede bulunduğunu açıklayın"
+  },
+  "uk": {
+    "title": "Видалити дублікати",
+    "description": "Видалити дублікати рядків або клітинок",
+    "usertext": "Виберіть таблицю або опишіть, де її знайти"
+  },
+  "ur": {
+    "title": "نقل ہٹائیں",
+    "description": "نقل قطاریں یا سیل ہٹائیں",
+    "usertext": "اسپریڈشیٹ منتخب کریں یا بتائیں کہ کہاں ملے گی"
+  },
+  "vi": {
+    "title": "Xóa trùng lặp",
+    "description": "Xóa các hàng hoặc ô trùng lặp",
+    "usertext": "Chọn bảng tính hoặc mô tả nơi tìm thấy nó"
+  },
+  "zh-CN": {
+    "title": "删除重复项",
+    "description": "删除重复的行或单元格",
+    "usertext": "选择电子表格或说明在哪里找到它"
+  },
+  "zh-TW": {
+    "title": "刪除重複項",
+    "description": "刪除重複的列或儲存格",
+    "usertext": "選取試算表或說明在哪裡找到它"
   }
 }

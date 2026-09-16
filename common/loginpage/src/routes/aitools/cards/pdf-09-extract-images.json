@@ -1,9 +1,244 @@
 {
-  "id": "extract-images",
+  "id": {
+    "title": "Ekstrak Gambar",
+    "description": "Ekstrak gambar dari file PDF",
+    "usertext": "Pilih file PDF atau jelaskan di mana menemukannya"
+  },
   "group": "pdf",
   "prompt": "Please extract all images from the attached PDF file and provide them as separate image files.",
   "en": {
     "title": "Extract Images",
-    "description": "Extract images from a PDF file"
+    "description": "Extract images from a PDF file",
+    "usertext": "Select a PDF file or describe where to find it"
+  },
+  "ar-SA": {
+    "title": "استخراج الصور",
+    "description": "استخراج الصور من ملف PDF",
+    "usertext": "اختر ملف PDF أو صف مكان وجوده"
+  },
+  "be": {
+    "title": "Выняць малюнкі",
+    "description": "Выняць малюнкі з файла PDF",
+    "usertext": "Выберыце файл PDF або апішыце, дзе яго знайсці"
+  },
+  "bg": {
+    "title": "Извличане на изображения",
+    "description": "Извличане на изображения от PDF файл",
+    "usertext": "Изберете PDF файл или опишете къде да го намерите"
+  },
+  "ca": {
+    "title": "Extreure imatges",
+    "description": "Extreure imatges d'un fitxer PDF",
+    "usertext": "Seleccioneu un fitxer PDF o descriviu on trobar-lo"
+  },
+  "cs": {
+    "title": "Extrahovat obrázky",
+    "description": "Extrahovat obrázky ze souboru PDF",
+    "usertext": "Vyberte soubor PDF nebo popište, kde ho najít"
+  },
+  "da": {
+    "title": "Udtræk billeder",
+    "description": "Udtræk billeder fra en PDF-fil",
+    "usertext": "Vælg en PDF-fil eller beskriv, hvor du finder den"
+  },
+  "de": {
+    "title": "Bilder extrahieren",
+    "description": "Bilder aus einer PDF-Datei extrahieren",
+    "usertext": "Wählen Sie eine PDF-Datei aus oder beschreiben Sie, wo Sie sie finden"
+  },
+  "el": {
+    "title": "Εξαγωγή εικόνων",
+    "description": "Εξαγωγή εικόνων από αρχείο PDF",
+    "usertext": "Επιλέξτε ένα αρχείο PDF ή περιγράψτε πού να το βρείτε"
+  },
+  "en-GB": {
+    "title": "Extract Images",
+    "description": "Extract images from a PDF file",
+    "usertext": "Select a PDF file or describe where to find it"
+  },
+  "es": {
+    "title": "Extraer imágenes",
+    "description": "Extraer imágenes de un archivo PDF",
+    "usertext": "Seleccione un archivo PDF o describa dónde encontrarlo"
+  },
+  "et": {
+    "title": "Piltide eraldamine",
+    "description": "Piltide eraldamine PDF-failist",
+    "usertext": "Valige PDF-fail või kirjeldage, kust seda leida"
+  },
+  "fi": {
+    "title": "Poimi kuvat",
+    "description": "Poimi kuvat PDF-tiedostosta",
+    "usertext": "Valitse PDF-tiedosto tai kuvaile, mistä se löytyy"
+  },
+  "fr": {
+    "title": "Extraire les images",
+    "description": "Extraire des images d'un fichier PDF",
+    "usertext": "Sélectionnez un fichier PDF ou décrivez où le trouver"
+  },
+  "ga": {
+    "title": "Íomhánna a Bhaint",
+    "description": "Bain íomhánna as comhad PDF",
+    "usertext": "Roghnaigh comhad PDF nó cuir síos ar cá bhfuil sé"
+  },
+  "gl": {
+    "title": "Extraer imaxes",
+    "description": "Extraer imaxes dun ficheiro PDF",
+    "usertext": "Seleccione un ficheiro PDF ou describa onde atopalo"
+  },
+  "he": {
+    "title": "חילוץ תמונות",
+    "description": "חלץ תמונות מקובץ PDF",
+    "usertext": "בחר קובץ PDF או תאר היכן למצוא אותו"
+  },
+  "hi": {
+    "title": "छवियां निकालें",
+    "description": "PDF फ़ाइल से छवियां निकालें",
+    "usertext": "एक PDF फ़ाइल चुनें या बताएं कि इसे कहां खोजें"
+  },
+  "hr": {
+    "title": "Izdvoji slike",
+    "description": "Izdvoji slike iz PDF datoteke",
+    "usertext": "Odaberite PDF datoteku ili opišite gdje je pronaći"
+  },
+  "hu": {
+    "title": "Képek kinyerése",
+    "description": "Képek kinyerése PDF-fájlból",
+    "usertext": "Válasszon PDF-fájlt, vagy írja le, hol található"
+  },
+  "hy": {
+    "title": "Պատկերների արտահանում",
+    "description": "Պատկերների արտահանում PDF ֆայլից",
+    "usertext": "Ընտրեք PDF ֆայل կամ նկարագրեք, թե որտեղ կարելի է գտնել այն"
+  },
+  "it": {
+    "title": "Estrai immagini",
+    "description": "Estrai immagini da un file PDF",
+    "usertext": "Seleziona un file PDF o descrivi dove trovarlo"
+  },
+  "ja": {
+    "title": "画像を抽出",
+    "description": "PDFファイルから画像を抽出",
+    "usertext": "PDFファイルを選択するか、どこにあるか説明してください"
+  },
+  "ko": {
+    "title": "이미지 추출",
+    "description": "PDF 파일에서 이미지 추출",
+    "usertext": "PDF 파일을 선택하거나 파일 위치를 설명하세요"
+  },
+  "lo": {
+    "title": "ດຶງຮູບພາບ",
+    "description": "ດຶງຮູບພາບຈາກໄຟລ໌ PDF",
+    "usertext": "ເລືອກໄຟລ໌ PDF ຫຼືອະທິບາຍວ່າຈະຫາມັນໄດ້ທີ່ໃດ"
+  },
+  "lt": {
+    "title": "Ištraukti vaizdus",
+    "description": "Ištraukti vaizdus iš PDF failo",
+    "usertext": "Pasirinkite PDF failą arba apibūdinkite, kur jį rasti"
+  },
+  "lv": {
+    "title": "Izvilkt attēlus",
+    "description": "Izvilkt attēlus no PDF faila",
+    "usertext": "Atlasiet PDF failu vai aprakstiet, kur to atrast"
+  },
+  "nl": {
+    "title": "Afbeeldingen extraheren",
+    "description": "Afbeeldingen uit een PDF-bestand extraheren",
+    "usertext": "Selecteer een PDF-bestand of beschrijf waar u het kunt vinden"
+  },
+  "no": {
+    "title": "Hent ut bilder",
+    "description": "Hent ut bilder fra en PDF-fil",
+    "usertext": "Velg en PDF-fil eller beskriv hvor du finner den"
+  },
+  "pl": {
+    "title": "Wyodrębnij obrazy",
+    "description": "Wyodrębnij obrazy z pliku PDF",
+    "usertext": "Wybierz plik PDF lub opisz, gdzie go znaleźć"
+  },
+  "pt-BR": {
+    "title": "Extrair imagens",
+    "description": "Extrair imagens de um arquivo PDF",
+    "usertext": "Selecione um arquivo PDF ou descreva onde encontrá-lo"
+  },
+  "pt-PT": {
+    "title": "Extrair imagens",
+    "description": "Extrair imagens de um ficheiro PDF",
+    "usertext": "Selecione um ficheiro PDF ou descreva onde o encontrar"
+  },
+  "ro": {
+    "title": "Extrage imagini",
+    "description": "Extrage imagini dintr-un fișier PDF",
+    "usertext": "Selectați un fișier PDF sau descrieți unde să îl găsiți"
+  },
+  "ru": {
+    "title": "Извлечь изображения",
+    "description": "Извлечь изображения из PDF-файла",
+    "usertext": "Выберите PDF-файл или опишите, где его найти"
+  },
+  "si": {
+    "title": "රූප උපුටා ගැනීම",
+    "description": "PDF ගොනුවෙන් රූප උපුටා ගන්න",
+    "usertext": "PDF ගොනුවක් තෝරන්න හෝ එය සොයා ගන්නේ කොතැනින්ද යන්න විස්තර කරන්න"
+  },
+  "sk": {
+    "title": "Extrahovať obrázky",
+    "description": "Extrahovať obrázky zo súboru PDF",
+    "usertext": "Vyberte súbor PDF alebo opíšte, kde ho nájsť"
+  },
+  "sl": {
+    "title": "Izvleci slike",
+    "description": "Izvleci slike iz datoteke PDF",
+    "usertext": "Izberite datoteko PDF ali opišite, kje jo najti"
+  },
+  "sq": {
+    "title": "Nxirr imazhet",
+    "description": "Nxirr imazhet nga një skedar PDF",
+    "usertext": "Zgjidhni një skedar PDF ose përshkruani ku ta gjeni"
+  },
+  "sr-Cyrl-RS": {
+    "title": "Издвоји слике",
+    "description": "Издвоји слике из PDF датотеке",
+    "usertext": "Изаберите PDF датотеку или опишите где да је нађете"
+  },
+  "sr-Latn-RS": {
+    "title": "Izdvoji slike",
+    "description": "Izdvoji slike iz PDF datoteke",
+    "usertext": "Izaberite PDF datoteku ili opišite gde da je nađete"
+  },
+  "sv": {
+    "title": "Extrahera bilder",
+    "description": "Extrahera bilder från en PDF-fil",
+    "usertext": "Välj en PDF-fil eller beskriv var du hittar den"
+  },
+  "tr": {
+    "title": "Görselleri Çıkart",
+    "description": "PDF dosyasından görselleri çıkart",
+    "usertext": "Bir PDF dosyası seçin veya nerede bulunduğunu açıklayın"
+  },
+  "uk": {
+    "title": "Витягти зображення",
+    "description": "Витягти зображення з PDF-файлу",
+    "usertext": "Виберіть PDF-файл або опишіть, де його знайти"
+  },
+  "ur": {
+    "title": "تصاویر نکالیں",
+    "description": "PDF فائل سے تصاویر نکالیں",
+    "usertext": "PDF فائل منتخب کریں یا بتائیں کہ اسے کہاں تلاش کریں"
+  },
+  "vi": {
+    "title": "Trích xuất hình ảnh",
+    "description": "Trích xuất hình ảnh từ tệp PDF",
+    "usertext": "Chọn tệp PDF hoặc mô tả nơi tìm nó"
+  },
+  "zh-CN": {
+    "title": "提取图片",
+    "description": "从 PDF 文件中提取图片",
+    "usertext": "选择 PDF 文件或描述文件位置"
+  },
+  "zh-TW": {
+    "title": "提取圖片",
+    "description": "從 PDF 檔案中提取圖片",
+    "usertext": "選擇 PDF 檔案或描述檔案位置"
   }
 }

@@ -1,9 +1,244 @@
 {
-  "id": "prepare-form",
+  "id": {
+    "title": "Siapkan Formulir",
+    "description": "Buat kolom yang dapat diisi dalam formulir PDF",
+    "usertext": "Pilih file PDF dan jelaskan kolom formulir yang Anda butuhkan"
+  },
   "group": "pdf",
   "prompt": "Please create fillable form fields in the attached PDF document. Identify appropriate places for text fields, checkboxes, dropdowns, and signature fields.",
   "en": {
     "title": "Prepare Form",
-    "description": "Create fillable fields in a PDF form"
+    "description": "Create fillable fields in a PDF form",
+    "usertext": "Select a PDF file and describe the form fields you need"
+  },
+  "ar-SA": {
+    "title": "إعداد النموذج",
+    "description": "إنشاء حقول قابلة للتعبئة في نموذج PDF",
+    "usertext": "اختر ملف PDF وصف حقول النموذج التي تحتاجها"
+  },
+  "be": {
+    "title": "Падрыхтаваць форму",
+    "description": "Стварыць запаўняльныя палі ў форме PDF",
+    "usertext": "Выберыце файл PDF і апішыце патрэбныя палі формы"
+  },
+  "bg": {
+    "title": "Подготовка на формуляр",
+    "description": "Създаване на попълваеми полета в PDF формуляр",
+    "usertext": "Изберете PDF файл и опишете нужните полета на формуляра"
+  },
+  "ca": {
+    "title": "Preparar formulari",
+    "description": "Crear camps emplenables en un formulari PDF",
+    "usertext": "Seleccioneu un fitxer PDF i descriviu els camps del formulari que necessiteu"
+  },
+  "cs": {
+    "title": "Připravit formulář",
+    "description": "Vytvořit vyplnitelná pole ve formuláři PDF",
+    "usertext": "Vyberte soubor PDF a popište pole formuláře, která potřebujete"
+  },
+  "da": {
+    "title": "Forbered formular",
+    "description": "Opret udfyldbare felter i en PDF-formular",
+    "usertext": "Vælg en PDF-fil og beskriv de formularfelter, du har brug for"
+  },
+  "de": {
+    "title": "Formular vorbereiten",
+    "description": "Ausfüllbare Felder in einem PDF-Formular erstellen",
+    "usertext": "Wählen Sie eine PDF-Datei und beschreiben Sie die benötigten Formularfelder"
+  },
+  "el": {
+    "title": "Προετοιμασία φόρμας",
+    "description": "Δημιουργία πεδίων συμπλήρωσης σε φόρμα PDF",
+    "usertext": "Επιλέξτε αρχείο PDF και περιγράψτε τα πεδία φόρμας που χρειάζεστε"
+  },
+  "en-GB": {
+    "title": "Prepare Form",
+    "description": "Create fillable fields in a PDF form",
+    "usertext": "Select a PDF file and describe the form fields you need"
+  },
+  "es": {
+    "title": "Preparar formulario",
+    "description": "Crear campos rellenables en un formulario PDF",
+    "usertext": "Seleccione un archivo PDF y describa los campos del formulario que necesita"
+  },
+  "et": {
+    "title": "Vormi ettevalmistamine",
+    "description": "Täidetavate väljade loomine PDF-vormis",
+    "usertext": "Valige PDF-fail ja kirjeldage vajalikke vormiväljasid"
+  },
+  "fi": {
+    "title": "Valmistele lomake",
+    "description": "Luo täytettäviä kenttiä PDF-lomakkeeseen",
+    "usertext": "Valitse PDF-tiedosto ja kuvaile tarvitsemasi lomakekentät"
+  },
+  "fr": {
+    "title": "Préparer le formulaire",
+    "description": "Créer des champs remplissables dans un formulaire PDF",
+    "usertext": "Sélectionnez un fichier PDF et décrivez les champs du formulaire dont vous avez besoin"
+  },
+  "ga": {
+    "title": "Foirm a Ullmhú",
+    "description": "Cruthaigh réimsí inlíonta i bhfoirm PDF",
+    "usertext": "Roghnaigh comhad PDF agus cuir síos ar na réimsí foirme atá uait"
+  },
+  "gl": {
+    "title": "Preparar formulario",
+    "description": "Crear campos que se poidan encher nun formulario PDF",
+    "usertext": "Seleccione un ficheiro PDF e describa os campos do formulario que necesita"
+  },
+  "he": {
+    "title": "הכנת טופס",
+    "description": "צור שדות למילוי בטופס PDF",
+    "usertext": "בחר קובץ PDF ותאר את שדות הטופס הדרושים"
+  },
+  "hi": {
+    "title": "फ़ॉर्म तैयार करें",
+    "description": "PDF फ़ॉर्म में भरने योग्य फ़ील्ड बनाएं",
+    "usertext": "PDF फ़ाइल चुनें और आवश्यक फ़ॉर्म फ़ील्ड का विवरण दें"
+  },
+  "hr": {
+    "title": "Pripremi obrazac",
+    "description": "Stvori polja za ispunjavanje u PDF obrascu",
+    "usertext": "Odaberite PDF datoteku i opišite potrebna polja obrasca"
+  },
+  "hu": {
+    "title": "Űrlap előkészítése",
+    "description": "Kitölthető mezők létrehozása PDF-űrlapban",
+    "usertext": "Válasszon PDF-fájlt és írja le a szükséges űrlapmezőket"
+  },
+  "hy": {
+    "title": "Ձևաթղթի պատրաստում",
+    "description": "Լրացվող դաշտերի ստեղծում PDF ձևաթղթում",
+    "usertext": "Ընտրեք PDF ֆայल և նկարագրեք անհրաժեշտ ձևաթղթի դաշտերը"
+  },
+  "it": {
+    "title": "Prepara modulo",
+    "description": "Crea campi compilabili in un modulo PDF",
+    "usertext": "Seleziona un file PDF e descrivi i campi del modulo di cui hai bisogno"
+  },
+  "ja": {
+    "title": "フォームを準備",
+    "description": "PDFフォームに入力可能なフィールドを作成",
+    "usertext": "PDFファイルを選択し、必要なフォームフィールドを説明してください"
+  },
+  "ko": {
+    "title": "양식 준비",
+    "description": "PDF 양식에 입력 가능한 필드 만들기",
+    "usertext": "PDF 파일을 선택하고 필요한 양식 필드를 설명하세요"
+  },
+  "lo": {
+    "title": "ກຽມແບບຟອມ",
+    "description": "ສ້າງຊ່ອງຂໍ້ມູນທີ່ສາມາດຕື່ມໃນແບບຟອມ PDF",
+    "usertext": "ເລືອກໄຟລ໌ PDF ແລະອະທິບາຍຊ່ອງຂໍ້ມູນທີ່ຕ້ອງການ"
+  },
+  "lt": {
+    "title": "Paruošti formą",
+    "description": "Sukurti pildymo laukus PDF formoje",
+    "usertext": "Pasirinkite PDF failą ir apibūdinkite reikiamus formos laukus"
+  },
+  "lv": {
+    "title": "Sagatavot veidlapu",
+    "description": "Izveidot aizpildāmus laukus PDF veidlapā",
+    "usertext": "Atlasiet PDF failu un aprakstiet nepieciešamos veidlapas laukus"
+  },
+  "nl": {
+    "title": "Formulier voorbereiden",
+    "description": "Invulbare velden maken in een PDF-formulier",
+    "usertext": "Selecteer een PDF-bestand en beschrijf de formuliervelden die u nodig heeft"
+  },
+  "no": {
+    "title": "Forbered skjema",
+    "description": "Opprett utfyllbare felt i et PDF-skjema",
+    "usertext": "Velg en PDF-fil og beskriv skjemafeltene du trenger"
+  },
+  "pl": {
+    "title": "Przygotuj formularz",
+    "description": "Utwórz wypełnialne pola w formularzu PDF",
+    "usertext": "Wybierz plik PDF i opisz potrzebne pola formularza"
+  },
+  "pt-BR": {
+    "title": "Preparar formulário",
+    "description": "Criar campos preenchíveis em um formulário PDF",
+    "usertext": "Selecione um arquivo PDF e descreva os campos do formulário que você precisa"
+  },
+  "pt-PT": {
+    "title": "Preparar formulário",
+    "description": "Criar campos preenchíveis num formulário PDF",
+    "usertext": "Selecione um ficheiro PDF e descreva os campos do formulário de que necessita"
+  },
+  "ro": {
+    "title": "Pregătire formular",
+    "description": "Creați câmpuri completabile într-un formular PDF",
+    "usertext": "Selectați un fișier PDF și descrieți câmpurile formularului de care aveți nevoie"
+  },
+  "ru": {
+    "title": "Подготовить форму",
+    "description": "Создать заполняемые поля в форме PDF",
+    "usertext": "Выберите PDF-файл и опишите нужные поля формы"
+  },
+  "si": {
+    "title": "පෝරමය සකස් කරන්න",
+    "description": "PDF පෝරමයේ පිරවිය හැකි ක්ෂේත්‍ර සාදන්න",
+    "usertext": "PDF ගොනුවක් තෝරන්න සහ ඔබට අවශ්‍ය පෝරම ක්ෂේත්‍ර විස්තර කරන්න"
+  },
+  "sk": {
+    "title": "Pripraviť formulár",
+    "description": "Vytvoriť vyplniteľné polia vo formulári PDF",
+    "usertext": "Vyberte súbor PDF a opíšte potrebné polia formulára"
+  },
+  "sl": {
+    "title": "Pripravi obrazec",
+    "description": "Ustvari izpolnjiva polja v obrazcu PDF",
+    "usertext": "Izberite datoteko PDF in opišite polja obrazca, ki jih potrebujete"
+  },
+  "sq": {
+    "title": "Përgatit formularin",
+    "description": "Krijo fusha të plotësueshme në një formular PDF",
+    "usertext": "Zgjidhni një skedar PDF dhe përshkruani fushat e formularit që ju nevojiten"
+  },
+  "sr-Cyrl-RS": {
+    "title": "Припреми образац",
+    "description": "Створи поља за попуњавање у PDF обрасцу",
+    "usertext": "Изаберите PDF датотеку и опишите потребна поља обрасца"
+  },
+  "sr-Latn-RS": {
+    "title": "Pripremi obrazac",
+    "description": "Stvori polja za popunjavanje u PDF obrascu",
+    "usertext": "Izaberite PDF datoteku i opišite potrebna polja obrasca"
+  },
+  "sv": {
+    "title": "Förbered formulär",
+    "description": "Skapa ifyllningsbara fält i ett PDF-formulär",
+    "usertext": "Välj en PDF-fil och beskriv de formulärfält du behöver"
+  },
+  "tr": {
+    "title": "Form Hazırla",
+    "description": "PDF formunda doldurulabilir alanlar oluştur",
+    "usertext": "Bir PDF dosyası seçin ve ihtiyacınız olan form alanlarını açıklayın"
+  },
+  "uk": {
+    "title": "Підготувати форму",
+    "description": "Створити поля для заповнення у формі PDF",
+    "usertext": "Виберіть PDF-файл і опишіть потрібні поля форми"
+  },
+  "ur": {
+    "title": "فارم تیار کریں",
+    "description": "PDF فارم میں قابل پُر کردہ خانے بنائیں",
+    "usertext": "PDF فائل منتخب کریں اور ضروری فارم خانوں کو بیان کریں"
+  },
+  "vi": {
+    "title": "Chuẩn bị biểu mẫu",
+    "description": "Tạo các trường có thể điền trong biểu mẫu PDF",
+    "usertext": "Chọn tệp PDF và mô tả các trường biểu mẫu bạn cần"
+  },
+  "zh-CN": {
+    "title": "准备表单",
+    "description": "在 PDF 表单中创建可填写字段",
+    "usertext": "选择 PDF 文件并描述所需的表单字段"
+  },
+  "zh-TW": {
+    "title": "準備表單",
+    "description": "在 PDF 表單中建立可填寫欄位",
+    "usertext": "選擇 PDF 檔案並描述所需的表單欄位"
   }
 }

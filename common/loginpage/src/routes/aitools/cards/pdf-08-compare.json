@@ -1,9 +1,244 @@
 {
-  "id": "compare-pdfs",
+  "id": {
+    "title": "Bandingkan PDF",
+    "description": "Bandingkan dua PDF dan soroti perbedaan",
+    "usertext": "Pilih dua file PDF yang ingin Anda bandingkan"
+  },
   "group": "pdf",
   "prompt": "Please compare the two attached PDF files and highlight all differences between them, including text changes, added or removed content, and formatting differences.",
   "en": {
     "title": "Compare PDFs",
-    "description": "Compare two PDFs and highlight differences"
+    "description": "Compare two PDFs and highlight differences",
+    "usertext": "Select the two PDF files you want to compare"
+  },
+  "ar-SA": {
+    "title": "مقارنة ملفات PDF",
+    "description": "مقارنة ملفي PDF وإبراز الاختلافات",
+    "usertext": "حدد ملفي PDF اللذين تريد مقارنتهما"
+  },
+  "be": {
+    "title": "Параўнаць PDF",
+    "description": "Параўнаць два PDF і вылучыць адрозненні",
+    "usertext": "Выберыце два файлы PDF для параўнання"
+  },
+  "bg": {
+    "title": "Сравняване на PDF",
+    "description": "Сравняване на два PDF и маркиране на разликите",
+    "usertext": "Изберете двата PDF файла, които искате да сравните"
+  },
+  "ca": {
+    "title": "Comparar PDFs",
+    "description": "Comparar dos PDFs i destacar les diferències",
+    "usertext": "Seleccioneu els dos fitxers PDF que voleu comparar"
+  },
+  "cs": {
+    "title": "Porovnat PDF",
+    "description": "Porovnat dva PDF a zvýraznit rozdíly",
+    "usertext": "Vyberte dva soubory PDF, které chcete porovnat"
+  },
+  "da": {
+    "title": "Sammenlign PDF'er",
+    "description": "Sammenlign to PDF'er og fremhæv forskelle",
+    "usertext": "Vælg de to PDF-filer, du vil sammenligne"
+  },
+  "de": {
+    "title": "PDFs vergleichen",
+    "description": "Zwei PDFs vergleichen und Unterschiede hervorheben",
+    "usertext": "Wählen Sie die zwei PDF-Dateien, die Sie vergleichen möchten"
+  },
+  "el": {
+    "title": "Σύγκριση PDF",
+    "description": "Σύγκριση δύο PDF και ανάδειξη διαφορών",
+    "usertext": "Επιλέξτε τα δύο αρχεία PDF που θέλετε να συγκρίνετε"
+  },
+  "en-GB": {
+    "title": "Compare PDFs",
+    "description": "Compare two PDFs and highlight differences",
+    "usertext": "Select the two PDF files you want to compare"
+  },
+  "es": {
+    "title": "Comparar PDFs",
+    "description": "Comparar dos PDFs y resaltar diferencias",
+    "usertext": "Seleccione los dos archivos PDF que desea comparar"
+  },
+  "et": {
+    "title": "Võrdle PDF-e",
+    "description": "Võrdle kahte PDF-i ja tõsta erinevused esile",
+    "usertext": "Valige kaks PDF-faili, mida soovite võrrelda"
+  },
+  "fi": {
+    "title": "Vertaa PDF-tiedostoja",
+    "description": "Vertaa kahta PDF-tiedostoa ja korosta erot",
+    "usertext": "Valitse kaksi PDF-tiedostoa, joita haluat vertailla"
+  },
+  "fr": {
+    "title": "Comparer des PDF",
+    "description": "Comparer deux PDF et mettre en évidence les différences",
+    "usertext": "Sélectionnez les deux fichiers PDF que vous souhaitez comparer"
+  },
+  "ga": {
+    "title": "Cuir PDFanna i gcomparáid",
+    "description": "Cuir dhá PDF i gcomparáid agus aibhsigh difríochtaí",
+    "usertext": "Roghnaigh an dá chomhad PDF is mian leat a chur i gcomparáid"
+  },
+  "gl": {
+    "title": "Comparar PDFs",
+    "description": "Comparar dous PDFs e resaltar diferenzas",
+    "usertext": "Seleccione os dous ficheiros PDF que quere comparar"
+  },
+  "he": {
+    "title": "השוואת PDFs",
+    "description": "השוואת שני PDFs והדגשת הבדלים",
+    "usertext": "בחר את שני קבצי ה-PDF שברצונך להשוות"
+  },
+  "hi": {
+    "title": "PDF तुलना करें",
+    "description": "दो PDF की तुलना करें और अंतर हाइलाइट करें",
+    "usertext": "वे दो PDF फ़ाइलें चुनें जिनकी आप तुलना करना चाहते हैं"
+  },
+  "hr": {
+    "title": "Usporedi PDF-ove",
+    "description": "Usporedite dva PDF-a i istaknite razlike",
+    "usertext": "Odaberite dvije PDF datoteke koje želite usporediti"
+  },
+  "hu": {
+    "title": "PDF-ek összehasonlítása",
+    "description": "Két PDF összehasonlítása és a különbségek kiemelése",
+    "usertext": "Válassza ki a két PDF-fájlt, amelyeket össze kíván hasonlítani"
+  },
+  "hy": {
+    "title": "Համեմատել PDF-ներ",
+    "description": "Երկու PDF-ի համեմատություն և տարբերությունների ընդգծում",
+    "usertext": "Ընտրեք երկու PDF ֆայլ, որոնք ցանկանում եք համեմատել"
+  },
+  "it": {
+    "title": "Confronta PDF",
+    "description": "Confronta due PDF ed evidenzia le differenze",
+    "usertext": "Seleziona i due file PDF che vuoi confrontare"
+  },
+  "ja": {
+    "title": "PDF比較",
+    "description": "2つのPDFを比較して差異をハイライト",
+    "usertext": "比較したい2つのPDFファイルを選択してください"
+  },
+  "ko": {
+    "title": "PDF 비교",
+    "description": "두 PDF를 비교하고 차이점 강조 표시",
+    "usertext": "비교할 두 PDF 파일을 선택하세요"
+  },
+  "lo": {
+    "title": "ປຽບທຽບ PDF",
+    "description": "ປຽບທຽບ PDF ສອງໄຟລ໌ ແລະໄຮໄລຄວາມຕ່າງ",
+    "usertext": "ເລືອກໄຟລ໌ PDF ສອງໄຟລ໌ທີ່ທ່ານຕ້ອງການປຽບທຽບ"
+  },
+  "lt": {
+    "title": "Palyginti PDF",
+    "description": "Palyginkite du PDF ir paryškinkite skirtumus",
+    "usertext": "Pasirinkite du PDF failus, kuriuos norite palyginti"
+  },
+  "lv": {
+    "title": "Salīdzināt PDF",
+    "description": "Salīdzināt divus PDF failus un izcelt atšķirības",
+    "usertext": "Atlasiet divus PDF failus, kurus vēlaties salīdzināt"
+  },
+  "nl": {
+    "title": "PDF's vergelijken",
+    "description": "Twee PDF's vergelijken en verschillen markeren",
+    "usertext": "Selecteer de twee PDF-bestanden die u wilt vergelijken"
+  },
+  "no": {
+    "title": "Sammenlign PDF-er",
+    "description": "Sammenlign to PDF-er og fremhev forskjeller",
+    "usertext": "Velg de to PDF-filene du vil sammenligne"
+  },
+  "pl": {
+    "title": "Porównaj PDF",
+    "description": "Porównaj dwa pliki PDF i zaznacz różnice",
+    "usertext": "Wybierz dwa pliki PDF, które chcesz porównać"
+  },
+  "pt-BR": {
+    "title": "Comparar PDFs",
+    "description": "Comparar dois PDFs e destacar diferenças",
+    "usertext": "Selecione os dois arquivos PDF que deseja comparar"
+  },
+  "pt-PT": {
+    "title": "Comparar PDFs",
+    "description": "Comparar dois PDFs e destacar diferenças",
+    "usertext": "Selecione os dois ficheiros PDF que pretende comparar"
+  },
+  "ro": {
+    "title": "Comparare PDF-uri",
+    "description": "Comparați două PDF-uri și evidențiați diferențele",
+    "usertext": "Selectați cele două fișiere PDF pe care doriți să le comparați"
+  },
+  "ru": {
+    "title": "Сравнить PDF",
+    "description": "Сравнить два PDF и выделить различия",
+    "usertext": "Выберите два файла PDF для сравнения"
+  },
+  "si": {
+    "title": "PDF සසඳන්න",
+    "description": "PDF දෙකක් සසඳා වෙනස්කම් ඉස්මතු කරන්න",
+    "usertext": "සසඳීමට අවශ්‍ය PDF ගොනු දෙක තෝරන්න"
+  },
+  "sk": {
+    "title": "Porovnať PDF",
+    "description": "Porovnať dva PDF a zvýrazniť rozdiely",
+    "usertext": "Vyberte dva súbory PDF, ktoré chcete porovnať"
+  },
+  "sl": {
+    "title": "Primerjaj PDF-je",
+    "description": "Primerjajte dva PDF-ja in označite razlike",
+    "usertext": "Izberite dve datoteki PDF, ki ju želite primerjati"
+  },
+  "sq": {
+    "title": "Krahaso PDF-të",
+    "description": "Krahasoni dy PDF dhe theksoni ndryshimet",
+    "usertext": "Zgjidhni dy skedarë PDF që dëshironi të krahasoni"
+  },
+  "sr-Cyrl-RS": {
+    "title": "Поређење PDF датотека",
+    "description": "Упоредите два PDF и истакните разлике",
+    "usertext": "Изаберите две PDF датотеке које желите да упоредите"
+  },
+  "sr-Latn-RS": {
+    "title": "Poređenje PDF datoteka",
+    "description": "Uporedite dva PDF i istaknite razlike",
+    "usertext": "Izaberite dve PDF datoteke koje želite da uporedite"
+  },
+  "sv": {
+    "title": "Jämför PDF:er",
+    "description": "Jämför två PDF:er och markera skillnader",
+    "usertext": "Välj de två PDF-filer du vill jämföra"
+  },
+  "tr": {
+    "title": "PDF'leri Karşılaştır",
+    "description": "İki PDF'yi karşılaştırın ve farklılıkları vurgulayın",
+    "usertext": "Karşılaştırmak istediğiniz iki PDF dosyasını seçin"
+  },
+  "uk": {
+    "title": "Порівняти PDF",
+    "description": "Порівняти два PDF і виділити відмінності",
+    "usertext": "Виберіть два файли PDF для порівняння"
+  },
+  "ur": {
+    "title": "PDFs کا موازنہ کریں",
+    "description": "دو PDFs کا موازنہ کریں اور فرق اجاگر کریں",
+    "usertext": "وہ دو PDF فائلیں منتخب کریں جن کا موازنہ کرنا ہے"
+  },
+  "vi": {
+    "title": "So sánh PDF",
+    "description": "So sánh hai PDF và làm nổi bật sự khác biệt",
+    "usertext": "Chọn hai tệp PDF bạn muốn so sánh"
+  },
+  "zh-CN": {
+    "title": "比较 PDF",
+    "description": "比较两个 PDF 并突出显示差异",
+    "usertext": "选择要比较的两个 PDF 文件"
+  },
+  "zh-TW": {
+    "title": "比較 PDF",
+    "description": "比較兩個 PDF 並標示差異",
+    "usertext": "選擇要比較的兩個 PDF 檔案"
   }
 }

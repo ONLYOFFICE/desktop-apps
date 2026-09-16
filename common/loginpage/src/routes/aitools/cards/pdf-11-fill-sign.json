@@ -1,9 +1,244 @@
 {
-  "id": "fill-sign",
+  "id": {
+    "title": "Isi & Tanda Tangani",
+    "description": "Isi kolom formulir dan tandatangani PDF",
+    "usertext": "Pilih file PDF dan berikan informasi untuk diisi"
+  },
   "group": "pdf",
   "prompt": "Please fill in the form fields in the attached PDF with the provided information and add a signature where required.",
   "en": {
     "title": "Fill & Sign",
-    "description": "Fill in form fields and sign a PDF"
+    "description": "Fill in form fields and sign a PDF",
+    "usertext": "Select a PDF file and provide the information to fill in"
+  },
+  "ar-SA": {
+    "title": "تعبئة & توقيع",
+    "description": "تعبئة حقول النموذج وتوقيع PDF",
+    "usertext": "اختر ملف PDF وقدم المعلومات للتعبئة"
+  },
+  "be": {
+    "title": "Запоўніць & Падпісаць",
+    "description": "Запоўніць палі формы і падпісаць PDF",
+    "usertext": "Выберыце файл PDF і ўвядзіце інфармацыю для запаўнення"
+  },
+  "bg": {
+    "title": "Попълване & Подписване",
+    "description": "Попълване на полета на формуляр и подписване на PDF",
+    "usertext": "Изберете PDF файл и предоставете информацията за попълване"
+  },
+  "ca": {
+    "title": "Emplenar & Signar",
+    "description": "Emplenar camps del formulari i signar un PDF",
+    "usertext": "Seleccioneu un fitxer PDF i proporcioneu la informació per emplenar"
+  },
+  "cs": {
+    "title": "Vyplnit & Podepsat",
+    "description": "Vyplnit pole formuláře a podepsat PDF",
+    "usertext": "Vyberte soubor PDF a zadejte informace k vyplnění"
+  },
+  "da": {
+    "title": "Udfyld & Underskriv",
+    "description": "Udfyld formularfelter og underskriv en PDF",
+    "usertext": "Vælg en PDF-fil og angiv oplysningerne til udfyldning"
+  },
+  "de": {
+    "title": "Ausfüllen & Signieren",
+    "description": "Formularfelder ausfüllen und eine PDF signieren",
+    "usertext": "Wählen Sie eine PDF-Datei und geben Sie die Informationen zum Ausfüllen an"
+  },
+  "el": {
+    "title": "Συμπλήρωση & Υπογραφή",
+    "description": "Συμπλήρωση πεδίων φόρμας και υπογραφή PDF",
+    "usertext": "Επιλέξτε αρχείο PDF και δώστε τις πληροφορίες για συμπλήρωση"
+  },
+  "en-GB": {
+    "title": "Fill & Sign",
+    "description": "Fill in form fields and sign a PDF",
+    "usertext": "Select a PDF file and provide the information to fill in"
+  },
+  "es": {
+    "title": "Rellenar & Firmar",
+    "description": "Rellenar campos de formulario y firmar un PDF",
+    "usertext": "Seleccione un archivo PDF y proporcione la información para rellenar"
+  },
+  "et": {
+    "title": "Täitmine & Allkirjastamine",
+    "description": "Vormi väljade täitmine ja PDF allkirjastamine",
+    "usertext": "Valige PDF-fail ja esitage täitmiseks vajalik teave"
+  },
+  "fi": {
+    "title": "Täytä & Allekirjoita",
+    "description": "Täytä lomakekentät ja allekirjoita PDF",
+    "usertext": "Valitse PDF-tiedosto ja anna täytettävät tiedot"
+  },
+  "fr": {
+    "title": "Remplir & Signer",
+    "description": "Remplir les champs du formulaire et signer un PDF",
+    "usertext": "Sélectionnez un fichier PDF et fournissez les informations à remplir"
+  },
+  "ga": {
+    "title": "Líon & Sínigh",
+    "description": "Líon réimsí foirme agus sínigh PDF",
+    "usertext": "Roghnaigh comhad PDF agus cuir an fhaisnéis ar fáil le líonadh"
+  },
+  "gl": {
+    "title": "Encher & Asinar",
+    "description": "Encher os campos do formulario e asinar un PDF",
+    "usertext": "Seleccione un ficheiro PDF e proporcione a información para encher"
+  },
+  "he": {
+    "title": "מילוי & חתימה",
+    "description": "מלא שדות טופס וחתום על PDF",
+    "usertext": "בחר קובץ PDF וספק את המידע למילוי"
+  },
+  "hi": {
+    "title": "भरें & हस्ताक्षर करें",
+    "description": "फ़ॉर्म फ़ील्ड भरें और PDF पर हस्ताक्षर करें",
+    "usertext": "PDF फ़ाइल चुनें और भरने के लिए जानकारी प्रदान करें"
+  },
+  "hr": {
+    "title": "Ispuni & Potpiši",
+    "description": "Ispuni polja obrasca i potpiši PDF",
+    "usertext": "Odaberite PDF datoteku i navedite informacije za ispunjavanje"
+  },
+  "hu": {
+    "title": "Kitöltés & Aláírás",
+    "description": "Űrlapmezők kitöltése és PDF aláírása",
+    "usertext": "Válasszon PDF-fájlt és adja meg a kitöltendő adatokat"
+  },
+  "hy": {
+    "title": "Լրացնել & Ստորագրել",
+    "description": "Լրացնել ձևաթղթի դաշտերը և ստորագրել PDF-ը",
+    "usertext": "Ընտրեք PDF ֆայլ և տրամադրեք լրացման տեղեկատվությունը"
+  },
+  "it": {
+    "title": "Compila & Firma",
+    "description": "Compila i campi del modulo e firma un PDF",
+    "usertext": "Seleziona un file PDF e fornisci le informazioni da compilare"
+  },
+  "ja": {
+    "title": "入力 & 署名",
+    "description": "フォームフィールドに記入してPDFに署名",
+    "usertext": "PDFファイルを選択し、入力する情報を提供してください"
+  },
+  "ko": {
+    "title": "작성 & 서명",
+    "description": "양식 필드를 작성하고 PDF에 서명",
+    "usertext": "PDF 파일을 선택하고 입력할 정보를 제공하세요"
+  },
+  "lo": {
+    "title": "ຕື່ມ & ເຊັນ",
+    "description": "ຕື່ມຊ່ອງຂໍ້ມູນແລະເຊັນ PDF",
+    "usertext": "ເລືອກໄຟລ໌ PDF ແລະໃຫ້ຂໍ້ມູນທີ່ຕ້ອງຕື່ມ"
+  },
+  "lt": {
+    "title": "Pildyti & Pasirašyti",
+    "description": "Pildyti formos laukus ir pasirašyti PDF",
+    "usertext": "Pasirinkite PDF failą ir pateikite informaciją pildymui"
+  },
+  "lv": {
+    "title": "Aizpildīt & Parakstīt",
+    "description": "Aizpildīt veidlapas laukus un parakstīt PDF",
+    "usertext": "Atlasiet PDF failu un norādiet aizpildāmo informāciju"
+  },
+  "nl": {
+    "title": "Invullen & Ondertekenen",
+    "description": "Formuliervelden invullen en een PDF ondertekenen",
+    "usertext": "Selecteer een PDF-bestand en geef de in te vullen informatie op"
+  },
+  "no": {
+    "title": "Fyll ut & Signer",
+    "description": "Fyll ut skjemafelt og signer en PDF",
+    "usertext": "Velg en PDF-fil og oppgi informasjonen som skal fylles inn"
+  },
+  "pl": {
+    "title": "Wypełnij & Podpisz",
+    "description": "Wypełnij pola formularza i podpisz PDF",
+    "usertext": "Wybierz plik PDF i podaj informacje do wypełnienia"
+  },
+  "pt-BR": {
+    "title": "Preencher & Assinar",
+    "description": "Preencher campos do formulário e assinar um PDF",
+    "usertext": "Selecione um arquivo PDF e forneça as informações a serem preenchidas"
+  },
+  "pt-PT": {
+    "title": "Preencher & Assinar",
+    "description": "Preencher campos do formulário e assinar um PDF",
+    "usertext": "Selecione um ficheiro PDF e forneça as informações a preencher"
+  },
+  "ro": {
+    "title": "Completare & Semnare",
+    "description": "Completați câmpurile formularului și semnați un PDF",
+    "usertext": "Selectați un fișier PDF și furnizați informațiile de completat"
+  },
+  "ru": {
+    "title": "Заполнить & Подписать",
+    "description": "Заполнить поля формы и подписать PDF",
+    "usertext": "Выберите PDF-файл и укажите данные для заполнения"
+  },
+  "si": {
+    "title": "පිරවීම & අත්සනිලීම",
+    "description": "පෝරම ක්ෂේත්‍ර පිරවීම සහ PDF අත්සන් කරන්න",
+    "usertext": "PDF ගොනුවක් තෝරන්න සහ පිරවීමට තොරතුරු ලබා දෙන්න"
+  },
+  "sk": {
+    "title": "Vyplniť & Podpísať",
+    "description": "Vyplniť polia formulára a podpísať PDF",
+    "usertext": "Vyberte súbor PDF a zadajte informácie na vyplnenie"
+  },
+  "sl": {
+    "title": "Izpolni & Podpiši",
+    "description": "Izpolni polja obrazca in podpiši PDF",
+    "usertext": "Izberite datoteko PDF in navedite informacije za izpolnjevanje"
+  },
+  "sq": {
+    "title": "Plotëso & Nënshkruaj",
+    "description": "Plotëso fushat e formularit dhe nënshkruaj PDF",
+    "usertext": "Zgjidhni një skedar PDF dhe jepni informacionin për plotësim"
+  },
+  "sr-Cyrl-RS": {
+    "title": "Попуни & Потпиши",
+    "description": "Попуни поља обрасца и потпиши PDF",
+    "usertext": "Изаберите PDF датотеку и наведите информације за попуњавање"
+  },
+  "sr-Latn-RS": {
+    "title": "Popuni & Potpiši",
+    "description": "Popuni polja obrasca i potpiši PDF",
+    "usertext": "Izaberite PDF datoteku i navedite informacije za popunjavanje"
+  },
+  "sv": {
+    "title": "Fyll i & Signera",
+    "description": "Fyll i formulärfält och signera en PDF",
+    "usertext": "Välj en PDF-fil och ange informationen som ska fyllas i"
+  },
+  "tr": {
+    "title": "Doldur & İmzala",
+    "description": "Form alanlarını doldurun ve PDF'i imzalayın",
+    "usertext": "Bir PDF dosyası seçin ve doldurulacak bilgileri sağlayın"
+  },
+  "uk": {
+    "title": "Заповнити & Підписати",
+    "description": "Заповнити поля форми і підписати PDF",
+    "usertext": "Виберіть PDF-файл і вкажіть дані для заповнення"
+  },
+  "ur": {
+    "title": "پُر کریں & دستخط کریں",
+    "description": "فارم خانے پُر کریں اور PDF پر دستخط کریں",
+    "usertext": "PDF فائل منتخب کریں اور پُر کرنے کی معلومات فراہم کریں"
+  },
+  "vi": {
+    "title": "Điền & Ký",
+    "description": "Điền vào các trường biểu mẫu và ký PDF",
+    "usertext": "Chọn tệp PDF và cung cấp thông tin cần điền"
+  },
+  "zh-CN": {
+    "title": "填写 & 签名",
+    "description": "填写表单字段并在 PDF 上签名",
+    "usertext": "选择 PDF 文件并提供填写信息"
+  },
+  "zh-TW": {
+    "title": "填寫 & 簽名",
+    "description": "填寫表單欄位並在 PDF 上簽名",
+    "usertext": "選擇 PDF 檔案並提供填寫資訊"
   }
 }

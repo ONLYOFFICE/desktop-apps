@@ -1,9 +1,244 @@
 {
-  "id": "add-comments",
+  "id": {
+    "title": "Tambah Komentar",
+    "description": "Tambahkan catatan, sorotan, dan anotasi ke PDF",
+    "usertext": "Pilih file PDF dan jelaskan apa yang ingin dianotasi"
+  },
   "group": "pdf",
   "prompt": "Please add annotations, highlights, and notes to the attached PDF. Describe what you would like to annotate and where.",
   "en": {
     "title": "Add Comments",
-    "description": "Add notes, highlights, and annotations to a PDF"
+    "description": "Add notes, highlights, and annotations to a PDF",
+    "usertext": "Select a PDF file and describe what to annotate"
+  },
+  "ar-SA": {
+    "title": "إضافة تعليقات",
+    "description": "إضافة ملاحظات وتمييزات وتعليقات توضيحية إلى PDF",
+    "usertext": "حدد ملف PDF وصف ما تريد التعليق عليه"
+  },
+  "be": {
+    "title": "Дадаць каментарыі",
+    "description": "Дадаць нататкі, вылучэнні і анатацыі да PDF",
+    "usertext": "Выберыце файл PDF і апішыце, што анатаваць"
+  },
+  "bg": {
+    "title": "Добавяне на коментари",
+    "description": "Добавяне на бележки, маркировки и анотации към PDF",
+    "usertext": "Изберете PDF файл и опишете какво да бъде анотирано"
+  },
+  "ca": {
+    "title": "Afegir comentaris",
+    "description": "Afegir notes, ressaltats i anotacions a un PDF",
+    "usertext": "Seleccioneu un fitxer PDF i descriviu què anotar"
+  },
+  "cs": {
+    "title": "Přidat komentáře",
+    "description": "Přidat poznámky, zvýraznění a anotace do PDF",
+    "usertext": "Vyberte soubor PDF a popište, co chcete okomentovat"
+  },
+  "da": {
+    "title": "Tilføj kommentarer",
+    "description": "Tilføj noter, fremhævninger og annoteringer til en PDF",
+    "usertext": "Vælg en PDF-fil og beskriv, hvad der skal annoteres"
+  },
+  "de": {
+    "title": "Kommentare hinzufügen",
+    "description": "Notizen, Markierungen und Anmerkungen zu einer PDF hinzufügen",
+    "usertext": "Wählen Sie eine PDF-Datei und beschreiben Sie, was kommentiert werden soll"
+  },
+  "el": {
+    "title": "Προσθήκη σχολίων",
+    "description": "Προσθήκη σημειώσεων, επισημάνσεων και σχολιασμών σε PDF",
+    "usertext": "Επιλέξτε αρχείο PDF και περιγράψτε τι να σχολιαστεί"
+  },
+  "en-GB": {
+    "title": "Add Comments",
+    "description": "Add notes, highlights, and annotations to a PDF",
+    "usertext": "Select a PDF file and describe what to annotate"
+  },
+  "es": {
+    "title": "Agregar comentarios",
+    "description": "Añadir notas, resaltados y anotaciones a un PDF",
+    "usertext": "Seleccione un archivo PDF y describa qué anotar"
+  },
+  "et": {
+    "title": "Lisa kommentaarid",
+    "description": "Lisa märkmed, esiletõstmised ja annotatsioonid PDF-ile",
+    "usertext": "Valige PDF-fail ja kirjeldage, mida kommenteerida"
+  },
+  "fi": {
+    "title": "Lisää kommentteja",
+    "description": "Lisää muistiinpanoja, korostuksia ja merkintöjä PDF-tiedostoon",
+    "usertext": "Valitse PDF-tiedosto ja kuvaile, mitä kommentoidaan"
+  },
+  "fr": {
+    "title": "Ajouter des commentaires",
+    "description": "Ajouter des notes, des surlignages et des annotations à un PDF",
+    "usertext": "Sélectionnez un fichier PDF et décrivez ce qui doit être annoté"
+  },
+  "ga": {
+    "title": "Cuir Tráchtanna leis",
+    "description": "Cuir nótaí, aibhsithe agus anótálacha le PDF",
+    "usertext": "Roghnaigh comhad PDF agus déan cur síos ar cad atá le hanótáil"
+  },
+  "gl": {
+    "title": "Engadir comentarios",
+    "description": "Engadir notas, resaltados e anotacións a un PDF",
+    "usertext": "Seleccione un ficheiro PDF e describa que anotar"
+  },
+  "he": {
+    "title": "הוספת הערות",
+    "description": "הוספת הערות, הדגשות ואנוטציות ל-PDF",
+    "usertext": "בחר קובץ PDF ותאר מה לתייג"
+  },
+  "hi": {
+    "title": "टिप्पणियाँ जोड़ें",
+    "description": "PDF में नोट्स, हाइलाइट्स और एनोटेशन जोड़ें",
+    "usertext": "एक PDF फ़ाइल चुनें और बताएं क्या एनोटेट करना है"
+  },
+  "hr": {
+    "title": "Dodaj komentare",
+    "description": "Dodajte bilješke, istaknuća i napomene u PDF",
+    "usertext": "Odaberite PDF datoteku i opišite što označiti"
+  },
+  "hu": {
+    "title": "Megjegyzések hozzáadása",
+    "description": "Megjegyzések, kiemelések és jegyzetek hozzáadása PDF-hez",
+    "usertext": "Válasszon egy PDF-fájlt, és írja le, mit kell megjegyzetelni"
+  },
+  "hy": {
+    "title": "Ավելացնել մեկնաբանություններ",
+    "description": "PDF-ին ծանոթագրություններ, ընդգծումներ և անոտացիաներ ավելացնել",
+    "usertext": "Ընտրեք PDF ֆայլ և նկարագրեք ինչ անոտացնել"
+  },
+  "it": {
+    "title": "Aggiungi commenti",
+    "description": "Aggiungi note, evidenziazioni e annotazioni a un PDF",
+    "usertext": "Seleziona un file PDF e descrivi cosa annotare"
+  },
+  "ja": {
+    "title": "コメント追加",
+    "description": "PDFにメモ、ハイライト、注釈を追加",
+    "usertext": "PDFファイルを選択して注釈を付ける箇所を説明してください"
+  },
+  "ko": {
+    "title": "댓글 추가",
+    "description": "PDF에 메모, 하이라이트, 주석 추가",
+    "usertext": "PDF 파일을 선택하고 주석을 달 내용을 설명하세요"
+  },
+  "lo": {
+    "title": "ເພີ່ມຄໍາເຫັນ",
+    "description": "ເພີ່ມໝາຍເຫດ, ການໄຮໄລ, ແລະຄໍາອະທິບາຍໃຫ້ PDF",
+    "usertext": "ເລືອກໄຟລ໌ PDF ແລະອະທິບາຍສິ່ງທີ່ຕ້ອງການຄໍາອະທິບາຍ"
+  },
+  "lt": {
+    "title": "Pridėti komentarus",
+    "description": "Pridėkite pastabas, paryškinimus ir anotacijas prie PDF",
+    "usertext": "Pasirinkite PDF failą ir aprašykite, ką anotuoti"
+  },
+  "lv": {
+    "title": "Pievienot komentārus",
+    "description": "Pievienot piezīmes, izcēlumus un anotācijas PDF failam",
+    "usertext": "Atlasiet PDF failu un aprakstiet, ko anotēt"
+  },
+  "nl": {
+    "title": "Opmerkingen toevoegen",
+    "description": "Notities, markeringen en annotaties toevoegen aan een PDF",
+    "usertext": "Selecteer een PDF-bestand en beschrijf wat geannoteerd moet worden"
+  },
+  "no": {
+    "title": "Legg til kommentarer",
+    "description": "Legg til notater, markeringer og merknader i en PDF",
+    "usertext": "Velg en PDF-fil og beskriv hva som skal merkes"
+  },
+  "pl": {
+    "title": "Dodaj komentarze",
+    "description": "Dodaj notatki, wyróżnienia i adnotacje do PDF",
+    "usertext": "Wybierz plik PDF i opisz, co ma być opatrzone adnotacjami"
+  },
+  "pt-BR": {
+    "title": "Adicionar comentários",
+    "description": "Adicionar notas, destaques e anotações a um PDF",
+    "usertext": "Selecione um arquivo PDF e descreva o que anotar"
+  },
+  "pt-PT": {
+    "title": "Adicionar comentários",
+    "description": "Adicionar notas, destaques e anotações a um PDF",
+    "usertext": "Selecione um ficheiro PDF e descreva o que anotar"
+  },
+  "ro": {
+    "title": "Adăugare comentarii",
+    "description": "Adăugați note, evidențieri și adnotări la un PDF",
+    "usertext": "Selectați un fișier PDF și descrieți ce să adnotați"
+  },
+  "ru": {
+    "title": "Добавить комментарии",
+    "description": "Добавить заметки, выделения и аннотации к PDF",
+    "usertext": "Выберите файл PDF и опишите, что нужно аннотировать"
+  },
+  "si": {
+    "title": "අදහස් එක් කරන්න",
+    "description": "PDF ඒ සඳහා සටහන්, ඉස්මතු කිරීම් සහ සටහන් එක් කරන්න",
+    "usertext": "PDF ගොනුවක් තෝරා සටහන් කළ යුත්තේ කුමක්දැයි විස්තර කරන්න"
+  },
+  "sk": {
+    "title": "Pridať komentáre",
+    "description": "Pridajte poznámky, zvýraznenia a anotácie do PDF",
+    "usertext": "Vyberte súbor PDF a opíšte, čo chcete okomentovať"
+  },
+  "sl": {
+    "title": "Dodaj komentarje",
+    "description": "Dodajte opombe, poudarke in opise v PDF",
+    "usertext": "Izberite datoteko PDF in opišite, kaj označiti"
+  },
+  "sq": {
+    "title": "Shto komente",
+    "description": "Shtoni shënime, theksime dhe shënime në PDF",
+    "usertext": "Zgjidhni një skedar PDF dhe përshkruani çfarë të shënoni"
+  },
+  "sr-Cyrl-RS": {
+    "title": "Додавање коментара",
+    "description": "Додајте белешке, истицања и напомене у PDF",
+    "usertext": "Изаберите PDF датотеку и опишите шта треба означити"
+  },
+  "sr-Latn-RS": {
+    "title": "Dodavanje komentara",
+    "description": "Dodajte beleške, isticanja i napomene u PDF",
+    "usertext": "Izaberite PDF datoteku i opišite šta treba označiti"
+  },
+  "sv": {
+    "title": "Lägg till kommentarer",
+    "description": "Lägg till anteckningar, markeringar och kommentarer i en PDF",
+    "usertext": "Välj en PDF-fil och beskriv vad som ska kommenteras"
+  },
+  "tr": {
+    "title": "Yorum Ekle",
+    "description": "Bir PDF'ye notlar, vurgular ve açıklamalar ekleyin",
+    "usertext": "Bir PDF dosyası seçin ve ne açıklanacağını belirtin"
+  },
+  "uk": {
+    "title": "Додати коментарі",
+    "description": "Додати нотатки, виділення та анотації до PDF",
+    "usertext": "Виберіть файл PDF і опишіть, що потрібно анотувати"
+  },
+  "ur": {
+    "title": "تبصرے شامل کریں",
+    "description": "PDF میں نوٹس، ہائی لائٹس اور تشریحات شامل کریں",
+    "usertext": "PDF فائل منتخب کریں اور بتائیں کہ کیا تشریح کرنی ہے"
+  },
+  "vi": {
+    "title": "Thêm nhận xét",
+    "description": "Thêm ghi chú, đánh dấu và chú thích vào PDF",
+    "usertext": "Chọn tệp PDF và mô tả nội dung cần chú thích"
+  },
+  "zh-CN": {
+    "title": "添加注释",
+    "description": "在 PDF 中添加备注、高亮和注释",
+    "usertext": "选择 PDF 文件并描述需要注释的内容"
+  },
+  "zh-TW": {
+    "title": "新增注釋",
+    "description": "在 PDF 中新增備註、醒目標示和注釋",
+    "usertext": "選擇 PDF 檔案並描述需要注釋的內容"
   }
 }
