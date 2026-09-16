@@ -6,7 +6,8 @@
     [string]$ProductName = "DesktopEditors",
     [string]$SourceDir,
     [string]$BuildDir,
-    [switch]$Sign
+    [switch]$Sign,
+    [int]$SignThreads = 4
 )
 
 $ErrorActionPreference = "Stop"
@@ -85,10 +86,10 @@ if ($Sign) {
     Set-Location "$BuildDir\desktop"
 
     # Sign
-    Get-ChildItem *.exe, *.dll -Recurse | ForEach-Object {
-        & "$env:WORKSPACE\documents-pipeline\scripts\Sign.ps1" -File $_
-        if ($LastExitCode -ne 0) { throw }
-    }
+    $SignFiles = @(Get-ChildItem *.exe, *.dll -File -Recurse |
+        Select-Object -ExpandProperty FullName)
+    & "$env:WORKSPACE\documents-pipeline\scripts\SignFiles.ps1" `
+        -Files $SignFiles -ThrottleLimit $SignThreads
 
     # Verify
     Get-ChildItem *.exe, *.dll -Recurse | % { Get-AuthenticodeSignature $_ }
