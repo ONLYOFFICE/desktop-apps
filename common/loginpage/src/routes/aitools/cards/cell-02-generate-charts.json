@@ -6,242 +6,242 @@
     "id": {
       "title": "Buat Grafik",
       "description": "Buat grafik dari data spreadsheet",
-      "usertext": "Pilih spreadsheet atau jelaskan di mana menemukannya"
+      "usertext": "Pilih spreadsheet untuk membuat grafik dan visualisasi"
     },
     "en": {
       "title": "Generate Charts",
       "description": "Generate charts from spreadsheet data",
-      "usertext": "Select a spreadsheet or describe where to find it"
+      "usertext": "Select a spreadsheet to generate charts and visualizations"
     },
     "ar-SA": {
       "title": "إنشاء مخططات",
       "description": "إنشاء مخططات من بيانات جدول البيانات",
-      "usertext": "حدد جدول بيانات أو صف مكانه"
+      "usertext": "حدد جدول بيانات لإنشاء مخططات وتصورات"
     },
     "be": {
       "title": "Стварыць дыяграмы",
       "description": "Стварыць дыяграмы з даных табліцы",
-      "usertext": "Выберыце табліцу або апішыце, дзе яна знаходзіцца"
+      "usertext": "Выберыце табліцу для стварэння дыяграм і візуалізацый"
     },
     "bg": {
       "title": "Генериране на графики",
       "description": "Генериране на графики от данните в таблицата",
-      "usertext": "Изберете таблица или опишете къде да я намерите"
+      "usertext": "Изберете таблица за генериране на графики и визуализации"
     },
     "ca": {
       "title": "Generar gràfics",
       "description": "Generar gràfics a partir de les dades del full de càlcul",
-      "usertext": "Seleccioneu un full de càlcul o descriviu on trobar-lo"
+      "usertext": "Seleccioneu un full de càlcul per generar gràfics i visualitzacions"
     },
     "cs": {
       "title": "Generovat grafy",
       "description": "Generovat grafy z dat tabulky",
-      "usertext": "Vyberte tabulku nebo popište, kde ji najít"
+      "usertext": "Vyberte tabulku pro generování grafů a vizualizací"
     },
     "da": {
       "title": "Generer diagrammer",
       "description": "Generer diagrammer fra regnearksdata",
-      "usertext": "Vælg et regneark eller beskriv, hvor du finder det"
+      "usertext": "Vælg et regneark for at generere diagrammer og visualiseringer"
     },
     "de": {
       "title": "Diagramme erstellen",
       "description": "Diagramme aus Tabellendaten erstellen",
-      "usertext": "Tabelle auswählen oder beschreiben, wo sie zu finden ist"
+      "usertext": "Tabelle auswählen, um Diagramme und Visualisierungen zu erstellen"
     },
     "el": {
       "title": "Δημιουργία γραφημάτων",
       "description": "Δημιουργία γραφημάτων από δεδομένα υπολογιστικού φύλλου",
-      "usertext": "Επιλέξτε υπολογιστικό φύλλο ή περιγράψτε πού να το βρείτε"
+      "usertext": "Επιλέξτε υπολογιστικό φύλλο για δημιουργία γραφημάτων και οπτικοποιήσεων"
     },
     "en-GB": {
       "title": "Generate Charts",
       "description": "Generate charts from spreadsheet data",
-      "usertext": "Select a spreadsheet or describe where to find it"
+      "usertext": "Select a spreadsheet to generate charts and visualizations"
     },
     "es": {
       "title": "Generar gráficos",
       "description": "Generar gráficos a partir de datos de la hoja de cálculo",
-      "usertext": "Selecciona una hoja de cálculo o describe dónde encontrarla"
+      "usertext": "Selecciona una hoja de cálculo para generar gráficos y visualizaciones"
     },
     "et": {
       "title": "Loo diagrammid",
       "description": "Loo diagrammid arvutustabeli andmetest",
-      "usertext": "Vali arvutustabel või kirjelda, kust see leida"
+      "usertext": "Vali arvutustabel diagrammide ja visualiseeringute loomiseks"
     },
     "fi": {
       "title": "Luo kaaviot",
       "description": "Luo kaaviot laskentataulukon tiedoista",
-      "usertext": "Valitse laskentataulukko tai kuvaile, mistä se löytyy"
+      "usertext": "Valitse laskentataulukko kaavioiden ja visualisointien luomiseksi"
     },
     "fr": {
       "title": "Générer des graphiques",
       "description": "Générer des graphiques à partir des données de la feuille de calcul",
-      "usertext": "Sélectionnez une feuille de calcul ou décrivez où la trouver"
+      "usertext": "Sélectionnez une feuille de calcul pour générer des graphiques et des visualisations"
     },
     "ga": {
       "title": "Gin Cairteacha",
       "description": "Gin cairteacha ó shonraí scarbhileoige",
-      "usertext": "Roghnaigh scarbhileog nó cuir síos ar cá bhfuil sí"
+      "usertext": "Roghnaigh scarbhileog chun cairteacha agus amharcléirithe a ghiniúint"
     },
     "gl": {
       "title": "Xerar gráficos",
       "description": "Xerar gráficos a partir dos datos da folla de cálculo",
-      "usertext": "Selecciona unha folla de cálculo ou describe onde atopala"
+      "usertext": "Selecciona unha folla de cálculo para xerar gráficos e visualizacións"
     },
     "he": {
       "title": "יצירת תרשימים",
       "description": "יצירת תרשימים מנתוני הגיליון האלקטרוני",
-      "usertext": "בחר גיליון אלקטרוני או תאר היכן למצוא אותו"
+      "usertext": "בחר גיליון אלקטרוני ליצירת תרשימים והמחשות"
     },
     "hi": {
       "title": "चार्ट बनाएं",
       "description": "स्प्रेडशीट डेटा से चार्ट बनाएं",
-      "usertext": "स्प्रेडशीट चुनें या बताएं कि इसे कहां खोजें"
+      "usertext": "चार्ट और विज़ुअलाइज़ेशन बनाने के लिए स्प्रेडशीट चुनें"
     },
     "hr": {
       "title": "Generiraj grafikone",
       "description": "Generiraj grafikone iz podataka proračunske tablice",
-      "usertext": "Odaberite proračunsku tablicu ili opišite gdje je pronaći"
+      "usertext": "Odaberite proračunsku tablicu za generiranje grafikona i vizualizacija"
     },
     "hu": {
       "title": "Diagramok létrehozása",
       "description": "Diagramok generálása táblázat adatokból",
-      "usertext": "Válasszon táblázatot, vagy írja le, hol találja"
+      "usertext": "Válasszon táblázatot diagramok és vizualizációk létrehozásához"
     },
     "hy": {
       "title": "Ստեղծել գծապատկերներ",
       "description": "Ստեղծել գծապատկերներ աղյուսակի տվյալներից",
-      "usertext": "Ընտրեք աղյուսակ կամ նկարագրեք, թե որտեղ գտնել"
+      "usertext": "Ընտրեք աղյուսակ՝ գծապատկերներ և տեսողական ներկայացումներ ստեղծելու համար"
     },
     "it": {
       "title": "Genera grafici",
       "description": "Genera grafici dai dati del foglio di calcolo",
-      "usertext": "Seleziona un foglio di calcolo o descrivi dove trovarlo"
+      "usertext": "Seleziona un foglio di calcolo per generare grafici e visualizzazioni"
     },
     "ja": {
       "title": "グラフを生成",
       "description": "スプレッドシートのデータからグラフを生成",
-      "usertext": "スプレッドシートを選択するか、場所を説明してください"
+      "usertext": "グラフや視覚化を生成するスプレッドシートを選択してください"
     },
     "ko": {
       "title": "차트 생성",
       "description": "스프레드시트 데이터로 차트 생성",
-      "usertext": "스프레드시트를 선택하거나 위치를 설명하세요"
+      "usertext": "차트와 시각화를 생성할 스프레드시트를 선택하세요"
     },
     "lo": {
       "title": "ສ້າງຕາຕະລາງ",
       "description": "ສ້າງຕາຕະລາງຈາກຂໍ້ມູນ spreadsheet",
-      "usertext": "ເລືອກຕາຕະລາງ ຫຼື ອະທິບາຍວ່າຈະຊອກຫາມັນຢູ່ໃສ"
+      "usertext": "ເລືອກຕາຕະລາງເພື່ອສ້າງຕາຕະລາງ ແລະ ການສະແດງຂໍ້ມູນ"
     },
     "lt": {
       "title": "Generuoti diagramas",
       "description": "Generuoti diagramas iš skaičiuoklės duomenų",
-      "usertext": "Pasirinkite skaičiuoklę arba aprašykite, kur ją rasti"
+      "usertext": "Pasirinkite skaičiuoklę diagramoms ir vizualizacijoms generuoti"
     },
     "lv": {
       "title": "Ģenerēt diagrammas",
       "description": "Ģenerēt diagrammas no izklājlapas datiem",
-      "usertext": "Atlasiet izklājlapu vai aprakstiet, kur to atrast"
+      "usertext": "Atlasiet izklājlapu, lai ģenerētu diagrammas un vizualizācijas"
     },
     "nl": {
       "title": "Grafieken genereren",
       "description": "Grafieken genereren uit spreadsheetgegevens",
-      "usertext": "Selecteer een spreadsheet of beschrijf waar u het kunt vinden"
+      "usertext": "Selecteer een spreadsheet om grafieken en visualisaties te genereren"
     },
     "no": {
       "title": "Generer diagrammer",
       "description": "Generer diagrammer fra regnearksdata",
-      "usertext": "Velg et regneark eller beskriv hvor du finner det"
+      "usertext": "Velg et regneark for å generere diagrammer og visualiseringer"
     },
     "pl": {
       "title": "Generuj wykresy",
       "description": "Generuj wykresy z danych arkusza kalkulacyjnego",
-      "usertext": "Wybierz arkusz kalkulacyjny lub opisz, gdzie go znaleźć"
+      "usertext": "Wybierz arkusz kalkulacyjny, aby wygenerować wykresy i wizualizacje"
     },
     "pt-BR": {
       "title": "Gerar Gráficos",
       "description": "Gerar gráficos a partir de dados da planilha",
-      "usertext": "Selecione uma planilha ou descreva onde encontrá-la"
+      "usertext": "Selecione uma planilha para gerar gráficos e visualizações"
     },
     "pt-PT": {
       "title": "Gerar Gráficos",
       "description": "Gerar gráficos a partir de dados da folha de cálculo",
-      "usertext": "Selecione uma folha de cálculo ou descreva onde encontrá-la"
+      "usertext": "Selecione uma folha de cálculo para gerar gráficos e visualizações"
     },
     "ro": {
       "title": "Generare diagrame",
       "description": "Generați diagrame din datele tabelului",
-      "usertext": "Selectați un tabel sau descrieți unde să îl găsiți"
+      "usertext": "Selectați un tabel pentru a genera diagrame și vizualizări"
     },
     "ru": {
       "title": "Создать диаграммы",
       "description": "Создать диаграммы из данных таблицы",
-      "usertext": "Выберите таблицу или опишите, где её найти"
+      "usertext": "Выберите таблицу для создания диаграмм и визуализаций"
     },
     "si": {
       "title": "ප්‍රස්ථාර සාදන්න",
       "description": "ස්ප්‍රෙඩ්ෂීට් දත්ත වලින් ප්‍රස්ථාර සාදන්න",
-      "usertext": "ස්ප්‍රෙඩ්ෂීට් එකක් තෝරන්න හෝ එය කොතැනද යන්න විස්තර කරන්න"
+      "usertext": "ප්‍රස්ථාර සහ දෘශ්‍යකරණ සෑදීමට ස්ප්‍රෙඩ්ෂීට් එකක් තෝරන්න"
     },
     "sk": {
       "title": "Generovať grafy",
       "description": "Generovať grafy z dát tabuľky",
-      "usertext": "Vyberte tabuľku alebo popíšte, kde ju nájsť"
+      "usertext": "Vyberte tabuľku na generovanie grafov a vizualizácií"
     },
     "sl": {
       "title": "Ustvari grafikone",
       "description": "Ustvari grafikone iz podatkov preglednice",
-      "usertext": "Izberite preglednico ali opišite, kje jo najti"
+      "usertext": "Izberite preglednico za ustvarjanje grafikonov in vizualizacij"
     },
     "sq": {
       "title": "Gjenero grafika",
       "description": "Gjenero grafika nga të dhënat e fletëllogaritëses",
-      "usertext": "Zgjidhni një fletëllogaritëse ose përshkruani ku ta gjeni"
+      "usertext": "Zgjidhni një fletëllogaritëse për të gjeneruar grafika dhe vizualizime"
     },
     "sr-Cyrl-RS": {
       "title": "Генериши графиконе",
       "description": "Генериши графиконе из података табеле",
-      "usertext": "Изаберите табелу или опишите где да је пронађете"
+      "usertext": "Изаберите табелу за генерисање графикона и визуализација"
     },
     "sr-Latn-RS": {
       "title": "Generišite grafikone",
       "description": "Generišite grafikone iz podataka tabele",
-      "usertext": "Izaberite tabelu ili opišite gde da je pronađete"
+      "usertext": "Izaberite tabelu za generisanje grafikona i vizualizacija"
     },
     "sv": {
       "title": "Generera diagram",
       "description": "Generera diagram från kalkylbladsdata",
-      "usertext": "Välj ett kalkylblad eller beskriv var det finns"
+      "usertext": "Välj ett kalkylblad för att generera diagram och visualiseringar"
     },
     "tr": {
       "title": "Grafik Oluştur",
       "description": "Elektronik tablo verilerinden grafik oluştur",
-      "usertext": "Bir elektronik tablo seçin veya nerede bulunduğunu açıklayın"
+      "usertext": "Grafikler ve görselleştirmeler oluşturmak için bir elektronik tablo seçin"
     },
     "uk": {
       "title": "Створити діаграми",
       "description": "Створити діаграми з даних таблиці",
-      "usertext": "Виберіть таблицю або опишіть, де її знайти"
+      "usertext": "Виберіть таблицю для створення діаграм і візуалізацій"
     },
     "ur": {
       "title": "چارٹ بنائیں",
       "description": "اسپریڈشیٹ ڈیٹا سے چارٹ بنائیں",
-      "usertext": "اسپریڈشیٹ منتخب کریں یا بتائیں کہ کہاں ملے گی"
+      "usertext": "چارٹ اور ویژوالائزیشن بنانے کے لیے اسپریڈشیٹ منتخب کریں"
     },
     "vi": {
       "title": "Tạo biểu đồ",
       "description": "Tạo biểu đồ từ dữ liệu bảng tính",
-      "usertext": "Chọn bảng tính hoặc mô tả nơi tìm thấy nó"
+      "usertext": "Chọn bảng tính để tạo biểu đồ và hình ảnh trực quan"
     },
     "zh-CN": {
       "title": "生成图表",
       "description": "从电子表格数据生成图表",
-      "usertext": "选择电子表格或说明在哪里找到它"
+      "usertext": "选择电子表格以生成图表和可视化"
     },
     "zh-TW": {
       "title": "產生圖表",
       "description": "從試算表資料產生圖表",
-      "usertext": "選取試算表或說明在哪裡找到它"
+      "usertext": "選取試算表以產生圖表和視覺化"
     }
   }
 }

@@ -6,237 +6,242 @@
     "en": {
       "title": "Protect PDF",
       "description": "Add password protection to a PDF file",
-      "usertext": "Select a PDF file and specify a password, or ask me to generate one"
+      "usertext": "Select a PDF file and add password protection (specify or generate password)"
     },
     "ar-SA": {
       "title": "حماية PDF",
       "description": "إضافة حماية بكلمة مرور لملف PDF",
-      "usertext": "حدد ملف PDF وحدد كلمة مرور، أو اطلب مني إنشاء واحدة"
+      "usertext": "حدد ملف PDF وأضف حماية بكلمة مرور (حدد أو أنشئ كلمة المرور)"
     },
     "be": {
       "title": "Абараніць PDF",
       "description": "Дадаць абарону паролем да файла PDF",
-      "usertext": "Выберыце файл PDF і ўкажыце пароль або папрасіце мяне яго стварыць"
+      "usertext": "Выберыце файл PDF і дадайце абарону паролем (укажыце або стварыце пароль)"
     },
     "bg": {
       "title": "Защита на PDF",
       "description": "Добавяне на защита с парола към PDF файл",
-      "usertext": "Изберете PDF файл и задайте парола или поискайте да генерирам такава"
+      "usertext": "Изберете PDF файл и добавете защита с парола (задайте или генерирайте парола)"
     },
     "ca": {
       "title": "Protegir PDF",
       "description": "Afegir protecció per contrasenya a un fitxer PDF",
-      "usertext": "Seleccioneu un fitxer PDF i especifiqueu una contrasenya, o demaneu-me'n una"
+      "usertext": "Seleccioneu un fitxer PDF i afegiu protecció amb contrasenya (especifiqueu o genereu la contrasenya)"
     },
     "cs": {
       "title": "Chránit PDF",
       "description": "Přidat ochranu heslem k souboru PDF",
-      "usertext": "Vyberte soubor PDF a zadejte heslo nebo požádejte o jeho vygenerování"
+      "usertext": "Vyberte soubor PDF a přidejte ochranu heslem (zadejte nebo vygenerujte heslo)"
     },
     "da": {
       "title": "Beskyt PDF",
       "description": "Tilføj adgangskodebeskyttelse til en PDF-fil",
-      "usertext": "Vælg en PDF-fil og angiv en adgangskode, eller bed mig om at generere en"
+      "usertext": "Vælg en PDF-fil og tilføj adgangskodebeskyttelse (angiv eller generer adgangskode)"
     },
     "de": {
       "title": "PDF schützen",
       "description": "Passwortschutz zu einer PDF-Datei hinzufügen",
-      "usertext": "Wählen Sie eine PDF-Datei und geben Sie ein Passwort an oder bitten Sie mich, eines zu generieren"
+      "usertext": "Wählen Sie eine PDF-Datei und fügen Sie Passwortschutz hinzu (Passwort angeben oder generieren)"
     },
     "el": {
       "title": "Προστασία PDF",
       "description": "Προσθήκη προστασίας με κωδικό πρόσβασης σε αρχείο PDF",
-      "usertext": "Επιλέξτε αρχείο PDF και καθορίστε κωδικό πρόσβασης ή ζητήστε μου να δημιουργήσω έναν"
+      "usertext": "Επιλέξτε αρχείο PDF και προσθέστε προστασία με κωδικό πρόσβασης (ορίστε ή δημιουργήστε κωδικό)"
     },
     "en-GB": {
       "title": "Protect PDF",
       "description": "Add password protection to a PDF file",
-      "usertext": "Select a PDF file and specify a password, or ask me to generate one"
+      "usertext": "Select a PDF file and add password protection (specify or generate password)"
     },
     "es": {
       "title": "Proteger PDF",
       "description": "Añadir protección con contraseña a un archivo PDF",
-      "usertext": "Seleccione un archivo PDF y especifique una contraseña, o pídame que genere una"
+      "usertext": "Seleccione un archivo PDF y añada protección con contraseña (especifique o genere la contraseña)"
     },
     "et": {
       "title": "Kaitse PDF",
       "description": "Lisa paroolikaitse PDF-failile",
-      "usertext": "Valige PDF-fail ja määrake parool või paluge mul see luua"
+      "usertext": "Valige PDF-fail ja lisage paroolikaitse (määrake või looge parool)"
     },
     "fi": {
       "title": "Suojaa PDF",
       "description": "Lisää salasanasuojaus PDF-tiedostoon",
-      "usertext": "Valitse PDF-tiedosto ja määritä salasana tai pyydä minua luomaan sellainen"
+      "usertext": "Valitse PDF-tiedosto ja lisää salasanasuojaus (määritä tai luo salasana)"
     },
     "fr": {
       "title": "Protéger le PDF",
       "description": "Ajouter une protection par mot de passe à un fichier PDF",
-      "usertext": "Sélectionnez un fichier PDF et définissez un mot de passe, ou demandez-moi d'en générer un"
+      "usertext": "Sélectionnez un fichier PDF et ajoutez une protection par mot de passe (spécifiez ou générez le mot de passe)"
     },
     "ga": {
       "title": "Cosain PDF",
       "description": "Cuir cosaint pasfhocail le comhad PDF",
-      "usertext": "Roghnaigh comhad PDF agus sonraigh pasfhocal, nó iarr orm ceann a ghiniúint"
+      "usertext": "Roghnaigh comhad PDF agus cuir cosaint pasfhocail leis (sonraigh nó gin pasfhocal)"
     },
     "gl": {
       "title": "Protexer PDF",
       "description": "Engadir protección con contrasinal a un ficheiro PDF",
-      "usertext": "Seleccione un ficheiro PDF e especifique un contrasinal, ou pídame que xere un"
+      "usertext": "Seleccione un ficheiro PDF e engada protección con contrasinal (especifique ou xere o contrasinal)"
     },
     "he": {
       "title": "הגנה על PDF",
       "description": "הוספת הגנת סיסמה לקובץ PDF",
-      "usertext": "בחר קובץ PDF וציין סיסמה, או בקש ממני ליצור אחת"
+      "usertext": "בחר קובץ PDF והוסף הגנת סיסמה (ציין או צור סיסמה)"
     },
     "hi": {
       "title": "PDF सुरक्षित करें",
       "description": "PDF फ़ाइल में पासवर्ड सुरक्षा जोड़ें",
-      "usertext": "एक PDF फ़ाइल चुनें और पासवर्ड निर्दिष्ट करें, या मुझसे एक बनाने को कहें"
+      "usertext": "एक PDF फ़ाइल चुनें और पासवर्ड सुरक्षा जोड़ें (पासवर्ड निर्दिष्ट करें या उत्पन्न करें)"
     },
     "hr": {
       "title": "Zaštiti PDF",
       "description": "Dodajte zaštitu lozinkom PDF datoteci",
-      "usertext": "Odaberite PDF datoteku i navedite lozinku ili zatražite da je generiram"
+      "usertext": "Odaberite PDF datoteku i dodajte zaštitu lozinkom (navedite ili generirajte lozinku)"
     },
     "hu": {
       "title": "PDF védelme",
       "description": "Jelszóvédelem hozzáadása egy PDF-fájlhoz",
-      "usertext": "Válasszon egy PDF-fájlt, adjon meg jelszót, vagy kérjen tőlem egyet"
+      "usertext": "Válasszon egy PDF-fájlt, és adjon hozzá jelszóvédelmet (adja meg vagy generáljon jelszót)"
     },
     "hy": {
       "title": "Պաշտպանել PDF",
       "description": "PDF ֆայլին գաղտնաբառային պաշտպանություն ավելացնել",
-      "usertext": "Ընտրեք PDF ֆայլ և նշեք գաղտնաբառ, կամ խնդրեք ինձ ստեղծել"
+      "usertext": "Ընտրեք PDF ֆայլ և ավելացրեք գաղտնաբառային պաշտպանություն (նշեք կամ ստեղծեք գաղտնաբառ)"
+    },
+    "id": {
+      "title": "Lindungi PDF",
+      "description": "Tambahkan perlindungan kata sandi ke file PDF",
+      "usertext": "Pilih file PDF dan tambahkan perlindungan kata sandi (tentukan atau buat kata sandi)"
     },
     "it": {
       "title": "Proteggi PDF",
       "description": "Aggiungi protezione con password a un file PDF",
-      "usertext": "Seleziona un file PDF e specifica una password, oppure chiedimi di generarne una"
+      "usertext": "Seleziona un file PDF e aggiungi la protezione con password (specifica o genera la password)"
     },
     "ja": {
       "title": "PDF保護",
       "description": "PDFファイルにパスワード保護を追加",
-      "usertext": "PDFファイルを選択してパスワードを指定するか、生成を依頼してください"
+      "usertext": "PDFファイルを選択してパスワード保護を追加してください（パスワードを指定または生成）"
     },
     "ko": {
       "title": "PDF 보호",
       "description": "PDF 파일에 비밀번호 보호 추가",
-      "usertext": "PDF 파일을 선택하고 비밀번호를 지정하거나 생성을 요청하세요"
+      "usertext": "PDF 파일을 선택하고 암호 보호를 추가하세요(암호 지정 또는 생성)"
     },
     "lo": {
       "title": "ປ້ອງກັນ PDF",
       "description": "ເພີ່ມການປ້ອງກັນລະຫັດຜ່ານໃຫ້ໄຟລ໌ PDF",
-      "usertext": "ເລືອກໄຟລ໌ PDF ແລະລະບຸລະຫັດຜ່ານ ຫຼືຂໍໃຫ້ຂ້ອຍສ້າງອັນໜຶ່ງ"
+      "usertext": "ເລືອກໄຟລ໌ PDF ແລະເພີ່ມການປ້ອງກັນລະຫັດຜ່ານ (ລະບຸ ຫຼືສ້າງລະຫັດຜ່ານ)"
     },
     "lt": {
       "title": "Apsaugoti PDF",
       "description": "Pridėkite slaptažodžio apsaugą prie PDF failo",
-      "usertext": "Pasirinkite PDF failą ir nurodykite slaptažodį arba paprašykite manęs jį sugeneruoti"
+      "usertext": "Pasirinkite PDF failą ir pridėkite slaptažodžio apsaugą (nurodykite arba sugeneruokite slaptažodį)"
     },
     "lv": {
       "title": "Aizsargāt PDF",
       "description": "Pievienot paroles aizsardzību PDF failam",
-      "usertext": "Atlasiet PDF failu un norādiet paroli vai lūdziet man to ģenerēt"
+      "usertext": "Atlasiet PDF failu un pievienojiet paroles aizsardzību (norādiet vai ģenerējiet paroli)"
     },
     "nl": {
       "title": "PDF beveiligen",
       "description": "Wachtwoordbeveiliging toevoegen aan een PDF-bestand",
-      "usertext": "Selecteer een PDF-bestand en geef een wachtwoord op, of vraag mij er een te genereren"
+      "usertext": "Selecteer een PDF-bestand en voeg wachtwoordbeveiliging toe (geef een wachtwoord op of genereer er een)"
     },
     "no": {
       "title": "Beskytt PDF",
       "description": "Legg til passordbeskyttelse for en PDF-fil",
-      "usertext": "Velg en PDF-fil og angi et passord, eller be meg generere ett"
+      "usertext": "Velg en PDF-fil og legg til passordbeskyttelse (angi eller generer passord)"
     },
     "pl": {
       "title": "Chroń PDF",
       "description": "Dodaj ochronę hasłem do pliku PDF",
-      "usertext": "Wybierz plik PDF i podaj hasło lub poproś mnie o wygenerowanie"
+      "usertext": "Wybierz plik PDF i dodaj ochronę hasłem (podaj lub wygeneruj hasło)"
     },
     "pt-BR": {
       "title": "Proteger PDF",
       "description": "Adicionar proteção por senha a um arquivo PDF",
-      "usertext": "Selecione um arquivo PDF e especifique uma senha ou peça para eu gerar uma"
+      "usertext": "Selecione um arquivo PDF e adicione proteção por senha (especifique ou gere a senha)"
     },
     "pt-PT": {
       "title": "Proteger PDF",
       "description": "Adicionar proteção por palavra-passe a um ficheiro PDF",
-      "usertext": "Selecione um ficheiro PDF e especifique uma palavra-passe ou peça-me para gerar uma"
+      "usertext": "Selecione um ficheiro PDF e adicione proteção por palavra-passe (especifique ou gere a palavra-passe)"
     },
     "ro": {
       "title": "Protejare PDF",
       "description": "Adăugați protecție prin parolă la un fișier PDF",
-      "usertext": "Selectați un fișier PDF și specificați o parolă sau cereți-mi să generez una"
+      "usertext": "Selectați un fișier PDF și adăugați protecție prin parolă (specificați sau generați parola)"
     },
     "ru": {
       "title": "Защитить PDF",
       "description": "Добавить защиту паролем к файлу PDF",
-      "usertext": "Выберите файл PDF и укажите пароль или попросите меня создать его"
+      "usertext": "Выберите файл PDF и добавьте защиту паролем (укажите или создайте пароль)"
     },
     "si": {
       "title": "PDF ආරක්ෂා කරන්න",
       "description": "PDF ගොනුවකට මුරපද ආරක්ෂාව එක් කරන්න",
-      "usertext": "PDF ගොනුවක් තෝරා මුරපදයක් සඳහන් කරන්න, නැතිනම් සාදා දෙන ලෙස ඉල්ලන්න"
+      "usertext": "PDF ගොනුවක් තෝරා මුරපද ආරක්ෂාව එක් කරන්න (මුරපදය සඳහන් කරන්න හෝ සාදන්න)"
     },
     "sk": {
       "title": "Chrániť PDF",
       "description": "Pridať ochranu heslom k súboru PDF",
-      "usertext": "Vyberte súbor PDF a zadajte heslo alebo požiadajte o jeho vygenerovanie"
+      "usertext": "Vyberte súbor PDF a pridajte ochranu heslom (zadajte alebo vygenerujte heslo)"
     },
     "sl": {
       "title": "Zaščiti PDF",
       "description": "Dodajte zaščito z geslom datoteki PDF",
-      "usertext": "Izberite datoteko PDF in navedite geslo ali me prosite, da ga ustvarim"
+      "usertext": "Izberite datoteko PDF in dodajte zaščito z geslom (določite ali ustvarite geslo)"
     },
     "sq": {
       "title": "Mbrojë PDF",
       "description": "Shtoni mbrojtje me fjalëkalim te një skedar PDF",
-      "usertext": "Zgjidhni një skedar PDF dhe specifikoni fjalëkalimin ose kërkoni të gjeneroj një"
+      "usertext": "Zgjidhni një skedar PDF dhe shtoni mbrojtje me fjalëkalim (specifikoni ose gjeneroni fjalëkalim)"
     },
     "sr-Cyrl-RS": {
       "title": "Заштита PDF",
       "description": "Додајте заштиту лозинком PDF датотеци",
-      "usertext": "Изаберите PDF датотеку и наведите лозинку или затражите да је генеришем"
+      "usertext": "Изаберите PDF датотеку и додајте заштиту лозинком (наведите или генеришите лозинку)"
     },
     "sr-Latn-RS": {
       "title": "Zaštita PDF",
       "description": "Dodajte zaštitu lozinkom PDF datoteci",
-      "usertext": "Izaberite PDF datoteku i navedite lozinku ili zatražite da je generišem"
+      "usertext": "Izaberite PDF datoteku i dodajte zaštitu lozinkom (navedite ili generišite lozinku)"
     },
     "sv": {
       "title": "Skydda PDF",
       "description": "Lägg till lösenordsskydd för en PDF-fil",
-      "usertext": "Välj en PDF-fil och ange ett lösenord, eller be mig generera ett"
+      "usertext": "Välj en PDF-fil och lägg till lösenordsskydd (ange eller generera lösenord)"
     },
     "tr": {
       "title": "PDF Koru",
       "description": "Bir PDF dosyasına parola koruması ekleyin",
-      "usertext": "Bir PDF dosyası seçin ve parola belirtin ya da benden oluşturmamı isteyin"
+      "usertext": "Bir PDF dosyası seçin ve parola koruması ekleyin (parola belirleyin veya oluşturun)"
     },
     "uk": {
       "title": "Захистити PDF",
       "description": "Додати захист паролем до файлу PDF",
-      "usertext": "Виберіть файл PDF і вкажіть пароль або попросіть мене створити його"
+      "usertext": "Виберіть файл PDF і додайте захист паролем (вкажіть або створіть пароль)"
     },
     "ur": {
       "title": "PDF محفوظ کریں",
       "description": "PDF فائل میں پاسورڈ حفاظت شامل کریں",
-      "usertext": "PDF فائل منتخب کریں اور پاسورڈ بتائیں یا مجھ سے بنانے کو کہیں"
+      "usertext": "PDF فائل منتخب کریں اور پاسورڈ حفاظت شامل کریں (پاسورڈ بتائیں یا بنائیں)"
     },
     "vi": {
       "title": "Bảo vệ PDF",
       "description": "Thêm bảo vệ bằng mật khẩu cho tệp PDF",
-      "usertext": "Chọn tệp PDF và chỉ định mật khẩu hoặc yêu cầu tôi tạo"
+      "usertext": "Chọn tệp PDF và thêm bảo vệ bằng mật khẩu (chỉ định hoặc tạo mật khẩu)"
     },
     "zh-CN": {
       "title": "保护 PDF",
       "description": "为 PDF 文件添加密码保护",
-      "usertext": "选择 PDF 文件并指定密码，或请我为您生成"
+      "usertext": "选择 PDF 文件并添加密码保护（指定或生成密码）"
     },
     "zh-TW": {
       "title": "保護 PDF",
       "description": "為 PDF 檔案新增密碼保護",
-      "usertext": "選擇 PDF 檔案並指定密碼，或請我為您產生"
+      "usertext": "選擇 PDF 檔案並新增密碼保護（指定或產生密碼）"
     }
   }
 }

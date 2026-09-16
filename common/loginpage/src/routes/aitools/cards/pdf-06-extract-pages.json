@@ -6,237 +6,242 @@
     "en": {
       "title": "Extract PDF Pages",
       "description": "Extract selected pages into a new PDF",
-      "usertext": "Select a PDF file and specify which pages to extract"
+      "usertext": "Select a PDF file and specify which pages or ranges to extract"
     },
     "ar-SA": {
       "title": "استخراج صفحات PDF",
       "description": "استخراج الصفحات المحددة إلى PDF جديد",
-      "usertext": "حدد ملف PDF وحدد الصفحات المراد استخراجها"
+      "usertext": "حدد ملف PDF وحدد الصفحات أو النطاقات المراد استخراجها"
     },
     "be": {
       "title": "Здабыць старонкі PDF",
       "description": "Здабыць абраныя старонкі ў новы PDF",
-      "usertext": "Выберыце файл PDF і ўкажыце, якія старонкі здабыць"
+      "usertext": "Выберыце файл PDF і ўкажыце, якія старонкі або дыяпазоны здабыць"
     },
     "bg": {
       "title": "Извличане на страници от PDF",
       "description": "Извличане на избрани страници в нов PDF",
-      "usertext": "Изберете PDF файл и посочете кои страници да бъдат извлечени"
+      "usertext": "Изберете PDF файл и посочете кои страници или диапазони да бъдат извлечени"
     },
     "ca": {
       "title": "Extreure pàgines de PDF",
       "description": "Extreure les pàgines seleccionades a un PDF nou",
-      "usertext": "Seleccioneu un fitxer PDF i especifiqueu quines pàgines extreure"
+      "usertext": "Seleccioneu un fitxer PDF i especifiqueu quines pàgines o intervals extreure"
     },
     "cs": {
       "title": "Extrahovat stránky PDF",
       "description": "Extrahovat vybrané stránky do nového PDF",
-      "usertext": "Vyberte soubor PDF a zadejte, které stránky extrahovat"
+      "usertext": "Vyberte soubor PDF a zadejte, které stránky nebo rozsahy extrahovat"
     },
     "da": {
       "title": "Udtræk PDF-sider",
       "description": "Udtræk valgte sider til en ny PDF",
-      "usertext": "Vælg en PDF-fil og angiv, hvilke sider der skal udtrækkes"
+      "usertext": "Vælg en PDF-fil og angiv, hvilke sider eller intervaller der skal udtrækkes"
     },
     "de": {
       "title": "PDF-Seiten extrahieren",
       "description": "Ausgewählte Seiten in eine neue PDF extrahieren",
-      "usertext": "Wählen Sie eine PDF-Datei und geben Sie an, welche Seiten extrahiert werden sollen"
+      "usertext": "Wählen Sie eine PDF-Datei und geben Sie an, welche Seiten oder Bereiche extrahiert werden sollen"
     },
     "el": {
       "title": "Εξαγωγή σελίδων PDF",
       "description": "Εξαγωγή επιλεγμένων σελίδων σε νέο PDF",
-      "usertext": "Επιλέξτε αρχείο PDF και καθορίστε ποιες σελίδες να εξαχθούν"
+      "usertext": "Επιλέξτε αρχείο PDF και καθορίστε ποιες σελίδες ή εύρη να εξαχθούν"
     },
     "en-GB": {
       "title": "Extract PDF Pages",
       "description": "Extract selected pages into a new PDF",
-      "usertext": "Select a PDF file and specify which pages to extract"
+      "usertext": "Select a PDF file and specify which pages or ranges to extract"
     },
     "es": {
       "title": "Extraer páginas de PDF",
       "description": "Extraer páginas seleccionadas a un nuevo PDF",
-      "usertext": "Seleccione un archivo PDF y especifique qué páginas extraer"
+      "usertext": "Seleccione un archivo PDF y especifique qué páginas o rangos extraer"
     },
     "et": {
       "title": "Eralda PDF-lehed",
       "description": "Eralda valitud lehed uude PDF-i",
-      "usertext": "Valige PDF-fail ja täpsustage, millised lehed eraldada"
+      "usertext": "Valige PDF-fail ja täpsustage, milliseid lehti või vahemikke eraldada"
     },
     "fi": {
       "title": "Pura PDF-sivut",
       "description": "Pura valitut sivut uuteen PDF-tiedostoon",
-      "usertext": "Valitse PDF-tiedosto ja määritä, mitkä sivut puretaan"
+      "usertext": "Valitse PDF-tiedosto ja määritä, mitkä sivut tai alueet puretaan"
     },
     "fr": {
       "title": "Extraire des pages PDF",
       "description": "Extraire les pages sélectionnées dans un nouveau PDF",
-      "usertext": "Sélectionnez un fichier PDF et indiquez les pages à extraire"
+      "usertext": "Sélectionnez un fichier PDF et indiquez les pages ou plages à extraire"
     },
     "ga": {
       "title": "Eastóscadh Leathanaigh PDF",
       "description": "Eastóscadh leathanaigh roghnaithe isteach i PDF nua",
-      "usertext": "Roghnaigh comhad PDF agus sonraigh cé na leathanaigh le heastóscadh"
+      "usertext": "Roghnaigh comhad PDF agus sonraigh cé na leathanaigh nó raonta le heastóscadh"
     },
     "gl": {
       "title": "Extraer páxinas de PDF",
       "description": "Extraer páxinas seleccionadas a un PDF novo",
-      "usertext": "Seleccione un ficheiro PDF e especifique que páxinas extraer"
+      "usertext": "Seleccione un ficheiro PDF e especifique que páxinas ou rangos extraer"
     },
     "he": {
       "title": "חילוץ עמודים מ-PDF",
       "description": "חילוץ עמודים נבחרים ל-PDF חדש",
-      "usertext": "בחר קובץ PDF וציין אילו עמודים לחלץ"
+      "usertext": "בחר קובץ PDF וציין אילו עמודים או טווחים לחלץ"
     },
     "hi": {
       "title": "PDF पृष्ठ निकालें",
       "description": "चयनित पृष्ठ एक नए PDF में निकालें",
-      "usertext": "एक PDF फ़ाइल चुनें और बताएं कौन से पृष्ठ निकालने हैं"
+      "usertext": "एक PDF फ़ाइल चुनें और निर्दिष्ट करें कि कौन से पृष्ठ या रेंज निकालने हैं"
     },
     "hr": {
       "title": "Izdvoji stranice PDF-a",
       "description": "Izdvoji odabrane stranice u novi PDF",
-      "usertext": "Odaberite PDF datoteku i navedite koje stranice izdvojiti"
+      "usertext": "Odaberite PDF datoteku i navedite koje stranice ili raspone izdvojiti"
     },
     "hu": {
       "title": "PDF-oldalak kinyerése",
       "description": "Kiválasztott oldalak kinyerése új PDF-be",
-      "usertext": "Válasszon egy PDF-fájlt, és adja meg, melyik oldalakat kell kinyerni"
+      "usertext": "Válasszon egy PDF-fájlt, és adja meg, melyik oldalakat vagy tartományokat kell kinyerni"
     },
     "hy": {
       "title": "Քաղել PDF էջեր",
       "description": "Ընտրված էջերի քաղումը նոր PDF-ի մեջ",
-      "usertext": "Ընտրեք PDF ֆայլ և նշեք, թե որ էջերը քաղել"
+      "usertext": "Ընտրեք PDF ֆայլ և նշեք, թե որ էջերը կամ տիրույթները քաղել"
+    },
+    "id": {
+      "title": "Ekstrak Halaman PDF",
+      "description": "Ekstrak halaman yang dipilih ke dalam PDF baru",
+      "usertext": "Pilih file PDF dan tentukan halaman atau rentang mana yang akan diekstrak"
     },
     "it": {
       "title": "Estrai pagine PDF",
       "description": "Estrai le pagine selezionate in un nuovo PDF",
-      "usertext": "Seleziona un file PDF e specifica quali pagine estrarre"
+      "usertext": "Seleziona un file PDF e specifica quali pagine o intervalli estrarre"
     },
     "ja": {
       "title": "PDFページ抽出",
       "description": "選択したページを新しいPDFに抽出",
-      "usertext": "PDFファイルを選択して抽出するページを指定してください"
+      "usertext": "PDFファイルを選択して抽出するページや範囲を指定してください"
     },
     "ko": {
       "title": "PDF 페이지 추출",
       "description": "선택한 페이지를 새 PDF로 추출",
-      "usertext": "PDF 파일을 선택하고 추출할 페이지를 지정하세요"
+      "usertext": "PDF 파일을 선택하고 추출할 페이지 또는 범위를 지정하세요"
     },
     "lo": {
       "title": "ດຶງໜ້າ PDF",
       "description": "ດຶງໜ້າທີ່ເລືອກໄວ້ໃສ່ PDF ໃໝ່",
-      "usertext": "ເລືອກໄຟລ໌ PDF ແລະລະບຸໜ້າທີ່ຕ້ອງດຶງ"
+      "usertext": "ເລືອກໄຟລ໌ PDF ແລະລະບຸໜ້າ ຫຼືຊ່ວງທີ່ຕ້ອງດຶງ"
     },
     "lt": {
       "title": "Ištraukti PDF puslapius",
       "description": "Ištraukite pasirinktus puslapius į naują PDF",
-      "usertext": "Pasirinkite PDF failą ir nurodykite, kuriuos puslapius ištraukti"
+      "usertext": "Pasirinkite PDF failą ir nurodykite, kuriuos puslapius ar intervalus ištraukti"
     },
     "lv": {
       "title": "Izvilkt PDF lapas",
       "description": "Izvilkt atlasītās lapas jaunā PDF failā",
-      "usertext": "Atlasiet PDF failu un norādiet, kuras lapas izvilkt"
+      "usertext": "Atlasiet PDF failu un norādiet, kuras lapas vai diapazonus izvilkt"
     },
     "nl": {
       "title": "PDF-pagina's extraheren",
       "description": "Geselecteerde pagina's extraheren naar een nieuw PDF",
-      "usertext": "Selecteer een PDF-bestand en geef op welke pagina's te extraheren"
+      "usertext": "Selecteer een PDF-bestand en geef op welke pagina's of bereiken te extraheren"
     },
     "no": {
       "title": "Trekk ut PDF-sider",
       "description": "Trekk ut valgte sider til en ny PDF",
-      "usertext": "Velg en PDF-fil og angi hvilke sider som skal trekkes ut"
+      "usertext": "Velg en PDF-fil og angi hvilke sider eller intervaller som skal trekkes ut"
     },
     "pl": {
       "title": "Wyodrębnij strony PDF",
       "description": "Wyodrębnij wybrane strony do nowego PDF",
-      "usertext": "Wybierz plik PDF i określ, które strony wyodrębnić"
+      "usertext": "Wybierz plik PDF i określ, które strony lub zakresy wyodrębnić"
     },
     "pt-BR": {
       "title": "Extrair páginas do PDF",
       "description": "Extrair páginas selecionadas para um novo PDF",
-      "usertext": "Selecione um arquivo PDF e especifique quais páginas extrair"
+      "usertext": "Selecione um arquivo PDF e especifique quais páginas ou intervalos extrair"
     },
     "pt-PT": {
       "title": "Extrair páginas do PDF",
       "description": "Extrair páginas selecionadas para um novo PDF",
-      "usertext": "Selecione um ficheiro PDF e especifique quais páginas extrair"
+      "usertext": "Selecione um ficheiro PDF e especifique quais páginas ou intervalos extrair"
     },
     "ro": {
       "title": "Extragere pagini PDF",
       "description": "Extrageți paginile selectate într-un PDF nou",
-      "usertext": "Selectați un fișier PDF și specificați ce pagini să extrageți"
+      "usertext": "Selectați un fișier PDF și specificați ce pagini sau intervale să extrageți"
     },
     "ru": {
       "title": "Извлечь страницы PDF",
       "description": "Извлечь выбранные страницы в новый PDF",
-      "usertext": "Выберите файл PDF и укажите, какие страницы извлечь"
+      "usertext": "Выберите файл PDF и укажите, какие страницы или диапазоны извлечь"
     },
     "si": {
       "title": "PDF පිටු උකහා ගන්න",
       "description": "තෝරාගත් පිටු නව PDF වලට උකහා ගන්න",
-      "usertext": "PDF ගොනුවක් තෝරා කුමන පිටු උකහා ගත යුතුද සඳහන් කරන්න"
+      "usertext": "PDF ගොනුවක් තෝරා කුමන පිටු හෝ පරාස උකහා ගත යුතුද සඳහන් කරන්න"
     },
     "sk": {
       "title": "Extrahovať strany PDF",
       "description": "Extrahovať vybrané strany do nového PDF",
-      "usertext": "Vyberte súbor PDF a zadajte, ktoré strany extrahovať"
+      "usertext": "Vyberte súbor PDF a zadajte, ktoré strany alebo rozsahy extrahovať"
     },
     "sl": {
       "title": "Ekstrahiraj strani PDF",
       "description": "Ekstrahirajte izbrane strani v nov PDF",
-      "usertext": "Izberite datoteko PDF in navedite, katere strani ekstrahirati"
+      "usertext": "Izberite datoteko PDF in navedite, katere strani ali obsege ekstrahirati"
     },
     "sq": {
       "title": "Ekstrakt faqet e PDF",
       "description": "Ekstraktoni faqet e zgjedhura në një PDF të ri",
-      "usertext": "Zgjidhni një skedar PDF dhe specifikoni cilat faqe të ekstraktohen"
+      "usertext": "Zgjidhni një skedar PDF dhe specifikoni cilat faqe ose diapazone të ekstraktohen"
     },
     "sr-Cyrl-RS": {
       "title": "Издвајање страница PDF",
       "description": "Издвојите одабране странице у нови PDF",
-      "usertext": "Изаберите PDF датотеку и наведите које странице да издвојите"
+      "usertext": "Изаберите PDF датотеку и наведите које странице или опсеге да издвојите"
     },
     "sr-Latn-RS": {
       "title": "Izdvajanje stranica PDF",
       "description": "Izdvojite odabrane stranice u novi PDF",
-      "usertext": "Izaberite PDF datoteku i navedite koje stranice da izdvojite"
+      "usertext": "Izaberite PDF datoteku i navedite koje stranice ili opsege da izdvojite"
     },
     "sv": {
       "title": "Extrahera PDF-sidor",
       "description": "Extrahera valda sidor till en ny PDF",
-      "usertext": "Välj en PDF-fil och ange vilka sidor som ska extraheras"
+      "usertext": "Välj en PDF-fil och ange vilka sidor eller intervall som ska extraheras"
     },
     "tr": {
       "title": "PDF Sayfalarını Çıkar",
       "description": "Seçili sayfaları yeni bir PDF'ye çıkarın",
-      "usertext": "Bir PDF dosyası seçin ve hangi sayfaların çıkarılacağını belirtin"
+      "usertext": "Bir PDF dosyası seçin ve hangi sayfaların veya aralıkların çıkarılacağını belirtin"
     },
     "uk": {
       "title": "Витягти сторінки PDF",
       "description": "Витягти вибрані сторінки в новий PDF",
-      "usertext": "Виберіть файл PDF і вкажіть, які сторінки витягти"
+      "usertext": "Виберіть файл PDF і вкажіть, які сторінки або діапазони витягти"
     },
     "ur": {
       "title": "PDF صفحات نکالیں",
       "description": "منتخب صفحات کو نئے PDF میں نکالیں",
-      "usertext": "PDF فائل منتخب کریں اور بتائیں کہ کون سے صفحات نکالنے ہیں"
+      "usertext": "PDF فائل منتخب کریں اور بتائیں کہ کون سے صفحات یا رینجز نکالنے ہیں"
     },
     "vi": {
       "title": "Trích xuất trang PDF",
       "description": "Trích xuất các trang được chọn sang PDF mới",
-      "usertext": "Chọn tệp PDF và chỉ định trang cần trích xuất"
+      "usertext": "Chọn tệp PDF và chỉ định trang hoặc phạm vi cần trích xuất"
     },
     "zh-CN": {
       "title": "提取 PDF 页面",
       "description": "将选定页面提取到新的 PDF 中",
-      "usertext": "选择 PDF 文件并指定要提取的页面"
+      "usertext": "选择 PDF 文件并指定要提取的页面或范围"
     },
     "zh-TW": {
       "title": "提取 PDF 頁面",
       "description": "將選定頁面提取到新的 PDF 中",
-      "usertext": "選擇 PDF 檔案並指定要提取的頁面"
+      "usertext": "選擇 PDF 檔案並指定要提取的頁面或範圍"
     }
   }
 }

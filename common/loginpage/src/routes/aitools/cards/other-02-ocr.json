@@ -6,242 +6,242 @@
     "id": {
       "title": "OCR",
       "description": "Ekstrak teks dari dokumen dan gambar yang dipindai",
-      "usertext": "Pilih dokumen atau gambar yang dipindai, atau jelaskan di mana menemukannya"
+      "usertext": "Pilih dokumen atau gambar yang dipindai untuk mengekstrak teks (mempertahankan struktur dan tata letak)"
     },
     "en": {
       "title": "OCR",
       "description": "Extract text from scanned documents and images",
-      "usertext": "Select a scanned document or image, or describe where to find it"
+      "usertext": "Select a scanned document or image to extract text (preserves structure and layout)"
     },
     "ar-SA": {
       "title": "OCR",
       "description": "استخراج النص من المستندات والصور الممسوحة",
-      "usertext": "حدد مستنداً أو صورة ممسوحة أو صف مكانها"
+      "usertext": "حدد مستنداً أو صورة ممسوحة لاستخراج النص (يحافظ على البنية والتخطيط)"
     },
     "be": {
       "title": "OCR",
       "description": "Здабыць тэкст з адсканаваных дакументаў і малюнкаў",
-      "usertext": "Выберыце адсканаваны дакумент або малюнак або апішыце, дзе яны знаходзяцца"
+      "usertext": "Выберыце адсканаваны дакумент або малюнак для здабывання тэксту (захоўвае структуру і разметку)"
     },
     "bg": {
       "title": "OCR",
       "description": "Извличане на текст от сканирани документи и изображения",
-      "usertext": "Изберете сканиран документ или изображение или опишете къде да го намерите"
+      "usertext": "Изберете сканиран документ или изображение за извличане на текст (запазва структурата и оформлението)"
     },
     "ca": {
       "title": "OCR",
       "description": "Extreure text de documents escanejats i imatges",
-      "usertext": "Seleccioneu un document escanejat o imatge, o descriviu on trobar-lo"
+      "usertext": "Seleccioneu un document escanejat o imatge per extreure text (conserva l'estructura i el disseny)"
     },
     "cs": {
       "title": "OCR",
       "description": "Extrahovat text z naskenovaných dokumentů a obrázků",
-      "usertext": "Vyberte naskenovaný dokument nebo obrázek, nebo popište, kde ho najít"
+      "usertext": "Vyberte naskenovaný dokument nebo obrázek pro extrahování textu (zachovává strukturu a rozložení)"
     },
     "da": {
       "title": "OCR",
       "description": "Udtræk tekst fra scannede dokumenter og billeder",
-      "usertext": "Vælg et scannet dokument eller billede, eller beskriv, hvor du finder det"
+      "usertext": "Vælg et scannet dokument eller billede for at udtrække tekst (bevarer struktur og layout)"
     },
     "de": {
       "title": "OCR",
       "description": "Text aus gescannten Dokumenten und Bildern extrahieren",
-      "usertext": "Gescanntes Dokument oder Bild auswählen oder beschreiben, wo es zu finden ist"
+      "usertext": "Gescanntes Dokument oder Bild auswählen, um Text zu extrahieren (bewahrt Struktur und Layout)"
     },
     "el": {
       "title": "OCR",
       "description": "Εξαγωγή κειμένου από σαρωμένα έγγραφα και εικόνες",
-      "usertext": "Επιλέξτε σαρωμένο έγγραφο ή εικόνα ή περιγράψτε πού να το βρείτε"
+      "usertext": "Επιλέξτε σαρωμένο έγγραφο ή εικόνα για εξαγωγή κειμένου (διατηρεί τη δομή και τη διάταξη)"
     },
     "en-GB": {
       "title": "OCR",
       "description": "Extract text from scanned documents and images",
-      "usertext": "Select a scanned document or image, or describe where to find it"
+      "usertext": "Select a scanned document or image to extract text (preserves structure and layout)"
     },
     "es": {
       "title": "OCR",
       "description": "Extraer texto de documentos escaneados e imágenes",
-      "usertext": "Selecciona un documento escaneado o imagen, o describe dónde encontrarlo"
+      "usertext": "Selecciona un documento escaneado o imagen para extraer texto (conserva la estructura y el diseño)"
     },
     "et": {
       "title": "OCR",
       "description": "Eralda tekst skaneeritud dokumentidest ja piltidest",
-      "usertext": "Vali skaneeritud dokument või pilt, või kirjelda, kust see leida"
+      "usertext": "Vali skaneeritud dokument või pilt teksti eraldamiseks (säilitab struktuuri ja paigutuse)"
     },
     "fi": {
       "title": "OCR",
       "description": "Pura teksti skannatuista asiakirjoista ja kuvista",
-      "usertext": "Valitse skannattu asiakirja tai kuva tai kuvaile, mistä se löytyy"
+      "usertext": "Valitse skannattu asiakirja tai kuva tekstin poimimiseksi (säilyttää rakenteen ja asettelun)"
     },
     "fr": {
       "title": "OCR",
       "description": "Extraire du texte de documents numérisés et d'images",
-      "usertext": "Sélectionnez un document numérisé ou une image, ou décrivez où le trouver"
+      "usertext": "Sélectionnez un document numérisé ou une image pour extraire du texte (conserve la structure et la mise en page)"
     },
     "ga": {
       "title": "OCR",
       "description": "Bain téacs as doiciméid scanáilte agus íomhánna",
-      "usertext": "Roghnaigh doiciméad scanáilte nó íomhá, nó cuir síos ar cá bhfuil sé"
+      "usertext": "Roghnaigh doiciméad scanáilte nó íomhá chun téacs a bhaint (caomhnaíonn struchtúr agus leagan amach)"
     },
     "gl": {
       "title": "OCR",
       "description": "Extraer texto de documentos escaneados e imaxes",
-      "usertext": "Selecciona un documento escaneado ou imaxe, ou describe onde atopalo"
+      "usertext": "Selecciona un documento escaneado ou imaxe para extraer texto (conserva a estrutura e o deseño)"
     },
     "he": {
       "title": "OCR",
       "description": "חילוץ טקסט ממסמכים סרוקים ותמונות",
-      "usertext": "בחר מסמך סרוק או תמונה, או תאר היכן למצוא אותם"
+      "usertext": "בחר מסמך סרוק או תמונה לחילוץ טקסט (שומר על מבנה ופריסה)"
     },
     "hi": {
       "title": "OCR",
       "description": "स्कैन किए गए दस्तावेज़ों और छवियों से टेक्स्ट निकालें",
-      "usertext": "स्कैन किया हुआ दस्तावेज़ या छवि चुनें, या बताएं कि इसे कहां खोजें"
+      "usertext": "टेक्स्ट निकालने के लिए स्कैन किया हुआ दस्तावेज़ या छवि चुनें (संरचना और लेआउट को सुरक्षित रखता है)"
     },
     "hr": {
       "title": "OCR",
       "description": "Izvuci tekst iz skeniranih dokumenata i slika",
-      "usertext": "Odaberite skenirani dokument ili sliku, ili opišite gdje ga pronaći"
+      "usertext": "Odaberite skenirani dokument ili sliku za izvlačenje teksta (čuva strukturu i raspored)"
     },
     "hu": {
       "title": "OCR",
       "description": "Szöveg kinyerése beolvasott dokumentumokból és képekből",
-      "usertext": "Válasszon beolvasott dokumentumot vagy képet, vagy írja le, hol találja"
+      "usertext": "Válasszon beolvasott dokumentumot vagy képet a szöveg kinyeréséhez (megőrzi a szerkezetet és az elrendezést)"
     },
     "hy": {
       "title": "OCR",
       "description": "Արդյունահանել տեքստ սկանավորված փաստաթղթերից և պատկերներից",
-      "usertext": "Ընտրեք սկանավորված փաստաթուղթ կամ պատկեր կամ նկարագրեք, թե որտեղ գտնել"
+      "usertext": "Ընտրեք սկանավորված փաստաթուղթ կամ պատկեր՝ տեքստ արդյունահանելու համար (պահպանում է կառուցվածքը և ձևավորումը)"
     },
     "it": {
       "title": "OCR",
       "description": "Estrai testo da documenti scansionati e immagini",
-      "usertext": "Seleziona un documento scansionato o un'immagine, o descrivi dove trovarlo"
+      "usertext": "Seleziona un documento scansionato o un'immagine per estrarre testo (conserva struttura e layout)"
     },
     "ja": {
       "title": "OCR",
       "description": "スキャンされた文書や画像からテキストを抽出",
-      "usertext": "スキャンされた文書または画像を選択するか、場所を説明してください"
+      "usertext": "テキストを抽出するためにスキャンされた文書または画像を選択してください（構造とレイアウトを保持します）"
     },
     "ko": {
       "title": "OCR",
       "description": "스캔한 문서 및 이미지에서 텍스트 추출",
-      "usertext": "스캔한 문서나 이미지를 선택하거나 위치를 설명하세요"
+      "usertext": "텍스트를 추출할 스캔한 문서나 이미지를 선택하세요 (구조와 레이아웃 유지)"
     },
     "lo": {
       "title": "OCR",
       "description": "ດຶງຂໍ້ຄວາມຈາກເອກະສານ ແລະ ຮູບພາບທີ່ສະແກນ",
-      "usertext": "ເລືອກເອກະສານ ຫຼື ຮູບພາບທີ່ສະແກນ ຫຼື ອະທິບາຍວ່າຈະຊອກຫາມັນຢູ່ໃສ"
+      "usertext": "ເລືອກເອກະສານ ຫຼື ຮູບພາບທີ່ສະແກນເພື່ອດຶງຂໍ້ຄວາມ (ຮັກສາໂຄງສ້າງ ແລະ ຮູບແບບ)"
     },
     "lt": {
       "title": "OCR",
       "description": "Ištraukti tekstą iš nuskenuotų dokumentų ir vaizdų",
-      "usertext": "Pasirinkite nuskenuotą dokumentą ar vaizdą arba aprašykite, kur jį rasti"
+      "usertext": "Pasirinkite nuskenuotą dokumentą ar vaizdą tekstui ištraukti (išlaiko struktūrą ir išdėstymą)"
     },
     "lv": {
       "title": "OCR",
       "description": "Iegūt tekstu no skenētiem dokumentiem un attēliem",
-      "usertext": "Atlasiet skenētu dokumentu vai attēlu vai aprakstiet, kur to atrast"
+      "usertext": "Atlasiet skenētu dokumentu vai attēlu, lai iegūtu tekstu (saglabā struktūru un izkārtojumu)"
     },
     "nl": {
       "title": "OCR",
       "description": "Tekst extraheren uit gescande documenten en afbeeldingen",
-      "usertext": "Selecteer een gescand document of afbeelding, of beschrijf waar u het kunt vinden"
+      "usertext": "Selecteer een gescand document of afbeelding om tekst te extraheren (behoudt structuur en opmaak)"
     },
     "no": {
       "title": "OCR",
       "description": "Trekk ut tekst fra skannede dokumenter og bilder",
-      "usertext": "Velg et skannet dokument eller bilde, eller beskriv hvor du finner det"
+      "usertext": "Velg et skannet dokument eller bilde for å trekke ut tekst (bevarer struktur og layout)"
     },
     "pl": {
       "title": "OCR",
       "description": "Wyodrębnij tekst ze zeskanowanych dokumentów i obrazów",
-      "usertext": "Wybierz zeskanowany dokument lub obraz, lub opisz, gdzie go znaleźć"
+      "usertext": "Wybierz zeskanowany dokument lub obraz, aby wyodrębnić tekst (zachowuje strukturę i układ)"
     },
     "pt-BR": {
       "title": "OCR",
       "description": "Extrair texto de documentos digitalizados e imagens",
-      "usertext": "Selecione um documento digitalizado ou imagem, ou descreva onde encontrá-lo"
+      "usertext": "Selecione um documento digitalizado ou imagem para extrair texto (preserva estrutura e layout)"
     },
     "pt-PT": {
       "title": "OCR",
       "description": "Extrair texto de documentos digitalizados e imagens",
-      "usertext": "Selecione um documento digitalizado ou imagem, ou descreva onde encontrá-lo"
+      "usertext": "Selecione um documento digitalizado ou imagem para extrair texto (preserva estrutura e esquema)"
     },
     "ro": {
       "title": "OCR",
       "description": "Extrageți text din documente scanate și imagini",
-      "usertext": "Selectați un document scanat sau o imagine, sau descrieți unde să îl găsiți"
+      "usertext": "Selectați un document scanat sau o imagine pentru a extrage text (păstrează structura și aspectul)"
     },
     "ru": {
       "title": "OCR",
       "description": "Извлечь текст из отсканированных документов и изображений",
-      "usertext": "Выберите отсканированный документ или изображение или опишите, где их найти"
+      "usertext": "Выберите отсканированный документ или изображение для извлечения текста (сохраняет структуру и разметку)"
     },
     "si": {
       "title": "OCR",
       "description": "ස්කෑන් කරන ලද ලේඛන සහ රූප වලින් පෙළ ලබා ගන්න",
-      "usertext": "ස්කෑන් කරන ලද ලේඛනයක් හෝ රූපයක් තෝරන්න, හෝ එය කොතැනද යන්න විස්තර කරන්න"
+      "usertext": "පෙළ උකහා ගැනීමට ස්කෑන් කරන ලද ලේඛනයක් හෝ රූපයක් තෝරන්න (ව්‍යුහය සහ සැකැස්ම ආරක්ෂා කරයි)"
     },
     "sk": {
       "title": "OCR",
       "description": "Extrahovať text z naskenovaných dokumentov a obrázkov",
-      "usertext": "Vyberte naskenovaný dokument alebo obrázok, alebo popíšte, kde ho nájsť"
+      "usertext": "Vyberte naskenovaný dokument alebo obrázok na extrahovanie textu (zachováva štruktúru a rozloženie)"
     },
     "sl": {
       "title": "OCR",
       "description": "Izluščite besedilo iz skeniranih dokumentov in slik",
-      "usertext": "Izberite skeniran dokument ali sliko ali opišite, kje ga najti"
+      "usertext": "Izberite skeniran dokument ali sliko za ekstrakcijo besedila (ohranja strukturo in postavitev)"
     },
     "sq": {
       "title": "OCR",
       "description": "Nxirrni tekst nga dokumentet e skanuara dhe imazhet",
-      "usertext": "Zgjidhni një dokument të skanuar ose imazh, ose përshkruani ku ta gjeni"
+      "usertext": "Zgjidhni një dokument të skanuar ose imazh për të nxjerrë tekst (ruan strukturën dhe paraqitjen)"
     },
     "sr-Cyrl-RS": {
       "title": "OCR",
       "description": "Извуци текст из скенираних докумената и слика",
-      "usertext": "Изаберите скенирани документ или слику или опишите где да га пронађете"
+      "usertext": "Изаберите скенирани документ или слику за издвајање текста (чува структуру и распоред)"
     },
     "sr-Latn-RS": {
       "title": "OCR",
       "description": "Izvuci tekst iz skeniranih dokumenata i slika",
-      "usertext": "Izaberite skenirani dokument ili sliku ili opišite gde da ga pronađete"
+      "usertext": "Izaberite skenirani dokument ili sliku za izdvajanje teksta (čuva strukturu i raspored)"
     },
     "sv": {
       "title": "OCR",
       "description": "Extrahera text från skannade dokument och bilder",
-      "usertext": "Välj ett skannat dokument eller bild, eller beskriv var det finns"
+      "usertext": "Välj ett skannat dokument eller bild för att extrahera text (bevarar struktur och layout)"
     },
     "tr": {
       "title": "OCR",
       "description": "Taranan belgelerden ve görüntülerden metin çıkar",
-      "usertext": "Taranan bir belge veya görüntü seçin ya da nerede bulunduğunu açıklayın"
+      "usertext": "Metin çıkarmak için taranan bir belge veya görüntü seçin (yapı ve düzeni korur)"
     },
     "uk": {
       "title": "OCR",
       "description": "Витягти текст із відсканованих документів та зображень",
-      "usertext": "Виберіть відсканований документ або зображення або опишіть, де їх знайти"
+      "usertext": "Виберіть відсканований документ або зображення для витягнення тексту (зберігає структуру та розмітку)"
     },
     "ur": {
       "title": "OCR",
       "description": "اسکین کی گئی دستاویزات اور تصاویر سے متن نکالیں",
-      "usertext": "اسکین کی گئی دستاویز یا تصویر منتخب کریں یا بتائیں کہ کہاں ملے گی"
+      "usertext": "متن نکالنے کے لیے اسکین کی گئی دستاویز یا تصویر منتخب کریں (ساخت اور ترتیب محفوظ رکھتا ہے)"
     },
     "vi": {
       "title": "OCR",
       "description": "Trích xuất văn bản từ tài liệu được quét và hình ảnh",
-      "usertext": "Chọn tài liệu được quét hoặc hình ảnh, hoặc mô tả nơi tìm thấy nó"
+      "usertext": "Chọn tài liệu được quét hoặc hình ảnh để trích xuất văn bản (giữ nguyên cấu trúc và bố cục)"
     },
     "zh-CN": {
       "title": "OCR",
       "description": "从扫描文档和图像中提取文本",
-      "usertext": "选择扫描文档或图像，或说明在哪里找到它"
+      "usertext": "选择扫描文档或图像以提取文本（保留结构和布局）"
     },
     "zh-TW": {
       "title": "OCR",
       "description": "從掃描文件和影像中擷取文字",
-      "usertext": "選取掃描文件或影像，或說明在哪裡找到它"
+      "usertext": "選取掃描文件或影像以擷取文字（保留結構和版面配置）"
     }
   }
 }
