@@ -1,244 +1,247 @@
 {
-  "id": {
-    "title": "Konversi ke ODS",
-    "description": "Konversi file Anda ke format ODS",
-    "usertext": "Pilih spreadsheet atau jelaskan di mana menemukannya"
-  },
+  "id": "convert-to-ods",
   "group": "cell",
   "prompt": "Please convert the attached spreadsheet to ODS (OpenDocument Spreadsheet) format, preserving all data, formulas, and formatting.",
-  "en": {
-    "title": "Convert to ODS",
-    "description": "Convert your file to ODS format",
-    "usertext": "Select a spreadsheet or describe where to find it"
-  },
-  "ar-SA": {
-    "title": "تحويل إلى ODS",
-    "description": "تحويل ملفك إلى تنسيق ODS",
-    "usertext": "حدد جدول بيانات أو صف مكانه"
-  },
-  "be": {
-    "title": "Канвертаваць у ODS",
-    "description": "Канвертаваць файл у фармат ODS",
-    "usertext": "Выберыце табліцу або апішыце, дзе яна знаходзіцца"
-  },
-  "bg": {
-    "title": "Конвертиране в ODS",
-    "description": "Конвертирайте файла си в ODS формат",
-    "usertext": "Изберете таблица или опишете къде да я намерите"
-  },
-  "ca": {
-    "title": "Convertir a ODS",
-    "description": "Convertiu el vostre fitxer al format ODS",
-    "usertext": "Seleccioneu un full de càlcul o descriviu on trobar-lo"
-  },
-  "cs": {
-    "title": "Převést do ODS",
-    "description": "Převeďte soubor do formátu ODS",
-    "usertext": "Vyberte tabulku nebo popište, kde ji najít"
-  },
-  "da": {
-    "title": "Konverter til ODS",
-    "description": "Konverter din fil til ODS-format",
-    "usertext": "Vælg et regneark eller beskriv, hvor du finder det"
-  },
-  "de": {
-    "title": "In ODS konvertieren",
-    "description": "Datei in ODS-Format konvertieren",
-    "usertext": "Tabelle auswählen oder beschreiben, wo sie zu finden ist"
-  },
-  "el": {
-    "title": "Μετατροπή σε ODS",
-    "description": "Μετατρέψτε το αρχείο σας σε μορφή ODS",
-    "usertext": "Επιλέξτε υπολογιστικό φύλλο ή περιγράψτε πού να το βρείτε"
-  },
-  "en-GB": {
-    "title": "Convert to ODS",
-    "description": "Convert your file to ODS format",
-    "usertext": "Select a spreadsheet or describe where to find it"
-  },
-  "es": {
-    "title": "Convertir a ODS",
-    "description": "Convierte tu archivo al formato ODS",
-    "usertext": "Selecciona una hoja de cálculo o describe dónde encontrarla"
-  },
-  "et": {
-    "title": "Teisenda ODS-ks",
-    "description": "Teisenda fail ODS-vormingusse",
-    "usertext": "Vali arvutustabel või kirjelda, kust see leida"
-  },
-  "fi": {
-    "title": "Muunna ODS-muotoon",
-    "description": "Muunna tiedosto ODS-muotoon",
-    "usertext": "Valitse laskentataulukko tai kuvaile, mistä se löytyy"
-  },
-  "fr": {
-    "title": "Convertir en ODS",
-    "description": "Convertissez votre fichier au format ODS",
-    "usertext": "Sélectionnez une feuille de calcul ou décrivez où la trouver"
-  },
-  "ga": {
-    "title": "Tiontaigh go ODS",
-    "description": "Tiontaigh do chomhad go formáid ODS",
-    "usertext": "Roghnaigh scarbhileog nó cuir síos ar cá bhfuil sí"
-  },
-  "gl": {
-    "title": "Converter a ODS",
-    "description": "Converte o teu ficheiro ao formato ODS",
-    "usertext": "Selecciona unha folla de cálculo ou describe onde atopala"
-  },
-  "he": {
-    "title": "המרה ל-ODS",
-    "description": "המר את הקובץ שלך לפורמט ODS",
-    "usertext": "בחר גיליון אלקטרוני או תאר היכן למצוא אותו"
-  },
-  "hi": {
-    "title": "ODS में कनवर्ट करें",
-    "description": "अपनी फ़ाइल को ODS प्रारूप में कनवर्ट करें",
-    "usertext": "स्प्रेडशीट चुनें या बताएं कि इसे कहां खोजें"
-  },
-  "hr": {
-    "title": "Pretvori u ODS",
-    "description": "Pretvorite svoju datoteku u ODS format",
-    "usertext": "Odaberite proračunsku tablicu ili opišite gdje je pronaći"
-  },
-  "hu": {
-    "title": "Konvertálás ODS-be",
-    "description": "Fájl konvertálása ODS formátumba",
-    "usertext": "Válasszon táblázatot, vagy írja le, hol találja"
-  },
-  "hy": {
-    "title": "Փոխակերպել ODS-ի",
-    "description": "Փոխակերպեք ֆայլը ODS ձևաչափի",
-    "usertext": "Ընտրեք աղյուսակ կամ նկարագրեք, թե որտեղ գտնել"
-  },
-  "it": {
-    "title": "Converti in ODS",
-    "description": "Converti il tuo file in formato ODS",
-    "usertext": "Seleziona un foglio di calcolo o descrivi dove trovarlo"
-  },
-  "ja": {
-    "title": "ODSに変換",
-    "description": "ファイルをODS形式に変換",
-    "usertext": "スプレッドシートを選択するか、場所を説明してください"
-  },
-  "ko": {
-    "title": "ODS로 변환",
-    "description": "파일을 ODS 형식으로 변환",
-    "usertext": "스프레드시트를 선택하거나 위치를 설명하세요"
-  },
-  "lo": {
-    "title": "ປ່ຽນເປັນ ODS",
-    "description": "ປ່ຽນໄຟລ໌ຂອງທ່ານເປັນຮູບແບບ ODS",
-    "usertext": "ເລືອກຕາຕະລາງ ຫຼື ອະທິບາຍວ່າຈະຊອກຫາມັນຢູ່ໃສ"
-  },
-  "lt": {
-    "title": "Konvertuoti į ODS",
-    "description": "Konvertuokite failą į ODS formatą",
-    "usertext": "Pasirinkite skaičiuoklę arba aprašykite, kur ją rasti"
-  },
-  "lv": {
-    "title": "Konvertēt uz ODS",
-    "description": "Konvertēt failu ODS formātā",
-    "usertext": "Atlasiet izklājlapu vai aprakstiet, kur to atrast"
-  },
-  "nl": {
-    "title": "Converteren naar ODS",
-    "description": "Converteer uw bestand naar ODS-indeling",
-    "usertext": "Selecteer een spreadsheet of beschrijf waar u het kunt vinden"
-  },
-  "no": {
-    "title": "Konverter til ODS",
-    "description": "Konverter filen til ODS-format",
-    "usertext": "Velg et regneark eller beskriv hvor du finner det"
-  },
-  "pl": {
-    "title": "Konwertuj do ODS",
-    "description": "Konwertuj plik do formatu ODS",
-    "usertext": "Wybierz arkusz kalkulacyjny lub opisz, gdzie go znaleźć"
-  },
-  "pt-BR": {
-    "title": "Converter para ODS",
-    "description": "Converta seu arquivo para o formato ODS",
-    "usertext": "Selecione uma planilha ou descreva onde encontrá-la"
-  },
-  "pt-PT": {
-    "title": "Converter para ODS",
-    "description": "Converta o seu ficheiro para o formato ODS",
-    "usertext": "Selecione uma folha de cálculo ou descreva onde encontrá-la"
-  },
-  "ro": {
-    "title": "Convertiți în ODS",
-    "description": "Convertiți fișierul în format ODS",
-    "usertext": "Selectați un tabel sau descrieți unde să îl găsiți"
-  },
-  "ru": {
-    "title": "Конвертировать в ODS",
-    "description": "Конвертировать файл в формат ODS",
-    "usertext": "Выберите таблицу или опишите, где её найти"
-  },
-  "si": {
-    "title": "ODS ලෙස පරිවර්තනය කරන්න",
-    "description": "ඔබේ ගොනුව ODS ආකෘතියට පරිවර්තනය කරන්න",
-    "usertext": "ස්ප්‍රෙඩ්ෂීට් එකක් තෝරන්න හෝ එය කොතැනද යන්න විස්තර කරන්න"
-  },
-  "sk": {
-    "title": "Previesť do ODS",
-    "description": "Preveďte súbor do formátu ODS",
-    "usertext": "Vyberte tabuľku alebo popíšte, kde ju nájsť"
-  },
-  "sl": {
-    "title": "Pretvori v ODS",
-    "description": "Pretvorite datoteko v format ODS",
-    "usertext": "Izberite preglednico ali opišite, kje jo najti"
-  },
-  "sq": {
-    "title": "Konverto në ODS",
-    "description": "Konvertoni skedarin tuaj në formatin ODS",
-    "usertext": "Zgjidhni një fletëllogaritëse ose përshkruani ku ta gjeni"
-  },
-  "sr-Cyrl-RS": {
-    "title": "Конвертуј у ODS",
-    "description": "Конвертујте фајл у ODS формат",
-    "usertext": "Изаберите табелу или опишите где да је пронађете"
-  },
-  "sr-Latn-RS": {
-    "title": "Konvertuj u ODS",
-    "description": "Konvertujte fajl u ODS format",
-    "usertext": "Izaberite tabelu ili opišite gde da je pronađete"
-  },
-  "sv": {
-    "title": "Konvertera till ODS",
-    "description": "Konvertera filen till ODS-format",
-    "usertext": "Välj ett kalkylblad eller beskriv var det finns"
-  },
-  "tr": {
-    "title": "ODS'ye Dönüştür",
-    "description": "Dosyanızı ODS biçimine dönüştürün",
-    "usertext": "Bir elektronik tablo seçin veya nerede bulunduğunu açıklayın"
-  },
-  "uk": {
-    "title": "Конвертувати в ODS",
-    "description": "Конвертувати файл у формат ODS",
-    "usertext": "Виберіть таблицю або опишіть, де її знайти"
-  },
-  "ur": {
-    "title": "ODS میں تبدیل کریں",
-    "description": "اپنی فائل کو ODS فارمیٹ میں تبدیل کریں",
-    "usertext": "اسپریڈشیٹ منتخب کریں یا بتائیں کہ کہاں ملے گی"
-  },
-  "vi": {
-    "title": "Chuyển đổi sang ODS",
-    "description": "Chuyển đổi tệp của bạn sang định dạng ODS",
-    "usertext": "Chọn bảng tính hoặc mô tả nơi tìm thấy nó"
-  },
-  "zh-CN": {
-    "title": "转换为 ODS",
-    "description": "将文件转换为 ODS 格式",
-    "usertext": "选择电子表格或说明在哪里找到它"
-  },
-  "zh-TW": {
-    "title": "轉換為 ODS",
-    "description": "將檔案轉換為 ODS 格式",
-    "usertext": "選取試算表或說明在哪裡找到它"
+  "locale": {
+    "id": {
+      "title": "Konversi ke ODS",
+      "description": "Konversi file Anda ke format ODS",
+      "usertext": "Pilih spreadsheet atau jelaskan di mana menemukannya"
+    },
+    "en": {
+      "title": "Convert to ODS",
+      "description": "Convert your file to ODS format",
+      "usertext": "Select a spreadsheet or describe where to find it"
+    },
+    "ar-SA": {
+      "title": "تحويل إلى ODS",
+      "description": "تحويل ملفك إلى تنسيق ODS",
+      "usertext": "حدد جدول بيانات أو صف مكانه"
+    },
+    "be": {
+      "title": "Канвертаваць у ODS",
+      "description": "Канвертаваць файл у фармат ODS",
+      "usertext": "Выберыце табліцу або апішыце, дзе яна знаходзіцца"
+    },
+    "bg": {
+      "title": "Конвертиране в ODS",
+      "description": "Конвертирайте файла си в ODS формат",
+      "usertext": "Изберете таблица или опишете къде да я намерите"
+    },
+    "ca": {
+      "title": "Convertir a ODS",
+      "description": "Convertiu el vostre fitxer al format ODS",
+      "usertext": "Seleccioneu un full de càlcul o descriviu on trobar-lo"
+    },
+    "cs": {
+      "title": "Převést do ODS",
+      "description": "Převeďte soubor do formátu ODS",
+      "usertext": "Vyberte tabulku nebo popište, kde ji najít"
+    },
+    "da": {
+      "title": "Konverter til ODS",
+      "description": "Konverter din fil til ODS-format",
+      "usertext": "Vælg et regneark eller beskriv, hvor du finder det"
+    },
+    "de": {
+      "title": "In ODS konvertieren",
+      "description": "Datei in ODS-Format konvertieren",
+      "usertext": "Tabelle auswählen oder beschreiben, wo sie zu finden ist"
+    },
+    "el": {
+      "title": "Μετατροπή σε ODS",
+      "description": "Μετατρέψτε το αρχείο σας σε μορφή ODS",
+      "usertext": "Επιλέξτε υπολογιστικό φύλλο ή περιγράψτε πού να το βρείτε"
+    },
+    "en-GB": {
+      "title": "Convert to ODS",
+      "description": "Convert your file to ODS format",
+      "usertext": "Select a spreadsheet or describe where to find it"
+    },
+    "es": {
+      "title": "Convertir a ODS",
+      "description": "Convierte tu archivo al formato ODS",
+      "usertext": "Selecciona una hoja de cálculo o describe dónde encontrarla"
+    },
+    "et": {
+      "title": "Teisenda ODS-ks",
+      "description": "Teisenda fail ODS-vormingusse",
+      "usertext": "Vali arvutustabel või kirjelda, kust see leida"
+    },
+    "fi": {
+      "title": "Muunna ODS-muotoon",
+      "description": "Muunna tiedosto ODS-muotoon",
+      "usertext": "Valitse laskentataulukko tai kuvaile, mistä se löytyy"
+    },
+    "fr": {
+      "title": "Convertir en ODS",
+      "description": "Convertissez votre fichier au format ODS",
+      "usertext": "Sélectionnez une feuille de calcul ou décrivez où la trouver"
+    },
+    "ga": {
+      "title": "Tiontaigh go ODS",
+      "description": "Tiontaigh do chomhad go formáid ODS",
+      "usertext": "Roghnaigh scarbhileog nó cuir síos ar cá bhfuil sí"
+    },
+    "gl": {
+      "title": "Converter a ODS",
+      "description": "Converte o teu ficheiro ao formato ODS",
+      "usertext": "Selecciona unha folla de cálculo ou describe onde atopala"
+    },
+    "he": {
+      "title": "המרה ל-ODS",
+      "description": "המר את הקובץ שלך לפורמט ODS",
+      "usertext": "בחר גיליון אלקטרוני או תאר היכן למצוא אותו"
+    },
+    "hi": {
+      "title": "ODS में कनवर्ट करें",
+      "description": "अपनी फ़ाइल को ODS प्रारूप में कनवर्ट करें",
+      "usertext": "स्प्रेडशीट चुनें या बताएं कि इसे कहां खोजें"
+    },
+    "hr": {
+      "title": "Pretvori u ODS",
+      "description": "Pretvorite svoju datoteku u ODS format",
+      "usertext": "Odaberite proračunsku tablicu ili opišite gdje je pronaći"
+    },
+    "hu": {
+      "title": "Konvertálás ODS-be",
+      "description": "Fájl konvertálása ODS formátumba",
+      "usertext": "Válasszon táblázatot, vagy írja le, hol találja"
+    },
+    "hy": {
+      "title": "Փոխակերպել ODS-ի",
+      "description": "Փոխակերպեք ֆայլը ODS ձևաչափի",
+      "usertext": "Ընտրեք աղյուսակ կամ նկարագրեք, թե որտեղ գտնել"
+    },
+    "it": {
+      "title": "Converti in ODS",
+      "description": "Converti il tuo file in formato ODS",
+      "usertext": "Seleziona un foglio di calcolo o descrivi dove trovarlo"
+    },
+    "ja": {
+      "title": "ODSに変換",
+      "description": "ファイルをODS形式に変換",
+      "usertext": "スプレッドシートを選択するか、場所を説明してください"
+    },
+    "ko": {
+      "title": "ODS로 변환",
+      "description": "파일을 ODS 형식으로 변환",
+      "usertext": "스프레드시트를 선택하거나 위치를 설명하세요"
+    },
+    "lo": {
+      "title": "ປ່ຽນເປັນ ODS",
+      "description": "ປ່ຽນໄຟລ໌ຂອງທ່ານເປັນຮູບແບບ ODS",
+      "usertext": "ເລືອກຕາຕະລາງ ຫຼື ອະທິບາຍວ່າຈະຊອກຫາມັນຢູ່ໃສ"
+    },
+    "lt": {
+      "title": "Konvertuoti į ODS",
+      "description": "Konvertuokite failą į ODS formatą",
+      "usertext": "Pasirinkite skaičiuoklę arba aprašykite, kur ją rasti"
+    },
+    "lv": {
+      "title": "Konvertēt uz ODS",
+      "description": "Konvertēt failu ODS formātā",
+      "usertext": "Atlasiet izklājlapu vai aprakstiet, kur to atrast"
+    },
+    "nl": {
+      "title": "Converteren naar ODS",
+      "description": "Converteer uw bestand naar ODS-indeling",
+      "usertext": "Selecteer een spreadsheet of beschrijf waar u het kunt vinden"
+    },
+    "no": {
+      "title": "Konverter til ODS",
+      "description": "Konverter filen til ODS-format",
+      "usertext": "Velg et regneark eller beskriv hvor du finner det"
+    },
+    "pl": {
+      "title": "Konwertuj do ODS",
+      "description": "Konwertuj plik do formatu ODS",
+      "usertext": "Wybierz arkusz kalkulacyjny lub opisz, gdzie go znaleźć"
+    },
+    "pt-BR": {
+      "title": "Converter para ODS",
+      "description": "Converta seu arquivo para o formato ODS",
+      "usertext": "Selecione uma planilha ou descreva onde encontrá-la"
+    },
+    "pt-PT": {
+      "title": "Converter para ODS",
+      "description": "Converta o seu ficheiro para o formato ODS",
+      "usertext": "Selecione uma folha de cálculo ou descreva onde encontrá-la"
+    },
+    "ro": {
+      "title": "Convertiți în ODS",
+      "description": "Convertiți fișierul în format ODS",
+      "usertext": "Selectați un tabel sau descrieți unde să îl găsiți"
+    },
+    "ru": {
+      "title": "Конвертировать в ODS",
+      "description": "Конвертировать файл в формат ODS",
+      "usertext": "Выберите таблицу или опишите, где её найти"
+    },
+    "si": {
+      "title": "ODS ලෙස පරිවර්තනය කරන්න",
+      "description": "ඔබේ ගොනුව ODS ආකෘතියට පරිවර්තනය කරන්න",
+      "usertext": "ස්ප්‍රෙඩ්ෂීට් එකක් තෝරන්න හෝ එය කොතැනද යන්න විස්තර කරන්න"
+    },
+    "sk": {
+      "title": "Previesť do ODS",
+      "description": "Preveďte súbor do formátu ODS",
+      "usertext": "Vyberte tabuľku alebo popíšte, kde ju nájsť"
+    },
+    "sl": {
+      "title": "Pretvori v ODS",
+      "description": "Pretvorite datoteko v format ODS",
+      "usertext": "Izberite preglednico ali opišite, kje jo najti"
+    },
+    "sq": {
+      "title": "Konverto në ODS",
+      "description": "Konvertoni skedarin tuaj në formatin ODS",
+      "usertext": "Zgjidhni një fletëllogaritëse ose përshkruani ku ta gjeni"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Конвертуј у ODS",
+      "description": "Конвертујте фајл у ODS формат",
+      "usertext": "Изаберите табелу или опишите где да је пронађете"
+    },
+    "sr-Latn-RS": {
+      "title": "Konvertuj u ODS",
+      "description": "Konvertujte fajl u ODS format",
+      "usertext": "Izaberite tabelu ili opišite gde da je pronađete"
+    },
+    "sv": {
+      "title": "Konvertera till ODS",
+      "description": "Konvertera filen till ODS-format",
+      "usertext": "Välj ett kalkylblad eller beskriv var det finns"
+    },
+    "tr": {
+      "title": "ODS'ye Dönüştür",
+      "description": "Dosyanızı ODS biçimine dönüştürün",
+      "usertext": "Bir elektronik tablo seçin veya nerede bulunduğunu açıklayın"
+    },
+    "uk": {
+      "title": "Конвертувати в ODS",
+      "description": "Конвертувати файл у формат ODS",
+      "usertext": "Виберіть таблицю або опишіть, де її знайти"
+    },
+    "ur": {
+      "title": "ODS میں تبدیل کریں",
+      "description": "اپنی فائل کو ODS فارمیٹ میں تبدیل کریں",
+      "usertext": "اسپریڈشیٹ منتخب کریں یا بتائیں کہ کہاں ملے گی"
+    },
+    "vi": {
+      "title": "Chuyển đổi sang ODS",
+      "description": "Chuyển đổi tệp của bạn sang định dạng ODS",
+      "usertext": "Chọn bảng tính hoặc mô tả nơi tìm thấy nó"
+    },
+    "zh-CN": {
+      "title": "转换为 ODS",
+      "description": "将文件转换为 ODS 格式",
+      "usertext": "选择电子表格或说明在哪里找到它"
+    },
+    "zh-TW": {
+      "title": "轉換為 ODS",
+      "description": "將檔案轉換為 ODS 格式",
+      "usertext": "選取試算表或說明在哪裡找到它"
+    }
   }
 }

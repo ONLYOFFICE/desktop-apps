@@ -1,244 +1,242 @@
 {
-  "id": {
-    "title": "Gabungkan PDF",
-    "description": "Gabungkan file menjadi satu dengan opsi penyelarasan gaya",
-    "usertext": "Pilih file PDF yang ingin Anda gabungkan"
-  },
+  "id": "merge-pdf",
   "group": "pdf",
   "prompt": "Please merge the attached PDF files into a single document. Align styles and formatting for a consistent result across the merged file.",
-  "en": {
-    "title": "Merge PDF",
-    "description": "Merge files into one, with style alignment option",
-    "usertext": "Select the PDF files you want to merge"
-  },
-  "ar-SA": {
-    "title": "دمج PDF",
-    "description": "دمج الملفات في ملف واحد مع خيار محاذاة النمط",
-    "usertext": "حدد ملفات PDF التي تريد دمجها"
-  },
-  "be": {
-    "title": "Аб'яднаць PDF",
-    "description": "Аб'яднаць файлы ў адзін з выраўноўваннем стылю",
-    "usertext": "Выберыце файлы PDF для аб'яднання"
-  },
-  "bg": {
-    "title": "Обединяване на PDF",
-    "description": "Обединяване на файлове в един с опция за изравняване на стиловете",
-    "usertext": "Изберете PDF файловете, които искате да обедините"
-  },
-  "ca": {
-    "title": "Combinar PDF",
-    "description": "Combinar fitxers en un, amb opció d'alineació d'estils",
-    "usertext": "Seleccioneu els fitxers PDF que voleu combinar"
-  },
-  "cs": {
-    "title": "Sloučit PDF",
-    "description": "Sloučit soubory do jednoho se zarovnáním stylů",
-    "usertext": "Vyberte soubory PDF, které chcete sloučit"
-  },
-  "da": {
-    "title": "Flet PDF",
-    "description": "Flet filer til én med stilalignering",
-    "usertext": "Vælg de PDF-filer, du vil flette"
-  },
-  "de": {
-    "title": "PDF zusammenführen",
-    "description": "Dateien zu einer zusammenführen, mit Stilanpassung",
-    "usertext": "PDF-Dateien auswählen, die zusammengeführt werden sollen"
-  },
-  "el": {
-    "title": "Συγχώνευση PDF",
-    "description": "Συγχώνευση αρχείων σε ένα με επιλογή στοίχισης στυλ",
-    "usertext": "Επιλέξτε τα αρχεία PDF που θέλετε να συγχωνεύσετε"
-  },
-  "en-GB": {
-    "title": "Merge PDF",
-    "description": "Merge files into one, with style alignment option",
-    "usertext": "Select the PDF files you want to merge"
-  },
-  "es": {
-    "title": "Combinar PDF",
-    "description": "Combinar archivos en uno con opción de alineación de estilos",
-    "usertext": "Selecciona los archivos PDF que deseas combinar"
-  },
-  "et": {
-    "title": "Ühenda PDF",
-    "description": "Ühenda failid üheks stiili joondamise valikuga",
-    "usertext": "Vali PDF-failid, mida soovid ühendada"
-  },
-  "fi": {
-    "title": "Yhdistä PDF",
-    "description": "Yhdistä tiedostot yhdeksi tyylin tasaus -vaihtoehdolla",
-    "usertext": "Valitse PDF-tiedostot, jotka haluat yhdistää"
-  },
-  "fr": {
-    "title": "Fusionner des PDF",
-    "description": "Fusionner des fichiers en un seul avec option d'alignement de style",
-    "usertext": "Sélectionnez les fichiers PDF à fusionner"
-  },
-  "ga": {
-    "title": "Cumaisc PDF",
-    "description": "Cumaisc comhaid in aon cheann amháin le rogha ailínithe stíle",
-    "usertext": "Roghnaigh na comhaid PDF is mian leat a chumasc"
-  },
-  "gl": {
-    "title": "Combinar PDF",
-    "description": "Combinar ficheiros nun só con opción de aliñación de estilo",
-    "usertext": "Selecciona os ficheiros PDF que desexas combinar"
-  },
-  "he": {
-    "title": "מיזוג PDF",
-    "description": "מיזוג קבצים לאחד עם אפשרות יישור סגנון",
-    "usertext": "בחר את קבצי ה-PDF שברצונך למזג"
-  },
-  "hi": {
-    "title": "PDF मर्ज करें",
-    "description": "फ़ाइलों को एक में मर्ज करें, शैली संरेखण विकल्प के साथ",
-    "usertext": "वे PDF फ़ाइलें चुनें जिन्हें आप मर्ज करना चाहते हैं"
-  },
-  "hr": {
-    "title": "Spoji PDF",
-    "description": "Spoji datoteke u jednu s opcijom usklađivanja stilova",
-    "usertext": "Odaberite PDF datoteke koje želite spojiti"
-  },
-  "hu": {
-    "title": "PDF összefűzése",
-    "description": "Fájlok összefűzése egybe stílusigazítási lehetőséggel",
-    "usertext": "Válassza ki az összefűzni kívánt PDF fájlokat"
-  },
-  "hy": {
-    "title": "Միաձուլել PDF",
-    "description": "Միաձուլել ֆայլերը մեկ ֆայլի մեջ ոճի հավասարեցման հնարավորությամբ",
-    "usertext": "Ընտրեք PDF ֆայլերը, որոնք ցանկանում եք միաձուլել"
-  },
-  "it": {
-    "title": "Unisci PDF",
-    "description": "Unisci file in uno con opzione di allineamento stile",
-    "usertext": "Seleziona i file PDF che vuoi unire"
-  },
-  "ja": {
-    "title": "PDFを結合",
-    "description": "ファイルを1つに結合（スタイル調整オプション付き）",
-    "usertext": "結合するPDFファイルを選択してください"
-  },
-  "ko": {
-    "title": "PDF 병합",
-    "description": "파일을 하나로 병합 (스타일 정렬 옵션 포함)",
-    "usertext": "병합할 PDF 파일을 선택하세요"
-  },
-  "lo": {
-    "title": "ລວມ PDF",
-    "description": "ລວມໄຟລ໌ເຂົ້າໃນໜຶ່ງດ້ວຍຕົວເລືອກການຈັດລຽງຮູບແບບ",
-    "usertext": "ເລືອກໄຟລ໌ PDF ທີ່ທ່ານຕ້ອງການລວມ"
-  },
-  "lt": {
-    "title": "Sujungti PDF",
-    "description": "Sujungti failus į vieną su stiliaus lygiavimo parinktimi",
-    "usertext": "Pasirinkite PDF failus, kuriuos norite sujungti"
-  },
-  "lv": {
-    "title": "Apvienot PDF",
-    "description": "Apvienot failus vienā ar stila izlīdzināšanas opciju",
-    "usertext": "Atlasiet PDF failus, kurus vēlaties apvienot"
-  },
-  "nl": {
-    "title": "PDF samenvoegen",
-    "description": "Bestanden samenvoegen tot één met stijluitlijning",
-    "usertext": "Selecteer de PDF-bestanden die u wilt samenvoegen"
-  },
-  "no": {
-    "title": "Slå sammen PDF",
-    "description": "Slå sammen filer til én med stiljusteringsalternativ",
-    "usertext": "Velg PDF-filene du vil slå sammen"
-  },
-  "pl": {
-    "title": "Scal PDF",
-    "description": "Scal pliki w jeden z opcją wyrównania stylów",
-    "usertext": "Wybierz pliki PDF, które chcesz scalić"
-  },
-  "pt-BR": {
-    "title": "Mesclar PDF",
-    "description": "Mesclar arquivos em um só com opção de alinhamento de estilo",
-    "usertext": "Selecione os arquivos PDF que deseja mesclar"
-  },
-  "pt-PT": {
-    "title": "Unir PDF",
-    "description": "Unir ficheiros num só com opção de alinhamento de estilo",
-    "usertext": "Selecione os ficheiros PDF que pretende unir"
-  },
-  "ro": {
-    "title": "Îmbinare PDF",
-    "description": "Îmbinați fișiere într-unul cu opțiunea de aliniere a stilului",
-    "usertext": "Selectați fișierele PDF pe care doriți să le îmbinați"
-  },
-  "ru": {
-    "title": "Объединить PDF",
-    "description": "Объединить файлы в один с выравниванием стилей",
-    "usertext": "Выберите файлы PDF для объединения"
-  },
-  "si": {
-    "title": "PDF ඒකාබද්ධ කරන්න",
-    "description": "ශෛලි සමගිකරණ විකල්පය සමඟ ගොනු එකක් ලෙස ඒකාබද්ධ කරන්න",
-    "usertext": "ඔබට ඒකාබද්ධ කිරීමට අවශ්‍ය PDF ගොනු තෝරන්න"
-  },
-  "sk": {
-    "title": "Zlúčiť PDF",
-    "description": "Zlúčiť súbory do jedného so zarovnaním štýlov",
-    "usertext": "Vyberte súbory PDF, ktoré chcete zlúčiť"
-  },
-  "sl": {
-    "title": "Združi PDF",
-    "description": "Združite datoteke v eno z možnostjo poravnave slogov",
-    "usertext": "Izberite datoteke PDF, ki jih želite združiti"
-  },
-  "sq": {
-    "title": "Bashko PDF",
-    "description": "Bashkoni skedarët në një me opsionin e rreshtimit të stileve",
-    "usertext": "Zgjidhni skedarët PDF që dëshironi të bashkoni"
-  },
-  "sr-Cyrl-RS": {
-    "title": "Спој PDF",
-    "description": "Споји фајлове у један са опцијом усклађивања стилова",
-    "usertext": "Изаберите PDF фајлове које желите да спојите"
-  },
-  "sr-Latn-RS": {
-    "title": "Spoji PDF",
-    "description": "Spoji fajlove u jedan sa opcijom usklađivanja stilova",
-    "usertext": "Izaberite PDF fajlove koje želite da spojite"
-  },
-  "sv": {
-    "title": "Slå ihop PDF",
-    "description": "Slå ihop filer till en med stiljusteringsalternativ",
-    "usertext": "Välj de PDF-filer du vill slå ihop"
-  },
-  "tr": {
-    "title": "PDF Birleştir",
-    "description": "Dosyaları stil hizalama seçeneği ile birleştir",
-    "usertext": "Birleştirmek istediğiniz PDF dosyalarını seçin"
-  },
-  "uk": {
-    "title": "Об'єднати PDF",
-    "description": "Об'єднати файли в один з вирівнюванням стилів",
-    "usertext": "Виберіть PDF-файли для об'єднання"
-  },
-  "ur": {
-    "title": "PDF ضم کریں",
-    "description": "فائلوں کو ایک میں ضم کریں، اسٹائل ترتیب کے اختیار کے ساتھ",
-    "usertext": "وہ PDF فائلیں منتخب کریں جنہیں آپ ضم کرنا چاہتے ہیں"
-  },
-  "vi": {
-    "title": "Ghép PDF",
-    "description": "Ghép các tệp thành một, với tùy chọn căn chỉnh kiểu",
-    "usertext": "Chọn các tệp PDF bạn muốn ghép"
-  },
-  "zh-CN": {
-    "title": "合并 PDF",
-    "description": "将文件合并为一个，并提供样式对齐选项",
-    "usertext": "选择要合并的 PDF 文件"
-  },
-  "zh-TW": {
-    "title": "合併 PDF",
-    "description": "將檔案合併為一個，並提供樣式對齊選項",
-    "usertext": "選取您要合併的 PDF 檔案"
+  "locale": {
+    "en": {
+      "title": "Merge PDF",
+      "description": "Merge files into one, with style alignment option",
+      "usertext": "Select the PDF files you want to merge"
+    },
+    "ar-SA": {
+      "title": "دمج PDF",
+      "description": "دمج الملفات في ملف واحد مع خيار محاذاة النمط",
+      "usertext": "حدد ملفات PDF التي تريد دمجها"
+    },
+    "be": {
+      "title": "Аб'яднаць PDF",
+      "description": "Аб'яднаць файлы ў адзін з выраўноўваннем стылю",
+      "usertext": "Выберыце файлы PDF для аб'яднання"
+    },
+    "bg": {
+      "title": "Обединяване на PDF",
+      "description": "Обединяване на файлове в един с опция за изравняване на стиловете",
+      "usertext": "Изберете PDF файловете, които искате да обедините"
+    },
+    "ca": {
+      "title": "Combinar PDF",
+      "description": "Combinar fitxers en un, amb opció d'alineació d'estils",
+      "usertext": "Seleccioneu els fitxers PDF que voleu combinar"
+    },
+    "cs": {
+      "title": "Sloučit PDF",
+      "description": "Sloučit soubory do jednoho se zarovnáním stylů",
+      "usertext": "Vyberte soubory PDF, které chcete sloučit"
+    },
+    "da": {
+      "title": "Flet PDF",
+      "description": "Flet filer til én med stilalignering",
+      "usertext": "Vælg de PDF-filer, du vil flette"
+    },
+    "de": {
+      "title": "PDF zusammenführen",
+      "description": "Dateien zu einer zusammenführen, mit Stilanpassung",
+      "usertext": "PDF-Dateien auswählen, die zusammengeführt werden sollen"
+    },
+    "el": {
+      "title": "Συγχώνευση PDF",
+      "description": "Συγχώνευση αρχείων σε ένα με επιλογή στοίχισης στυλ",
+      "usertext": "Επιλέξτε τα αρχεία PDF που θέλετε να συγχωνεύσετε"
+    },
+    "en-GB": {
+      "title": "Merge PDF",
+      "description": "Merge files into one, with style alignment option",
+      "usertext": "Select the PDF files you want to merge"
+    },
+    "es": {
+      "title": "Combinar PDF",
+      "description": "Combinar archivos en uno con opción de alineación de estilos",
+      "usertext": "Selecciona los archivos PDF que deseas combinar"
+    },
+    "et": {
+      "title": "Ühenda PDF",
+      "description": "Ühenda failid üheks stiili joondamise valikuga",
+      "usertext": "Vali PDF-failid, mida soovid ühendada"
+    },
+    "fi": {
+      "title": "Yhdistä PDF",
+      "description": "Yhdistä tiedostot yhdeksi tyylin tasaus -vaihtoehdolla",
+      "usertext": "Valitse PDF-tiedostot, jotka haluat yhdistää"
+    },
+    "fr": {
+      "title": "Fusionner des PDF",
+      "description": "Fusionner des fichiers en un seul avec option d'alignement de style",
+      "usertext": "Sélectionnez les fichiers PDF à fusionner"
+    },
+    "ga": {
+      "title": "Cumaisc PDF",
+      "description": "Cumaisc comhaid in aon cheann amháin le rogha ailínithe stíle",
+      "usertext": "Roghnaigh na comhaid PDF is mian leat a chumasc"
+    },
+    "gl": {
+      "title": "Combinar PDF",
+      "description": "Combinar ficheiros nun só con opción de aliñación de estilo",
+      "usertext": "Selecciona os ficheiros PDF que desexas combinar"
+    },
+    "he": {
+      "title": "מיזוג PDF",
+      "description": "מיזוג קבצים לאחד עם אפשרות יישור סגנון",
+      "usertext": "בחר את קבצי ה-PDF שברצונך למזג"
+    },
+    "hi": {
+      "title": "PDF मर्ज करें",
+      "description": "फ़ाइलों को एक में मर्ज करें, शैली संरेखण विकल्प के साथ",
+      "usertext": "वे PDF फ़ाइलें चुनें जिन्हें आप मर्ज करना चाहते हैं"
+    },
+    "hr": {
+      "title": "Spoji PDF",
+      "description": "Spoji datoteke u jednu s opcijom usklađivanja stilova",
+      "usertext": "Odaberite PDF datoteke koje želite spojiti"
+    },
+    "hu": {
+      "title": "PDF összefűzése",
+      "description": "Fájlok összefűzése egybe stílusigazítási lehetőséggel",
+      "usertext": "Válassza ki az összefűzni kívánt PDF fájlokat"
+    },
+    "hy": {
+      "title": "Միաձուլել PDF",
+      "description": "Միաձուլել ֆայլերը մեկ ֆայլի մեջ ոճի հավասարեցման հնարավորությամբ",
+      "usertext": "Ընտրեք PDF ֆայլերը, որոնք ցանկանում եք միաձուլել"
+    },
+    "it": {
+      "title": "Unisci PDF",
+      "description": "Unisci file in uno con opzione di allineamento stile",
+      "usertext": "Seleziona i file PDF che vuoi unire"
+    },
+    "ja": {
+      "title": "PDFを結合",
+      "description": "ファイルを1つに結合（スタイル調整オプション付き）",
+      "usertext": "結合するPDFファイルを選択してください"
+    },
+    "ko": {
+      "title": "PDF 병합",
+      "description": "파일을 하나로 병합 (스타일 정렬 옵션 포함)",
+      "usertext": "병합할 PDF 파일을 선택하세요"
+    },
+    "lo": {
+      "title": "ລວມ PDF",
+      "description": "ລວມໄຟລ໌ເຂົ້າໃນໜຶ່ງດ້ວຍຕົວເລືອກການຈັດລຽງຮູບແບບ",
+      "usertext": "ເລືອກໄຟລ໌ PDF ທີ່ທ່ານຕ້ອງການລວມ"
+    },
+    "lt": {
+      "title": "Sujungti PDF",
+      "description": "Sujungti failus į vieną su stiliaus lygiavimo parinktimi",
+      "usertext": "Pasirinkite PDF failus, kuriuos norite sujungti"
+    },
+    "lv": {
+      "title": "Apvienot PDF",
+      "description": "Apvienot failus vienā ar stila izlīdzināšanas opciju",
+      "usertext": "Atlasiet PDF failus, kurus vēlaties apvienot"
+    },
+    "nl": {
+      "title": "PDF samenvoegen",
+      "description": "Bestanden samenvoegen tot één met stijluitlijning",
+      "usertext": "Selecteer de PDF-bestanden die u wilt samenvoegen"
+    },
+    "no": {
+      "title": "Slå sammen PDF",
+      "description": "Slå sammen filer til én med stiljusteringsalternativ",
+      "usertext": "Velg PDF-filene du vil slå sammen"
+    },
+    "pl": {
+      "title": "Scal PDF",
+      "description": "Scal pliki w jeden z opcją wyrównania stylów",
+      "usertext": "Wybierz pliki PDF, które chcesz scalić"
+    },
+    "pt-BR": {
+      "title": "Mesclar PDF",
+      "description": "Mesclar arquivos em um só com opção de alinhamento de estilo",
+      "usertext": "Selecione os arquivos PDF que deseja mesclar"
+    },
+    "pt-PT": {
+      "title": "Unir PDF",
+      "description": "Unir ficheiros num só com opção de alinhamento de estilo",
+      "usertext": "Selecione os ficheiros PDF que pretende unir"
+    },
+    "ro": {
+      "title": "Îmbinare PDF",
+      "description": "Îmbinați fișiere într-unul cu opțiunea de aliniere a stilului",
+      "usertext": "Selectați fișierele PDF pe care doriți să le îmbinați"
+    },
+    "ru": {
+      "title": "Объединить PDF",
+      "description": "Объединить файлы в один с выравниванием стилей",
+      "usertext": "Выберите файлы PDF для объединения"
+    },
+    "si": {
+      "title": "PDF ඒකාබද්ධ කරන්න",
+      "description": "ශෛලි සමගිකරණ විකල්පය සමඟ ගොනු එකක් ලෙස ඒකාබද්ධ කරන්න",
+      "usertext": "ඔබට ඒකාබද්ධ කිරීමට අවශ්‍ය PDF ගොනු තෝරන්න"
+    },
+    "sk": {
+      "title": "Zlúčiť PDF",
+      "description": "Zlúčiť súbory do jedného so zarovnaním štýlov",
+      "usertext": "Vyberte súbory PDF, ktoré chcete zlúčiť"
+    },
+    "sl": {
+      "title": "Združi PDF",
+      "description": "Združite datoteke v eno z možnostjo poravnave slogov",
+      "usertext": "Izberite datoteke PDF, ki jih želite združiti"
+    },
+    "sq": {
+      "title": "Bashko PDF",
+      "description": "Bashkoni skedarët në një me opsionin e rreshtimit të stileve",
+      "usertext": "Zgjidhni skedarët PDF që dëshironi të bashkoni"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Спој PDF",
+      "description": "Споји фајлове у један са опцијом усклађивања стилова",
+      "usertext": "Изаберите PDF фајлове које желите да спојите"
+    },
+    "sr-Latn-RS": {
+      "title": "Spoji PDF",
+      "description": "Spoji fajlove u jedan sa opcijom usklađivanja stilova",
+      "usertext": "Izaberite PDF fajlove koje želite da spojite"
+    },
+    "sv": {
+      "title": "Slå ihop PDF",
+      "description": "Slå ihop filer till en med stiljusteringsalternativ",
+      "usertext": "Välj de PDF-filer du vill slå ihop"
+    },
+    "tr": {
+      "title": "PDF Birleştir",
+      "description": "Dosyaları stil hizalama seçeneği ile birleştir",
+      "usertext": "Birleştirmek istediğiniz PDF dosyalarını seçin"
+    },
+    "uk": {
+      "title": "Об'єднати PDF",
+      "description": "Об'єднати файли в один з вирівнюванням стилів",
+      "usertext": "Виберіть PDF-файли для об'єднання"
+    },
+    "ur": {
+      "title": "PDF ضم کریں",
+      "description": "فائلوں کو ایک میں ضم کریں، اسٹائل ترتیب کے اختیار کے ساتھ",
+      "usertext": "وہ PDF فائلیں منتخب کریں جنہیں آپ ضم کرنا چاہتے ہیں"
+    },
+    "vi": {
+      "title": "Ghép PDF",
+      "description": "Ghép các tệp thành một, với tùy chọn căn chỉnh kiểu",
+      "usertext": "Chọn các tệp PDF bạn muốn ghép"
+    },
+    "zh-CN": {
+      "title": "合并 PDF",
+      "description": "将文件合并为一个，并提供样式对齐选项",
+      "usertext": "选择要合并的 PDF 文件"
+    },
+    "zh-TW": {
+      "title": "合併 PDF",
+      "description": "將檔案合併為一個，並提供樣式對齊選項",
+      "usertext": "選取您要合併的 PDF 檔案"
+    }
   }
 }

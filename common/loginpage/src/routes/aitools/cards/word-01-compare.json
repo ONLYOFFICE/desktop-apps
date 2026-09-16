@@ -1,244 +1,242 @@
 {
-  "id": {
-    "title": "Bandingkan Dokumen",
-    "description": "Bandingkan dan sorot perbedaan antara versi dokumen",
-    "usertext": "Pilih dua dokumen yang ingin Anda bandingkan"
-  },
+  "id": "compare-documents",
   "group": "word",
   "prompt": "Please compare the two attached documents and highlight all differences between them, including text changes, insertions, deletions, and formatting differences.",
-  "en": {
-    "title": "Compare Documents",
-    "description": "Compare and highlight differences between document versions",
-    "usertext": "Select the two documents you want to compare"
-  },
-  "ar-SA": {
-    "title": "مقارنة المستندات",
-    "description": "مقارنة وإبراز الاختلافات بين إصدارات المستند",
-    "usertext": "اختر المستندين اللذين تريد مقارنتهما"
-  },
-  "be": {
-    "title": "Параўнаць дакументы",
-    "description": "Параўнаць і выдзеліць адрозненні паміж версіямі дакумента",
-    "usertext": "Выберыце два дакументы для параўнання"
-  },
-  "bg": {
-    "title": "Сравняване на документи",
-    "description": "Сравняване и маркиране на разликите между версии на документ",
-    "usertext": "Изберете двата документа, които искате да сравните"
-  },
-  "ca": {
-    "title": "Comparar documents",
-    "description": "Comparar i ressaltar diferències entre versions de documents",
-    "usertext": "Seleccioneu els dos documents que voleu comparar"
-  },
-  "cs": {
-    "title": "Porovnat dokumenty",
-    "description": "Porovnat a zvýraznit rozdíly mezi verzemi dokumentu",
-    "usertext": "Vyberte dva dokumenty, které chcete porovnat"
-  },
-  "da": {
-    "title": "Sammenlign dokumenter",
-    "description": "Sammenlign og fremhæv forskelle mellem dokumentversioner",
-    "usertext": "Vælg de to dokumenter, du vil sammenligne"
-  },
-  "de": {
-    "title": "Dokumente vergleichen",
-    "description": "Unterschiede zwischen Dokumentversionen vergleichen und hervorheben",
-    "usertext": "Wählen Sie die zwei Dokumente aus, die Sie vergleichen möchten"
-  },
-  "el": {
-    "title": "Σύγκριση εγγράφων",
-    "description": "Σύγκριση και επισήμανση διαφορών μεταξύ εκδόσεων εγγράφου",
-    "usertext": "Επιλέξτε τα δύο έγγραφα που θέλετε να συγκρίνετε"
-  },
-  "en-GB": {
-    "title": "Compare Documents",
-    "description": "Compare and highlight differences between document versions",
-    "usertext": "Select the two documents you want to compare"
-  },
-  "es": {
-    "title": "Comparar documentos",
-    "description": "Comparar y resaltar diferencias entre versiones de documentos",
-    "usertext": "Seleccione los dos documentos que desea comparar"
-  },
-  "et": {
-    "title": "Dokumentide võrdlemine",
-    "description": "Dokumentide versioonide erinevuste võrdlemine ja esiletõstmine",
-    "usertext": "Valige kaks dokumenti, mida soovite võrrelda"
-  },
-  "fi": {
-    "title": "Vertaile asiakirjoja",
-    "description": "Vertaile ja korosta eroja asiakirjaversioiden välillä",
-    "usertext": "Valitse kaksi asiakirjaa, joita haluat vertailla"
-  },
-  "fr": {
-    "title": "Comparer les documents",
-    "description": "Comparer et mettre en évidence les différences entre les versions de documents",
-    "usertext": "Sélectionnez les deux documents à comparer"
-  },
-  "ga": {
-    "title": "Cáipéisí a Chur i gComparáid",
-    "description": "Cuir leaganacha cáipéisí i gcomparáid agus aibhsigh na difríochtaí",
-    "usertext": "Roghnaigh an dá cháipéis atá uait a chur i gcomparáid"
-  },
-  "gl": {
-    "title": "Comparar documentos",
-    "description": "Comparar e destacar as diferenzas entre versións de documentos",
-    "usertext": "Seleccione os dous documentos que desexa comparar"
-  },
-  "he": {
-    "title": "השוואת מסמכים",
-    "description": "השווה והדגש הבדלים בין גרסאות מסמך",
-    "usertext": "בחר את שני המסמכים שברצונך להשוות"
-  },
-  "hi": {
-    "title": "दस्तावेज़ तुलना करें",
-    "description": "दस्तावेज़ संस्करणों के बीच अंतर तुलना करें और हाइलाइट करें",
-    "usertext": "वे दो दस्तावेज़ चुनें जिन्हें आप तुलना करना चाहते हैं"
-  },
-  "hr": {
-    "title": "Usporedi dokumente",
-    "description": "Usporedi i istakni razlike između verzija dokumenta",
-    "usertext": "Odaberite dva dokumenta koja želite usporediti"
-  },
-  "hu": {
-    "title": "Dokumentumok összehasonlítása",
-    "description": "Dokumentumverziók közötti különbségek összehasonlítása és kiemelése",
-    "usertext": "Válassza ki az összehasonlítani kívánt két dokumentumot"
-  },
-  "hy": {
-    "title": "Փաստաթղթերի համեմատություն",
-    "description": "Փաստաթղթի տարբերակների տարբերությունների համեմատություն և ընդգծում",
-    "usertext": "Ընտրեք երկու փաստաթուղթ, որոնք ցանկանում եք համեմատել"
-  },
-  "it": {
-    "title": "Confronta documenti",
-    "description": "Confronta ed evidenzia le differenze tra versioni di documenti",
-    "usertext": "Seleziona i due documenti che vuoi confrontare"
-  },
-  "ja": {
-    "title": "文書を比較",
-    "description": "文書バージョン間の違いを比較してハイライト",
-    "usertext": "比較したい2つの文書を選択してください"
-  },
-  "ko": {
-    "title": "문서 비교",
-    "description": "문서 버전 간의 차이점 비교 및 강조",
-    "usertext": "비교할 두 문서를 선택하세요"
-  },
-  "lo": {
-    "title": "ປຽບທຽບເອກະສານ",
-    "description": "ປຽບທຽບແລະເນັ້ນຄວາມແຕກຕ່າງລະຫວ່າງເວີຊັນເອກະສານ",
-    "usertext": "ເລືອກສອງເອກະສານທີ່ທ່ານຕ້ອງການປຽບທຽບ"
-  },
-  "lt": {
-    "title": "Palyginti dokumentus",
-    "description": "Palyginti ir paryškinti skirtumus tarp dokumento versijų",
-    "usertext": "Pasirinkite du dokumentus, kuriuos norite palyginti"
-  },
-  "lv": {
-    "title": "Salīdzināt dokumentus",
-    "description": "Salīdzināt un izcelt atšķirības starp dokumentu versijām",
-    "usertext": "Atlasiet abus dokumentus, ko vēlaties salīdzināt"
-  },
-  "nl": {
-    "title": "Documenten vergelijken",
-    "description": "Verschillen tussen documentversies vergelijken en markeren",
-    "usertext": "Selecteer de twee documenten die u wilt vergelijken"
-  },
-  "no": {
-    "title": "Sammenlign dokumenter",
-    "description": "Sammenlign og fremhev forskjeller mellom dokumentversjoner",
-    "usertext": "Velg de to dokumentene du vil sammenligne"
-  },
-  "pl": {
-    "title": "Porównaj dokumenty",
-    "description": "Porównaj i wyróżnij różnice między wersjami dokumentu",
-    "usertext": "Wybierz dwa dokumenty, które chcesz porównać"
-  },
-  "pt-BR": {
-    "title": "Comparar documentos",
-    "description": "Comparar e destacar diferenças entre versões de documentos",
-    "usertext": "Selecione os dois documentos que deseja comparar"
-  },
-  "pt-PT": {
-    "title": "Comparar documentos",
-    "description": "Comparar e realçar diferenças entre versões de documentos",
-    "usertext": "Selecione os dois documentos que pretende comparar"
-  },
-  "ro": {
-    "title": "Comparare documente",
-    "description": "Comparați și evidențiați diferențele dintre versiunile documentului",
-    "usertext": "Selectați cele două documente pe care doriți să le comparați"
-  },
-  "ru": {
-    "title": "Сравнить документы",
-    "description": "Сравнить и выделить различия между версиями документа",
-    "usertext": "Выберите два документа для сравнения"
-  },
-  "si": {
-    "title": "ලේඛන සංසන්දනය",
-    "description": "ලේඛන අනුවාද අතර වෙනස්කම් සංසන්දනය කර ඉස්මතු කරන්න",
-    "usertext": "ඔබ සංසන්දනය කිරීමට කැමති ලේඛන දෙක තෝරන්න"
-  },
-  "sk": {
-    "title": "Porovnať dokumenty",
-    "description": "Porovnať a zvýrazniť rozdiely medzi verziami dokumentu",
-    "usertext": "Vyberte dva dokumenty, ktoré chcete porovnať"
-  },
-  "sl": {
-    "title": "Primerjaj dokumente",
-    "description": "Primerjaj in označi razlike med različicami dokumenta",
-    "usertext": "Izberite dva dokumenta, ki ju želite primerjati"
-  },
-  "sq": {
-    "title": "Krahaso dokumentet",
-    "description": "Krahaso dhe nxirr në pah ndryshimet midis versioneve të dokumentit",
-    "usertext": "Zgjidhni dy dokumentet që doni të krahasoni"
-  },
-  "sr-Cyrl-RS": {
-    "title": "Упореди документе",
-    "description": "Упореди и истакни разлике између верзија документа",
-    "usertext": "Изаберите два документа која желите да упоредите"
-  },
-  "sr-Latn-RS": {
-    "title": "Uporedi dokumente",
-    "description": "Uporedi i istakni razlike između verzija dokumenta",
-    "usertext": "Izaberite dva dokumenta koja želite da uporedite"
-  },
-  "sv": {
-    "title": "Jämför dokument",
-    "description": "Jämför och markera skillnader mellan dokumentversioner",
-    "usertext": "Välj de två dokument du vill jämföra"
-  },
-  "tr": {
-    "title": "Belgeleri Karşılaştır",
-    "description": "Belge sürümleri arasındaki farkları karşılaştırın ve vurgulayın",
-    "usertext": "Karşılaştırmak istediğiniz iki belgeyi seçin"
-  },
-  "uk": {
-    "title": "Порівняти документи",
-    "description": "Порівняти та виділити відмінності між версіями документа",
-    "usertext": "Виберіть два документи для порівняння"
-  },
-  "ur": {
-    "title": "دستاویزات کا موازنہ",
-    "description": "دستاویز کے ورژنز کے درمیان فرق کا موازنہ کریں اور اجاگر کریں",
-    "usertext": "وہ دو دستاویزات منتخب کریں جن کا آپ موازنہ کرنا چاہتے ہیں"
-  },
-  "vi": {
-    "title": "So sánh tài liệu",
-    "description": "So sánh và làm nổi bật sự khác biệt giữa các phiên bản tài liệu",
-    "usertext": "Chọn hai tài liệu bạn muốn so sánh"
-  },
-  "zh-CN": {
-    "title": "比较文档",
-    "description": "比较并突出显示文档版本之间的差异",
-    "usertext": "选择要比较的两个文档"
-  },
-  "zh-TW": {
-    "title": "比較文件",
-    "description": "比較並突出顯示文件版本之間的差異",
-    "usertext": "選擇要比較的兩個文件"
+  "locale": {
+    "en": {
+      "title": "Compare Documents",
+      "description": "Compare and highlight differences between document versions",
+      "usertext": "Select the two documents you want to compare"
+    },
+    "ar-SA": {
+      "title": "مقارنة المستندات",
+      "description": "مقارنة وإبراز الاختلافات بين إصدارات المستند",
+      "usertext": "اختر المستندين اللذين تريد مقارنتهما"
+    },
+    "be": {
+      "title": "Параўнаць дакументы",
+      "description": "Параўнаць і выдзеліць адрозненні паміж версіямі дакумента",
+      "usertext": "Выберыце два дакументы для параўнання"
+    },
+    "bg": {
+      "title": "Сравняване на документи",
+      "description": "Сравняване и маркиране на разликите между версии на документ",
+      "usertext": "Изберете двата документа, които искате да сравните"
+    },
+    "ca": {
+      "title": "Comparar documents",
+      "description": "Comparar i ressaltar diferències entre versions de documents",
+      "usertext": "Seleccioneu els dos documents que voleu comparar"
+    },
+    "cs": {
+      "title": "Porovnat dokumenty",
+      "description": "Porovnat a zvýraznit rozdíly mezi verzemi dokumentu",
+      "usertext": "Vyberte dva dokumenty, které chcete porovnat"
+    },
+    "da": {
+      "title": "Sammenlign dokumenter",
+      "description": "Sammenlign og fremhæv forskelle mellem dokumentversioner",
+      "usertext": "Vælg de to dokumenter, du vil sammenligne"
+    },
+    "de": {
+      "title": "Dokumente vergleichen",
+      "description": "Unterschiede zwischen Dokumentversionen vergleichen und hervorheben",
+      "usertext": "Wählen Sie die zwei Dokumente aus, die Sie vergleichen möchten"
+    },
+    "el": {
+      "title": "Σύγκριση εγγράφων",
+      "description": "Σύγκριση και επισήμανση διαφορών μεταξύ εκδόσεων εγγράφου",
+      "usertext": "Επιλέξτε τα δύο έγγραφα που θέλετε να συγκρίνετε"
+    },
+    "en-GB": {
+      "title": "Compare Documents",
+      "description": "Compare and highlight differences between document versions",
+      "usertext": "Select the two documents you want to compare"
+    },
+    "es": {
+      "title": "Comparar documentos",
+      "description": "Comparar y resaltar diferencias entre versiones de documentos",
+      "usertext": "Seleccione los dos documentos que desea comparar"
+    },
+    "et": {
+      "title": "Dokumentide võrdlemine",
+      "description": "Dokumentide versioonide erinevuste võrdlemine ja esiletõstmine",
+      "usertext": "Valige kaks dokumenti, mida soovite võrrelda"
+    },
+    "fi": {
+      "title": "Vertaile asiakirjoja",
+      "description": "Vertaile ja korosta eroja asiakirjaversioiden välillä",
+      "usertext": "Valitse kaksi asiakirjaa, joita haluat vertailla"
+    },
+    "fr": {
+      "title": "Comparer les documents",
+      "description": "Comparer et mettre en évidence les différences entre les versions de documents",
+      "usertext": "Sélectionnez les deux documents à comparer"
+    },
+    "ga": {
+      "title": "Cáipéisí a Chur i gComparáid",
+      "description": "Cuir leaganacha cáipéisí i gcomparáid agus aibhsigh na difríochtaí",
+      "usertext": "Roghnaigh an dá cháipéis atá uait a chur i gcomparáid"
+    },
+    "gl": {
+      "title": "Comparar documentos",
+      "description": "Comparar e destacar as diferenzas entre versións de documentos",
+      "usertext": "Seleccione os dous documentos que desexa comparar"
+    },
+    "he": {
+      "title": "השוואת מסמכים",
+      "description": "השווה והדגש הבדלים בין גרסאות מסמך",
+      "usertext": "בחר את שני המסמכים שברצונך להשוות"
+    },
+    "hi": {
+      "title": "दस्तावेज़ तुलना करें",
+      "description": "दस्तावेज़ संस्करणों के बीच अंतर तुलना करें और हाइलाइट करें",
+      "usertext": "वे दो दस्तावेज़ चुनें जिन्हें आप तुलना करना चाहते हैं"
+    },
+    "hr": {
+      "title": "Usporedi dokumente",
+      "description": "Usporedi i istakni razlike između verzija dokumenta",
+      "usertext": "Odaberite dva dokumenta koja želite usporediti"
+    },
+    "hu": {
+      "title": "Dokumentumok összehasonlítása",
+      "description": "Dokumentumverziók közötti különbségek összehasonlítása és kiemelése",
+      "usertext": "Válassza ki az összehasonlítani kívánt két dokumentumot"
+    },
+    "hy": {
+      "title": "Փաստաթղթերի համեմատություն",
+      "description": "Փաստաթղթի տարբերակների տարբերությունների համեմատություն և ընդգծում",
+      "usertext": "Ընտրեք երկու փաստաթուղթ, որոնք ցանկանում եք համեմատել"
+    },
+    "it": {
+      "title": "Confronta documenti",
+      "description": "Confronta ed evidenzia le differenze tra versioni di documenti",
+      "usertext": "Seleziona i due documenti che vuoi confrontare"
+    },
+    "ja": {
+      "title": "文書を比較",
+      "description": "文書バージョン間の違いを比較してハイライト",
+      "usertext": "比較したい2つの文書を選択してください"
+    },
+    "ko": {
+      "title": "문서 비교",
+      "description": "문서 버전 간의 차이점 비교 및 강조",
+      "usertext": "비교할 두 문서를 선택하세요"
+    },
+    "lo": {
+      "title": "ປຽບທຽບເອກະສານ",
+      "description": "ປຽບທຽບແລະເນັ້ນຄວາມແຕກຕ່າງລະຫວ່າງເວີຊັນເອກະສານ",
+      "usertext": "ເລືອກສອງເອກະສານທີ່ທ່ານຕ້ອງການປຽບທຽບ"
+    },
+    "lt": {
+      "title": "Palyginti dokumentus",
+      "description": "Palyginti ir paryškinti skirtumus tarp dokumento versijų",
+      "usertext": "Pasirinkite du dokumentus, kuriuos norite palyginti"
+    },
+    "lv": {
+      "title": "Salīdzināt dokumentus",
+      "description": "Salīdzināt un izcelt atšķirības starp dokumentu versijām",
+      "usertext": "Atlasiet abus dokumentus, ko vēlaties salīdzināt"
+    },
+    "nl": {
+      "title": "Documenten vergelijken",
+      "description": "Verschillen tussen documentversies vergelijken en markeren",
+      "usertext": "Selecteer de twee documenten die u wilt vergelijken"
+    },
+    "no": {
+      "title": "Sammenlign dokumenter",
+      "description": "Sammenlign og fremhev forskjeller mellom dokumentversjoner",
+      "usertext": "Velg de to dokumentene du vil sammenligne"
+    },
+    "pl": {
+      "title": "Porównaj dokumenty",
+      "description": "Porównaj i wyróżnij różnice między wersjami dokumentu",
+      "usertext": "Wybierz dwa dokumenty, które chcesz porównać"
+    },
+    "pt-BR": {
+      "title": "Comparar documentos",
+      "description": "Comparar e destacar diferenças entre versões de documentos",
+      "usertext": "Selecione os dois documentos que deseja comparar"
+    },
+    "pt-PT": {
+      "title": "Comparar documentos",
+      "description": "Comparar e realçar diferenças entre versões de documentos",
+      "usertext": "Selecione os dois documentos que pretende comparar"
+    },
+    "ro": {
+      "title": "Comparare documente",
+      "description": "Comparați și evidențiați diferențele dintre versiunile documentului",
+      "usertext": "Selectați cele două documente pe care doriți să le comparați"
+    },
+    "ru": {
+      "title": "Сравнить документы",
+      "description": "Сравнить и выделить различия между версиями документа",
+      "usertext": "Выберите два документа для сравнения"
+    },
+    "si": {
+      "title": "ලේඛන සංසන්දනය",
+      "description": "ලේඛන අනුවාද අතර වෙනස්කම් සංසන්දනය කර ඉස්මතු කරන්න",
+      "usertext": "ඔබ සංසන්දනය කිරීමට කැමති ලේඛන දෙක තෝරන්න"
+    },
+    "sk": {
+      "title": "Porovnať dokumenty",
+      "description": "Porovnať a zvýrazniť rozdiely medzi verziami dokumentu",
+      "usertext": "Vyberte dva dokumenty, ktoré chcete porovnať"
+    },
+    "sl": {
+      "title": "Primerjaj dokumente",
+      "description": "Primerjaj in označi razlike med različicami dokumenta",
+      "usertext": "Izberite dva dokumenta, ki ju želite primerjati"
+    },
+    "sq": {
+      "title": "Krahaso dokumentet",
+      "description": "Krahaso dhe nxirr në pah ndryshimet midis versioneve të dokumentit",
+      "usertext": "Zgjidhni dy dokumentet që doni të krahasoni"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Упореди документе",
+      "description": "Упореди и истакни разлике између верзија документа",
+      "usertext": "Изаберите два документа која желите да упоредите"
+    },
+    "sr-Latn-RS": {
+      "title": "Uporedi dokumente",
+      "description": "Uporedi i istakni razlike između verzija dokumenta",
+      "usertext": "Izaberite dva dokumenta koja želite da uporedite"
+    },
+    "sv": {
+      "title": "Jämför dokument",
+      "description": "Jämför och markera skillnader mellan dokumentversioner",
+      "usertext": "Välj de två dokument du vill jämföra"
+    },
+    "tr": {
+      "title": "Belgeleri Karşılaştır",
+      "description": "Belge sürümleri arasındaki farkları karşılaştırın ve vurgulayın",
+      "usertext": "Karşılaştırmak istediğiniz iki belgeyi seçin"
+    },
+    "uk": {
+      "title": "Порівняти документи",
+      "description": "Порівняти та виділити відмінності між версіями документа",
+      "usertext": "Виберіть два документи для порівняння"
+    },
+    "ur": {
+      "title": "دستاویزات کا موازنہ",
+      "description": "دستاویز کے ورژنز کے درمیان فرق کا موازنہ کریں اور اجاگر کریں",
+      "usertext": "وہ دو دستاویزات منتخب کریں جن کا آپ موازنہ کرنا چاہتے ہیں"
+    },
+    "vi": {
+      "title": "So sánh tài liệu",
+      "description": "So sánh và làm nổi bật sự khác biệt giữa các phiên bản tài liệu",
+      "usertext": "Chọn hai tài liệu bạn muốn so sánh"
+    },
+    "zh-CN": {
+      "title": "比较文档",
+      "description": "比较并突出显示文档版本之间的差异",
+      "usertext": "选择要比较的两个文档"
+    },
+    "zh-TW": {
+      "title": "比較文件",
+      "description": "比較並突出顯示文件版本之間的差異",
+      "usertext": "選擇要比較的兩個文件"
+    }
   }
 }

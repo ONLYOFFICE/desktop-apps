@@ -5,6 +5,8 @@ const cardModules = import.meta.glob('./cards/*.json', { eager: true });
 const allCards = Object.values(cardModules).map((m) => m.default);
 
 function localize(card, lang) {
+  if (!!card?.locale)
+    return card.locale[lang] ?? card.locale[lang?.split('_')[0]] ?? card.locale.en ?? {};
   return card[lang] ?? card[lang?.split('_')[0]] ?? card.en ?? {};
 }
 

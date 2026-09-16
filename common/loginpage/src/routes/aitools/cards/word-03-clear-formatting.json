@@ -1,244 +1,242 @@
 {
-  "id": {
-    "title": "Hapus Format",
-    "description": "Bersihkan gaya, font, dan warna",
-    "usertext": "Pilih dokumen atau jelaskan di mana menemukannya"
-  },
+  "id": "clear-formatting",
   "group": "word",
   "prompt": "Please remove all custom formatting from the attached document including styles, fonts, colors, and spacing, leaving clean consistently formatted plain text.",
-  "en": {
-    "title": "Clear Formatting",
-    "description": "Clean styles, fonts, and colors",
-    "usertext": "Select a document or describe where to find it"
-  },
-  "ar-SA": {
-    "title": "مسح التنسيق",
-    "description": "تنظيف الأنماط والخطوط والألوان",
-    "usertext": "اختر مستنداً أو صف مكان وجوده"
-  },
-  "be": {
-    "title": "Ачысціць фарматаванне",
-    "description": "Ачысціць стылі, шрыфты і колеры",
-    "usertext": "Выберыце дакумент або апішыце, дзе яго знайсці"
-  },
-  "bg": {
-    "title": "Изчистване на форматиране",
-    "description": "Почистване на стилове, шрифтове и цветове",
-    "usertext": "Изберете документ или опишете къде да го намерите"
-  },
-  "ca": {
-    "title": "Esborrar format",
-    "description": "Netejar estils, tipus de lletra i colors",
-    "usertext": "Seleccioneu un document o descriviu on trobar-lo"
-  },
-  "cs": {
-    "title": "Vymazat formátování",
-    "description": "Vyčistit styly, písma a barvy",
-    "usertext": "Vyberte dokument nebo popište, kde ho najít"
-  },
-  "da": {
-    "title": "Ryd formatering",
-    "description": "Rens typografier, skrifttyper og farver",
-    "usertext": "Vælg et dokument eller beskriv, hvor du finder det"
-  },
-  "de": {
-    "title": "Formatierung entfernen",
-    "description": "Stile, Schriften und Farben bereinigen",
-    "usertext": "Wählen Sie ein Dokument aus oder beschreiben Sie, wo Sie es finden"
-  },
-  "el": {
-    "title": "Εκκαθάριση μορφοποίησης",
-    "description": "Καθαρισμός στυλ, γραμματοσειρών και χρωμάτων",
-    "usertext": "Επιλέξτε ένα έγγραφο ή περιγράψτε πού να το βρείτε"
-  },
-  "en-GB": {
-    "title": "Clear Formatting",
-    "description": "Clean styles, fonts, and colours",
-    "usertext": "Select a document or describe where to find it"
-  },
-  "es": {
-    "title": "Borrar formato",
-    "description": "Limpiar estilos, fuentes y colores",
-    "usertext": "Seleccione un documento o describa dónde encontrarlo"
-  },
-  "et": {
-    "title": "Vorminduse kustutamine",
-    "description": "Stiilide, fontide ja värvide puhastamine",
-    "usertext": "Valige dokument või kirjeldage, kust seda leida"
-  },
-  "fi": {
-    "title": "Tyhjennä muotoilu",
-    "description": "Puhdista tyylit, fontit ja värit",
-    "usertext": "Valitse asiakirja tai kuvaile, mistä se löytyy"
-  },
-  "fr": {
-    "title": "Effacer la mise en forme",
-    "description": "Nettoyer les styles, les polices et les couleurs",
-    "usertext": "Sélectionnez un document ou décrivez où le trouver"
-  },
-  "ga": {
-    "title": "Glan Formáidiú",
-    "description": "Glan stíleanna, clónna agus dathanna",
-    "usertext": "Roghnaigh cáipéis nó cuir síos ar cá bhfuil sí"
-  },
-  "gl": {
-    "title": "Borrar formato",
-    "description": "Limpar estilos, fontes e cores",
-    "usertext": "Seleccione un documento ou describa onde atopalo"
-  },
-  "he": {
-    "title": "ניקוי עיצוב",
-    "description": "נקה סגנונות, גופנים וצבעים",
-    "usertext": "בחר מסמך או תאר היכן למצוא אותו"
-  },
-  "hi": {
-    "title": "फ़ॉर्मेटिंग साफ़ करें",
-    "description": "शैलियां, फ़ॉन्ट और रंग साफ़ करें",
-    "usertext": "कोई दस्तावेज़ चुनें या बताएं कि इसे कहां खोजें"
-  },
-  "hr": {
-    "title": "Ukloni oblikovanje",
-    "description": "Obrišite stilove, fontove i boje",
-    "usertext": "Odaberite dokument ili opišite gdje ga pronaći"
-  },
-  "hu": {
-    "title": "Formázás törlése",
-    "description": "Stílusok, betűtípusok és színek megtisztítása",
-    "usertext": "Válasszon dokumentumot, vagy írja le, hol található"
-  },
-  "hy": {
-    "title": "Ջնջել ֆորմատավորումը",
-    "description": "Մաքրել ոճերը, տառատեսակները և գույները",
-    "usertext": "Ընտրեք փաստաթուղթ կամ նկարագրեք, թե որտեղ կարելի է գտնել այն"
-  },
-  "it": {
-    "title": "Cancella formattazione",
-    "description": "Pulisci stili, font e colori",
-    "usertext": "Seleziona un documento o descrivi dove trovarlo"
-  },
-  "ja": {
-    "title": "書式をクリア",
-    "description": "スタイル、フォント、色をクリーンアップ",
-    "usertext": "文書を選択するか、どこにあるか説明してください"
-  },
-  "ko": {
-    "title": "서식 지우기",
-    "description": "스타일, 글꼴 및 색상 정리",
-    "usertext": "문서를 선택하거나 파일 위치를 설명하세요"
-  },
-  "lo": {
-    "title": "ລ້າງການຈັດຮູບແບບ",
-    "description": "ລ້າງຮູບແບບ, ຟອນ, ແລະສີ",
-    "usertext": "ເລືອກເອກະສານ ຫຼືອະທິບາຍວ່າຈະຫາມັນໄດ້ທີ່ໃດ"
-  },
-  "lt": {
-    "title": "Išvalyti formatavimą",
-    "description": "Valyti stilius, šriftus ir spalvas",
-    "usertext": "Pasirinkite dokumentą arba apibūdinkite, kur jį rasti"
-  },
-  "lv": {
-    "title": "Notīrīt formatējumu",
-    "description": "Notīrīt stilus, fontus un krāsas",
-    "usertext": "Atlasiet dokumentu vai aprakstiet, kur to atrast"
-  },
-  "nl": {
-    "title": "Opmaak wissen",
-    "description": "Stijlen, lettertypen en kleuren opschonen",
-    "usertext": "Selecteer een document of beschrijf waar u het kunt vinden"
-  },
-  "no": {
-    "title": "Fjern formatering",
-    "description": "Rens stiler, skrifter og farger",
-    "usertext": "Velg et dokument eller beskriv hvor du finner det"
-  },
-  "pl": {
-    "title": "Wyczyść formatowanie",
-    "description": "Oczyść style, czcionki i kolory",
-    "usertext": "Wybierz dokument lub opisz, gdzie go znaleźć"
-  },
-  "pt-BR": {
-    "title": "Limpar formatação",
-    "description": "Limpar estilos, fontes e cores",
-    "usertext": "Selecione um documento ou descreva onde encontrá-lo"
-  },
-  "pt-PT": {
-    "title": "Limpar formatação",
-    "description": "Limpar estilos, tipos de letra e cores",
-    "usertext": "Selecione um documento ou descreva onde o encontrar"
-  },
-  "ro": {
-    "title": "Ștergere formatare",
-    "description": "Curățați stiluri, fonturi și culori",
-    "usertext": "Selectați un document sau descrieți unde să îl găsiți"
-  },
-  "ru": {
-    "title": "Очистить форматирование",
-    "description": "Очистить стили, шрифты и цвета",
-    "usertext": "Выберите документ или опишите, где его найти"
-  },
-  "si": {
-    "title": "හැඩතල ගැන්වීම ඉවත් කරන්න",
-    "description": "විලාස, අකුරු සහ වර්ණ පිරිසිදු කරන්න",
-    "usertext": "ලේඛනයක් තෝරන්න හෝ එය සොයා ගන්නේ කොතැනින්ද යන්න විස්තර කරන්න"
-  },
-  "sk": {
-    "title": "Vymazať formátovanie",
-    "description": "Vyčistiť štýly, písma a farby",
-    "usertext": "Vyberte dokument alebo opíšte, kde ho nájsť"
-  },
-  "sl": {
-    "title": "Počisti oblikovanje",
-    "description": "Očistite sloge, pisave in barve",
-    "usertext": "Izberite dokument ali opišite, kje ga najti"
-  },
-  "sq": {
-    "title": "Pastro formatimin",
-    "description": "Pastro stilet, fontet dhe ngjyrat",
-    "usertext": "Zgjidhni një dokument ose përshkruani ku ta gjeni"
-  },
-  "sr-Cyrl-RS": {
-    "title": "Уклони обликовање",
-    "description": "Очистите стилове, фонтове и боје",
-    "usertext": "Изаберите документ или опишите где да га нађете"
-  },
-  "sr-Latn-RS": {
-    "title": "Ukloni oblikovanje",
-    "description": "Očistite stilove, fontove i boje",
-    "usertext": "Izaberite dokument ili opišite gde da ga nađete"
-  },
-  "sv": {
-    "title": "Rensa formatering",
-    "description": "Rensa stilar, typsnitt och färger",
-    "usertext": "Välj ett dokument eller beskriv var du hittar det"
-  },
-  "tr": {
-    "title": "Biçimlendirmeyi Temizle",
-    "description": "Stilleri, yazı tiplerini ve renkleri temizleyin",
-    "usertext": "Bir belge seçin veya nerede bulunduğunu açıklayın"
-  },
-  "uk": {
-    "title": "Очистити форматування",
-    "description": "Очистити стилі, шрифти та кольори",
-    "usertext": "Виберіть документ або опишіть, де його знайти"
-  },
-  "ur": {
-    "title": "فارمیٹنگ صاف کریں",
-    "description": "اسٹائلز، فانٹس اور رنگ صاف کریں",
-    "usertext": "دستاویز منتخب کریں یا بتائیں کہ اسے کہاں تلاش کریں"
-  },
-  "vi": {
-    "title": "Xóa định dạng",
-    "description": "Làm sạch kiểu, phông chữ và màu sắc",
-    "usertext": "Chọn tài liệu hoặc mô tả nơi tìm nó"
-  },
-  "zh-CN": {
-    "title": "清除格式",
-    "description": "清理样式、字体和颜色",
-    "usertext": "选择文档或描述文件位置"
-  },
-  "zh-TW": {
-    "title": "清除格式",
-    "description": "清理樣式、字體和顏色",
-    "usertext": "選擇文件或描述檔案位置"
+  "locale": {
+    "en": {
+      "title": "Clear Formatting",
+      "description": "Clean styles, fonts, and colors",
+      "usertext": "Select a document or describe where to find it"
+    },
+    "ar-SA": {
+      "title": "مسح التنسيق",
+      "description": "تنظيف الأنماط والخطوط والألوان",
+      "usertext": "اختر مستنداً أو صف مكان وجوده"
+    },
+    "be": {
+      "title": "Ачысціць фарматаванне",
+      "description": "Ачысціць стылі, шрыфты і колеры",
+      "usertext": "Выберыце дакумент або апішыце, дзе яго знайсці"
+    },
+    "bg": {
+      "title": "Изчистване на форматиране",
+      "description": "Почистване на стилове, шрифтове и цветове",
+      "usertext": "Изберете документ или опишете къде да го намерите"
+    },
+    "ca": {
+      "title": "Esborrar format",
+      "description": "Netejar estils, tipus de lletra i colors",
+      "usertext": "Seleccioneu un document o descriviu on trobar-lo"
+    },
+    "cs": {
+      "title": "Vymazat formátování",
+      "description": "Vyčistit styly, písma a barvy",
+      "usertext": "Vyberte dokument nebo popište, kde ho najít"
+    },
+    "da": {
+      "title": "Ryd formatering",
+      "description": "Rens typografier, skrifttyper og farver",
+      "usertext": "Vælg et dokument eller beskriv, hvor du finder det"
+    },
+    "de": {
+      "title": "Formatierung entfernen",
+      "description": "Stile, Schriften und Farben bereinigen",
+      "usertext": "Wählen Sie ein Dokument aus oder beschreiben Sie, wo Sie es finden"
+    },
+    "el": {
+      "title": "Εκκαθάριση μορφοποίησης",
+      "description": "Καθαρισμός στυλ, γραμματοσειρών και χρωμάτων",
+      "usertext": "Επιλέξτε ένα έγγραφο ή περιγράψτε πού να το βρείτε"
+    },
+    "en-GB": {
+      "title": "Clear Formatting",
+      "description": "Clean styles, fonts, and colours",
+      "usertext": "Select a document or describe where to find it"
+    },
+    "es": {
+      "title": "Borrar formato",
+      "description": "Limpiar estilos, fuentes y colores",
+      "usertext": "Seleccione un documento o describa dónde encontrarlo"
+    },
+    "et": {
+      "title": "Vorminduse kustutamine",
+      "description": "Stiilide, fontide ja värvide puhastamine",
+      "usertext": "Valige dokument või kirjeldage, kust seda leida"
+    },
+    "fi": {
+      "title": "Tyhjennä muotoilu",
+      "description": "Puhdista tyylit, fontit ja värit",
+      "usertext": "Valitse asiakirja tai kuvaile, mistä se löytyy"
+    },
+    "fr": {
+      "title": "Effacer la mise en forme",
+      "description": "Nettoyer les styles, les polices et les couleurs",
+      "usertext": "Sélectionnez un document ou décrivez où le trouver"
+    },
+    "ga": {
+      "title": "Glan Formáidiú",
+      "description": "Glan stíleanna, clónna agus dathanna",
+      "usertext": "Roghnaigh cáipéis nó cuir síos ar cá bhfuil sí"
+    },
+    "gl": {
+      "title": "Borrar formato",
+      "description": "Limpar estilos, fontes e cores",
+      "usertext": "Seleccione un documento ou describa onde atopalo"
+    },
+    "he": {
+      "title": "ניקוי עיצוב",
+      "description": "נקה סגנונות, גופנים וצבעים",
+      "usertext": "בחר מסמך או תאר היכן למצוא אותו"
+    },
+    "hi": {
+      "title": "फ़ॉर्मेटिंग साफ़ करें",
+      "description": "शैलियां, फ़ॉन्ट और रंग साफ़ करें",
+      "usertext": "कोई दस्तावेज़ चुनें या बताएं कि इसे कहां खोजें"
+    },
+    "hr": {
+      "title": "Ukloni oblikovanje",
+      "description": "Obrišite stilove, fontove i boje",
+      "usertext": "Odaberite dokument ili opišite gdje ga pronaći"
+    },
+    "hu": {
+      "title": "Formázás törlése",
+      "description": "Stílusok, betűtípusok és színek megtisztítása",
+      "usertext": "Válasszon dokumentumot, vagy írja le, hol található"
+    },
+    "hy": {
+      "title": "Ջնջել ֆորմատավորումը",
+      "description": "Մաքրել ոճերը, տառատեսակները և գույները",
+      "usertext": "Ընտրեք փաստաթուղթ կամ նկարագրեք, թե որտեղ կարելի է գտնել այն"
+    },
+    "it": {
+      "title": "Cancella formattazione",
+      "description": "Pulisci stili, font e colori",
+      "usertext": "Seleziona un documento o descrivi dove trovarlo"
+    },
+    "ja": {
+      "title": "書式をクリア",
+      "description": "スタイル、フォント、色をクリーンアップ",
+      "usertext": "文書を選択するか、どこにあるか説明してください"
+    },
+    "ko": {
+      "title": "서식 지우기",
+      "description": "스타일, 글꼴 및 색상 정리",
+      "usertext": "문서를 선택하거나 파일 위치를 설명하세요"
+    },
+    "lo": {
+      "title": "ລ້າງການຈັດຮູບແບບ",
+      "description": "ລ້າງຮູບແບບ, ຟອນ, ແລະສີ",
+      "usertext": "ເລືອກເອກະສານ ຫຼືອະທິບາຍວ່າຈະຫາມັນໄດ້ທີ່ໃດ"
+    },
+    "lt": {
+      "title": "Išvalyti formatavimą",
+      "description": "Valyti stilius, šriftus ir spalvas",
+      "usertext": "Pasirinkite dokumentą arba apibūdinkite, kur jį rasti"
+    },
+    "lv": {
+      "title": "Notīrīt formatējumu",
+      "description": "Notīrīt stilus, fontus un krāsas",
+      "usertext": "Atlasiet dokumentu vai aprakstiet, kur to atrast"
+    },
+    "nl": {
+      "title": "Opmaak wissen",
+      "description": "Stijlen, lettertypen en kleuren opschonen",
+      "usertext": "Selecteer een document of beschrijf waar u het kunt vinden"
+    },
+    "no": {
+      "title": "Fjern formatering",
+      "description": "Rens stiler, skrifter og farger",
+      "usertext": "Velg et dokument eller beskriv hvor du finner det"
+    },
+    "pl": {
+      "title": "Wyczyść formatowanie",
+      "description": "Oczyść style, czcionki i kolory",
+      "usertext": "Wybierz dokument lub opisz, gdzie go znaleźć"
+    },
+    "pt-BR": {
+      "title": "Limpar formatação",
+      "description": "Limpar estilos, fontes e cores",
+      "usertext": "Selecione um documento ou descreva onde encontrá-lo"
+    },
+    "pt-PT": {
+      "title": "Limpar formatação",
+      "description": "Limpar estilos, tipos de letra e cores",
+      "usertext": "Selecione um documento ou descreva onde o encontrar"
+    },
+    "ro": {
+      "title": "Ștergere formatare",
+      "description": "Curățați stiluri, fonturi și culori",
+      "usertext": "Selectați un document sau descrieți unde să îl găsiți"
+    },
+    "ru": {
+      "title": "Очистить форматирование",
+      "description": "Очистить стили, шрифты и цвета",
+      "usertext": "Выберите документ или опишите, где его найти"
+    },
+    "si": {
+      "title": "හැඩතල ගැන්වීම ඉවත් කරන්න",
+      "description": "විලාස, අකුරු සහ වර්ණ පිරිසිදු කරන්න",
+      "usertext": "ලේඛනයක් තෝරන්න හෝ එය සොයා ගන්නේ කොතැනින්ද යන්න විස්තර කරන්න"
+    },
+    "sk": {
+      "title": "Vymazať formátovanie",
+      "description": "Vyčistiť štýly, písma a farby",
+      "usertext": "Vyberte dokument alebo opíšte, kde ho nájsť"
+    },
+    "sl": {
+      "title": "Počisti oblikovanje",
+      "description": "Očistite sloge, pisave in barve",
+      "usertext": "Izberite dokument ali opišite, kje ga najti"
+    },
+    "sq": {
+      "title": "Pastro formatimin",
+      "description": "Pastro stilet, fontet dhe ngjyrat",
+      "usertext": "Zgjidhni një dokument ose përshkruani ku ta gjeni"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Уклони обликовање",
+      "description": "Очистите стилове, фонтове и боје",
+      "usertext": "Изаберите документ или опишите где да га нађете"
+    },
+    "sr-Latn-RS": {
+      "title": "Ukloni oblikovanje",
+      "description": "Očistite stilove, fontove i boje",
+      "usertext": "Izaberite dokument ili opišite gde da ga nađete"
+    },
+    "sv": {
+      "title": "Rensa formatering",
+      "description": "Rensa stilar, typsnitt och färger",
+      "usertext": "Välj ett dokument eller beskriv var du hittar det"
+    },
+    "tr": {
+      "title": "Biçimlendirmeyi Temizle",
+      "description": "Stilleri, yazı tiplerini ve renkleri temizleyin",
+      "usertext": "Bir belge seçin veya nerede bulunduğunu açıklayın"
+    },
+    "uk": {
+      "title": "Очистити форматування",
+      "description": "Очистити стилі, шрифти та кольори",
+      "usertext": "Виберіть документ або опишіть, де його знайти"
+    },
+    "ur": {
+      "title": "فارمیٹنگ صاف کریں",
+      "description": "اسٹائلز، فانٹس اور رنگ صاف کریں",
+      "usertext": "دستاویز منتخب کریں یا بتائیں کہ اسے کہاں تلاش کریں"
+    },
+    "vi": {
+      "title": "Xóa định dạng",
+      "description": "Làm sạch kiểu, phông chữ và màu sắc",
+      "usertext": "Chọn tài liệu hoặc mô tả nơi tìm nó"
+    },
+    "zh-CN": {
+      "title": "清除格式",
+      "description": "清理样式、字体和颜色",
+      "usertext": "选择文档或描述文件位置"
+    },
+    "zh-TW": {
+      "title": "清除格式",
+      "description": "清理樣式、字體和顏色",
+      "usertext": "選擇文件或描述檔案位置"
+    }
   }
 }
