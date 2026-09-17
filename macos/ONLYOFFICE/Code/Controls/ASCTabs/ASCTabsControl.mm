@@ -45,6 +45,10 @@
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
 #import "ASCTabViewCell.h"
+#import "ASCButton.h"
+#import "ASCButtonCell.h"
+#import "ASCThemesController.h"
+#import "NSColor+Extensions.h"
 #import "NSCefView.h"
 
 static char kASCTabsScrollViewObservationContext;
@@ -104,6 +108,71 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             [anInvocation invokeWithTarget:delegate];
         }
     }
+}
+
+@end
+
+#pragma mark -
+#pragma mark ========================================================
+#pragma mark ASCTabScrollButton
+#pragma mark ========================================================
+#pragma mark -
+
+static CGFloat const kASCTabScrollButtonCornerRadius = 4.f;
+
+@interface ASCTabScrollButton : ASCButton
+@end
+
+@implementation ASCTabScrollButton
+
+- (BOOL)mouseDownCanMoveWindow {
+    return NO;
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+    ASCButtonCell * cell = [self.cell isKindOfClass:[ASCButtonCell class]]
+        ? (ASCButtonCell *)self.cell : nil;
+
+    if (cell && self.isEnabled && (cell.isHover || cell.isPressed)) {
+        NSColor * backgroundColor = cell.isPressed
+            ? [ASCThemesController currentThemeColor:btnPressedBackgroundColor]
+            : [ASCThemesController currentThemeColor:btnHoverBackgroundColor];
+
+        if (!backgroundColor) {
+            backgroundColor = cell.isPressed
+                ? UIColorFromRGBA(0x000000, 0.2)
+                : UIColorFromRGBA(0x000000, 0.1);
+        }
+
+        CGFloat side = MIN(NSWidth(self.bounds), NSHeight(self.bounds));
+        NSRect backgroundRect = NSMakeRect(NSMidX(self.bounds) - side / 2,
+                                           NSMidY(self.bounds) - side / 2,
+                                           side, side);
+
+        NSBezierPath * backgroundPath = [NSBezierPath bezierPathWithRoundedRect:backgroundRect
+                                                                        xRadius:kASCTabScrollButtonCornerRadius
+                                                                        yRadius:kASCTabScrollButtonCornerRadius];
+        [backgroundColor setFill];
+        [backgroundPath fill];
+    }
+
+    if (self.image) {
+        [self.cell drawImage:self.image withFrame:self.bounds inView:self];
+    }
+}
+
+- (void)mouseDown:(NSEvent *)theEvent {
+    if ([self.cell isKindOfClass:[ASCButtonCell class]]) {
+        [(ASCButtonCell *)self.cell mouseDown:theEvent];
+    }
+
+    [self.cell trackMouse:theEvent inRect:self.bounds ofView:self untilMouseUp:YES];
+
+    if ([self.cell isKindOfClass:[ASCButtonCell class]]) {
+        [(ASCButtonCell *)self.cell mouseUp:theEvent];
+    }
+
+    [self setNeedsDisplay];
 }
 
 @end
@@ -173,6 +242,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self addSubview:self.scrollView];
     
     void (^initScrollButton)(NSButton *) = ^ (NSButton *button) {
+        [button setCell:[[ASCButtonCell alloc] initTextCell:@""]];
         [button setBezelStyle:NSBezelStyleRegularSquare];
         [button setTitle:@""];
         [button setBordered:YES];
@@ -184,17 +254,18 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         [self addSubview:button];
     };
     
-    self.scrollLeftButton = [[NSButton alloc] initWithFrame:CGRectZero];
-    [self.scrollLeftButton setAction:@selector(onScrollLeftButton:)];
-    [self.scrollLeftButton setImage:[NSImage imageNamed:@"change-tab_left_normal"]];
+    self.scrollLeftButton = [[ASCTabScrollButton alloc] initWithFrame:CGRectZero];
 //    [self.scrollLeftButton setImagePosition:NSImageRight];
-    self.scrollRightButton = [[NSButton alloc] initWithFrame:CGRectZero];
-    [self.scrollRightButton setAction:@selector(onScrollRightButton:)];
-    [self.scrollRightButton setImage:[NSImage imageNamed:@"change-tab_right_normal"]];
+    self.scrollRightButton = [[ASCTabScrollButton alloc] initWithFrame:CGRectZero];
 //    [self.scrollRightButton setImagePosition:NSImageLeft];
 
     initScrollButton(self.scrollLeftButton);
     initScrollButton(self.scrollRightButton);
+
+    [self.scrollLeftButton setAction:@selector(onScrollLeftButton:)];
+    [self.scrollLeftButton setImage:[NSImage imageNamed:@"change-tab_left_normal"]];
+    [self.scrollRightButton setAction:@selector(onScrollRightButton:)];
+    [self.scrollRightButton setImage:[NSImage imageNamed:@"change-tab_right_normal"]];
     
     [self.scrollLeftButton setFrame:CGRectMake(CGRectGetMaxX(self.frame) - kASCTabsScrollButtonWidth * 2, 0, kASCTabsScrollButtonWidth, CGRectGetHeight(self.frame))];
     [self.scrollRightButton setFrame:CGRectMake(CGRectGetMaxX(self.frame) - kASCTabsScrollButtonWidth, 0, kASCTabsScrollButtonWidth, CGRectGetHeight(self.frame))];
