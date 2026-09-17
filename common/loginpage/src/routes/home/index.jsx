@@ -40,6 +40,7 @@ export default function Index() {
   const [visibleCount, setVisibleCount] = createSignal(BATCH);
   let revealId = 0;
   let checkId = 0;
+  let lastRevealId = null;
 
   const hasFiles = () => recents.length > 0;
   const hasRecovers = () => recovers().length > 0;
@@ -66,6 +67,9 @@ export default function Index() {
   }
 
   function sendCheckFiles() {
+    if (lastRevealId === revealId) return;
+    lastRevealId = revealId;
+
     const id = ++checkId;
     const files = recents.slice();
     if (!files.length) return;
@@ -150,8 +154,7 @@ export default function Index() {
 
   onMount(() => {
     listRecents()
-      .then((raw) => {
-        loadRecents(raw);
+      .then(() => {
         setLoaded(true);
         if (appReady()) sendCheckFiles();
       })
