@@ -9,15 +9,16 @@
   grid-auto-flow: column;
   place-items: center;
   gap: 8px;
-  width: fit-content;
+  /* width: fit-content; */
   min-width: 0;
   display: grid;
+  max-width: unset;
 
   > h1 {
     font-weight: 700;
     font-size: 20px;
     line-height: 28px;
-    width: 712px;
+    /* width: 712px; */
   }
 }
 
