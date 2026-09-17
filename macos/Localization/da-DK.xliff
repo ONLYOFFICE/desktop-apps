@@ -80,6 +80,8 @@
       <trans-unit id="%@ already exists.&#10;Do you want to replace it?" xml:space="preserve">
         <source>%@ already exists.
 Do you want to replace it?</source>
+        <target state="translated">%@ eksisterer allerede.
+Vil du erstatte den?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." xml:space="preserve">
