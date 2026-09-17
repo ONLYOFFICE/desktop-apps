@@ -57,7 +57,7 @@
         "tooltip-background": "#fff",
 
         "tab-active-background": "#f1f1f1",
-        "tab-simple-active-background": "#fff",
+        "tab-simple-active-background": "#f7f7f7",
         "tab-simple-active-text": "#444",
         "tab-default-active-background": "#fff",
         "tab-default-active-text": "#444",
