@@ -30,6 +30,10 @@
     outline: none;
   }
 
+  &[data-expanded] {
+    border-color: var(--border-control-focus);
+  }
+
   &[data-disabled] {
     opacity: 0.4;
     cursor: not-allowed;
