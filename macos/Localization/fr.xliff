@@ -85,10 +85,13 @@
       <trans-unit id="%@ already exists.&#10;Do you want to replace it?" xml:space="preserve">
         <source>%@ already exists.
 Do you want to replace it?</source>
+        <target state="translated">%@ existe déjà.
+Voulez-vous le remplacer ?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." xml:space="preserve">
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
+        <target state="translated">Les fonctionnalités d'AI Tools ne seront pas disponibles après la désinstallation. Tous les paramètres IA (y compris les clés API) ne seront pas supprimés.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
@@ -103,18 +106,22 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="An error occurred while unpacking the archive" xml:space="preserve">
         <source>An error occurred while unpacking the archive</source>
+        <target state="translated">Une erreur s'est produite lors de la décompression de l'archive</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="An unexpected error occurred while installing the add-on." xml:space="preserve">
         <source>An unexpected error occurred while installing the add-on.</source>
+        <target state="translated">Une erreur inattendue s'est produite lors de l'installation du module complémentaire.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Application needs to restart" xml:space="preserve">
         <source>Application needs to restart</source>
+        <target state="translated">L'application doit redémarrer</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Are you sure you want to uninstall ONLYOFFICE AI Tools?" xml:space="preserve">
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
+        <target state="translated">Êtes-vous sûr de vouloir désinstaller ONLYOFFICE AI Tools ?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
@@ -249,6 +256,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Failed to download the add-on due to a network error." xml:space="preserve">
         <source>Failed to download the add-on due to a network error.</source>
+        <target state="translated">Échec du téléchargement du module complémentaire en raison d'une erreur réseau.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
@@ -258,6 +266,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Failed to save the downloaded add-on package." xml:space="preserve">
         <source>Failed to save the downloaded add-on package.</source>
+        <target state="translated">Échec de l'enregistrement du package du module complémentaire téléchargé.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -287,6 +296,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="I'll do it later" xml:space="preserve">
         <source>I'll do it later</source>
+        <target state="translated">Je le ferai plus tard</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
@@ -336,10 +346,12 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="No compatible add-on version is available for this version of the application." xml:space="preserve">
         <source>No compatible add-on version is available for this version of the application.</source>
+        <target state="translated">Aucune version compatible du module complémentaire n'est disponible pour cette version de l'application.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Not enough memory to complete the add-on download." xml:space="preserve">
         <source>Not enough memory to complete the add-on download.</source>
+        <target state="translated">Mémoire insuffisante pour terminer le téléchargement du module complémentaire.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
@@ -359,6 +371,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="ONLYOFFICE AI Tools successfully uninstalled" xml:space="preserve">
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
+        <target state="translated">ONLYOFFICE AI Tools a été désinstallé avec succès</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
@@ -428,6 +441,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Pin to tab" xml:space="preserve">
         <source>Pin to tab</source>
+        <target state="translated">Épingler à l'onglet</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
@@ -487,6 +501,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Restart now" xml:space="preserve">
         <source>Restart now</source>
+        <target state="translated">Redémarrer maintenant</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
@@ -551,14 +566,17 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="The add-on download URL is invalid." xml:space="preserve">
         <source>The add-on download URL is invalid.</source>
+        <target state="translated">L'URL de téléchargement du module complémentaire est invalide.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="The add-on information is invalid or incomplete." xml:space="preserve">
         <source>The add-on information is invalid or incomplete.</source>
+        <target state="translated">Les informations sur le module complémentaire sont invalides ou incomplètes.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="The add-on package is corrupted or has been modified." xml:space="preserve">
         <source>The add-on package is corrupted or has been modified.</source>
+        <target state="translated">Le package du module complémentaire est corrompu ou a été modifié.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
@@ -568,6 +586,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
+        <target state="translated">Le composant AI Tools installé est incompatible avec cette version de l'application. Veuillez mettre à jour le composant AI Tools pour continuer.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
@@ -587,6 +606,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="To install the add-on, update the application to the latest version." xml:space="preserve">
         <source>To install the add-on, update the application to the latest version.</source>
+        <target state="translated">Pour installer le module complémentaire, mettez l'application à jour vers la dernière version.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -621,6 +641,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Version %@" xml:space="preserve">
         <source>Version %@</source>
+        <target state="translated">Version %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -660,6 +681,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="You must restart the application for the settings to take effect." xml:space="preserve">
         <source>You must restart the application for the settings to take effect.</source>
+        <target state="translated">Vous devez redémarrer l'application pour que les paramètres soient pris en compte.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
@@ -1236,18 +1258,22 @@ La période d'essai se termine dans %d jours, après quoi vous ne serez plus en 
       </trans-unit>
       <trans-unit id="aiL-Ab-t19.title" xml:space="preserve">
         <source>Licensed under</source>
+        <target state="translated">Sous licence</target>
         <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19";</note>
       </trans-unit>
       <trans-unit id="aiL-Ab-t22.title" xml:space="preserve">
         <source>Commercial</source>
+        <target state="translated">Commercial</target>
         <note>Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22";</note>
       </trans-unit>
       <trans-unit id="aiN-Ab-t14.title" xml:space="preserve">
         <source>ONLYOFFICE AI Tools</source>
+        <target state="translated">ONLYOFFICE AI Tools</target>
         <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14";</note>
       </trans-unit>
       <trans-unit id="aiV-Ab-t16.title" xml:space="preserve">
         <source>Version</source>
+        <target state="translated">Version</target>
         <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16";</note>
       </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
@@ -1377,6 +1403,7 @@ La période d'essai se termine dans %d jours, après quoi vous ne serez plus en 
       </trans-unit>
       <trans-unit id="lLc-Ab-t05.title" xml:space="preserve">
         <source>Licensed under</source>
+        <target state="translated">Sous licence</target>
         <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">

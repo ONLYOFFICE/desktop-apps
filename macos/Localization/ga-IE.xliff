@@ -80,10 +80,13 @@
       <trans-unit id="%@ already exists.&#10;Do you want to replace it?" xml:space="preserve">
         <source>%@ already exists.
 Do you want to replace it?</source>
+        <target state="translated">%@  ann cheana.
+Ar mhaith leat ceann eile a chur ina ionad?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." xml:space="preserve">
         <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
+        <target state="translated">Ní bheidh gnéithe AI Tools ar fáil tar éis díshuiteála. Ní bheidh na socruithe AI go léir (lena n-áirítear eochracha API) á mbaint.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
@@ -98,18 +101,22 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="An error occurred while unpacking the archive" xml:space="preserve">
         <source>An error occurred while unpacking the archive</source>
+        <target state="translated">Tharla earráid agus an chartlann á díphacáil</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="An unexpected error occurred while installing the add-on." xml:space="preserve">
         <source>An unexpected error occurred while installing the add-on.</source>
+        <target state="translated">Tharla earráid gan choinne le linn suiteáil an bhreiseáin.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Application needs to restart" xml:space="preserve">
         <source>Application needs to restart</source>
+        <target state="translated">Ní mór don fheidhmchlár atosú</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Are you sure you want to uninstall ONLYOFFICE AI Tools?" xml:space="preserve">
         <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
+        <target state="translated">An bhfuil tú cinnte gur mhaith leat ONLYOFFICE AI Tools a dhíshuiteáil?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
@@ -239,6 +246,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Failed to download the add-on due to a network error." xml:space="preserve">
         <source>Failed to download the add-on due to a network error.</source>
+        <target state="translated">Theip ar íoslódáil an bhreiseáin mar gheall ar earráid líonra.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
@@ -248,6 +256,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Failed to save the downloaded add-on package." xml:space="preserve">
         <source>Failed to save the downloaded add-on package.</source>
+        <target state="translated">Theip ar shábháil pacáiste an bhreiseáin a íoslódáladh.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -277,6 +286,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="I'll do it later" xml:space="preserve">
         <source>I'll do it later</source>
+        <target state="translated">Déanfaidh mé é níos déanaí</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
@@ -336,10 +346,12 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="No compatible add-on version is available for this version of the application." xml:space="preserve">
         <source>No compatible add-on version is available for this version of the application.</source>
+        <target state="translated">Níl aon leagan comhoiriúnach den bhreiseán ar fáil don leagan seo den fheidhmchlár.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Not enough memory to complete the add-on download." xml:space="preserve">
         <source>Not enough memory to complete the add-on download.</source>
+        <target state="translated">Níl go leor cuimhne ann chun íoslódáil an bhreiseáin a chríochnú.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
@@ -359,6 +371,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="ONLYOFFICE AI Tools successfully uninstalled" xml:space="preserve">
         <source>ONLYOFFICE AI Tools successfully uninstalled</source>
+        <target state="translated">Díshuiteáladh ONLYOFFICE AI Tools go rathúil</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
@@ -428,6 +441,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Pin to tab" xml:space="preserve">
         <source>Pin to tab</source>
+        <target state="translated">Bioráin go cluaisín</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
@@ -482,6 +496,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Restart now" xml:space="preserve">
         <source>Restart now</source>
+        <target state="translated">Atosaigh anois</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
@@ -546,14 +561,17 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="The add-on download URL is invalid." xml:space="preserve">
         <source>The add-on download URL is invalid.</source>
+        <target state="translated">Tá URL íoslódála an bhreiseáin neamhbhailí.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="The add-on information is invalid or incomplete." xml:space="preserve">
         <source>The add-on information is invalid or incomplete.</source>
+        <target state="translated">Tá faisnéis an bhreiseáin neamhbhailí nó neamhiomlán.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="The add-on package is corrupted or has been modified." xml:space="preserve">
         <source>The add-on package is corrupted or has been modified.</source>
+        <target state="translated">Tá pacáiste an bhreiseáin truaillithe nó athraithe.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
@@ -563,6 +581,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
+        <target state="translated">Tá an chomhpháirt AI Tools suiteáilte neamh-chomhoiriúnach leis an leagan seo den fheidhmchlár. Nuashonraigh an chomhpháirt AI Tools le leanúint ar aghaidh.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
@@ -582,6 +601,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="To install the add-on, update the application to the latest version." xml:space="preserve">
         <source>To install the add-on, update the application to the latest version.</source>
+        <target state="translated">Chun an breiseán a shuiteáil, déan an feidhmchlár a nuashonrú go dtí an leagan is déanaí.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -616,6 +636,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="Version %@" xml:space="preserve">
         <source>Version %@</source>
+        <target state="translated">Leagan %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -655,6 +676,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="You must restart the application for the settings to take effect." xml:space="preserve">
         <source>You must restart the application for the settings to take effect.</source>
+        <target state="translated">Ní mór duit an feidhmchlár a atosú chun go dtiocfaidh na socruithe i bhfeidhm.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
@@ -1282,18 +1304,22 @@ Tiocfaidh deireadh leis an tréimhse trialach i %d laethanta, ina dhiaidh sin n�
       </trans-unit>
       <trans-unit id="aiL-Ab-t19.title" xml:space="preserve">
         <source>Licensed under</source>
+        <target state="translated">Ceadúnaithe faoi</target>
         <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19";</note>
       </trans-unit>
       <trans-unit id="aiL-Ab-t22.title" xml:space="preserve">
         <source>Commercial</source>
+        <target state="translated">Tráchtála</target>
         <note>Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22";</note>
       </trans-unit>
       <trans-unit id="aiN-Ab-t14.title" xml:space="preserve">
         <source>ONLYOFFICE AI Tools</source>
+        <target state="translated">ONLYOFFICE AI Tools</target>
         <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14";</note>
       </trans-unit>
       <trans-unit id="aiV-Ab-t16.title" xml:space="preserve">
         <source>Version</source>
+        <target state="translated">Leagan</target>
         <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16";</note>
       </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
@@ -1423,6 +1449,7 @@ Tiocfaidh deireadh leis an tréimhse trialach i %d laethanta, ina dhiaidh sin n�
       </trans-unit>
       <trans-unit id="lLc-Ab-t05.title" xml:space="preserve">
         <source>Licensed under</source>
+        <target state="translated">Ceadúnaithe faoi</target>
         <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
