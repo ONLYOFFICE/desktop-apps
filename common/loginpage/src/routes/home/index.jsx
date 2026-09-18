@@ -39,8 +39,6 @@ export default function Index() {
   const [loaded, setLoaded] = createSignal(false);
   const [visibleCount, setVisibleCount] = createSignal(BATCH);
   let revealId = 0;
-  let checkId = 0;
-  let lastRevealId = null;
 
   const hasFiles = () => recents.length > 0;
   const hasRecovers = () => recovers().length > 0;
@@ -51,44 +49,30 @@ export default function Index() {
     const sorted = sortByPin(parseRecent(toArray(raw)));
     setVisibleCount(Math.min(BATCH, sorted.length));
     setRecents(reconcile(sorted, { key: "uid" }));
+    sendCheckFiles(sorted.slice(0, BATCH));
 
     if (sorted.length > BATCH) {
       let shown = BATCH;
       function reveal() {
         if (id !== revealId) return;
+        const block = sorted.slice(shown, shown + BATCH);
         shown = Math.min(shown + BATCH, sorted.length);
 
         setVisibleCount(shown);
+        sendCheckFiles(block);
         if (shown < sorted.length) requestAnimationFrame(reveal);
-        else sendCheckFiles();
       }
       requestAnimationFrame(reveal);
     }
   }
 
-  function sendCheckFiles() {
-    if (lastRevealId === revealId) return;
-    lastRevealId = revealId;
-
-    const id = ++checkId;
-    const files = recents.slice();
+  function sendCheckFiles(files) {
     if (!files.length) return;
-
-    let i = 0;
-    function sendNextChunk() {
-      if (id !== checkId) return;
-      const chunk = files.slice(i, i + 40);
-      i += 40;
-
-      const pathByHash = {};
-      chunk.forEach((f) => {
-        pathByHash[f.hash] = f.path;
-      });
-      checkFiles(pathByHash);
-
-      if (i < files.length) setTimeout(sendNextChunk, 30);
-    }
-    sendNextChunk();
+    const pathByHash = {};
+    files.forEach((f) => {
+      pathByHash[f.hash] = f.path;
+    });
+    checkFiles(pathByHash);
   }
 
   function togglePin(fileid) {
@@ -156,7 +140,6 @@ export default function Index() {
     listRecents()
       .then(() => {
         setLoaded(true);
-        if (appReady()) sendCheckFiles();
       })
       .catch(() => setLoaded(true));
 
@@ -171,9 +154,7 @@ export default function Index() {
     const unsubRecovers = onRecoversChanged(loadRecovers);
 
     const unsubCommonMsgs = onNativeMessage((msg, param) => {
-      if (msg === "app:ready") {
-        sendCheckFiles();
-      } else if (msg === "files:checked") {
+      if (msg === "files:checked") {
         let checked;
         try {
           checked = JSON.parse(param);
@@ -200,7 +181,6 @@ export default function Index() {
 
     onCleanup(() => {
       ++revealId;
-      ++checkId;
       unsubRecents();
       unsubRecovers();
       unsubCommonMsgs();
