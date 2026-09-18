@@ -95,7 +95,7 @@ export function parseRecent(arr) {
     const ext = dot >= 0 ? fullName.slice(dot) : "";
     const dir = p.slice(0, p.length - fullName.length - 1);
     const id = f.id;
-    const path = decodeHtml(p);
+    const path = p;
     files.push({
       uid: `file-${id}`,
       fileid: id,

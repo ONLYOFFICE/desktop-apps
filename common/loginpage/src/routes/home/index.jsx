@@ -39,39 +39,43 @@ export default function Index() {
   const [loaded, setLoaded] = createSignal(false);
   const [visibleCount, setVisibleCount] = createSignal(BATCH);
   let revealId = 0;
+  let lastLength = -1;
 
   const hasFiles = () => recents.length > 0;
   const hasRecovers = () => recovers().length > 0;
   const visibleRecents = () => recents.slice(0, visibleCount());
 
   function loadRecents(raw) {
-    const id = ++revealId;
     const sorted = sortByPin(parseRecent(toArray(raw)));
+    if (sorted.length === lastLength) return;
+    lastLength = sorted.length;
+
+    const id = ++revealId;
     setVisibleCount(Math.min(BATCH, sorted.length));
     setRecents(reconcile(sorted, { key: "uid" }));
-    sendCheckFiles(sorted.slice(0, BATCH));
+    sendCheckFiles(sorted, 0, Math.min(BATCH, sorted.length));
 
     if (sorted.length > BATCH) {
       let shown = BATCH;
       function reveal() {
         if (id !== revealId) return;
-        const block = sorted.slice(shown, shown + BATCH);
+        const start = shown;
         shown = Math.min(shown + BATCH, sorted.length);
 
         setVisibleCount(shown);
-        sendCheckFiles(block);
+        sendCheckFiles(sorted, start, shown);
         if (shown < sorted.length) requestAnimationFrame(reveal);
       }
       requestAnimationFrame(reveal);
     }
   }
 
-  function sendCheckFiles(files) {
+  function sendCheckFiles(files, start, end) {
     if (!files.length) return;
     const pathByHash = {};
-    files.forEach((f) => {
-      pathByHash[f.hash] = f.path;
-    });
+    for (let i = start; i < end; i++) {
+      pathByHash[files[i].hash] = files[i].path;
+    }
     checkFiles(pathByHash);
   }
 
