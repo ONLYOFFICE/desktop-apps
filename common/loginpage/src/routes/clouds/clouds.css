@@ -184,7 +184,7 @@
 }
 
 .provider-item:hover {
-  border-color: var(--border-regular-control, #cfcfcf);
+  border-color: var(--border-control-focus, #b2b2b2);
 }
 
 .provider-item:active {
