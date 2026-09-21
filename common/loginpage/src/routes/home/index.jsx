@@ -39,7 +39,7 @@ export default function Index() {
   const [loaded, setLoaded] = createSignal(false);
   const [visibleCount, setVisibleCount] = createSignal(BATCH);
   let revealId = 0;
-  let lastLength = -1;
+  let recentsCountChanged = true;
 
   const hasFiles = () => recents.length > 0;
   const hasRecovers = () => recovers().length > 0;
@@ -47,36 +47,49 @@ export default function Index() {
 
   function loadRecents(raw) {
     const sorted = sortByPin(parseRecent(toArray(raw)));
-    if (sorted.length === lastLength) return;
-    lastLength = sorted.length;
+
+    if (!recentsCountChanged)
+      recentsCountChanged = sorted.length === recents.length;
 
     const id = ++revealId;
     setVisibleCount(Math.min(BATCH, sorted.length));
     setRecents(reconcile(sorted, { key: "uid" }));
-    sendCheckFiles(sorted, 0, Math.min(BATCH, sorted.length));
 
     if (sorted.length > BATCH) {
       let shown = BATCH;
       function reveal() {
-        if (id !== revealId) return;
-        const start = shown;
-        shown = Math.min(shown + BATCH, sorted.length);
+        if (id !== revealId)
+          return;
 
+        shown = Math.min(shown + BATCH, sorted.length);
         setVisibleCount(shown);
-        sendCheckFiles(sorted, start, shown);
-        if (shown < sorted.length) requestAnimationFrame(reveal);
+        if (shown < sorted.length) {
+          requestAnimationFrame(reveal);
+        } else if (recentsCountChanged) {
+          sendCheckFiles(sorted, id);
+        }
       }
       requestAnimationFrame(reveal);
+    } else if (recentsCountChanged) {
+      sendCheckFiles(sorted, id);
     }
   }
 
-  function sendCheckFiles(files, start, end) {
-    if (!files.length) return;
+  function sendCheckFiles(files, id, start = 0) {
+    if (id !== revealId || start >= files.length) return;
+
+    const end = Math.min(start + BATCH, files.length);
     const pathByHash = {};
     for (let i = start; i < end; i++) {
       pathByHash[files[i].hash] = files[i].path;
     }
     checkFiles(pathByHash);
+
+    if (end < files.length) {
+      requestAnimationFrame(() => sendCheckFiles(files, id, end));
+    } else {
+      recentsCountChanged = false;
+    }
   }
 
   function togglePin(fileid) {
@@ -88,7 +101,8 @@ export default function Index() {
       }
       return r;
     });
-    setRecents(reconcile(sortByPin(arr), { key: "uid" }));
+    const sorted = sortByPin(arr);
+    setRecents(reconcile(sorted, { key: "uid" }));
   }
 
   function markFileRemoved(fileid) {
@@ -166,20 +180,18 @@ export default function Index() {
           return;
         }
 
-        if (!checked || typeof checked !== "object") return;
-        setRecents(
-          reconcile(
-            recents.map((r) => {
-              if (r.hash in checked) {
-                const m = {...r, exist: checked[r.hash]};
-                sendFileStatusToChat(m);
-                return m;
-              }
-              return r
-            }),
-            { key: "uid" },
-          ),
-        );
+        if (!checked || typeof checked !== "object")
+          return;
+
+        for (const hash in checked) {
+          const hash_number = parseInt(hash);
+          const idx = recents.findIndex(i => i.hash == hash_number);
+
+          if (!(idx < 0)) {
+            setRecents(idx, "exist", checked[hash]);
+            sendFileStatusToChat(recents[idx]);
+          }
+        }
       }
     });
 
