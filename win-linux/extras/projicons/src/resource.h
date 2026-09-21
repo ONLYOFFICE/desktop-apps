@@ -61,6 +61,16 @@
 #define IDI_ICON61  161
 #define IDI_ICON62  162
 #define IDI_ICON63  163
+#define IDI_ICON64  164
+#define IDI_ICON65  165
+#define IDI_ICON66  166
+#define IDI_ICON67  167
+#define IDI_ICON68  168
+#define IDI_ICON69  169
+#define IDI_ICON70  170
+#define IDI_ICON71  171
+#define IDI_ICON72  172
+#define IDI_ICON73  173
 
 #define IDS_DOCX  1000
 #define IDS_XLSX  1001
@@ -113,6 +123,17 @@
 #define IDS_CSV   1048
 #define IDS_TSV   1049
 #define IDS_DOCXF 1050
+#define IDS_XLT   1051
+#define IDS_SXW   1052
+#define IDS_STW   1053
+#define IDS_SXC   1054
+#define IDS_SXI   1055
+#define IDS_WPS   1056
+#define IDS_WPT   1057
+#define IDS_DPS   1058
+#define IDS_DPT   1059
+#define IDS_HWP   1060
+#define IDS_HWPX  1061
 
 #define IDS_NEW_DOCX  1100
 #define IDS_NEW_XLSX  1101
