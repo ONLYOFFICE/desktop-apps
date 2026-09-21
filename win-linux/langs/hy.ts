@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/caddonmanager.cpp" line="454"/>
         <source>Failed to save the downloaded add-on package.</source>
-        <translation></translation>
+        <translation>Չհաջողվեց պահպանել ներբեռնված հավելման փաթեթը։</translation>
     </message>
     <message>
         <location filename="../src/caddonmanager.cpp" line="458"/>
@@ -120,7 +120,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>Դուք պետք է վերագործարկեք հավելվածը, որպեսզի կարգավորումներն ուժի մեջ մտնեն:</translation>
+        <translation>Դուք պետք է վերագործարկեք հավելվածը, որպեսզի կարգավորումներն ուժի մեջ մտնեն: Վերագործարկե՞լ հիմա։</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2729"/>

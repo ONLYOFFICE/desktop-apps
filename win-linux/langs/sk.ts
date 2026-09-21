@@ -120,7 +120,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>Aby sa nastavenia aktivovali, musíte aplikáciu reštartovať.</translation>
+        <translation>Aby sa nastavenia aktivovali, musíte aplikáciu reštartovať. Reštartovať teraz?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2729"/>

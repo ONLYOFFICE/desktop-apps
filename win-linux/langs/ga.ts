@@ -120,7 +120,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>Ní mór duit an feidhmchlár a atosú chun go dtiocfaidh na socruithe i bhfeidhm.</translation>
+        <translation>Ní mór duit an feidhmchlár a atosú chun go dtiocfaidh na socruithe i bhfeidhm. Atosaigh anois?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2729"/>

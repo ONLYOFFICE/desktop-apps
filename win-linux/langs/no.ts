@@ -120,7 +120,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>Du må starte programmet på nytt for at innstillingene skal tre i kraft.</translation>
+        <translation>Du må starte programmet på nytt for at innstillingene skal tre i kraft. Start på nytt nå?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2729"/>

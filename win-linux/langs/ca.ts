@@ -120,7 +120,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>Heu de reiniciar l&apos;aplicació perquè la configuració tingui efecte.</translation>
+        <translation>Heu de reiniciar l&apos;aplicació perquè la configuració tingui efecte. Vols reiniciar ara?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2729"/>

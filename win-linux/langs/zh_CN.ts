@@ -814,7 +814,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1552"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1%1已存在。&lt;br&gt;您要替换它吗？</translation>
+        <translation>%1 已存在。&lt;br&gt;您要替换它吗？</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1660"/>

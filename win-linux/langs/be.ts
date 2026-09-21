@@ -120,7 +120,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>Неабходна перазапусціць праграму, каб налады ўступілі ў сілу.</translation>
+        <translation>Неабходна перазапусціць праграму, каб налады ўступілі ў сілу. Перазапусціць зараз?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2729"/>

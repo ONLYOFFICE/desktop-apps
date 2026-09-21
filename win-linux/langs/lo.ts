@@ -120,7 +120,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>
         <source>You must restart the application for the settings to take effect.</source>
-        <translation>ທ່ານຕ້ອງເປີດແອັບພລິເຄຊັນຄືນໃໝ່ເພື່ອໃຫ້ການຕັ້ງຄ່າມີຜົນ.</translation>
+        <translation>ທ່ານຕ້ອງເປີດແອັບພລິເຄຊັນຄືນໃໝ່ເພື່ອໃຫ້ການຕັ້ງຄ່າມີຜົນ. ເລີ່ມຕົ້ນໃໝ່ດຽວນີ້ເລີຍບໍ່?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2729"/>
