@@ -109,13 +109,22 @@ function RecentRow(props) {
           </Show>
           <button
             class="btn-recents-tool pin"
+            classList={{ pinned: props.model.pinned }}
             onClick={(e) => {
               e.stopPropagation();
               props.onTogglePin(props.model.fileid);
             }}
           >
-            <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#pin" /></svg>}>
-              <i class="icon tool-icon pin" />
+            <Show when={usePngIcons()}
+              fallback={
+                <>
+                  <svg class="icon default"><use href={props.model.pinned ? "#pinned" : "#pin"} /></svg>
+                  <svg class="icon hover"><use href="#unpin" /></svg>
+                </>
+              }
+            >
+              <i class={`icon tool-icon default ${props.model.pinned ? "pinned" : "pin"}`} />
+              <i class="icon tool-icon hover unpin" />
             </Show>
           </button>
           <Show when={props.model.type !== "folder"}>
