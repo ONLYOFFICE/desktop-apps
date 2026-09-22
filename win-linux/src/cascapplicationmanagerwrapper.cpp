@@ -202,6 +202,27 @@ void CAscApplicationManagerWrapper::setHasFrameFeature(CCefView *cef, const wstr
     }
 }
 
+#ifdef USE_ADDON_MODE
+void CAscApplicationManagerWrapper::checkAndSuggestAddonUpdate()
+{
+    QString version;
+    if (m_private->m_pAddonManager->isInstalled(&version) &&
+        !version.isEmpty() && version != QString(VER_FILEVERSION_STR))
+    {
+        int result = CMessage::showMessage(m_pMainWindow,
+                                           tr("The installed AI Tools component is incompatible with "
+                                              "this version of the application. Please update the AI "
+                                              "Tools component to continue."),
+                                           CMessage::Icon::Info, CMessage::Buttons::YesDefNo);
+        if (result == CMessage::Result::Yes)
+        {
+            m_private->m_bUpgradeInProgress = true;
+            showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Install);
+        }
+    }
+}
+#endif
+
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
 {
     if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND ) {
@@ -509,6 +530,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     /* "close" clicked */
                     if (m_private->m_upgradeDialog)
                         m_private->m_upgradeDialog->reject();
+                }
+                else if (param == L"incompatible")
+                {
+                    checkAndSuggestAddonUpdate();
                 }
                 return true;
             }
@@ -1386,22 +1411,7 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
                 if (m_pMainWindow)
                 {
                     m_pMainWindow->sendAddonStatusToStartPage();
-
-                    QString version;
-                    if (m_private->m_pAddonManager->isInstalled(&version) &&
-                            !version.isEmpty() && version != QString(VER_FILEVERSION_STR))
-                    {
-                        int result = CMessage::showMessage(m_pMainWindow,
-                                        tr("The installed AI Tools component is incompatible with "
-                                           "this version of the application. Please update the AI "
-                                           "Tools component to continue."),
-                                        CMessage::Icon::Info, CMessage::Buttons::YesDefNo);
-                        if (result == CMessage::Result::Yes)
-                        {
-                            m_private->m_bUpgradeInProgress = true;
-                            showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Install);
-                        }
-                    }
+                    checkAndSuggestAddonUpdate();
                 }
             }
         });

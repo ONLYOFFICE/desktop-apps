@@ -149,6 +149,9 @@ private:
     void applyTheme(const std::wstring&, bool force = false);
     void handleDeeplinkActions(const std::vector<std::wstring>& actions);
     void setHasFrameFeature(CCefView*, const std::wstring&, int);
+#ifdef USE_ADDON_MODE
+    void checkAndSuggestAddonUpdate();
+#endif
 
     CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
