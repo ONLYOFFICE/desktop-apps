@@ -95,6 +95,7 @@
 @property (nonatomic, assign) BOOL upgradeInProgress;
 @property (nonatomic, weak) ASCUpgradeController *upgradeController;
 - (void)showUpgradeDialog:(NSWindow *)parentWindow page:(ASCUpgradePage)page;
+- (void)checkAndSuggestAddonUpdate;
 #endif
 @end
 
@@ -1993,12 +1994,23 @@
         return;
     }
 
-    NSString *addonVersion = nil,
-            *appVersion = [ASCAboutController fullAppVersion];
-    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
+    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:nil];
     NSDictionary *jsonObj = @{@"installed": @(isAddonInstalled),
                                 @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
     ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+
+    [self checkAndSuggestAddonUpdate];
+#else
+    NSDictionary *jsonObj = @{@"integrated": @(true)};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+#endif
+}
+
+#ifdef USE_ADDON_MODE
+- (void)checkAndSuggestAddonUpdate {
+    NSString *addonVersion = nil,
+            *appVersion = [ASCAboutController fullAppVersion];
+    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
 
     if (isAddonInstalled && addonVersion.length > 0 && ![addonVersion isEqualToString:appVersion]) {
         NSAlert *alert = [[NSAlert alloc] init];
@@ -2018,11 +2030,8 @@
                        afterDelay:0];
         }
     }
-#else
-    NSDictionary *jsonObj = @{@"integrated": @(true)};
-    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
-#endif
 }
+#endif
 
 - (void)onCEFAddonAction:(NSNotification *)notification {
     NSString *action = notification.userInfo[@"action"];
@@ -2085,6 +2094,8 @@
         if (self.upgradeController) {
             [self.upgradeController reject];
         }
+    } else if ([action isEqualToString:@"incompatible"]) {
+        [self checkAndSuggestAddonUpdate];
     } else
 #endif
     if ([action isEqualToString:@"askrestart"]) {
