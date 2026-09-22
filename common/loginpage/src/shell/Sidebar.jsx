@@ -21,6 +21,9 @@ export default function Sidebar() {
       if (addonInfo()?.restart === true) {
         e.preventDefault();
         command('addon:action', 'askrestart');
+      } else if (addonInfo()?.compatible === false) {
+        e.preventDefault();
+        command('addon:action', 'incompatible');
       } else {
         closeSidePanel();
         openFullAIPanel();
@@ -38,6 +41,9 @@ export default function Sidebar() {
       if (addonInfo()?.restart === true) {
         e.preventDefault();
         command('addon:action', 'askrestart');
+      } else if (addonInfo()?.compatible === false) {
+        e.preventDefault();
+        command('addon:action', 'incompatible');
       }
       // closeSidePanel();
       // href handles navigation
