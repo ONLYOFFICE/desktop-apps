@@ -53,6 +53,7 @@ export function initAbout() {
       try {
         const info = JSON.parse(htmlDecode(param));
         if (info?.version) {
+          info.compatible = info.version == versionInfo().version;
           info.version = info.version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<10?1:mn-9});
         }
 
