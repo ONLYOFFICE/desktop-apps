@@ -130,6 +130,15 @@
   }
 }
 
+.itemDivider {
+  height: 1px;
+  margin: 4px 8px;
+  padding: 0;
+  background: var(--border-regular-control);
+  cursor: default;
+  pointer-events: none;
+}
+
 .itemIndicator {
   display: flex;
   align-items: center;

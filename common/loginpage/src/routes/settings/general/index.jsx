@@ -4,6 +4,7 @@ import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
 import { availableLangs,
         systemThemeEnabled,
+        customThemes,
         userNameError,
         setUserNameError,
         uninstallAddon,
@@ -15,6 +16,9 @@ import styles from "./index.module.css";
 import { addonInfo } from "@/services/about";
 import { aichat } from "@/stores/aichat";
 import { TEMPLATES_COUNTRY_ARRAY } from "@/data/countries";
+
+const ADD_LOCAL_THEME_ITEM = "add-theme";
+const addLocalThemeEnabled = window.RendererProcessVariable?.theme?.addlocal === "on";
 
 export default function GeneralSettings() {
   const countryOptions = createMemo(() => TEMPLATES_COUNTRY_ARRAY);
@@ -58,7 +62,18 @@ export default function GeneralSettings() {
     { value: "theme-dark", label: t("settOptThemeDark") },
     { value: "theme-contrast-dark", label: t("settOptThemeContrastDark") },
     { value: "theme-gray", label: t("settOptThemeGray") },
+    ...customThemes(),
+    addLocalThemeEnabled && { value: "__divider__", label: "", disabled: true, divider: true },
+    addLocalThemeEnabled && { value: ADD_LOCAL_THEME_ITEM, label: t("settOptThemeAddLocal") },
   ].filter(Boolean));
+
+  function handleThemeChange(value) {
+    if (value === ADD_LOCAL_THEME_ITEM) {
+      command("uitheme:add", "local");
+      return;
+    }
+    setSettings("theme", value);
+  }
 
   const openFileOptions = createMemo(() => [
     { value: "tab", label: t("settOptLaunchInTab") },
@@ -156,7 +171,7 @@ export default function GeneralSettings() {
         <div class={styles.fieldRow}>
           <span class={styles.fieldLabel}>{t("settUITheme")}</span>
           <div class={styles.fieldControl}>
-            <Select options={themeOptions()} value={settings.theme} onChange={(v) => setSettings("theme", v)} disallowEmptySelection>
+            <Select options={themeOptions()} value={settings.theme} onChange={handleThemeChange} disallowEmptySelection>
               <Select.Trigger class={styles.fullWidth} />
               <Select.Content />
             </Select>

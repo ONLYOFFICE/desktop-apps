@@ -18,29 +18,35 @@ function Root(props) {
       options={local.options ?? []}
       optionValue={getItemValue}
       optionTextValue={getItemLabel}
+      optionDisabled="disabled"
       value={local.value ?? null}
-      itemComponent={(itemProps) => (
-        <SelectPrimitive.Item item={itemProps.item} class={local.stacked ? `${styles.item} ${styles.itemStacked}` : styles.item}>
-          <SelectPrimitive.ItemLabel class={styles.itemLabel}>
-            <span>{getItemLabel(itemProps.item.rawValue)}</span>
-            {getItemSublabel(itemProps.item.rawValue) && (
-              <span class={styles.itemSubtext}>{getItemSublabel(itemProps.item.rawValue)}</span>
-            )}
-          </SelectPrimitive.ItemLabel>
-          <SelectPrimitive.ItemIndicator class={styles.itemIndicator}>
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M3 8L6.5 11.5L13 5"
-                stroke="currentColor"
-                stroke-width="1.5"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </SelectPrimitive.ItemIndicator>
-        </SelectPrimitive.Item>
-      )}
+      itemComponent={(itemProps) => {
+        if (itemProps.item.rawValue?.divider) {
+          return <SelectPrimitive.Item item={itemProps.item} class={styles.itemDivider} aria-hidden="true" />;
+        }
+        return (
+          <SelectPrimitive.Item item={itemProps.item} class={local.stacked ? `${styles.item} ${styles.itemStacked}` : styles.item}>
+            <SelectPrimitive.ItemLabel class={styles.itemLabel}>
+              <span>{getItemLabel(itemProps.item.rawValue)}</span>
+              {getItemSublabel(itemProps.item.rawValue) && (
+                <span class={styles.itemSubtext}>{getItemSublabel(itemProps.item.rawValue)}</span>
+              )}
+            </SelectPrimitive.ItemLabel>
+            <SelectPrimitive.ItemIndicator class={styles.itemIndicator}>
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M3 8L6.5 11.5L13 5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </SelectPrimitive.ItemIndicator>
+          </SelectPrimitive.Item>
+        );
+      }}
       onChange={(v) => local.onChange?.(getItemValue(v))}
       {...rest}
     />
