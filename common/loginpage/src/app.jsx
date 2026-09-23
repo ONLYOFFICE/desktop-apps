@@ -8,7 +8,7 @@ import { AiPanel } from "@/components/ai-panel";
 import { ResizeHandle } from "@/components/ai-panel/ResizeHandle.jsx";
 import { signalAppReady } from "@/sdk";
 import { initSettingsSync } from "@/services/settings-sync";
-import { initAbout } from "@/services/about";
+import { addonInfo, initAbout } from "@/services/about";
 import { initPortals } from "@/services/portals";
 import { initAiPanel } from "@/services/ai-panel";
 import { aichat } from "@/stores/aichat";
@@ -26,7 +26,7 @@ function Shell(props) {
   createEffect(() => { if (isTemplatesSelected()) setTemplatesMounted(true); });
   const isChatSelected = () => location.pathname === "/aichat";
   const isSettingsSelected = () => location.pathname.startsWith("/settings");
-  const showSidePanel = () => aichat.available && aichat.open && !isChatSelected() && !isSettingsSelected();
+  const showSidePanel = () => (aichat.available && !addonInfo()?.restart) && aichat.open && !isChatSelected() && !isSettingsSelected();
   const isChatExpanded = () => isChatSelected() && aichat.available;
   const showAiCol = () => showSidePanel() || isChatExpanded();
 
