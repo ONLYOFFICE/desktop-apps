@@ -1994,9 +1994,10 @@
         return;
     }
 
-    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:nil];
+    NSString *addonVersion = nil;
+    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
     NSDictionary *jsonObj = @{@"installed": @(isAddonInstalled),
-                                @"version": [ASCAboutController fullAppVersion],
+                                @"version": addonVersion,
                                 @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
     ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
 
