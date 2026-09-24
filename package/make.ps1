@@ -4,6 +4,7 @@
     [string]$Target,
     [string]$CompanyName = "ONLYOFFICE",
     [string]$ProductName = "DesktopEditors",
+    [string]$Branding = "onlyoffice",
     [string]$SourceDir,
     [string]$BuildDir,
     [switch]$Sign,
@@ -21,7 +22,7 @@ if (-not $SourceDir) {
         "arm64" { "win_arm64" }
     }
     $SourceDir = "$PSScriptRoot\..\..\build_tools\out\" `
-        + "$BuildPrefix\$CompanyName\$ProductName" | Resolve-Path
+        + "$BuildPrefix\$Branding\$ProductName" | Resolve-Path
 }
 if (-not (Test-Path "$SourceDir")) {
     Write-Error "Path `"$SourceDir`" does not exist"
@@ -36,6 +37,7 @@ Arch        = $Arch
 Target      = $Target
 CompanyName = $CompanyName
 ProductName = $ProductName
+Branding    = $Branding
 SourceDir   = $SourceDir
 BuildDir    = $BuildDir
 Sign        = $Sign
