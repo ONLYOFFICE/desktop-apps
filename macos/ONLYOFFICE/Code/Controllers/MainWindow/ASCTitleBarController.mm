@@ -707,6 +707,7 @@ static float kASCRTLTabsRightMargin = 0;
     NSDictionary *windowFeatures = @{@"skiptoparea": @0, @"singlewindow": @NO};
     [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
     
+    [webView.window setAcceptsMouseMovedEvents:YES];
     [webView focus];
 }
 
