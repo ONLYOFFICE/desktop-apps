@@ -158,6 +158,9 @@ static NSString *ASCUpgradePlatformPackageName(void) {
     [self resizeWindowToSize:(self.initialPage == ASCUpgradePageIntro)
                                  ? kASCUpgradeIntroSize
                                  : kASCUpgradeInstallSize];
+
+    [window makeFirstResponder:self.cefView];
+    [self.cefView focus];
 }
 
 #pragma mark - Public Methods
