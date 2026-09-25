@@ -38,7 +38,7 @@ Tab[selected=true] {background: %6; border-color: %6;}
 CTabBar[active=false] Tab[selected=true] #tabButton {image: none;}
 
 Tab[selected=false][hovered=true],
-CTabBar[active=false] Tab[selected=true][hovered=true] {background: %3;}
+CTabBar[active=false] Tab[selected=true][hovered=true] {background: %3; border-color: %3;}
 
 /* dark, contrast-dark */
 #mainPanel[uithemetype=dark] CTabBar #tabScroll>#leftButton {

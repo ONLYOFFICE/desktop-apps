@@ -85,8 +85,9 @@ QPushButton#toolButtonMain[class=active]:hover {color: %6;}*/
 QPushButton#toolButtonMain[class=normal],
 QPushButton#toolButtonMain[class=normal]:hover {/*color: %7;*/ /*border-bottom: 0 none;*/}
 QPushButton#toolButtonMain[class=normal] {background: %5; border-color: %5;}
-QPushButton#toolButtonMain[class=normal]:hover {background: %3;}
+QPushButton#toolButtonMain[class=normal]:hover {background: %3; border-color: %3;}
 #mainPanel[rtl=true] QPushButton#toolButtonMain[class=normal] {border-color: %5;}
+#mainPanel[rtl=true] QPushButton#toolButtonMain[class=normal]:hover {border-color: %3;}
 
 QPushButton::menu-indicator {width: 0px; height: 0px;}
 
