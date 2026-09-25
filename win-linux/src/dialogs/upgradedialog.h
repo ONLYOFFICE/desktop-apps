@@ -71,6 +71,7 @@ public:
 
 protected:
     virtual void showEvent(QShowEvent*) override;
+    virtual void focus() final;
 
 signals:
 
