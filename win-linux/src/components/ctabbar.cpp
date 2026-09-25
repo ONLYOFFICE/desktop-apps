@@ -119,7 +119,7 @@ Tab::Tab(QWidget *parent) :
     tabBar = dynamic_cast<CTabBar*>(parent->parent());
 
     QHBoxLayout *lut = new QHBoxLayout(this);
-    lut->setContentsMargins(6, 6, 6, 6);
+    lut->setContentsMargins(6, 0, 6, 0);
     lut->setSpacing(6);
     setLayout(lut);
 
@@ -140,7 +140,7 @@ Tab::Tab(QWidget *parent) :
     close_btn->setObjectName("tabButton");
     close_btn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     close_btn->setMaximumSize(DEFAULT_ICON_SIZE);
-    lut->addWidget(close_btn);
+    lut->addWidget(close_btn, 0, Qt::AlignVCenter);
     show();
 }
 
