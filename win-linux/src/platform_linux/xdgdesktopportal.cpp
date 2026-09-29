@@ -420,12 +420,7 @@ Result readResponseResults(DBusMessage *msg, DBusMessageIter &resIter) {
     dbus_uint32_t resp_code;
     dbus_message_iter_get_basic(&iter, &resp_code);
     if (resp_code != 0) {
-        if (resp_code == 1) {
-            return CANCEL;
-        } else {
-            setErrorText("D-Bus file dialog interaction was ended abruptly");
-            return ERROR;
-        }
+        return CANCEL;
     }
     if (!dbus_message_iter_next(&iter)) {
         setErrorText("D-Bus response is missing arguments");
