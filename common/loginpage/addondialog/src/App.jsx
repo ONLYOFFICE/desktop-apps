@@ -43,9 +43,6 @@ export default function App() {
       if (e.key === "Escape") {
         e.preventDefault();
         closeDialog();
-      } else if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleInstall();
       }
     };
     document.addEventListener("keydown", handleKeyDown);

@@ -1,4 +1,4 @@
-import { createMemo } from "solid-js";
+import { createMemo, onMount } from "solid-js";
 import { t } from "@/services/l10n";
 import { Carousel } from "./Carousel";
 import { postponeAddon, dismissAddon } from "@/services/addon";
@@ -31,7 +31,7 @@ export function IntroPanel(props) {
         <button type="button" class={styles.btnOutline} onClick={postponeAddon}>
           {t("addonBtnLater")}
         </button>
-        <button type="button" class={styles.btnPrimary} onClick={props.onInstall}>
+        <button type="button" class={styles.btnPrimary} onClick={props.onInstall} ref={(el) => onMount(() => el.focus())}>
           {t("addonBtnInstall")}
         </button>
       </div>
