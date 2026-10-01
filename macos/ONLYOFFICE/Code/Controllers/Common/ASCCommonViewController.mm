@@ -1096,7 +1096,7 @@
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1"),
-#ifndef UI_SHOW_ADDON
+#ifndef OO_BRANDING
     useai = false,
 #else
     useai = !(appManager->GetUserSettings()->Get(L"disable-ai") == L"1"),
