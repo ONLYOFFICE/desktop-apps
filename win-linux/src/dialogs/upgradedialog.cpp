@@ -79,7 +79,6 @@ UpgradeDialog::UpgradeDialog(QWidget *parent, const QRect &rc, int page)
     : CAscDialog(parent, rc)
     , m_bDialogActivated(false)
 {
-    setFocusPolicy(Qt::StrongFocus);
     m_pMainPanel = new AscMainPanel(this);
     m_pMainPanel->setObjectName(QString::fromUtf8("mainPanel"));
 
@@ -197,6 +196,12 @@ void UpgradeDialog::showEvent(QShowEvent *ev)
             });
 #endif
     }
+}
+
+void UpgradeDialog::focus()
+{
+    if (m_pMainView)
+        ((QCefView*)m_pMainView)->setFocusToCef();
 }
 
 /** Private **/

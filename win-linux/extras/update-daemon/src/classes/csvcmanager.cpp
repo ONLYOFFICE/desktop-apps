@@ -316,10 +316,10 @@ CSvcManager::~CSvcManager()
 {
     if (m_future_clear.valid())
         m_future_clear.wait();
-    delete m_packageData, m_packageData = nullptr;
-    delete m_savedPackageData, m_savedPackageData = nullptr;
     delete m_pUnzip, m_pUnzip = nullptr;
     delete m_pDownloader, m_pDownloader = nullptr;
+    delete m_packageData, m_packageData = nullptr;
+    delete m_savedPackageData, m_savedPackageData = nullptr;
     delete m_socket, m_socket = nullptr;
     if (m_quit_callback)
         m_quit_callback();

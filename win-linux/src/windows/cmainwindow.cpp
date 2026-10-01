@@ -1250,7 +1250,7 @@ void CMainWindow::onDocumentDownload(void * info)
             m_pWidgetDownload = nullptr;
         });
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
-        layoutBtns->insertWidget(4, m_pWidgetDownload->toolButton());
+        layoutBtns->insertWidget(5, m_pWidgetDownload->toolButton());
         m_pWidgetDownload->setLayoutDirection(AscAppManager::isRtlEnabled() ? Qt::RightToLeft : Qt::LeftToRight);
         m_pWidgetDownload->applyTheme();
         m_pWidgetDownload->updateScalingFactor(m_dpiRatio);

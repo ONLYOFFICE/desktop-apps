@@ -31,7 +31,7 @@
 #define ASSOC_PROG_ID                   "ASC.Editors"
 #define ASSOC_APP_FRIENDLY_NAME         "ONLYOFFICE Editors"
 
-#dim FA_ARR[50] { \
+#dim FA_ARR[61] { \
   "csv", \
   "djvu", \
   "doc", \
@@ -40,11 +40,15 @@
   "dot", \
   "dotm", \
   "dotx", \
+  "dps", \
+  "dpt", \
   "epub", \
   "fb2", \
   "fodp", \
   "fods", \
   "fodt", \
+  "hwp", \
+  "hwpx", \
   "key", \
   "md", \
   "numbers", \
@@ -68,6 +72,10 @@
   "pptm", \
   "pptx", \
   "rtf", \
+  "stw", \
+  "sxc", \
+  "sxi", \
+  "sxw", \
   "tsv", \
   "vsdm", \
   "vsdx", \
@@ -75,10 +83,13 @@
   "vssx", \
   "vstm", \
   "vstx", \
+  "wps", \
+  "wpt", \
   "xls", \
   "xlsb", \
   "xlsm", \
   "xlsx", \
+  "xlt", \
   "xltm", \
   "xltx", \
   "xps" \
