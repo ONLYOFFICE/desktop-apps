@@ -586,7 +586,7 @@ Do you want to replace it?</source>
       </trans-unit>
       <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <target state="translated">ස්ථාපිත AI Tools සංරචකය මෙම යෙදුම් අනුවාදය සමඟ නොගැලපේ. දිගටම කරගෙන යාමට AI Tools සංරචකය යාවත්කාලීන කරන්න.</target>
+        <target state="translated">ස්ථාපිත AI Tools සංරචකය මෙම යෙදුම් අනුවාදය සමඟ නොගැලපේ. දැන් AI Tools යාවත්කාලීන කරන්නද?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">

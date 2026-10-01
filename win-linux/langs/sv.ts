@@ -115,7 +115,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1391"/>
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <translation>Den installerade AI Tools-komponenten är inkompatibel med den här versionen av programmet. Uppdatera AI Tools-komponenten för att fortsätta.</translation>
+        <translation>Den installerade AI Tools-komponenten är inkompatibel med den här versionen av programmet. Uppdatera AI Tools nu?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2394"/>

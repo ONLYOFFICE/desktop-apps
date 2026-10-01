@@ -581,7 +581,7 @@ Le szeretnéd cserélni?</target>
       </trans-unit>
       <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
         <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
-        <target state="translated">A telepített AI Tools összetevő nem kompatibilis az alkalmazás ezen verziójával. A folytatáshoz frissítse az AI Tools összetevőt.</target>
+        <target state="translated">A telepített AI Tools összetevő nem kompatibilis az alkalmazás ezen verziójával. Frissíti most az AI Tools alkalmazást?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
