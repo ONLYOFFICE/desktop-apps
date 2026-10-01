@@ -1096,7 +1096,11 @@
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1"),
+#ifndef UI_SHOW_ADDON
+    useai = false,
+#else
     useai = !(appManager->GetUserSettings()->Get(L"disable-ai") == L"1"),
+#endif
     editorinwindow = appManager->GetUserSettings()->Get(L"editor-window-mode") == L"1",
     detectkeyboard = !(appManager->GetUserSettings()->Get(L"spell-check-input-mode") == L"0");
     [json_langs setValue:@(usegpu) forKey:@"usegpu"];

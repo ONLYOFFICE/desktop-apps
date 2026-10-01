@@ -84,6 +84,11 @@ platform :mac do
       xcargs += " URL_APPCAST_DEV_CHANNEL=#{url_appcast_dev}"
     end
 
+    oo_branding = ENV["OO_BRANDING"]
+    unless oo_branding.to_s.empty?
+      xcargs += " UI_SHOW_ADDON"
+    end
+
     UI.message("appcast url: #{url_appcast_main}")
     UI.message("appcast dev url: #{url_appcast_dev}")
 
