@@ -139,6 +139,10 @@ h4 {
   height: 100dvh;
   padding: 8px 8px 8px 0;
   /* overflow: visible so ResizeHandle can extend into the gap between panels */
+
+  body.rtl & {
+    padding: 8px 0 8px 8px;
+  }
 }
 
 .scrollable {
