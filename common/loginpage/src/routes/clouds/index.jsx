@@ -93,7 +93,7 @@ function ConnectDialog(props) {
   }
 
   function getCandidates(raw) {
-    const s = raw.trim();
+    const s = raw.trim().replace(/\/+$/,'');
     if (!s) return [];
     if (/^https?:\/\//i.test(s)) return [s];
     return [`https://${s}`, `http://${s}`];
