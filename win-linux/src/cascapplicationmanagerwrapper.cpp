@@ -459,19 +459,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
 #endif
         if ( !(cmd.find(L"addon:action") == std::wstring::npos) ) {     // params: install
-            const wstring param = pData->get_Param();
-            if (param == L"askrestart")
-            {
-                if (CMessage::Result::Yes == CMessage::showMessage(mainWindow(),
-                                                                   tr("You must restart the application to finish addon installation."),
-                                                                   CMessage::Icon::Info, CMessage::Buttons::YesDefNo))
-                {
-                    m_private->m_needRestart = true;
-                    AscAppManager::closeAppWindows();
-                }
-            }
+            wstring param = pData->get_Param();
 #ifdef USE_ADDON_MODE
-            else
             if (m_private->m_pAddonManager) {
                 if (param == L"install")
                 {
@@ -482,9 +471,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
                 else if (param == L"intro")
                 {
-                    m_private->m_bUpgradeInProgress = true;
-                    if (m_pMainWindow)
-                        showUpgradeDialog(m_pMainWindow);
+                    if (!m_private->m_pAddonManager->restartRequired()) {
+                        m_private->m_bUpgradeInProgress = true;
+                        if (m_pMainWindow)
+                            showUpgradeDialog(m_pMainWindow);
+                    } else {
+                        param = L"askrestart";
+                    }
                 }
                 else if (param == L"postpone" || param == L"close")
                 {
@@ -535,9 +528,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 {
                     checkAndSuggestAddonUpdate();
                 }
-                return true;
             }
 #endif
+            if (param == L"askrestart")
+            {
+                if (CMessage::Result::Yes == CMessage::showMessage(mainWindow(),
+                                                                   tr("You must restart the application to finish addon installation."),
+                                                                   CMessage::Icon::Info, CMessage::Buttons::YesDefNo))
+                {
+                    m_private->m_needRestart = true;
+                    AscAppManager::closeAppWindows();
+                }
+            }
+            return true;
         } else
         if ( cmd.compare(L"title:button") == 0 ) {
             map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(event->get_SenderId());

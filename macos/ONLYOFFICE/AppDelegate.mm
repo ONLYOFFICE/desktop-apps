@@ -2045,13 +2045,16 @@
 
 #ifdef USE_ADDON_MODE
     if ([action isEqualToString:@"intro"]) {
-        self.upgradeInProgress = YES;
+        if (![[ASCAddonManager sharedManager] restartRequired]) {
+            self.upgradeInProgress = YES;
 
-        // Defer the dialog to the next main run loop iteration.
-        [self performSelector:@selector(showUpgradeDialogWithPage:)
-                   withObject:@(ASCUpgradePageIntro)
-                   afterDelay:0];
-
+            // Defer the dialog to the next main run loop iteration.
+            [self performSelector:@selector(showUpgradeDialogWithPage:)
+                    withObject:@(ASCUpgradePageIntro)
+                    afterDelay:0];
+        } else {
+            action = @"askrestart";
+        }
     } else if ([action isEqualToString:@"install"]) {
         /* "accept and install" clicked */
         if (self.upgradeController) {
@@ -2100,8 +2103,9 @@
         }
     } else if ([action isEqualToString:@"incompatible"]) {
         [self checkAndSuggestAddonUpdate];
-    } else
+    }
 #endif
+
     if ([action isEqualToString:@"askrestart"]) {
         NSAlert *alert = [[NSAlert alloc] init];
         [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
