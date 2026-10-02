@@ -126,7 +126,7 @@ export function initAiPanel() {
       return;
     }
     if (isAiPlugin(opts?.id) && opts?.url) {
-      setChatAvialable(true);
+      // setChatAvialable(true);
       setPanelUrl(opts.url);
     } else if (opts?.url) {
       addExtPlugin({ id: opts.id, name: opts.name || opts.id, url: opts.url });
