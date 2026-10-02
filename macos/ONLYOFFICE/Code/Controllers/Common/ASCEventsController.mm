@@ -756,9 +756,10 @@ public:
                                     appManager->GetUserSettings()->Set(L"spell-check-input-mode", [json[@"spellcheckdetect"] isEqualToString:@"off"] ? L"0" : L"1");
                                 }
 
-                                if ( [json objectForKey:@"country"] != nil ) {
-                                    appManager->GetUserSettings()->Set(L"country", [[json[@"country"] stringValue] stdwstring]);
-                                    [[ASCEditorJSVariables instance] setVariable:@"country" withString:[json[@"country"] stringValue]];
+                                if ( id country = json[@"country"] ) {
+                                    NSString * countryCode = [country isKindOfClass:[NSString class]] ? country : [country description];
+                                    appManager->GetUserSettings()->Set(L"country", [countryCode stdwstring]);
+                                    [[ASCEditorJSVariables instance] setVariable:@"country" withString:countryCode];
                                 }
 
                                 [[ASCEditorJSVariables instance] applyParameters];
