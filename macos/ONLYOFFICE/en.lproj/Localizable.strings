@@ -74,6 +74,9 @@
 "Spreadsheet template" = "Excel Open XML Spreadsheet Template";
 
 /* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "The installed AI Tools component is incompatible with this version of the application. Update the AI Tools now?";
+
+/* No comment provided by engineer. */
 "VSDX File" = "Visio Drawing";
 
 /* No comment provided by engineer. */

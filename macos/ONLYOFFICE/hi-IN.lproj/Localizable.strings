@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ पहले से मौजूद है।\nक्या आप इसे प्रतिस्थापित करना चाहते हैं?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ सहायता";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "स्वीकृतियाँ";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "अनइंस्टॉल करने के बाद AI Tools सुविधाएँ अनुपलब्ध हो जाएंगी। सभी AI सेटिंग्स (API कुंजियों सहित) नहीं हटाई जाएंगी।";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "संग्रह को अनपैक करते समय कोई त्रुटि हुई है";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "ऐड-ऑन इंस्टॉल करते समय एक अप्रत्याशित त्रुटि हुई।";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "एप्लिकेशन को पुनः आरंभ करना आवश्यक है";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "क्या आप सुनिश्चित हैं कि आप ONLYOFFICE AI Tools को अनइंस्टॉल करना चाहते हैं?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "इस दस्तावेज़ पर हस्ताक्षर करने से पहले, इसे सहेजा जाना चाहिए।";
@@ -41,9 +59,6 @@
 "Community version %@" = "\"कम्युनिटी\" वर्शन %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "\"कम्युनिटी\" वर्शन %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "नया निर्माण";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "\"एंटरप्राइज़\" वर्शन %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "\"एंटरप्राइज़\" वर्शन %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "एक्सेल 97-2003 स्प्रेडशीट";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel बाइनरी वर्कशीट";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "नेटवर्क त्रुटि के कारण ऐड-ऑन डाउनलोड करना विफल रहा।";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "थीम इंस्टॉल नहीं हो पाई";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "डाउनलोड किए गए ऐड-ऑन पैकेज को सहेजना विफल रहा।";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "FictionBook 2 फ़ाइल";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "छिपाएँ %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "मैं इसे बाद में करूंगा";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "यदि आपने पहले ही खरीद लिया है %@, तो आपको अपनी सक्रियता कुंजी एक पुष्टिकरण ईमेल में मिलनी चाहिए।";
@@ -152,19 +173,22 @@
 "No" = "नहीं";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "इस एप्लिकेशन के संस्करण के लिए कोई संगत ऐड-ऑन संस्करण उपलब्ध नहीं है।";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "ऐड-ऑन डाउनलोड पूरा करने के लिए पर्याप्त मेमोरी नहीं है।";
+
+/* No comment provided by engineer. */
 "OK" = "ठीक है";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools सफलतापूर्वक अनइंस्टॉल हो गया";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ओनलीऑफिस डिजिटल हस्ताक्षर की फ़ाइल को नहीं खोल सकता है। किसी अन्य फ़ाइल को खोलने का प्रयास करें।";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ओनलीऑफिस निजी कुंजी को नहीं खोल सकता है। किसी अन्य फ़ाइल को खोलने का प्रयास करें।";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE डॉक्यूमेंट फ़ॉर्म टेम्प्लेट";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE भरने लायक ऑनलाइन फ़ॉर्म";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "पीडीएफ फॉर्म ONLYOFFICE";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "पीडीएफ/ए फ़ाइल";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "टैब पर पिन करें";
 
 /* No comment provided by engineer. */
 "Plain Text" = "सादा टेक्स्ट";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "बदलें";
+
+/* No comment provided by engineer. */
+"Restart now" = "अभी रीस्टार्ट करें";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "बदलावों की समीक्षा करें...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "मूल्यांकन करने के लिए धन्यवाद %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "ऐड-ऑन डाउनलोड URL अमान्य है।";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "ऐड-ऑन की जानकारी अमान्य या अधूरी है।";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "ऐड-ऑन पैकेज दूषित है या संशोधित किया गया है।";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "दस्तावेज़ \"%@\" को बनाया जाना चाहिए। जारी रखें?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "इंस्टॉल किया गया AI Tools घटक इस एप्लिकेशन संस्करण के साथ असंगत है। क्या अभी AI Tools अपडेट करें?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "थीम पहले से मौजूद है. इसे बदलें?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "यह थीम फ़ाइल वैलिड नहीं है";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "ऐड-ऑन इंस्टॉल करने के लिए, एप्लिकेशन को नवीनतम संस्करण में अपडेट करें।";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "फ़ाइल लोकेशन को खोलने के लिए, इसे सहेजा जाना चाहिए।";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "शीर्षकहीन";
+
+/* No comment provided by engineer. */
+"Version %@" = "संस्करण %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio ड्रॉइंग";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "आपने सफलतापूर्वक सक्रिय कर लिया है %@।";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "सेटिंग्स को लागू करने के लिए आपको एप्लिकेशन को रीस्टार्ट करना होगा।.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "आपके बदलाव लुप्त हो जाएँगे यदि आप उन्हें  नहीं सहेजेंगे।";

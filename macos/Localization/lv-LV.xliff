@@ -77,6 +77,18 @@
         <target>%@ Palīdzība</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="%@ already exists.&#10;Do you want to replace it?" xml:space="preserve">
+        <source>%@ already exists.
+Do you want to replace it?</source>
+        <target state="translated">%@ jau pastāv.
+Vai jūs vēlaties to aizstāt?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." xml:space="preserve">
+        <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
+        <target state="translated">Pēc atinstalēšanas AI Tools funkcijas nebūs pieejamas. Visi AI iestatījumi (ieskaitot API atslēgas) netiks noņemti.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
         <target>Par %@</target>
@@ -85,6 +97,26 @@
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
         <target>Atzinības</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An error occurred while unpacking the archive" xml:space="preserve">
+        <source>An error occurred while unpacking the archive</source>
+        <target state="translated">Atpakojot arhīvu, radās kļūda</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An unexpected error occurred while installing the add-on." xml:space="preserve">
+        <source>An unexpected error occurred while installing the add-on.</source>
+        <target state="translated">Paplašinājuma instalēšanas laikā radās neparedzēta kļūda.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application needs to restart" xml:space="preserve">
+        <source>Application needs to restart</source>
+        <target state="translated">Lietotne ir jārestartē</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Are you sure you want to uninstall ONLYOFFICE AI Tools?" xml:space="preserve">
+        <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
+        <target state="translated">Vai esat pārliecināts, ka vēlaties atinstalēt ONLYOFFICE AI Tools?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
@@ -119,7 +151,7 @@
       </trans-unit>
       <trans-unit id="Close" xml:space="preserve">
         <source>Close</source>
-        <target>Aizvērt</target>
+        <target state="translated">Aizvērt</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Close all" xml:space="preserve">
@@ -140,11 +172,6 @@
       <trans-unit id="Community version %@" xml:space="preserve">
         <source>Community version %@</source>
         <target state="translated">Community versija %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
-        <source>Community version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">Community versija %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create new" xml:space="preserve">
@@ -202,11 +229,6 @@
         <target state="translated">Enterprise versija %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
-        <source>Enterprise version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">Enterprise versija %1$@ (%2$@-%3$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Excel 97-2003 izklājlapa</target>
@@ -222,9 +244,19 @@
         <target state="translated">Excel binārā izklājlapa</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Failed to download the add-on due to a network error." xml:space="preserve">
+        <source>Failed to download the add-on due to a network error.</source>
+        <target state="translated">Neizdevās lejupielādēt paplašinājumu tīkla kļūdas dēļ.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
         <source>Failed to install theme</source>
         <target state="translated">Neizdevās instalēt tēmu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to save the downloaded add-on package." xml:space="preserve">
+        <source>Failed to save the downloaded add-on package.</source>
+        <target state="translated">Neizdevās saglabāt lejupielādēto paplašinājuma pakotni.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -250,6 +282,11 @@
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target>Paslēpt %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="I'll do it later" xml:space="preserve">
+        <source>I'll do it later</source>
+        <target state="translated">To izdarīšu vēlāk</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
@@ -307,6 +344,16 @@
         <target>Nē</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="No compatible add-on version is available for this version of the application." xml:space="preserve">
+        <source>No compatible add-on version is available for this version of the application.</source>
+        <target state="translated">Šai lietotnes versijai nav pieejama neviena saderīga paplašinājuma versija.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Not enough memory to complete the add-on download." xml:space="preserve">
+        <source>Not enough memory to complete the add-on download.</source>
+        <target state="translated">Nepietiek atmiņas, lai pabeigtu paplašinājuma lejupielādi.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target>Labi</target>
@@ -320,6 +367,11 @@
       <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
         <source>ONLYOFFICE Fillable Online Form</source>
         <target state="translated">ONLYOFFICE aizpildāma tiešsaistes veidlapa</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE AI Tools successfully uninstalled" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools successfully uninstalled</source>
+        <target state="translated">ONLYOFFICE AI Tools veiksmīgi atinstalēts</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
@@ -387,6 +439,11 @@
         <target state="translated">PNG attēls</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Pin to tab" xml:space="preserve">
+        <source>Pin to tab</source>
+        <target state="translated">Piespraust cilnei</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
         <target state="translated">Parasts Teksts</target>
@@ -435,6 +492,11 @@
       <trans-unit id="Replace" xml:space="preserve">
         <source>Replace</source>
         <target state="translated">Aizstāt</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restart now" xml:space="preserve">
+        <source>Restart now</source>
+        <target state="translated">Restartēt tagad</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
@@ -497,9 +559,29 @@
         <target>Paldies, ka novērtējāt %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The add-on download URL is invalid." xml:space="preserve">
+        <source>The add-on download URL is invalid.</source>
+        <target state="translated">Paplašinājuma lejupielādes URL ir nederīgs.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on information is invalid or incomplete." xml:space="preserve">
+        <source>The add-on information is invalid or incomplete.</source>
+        <target state="translated">Paplašinājuma informācija ir nederīga vai nepilnīga.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on package is corrupted or has been modified." xml:space="preserve">
+        <source>The add-on package is corrupted or has been modified.</source>
+        <target state="translated">Paplašinājuma pakotne ir bojāta vai modificēta.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
         <target state="translated">Dokumentam "%@" jābūt izveidotam. Turpināt?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
+        <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
+        <target state="translated">Instalētais AI Tools komponents nav saderīgs ar šo lietotnes versiju. Vai atjaunināt AI Tools tagad?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
@@ -515,6 +597,11 @@
       <trans-unit id="This theme file is not valid" xml:space="preserve">
         <source>This theme file is not valid</source>
         <target state="translated">Šis tēmas fails nav derīgs</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="To install the add-on, update the application to the latest version." xml:space="preserve">
+        <source>To install the add-on, update the application to the latest version.</source>
+        <target state="translated">Lai instalētu paplašinājumu, atjauniniet lietotni uz jaunāko versiju.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -545,6 +632,11 @@
       <trans-unit id="VSDX File" xml:space="preserve">
         <source>VSDX File</source>
         <target state="translated">Zīmēšana Visio</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@" xml:space="preserve">
+        <source>Version %@</source>
+        <target state="translated">Versija %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -582,6 +674,11 @@
         <target>Jūs esat veiksmīgi aktivizējis %@.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="You must restart the application for the settings to take effect." xml:space="preserve">
+        <source>You must restart the application for the settings to take effect.</source>
+        <target state="translated">Lai iestatījumi stātos spēkā, programma ir jārestartē.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
         <source>Your changes will be lost if you don't save them.</source>
         <target state="translated">Jūsu veiktās izmaiņas būs zaudētas, ja tās nesaglabāsiet.</target>
@@ -589,7 +686,7 @@
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
-        <target>Jūsu veiktās izmaiņas būs zaudētas, ja tās nesaglabāsiet.</target>
+        <target state="translated">Jūsu veiktās izmaiņas būs zaudētas, ja tās nesaglabāsiet.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
@@ -697,22 +794,22 @@ Izmēģinājuma periods beigsies pēc %d dienām, un pēc tam jūs nevarēsiet v
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
         <target>%#@dokumenti@</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>Jums ir %ld %@ dokuments ar neapstiprinātām izmaiņām. Vai vēlaties pārskatīt šīs izmaiņas pirms iziešanas?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>Jums ir %ld %@ dokuments ar neapstiprinātām izmaiņām. Vai vēlaties pārskatīt šīs izmaiņas pirms iziešanas?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/zero:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>Jums ir %ld %@ dokuments ar neapstiprinātām izmaiņām. Vai vēlaties pārskatīt šīs izmaiņas pirms iziešanas?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
@@ -873,7 +970,7 @@ Izmēģinājuma periods beigsies pēc %d dienām, un pēc tam jūs nevarēsiet v
       </trans-unit>
       <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
         <source>Close</source>
-        <target>Aizvērt</target>
+        <target state="translated">Aizvērt</target>
         <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
       </trans-unit>
       <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
@@ -1171,6 +1268,26 @@ Izmēģinājuma periods beigsies pēc %d dienām, un pēc tam jūs nevarēsiet v
         <target>Lietot Noklusējumu</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
       </trans-unit>
+      <trans-unit id="aiL-Ab-t19.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">Licencēts saskaņā ar</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19";</note>
+      </trans-unit>
+      <trans-unit id="aiL-Ab-t22.title" xml:space="preserve">
+        <source>Commercial</source>
+        <target state="translated">Komerciāls</target>
+        <note>Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22";</note>
+      </trans-unit>
+      <trans-unit id="aiN-Ab-t14.title" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools</source>
+        <target state="translated">ONLYOFFICE AI Tools</target>
+        <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14";</note>
+      </trans-unit>
+      <trans-unit id="aiV-Ab-t16.title" xml:space="preserve">
+        <source>Version</source>
+        <target state="translated">Versija</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16";</note>
+      </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
         <target>Rādīt Krāsas</target>
@@ -1295,6 +1412,11 @@ Izmēģinājuma periods beigsies pēc %d dienām, un pēc tam jūs nevarēsiet v
         <source>ONLYOFFICE</source>
         <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
+      <trans-unit id="lLc-Ab-t05.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">Licencēts saskaņā ar</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>

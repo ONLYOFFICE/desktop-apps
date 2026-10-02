@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ вже існує.\nЗамінити?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "Довідка %@";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Подяки";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Після видалення функції AI Tools будуть недоступні. Усі налаштування ШІ (включно з ключами API) не буде видалено.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Під час розпаковування архіву сталася помилка";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Під час встановлення доповнення сталася неочікувана помилка.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Потрібно перезапустити програму";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Ви впевнені, що хочете видалити ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Перш ніж підписувати документ, його необхідно зберегти.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Версія Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Версія Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Новий документ";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Версія Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Версія Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Електронна таблиця Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Двійкова книга Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Не вдалося завантажити доповнення через помилку мережі.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Не вдалося встановити тему";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Не вдалося зберегти завантажений пакет доповнення.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Файл FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Сховати %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Зроблю це пізніше";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Якщо ви вже придбали %@, ключ активації можна знайти в електронному листі-підтвердженні.";
@@ -152,19 +173,22 @@
 "No" = "Ні";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Для цієї версії програми немає сумісної версії доповнення.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Недостатньо пам'яті для завершення завантаження доповнення.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools успішно видалено";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE не може відкрити файл цифрового підпису. Спробуйте відкрити інший файл.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не може відкрити файл закритого ключа. Спробуйте відкрити інший файл.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Шаблон форми документа ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Заповнювана онлайн-форма ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "PDF-форма ONLYOFFICE";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = " Портативний документ /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Закріпити на вкладці";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Звичайний текстовий файл";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Замінити";
+
+/* No comment provided by engineer. */
+"Restart now" = "Перезапустити зараз";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Переглянути зміни...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "Дякуємо за оцінку %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL-адреса завантаження доповнення недійсна.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Відомості про доповнення недійсні або неповні.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Пакет доповнення пошкоджено або змінено.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Необхідно створити документ \"%@\". Продовжити?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Встановлений компонент AI Tools несумісний з цією версією програми. Оновити AI Tools зараз?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Тема вже існує. Замінити її?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Цей файл теми недійсний";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Для встановлення доповнення оновіть програму до останньої версії.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Щоб відкрити розташування файлу, його потрібно зберегти.";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Без назви";
+
+/* No comment provided by engineer. */
+"Version %@" = "Версія %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Малюнок Visio";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "%@ успішно активовано.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Щоб застосувати параметри, потрібно перезапустити застосунок.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Зміни будуть втрачені, якщо ви їх не збережете.";

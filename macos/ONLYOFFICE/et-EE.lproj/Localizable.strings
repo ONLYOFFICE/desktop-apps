@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ juba eksisteerib.\nKas sa soovid selle asendada?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@Abi";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Tunnustused";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Pärast desinstallimist ei ole AI Tools funktsioonid saadaval. Kõiki AI seadeid (sealhulgas API võtmeid) ei eemaldata.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Arhiivi lahtipakkimisel tekkis viga";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Lisandmooduli installimisel ilmnes ootamatu viga.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Rakendus vajab taaskäivitamist";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Kas olete kindel, et soovite ONLYOFFICE AI Tools desinstallida?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Enne dokumendi allkirjastamist tuleb see salvestada.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community versioon %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community versioon %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Loo uus";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise versioon %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise versioon %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 arvutustabel";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Exceli binaartööleht";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Lisandmooduli allalaadimine ebaõnnestus võrguvea tõttu.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Teema installimine ebaõnnestus";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Allalaaditud lisandmooduli paketi salvestamine ebaõnnestus.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "FictionBook 2 fail";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Peida %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Teen seda hiljem";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Kui sa ei vaata oma dokumente uuesti üle, kõik su muudatused lähevad kaotsi.";
@@ -155,19 +176,22 @@
 "No" = "Ei";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Selle rakenduse versiooni jaoks ei ole ühtegi ühilduvat lisandmooduli versiooni saadaval.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Lisandmooduli allalaadimise lõpuleviimiseks ei ole piisavalt mälu.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools desinstalliti edukalt";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE ei saa avada digitaalse allkirja faili. Proovi avada muud faili.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ei saa avada privaatset võtit. Proovi avada muud faili.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE dokumendivormi mall";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE täidetav veebivorm";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF vorm";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Porditav document /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Kinnita vahelehele";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Tavaline Tekst";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Asenda";
+
+/* No comment provided by engineer. */
+"Restart now" = "Restart kohe";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Vaata muutused üle...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Aitäh, et hindasite %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Lisandmooduli allalaadimise URL on kehtetu.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Lisandmooduli teave on kehtetu või mittetäielik.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Lisandmooduli pakett on rikutud või seda on muudetud.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokument „%@“ tuleb luua. Jätka?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Installitud AI Tools komponent ei ühildu selle rakenduse versiooniga. Kas uuendada AI Tools kohe?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Teema on juba olemas. Kas asendada see?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "See teemafail ei ole kehtiv";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Lisandmooduli installimiseks värskendage rakendus uusimale versioonile.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Et avada faili asukoht, tuleb see eelnevalt salvestada.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Pealkirjata";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versioon %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio joonis";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Sa oled edukalt aktiveerinud %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Seadete jõustumiseks peate rakenduse taaskäivitama.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Sinu muudatused lähevad kaotsi, kui sa neid ei salvesta.";

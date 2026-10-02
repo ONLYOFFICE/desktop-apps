@@ -77,6 +77,18 @@
         <target>%@ Help</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="%@ already exists.&#10;Do you want to replace it?" xml:space="preserve">
+        <source>%@ already exists.
+Do you want to replace it?</source>
+        <target state="translated">%@ bestaat al.
+Wilt u het vervangen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." xml:space="preserve">
+        <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
+        <target state="translated">AI Tools-functies zijn niet beschikbaar na het verwijderen. Alle AI-instellingen (inclusief API-sleutels) worden niet verwijderd.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
         <target state="translated">Over %@</target>
@@ -85,6 +97,26 @@
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
         <target state="translated">Erkenningen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An error occurred while unpacking the archive" xml:space="preserve">
+        <source>An error occurred while unpacking the archive</source>
+        <target state="translated">Er is een fout opgetreden tijdens het uitpakken van het archief</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An unexpected error occurred while installing the add-on." xml:space="preserve">
+        <source>An unexpected error occurred while installing the add-on.</source>
+        <target state="translated">Er is een onverwachte fout opgetreden bij het installeren van de add-on.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application needs to restart" xml:space="preserve">
+        <source>Application needs to restart</source>
+        <target state="translated">Toepassing moet opnieuw worden gestart</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Are you sure you want to uninstall ONLYOFFICE AI Tools?" xml:space="preserve">
+        <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
+        <target state="translated">Weet u zeker dat u ONLYOFFICE AI Tools wilt verwijderen?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
@@ -142,11 +174,6 @@
         <target state="translated">Community-versie %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
-        <source>Community version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">Community-versie %1$@ (%2$@-%3$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Create new" xml:space="preserve">
         <source>Create new</source>
         <target>Nieuw maken</target>
@@ -202,11 +229,6 @@
         <target state="translated">Enterprise-versie %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
-        <source>Enterprise version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">Enterprise-versie %1$@ (%2$@-%3$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Excel 97-2003 Spreadsheet</target>
@@ -222,9 +244,19 @@
         <target state="translated">Excel binair werkblad</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Failed to download the add-on due to a network error." xml:space="preserve">
+        <source>Failed to download the add-on due to a network error.</source>
+        <target state="translated">Het downloaden van de add-on is mislukt vanwege een netwerkfout.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
         <source>Failed to install theme</source>
         <target state="translated">Installatie van thema mislukt</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to save the downloaded add-on package." xml:space="preserve">
+        <source>Failed to save the downloaded add-on package.</source>
+        <target state="translated">Het opslaan van het gedownloade add-on pakket is mislukt.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -250,6 +282,11 @@
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target state="translated">Verberg %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="I'll do it later" xml:space="preserve">
+        <source>I'll do it later</source>
+        <target state="translated">Ik doe het later</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
@@ -307,6 +344,16 @@
         <target state="translated">Nee</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="No compatible add-on version is available for this version of the application." xml:space="preserve">
+        <source>No compatible add-on version is available for this version of the application.</source>
+        <target state="translated">Er is geen compatibele versie van de add-on beschikbaar voor deze versie van de toepassing.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Not enough memory to complete the add-on download." xml:space="preserve">
+        <source>Not enough memory to complete the add-on download.</source>
+        <target state="translated">Onvoldoende geheugen om de add-on download te voltooien.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target state="translated">OK</target>
@@ -320,6 +367,11 @@
       <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
         <source>ONLYOFFICE Fillable Online Form</source>
         <target state="translated">ONLYOFFICE Invulbaar online formulier</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE AI Tools successfully uninstalled" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools successfully uninstalled</source>
+        <target state="translated">ONLYOFFICE AI Tools is succesvol verwijderd</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
@@ -387,6 +439,11 @@
         <target state="translated">PNG-afbeelding</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Pin to tab" xml:space="preserve">
+        <source>Pin to tab</source>
+        <target state="translated">Vastkoppelen aan tabblad</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
         <target state="translated">Standaard Tekstbestand</target>
@@ -437,6 +494,11 @@
         <target state="translated">Vervangen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Restart now" xml:space="preserve">
+        <source>Restart now</source>
+        <target state="translated">Nu opnieuw opstarten</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
         <target state="translated">Veranderingen Beoordelen...</target>
@@ -469,7 +531,7 @@
       </trans-unit>
       <trans-unit id="Show in folder" xml:space="preserve">
         <source>Show in folder</source>
-        <target>Weergeven in map</target>
+        <target state="translated">Weergeven in map</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Show main window" xml:space="preserve">
@@ -497,9 +559,29 @@
         <target state="translated">Bedankt voor het beoordelen van %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The add-on download URL is invalid." xml:space="preserve">
+        <source>The add-on download URL is invalid.</source>
+        <target state="translated">De download-URL van de add-on is ongeldig.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on information is invalid or incomplete." xml:space="preserve">
+        <source>The add-on information is invalid or incomplete.</source>
+        <target state="translated">De add-on informatie is ongeldig of onvolledig.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on package is corrupted or has been modified." xml:space="preserve">
+        <source>The add-on package is corrupted or has been modified.</source>
+        <target state="translated">Het add-on pakket is beschadigd of gewijzigd.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
         <target state="translated">Het document "%@" moet worden gebouwd. Doorgaan?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
+        <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
+        <target state="translated">De geïnstalleerde AI Tools-component is incompatibel met deze versie van de toepassing. AI Tools nu bijwerken?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
@@ -515,6 +597,11 @@
       <trans-unit id="This theme file is not valid" xml:space="preserve">
         <source>This theme file is not valid</source>
         <target state="translated">Dit themabestand is niet geldig</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="To install the add-on, update the application to the latest version." xml:space="preserve">
+        <source>To install the add-on, update the application to the latest version.</source>
+        <target state="translated">Om de add-on te installeren, werkt u de toepassing bij naar de nieuwste versie.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -545,6 +632,11 @@
       <trans-unit id="VSDX File" xml:space="preserve">
         <source>VSDX File</source>
         <target state="translated">Visio-tekening</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@" xml:space="preserve">
+        <source>Version %@</source>
+        <target state="translated">Versie %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -580,6 +672,11 @@
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source>
         <target state="translated">U hebt met succes %@ geactiveerd.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You must restart the application for the settings to take effect." xml:space="preserve">
+        <source>You must restart the application for the settings to take effect.</source>
+        <target state="translated">U moet de toepassing opnieuw starten om de instellingen van kracht te laten worden.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
@@ -685,17 +782,17 @@ De proefperiode eindigt in %d dagen, daarna u geen documenten maken en bewerken.
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
         <target state="translated">%#@documenten@</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target state="translated">U hebt %ld %@-document met onbevestigde wijzigingen. Wilt u deze wijzigingen bekijken voordat u stopt?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target state="translated">U hebt %ld %@-documenten met onbevestigde wijzigingen. Wilt u deze wijzigingen bekijken voordat u stopt?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
@@ -1154,6 +1251,26 @@ De proefperiode eindigt in %d dagen, daarna u geen documenten maken en bewerken.
         <target state="translated">Gebruik Standaard</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
       </trans-unit>
+      <trans-unit id="aiL-Ab-t19.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">Licentie verleend onder</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19";</note>
+      </trans-unit>
+      <trans-unit id="aiL-Ab-t22.title" xml:space="preserve">
+        <source>Commercial</source>
+        <target state="translated">Commercieel</target>
+        <note>Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22";</note>
+      </trans-unit>
+      <trans-unit id="aiN-Ab-t14.title" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools</source>
+        <target state="translated">ONLYOFFICE AI Tools</target>
+        <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14";</note>
+      </trans-unit>
+      <trans-unit id="aiV-Ab-t16.title" xml:space="preserve">
+        <source>Version</source>
+        <target state="translated">Versie</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16";</note>
+      </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
         <target state="translated">Toon Kleuren</target>
@@ -1278,6 +1395,11 @@ De proefperiode eindigt in %d dagen, daarna u geen documenten maken en bewerken.
         <source>ONLYOFFICE</source>
         <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
+      <trans-unit id="lLc-Ab-t05.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">Licentie verleend onder</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>

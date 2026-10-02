@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ 已存在。\n您要替换它吗？";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@帮助";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "确认";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "卸载后 AI Tools 功能将不可用。所有 AI 设置（包括 API 密钥）不会被删除。";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "解压压缩包时发生错误";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "安装加载项时发生意外错误。";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "应用程序需要重新启动";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "您确定要卸载 ONLYOFFICE AI Tools 吗？";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "在签名之前，您必须首先保存文档。";
@@ -41,9 +59,6 @@
 "Community version %@" = "社区版 %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "社区版 %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "新建";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "企业版 %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "企业版 %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 电子表格";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel 二进制工作表";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "由于网络错误，加载项下载失败。";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "主题安装失败";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "保存已下载的加载项包失败。";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "小说书2文件";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "隐藏%@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "我稍后再做";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "如果您不审阅文档，您所做的所有更改都将丢失。";
@@ -155,19 +176,22 @@
 "No" = "否";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "此应用程序版本没有可用的兼容加载项版本。";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "内存不足，无法完成加载项下载。";
+
+/* No comment provided by engineer. */
 "OK" = "确定";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools 已成功卸载";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE 无法打开该数字签名文件。请尝试打开另一个文件。";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE 无法打开该私钥。请尝试打开另一个文件。";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE 文档表单模板";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE 可填写在线表单";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF 表单";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "便携式文件/A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "固定标签";
 
 /* No comment provided by engineer. */
 "Plain Text" = "纯文本文件";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "替换";
+
+/* No comment provided by engineer. */
+"Restart now" = "立即重启";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "审阅更改...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "感谢您对%@的评价！";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "加载项下载 URL 无效。";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "加载项信息无效或不完整。";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "加载项包已损坏或已被修改。";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "必须创建“%@”。继续？";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "已安装的 AI Tools 组件与此版本的应用程序不兼容。现在更新 AI Tools？";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "主题已存在。是​​否替换？";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "此主题文件无效";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "要安装加载项，请将应用程序更新到最新版本。";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "您必须保存后才能打开文件位置。";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "无标题";
+
+/* No comment provided by engineer. */
+"Version %@" = "版本 %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio 绘图";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "您已经成功激活%@。";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "需要重新启动应用程序设置才能生效。";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "如果不保存，您的更改都将丢失。";

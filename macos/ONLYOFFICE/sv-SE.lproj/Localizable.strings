@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ finns redan.\nVill du ersätta den?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Hjälp";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Bekräftelser";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "AI Tools-funktioner kommer inte att vara tillgängliga efter avinstallationen. Alla AI-inställningar (inklusive API-nycklar) tas inte bort.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Ett fel inträffade vid extraktion av arkivet";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Ett oväntat fel uppstod vid installation av tillägget.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Programmet måste startas om";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Är du säker på att du vill avinstallera ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Innan dokumentet signeras, måste det sparas.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community-version %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community-version %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Skapa ny";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise-version %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise-version %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003-kalkylblad";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel-binärt kalkylblad";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Det gick inte att ladda ned tillägget på grund av ett nätverksfel.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Misslyckades med att installera temat";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Det gick inte att spara det nedladdade tilläggspaketet.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "FictionBook 2-fil";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Göm %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Jag gör det senare";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Om du inte granskar dina dokument, kommer alla dina ändringar att förloras.";
@@ -155,19 +176,22 @@
 "No" = "Nej";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Det finns ingen kompatibel version av tillägget tillgänglig för den här versionen av programmet.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Inte tillräckligt med minne för att slutföra nedladdningen av tillägget.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools har avinstallerats";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE kan inte öppna filen med den digitala signaturen. Försök att öppna en annan fil.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan inte öppna den privata nyckeln. Försök att öppna en annan fil.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE-dokumentformulärmall";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE-ifyllbart onlineformulär";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF-formulär";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Portabelt dokumentformat /A-fil";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Fäst i flik";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Oformaterad text";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Ersätt";
+
+/* No comment provided by engineer. */
+"Restart now" = "Starta om nu";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Granska ändringar...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Tack för att du utvärderar %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Nedladdnings-URL:en för tillägget är ogiltig.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Tilläggsinformationen är ogiltig eller ofullständig.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Tilläggspaketet är skadat eller har ändrats.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokumentet \"%@\" måste byggas. Fortsätt?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Den installerade AI Tools-komponenten är inkompatibel med den här versionen av programmet. Uppdatera AI Tools nu?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Temat finns redan. Ersätt det?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Den här temafilen är inte giltig";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Om du vill installera tillägget uppdaterar du programmet till den senaste versionen.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "För att öppna filsökvägen, måste den sparas.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Namnlös";
+
+/* No comment provided by engineer. */
+"Version %@" = "Version %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio-ritning";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Du har aktiverat %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Du måste starta om programmet för att inställningarna ska börja gälla.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Dina ändringar kommer att gå förlorade om du inte sparar dem.";

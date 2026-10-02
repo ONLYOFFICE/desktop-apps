@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ already exists.\nDo you want to replace it?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Help";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Acknowledgments";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "An error occurred while unpacking the archive";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "An unexpected error occurred while installing the add-on.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Application needs to restart";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Are you sure you want to uninstall ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Before signing the document, it must be saved.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community version %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community version %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Create new";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise version %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise version %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel Binary Workbook";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Failed to download the add-on due to a network error.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Failed to install theme";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Failed to save the downloaded add-on package.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "FictionBook 2 File";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Hide %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "I'll do it later";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "If you don't review your documents, all your changes will be lost.";
@@ -155,19 +176,22 @@
 "No" = "No";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "No compatible add-on version is available for this version of the application.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Not enough memory to complete the add-on download.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools successfully uninstalled";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE can not open the Digital Signature file. Try opening another file.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE can not open the Private Key. Try opening another file.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE Document Form Template";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE Fillable Online Form";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF Form";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Portable Document /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Pin to tab";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Plain Text File";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Replace";
+
+/* No comment provided by engineer. */
+"Restart now" = "Restart now";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Review Changes...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Thank you for evaluating %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "The add-on download URL is invalid.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "The add-on information is invalid or incomplete.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "The add-on package is corrupted or has been modified.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "The document \"%@\" must be built. Continue?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "The installed AI Tools component is incompatible with this version of the application. Update the AI Tools now?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Theme already exists. Replace it?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "This theme file is not valid";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "To install the add-on, update the application to the latest version.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "To open the file location, it must be saved.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Untitled";
+
+/* No comment provided by engineer. */
+"Version %@" = "Version %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio Drawing";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "You have successfully activated %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "You must restart the application for the settings to take effect.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Your changes will be lost if you don't save them.";

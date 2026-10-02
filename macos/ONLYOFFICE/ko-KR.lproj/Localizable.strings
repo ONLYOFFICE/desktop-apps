@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ 이 이미 존재합니다.\n변경하시겠습니까?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ 도움말";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "승인";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "제거 후 AI Tools 기능을 사용할 수 없게 됩니다. 모든 AI 설정(API 키 포함)은 제거되지 않습니다.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "아카이브 압축을 푸는 중 오류가 발생했습니다";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "애드온을 설치하는 중 예기치 않은 오류가 발생했습니다.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "애플리케이션을 다시 시작해야 합니다";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "ONLYOFFICE AI Tools를 제거하시겠습니까?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "문서에 서명하기 전에 먼저 저장해야 합니다.";
@@ -41,9 +59,6 @@
 "Community version %@" = "\"커뮤니티\" 버전 %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "\"커뮤니티\" 버전 %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "새로 만들기";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "\"엔터프라이즈\" 버전 %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "\"엔터프라이즈\" 버전 %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 스프레드시트";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel 바이너리 워크시트";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "네트워크 오류로 인해 애드온을 다운로드하지 못했습니다.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "테마 설치 실패";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "다운로드한 애드온 패키지를 저장하지 못했습니다.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "픽션북 2 파일";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "%@ 숨기기";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "나중에 하겠습니다";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "이미 %@ 구입을 완료했으므로, 확인 이메일에서 활성화 키를 찾으실 수 있을 것입니다.";
@@ -152,19 +173,22 @@
 "No" = "아니오";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "이 버전의 애플리케이션에 호환되는 애드온 버전이 없습니다.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "애드온 다운로드를 완료하기 위한 메모리가 부족합니다.";
+
+/* No comment provided by engineer. */
 "OK" = "확인";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools가 성공적으로 제거되었습니다";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE에서 해당 디지털 서명 파일을 열 수 없습니다. 다른 파일을 열어보십시오.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE에서 해당 개인 키를 열 수 없습니다. 다른 파일을 열어보십시오.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE 문서 양식 템플릿";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE 온라인 양식 작성";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF 양식";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "휴대용 문서 / A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "탭에 고정";
 
 /* No comment provided by engineer. */
 "Plain Text" = "일반 텍스트 파일";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "바꾸기";
+
+/* No comment provided by engineer. */
+"Restart now" = "지금 다시 시작";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "변경 사항 검토 중...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "%@를 평가해주셔서 감사합니다!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "애드온 다운로드 URL이 유효하지 않습니다.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "애드온 정보가 유효하지 않거나 불완전합니다.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "애드온 패키지가 손상되었거나 수정되었습니다.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "\"%@\" 문서를 생성해야 합니다. 계속하시겠습니까?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "설치된 AI Tools 구성 요소는 이 버전의 애플리케이션과 호환되지 않습니다. 지금 AI Tools를 업데이트하시겠습니까?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "테마가 이미 있습니다. 바꾸시겠습니까?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "이 테마 파일이 유효하지 않습니다";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "애드온을 설치하려면 애플리케이션을 최신 버전으로 업데이트하세요.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "해당 파일 위치를 열려면, 먼저 저장해야 합니다.";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "제목 없음";
+
+/* No comment provided by engineer. */
+"Version %@" = "버전 %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio 드로잉";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "%@ 활성화에 성공했습니다.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "설정을 적용하려면 애플리케이션을 다시 시작해야 합니다.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "변경 사항을 저장하지 않으면 잃게 됩니다.";

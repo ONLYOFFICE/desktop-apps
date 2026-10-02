@@ -77,6 +77,18 @@
         <target>%@ 說明</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="%@ already exists.&#10;Do you want to replace it?" xml:space="preserve">
+        <source>%@ already exists.
+Do you want to replace it?</source>
+        <target state="translated">%1 已經存在。
+您要取代它嗎？</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." xml:space="preserve">
+        <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
+        <target state="translated">解除安裝後 AI Tools 功能將無法使用。所有 AI 設定（包括 API 金鑰）將不會被移除。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
         <target>關於 %@</target>
@@ -85,6 +97,26 @@
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
         <target>版權聲明</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An error occurred while unpacking the archive" xml:space="preserve">
+        <source>An error occurred while unpacking the archive</source>
+        <target state="translated">解壓縮存檔時發生錯誤</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An unexpected error occurred while installing the add-on." xml:space="preserve">
+        <source>An unexpected error occurred while installing the add-on.</source>
+        <target state="translated">安裝附加元件時發生意外錯誤。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application needs to restart" xml:space="preserve">
+        <source>Application needs to restart</source>
+        <target state="translated">應用程式需要重新啟動</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Are you sure you want to uninstall ONLYOFFICE AI Tools?" xml:space="preserve">
+        <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
+        <target state="translated">您確定要解除安裝 ONLYOFFICE AI Tools 嗎？</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
@@ -142,11 +174,6 @@
         <target state="translated">社群版 %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
-        <source>Community version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">社群版 %1$@ (%2$@-%3$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Create new" xml:space="preserve">
         <source>Create new</source>
         <target>新增</target>
@@ -202,11 +229,6 @@
         <target state="translated">企業版 %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
-        <source>Enterprise version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">企業版 %1$@ (%2$@-%3$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Excel 97-2003 試算表</target>
@@ -222,9 +244,19 @@
         <target state="translated">Excel 二進位工作表</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Failed to download the add-on due to a network error." xml:space="preserve">
+        <source>Failed to download the add-on due to a network error.</source>
+        <target state="translated">由於網路錯誤，附加元件下載失敗。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
         <source>Failed to install theme</source>
         <target state="translated">主題安裝失敗</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to save the downloaded add-on package." xml:space="preserve">
+        <source>Failed to save the downloaded add-on package.</source>
+        <target state="translated">儲存已下載的附加元件套件失敗。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -250,6 +282,11 @@
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target>隱藏 %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="I'll do it later" xml:space="preserve">
+        <source>I'll do it later</source>
+        <target state="translated">我稍後再做</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
@@ -307,6 +344,16 @@
         <target>否</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="No compatible add-on version is available for this version of the application." xml:space="preserve">
+        <source>No compatible add-on version is available for this version of the application.</source>
+        <target state="translated">此應用程式版本沒有可用的相容附加元件版本。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Not enough memory to complete the add-on download." xml:space="preserve">
+        <source>Not enough memory to complete the add-on download.</source>
+        <target state="translated">記憶體不足，無法完成附加元件下載。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target>好</target>
@@ -320,6 +367,11 @@
       <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
         <source>ONLYOFFICE Fillable Online Form</source>
         <target state="translated">ONLYOFFICE 可填寫線上表單</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE AI Tools successfully uninstalled" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools successfully uninstalled</source>
+        <target state="translated">ONLYOFFICE AI Tools 已成功解除安裝</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
@@ -387,6 +439,11 @@
         <target state="translated">PNG 圖像</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Pin to tab" xml:space="preserve">
+        <source>Pin to tab</source>
+        <target state="translated">固定至分頁</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
         <target state="translated">純文字</target>
@@ -437,6 +494,11 @@
         <target state="translated">替换</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Restart now" xml:space="preserve">
+        <source>Restart now</source>
+        <target state="translated">立即重新啟動</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
         <target>檢閱變更...</target>
@@ -469,7 +531,7 @@
       </trans-unit>
       <trans-unit id="Show in folder" xml:space="preserve">
         <source>Show in folder</source>
-        <target>在資料夾中顯示</target>
+        <target state="translated">在資料夾中顯示</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Show main window" xml:space="preserve">
@@ -497,9 +559,29 @@
         <target>謝謝您評估 %@！</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The add-on download URL is invalid." xml:space="preserve">
+        <source>The add-on download URL is invalid.</source>
+        <target state="translated">附加元件下載 URL 無效。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on information is invalid or incomplete." xml:space="preserve">
+        <source>The add-on information is invalid or incomplete.</source>
+        <target state="translated">附加元件資訊無效或不完整。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on package is corrupted or has been modified." xml:space="preserve">
+        <source>The add-on package is corrupted or has been modified.</source>
+        <target state="translated">附加元件套件已損毀或已被修改。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
         <target state="translated">必須建立 "%@" 文件。 繼續嗎？</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
+        <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
+        <target state="translated">已安裝的 AI Tools 元件與此版本的應用程式不相容。立即更新 AI Tools？</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
@@ -515,6 +597,11 @@
       <trans-unit id="This theme file is not valid" xml:space="preserve">
         <source>This theme file is not valid</source>
         <target state="translated">此主題文件無效</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="To install the add-on, update the application to the latest version." xml:space="preserve">
+        <source>To install the add-on, update the application to the latest version.</source>
+        <target state="translated">若要安裝附加元件，請將應用程式更新至最新版本。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -545,6 +632,11 @@
       <trans-unit id="VSDX File" xml:space="preserve">
         <source>VSDX File</source>
         <target state="translated">Visio 繪圖</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@" xml:space="preserve">
+        <source>Version %@</source>
+        <target state="translated">版本 %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -580,6 +672,11 @@
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source>
         <target state="translated">您已成功啟用 %@。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You must restart the application for the settings to take effect." xml:space="preserve">
+        <source>You must restart the application for the settings to take effect.</source>
+        <target state="translated">您必須重新啟動應用程式，設定變更才會生效。</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
@@ -673,12 +770,12 @@ The trial period will end in %d days, after that you will not be able to create 
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
         <target>%#@文件@</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>您的文件 %ld %@ 有未確認的變更，您要在結束前檢閱這些變更嗎？</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
@@ -694,7 +791,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
       </trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
@@ -924,7 +1021,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
       </trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
@@ -1137,6 +1234,26 @@ The trial period will end in %d days, after that you will not be able to create 
         <target>使用預設值</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
       </trans-unit>
+      <trans-unit id="aiL-Ab-t19.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">根據...許可</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19";</note>
+      </trans-unit>
+      <trans-unit id="aiL-Ab-t22.title" xml:space="preserve">
+        <source>Commercial</source>
+        <target state="translated">商業的</target>
+        <note>Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22";</note>
+      </trans-unit>
+      <trans-unit id="aiN-Ab-t14.title" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools</source>
+        <target state="translated">ONLYOFFICE AI Tools</target>
+        <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14";</note>
+      </trans-unit>
+      <trans-unit id="aiV-Ab-t16.title" xml:space="preserve">
+        <source>Version</source>
+        <target state="translated">版本</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16";</note>
+      </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
         <target>顯示顏色</target>
@@ -1259,8 +1376,13 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
+      <trans-unit id="lLc-Ab-t05.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">根據...許可</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>
@@ -1309,7 +1431,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="pxx-59-PXV.title" xml:space="preserve">
         <source>Save</source>
-        <target>儲存</target>
+        <target state="translated">儲存</target>
         <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
       </trans-unit>
       <trans-unit id="q09-fT-Sye.title" xml:space="preserve">
@@ -1364,7 +1486,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
       </trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">

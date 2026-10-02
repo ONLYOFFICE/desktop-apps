@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ bestaat al.\nWilt u het vervangen?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Help";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Erkenningen";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "AI Tools-functies zijn niet beschikbaar na het verwijderen. Alle AI-instellingen (inclusief API-sleutels) worden niet verwijderd.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Er is een fout opgetreden tijdens het uitpakken van het archief";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Er is een onverwachte fout opgetreden bij het installeren van de add-on.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Toepassing moet opnieuw worden gestart";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Weet u zeker dat u ONLYOFFICE AI Tools wilt verwijderen?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Voordat het document wordt ondertekend, moet het worden opgeslagen.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community-versie %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community-versie %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Nieuw maken";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise-versie %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise-versie %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel binair werkblad";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Het downloaden van de add-on is mislukt vanwege een netwerkfout.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Installatie van thema mislukt";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Het opslaan van het gedownloade add-on pakket is mislukt.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "FictionBook 2-bestand";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Verberg %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Ik doe het later";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Als u uw documenten niet controleert, gaan al uw wijzigingen verloren.";
@@ -155,19 +176,22 @@
 "No" = "Nee";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Er is geen compatibele versie van de add-on beschikbaar voor deze versie van de toepassing.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Onvoldoende geheugen om de add-on download te voltooien.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools is succesvol verwijderd";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE kan het bestand met de Digitale Handtekening niet openen. Probeer een ander bestand te openen.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan de Privésleutel niet openen. Probeer een ander bestand te openen.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE Documentformuliersjabloon";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE Invulbaar online formulier";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF-formulier";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Portable Document /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Vastkoppelen aan tabblad";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Standaard Tekstbestand";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Vervangen";
+
+/* No comment provided by engineer. */
+"Restart now" = "Nu opnieuw opstarten";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Veranderingen Beoordelen...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Bedankt voor het beoordelen van %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "De download-URL van de add-on is ongeldig.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "De add-on informatie is ongeldig of onvolledig.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Het add-on pakket is beschadigd of gewijzigd.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Het document \"%@\" moet worden gebouwd. Doorgaan?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "De geïnstalleerde AI Tools-component is incompatibel met deze versie van de toepassing. AI Tools nu bijwerken?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Thema bestaat al. Vervangen?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Dit themabestand is niet geldig";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Om de add-on te installeren, werkt u de toepassing bij naar de nieuwste versie.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Om de bestandslocatie te openen, moet deze worden opgeslagen.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Zonder titel";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versie %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio-tekening";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "U hebt met succes %@ geactiveerd.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "U moet de toepassing opnieuw starten om de instellingen van kracht te laten worden.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Uw wijzigingen gaan verloren als u ze niet opslaat.";

@@ -82,6 +82,18 @@
         <target>Справка %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="%@ already exists.&#10;Do you want to replace it?" xml:space="preserve">
+        <source>%@ already exists.
+Do you want to replace it?</source>
+        <target state="translated">%@ уже существует.
+Хотите его перезаписать?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." xml:space="preserve">
+        <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
+        <target state="translated">После удаления функции AI Tools будут недоступны. Все настройки ИИ (включая ключи API) не будут удалены.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
         <target>О программе %@</target>
@@ -90,6 +102,26 @@
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
         <target>Лицензии</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An error occurred while unpacking the archive" xml:space="preserve">
+        <source>An error occurred while unpacking the archive</source>
+        <target state="translated">При распаковке архива произошла ошибка</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An unexpected error occurred while installing the add-on." xml:space="preserve">
+        <source>An unexpected error occurred while installing the add-on.</source>
+        <target state="translated">При установке дополнения произошла неожиданная ошибка.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application needs to restart" xml:space="preserve">
+        <source>Application needs to restart</source>
+        <target state="translated">Требуется перезапуск приложения</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Are you sure you want to uninstall ONLYOFFICE AI Tools?" xml:space="preserve">
+        <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
+        <target state="translated">Вы уверены, что хотите удалить ONLYOFFICE AI Tools?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
@@ -124,7 +156,7 @@
       </trans-unit>
       <trans-unit id="Close" xml:space="preserve">
         <source>Close</source>
-        <target>Закрыть</target>
+        <target state="translated">Закрыть</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Close all" xml:space="preserve">
@@ -145,11 +177,6 @@
       <trans-unit id="Community version %@" xml:space="preserve">
         <source>Community version %@</source>
         <target state="translated">Версия Community %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Community version %@ (%@-%@)" xml:space="preserve">
-        <source>Community version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">Версия Community %1$@ (%2$@-%3$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create new" xml:space="preserve">
@@ -207,11 +234,6 @@
         <target state="translated">Версия Enterprise %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Enterprise version %@ (%@-%@)" xml:space="preserve">
-        <source>Enterprise version %1$@ (%2$@-%3$@)</source>
-        <target state="translated">Версия Enterprise %1$@ (%2$@-%3$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Электронная таблица Excel 97-2003</target>
@@ -232,9 +254,19 @@
         <target state="translated">Бинарная рабочая книга Excel</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Failed to download the add-on due to a network error." xml:space="preserve">
+        <source>Failed to download the add-on due to a network error.</source>
+        <target state="translated">Не удалось загрузить дополнение из-за ошибки сети.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Failed to install theme" xml:space="preserve">
         <source>Failed to install theme</source>
         <target state="translated">Не удалось установить тему</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to save the downloaded add-on package." xml:space="preserve">
+        <source>Failed to save the downloaded add-on package.</source>
+        <target state="translated">Не удалось сохранить загруженный пакет дополнения.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -260,6 +292,11 @@
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target>Скрыть %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="I'll do it later" xml:space="preserve">
+        <source>I'll do it later</source>
+        <target state="translated">Сделаю позже</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
@@ -307,6 +344,16 @@
         <target>Нет</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="No compatible add-on version is available for this version of the application." xml:space="preserve">
+        <source>No compatible add-on version is available for this version of the application.</source>
+        <target state="translated">Для этой версии приложения нет совместимой версии дополнения.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Not enough memory to complete the add-on download." xml:space="preserve">
+        <source>Not enough memory to complete the add-on download.</source>
+        <target state="translated">Недостаточно памяти для завершения загрузки дополнения.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target>OK</target>
@@ -320,6 +367,11 @@
       <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
         <source>ONLYOFFICE Fillable Online Form</source>
         <target state="translated">Заполняемая онлайн-форма ONLYOFFICE</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE AI Tools successfully uninstalled" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools successfully uninstalled</source>
+        <target state="translated">ONLYOFFICE AI Tools успешно удалён</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
@@ -387,6 +439,11 @@
         <target state="translated">Изображение PNG</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Pin to tab" xml:space="preserve">
+        <source>Pin to tab</source>
+        <target state="translated">Закрепить во вкладке</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
         <target state="translated">Текстовый файл</target>
@@ -442,6 +499,11 @@
         <target state="translated">Заменить</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Restart now" xml:space="preserve">
+        <source>Restart now</source>
+        <target state="translated">Перезапустить сейчас</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
         <target>Просмотреть изменения...</target>
@@ -474,7 +536,7 @@
       </trans-unit>
       <trans-unit id="Show in folder" xml:space="preserve">
         <source>Show in folder</source>
-        <target>Показать в папке</target>
+        <target state="translated">Показать в папке</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Show main window" xml:space="preserve">
@@ -502,9 +564,29 @@
         <target>Спасибо за то, что выбрали %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The add-on download URL is invalid." xml:space="preserve">
+        <source>The add-on download URL is invalid.</source>
+        <target state="translated">URL-адрес загрузки дополнения недействителен.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on information is invalid or incomplete." xml:space="preserve">
+        <source>The add-on information is invalid or incomplete.</source>
+        <target state="translated">Информация о дополнении недействительна или неполна.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on package is corrupted or has been modified." xml:space="preserve">
+        <source>The add-on package is corrupted or has been modified.</source>
+        <target state="translated">Пакет дополнения повреждён или изменён.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
         <target>Документ "%@" необходимо сформировать. Продолжить?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
+        <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
+        <target state="translated">Установленный компонент AI Tools несовместим с этой версией приложения. Обновить AI Tools сейчас?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
@@ -520,6 +602,11 @@
       <trans-unit id="This theme file is not valid" xml:space="preserve">
         <source>This theme file is not valid</source>
         <target state="translated">Этот файл темы недействителен</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="To install the add-on, update the application to the latest version." xml:space="preserve">
+        <source>To install the add-on, update the application to the latest version.</source>
+        <target state="translated">Для установки дополнения обновите приложение до последней версии.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -550,6 +637,11 @@
       <trans-unit id="VSDX File" xml:space="preserve">
         <source>VSDX File</source>
         <target state="translated">Чертеж Visio</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@" xml:space="preserve">
+        <source>Version %@</source>
+        <target state="translated">Версия %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -587,6 +679,11 @@
         <target>Вы успешно активировали %@.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="You must restart the application for the settings to take effect." xml:space="preserve">
+        <source>You must restart the application for the settings to take effect.</source>
+        <target state="translated">Чтобы применить настройки, необходимо перезапустить приложение.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
         <source>Your changes will be lost if you don't save them.</source>
         <target state="translated">Ваши изменения будут потеряны, если вы не сохраните их.</target>
@@ -594,7 +691,7 @@
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
-        <target>Ваши изменения будут потеряны, если вы не сохраните их.</target>
+        <target state="translated">Ваши изменения будут потеряны, если вы не сохраните их.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
@@ -714,27 +811,27 @@ The trial period will end in %d days, after that you will not be able to create 
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
         <target>%#@documents@</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/few:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>У Вас %ld документа %@ с неподтвержденными изменениями. Просмотреть документы перед завершением?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/many:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>У Вас %ld документов %@ с неподтвержденными изменениями. Просмотреть документы перед завершением?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>У Вас %ld документ %@ с неподтвержденными изменениями. Просмотреть документы перед завершением?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>У Вас %ld документов %@ с неподтвержденными изменениями. Просмотреть документы перед завершением?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
@@ -895,7 +992,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
         <source>Close</source>
-        <target>Закрыть</target>
+        <target state="translated">Закрыть</target>
         <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
       </trans-unit>
       <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
@@ -1193,6 +1290,26 @@ The trial period will end in %d days, after that you will not be able to create 
         <target>По умолчанию</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
       </trans-unit>
+      <trans-unit id="aiL-Ab-t19.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">Лицензировано по</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19";</note>
+      </trans-unit>
+      <trans-unit id="aiL-Ab-t22.title" xml:space="preserve">
+        <source>Commercial</source>
+        <target state="translated">Коммерческая</target>
+        <note>Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22";</note>
+      </trans-unit>
+      <trans-unit id="aiN-Ab-t14.title" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools</source>
+        <target state="translated">ONLYOFFICE AI Tools</target>
+        <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14";</note>
+      </trans-unit>
+      <trans-unit id="aiV-Ab-t16.title" xml:space="preserve">
+        <source>Version</source>
+        <target state="translated">Версия</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16";</note>
+      </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
         <target state="translated">Показать цвета</target>
@@ -1317,6 +1434,11 @@ The trial period will end in %d days, after that you will not be able to create 
         <source>ONLYOFFICE</source>
         <target>ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
+      <trans-unit id="lLc-Ab-t05.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">Лицензировано по</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>

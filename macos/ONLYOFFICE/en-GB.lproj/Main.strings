@@ -73,6 +73,18 @@
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3"; */
 "agt-UL-0e3.title" = "Use Default";
 
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19"; */
+"aiL-Ab-t19.title" = "Licensed under";
+
+/* Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22"; */
+"aiL-Ab-t22.title" = "Commercial";
+
+/* Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14"; */
+"aiN-Ab-t14.title" = "ONLYOFFICE AI Tools";
+
+/* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16"; */
+"aiV-Ab-t16.title" = "Version";
+
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
 "aTl-1u-JFS.title" = "Print…";
 
@@ -246,6 +258,9 @@
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "Bring All to Front";
+
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05"; */
+"lLc-Ab-t05.title" = "Licensed under";
 
 /* Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI"; */
 "LVM-kO-fVI.title" = "Paste Ruler";

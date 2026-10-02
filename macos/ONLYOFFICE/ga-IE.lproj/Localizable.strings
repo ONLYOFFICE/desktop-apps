@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@  ann cheana.\nAr mhaith leat ceann eile a chur ina ionad?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Cabhrú";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Admhálacha";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Ní bheidh gnéithe AI Tools ar fáil tar éis díshuiteála. Ní bheidh na socruithe AI go léir (lena n-áirítear eochracha API) á mbaint.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Tharla earráid agus an chartlann á díphacáil";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Tharla earráid gan choinne le linn suiteáil an bhreiseáin.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Ní mór don fheidhmchlár atosú";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "An bhfuil tú cinnte gur mhaith leat ONLYOFFICE AI Tools a dhíshuiteáil?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Sula síneofar an doiciméad, caithfear é a shábháil.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Leagan Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Leagan Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Cruthaigh nua";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Leagan Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Leagan Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Scarbhileog Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Bileog oibre dénártha Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Theip ar íoslódáil an bhreiseáin mar gheall ar earráid líonra.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Theip ar théama a shuiteáil";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Theip ar shábháil pacáiste an bhreiseáin a íoslódáladh.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Comhad FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Folaigh %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Déanfaidh mé é níos déanaí";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Má cheannaigh tú %@ cheana féin, ba cheart duit d’eochair ghníomhachtaithe a fháil i ndeimhniú ríomhphoist.";
@@ -152,19 +173,22 @@
 "No" = "Níl";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Níl aon leagan comhoiriúnach den bhreiseán ar fáil don leagan seo den fheidhmchlár.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Níl go leor cuimhne ann chun íoslódáil an bhreiseáin a chríochnú.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "Díshuiteáladh ONLYOFFICE AI Tools go rathúil";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Ní féidir le ONLYOFFICE an comhad Síniú Digiteach a oscailt. Bain triail as comhad eile a oscailt.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "Ní féidir le ONLYOFFICE an Eochair Phríobháideach a oscailt. Bain triail as comhad eile a oscailt.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Teimpléad foirme doiciméid ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Foirm ar líne inlíonta ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Foirm PDF ONLYOFFICE";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Comhad PDF/A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Bioráin go cluaisín";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Téacs Plain";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Ionadaigh";
+
+/* No comment provided by engineer. */
+"Restart now" = "Atosaigh anois";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Athruithe Athbhreithnithe...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "Go raibh maith agat as meastóireacht a dhéanamh %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Tá URL íoslódála an bhreiseáin neamhbhailí.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Tá faisnéis an bhreiseáin neamhbhailí nó neamhiomlán.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Tá pacáiste an bhreiseáin truaillithe nó athraithe.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Caithfear an doiciméad ‘%@’ a thógáil. Leanúint ar aghaidh ?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Tá an chomhpháirt AI Tools suiteáilte neamh-chomhoiriúnach leis an leagan seo den fheidhmchlár. An bhfuil tú ag iarraidh AI Tools a nuashonrú anois?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Tá an téama ann cheana féin. Cuir ina áit é?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Níl an comhad téama seo bailí";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Chun an breiseán a shuiteáil, déan an feidhmchlár a nuashonrú go dtí an leagan is déanaí.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Chun suíomh an chomhaid a oscailt, caithfear é a shábháil.";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Gan ainm";
+
+/* No comment provided by engineer. */
+"Version %@" = "Leagan %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Líníocht Visio";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "D'éirigh leat a ghníomhachtú %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Ní mór duit an feidhmchlár a atosú chun go dtiocfaidh na socruithe i bhfeidhm.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Caillfear d’athruithe mura sábhálann tú iad.";

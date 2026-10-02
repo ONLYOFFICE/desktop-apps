@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ ya existe.\n¿Desea reemplazarlo?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Ayuda";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Reconocimientos";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Las funciones de AI Tools no estarán disponibles después de la desinstalación. Toda la configuración de IA (incluidas las claves API) no se eliminará.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Se ha producido un error al descomprimir el archivo";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Se produjo un error inesperado al instalar el complemento.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "La aplicación necesita reiniciarse";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "¿Está seguro de que desea desinstalar ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Antes de firmar el documento, debe guardarse.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Versión Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Versión Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Crear nuevo";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Versión Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Versión Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Hoja de cálculo Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Hoja de cálculo binario de Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "No se pudo descargar el complemento debido a un error de red.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Error al instalar el tema";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "No se pudo guardar el paquete del complemento descargado.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Archivo FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Esconder %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Lo haré más tarde";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Si no revisa sus documentos, todos sus cambios se perderán.";
@@ -155,19 +176,22 @@
 "No" = "No";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "No hay ninguna versión compatible del complemento disponible para esta versión de la aplicación.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "No hay suficiente memoria para completar la descarga del complemento.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools se desinstalado correctamente";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE no puede abrir el archivo de Firma Digital. Intente abrir otro archivo.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE no puede abrir la Clave Privada. Intente abrir otro archivo.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Plantilla de formulario ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Formulario en línea rellenable de ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Formulario PDF ONLYOFFICE";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Documento portátil /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Anclar a pestaña";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Archivo de texto sin formato";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Reemplazar";
+
+/* No comment provided by engineer. */
+"Restart now" = "Reiniciar ahora";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Revisar cambios...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "¡Gracias por evaluar %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "La URL de descarga del complemento no es válida.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "La información del complemento no es válida o está incompleta.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "El paquete del complemento está dañado o ha sido modificado.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "El documento \"%@\" debe componerse. ¿Continuar?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "El componente AI Tools instalado es incompatible con esta versión de la aplicación. ¿Actualizar AI Tools ahora?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "El tema ya existe. ¿Reemplazarlo?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Este archivo de tema no es válido";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Para instalar el complemento, actualice la aplicación a la última versión.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Para abrir la ubicación del archivo este debe estar guardado.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Sin nombrar";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versión %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Dibujo de Visio";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Ha activado con éxito %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Es necesario reiniciar la aplicación para que los ajustes tengan efecto.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Sus cambios se perderán si no los guarda.";

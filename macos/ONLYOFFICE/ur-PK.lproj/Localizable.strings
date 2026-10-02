@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ پہلے سے موجود ہے۔\nکیا آپ اسے تبدیل کرنا چاہتے ہیں؟";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ مدد";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "اعترافات";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "ن انسٹال کرنے کے بعد AI Tools کی خصوصیات دستیاب نہیں ہوں گی۔ تمام AI ترتیبات (بشمول API کیز) نہیں ہٹائی جائیں گی۔";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "آرکائیو کو پیک کھولتے وقت ایک خرابی پیش آگئی";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "ایڈ-آن انسٹال کرتے وقت ایک غیر متوقع خرابی پیش آئی۔";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "ایپلیکیشن کو دوبارہ شروع کرنا ضروری ہے";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "کیا آپ واقعی ONLYOFFICE AI Tools کو ان انسٹال کرنا چاہتے ہیں؟";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "دستاویز پر دستخط کرنے سے پہلے، اسے محفوظ کرنا ضروری ہے۔";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community ورژن %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community ورژن %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "نیا بنائیں";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise ورژن %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise ورژن %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "ایکسل 97-2003 اسپریڈشیٹ";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "ایکسل بائنری ورک شیٹ";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "نیٹ ورک خرابی کی وجہ سے ایڈ-آن ڈاؤن لوڈ کرنا ناکام رہا۔";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "تھیم انسٹال کرنے میں ناکام";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "ڈاؤن لوڈ کردہ ایڈ-آن پیکیج محفوظ کرنا ناکام رہا۔";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "فکشن بک 2 فائل";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "چھپائیں %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "میں یہ بعد میں کروں گا";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "اگر آپ اپنی دستاویزات کا جائزہ نہیں لیتے ہیں تو آپ کی تمام تبدیلیاں ضائع ہو جائیں گی۔";
@@ -155,19 +176,22 @@
 "No" = "نہیں";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "اس ایپلیکیشن کے اس ورژن کے لیے کوئی موافق ایڈ-آن ورژن دستیاب نہیں ہے۔";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "ایڈ-آن ڈاؤن لوڈ مکمل کرنے کے لیے کافی میموری نہیں ہے۔";
+
+/* No comment provided by engineer. */
 "OK" = "ٹھیک ہے";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools کامیابی سے ان انسٹال ہو گیا";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE ڈیجیٹل دستخط فائل نہیں کھول سکتا۔ دوسری فائل کھولنے کی کوشش کریں۔";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE نجی کلید نہیں کھول سکتا۔ دوسری فائل کھولنے کی کوشش کریں۔";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE دستاویز فارم ٹیمپلیٹ";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE بھرنے کے قابل آن لائن فارم";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE پی ڈی ایف فارم";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "PDF/A فائل";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "ٹیب پر پن کریں۔";
 
 /* No comment provided by engineer. */
 "Plain Text" = "سادہ متن";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "بدل دیں۔";
+
+/* No comment provided by engineer. */
+"Restart now" = "ابھی دوبارہ شروع کریں۔";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "تبدیلیوں کا جائزہ لیں...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "%@ کا جائزہ لینے کے لیے آپ کا شکریہ!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "ایڈ-آن ڈاؤن لوڈ URL غلط ہے۔";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "ایڈ-آن کی معلومات غلط یا نامکمل ہیں۔";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "ایڈ-آن پیکیج خراب یا تبدیل شدہ ہے۔";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "دستاویز \"%@\" بننا ضروری ہے۔ جاری رکھیں؟";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "انسٹال شدہ AI Tools کمپوننٹ اس ایپلیکیشن کے ورژن کے ساتھ غیر موافق ہے۔ کیا ابھی AI Tools اپ ڈیٹ کریں؟";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "تھیم پہلے سے موجود ہے۔ اسے بدل دیں؟";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "یہ تھیم فائل درست نہیں ہے۔";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "ایڈ-آن انسٹال کرنے کے لیے، ایپلیکیشن کو تازہ ترین ورژن میں اپ ڈیٹ کریں۔";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "فائل کا مقام کھولنے کے لیے، اسے محفوظ کرنا ضروری ہے۔";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "بلا عنوان";
+
+/* No comment provided by engineer. */
+"Version %@" = "ورژن %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "ویزیو ڈرائنگ";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "آپ نے کامیابی سے %@ کو چالو کر لیا ہے۔";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "ترتیبات کے اثر میں آنے کے لیے آپ کو ایپلیکیشن کو دوبارہ شروع کرنے کی ضرورت ہے۔";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "اگر آپ انہیں محفوظ نہیں کرتے ہیں تو آپ کی تبدیلیاں ضائع ہو جائیں گی۔";
