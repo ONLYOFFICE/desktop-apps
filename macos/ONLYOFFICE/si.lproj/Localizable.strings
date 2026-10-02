@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ දැනටමත් පවතී. \nඔබට එය ප්‍රතිස්ථාපනයට වුවමනා ද?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ උදව්";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "පිළිදැනුම";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "අස්ථාපනය කිරීමෙන් පසු AI Tools විශේෂාංග නොලැබෙනු ඇත. සියලු AI සැකසුම් (API යතුරු ඇතුළුව) ඉවත් නොකෙරේ.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "හැකිළුම දිග හැරීමේදී දෝෂයක් සිදු විය";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "ඇඩ්-ඔන් ස්ථාපනය කිරීමේදී අනපේක්ෂිත දෝෂයක් සිදු විය.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "යෙදුම නැවත ආරම්භ කළ යුතුය";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "ඔබට ONLYOFFICE AI Tools අස්ථාපනය කිරීමට අවශ්‍ය බව ඔබ ස්ථිරද?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "ලේඛනය අත්සන් කිරීමට පෙර, එය සුරැකිය යුතුය.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community අනුවාදය %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community අනුවාදය %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "අළුතින් සාදන්න";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise අනුවාදය %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise අනුවාදය %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "එක්සෙල් 97-2003 පැතුරුම්පත";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "එක්සෙල් ද්විමය වැඩ පත්‍රිකාව";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "ජාල දෝෂයක් හේතුවෙන් ඇඩ්-ඔන් බාගැනීමට අසමත් විය.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "තේමාව ස්ථාපනය කිරීමට අපොහොසත් විය";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "බාගත කළ ඇඩ්-ඔන් පැකේජය සුරැකීමට අසමත් විය.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "ෆික්ෂන්බුක් 2 ගොනුව";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "%@ සඟවන්න";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "මම එය පසුව කරන්නම්";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "ඔබ ලේඛන සමාලෝචනය නොකරන්නේ නම්, ඔබගේ සියළුම වෙනස්කම් අහිමි වනු ඇත.";
@@ -155,19 +176,22 @@
 "No" = "නැහැ";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "මෙම යෙදුම් අනුවාදය සඳහා අනුකූල ඇඩ්-ඔන් අනුවාදයක් නොමැත.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "ඇඩ්-ඔන් බාගැනීම සම්පූර්ණ කිරීමට ප්‍රමාණවත් මතකයක් නොමැත.";
+
+/* No comment provided by engineer. */
 "OK" = "හරි";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools සාර්ථකව අස්ථාපනය කරන ලදී";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ඔන්ලිඔෆිස් සඳහා සංඛ්‍යාංක අත්සන ගොනුව ඇරීමට නොහැකිය. වෙනත් ගොනුවක් ඇරීමට උත්සාහ කරන්න.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ඔන්ලිඔෆිස් සඳහා පෞද්. යතුර ඇරීමට නොහැකිය. වෙනත් ගොනුවක් ඇරීමට උත්සාහ කරන්න.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE ලේඛන පෝරම සැකිල්ල";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE පිරවිය හැකි මාර්ගගත පෝරමය";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF පෝරමය";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "සුවහ ලේඛනය /ඒ";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "ටැබයට අමුණන්න";
 
 /* No comment provided by engineer. */
 "Plain Text" = "සරල පෙළ ගොනුව";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "ප්‍රතිස්ථාපනය";
+
+/* No comment provided by engineer. */
+"Restart now" = "දැන් නැවත ආරම්භ කරන්න";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "වෙනස්කම සමාලෝචනය...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "ඇගැයීමට ස්තූතියි %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "ඇඩ්-ඔන් බාගැනීමේ URL අවලංගු වේ.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "ඇඩ්-ඔන් තොරතුරු අවලංගු හෝ අසම්පූර්ණ වේ.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "ඇඩ්-ඔන් පැකේජය දූෂිත හෝ වෙනස් කර ඇත.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "\"%@\" ලේඛනය තැනිය යුතුය. ඉදිරියට?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "ස්ථාපිත AI Tools සංරචකය මෙම යෙදුම් අනුවාදය සමඟ නොගැලපේ. දැන් AI Tools යාවත්කාලීන කරන්නද?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "තේමාව දැනටමත් පවතී. එය ප්‍රතිස්ථාපනය කරන්න?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "මෙම තේමා ගොනුව වලංගු නොවේ";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "ඇඩ්-ඔන් ස්ථාපනය කිරීමට, යෙදුම නවතම අනුවාදයට යාවත්කාලීන කරන්න.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "ගොනුවේ ස්ථානය විවෘත කිරීමට, එය සුරැකිය යුතුය.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "සිරැසියක් නැත";
+
+/* No comment provided by engineer. */
+"Version %@" = "අනුවාදය %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "දර්ශන ඇඳීම";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "ඔබ සාර්ථකව %@ සක්‍රිය කර ඇත.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "සැකසුම් ක්‍රියාත්මක වීමට නම් ඔබ යෙදුම නැවත ආරම්භ කළ යුතුය.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "ඔබ ඒවා සුරැකුවේ නැතිනම් ඔබගේ වෙනස්කම් අහිමි වනු ඇත.";

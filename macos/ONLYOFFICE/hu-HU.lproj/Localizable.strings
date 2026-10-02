@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ már létezik.\nLe szeretnéd cserélni?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Súgó";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Köszönetnyilvánítás";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Az AI Tools funkciói az eltávolítás után nem lesznek elérhetők. Az összes AI-beállítás (beleértve az API-kulcsokat) nem törlődik.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Hiba történt az arhívum kicsomagolása közben";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Váratlan hiba történt a bővítmény telepítése közben.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Az alkalmazást újra kell indítani";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Biztosan el szeretné távolítani az ONLYOFFICE AI Tools alkalmazást?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Mielőtt alá lenne írva a dokumentum, el kell menteni.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community verzió %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community verzió %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Új létrehozása";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise verzió %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise verzió %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 számolótábla";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel bináris munkalap";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "A bővítmény letöltése hálózati hiba miatt meghiúsult.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Nem sikerült telepíteni a témát";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "A letöltött bővítménycsomag mentése meghiúsult.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "FictionBook 2 fájl";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "%@ elrejtése";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Később csinálom meg";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Amennyiben már megvásárolta a(z) %@-t, az aktiválási kulcsot a visszaigazoló e-mailben találja.";
@@ -152,19 +173,22 @@
 "No" = "Nem";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Ehhez az alkalmazásverzióhoz nem érhető el kompatibilis bővítményverzió.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Nincs elegendő memória a bővítmény letöltésének befejezéséhez.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "Az ONLYOFFICE AI Tools sikeresen eltávolítva";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Az ONLYOFFICE nem tudja megnyitni a Digitális Aláírás fájlját. Próbáljon meg megnyitni egy másik fájlt.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "Az ONLYOFFICE nem tudja megnyitni a Privát Kulcsot.. Próbáljon meg megnyitni egy másik fájlt.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE dokumentuműrlap sablon";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE kitölthető online űrlap";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "PDF űrlap ONLYOFFICE";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "PDF-fájlformátum /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Rögzítés a laphoz";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Egyszerű szöveg";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Csere";
+
+/* No comment provided by engineer. */
+"Restart now" = "Újraindítás most";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Változások áttekintése...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "Köszönjük, hogy értékelte a(z) %@-t!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "A bővítmény letöltési URL-je érvénytelen.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "A bővítmény adatai érvénytelenek vagy hiányosak.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "A bővítménycsomag sérült vagy módosítottak.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "A \"%@\" dokumentumot meg kell építeni. Folytatás?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "A telepített AI Tools összetevő nem kompatibilis az alkalmazás ezen verziójával. Frissíti most az AI Tools alkalmazást?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "A téma már létezik. Cserélje le?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Ez a témafájl érvénytelen";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "A bővítmény telepítéséhez frissítse az alkalmazást a legújabb verzióra.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Ahhoz, hogy meg lehessen nyitni a fájl helyét, el kell menteni.";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Névtelen";
+
+/* No comment provided by engineer. */
+"Version %@" = "Verzió %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio rajz";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Sikeresen aktiválta a(z) %@-t.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "A beállítások érvénybe léptetéséhez újra kell indítania az alkalmazást. Újraindítja most?";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "A módosításai elvesznek, ha nem menti őket.";

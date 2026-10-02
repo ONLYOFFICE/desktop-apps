@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ արդեն գոյություն ունի։\nՑանկանու՞մ եք փոխարինել այն։";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Օգնություն";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Նշումներ";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "AI Tools-ի գործառույթները հասանելի չեն լինի տեղահանումից հետո: AI-ի բոլոր կարգաբերումները (ներառյալ API բանալիները) չեն հեռացվի:";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Արխիվը բացելիս սխալ է տեղի ունեցել։";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Հավելումը տեղադրելիս տեղի ունեցավ անսպասելի սխալ:";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Հավելվածը պետք է վերագործարկվի";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Վստա՞հ եք, որ ցանկանում եք տեղահանել ONLYOFFICE AI Tools-ը:";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Այս փաստաթուղթը ստորագրելուց առաջ այն պետք է պահպանվի։";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community տարբերակ %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community տարբերակ %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Ստեղծել նորը";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise տարբերակ %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise տարբերակ %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 աղյուսակ";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel երկուական աշխատանքային թերթ";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Հավելման ներբեռնումն ձախողվեց ցանցի սխալի պատճառով:";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Թեմայի տեղադրումը չհաջողվեց";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Չհաջողվեց պահպանել ներբեռնված հավելման փաթեթը։";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Գեղարվեստական ​​Գիրք 2 ֆայլ";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Թաքցնել %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Կանեմ դա ավելի ուշ";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Եթե արդեն գնել եք %@, պետք է գտնեք ակտիվացման Ձեր բանալին հաստատող էլ․ նամակում։";
@@ -152,19 +173,22 @@
 "No" = "Ոչ";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Այս հավելվածի տարբերակի համար հասանելի չէ հարմար հավելման տարբերակ:";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Հավելման ներբեռնումն ավարտելու համար հիշողությունը բավականաչափ չէ:";
+
+/* No comment provided by engineer. */
 "OK" = "Լավ";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools-ը հաջողությամբ տեղահանվեց";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE-ը չի կարող բացել Թվային ստորագրության ֆայլը։ Փորձեք բացել այլ ֆայլ։";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE-ի չի կարող բացել Գաղտնի բանալին։ Փորձեք բացել այլ ֆայլ։";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE փաստաթղթի ձևի ձևանմուշ";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE լրացվող առցանց ձև";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF Ֆորմ";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Դյուրակիր փաստաթղթի ձևաչափ /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Ամրացնել ներդիրին";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Պարզ տեքստային ֆայլ";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Փոխարինել";
+
+/* No comment provided by engineer. */
+"Restart now" = "Վերագործարկեք Հիմա";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Վերանայել փոփոխությունները...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "Շնորհակալություն գնահատելոը համար %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Հավելման ներբեռնման URL-ն անվավեր է:";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Հավելման տեղեկությունները անվավեր են կամ թերի:";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Հավելման փաթեթը վնասված է կամ փոփոխված:";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Փաստաթուղթը &quot;%@&quot; պետք է կազմվի։ Շարունակե՞լ։";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Տեղադրված AI Tools բաղադրիչը անհամատեղելի է հավելվածի այս տարբերակի հետ: Թարմացնե՞լ AI Tools-ը հիմա։";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Թեման արդեն գոյություն ունի՞։ Փոխարինել այն՞";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Այս թեմայի ֆայլը վավեր չէ";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Հավելումը տեղադրելու համար թարմացրեք հավելվածը վերջին տարբերակին:";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Ֆայլի գտնվելու տեղը բացելու համար այն պետք է պահպանվի։";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Անվերնագիր";
+
+/* No comment provided by engineer. */
+"Version %@" = "Տարբերակ %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio Նկար";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Դուք հաջողությամբ ակտիվացրել եք %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Դուք պետք է վերագործարկեք հավելվածը, որպեսզի կարգավորումներն ուժի մեջ մտնեն:";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Ձեր փոփոխությունները կկորչեն, եթե չպահպանեք դրանք։";

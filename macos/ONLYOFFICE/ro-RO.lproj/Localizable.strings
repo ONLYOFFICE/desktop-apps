@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ există deja.\nDoriți să îl înlocuiți?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Asistenţă";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Confirmări";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Funcțiile AI Tools nu vor fi disponibile după dezinstalare. Toate setările AI (inclusiv cheile API) nu vor fi eliminate.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "A intervenit o eroare în timpul dezarhivării";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "A apărut o eroare neașteptată în timpul instalării programului de completare.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Aplicația trebuie repornită";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Sigur doriți să dezinstalați ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Salvați fișierul înainte de semnarea";
@@ -41,9 +59,6 @@
 "Community version %@" = "Versiunea Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Versiunea Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Creare document nou";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Versiunea Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Versiunea Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Foaia de calcul Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Foaie de calcu binarl Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Descărcarea programului de completare a eșuat din cauza unei erori de rețea.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Nu s-a putut instala tema";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Salvarea pachetului descărcat al programului de completare a eșuat.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Fișier FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Ascunde %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "O voi face mai târziu";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Vă rugăm să revizuiţi documentul, în caz contrar toate modificările vor fi pierdute.";
@@ -155,19 +176,22 @@
 "No" = "Nu";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Nu există nicio versiune compatibilă a programului de completare disponibilă pentru această versiune a aplicației.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Memorie insuficientă pentru a finaliza descărcarea programului de completare.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools a fost dezinstalat cu succes";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nu poate deschide fişierul de Semnătură Digitală. Încercați să deschideți un alt fișier.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nu poate deschide Cheia Privată. Încercați să deschideți un alt fișier.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Șablon Formă ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Formular online completabil ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Formular PDF ONLYOFFICE";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Formatul de Document Portabil /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Fixare la filă";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Fișier text simplu";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Înlocuiți";
+
+/* No comment provided by engineer. */
+"Restart now" = "Repornire acum";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Revizuirea modificărilor...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Vă mulțumim pentru evaluarea %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL-ul de descărcare al programului de completare este nevalid.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Informațiile despre programul de completare sunt nevalide sau incomplete.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Pachetul programului de completare este corupt sau a fost modificat.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Trebuie să creați documentul \"%@\". Doriți să continuați?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Componenta AI Tools instalată este incompatibilă cu această versiune a aplicației. Actualizați AI Tools acum?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Tema există deja. O înlocuiți?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Acest fișier temă nu este valid";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Pentru a instala programul de completare, actualizați aplicația la cea mai recentă versiune.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Înainte să acesați locația fișierulu, trebuie să-l salvați.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Fără titlu";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versiunea %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Desen Visio";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Activarea %@ cu succes.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Trebuie să reporniți aplicația pentru ca setările să intre în vigoare.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Modificările dumneavoastră vor fi pierdute dacă nu le salvați.";

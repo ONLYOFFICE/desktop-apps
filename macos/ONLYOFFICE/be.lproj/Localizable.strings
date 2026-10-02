@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ ужо існуе.\nХочаце замяніць яго?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Даведка";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Пацвярджэнні";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Функцыі AI Tools будуць недаступны пасля выдалення. Усе налады AI (у тым ліку ключы API) не будуць выдалены.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Пры распакаванні архіва ўзнікла памылка";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Пры ўсталяванні дадатку ўзнікла непрадбачаная памылка.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Праграма патрабуе перазапуску";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Вы ўпэўнены, што хочаце выдаліць ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Перад падпісаннем дакумента яго неабходна захаваць.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Версія Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Версія Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Стварыць новую";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Версія Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Версія Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Электронная табліца Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Бінарны фармат электронных табліц Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Не ўдалося загрузіць дадатак з-за памылкі сеткі.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Не атрымалася ўсталяваць тэму";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Не ўдалося захаваць спампаваны пакет дадатку.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Файл FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Схаваць %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Зраблю гэта пазней";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Калі вы ўжо набылі %@, вам трэба знайсці ключ актывацыі ў лісце пацвярджэння, які быў адпраўлены па электроннай пошце.";
@@ -152,19 +173,22 @@
 "No" = "Не";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Для гэтай версіі праграмы няма сумяшчальнай версіі дадатку.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Недастаткова памяці для завяршэння загрузкі дадатку.";
+
+/* No comment provided by engineer. */
 "OK" = "Добра";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools паспяхова выдалены";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE не можа адкрыць файл лічбавага подпісу. Паспрабуйце адкрыць іншы файл.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не можа адкрыць прыватны ключ. Паспрабуйце адкрыць іншы файл.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Шаблон формы дакумента ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Запаўняемая анлайн-форма ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Форма PDF ONLYOFFICE";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Пераносны дакумент / A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Замацаваць на ўкладцы";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Просты тэкст";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Замяніць";
+
+/* No comment provided by engineer. */
+"Restart now" = "Перазапусціць зараз";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Пераглядзець змены ...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "Дзякуй за ацэнку %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL-адрас загрузкі дадатку несапраўдны.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Звесткі пра дадатак несапраўдныя або няпоўныя.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Пакет дадатку пашкоджаны або быў зменены.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Дакумент \"%@\" павінен быць сабраны. Працягнуць?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Усталяваны кампанент AI Tools несумяшчальны з гэтай версіяй праграмы. Абнавіць AI Tools зараз?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Тэма ўжо існуе. Замяніць яе?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Гэты файл тэмы несапраўдны";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Каб усталяваць дадатак, абнавіце праграму да апошняй версіі.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Каб адкрыць месца размяшчэння файла, яго трэба захаваць.";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Без назвы";
+
+/* No comment provided by engineer. */
+"Version %@" = "Версія %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Малюнак Visio";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Вы паспяхова актывавалі %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Для прымянення налад неабходна перазапусціць праграму.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Змены страцяцца, калі вы іх не захаваеце.";

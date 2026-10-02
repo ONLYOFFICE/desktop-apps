@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ sudah ada.\nApakah Anda ingin menggantinya?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "Bantuan %@";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Pernyataan";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Fitur AI Tools tidak akan tersedia setelah penghapusan instalasi. Semua pengaturan AI (termasuk kunci API) tidak akan dihapus.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Terjadi kesalahan saat membuka arsip";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Terjadi kesalahan tak terduga saat menginstal add-on.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Aplikasi perlu dimulai ulang";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Apakah Anda yakin ingin menghapus instalasi ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Sebelum menandatangani dokumen, dokumen harus disimpan.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Versi Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Versi Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Buat yang baru";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Versi Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Versi Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Lembar bentang Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Lembar kerja biner Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Gagal mengunduh add-on karena kesalahan jaringan.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Gagal memasang tema";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Gagal menyimpan paket add-on yang diunduh.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "File FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Sembunyikan %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Saya akan melakukannya nanti";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Jika Anda telah membeli %@, Anda akan mendapatkan kunci aktivasi di email konfirmasi.";
@@ -152,19 +173,22 @@
 "No" = "Tidak";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Tidak ada versi add-on yang kompatibel untuk versi aplikasi ini.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Memori tidak cukup untuk menyelesaikan unduhan add-on.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools berhasil dihapus instalasinya";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE tidak dapat membuka file Tanda Tangan Digital. Coba buka file lain.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE tidak dapat membuka Kunci Pribadi. Coba buka file lain.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Templat Formulir Dokumen ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Formulir Online ONLYOFFICE yang Dapat Diisi";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Formulir PDF ONLYOFFICE";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Portable Document /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Pin ke tab";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Teks Biasa";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Ganti";
+
+/* No comment provided by engineer. */
+"Restart now" = "Restart sekarang";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Peninjauan Berubah...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "Terima kasih telah mengevaluasi %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL unduhan add-on tidak valid.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Informasi add-on tidak valid atau tidak lengkap.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Paket add-on rusak atau telah dimodifikasi.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokumen \"%@\" harus dibuat. Lanjutkan?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Komponen AI Tools yang terinstal tidak kompatibel dengan versi aplikasi ini. Perbarui AI Tools sekarang?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Tema sudah ada. Ganti?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "File tema ini tidak valid";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Untuk menginstal add-on, perbarui aplikasi ke versi terbaru.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Untuk membuka lokasi file, file harus disimpan.";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Tanpa Judul";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versi %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Gambar Visio";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Anda telah berhasil mengaktifkan %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Anda harus restart aplikasi agar pengaturan bisa berfungsi.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Perubahan akan hilang jika Anda tidak menyimpannya.";

@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ ja existeix. Voleu substituir-lo?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Ajuda";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Reconeixements";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Les funcions d'AI Tools no estaran disponibles després de la desinstal·lació. Tota la configuració d'IA (incloses les claus API) no s'eliminarà.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "S'ha produït un error en desempaquetar l'arxiu";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "S'ha produït un error inesperat durant la instal·lació del complement.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "L'aplicació s'ha de reiniciar";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Esteu segur que voleu desinstal·lar ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Abans de signar el document, s'ha de desar.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Versió Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Versió Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Crea'n un de nou";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Versió Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Versió Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Full de càlcul Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Full de càlcul binari Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "No s'ha pogut descarregar el complement a causa d'un error de xarxa.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "No s'ha pogut instal·lar el tema";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "No s'ha pogut desar el paquet del complement descarregat.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Fitxer FictionBook";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Ocultar %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Ho faré més tard";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Si ja has comprat %@, hauries de trobar la clau d'activació en un correu electronic de confirmació.";
@@ -152,19 +173,22 @@
 "No" = "No";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "No hi ha cap versió compatible del complement per a aquesta versió de l'aplicació.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "No hi ha prou memòria per completar la descàrrega del complement.";
+
+/* No comment provided by engineer. */
 "OK" = "D'ACORD";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools s'ha desinstal·lat correctament";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE no pot obrir el fitxer de Signatura Digital. Prova d'obrir un altre fitxer.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE no pot obrir la clau privada. Prova d'obrir un altre fitxer.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Plantilla de formulari de document ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Formulari en línia que es pot omplir ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Formulari PDF ONLYOFFICE";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Document portàtil /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Fixa a la pestanya";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Text pla";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Substitueix";
+
+/* No comment provided by engineer. */
+"Restart now" = "Reiniciar ara";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Revisa els canvis...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "Gràcies per avaluar %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "L'URL de descàrrega del complement no és vàlid.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "La informació del complement no és vàlida o està incompleta.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "El paquet del complement està danyat o ha estat modificat.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Cal crear el document \"%@\". Voleu continuar?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "El component AI Tools instal·lat és incompatible amb aquesta versió de l'aplicació. Voleu actualitzar AI Tools ara?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "El tema ja existeix. Voleu substituir-lo?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Aquest fitxer de tema no és vàlid";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Per instal·lar el complement, actualitzeu l'aplicació a la versió més recent.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Per obrir la ubicació del fitxer, s'ha de desar.";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Sense títol";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versió %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Dibuix de Visio";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Has activat correctament %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Heu de reiniciar l'aplicació perquè la configuració tingui efecte.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Els canvis es perdran si no els deseu.";

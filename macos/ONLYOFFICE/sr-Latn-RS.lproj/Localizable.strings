@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@  već postoji.\nŽelite li da ga zamenite?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Pomoć";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Priznanja";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Funkcije AI Tools neće biti dostupne nakon deinstalacije. Sva AI podešavanja (uključujući API ključeve) neće biti uklonjena.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Greška se pojavila prilikom otpakivanja arhive";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Došlo je do neočekivane greške pri instalaciji dodatka.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Aplikacija mora da se ponovo pokrene";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Da li ste sigurni da želite da deinstalirate ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Pre potpisivanja dokumenta, mora biti sačuvan.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Verzija Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Verzija Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Kreiraj novo";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Verzija Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Verzija Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 proračunska tabela";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel binarni proračunska tabela";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Preuzimanje dodatka nije uspelo zbog mrežne greške.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Instaliranje teme nije uspelo";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Čuvanje preuzetog paketa dodatka nije uspelo.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "KnjigaFikcije 2 fajl";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Sakrij %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Uradiću to kasnije";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Ako ne pregledate vaše dokumente, sve vaše promene će biti izgubljene.";
@@ -155,19 +176,22 @@
 "No" = "Ne";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Za ovu verziju aplikacije nije dostupna nijedna kompatibilna verzija dodatka.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Nema dovoljno memorije za završetak preuzimanja dodatka.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools je uspešno deinstaliran";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE ne može otvoriti fajl Digitalnog potpisa. Pokušajte otvoriti drugi fajl.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ne može otvoriti Privatni ključ. Pokušajte otvoriti drugi fajl.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE šablon obrasca dokumenta";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE popunjivi onlajn obrazac";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF obrazac";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Prenosivi dokument /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Prikači na karticu";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Običan tekst fajl";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Zameni";
+
+/* No comment provided by engineer. */
+"Restart now" = "Restartuj sada";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Pregledaj promene…";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Hvala na evaluaciji %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL za preuzimanje dodatka je nevažeći.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Informacije o dodatku su nevažeće ili nepotpune.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Paket dodatka je oštećen ili promenjen.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokument \"%@” mora biti izgrađen. Nastaviti?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Instalirana komponenta AI Tools nije kompatibilna sa ovom verzijom aplikacije. Ažurirati AI Tools sada?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Tema već postoji. Da li želite da je zamenite?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Ova datoteka teme nije važeća";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Da biste instalirali dodatak, ažurirajte aplikaciju na najnoviju verziju.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Da biste otvorili lokaciju fajla, mora biti sačuvan.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Nenaslovljeno";
+
+/* No comment provided by engineer. */
+"Version %@" = "Верзија %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Visio crtež";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Uspešno ste aktivirali %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Morate ponovo pokrenuti aplikaciju da bi podešavanja stupila na snagu.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Vaše promene će biti izgubljene ako ih ne sačuvate.";

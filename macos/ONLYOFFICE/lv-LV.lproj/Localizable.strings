@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ jau pastāv.\nVai jūs vēlaties to aizstāt?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Palīdzība";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Atzinības";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Pēc atinstalēšanas AI Tools funkcijas nebūs pieejamas. Visi AI iestatījumi (ieskaitot API atslēgas) netiks noņemti.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Atpakojot arhīvu, radās kļūda";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Paplašinājuma instalēšanas laikā radās neparedzēta kļūda.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Lietotne ir jārestartē";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Vai esat pārliecināts, ka vēlaties atinstalēt ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Dokuments pirms parakstīšanas jāsaglabā.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Community versija %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Community versija %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Izveidot jaunu";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Enterprise versija %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Enterprise versija %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 izklājlapa";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Excel binārā izklājlapa";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Neizdevās lejupielādēt paplašinājumu tīkla kļūdas dēļ.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Neizdevās instalēt tēmu";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Neizdevās saglabāt lejupielādēto paplašinājuma pakotni.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "FictionBook 2 fails";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Paslēpt %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "To izdarīšu vēlāk";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Ja esat jau iegādājies %@, jums vajadzētu atrast jūsu aktivizācijas atslēgu apstiprinājuma e-pastā.";
@@ -152,19 +173,22 @@
 "No" = "Nē";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Šai lietotnes versijai nav pieejama neviena saderīga paplašinājuma versija.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Nepietiek atmiņas, lai pabeigtu paplašinājuma lejupielādi.";
+
+/* No comment provided by engineer. */
 "OK" = "Labi";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools veiksmīgi atinstalēts";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nevar atvērt Digitālā Paraksta failu. Mēģiniet atvērt citu failu.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nevar atvērt Privāto Atslēgu. Mēģiniet atvērt citu failu.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "ONLYOFFICE dokumenta veidlapas veidne";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "ONLYOFFICE aizpildāma tiešsaistes veidlapa";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "ONLYOFFICE PDF veidlapa";
@@ -195,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Portatīvs dokuments /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Piespraust cilnei";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Parasts Teksts";
@@ -228,6 +255,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Aizstāt";
+
+/* No comment provided by engineer. */
+"Restart now" = "Restartēt tagad";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Apskatīt Izmaiņas...";
@@ -266,7 +296,19 @@
 "Thank you for evaluating %@!" = "Paldies, ka novērtējāt %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Paplašinājuma lejupielādes URL ir nederīgs.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Paplašinājuma informācija ir nederīga vai nepilnīga.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Paplašinājuma pakotne ir bojāta vai modificēta.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokumentam \"%@\" jābūt izveidotam. Turpināt?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Instalētais AI Tools komponents nav saderīgs ar šo lietotnes versiju. Vai atjaunināt AI Tools tagad?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Tēma jau pastāv. Vai aizstāt to?";
@@ -276,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Šis tēmas fails nav derīgs";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Lai instalētu paplašinājumu, atjauniniet lietotni uz jaunāko versiju.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Lai atvērtu faila atrašanās vietu, tam jābūt saglabātam.";
@@ -288,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Bez nosaukuma";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versija %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Zīmēšana Visio";
@@ -315,6 +363,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Jūs esat veiksmīgi aktivizējis %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Lai iestatījumi stātos spēkā, programma ir jārestartē.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Jūsu veiktās izmaiņas būs zaudētas, ja tās nesaglabāsiet.";

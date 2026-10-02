@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ уже существует.\nХотите его перезаписать?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "Справка %@";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Лицензии";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "После удаления функции AI Tools будут недоступны. Все настройки ИИ (включая ключи API) не будут удалены.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "При распаковке архива произошла ошибка";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "При установке дополнения произошла неожиданная ошибка.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Требуется перезапуск приложения";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Вы уверены, что хотите удалить ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Перед подписанием документа его необходимо сохранить.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Версия Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Версия Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Создать новый";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Версия Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Версия Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Электронная таблица Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Бинарная рабочая книга Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Не удалось загрузить дополнение из-за ошибки сети.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Не удалось установить тему";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Не удалось сохранить загруженный пакет дополнения.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Файл FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Скрыть %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Сделаю позже";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Если Вы не просмотрите эти документы, все внесенные изменения будут потеряны.";
@@ -155,19 +176,22 @@
 "No" = "Нет";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Для этой версии приложения нет совместимой версии дополнения.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Недостаточно памяти для завершения загрузки дополнения.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools успешно удалён";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE не может открыть файл цифровой подписи. Попробуйте открыть другой файл.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не может открыть файл приватного ключа. Попробуйте открыть другой файл.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Шаблон формы ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Заполняемая онлайн-форма ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "PDF-форма ONLYOFFICE";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Переносимый документ /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Закрепить во вкладке";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Текстовый файл";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Заменить";
+
+/* No comment provided by engineer. */
+"Restart now" = "Перезапустить сейчас";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Просмотреть изменения...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Спасибо за то, что выбрали %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL-адрес загрузки дополнения недействителен.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Информация о дополнении недействительна или неполна.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Пакет дополнения повреждён или изменён.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Документ \"%@\" необходимо сформировать. Продолжить?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Установленный компонент AI Tools несовместим с этой версией приложения. Обновить AI Tools сейчас?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Тема уже существует. Заменить? ";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Этот файл темы недействителен";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Для установки дополнения обновите приложение до последней версии.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Чтобы открыть местоположение файла, он должен быть сохранен.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Без названия";
+
+/* No comment provided by engineer. */
+"Version %@" = "Версия %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Чертеж Visio";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Вы успешно активировали %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Чтобы применить настройки, необходимо перезапустить приложение.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";

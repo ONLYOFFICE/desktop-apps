@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "Το %@ υπάρχει ήδη.\nΘέλετε να το αντικαταστήσετε;";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Βοήθεια";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Ευχαριστίες";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Οι λειτουργίες του AI Tools δεν θα είναι διαθέσιμες μετά την απεγκατάσταση. Όλες οι ρυθμίσεις AI (συμπεριλαμβανομένων των κλειδιών API) δεν θα αφαιρεθούν.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Εμφανίστηκε σφάλμα κατά την αποσυμπίεση του αρχείου";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Παρουσιάστηκε απρόσμενο σφάλμα κατά την εγκατάσταση του πρόσθετου.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Η εφαρμογή χρειάζεται επανεκκίνηση";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Είστε βέβαιοι ότι θέλετε να απεγκαταστήσετε το ONLYOFFICE AI Tools;";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Πριν υπογράψετε το έγγραφο, πρέπει να αποθηκευτεί.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Έκδοση Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Έκδοση Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Δημιουργία νέου";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Έκδοση Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Έκδοση Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Υπολογιστικό φύλλο Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Δυαδικό υπολογιστικό φύλλο Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Αποτυχία λήψης του πρόσθετου λόγω σφάλματος δικτύου.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Αποτυχία εγκατάστασης θέματος";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Αποτυχία αποθήκευσης του ληφθέντος πακέτου πρόσθετου.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Αρχείο FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Απόκρυψη %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Θα το κάνω αργότερα";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Εάν δεν ελέγξετε τα έγγραφά σας, όλες οι αλλαγές σας θα χαθούν.";
@@ -155,19 +176,22 @@
 "No" = "Όχι";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Δεν υπάρχει διαθέσιμη συμβατή έκδοση του πρόσθετου για αυτήν την έκδοση της εφαρμογής.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Δεν υπάρχει αρκετή μνήμη για την ολοκλήρωση της λήψης του πρόσθετου.";
+
+/* No comment provided by engineer. */
 "OK" = "Εντάξει";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "Το ONLYOFFICE AI Tools απεγκαταστάθηκε επιτυχώς";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Το ONLYOFFICE δεν μπορεί να ανοίξει το αρχείο ψηφιακής υπογραφής. Δοκιμάστε να ανοίξετε ένα άλλο αρχείο.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "Το ONLYOFFICE δεν μπορεί να ανοίξει το ιδιωτικό κλειδί. Δοκιμάστε να ανοίξετε ένα άλλο αρχείο.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Πρότυπο φόρμας εγγράφου ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Φόρμα ηλεκτρονικής συμπλήρωσης ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Φόρμα PDF ONLYOFFICE";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Έγγραφο PDF/A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Καρφίτσωμα στην καρτέλα";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Αρχείο απλού κειμένου";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Αντικατάσταση";
+
+/* No comment provided by engineer. */
+"Restart now" = "Επανεκκίνηση τώρα";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Αναθεώρηση αλλαγών...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Σας ευχαριστούμε που αξιολογήσατε το %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Το URL λήψης του πρόσθετου δεν είναι έγκυρο.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Οι πληροφορίες του πρόσθετου είναι μη έγκυρες ή ελλιπείς.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Το πακέτο πρόσθετου είναι κατεστραμμένο ή έχει τροποποιηθεί.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Το έγγραφο \"%@\" πρέπει να δημιουργηθεί. Να συνεχίσει;";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Το εγκατεστημένο στοιχείο AI Tools είναι ασύμβατο με αυτήν την έκδοση της εφαρμογής. Να γίνει ενημέρωση των AI Tools τώρα;";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Υπάρχει ήδη θέμα. Να αντικατασταθεί;";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Αυτό το αρχείο θέματος δεν είναι έγκυρο";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Για να εγκαταστήσετε το πρόσθετο, ενημερώστε την εφαρμογή στην πιο πρόσφατη έκδοση.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Για να ανοίξετε τη θέση του αρχείου, πρέπει να αποθηκευτεί.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Ανεπιβεβαίωτο";
+
+/* No comment provided by engineer. */
+"Version %@" = "Έκδοση %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Σχέδιο του Visio";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Έχετε ενεργοποιήσει επιτυχώς το %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Πρέπει να επανεκκινήσετε την εφαρμογή για να τεθούν σε ισχύ οι ρυθμίσεις.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Οι αλλαγές σας θα χαθούν αν δεν τις αποθηκεύσετε.";

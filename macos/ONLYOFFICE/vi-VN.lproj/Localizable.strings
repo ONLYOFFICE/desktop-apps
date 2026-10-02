@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ đã tồn tại.\nBạn có muốn thay thế nó?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "@ Hỗ trợ";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Ghi nhận";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Các tính năng AI Tools sẽ không khả dụng sau khi gỡ cài đặt. Tất cả cài đặt AI (bao gồm khóa API) sẽ không bị xóa.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Đã xảy ra lỗi khi giải nén kho lưu trữ";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Đã xảy ra lỗi không mong muốn khi cài đặt tiện ích bổ sung.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Ứng dụng cần khởi động lại";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Bạn có chắc chắn muốn gỡ cài đặt ONLYOFFICE AI Tools không?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Trước khi ký, tài liệu phải được lưu.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Phiên bản Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Phiên bản Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Tạo mới";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Phiên bản Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Phiên bản Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Bảng tính Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Bảng tính nhị phân Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Tải xuống tiện ích bổ sung thất bại do lỗi mạng.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Không thể cài đặt giao diện";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Không lưu được gói tiện ích bổ sung đã tải xuống.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Tập tin FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Ẩn %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Tôi sẽ làm sau";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Nếu bạn không xem lại tài liệu của mình, tất cả thay đổi sẽ bị mất.";
@@ -155,19 +176,22 @@
 "No" = "Không";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Không có phiên bản tiện ích bổ sung tương thích nào dành cho phiên bản ứng dụng này.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Không đủ bộ nhớ để hoàn tất tải xuống tiện ích bổ sung.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools đã được gỡ cài đặt thành công";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE không thể mở chữ ký điện tử. Hãy thử tập tin khác.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE không thể mở mã khóa riêng. Hãy thử mở tập tin khác.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Mẫu biểu mẫu tài liệu ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Biểu mẫu trực tuyến có thể điền ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Mẫu PDF ONLYOFFICE";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Tài liệu di động /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Ghim vào tab";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Tập tin văn bản thuần";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Thay thế";
+
+/* No comment provided by engineer. */
+"Restart now" = "Khởi động lại ngay";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Xem thay đổi...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Cám ơn bạn đã đánh giá %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL tải xuống tiện ích bổ sung không hợp lệ.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Thông tin tiện ích bổ sung không hợp lệ hoặc không đầy đủ.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Gói tiện ích bổ sung bị hỏng hoặc đã bị sửa đổi.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Tập tin \"%@\" phải được xây dựng. Tiếp tục?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Thành phần AI Tools đã cài đặt không tương thích với phiên bản ứng dụng này. Cập nhật AI Tools ngay bây giờ?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Giao diện đã tồn tại. Bạn có muốn thay thế không?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Tệp giao diện này không hợp lệ";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Để cài đặt tiện ích bổ sung, hãy cập nhật ứng dụng lên phiên bản mới nhất.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Để mở mục chứa tập tin, nó phải được lưu.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Untitled";
+
+/* No comment provided by engineer. */
+"Version %@" = "Phiên bản %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Bản vẽ Visio";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Bạn đã kích hoạt thành công %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Bạn phải khởi động lại ứng dụng để cài đặt có hiệu lực.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Những thay đổi của bạn sẽ mất đi nếu bạn không lưu chúng.";

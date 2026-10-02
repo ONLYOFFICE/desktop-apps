@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ už existuje.\nChcete ho nahradiť?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Pomoc";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,21 @@
 
 /* No comment provided by engineer. */
 "Acknowledgments" = "Poďakovanie";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Po odinštalovaní nebudú funkcie AI Tools dostupné. Všetky nastavenia AI (vrátane kľúčov API) nebudú odstránené.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Pri rozbaľovaní archívu došlo k chybe";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Pri inštalácii doplnku sa vyskytla neočakávaná chyba.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Aplikácia potrebuje reštartovať";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Naozaj chcete odinštalovať ONLYOFFICE AI Tools?";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Pred podpísaním musí byť dokument uložený.";
@@ -41,9 +59,6 @@
 "Community version %@" = "Verzia Community %@";
 
 /* No comment provided by engineer. */
-"Community version %@ (%@-%@)" = "Verzia Community %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Create new" = "Vytvořit nový";
 
 /* No comment provided by engineer. */
@@ -77,9 +92,6 @@
 "Enterprise version %@" = "Verzia Enterprise %@";
 
 /* No comment provided by engineer. */
-"Enterprise version %@ (%@-%@)" = "Verzia Enterprise %1$@ (%2$@-%3$@)";
-
-/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Tabuľka Excel 97-2003";
 
 /* No comment provided by engineer. */
@@ -89,7 +101,13 @@
 "Excel Binary Workbook" = "Binárny tabuľka Excel";
 
 /* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Stiahnutie doplnku zlyhalo kvôli chybe siete.";
+
+/* No comment provided by engineer. */
 "Failed to install theme" = "Nepodarilo sa nainštalovať tému";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Uloženie stiahnutého balíka doplnku zlyhalo.";
 
 /* No comment provided by engineer. */
 "FictionBook File" = "Súbor FictionBook 2";
@@ -105,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "Hide %@" = "Skryť %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Urobím to neskôr";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Ak svoje dokumenty nekontrolujete, všetky vaše zmeny sa stratia.";
@@ -155,19 +176,22 @@
 "No" = "Nie";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Pre túto verziu aplikácie nie je k dispozícii žiadna kompatibilná verzia doplnku.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Nedostatok pamäte na dokončenie stiahnutia doplnku.";
+
+/* No comment provided by engineer. */
 "OK" = "Áno";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools bol úspešne odinštalovaný";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nemôže otvoriť súbor digitálneho podpisu. Skúste otvoriť iný súbor.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nemôže otvoriť súkromný kľúč. Skúste otvoriť iný súbor.";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Document Form Template" = "Šablóna formulára dokumentu ONLYOFFICE";
-
-/* No comment provided by engineer. */
-"ONLYOFFICE Fillable Online Form" = "Vyplniteľný online formulár ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE Form Document" = "Formulár PDF ONLYOFFICE";
@@ -198,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "PDF/A File" = "Prenosný document /A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Pripnúť na kartu";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Súbor obyčajného textu";
@@ -231,6 +258,9 @@
 
 /* No comment provided by engineer. */
 "Replace" = "Nahradiť";
+
+/* No comment provided by engineer. */
+"Restart now" = "Reštartovať teraz";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Skontrolovať zmeny...";
@@ -269,7 +299,19 @@
 "Thank you for evaluating %@!" = "Ďakujeme za hodnotenie %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Adresa URL na stiahnutie doplnku je neplatná.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Informácie o doplnku sú neplatné alebo neúplné.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Balík doplnku je poškodený alebo bol zmenený.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokument \"%@\" musí byť vytvorený. Pokračovať?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Nainštalovaný komponent AI Tools nie je kompatibilný s touto verziou aplikácie. Aktualizovať AI Tools teraz?";
 
 /* No comment provided by engineer. */
 "Theme already exists. Replace it?" = "Téma už existuje. Nahradiť ju?";
@@ -279,6 +321,9 @@
 
 /* No comment provided by engineer. */
 "This theme file is not valid" = "Tento súbor témy nie je platný";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Ak chcete nainštalovať doplnok, aktualizujte aplikáciu na najnovšiu verziu.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Ak chcete otvoriť umiestnenie súboru, súbor musí byť uložený.";
@@ -291,6 +336,9 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Bez názvu";
+
+/* No comment provided by engineer. */
+"Version %@" = "Verzia %@";
 
 /* No comment provided by engineer. */
 "VSDX File" = "Nákres Visio";
@@ -318,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Úspešne ste aktivovali %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Aby sa nastavenia aktivovali, musíte aplikáciu reštartovať.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don't save them." = "Vaše zmeny sa stratia, ak ich neuložíte.";
