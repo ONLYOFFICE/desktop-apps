@@ -6,7 +6,7 @@ import { aichat, openSidePanel } from '@/stores/aichat';
 export default function Card(props) {
   const handleClick = () => {
     if (props.prompt) {
-      sendTextToChat(props.prompt);
+      sendTextToChat(props.prompt, props.usertext);
       // sendPluginVisibility("expanded");
       if (aichat.expanded)
         window.location.hash = "#/aichat";

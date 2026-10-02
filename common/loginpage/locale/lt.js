@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Pagerina našumą daugumoje įrenginių. Išjunkite, jei kyla ekrano problemų.',
     settingsEnableAI: 'Įjungti AI funkcijas',
     settingsEnableAIDescr: 'Įjunkite AI programoje, kad galėtumėte pridėti modelius ir naudoti AI pagrįstą funkcionalumą',
-    settRemoveAddon: 'Perženkite standartinio redagavimo ribas',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit ir daugiau',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: DI visuose redaktoriuose, išmaniose formose, pasirinktiniai tiekėjai, pažangus PDF',
     strLicensedUnder: 'Licencijuota pagal',
     tplNoInternet: 'Internetiniai šablonai nepasiekiami dėl interneto ryšio problemų. Galite kurti naujus dokumentus naudodami aukščiau esančias parinktis.',
 }

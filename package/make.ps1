@@ -4,9 +4,11 @@
     [string]$Target,
     [string]$CompanyName = "ONLYOFFICE",
     [string]$ProductName = "DesktopEditors",
+    [string]$Branding = "onlyoffice",
     [string]$SourceDir,
     [string]$BuildDir,
-    [switch]$Sign
+    [switch]$Sign,
+    [int]$SignThreads = 4
 )
 
 $ErrorActionPreference = "Stop"
@@ -20,7 +22,7 @@ if (-not $SourceDir) {
         "arm64" { "win_arm64" }
     }
     $SourceDir = "$PSScriptRoot\..\..\build_tools\out\" `
-        + "$BuildPrefix\$CompanyName\$ProductName" | Resolve-Path
+        + "$BuildPrefix\$Branding\$ProductName" | Resolve-Path
 }
 if (-not (Test-Path "$SourceDir")) {
     Write-Error "Path `"$SourceDir`" does not exist"
@@ -35,6 +37,7 @@ Arch        = $Arch
 Target      = $Target
 CompanyName = $CompanyName
 ProductName = $ProductName
+Branding    = $Branding
 SourceDir   = $SourceDir
 BuildDir    = $BuildDir
 Sign        = $Sign
@@ -85,10 +88,10 @@ if ($Sign) {
     Set-Location "$BuildDir\desktop"
 
     # Sign
-    Get-ChildItem *.exe, *.dll -Recurse | ForEach-Object {
-        & "$env:WORKSPACE\documents-pipeline\scripts\Sign.ps1" -File $_
-        if ($LastExitCode -ne 0) { throw }
-    }
+    $SignFiles = @(Get-ChildItem *.exe, *.dll -File -Recurse |
+        Select-Object -ExpandProperty FullName)
+    & "$env:WORKSPACE\documents-pipeline\scripts\SignFiles.ps1" `
+        -Files $SignFiles -ThrottleLimit $SignThreads
 
     # Verify
     Get-ChildItem *.exe, *.dll -Recurse | % { Get-AuthenticodeSignature $_ }

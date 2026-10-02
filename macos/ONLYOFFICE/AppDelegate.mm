@@ -95,6 +95,7 @@
 @property (nonatomic, assign) BOOL upgradeInProgress;
 @property (nonatomic, weak) ASCUpgradeController *upgradeController;
 - (void)showUpgradeDialog:(NSWindow *)parentWindow page:(ASCUpgradePage)page;
+- (void)checkAndSuggestAddonUpdate;
 #endif
 @end
 
@@ -187,16 +188,16 @@
     addObserverFor(ASCEventNameEditorWindowMoving, @selector(onEditorWindowMoving:));
     addObserverFor(ASCEventNameEditorWindowEndMoving, @selector(onEditorWindowEndMoving:));
     addObserverFor(ASCEventNameSettingsNeedRestart, @selector(onSettingsNeedRestart:));
-        
+
 #ifdef USE_ADDON_MODE
     addObserverFor(ASCAddonManagerUninstallFinishedNotification, @selector(onAddonUninstallFinished:));
-    addObserverFor(CEFEventNameAddonAction, @selector(onCEFAddonAction:));
     addObserverFor(CEFEventNameAddonInstallation, @selector(onCEFAddonInstalling:));
-    addObserverFor(CEFEventNameStartPageReady, @selector(onStartPageReadyCheckAddon:));
 #endif
+    addObserverFor(CEFEventNameAddonAction, @selector(onCEFAddonAction:));
+    addObserverFor(CEFEventNameStartPageReady, @selector(onStartPageReady:));
 
     // Google Analytics
-    
+
 #ifdef _PRODUCT_ONLYOFFICE
 //    [[AnalyticsHelper sharedInstance] beginPeriodicReportingWithAccount:@"UA-XXXXXXXXX-1"
 //                                                                   name:@"ONLYOFFICE"
@@ -755,7 +756,7 @@
         BOOL isInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
         aboutController.aiToolsHidden = !isInstalled;
         if (isInstalled) {
-            aboutController.aiToolsVersion = addonVersion ?: appVersion;
+            aboutController.aiToolsVersion = (addonVersion && addonVersion.length > 0) ? addonVersion : appVersion;
         } else {
             aboutController.aiToolsVersion = @"";
         }
@@ -1987,46 +1988,54 @@
 #pragma mark -
 #pragma mark Upgrade Support
 
+- (void)onStartPageReady:(NSNotification *)notification {
 #ifdef USE_ADDON_MODE
-- (void)onCEFAddonInstalling:(NSNotification *)notification {
-    NSDictionary * params = (NSDictionary *)(notification.userInfo[@"info"]);
-    if ( [params[@"status"] isEqual:@"downloaded"] ) {
-        NSString *_tmpPath = params[@"tempfile"];
-        if ([[ASCHelper fileMd5Hash:_tmpPath] isEqual:params[@"md5"]]) {
-            NSString * ext = [_tmpPath pathExtension];
-            if ([[_tmpPath pathExtension] isNotEqualTo:@".zip"]) {
-                NSString *currPath = _tmpPath;
-                _tmpPath = [currPath stringByAppendingPathExtension:@"zip"];
-                
-                NSError *err = nil;
-                BOOL res = [[NSFileManager defaultManager] moveItemAtPath:currPath toPath:_tmpPath error:&err];
-                if (!res || err) {
-                    return;
-                }
-            }
+    if (self.upgradeInProgress) {
+        return;
+    }
 
-            [[ASCAddonManager sharedManager] installFromBundle:_tmpPath];
+    NSString *addonVersion = nil;
+    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
+    NSDictionary *jsonObj = @{@"installed": @(isAddonInstalled),
+                                @"version": addonVersion,
+                                @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self checkAndSuggestAddonUpdate];
+    });
+#else
+    NSDictionary *jsonObj = @{@"integrated": @(true)};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+#endif
+}
+
+#ifdef USE_ADDON_MODE
+- (void)checkAndSuggestAddonUpdate {
+    NSString *addonVersion = nil,
+            *appVersion = [ASCAboutController fullAppVersion];
+    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
+
+    if (isAddonInstalled && addonVersion.length > 0 && ![addonVersion isEqualToString:appVersion]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert setMessageText:NSLocalizedString(@"The installed AI Tools component is incompatible with "
+                                                 "this version of the application. Please update the AI "
+                                                 "Tools component to continue.", nil)];
+        [alert setAlertStyle:NSAlertStyleInformational];
+
+        NSInteger code = [alert runModal];
+        if (code == NSAlertFirstButtonReturn) {
+            self.upgradeInProgress = YES;
+
+            [self performSelector:@selector(showUpgradeDialogWithPage:)
+                       withObject:@(ASCUpgradePageInstall)
+                       afterDelay:0];
         }
     }
 }
-
-- (void)onAddonUninstallFinished:(NSNotification *)notification {
-    self.upgradeInProgress = NO;
-//    [self performSelector:@selector(showUpgradeDialogWithPage:)
-//               withObject:@(ASCUpgradePageComplete)
-//               afterDelay:0];
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:NSLocalizedString(@"I'll do it later", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"Restart now", nil)];
-    [alert setMessageText:NSLocalizedString(@"ONLYOFFICE AI Tools successfully uninstalled", nil)];
-    [alert setInformativeText:NSLocalizedString(@"Application needs to restart", nil)];
-    [alert setAlertStyle:NSAlertStyleInformational];
-    NSInteger result = [alert runModal];
-    if (result == NSAlertSecondButtonReturn) {
-        self.needsRestart = YES;
-        [NSApp terminate:self];
-    }
-}
+#endif
 
 - (void)onCEFAddonAction:(NSNotification *)notification {
     NSString *action = notification.userInfo[@"action"];
@@ -2034,6 +2043,7 @@
         return;
     }
 
+#ifdef USE_ADDON_MODE
     if ([action isEqualToString:@"intro"]) {
         self.upgradeInProgress = YES;
 
@@ -2083,57 +2093,78 @@
             [self.upgradeController accept:ASCUpgradeDialogResultRestartNow];
         }
 
-    } else if ([action isEqualToString:@"askrestart"]) {
+    } else if ([action isEqualToString:@"close"]) {
+        /* "close" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController reject];
+        }
+    } else if ([action isEqualToString:@"incompatible"]) {
+        [self checkAndSuggestAddonUpdate];
+    } else
+#endif
+    if ([action isEqualToString:@"askrestart"]) {
         NSAlert *alert = [[NSAlert alloc] init];
         [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
         [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
         [[alert.buttons objectAtIndex:1] setAccessibilityFocused:YES];
         [alert setMessageText:@"You need to restart the application to finish ONLYOFFICE AI Tools installation.\nRestart now?"];
         [alert setAlertStyle:NSAlertStyleInformational];
-        
+
         NSInteger code = [alert runModalSheet];
-        if (code == NSAlertFirstButtonReturn) {
+        if (code == NSAlertSecondButtonReturn) {
             self.needsRestart = YES;
             [NSApp terminate:self];
         }
-    } else if ([action isEqualToString:@"close"]) {
-        /* "close" clicked */
-        if (self.upgradeController) {
-            [self.upgradeController reject];
+    }
+}
+
+#ifdef USE_ADDON_MODE
+- (void)onCEFAddonInstalling:(NSNotification *)notification {
+    NSDictionary * params = (NSDictionary *)(notification.userInfo[@"info"]);
+    if ( [params[@"status"] isEqual:@"downloaded"] ) {
+        NSString *_tmpPath = params[@"tempfile"];
+        if ([[ASCHelper fileMd5Hash:_tmpPath] isEqual:params[@"md5"]]) {
+            NSString * ext = [_tmpPath pathExtension];
+            if ([[_tmpPath pathExtension] isNotEqualTo:@".zip"]) {
+                NSString *currPath = _tmpPath;
+                _tmpPath = [currPath stringByAppendingPathExtension:@"zip"];
+
+                NSError *err = nil;
+                BOOL res = [[NSFileManager defaultManager] moveItemAtPath:currPath toPath:_tmpPath error:&err];
+                if (!res || err) {
+                    return;
+                }
+            }
+
+            [[ASCAddonManager sharedManager] installFromBundle:_tmpPath];
         }
+    }
+}
+
+- (void)onAddonUninstallFinished:(NSNotification *)notification {
+    NSDictionary *jsonObj = @{@"installed": @([[ASCAddonManager sharedManager] isInstalled:nil]),
+                                @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+
+    self.upgradeInProgress = NO;
+//    [self performSelector:@selector(showUpgradeDialogWithPage:)
+//               withObject:@(ASCUpgradePageComplete)
+//               afterDelay:0];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:NSLocalizedString(@"Restart now", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"I'll do it later", nil)];
+    [alert setMessageText:NSLocalizedString(@"ONLYOFFICE AI Tools successfully uninstalled", nil)];
+    [alert setInformativeText:NSLocalizedString(@"Application needs to restart", nil)];
+    [alert setAlertStyle:NSAlertStyleInformational];
+    NSInteger result = [alert runModal];
+    if (result == NSAlertFirstButtonReturn) {
+        self.needsRestart = YES;
+        [NSApp terminate:self];
     }
 }
 
 - (void)showUpgradeDialogWithPage:(NSNumber *)page {
     [self showUpgradeDialog:[self getMainWindow] page:(ASCUpgradePage)page.integerValue];
-}
-
-- (void)onStartPageReadyCheckAddon:(NSNotification *)notification {
-    if (self.upgradeInProgress) {
-        return;
-    }
-
-    NSString *version = nil;
-    if ([[ASCAddonManager sharedManager] isInstalled:&version] &&
-            version.length > 0 && ![version isEqualToString:[ASCAboutController fullAppVersion]]) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
-        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
-        [alert setMessageText:NSLocalizedString(@"The installed AI Tools component is incompatible with "
-                                                 "this version of the application. Please update the AI "
-                                                 "Tools component to continue.", nil)];
-        [alert setAlertStyle:NSAlertStyleInformational];
-
-        NSInteger code = [alert runModal];
-        if (code == NSAlertFirstButtonReturn) {
-            self.upgradeInProgress = YES;
-            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionInstall];
-
-            [self performSelector:@selector(showUpgradeDialogWithPage:)
-                       withObject:@(ASCUpgradePageInstall)
-                       afterDelay:0];
-        }
-    }
 }
 
 - (void)showUpgradeDialog:(NSWindow *)parentWindow page:(ASCUpgradePage)page {
@@ -2161,6 +2192,10 @@
         ASCAddonManagerResult result = (ASCAddonManagerResult)[note.userInfo[@"result"] integerValue];
         if (result == ASCAddonManagerResultSuccess) {
             [upgradeController showFinalPage];
+
+            NSDictionary *jsonObj = @{@"installed": @([[ASCAddonManager sharedManager] isInstalled:nil]),
+                                        @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+            ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
         } else if (result == ASCAddonManagerResultDownloadAborted) {
             // Aborted
         } else {

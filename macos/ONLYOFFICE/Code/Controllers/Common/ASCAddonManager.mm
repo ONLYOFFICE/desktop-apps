@@ -119,7 +119,8 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
     CAscApplicationManager *appManager = [NSAscApplicationWorker getAppManager];
 
     std::string sVersion;
-    const BOOL bInstalled = appManager->CheckMainAddon(&sVersion);
+    const BOOL bCompatible = appManager->CheckMainAddon(&sVersion);
+    const BOOL bInstalled = bCompatible || !sVersion.empty();
 
     if (version) {
         *version = bInstalled ? [NSString stringWithUTF8String:sVersion.c_str()] : @"";
@@ -137,6 +138,12 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
 }
 
 - (void)doAction:(ASCAddonManagerAction)action {
+    if (action == ASCAddonManagerActionStop) {
+        [self resetDownloader];
+        self.installing = NO;
+        return;
+    }
+
     if (self.installing)
         return;
 
@@ -147,8 +154,6 @@ typedef NS_ENUM(NSInteger, ASCAddonDownloadMode) {
     } else if (action == ASCAddonManagerActionUninstall) {
         if ([self isInstalled])
             [self uninstall];
-    } else if (action == ASCAddonManagerActionStop) {
-        [self resetDownloader];
     }
 }
 

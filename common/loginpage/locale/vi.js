@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Cải thiện hiệu suất trên hầu hết các thiết bị. Tắt nếu bạn gặp vấn đề về hiển thị.',
     settingsEnableAI: 'Bật tính năng AI',
     settingsEnableAIDescr: 'Bật AI trong ứng dụng để thêm mô hình và sử dụng chức năng được hỗ trợ bởi AI',
-    settRemoveAddon: 'Vượt ra ngoài chỉnh sửa tiêu chuẩn',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit và nhiều hơn nữa',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI trên tất cả các trình soạn thảo, biểu mẫu thông minh, nhà cung cấp tùy chỉnh, PDF nâng cao',
     strLicensedUnder: 'Được cấp phép theo',
     tplNoInternet: 'Các mẫu trực tuyến không khả dụng do sự cố kết nối Internet. Bạn có thể tạo tài liệu mới bằng các tùy chọn ở trên.',
 }

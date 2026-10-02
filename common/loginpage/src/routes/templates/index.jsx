@@ -3,7 +3,7 @@ import { t, langCode } from "@/services/l10n";
 import "./templates.css";
 import { DocTypeGrid } from "../home/components/DocTypeGrid";
 
-const TEMPLATES_URL_1 = "https://oforms-new.pages.dev/";
+const TEMPLATES_URL_1 = "https://templates-embed.onlyoffice.com/";
 const TEMPLATES_URL_2 = "https://oforms-new.site.dev/";
 
 let iframeEl = null;
@@ -35,6 +35,8 @@ function makeIframeUrl(base) {
 }
 
 export default function Templates() {
+  const URL_PROXY_SCHEME = 'onlyoffice-proxy://';
+
   const [isOnline, setIsOnline] = createSignal(navigator.onLine);
   const [src, setSrc] = createSignal(makeIframeUrl(TEMPLATES_URL_1));
   let triedFallback = false;
@@ -43,7 +45,7 @@ export default function Templates() {
     let timer;
     const check = async (retry) => {
       try {
-        await fetch(TEMPLATES_URL_1, {signal: AbortSignal.timeout(5000)});
+        await fetch(URL_PROXY_SCHEME+TEMPLATES_URL_1, {signal: AbortSignal.timeout(5000)});
         setIsOnline(true);
       } catch {
         setIsOnline(false);
@@ -73,7 +75,7 @@ export default function Templates() {
     if (blocked) {
       triedFallback = true;
       // setSrc(makeIframeUrl(TEMPLATES_URL_2));
-      setSrc(makeIframeUrl(TEMPLATES_URL_1));
+      setSrc(makeIframeUrl(URL_PROXY_SCHEME+TEMPLATES_URL_1));
     }
   };
 

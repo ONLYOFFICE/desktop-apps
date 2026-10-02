@@ -30,6 +30,10 @@
     outline: none;
   }
 
+  &[data-expanded] {
+    border-color: var(--border-control-focus);
+  }
+
   &[data-disabled] {
     opacity: 0.4;
     cursor: not-allowed;
@@ -124,6 +128,15 @@
     flex-direction: column;
     gap: 2px;
   }
+}
+
+.itemDivider {
+  height: 1px;
+  margin: 4px 8px;
+  padding: 0;
+  background: var(--border-regular-control);
+  cursor: default;
+  pointer-events: none;
 }
 
 .itemIndicator {

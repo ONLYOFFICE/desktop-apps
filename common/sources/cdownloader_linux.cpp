@@ -38,6 +38,7 @@
 #include <curl/curlver.h>
 #include <thread>
 #include <atomic>
+#include <mutex>
 
 #define MAX_REDIRECTS_ALLOWED 0L
 
@@ -103,12 +104,42 @@ public:
         }
     }
 
+    void notifyQuery(int error, uint64_t lenght)
+    {
+        std::lock_guard<std::mutex> lock(m_cb_mutex);
+        if (m_query_callback)
+            m_query_callback(error, lenght);
+    }
+
+    void notifyComplete(int error, const tstring &filePath)
+    {
+        std::lock_guard<std::mutex> lock(m_cb_mutex);
+        if (m_complete_callback)
+            m_complete_callback(error, filePath);
+    }
+
+    void notifyProgress(int percent)
+    {
+        std::lock_guard<std::mutex> lock(m_cb_mutex);
+        if (m_progress_callback)
+            m_progress_callback(percent);
+    }
+
+    void resetCallbacks()
+    {
+        std::lock_guard<std::mutex> lock(m_cb_mutex);
+        m_query_callback = nullptr;
+        m_complete_callback = nullptr;
+        m_progress_callback = nullptr;
+    }
+
     FnVoidIntInt  m_query_callback = nullptr;
     FnVoidIntStr  m_complete_callback = nullptr;
     FnVoidInt     m_progress_callback = nullptr;
 
     int m_prev_percent = -1;
 
+    std::mutex        m_cb_mutex;
     std::atomic_bool  m_run{true},
                       m_lock{false};
 };
@@ -121,6 +152,7 @@ CDownloader::CDownloader() :
 CDownloader::~CDownloader()
 {
     pimpl->m_run = false;
+    pimpl->resetCallbacks();
 }
 
 bool CDownloader::isUrlAccessible(const tstring &url)
@@ -145,16 +177,14 @@ void CDownloader::queryContentLength(const tstring &url)
 {
     if (url.empty())
     {
-        if (pimpl->m_query_callback)
-            pimpl->m_query_callback(CDownloader::InvalidUrl, 0);
+        pimpl->notifyQuery(CDownloader::InvalidUrl, 0);
         return;
     }
 
     bool expected = false;
     if (!pimpl->m_lock.compare_exchange_strong(expected, true))
     {
-        if (pimpl->m_query_callback)
-            pimpl->m_query_callback(CDownloader::Aborted, 0);
+        pimpl->notifyQuery(CDownloader::Aborted, 0);
         return;
     }
 
@@ -185,8 +215,7 @@ void CDownloader::queryContentLength(const tstring &url)
         }
         int error = pimpl_copy->mapToInternalError(res);
 
-        if (pimpl_copy->m_run && pimpl_copy->m_query_callback)
-            pimpl_copy->m_query_callback(error, (uint64_t)fileSize);
+        pimpl_copy->notifyQuery(error, (uint64_t)fileSize);
 
         pimpl_copy->m_lock = false;
     }).detach();
@@ -196,23 +225,20 @@ void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
 {
     if (url.empty())
     {
-        if (pimpl->m_complete_callback)
-            pimpl->m_complete_callback(CDownloader::InvalidUrl, tstring());
+        pimpl->notifyComplete(CDownloader::InvalidUrl, tstring());
         return;
     }
 
     if (filePath.empty())
     {
-        if (pimpl->m_complete_callback)
-            pimpl->m_complete_callback(CDownloader::FileOpError, tstring());
+        pimpl->notifyComplete(CDownloader::FileOpError, tstring());
         return;
     }
 
     bool expected = false;
     if (!pimpl->m_lock.compare_exchange_strong(expected, true))
     {
-        if (pimpl->m_complete_callback)
-            pimpl->m_complete_callback(CDownloader::Aborted, tstring());
+        pimpl->notifyComplete(CDownloader::Aborted, tstring());
         return;
     }
 
@@ -234,12 +260,12 @@ void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
                     +[](void *user_data, curl_off_t dltotal, curl_off_t dlnow, curl_off_t, curl_off_t) -> int
                     {
                         CDownloaderPrivate *pimpl = (CDownloaderPrivate*)user_data;
-                        if (dltotal > 0 && pimpl->m_progress_callback)
+                        if (dltotal > 0)
                         {
                             int percent = static_cast<int>((100.0 * dlnow) / dltotal);
                             if (percent != pimpl->m_prev_percent)
                             {
-                                pimpl->m_progress_callback(percent);
+                                pimpl->notifyProgress(percent);
                                 pimpl->m_prev_percent = percent;
                             }
                         }
@@ -263,8 +289,7 @@ void CDownloader::downloadFile(const tstring &url, const tstring &filePath)
 
         int error = pimpl_copy->mapToInternalError(res);
 
-        if (pimpl_copy->m_run && pimpl_copy->m_complete_callback)
-            pimpl_copy->m_complete_callback(error, filePath);
+        pimpl_copy->notifyComplete(error, filePath);
 
         pimpl_copy->m_lock = false;
     }).detach();

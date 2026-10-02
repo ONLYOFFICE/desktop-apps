@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Улучшает производительность на большинстве устройств. Отключите, если возникают проблемы с отображением.',
     settingsEnableAI: 'Включить функции ИИ',
     settingsEnableAIDescr: 'Включите ИИ в приложении для добавления моделей и использования функций на основе ИИ',
-    settRemoveAddon: 'Не ограничивайтесь стандартным редактированием',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit и многое другое',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: ИИ во всех редакторах, умные формы, пользовательские провайдеры, расширенный PDF',
     strLicensedUnder: 'По лицензии',
     tplNoInternet: 'Онлайн-шаблоны недоступны из-за проблем с подключением к интернету. Вы можете создавать новые документы с помощью параметров выше.',
 }

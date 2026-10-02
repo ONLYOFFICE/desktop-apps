@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'अधिकांश उपकरणों पर प्रदर्शन में सुधार करता है। यदि आपको प्रदर्शन संबंधी समस्याएँ हों तो अक्षम करें।',
     settingsEnableAI: 'AI सुविधाएँ सक्षम करें',
     settingsEnableAIDescr: 'मॉडल जोड़ने और AI-संचालित कार्यक्षमता का उपयोग करने के लिए एप्लिकेशन में AI सक्षम करें',
-    settRemoveAddon: 'मानक संपादन से आगे जाएँ',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit और अधिक',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: सभी संपादकों में AI, स्मार्ट फॉर्म, कस्टम प्रदाता, उन्नत PDF',
     strLicensedUnder: 'के अंतर्गत लाइसेंस प्राप्त',
     tplNoInternet: 'इंटरनेट कनेक्शन समस्याओं के कारण ऑनलाइन टेम्पलेट उपलब्ध नहीं हैं। आप ऊपर दिए गए विकल्पों का उपयोग करके नए दस्तावेज़ बना सकते हैं।',
 }

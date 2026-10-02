@@ -62,11 +62,11 @@
   border-radius: 6px;
   cursor: pointer;
   position: relative;
-  border: 1px solid var(--border-regular-control, #cfcfcf);
+  border: 1px solid var(--border-divider, #cbcbcb);
 }
 
 .portal-row:hover {
-  /* background-color: var(--highlight-button-hover); */
+  border-color: var(--border-regular-control, #cfcfcf);
 }
 
 .portal-row:active {
@@ -178,14 +178,13 @@
   border-radius: 6px;
   cursor: pointer;
   background: none;
-  border: none;
   width: 100%;
   text-align: start;
   border: 1px solid var(--border-divider, #cbcbcb);
 }
 
 .provider-item:hover {
-  /* background-color: var(--highlight-button-hover); */
+  border-color: var(--border-control-focus, #b2b2b2);
 }
 
 .provider-item:active {

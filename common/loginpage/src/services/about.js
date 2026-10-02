@@ -27,6 +27,14 @@ export function execUpdateAction() {
   if (_pendingUpdateAction) command("updates:action", _pendingUpdateAction);
 }
 
+export function setAddonNeedRestart(restart) {
+  if (addonInfo()?.restart != restart) {
+    const info = addonInfo();
+    info.restart = restart;
+    setAddonInfo(info);
+  }
+}
+
 export function initAbout() {
   const unsub = onNativeMessage((cmd, param) => {
     if (/app:version/.test(cmd)) {
@@ -45,24 +53,35 @@ export function initAbout() {
       try {
         const info = JSON.parse(htmlDecode(param));
         if (info?.version) {
+          info.compatible = versionInfo().version.startsWith(info.version);
           info.version = info.version.replace(/^\d+/, m => {const mn = parseInt(m);return mn<10?1:mn-9});
         }
 
+        if (info.installed == undefined && addonInfo()?.installed)
+          info.installed = addonInfo().installed;
+
+        if (info.restart == undefined && addonInfo()?.restart)
+          info.restart = addonInfo().restart;
+
         setAddonInfo(info);
-        setChatAvialable(info?.installed);
+        setChatAvialable(info?.installed || info?.integrated);
       } catch {}
     } else if (/^updates:turn/.test(cmd)) {
       setUpdatesOn(param === "on");
     } else if (/updates:status/.test(cmd)) {
       try {
         const info = JSON.parse(param);
-        if (updateStatus()?.button) {
-          !info.button && (info.button = {});
-          if (!info.button.text && updateStatus().button.text) {
-            info.button.text = updateStatus().button.text;
-          }
-          if (info.button.lock===undefined && updateStatus().button.lock!==undefined) {
-            info.button.lock = updateStatus().button.lock;
+        if (updateStatus()) {
+          if (!info.icon && updateStatus().icon) info.icon = updateStatus().icon;
+          if (!info.text && updateStatus().text) info.text = updateStatus().text;
+          if (updateStatus().button) {
+            !info.button && (info.button = {});
+            if (!info.button.text && updateStatus().button.text) {
+              info.button.text = updateStatus().button.text;
+            }
+            if (info.button.lock===undefined && updateStatus().button.lock!==undefined) {
+              info.button.lock = updateStatus().button.lock;
+            }
           }
         }
         setUpdateStatus(info);

@@ -27,6 +27,11 @@
       padding: 8px;
       border-radius: 8px;
 
+      &:focus-visible {
+        outline: 2px solid var(--border-control-focus);
+        outline-offset: -2px;
+      }
+
       .icon {
         width: 24px;
         height: 24px;

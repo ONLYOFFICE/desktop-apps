@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Forbedrer ytelsen på de fleste enheter. Deaktiver hvis du opplever visningsproblemer.',
     settingsEnableAI: 'Aktiver AI-funksjoner',
     settingsEnableAIDescr: 'Aktiver AI i applikasjonen for å legge til modeller og bruke AI-drevet funksjonalitet',
-    settRemoveAddon: 'Gå utover standard redigering',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit og mer',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI på tvers av alle editorer, smarte skjemaer, tilpassede leverandører, avansert PDF',
     strLicensedUnder: 'Lisensiert under',
     tplNoInternet: 'Nettbaserte maler er ikke tilgjengelige på grunn av problemer med internettforbindelsen. Du kan opprette nye dokumenter ved hjelp av alternativene ovenfor.',
 }

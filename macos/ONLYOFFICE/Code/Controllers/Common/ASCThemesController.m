@@ -93,6 +93,7 @@ static NSString* jsonKeysForColorName(NSString *name) {
         map = @{
             btnPortalActiveBackgroundColor : @"tool-button-active-background",
             btnHoverBackgroundColor        : @"tool-button-hover-background",
+            btnPressedBackgroundColor      : @"tool-button-pressed-background",
             tabWordActiveBackgroundColor   : @"brand-word",
             tabCellActiveBackgroundColor   : @"brand-cell",
             tabSlideActiveBackgroundColor  : @"brand-slide",

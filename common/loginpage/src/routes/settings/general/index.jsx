@@ -4,6 +4,7 @@ import { Select, Switch, TextField, Button } from "@/components";
 import { settings, setSettings, defaultSettings } from "@/stores/settings";
 import { availableLangs,
         systemThemeEnabled,
+        customThemes,
         userNameError,
         setUserNameError,
         uninstallAddon,
@@ -15,6 +16,9 @@ import styles from "./index.module.css";
 import { addonInfo } from "@/services/about";
 import { aichat } from "@/stores/aichat";
 import { TEMPLATES_COUNTRY_ARRAY } from "@/data/countries";
+
+const ADD_LOCAL_THEME_ITEM = "add-theme";
+const addLocalThemeEnabled = window.RendererProcessVariable?.theme?.addlocal === "on";
 
 export default function GeneralSettings() {
   const countryOptions = createMemo(() => TEMPLATES_COUNTRY_ARRAY);
@@ -58,7 +62,18 @@ export default function GeneralSettings() {
     { value: "theme-dark", label: t("settOptThemeDark") },
     { value: "theme-contrast-dark", label: t("settOptThemeContrastDark") },
     { value: "theme-gray", label: t("settOptThemeGray") },
+    ...customThemes(),
+    addLocalThemeEnabled && { value: "__divider__", label: "", disabled: true, divider: true },
+    addLocalThemeEnabled && { value: ADD_LOCAL_THEME_ITEM, label: t("settOptThemeAddLocal") },
   ].filter(Boolean));
+
+  function handleThemeChange(value) {
+    if (value === ADD_LOCAL_THEME_ITEM) {
+      command("uitheme:add", "local");
+      return;
+    }
+    setSettings("theme", value);
+  }
 
   const openFileOptions = createMemo(() => [
     { value: "tab", label: t("settOptLaunchInTab") },
@@ -156,7 +171,7 @@ export default function GeneralSettings() {
         <div class={styles.fieldRow}>
           <span class={styles.fieldLabel}>{t("settUITheme")}</span>
           <div class={styles.fieldControl}>
-            <Select options={themeOptions()} value={settings.theme} onChange={(v) => setSettings("theme", v)} disallowEmptySelection>
+            <Select options={themeOptions()} value={settings.theme} onChange={handleThemeChange} disallowEmptySelection>
               <Select.Trigger class={styles.fullWidth} />
               <Select.Content />
             </Select>
@@ -194,17 +209,17 @@ export default function GeneralSettings() {
         </div>
 
         <div class={styles.fieldRowAuto}>
-          <label for="chb-use-ai" class={styles.fieldLabelBlock}>
-            {t("settingsEnableAI")}{aichat.available && ' *'}<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
-          </label>
-          <Switch id="chb-use-ai" checked={settings.useai !== false} onChange={(v) => setSettings("useai", v)} />
-        </div>
-
-        <div class={styles.fieldRowAuto}>
           <label for="gpu-mode" class={styles.fieldLabelBlock}>
             {t("settGpuUseMode")} *<span class={styles.fieldDescription}>{t("settingsGpuUseModeDescr")}</span>
           </label>
           <Switch id="gpu-mode" checked={settings.gpuMode} onChange={(v) => setSettings("gpuMode", v)} />
+        </div>
+
+        <div class={styles.fieldRowAuto}>
+          <label for="chb-use-ai" class={styles.fieldLabelBlock}>
+            {t("settingsEnableAI")}{aichat.available && ' *'}<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
+          </label>
+          <Switch id="chb-use-ai" checked={settings.useai !== false} onChange={(v) => setSettings("useai", v)} />
         </div>
 
         <Show when={addonInfo()?.installed}>
@@ -214,6 +229,15 @@ export default function GeneralSettings() {
             <div class={styles.fieldLabelBlock}>
               <span class={styles.fieldLabel}>{t("settRemoveAddon")} *</span>
               <span class={styles.fieldDescription}>{t("descrRemoveAddon")}</span>
+
+              <Show when={addonInfo().license?.url}>
+                <p class="about-field about-license" style={{margin:0}}>
+                  {t("strLicensedUnder")}{" "}
+                  <a class="about-link" href={addonInfo().license.url} target="_blank" rel="noreferrer">
+                    {addonInfo().license.title ?? addonInfo().license.url}
+                  </a>
+                </p>
+              </Show>
             </div>
             <div class={styles.fieldControlEnd}>
               <Button variant="accent" onClick={uninstallAddon}>

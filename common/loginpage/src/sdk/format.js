@@ -66,6 +66,7 @@ export const FileFormat = {
   FILE_CROSSPLATFORM_DJVU: FILE_CROSSPLATFORM + 0x0003,
   FILE_CROSSPLATFORM_XPS: FILE_CROSSPLATFORM + 0x0004,
   FILE_CROSSPLATFORM_PDFA: FILE_CROSSPLATFORM + 0x0009,
+  FILE_CROSSPLATFORM_OFD: FILE_CROSSPLATFORM + 0x000a,
 
   FILE_DRAW: FILE_DRAW,
   FILE_DRAW_VSDX: FILE_DRAW + 0x0001,
@@ -129,6 +130,7 @@ const formatToString = Object.freeze({
   [FileFormat.FILE_CROSSPLATFORM_PDF]: "pdf",
   [FileFormat.FILE_CROSSPLATFORM_DJVU]: "djvu",
   [FileFormat.FILE_CROSSPLATFORM_XPS]: "xps",
+  [FileFormat.FILE_CROSSPLATFORM_OFD]: "ofd",
 
   [FileFormat.FILE_DRAW_VSTX]: "vsdx",
   [FileFormat.FILE_DRAW_VSSX]: "vsdx",
@@ -189,6 +191,7 @@ const extensionToFormat = Object.freeze({
 
   djvu: FileFormat.FILE_CROSSPLATFORM_DJVU,
   xps: FileFormat.FILE_CROSSPLATFORM_XPS,
+  ofd: FileFormat.FILE_CROSSPLATFORM_OFD,
 });
 
 export function formatToEditor(f) {

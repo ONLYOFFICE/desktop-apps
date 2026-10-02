@@ -6,9 +6,10 @@ import { applyLocale, getTranslationFor, isRTL } from "@/services/l10n";
 import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/services/ai-panel";
-import { aichat } from "@/stores/aichat";
+import { aichat, closeSidePanel } from "@/stores/aichat";
 import { sendTemplatesCountry, sendTemplatesTheme } from "@/routes/templates";
 import { TemplatesCountrySet } from "@/data/countries";
+import { setAddonNeedRestart } from "./about";
 
 
 function injectCustomThemeCss(id, colors) {
@@ -218,6 +219,10 @@ export function initSettingsSync() {
                   (!!scaling && scaling !== nativeScalingToStore(snap.uiscaling)) ||
                   settings.gpuMode !== !!snap.usegpu ||
                   textDirectionChanged() || (langRestartPending() && snap.locale.current != lang);
+
+      if (snap.useai != settings.useai){
+        setAddonNeedRestart(true);
+      }
     }
 
     snap.useai = settings.useai;
@@ -250,6 +255,8 @@ export function initSettingsSync() {
       console.log("plugin settings", _plugin_opts);
       sendPluginSettings(_plugin_opts);
     }
+    if (!settings.useai)
+      closeSidePanel();
 
     setAppliedUseAi(settings.useai);
     setIsOptsChanged(false);

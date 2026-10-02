@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Çoğu cihazda performansı artırır. Görüntüleme sorunları yaşıyorsanız devre dışı bırakın.',
     settingsEnableAI: 'AI özelliklerini etkinleştir',
     settingsEnableAIDescr: "Model eklemek ve AI destekli işlevselliği kullanmak için uygulamada AI'ı etkinleştirin",
-    settRemoveAddon: 'Standart düzenlemenin ötesine geçin',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit ve daha fazlası',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: Tüm editörlerde AI, akıllı formlar, özel sağlayıcılar, gelişmiş PDF',
     strLicensedUnder: 'Lisanslı',
     tplNoInternet: 'İnternet bağlantısı sorunları nedeniyle çevrimiçi şablonlar kullanılamıyor. Yukarıdaki seçenekleri kullanarak yeni belgeler oluşturabilirsiniz.',
 }

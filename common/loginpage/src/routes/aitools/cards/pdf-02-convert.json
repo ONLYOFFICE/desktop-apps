@@ -2,8 +2,246 @@
   "id": "convert-pdf",
   "group": "pdf",
   "prompt": "Please convert the attached PDF to the requested format (Word, Excel, or other). Preserve the original layout, tables, and formatting as accurately as possible.",
-  "en": {
-    "title": "Convert PDF",
-    "description": "Convert PDF to Word, Excel, or other formats"
+  "locale": {
+    "en": {
+      "title": "Convert PDF",
+      "description": "Convert PDF to Word, Excel, or other formats",
+      "usertext": "Select a PDF file and specify the target format (Word, Excel, or other)"
+    },
+    "ar-SA": {
+      "title": "تحويل PDF",
+      "description": "تحويل PDF إلى Word أو Excel أو تنسيقات أخرى",
+      "usertext": "حدد ملف PDF وحدد التنسيق المستهدف (Word أو Excel أو غيره)"
+    },
+    "be": {
+      "title": "Канвертаваць PDF",
+      "description": "Канвертаваць PDF у Word, Excel або іншыя фарматы",
+      "usertext": "Выберыце файл PDF і ўкажыце мэтавы фармат (Word, Excel або іншы)"
+    },
+    "bg": {
+      "title": "Конвертиране на PDF",
+      "description": "Конвертиране на PDF в Word, Excel или други формати",
+      "usertext": "Изберете PDF файл и посочете целевия формат (Word, Excel или друг)"
+    },
+    "ca": {
+      "title": "Convertir PDF",
+      "description": "Convertir PDF a Word, Excel o altres formats",
+      "usertext": "Seleccioneu un fitxer PDF i especifiqueu el format de destinació (Word, Excel o altres)"
+    },
+    "cs": {
+      "title": "Převést PDF",
+      "description": "Převést PDF do Word, Excel nebo jiných formátů",
+      "usertext": "Vyberte soubor PDF a zadejte cílový formát (Word, Excel nebo jiný)"
+    },
+    "da": {
+      "title": "Konvertér PDF",
+      "description": "Konvertér PDF til Word, Excel eller andre formater",
+      "usertext": "Vælg en PDF-fil og angiv målformatet (Word, Excel eller andet)"
+    },
+    "de": {
+      "title": "PDF konvertieren",
+      "description": "PDF in Word, Excel oder andere Formate konvertieren",
+      "usertext": "Wählen Sie eine PDF-Datei und geben Sie das Zielformat an (Word, Excel oder andere)"
+    },
+    "el": {
+      "title": "Μετατροπή PDF",
+      "description": "Μετατροπή PDF σε Word, Excel ή άλλες μορφές",
+      "usertext": "Επιλέξτε αρχείο PDF και καθορίστε τη μορφή προορισμού (Word, Excel ή άλλη)"
+    },
+    "en-GB": {
+      "title": "Convert PDF",
+      "description": "Convert PDF to Word, Excel, or other formats",
+      "usertext": "Select a PDF file and specify the target format (Word, Excel, or other)"
+    },
+    "es": {
+      "title": "Convertir PDF",
+      "description": "Convertir PDF a Word, Excel u otros formatos",
+      "usertext": "Seleccione un archivo PDF y especifique el formato de destino (Word, Excel u otro)"
+    },
+    "et": {
+      "title": "Teisenda PDF",
+      "description": "Teisenda PDF Word, Excel või muusse vormingusse",
+      "usertext": "Valige PDF-fail ja määrake sihtvormingut (Word, Excel või muu)"
+    },
+    "fi": {
+      "title": "Muunna PDF",
+      "description": "Muunna PDF Word-, Excel- tai muuhun muotoon",
+      "usertext": "Valitse PDF-tiedosto ja määritä kohdemuoto (Word, Excel tai muu)"
+    },
+    "fr": {
+      "title": "Convertir le PDF",
+      "description": "Convertir un PDF en Word, Excel ou d'autres formats",
+      "usertext": "Sélectionnez un fichier PDF et précisez le format cible (Word, Excel ou autre)"
+    },
+    "ga": {
+      "title": "Tiontaigh PDF",
+      "description": "Tiontaigh PDF go Word, Excel nó formáidí eile",
+      "usertext": "Roghnaigh comhad PDF agus sonraigh an fhormáid sprice (Word, Excel, nó eile)"
+    },
+    "gl": {
+      "title": "Converter PDF",
+      "description": "Converter PDF a Word, Excel ou outros formatos",
+      "usertext": "Seleccione un ficheiro PDF e especifique o formato de destino (Word, Excel ou outro)"
+    },
+    "he": {
+      "title": "המרת PDF",
+      "description": "המרת PDF ל-Word, Excel או פורמטים אחרים",
+      "usertext": "בחר קובץ PDF וציין את פורמט היעד (Word, Excel או אחר)"
+    },
+    "hi": {
+      "title": "PDF कनवर्ट करें",
+      "description": "PDF को Word, Excel या अन्य फ़ॉर्मेट में कनवर्ट करें",
+      "usertext": "एक PDF फ़ाइल चुनें और लक्ष्य फ़ॉर्मेट निर्दिष्ट करें (Word, Excel या अन्य)"
+    },
+    "hr": {
+      "title": "Pretvori PDF",
+      "description": "Pretvorite PDF u Word, Excel ili druge formate",
+      "usertext": "Odaberite PDF datoteku i navedite ciljani format (Word, Excel ili drugi)"
+    },
+    "hu": {
+      "title": "PDF átalakítása",
+      "description": "PDF átalakítása Word, Excel vagy más formátumba",
+      "usertext": "Válasszon egy PDF-fájlt, és adja meg a célformátumot (Word, Excel vagy más)"
+    },
+    "hy": {
+      "title": "Փոխարկել PDF",
+      "description": "PDF-ի փոխարկում Word, Excel կամ այլ ձևաչափի",
+      "usertext": "Ընտրեք PDF ֆայլ և նշեք թիրախ ձևաչափը (Word, Excel կամ այլ)"
+    },
+    "id": {
+      "title": "Konversi PDF",
+      "description": "Konversi PDF ke Word, Excel, atau format lainnya",
+      "usertext": "Pilih file PDF dan tentukan format target (Word, Excel, atau lainnya)"
+    },
+    "it": {
+      "title": "Converti PDF",
+      "description": "Converti PDF in Word, Excel o altri formati",
+      "usertext": "Seleziona un file PDF e specifica il formato di destinazione (Word, Excel o altro)"
+    },
+    "ja": {
+      "title": "PDF変換",
+      "description": "PDFをWord、Excelまたは他の形式に変換",
+      "usertext": "PDFファイルを選択してターゲット形式を指定してください（Word、Excel、またはその他）"
+    },
+    "ko": {
+      "title": "PDF 변환",
+      "description": "PDF를 Word, Excel 또는 다른 형식으로 변환",
+      "usertext": "PDF 파일을 선택하고 대상 형식을 지정하세요(Word, Excel 또는 기타)"
+    },
+    "lo": {
+      "title": "ແປງ PDF",
+      "description": "ແປງ PDF ເປັນ Word, Excel ຫຼືຮູບແບບອື່ນໆ",
+      "usertext": "ເລືອກໄຟລ໌ PDF ແລະລະບຸຮູບແບບເປົ້າໝາຍ (Word, Excel ຫຼືອື່ນໆ)"
+    },
+    "lt": {
+      "title": "Konvertuoti PDF",
+      "description": "Konvertuokite PDF į Word, Excel ar kitus formatus",
+      "usertext": "Pasirinkite PDF failą ir nurodykite tikslinį formatą (Word, Excel arba kitą)"
+    },
+    "lv": {
+      "title": "Konvertēt PDF",
+      "description": "Konvertēt PDF uz Word, Excel vai citiem formātiem",
+      "usertext": "Atlasiet PDF failu un norādiet mērķa formātu (Word, Excel vai citu)"
+    },
+    "nl": {
+      "title": "PDF omzetten",
+      "description": "PDF omzetten naar Word, Excel of andere indelingen",
+      "usertext": "Selecteer een PDF-bestand en geef de doelindeling op (Word, Excel of andere)"
+    },
+    "no": {
+      "title": "Konverter PDF",
+      "description": "Konverter PDF til Word, Excel eller andre formater",
+      "usertext": "Velg en PDF-fil og angi målformatet (Word, Excel eller annet)"
+    },
+    "pl": {
+      "title": "Konwertuj PDF",
+      "description": "Konwertuj PDF do formatu Word, Excel lub innego",
+      "usertext": "Wybierz plik PDF i określ format docelowy (Word, Excel lub inny)"
+    },
+    "pt-BR": {
+      "title": "Converter PDF",
+      "description": "Converter PDF para Word, Excel ou outros formatos",
+      "usertext": "Selecione um arquivo PDF e especifique o formato de destino (Word, Excel ou outro)"
+    },
+    "pt-PT": {
+      "title": "Converter PDF",
+      "description": "Converter PDF para Word, Excel ou outros formatos",
+      "usertext": "Selecione um ficheiro PDF e especifique o formato de destino (Word, Excel ou outro)"
+    },
+    "ro": {
+      "title": "Convertire PDF",
+      "description": "Convertiți PDF în Word, Excel sau alte formate",
+      "usertext": "Selectați un fișier PDF și specificați formatul țintă (Word, Excel sau altul)"
+    },
+    "ru": {
+      "title": "Конвертировать PDF",
+      "description": "Конвертировать PDF в Word, Excel или другие форматы",
+      "usertext": "Выберите файл PDF и укажите целевой формат (Word, Excel или другой)"
+    },
+    "si": {
+      "title": "PDF පරිවර්තනය කරන්න",
+      "description": "PDF Word, Excel හෝ වෙනත් ආකෘතිවලට පරිවර්තනය කරන්න",
+      "usertext": "PDF ගොනුවක් තෝරා ඉලක්ක ආකෘතිය සඳහන් කරන්න (Word, Excel හෝ වෙනත්)"
+    },
+    "sk": {
+      "title": "Konvertovať PDF",
+      "description": "Konvertovať PDF do Word, Excel alebo iných formátov",
+      "usertext": "Vyberte súbor PDF a zadajte cieľový formát (Word, Excel alebo iný)"
+    },
+    "sl": {
+      "title": "Pretvori PDF",
+      "description": "Pretvorite PDF v Word, Excel ali druge formate",
+      "usertext": "Izberite datoteko PDF in navedite ciljni format (Word, Excel ali drug)"
+    },
+    "sq": {
+      "title": "Konverto PDF",
+      "description": "Konvertoni PDF në Word, Excel ose formate të tjera",
+      "usertext": "Zgjidhni një skedar PDF dhe specifikoni formatin e synuar (Word, Excel ose tjetër)"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Конвертовање PDF",
+      "description": "Конвертујте PDF у Word, Excel или друге формате",
+      "usertext": "Изаберите PDF датотеку и наведите циљни формат (Word, Excel или неки други)"
+    },
+    "sr-Latn-RS": {
+      "title": "Konvertovanje PDF",
+      "description": "Konvertujte PDF u Word, Excel ili druge formate",
+      "usertext": "Izaberite PDF datoteku i navedite ciljni format (Word, Excel ili neki drugi)"
+    },
+    "sv": {
+      "title": "Konvertera PDF",
+      "description": "Konvertera PDF till Word, Excel eller andra format",
+      "usertext": "Välj en PDF-fil och ange målformatet (Word, Excel eller annat)"
+    },
+    "tr": {
+      "title": "PDF Dönüştür",
+      "description": "PDF'yi Word, Excel veya diğer formatlara dönüştürün",
+      "usertext": "Bir PDF dosyası seçin ve hedef formatı belirtin (Word, Excel veya diğer)"
+    },
+    "uk": {
+      "title": "Конвертувати PDF",
+      "description": "Конвертуйте PDF у Word, Excel або інші формати",
+      "usertext": "Виберіть файл PDF і вкажіть цільовий формат (Word, Excel або інший)"
+    },
+    "ur": {
+      "title": "PDF تبدیل کریں",
+      "description": "PDF کو Word، Excel یا دیگر فارمیٹس میں تبدیل کریں",
+      "usertext": "PDF فائل منتخب کریں اور ہدف فارمیٹ بتائیں (Word، Excel یا دیگر)"
+    },
+    "vi": {
+      "title": "Chuyển đổi PDF",
+      "description": "Chuyển đổi PDF sang Word, Excel hoặc định dạng khác",
+      "usertext": "Chọn tệp PDF và chỉ định định dạng đích (Word, Excel hoặc khác)"
+    },
+    "zh-CN": {
+      "title": "转换 PDF",
+      "description": "将 PDF 转换为 Word、Excel 或其他格式",
+      "usertext": "选择 PDF 文件并指定目标格式（Word、Excel 或其他）"
+    },
+    "zh-TW": {
+      "title": "轉換 PDF",
+      "description": "將 PDF 轉換為 Word、Excel 或其他格式",
+      "usertext": "選擇 PDF 檔案並指定目標格式（Word、Excel 或其他）"
+    }
   }
 }

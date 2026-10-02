@@ -87,7 +87,7 @@
 }
 
 .fieldControlEnd {
-  flex: 1;
+  /* flex: 1; */
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;

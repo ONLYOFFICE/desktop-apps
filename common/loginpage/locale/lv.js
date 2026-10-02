@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Uzlabo veiktspēju lielākajā daļā ierīču. Atspējojiet, ja rodas displeja problēmas.',
     settingsEnableAI: 'Iespējot MI funkcijas',
     settingsEnableAIDescr: 'Iespējojiet MI lietojumprogrammā, lai pievienotu modeļus un izmantotu MI darbināmu funkcionalitāti',
-    settRemoveAddon: 'Ejiet tālāk par standarta rediģēšanu',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit un vairāk',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: MI visos redaktoros, viedās veidlapas, pielāgoti nodrošinātāji, uzlabots PDF',
     strLicensedUnder: 'Licencēts saskaņā ar',
     tplNoInternet: 'Tiešsaistes veidnes nav pieejamas interneta savienojuma problēmu dēļ. Varat izveidot jaunus dokumentus, izmantojot iepriekš minētās opcijas.',
 }

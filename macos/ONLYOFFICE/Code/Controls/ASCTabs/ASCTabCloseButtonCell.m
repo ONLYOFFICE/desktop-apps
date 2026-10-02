@@ -109,7 +109,12 @@
         }
 
         [backgroundColor setFill];
-        NSRectFillUsingOperation(cellFrame, NSCompositingOperationSourceOver);
+
+        CGFloat cornerRadius = NSWidth(cellFrame) / 4.0;
+        NSBezierPath * backgroundPath = [NSBezierPath bezierPathWithRoundedRect:cellFrame
+                                                                        xRadius:cornerRadius
+                                                                        yRadius:cornerRadius];
+        [backgroundPath fill];
     }
 
     if (self.image && self.imagePosition != NSNoImage) {

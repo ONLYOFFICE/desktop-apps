@@ -156,6 +156,8 @@
     self = [super initTextCell:string];
     if (self) {
         [self setLineBreakMode:NSLineBreakByTruncatingTail];
+        [self setFont:[NSFont systemFontOfSize:11]];
+        [self setUsesSingleLineMode:YES];
 
 
         if (@available(macOS 10.13, *)) {

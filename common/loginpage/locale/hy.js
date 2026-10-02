@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Բարելավում է կատարողականությունը սարքերի մեծ մասի վրա: Անջատեք, եթե ունեք ցուցադրման խնդիրներ:',
     settingsEnableAI: 'Միացնել ԱԲ հնարավորությունները',
     settingsEnableAIDescr: 'Միացրեք ԱԲ-ը հավելվածում՝ մոդելներ ավելացնելու և ԱԲ-ի վրա հիմնված ֆունկցիոնալությունն օգտագործելու համար',
-    settRemoveAddon: 'Գնացեք ստանդարտ խմբագրությունից այն կողմ',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit և ավելին',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: ԱԻ բոլոր խմբագիրներում, խելացի ձևաթղթեր, հատուկ մատակարարներ, ընդլայնված PDF',
     strLicensedUnder: 'Լիցենզավորված՝',
     tplNoInternet: 'Առցանց կաղապարները հասանելի չեն ինտերնետ կապի խնդիրների պատճառով։ Կարող եք ստեղծել նոր փաստաթղթեր՝ օգտագործելով վերևի ընտրանքները։',
 }

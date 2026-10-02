@@ -2,8 +2,246 @@
   "id": "split-pdf",
   "group": "pdf",
   "prompt": "Please split the attached PDF into separate files. Let me know how you would like it split: by page, by range, or by section.",
-  "en": {
-    "title": "Split PDF",
-    "description": "Split a PDF into separate files"
+  "locale": {
+    "en": {
+      "title": "Split PDF",
+      "description": "Split a PDF into separate files",
+      "usertext": "Select a PDF file and describe how to split it (by page, range, or section)"
+    },
+    "ar-SA": {
+      "title": "تقسيم PDF",
+      "description": "تقسيم PDF إلى ملفات منفصلة",
+      "usertext": "حدد ملف PDF وصف كيفية تقسيمه (حسب الصفحة أو النطاق أو القسم)"
+    },
+    "be": {
+      "title": "Раздзяліць PDF",
+      "description": "Раздзяліць PDF на асобныя файлы",
+      "usertext": "Выберыце файл PDF і апішыце, як яго раздзяліць (па старонцы, дыяпазоне або раздзеле)"
+    },
+    "bg": {
+      "title": "Разделяне на PDF",
+      "description": "Разделяне на PDF на отделни файлове",
+      "usertext": "Изберете PDF файл и опишете как да го разделите (по страница, диапазон или раздел)"
+    },
+    "ca": {
+      "title": "Dividir PDF",
+      "description": "Dividir un PDF en fitxers separats",
+      "usertext": "Seleccioneu un fitxer PDF i descriviu com dividir-lo (per pàgina, rang o secció)"
+    },
+    "cs": {
+      "title": "Rozdělit PDF",
+      "description": "Rozdělit PDF do samostatných souborů",
+      "usertext": "Vyberte soubor PDF a popište, jak ho rozdělit (podle stránky, rozsahu nebo sekce)"
+    },
+    "da": {
+      "title": "Opdel PDF",
+      "description": "Opdel en PDF i separate filer",
+      "usertext": "Vælg en PDF-fil og beskriv, hvordan den skal opdeles (efter side, interval eller afsnit)"
+    },
+    "de": {
+      "title": "PDF teilen",
+      "description": "Eine PDF in separate Dateien aufteilen",
+      "usertext": "Wählen Sie eine PDF-Datei und beschreiben Sie, wie sie aufgeteilt werden soll (nach Seite, Bereich oder Abschnitt)"
+    },
+    "el": {
+      "title": "Διαίρεση PDF",
+      "description": "Διαίρεση PDF σε ξεχωριστά αρχεία",
+      "usertext": "Επιλέξτε αρχείο PDF και περιγράψτε πώς να το διαιρέσετε (ανά σελίδα, εύρος ή ενότητα)"
+    },
+    "en-GB": {
+      "title": "Split PDF",
+      "description": "Split a PDF into separate files",
+      "usertext": "Select a PDF file and describe how to split it (by page, range, or section)"
+    },
+    "es": {
+      "title": "Dividir PDF",
+      "description": "Dividir un PDF en archivos separados",
+      "usertext": "Seleccione un archivo PDF y describa cómo dividirlo (por página, rango o sección)"
+    },
+    "et": {
+      "title": "Jaga PDF",
+      "description": "Jaga PDF eraldi failideks",
+      "usertext": "Valige PDF-fail ja kirjeldage, kuidas seda jagada (lehe, vahemiku või jaotise kaupa)"
+    },
+    "fi": {
+      "title": "Jaa PDF",
+      "description": "Jaa PDF erillisiksi tiedostoiksi",
+      "usertext": "Valitse PDF-tiedosto ja kuvaile, miten se jaetaan (sivun, alueen tai osan mukaan)"
+    },
+    "fr": {
+      "title": "Diviser le PDF",
+      "description": "Diviser un PDF en fichiers séparés",
+      "usertext": "Sélectionnez un fichier PDF et décrivez comment le diviser (par page, plage ou section)"
+    },
+    "ga": {
+      "title": "Scoilt PDF",
+      "description": "Scoilt PDF ina chomhaid ar leith",
+      "usertext": "Roghnaigh comhad PDF agus déan cur síos ar conas é a scoilteadh (de réir leathanach, raon nó rannán)"
+    },
+    "gl": {
+      "title": "Dividir PDF",
+      "description": "Dividir un PDF en ficheiros separados",
+      "usertext": "Seleccione un ficheiro PDF e describa como dividilo (por páxina, rango ou sección)"
+    },
+    "he": {
+      "title": "פיצול PDF",
+      "description": "פיצול PDF לקבצים נפרדים",
+      "usertext": "בחר קובץ PDF ותאר כיצד לפצל אותו (לפי דף, טווח או סעיף)"
+    },
+    "hi": {
+      "title": "PDF विभाजित करें",
+      "description": "PDF को अलग-अलग फ़ाइलों में विभाजित करें",
+      "usertext": "एक PDF फ़ाइल चुनें और बताएं इसे कैसे विभाजित करना है (पृष्ठ, रेंज या अनुभाग के अनुसार)"
+    },
+    "hr": {
+      "title": "Podijeli PDF",
+      "description": "Podijelite PDF na zasebne datoteke",
+      "usertext": "Odaberite PDF datoteku i opišite kako je podijeliti (prema stranici, rasponu ili sekciji)"
+    },
+    "hu": {
+      "title": "PDF felosztása",
+      "description": "PDF felosztása külön fájlokba",
+      "usertext": "Válasszon egy PDF-fájlt, és írja le, hogyan ossza fel (oldal, tartomány vagy szakasz szerint)"
+    },
+    "hy": {
+      "title": "Բաժանել PDF",
+      "description": "PDF-ի բաժանում առանձին ֆայլերի",
+      "usertext": "Ընտրեք PDF ֆայլ և նկարագրեք ինչպես բաժանել (ըստ էջի, տիրույթի կամ բաժնի)"
+    },
+    "id": {
+      "title": "Pisahkan PDF",
+      "description": "Pisahkan PDF menjadi file-file terpisah",
+      "usertext": "Pilih file PDF dan jelaskan cara memisahnya (per halaman, rentang, atau bagian)"
+    },
+    "it": {
+      "title": "Dividi PDF",
+      "description": "Dividi un PDF in file separati",
+      "usertext": "Seleziona un file PDF e descrivi come dividerlo (per pagina, intervallo o sezione)"
+    },
+    "ja": {
+      "title": "PDF分割",
+      "description": "PDFを個別のファイルに分割",
+      "usertext": "PDFファイルを選択して分割方法を説明してください（ページ、範囲、またはセクション単位）"
+    },
+    "ko": {
+      "title": "PDF 분할",
+      "description": "PDF를 개별 파일로 분할",
+      "usertext": "PDF 파일을 선택하고 분할 방법을 설명하세요(페이지, 범위 또는 섹션별)"
+    },
+    "lo": {
+      "title": "ແຍກ PDF",
+      "description": "ແຍກ PDF ອອກເປັນໄຟລ໌ແຍກ",
+      "usertext": "ເລືອກໄຟລ໌ PDF ແລະອະທິບາຍວ່າຕ້ອງການແຍກແນວໃດ (ຕາມໜ້າ, ຊ່ວງ ຫຼືພາກ)"
+    },
+    "lt": {
+      "title": "Skaidyti PDF",
+      "description": "Skaidykite PDF į atskirus failus",
+      "usertext": "Pasirinkite PDF failą ir aprašykite, kaip jį skaidyti (pagal puslapį, intervalą arba skyrių)"
+    },
+    "lv": {
+      "title": "Sadalīt PDF",
+      "description": "Sadalīt PDF atsevišķos failos",
+      "usertext": "Atlasiet PDF failu un aprakstiet, kā to sadalīt (pēc lapas, diapazona vai sadaļas)"
+    },
+    "nl": {
+      "title": "PDF splitsen",
+      "description": "Een PDF in afzonderlijke bestanden splitsen",
+      "usertext": "Selecteer een PDF-bestand en beschrijf hoe het gesplitst moet worden (per pagina, bereik of sectie)"
+    },
+    "no": {
+      "title": "Del opp PDF",
+      "description": "Del en PDF i separate filer",
+      "usertext": "Velg en PDF-fil og beskriv hvordan den skal deles opp (etter side, område eller seksjon)"
+    },
+    "pl": {
+      "title": "Podziel PDF",
+      "description": "Podziel PDF na osobne pliki",
+      "usertext": "Wybierz plik PDF i opisz, jak go podzielić (według strony, zakresu lub sekcji)"
+    },
+    "pt-BR": {
+      "title": "Dividir PDF",
+      "description": "Dividir um PDF em arquivos separados",
+      "usertext": "Selecione um arquivo PDF e descreva como dividi-lo (por página, intervalo ou seção)"
+    },
+    "pt-PT": {
+      "title": "Dividir PDF",
+      "description": "Dividir um PDF em ficheiros separados",
+      "usertext": "Selecione um ficheiro PDF e descreva como dividi-lo (por página, intervalo ou secção)"
+    },
+    "ro": {
+      "title": "Împărțire PDF",
+      "description": "Împărțiți un PDF în fișiere separate",
+      "usertext": "Selectați un fișier PDF și descrieți cum să îl împărțiți (pe pagină, interval sau secțiune)"
+    },
+    "ru": {
+      "title": "Разделить PDF",
+      "description": "Разделить PDF на отдельные файлы",
+      "usertext": "Выберите файл PDF и опишите, как его разделить (по странице, диапазону или разделу)"
+    },
+    "si": {
+      "title": "PDF බෙදන්න",
+      "description": "PDF වෙන් ගොනුවලට බෙදන්න",
+      "usertext": "PDF ගොනුවක් තෝරා බෙදන ආකාරය විස්තර කරන්න (පිටුව, පරාසය හෝ කොටස් අනුව)"
+    },
+    "sk": {
+      "title": "Rozdeliť PDF",
+      "description": "Rozdeliť PDF na samostatné súbory",
+      "usertext": "Vyberte súbor PDF a opíšte, ako ho rozdeliť (podľa strany, rozsahu alebo sekcie)"
+    },
+    "sl": {
+      "title": "Razdeli PDF",
+      "description": "Razdelite PDF na ločene datoteke",
+      "usertext": "Izberite datoteko PDF in opišite, kako jo razdeliti (po strani, obsegu ali razdelku)"
+    },
+    "sq": {
+      "title": "Ndaj PDF",
+      "description": "Ndani PDF në skedarë të veçantë",
+      "usertext": "Zgjidhni një skedar PDF dhe përshkruani si të ndahet (sipas faqes, diapazonit ose seksionit)"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Подела PDF",
+      "description": "Поделите PDF на засебне датотеке",
+      "usertext": "Изаберите PDF датотеку и опишите на који начин да је поделите (по страници, опсегу или одељку)"
+    },
+    "sr-Latn-RS": {
+      "title": "Podela PDF",
+      "description": "Podelite PDF na zasebne datoteke",
+      "usertext": "Izaberite PDF datoteku i opišite na koji način da je podelite (po stranici, opsegu ili odeljku)"
+    },
+    "sv": {
+      "title": "Dela PDF",
+      "description": "Dela en PDF i separata filer",
+      "usertext": "Välj en PDF-fil och beskriv hur den ska delas (efter sida, intervall eller avsnitt)"
+    },
+    "tr": {
+      "title": "PDF Böl",
+      "description": "PDF'yi ayrı dosyalara bölün",
+      "usertext": "Bir PDF dosyası seçin ve nasıl bölüneceğini açıklayın (sayfa, aralık veya bölüm olarak)"
+    },
+    "uk": {
+      "title": "Розділити PDF",
+      "description": "Розділіть PDF на окремі файли",
+      "usertext": "Виберіть файл PDF і опишіть, як його розділити (за сторінкою, діапазоном або розділом)"
+    },
+    "ur": {
+      "title": "PDF تقسیم کریں",
+      "description": "PDF کو الگ فائلوں میں تقسیم کریں",
+      "usertext": "PDF فائل منتخب کریں اور بتائیں کہ اسے کیسے تقسیم کرنا ہے (صفحہ، رینج یا سیکشن کے لحاظ سے)"
+    },
+    "vi": {
+      "title": "Tách PDF",
+      "description": "Tách PDF thành các tệp riêng biệt",
+      "usertext": "Chọn tệp PDF và mô tả cách tách (theo trang, phạm vi hoặc phần)"
+    },
+    "zh-CN": {
+      "title": "拆分 PDF",
+      "description": "将 PDF 拆分为单独的文件",
+      "usertext": "选择 PDF 文件并描述拆分方式（按页、范围或部分）"
+    },
+    "zh-TW": {
+      "title": "分割 PDF",
+      "description": "將 PDF 分割為獨立的檔案",
+      "usertext": "選擇 PDF 檔案並描述分割方式（按頁、範圍或章節）"
+    }
   }
 }

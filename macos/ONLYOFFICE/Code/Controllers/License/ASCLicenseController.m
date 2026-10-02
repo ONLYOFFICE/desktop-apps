@@ -43,7 +43,7 @@
 #import "ASCLicenseController.h"
 #import <WebKit/WebKit.h>
 
-@interface ASCLicenseController () {
+@interface ASCLicenseController () <WebPolicyDelegate> {
     NSURL *_url;
 }
 @property (weak) IBOutlet WebView *eulaWebView;
@@ -53,6 +53,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.eulaWebView setPolicyDelegate:self];
     
     if (_url) {
         [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:_url]];
@@ -71,6 +73,34 @@
     _url = url;
     if (self.isViewLoaded) {
         [[self.eulaWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
+    }
+}
+
+#pragma mark - WebPolicyDelegate
+
+- (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request
+          frame:(WebFrame *)frame
+decisionListener:(id<WebPolicyDecisionListener>)listener {
+    NSURL *url = [request URL];
+    
+    if ([url isFileURL]) {
+        [listener use];
+    } else {
+        [listener ignore];
+        [[NSWorkspace sharedWorkspace] openURL:url];
+    }
+}
+
+- (void)webView:(WebView *)webView decidePolicyForNewWindowAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request
+   newFrameName:(NSString *)frameName
+decisionListener:(id<WebPolicyDecisionListener>)listener {
+    [listener ignore];
+    
+    NSURL *url = [request URL];
+    if (url && ![url isFileURL]) {
+        [[NSWorkspace sharedWorkspace] openURL:url];
     }
 }
 

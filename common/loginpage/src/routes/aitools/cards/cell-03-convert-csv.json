@@ -2,8 +2,246 @@
   "id": "convert-to-csv",
   "group": "cell",
   "prompt": "Please convert the attached spreadsheet to CSV format. If it has multiple sheets, let me know which one to convert or export all sheets as separate CSV files.",
-  "en": {
-    "title": "Convert to CSV",
-    "description": "Convert your file to CSV format"
+  "locale": {
+    "id": {
+      "title": "Konversi ke CSV",
+      "description": "Konversi file Anda ke format CSV",
+      "usertext": "Pilih spreadsheet untuk dikonversi ke format CSV"
+    },
+    "en": {
+      "title": "Convert to CSV",
+      "description": "Convert your file to CSV format",
+      "usertext": "Select a spreadsheet to convert to CSV format"
+    },
+    "ar-SA": {
+      "title": "تحويل إلى CSV",
+      "description": "تحويل ملفك إلى تنسيق CSV",
+      "usertext": "حدد جدول بيانات للتحويل إلى تنسيق CSV"
+    },
+    "be": {
+      "title": "Канвертаваць у CSV",
+      "description": "Канвертаваць файл у фармат CSV",
+      "usertext": "Выберыце табліцу для канвертавання ў фармат CSV"
+    },
+    "bg": {
+      "title": "Конвертиране в CSV",
+      "description": "Конвертирайте файла си в CSV формат",
+      "usertext": "Изберете таблица за конвертиране в CSV формат"
+    },
+    "ca": {
+      "title": "Convertir a CSV",
+      "description": "Convertiu el vostre fitxer al format CSV",
+      "usertext": "Seleccioneu un full de càlcul per convertir-lo al format CSV"
+    },
+    "cs": {
+      "title": "Převést do CSV",
+      "description": "Převeďte soubor do formátu CSV",
+      "usertext": "Vyberte tabulku pro převod do formátu CSV"
+    },
+    "da": {
+      "title": "Konverter til CSV",
+      "description": "Konverter din fil til CSV-format",
+      "usertext": "Vælg et regneark for at konvertere til CSV-format"
+    },
+    "de": {
+      "title": "In CSV konvertieren",
+      "description": "Datei in CSV-Format konvertieren",
+      "usertext": "Tabelle auswählen, um sie in das CSV-Format zu konvertieren"
+    },
+    "el": {
+      "title": "Μετατροπή σε CSV",
+      "description": "Μετατρέψτε το αρχείο σας σε μορφή CSV",
+      "usertext": "Επιλέξτε υπολογιστικό φύλλο για μετατροπή σε μορφή CSV"
+    },
+    "en-GB": {
+      "title": "Convert to CSV",
+      "description": "Convert your file to CSV format",
+      "usertext": "Select a spreadsheet to convert to CSV format"
+    },
+    "es": {
+      "title": "Convertir a CSV",
+      "description": "Convierte tu archivo al formato CSV",
+      "usertext": "Selecciona una hoja de cálculo para convertirla al formato CSV"
+    },
+    "et": {
+      "title": "Teisenda CSV-ks",
+      "description": "Teisenda fail CSV-vormingusse",
+      "usertext": "Vali arvutustabel CSV-vormingusse teisendamiseks"
+    },
+    "fi": {
+      "title": "Muunna CSV-muotoon",
+      "description": "Muunna tiedosto CSV-muotoon",
+      "usertext": "Valitse laskentataulukko CSV-muotoon muuntamiseksi"
+    },
+    "fr": {
+      "title": "Convertir en CSV",
+      "description": "Convertissez votre fichier au format CSV",
+      "usertext": "Sélectionnez une feuille de calcul pour la convertir au format CSV"
+    },
+    "ga": {
+      "title": "Tiontaigh go CSV",
+      "description": "Tiontaigh do chomhad go formáid CSV",
+      "usertext": "Roghnaigh scarbhileog le tiontú go formáid CSV"
+    },
+    "gl": {
+      "title": "Converter a CSV",
+      "description": "Converte o teu ficheiro ao formato CSV",
+      "usertext": "Selecciona unha folla de cálculo para convertela ao formato CSV"
+    },
+    "he": {
+      "title": "המרה ל-CSV",
+      "description": "המר את הקובץ שלך לפורמט CSV",
+      "usertext": "בחר גיליון אלקטרוני להמרה לפורמט CSV"
+    },
+    "hi": {
+      "title": "CSV में कनवर्ट करें",
+      "description": "अपनी फ़ाइल को CSV प्रारूप में कनवर्ट करें",
+      "usertext": "CSV प्रारूप में कनवर्ट करने के लिए स्प्रेडशीट चुनें"
+    },
+    "hr": {
+      "title": "Pretvori u CSV",
+      "description": "Pretvorite svoju datoteku u CSV format",
+      "usertext": "Odaberite proračunsku tablicu za pretvorbu u CSV format"
+    },
+    "hu": {
+      "title": "Konvertálás CSV-be",
+      "description": "Fájl konvertálása CSV formátumba",
+      "usertext": "Válasszon táblázatot CSV formátumba konvertáláshoz"
+    },
+    "hy": {
+      "title": "Փոխակերպել CSV-ի",
+      "description": "Փոխակերպեք ֆայլը CSV ձևաչափի",
+      "usertext": "Ընտրեք աղյուսակ՝ CSV ձևաչափի փոխակերպելու համար"
+    },
+    "it": {
+      "title": "Converti in CSV",
+      "description": "Converti il tuo file in formato CSV",
+      "usertext": "Seleziona un foglio di calcolo per convertirlo in formato CSV"
+    },
+    "ja": {
+      "title": "CSVに変換",
+      "description": "ファイルをCSV形式に変換",
+      "usertext": "CSV形式に変換するスプレッドシートを選択してください"
+    },
+    "ko": {
+      "title": "CSV로 변환",
+      "description": "파일을 CSV 형식으로 변환",
+      "usertext": "CSV 형식으로 변환할 스프레드시트를 선택하세요"
+    },
+    "lo": {
+      "title": "ປ່ຽນເປັນ CSV",
+      "description": "ປ່ຽນໄຟລ໌ຂອງທ່ານເປັນຮູບແບບ CSV",
+      "usertext": "ເລືອກຕາຕະລາງເພື່ອປ່ຽນເປັນຮູບແບບ CSV"
+    },
+    "lt": {
+      "title": "Konvertuoti į CSV",
+      "description": "Konvertuokite failą į CSV formatą",
+      "usertext": "Pasirinkite skaičiuoklę, kad konvertuotumėte į CSV formatą"
+    },
+    "lv": {
+      "title": "Konvertēt uz CSV",
+      "description": "Konvertēt failu CSV formātā",
+      "usertext": "Atlasiet izklājlapu, lai konvertētu uz CSV formātu"
+    },
+    "nl": {
+      "title": "Converteren naar CSV",
+      "description": "Converteer uw bestand naar CSV-indeling",
+      "usertext": "Selecteer een spreadsheet om te converteren naar CSV-indeling"
+    },
+    "no": {
+      "title": "Konverter til CSV",
+      "description": "Konverter filen til CSV-format",
+      "usertext": "Velg et regneark for å konvertere til CSV-format"
+    },
+    "pl": {
+      "title": "Konwertuj do CSV",
+      "description": "Konwertuj plik do formatu CSV",
+      "usertext": "Wybierz arkusz kalkulacyjny, aby przekonwertować go do formatu CSV"
+    },
+    "pt-BR": {
+      "title": "Converter para CSV",
+      "description": "Converta seu arquivo para o formato CSV",
+      "usertext": "Selecione uma planilha para converter para o formato CSV"
+    },
+    "pt-PT": {
+      "title": "Converter para CSV",
+      "description": "Converta o seu ficheiro para o formato CSV",
+      "usertext": "Selecione uma folha de cálculo para converter para o formato CSV"
+    },
+    "ro": {
+      "title": "Convertiți în CSV",
+      "description": "Convertiți fișierul în format CSV",
+      "usertext": "Selectați un tabel pentru a-l converti în format CSV"
+    },
+    "ru": {
+      "title": "Конвертировать в CSV",
+      "description": "Конвертировать файл в формат CSV",
+      "usertext": "Выберите таблицу для конвертации в формат CSV"
+    },
+    "si": {
+      "title": "CSV ලෙස පරිවර්තනය කරන්න",
+      "description": "ඔබේ ගොනුව CSV ආකෘතියට පරිවර්තනය කරන්න",
+      "usertext": "CSV ආකෘතියට පරිවර්තනය කිරීමට ස්ප්‍රෙඩ්ෂීට් එකක් තෝරන්න"
+    },
+    "sk": {
+      "title": "Previesť do CSV",
+      "description": "Preveďte súbor do formátu CSV",
+      "usertext": "Vyberte tabuľku na prevod do formátu CSV"
+    },
+    "sl": {
+      "title": "Pretvori v CSV",
+      "description": "Pretvorite datoteko v format CSV",
+      "usertext": "Izberite preglednico za pretvorbo v format CSV"
+    },
+    "sq": {
+      "title": "Konverto në CSV",
+      "description": "Konvertoni skedarin tuaj në formatin CSV",
+      "usertext": "Zgjidhni një fletëllogaritëse për ta konvertuar në formatin CSV"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Конвертуј у CSV",
+      "description": "Конвертујте фајл у CSV формат",
+      "usertext": "Изаберите табелу за конвертовање у CSV формат"
+    },
+    "sr-Latn-RS": {
+      "title": "Konvertuj u CSV",
+      "description": "Konvertujte fajl u CSV format",
+      "usertext": "Izaberite tabelu za konvertovanje u CSV format"
+    },
+    "sv": {
+      "title": "Konvertera till CSV",
+      "description": "Konvertera filen till CSV-format",
+      "usertext": "Välj ett kalkylblad för att konvertera till CSV-format"
+    },
+    "tr": {
+      "title": "CSV'ye Dönüştür",
+      "description": "Dosyanızı CSV biçimine dönüştürün",
+      "usertext": "CSV biçimine dönüştürmek için bir elektronik tablo seçin"
+    },
+    "uk": {
+      "title": "Конвертувати в CSV",
+      "description": "Конвертувати файл у формат CSV",
+      "usertext": "Виберіть таблицю для конвертації у формат CSV"
+    },
+    "ur": {
+      "title": "CSV میں تبدیل کریں",
+      "description": "اپنی فائل کو CSV فارمیٹ میں تبدیل کریں",
+      "usertext": "CSV فارمیٹ میں تبدیل کرنے کے لیے اسپریڈشیٹ منتخب کریں"
+    },
+    "vi": {
+      "title": "Chuyển đổi sang CSV",
+      "description": "Chuyển đổi tệp của bạn sang định dạng CSV",
+      "usertext": "Chọn bảng tính để chuyển đổi sang định dạng CSV"
+    },
+    "zh-CN": {
+      "title": "转换为 CSV",
+      "description": "将文件转换为 CSV 格式",
+      "usertext": "选择电子表格以转换为 CSV 格式"
+    },
+    "zh-TW": {
+      "title": "轉換為 CSV",
+      "description": "將檔案轉換為 CSV 格式",
+      "usertext": "選取試算表以轉換為 CSV 格式"
+    }
   }
 }

@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Parandab jõudlust enamikul seadmetel. Keela, kui esineb kuvamisprobleeme.',
     settingsEnableAI: 'Luba AI funktsioonid',
     settingsEnableAIDescr: 'Luba rakenduses AI, et lisada mudeleid ja kasutada AI-põhist funktsionaalsust',
-    settRemoveAddon: 'Mine kaugemale standardsest redigeerimisest',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit ja muud',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI kõigis redaktorites, nutikad vormid, kohandatud pakkujad, täiustatud PDF',
     strLicensedUnder: 'Litsentseeritud all',
     tplNoInternet: 'Võrgumallid pole saadaval internetiühenduse probleemide tõttu. Saate luua uusi dokumente ülaltoodud valikute abil.',
 }

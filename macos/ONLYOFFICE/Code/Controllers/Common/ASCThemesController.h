@@ -49,6 +49,7 @@
 
 static NSString * const btnPortalActiveBackgroundColor  = @"portal-button-background-active-color";
 static NSString * const btnHoverBackgroundColor         = @"button-hover-background-color";
+static NSString * const btnPressedBackgroundColor       = @"button-pressed-background-color";
 static NSString * const tabWordActiveBackgroundColor    = @"tab-word-background-active-color";
 static NSString * const tabCellActiveBackgroundColor    = @"tab-cell-background-active-color";
 static NSString * const tabSlideActiveBackgroundColor   = @"tab-slide-background-active-color";

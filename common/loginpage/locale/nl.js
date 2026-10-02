@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Verbetert de prestaties op de meeste apparaten. Schakel uit als u weergaveproblemen ondervindt.',
     settingsEnableAI: 'AI-functies inschakelen',
     settingsEnableAIDescr: 'Schakel AI in de applicatie in om modellen toe te voegen en AI-aangedreven functionaliteit te gebruiken',
-    settRemoveAddon: 'Ga verder dan standaard bewerking',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit en meer',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI in alle editors, slimme formulieren, aangepaste providers, geavanceerde PDF',
     strLicensedUnder: 'Gelicentieerd onder',
     tplNoInternet: 'Online sjablonen zijn niet beschikbaar vanwege internetverbindingsproblemen. U kunt nieuwe documenten aanmaken met de bovenstaande opties.',
 }

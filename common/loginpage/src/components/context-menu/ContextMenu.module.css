@@ -63,7 +63,8 @@
 }
 
 .menuSeparator {
-  height: 1px;
-  margin: 4px 0;
-  border-color: var(--border-color);
+    height: 1.6px;
+    margin: 4px 0;
+    border: 0;
+    background-color: var(--border-color);
 }

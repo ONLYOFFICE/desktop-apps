@@ -52,6 +52,11 @@ export function closeSidePanel() {
 export function openFullAIPanel() {
   setAichat("expanded", true);
   sendPluginVisibility("expanded");
+  window.location.hash = "#/aichat";
+}
+
+export function openChatPanel() {
+  aichat.expanded ? openFullAIPanel() : openSidePanel();
 }
 
 export function setChatAvialable(value) {

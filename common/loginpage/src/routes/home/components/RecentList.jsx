@@ -1,15 +1,16 @@
-import { For, Show } from "solid-js";
+import { createEffect, createSignal, For, onCleanup, Show } from "solid-js";
 import { exploreFile, openRecentFile } from "@/sdk";
 import { t } from "@/services/l10n";
 import { ContextMenu, DropdownMenu } from "@/components";
 import { usePngIcons } from "@/services/display";
 import "./RecentList.styles.css";
+import { appliedUseAi } from "@/services/settings-sync";
 
 function FileMenuItems(props) {
   const Menu = props.menu;
   return (
     <>
-      <Show when={props.model.islocal}>
+      <Show when={props.model.islocal && appliedUseAi()}>
         <Menu.Item icon="#aichat20" onSelect={() => props.onAddToChat(props.model)}>
           {t("actAiChat")}
         </Menu.Item>
@@ -32,10 +33,30 @@ function FileMenuItems(props) {
 }
 
 function RecentRow(props) {
+  const [menuOpen, setMenuOpen] = createSignal(false);
+
+  let rowEl;
+  let moreEl;
+
+  const isMoreHidden = () =>
+    moreEl.offsetParent === null || getComputedStyle(moreEl).visibility === "hidden";
+
+  createEffect(() => {
+    if (!menuOpen() || !rowEl || !moreEl) return;
+
+    const observer = new ResizeObserver(() => {
+      if (isMoreHidden()) setMenuOpen(false);
+    });
+
+    observer.observe(rowEl);
+    onCleanup(() => observer.disconnect());
+  });
+
   return (
     <ContextMenu>
       <ContextMenu.Trigger
         as="div"
+        ref={(el) => (rowEl = el)}
         class="row text-normal"
         classList={{
           pinned: props.model.pinned,
@@ -73,7 +94,7 @@ function RecentRow(props) {
           </div>
         </Show>
         <div class="col-actions">
-          <Show when={props.model.islocal}>
+          <Show when={props.model.islocal && appliedUseAi()}>
             <button
               class="btn-recents-tool aichat"
               onClick={(e) => {
@@ -88,18 +109,27 @@ function RecentRow(props) {
           </Show>
           <button
             class="btn-recents-tool pin"
+            classList={{ pinned: props.model.pinned }}
             onClick={(e) => {
               e.stopPropagation();
               props.onTogglePin(props.model.fileid);
             }}
           >
-            <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#pin" /></svg>}>
-              <i class="icon tool-icon pin" />
+            <Show when={usePngIcons()}
+              fallback={
+                <>
+                  <svg class="icon default"><use href={props.model.pinned ? "#pinned" : "#pin"} /></svg>
+                  <svg class="icon hover"><use href="#unpin" /></svg>
+                </>
+              }
+            >
+              <i class={`icon tool-icon default ${props.model.pinned ? "pinned" : "pin"}`} />
+              <i class="icon tool-icon hover unpin" />
             </Show>
           </button>
           <Show when={props.model.type !== "folder"}>
-            <DropdownMenu onOpenChange={(open) => {}}>
-              <DropdownMenu.Trigger class="btn-recents-tool more" onClick={(e) => e.stopPropagation()}>
+            <DropdownMenu open={menuOpen()} onOpenChange={setMenuOpen}>
+              <DropdownMenu.Trigger ref={(el) => (moreEl = el)} class="btn-recents-tool more" onClick={(e) => e.stopPropagation()}>
                 <Show when={usePngIcons()} fallback={<svg class="icon"><use href="#more" /></svg>}>
                   <i class="icon tool-icon more" />
                 </Show>

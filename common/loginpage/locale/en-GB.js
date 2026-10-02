@@ -160,8 +160,8 @@ export default {
     settingsGpuUseModeDescr: 'Improves performance on most devices. Disable if you experience display issues.',
     settingsEnableAI: 'Enable AI features',
     settingsEnableAIDescr: 'Enable AI in the application to add models and use AI-powered functionality',
-    settRemoveAddon: 'Go beyond standard editing',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit and more',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI across all editors, smart forms, custom providers, advanced PDF',
     strLicensedUnder: 'Licensed under',
     tplNoInternet: "Online templates aren't available because of some internet connection problems. You can create new documents using the options above.",
 }

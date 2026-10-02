@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Побољшава перформансе на већини уређаја. Онемогућите ако имате проблема са приказом.',
     settingsEnableAI: 'Омогући ВИ функције',
     settingsEnableAIDescr: 'Омогућите ВИ у апликацији за додавање модела и коришћење функционалности засноване на ВИ',
-    settRemoveAddon: 'Идите даље од стандардног уређивања',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit и више',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: ВИ у свим уредницима, паметни обрасци, прилагођени добављачи, напредни PDF',
     strLicensedUnder: 'Лиценцирано под',
     tplNoInternet: 'Онлајн шаблони нису доступни због проблема са интернет везом. Можете да креирате нове документе помоћу горе наведених опција.',
 }

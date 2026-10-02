@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Javítja a teljesítményt a legtöbb eszközön. Tiltsa le, ha megjelenítési problémákat tapasztal.',
     settingsEnableAI: 'AI funkciók engedélyezése',
     settingsEnableAIDescr: 'Engedélyezze az AI-t az alkalmazásban modellek hozzáadásához és AI-alapú funkciók használatához',
-    settRemoveAddon: 'Lépjen túl a szokásos szerkesztésen',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit és még több',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI minden szerkesztőben, intelligens űrlapok, egyéni szolgáltatók, fejlett PDF',
     strLicensedUnder: 'Licenc alatt',
     tplNoInternet: 'Az online sablonok nem érhetők el az internetkapcsolat problémái miatt. Új dokumentumokat hozhat létre a fenti lehetőségek segítségével.',
 }

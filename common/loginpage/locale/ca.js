@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Millora el rendiment a la majoria de dispositius. Desactiveu-ho si teniu problemes de visualització',
     settingsEnableAI: 'Activa les funcions d\'IA',
     settingsEnableAIDescr: 'Activeu la IA a l\'aplicació per afegir models i utilitzar funcionalitats basades en IA',
-    settRemoveAddon: 'Aneu més enllà de l\'edició estàndard',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit i més',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: IA a tots els editors, formularis intel·ligents, proveïdors personalitzats, PDF avançat',
     strLicensedUnder: 'Llicenciat sota',
     tplNoInternet: 'Les plantilles en línia no estan disponibles a causa de problemes de connexió a Internet. Podeu crear nous documents amb les opcions anteriors.',
 }

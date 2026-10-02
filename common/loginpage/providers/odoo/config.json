@@ -2,7 +2,7 @@
     "provider": "odoo",
     "name": "Odoo",
     "check": {
-        "url": "web/session/get_session_info"
+        "url": "web/health"
     },
     "startPage": "/web",
     "editorPage": "/onlyoffice/editor/document",

@@ -604,6 +604,114 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xlt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-xlt</string>
+			<key>CFBundleTypeName</key>
+			<string>Microsoft Excel 97-2004 Template</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sxw</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-sxw</string>
+			<key>CFBundleTypeName</key>
+			<string>StarOffice Writer Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>stw</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-stw</string>
+			<key>CFBundleTypeName</key>
+			<string>StarOffice Writer Document Template</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sxc</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-sxc</string>
+			<key>CFBundleTypeName</key>
+			<string>StarOffice Calc Spreadsheet</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sxi</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-sxi</string>
+			<key>CFBundleTypeName</key>
+			<string>StarOffice Impress Presentation</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>wps</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-wps</string>
+			<key>CFBundleTypeName</key>
+			<string>Kingsoft Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>wpt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-wpt</string>
+			<key>CFBundleTypeName</key>
+			<string>Kingsoft Document Template</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dps</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-dps</string>
+			<key>CFBundleTypeName</key>
+			<string>Kingsoft Presentation</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dpt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-dpt</string>
+			<key>CFBundleTypeName</key>
+			<string>Kingsoft Presentation Template</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>

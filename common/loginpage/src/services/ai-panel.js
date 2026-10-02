@@ -1,7 +1,7 @@
-import { onCleanup } from "solid-js";
+import { onCleanup, createSignal } from "solid-js";
 import { onNativeMessage } from "@/sdk/events";
 import { htmlDecode } from "@/utils/html";
-import { setPanelUrl, openSidePanel, closeSidePanel, setChatAvialable, setAichat } from "@/stores/aichat";
+import { setPanelUrl, openSidePanel, closeSidePanel, setChatAvialable, setAichat, openChatPanel } from "@/stores/aichat";
 import { registerPlugin, selectPluginSection, setPluginSectionsDisabled } from "@/stores/plugin-settings";
 import { openPluginModal, closePluginModal } from "@/stores/plugin-modals";
 import { addExtPlugin } from "@/stores/ext-plugins";
@@ -57,7 +57,7 @@ export function sendFileToChat(path, type, name) {
   }
 }
 
-export function sendTextToChat(t) {
+export function sendTextToChat(t, c) {
   const iframe = document.getElementById("idx-plugin-frame");
   if (iframe && iframe.contentWindow) {
     const obj = {
@@ -68,6 +68,7 @@ export function sendTextToChat(t) {
         forseSend: false,
       }
     };
+    c && (obj.data.prompt = t, obj.data.text = c);
     iframe.contentWindow.postMessage(JSON.stringify(obj), "*");
   }
 }
@@ -88,6 +89,9 @@ export function sendChatRecentsChanged() {
     type: "recents:changed",
   });
 }
+
+const [urlAiTools, setUrlAiTools] = createSignal("");
+export { urlAiTools };
 
 let chatReady = false;
 const pendingStatuses = new Map();
@@ -156,6 +160,10 @@ export function initAiPanel() {
     } else if (msg.type === "collapse") {
       closeSidePanel();
       document.getElementById("idx-plugin-frame")?.blur();
+    } else if (msg.type === "chat:open") {
+      openChatPanel();
+    } else if (msg.type === "button:init") {
+      if (msg.url) setUrlAiTools(msg.url);
     } else if (msg.type === "ai-plugin:ready") {
       chatReady = true;
       flushPendingStatuses();

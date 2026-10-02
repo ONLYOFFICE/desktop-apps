@@ -22,4 +22,5 @@
   max-height: 90vh;
   /*overflow-y: auto;*/
   min-width: 320px;
+  outline: none;
 }

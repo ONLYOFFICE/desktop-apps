@@ -2,8 +2,246 @@
   "id": "compress-pdf",
   "group": "pdf",
   "prompt": "Please compress the attached PDF to reduce its file size while maintaining acceptable visual quality.",
-  "en": {
-    "title": "Compress PDF",
-    "description": "Reduce file size while keeping quality"
+  "locale": {
+    "en": {
+      "title": "Compress PDF",
+      "description": "Reduce file size while keeping quality",
+      "usertext": "Select a PDF file to compress and reduce its size"
+    },
+    "ar-SA": {
+      "title": "ضغط PDF",
+      "description": "تقليل حجم الملف مع الحفاظ على الجودة",
+      "usertext": "حدد ملف PDF لضغطه وتقليل حجمه"
+    },
+    "be": {
+      "title": "Сціснуць PDF",
+      "description": "Паменшыць памер файла з захаваннем якасці",
+      "usertext": "Выберыце файл PDF для сцісканняі паменшання яго памеру"
+    },
+    "bg": {
+      "title": "Компресиране на PDF",
+      "description": "Намаляване на размера на файла при запазване на качеството",
+      "usertext": "Изберете PDF файл за компресиране и намаляване на размера му"
+    },
+    "ca": {
+      "title": "Comprimir PDF",
+      "description": "Reduir la mida del fitxer mantenint la qualitat",
+      "usertext": "Seleccioneu un fitxer PDF per comprimir-lo i reduir-ne la mida"
+    },
+    "cs": {
+      "title": "Komprimovat PDF",
+      "description": "Zmenšit velikost souboru při zachování kvality",
+      "usertext": "Vyberte soubor PDF ke komprimaci a zmenšení jeho velikosti"
+    },
+    "da": {
+      "title": "Komprimer PDF",
+      "description": "Reducer filstørrelse med bevaret kvalitet",
+      "usertext": "Vælg en PDF-fil for at komprimere den og reducere dens størrelse"
+    },
+    "de": {
+      "title": "PDF komprimieren",
+      "description": "Dateigröße reduzieren bei erhaltener Qualität",
+      "usertext": "Wählen Sie eine PDF-Datei zum Komprimieren und Reduzieren ihrer Größe"
+    },
+    "el": {
+      "title": "Συμπίεση PDF",
+      "description": "Μείωση μεγέθους αρχείου με διατήρηση ποιότητας",
+      "usertext": "Επιλέξτε αρχείο PDF για συμπίεση και μείωση του μεγέθους του"
+    },
+    "en-GB": {
+      "title": "Compress PDF",
+      "description": "Reduce file size while keeping quality",
+      "usertext": "Select a PDF file to compress and reduce its size"
+    },
+    "es": {
+      "title": "Comprimir PDF",
+      "description": "Reducir el tamaño del archivo manteniendo la calidad",
+      "usertext": "Seleccione un archivo PDF para comprimirlo y reducir su tamaño"
+    },
+    "et": {
+      "title": "Tihenda PDF",
+      "description": "Vähenda faili suurust, säilitades kvaliteedi",
+      "usertext": "Valige PDF-fail, et seda tihendada ja selle suurust vähendada"
+    },
+    "fi": {
+      "title": "Pakkaa PDF",
+      "description": "Pienennä tiedostokokoa laadun säilyttäen",
+      "usertext": "Valitse PDF-tiedosto pakkausta varten ja pienennä sen kokoa"
+    },
+    "fr": {
+      "title": "Compresser le PDF",
+      "description": "Réduire la taille du fichier en conservant la qualité",
+      "usertext": "Sélectionnez un fichier PDF à compresser et à réduire sa taille"
+    },
+    "ga": {
+      "title": "Comhbhrúigh PDF",
+      "description": "Laghdaigh méid an chomhaid agus caomhnaigh cáilíocht",
+      "usertext": "Roghnaigh comhad PDF le comhbhrú agus a mhéid a laghdú"
+    },
+    "gl": {
+      "title": "Comprimir PDF",
+      "description": "Reducir o tamaño do ficheiro mantendo a calidade",
+      "usertext": "Seleccione un ficheiro PDF para comprimilo e reducir o seu tamaño"
+    },
+    "he": {
+      "title": "דחיסת PDF",
+      "description": "הקטנת גודל הקובץ תוך שמירה על איכות",
+      "usertext": "בחר קובץ PDF לדחיסה והקטנת גודלו"
+    },
+    "hi": {
+      "title": "PDF संपीड़ित करें",
+      "description": "गुणवत्ता बनाए रखते हुए फ़ाइल आकार कम करें",
+      "usertext": "एक PDF फ़ाइल चुनें जिसे संपीड़ित करना और उसका आकार कम करना है"
+    },
+    "hr": {
+      "title": "Komprimiraj PDF",
+      "description": "Smanjite veličinu datoteke uz zadržanu kvalitetu",
+      "usertext": "Odaberite PDF datoteku za komprimiranje i smanjenje njezine veličine"
+    },
+    "hu": {
+      "title": "PDF tömörítése",
+      "description": "Fájlméret csökkentése a minőség megőrzésével",
+      "usertext": "Válasszon egy PDF-fájlt a tömörítéshez és méretének csökkentéséhez"
+    },
+    "hy": {
+      "title": "Սեղմել PDF",
+      "description": "Կրճատել ֆայլի չափը՝ պահպանելով որակը",
+      "usertext": "Ընտրեք PDF ֆայլ սեղմելու և դրա չափը նվազեցնելու համար"
+    },
+    "id": {
+      "title": "Kompres PDF",
+      "description": "Kurangi ukuran file sambil mempertahankan kualitas",
+      "usertext": "Pilih file PDF untuk dikompres dan kurangi ukurannya"
+    },
+    "it": {
+      "title": "Comprimi PDF",
+      "description": "Riduci le dimensioni del file mantenendo la qualità",
+      "usertext": "Seleziona un file PDF da comprimere e ridurne le dimensioni"
+    },
+    "ja": {
+      "title": "PDF圧縮",
+      "description": "品質を維持しながらファイルサイズを削減",
+      "usertext": "PDFファイルを選択して圧縮し、サイズを縮小してください"
+    },
+    "ko": {
+      "title": "PDF 압축",
+      "description": "품질을 유지하면서 파일 크기 줄이기",
+      "usertext": "압축하여 크기를 줄일 PDF 파일을 선택하세요"
+    },
+    "lo": {
+      "title": "ບີບອັດ PDF",
+      "description": "ຫຼຸດຂະໜາດໄຟລ໌ໂດຍຮັກສາຄຸນນະພາບ",
+      "usertext": "ເລືອກໄຟລ໌ PDF ເພື່ອບີບອັດ ແລະຫຼຸດຂະໜາດຂອງມັນ"
+    },
+    "lt": {
+      "title": "Suglaudinti PDF",
+      "description": "Sumažinkite failo dydį išlaikant kokybę",
+      "usertext": "Pasirinkite PDF failą suspausti ir sumažinti jo dydį"
+    },
+    "lv": {
+      "title": "Saspiest PDF",
+      "description": "Samazināt faila izmēru, saglabājot kvalitāti",
+      "usertext": "Atlasiet PDF failu, lai to saspistu un samazinātu tā izmēru"
+    },
+    "nl": {
+      "title": "PDF comprimeren",
+      "description": "Bestandsgrootte verkleinen met behoud van kwaliteit",
+      "usertext": "Selecteer een PDF-bestand om het te comprimeren en de bestandsgrootte te verkleinen"
+    },
+    "no": {
+      "title": "Komprimer PDF",
+      "description": "Reduser filstørrelse med bevart kvalitet",
+      "usertext": "Velg en PDF-fil for å komprimere den og redusere størrelsen"
+    },
+    "pl": {
+      "title": "Kompresuj PDF",
+      "description": "Zmniejsz rozmiar pliku przy zachowaniu jakości",
+      "usertext": "Wybierz plik PDF do kompresji i zmniejszenia jego rozmiaru"
+    },
+    "pt-BR": {
+      "title": "Compactar PDF",
+      "description": "Reduzir o tamanho do arquivo mantendo a qualidade",
+      "usertext": "Selecione um arquivo PDF para comprimir e reduzir seu tamanho"
+    },
+    "pt-PT": {
+      "title": "Comprimir PDF",
+      "description": "Reduzir o tamanho do ficheiro mantendo a qualidade",
+      "usertext": "Selecione um ficheiro PDF para comprimir e reduzir o seu tamanho"
+    },
+    "ro": {
+      "title": "Comprimare PDF",
+      "description": "Reduceți dimensiunea fișierului menținând calitatea",
+      "usertext": "Selectați un fișier PDF pentru a-l comprima și a-i reduce dimensiunea"
+    },
+    "ru": {
+      "title": "Сжать PDF",
+      "description": "Уменьшить размер файла с сохранением качества",
+      "usertext": "Выберите файл PDF для сжатия и уменьшения его размера"
+    },
+    "si": {
+      "title": "PDF සංකෝචනය කරන්න",
+      "description": "ගුණාත්මකභාවය පවත්වා ගෙන ගොනු ප්‍රමාණය අඩු කරන්න",
+      "usertext": "PDF ගොනුවක් තෝරා එය සංකෝචනය කර ප්‍රමාණය අඩු කරන්න"
+    },
+    "sk": {
+      "title": "Komprimovať PDF",
+      "description": "Znížiť veľkosť súboru pri zachovaní kvality",
+      "usertext": "Vyberte súbor PDF na kompresiu a zmenšenie jeho veľkosti"
+    },
+    "sl": {
+      "title": "Stisni PDF",
+      "description": "Zmanjšajte velikost datoteke ob ohranitvi kakovosti",
+      "usertext": "Izberite datoteko PDF za stiskanje in zmanjšanje njene velikosti"
+    },
+    "sq": {
+      "title": "Komprimo PDF",
+      "description": "Reduktoni madhësinë e skedarit duke ruajtur cilësinë",
+      "usertext": "Zgjidhni një skedar PDF për ta komprimuar dhe reduktuar madhësinë e tij"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Компресовање PDF",
+      "description": "Смањите величину датотеке уз задржану квалитету",
+      "usertext": "Изаберите PDF датотеку за компресовање и смањивање величине"
+    },
+    "sr-Latn-RS": {
+      "title": "Kompresovanje PDF",
+      "description": "Smanjite veličinu datoteke uz zadržanu kvalitetu",
+      "usertext": "Izaberite PDF datoteku za kompresovanje i smanjivanje veličine"
+    },
+    "sv": {
+      "title": "Komprimera PDF",
+      "description": "Minska filstorlek med bibehållen kvalitet",
+      "usertext": "Välj en PDF-fil för att komprimera den och minska dess storlek"
+    },
+    "tr": {
+      "title": "PDF Sıkıştır",
+      "description": "Kaliteyi koruyarak dosya boyutunu küçültün",
+      "usertext": "Sıkıştırmak ve boyutunu küçültmek için bir PDF dosyası seçin"
+    },
+    "uk": {
+      "title": "Стиснути PDF",
+      "description": "Зменшити розмір файлу зі збереженням якості",
+      "usertext": "Виберіть файл PDF для стиснення та зменшення його розміру"
+    },
+    "ur": {
+      "title": "PDF کمپریس کریں",
+      "description": "معیار برقرار رکھتے ہوئے فائل سائز کم کریں",
+      "usertext": "PDF فائل منتخب کریں جسے کمپریس کرکے اس کا سائز کم کرنا ہے"
+    },
+    "vi": {
+      "title": "Nén PDF",
+      "description": "Giảm kích thước tệp trong khi giữ nguyên chất lượng",
+      "usertext": "Chọn tệp PDF để nén và giảm kích thước của nó"
+    },
+    "zh-CN": {
+      "title": "压缩 PDF",
+      "description": "在保持质量的同时减小文件大小",
+      "usertext": "选择要压缩并减小文件大小的 PDF 文件"
+    },
+    "zh-TW": {
+      "title": "壓縮 PDF",
+      "description": "在保持品質的同時縮小檔案大小",
+      "usertext": "選擇要壓縮並縮小大小的 PDF 檔案"
+    }
   }
 }

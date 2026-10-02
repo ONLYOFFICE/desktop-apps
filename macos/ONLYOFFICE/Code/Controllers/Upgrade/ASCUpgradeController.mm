@@ -55,7 +55,7 @@
 #import "mac_application.h"
 
 
-static const NSSize kASCUpgradeIntroSize   = { 480, 700 };
+static const NSSize kASCUpgradeIntroSize   = { 480, 646 };
 static const NSSize kASCUpgradeInstallSize = { 480, 304 };
 
 static NSString *ASCUpgradePageToString(ASCUpgradePage page) {
@@ -158,6 +158,9 @@ static NSString *ASCUpgradePlatformPackageName(void) {
     [self resizeWindowToSize:(self.initialPage == ASCUpgradePageIntro)
                                  ? kASCUpgradeIntroSize
                                  : kASCUpgradeInstallSize];
+
+    [window makeFirstResponder:self.cefView];
+    [self.cefView focus];
 }
 
 #pragma mark - Public Methods
@@ -189,7 +192,9 @@ static NSString *ASCUpgradePlatformPackageName(void) {
 }
 
 - (void)showFinalPage {
-    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageComplete)}];
+    [self sendAddonStatus:@{@"page": ASCUpgradePageToString(ASCUpgradePageComplete),
+                            @"installed": @([[ASCAddonManager sharedManager] isInstalled:nil]),
+                            @"restart": @([[ASCAddonManager sharedManager] restartRequired])}];
 }
 
 - (void)showErrorPage:(NSString *)message {

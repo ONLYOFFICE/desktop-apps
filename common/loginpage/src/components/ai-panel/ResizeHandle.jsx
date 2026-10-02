@@ -6,12 +6,14 @@ const SHELL_LEFT = 78;
 
 export function ResizeHandle() {
   let handleEl;
-  let shellRight = 0;
+  let shellEdge = 0;
+  let isRtl = false;
   let maxWidth = 0;
   let width = 0;
 
   function onMove(e) {
-    width = Math.round(Math.min(Math.max(shellRight - e.clientX, AI_PANEL_MIN_WIDTH), maxWidth));
+    const distance = isRtl ? e.clientX - shellEdge : shellEdge - e.clientX;
+    width = Math.round(Math.min(Math.max(distance, AI_PANEL_MIN_WIDTH), maxWidth));
     document.body.style.setProperty("--chat-w", `${width}px`);
   }
 
@@ -27,7 +29,8 @@ export function ResizeHandle() {
   function onDown(e) {
     e.preventDefault();
     const rect = handleEl.closest(".shell").getBoundingClientRect();
-    shellRight = rect.right;
+    isRtl = document.body.dir === "rtl";
+    shellEdge = isRtl ? rect.left : rect.right;
     maxWidth = Math.max(AI_PANEL_MIN_WIDTH, rect.width - SHELL_LEFT - AI_CONTENT_MIN_WIDTH);
     handleEl.setPointerCapture(e.pointerId);
     document.body.classList.add("chat-resizing");

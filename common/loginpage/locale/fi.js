@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Parantaa suorituskykyä useimmilla laitteilla. Poista käytöstä, jos kohtaat näyttöongelmia.',
     settingsEnableAI: 'Ota AI-ominaisuudet käyttöön',
     settingsEnableAIDescr: 'Ota AI käyttöön sovelluksessa lisätäksesi malleja ja käyttääksesi AI-pohjaisia toimintoja',
-    settRemoveAddon: 'Ylitä tavallinen muokkaus',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit ja paljon muuta',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: Tekoäly kaikissa editoreissa, älykkäät lomakkeet, mukautetut palveluntarjoajat, kehittynyt PDF',
     strLicensedUnder: 'Lisensoitu',
     tplNoInternet: 'Verkkopohjaisia malleja ei ole saatavilla Internet-yhteysongelmien vuoksi. Voit luoda uusia asiakirjoja yllä olevien vaihtoehtojen avulla.',
 }

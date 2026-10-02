@@ -20,6 +20,11 @@
   cursor: col-resize;
   z-index: 2;
   touch-action: none;
+
+  :global(body.rtl) & {
+    left: auto;
+    right: -8px;
+  }
 }
 
 .resizeHandle:hover,

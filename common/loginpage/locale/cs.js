@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: 'Zlepšuje výkon na většině zařízení. Zakažte, pokud máte problémy se zobrazením.',
     settingsEnableAI: 'Povolit funkce AI',
     settingsEnableAIDescr: 'Povolte AI v aplikaci pro přidávání modelů a používání funkcí s podporou AI',
-    settRemoveAddon: 'Překročte hranice standardního úpravy',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit a další',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: AI ve všech editorech, chytré formuláře, vlastní poskytovatelé, pokročilý PDF',
     strLicensedUnder: 'Licencováno pod',
     tplNoInternet: 'Online šablony nejsou dostupné kvůli problémům s připojením k internetu. Nové dokumenty můžete vytvářet pomocí výše uvedených možností.',
 }

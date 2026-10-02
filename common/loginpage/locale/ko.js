@@ -153,8 +153,8 @@ export default {
     settingsGpuUseModeDescr: '대부분의 장치에서 성능이 향상됩니다. 표시 문제가 발생하면 비활성화하세요.',
     settingsEnableAI: 'AI 기능 활성화',
     settingsEnableAIDescr: '애플리케이션에서 AI를 활성화하여 모델을 추가하고 AI 기반 기능을 사용하세요',
-    settRemoveAddon: '표준 편집을 넘어서세요',
-    descrRemoveAddon: 'ONLYOFFICE Pro Kit 및 기타',
+    settRemoveAddon: 'ONLYOFFICE AI Tools',
+    descrRemoveAddon: 'ONLYOFFICE AI Tools: 모든 편집기에서 AI, 스마트 양식, 사용자 지정 공급자, 고급 PDF',
     strLicensedUnder: '라이선스',
     tplNoInternet: '인터넷 연결 문제로 인해 온라인 템플릿을 사용할 수 없습니다. 위의 옵션을 사용하여 새 문서를 만들 수 있습니다.',
 }
