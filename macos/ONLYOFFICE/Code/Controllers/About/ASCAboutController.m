@@ -270,8 +270,9 @@ static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/jPf
 
 + (NSString *)fullAppVersion {
     NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    return [NSString stringWithFormat:@"%@.%@",
+    return [NSString stringWithFormat:@"%@ (%@-%@)",
                [infoDictionary objectForKey:@"CFBundleShortVersionString"],
+               [infoDictionary objectForKey:@"CFBundleVersion"],
                [infoDictionary objectForKey:@"ASCBundleBuildNumber"]];
 }
 
@@ -289,11 +290,11 @@ static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/jPf
                                           [ASCAboutController fullAppVersion]]];
     
 #if _V8_VERSION
-    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ (x86)", [self.versionText stringValue]]];
+    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86", [self.versionText stringValue]]];
 #elif _X86_64_ONLY
-    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ (x64)", [self.versionText stringValue]]];
+    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86_64", [self.versionText stringValue]]];
 #elif _ARM_ONLY
-    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ (Apple Silicon)", [self.versionText stringValue]]];
+    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ Apple Silicon", [self.versionText stringValue]]];
 #endif
 }
 
