@@ -87,9 +87,15 @@ function downloadAddon(url, size, md5) {
   });
 }
 
+function parseVersion(v) {
+    const build = /\((?:\d+-)?(\d+)\)\s*$/.exec(v);
+    if (!build) return v.split('.').map(Number);
+    return [...v.slice(0, build.index).split('.').map(Number), Number(build[1])];
+}
+
 function compareVersions(v1, v2) {
-    const parts1 = v1.split('.').map(Number);
-    const parts2 = v2.split('.').map(Number);
+    const parts1 = parseVersion(v1);
+    const parts2 = parseVersion(v2);
     const maxLength = Math.max(parts1.length, parts2.length);
 
     for (let i = 0; i < maxLength; i++) {
