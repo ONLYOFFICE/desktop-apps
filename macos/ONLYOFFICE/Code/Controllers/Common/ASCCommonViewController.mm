@@ -1032,7 +1032,7 @@
         id json = notification.userInfo;
         NSString * portalUrl = json[@"portal"];
         NSString * providerUrl = json[@"provider"];
-        
+
         if (portalUrl && providerUrl) {
             ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
             tab.title       = portalUrl;
@@ -1040,7 +1040,7 @@
             tab.params      = [@{@"url" : [NSString stringWithFormat:@"sso:%@", providerUrl],
                                  @"provider": @"asc"
                                } mutableCopy];
-            
+
             [self.tabsControl addTab:tab selected:YES];
         }
     }
@@ -1051,22 +1051,22 @@
     if (app.waitingForTerminateApp || self.waitingForClose) {
         return;
     }
-    
+
     if (notification && notification.userInfo) {
         id paths = notification.userInfo;
-        
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSDictionary * checkedList = [self checkFiles:paths];
-            
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (NSString * jsonString = [checkedList jsonString]) {
                     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                     pCommand->put_Command(L"files:checked");
                     pCommand->put_Param([jsonString stdwstring]);
-                    
+
                     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                     pEvent->m_pData = pCommand;
-                    
+
                     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                     appManager->SetEventToAllMainWindows(pEvent);
                 }
@@ -1076,15 +1076,15 @@
 }
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
-    
+
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?:
     [ASCThemesController defaultThemeId:[ASCThemesController isCurrentThemeDark]];
-    
+
     NSMutableDictionary * json_langs = @{
         @"uitheme": uiTheme,
         @"rtl": @([ASCLinguist isUILayoutDirectionRtl])
     }.mutableCopy;
-    
+
     NSDictionary * langs = [ASCLinguist availableLanguages];
     if ( langs ) {
         [json_langs setObject:@{
@@ -1093,7 +1093,7 @@
             @"restart": @true
         } forKey:@"locale"];
     }
-    
+
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1"),
     editorinwindow = appManager->GetUserSettings()->Get(L"editor-window-mode") == L"1",
@@ -1103,40 +1103,40 @@
     [json_langs setValue:@(editorinwindow) forKey:@"editorwindowmode"];
 
 #ifdef OO_BRANDING
-    bool useai = !(appManager->GetUserSettings()->Get(L"disable-ai") == L"1"),
+    bool useai = !(appManager->GetUserSettings()->Get(L"disable-ai") == L"1");
     [json_langs setValue:@(useai) forKey:@"useai"];
 #endif
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
     pCommand->put_Param([[json_langs jsonString] stdwstring]);
-    
+
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
     pEvent->AddRef();
-    
+
     [self.cefStartPageView apply:pEvent];
-    
+
     if ([[NSUserDefaults standardUserDefaults] boolForKey:ASCUserLockPageConnections]) {
         pCommand->put_Command(L"panel:hide");
         pCommand->put_Param(L"connect");
-        
+
         pEvent->AddRef();
         [self.cefStartPageView apply:pEvent];
     }
-    
+
     pCommand->put_Command(L"app:ready");
     pCommand->put_Param(L"");
-    
+
     [self.cefStartPageView apply:pEvent];
-    
+
     [self onOpenAppLink];
 }
 
 - (void)onCEFEditorAppReady:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-        
+
         if (NSString * viewId = json[@"viewId"]) {
         }
     }
@@ -1145,18 +1145,18 @@
 - (void)onCEFEditorAppActionRequest:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-        
+
         NSString * viewId = json[@"viewId"];
         NSString * action = json[@"action"];
         NSString * path = json[@"url"];
-        
+
         if (viewId && action) {
             if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
                 if ([action isEqualToString:@"close"]) {
                     [self.tabsControl removeTab:tab selected:NO animated:NO];
                 }
             }
-            
+
             // Open start page or portal
             if (path) {
                 if ([path isEqualToString:@"onlyoffice.com"]) { // onlyoffice.com equal "offline"
