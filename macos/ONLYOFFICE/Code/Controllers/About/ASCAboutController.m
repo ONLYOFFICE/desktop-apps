@@ -290,7 +290,7 @@ static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/jPf
                                           [ASCAboutController fullAppVersion]]];
     
 #if _V8_VERSION
-    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86", [self.versionText stringValue]]];
+    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86_64 V8", [self.versionText stringValue]]];
 #elif _X86_64_ONLY
     [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86_64", [self.versionText stringValue]]];
 #elif _ARM_ONLY
