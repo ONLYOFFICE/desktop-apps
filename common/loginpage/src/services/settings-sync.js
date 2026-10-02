@@ -305,6 +305,11 @@ export function initSettingsSync() {
         if (payload.useai != null) {
           setSettings("useai", !!payload.useai);
           setAppliedUseAi(!!payload.useai);
+          setSettings("showai", true);
+        } else {
+          setSettings("useai", false);
+          setAppliedUseAi(false);
+          setSettings("showai", false);
         }
       });
       if (payload.rtl === true) {

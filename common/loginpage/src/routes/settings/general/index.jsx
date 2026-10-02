@@ -215,14 +215,16 @@ export default function GeneralSettings() {
           <Switch id="gpu-mode" checked={settings.gpuMode} onChange={(v) => setSettings("gpuMode", v)} />
         </div>
 
-        <div class={styles.fieldRowAuto}>
-          <label for="chb-use-ai" class={styles.fieldLabelBlock}>
-            {t("settingsEnableAI")}{aichat.available && ' *'}<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
-          </label>
-          <Switch id="chb-use-ai" checked={settings.useai !== false} onChange={(v) => setSettings("useai", v)} />
-        </div>
+        <Show when={settings.showai===true}>
+          <div class={styles.fieldRowAuto}>
+            <label for="chb-use-ai" class={styles.fieldLabelBlock}>
+              {t("settingsEnableAI")}{aichat.available && ' *'}<span class={styles.fieldDescription}>{t("settingsEnableAIDescr")}</span>
+            </label>
+            <Switch id="chb-use-ai" checked={settings.useai !== false} onChange={(v) => setSettings("useai", v)} />
+          </div>
+        </Show>
 
-        <Show when={addonInfo()?.installed}>
+        <Show when={addonInfo()?.installed && settings.show===true}>
           <div class={styles.divider} />
 
           <div class={styles.fieldRowAuto}>

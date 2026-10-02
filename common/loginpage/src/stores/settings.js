@@ -57,6 +57,7 @@ const defaultSettings = Object.freeze({
   spellCheck: "auto",
   gpuMode: true,
   useai: true,
+  showai: false,
 });
 
 const [settings, setSettings] = makePersisted(createStore({ ...defaultSettings }), { name: "settings" });

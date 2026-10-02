@@ -51,11 +51,11 @@ platform :mac do
     if edition && !edition.empty? then package_name += "-#{edition}" end
     package_name += "-#{git_suffix}-#{version_number}-#{app_build_number}"
 
-    addon_mode_xcarg = ""
+    preprocessor_defs = ["$(inherited)"]
     if edition != "Enterprise"
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/opensource/LICENSE.html ../Vendor/ONLYOFFICE/license/LICENSE.html")
       desc 'Define USE_ADDON_MODE macro for non-Enterprise editions'
-      addon_mode_xcarg = " GCC_PREPROCESSOR_DEFINITIONS='$(inherited) USE_ADDON_MODE'"
+      preprocessor_defs << "USE_ADDON_MODE"
     else
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
       set_info_plist_value(
@@ -86,15 +86,13 @@ platform :mac do
 
     oo_branding = ENV["OO_BRANDING"]
     unless oo_branding.to_s.empty?
-      xcargs += " OO_BRANDING=#{oo_branding}"
+      preprocessor_defs << "OO_BRANDING=#{oo_branding}"
     end
+
+    xcargs += " GCC_PREPROCESSOR_DEFINITIONS='#{preprocessor_defs.join(' ')}'"
 
     UI.message("appcast url: #{url_appcast_main}")
     UI.message("appcast dev url: #{url_appcast_dev}")
-    UI.message("branding is: #{oo_branding}")
-    UI.message("args is: #{xcargs}")
-
-    xcargs += addon_mode_xcarg
 
     desc 'Build for developer id and notarize'
     gym(

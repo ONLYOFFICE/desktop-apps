@@ -1096,17 +1096,16 @@
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1"),
-// #ifndef OO_BRANDING
-    // useai = false,
-// #else
-    useai = !(appManager->GetUserSettings()->Get(L"disable-ai") == L"1"),
-// #endif
     editorinwindow = appManager->GetUserSettings()->Get(L"editor-window-mode") == L"1",
     detectkeyboard = !(appManager->GetUserSettings()->Get(L"spell-check-input-mode") == L"0");
     [json_langs setValue:@(usegpu) forKey:@"usegpu"];
-    [json_langs setValue:@(useai) forKey:@"useai"];
     [json_langs setValue:detectkeyboard?@"auto":@"off" forKey:@"spellcheckdetect"];
     [json_langs setValue:@(editorinwindow) forKey:@"editorwindowmode"];
+
+#ifdef OO_BRANDING
+    bool useai = !(appManager->GetUserSettings()->Get(L"disable-ai") == L"1"),
+    [json_langs setValue:@(useai) forKey:@"useai"];
+#endif
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
@@ -1319,7 +1318,7 @@
 
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
-        
+
         ASCTabActionType action = (ASCTabActionType)[tab.params[@"action"] intValue];
         CefViewWrapperType type = (action == ASCTabActionOpenPortal) ? cvwtSimple : cvwtEditor;
 
@@ -1328,37 +1327,37 @@
 
         [cefView create:appManager withType:type];
         [cefView setBackgroundColor:[ASCThemesController currentThemeColor:windowBackgroundColor]];
-        
+
         NSDictionary *widgetInfo = @{@"widgetType": @"tab", @"captionHeight": @0};
         [cefView setParentWidgetInfoWithJson:[widgetInfo jsonString]];
 
         [self.view.window makeKeyAndOrderFront:nil];
-        
+
         switch (action) {
             case ASCTabActionOpenPortal: {
                 tab.type = ASCTabViewTypePortal;
-                
+
                 NSString * newTitle = [[NSURL URLWithString:tab.params[@"url"]] host];
                 NSString * provider = tab.params[@"provider"];
-                
+
                 if (newTitle && newTitle.length > 0) {
                     tab.title = [[NSURL URLWithString:tab.params[@"url"]] host];
                 }
-                
+
                 if (provider && [provider length] > 0) {
                     [cefView setExternalCloud:provider];
                 }
             }
             case ASCTabActionOpenUrl: {
                 [cefView loadWithUrl:tab.params[@"url"]];
-                
+
                 if (tab.params[@"title"] && [tab.params[@"title"] length] > 0) {
                     tab.title = tab.params[@"title"];
                 }
-                
+
                 break;
             }
-                
+
             case ASCTabActionCreateLocalFileFromTemplate:
             case ASCTabActionCreateLocalFile: {
                 AscEditorType docType = AscEditorType::etDocument;
@@ -1369,7 +1368,7 @@
                     else if ([param isEqualToString:@"form"]) docType = AscEditorType::etDocumentMasterForm;
                     //                    else /*if ([param isEqualToString:@"word"])*/ docType = AscEditorType::etDocument;
                 } else docType = (AscEditorType)[tab.params[@"type"] intValue];
-                
+
                 NSString * docName = NSLocalizedString(@"Untitled", nil);
                 AppDelegate *app = [NSApp delegate];
                 switch (docType) {
