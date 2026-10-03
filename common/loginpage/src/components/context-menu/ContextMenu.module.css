@@ -25,6 +25,7 @@
   cursor: pointer;
   border: none;
   outline: none;
+  user-select: none;
 
   &[data-highlighted] {
     background: var(--highlight-button-hover);
@@ -63,7 +64,7 @@
 }
 
 .menuSeparator {
-    height: 1.6px;
+    height: 1px;
     margin: 4px 0;
     border: 0;
     background-color: var(--border-color);
