@@ -224,7 +224,7 @@ export default function GeneralSettings() {
           </div>
         </Show>
 
-        <Show when={addonInfo()?.installed && settings.show===true}>
+        <Show when={addonInfo()?.installed && settings.showai===true}>
           <div class={styles.divider} />
 
           <div class={styles.fieldRowAuto}>
