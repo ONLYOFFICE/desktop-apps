@@ -81,7 +81,10 @@ export default function About() {
                     </svg>
                   </div>
                   <div class="about-appinfo">
-                    <p class="about-appname">{addonInfo().name}</p>
+                    <p class="about-appname">
+                      {addonInfo().name}
+                      <span class="about-beta-badge">Beta</span>
+                    </p>
                     <p class="about-version">{t("strVersion", "Version")} {addonInfo().version}</p>
                     <Show when={addonInfo().license?.url}>
                       <p class="about-field about-license" style={{margin:0}}>

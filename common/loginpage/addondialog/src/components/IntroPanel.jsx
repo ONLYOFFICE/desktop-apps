@@ -11,7 +11,10 @@ export function IntroPanel(props) {
 
   return (
     <div class={styles.panel}>
-      <h1 class={styles.title}>{t("addonTitle")}</h1>
+      <h1 class={styles.title}>
+        {t("addonTitle")}
+        <span class={styles.betaBadge}>Beta</span>
+      </h1>
       {/* <p class={styles.descr}>{t("addonDescr")}</p> */}
 
       <Carousel />
