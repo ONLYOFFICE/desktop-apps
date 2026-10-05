@@ -53,7 +53,9 @@
     left: 15px;
     display: flex;
     align-items: center;
+    padding: 5px 6px;
     padding: 3.378cqw 4.054cqw;
+    border-radius: 6px;
     border-radius: 4.054cqw;
     background: var(--format-bg-winxp);
     background: conic-gradient(from 225deg at 50% 50%, var(--format-bg-start) 0deg, var(--format-bg-end) 360deg);
@@ -61,6 +63,7 @@
 
     span {
       color: var(--text-contrast-background);
+      font-size: 16px;
       font-size: 10.811cqw;
       font-weight: 700;
       transform: translateY(calc(1px / 2));

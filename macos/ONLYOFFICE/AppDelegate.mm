@@ -240,6 +240,12 @@
     if (!self.hasFilesToOpenOnLaunch) {
         [self presentMainWindow];
     }
+
+#if _V8_VERSION
+    if (self.mainWindowController) {
+        [self.mainWindowController.window setMinSize:NSMakeSize(960.0, 650.0)];
+    }
+#endif
 }
 
 /// If your delegate implements this method, AppKit does not call the application(_:openFile:)
