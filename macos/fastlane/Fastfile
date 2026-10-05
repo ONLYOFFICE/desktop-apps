@@ -87,6 +87,7 @@ platform :mac do
     oo_branding = ENV["OO_BRANDING"]
     unless oo_branding.to_s.empty?
       preprocessor_defs << "OO_BRANDING=#{oo_branding}"
+      xcargs += " OO_BRANDING=#{oo_branding}"
     end
 
     xcargs += " GCC_PREPROCESSOR_DEFINITIONS='#{preprocessor_defs.join(' ')}'"
