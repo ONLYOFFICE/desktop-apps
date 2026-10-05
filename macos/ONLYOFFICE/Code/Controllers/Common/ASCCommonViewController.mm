@@ -1102,7 +1102,7 @@
     [json_langs setValue:detectkeyboard?@"auto":@"off" forKey:@"spellcheckdetect"];
     [json_langs setValue:@(editorinwindow) forKey:@"editorwindowmode"];
 
-#ifdef OO_BRANDING
+#if defined(OO_BRANDING) && !defined(_V8_VERSION)
     bool useai = !(appManager->GetUserSettings()->Get(L"disable-ai") == L"1");
     [json_langs setValue:@(useai) forKey:@"useai"];
 #endif
