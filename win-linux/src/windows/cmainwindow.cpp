@@ -67,9 +67,7 @@
   #include "../version.h"
 #endif
 
-#ifdef OO_BRANDING
-# define AI_TOOLS_CAPTION "ONLYOFFICE AI Tools"
-#endif
+#define AI_TOOLS_CAPTION "ONLYOFFICE AI Tools"
 
 using namespace std::placeholders;
 using namespace NSEditorApi;
