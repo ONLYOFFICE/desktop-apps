@@ -113,8 +113,12 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     if (_isHovered && _bgHoverColor) {
-        [_bgHoverColor set];
-        NSRectFillUsingOperation(self.bounds, NSCompositingOperationSourceOver);
+        CGFloat cornerRadius = 6;
+        NSBezierPath *backgroundPath = [NSBezierPath bezierPathWithRoundedRect:self.bounds
+                                                                       xRadius:cornerRadius
+                                                                       yRadius:cornerRadius];
+        [_bgHoverColor setFill];
+        [backgroundPath fill];
     }
     [super drawRect:dirtyRect];
 }

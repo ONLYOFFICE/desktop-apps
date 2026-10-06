@@ -28,9 +28,7 @@ QPushButton#toolButtonMain[class=normal],
 QPushButton#toolButtonMain[class=normal]:hover {border-bottom-width: 3px;}
 /*#mainPanel[rtl=true] QPushButton#toolButtonMain {border-width: 3px;}*/
 
-QPushButton#toolButtonDownload {border-right-width: 3px; max-width: 110px; width: 110px; max-height: 77px; height: 77px;}
-#mainPanel[rtl=true] QPushButton#toolButtonDownload {border-left-width: 3px;}
-#mainPanel[extended-title=true] QPushButton#toolButtonDownload {max-height: 96px; height: 96px;}
+QPushButton#toolButtonDownload {border-radius: 17px; max-width: 77px; width: 77px; max-height: 77px; height: 77px;}
 #mainPanel[uithemetype=dark] QPushButton#toolButtonMain {qproperty-icon: url(:/logo_dark.svg);}
 
 /* Menu */

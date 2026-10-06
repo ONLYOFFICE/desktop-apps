@@ -91,9 +91,7 @@ QPushButton#toolButtonMain[class=normal]:hover {background: %3; border-color: %3
 
 QPushButton::menu-indicator {width: 0px; height: 0px;}
 
-QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid %6; max-width: 40px; width: 40px; max-height: 28px; height: 28px;}
-#mainPanel[rtl=true] QPushButton#toolButtonDownload {border-right: 0px; border-left: 1px solid %6;}
-#mainPanel[extended-title=true] QPushButton#toolButtonDownload {max-height: 35px; height: 35px;}
+QPushButton#toolButtonDownload {border: none; border-radius: 6px; max-width: 28px; width: 28px; max-height: 28px; height: 28px;}
 
 /**************************/
 /* dark theme definitions */

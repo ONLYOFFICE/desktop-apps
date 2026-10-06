@@ -1525,7 +1525,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="M3X-hR-EHh" customClass="ASCHeaderButton">
-                                <rect key="frame" x="1060" y="0.0" width="40" height="29"/>
+                                <rect key="frame" x="1060" y="2" width="40" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="MhZ-JW-eYH"/>
                                     <constraint firstAttribute="height" constant="29" id="hU0-Fj-2ys"/>
@@ -1604,7 +1604,7 @@
                         <constraints>
                             <constraint firstItem="XZA-xX-bBL" firstAttribute="leading" secondItem="afO-TB-NDv" secondAttribute="trailing" constant="-1" id="65D-sw-LvF"/>
                             <constraint firstItem="M3X-hR-EHh" firstAttribute="leading" secondItem="iPF-st-gBJ" secondAttribute="trailing" id="FGY-XD-p9y"/>
-                            <constraint firstAttribute="bottom" secondItem="M3X-hR-EHh" secondAttribute="bottom" id="Fme-4L-HLS"/>
+                            <constraint firstAttribute="bottom" secondItem="M3X-hR-EHh" secondAttribute="bottom" constant="2" id="Fme-4L-HLS"/>
                             <constraint firstItem="iPF-st-gBJ" firstAttribute="leading" secondItem="XZA-xX-bBL" secondAttribute="trailing" id="Ray-vs-abM"/>
                             <constraint firstAttribute="bottom" secondItem="qbs-Vm-fo1" secondAttribute="bottom" id="Xu5-r9-Buc"/>
                             <constraint firstAttribute="bottom" secondItem="iPF-st-gBJ" secondAttribute="bottom" id="Zgl-o8-K6a"/>
