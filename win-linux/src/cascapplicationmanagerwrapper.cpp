@@ -1419,8 +1419,6 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
             }
         });
     }
-#else
-    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:status", Utils::stringifyJson({{"integrated",true}}));
 #endif
 
 #ifdef _WIN32

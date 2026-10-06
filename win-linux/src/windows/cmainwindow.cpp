@@ -67,6 +67,10 @@
   #include "../version.h"
 #endif
 
+#ifdef OO_BRANDING
+# define AI_TOOLS_CAPTION "ONLYOFFICE AI Tools"
+#endif
+
 using namespace std::placeholders;
 using namespace NSEditorApi;
 
@@ -1177,6 +1181,16 @@ void CMainWindow::onDocumentReady(int uid)
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
         });
+
+#if !defined(USE_ADDON_MODE) && defined(OO_BRANDING)
+        QJsonObject jsn;
+        jsn["name"]         = AI_TOOLS_CAPTION;
+        jsn["version"]      = VER_FILEVERSION_STR;
+        jsn["integrated"]   = true;
+        jsn["license"]      = QJsonObject({{"title","Commercial"},{"url", URL_BSL_LICENSE}});
+
+        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:status", Utils::stringifyJson(jsn));
+#endif
     } else {
         m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_LOADING_FINISH);
 
@@ -1782,7 +1796,7 @@ void CMainWindow::sendAddonStatusToStartPage(const QString& text, const QString&
     bool installed = am ? am->isInstalled(&version) : false;
 
     QJsonObject jsn;
-    jsn["name"]      = "ONLYOFFICE AI Tools";
+    jsn["name"]      = AI_TOOLS_CAPTION;
     jsn["version"]   = !version.isEmpty() ? version : VER_FILEVERSION_STR;
     jsn["installed"] = installed;
     jsn["restart"]   = am ? am->restartRequired() : false;
