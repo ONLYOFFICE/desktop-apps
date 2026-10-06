@@ -121,7 +121,6 @@ function delay(ms, signal) {
 async function fetchAppcast(url, request) {
   let lastError;
   for (let attempt = 0; attempt < REQUEST_APPCAST_ATTEMPTS; attempt++) {
-    console.log('attemp to fetch', attempt);
     if (attempt > 0) await delay(REQUEST_APPCAST_RETRY_DELAY, request.controller.signal);
     try {
       const res = await fetch(url, { signal: request.controller.signal, cache: "no-cache" });
