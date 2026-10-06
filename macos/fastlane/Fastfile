@@ -55,7 +55,7 @@ platform :mac do
     if edition != "Enterprise"
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/opensource/LICENSE.html ../Vendor/ONLYOFFICE/license/LICENSE.html")
       desc 'Define USE_ADDON_MODE macro for non-Enterprise editions'
-      preprocessor_defs << "USE_ADDON_MODE"
+      preprocessor_defs << "USE_ADDON_MODE" unless scheme == "ONLYOFFICE-v8"
     else
       sh("mkdir -p ../Vendor/ONLYOFFICE/license && cp -fv ../../package/common/license/commercial/LICENSE.html ../Vendor/ONLYOFFICE/license/EULA.html")
       set_info_plist_value(
