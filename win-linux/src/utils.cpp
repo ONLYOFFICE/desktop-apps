@@ -388,23 +388,38 @@ QString Utils::systemLocationCode()
 #endif
 }
 
+#ifdef __linux
+// Wrap an argument for /bin/sh in single quotes: inside them nothing is
+// interpreted ($(), backticks, ; ...), the only special case is ' itself.
+static std::string shell_quote(const std::string& s)
+{
+    std::string r = "'";
+    for (char c : s)
+        r += (c == '\'') ? "'\\''" : std::string(1, c);
+    r += "'";
+    return r;
+}
+#endif
+
 void Utils::openUrl(const QString& url)
 {
 #ifdef __linux
     QUrl _url(url);
     if ( _url.scheme() == "mailto" ) {
-        system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
-                            .arg(QString( _url.toEncoded() )).toUtf8());
+        std::string sCommand = "LD_LIBRARY_PATH='' xdg-email " +
+                               shell_quote(QString(_url.toEncoded()).toStdString());
+        system(sCommand.c_str());
     } else {
 		if (url.startsWith("xdg:")) {
 			// url is already encoded for xdg
 			std::wstring sUrlW = url.toStdWString().substr(4);
-			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " + U_TO_UTF8(sUrlW);
+			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " + shell_quote(U_TO_UTF8(sUrlW));
 			system(sCommand.c_str());
 		} else {
 			// xdg-open workingpath path
-			system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"")
-			       .arg(QString( _url.toEncoded() )).toUtf8());
+			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " +
+			                       shell_quote(QString(_url.toEncoded()).toStdString());
+			system(sCommand.c_str());
 
 
 		}
@@ -487,8 +502,11 @@ void Utils::openFileLocation(const QString& path)
     if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
         qputenv("LD_LIBRARY_PATH", "");
         QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});
-    } else
-        system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
+    } else {
+        std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " +
+                               shell_quote(fileInfo.path().toStdString());
+        system(sCommand.c_str());
+    }
 #endif
 }
 
