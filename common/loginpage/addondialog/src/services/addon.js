@@ -108,6 +108,32 @@ function compareVersions(v1, v2) {
     return 0; // Versions are equal
 }
 
+const REQUEST_APPCAST_ATTEMPTS = 5;
+const REQUEST_APPCAST_RETRY_DELAY = 300;
+
+function delay(ms, signal) {
+  return new Promise((resolve) => {
+    const timer = setTimeout(resolve, ms);
+    signal.addEventListener("abort", () => { clearTimeout(timer); resolve(); }, { once: true });
+  });
+}
+
+async function fetchAppcast(url, request) {
+  let lastError;
+  for (let attempt = 0; attempt < REQUEST_APPCAST_ATTEMPTS; attempt++) {
+    if (attempt > 0) await delay(REQUEST_APPCAST_RETRY_DELAY, request.controller.signal);
+    try {
+      const res = await fetch(url, { signal: request.controller.signal, cache: "no-cache" });
+      if (!res.ok) throw new Error(`appcast fetch failed: ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      if (request.canceled) throw err;
+      lastError = err;
+    }
+  }
+  throw lastError;
+}
+
 export async function startInstall({ appcast, package: pkg, version: app_version }) {
   if (!appcast || !appcast.length) {
     setViewPanel("error");
@@ -119,15 +145,7 @@ export async function startInstall({ appcast, package: pkg, version: app_version
   try {
     request = { canceled: false, controller: new AbortController() };
     activeRequest = request;
-    const res = await fetch(`onlyoffice-proxy://${appcast}`, {
-      signal: request.controller.signal,
-      cache: "no-cache",
-    });
-    if (activeRequest === request) activeRequest = null;
-    if (!res.ok)
-      throw new Error(`appcast fetch failed: ${res.status}`);
-
-    const json = await res.json();
+    const json = await fetchAppcast(`onlyoffice-proxy://${appcast}`, request);
     const server_version = json?.addon?.version;
     if (!!server_version && !!app_version) {
       const addon_version = server_version.replace(/^\d+/, m => { const mn = parseInt(m); return mn < 10 ? 1 : mn - 9; });

@@ -1079,14 +1079,51 @@
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiS-Ab-t12" userLabel="AI Tools Info Stack">
                                                 <rect key="frame" x="80" y="4" width="312" height="64"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aiN-Ab-t13">
-                                                        <rect key="frame" x="0.0" y="42" width="185" height="22"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="ONLYOFFICE AI Tools" id="aiN-Ab-t14">
-                                                            <font key="font" metaFont="systemSemibold" size="18"/>
-                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
+                                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="8" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-Ab-b01" userLabel="AI Name Row">
+                                                        <rect key="frame" x="0.0" y="42" width="239" height="22"/>
+                                                        <subviews>
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aiN-Ab-t13">
+                                                                <rect key="frame" x="0.0" y="0.0" width="185" height="22"/>
+                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="ONLYOFFICE AI Tools" id="aiN-Ab-t14">
+                                                                    <font key="font" metaFont="systemSemibold" size="18"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="5" translatesAutoresizingMaskIntoConstraints="NO" id="aiB-Ab-b02" userLabel="Beta Badge">
+                                                                <rect key="frame" x="193" y="1" width="46" height="19"/>
+                                                                <view key="contentView" id="aiB-Ab-b03">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="46" height="19"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aiB-Ab-b04">
+                                                                            <rect key="frame" x="6" y="3" width="34" height="13"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Beta" id="aiB-Ab-b05">
+                                                                                <font key="font" metaFont="systemSemibold" size="11"/>
+                                                                                <color key="textColor" red="0.36499999999999999" green="0.26300000000000001" blue="0.73699999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="aiB-Ab-b04" firstAttribute="leading" secondItem="aiB-Ab-b03" secondAttribute="leading" constant="8" id="aiB-Ab-b06"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="aiB-Ab-b04" secondAttribute="trailing" constant="8" id="aiB-Ab-b07"/>
+                                                                        <constraint firstItem="aiB-Ab-b04" firstAttribute="top" secondItem="aiB-Ab-b03" secondAttribute="top" constant="3" id="aiB-Ab-b08"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="aiB-Ab-b04" secondAttribute="bottom" constant="3" id="aiB-Ab-b09"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <color key="fillColor" red="0.90200000000000002" green="0.871" blue="0.97599999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </box>
+                                                        </subviews>
+                                                        <visibilityPriorities>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                        </visibilityPriorities>
+                                                        <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                        </customSpacing>
+                                                    </stackView>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aiV-Ab-t15">
                                                         <rect key="frame" x="0.0" y="22" width="54" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Version" id="aiV-Ab-t16">

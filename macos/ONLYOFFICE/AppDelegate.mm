@@ -767,7 +767,8 @@
             aboutController.aiToolsVersion = @"";
         }
 #else
-        aboutController.aiToolsHidden = YES;
+        aboutController.aiToolsHidden = NO;
+        aboutController.aiToolsVersion = appVersion;
 #endif
         
         NSRect parentFrame = mainWindow.frame;
