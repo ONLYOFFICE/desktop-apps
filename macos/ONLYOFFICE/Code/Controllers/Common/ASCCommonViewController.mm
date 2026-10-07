@@ -616,9 +616,9 @@
                                                   options:NSRegularExpressionSearch];
             
             if (typeRange.location != NSNotFound) {
-                checkedList[key] = @"true";
+                checkedList[key] = @(true);
             } else {
-                checkedList[key] = [[NSFileManager defaultManager] fileExistsAtPath:pathString] ? @"true" : @"false";
+                checkedList[key] = [[NSFileManager defaultManager] fileExistsAtPath:pathString] ? @(true) : @(false);
             }
         }
     }
