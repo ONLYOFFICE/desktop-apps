@@ -4,7 +4,8 @@ import { command } from "@/sdk/bridge.js";
 import { getExternalClouds,
         sendProviderList,
         openPortal as sdkOpenPortal,
-        logoutPortal as sdkLogoutPortal } from "@/sdk/portals.js";
+        logoutPortal as sdkLogoutPortal,
+        keepPortalCookie} from "@/sdk/portals.js";
 
 const STORAGE_KEY = "portals";
 
@@ -90,8 +91,14 @@ export function initPortals() {
         email: obj.email || "",
       };
 
+      const known = portals().find((p) => skipProtocol(p.portal) === skipProtocol(info.portal));
+      const needCookie = info.provider !== "onlyoffice" && !(known?.logged && known.email === info.email);
+
       upsertStorage(info);
       setPortals(readStorage());
+
+      if (needCookie) keepPortalCookie(info.portal);
+
       // `logged` is only ever set by an auth check; a portal signed in during
       // the session would otherwise stay unknown until the next start.
       checkAuth([info]);
