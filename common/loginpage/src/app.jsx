@@ -26,7 +26,8 @@ function Shell(props) {
   createEffect(() => { if (isTemplatesSelected()) setTemplatesMounted(true); });
   const isChatSelected = () => location.pathname === "/aichat";
   const isSettingsSelected = () => location.pathname.startsWith("/settings");
-  const showSidePanel = () => (aichat.available && !addonInfo()?.restart) && aichat.open && !isChatSelected() && !isSettingsSelected();
+  const showSidePanel = () => (aichat.available && !addonInfo()?.restart && addonInfo()?.compatible !== false) &&
+                            aichat.open && !isChatSelected() && !isSettingsSelected();
   const isChatExpanded = () => isChatSelected() && aichat.available;
   const showAiCol = () => showSidePanel() || isChatExpanded();
 
