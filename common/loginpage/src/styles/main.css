@@ -98,22 +98,25 @@ body {
     }
 }
 
-.oforms-root,
-* {
-    ::-webkit-scrollbar-track {
-      background-color: var(--background-normal);
+.webkit-scrollbar1::-webkit-scrollbar-track:hover {
+  background: var(--highlight-scroll-track-hover);
+}
 
-      &:hover {
-        background-color: var(--highlight-scroll-track-hover);
-      }
+.col-center ::-webkit-scrollbar-thumb,
+* ::-webkit-scrollbar-thumb {
+    background-color: var(--background-scroll-thumb);
+
+    &:hover {
+      background-color: var(--highlight-scroll-thumb-hover);
     }
+}
 
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--background-scroll-thumb);
+.col-center ::-webkit-scrollbar-track,
+* ::-webkit-scrollbar-track {
+    background-color: var(--background-normal);
 
-      &:hover {
-        background-color: var(--highlight-scroll-thumb-hover);
-      }
+    &:hover {
+      background-color: var(--highlight-scroll-track-hover);
     }
 }
 

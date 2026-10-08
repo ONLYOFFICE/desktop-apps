@@ -7,7 +7,7 @@ import { command } from "@/sdk/bridge";
 import { htmlDecode } from "@/utils/html";
 import { sendPluginSettings } from "@/services/ai-panel";
 import { aichat, closeSidePanel } from "@/stores/aichat";
-import { sendTemplatesCountry, sendTemplatesTheme } from "@/routes/templates";
+import { sendTemplatesSettings, sendTemplatesTheme } from "@/routes/templates";
 import { TemplatesCountrySet } from "@/data/countries";
 import { setAddonNeedRestart } from "./about";
 
@@ -248,7 +248,7 @@ export function initSettingsSync() {
     command("settings:apply", JSON.stringify(new_settings));
 
     // localStorage.setItem("sett-country", settings.country);
-    sendTemplatesCountry(settings.country);
+    sendTemplatesSettings({type: "locale", value: settings.lang.slice(0,2)});
 
     const _plugin_opts = getPluginSettings();
     if (!!_plugin_opts) {
@@ -381,7 +381,8 @@ export function initSettingsSync() {
       setSettings("theme", param);
       applyThemeToDom(settings.theme);
 
-      const themeType = themesMap[settings.theme]?.type ?? 'light';
+      const themeType = is_theme_system(settings.theme) ? get_system_theme_type() :
+                                  themesMap[settings.theme]?.type ?? 'light';
       sendTemplatesTheme(themeType);
     }
   });
