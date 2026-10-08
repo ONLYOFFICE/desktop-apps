@@ -242,7 +242,7 @@ export default function GeneralSettings() {
               </Show>
             </div>
             <div class={styles.fieldControlEnd}>
-              <Button variant="accent" onClick={uninstallAddon}>
+              <Button variant="default" onClick={uninstallAddon}>
                 {t("btnUninstAddon")}
               </Button>
             </div>
