@@ -49,7 +49,7 @@
 #import "ASCLicenseController.h"
 
 static NSString * const kOfficialWebsiteURL = @"https://www.onlyoffice.com";
-static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/jPfGKDyBYTRK4JM";
+static NSString * const kBslLicenseURL = @"https://docspace.onlyoffice.com/s/b_rVPpqtF-pqKBr";
 
 @interface ASCAboutController () {
     BOOL isCommercialVersion;

@@ -88,7 +88,7 @@
 #define RELEASE_NOTES "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md"
 
 // Enterprise addon (Business Source License)
-#define URL_BSL_LICENSE         "https://docspace.onlyoffice.com/s/jPfGKDyBYTRK4JM"
+#define URL_BSL_LICENSE         "https://docspace.onlyoffice.com/s/b_rVPpqtF-pqKBr"
 #define ADDON_BSL_NAME          "BSL 1.1"
 // TODO: point to the real Enterprise addon archive distributed by ONLYOFFICE
 #define URL_ADDON_ENTERPRISE    ""
