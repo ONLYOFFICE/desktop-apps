@@ -431,6 +431,18 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>ofd</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-pdf</string>
+			<key>CFBundleTypeName</key>
+			<string>Open Fixed-layout Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>epub</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
