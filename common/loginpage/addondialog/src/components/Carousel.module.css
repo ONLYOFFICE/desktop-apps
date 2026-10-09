@@ -67,4 +67,8 @@
 .navIcon {
   width: 20px;
   height: 20px;
+
+  :global(body.rtl) & {
+    transform: scaleX(-1);
+  }
 }

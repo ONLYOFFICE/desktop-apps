@@ -9,7 +9,7 @@
   /* overflow-y: auto; */
   background: var(--background-action-panel, #fff);
   color: var(--text-normal, rgba(0, 0, 0, 0.8));
-  font-family: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family-base-custom, system-ui), -apple-system, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
   text-align: center;
 }
 

@@ -8,7 +8,7 @@
   align-items: center;
   background: var(--background-action-panel, #fff);
   color: var(--text-normal, rgba(0, 0, 0, 0.8));
-  font-family: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family-base-custom, system-ui), -apple-system, "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
   text-align: center;
 }
 
@@ -16,6 +16,12 @@
   position: absolute;
   top: 12px;
   right: 12px;
+
+  :global(body.rtl) & {
+    right: auto;
+    left: 12px;
+  }
+
   width: 24px;
   height: 24px;
   padding: 0;
@@ -107,6 +113,10 @@
 .indeterminate {
   width: 40%;
   animation: indeterminate 1.2s ease-in-out infinite;
+
+  :global(body.rtl) & {
+    animation-name: indeterminateRtl;
+  }
 }
 
 @keyframes indeterminate {
@@ -115,6 +125,15 @@
   }
   100% {
     transform: translateX(350%);
+  }
+}
+
+@keyframes indeterminateRtl {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-350%);
   }
 }
 

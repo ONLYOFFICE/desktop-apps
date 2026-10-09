@@ -18,7 +18,19 @@ export function initLocale() {
   setTranslations({ ...(l10n.en ?? {}) });
 
   const lang = inputArgs()?.lang;
-  if (lang) applyLocale(lang);
+  if (lang) {
+    applyLocale(lang);
+    applyDirection(lang);
+  }
+}
+
+function applyDirection(lang) {
+  const body = document.body;
+  if (isRTL(lang)) {
+    body.setAttribute("dir", "rtl");
+    body.classList.add("rtl", "rtl-font");
+  }
+  body.setAttribute("applang", lang);
 }
 
 export function t(key, defstring) {

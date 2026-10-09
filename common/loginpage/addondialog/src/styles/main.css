@@ -16,6 +16,12 @@ body {
   box-sizing: border-box;
 }
 
+.rtl-font {
+  &[applang^=ar], &[applang^=ur] {
+    /* --font-family-base-custom: system-ui, -apple-system, "Geeza Pro", "Segoe UI", "Traditional Arabic", "Noto Sans"; */
+  }
+}
+
 .panel-error {
   .icon-logo {
     margin-bottom: 10px;
