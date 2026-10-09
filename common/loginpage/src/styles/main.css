@@ -103,6 +103,7 @@ body {
 }
 
 .col-center ::-webkit-scrollbar-thumb,
+[role=listbox]::-webkit-scrollbar-thumb,
 * ::-webkit-scrollbar-thumb {
     background-color: var(--background-scroll-thumb);
 
@@ -112,6 +113,7 @@ body {
 }
 
 .col-center ::-webkit-scrollbar-track,
+[role=listbox]::-webkit-scrollbar-track,
 * ::-webkit-scrollbar-track {
     background-color: var(--background-normal);
 
