@@ -72,7 +72,7 @@
 
 + (NSArray *)documents {
     return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dot", @"dotx", @"dotm", @"fodt", @"wps", @"wpt",
-             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
+             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"ofd", @"doctx",
              @"fb2", @"sxw", @"stw", @"md", @"pages", @"hwp", @"hwpx", @"md", @"hml"];
 }
 
