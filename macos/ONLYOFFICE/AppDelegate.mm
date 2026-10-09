@@ -2015,7 +2015,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self checkAndSuggestAddonUpdate];
     });
-#else
+#elif !defined(_V8_VERSION)
     NSDictionary *jsonObj = @{@"integrated": @(true)};
     ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
 #endif
