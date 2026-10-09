@@ -785,7 +785,18 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( m_countViews == 1 && mainWindow() && mainWindow()->isAboutToClose() ) {        // if only start page exists
             emit aboutToQuit();
-//            DestroyCefView(-1);
+            // The quit itself (DestroyCefView(-1)) is done by launchAppClose() once the last tab or editor
+            // window is closed. Their DESTROYWINDOW comes here while they are still in tabWidget / m_vecEditors
+            // (they are removed later, in onEditorAllowedClose), so for them the condition below is false and
+            // the quit stays with launchAppClose() (quitting right here caused bug 63491).
+            // A view that is neither can outlive the main window: the add-on dialog after "Restart now".
+            // launchAppClose() then ran while that view was alive, did not quit, and nothing calls it again:
+            // the process would hang with no windows. So the quit is done here, deferred as in launchAppClose().
+            if ( m_vecEditors.empty() && !mainWindow()->tabWidget()->count() ) {
+                QTimer::singleShot(0, this, [=]() {
+                    DestroyCefView(-1);
+                });
+            }
         }
 
         break;
