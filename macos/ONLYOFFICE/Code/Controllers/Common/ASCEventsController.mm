@@ -556,7 +556,7 @@ public:
                                 NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
 
                                 NSMutableArray * qitems = urlPage.queryItems ? [NSMutableArray arrayWithArray:urlPage.queryItems] : [[NSMutableArray alloc] init];
-                                [qitems addObjectsFromArray:@[countryCode, portalAddress]];
+                                [qitems addObjectsFromArray:@[/*countryCode,*/ portalAddress]];
                                 urlPage.queryItems = qitems;
 
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
