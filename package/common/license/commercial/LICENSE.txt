@@ -113,11 +113,11 @@ Enterprise.
 6.1. We will provide you with consulting help and updates for ONLYOFFICE Desktop
 Enterprise once they are available during the period defined by the pricing plan
 selected from the Effective Date according to SLA available on our Official
-website https://onlyo.co/372RPLE. The pricing terms are correct at the time they
-are posted online on our Official website, but are subject to change. We reserve
-the right to amend these terms from time to time, please check
-https://onlyo.co/372RPLE for our most up-to date terms. New terms apply for
-every new support subscription accordingly.
+website https://www.onlyoffice.com/sla. The pricing terms are correct at the
+time they are posted online on our Official website, but are subject to change.
+We reserve the right to amend these terms from time to time, please check
+https://www.onlyoffice.com/sla for our most up-to date terms. New terms apply
+for every new support subscription accordingly.
 6.2. Our services include
 * provision of updates for ONLYOFFICE Desktop Enterprise once they are available
   during the period defined by the pricing plan selected,
