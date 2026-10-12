@@ -87,117 +87,117 @@
     <div class="version">
         <h1>ONLYOFFICE 10.0.0<span class="releasedate"> - {{DATE}}</span></h1>
 
-        <h2>Новые функции</h2>
+        <h2>New features</h2>
 
-        <h4>Во всех редакторах</h4>
+        <h4>AI</h4>
         <ul>
-            <li>Обновлена стартовая страница: кнопки перенесены в левую боковую панель, переработаны панели облачных сервисов и шаблонов</li>
-            <li>Удалены локальные шаблоны документов (остались только онлайн-шаблоны)</li>
-            <li>Плагин ИИ удалён из стандартной поставки, теперь он устанавливается как дополнение</li>
-            <li>Уменьшена толщина границы окна и добавлена тень окна (Linux)</li>
+            <li>Added the ability to install AI Tools (beta) with support for ONLYOFFICE Document Builder functionality, PowerShell and Bash command execution, as well as calculations in macros and in the agent itself</li>
         </ul>
 
-        <h4>Редактор документов</h4>
+        <h4>All Editors</h4>
         <ul>
-            <li>Добавлено окно настроек горизонтальной линии</li>
-            <li>Реализовано обрезание текста по строкам в абзаце с точным междустрочным интервалом</li>
-            <li>Добавлена поддержка параметра <code>keepNext</code> для таблиц, а также для абзацев и таблиц внутри блочных элементов управления содержимым</li>
-            <li>Улучшена поддержка графических уравнений и других встроенных объектов в тексте с написанием справа налево (RTL)</li>
-            <li>Реализована опция таблицы, запрещающая разрыв строки между страницами</li>
-            <li>В меню Специальная вставка добавлены пункты для продолжения списка и начала нумерации заново</li>
-            <li>Реализована возможность перехода к курсору другого пользователя и слежения за ним при совместном редактировании</li>
+            <li>Updated the start page: moved the buttons to the left sidebar and redesigned the cloud service and template panels</li>
+            <li>Removed local document templates (only online templates remain)</li>
+            <li>Removed the AI plugin from the default package; it is now installed as an add-on</li>
+            <li>Reduced the window border thickness and added a window shadow (Linux)</li>
         </ul>
 
-        <h4>Редактор электронных таблиц</h4>
+        <h4>Document Editor</h4>
         <ul>
-            <li>Добавлена подсветка диапазонов в строке формул</li>
-            <li>Добавлено сохранение в формат <code>XLS</code></li>
-            <li>Ускорены некоторые операции за счёт раздельного хранения стилей и данных</li>
-            <li>Реализовано создание диаграмм по несмежным данным</li>
-            <li>Добавлена опция включения и отключения автозавершения значений ячеек</li>
-            <li>Добавлены подсказки для констант в аргументах функций (функция <code>AGGREGATE</code>)</li>
-            <li>Добавлена анимированная граница выделения после копирования или вырезания</li>
-            <li>Реализована поддержка фона листа при открытии и сохранении файлов</li>
-            <li>Улучшена производительность формул массива, ссылающихся на целые столбцы или строки (<code>ROW</code>, <code>COLUMN</code>, <code>SEQUENCE</code>, <code>SUM</code>, <code>SUMPRODUCT</code> и др.): вычисления выполняются быстрее и требуют меньше памяти</li>
-            <li>Расширены возможности работы со скрытыми строками и столбцами, в том числе отображение скрытых крайних строк и столбцов через контекстное меню</li>
+            <li>Added the horizontal line settings window</li>
+            <li>Implemented clipping of text by lines in a paragraph with exact line spacing</li>
+            <li>Added support for the <code>keepNext</code> parameter for tables, as well as for paragraphs and tables inside block content controls</li>
+            <li>Improved support for graphic equations and other inline objects in right-to-left (RTL) text</li>
+            <li>Implemented a table row option that prevents a row from breaking across pages</li>
+            <li>Added items for continuing a list or restarting numbering to the Paste Special menu</li>
+            <li>Implemented the ability to go to another user's cursor and follow it during co-editing</li>
         </ul>
 
-        <h4>Редактор презентаций</h4>
+        <h4>Spreadsheet Editor</h4>
         <ul>
-            <li>Расширены настройки печати: добавлены режимы печати заметок, раздаточных материалов и структуры, а также печать скрытых слайдов, фона и рамки слайда, комментариев, номеров слайдов на раздаточных материалах и вписывание в размер страницы</li>
-            <li>Добавлены режимы просмотра: Структура, Заметки, Образец раздаточных материалов и Образец заметок</li>
-            <li>Добавлен режим чтения</li>
-            <li>В меню Файл добавлены кнопки Анимация и Видео для экспорта презентации с выбором диапазона слайдов, разрешения, длительности слайда и формата</li>
-            <li>Для каждого типа перехода задана отдельная длительность по умолчанию</li>
+            <li>Added range highlighting in the formula bar</li>
+            <li>Added saving to the <code>XLS</code> format</li>
+            <li>Sped up some operations by storing styles and data separately</li>
+            <li>Implemented creating charts from non-adjacent data</li>
+            <li>Added an option to enable and disable AutoComplete for cell values</li>
+            <li>Added tooltips for constants in function arguments (the <code>AGGREGATE</code> function)</li>
+            <li>Added an animated selection border after copying or cutting</li>
+            <li>Implemented support for sheet background when opening and saving files</li>
+            <li>Improved performance of array formulas that reference entire columns or rows (<code>ROW</code>, <code>COLUMN</code>, <code>SEQUENCE</code>, <code>SUM</code>, <code>SUMPRODUCT</code>, etc.): calculations are faster and use less memory</li>
+            <li>Extended the capabilities for working with hidden rows and columns, including unhiding hidden edge rows and columns via the context menu</li>
         </ul>
 
-        <h4>Формы</h4>
+        <h4>Presentation Editor</h4>
         <ul>
-            <li>Добавлена возможность сохранять подпись в полях подписи и использовать её повторно из списка сохранённых подписей</li>
-            <li>Добавлена опция включения и отключения проверки орфографии при заполнении конкретной формы</li>
+            <li>Extended print settings: added modes for printing notes, handouts, and outline, as well as printing hidden slides, slide background and frame, comments, slide numbers on handouts, and fitting to the page size</li>
+            <li>Added view modes: Outline, Notes, Handout Master, and Notes Master</li>
+            <li>Added the Reading View mode</li>
+            <li>Added the Animated and Video buttons to the File menu for exporting a presentation with a choice of slide range, resolution, slide duration, and format</li>
+            <li>Set a separate default duration for each transition type</li>
         </ul>
 
-        <h4>Редактор PDF</h4>
+        <h4>Forms</h4>
         <ul>
-            <li>Реализовано удаление аннотаций в области Редактирование (Redact)</li>
-            <li>Добавлена возможность удалять метаданные из документа с помощью функции Redact</li>
-            <li>Добавлена панель настроек аннотаций</li>
-            <li>Добавлена возможность вставки подписи в документ через вкладку Комментарии</li>
-            <li>На панели Комментарии теперь отображаются все аннотации с указанием их типа</li>
-            <li>Добавлена возможность редактировать действия PDF-форм через Дополнительные настройки на панели настроек формы</li>
-            <li>Реализовано создание и заполнение форм по ролям, а также сбор данных из заполненных форм</li>
-            <li>Добавлено распознавание таблиц с видимыми границами в режиме редактирования текста</li>
-            <li>Поле подписи добавлено на вкладку Формы в режиме редактирования PDF</li>
-            <li>На правую панель настроек формы добавлены параметры видимости поля</li>
+            <li>Added the ability to save a signature in signature fields and reuse it from the list of saved signatures</li>
+            <li>Added an option to enable and disable spell checking when filling out a specific form</li>
         </ul>
 
-        <h4>Конвертация</h4>
+        <h4>PDF Editor</h4>
         <ul>
-            <li>Добавлена поддержка формата <code>OFD</code>: файлы можно открывать для просмотра и конвертировать в другие форматы так же, как <code>XPS</code></li>
+            <li>Implemented removal of annotations in the Redact area</li>
+            <li>Added the ability to remove metadata from a document using the Redact feature</li>
+            <li>Added the annotation settings panel</li>
+            <li>Added the ability to insert a signature into a document via the Comment tab</li>
+            <li>The Comments panel now displays all annotations indicating their type</li>
+            <li>Added the ability to edit PDF form actions via Advanced Settings in the form settings panel</li>
+            <li>Implemented creating and filling out forms by roles, as well as collecting data from filled-out forms</li>
+            <li>Added recognition of tables with visible borders in the Edit Text mode</li>
+            <li>Added the signature field to the Forms tab in the Edit PDF mode</li>
+            <li>Added field visibility options to the right form settings panel</li>
         </ul>
 
-        <h4>ИИ</h4>
+        <h4>Convert</h4>
         <ul>
-            <li>Добавлена возможность установки AI Tools (бета) с поддержкой функциональности ONLYOFFICE Document Builder, выполнения команд PowerShell и Bash, а также вычислений в макросах и в самом агенте</li>
+            <li>Added support for the <code>OFD</code> format: files can be opened for viewing and converted to other formats in the same way as <code>XPS</code></li>
         </ul>
 
-        <h2>Исправления</h2>
+        <h2>Fixes</h2>
 
-        <h4>Безопасность</h4>
+        <h4>Security</h4>
         <ul>
-            <li>Исправлена XSS-уязвимость в гиперссылках в документах <code>DOCX</code></li>
-            <li>Исправлена уязвимость CVE-2022-23308 при конвертации документов</li>
-            <li>Исправлен обход песочницы макросов</li>
-            <li>Исправлена некорректная запись в память при конвертации <code>XLS</code> в <code>XLSX</code></li>
-            <li>Исправлена XSS-уязвимость в поле Name при создании ИИ-ассистента</li>
-            <li>Исправлено падение конвертера при обработке циклических цепочек наследования стилей в <code>DOCX</code></li>
-            <li>Исправлено переполнение буфера на стеке при чтении данных OLE во время конвертации документов устаревших форматов</li>
-            <li>Исправлено переполнение буфера в куче при отрисовке масок изображений в <code>PDF</code></li>
-            <li>Исправлен обход песочницы макросов с доступом к cookies</li>
-            <li>Исправлено чтение за пределами границ при конвертации <code>DOC</code> в <code>DOCX</code></li>
-            <li>Исправлено чтение за пределами границ при обработке метафайлов <code>PPT</code>, приводившее к раскрытию содержимого памяти в получаемом <code>PPTX</code></li>
-            <li>Исправлено чтение за пределами границ при разборе форматирования символов в файлах <code>DOC</code></li>
-            <li>Исправлено чтение за пределами границ при разборе таблицы фрагментов (piece table) в файлах <code>DOC</code></li>
-            <li>Исправлено выполнение встроенного JavaScript в документах <code>PDF</code></li>
-            <li>Исправлено двойное освобождение памяти при конвертации некоторых файлов <code>DOCX</code></li>
-            <li>Исправлено чтение за пределами границ при разборе таблицы шрифтов в файлах <code>DOC</code></li>
-            <li>Исправлена доступность объекта <code>AscDesktopEditor</code> для недоверенных веб-страниц, открытых по ссылке <code>oo-office://</code></li>
-            <li>Исправлена запись за пределами границ в куче, вызванная целочисленным переполнением при конвертации документов</li>
-            <li>Исправлено выполнение произвольных команд через имя документа при использовании функции Send</li>
-            <li>Исправлена XSS-уязвимость в окне аргументов функции в редакторе таблиц</li>
-            <li>Исправлено выполнение вредоносного JavaScript, добавленного в действия файла <code>PDF</code></li>
-            <li>Исправлена уязвимость обхода пути (path traversal) при обработке файлов <code>HML</code></li>
-            <li>Исправлена произвольная запись файлов при распаковке архивов во время конвертации</li>
-            <li>Исправлено чтение локальных файлов при конвертации <code>EPUB</code></li>
-            <li>Исправлена XSS-уязвимость в редакторе документов через название шрифта или стиля на панели рецензирования</li>
-            <li>Исправлено чтение за пределами границ при конвертации <code>XLS</code> в <code>XLSX</code></li>
-            <li>Исправлено произвольное удаление файлов из документа <code>PDF</code></li>
-            <li>Исправлено падение документа при вызове <code>AscDesktopEditor.execCommand()</code> и <code>AscDesktopEditor.PluginInstall()</code> без аргументов</li>
-            <li>Исправлено переполнение буфера на стеке при обработке шрифтов в файлах <code>XPS</code></li>
-            <li>Исправлена XSS-уязвимость в плагине HTML при вставке в документ</li>
-            <li>Исправлено чтение за пределами границ при обработке изображений <code>EMF+</code>, приводившее к раскрытию содержимого памяти</li>
-            <li>Исправлено чтение за пределами границ при обработке гиперссылок в <code>XLS</code>, приводившее к раскрытию содержимого памяти</li>
-            <li>Исправлено чтение за пределами границ при отрисовке <code>WMF</code>, приводившее к раскрытию содержимого памяти в получаемом документе</li>
+            <li>Fixed XSS vulnerability in hyperlinks in <code>DOCX</code> documents</li>
+            <li>Fixed CVE-2022-23308 vulnerability during document conversion</li>
+            <li>Fixed macro sandbox bypass</li>
+            <li>Fixed incorrect memory write when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed XSS vulnerability in the Name field when creating an AI assistant</li>
+            <li>Fixed converter crash when processing circular style inheritance chains in <code>DOCX</code></li>
+            <li>Fixed stack buffer overflow when reading OLE data during conversion of legacy format documents</li>
+            <li>Fixed heap buffer overflow when rendering image masks in <code>PDF</code></li>
+            <li>Fixed macro sandbox bypass with access to cookies</li>
+            <li>Fixed out-of-bounds read when converting <code>DOC</code> to <code>DOCX</code></li>
+            <li>Fixed out-of-bounds read when processing <code>PPT</code> metafiles, which led to memory disclosure in the resulting <code>PPTX</code></li>
+            <li>Fixed out-of-bounds read when parsing character formatting in <code>DOC</code> files</li>
+            <li>Fixed out-of-bounds read when parsing the piece table in <code>DOC</code> files</li>
+            <li>Fixed execution of embedded JavaScript in <code>PDF</code> documents</li>
+            <li>Fixed double free when converting some <code>DOCX</code> files</li>
+            <li>Fixed out-of-bounds read when parsing the font table in <code>DOC</code> files</li>
+            <li>Fixed availability of the <code>AscDesktopEditor</code> object to untrusted web pages opened via an <code>oo-office://</code> link</li>
+            <li>Fixed heap out-of-bounds write caused by integer overflow during document conversion</li>
+            <li>Fixed arbitrary command execution via the document name when using the Send feature</li>
+            <li>Fixed XSS vulnerability in the function arguments window in the Spreadsheet Editor</li>
+            <li>Fixed execution of malicious JavaScript added to <code>PDF</code> file actions</li>
+            <li>Fixed path traversal vulnerability when processing <code>HML</code> files</li>
+            <li>Fixed arbitrary file write when extracting archives during conversion</li>
+            <li>Fixed local file read during <code>EPUB</code> conversion</li>
+            <li>Fixed XSS vulnerability in the Document Editor via a font or style name in the Review panel</li>
+            <li>Fixed out-of-bounds read when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed arbitrary file deletion from a <code>PDF</code> document</li>
+            <li>Fixed document crash when calling <code>AscDesktopEditor.execCommand()</code> and <code>AscDesktopEditor.PluginInstall()</code> without arguments</li>
+            <li>Fixed stack buffer overflow when processing fonts in <code>XPS</code> files</li>
+            <li>Fixed XSS vulnerability in the HTML plugin when pasting into a document</li>
+            <li>Fixed out-of-bounds read when processing <code>EMF+</code> bitmaps, which led to memory disclosure</li>
+            <li>Fixed out-of-bounds read when processing hyperlinks in <code>XLS</code>, which led to memory disclosure</li>
+            <li>Fixed out-of-bounds read when rendering <code>WMF</code>, which led to memory disclosure in the resulting document</li>
         </ul>
 
     </div>
