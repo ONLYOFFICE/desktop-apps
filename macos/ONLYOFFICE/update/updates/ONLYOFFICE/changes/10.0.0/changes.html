@@ -56,9 +56,31 @@
             margin: 20px 0;
             border: var(--color-gray-400) solid 0.5px;
         }
+        .badge {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 1px 8px;
+            border-radius: 10px;
+            background: var(--color-gray-500);
+            color: var(--color-white);
+            font-size: 0.8em;
+            font-weight: normal;
+            vertical-align: middle;
+        }
         .releasedate {
             color: var(--color-gray-600);
             font-weight: lighter;
+        }
+
+        .note-warning {
+            border-left: 4px solid #e8a317;
+            padding: 4px 16px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        .note-warning .note-warning-label-important {
+            text-decoration: underline;
         }
 
         /* prefers light mode */
@@ -86,6 +108,11 @@
 <body>
     <div class="version">
         <h1>ONLYOFFICE 10.0.0<span class="releasedate"> - {{DATE}}</span></h1>
+
+        <aside class="note note-warning" role="note">
+            <p><strong class="note-warning-label-important">Important:</strong> Version 10.0 is a fully rebuilt app, so some settings can’t be transferred from previous versions.
+After updating, just sign in to your clouds again in the Clouds section. If you used a custom user name instead of your system account name, simply enter it again in Settings.</p>
+        </aside>
 
         <h2>New features</h2>
 
