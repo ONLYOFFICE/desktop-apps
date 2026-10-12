@@ -165,39 +165,39 @@
 
         <h4>Security</h4>
         <ul>
-            <li>Fixed XSS vulnerability in hyperlinks in <code>DOCX</code> documents (Bug 24668)</li>
-            <li>Fixed CVE-2022-23308 vulnerability during document conversion (Bug 70197)</li>
-            <li>Fixed macro sandbox bypass (Bug 78700)</li>
-            <li>Fixed incorrect memory write when converting <code>XLS</code> to <code>XLSX</code> (Bug 80497)</li>
-            <li>Fixed XSS vulnerability in the Name field when creating an AI assistant (Bug 81556)</li>
-            <li>Fixed converter crash when processing circular style inheritance chains in <code>DOCX</code> (Bug 81925)</li>
-            <li>Fixed stack buffer overflow when reading OLE data during conversion of legacy format documents (Bug 81927)</li>
-            <li>Fixed heap buffer overflow when rendering image masks in <code>PDF</code> (Bug 81929)</li>
-            <li>Fixed macro sandbox bypass with access to cookies (Bug 82230)</li>
-            <li>Fixed out-of-bounds read when converting <code>DOC</code> to <code>DOCX</code> (Bug 82318)</li>
-            <li>Fixed out-of-bounds read when processing <code>PPT</code> metafiles, which led to memory disclosure in the resulting <code>PPTX</code> (Bug 82319)</li>
-            <li>Fixed out-of-bounds read when parsing character formatting in <code>DOC</code> files (Bug 82321)</li>
-            <li>Fixed out-of-bounds read when parsing the piece table in <code>DOC</code> files (Bug 82322)</li>
-            <li>Fixed execution of embedded JavaScript in <code>PDF</code> documents (Bug 82461)</li>
-            <li>Fixed double free when converting some <code>DOCX</code> files (Bug 82607)</li>
-            <li>Fixed out-of-bounds read when parsing the font table in <code>DOC</code> files (Bug 82612)</li>
-            <li>Fixed availability of the <code>AscDesktopEditor</code> object to untrusted web pages opened via an <code>oo-office://</code> link (Bug 82627)</li>
-            <li>Fixed heap out-of-bounds write caused by integer overflow during document conversion (Bug 82638)</li>
-            <li>Fixed arbitrary command execution via the document name when using the Send feature (Bug 82683)</li>
-            <li>Fixed XSS vulnerability in the function arguments window in the Spreadsheet Editor (Bug 82750)</li>
-            <li>Fixed execution of malicious JavaScript added to <code>PDF</code> file actions (Bug 82827)</li>
-            <li>Fixed path traversal vulnerability when processing <code>HML</code> files (Bug 82954)</li>
-            <li>Fixed arbitrary file write when extracting archives during conversion (Bug 82964)</li>
-            <li>Fixed local file read during <code>EPUB</code> conversion (Bug 82965)</li>
-            <li>Fixed XSS vulnerability in the Document Editor via a font or style name in the Review panel (Bug 83107)</li>
-            <li>Fixed out-of-bounds read when converting <code>XLS</code> to <code>XLSX</code> (Bug 83284)</li>
-            <li>Fixed arbitrary file deletion from a <code>PDF</code> document (Bug 83388)</li>
-            <li>Fixed document crash when calling <code>AscDesktopEditor.execCommand()</code> and <code>AscDesktopEditor.PluginInstall()</code> without arguments (Bug 83416)</li>
-            <li>Fixed stack buffer overflow when processing fonts in <code>XPS</code> files (Bug 83683)</li>
-            <li>Fixed XSS vulnerability in the HTML plugin when pasting into a document (Bug 83739)</li>
-            <li>Fixed out-of-bounds read when processing <code>EMF+</code> bitmaps, which led to memory disclosure (Bug 83910)</li>
-            <li>Fixed out-of-bounds read when processing hyperlinks in <code>XLS</code>, which led to memory disclosure (Bug 84008)</li>
-            <li>Fixed out-of-bounds read when rendering <code>WMF</code>, which led to memory disclosure in the resulting document (Bug 84010)</li>
+            <li>Fixed XSS vulnerability in hyperlinks in <code>DOCX</code> documents</li>
+            <li>Fixed CVE-2022-23308 vulnerability during document conversion</li>
+            <li>Fixed macro sandbox bypass</li>
+            <li>Fixed incorrect memory write when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed XSS vulnerability in the Name field when creating an AI assistant</li>
+            <li>Fixed converter crash when processing circular style inheritance chains in <code>DOCX</code></li>
+            <li>Fixed stack buffer overflow when reading OLE data during conversion of legacy format documents</li>
+            <li>Fixed heap buffer overflow when rendering image masks in <code>PDF</code></li>
+            <li>Fixed macro sandbox bypass with access to cookies</li>
+            <li>Fixed out-of-bounds read when converting <code>DOC</code> to <code>DOCX</code></li>
+            <li>Fixed out-of-bounds read when processing <code>PPT</code> metafiles, which led to memory disclosure in the resulting <code>PPTX</code></li>
+            <li>Fixed out-of-bounds read when parsing character formatting in <code>DOC</code> files</li>
+            <li>Fixed out-of-bounds read when parsing the piece table in <code>DOC</code> files</li>
+            <li>Fixed execution of embedded JavaScript in <code>PDF</code> documents</li>
+            <li>Fixed double free when converting some <code>DOCX</code> files</li>
+            <li>Fixed out-of-bounds read when parsing the font table in <code>DOC</code> files</li>
+            <li>Fixed availability of the <code>AscDesktopEditor</code> object to untrusted web pages opened via an <code>oo-office://</code> link</li>
+            <li>Fixed heap out-of-bounds write caused by integer overflow during document conversion</li>
+            <li>Fixed arbitrary command execution via the document name when using the Send feature</li>
+            <li>Fixed XSS vulnerability in the function arguments window in the Spreadsheet Editor</li>
+            <li>Fixed execution of malicious JavaScript added to <code>PDF</code> file actions</li>
+            <li>Fixed path traversal vulnerability when processing <code>HML</code> files</li>
+            <li>Fixed arbitrary file write when extracting archives during conversion</li>
+            <li>Fixed local file read during <code>EPUB</code> conversion</li>
+            <li>Fixed XSS vulnerability in the Document Editor via a font or style name in the Review panel</li>
+            <li>Fixed out-of-bounds read when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed arbitrary file deletion from a <code>PDF</code> document</li>
+            <li>Fixed document crash when calling <code>AscDesktopEditor.execCommand()</code> and <code>AscDesktopEditor.PluginInstall()</code> without arguments</li>
+            <li>Fixed stack buffer overflow when processing fonts in <code>XPS</code> files</li>
+            <li>Fixed XSS vulnerability in the HTML plugin when pasting into a document</li>
+            <li>Fixed out-of-bounds read when processing <code>EMF+</code> bitmaps, which led to memory disclosure</li>
+            <li>Fixed out-of-bounds read when processing hyperlinks in <code>XLS</code>, which led to memory disclosure</li>
+            <li>Fixed out-of-bounds read when rendering <code>WMF</code>, which led to memory disclosure in the resulting document</li>
         </ul>
 
     </div>
