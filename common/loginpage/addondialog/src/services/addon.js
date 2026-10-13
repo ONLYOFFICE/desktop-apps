@@ -123,7 +123,8 @@ async function fetchAppcast(url, request) {
   for (let attempt = 0; attempt < REQUEST_APPCAST_ATTEMPTS; attempt++) {
     if (attempt > 0) await delay(REQUEST_APPCAST_RETRY_DELAY, request.controller.signal);
     try {
-      const res = await fetch(url, { signal: request.controller.signal, cache: "no-cache" });
+      const separator = url.includes("?") ? "&" : "?";
+      const res = await fetch(`${url}${separator}t=${Date.now()}`, { signal: request.controller.signal, cache: "no-store" });
       if (!res.ok) throw new Error(`appcast fetch failed: ${res.status}`);
       return await res.json();
     } catch (err) {
@@ -145,7 +146,8 @@ export async function startInstall({ appcast, package: pkg, version: app_version
   try {
     request = { canceled: false, controller: new AbortController() };
     activeRequest = request;
-    const json = await fetchAppcast(`onlyoffice-proxy://${appcast}`, request);
+    // const json = await fetchAppcast(`onlyoffice-proxy://${appcast}`, request);
+    const json = await fetchAppcast(`${appcast}`, request);
     const server_version = json?.addon?.version;
     if (!!server_version && !!app_version) {
       const addon_version = server_version.replace(/^\d+/, m => { const mn = parseInt(m); return mn < 10 ? 1 : mn - 9; });
