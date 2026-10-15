@@ -134,6 +134,8 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab-default-active-background"},
             {CTheme::ColorRole::ecrTabDefaultActiveText, "tab-default-active-text"},
             {CTheme::ColorRole::ecrTabDivider, "tab-divider"},
+            {CTheme::ColorRole::ecrTabCloseHoverDarkBackground, "tab-close-hover-dark-background"},
+            {CTheme::ColorRole::ecrTabCloseHoverLightBackground, "tab-close-hover-light-background"},
 
             {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
             {CTheme::ColorRole::ecrLogoColor, "logo"},

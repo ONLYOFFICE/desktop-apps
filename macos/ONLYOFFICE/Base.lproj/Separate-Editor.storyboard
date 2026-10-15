@@ -5,6 +5,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Editor Title Bar Controller-->
+        <scene sceneID="DZm-iH-LJP">
+            <objects>
+                <viewController storyboardIdentifier="editorTitleBarControllerID" id="eHI-bq-L7s" customClass="ASCEditorTitleBarController" sceneMemberID="viewController">
+                    <visualEffectView key="view" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" id="J3Y-s3-V6r">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="38"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </visualEffectView>
+                </viewController>
+                <customObject id="et5-qM-fd4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-248" y="-901"/>
+        </scene>
         <!--Window Controller-->
         <scene sceneID="xkr-XX-l4i">
             <objects>
@@ -15,6 +28,10 @@
                         <rect key="contentRect" x="0.0" y="0.0" width="1024" height="540"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
                         <value key="minSize" type="size" width="518" height="440"/>
+                        <toolbar key="toolbar" implicitIdentifier="ASCEditorWindowToolbar" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="labelOnly" sizeMode="regular" id="EdT-rW-oT1">
+                            <allowedToolbarItems/>
+                            <defaultToolbarItems/>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="ayF-h0-EsM" id="wDl-ug-8Gz"/>
                         </connections>

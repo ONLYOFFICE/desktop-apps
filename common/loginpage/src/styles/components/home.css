@@ -1,0 +1,60 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  container: work-area / inline-size;
+}
+
+.recent-panel-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding: 32px;
+  padding-top: 0;
+  background: var(--background-action-panel);
+  height: 100%;
+  overflow-y: auto;
+  color: var(--text-normal);
+}
+
+.cnt-title {
+  height: 80px;
+  flex-shrink: 0;
+  place-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 808px;
+  padding-inline: 48px;
+  margin: 0 auto;
+  display: grid;
+
+  > h1 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    width: 100%;
+  }
+}
+
+.new-doc-section {
+  flex-shrink: 0;
+  padding-inline: 48px;
+  margin-bottom: 32px;
+}
+
+.file-drop-section {
+  max-width: 864px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.file-list-section {
+  flex: 1;
+  min-height: 200px;
+  overflow-y: auto;
+  position: relative;
+  margin-inline: 32px;
+  margin-bottom: 32px;
+}

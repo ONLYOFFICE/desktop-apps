@@ -1,0 +1,45 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  color: var(--text-normal);
+  background: var(--background-action-panel);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.resizeHandle {
+  position: absolute;
+  left: -8px;
+  top: 8px;
+  bottom: 8px;
+  width: 5px;
+  border-radius: 9999px;
+  cursor: col-resize;
+  z-index: 2;
+  touch-action: none;
+
+  :global(body.rtl) & {
+    left: auto;
+    right: -8px;
+  }
+}
+
+.resizeHandle:hover,
+.resizeHandle:active {
+  background: var(--border-control-focus);
+  opacity: 0.35;
+}
+
+.frame {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: 0 none;
+}
+
+:global(body.chat-resizing) .frame {
+  pointer-events: none;
+}

@@ -63,6 +63,33 @@
 		5AA2F5872D5B824300C9DDC9 /* file-hwp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */; };
 		5AA2F5882D5B824300C9DDC9 /* file-hwp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */; };
 		5AA2F5892D5B824300C9DDC9 /* file-hwp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */; };
+		F0DB01012E5B824300C9DDC9 /* file-xlt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA01002E5B824300C9DDC9 /* file-xlt.icns */; };
+		F0DB01022E5B824300C9DDC9 /* file-xlt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA01002E5B824300C9DDC9 /* file-xlt.icns */; };
+		F0DB01032E5B824300C9DDC9 /* file-xlt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA01002E5B824300C9DDC9 /* file-xlt.icns */; };
+		F0DB02012E5B824300C9DDC9 /* file-sxw.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA02002E5B824300C9DDC9 /* file-sxw.icns */; };
+		F0DB02022E5B824300C9DDC9 /* file-sxw.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA02002E5B824300C9DDC9 /* file-sxw.icns */; };
+		F0DB02032E5B824300C9DDC9 /* file-sxw.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA02002E5B824300C9DDC9 /* file-sxw.icns */; };
+		F0DB03012E5B824300C9DDC9 /* file-stw.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA03002E5B824300C9DDC9 /* file-stw.icns */; };
+		F0DB03022E5B824300C9DDC9 /* file-stw.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA03002E5B824300C9DDC9 /* file-stw.icns */; };
+		F0DB03032E5B824300C9DDC9 /* file-stw.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA03002E5B824300C9DDC9 /* file-stw.icns */; };
+		F0DB04012E5B824300C9DDC9 /* file-sxc.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA04002E5B824300C9DDC9 /* file-sxc.icns */; };
+		F0DB04022E5B824300C9DDC9 /* file-sxc.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA04002E5B824300C9DDC9 /* file-sxc.icns */; };
+		F0DB04032E5B824300C9DDC9 /* file-sxc.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA04002E5B824300C9DDC9 /* file-sxc.icns */; };
+		F0DB05012E5B824300C9DDC9 /* file-sxi.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA05002E5B824300C9DDC9 /* file-sxi.icns */; };
+		F0DB05022E5B824300C9DDC9 /* file-sxi.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA05002E5B824300C9DDC9 /* file-sxi.icns */; };
+		F0DB05032E5B824300C9DDC9 /* file-sxi.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA05002E5B824300C9DDC9 /* file-sxi.icns */; };
+		F0DB06012E5B824300C9DDC9 /* file-wps.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA06002E5B824300C9DDC9 /* file-wps.icns */; };
+		F0DB06022E5B824300C9DDC9 /* file-wps.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA06002E5B824300C9DDC9 /* file-wps.icns */; };
+		F0DB06032E5B824300C9DDC9 /* file-wps.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA06002E5B824300C9DDC9 /* file-wps.icns */; };
+		F0DB07012E5B824300C9DDC9 /* file-wpt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA07002E5B824300C9DDC9 /* file-wpt.icns */; };
+		F0DB07022E5B824300C9DDC9 /* file-wpt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA07002E5B824300C9DDC9 /* file-wpt.icns */; };
+		F0DB07032E5B824300C9DDC9 /* file-wpt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA07002E5B824300C9DDC9 /* file-wpt.icns */; };
+		F0DB08012E5B824300C9DDC9 /* file-dps.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA08002E5B824300C9DDC9 /* file-dps.icns */; };
+		F0DB08022E5B824300C9DDC9 /* file-dps.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA08002E5B824300C9DDC9 /* file-dps.icns */; };
+		F0DB08032E5B824300C9DDC9 /* file-dps.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA08002E5B824300C9DDC9 /* file-dps.icns */; };
+		F0DB09012E5B824300C9DDC9 /* file-dpt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA09002E5B824300C9DDC9 /* file-dpt.icns */; };
+		F0DB09022E5B824300C9DDC9 /* file-dpt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA09002E5B824300C9DDC9 /* file-dpt.icns */; };
+		F0DB09032E5B824300C9DDC9 /* file-dpt.icns in Resources */ = {isa = PBXBuildFile; fileRef = F0DA09002E5B824300C9DDC9 /* file-dpt.icns */; };
 		5AAE526D28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
 		5AAE526E28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
 		5AAE526F28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
@@ -80,6 +107,9 @@
 		5AC461B92E4E141100FD2689 /* license in Resources */ = {isa = PBXBuildFile; fileRef = 5AC461B72E4E12F600FD2689 /* license */; };
 		5AC461BA2E4E15E700FD2689 /* license in Resources */ = {isa = PBXBuildFile; fileRef = 5AC461B72E4E12F600FD2689 /* license */; };
 		5AC461BB2E4E160D00FD2689 /* license in Resources */ = {isa = PBXBuildFile; fileRef = 5AC461B72E4E12F600FD2689 /* license */; };
+		5A0000002F0A00000000AA02 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 5A0000002F0A00000000AA01 /* styles */; };
+		5A0000002F0A00000000AA03 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 5A0000002F0A00000000AA01 /* styles */; };
+		5A0000002F0A00000000AA04 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 5A0000002F0A00000000AA01 /* styles */; };
 		5ACC12852BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
 		5ACC12862BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
 		5ACC12872BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
@@ -103,18 +133,39 @@
 		F10175932EAB756000C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
 		F10175942EAB756100C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
 		F10175952EAB756100C6C1B8 /* ASCLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10175922EAB756000C6C1B8 /* ASCLicenseController.m */; };
+		F121296F2F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */; };
+		F12129702F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */; };
+		F12129712F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */; };
 		F12F85D32EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D42EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
 		F12F85D52EB6A38400370877 /* ASCEditorWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */; };
+		F13726FC3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */; };
+		F13726FD3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */; };
+		F13726FE3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */; };
 		F1376CA42EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
 		F1376CA52EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
 		F1376CA62EF581FA00EC5E08 /* Separate-Editor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */; };
 		F14CD3C32EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F14CD3C42EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
 		F14CD3C52EB73EBC00D476FE /* ASCEditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */; };
+		F14E22E62FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22E72FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22E82FEE70C4004EC652 /* ASCAddonManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */; };
+		F14E22F12FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
+		F14E22F22FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
+		F14E22F32FEE70C4004EC652 /* cdownloader_mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */; };
 		F15C17322EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17332EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
 		F15C17342EBCA75000D266C7 /* NSCefData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F15C17312EBCA75000D266C7 /* NSCefData.mm */; };
+		F15DF4F52F58D0050014C037 /* ASCProviders.m in Sources */ = {isa = PBXBuildFile; fileRef = F15DF4F42F58D0050014C037 /* ASCProviders.m */; };
+		F15DF4F62F58D0050014C037 /* ASCProviders.m in Sources */ = {isa = PBXBuildFile; fileRef = F15DF4F42F58D0050014C037 /* ASCProviders.m */; };
+		F15DF4F72F58D0050014C037 /* ASCProviders.m in Sources */ = {isa = PBXBuildFile; fileRef = F15DF4F42F58D0050014C037 /* ASCProviders.m */; };
+		F164E3312F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
+		F164E3322F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
+		F164E3332F582BC700CC8D45 /* ASCHeaderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */; };
+		F1CA1BB63002427F00CB7ABD /* ASCUpgradeController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */; };
+		F1CA1BB73002427F00CB7ABD /* ASCUpgradeController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */; };
+		F1CA1BB83002427F00CB7ABD /* ASCUpgradeController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
 		FC0BD686258B63F700C47F95 /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
@@ -146,7 +197,7 @@
 		FC0BD6A0258B63F700C47F95 /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
 		FC0BD6A1258B63F700C47F95 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FC0BD6A2258B63F700C47F95 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
-		FC0BD6A3258B63F700C47F95 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
+		FC0BD6A3258B63F700C47F95 /* ASCTabsControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */; };
 		FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */; };
 		FC0BD6A5258B63F700C47F95 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
 		FC0BD6A6258B63F700C47F95 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
@@ -322,7 +373,7 @@
 		FCB4C6D926DD018B0012C20D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
 		FCB4C6DA26DD018B0012C20D /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FCB4C6DB26DD018B0012C20D /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
-		FCB4C6DC26DD018B0012C20D /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
+		FCB4C6DC26DD018B0012C20D /* ASCTabsControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */; };
 		FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */; };
 		FCB4C6DE26DD018B0012C20D /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
 		FCB4C6DF26DD018B0012C20D /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
@@ -412,7 +463,7 @@
 		FCC77C82206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
 		FCC77C85206CEE5B001B7837 /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C78206CEE5B001B7837 /* ASCButtonCell.m */; };
 		FCC77C91206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */; };
-		FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
+		FCC77C94206CEE85001B7837 /* ASCTabsControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */; };
 		FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8E206CEE85001B7837 /* ASCTabView.m */; };
 		FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
 		FCCC2FD721E5DF7700FB9209 /* ASCBlockHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FD621E5DF7700FB9209 /* ASCBlockHolder.m */; };
@@ -789,15 +840,24 @@
 		5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCLinguist.m; sourceTree = "<group>"; };
 		5AA2F5822D5B824300C9DDC9 /* file-hwpx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-hwpx.icns"; sourceTree = "<group>"; };
 		5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-hwp.icns"; sourceTree = "<group>"; };
+		F0DA01002E5B824300C9DDC9 /* file-xlt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlt.icns"; sourceTree = "<group>"; };
+		F0DA02002E5B824300C9DDC9 /* file-sxw.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-sxw.icns"; sourceTree = "<group>"; };
+		F0DA03002E5B824300C9DDC9 /* file-stw.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-stw.icns"; sourceTree = "<group>"; };
+		F0DA04002E5B824300C9DDC9 /* file-sxc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-sxc.icns"; sourceTree = "<group>"; };
+		F0DA05002E5B824300C9DDC9 /* file-sxi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-sxi.icns"; sourceTree = "<group>"; };
+		F0DA06002E5B824300C9DDC9 /* file-wps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-wps.icns"; sourceTree = "<group>"; };
+		F0DA07002E5B824300C9DDC9 /* file-wpt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-wpt.icns"; sourceTree = "<group>"; };
+		F0DA08002E5B824300C9DDC9 /* file-dps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-dps.icns"; sourceTree = "<group>"; };
+		F0DA09002E5B824300C9DDC9 /* file-dpt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-dpt.icns"; sourceTree = "<group>"; };
 		5AA2F58A2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
-		5AA2F58B2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5AA2F58C2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ur; path = ur.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		5AA2F58D2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/Main.strings; sourceTree = "<group>"; };
-		5AA2F58E2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/MoveApplication.strings; sourceTree = "<group>"; };
-		5AA2F58F2DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = "ur.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
-		5AA2F5902DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5AA2F5912DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5AA2F5922DC16E7E00C9DDC9 /* ur */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ur; path = ur.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5AA2F58B2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5AA2F58C2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "ur-PK"; path = "ur-PK.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5AA2F58D2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/Main.strings"; sourceTree = "<group>"; };
+		5AA2F58E2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5AA2F58F2DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5AA2F5902DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5AA2F5912DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5AA2F5922DC16E7E00C9DDC9 /* ur-PK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ur-PK"; path = "ur-PK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCThemesController.m; sourceTree = "<group>"; };
 		5AAE527028B53C1F001E31F4 /* ASCThemesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCThemesController.h; sourceTree = "<group>"; };
 		5AAFF09E2989B70400D433B5 /* si */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = si; path = "si.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
@@ -824,6 +884,7 @@
 		5ABE02582B22699F0031328E /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5ABE02592B22699F0031328E /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5AC461B72E4E12F600FD2689 /* license */ = {isa = PBXFileReference; lastKnownFileType = folder; name = license; path = Vendor/ONLYOFFICE/license; sourceTree = SOURCE_ROOT; };
+		5A0000002F0A00000000AA01 /* styles */ = {isa = PBXFileReference; lastKnownFileType = folder; name = styles; path = ONLYOFFICE/Resources/styles; sourceTree = SOURCE_ROOT; };
 		5AC6441F2D36901900145A90 /* sq-AL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-AL"; path = "sq-AL.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5AC644202D36901900145A90 /* sq-AL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-AL"; path = "sq-AL.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5AC644212D36901900145A90 /* sq-AL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "sq-AL"; path = "sq-AL.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -836,19 +897,41 @@
 		5ACC12842BC033080089A585 /* file-xlsb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsb.icns"; sourceTree = "<group>"; };
 		5AD24E292902AE3C00748926 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		BE59EE322B9623FF00F12D5D /* mac_cefviewmedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefviewmedia.h; sourceTree = "<group>"; };
-		BE5EE5482E3382D20010A8A8 /* ooxmlsignature.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ooxmlsignature.framework; path = ../../build_tools/out/mac_64/onlyoffice/desktopeditors/converter/ooxmlsignature.framework; sourceTree = "<group>"; };
-		BE5EE5492E3382D20010A8A8 /* ascdocumentscore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ascdocumentscore.framework; path = ../../build_tools/out/mac_64/onlyoffice/desktopeditors/ascdocumentscore.framework; sourceTree = "<group>"; };
+		BE5EE5482E3382D20010A8A8 /* ooxmlsignature.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ooxmlsignature.framework; path = "../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors/converter/ooxmlsignature.framework"; sourceTree = "<group>"; };
+		BE5EE5492E3382D20010A8A8 /* ascdocumentscore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ascdocumentscore.framework; path = "../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors/ascdocumentscore.framework"; sourceTree = "<group>"; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		F10175912EAB756000C6C1B8 /* ASCLicenseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCLicenseController.h; sourceTree = "<group>"; };
 		F10175922EAB756000C6C1B8 /* ASCLicenseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCLicenseController.m; sourceTree = "<group>"; };
+		F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCEditorTitleBarController.m; sourceTree = "<group>"; };
+		F121296E2F36360C00BFB54F /* ASCEditorTitleBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorTitleBarController.h; sourceTree = "<group>"; };
 		F12F85D12EB6A38400370877 /* ASCEditorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindowController.h; sourceTree = "<group>"; };
 		F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEditorWindowController.mm; sourceTree = "<group>"; };
+		F13726FB3000DECB00AFF4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Upgrade-Dialog.storyboard"; sourceTree = "<group>"; };
 		F1376CA32EF581FA00EC5E08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Separate-Editor.storyboard"; sourceTree = "<group>"; };
 		F14CD3C12EB73EBC00D476FE /* ASCEditorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorWindow.h; sourceTree = "<group>"; };
 		F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCEditorWindow.m; sourceTree = "<group>"; };
+		F14E22E42FEE70C4004EC652 /* ASCAddonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCAddonManager.h; sourceTree = "<group>"; };
+		F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCAddonManager.mm; sourceTree = "<group>"; };
+		F14E22EF2FEE70C4004EC652 /* cdownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cdownloader.h; path = ../common/sources/cdownloader.h; sourceTree = SOURCE_ROOT; };
+		F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = cdownloader_mac.mm; path = ../common/sources/cdownloader_mac.mm; sourceTree = SOURCE_ROOT; };
 		F15C17302EBCA75000D266C7 /* NSCefData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefData.h; sourceTree = "<group>"; };
 		F15C17312EBCA75000D266C7 /* NSCefData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefData.mm; sourceTree = "<group>"; };
+		F15DF4F32F58D0050014C037 /* ASCProviders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCProviders.h; sourceTree = "<group>"; };
+		F15DF4F42F58D0050014C037 /* ASCProviders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCProviders.m; sourceTree = "<group>"; };
+		F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCHeaderButton.m; sourceTree = "<group>"; };
+		F164E3302F582BC700CC8D45 /* ASCHeaderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCHeaderButton.h; sourceTree = "<group>"; };
+		F1CA1BB43002427E00CB7ABD /* ASCUpgradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCUpgradeController.h; sourceTree = "<group>"; };
+		F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCUpgradeController.mm; sourceTree = "<group>"; };
+		F1D31B212FE03FD9000B9112 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = no.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1D31B222FE03FD9000B9112 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = no.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1D31B2E2FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1D31B2F2FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1D31B302FE0438B000B9112 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88DB2FE00FF80012CF8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		F1EB88DE2FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88DF2FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F1EB88E02FE010FF0012CF8E /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
 		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
@@ -894,7 +977,7 @@
 		FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCPresentationReporter.mm; sourceTree = "<group>"; };
 		FC5919D5208DC6D00006F664 /* OOXMLVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLVerifier.h; sourceTree = "<group>"; };
 		FC5919D7208DC6D00006F664 /* OOXMLSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLSigner.h; sourceTree = "<group>"; };
-		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "../../build_tools/out/mac_64/onlyoffice/desktopeditors/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
+		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
 		FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager.h; sourceTree = "<group>"; };
 		FC5A2D391BAC075E001ACEB1 /* applicationmanager_events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager_events.h; sourceTree = "<group>"; };
 		FC5A2D3A1BAC075E001ACEB1 /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
@@ -1068,7 +1151,7 @@
 		FCC77C89206CEE85001B7837 /* ASCTabCloseButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabCloseButtonCell.h; sourceTree = "<group>"; };
 		FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabCloseButtonCell.m; sourceTree = "<group>"; };
 		FCC77C8B206CEE85001B7837 /* ASCTabsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabsControl.h; sourceTree = "<group>"; };
-		FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabsControl.m; sourceTree = "<group>"; };
+		FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCTabsControl.mm; sourceTree = "<group>"; };
 		FCC77C8D206CEE85001B7837 /* ASCTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabView.h; sourceTree = "<group>"; };
 		FCC77C8E206CEE85001B7837 /* ASCTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabView.m; sourceTree = "<group>"; };
 		FCC77C8F206CEE85001B7837 /* ASCTabViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabViewCell.h; sourceTree = "<group>"; };
@@ -1189,12 +1272,23 @@
 		F12F85D02EB6A38400370877 /* EditorWindow */ = {
 			isa = PBXGroup;
 			children = (
+				F121296E2F36360C00BFB54F /* ASCEditorTitleBarController.h */,
+				F121296D2F36360C00BFB54F /* ASCEditorTitleBarController.m */,
 				F14CD3C12EB73EBC00D476FE /* ASCEditorWindow.h */,
 				F14CD3C22EB73EBC00D476FE /* ASCEditorWindow.m */,
 				F12F85D12EB6A38400370877 /* ASCEditorWindowController.h */,
 				F12F85D22EB6A38400370877 /* ASCEditorWindowController.mm */,
 			);
 			path = EditorWindow;
+			sourceTree = "<group>";
+		};
+		F1CA1BB93002463900CB7ABD /* Upgrade */ = {
+			isa = PBXGroup;
+			children = (
+				F1CA1BB53002427E00CB7ABD /* ASCUpgradeController.mm */,
+				F1CA1BB43002427E00CB7ABD /* ASCUpgradeController.h */,
+			);
+			path = Upgrade;
 			sourceTree = "<group>";
 		};
 		FC035A5A24855E1900AF820F /* Enums */ = {
@@ -1210,6 +1304,15 @@
 			children = (
 				5AA2F5832D5B824300C9DDC9 /* file-hwp.icns */,
 				5AA2F5822D5B824300C9DDC9 /* file-hwpx.icns */,
+				F0DA01002E5B824300C9DDC9 /* file-xlt.icns */,
+				F0DA02002E5B824300C9DDC9 /* file-sxw.icns */,
+				F0DA03002E5B824300C9DDC9 /* file-stw.icns */,
+				F0DA04002E5B824300C9DDC9 /* file-sxc.icns */,
+				F0DA05002E5B824300C9DDC9 /* file-sxi.icns */,
+				F0DA06002E5B824300C9DDC9 /* file-wps.icns */,
+				F0DA07002E5B824300C9DDC9 /* file-wpt.icns */,
+				F0DA08002E5B824300C9DDC9 /* file-dps.icns */,
+				F0DA09002E5B824300C9DDC9 /* file-dpt.icns */,
 				5A54B9332D0353A8008FA596 /* file-vsdx.icns */,
 				5AB89E292CFD1441000972EF /* file-key.icns */,
 				5AB89E282CFD1441000972EF /* file-numbers.icns */,
@@ -1259,6 +1362,7 @@
 		FC29CD421F979946003F4136 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */,
 				F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */,
 				FCBC42771B9D650500405301 /* Main.storyboard */,
 				FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */,
@@ -1478,6 +1582,7 @@
 				FC09073D1C1855A400D9E881 /* editors */,
 				FC3B777A1BB28CE900DB9705 /* login */,
 				5AC461B72E4E12F600FD2689 /* license */,
+				5A0000002F0A00000000AA01 /* styles */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1593,6 +1698,8 @@
 		FCBC428E1B9D65CA00405301 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				F164E3302F582BC700CC8D45 /* ASCHeaderButton.h */,
+				F164E32F2F582BC700CC8D45 /* ASCHeaderButton.m */,
 				FCC77C88206CEE85001B7837 /* ASCTabs */,
 				FCC77C77206CEE5B001B7837 /* ASCButton.h */,
 				FCC77C75206CEE5B001B7837 /* ASCButton.m */,
@@ -1639,7 +1746,7 @@
 				FCC77C89206CEE85001B7837 /* ASCTabCloseButtonCell.h */,
 				FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */,
 				FCC77C8B206CEE85001B7837 /* ASCTabsControl.h */,
-				FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */,
+				FCC77C8C206CEE85001B7837 /* ASCTabsControl.mm */,
 				FCC77C8D206CEE85001B7837 /* ASCTabView.h */,
 				FCC77C8E206CEE85001B7837 /* ASCTabView.m */,
 				FCC77C8F206CEE85001B7837 /* ASCTabViewCell.h */,
@@ -1730,6 +1837,7 @@
 		FCF289722150E6A1002FD438 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F1CA1BB93002463900CB7ABD /* Upgrade */,
 				F10175902EAB739E00C6C1B8 /* License */,
 				F12F85D02EB6A38400370877 /* EditorWindow */,
 				FCF289742150E820002FD438 /* Common */,
@@ -1764,6 +1872,12 @@
 		FCF289742150E820002FD438 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F14E22E52FEE70C4004EC652 /* ASCAddonManager.mm */,
+				F14E22E42FEE70C4004EC652 /* ASCAddonManager.h */,
+				F14E22EF2FEE70C4004EC652 /* cdownloader.h */,
+				F14E22F02FEE70C4004EC652 /* cdownloader_mac.mm */,
+				F15DF4F32F58D0050014C037 /* ASCProviders.h */,
+				F15DF4F42F58D0050014C037 /* ASCProviders.m */,
 				FCA9A18E1BA6DC6000ABF3AB /* ASCCommonViewController.h */,
 				FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */,
 				FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */,
@@ -1997,7 +2111,6 @@
 				he,
 				"sq-AL",
 				"ur-PK",
-				ur,
 			);
 			mainGroup = FCBC425F1B9D650400405301;
 			productRefGroup = FCBC42691B9D650400405301 /* Products */;
@@ -2018,6 +2131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC461BA2E4E15E700FD2689 /* license in Resources */,
+				5A0000002F0A00000000AA03 /* styles in Resources */,
 				5AFA1CF3277A6DA600619952 /* file-oform.icns in Resources */,
 				FC0BD6C9258B63F700C47F95 /* file-otp.icns in Resources */,
 				FCB4C78026DD02960012C20D /* InfoPlist.strings in Resources */,
@@ -2028,6 +2142,15 @@
 				FC0BD6CC258B63F700C47F95 /* file-htm.icns in Resources */,
 				FC0BD6CD258B63F700C47F95 /* file-odt.icns in Resources */,
 				5AA2F5892D5B824300C9DDC9 /* file-hwp.icns in Resources */,
+				F0DB01012E5B824300C9DDC9 /* file-xlt.icns in Resources */,
+				F0DB02012E5B824300C9DDC9 /* file-sxw.icns in Resources */,
+				F0DB03012E5B824300C9DDC9 /* file-stw.icns in Resources */,
+				F0DB04012E5B824300C9DDC9 /* file-sxc.icns in Resources */,
+				F0DB05012E5B824300C9DDC9 /* file-sxi.icns in Resources */,
+				F0DB06012E5B824300C9DDC9 /* file-wps.icns in Resources */,
+				F0DB07012E5B824300C9DDC9 /* file-wpt.icns in Resources */,
+				F0DB08012E5B824300C9DDC9 /* file-dps.icns in Resources */,
+				F0DB09012E5B824300C9DDC9 /* file-dpt.icns in Resources */,
 				FC0BD6CE258B63F700C47F95 /* file-rtf.icns in Resources */,
 				FC0BD6CF258B63F700C47F95 /* file-odp.icns in Resources */,
 				FC0BD6D0258B63F700C47F95 /* file-pdf.icns in Resources */,
@@ -2060,6 +2183,7 @@
 				FC0BD6E4258B63F700C47F95 /* Images.xcassets in Resources */,
 				5AA2F5862D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2C2CFD1441000972EF /* file-pages.icns in Resources */,
+				F13726FE3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */,
 				5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */,
 				FC0BD6E5258B63F700C47F95 /* Localizable.strings in Resources */,
 				FC0BD6E6258B63F700C47F95 /* Localizable.stringsdict in Resources */,
@@ -2084,6 +2208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC461BB2E4E160D00FD2689 /* license in Resources */,
+				5A0000002F0A00000000AA04 /* styles in Resources */,
 				5AFA1CF4277A6DF100619952 /* file-docxf.icns in Resources */,
 				FCB4C70526DD018B0012C20D /* file-otp.icns in Resources */,
 				FCB4C77D26DD027B0012C20D /* InfoPlist.strings in Resources */,
@@ -2094,6 +2219,15 @@
 				FCB4C70826DD018B0012C20D /* file-htm.icns in Resources */,
 				5AB20F62274D360A003732A0 /* file-oform.icns in Resources */,
 				5AA2F5872D5B824300C9DDC9 /* file-hwp.icns in Resources */,
+				F0DB01022E5B824300C9DDC9 /* file-xlt.icns in Resources */,
+				F0DB02022E5B824300C9DDC9 /* file-sxw.icns in Resources */,
+				F0DB03022E5B824300C9DDC9 /* file-stw.icns in Resources */,
+				F0DB04022E5B824300C9DDC9 /* file-sxc.icns in Resources */,
+				F0DB05022E5B824300C9DDC9 /* file-sxi.icns in Resources */,
+				F0DB06022E5B824300C9DDC9 /* file-wps.icns in Resources */,
+				F0DB07022E5B824300C9DDC9 /* file-wpt.icns in Resources */,
+				F0DB08022E5B824300C9DDC9 /* file-dps.icns in Resources */,
+				F0DB09022E5B824300C9DDC9 /* file-dpt.icns in Resources */,
 				FCB4C70926DD018B0012C20D /* file-odt.icns in Resources */,
 				FCB4C70A26DD018B0012C20D /* file-rtf.icns in Resources */,
 				FCB4C70B26DD018B0012C20D /* file-odp.icns in Resources */,
@@ -2126,6 +2260,7 @@
 				FCB4C71E26DD018B0012C20D /* converter in Resources */,
 				5AA2F5842D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2A2CFD1441000972EF /* file-pages.icns in Resources */,
+				F13726FC3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */,
 				FCB4C71F26DD018B0012C20D /* file-ods.icns in Resources */,
 				FCB4C72026DD018B0012C20D /* Images.xcassets in Resources */,
 				FCB4C72126DD018B0012C20D /* Localizable.strings in Resources */,
@@ -2150,6 +2285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC461B92E4E141100FD2689 /* license in Resources */,
+				5A0000002F0A00000000AA02 /* styles in Resources */,
 				5AFA1CF2277A6D4C00619952 /* file-oform.icns in Resources */,
 				5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */,
 				FCA3F3092570EC9500DCAB12 /* file-otp.icns in Resources */,
@@ -2160,6 +2296,15 @@
 				FCA3F3102570EC9500DCAB12 /* file-epub.icns in Resources */,
 				FCA3F30F2570EC9500DCAB12 /* file-htm.icns in Resources */,
 				5AA2F5882D5B824300C9DDC9 /* file-hwp.icns in Resources */,
+				F0DB01032E5B824300C9DDC9 /* file-xlt.icns in Resources */,
+				F0DB02032E5B824300C9DDC9 /* file-sxw.icns in Resources */,
+				F0DB03032E5B824300C9DDC9 /* file-stw.icns in Resources */,
+				F0DB04032E5B824300C9DDC9 /* file-sxc.icns in Resources */,
+				F0DB05032E5B824300C9DDC9 /* file-sxi.icns in Resources */,
+				F0DB06032E5B824300C9DDC9 /* file-wps.icns in Resources */,
+				F0DB07032E5B824300C9DDC9 /* file-wpt.icns in Resources */,
+				F0DB08032E5B824300C9DDC9 /* file-dps.icns in Resources */,
+				F0DB09032E5B824300C9DDC9 /* file-dpt.icns in Resources */,
 				FC98AF231E94E16A00718A12 /* file-odt.icns in Resources */,
 				FC98AF351E94E16A00718A12 /* file-rtf.icns in Resources */,
 				FC98AF1D1E94E16A00718A12 /* file-odp.icns in Resources */,
@@ -2192,6 +2337,7 @@
 				FC0907411C186A7A00D9E881 /* converter in Resources */,
 				5AA2F5852D5B824300C9DDC9 /* file-hwpx.icns in Resources */,
 				5AB89E2B2CFD1441000972EF /* file-pages.icns in Resources */,
+				F13726FD3000DECB00AFF4FE /* Upgrade-Dialog.storyboard in Resources */,
 				FC98AF201E94E16A00718A12 /* file-ods.icns in Resources */,
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
 				FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */,
@@ -2226,7 +2372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/${OO_BRANDING}/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/addon.html\" \"${DST_DIR}/login/addon.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n\n# Copy some more resources\ncp -vR \"${BASE_DIR}/../common/converter/onlyoffice-docs-formats.json\" \"${DST_DIR}/converter/onlyoffice-docs-formats.json\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC0BD6F6258B63F700C47F95 /* Rename symbols */ = {
@@ -2245,7 +2391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Sign libs in directory\nsign_libs_in_directory() {\n    for i in $1/*.framework; do\n        [ -d \"$i\" ] || break\n        code_sign_if_enabled \"$i/Versions/Current\"\n    done\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/ascdocumentscore.framework\"\n#rm -rf \"${frameworks_path}/ooxmlsignature.framework\"\nrm -rf \"${frameworks_path}/hunspell.framework\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/ascdocumentscore.framework\" \"${frameworks_path}\"\n#cp -Rv \"${core_path}/ooxmlsignature.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/hunspell.framework\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\n#code_sign_if_enabled \"${frameworks_path}/ooxmlsignature.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/ascdocumentscore.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/hunspell.framework/Versions/Current\"\n\nsign_libs_in_directory ${converter_path}\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Autoupdate\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc/Contents/MacOS/org.sparkle-project.Downloader\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/org.sparkle-project.InstallerLauncher\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/${OO_BRANDING}/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Sign libs in directory\nsign_libs_in_directory() {\n    for i in $1/*.framework; do\n        [ -d \"$i\" ] || break\n        code_sign_if_enabled \"$i/Versions/Current\"\n    done\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/ascdocumentscore.framework\"\n#rm -rf \"${frameworks_path}/ooxmlsignature.framework\"\nrm -rf \"${frameworks_path}/hunspell.framework\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/ascdocumentscore.framework\" \"${frameworks_path}\"\n#cp -Rv \"${core_path}/ooxmlsignature.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/hunspell.framework\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\n#code_sign_if_enabled \"${frameworks_path}/ooxmlsignature.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/ascdocumentscore.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/hunspell.framework/Versions/Current\"\n\nsign_libs_in_directory ${converter_path}\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\n# Sign desktop-sdk-plugins (all frameworks and executables, recursively)\nplugins_path=\"${contents_path}/Resources/editors/desktop-sdk-plugins\"\nif [ -d \"${plugins_path}\" ]; then\n  echo \"Sign desktop-sdk-plugins in ${plugins_path}\"\n\n  # Executables and dylibs outside of frameworks\n  find \"${plugins_path}\" -type f ! -path \"*.framework/*\" | while IFS= read -r f; do\n    if file \"$f\" | grep -q \"Mach-O\"; then\n      if file \"$f\" | grep -q \"shared library\"; then\n        codesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"$f\"\n      else\n        codesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"$f\"\n      fi\n    fi\n  done\n\n  # Frameworks (deepest first, so nested frameworks are signed before their parents)\n  find \"${plugins_path}\" -type d -name \"*.framework\" | awk '{ print length($0), $0 }' | sort -rn | cut -d\" \" -f2- | while IFS= read -r fw; do\n    if [ -d \"${fw}/Versions/Current\" ]; then\n      code_sign_if_enabled \"${fw}/Versions/Current\"\n    else\n      code_sign_if_enabled \"${fw}\"\n    fi\n  done\nfi\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Autoupdate\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc/Contents/MacOS/org.sparkle-project.Downloader\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/org.sparkle-project.InstallerLauncher\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC0BD6F7258B63F700C47F95 /* Increment Build Number */ = {
@@ -2282,7 +2428,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Sign libs in directory\nsign_libs_in_directory() {\n    for i in $1/*.framework; do\n        [ -d \"$i\" ] || break\n        code_sign_if_enabled \"$i/Versions/Current\"\n    done\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/ascdocumentscore.framework\"\n#rm -rf \"${frameworks_path}/ooxmlsignature.framework\"\nrm -rf \"${frameworks_path}/hunspell.framework\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/ascdocumentscore.framework\" \"${frameworks_path}\"\n#cp -Rv \"${core_path}/ooxmlsignature.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/hunspell.framework\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\n#code_sign_if_enabled \"${frameworks_path}/ooxmlsignature.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/ascdocumentscore.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/hunspell.framework/Versions/Current\"\n\nsign_libs_in_directory \"${converter_path}\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Autoupdate\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc/Contents/MacOS/org.sparkle-project.Downloader\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/org.sparkle-project.InstallerLauncher\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/${OO_BRANDING}/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Sign libs in directory\nsign_libs_in_directory() {\n    for i in $1/*.framework; do\n        [ -d \"$i\" ] || break\n        code_sign_if_enabled \"$i/Versions/Current\"\n    done\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/ascdocumentscore.framework\"\n#rm -rf \"${frameworks_path}/ooxmlsignature.framework\"\nrm -rf \"${frameworks_path}/hunspell.framework\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/ascdocumentscore.framework\" \"${frameworks_path}\"\n#cp -Rv \"${core_path}/ooxmlsignature.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/hunspell.framework\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\n#code_sign_if_enabled \"${frameworks_path}/ooxmlsignature.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/ascdocumentscore.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/hunspell.framework/Versions/Current\"\n\nsign_libs_in_directory \"${converter_path}\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\n# Sign desktop-sdk-plugins (all frameworks and executables, recursively)\nplugins_path=\"${contents_path}/Resources/editors/desktop-sdk-plugins\"\nif [ -d \"${plugins_path}\" ]; then\n  echo \"Sign desktop-sdk-plugins in ${plugins_path}\"\n\n  # Executables and dylibs outside of frameworks\n  find \"${plugins_path}\" -type f ! -path \"*.framework/*\" | while IFS= read -r f; do\n    if file \"$f\" | grep -q \"Mach-O\"; then\n      if file \"$f\" | grep -q \"shared library\"; then\n        codesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"$f\"\n      else\n        codesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"$f\"\n      fi\n    fi\n  done\n\n  # Frameworks (deepest first, so nested frameworks are signed before their parents)\n  find \"${plugins_path}\" -type d -name \"*.framework\" | awk '{ print length($0), $0 }' | sort -rn | cut -d\" \" -f2- | while IFS= read -r fw; do\n    if [ -d \"${fw}/Versions/Current\" ]; then\n      code_sign_if_enabled \"${fw}/Versions/Current\"\n    else\n      code_sign_if_enabled \"${fw}\"\n    fi\n  done\nfi\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Autoupdate\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc/Contents/MacOS/org.sparkle-project.Downloader\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/org.sparkle-project.InstallerLauncher\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
@@ -2297,7 +2443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\nrsync -av \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/${OO_BRANDING}/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/addon.html\" \"${DST_DIR}/login/addon.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\nrsync -av \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n\n# Copy some more resources\ncp -vR \"${BASE_DIR}/../common/converter/onlyoffice-docs-formats.json\" \"${DST_DIR}/converter/onlyoffice-docs-formats.json\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C6BB26DD018B0012C20D /* Copy Library */ = {
@@ -2312,7 +2458,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_arm64/${OO_BRANDING}/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/addon.html\" \"${DST_DIR}/login/addon.html\"\ncp -vR \"${SRC_BASE_DIR}/editors/webext/noconnect.html\" \"${DST_DIR}/login/noconnect.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n[ ! -d \"${DST_DIR}/license\" ] && mkdir -p \"${DST_DIR}/license\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n\n# Copy some more resources\ncp -vR \"${BASE_DIR}/../common/converter/onlyoffice-docs-formats.json\" \"${DST_DIR}/converter/onlyoffice-docs-formats.json\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C73226DD018B0012C20D /* Rename symbols */ = {
@@ -2331,7 +2477,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Sign libs in directory\nsign_libs_in_directory() {\n    for i in $1/*.framework; do\n        [ -d \"$i\" ] || break\n        code_sign_if_enabled \"$i/Versions/Current\"\n    done\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/ascdocumentscore.framework\"\n#rm -rf \"${frameworks_path}/ooxmlsignature.framework\"\nrm -rf \"${frameworks_path}/hunspell.framework\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/ascdocumentscore.framework\" \"${frameworks_path}\"\n#cp -Rv \"${core_path}/ooxmlsignature.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/hunspell.framework\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\n#code_sign_if_enabled \"${frameworks_path}/ooxmlsignature.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/ascdocumentscore.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/hunspell.framework/Versions/Current\"\n\nsign_libs_in_directory ${converter_path}\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Autoupdate\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc/Contents/MacOS/org.sparkle-project.Downloader\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/org.sparkle-project.InstallerLauncher\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_arm64/${OO_BRANDING}/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Sign libs in directory\nsign_libs_in_directory() {\n    for i in $1/*.framework; do\n        [ -d \"$i\" ] || break\n        code_sign_if_enabled \"$i/Versions/Current\"\n    done\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/ascdocumentscore.framework\"\n#rm -rf \"${frameworks_path}/ooxmlsignature.framework\"\nrm -rf \"${frameworks_path}/hunspell.framework\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/ascdocumentscore.framework\" \"${frameworks_path}\"\n#cp -Rv \"${core_path}/ooxmlsignature.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/hunspell.framework\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\n#code_sign_if_enabled \"${frameworks_path}/ooxmlsignature.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/ascdocumentscore.framework/Versions/Current\"\ncode_sign_if_enabled \"${frameworks_path}/hunspell.framework/Versions/Current\"\n\nsign_libs_in_directory ${converter_path}\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\n# Sign desktop-sdk-plugins (all frameworks and executables, recursively)\nplugins_path=\"${contents_path}/Resources/editors/desktop-sdk-plugins\"\nif [ -d \"${plugins_path}\" ]; then\n  echo \"Sign desktop-sdk-plugins in ${plugins_path}\"\n\n  # Executables and dylibs outside of frameworks\n  find \"${plugins_path}\" -type f ! -path \"*.framework/*\" | while IFS= read -r f; do\n    if file \"$f\" | grep -q \"Mach-O\"; then\n      if file \"$f\" | grep -q \"shared library\"; then\n        codesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"$f\"\n      else\n        codesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"$f\"\n      fi\n    fi\n  done\n\n  # Frameworks (deepest first, so nested frameworks are signed before their parents)\n  find \"${plugins_path}\" -type d -name \"*.framework\" | awk '{ print length($0), $0 }' | sort -rn | cut -d\" \" -f2- | while IFS= read -r fw; do\n    if [ -d \"${fw}/Versions/Current\" ]; then\n      code_sign_if_enabled \"${fw}/Versions/Current\"\n    else\n      code_sign_if_enabled \"${fw}\"\n    fi\n  done\nfi\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/Autoupdate\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc/Contents/MacOS/org.sparkle-project.Downloader\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/org.sparkle-project.InstallerLauncher\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/B\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C73326DD018B0012C20D /* Increment Build Number */ = {
@@ -2399,11 +2545,13 @@
 				FC0BD68A258B63F700C47F95 /* ASCSavePanelWithFormatController.m in Sources */,
 				FC0BD68B258B63F700C47F95 /* ASCCommonViewController.mm in Sources */,
 				FC0BD68C258B63F700C47F95 /* AnalyticsEvent.m in Sources */,
+				F1CA1BB83002427F00CB7ABD /* ASCUpgradeController.mm in Sources */,
 				FC0BD68D258B63F700C47F95 /* ASCTitleWindowController.mm in Sources */,
 				FC0BD68E258B63F700C47F95 /* NSDictionary+Extensions.m in Sources */,
 				F12F85D52EB6A38400370877 /* ASCEditorWindowController.mm in Sources */,
 				FC0BD68F258B63F700C47F95 /* ASCExternalController.m in Sources */,
 				FC0BD690258B63F700C47F95 /* PFMoveApplication.m in Sources */,
+				F15DF4F72F58D0050014C037 /* ASCProviders.m in Sources */,
 				FC0BD691258B63F700C47F95 /* ASCBlockHolder.m in Sources */,
 				FC0BD692258B63F700C47F95 /* ASCTabView.m in Sources */,
 				5A9D7AEA2893D86D0069EE5A /* ASCEditorJSVariables.mm in Sources */,
@@ -2419,6 +2567,8 @@
 				FC2C43A225D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FC0BD69B258B63F700C47F95 /* ASCTouchBarController.m in Sources */,
 				FC0BD69C258B63F700C47F95 /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E82FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F32FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FC0BD69D258B63F700C47F95 /* AnalyticsHelper.m in Sources */,
 				FC2C43B125D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */,
 				FC0BD69E258B63F700C47F95 /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2427,7 +2577,7 @@
 				FC0BD6A0258B63F700C47F95 /* ASCDocumentSignatureController.m in Sources */,
 				FC0BD6A1258B63F700C47F95 /* ASCPopoverLightView.m in Sources */,
 				FC0BD6A2258B63F700C47F95 /* NSCefView.mm in Sources */,
-				FC0BD6A3258B63F700C47F95 /* ASCTabsControl.m in Sources */,
+				FC0BD6A3258B63F700C47F95 /* ASCTabsControl.mm in Sources */,
 				FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.mm in Sources */,
 				FC0BD6A5258B63F700C47F95 /* SFBPopover.m in Sources */,
 				FC0BD6A6258B63F700C47F95 /* ASCEventsController.mm in Sources */,
@@ -2453,6 +2603,7 @@
 				FC0BD6B6258B63F700C47F95 /* ASCDownloadViewController.m in Sources */,
 				FC0BD6B7258B63F700C47F95 /* ASCTitleWindow.m in Sources */,
 				FC0BD6B8258B63F700C47F95 /* ASCTitleBackground.m in Sources */,
+				F12129712F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */,
 				FC0BD6B9258B63F700C47F95 /* ASCConstants.m in Sources */,
 				FC0BD6BA258B63F700C47F95 /* GTMNSString+HTML.m in Sources */,
 				5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */,
@@ -2461,6 +2612,7 @@
 				FC0BD6BD258B63F700C47F95 /* NSAlert+SynchronousSheet.m in Sources */,
 				FC0BD6BE258B63F700C47F95 /* NSArray+PureLayout.m in Sources */,
 				FC0BD6BF258B63F700C47F95 /* SFBPopoverWindowFrame.m in Sources */,
+				F164E3332F582BC700CC8D45 /* ASCHeaderButton.m in Sources */,
 				FC0BD6C0258B63F700C47F95 /* ASCTabViewCell.m in Sources */,
 				F15C17342EBCA75000D266C7 /* NSCefData.mm in Sources */,
 				FC0BD6C1258B63F700C47F95 /* ASCReplacePresentationAnimator.mm in Sources */,
@@ -2478,11 +2630,13 @@
 				FCB4C6C126DD018B0012C20D /* ASCSavePanelWithFormatController.m in Sources */,
 				FCB4C6C226DD018B0012C20D /* ASCCommonViewController.mm in Sources */,
 				FCB4C6C326DD018B0012C20D /* AnalyticsEvent.m in Sources */,
+				F1CA1BB63002427F00CB7ABD /* ASCUpgradeController.mm in Sources */,
 				FCB4C6C426DD018B0012C20D /* ASCTitleWindowController.mm in Sources */,
 				FCB4C6C526DD018B0012C20D /* NSDictionary+Extensions.m in Sources */,
 				F12F85D32EB6A38400370877 /* ASCEditorWindowController.mm in Sources */,
 				FCB4C6C626DD018B0012C20D /* ASCExternalController.m in Sources */,
 				FCB4C6C726DD018B0012C20D /* PFMoveApplication.m in Sources */,
+				F15DF4F52F58D0050014C037 /* ASCProviders.m in Sources */,
 				FCB4C6C826DD018B0012C20D /* ASCBlockHolder.m in Sources */,
 				FCB4C6C926DD018B0012C20D /* ASCTabView.m in Sources */,
 				5A9D7AE8289336130069EE5A /* ASCEditorJSVariables.mm in Sources */,
@@ -2498,6 +2652,8 @@
 				FCB4C6D226DD018B0012C20D /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FCB4C6D326DD018B0012C20D /* ASCTouchBarController.m in Sources */,
 				FCB4C6D426DD018B0012C20D /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E62FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F12FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FCB4C6D526DD018B0012C20D /* AnalyticsHelper.m in Sources */,
 				FCB4C6D626DD018B0012C20D /* ASCCertificateQLPreviewController.m in Sources */,
 				FCB4C6D726DD018B0012C20D /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2506,7 +2662,7 @@
 				FCB4C6D926DD018B0012C20D /* ASCDocumentSignatureController.m in Sources */,
 				FCB4C6DA26DD018B0012C20D /* ASCPopoverLightView.m in Sources */,
 				FCB4C6DB26DD018B0012C20D /* NSCefView.mm in Sources */,
-				FCB4C6DC26DD018B0012C20D /* ASCTabsControl.m in Sources */,
+				FCB4C6DC26DD018B0012C20D /* ASCTabsControl.mm in Sources */,
 				FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.mm in Sources */,
 				FCB4C6DE26DD018B0012C20D /* SFBPopover.m in Sources */,
 				FCB4C6DF26DD018B0012C20D /* ASCEventsController.mm in Sources */,
@@ -2532,6 +2688,7 @@
 				FCB4C6F226DD018B0012C20D /* ASCDownloadViewController.m in Sources */,
 				FCB4C6F326DD018B0012C20D /* ASCTitleWindow.m in Sources */,
 				FCB4C6F426DD018B0012C20D /* ASCTitleBackground.m in Sources */,
+				F121296F2F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */,
 				FCB4C6F526DD018B0012C20D /* ASCConstants.m in Sources */,
 				FCB4C6F626DD018B0012C20D /* GTMNSString+HTML.m in Sources */,
 				5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */,
@@ -2540,6 +2697,7 @@
 				FCB4C6F926DD018B0012C20D /* NSAlert+SynchronousSheet.m in Sources */,
 				FCB4C6FA26DD018B0012C20D /* NSArray+PureLayout.m in Sources */,
 				FCB4C6FB26DD018B0012C20D /* SFBPopoverWindowFrame.m in Sources */,
+				F164E3312F582BC700CC8D45 /* ASCHeaderButton.m in Sources */,
 				FCB4C6FC26DD018B0012C20D /* ASCTabViewCell.m in Sources */,
 				F15C17322EBCA75000D266C7 /* NSCefData.mm in Sources */,
 				FCB4C6FD26DD018B0012C20D /* ASCReplacePresentationAnimator.mm in Sources */,
@@ -2557,11 +2715,13 @@
 				FCC77C7C206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */,
 				FCA9A1901BA6DC6000ABF3AB /* ASCCommonViewController.mm in Sources */,
 				FCFE61E21CAD02D4000D2418 /* AnalyticsEvent.m in Sources */,
+				F1CA1BB73002427F00CB7ABD /* ASCUpgradeController.mm in Sources */,
 				FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */,
 				FC64391B21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */,
 				F12F85D42EB6A38400370877 /* ASCEditorWindowController.mm in Sources */,
 				FCF2898121510C16002FD438 /* ASCExternalController.m in Sources */,
 				FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
+				F15DF4F62F58D0050014C037 /* ASCProviders.m in Sources */,
 				FCCC2FD721E5DF7700FB9209 /* ASCBlockHolder.m in Sources */,
 				FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */,
 				5A9D7AE92893D86C0069EE5A /* ASCEditorJSVariables.mm in Sources */,
@@ -2577,6 +2737,8 @@
 				FC2C43A125D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FCCC2FE621E5E1CA00FB9209 /* ASCTouchBarController.m in Sources */,
 				FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
+				F14E22E72FEE70C4004EC652 /* ASCAddonManager.mm in Sources */,
+				F14E22F22FEE70C4004EC652 /* cdownloader_mac.mm in Sources */,
 				FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FC2C43B025D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */,
 				FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -2585,7 +2747,7 @@
 				FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
-				FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */,
+				FCC77C94206CEE85001B7837 /* ASCTabsControl.mm in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.mm in Sources */,
 				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
 				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
@@ -2611,6 +2773,7 @@
 				FCAA9A441BBA817B00F3C47F /* ASCDownloadViewController.m in Sources */,
 				FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */,
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
+				F12129702F36360C00BFB54F /* ASCEditorTitleBarController.m in Sources */,
 				FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
 				5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */,
@@ -2619,6 +2782,7 @@
 				FCC77C5D206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
 				FCE7D16C207D002700642010 /* NSArray+PureLayout.m in Sources */,
 				FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */,
+				F164E3322F582BC700CC8D45 /* ASCHeaderButton.m in Sources */,
 				FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */,
 				F15C17332EBCA75000D266C7 /* NSCefData.mm in Sources */,
 				FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */,
@@ -2628,6 +2792,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F13726FA3000DECB00AFF4FE /* Upgrade-Dialog.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F13726FB3000DECB00AFF4FE /* Base */,
+			);
+			name = "Upgrade-Dialog.storyboard";
+			sourceTree = "<group>";
+		};
 		F1376CA22EF581FA00EC5E08 /* Separate-Editor.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2685,7 +2857,7 @@
 				5A02293F2C7770E00011C6EC /* en-GB */,
 				5A0229482CAC14940011C6EC /* he */,
 				5AC644242D36901A00145A90 /* sq-AL */,
-				5AA2F58F2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58F2DC16E7E00C9DDC9 /* ur-PK */,
 			);
 			name = "Presentation-Reporter.storyboard";
 			sourceTree = "<group>";
@@ -2739,7 +2911,7 @@
 				5A02293E2C7770E00011C6EC /* en-GB */,
 				5A0229472CAC14940011C6EC /* he */,
 				5AC644232D36901A00145A90 /* sq-AL */,
-				5AA2F58E2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58E2DC16E7E00C9DDC9 /* ur-PK */,
 			);
 			name = MoveApplication.strings;
 			sourceTree = "<group>";
@@ -2790,7 +2962,10 @@
 				5A0229422C7770E00011C6EC /* en-GB */,
 				5A02294B2CAC14940011C6EC /* he */,
 				5AC644272D36901A00145A90 /* sq-AL */,
-				5AA2F5922DC16E7E00C9DDC9 /* ur */,
+				5AA2F5922DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88E02FE010FF0012CF8E /* ga-IE */,
+				F1D31B222FE03FD9000B9112 /* nb */,
+				F1D31B302FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2841,7 +3016,10 @@
 				5A0229412C7770E00011C6EC /* en-GB */,
 				5A02294A2CAC14940011C6EC /* he */,
 				5AC644262D36901A00145A90 /* sq-AL */,
-				5AA2F5912DC16E7E00C9DDC9 /* ur */,
+				5AA2F5912DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DF2FE010FF0012CF8E /* ga-IE */,
+				F1D31B212FE03FD9000B9112 /* nb */,
+				F1D31B2F2FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2893,7 +3071,9 @@
 				5A0229402C7770E00011C6EC /* en-GB */,
 				5A0229492CAC14940011C6EC /* he */,
 				5AC644252D36901A00145A90 /* sq-AL */,
-				5AA2F5902DC16E7E00C9DDC9 /* ur */,
+				5AA2F5902DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DE2FE010FF0012CF8E /* ga-IE */,
+				F1D31B2E2FE0438B000B9112 /* zh-Hant-TW */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2947,7 +3127,8 @@
 				5A02293D2C7770E00011C6EC /* en-GB */,
 				5A0229462CAC14940011C6EC /* he */,
 				5AC644222D36901A00145A90 /* sq-AL */,
-				5AA2F58D2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58D2DC16E7E00C9DDC9 /* ur-PK */,
+				F1EB88DB2FE00FF80012CF8E /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -3001,7 +3182,7 @@
 				5A02293C2C7770E00011C6EC /* en-GB */,
 				5A0229452CAC14940011C6EC /* he */,
 				5AC644212D36901900145A90 /* sq-AL */,
-				5AA2F58C2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58C2DC16E7E00C9DDC9 /* ur-PK */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -3110,7 +3291,7 @@
 				5A02293B2C7770E00011C6EC /* en-GB */,
 				5A0229442CAC14940011C6EC /* he */,
 				5AC644202D36901900145A90 /* sq-AL */,
-				5AA2F58B2DC16E7E00C9DDC9 /* ur */,
+				5AA2F58B2DC16E7E00C9DDC9 /* ur-PK */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3132,8 +3313,8 @@
 				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors/converter",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors/converter",
 					"$(PROJECT_DIR)/ONLYOFFICE",
 					"$(PROJECT_DIR)/Vendor/Sparkle",
 					"$(PROJECT_DIR)/../../core/DesktopEditor/xmlsec/src/include",
@@ -3143,12 +3324,14 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_V8_VERSION,
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-v8/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "";
@@ -3177,8 +3360,8 @@
 				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors/converter",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors/converter",
 					"$(PROJECT_DIR)/ONLYOFFICE",
 					"$(PROJECT_DIR)/Vendor/Sparkle",
 					"$(PROJECT_DIR)/../../core/DesktopEditor/xmlsec/src/include",
@@ -3189,12 +3372,14 @@
 					_PRODUCT_ONLYOFFICE,
 					_V8_VERSION,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-v8/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "";
@@ -3223,8 +3408,8 @@
 				EXCLUDED_ARCHS = x86_64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/converter",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/$(OO_BRANDING)/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/$(OO_BRANDING)/desktopeditors/converter",
 					"$(PROJECT_DIR)/ONLYOFFICE",
 					"$(PROJECT_DIR)/Vendor/Sparkle",
 					"$(PROJECT_DIR)/../../core/DesktopEditor/xmlsec/src/include",
@@ -3235,12 +3420,14 @@
 					_PRODUCT_ONLYOFFICE,
 					_ARM_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-arm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/$(OO_BRANDING)/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CODE_SIGN_FLAGS = "";
@@ -3269,8 +3456,8 @@
 				EXCLUDED_ARCHS = x86_64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors/converter",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/$(OO_BRANDING)/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/$(OO_BRANDING)/desktopeditors/converter",
 					"$(PROJECT_DIR)/ONLYOFFICE",
 					"$(PROJECT_DIR)/Vendor/Sparkle",
 					"$(PROJECT_DIR)/../../core/DesktopEditor/xmlsec/src/include",
@@ -3281,12 +3468,14 @@
 					_PRODUCT_ONLYOFFICE,
 					_ARM_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-arm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_arm64/$(OO_BRANDING)/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CODE_SIGN_FLAGS = "";
@@ -3340,6 +3529,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OO_BRANDING = onlyoffice;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -3377,6 +3567,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OO_BRANDING = onlyoffice;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -3395,8 +3586,8 @@
 				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors/converter",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors/converter",
 					"$(PROJECT_DIR)/ONLYOFFICE",
 					"$(PROJECT_DIR)/Vendor/Sparkle",
 					"$(PROJECT_DIR)/../../core/DesktopEditor/xmlsec/src/include",
@@ -3407,12 +3598,14 @@
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_CODE_SIGN_FLAGS = "";
@@ -3441,8 +3634,8 @@
 				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors/converter",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors/converter",
 					"$(PROJECT_DIR)/ONLYOFFICE",
 					"$(PROJECT_DIR)/Vendor/Sparkle",
 					"$(PROJECT_DIR)/../../core/DesktopEditor/xmlsec/src/include",
@@ -3453,12 +3646,14 @@
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
 					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
+					"URL_APPCAST_UPDATES=\\@\\\"$(URL_APPCAST_UPDATES)\\\"",
+					"URL_APPCAST_DEV_CHANNEL=\\@\\\"$(URL_APPCAST_DEV_CHANNEL)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
+					"$(PROJECT_DIR)/../../build_tools/out/mac_64/$(OO_BRANDING)/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_CODE_SIGN_FLAGS = "";

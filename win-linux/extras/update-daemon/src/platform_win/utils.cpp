@@ -54,7 +54,7 @@
 #include "../../src/prop/defines_p.h"
 
 #define BUFSIZE 1024
-
+#define DEFAULT_LICENSE_NAME_SHORT L"GNU AGPL V3"
 
 static DWORD GetActiveSessionId()
 {
@@ -218,6 +218,30 @@ namespace NS_Utils
             RegCloseKey(hKey);
         }
         return lang;
+    }
+
+    bool IsCommunityEdition(const wstring &basePath)
+    {
+        auto matches = NS_File::findFilesByPattern(basePath, L"EULA.*");
+        if (matches.empty()) return true;
+
+        wstring licPath = NS_File::fromNativeSeparators(basePath) + matches.at(0);
+        std::wifstream file(licPath.c_str(), std::ios::in);
+        if (!file.is_open()) return true;
+
+        wstring line;
+        while (std::getline(file, line))
+        {
+            size_t start = line.find_first_not_of(L" \t\r\n");
+            if (start == std::wstring::npos) continue;
+
+            size_t end = line.find_last_not_of(L" \t\r\n");
+            wstring trimmed = line.substr(start, end - start + 1);
+
+            std::transform(trimmed.begin(), trimmed.end(), trimmed.begin(), towupper);
+            return (trimmed.find(DEFAULT_LICENSE_NAME_SHORT) != std::wstring::npos);
+        }
+        return true;
     }
 }
 

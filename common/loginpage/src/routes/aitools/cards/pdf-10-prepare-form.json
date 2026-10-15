@@ -1,0 +1,242 @@
+{
+  "id": "prepare-form",
+  "group": "pdf",
+  "prompt": "Please create fillable form fields in the attached PDF document. Identify appropriate places for text fields, checkboxes, dropdowns, and signature fields.",
+  "locale": {
+    "en": {
+      "title": "Prepare Form",
+      "description": "Create fillable fields in a PDF form",
+      "usertext": "Select a PDF file to create fillable form fields (text, checkboxes, dropdowns, signature)"
+    },
+    "ar-SA": {
+      "title": "إعداد النموذج",
+      "description": "إنشاء حقول قابلة للتعبئة في نموذج PDF",
+      "usertext": "اختر ملف PDF لإنشاء حقول نموذج قابلة للتعبئة (نص، مربعات اختيار، قوائم منسدلة، توقيع)"
+    },
+    "be": {
+      "title": "Падрыхтаваць форму",
+      "description": "Стварыць запаўняльныя палі ў форме PDF",
+      "usertext": "Выберыце файл PDF для стварэння запаўняльных палёў формы (тэкст, сцяжкі, выпадныя спісы, подпіс)"
+    },
+    "bg": {
+      "title": "Подготовка на формуляр",
+      "description": "Създаване на попълваеми полета в PDF формуляр",
+      "usertext": "Изберете PDF файл за създаване на попълваеми полета на формуляр (текст, квадратчета за отметка, падащи менюта, подпис)"
+    },
+    "ca": {
+      "title": "Preparar formulari",
+      "description": "Crear camps emplenables en un formulari PDF",
+      "usertext": "Seleccioneu un fitxer PDF per crear camps de formulari emplenables (text, caselles de selecció, llistes desplegables, signatura)"
+    },
+    "cs": {
+      "title": "Připravit formulář",
+      "description": "Vytvořit vyplnitelná pole ve formuláři PDF",
+      "usertext": "Vyberte soubor PDF, ve kterém chcete vytvořit vyplnitelná pole formuláře (text, zaškrtávací políčka, rozevírací seznamy, podpis)"
+    },
+    "da": {
+      "title": "Forbered formular",
+      "description": "Opret udfyldbare felter i en PDF-formular",
+      "usertext": "Vælg en PDF-fil for at oprette udfyldbare formularfelter (tekst, afkrydsningsfelter, rullelister, underskrift)"
+    },
+    "de": {
+      "title": "Formular vorbereiten",
+      "description": "Ausfüllbare Felder in einem PDF-Formular erstellen",
+      "usertext": "Wählen Sie eine PDF-Datei, um ausfüllbare Formularfelder zu erstellen (Text, Kontrollkästchen, Dropdowns, Unterschrift)"
+    },
+    "el": {
+      "title": "Προετοιμασία φόρμας",
+      "description": "Δημιουργία πεδίων συμπλήρωσης σε φόρμα PDF",
+      "usertext": "Επιλέξτε ένα αρχείο PDF για δημιουργία συμπληρώσιμων πεδίων φόρμας (κείμενο, πλαίσια ελέγχου, αναπτυσσόμενες λίστες, υπογραφή)"
+    },
+    "en-GB": {
+      "title": "Prepare Form",
+      "description": "Create fillable fields in a PDF form",
+      "usertext": "Select a PDF file to create fillable form fields (text, checkboxes, dropdowns, signature)"
+    },
+    "es": {
+      "title": "Preparar formulario",
+      "description": "Crear campos rellenables en un formulario PDF",
+      "usertext": "Seleccione un archivo PDF para crear campos de formulario rellenables (texto, casillas de verificación, listas desplegables, firma)"
+    },
+    "et": {
+      "title": "Vormi ettevalmistamine",
+      "description": "Täidetavate väljade loomine PDF-vormis",
+      "usertext": "Valige PDF-fail täidetavate vormipollade loomiseks (tekst, märkeruudud, rippmenüüd, allkiri)"
+    },
+    "fi": {
+      "title": "Valmistele lomake",
+      "description": "Luo täytettäviä kenttiä PDF-lomakkeeseen",
+      "usertext": "Valitse PDF-tiedosto täytettävien lomakekenttien luomiseksi (teksti, valintaruudut, pudotusvalikot, allekirjoitus)"
+    },
+    "fr": {
+      "title": "Préparer le formulaire",
+      "description": "Créer des champs remplissables dans un formulaire PDF",
+      "usertext": "Sélectionnez un fichier PDF pour créer des champs de formulaire remplissables (texte, cases à cocher, listes déroulantes, signature)"
+    },
+    "ga": {
+      "title": "Foirm a Ullmhú",
+      "description": "Cruthaigh réimsí inlíonta i bhfoirm PDF",
+      "usertext": "Roghnaigh comhad PDF chun réimsí foirme inlíonta a chruthú (téacs, ticbhoscaí, anuas-liostaí, síniú)"
+    },
+    "gl": {
+      "title": "Preparar formulario",
+      "description": "Crear campos que se poidan encher nun formulario PDF",
+      "usertext": "Seleccione un ficheiro PDF para crear campos de formulario que se poidan encher (texto, caixas de verificación, listas despregables, sinatura)"
+    },
+    "he": {
+      "title": "הכנת טופס",
+      "description": "צור שדות למילוי בטופס PDF",
+      "usertext": "בחר קובץ PDF ליצירת שדות טופס הניתנים למילוי (טקסט, תיבות סימון, רשימות נפתחות, חתימה)"
+    },
+    "hi": {
+      "title": "फ़ॉर्म तैयार करें",
+      "description": "PDF फ़ॉर्म में भरने योग्य फ़ील्ड बनाएं",
+      "usertext": "भरने योग्य फ़ॉर्म फ़ील्ड बनाने के लिए एक PDF फ़ाइल चुनें (पाठ, चेकबॉक्स, ड्रॉपडाउन, हस्ताक्षर)"
+    },
+    "hr": {
+      "title": "Pripremi obrazac",
+      "description": "Stvori polja za ispunjavanje u PDF obrascu",
+      "usertext": "Odaberite PDF datoteku za stvaranje polja obrasca za ispunjavanje (tekst, potvrdni okviri, padajući izbornici, potpis)"
+    },
+    "hu": {
+      "title": "Űrlap előkészítése",
+      "description": "Kitölthető mezők létrehozása PDF-űrlapban",
+      "usertext": "Válasszon PDF-fájlt kitölthető űrlapmezők létrehozásához (szöveg, jelölőnégyzetek, legördülő listák, aláírás)"
+    },
+    "hy": {
+      "title": "Ձևաթղթի պատրաստում",
+      "description": "Լրացվող դաշտերի ստեղծում PDF ձևաթղթում",
+      "usertext": "Ընտրեք PDF ֆայլ՝ լրացվող ձևաթղթի դաշտեր ստեղծելու համար (տեքստ, վանդակներ, բացվող ցանկեր, ստորագրություն)"
+    },
+    "it": {
+      "title": "Prepara modulo",
+      "description": "Crea campi compilabili in un modulo PDF",
+      "usertext": "Seleziona un file PDF per creare campi modulo compilabili (testo, caselle di controllo, menu a discesa, firma)"
+    },
+    "ja": {
+      "title": "フォームを準備",
+      "description": "PDFフォームに入力可能なフィールドを作成",
+      "usertext": "入力可能なフォームフィールドを作成するPDFファイルを選択してください（テキスト、チェックボックス、ドロップダウン、署名）"
+    },
+    "ko": {
+      "title": "양식 준비",
+      "description": "PDF 양식에 입력 가능한 필드 만들기",
+      "usertext": "입력 가능한 양식 필드를 만들 PDF 파일을 선택하세요 (텍스트, 체크박스, 드롭다운, 서명)"
+    },
+    "lo": {
+      "title": "ກຽມແບບຟອມ",
+      "description": "ສ້າງຊ່ອງຂໍ້ມູນທີ່ສາມາດຕື່ມໃນແບບຟອມ PDF",
+      "usertext": "ເລືອກໄຟລ໌ PDF ເພື່ອສ້າງຊ່ອງຂໍ້ມູນທີ່ສາມາດຕື່ມໃນແບບຟອມ (ຂໍ້ຄວາມ, ຊ່ອງໝາຍ, ລາຍການຫຼົ່ນ, ລາຍເຊັນ)"
+    },
+    "lt": {
+      "title": "Paruošti formą",
+      "description": "Sukurti pildymo laukus PDF formoje",
+      "usertext": "Pasirinkite PDF failą, kad sukurtumėte pildymo laukus (tekstas, žymimieji langeliai, išskleidžiamieji sąrašai, parašas)"
+    },
+    "lv": {
+      "title": "Sagatavot veidlapu",
+      "description": "Izveidot aizpildāmus laukus PDF veidlapā",
+      "usertext": "Atlasiet PDF failu, lai izveidotu aizpildāmus formas laukus (teksts, izvēles rūtiņas, nolaižamie saraksti, paraksts)"
+    },
+    "nl": {
+      "title": "Formulier voorbereiden",
+      "description": "Invulbare velden maken in een PDF-formulier",
+      "usertext": "Selecteer een PDF-bestand om invulbare formuliervelden te maken (tekst, selectievakjes, vervolgkeuzelijsten, handtekening)"
+    },
+    "no": {
+      "title": "Forbered skjema",
+      "description": "Opprett utfyllbare felt i et PDF-skjema",
+      "usertext": "Velg en PDF-fil for å opprette utfyllbare skjemafelter (tekst, avmerkingsbokser, rullegardinlister, signatur)"
+    },
+    "pl": {
+      "title": "Przygotuj formularz",
+      "description": "Utwórz wypełnialne pola w formularzu PDF",
+      "usertext": "Wybierz plik PDF, aby utworzyć wypełnialne pola formularza (tekst, pola wyboru, listy rozwijane, podpis)"
+    },
+    "pt-BR": {
+      "title": "Preparar formulário",
+      "description": "Criar campos preenchíveis em um formulário PDF",
+      "usertext": "Selecione um arquivo PDF para criar campos de formulário preenchíveis (texto, caixas de seleção, listas suspensas, assinatura)"
+    },
+    "pt-PT": {
+      "title": "Preparar formulário",
+      "description": "Criar campos preenchíveis num formulário PDF",
+      "usertext": "Selecione um ficheiro PDF para criar campos de formulário preenchíveis (texto, caixas de verificação, listas pendentes, assinatura)"
+    },
+    "ro": {
+      "title": "Pregătire formular",
+      "description": "Creați câmpuri completabile într-un formular PDF",
+      "usertext": "Selectați un fișier PDF pentru a crea câmpuri de formular completabile (text, casete de selectare, liste derulante, semnătură)"
+    },
+    "ru": {
+      "title": "Подготовить форму",
+      "description": "Создать заполняемые поля в форме PDF",
+      "usertext": "Выберите PDF-файл для создания заполняемых полей формы (текст, флажки, раскрывающиеся списки, подпись)"
+    },
+    "si": {
+      "title": "පෝරමය සකස් කරන්න",
+      "description": "PDF පෝරමයේ පිරවිය හැකි ක්ෂේත්‍ර සාදන්න",
+      "usertext": "පිරවිය හැකි පෝරම ක්ෂේත්‍ර සෑදීමට PDF ගොනුවක් තෝරන්න (පෙළ, කර දැමීමේ කොටු, DropDown, අත්සන)"
+    },
+    "sk": {
+      "title": "Pripraviť formulár",
+      "description": "Vytvoriť vyplniteľné polia vo formulári PDF",
+      "usertext": "Vyberte súbor PDF, v ktorom chcete vytvoriť vyplniteľné polia formulára (text, začiarkavacie políčka, rozbaľovacie zoznamy, podpis)"
+    },
+    "sl": {
+      "title": "Pripravi obrazec",
+      "description": "Ustvari izpolnjiva polja v obrazcu PDF",
+      "usertext": "Izberite datoteko PDF za ustvarjanje izpolnjivih polj obrazca (besedilo, potrditvena polja, spustni seznami, podpis)"
+    },
+    "sq": {
+      "title": "Përgatit formularin",
+      "description": "Krijo fusha të plotësueshme në një formular PDF",
+      "usertext": "Zgjidhni një skedar PDF për të krijuar fusha formulari të plotësueshme (tekst, kuti kontrolli, lista të zbritshme, nënshkrim)"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Припреми образац",
+      "description": "Створи поља за попуњавање у PDF обрасцу",
+      "usertext": "Изаберите PDF датотеку за стварање поља обрасца за попуњавање (текст, поља за потврду, падајуће листе, потпис)"
+    },
+    "sr-Latn-RS": {
+      "title": "Pripremi obrazac",
+      "description": "Stvori polja za popunjavanje u PDF obrascu",
+      "usertext": "Izaberite PDF datoteku za stvaranje polja obrasca za popunjavanje (tekst, polja za potvrdu, padajuće liste, potpis)"
+    },
+    "sv": {
+      "title": "Förbered formulär",
+      "description": "Skapa ifyllningsbara fält i ett PDF-formulär",
+      "usertext": "Välj en PDF-fil för att skapa ifyllningsbara formulärfält (text, kryssrutor, rullgardinsmenyer, signatur)"
+    },
+    "tr": {
+      "title": "Form Hazırla",
+      "description": "PDF formunda doldurulabilir alanlar oluştur",
+      "usertext": "Doldurulabilir form alanları oluşturmak için bir PDF dosyası seçin (metin, onay kutuları, açılır menüler, imza)"
+    },
+    "uk": {
+      "title": "Підготувати форму",
+      "description": "Створити поля для заповнення у формі PDF",
+      "usertext": "Виберіть PDF-файл для створення заповнюваних полів форми (текст, прапорці, розкривні списки, підпис)"
+    },
+    "ur": {
+      "title": "فارم تیار کریں",
+      "description": "PDF فارم میں قابل پُر کردہ خانے بنائیں",
+      "usertext": "قابل پُر کردہ فارم خانے بنانے کے لیے PDF فائل منتخب کریں (متن، چیک باکسز، ڈراپ ڈاؤن، دستخط)"
+    },
+    "vi": {
+      "title": "Chuẩn bị biểu mẫu",
+      "description": "Tạo các trường có thể điền trong biểu mẫu PDF",
+      "usertext": "Chọn tệp PDF để tạo các trường biểu mẫu có thể điền (văn bản, hộp kiểm, danh sách thả xuống, chữ ký)"
+    },
+    "zh-CN": {
+      "title": "准备表单",
+      "description": "在 PDF 表单中创建可填写字段",
+      "usertext": "选择 PDF 文件以创建可填写的表单字段（文本、复选框、下拉菜单、签名）"
+    },
+    "zh-TW": {
+      "title": "準備表單",
+      "description": "在 PDF 表單中建立可填寫欄位",
+      "usertext": "選擇 PDF 檔案以建立可填寫的表單欄位（文字、核取方塊、下拉選單、簽名）"
+    }
+  }
+}

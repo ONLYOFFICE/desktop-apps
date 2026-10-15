@@ -51,33 +51,27 @@
 class CWindowBase::CWindowBasePrivate
 {
 public:
-    CWindowBasePrivate() {
-#ifdef Q_OS_LINUX
-        GET_REGISTRY_SYSTEM(reg_system)
-        GET_REGISTRY_USER(reg_user)
-        if ( reg_user.value("titlebar") == "custom" ||
-                reg_system.value("titlebar") == "custom" )
-        {
-            is_custom_window_ = true;
-        }
-#else
-        is_custom_window_ = true;
-#endif
-    }
+    CWindowBasePrivate()
+        : is_custom_window_(WindowHelper::isCustomWindowStyle())
+    {}
 
     bool is_custom_window_ = false;
+    bool window_activated = false;
 };
 
 
-CWindowBase::CWindowBase(const QRect& rect)
-    : QMainWindow(nullptr)
+CWindowBase::CWindowBase(QWidget *parent, const QRect& rect)
+    : QMainWindow(parent)
     , m_pTopButtons(3, nullptr)
     , pimpl{new CWindowBasePrivate}
-    , m_windowActivated(false)
 {
     setWindowIcon(Utils::appIcon());
+    m_shouldUseThinFrame = WindowHelper::shouldUseThinFrame();
     m_window_rect = startRect(rect, m_dpiRatio);
-    setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
+
+    const QRect minRect = adjustWindowRect(QRect(0, 0, WINDOW_MIN_WIDTH * m_dpiRatio,
+                                                 WINDOW_MIN_HEIGHT * m_dpiRatio), m_dpiRatio);
+    setMinimumSize(minRect.size());
 #ifdef __linux__
     setGeometry(m_window_rect); // for Windows is set in CWindowPlatform
 #endif
@@ -108,9 +102,27 @@ QSize CWindowBase::expectedContentSize(const QRect &rc, bool extended)
 #ifdef _WIN32
     int brd = Utils::getWinVersion() < Utils::WinVer::Win10 ? MAIN_WINDOW_BORDER_WIDTH * dpi : 0;
 #else
-    int brd = MAIN_WINDOW_BORDER_WIDTH * dpi;
+    int brd = 0;
+    if ( WindowHelper::isCustomWindowStyle() ) {
+        brd = WindowHelper::shouldUseThinFrame()
+            ? int(SHADOW_WIDTH * dpi) + int(WINDOW_THIN_BORDER_WIDTH * dpi)
+            : int(MAIN_WINDOW_BORDER_WIDTH * dpi);
+    }
 #endif
     return win_rc.adjusted(brd, extended ? brd : TITLE_HEIGHT * dpi + brd, -brd, -brd).size();
+}
+
+QRect CWindowBase::adjustWindowRect(const QRect &rc, double dpi) const
+{
+#ifdef __linux__
+    if (WindowHelper::shouldUseThinFrame())
+    {
+        const int shadow = SHADOW_WIDTH * dpi;
+        return QRect(rc.x() - shadow, rc.y() - shadow,
+                     rc.width() + 2 * shadow, rc.height() + 2 * shadow);
+    }
+#endif
+    return rc;
 }
 
 QWidget * CWindowBase::handle() const
@@ -173,11 +185,12 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
 #else
     _boxTitleBtns = static_cast<QWidget*>(new Caption(parent));
 #endif
-    _boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    _boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    _boxTitleBtns->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
 
     QHBoxLayout *layoutBtns = new QHBoxLayout(_boxTitleBtns);
     layoutBtns->setContentsMargins(0, 0, 0, 0);
-    layoutBtns->setSpacing(int(1*m_dpiRatio));
+    layoutBtns->setSpacing(0);
     layoutBtns->addStretch();
     layoutBtns->setAlignment(Qt::AlignTop);
     _boxTitleBtns->setLayout(layoutBtns);
@@ -234,8 +247,15 @@ bool CWindowBase::event(QEvent *event)
            if (wgt->property("ToolTip").isValid())
                text = wgt->property("ToolTip").toString();
            if (m_pMainPanel && !text.isEmpty()) {
-               CToolTip *tool = new CToolTip(m_pMainPanel, text, hlp->globalPos());
+               int offset = 3 * m_dpiRatio;
+               CToolTip *tool = new CToolTip(this, text, hlp->globalPos());
                connect(wgt, &QWidget::destroyed, tool, &CToolTip::deleteLater);
+               tool->setProperty("uitheme", m_pMainPanel->property("uitheme"));
+               tool->setProperty("rtl-font", m_pMainPanel->property("rtl-font"));
+               tool->setStyleSheet(m_pMainPanel->styleSheet());
+               tool->adjustSize();
+               tool->move(hlp->globalPos() + QPoint(AscAppManager::isRtlEnabled() ? -tool->width() - offset : offset, offset));
+               tool->show();
            }
        }
     }
@@ -244,13 +264,26 @@ bool CWindowBase::event(QEvent *event)
 
 void CWindowBase::setScreenScalingFactor(double factor, bool resize)
 {
-    if (resize && !isMaximized()) {
-        setMinimumSize(WINDOW_MIN_WIDTH * factor, WINDOW_MIN_HEIGHT * factor);
+    const bool wasResizable = isResizable();
+    if ((resize || !wasResizable) && !isMaximized()) {
+        if (!wasResizable)
+            setResizable(true);
+
+        if (!m_ignoreMinSize)
+        {
+            const QRect minRect = adjustWindowRect(QRect(0, 0, WINDOW_MIN_WIDTH * factor,
+                                                         WINDOW_MIN_HEIGHT * factor), factor);
+            setMinimumSize(minRect.size());
+        }
+
         double change_factor = factor / m_dpiRatio;
         QRect _src_rect = geometry();
         double dest_width_change = _src_rect.width() * (1 - change_factor);
         QRect _dest_rect = QRect{_src_rect.translated(int(dest_width_change/2), 0).topLeft(), _src_rect.size() * change_factor};
         setGeometry(_dest_rect);
+
+        if (!wasResizable)
+            setResizable(false);
     }
     m_dpiRatio = factor;
     if (m_boxTitleBtns) {
@@ -305,8 +338,8 @@ void CWindowBase::focus()
 void CWindowBase::showEvent(QShowEvent *event)
 {
     QMainWindow::showEvent(event);
-    if (!m_windowActivated) {
-        m_windowActivated = true;
+    if ( !pimpl->window_activated ) {
+        pimpl->window_activated = true;
         adjustGeometry();
         applyTheme(GetCurrentTheme().id());
     }

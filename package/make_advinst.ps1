@@ -78,8 +78,7 @@ $AssociationList = @(
     "pages", "numbers", "key",
     "djvu", "fb2", "pdf", "rtf", "xps", "oxps",
     "epub", "html", "xml",
-    "md", "txt", "csv", "tsv",
-    "docxf"
+    "md", "txt", "csv", "tsv"
 )
 $LicensePath = "common\license"
 $PluginManagerPath = "editors\sdkjs-plugins\{AA2EA9B6-9EC2-415F-9762-634EE8D9A95E}"
@@ -120,9 +119,8 @@ Push-Location "advinst"
 
 Write-Host "`n[ Create package.config ]"
 
-Write-Host "WRITE: ..\$BuildDir\desktop\converter\package.config"
-Write-Output "package=msi" `
-    | Out-File -Encoding ASCII "..\$BuildDir\desktop\converter\package.config"
+Write-Host "WRITE: package.config"
+Write-Output "package=msi" | Out-File -Encoding ASCII "package.config"
 
 ####
 
@@ -149,6 +147,7 @@ $AdvInstConfig += `
     "UpdateFile APPDIR\updatesvc.exe ..\$BuildDir\desktop\updatesvc.exe", `
     "NewSync APPDIR ..\$BuildDir\desktop -existingfiles keep -feature Files", `
     "NewSync APPDIR\$PluginManagerPath ..\$BuildDir\desktop\$PluginManagerPath -existingfiles delete -feature PluginManager", `
+    "AddFile APPDIR\converter package.config", `
     "AddFile APPDIR ..\$LicensePath\3dparty\3DPARTYLICENSE", `
     "UpdateFile APPDIR\3DPARTYLICENSE -name 3DPARTYLICENSE.txt"
 if ($Target -ne "commercial") {

@@ -16,6 +16,9 @@
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC"; */
 "2oI-Rn-ZJC.title" = "轉換";
 
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk"; */
+"3FX-nT-Klk.title" = "关闭";
+
 /* Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg"; */
 "3IN-sU-3Bg.title" = "拼字";
 
@@ -55,9 +58,6 @@
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS"; */
 "9aQ-wl-gjS.title" = "新增";
 
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B"; */
-"9i7-kj-42B.title" = "無";
-
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
 "9ic-FL-obx.title" = "替代";
 
@@ -72,6 +72,18 @@
 
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3"; */
 "agt-UL-0e3.title" = "使用預設值";
+
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19"; */
+"aiL-Ab-t19.title" = "根據...許可";
+
+/* Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22"; */
+"aiL-Ab-t22.title" = "商業的";
+
+/* Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14"; */
+"aiN-Ab-t14.title" = "ONLYOFFICE AI Tools";
+
+/* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16"; */
+"aiV-Ab-t16.title" = "版本";
 
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
 "aTl-1u-JFS.title" = "列印…";
@@ -112,6 +124,9 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l"; */
 "CJU-dx-a9l.title" = "版權聲明";
 
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05"; */
+"clr-Cl-d05.title" = "清除";
+
 /* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
 "cqv-fj-IhA.title" = "選取";
 
@@ -150,9 +165,6 @@
 
 /* Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum"; */
 "FKE-Sm-Kum.title" = "產品說明";
-
-/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi"; */
-"FoF-wl-Dxi.title" = "使用者名稱";
 
 /* Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27"; */
 "GB9-OM-e27.title" = "粗體";
@@ -247,6 +259,9 @@
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "全部移到最上層";
 
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05"; */
+"lLc-Ab-t05.title" = "根據...許可";
+
 /* Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI"; */
 "LVM-kO-fVI.title" = "貼上尺規";
 
@@ -258,6 +273,9 @@
 
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "複製尺規";
+
+/* Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by"; */
+"ne5-Gy-5by.title" = "PDF";
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
 "NMo-om-nkz.title" = "服務";
@@ -274,11 +292,17 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
 "oas-Oc-fiZ.title" = "開啟最近的檔案";
 
+/* Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04"; */
+"ofn-Cl-d04.title" = "在資料夾中顯示";
+
 /* Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1"; */
 "ogc-rX-tC1.title" = "加寬";
 
 /* Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "隱藏 ONLYOFFICE";
+
+/* Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03"; */
+"opn-Cl-d03.title" = "開啟";
 
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
 "OwM-mh-QMV.title" = "尋找上一個";
@@ -319,15 +343,6 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "智慧虛線";
 
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj"; */
-"Riu-oE-8dj.title" = "關閉";
-
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ"; */
-"Rkd-xb-FRJ.title" = "無";
-
-/* Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh"; */
-"RmO-tv-UKh.title" = "登出";
-
 /* Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF"; */
 "Rqc-34-cIF.title" = "上標";
 
@@ -354,6 +369,9 @@
 
 /* Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS"; */
 "tRr-pd-1PS.title" = "資料檢驗";
+
+/* Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03"; */
+"ttl-Cl-d03.title" = "下載";
 
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
 "tXI-mr-wws.title" = "開啟最近的檔案";
@@ -445,12 +463,6 @@
 /* Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1"; */
 "ZM1-6Q-yy1.title" = "靠左對齊";
 
-/* Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl"; */
-"Zsi-3o-ASl.title" = "電子郵件:";
-
 /* Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH"; */
 "ZvO-Gk-QUH.title" = "段落";
-
-/* Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N"; */
-"zwS-9G-S0N.title" = "入口:";
 

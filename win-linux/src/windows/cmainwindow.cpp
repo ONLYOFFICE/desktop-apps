@@ -45,6 +45,7 @@
 #include "version.h"
 #include "components/cmessage.h"
 #include "ctabundockevent.h"
+#include "caddonmanager.h"
 #include <qtcomp/qdesktopwidget.h>
 #include <QGridLayout>
 #include <QTimer>
@@ -53,6 +54,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMimeData>
+#include <QDirIterator>
 
 #include <qtcomp/qpalette.h>
 
@@ -65,19 +67,20 @@
   #include "../version.h"
 #endif
 
+#define AI_TOOLS_CAPTION "ONLYOFFICE AI Tools"
+
 using namespace std::placeholders;
 using namespace NSEditorApi;
 
 CMainWindow::CMainWindow(const QRect &rect) :
-    CWindowPlatform(rect),
+    CWindowPlatform(nullptr, rect),
     CScalingWrapper(m_dpiRatio),
     m_savePortal(QString())
 {
     setObjectName("MainWindow");
-#ifdef _WIN32
-    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle())
+    if ( m_shouldUseThinFrame )
         m_toolbtn_height = TOOLBTN_HEIGHT_WIN10;
-#endif
+
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
     QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
@@ -313,14 +316,14 @@ void CMainWindow::close()
                 for (int i = 0; i < m_pTabs->count(); i++) {
                     if (!m_pTabs->modifiedByIndex(i)) {
                         bool dontAskAgain = false;
-                        CMessageOpts opts;
+                        CMessage::Config opts;
                         opts.checkBoxState = &dontAskAgain;
-                        opts.chekBoxText = tr("Don't ask again.");
+                        opts.checkBoxText = tr("Don't ask again.");
                         int res = CMessage::showMessage(this, tr("More than one document is open.<br>Close the window anyway?"),
-                                                           MsgType::MSG_WARN, MsgBtns::mbYesNo, opts);
+                                                           CMessage::Icon::Warning, CMessage::Buttons::YesNo, opts);
                         if (dontAskAgain)
                             reg_user.setValue("ignoreMsgAboutOpenTabs", true);
-                        if (res != MODAL_RESULT_YES) {
+                        if (res != CMessage::Result::Yes) {
                             AscAppManager::cancelClose();
                             return;
                         }
@@ -334,13 +337,13 @@ void CMainWindow::close()
             if ( !m_pTabs->closedByIndex(i) ) {
                 if ( !m_pTabs->isProcessed(i) ) {
                     int _result = trySaveDocument(i);
-                    if ( _result == MODAL_RESULT_NO ) {
+                    if ( _result == CMessage::Result::No ) {
                         if (i == 0)
                             hide();
                         m_pTabs->editorCloseRequest(i);
                         onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
                     } else
-                    if ( _result == MODAL_RESULT_CANCEL ) {
+                    if ( _result == CMessage::Result::Cancel ) {
                         AscAppManager::cancelClose();
                         return;
                     }
@@ -377,9 +380,6 @@ void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
 
     QSet<QString> _exts;
     _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott";
-#ifndef __LOCK_OFORM_FORMATS
-    _exts << "docxf" << "oform";
-#endif
     _exts << "html" << "mht" << "epub";
     _exts << "pptx" << "ppt" << "odp" << "ppsx" << "pptt" << "potx" << "otp";
     _exts << "xlsx" << "xls" << "ods" << "csv" << "xlst" << "xltx" << "ots";
@@ -430,42 +430,33 @@ void CMainWindow::dropEvent(QDropEvent *event)
 
 QWidget* CMainWindow::createMainPanel(QWidget *parent)
 {
-    QWidget *mainPanel = new QWidget(parent);
+    QWidget *mainPanel = new AscMainPanel(parent);
     mainPanel->setObjectName("mainPanel");
     mainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
     mainPanel->setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
 #ifdef _WIN32
     mainPanel->setProperty("unix", false);
-    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle())
-        mainPanel->setProperty("win10", true);
 #else
     mainPanel->setProperty("unix", true);
 #endif
+    if ( m_shouldUseThinFrame )
+        mainPanel->setProperty("extended-title", true);
+
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
     _pMainGridLayout->setContentsMargins(0, 0, 0, 0);
     mainPanel->setLayout(_pMainGridLayout);
 
-    // Set custom TabBar
-    CTabBar *pTabBar = new CTabBar(mainPanel);
-    _pMainGridLayout->addWidget(pTabBar, 0, 1, 1, 1);
-    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    sizePolicy.setHorizontalStretch(1);
-    pTabBar->setSizePolicy(sizePolicy);
-
     m_boxTitleBtns = createTopPanel(mainPanel);
     m_boxTitleBtns->setObjectName("CX11Caption");
-    _pMainGridLayout->addWidget(m_boxTitleBtns, 0, 2, 1, 1);
-    m_boxTitleBtns->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    _pMainGridLayout->addWidget(m_boxTitleBtns, 0, 0, 1, 1);
 
-#ifdef _WIN32
-    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle()) {
+    if ( m_shouldUseThinFrame ) {
         foreach (auto *btn, m_pTopButtons) {
-            btn->setProperty("win10", true);
+            btn->setProperty("extended-title", true);
         }
     }
-#endif
 
 #ifdef __DONT_WRITE_IN_APP_TITLE
     QLabel * label = new QLabel(m_boxTitleBtns);
@@ -474,14 +465,27 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 #endif
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-    static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(1,label);
+    QSizePolicy spAppTitle(QSizePolicy::Preferred, QSizePolicy::Fixed);
+    spAppTitle.setHorizontalStretch(1);
+    label->setSizePolicy(spAppTitle);
+
+    QHBoxLayout *pBoxTitleBtnsLayout = static_cast<QHBoxLayout*>(m_boxTitleBtns->layout());
+    pBoxTitleBtnsLayout->insertWidget(1,label);
+
+    // Set custom TabBar
+    CTabBar *pTabBar = new CTabBar(m_boxTitleBtns);
+    pBoxTitleBtnsLayout->insertWidget(0, pTabBar, 0, Qt::AlignVCenter);
+    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    sizePolicy.setHorizontalStretch(10);
+    pTabBar->setSizePolicy(sizePolicy);
 
     // Main
-    m_pButtonMain = new CSVGPushButton(mainPanel);
+    m_pButtonMain = new CSVGPushButton(m_boxTitleBtns);
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
-    m_pButtonMain->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
-    _pMainGridLayout->addWidget(m_pButtonMain, 0, 0, 1, 1);
+    m_pButtonMain->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    pBoxTitleBtnsLayout->insertWidget(0, m_pButtonMain, 0, Qt::AlignVCenter);
+    pBoxTitleBtnsLayout->insertSpacing(0, int(BUTTON_MAIN_LEFT_MARGIN * m_dpiRatio));
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     QPalette palette;
@@ -673,7 +677,7 @@ void CMainWindow::onTabCloseRequest(int index)
     if ( m_pTabs->isProcessed(index) ) {
         return;
     } else {
-        if ( trySaveDocument(index) == MODAL_RESULT_NO ) {
+        if ( trySaveDocument(index) == CMessage::Result::No ) {
             m_pTabs->editorCloseRequest(index);
             onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
         }
@@ -701,7 +705,7 @@ int CMainWindow::tabCloseRequest(int index)
         onFullScreen(-1, false);
         if ( !m_pTabs->isProcessed(index) ) {
             int _result = trySaveDocument(index);
-            if ( _result == MODAL_RESULT_NO ) {
+            if ( _result == CMessage::Result::No ) {
                 m_pTabs->editorCloseRequest(index);
                 onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
             }
@@ -712,30 +716,30 @@ int CMainWindow::tabCloseRequest(int index)
         }
     }
 
-    return MODAL_RESULT_YES;
+    return CMessage::Result::Yes;
 }
 
 int CMainWindow::trySaveDocument(int index)
 {
-    if (m_pTabs->closedByIndex(index)) return MODAL_RESULT_YES;
+    if (m_pTabs->closedByIndex(index)) return CMessage::Result::Yes;
 
-    int modal_res = MODAL_RESULT_NO;
+    int modal_res = CMessage::Result::No;
     if ( m_pTabs->modifiedByIndex(index) ) {
         toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
         modal_res = CMessage::showMessage(this, getSaveMessage().arg(m_pTabs->titleByIndex(index).toHtmlEscaped()),
-                                          MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
+                                          CMessage::Icon::Warning, CMessage::Buttons::YesDefNoCancel);
         switch (modal_res) {
-        case MODAL_RESULT_NO: break;
-        case MODAL_RESULT_CANCEL: modal_res = MODAL_RESULT_CANCEL; break;
-        case MODAL_RESULT_YES:
+        case CMessage::Result::No: break;
+        case CMessage::Result::Cancel: modal_res = CMessage::Result::Cancel; break;
+        case CMessage::Result::Yes:
         default:{
             m_pTabs->editorCloseRequest(index);
             m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
-            Utils::processMoreEvents();
+            Utils::processMoreEvents(100);
 
-            modal_res = MODAL_RESULT_YES;
+            modal_res = CMessage::Result::Yes;
             break;}
         }
     }
@@ -871,7 +875,7 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
             }
 
             for (int i(m_pTabs->count()); !(--i < 0);) {
-                int _answer = MODAL_RESULT_NO;
+                int _answer = CMessage::Result::No;
 
                 CAscTabData& _doc = *m_pTabs->panel(i)->data();
                 if ( _doc.isViewType(cvwtEditor) && !_doc.closed() &&
@@ -879,13 +883,13 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
                 {
                     if ( _doc.hasChanges() || m_pTabs->panel(i)->hasUncommittedChanges() ) {
                         _answer = trySaveDocument(i);
-                        if ( _answer == MODAL_RESULT_CANCEL) {
+                        if ( _answer == CMessage::Result::Cancel) {
                             AscAppManager::cancelClose();
                             return;
                         }
                     }
 
-                    if ( _answer != MODAL_RESULT_YES ) {
+                    if ( _answer != CMessage::Result::Yes ) {
                         m_pTabs->editorCloseRequest(i);
                         onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
                     }
@@ -987,8 +991,8 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
         QFileInfo _info(opts.url);
         if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
             int modal_res = CMessage::showMessage(this, tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
-                                                  MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
-            if (modal_res == MODAL_RESULT_YES) {
+                                                  CMessage::Icon::Warning, CMessage::Buttons::YesDefNo);
+            if (modal_res == CMessage::Result::Yes) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
             }
 
@@ -1042,11 +1046,11 @@ void CMainWindow::onLocalFileLocation(QString path)
             Utils::openFileLocation(_path);
         } else {
             int res = CMessage::showMessage(this, QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName().toHtmlEscaped()),
-                                                MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
-            if ( res == MODAL_RESULT_YES )
+                                                CMessage::Icon::Warning, CMessage::Buttons::YesDefNo);
+            if ( res == CMessage::Result::Yes )
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(id));
             else
-            if ( res == MODAL_RESULT_NO ) {
+            if ( res == CMessage::Result::No ) {
                 int uid = objRoot["hash"].toInt();
                 AscAppManager::getInstance().onFileChecked(_info.fileName(), uid, false);
             }
@@ -1175,6 +1179,16 @@ void CMainWindow::onDocumentReady(int uid)
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
         });
+
+#if !defined(USE_ADDON_MODE) && defined(OO_BRANDING)
+        QJsonObject jsn;
+        jsn["name"]         = AI_TOOLS_CAPTION;
+        jsn["version"]      = VER_FILEVERSION_STR;
+        jsn["integrated"]   = true;
+        jsn["license"]      = QJsonObject({{"title","Commercial"},{"url", URL_BSL_LICENSE}});
+
+        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:status", Utils::stringifyJson(jsn));
+#endif
     } else {
         m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_LOADING_FINISH);
 
@@ -1229,9 +1243,9 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
 void CMainWindow::onDocumentSaveInnerRequest(int id)
 {
     int modal_res = CMessage::showMessage(this, tr("Document must be saved to continue.<br>Save the document?"),
-                                          MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
+                                          CMessage::Icon::Confirm, CMessage::Buttons::YesDefNo);
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
-    pData->put_Value(modal_res == MODAL_RESULT_YES);
+    pData->put_Value(modal_res == CMessage::Result::Yes);
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
     pEvent->m_pData = pData;
@@ -1248,7 +1262,7 @@ void CMainWindow::onDocumentDownload(void * info)
             m_pWidgetDownload = nullptr;
         });
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
-        layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+        layoutBtns->insertWidget(5, m_pWidgetDownload->toolButton());
         m_pWidgetDownload->setLayoutDirection(AscAppManager::isRtlEnabled() ? Qt::RightToLeft : Qt::LeftToRight);
         m_pWidgetDownload->applyTheme();
         m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
@@ -1261,7 +1275,7 @@ void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
 {
     int index = m_pTabs->tabIndexByView(id);
     if ( !(index < 0) ) {
-            int _answer = MODAL_RESULT_NO;
+            int _answer = CMessage::Result::No;
             if ( isfragmented ) {
                 static const bool _skip_user_warning = !InputArgs::contains(L"--warning-doc-fragmented");
                 if ( _skip_user_warning ) {
@@ -1284,7 +1298,7 @@ void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
                 onDocumentFragmentedBuild(id, 0);
             }
 
-            if ( _answer == MODAL_RESULT_CANCEL ) {
+            if ( _answer == CMessage::Result::Cancel ) {
                 AscAppManager::cancelClose();
             }
     }
@@ -1386,21 +1400,26 @@ void CMainWindow::onKeyDown(void * eventData)
     case VK_TAB:
         if (m_pTabs->count()) {
             if (_is_ctrl) {
-                int _new_index = 0;
-                if (_is_shift) {
-                    if ( m_pTabs->isActiveWidget() )
-                        _new_index = m_pTabs->currentIndex() - 1; else
-                        _new_index = m_pTabs->count() - 1;
+                bool mruSwitchAllowed = false;
+                if (mruSwitchAllowed) {
+                    m_pTabs->switchToNextMruTab(_is_shift);
                 } else {
-                    if (m_pTabs->isActiveWidget())
-                        _new_index = m_pTabs->currentIndex() + 1;
-                }
+                    int _new_index = 0;
+                    if (_is_shift) {
+                        if ( m_pTabs->isActiveWidget() )
+                            _new_index = m_pTabs->currentIndex() - 1; else
+                            _new_index = m_pTabs->count() - 1;
+                    } else {
+                        if (m_pTabs->isActiveWidget())
+                            _new_index = m_pTabs->currentIndex() + 1;
+                    }
 
-                if (_new_index < 0 || !(_new_index < m_pTabs->count()))
-                    toggleButtonMain(true);
-                else {
-                    toggleButtonMain(false);
-                    m_pTabs->setCurrentIndex(_new_index);
+                    if (_new_index < 0 || !(_new_index < m_pTabs->count()))
+                        toggleButtonMain(true);
+                    else {
+                        toggleButtonMain(false);
+                        m_pTabs->setCurrentIndex(_new_index);
+                    }
                 }
             }
         }
@@ -1530,6 +1549,62 @@ void CMainWindow::onErrorPage(int id, const std::wstring& action)
     }
 }
 
+void CMainWindow::importUserTemplates(const QStringList &filePaths)
+{
+    const QString templatesDir = QString::fromStdWString(AscAppManager::getInstance().m_oSettings.user_templates_path);
+
+    Utils::makepath(templatesDir);
+    bool templatesUpdated = false;
+
+    for (const QString &srcFilePath : filePaths) {
+        QFileInfo fi(srcFilePath);
+        const QString dstFilePath = templatesDir + "/" + fi.fileName();
+
+        if (QFile::exists(dstFilePath)) {
+            int res = CMessage::showMessage(this, tr("%1 already exists.<br>Do you want to replace it?").arg(fi.fileName().toHtmlEscaped()),
+                                            CMessage::Icon::Warning, CMessage::Buttons::YesDefNo);
+            if (res != CMessage::Result::Yes)
+                continue;
+        }
+
+        QFile::copy(srcFilePath, dstFilePath);
+        if (!templatesUpdated)
+            templatesUpdated = true;
+    }
+
+    if (templatesUpdated)
+    //     AscAppManager::getInstance().UpdateTemplates();
+        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"templates", L"update:local");
+}
+
+void CMainWindow::onAddUserTemplateFiles()
+{
+    CFileDialogWrapper dlg(this);
+    const QStringList selectedFiles = dlg.modalOpenTemplates(Utils::lastPath(LOCAL_PATH_OPEN));
+
+    if (!selectedFiles.isEmpty())
+        importUserTemplates(selectedFiles);
+}
+
+void CMainWindow::onAddUserTemplateFolder()
+{
+    CFileDialogWrapper dlg(this);
+    const QString selectedFolder = dlg.selectFolder(Utils::lastPath(LOCAL_PATH_OPEN));
+
+    if (selectedFolder.isEmpty())
+        return;
+
+    QStringList filePaths;
+    QStringList filters{"*.dotx", "*.xltx", "*.potx", "*.pdf"};
+    QDirIterator it(selectedFolder, filters, QDir::Files, QDirIterator::Subdirectories);
+
+    while (it.hasNext())
+        filePaths << it.next();
+
+    if (!filePaths.isEmpty())
+        importUserTemplates(filePaths);
+}
+
 void CMainWindow::updateScalingFactor(double dpiratio)
 {
     CScalingWrapper::updateScalingFactor(dpiratio);
@@ -1541,7 +1616,17 @@ void CMainWindow::updateScalingFactor(double dpiratio)
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/
-    m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(m_toolbtn_height * dpiratio));
+    m_boxTitleBtns->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
+    m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TOOLBTN_HEIGHT * dpiratio));
+    if (QLayout *lut = m_boxTitleBtns->layout()) {
+        if (QLayoutItem *item = lut->itemAt(0)) {
+            if (QSpacerItem *spacer = item->spacerItem()) {
+                spacer->changeSize(int(BUTTON_MAIN_LEFT_MARGIN * dpiratio), 0, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                lut->invalidate();
+            }
+        }
+    }
+    m_pTabs->tabBar()->setFixedHeight(int(TOOLBTN_HEIGHT * m_dpiRatio));
     m_pMainPanel->setProperty("zoom", QString::number(dpiratio) + "x");
     QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
     m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
@@ -1662,35 +1747,29 @@ void CMainWindow::onLayoutDirectionChanged()
     }
 }
 
-#ifdef _WIN32
 void CMainWindow::applyWindowState()
 {
-    if (Utils::getWinVersion() >= Utils::WinVer::Win10 && isCustomWindowStyle()) {
-        m_toolbtn_height = isMaximized() ? TOOLBTN_HEIGHT : TOOLBTN_HEIGHT_WIN10;
-        m_pMainPanel->setProperty("win10", !isMaximized());
-        m_pMainPanel->style()->polish(m_pMainPanel);
-        m_pButtonMain->style()->polish(m_pButtonMain);
-        m_pButtonMain->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
-        if (m_pWidgetDownload && m_pWidgetDownload->toolButton())
-            m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    m_toolbtn_height = m_shouldUseThinFrame ? TOOLBTN_HEIGHT_WIN10 : TOOLBTN_HEIGHT;
+    m_boxTitleBtns->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
 
-        QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
-        m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
-                                                     GetColorQValueByRole(ecrButtonBackground),
-                                                     GetColorQValueByRole(ecrButtonHoverBackground),
-                                                     GetColorQValueByRole(ecrButtonPressedBackground),
-                                                     GetColorQValueByRole(ecrTabDivider),
-                                                     GetColorQValueByRole(ecrTabWordActive)));
-
-        foreach (auto *btn, m_pTopButtons) {
+    if (m_pTopButtons[BtnType::Btn_Minimize]) {
+        foreach (auto *btn, m_pTopButtons)
             btn->setFixedHeight(int(m_toolbtn_height * m_dpiRatio));
-            btn->setProperty("win10", !isMaximized());
-            btn->style()->polish(btn);
+    }
+    if (QHBoxLayout *lut = qobject_cast<QHBoxLayout*>(m_boxTitleBtns->layout())) {
+        lut->setAlignment(Qt::AlignTop);
+        if (m_pButtonMain)
+            lut->setAlignment(m_pButtonMain, Qt::AlignVCenter);
+        if (m_pTabs && m_pTabs->tabBar())
+            lut->setAlignment(m_pTabs->tabBar(), Qt::AlignVCenter);
+        if (m_pTopButtons[BtnType::Btn_Minimize]) {
+            foreach (auto *btn, m_pTopButtons)
+                lut->setAlignment(btn, Qt::AlignVCenter);
         }
+        lut->invalidate();
     }
     CWindowBase::applyWindowState();
 }
-#endif
 
 void CMainWindow::handleWindowAction(const std::wstring& action)
 {
@@ -1705,3 +1784,31 @@ void CMainWindow::handleWindowAction(const std::wstring& action)
         }
     }
 }
+
+#ifdef USE_ADDON_MODE
+void CMainWindow::sendAddonStatusToStartPage(const QString& text, const QString& icon, bool buttonLock)
+{
+    CAddonManager *am = AscAppManager::addonManager();
+
+    QString version;
+    bool installed = am ? am->isInstalled(&version) : false;
+
+    QJsonObject jsn;
+    jsn["name"]      = AI_TOOLS_CAPTION;
+    jsn["version"]   = !version.isEmpty() ? version : VER_FILEVERSION_STR;
+    jsn["installed"] = installed;
+    jsn["restart"]   = am ? am->restartRequired() : false;
+    jsn["license"]   = QJsonObject({{"title","Commercial"},{"url", URL_BSL_LICENSE}});
+    jsn["text"]      = text;
+
+    if (!icon.isEmpty())
+        jsn["icon"] = icon;
+
+    jsn["button"] = QJsonObject({
+        {"action", installed ? "uninstall" : "install"},
+        {"lock", buttonLock ? "true" : "false"}
+    });
+
+    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:status", Utils::stringifyJson(jsn));
+}
+#endif

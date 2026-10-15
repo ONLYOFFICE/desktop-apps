@@ -16,6 +16,9 @@
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC"; */
 "2oI-Rn-ZJC.title" = "המרות";
 
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk"; */
+"3FX-nT-Klk.title" = "קרוב";
+
 /* Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg"; */
 "3IN-sU-3Bg.title" = "כתיב";
 
@@ -55,9 +58,6 @@
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS"; */
 "9aQ-wl-gjS.title" = "חדש";
 
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B"; */
-"9i7-kj-42B.title" = "ללא";
-
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
 "9ic-FL-obx.title" = "חילופים";
 
@@ -72,6 +72,18 @@
 
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3"; */
 "agt-UL-0e3.title" = "השתמש בברירת מחדל";
+
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19"; */
+"aiL-Ab-t19.title" = "מורשה תחת";
+
+/* Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22"; */
+"aiL-Ab-t22.title" = "מִסְחָרִי";
+
+/* Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14"; */
+"aiN-Ab-t14.title" = "ONLYOFFICE AI Tools";
+
+/* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16"; */
+"aiV-Ab-t16.title" = "גירסה";
 
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
 "aTl-1u-JFS.title" = "הדפיס...";
@@ -112,6 +124,9 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l"; */
 "CJU-dx-a9l.title" = "תודות";
 
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05"; */
+"clr-Cl-d05.title" = "נקה";
+
 /* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
 "cqv-fj-IhA.title" = "המרות";
 
@@ -150,9 +165,6 @@
 
 /* Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum"; */
 "FKE-Sm-Kum.title" = "עזרה עבור המוצר";
-
-/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi"; */
-"FoF-wl-Dxi.title" = "שם משתמש";
 
 /* Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27"; */
 "GB9-OM-e27.title" = "נועז";
@@ -247,6 +259,9 @@
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "הבא את כולם לקדמה";
 
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05"; */
+"lLc-Ab-t05.title" = "מורשה תחת";
+
 /* Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI"; */
 "LVM-kO-fVI.title" = "הדבקת סרגל";
 
@@ -258,6 +273,9 @@
 
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "העתקת סרגל";
+
+/* Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by"; */
+"ne5-Gy-5by.title" = "PDF";
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
 "NMo-om-nkz.title" = "שירותים";
@@ -274,11 +292,17 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
 "oas-Oc-fiZ.title" = "פתח אחרונים";
 
+/* Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04"; */
+"ofn-Cl-d04.title" = "הצג בתיקייה";
+
 /* Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1"; */
 "ogc-rX-tC1.title" = "לשחרר";
 
 /* Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "הסתר ONLYOFFICE";
+
+/* Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03"; */
+"opn-Cl-d03.title" = "פתח";
 
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
 "OwM-mh-QMV.title" = "חפש את הקודם";
@@ -319,15 +343,6 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "מקפים חכמים";
 
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj"; */
-"Riu-oE-8dj.title" = "קרוב";
-
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ"; */
-"Rkd-xb-FRJ.title" = "ללא";
-
-/* Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh"; */
-"RmO-tv-UKh.title" = "התנתקות";
-
 /* Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF"; */
 "Rqc-34-cIF.title" = "כתב עילי";
 
@@ -354,6 +369,9 @@
 
 /* Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS"; */
 "tRr-pd-1PS.title" = "גלאי נתונים";
+
+/* Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03"; */
+"ttl-Cl-d03.title" = "הורדות";
 
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
 "tXI-mr-wws.title" = "פתח אחרונים";
@@ -445,12 +463,6 @@
 /* Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1"; */
 "ZM1-6Q-yy1.title" = "יישור לשמאל";
 
-/* Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl"; */
-"Zsi-3o-ASl.title" = "דואר אלקטרוני:";
-
 /* Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH"; */
 "ZvO-Gk-QUH.title" = "פסקה";
-
-/* Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N"; */
-"zwS-9G-S0N.title" = "פורטל:";
 

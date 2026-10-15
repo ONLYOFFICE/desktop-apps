@@ -1,0 +1,285 @@
+:root,
+.theme-light-modern {
+  /* background */
+  --background-action-panel: #ffffff;
+  --background-normal-element: #f3f3f3;
+  --background-normal-element-light: #f9f9f9;
+  --background-accent-button: #3483db;
+  --background-primary-button: #3483db;
+  --background-scrim: #00000033;
+  --background-scroll-thumb: #e0e0e0;
+  --background-toolbar: var(--background-action-panel);
+
+  /* border */
+  --border-divider: #dfdfdf;
+  --border-regular-control: #c0c0c0;
+  --border-control-focus: #848484;
+  --border-error: #f62211;
+  --border-sidebar-icon: #dfdfdf;
+
+  /* highlight */
+  --highlight-button-hover: #e0e0e0;
+  --highlight-button-pressed: #cccccc;
+  --highlight-accent-button-hover: #5293e2;
+  --highlight-accent-button-pressed: #3475c5;
+  --highlight-primary-button-hover: #2b2b2b;
+  --highlight-primary-button-pressed: #2b2b2b;
+  --highlight-scroll-thumb-hover: #cccccc;
+  --highlight-scroll-track-hover: #00000008;
+  --highlight-toolbar-tab-underline-document: #4a87e7;
+
+  /* chb */
+  --chb-check-mark-background: #ffffff;
+  --chb-background-checked: #4a87e7;
+  --chb-border-normal: #c0c0c0;
+
+  /* icon */
+  --icon-normal: #000000cc;
+  --icon-success: #009900;
+
+  /* text */
+  --text-normal: #000000cc;
+  --text-normal-pressed: #000000cc;
+  --text-secondary: #00000099;
+  --text-tertiary: #00000066;
+  --text-link: #445799;
+  --text-inverse: #ffffff;
+  --text-contrast-background: #ffffff;
+  --text-negative: #991b1b;
+}
+
+.theme-dark-modern {
+  /* background */
+  --background-action-panel: #404040;
+  --background-normal-element: #4b4b4b;
+  --background-normal-element-light: #4b4b4b;
+  --background-accent-button: #3483db;
+  --background-primary-button: #dddddd;
+  --background-scrim: #00000099;
+  --background-scroll-thumb: #555555;
+
+  /* border */
+  --border-divider: #505050;
+  --border-regular-control: #585858;
+  --border-control-focus: #cccccc;
+  --border-error: #f62211;
+  --border-sidebar-icon: #585858;
+
+  /* highlight */
+  --highlight-button-hover: #585858;
+  --highlight-button-pressed: #686868;
+  --highlight-accent-button-hover: #5293e2;
+  --highlight-accent-button-pressed: #3475c5;
+  --highlight-primary-button-hover: #e5e5e5;
+  --highlight-primary-button-pressed: #e5e5e5;
+  --highlight-scroll-thumb-hover: #606060;
+  --highlight-scroll-track-hover: #ffffff08;
+  --highlight-toolbar-tab-underline-document: #4a87e7;
+
+  /* chb */
+  --chb-check-mark-background: #000000;
+  --chb-background-checked: #f3f3f3;
+  --chb-border-normal: #c0c0c0;
+
+  /* icon */
+  --icon-normal: #ffffffcc;
+  --icon-success: #009900;
+
+  /* text */
+  --text-normal: #ffffffcc;
+  --text-normal-pressed: #ffffffcc;
+  --text-secondary: #ffffff99;
+  --text-tertiary: #ffffff66;
+  --text-link: #acbfff;
+  --text-inverse: #333333;
+  --text-contrast-background: #ffffff;
+  --text-negative: #f87171;
+}
+
+.theme-light {
+  /* background */
+  --background-action-panel: #ffffff;
+  --background-normal-element: #efefef;
+  --background-normal-element-light: #f7f7f7;
+  --background-accent-button: #446995;
+  --background-primary-button: #444444;
+  --background-scrim: #00000033;
+  --background-scroll-thumb: #f7f7f7;
+
+  /* border */
+  --border-divider: #dfdfdf;
+  --border-regular-control: #c0c0c0;
+  --border-control-focus: #888888;
+  --border-error: #f62211;
+  --border-sidebar-icon: #c0c0c0;
+
+  /* highlight */
+  --highlight-button-hover: #e0e0e0;
+  --highlight-button-pressed: #cbcbcb;
+  --highlight-accent-button-hover: #375478;
+  --highlight-accent-button-pressed: #293f59;
+  --highlight-primary-button-hover: #1c1c1c;
+  --highlight-scroll-thumb-hover: #c0c0c0;
+  --highlight-scroll-track-hover: #cbcbcb;
+  --highlight-toolbar-tab-underline-document: #446995;
+
+  /* chb */
+  --chb-check-mark-background: #ffffff;
+  --chb-background-checked: #444444;
+  --chb-border-normal: #cbcbcb;
+
+  /* icon */
+  --icon-normal: #444444;
+  --icon-success: #009900;
+
+  /* text */
+  --text-normal: #000000cc;
+  --text-normal-pressed: #000000cc;
+  --text-secondary: #00000099;
+  --text-tertiary: #00000066;
+  --text-link: #445799;
+  --text-inverse: #ffffff;
+  --text-contrast-background: #ffffff;
+  --text-negative: #000000cc;
+}
+
+.theme-dark {
+  /* background */
+  --background-action-panel: #333333;
+  --background-normal-element: #505050;
+  --background-normal-element-light: #404040;
+  --background-accent-button: #486f9e;
+  --background-primary-button: #dddddd;
+  --background-scrim: #00000099;
+  --background-scroll-thumb: #404040;
+
+  /* border */
+  --border-divider: #505050;
+  --border-regular-control: #666666;
+  --border-control-focus: #7d7d7d;
+  --border-error: #f62211;
+  --border-sidebar-icon: #666666;
+
+  /* highlight */
+  --highlight-button-hover: #555555;
+  --highlight-button-pressed: #707070;
+  --highlight-accent-button-hover: #75a2d6;
+  --highlight-accent-button-pressed: #89afdc;
+  --highlight-primary-button-hover: #fcfcfc;
+  --highlight-scroll-thumb-hover: #999999;
+  --highlight-scroll-track-hover: #999999;
+  --highlight-toolbar-tab-underline-document: #446995;
+
+  /* chb */
+  --chb-check-mark-background: #333333;
+  --chb-background-checked: #dddddd;
+  --chb-border-normal: #707070;
+
+  /* icon */
+  --icon-normal: #ffffff;
+  --icon-success: #009900;
+
+  /* text */
+  --text-normal: #ffffffcc;
+  --text-normal-pressed: #ffffffcc;
+  --text-secondary: #ffffff99;
+  --text-tertiary: #ffffff66;
+  --text-link: #b5e4ff;
+  --text-inverse: #333333;
+  --text-contrast-background: #ffffff;
+  --text-negative: #ffffffcc;
+}
+
+.theme-contrast-dark {
+  /* background */
+  --background-action-panel: #212121;
+  --background-normal-element: #2a2a2a;
+  --background-normal-element-light: #2a2a2a;
+  --background-accent-button: #4d76a8;
+  --background-primary-button: #e6e6e6;
+  --background-scrim: #00000099;
+  --background-scroll-thumb: #2a2a2a;
+
+  /* border */
+  --border-divider: #414141;
+  --border-regular-control: #696969;
+  --border-control-focus: #999999;
+  --border-error: #f62211;
+  --border-sidebar-icon: #696969;
+
+  /* highlight */
+  --highlight-button-hover: #424242;
+  --highlight-button-pressed: #666666;
+  --highlight-accent-button-hover: #75a2d6;
+  --highlight-accent-button-pressed: #89afdc;
+  --highlight-primary-button-hover: #a6a6a6;
+  --highlight-scroll-thumb-hover: #424242;
+  --highlight-scroll-track-hover: #616161;
+  --highlight-toolbar-tab-underline-document: #446995;
+
+  /* chb */
+  --chb-check-mark-background: #212121;
+  --chb-background-checked: #e6e6e6;
+  --chb-border-normal: #666666;
+
+  /* icon */
+  --icon-normal: #e8e8e8;
+  --icon-success: #009900;
+
+  /* text */
+  --text-normal: #e8e8e8;
+  --text-normal-pressed: #e8e8e8;
+  --text-secondary: #b8b8b8;
+  --text-tertiary: #888888;
+  --text-link: #ffd78c;
+  --text-inverse: #121212;
+  --text-contrast-background: #ffffff;
+  --text-negative: #e8e8e8;
+}
+
+.theme-gray {
+  /* background */
+  --background-action-panel: #ffffff;
+  --background-normal-element: #efefef;
+  --background-normal-element-light: #f7f7f7;
+  --background-accent-button: #446995;
+  --background-primary-button: #444444;
+  --background-scrim: #00000033;
+  --background-scroll-thumb: #f7f7f7;
+
+  /* border */
+  --border-divider: #dfdfdf;
+  --border-regular-control: #c0c0c0;
+  --border-control-focus: #999999;
+  --border-error: #f62211;
+  --border-sidebar-icon: #c0c0c0;
+
+  /* highlight */
+  --highlight-button-hover: #e0e0e0;
+  --highlight-button-pressed: #cbcbcb;
+  --highlight-accent-button-hover: #375478;
+  --highlight-accent-button-pressed: #293f59;
+  --highlight-primary-button-hover: #1c1c1c;
+  --highlight-scroll-thumb-hover: #c0c0c0;
+  --highlight-scroll-track-hover: #cbcbcb;
+  --highlight-toolbar-tab-underline-document: #446995;
+
+  /* chb */
+  --chb-check-mark-background: #ffffff;
+  --chb-background-checked: #444444;
+  --chb-border-normal: #cbcbcb;
+
+  /* icon */
+  --icon-normal: #444444;
+  --icon-success: #009900;
+
+  /* text */
+  --text-normal: #000000cc;
+  --text-normal-pressed: #000000cc;
+  --text-secondary: #00000099;
+  --text-tertiary: #00000066;
+  --text-link: #445799;
+  --text-inverse: #ffffff;
+  --text-contrast-background: #ffffff;
+  --text-negative: #000000cc;
+}

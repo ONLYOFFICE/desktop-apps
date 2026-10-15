@@ -8,16 +8,19 @@ CONFIG  -= debug_and_release debug_and_release_target
 TEMPLATE = app
 
 CORE_ROOT_DIR = $$PWD/../../../../core
+COMMON_ROOT_DIR = $$PWD/../../../common/sources
 
 CONFIG += core_no_dst
 include($$CORE_ROOT_DIR/Common/base.pri)
 
 INCLUDEPATH += $$PWD/src
 INCLUDEPATH += $$PWD/../../src/prop
+INCLUDEPATH += $$COMMON_ROOT_DIR
 
 HEADERS += $$PWD/src/version.h \
            $$PWD/src/classes/csocket.h \
            $$PWD/src/classes/csvcmanager.h \
+           $$COMMON_ROOT_DIR/cdownloader.h \
            $$PWD/src/classes/cjson_p.h \
            $$PWD/src/classes/cjson.h \
            $$PWD/src/classes/translator.h
@@ -66,7 +69,7 @@ core_windows {
                $$PWD/src/platform_win/svccontrol.h \
                $$PWD/src/classes/platform_win/capplication.h \
                $$PWD/src/classes/platform_win/cunzip.h \
-               $$PWD/src/classes/platform_win/cdownloader.h \
+               $$COMMON_ROOT_DIR/private/httptransaction_win32_p.h \
                $$PWD/src/classes/platform_win/ctimer.h
 
     SOURCES += $$PWD/src/platform_win/main.cpp \
@@ -74,7 +77,7 @@ core_windows {
                $$PWD/src/platform_win/svccontrol.cpp \
                $$PWD/src/classes/platform_win/capplication.cpp \
                $$PWD/src/classes/platform_win/cunzip.cpp \
-               $$PWD/src/classes/platform_win/cdownloader.cpp \
+               $$COMMON_ROOT_DIR/cdownloader_win32.cpp \
                $$PWD/src/classes/platform_win/ctimer.cpp
 
     SOURCES += $$ZLIB_DIR/../../src/zlib_addon.c \
@@ -123,14 +126,13 @@ core_linux {
     HEADERS += $$PWD/src/platform_linux/utils.h \
                $$PWD/src/classes/platform_linux/capplication.h \
                $$PWD/src/classes/platform_linux/cunzip.h \
-               $$PWD/src/classes/platform_linux/cdownloader.h \
                $$PWD/src/classes/platform_linux/ctimer.h
 
     SOURCES += $$PWD/src/platform_linux/main.cpp \
                $$PWD/src/platform_linux/utils.cpp \
                $$PWD/src/classes/platform_linux/capplication.cpp \
                $$PWD/src/classes/platform_linux/cunzip.cpp \
-               $$PWD/src/classes/platform_linux/cdownloader.cpp \
+               $$COMMON_ROOT_DIR/cdownloader_linux.cpp \
                $$PWD/src/classes/platform_linux/ctimer.cpp
 
     CONFIG += link_pkgconfig

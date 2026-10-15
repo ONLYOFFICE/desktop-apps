@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ ekziston tashmë.\nDëshironi ta zëvendësoni atë?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "Ndihmë";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Mirënjohje";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Veçoritë e AI Tools nuk do të jenë të disponueshme pas çinstalimit. Të gjitha cilësimet e AI (përfshirë çelësat API) nuk do të hiqen.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Ka ndodhur një gabim gjatë çpaketimit të arkivit";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Ndodhi një gabim i papritur gjatë instalimit të shtesës.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Aplikacioni duhet të riniset";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Jeni i sigurt që dëshironi të çinstaloni ONLYOFFICE AI Tools?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Para nënshkrimit të dokumentit ai duhet të ruhet.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Anuloni";
+
+/* No comment provided by engineer. */
+"Canceled" = "Anuluar";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Skedari i nënshkrimit dixhital nuk mund të hapet";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "Dosja e vendndodhjes së skedarit nuk mund të hapet.";
 
 /* No comment provided by engineer. */
+"Close" = "Mbyllni";
+
+/* No comment provided by engineer. */
+"Close all" = "Mbyllni të gjitha";
+
+/* No comment provided by engineer. */
+"Close saved" = "Mbyllni të ruajtur";
+
+/* No comment provided by engineer. */
 "Comma-Separated Values" = "Vlerat e ndara me presje";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Versioni Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Krijoni të ri/e";
 
 /* No comment provided by engineer. */
 "Create portal" = "Krijoni portal";
@@ -50,13 +86,31 @@
 "Don't Save" = "Mos e ruani";
 
 /* No comment provided by engineer. */
+"Electronic Publication" = "Publikim elektronik";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Versioni Enterprise %@";
+
+/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Fletëllogaritëse Excel 97-2003";
 
 /* No comment provided by engineer. */
 "Excel 2007 Spreadsheet" = "Fletëllogaritëse Excel 2007";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "Skedari i FictionBook";
+"Excel Binary Workbook" = "Fletëlogaritëse binare Excel";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Shkarkimi i shtesës dështoi për shkak të një gabimi rrjeti.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Dështoi instalimi i temës";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Ruajtja e paketës së shkarkuar të shtesës dështoi.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Skedari i FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Skedari \"%@\" nuk mund të jetë i hapur ose nuk ekziston.";
@@ -71,10 +125,19 @@
 "Hide %@" = "Fshihni %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "Do ta bëj më vonë";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Në qoftë se nuk i rishikoni dokumentet tuaja, të gjitha ndryshimet tuaja do të humbasin.";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Në qoftë se e keni blerë tashmë %@, ju duhet të gjeni çelësin tuaj të aktivizimit në një konfigurim me email.";
+
+/* No comment provided by engineer. */
+"JPG Image" = "Imazh JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Marrëveshje license";
@@ -86,7 +149,16 @@
 "Macro-enabled spreadsheet template" = "Shablloni i fletëllogaritëses i aktivizuar me makro";
 
 /* No comment provided by engineer. */
+"Markdown File" = "Skedari Markdown";
+
+/* No comment provided by engineer. */
 "Mobipocket e-book" = "E-libër Mobipocket";
+
+/* No comment provided by engineer. */
+"Move to end" = "Zhvendosni në fund";
+
+/* No comment provided by engineer. */
+"Move to start" = "Zhvendosni në fillim";
 
 /* No comment provided by engineer. */
 "new-document" = "Dokument i ri";
@@ -104,13 +176,25 @@
 "No" = "Jo";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Nuk ka asnjë version të përputhshëm të shtesës i disponueshëm për këtë version të aplikacionit.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Nuk ka memorie të mjaftueshme për të përfunduar shkarkimin e shtesës.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools u çinstalua me sukses";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nuk mund të hapë skedarin e nënshkrimit dixhital. Provoni të hapni një skedar tjetër.";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nuk mund të hapë çelësin privat. Provoni të hapni një skedar tjetër.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Form Document" = "Formë PDF ONLYOFFICE";
 
 /* No comment provided by engineer. */
 "OpenDocument Document Template" = "Shabllon dokumenti OpenDocument";
@@ -140,7 +224,13 @@
 "PDF/A File" = "Skedar PDF/A";
 
 /* No comment provided by engineer. */
+"Pin to tab" = "Gozhdoni në skedë";
+
+/* No comment provided by engineer. */
 "Plain Text" = "Tekst i thjeshtë";
+
+/* No comment provided by engineer. */
+"PNG Image" = "Imazh PNG";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "Prezantim PowerPoint 97-2003";
@@ -167,6 +257,12 @@
 "Quit %@" = "Hiqni dorë %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Zëvendëso";
+
+/* No comment provided by engineer. */
+"Restart now" = "Rinisni tani";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Rishikoni ndryshimet...";
 
 /* No comment provided by engineer. */
@@ -177,6 +273,18 @@
 
 /* No comment provided by engineer. */
 "Save the document?" = "Ruani dokumentin?";
+
+/* No comment provided by engineer. */
+"Select theme file" = "Zgjidh skedarin e temës";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Tema e zgjedhur nuk është e vlefshme";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Shfaqni në dosje";
+
+/* No comment provided by engineer. */
+"Show main window" = "Shfaqni dritaren kryesore";
 
 /* No comment provided by engineer. */
 "Signature Details" = "Detajet e nënshkrimit";
@@ -191,7 +299,31 @@
 "Thank you for evaluating %@!" = "Ju faleminderit për vlerësimin %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL-ja e shkarkimit të shtesës është e pavlefshme.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Informacioni i shtesës është i pavlefshëm ose i paplotë.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Paketa e shtesës është e dëmtuar ose modifikuar.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokumenti \"%@\" duhet të ndërtohet. Vazhdoni?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Komponenti i instaluar AI Tools është i papajtueshëm me këtë version të aplikacionit. Të përditësohet AI Tools tani?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Tema ekziston tashmë. Të zëvendësohet?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Ky skedar nuk përmban temën";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Ky skedar teme nuk është i vlefshëm";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Për të instaluar shtesën, përditësoni aplikacionin në versionin më të fundit.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Për të hapur vendndodhjen e skedarit, ai duhet të ruhet.";
@@ -200,7 +332,16 @@
 "Unconfirmed" = "E pakonfirmuar";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Hiqni skedën";
+
+/* No comment provided by engineer. */
 "Untitled" = "Pa titull";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versioni %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Vizatim Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Faqe interneti";
@@ -227,7 +368,13 @@
 "You have successfully activated %@." = "Ju keni aktivizuar me sukses %@.";
 
 /* No comment provided by engineer. */
-"Your changes will be lost if you don’t save them." = "Ndryshimet tuaja do të humbasin në qoftë se nuk i ruani ato. ";
+"You must restart the application for the settings to take effect." = "Duhet të ristartoni aplikacionin që të hyjnë në fuqi cilësimet.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Ndryshimet tuaja do të humbasin në qoftë se nuk i ruani ato.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Ndryshimet tuaja do të humbasin në qoftë se nuk i ruani ato.";
 
 /* No comment provided by engineer. */
 "Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Abonimi juaj ka skaduar.\n\nProgrami funksionon në modalitetin e paaktivizuar.\n\nTani ju mund të zgjasni ose përmirësoni abonimin tuaj me një zbritje.";

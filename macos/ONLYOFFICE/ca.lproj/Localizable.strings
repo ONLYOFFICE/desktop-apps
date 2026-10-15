@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ ja existeix. Voleu substituir-lo?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Ajuda";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Reconeixements";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Les funcions d'AI Tools no estaran disponibles després de la desinstal·lació. Tota la configuració d'IA (incloses les claus API) no s'eliminarà.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "S'ha produït un error en desempaquetar l'arxiu";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "S'ha produït un error inesperat durant la instal·lació del complement.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "L'aplicació s'ha de reiniciar";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Esteu segur que voleu desinstal·lar ONLYOFFICE AI Tools?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Abans de signar el document, s'ha de desar.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Cancel·lar";
+
+/* No comment provided by engineer. */
+"Canceled" = "Cancel·lat";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "No es pot obrir el fitxer de signatura digital";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "No es pot obrir la carpeta de la ubicació del fitxer.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Valors separats per comes (*.csv)";
+"Close" = "Tanca";
+
+/* No comment provided by engineer. */
+"Close all" = "Tanca-ho tot";
+
+/* No comment provided by engineer. */
+"Close saved" = "Tanca desat";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Valors separats per comes";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Versió Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Crea'n un de nou";
 
 /* No comment provided by engineer. */
 "Create portal" = "Crear un portal";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "Suprimir i surtir";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Document digital (*.djvu)";
+"DjVu File" = "Document digital";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Vols desar els canvis fets al document “%@”?";
@@ -44,16 +80,37 @@
 "Document %ld.pdf" = "Document %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Plantilla de document Word Open XML (*.dotx)";
+"Document template" = "Plantilla de document Word Open XML";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Full de càlcul Excel 97-2003 (*.xls)";
+"Don't Save" = "No desis";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Full de càlcul Office Open XML (*.xlsx)";
+"Electronic Publication" = "Publicació electronica";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "Fitxer FictionBook (*.fb2)";
+"Enterprise version %@" = "Versió Enterprise %@";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Full de càlcul Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Full de càlcul Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Full de càlcul binari Excel";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "No s'ha pogut descarregar el complement a causa d'un error de xarxa.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "No s'ha pogut instal·lar el tema";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "No s'ha pogut desar el paquet del complement descarregat.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Fitxer FictionBook";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "L'arxiu \"%@\" no es pot obrir o no existeix.";
@@ -68,13 +125,37 @@
 "Hide %@" = "Ocultar %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "Ho faré més tard";
+
+/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Si ja has comprat %@, hauries de trobar la clau d'activació en un correu electronic de confirmació.";
+
+/* No comment provided by engineer. */
+"JPG Image" = "Imatge JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Acord de llicència";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Llibre electrònic de butxaca (*.mobi)";
+"Macro-enabled Presentation" = "Presentació macroactiva";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Plantilla de full de càlcul amb macros";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Fitxer Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Llibre electrònic de butxaca";
+
+/* No comment provided by engineer. */
+"Move to end" = "Moure al final";
+
+/* No comment provided by engineer. */
+"Move to start" = "Moure per començar";
 
 /* No comment provided by engineer. */
 "new-document" = "Document nou";
@@ -92,7 +173,16 @@
 "No" = "No";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "No hi ha cap versió compatible del complement per a aquesta versió de l'aplicació.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "No hi ha prou memòria per completar la descàrrega del complement.";
+
+/* No comment provided by engineer. */
 "OK" = "D'ACORD";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools s'ha desinstal·lat correctament";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE no pot obrir el fitxer de Signatura Digital. Prova d'obrir un altre fitxer.";
@@ -101,43 +191,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE no pot obrir la clau privada. Prova d'obrir un altre fitxer.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Plantilla de document OpenDocument (*.ott)";
+"ONLYOFFICE Form Document" = "Formulari PDF ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Plantilla de presentació OpenDocument (*.otp)";
+"OpenDocument Document Template" = "Plantilla de document OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Plantilla de full de càlcul OpenDocument (*.ots)";
+"OpenDocument Presentation Template" = "Plantilla de presentació OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Plantilla de full de càlcul OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Obertura";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Fitxer de text OpenDocument (*.odt)";
+"OpenOffice Document" = "Fitxer de text OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Presentació OpenDocument (*.odp)";
+"OpenOffice Presentation" = "Presentació OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Full de càlcul OpenDocument (*.ods)";
+"OpenOffice Spreadsheet" = "Full de càlcul OpenDocument";
 
 /* No comment provided by engineer. */
-"PDF File" = "Document portàtil (*.pdf)";
+"PDF File" = "Document portàtil";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Document portàtil /A (*.pdf)";
+"PDF/A File" = "Document portàtil /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Text pla (*.txt)";
+"Pin to tab" = "Fixa a la pestanya";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Presentació PowerPoint 97-2003 (*.ppt)";
+"Plain Text" = "Text pla";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Presentació Office Open XML (*.pptx)";
+"PNG Image" = "Imatge JPG";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Presentació de diapositives Office Open XML (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "Presentació PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Presentació Office Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Presentació de diapositives Office Open XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Preparant...";
@@ -146,7 +245,7 @@
 "Presentation %ld.pptx" = "Presentació %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Plantilla de presentació PowerPoint Open XML (*.potx)";
+"Presentation template" = "Plantilla de presentació PowerPoint Open XML";
 
 /* No comment provided by engineer. */
 "Presenter View" = "Vista del presentador";
@@ -155,10 +254,16 @@
 "Quit %@" = "Sortir de %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Substitueix";
+
+/* No comment provided by engineer. */
+"Restart now" = "Reiniciar ara";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Revisa els canvis...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Document de text enriquit (*.rtf)";
+"Rich Text Document" = "Document de text enriquit";
 
 /* No comment provided by engineer. */
 "Save" = "Desa";
@@ -167,16 +272,55 @@
 "Save the document?" = "Voleu desar el document?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Seleccioneu el fitxer de tema";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "El tema seleccionat no és vàlid";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Mostra a la carpeta";
+
+/* No comment provided by engineer. */
+"Show main window" = "Mostra la finestra principal";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Detalls de la signatura";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Full de càlcul %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Plantilla de full de càlcul Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Plantilla de full de càlcul Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Gràcies per avaluar %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "L'URL de descàrrega del complement no és vàlid.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "La informació del complement no és vàlida o està incompleta.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "El paquet del complement està danyat o ha estat modificat.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Cal crear el document \"%@\". Voleu continuar?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "El component AI Tools instal·lat és incompatible amb aquesta versió de l'aplicació. Voleu actualitzar AI Tools ara?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "El tema ja existeix. Voleu substituir-lo?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Aquest fitxer no conté el tema";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Aquest fitxer de tema no és vàlid";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Per instal·lar el complement, actualitzeu l'aplicació a la versió més recent.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Per obrir la ubicació del fitxer, s'ha de desar.";
@@ -185,7 +329,16 @@
 "Unconfirmed" = "No confirmat";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Desfixar pestanya";
+
+/* No comment provided by engineer. */
 "Untitled" = "Sense títol";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versió %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Dibuix de Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Pàgina web";
@@ -194,13 +347,13 @@
 "With access to pro features" = "Amb accés a les funcions pro";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Document Word 97-2003 (*.doc)";
+"Word 97-2003 Document" = "Document Word 97-2003";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Document Office Open XML (*.docx)";
+"Word 2007 Document" = "Document Office Open XML";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Document OpenXPS (*.xps)";
+"XML Paper Specification" = "Document OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "Si";
@@ -210,6 +363,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Has activat correctament %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Heu de reiniciar l'aplicació perquè la configuració tingui efecte.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Els canvis es perdran si no els deseu.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Els canvis es perdran si no els deseu.";

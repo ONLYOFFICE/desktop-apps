@@ -1,3 +1,384 @@
 /* No comment provided by engineer. */
-"new-pdfform" = "Νέο φόρμα PDF";
+"%@ already exists.\nDo you want to replace it?" = "Το %@ υπάρχει ήδη.\nΘέλετε να το αντικαταστήσετε;";
+
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Βοήθεια";
+
+/* No comment provided by engineer. */
+"About %@" = "Περί %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Ευχαριστίες";
+
+/* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Οι λειτουργίες του AI Tools δεν θα είναι διαθέσιμες μετά την απεγκατάσταση. Όλες οι ρυθμίσεις AI (συμπεριλαμβανομένων των κλειδιών API) δεν θα αφαιρεθούν.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Εμφανίστηκε σφάλμα κατά την αποσυμπίεση του αρχείου";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Παρουσιάστηκε απρόσμενο σφάλμα κατά την εγκατάσταση του πρόσθετου.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Η εφαρμογή χρειάζεται επανεκκίνηση";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Είστε βέβαιοι ότι θέλετε να απεγκαταστήσετε το ONLYOFFICE AI Tools;";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Πριν υπογράψετε το έγγραφο, πρέπει να αποθηκευτεί.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Ακύρωση";
+
+/* No comment provided by engineer. */
+"Canceled" = "Ακυρώθηκε";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Δεν είναι δυνατό το άνοιγμα του αρχείου της Ψηφιακής Υπογραφής";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Δεν είναι δυνατό το άνοιγμα του αρχείου του ιδιωτικού κλειδιού";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Δεν είναι δυνατό το άνοιγμα του φακέλου της θέσης του αρχείου.";
+
+/* No comment provided by engineer. */
+"Close" = "Κλείσιμο";
+
+/* No comment provided by engineer. */
+"Close all" = "Κλείσιμο όλων";
+
+/* No comment provided by engineer. */
+"Close saved" = "Κλείσιμο αποθηκευμένων";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Τιμές διαχωρισμένες με κόμμα";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Έκδοση Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Δημιουργία νέου";
+
+/* No comment provided by engineer. */
+"Create portal" = "Δημιουργία πύλης";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Διαγραφή και έξοδος";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Ψηφιακό Έγγραφο";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Θέλετε να αποθηκεύσετε τις αλλαγές που έγιναν στο έγγραφο \"%@\";";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Έγγραφο %ld.docx";
+
+/* No comment provided by engineer. */
+"Document %ld.pdf" = "Έγγραφο %ld.pdf";
+
+/* No comment provided by engineer. */
+"Document template" = "Πρότυπο εγγράφου Word Open XML";
+
+/* No comment provided by engineer. */
+"Don't Save" = "Να μην αποθηκευτεί";
+
+/* No comment provided by engineer. */
+"Electronic Publication" = "Ηλεκτρονική δημοσίευση";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Έκδοση Enterprise %@";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Υπολογιστικό φύλλο Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Υπολογιστικό φύλλο Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Δυαδικό υπολογιστικό φύλλο Excel";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Αποτυχία λήψης του πρόσθετου λόγω σφάλματος δικτύου.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Αποτυχία εγκατάστασης θέματος";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Αποτυχία αποθήκευσης του ληφθέντος πακέτου πρόσθετου.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Αρχείο FictionBook 2";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Το αρχείο \"%@\" δεν μπορεί να είναι ανοιχτό ή να μην υπάρχει.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Το αρχείο δεν μπορεί να ανοίξει.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Μορφή αρχείου:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Απόκρυψη %@";
+
+/* No comment provided by engineer. */
+"I'll do it later" = "Θα το κάνω αργότερα";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Εάν δεν ελέγξετε τα έγγραφά σας, όλες οι αλλαγές σας θα χαθούν.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Εάν έχετε ήδη αγοράσει το %@, θα πρέπει να βρείτε το κλειδί ενεργοποίησής σας σε ένα email επιβεβαίωσης.";
+
+/* No comment provided by engineer. */
+"JPG Image" = "Εικόνα JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Άδεια Χρήσης";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "Παρουσίαση με δυνατότητα μακροεντολών";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Πρότυπο υπολογιστικού φύλλου με δυνατότητα μακροεντολών";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Αρχείο Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Αρχείο Mobipocket";
+
+/* No comment provided by engineer. */
+"Move to end" = "Μετακίνηση στο τέλος";
+
+/* No comment provided by engineer. */
+"Move to start" = "Μετακίνηση στην αρχή";
+
+/* No comment provided by engineer. */
+"new-document" = "Νέο έγγραφο";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Νέο PDF";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Νέα παρουσίαση";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Νέο υπολογιστικό φύλλο";
+
+/* No comment provided by engineer. */
+"No" = "Όχι";
+
+/* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Δεν υπάρχει διαθέσιμη συμβατή έκδοση του πρόσθετου για αυτήν την έκδοση της εφαρμογής.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Δεν υπάρχει αρκετή μνήμη για την ολοκλήρωση της λήψης του πρόσθετου.";
+
+/* No comment provided by engineer. */
+"OK" = "Εντάξει";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "Το ONLYOFFICE AI Tools απεγκαταστάθηκε επιτυχώς";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Το ONLYOFFICE δεν μπορεί να ανοίξει το αρχείο ψηφιακής υπογραφής. Δοκιμάστε να ανοίξετε ένα άλλο αρχείο.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "Το ONLYOFFICE δεν μπορεί να ανοίξει το ιδιωτικό κλειδί. Δοκιμάστε να ανοίξετε ένα άλλο αρχείο.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Form Document" = "Φόρμα PDF ONLYOFFICE";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Πρότυπο εγγράφου OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Πρότυπο παρουσίασης OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Πρότυπο υπολογιστικού φύλλου OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Άνοίγει";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Αρχείο κειμένου OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Παρουσίαση OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Υπολογιστικό φύλλο OpenDocument";
+
+/* No comment provided by engineer. */
+"PDF File" = "Έγγραφο PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Έγγραφο PDF/A";
+
+/* No comment provided by engineer. */
+"Pin to tab" = "Καρφίτσωμα στην καρτέλα";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Αρχείο απλού κειμένου";
+
+/* No comment provided by engineer. */
+"PNG Image" = "Εικόνα PNG";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Παρουσίαση του PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Παρουσίαση Office Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Προβολή παρουσίασης Office Open XML";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Προετοιμασία...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Παρουσίαση %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Πρότυπο παρουσίασης PowerPoint Open XML";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Προβολή παρουσιαστή";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Τερματισμός %@";
+
+/* No comment provided by engineer. */
+"Replace" = "Αντικατάσταση";
+
+/* No comment provided by engineer. */
+"Restart now" = "Επανεκκίνηση τώρα";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Αναθεώρηση αλλαγών...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Αναθεώρηση αρχείου μορφής εμπλουτισμένου κειμένου";
+
+/* No comment provided by engineer. */
+"Save" = "Αποθήκευση";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Αποθήκευση του εγγράφου;";
+
+/* No comment provided by engineer. */
+"Select theme file" = "Επιλογή αρχείου θέματος";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Το επιλεγμένο θέμα δεν είναι έγκυρο";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Εμφάνιση στο φάκελο";
+
+/* No comment provided by engineer. */
+"Show main window" = "Εμφάνιση κύριου παραθύρου";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Λεπτομέρειες υπογραφής ";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Υπολογιστικό φύλλο %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Πρότυπο υπολογιστικού φύλλου Excel Open XML";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Σας ευχαριστούμε που αξιολογήσατε το %@!";
+
+/* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Το URL λήψης του πρόσθετου δεν είναι έγκυρο.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Οι πληροφορίες του πρόσθετου είναι μη έγκυρες ή ελλιπείς.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Το πακέτο πρόσθετου είναι κατεστραμμένο ή έχει τροποποιηθεί.";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Το έγγραφο \"%@\" πρέπει να δημιουργηθεί. Να συνεχίσει;";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Το εγκατεστημένο στοιχείο AI Tools είναι ασύμβατο με αυτήν την έκδοση της εφαρμογής. Να γίνει ενημέρωση των AI Tools τώρα;";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Υπάρχει ήδη θέμα. Να αντικατασταθεί;";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Αυτό το αρχείο δεν περιέχει θέμα";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Αυτό το αρχείο θέματος δεν είναι έγκυρο";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Για να εγκαταστήσετε το πρόσθετο, ενημερώστε την εφαρμογή στην πιο πρόσφατη έκδοση.";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Για να ανοίξετε τη θέση του αρχείου, πρέπει να αποθηκευτεί.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Ανεπιβεβαίωτο";
+
+/* No comment provided by engineer. */
+"Unpin tab" = "Ξεκαρφίτσωμα καρτέλας";
+
+/* No comment provided by engineer. */
+"Untitled" = "Ανεπιβεβαίωτο";
+
+/* No comment provided by engineer. */
+"Version %@" = "Έκδοση %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Σχέδιο του Visio";
+
+/* No comment provided by engineer. */
+"Web Page" = "Ιστοσελίδα";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Με πρόσβαση σε λειτουργίες pro";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Έγγραφο Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Έγγραφο Office Open XML";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Έγγραφο OpenXPS";
+
+/* No comment provided by engineer. */
+"Yes" = "Ναι";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Έχετε %1$ld %2$@ έγγραφα με μη επιβεβαιωμένες αλλαγές. Θέλετε να εξετάσετε αυτές τις αλλαγές πριν τερματίσετε;";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Έχετε ενεργοποιήσει επιτυχώς το %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Πρέπει να επανεκκινήσετε την εφαρμογή για να τεθούν σε ισχύ οι ρυθμίσεις.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Οι αλλαγές σας θα χαθούν αν δεν τις αποθηκεύσετε.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Οι αλλαγές σας θα χαθούν αν δεν τις αποθηκεύσετε.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Η συνδρομή σας έχει λήξει.\n\nΤο πρόγραμμα λειτουργεί σε μη ενεργοποιημένη λειτουργία.\n\nΤώρα μπορείτε να παρατείνετε ή να αναβαθμίσετε τη συνδρομή σας με έκπτωση.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Η συνδρομή σας πρόκειται να λήξει\n(απομένουν %d ημέρες).\n\nΈχουμε μια ειδική προσφορά για εσάς.";
 

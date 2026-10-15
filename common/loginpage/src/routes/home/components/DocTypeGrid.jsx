@@ -1,0 +1,60 @@
+import { createDocument } from "@/sdk";
+import { For } from "solid-js";
+import { t } from "@/services/l10n";
+import "./DocTypeGrid.styles.css";
+
+const DOC_TYPES = [
+  {
+    id: "word",
+    titleKey: "newDoc",
+    formatLabel: { value: "DOCX", gradientColorStart: "#4298C5", gradientColorEnd: "#2D84B2", bgColorWinXP: "#287ca9" },
+    icon: "#docx-big",
+  },
+  {
+    id: "cell",
+    titleKey: "newXlsx",
+    formatLabel: { value: "XLSX", gradientColorStart: "#5BB514", gradientColorEnd: "#318C2B", bgColorWinXP: "#3aa133" },
+    icon: "#xlsx-big",
+  },
+  {
+    id: "slide",
+    titleKey: "newPptx",
+    formatLabel: { value: "PPTX", gradientColorStart: "#F4893A", gradientColorEnd: "#DE7341", bgColorWinXP: "#f36700" },
+    icon: "#pptx-big",
+  },
+  {
+    id: "form",
+    titleKey: "newForm",
+    formatLabel: { value: "PDF", gradientColorStart: "#F36653", gradientColorEnd: "#D2402D", bgColorWinXP: "#e54d39" },
+    icon: "#pdf-big",
+  },
+];
+
+export function DocTypeGrid(props) {
+  const onSelect = props.onDocumentSelect || ((id) => createDocument(id));
+
+  return (
+    <div class="doc-type-grid">
+      <For each={DOC_TYPES}>
+        {(item) => (
+          <div class="doc-type-item" onClick={() => onSelect(item.id)}>
+            <div
+              class="format-label"
+              style={{
+                "--format-bg-start": item.formatLabel.gradientColorStart,
+                "--format-bg-end": item.formatLabel.gradientColorEnd,
+                "--format-bg-winxp": item.formatLabel.bgColorWinXP,
+              }}
+            >
+              <span>{item.formatLabel.value}</span>
+            </div>
+            <svg class="icon" viewBox="0 0 108 100">
+              <use href={item.icon} />
+            </svg>
+            <div class="title">{t(item.titleKey)}</div>
+          </div>
+        )}
+      </For>
+    </div>
+  );
+}

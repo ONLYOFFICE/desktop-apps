@@ -16,6 +16,9 @@
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC"; */
 "2oI-Rn-ZJC.title" = "ການປ່ຽນແປງ";
 
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk"; */
+"3FX-nT-Klk.title" = "ປິດ";
+
 /* Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg"; */
 "3IN-sU-3Bg.title" = "ສະກົດ";
 
@@ -55,9 +58,6 @@
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS"; */
 "9aQ-wl-gjS.title" = "ໃໝ່";
 
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B"; */
-"9i7-kj-42B.title" = "ບໍ່ມີ";
-
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
 "9ic-FL-obx.title" = "ປ່ຽນແທນ";
 
@@ -72,6 +72,18 @@
 
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3"; */
 "agt-UL-0e3.title" = "ກຳນົດການນຳໃຊ້";
+
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19"; */
+"aiL-Ab-t19.title" = "ລາຍເຊັນຄວບຄຸມເຖິງ";
+
+/* Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22"; */
+"aiL-Ab-t22.title" = "ທາງການຄ້າ";
+
+/* Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14"; */
+"aiN-Ab-t14.title" = "ONLYOFFICE AI Tools";
+
+/* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16"; */
+"aiV-Ab-t16.title" = "ເວີຊັນ";
 
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
 "aTl-1u-JFS.title" = "ພິມ";
@@ -112,6 +124,9 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l"; */
 "CJU-dx-a9l.title" = "ຮັບຊາບ";
 
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05"; */
+"clr-Cl-d05.title" = "ລຶບລ້າງ";
+
 /* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
 "cqv-fj-IhA.title" = "ການເລືອກ";
 
@@ -150,9 +165,6 @@
 
 /* Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum"; */
 "FKE-Sm-Kum.title" = "ຜະລິດຕະພັນ ຊ່ວຍເຫຼືອ";
-
-/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi"; */
-"FoF-wl-Dxi.title" = "ບັນຊີຜຸ້ໃຊ້ງານ";
 
 /* Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27"; */
 "GB9-OM-e27.title" = "ເຂັ້ມຂື້ນ";
@@ -247,6 +259,9 @@
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "ເອົາມາໄວ້ທາງໜ້າ";
 
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05"; */
+"lLc-Ab-t05.title" = "ລາຍເຊັນຄວບຄຸມເຖິງ";
+
 /* Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI"; */
 "LVM-kO-fVI.title" = "ໃຊ້ໄມ້ບັນທັດ";
 
@@ -258,6 +273,9 @@
 
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "ສໍາເນົາໄມ້ບັນທັດ";
+
+/* Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by"; */
+"ne5-Gy-5by.title" = "PDF";
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
 "NMo-om-nkz.title" = "ການບໍລິການ";
@@ -274,11 +292,17 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
 "oas-Oc-fiZ.title" = "ເປີດເມື່ອບໍ່ດົນ";
 
+/* Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04"; */
+"ofn-Cl-d04.title" = "ສະແດງໃນໂຟນເດີ";
+
 /* Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1"; */
 "ogc-rX-tC1.title" = "ແບບຫຼົມ";
 
 /* Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "ເຊື່ອງ ONLYOFFICE";
+
+/* Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03"; */
+"opn-Cl-d03.title" = "ເປີດ";
 
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
 "OwM-mh-QMV.title" = "ຊອກຫາ ກ່ອນໜ້າ";
@@ -319,15 +343,6 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "ເສັ້ນຂີດກ້ອງ";
 
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj"; */
-"Riu-oE-8dj.title" = "ປິດ";
-
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ"; */
-"Rkd-xb-FRJ.title" = "ບໍ່ມີ";
-
-/* Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh"; */
-"RmO-tv-UKh.title" = "ອອກຈາກລະບົບ";
-
 /* Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF"; */
 "Rqc-34-cIF.title" = "ອັກສອນຫຍໍ້";
 
@@ -354,6 +369,9 @@
 
 /* Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS"; */
 "tRr-pd-1PS.title" = "ກວດຂໍ້ມູນ";
+
+/* Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03"; */
+"ttl-Cl-d03.title" = "ດາວໂຫຼດ";
 
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
 "tXI-mr-wws.title" = "ເປີດເມື່ອບໍ່ດົນມານີ້";
@@ -445,12 +463,6 @@
 /* Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1"; */
 "ZM1-6Q-yy1.title" = "ຢັບຊ້າຍ";
 
-/* Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl"; */
-"Zsi-3o-ASl.title" = "ອີເມລ:";
-
 /* Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH"; */
 "ZvO-Gk-QUH.title" = "ພາລາກ";
-
-/* Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N"; */
-"zwS-9G-S0N.title" = "ປະຕູ1:";
 

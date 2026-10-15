@@ -42,6 +42,8 @@
 #include "../Common/OfficeFileFormats.h"
 #include <QList>
 #include <QMimeDatabase>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
@@ -68,46 +70,46 @@ namespace CFileDialogHelper {
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 {
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]              = tr("All files (*.*)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]              = tr("All files") + " (*.*)";
 
 	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX]        = tr("DOCX Document") + " (*.docx)";
 	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX]        = tr("Document template") + " (*.dotx)";
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC]         = tr("DOC Document (*.doc)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT]         = tr("ODT Document (*.odt)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC]         = tr("DOC Document") + " (*.doc)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT]         = tr("ODT Document") + " (*.odt)";
 	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OTT]         = tr("OpenDocument Document template") + " (*.ott)";
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF]         = tr("RTF File (*.rtf)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT]         = tr("TXT File (*.txt)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]        = tr("HTML File (*.html)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]         = tr("MHT File (*.mht)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]        = tr("EPUB File (*.epub)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]         = tr("FB2 File (*.fb2)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]        = tr("MOBI File (*.mobi)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF]   = tr("ONLYOFFICE Form Document (*.pdf)");
-	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]       = tr("DOCXF Document (*.docxf)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MD]          = tr("Markdown File (*.md)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF]         = tr("RTF File") + " (*.rtf)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT]         = tr("TXT File") + " (*.txt)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]        = tr("HTML File") + " (*.html)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]         = tr("MHT File") + " (*.mht)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]        = tr("EPUB File") + " (*.epub)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]         = tr("FB2 File") + " (*.fb2)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]        = tr("MOBI File") + " (*.mobi)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF]   = tr("ONLYOFFICE Form Document") + " (*.pdf)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]       = tr("DOCXF Document") + " (*.docxf)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MD]          = tr("Markdown File") + " (*.md)";
 
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File") + " (*.pptx)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File") + " (*.ppt)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_POTX]   = tr("Presentation template") + " (*.potx)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP]    = tr("ODP File (*.odp)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP]    = tr("ODP File") + " (*.odp)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_OTP]    = tr("OpenDocument Presentation Template") + " (*.otp)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX]   = tr("PPSX File (*.ppsx)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTM]   = tr("Macro-enabled Presentation File (*.pptm)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX]   = tr("PPSX File") + " (*.ppsx)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTM]   = tr("Macro-enabled Presentation File") + " (*.pptm)";
 
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX]    = tr("XLSX File (*.xlsx)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX]    = tr("XLSX File") + " (*.xlsx)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTX]    = tr("Spreadsheet template") + " (*.xltx)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTM]    = tr("Macro-enabled spreadsheet template") + " (*.xltm)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSB]    = tr("XLSB File (*.xlsb)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS]     = tr("XLS File (*.xls)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_ODS]     = tr("ODS File (*.ods)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSB]    = tr("XLSB File") + " (*.xlsb)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS]     = tr("XLS File") + " (*.xls)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_ODS]     = tr("ODS File") + " (*.ods)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_OTS]     = tr("OpenDocument Spreadsheet Template") + " (*.ots)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV]     = tr("CSV File (*.csv)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV]     = tr("CSV File") + " (*.csv)";
 
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF]   = tr("PDF File (*.pdf)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA]  = tr("PDFA File (*.pdf)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]   = tr("SVG Image (*.svg)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF]   = tr("PDF File") + " (*.pdf)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA]  = tr("PDFA File") + " (*.pdf)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File") + " (*.djvu)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File") + " (*.xps)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]   = tr("SVG Image") + " (*.svg)";
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSDX]           = tr("VSDX File") + " (*.vsdx)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSDM]           = tr("VSDM File") + " (*.vsdm)";
@@ -116,8 +118,20 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSTX]           = tr("VSTX File") + " (*.vstx)";
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DRAW_VSTM]           = tr("VSTM File") + " (*.vstm)";
 
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image (*.jpg *.jpeg)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image (*.png)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image") + " (*.jpg *.jpeg)";
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image") + " (*.png)";
+
+    // read supported input formats
+    QFile file(":/formats.json");
+    if (file.open(QIODevice::ReadOnly)) {
+        const QByteArray data = file.readAll();
+        file.close();
+
+        QJsonParseError error;
+        const QJsonDocument doc = QJsonDocument::fromJson(data, &error);
+        if (error.error == QJsonParseError::NoError && doc.isArray())
+            m_jsonFormats = doc.array();
+    }
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()
@@ -216,11 +230,11 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
                 QWidget * _mess_parent = (QWidget *)parent();
                 int _answ = CMessage::showMessage(_mess_parent,
                                                   tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName().toHtmlEscaped()),
-                                                  MsgType::MSG_WARN, MsgBtns::mbYesNo);
-                if ( MODAL_RESULT_NO == _answ ) {
+                                                  CMessage::Icon::Warning, CMessage::Buttons::YesNo);
+                if ( CMessage::Result::No == _answ ) {
                     continue;
                 } else
-                if ( MODAL_RESULT_YES != _answ ) {
+                if ( CMessage::Result::Yes != _answ ) {
                     fileName.clear();
                 }
             }
@@ -250,7 +264,33 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
         return tr("PowerPoint Presentation") + " (*." + out + ")";
     } else {
         out.replace(0, 1, extension.left(1).toUpper());
-        return tr("%1 File (*.%2)").arg(out, out.toLower());
+        return tr("%1 File").arg(out) + QString(" (*.%1)").arg(out.toLower());
+    }
+}
+
+QString CFileDialogWrapper::getSupportedFiltersByEditor(const QString &type) const
+{
+    QStringList extensions;
+    for (const QJsonValue &val : m_jsonFormats) {
+        const QJsonObject obj = val.toObject();
+        if (obj.value(QLatin1String("type")).toString() == type)
+            extensions << QStringLiteral("*.") + obj.value(QLatin1String("name")).toString();
+    }
+
+    if (extensions.length())
+        return extensions.join(QLatin1Char(' '));
+    else {
+        if (type == "word")
+            return "*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 "
+                   "*.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md "
+                   "*.sxw *.stw *.xps *.oxps *.pages *.hwp *.hwpx";
+        else if (type == "cell")
+            return "*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers";
+        else if (type == "slide")
+            return "*.pptx *.ppt *.odp *.odg *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot "
+                   "*.potm *.fodp *.dps *.dpt *.sxi *.key";
+        else if (type == "diagram")
+            return "*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm";
     }
 }
 
@@ -260,15 +300,18 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     QString _sel_filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
-        _filter_ =  tr("Text documents") +
-#ifndef __LOCK_OFORM_FORMATS
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.docxf *.oform *.sxw *.stw *.xps *.oxps *.pages *.hwp *.hwpx);;" +
-#else
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.hml *.wps *.wpt *.xml *.pdf *.djv *.djvu *.md *.sxw *.stw *.xps *.oxps);;" +
-#endif
-                    tr("Spreadsheets") + " (*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc *.numbers);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.odg *.otp *.ppsm *.pptm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi *.key);;" +
-                    tr("Visio diagram") + " (*.vsdx *.vssx *.vstx *.vsdm *.vssm *.vstm);;" +
+
+        QString _word_formats = getSupportedFiltersByEditor("word"),
+                _cell_formats = getSupportedFiltersByEditor("cell"),
+                _slide_formats = getSupportedFiltersByEditor("slide"),
+                _pdf_formats = getSupportedFiltersByEditor("pdf"),
+                _draw_formats = getSupportedFiltersByEditor("diagram");
+
+        _filter_ =  tr("Text documents") + " ("+ _word_formats + ");;" +
+                    tr("Spreadsheets") + " (" + _cell_formats + ");;" +
+                    tr("Presentations") + " (" + _slide_formats + ");;" +
+                    tr("Crossplatform") + " (" + _pdf_formats + ");;" +
+                    tr("Visio diagram") + " (" + _draw_formats + ");;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv *.tsv)";
 //#ifdef __linux__
@@ -320,9 +363,17 @@ QString CFileDialogWrapper::modalOpenSingle(const QString& path, const QString& 
 
 QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
 {
-    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp *.tiff *.tif *.heif *.heic *.svg)";
+    QString selected = tr("All Images") + " (*.jpeg *.jpg *.jpe *.jfif *.jif *.png *.gif *.bmp *.tiff *.tif *.heif *.heic *.svg *.webp *.avif)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif);;Heif (*.heif *.heic)"));
+    filter.append(";;" + selected + ";;" +
+                  tr("JPG Image") + " (*.jpeg *.jpg *.jpe *.jfif *.jif)" + ";;" +
+                  tr("PNG Image") + " (*.png)" + ";;" +
+                  tr("GIF Image") + " (*.gif)" + ";;" +
+                  tr("BMP Image") + " (*.bmp)" + ";;" +
+                  tr("TIFF Image") + " (*.tiff *.tif)" + ";;" +
+                  tr("HEIF Image") + " (*.heif *.heic)" + ";;" +
+                  tr("WEBP Image") + " (*.webp)" + ";;" +
+                  tr("AVIF Image") + " (*.avif)");
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
     auto result = modalOpen(path, filter, &selected, false);
@@ -332,9 +383,17 @@ QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
 
 QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
 {
-    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp *.heif *.heic *.svg)";
+    QString selected = tr("All Images") + " (*.jpeg *.jpg *.jpe *.jfif *.jif *.png *.gif *.bmp *.tiff *.tif *.heif *.heic *.svg *.webp *.avif)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Heif (*.heif *.heic)"));
+    filter.append(";;" + selected + ";;" +
+                  tr("JPG Image") + " (*.jpeg *.jpg *.jpe *.jfif *.jif)" + ";;" +
+                  tr("PNG Image") + " (*.png)" + ";;" +
+                  tr("GIF Image") + " (*.gif)" + ";;" +
+                  tr("BMP Image") + " (*.bmp)" + ";;" +
+                  tr("TIFF Image") + " (*.tiff *.tif)" + ";;" +
+                  tr("HEIF Image") + " (*.heif *.heic)" + ";;" +
+                  tr("WEBP Image") + " (*.webp)" + ";;" +
+                  tr("AVIF Image") + " (*.avif)");
     filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
     auto result = modalOpen(path, filter, &selected, true);
@@ -345,7 +404,7 @@ QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
 QStringList CFileDialogWrapper::modalOpenPlugin(const QString& path)
 {
     QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    QString _plugins_filter = tr("Plugin file (*.plugin)");
+    QString _plugins_filter = tr("Plugin file") + " (*.plugin)";
     _filter.append(";;" + _plugins_filter);
 
     return modalOpen(path, _filter, &_plugins_filter, false);
@@ -354,10 +413,18 @@ QStringList CFileDialogWrapper::modalOpenPlugin(const QString& path)
 QStringList CFileDialogWrapper::modalOpenPlugins(const QString& path)
 {
     QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    QString _plugins_filter = tr("Plugin file (*.plugin)");
+    QString _plugins_filter = tr("Plugin file") + " (*.plugin)";
     _filter.append(";;" + _plugins_filter);
 
     return modalOpen(path, _filter, &_plugins_filter, true);
+}
+
+QStringList CFileDialogWrapper::modalOpenTemplates(const QString& path)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Templates") + " (*.dotx *.xltx *.potx *.pdf);;");
+
+    return modalOpen(path, filter, &filter, true);
 }
 
 QStringList CFileDialogWrapper::modalOpenDocuments(const QString& path, bool multi)
@@ -386,11 +453,7 @@ QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool
 
 QStringList CFileDialogWrapper::modalOpenForEncrypt(const QString& path, bool multi)
 {
-#ifndef __LOCK_OFORM_FORMATS
-    QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx *.oform);;" +
-#else
     QString _filter = tr("Text documents") + " (*.docx *.docm *.dotm *.dotx);;" +
-#endif
                         tr("Spreadsheets") + " (*.xlsx *.xlsm *.xltm *.xltx);;" +
                         tr("Presentations") + " (*.potm *.potx *.ppsm *.pptm *.ppsx *.pptx)";
 

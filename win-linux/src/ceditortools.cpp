@@ -268,7 +268,7 @@ namespace CEditorTools
             } else
             if ( _filter == "csv/txt" ) {
                 QString _sel_filter;
-                const QString _txt_filter = CFileDialogWrapper::tr("All supported files") + " (*.txt *.csv);;" + QObject::tr("All files (*.*)");
+                const QString _txt_filter = CFileDialogWrapper::tr("All supported files") + " (*.txt *.csv);;" + QObject::tr("All files") + " (*.*)";
 
                 _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
             } else
@@ -277,7 +277,7 @@ namespace CEditorTools
             } else
             if ( _filter == "(*xml)" ) {
                 QString _sel_filter;
-                const QString _txt_filter = QObject::tr("XML File (*.xml)") + ";;" + QObject::tr("All files (*.*)");
+                const QString _txt_filter = QObject::tr("XML File") + " (*.xml)" + ";;" + QObject::tr("All files") + " (*.*)";
 
                 _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
             } else
@@ -550,8 +550,8 @@ namespace CEditorTools
                 case AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV: {
                     int res = CMessage::showMessage(_parent,
                                                     QCoreApplication::translate("CEditorWindow", "Some data will lost.<br>Continue?"),
-                                                    MsgType::MSG_WARN, MsgBtns::mbOkDefCancel);
-                    _allowed = (MODAL_RESULT_OK == res);
+                                                    CMessage::Icon::Warning, CMessage::Buttons::OkDefCancel);
+                    _allowed = (CMessage::Result::Ok == res);
                     break; }
                 default: break;
                 }

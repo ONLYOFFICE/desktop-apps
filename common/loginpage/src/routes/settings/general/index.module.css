@@ -1,0 +1,106 @@
+.page {
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: minmax(150px,180px) 1fr;
+  align-items: center;
+  height: 36px;
+  gap: 64px;
+}
+
+.fieldLabel {
+  font-family: var(--font-family-base-custom, var(--font-family-base)), Arial, Helvetica, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--text-normal);
+}
+
+.fieldControl {
+  min-width: 0;
+
+  > * {
+    width: 100%;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.formHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resetLink {
+  position: absolute;
+  top: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.divider {
+  /* width: 560px; */
+  height: 1px;
+  background: var(--border-divider);
+  flex-shrink: 0;
+}
+
+.fieldRowAuto {
+  display: flex;
+  align-items: flex-start;
+  /* width: 560px; */
+  gap: 64px;
+}
+
+.fieldLabelBlock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.fieldDescription {
+  color: var(--text-tertiary);
+}
+
+.fieldControlEnd {
+  /* flex: 1; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.switchLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.restartNotice {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-secondary);
+}

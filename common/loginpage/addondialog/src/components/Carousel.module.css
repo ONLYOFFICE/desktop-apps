@@ -1,0 +1,74 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.caption {
+  margin: 0;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.3;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-regular-control, #c0c0c0);
+  cursor: pointer;
+}
+
+.dotActive {
+  background: var(--background-accent-button, #3483db);
+}
+
+.imageRow {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 400px;
+  height: 300px;
+  display: block;
+  cursor: pointer;
+  -webkit-user-drag: none;
+}
+
+.navBtn {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border-radius: 50%;
+  /* border: 1px solid var(--border-regular-control, #c0c0c0); */
+  border: 0 none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-normal, rgba(0, 0, 0, 0.8));
+  opacity: 0.5;
+}
+
+.navBtn:hover {
+  /* background: var(--highlight-button-hover, #e0e0e0); */
+  opacity: 1;
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+
+  :global(body.rtl) & {
+    transform: scaleX(-1);
+  }
+}

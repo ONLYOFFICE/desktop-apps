@@ -62,7 +62,8 @@ CToolTip::CToolTip(QWidget * parent, const QString &text,
                    const QPoint &pos) :
     QWidget(parent, Qt::Tool | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint |
             Qt::BypassWindowManagerHint),
-    m_activated(false)
+    m_activated(false),
+    m_pos(pos)
 {
     int margins = 0;
     if (isCompositingEnabled()) {
@@ -90,18 +91,6 @@ CToolTip::CToolTip(QWidget * parent, const QString &text,
         shadow->setOffset(1.0);
         m_label->setGraphicsEffect(shadow);
     }
-    move(pos + QPoint(6,6));
-    show();
-    QTimer *tmr = new QTimer(this);
-    tmr->setSingleShot(false);
-    tmr->setInterval(100);
-    connect(tmr, &QTimer::timeout, this, [=]() {
-        if (QLineF(pos, QCursor::pos()).length() > 10.0) {
-            tmr->stop();
-            showEffect(EffectType::Fade);
-        }
-    });
-    tmr->start();
 }
 
 CToolTip::~CToolTip()
@@ -132,8 +121,17 @@ void CToolTip::showEvent(QShowEvent *event)
         QTimer::singleShot(FADE_TIMEOUT_MS, this, [=]() {
             showEffect(EffectType::Fade);
         });
-        if (AscAppManager::isRtlEnabled())
-            move(pos() - QPoint(width(), 0));
+
+        QTimer *tmr = new QTimer(this);
+        tmr->setSingleShot(false);
+        tmr->setInterval(100);
+        connect(tmr, &QTimer::timeout, this, [=]() {
+            if (QLineF(m_pos, QCursor::pos()).length() > 10.0) {
+                tmr->stop();
+                showEffect(EffectType::Fade);
+            }
+        });
+        tmr->start();
     }
 }
 

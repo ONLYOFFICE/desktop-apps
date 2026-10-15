@@ -57,11 +57,13 @@
         "tooltip-background": "#fff",
 
         "tab-active-background": "#f1f1f1",
-        "tab-simple-active-background": "#fff",
+        "tab-simple-active-background": "#f3f3f3",
         "tab-simple-active-text": "#444",
         "tab-default-active-background": "#fff",
         "tab-default-active-text": "#444",
         "tab-divider": "#d9d9d9",
+        "tab-close-hover-dark-background": "rgba(0,0,0,51)",
+        "tab-close-hover-light-background": "rgba(255,255,255,51)",
 
         "button-normal-opacity": "rgba(49,49,49,255)",
         "logo-type": "dark",

@@ -42,6 +42,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ASCApplicationManager.h"
 #import "ASCConstants.h"
 #import "ASCSavePanelWithFormatController.h"
 #import "ASCCertificatePreviewController.h"
@@ -51,20 +52,28 @@
 #import "ASCEditorWindowController.h"
 #import "ASCEditorWindow.h"
 #import "ASCTitleWindow.h"
+#import "ASCAboutController.h"
 #import "ASCSharedSettings.h"
 #import "ASCTabView.h"
 #import "NSString+Extensions.h"
 #import "NSCefView.h"
 #import "ASCHelper.h"
+#import "ASCLinguist.h"
 #import "AnalyticsHelper.h"
 #import "ASCExternalController.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCThemesController.h"
+#import "ASCEventsController.h"
 #import "NSAlert+SynchronousSheet.h"
 #import "NSString+Extensions.h"
 #import "NSDictionary+Extensions.h"
 #import "PureLayout.h"
 #import "ascprinter.h"
+
+#ifdef USE_ADDON_MODE
+# import "ASCAddonManager.h"
+# import "ASCUpgradeController.h"
+#endif
 
 #ifndef _MAS
     #import "PFMoveApplication.h"
@@ -80,9 +89,55 @@
 @property (nonatomic, weak) NSWindow *dropEditorWindow;
 @property (nonatomic, assign) BOOL terminationAlreadyHandled;
 @property (nonatomic, assign) BOOL hasFilesToOpenOnLaunch;
+@property (nonatomic, assign) BOOL terminationDialogPending;
+@property (nonatomic, assign) BOOL needsRestart;
+#ifdef USE_ADDON_MODE
+@property (nonatomic, assign) BOOL upgradeInProgress;
+@property (nonatomic, weak) ASCUpgradeController *upgradeController;
+- (void)showUpgradeDialog:(NSWindow *)parentWindow page:(ASCUpgradePage)page;
+- (void)checkAndSuggestAddonUpdate;
+#endif
 @end
 
 @implementation AppDelegate
+
+- (void)loadDocumentFormats {
+    NSMutableArray *words = [NSMutableArray array];
+    NSMutableArray *cells = [NSMutableArray array];
+    NSMutableArray *slides = [NSMutableArray array];
+    NSMutableArray *pdfs = [NSMutableArray array];
+    NSMutableArray *draws = [NSMutableArray array];
+
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"onlyoffice-docs-formats" ofType:@"json" inDirectory:@"converter"];
+    if (jsonPath) {
+        NSData *data = [NSData dataWithContentsOfFile:jsonPath];
+        if (data) {
+            NSError *error = nil;
+            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            if (!error && [json isKindOfClass:[NSArray class]]) {
+
+                NSString *name;
+                NSString *type;
+                for (NSDictionary *entry in (NSArray *)json) {
+                    name = entry[@"name"];
+                    type = entry[@"type"];
+                    if (!name || !type) continue;
+                    else if ([type isEqualToString:@"word"]) [words addObject:name];
+                    else if ([type isEqualToString:@"cell"]) [cells addObject:name];
+                    else if ([type isEqualToString:@"slide"]) [slides addObject:name];
+                    else if ([type isEqualToString:@"pdf"]) [pdfs addObject:name];
+                    else if ([type isEqualToString:@"diagram"]) [draws addObject:name];
+                }
+            }
+        }
+    }
+
+    self.wordFormats = words.count ? [words copy] : [ASCConstants documents];
+    self.cellFormats = cells.count ? [cells copy] : [ASCConstants spreadsheets];
+    self.slideFormats = slides.count ? [slides copy] : [ASCConstants presentations];
+    self.crossFormats = slides.count ? [pdfs copy] : [NSMutableArray new];
+    self.diagramFormats = draws.count ? [draws copy] : [ASCConstants draws];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
@@ -93,6 +148,7 @@
     
     self.editorWindowControllers = [NSMutableArray array];
     
+    [self loadDocumentFormats];
     [self updateAppAppearance];
     
 #ifndef _MAS
@@ -119,6 +175,7 @@
     addObserverFor(CEFEventNameSaveLocal, @selector(onCEFSaveLocalFile:));
     addObserverFor(CEFEventNameOpenLocalFile, @selector(onCEFOnOpenLocalFile:));
     addObserverFor(CEFEventNameEditorEvent, @selector(onCEFEditorEvent:));
+    addObserverFor(CEFEventNameWebAppsFeatures, @selector(onCEFWebAppsFeatures:));
     addObserverFor(CEFEventNameOpenImage, @selector(onCEFOpenLocalImage:));
     addObserverFor(CEFEventNameOpenFileDialog, @selector(onCEFOpenFileDialog:));
     addObserverFor(CEFEventNameFileInFinder, @selector(onCEFFileInFinder:));
@@ -130,9 +187,17 @@
     addObserverFor(ASCEventNameRecoveryFiles, @selector(onRecoveryFiles:));
     addObserverFor(ASCEventNameEditorWindowMoving, @selector(onEditorWindowMoving:));
     addObserverFor(ASCEventNameEditorWindowEndMoving, @selector(onEditorWindowEndMoving:));
-        
+    addObserverFor(ASCEventNameSettingsNeedRestart, @selector(onSettingsNeedRestart:));
+
+#ifdef USE_ADDON_MODE
+    addObserverFor(ASCAddonManagerUninstallFinishedNotification, @selector(onAddonUninstallFinished:));
+    addObserverFor(CEFEventNameAddonInstallation, @selector(onCEFAddonInstalling:));
+#endif
+    addObserverFor(CEFEventNameAddonAction, @selector(onCEFAddonAction:));
+    addObserverFor(CEFEventNameStartPageReady, @selector(onStartPageReady:));
+
     // Google Analytics
-    
+
 #ifdef _PRODUCT_ONLYOFFICE
 //    [[AnalyticsHelper sharedInstance] beginPeriodicReportingWithAccount:@"UA-XXXXXXXXX-1"
 //                                                                   name:@"ONLYOFFICE"
@@ -175,6 +240,12 @@
     if (!self.hasFilesToOpenOnLaunch) {
         [self presentMainWindow];
     }
+
+#if _V8_VERSION
+    if (self.mainWindowController) {
+        [self.mainWindowController.window setMinSize:NSMakeSize(960.0, 650.0)];
+    }
+#endif
 }
 
 /// If your delegate implements this method, AppKit does not call the application(_:openFile:)
@@ -341,10 +412,17 @@
         return NSTerminateNow;
     }
     
+    if (self.terminationDialogPending) {
+        return NSTerminateCancel;
+    }
+    
     if (![self shouldTerminateApplication])
         return NSTerminateCancel;
     
     self.terminationAlreadyHandled = YES;
+    if (self.needsRestart) {
+        [ASCHelper restartApp];
+    }
     return NSTerminateNow;
 }
 
@@ -356,12 +434,6 @@
 
 - (BOOL)shouldTerminateApplication {
     NSInteger unsaved = 0;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
-                                                        object:nil
-                                                      userInfo:@{@"fullscreen" : @(NO),
-                                                                 @"terminate"  : @(YES)
-                                                               }];
     NSMutableArray * locked_uuids = [NSMutableArray array];
     
     ASCCommonViewController * controller = nil;
@@ -408,6 +480,7 @@
     }
     
     if (unsaved > 0) {
+        void (^showTerminationDialog)(void) = ^{
         NSString * productName = [ASCHelper appName];
         
         NSAlert *alert = [[NSAlert alloc] init];
@@ -451,12 +524,9 @@
                 [self safeCloseEditorWindows];
             }
             
-            return NO;
-            
         } else
         if (result == NSAlertSecondButtonReturn) {
             // Cancel
-            return NO;
             
         } else {
             // Delete and Quit
@@ -475,9 +545,26 @@
             for (NSWindowController *controller in controllers) {
                 [controller.window close];
             }
-            
-            return NO;
         }
+        };
+        
+        if ([ASCEventsController hasFullscreenState]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
+                                                                object:nil
+                                                              userInfo:@{@"fullscreen" : @(NO),
+                                                                         @"terminate"  : @(YES)
+                                                                       }];
+            self.terminationDialogPending = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.terminationDialogPending = NO;
+                showTerminationDialog();
+            });
+            
+        } else {
+            showTerminationDialog();
+        }
+        
+        return NO;
     }
     return YES;
 }
@@ -661,7 +748,40 @@
         ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
         
         NSWindowController * windowController = [controller.storyboard instantiateControllerWithIdentifier:@"ASCAboutWindowControllerId"];
-        [NSApp runModalForWindow:windowController.window];
+        NSWindow * aboutWindow = windowController.window;
+        
+        NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        // TODO: replace with the real version of the add-on
+        NSString *appVersion = [NSString stringWithFormat:@"%@.%@",
+                   [infoDictionary objectForKey:@"CFBundleShortVersionString"],
+                   [infoDictionary objectForKey:@"ASCBundleBuildNumber"]];
+        
+        ASCAboutController *aboutController = (ASCAboutController *)aboutWindow.contentViewController;
+#ifdef USE_ADDON_MODE
+        NSString *addonVersion = nil;
+        BOOL isInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
+        aboutController.aiToolsHidden = !isInstalled;
+        if (isInstalled) {
+            aboutController.aiToolsVersion = (addonVersion && addonVersion.length > 0) ? addonVersion : appVersion;
+        } else {
+            aboutController.aiToolsVersion = @"";
+        }
+#else
+# if _V8_VERSION
+        aboutController.aiToolsHidden = YES;
+# else
+        aboutController.aiToolsHidden = NO;
+        aboutController.aiToolsVersion = appVersion;
+# endif
+#endif
+        
+        NSRect parentFrame = mainWindow.frame;
+        NSRect childFrame = aboutWindow.frame;
+        [aboutWindow setFrameOrigin:NSMakePoint(NSMidX(parentFrame) - childFrame.size.width / 2,
+                                                NSMidY(parentFrame) - childFrame.size.height / 2)];
+        // Show the window first to apply the coordinates
+        [aboutWindow makeKeyAndOrderFront:nil];
+        [NSApp runModalForWindow:aboutWindow];
     }
 }
 
@@ -850,6 +970,7 @@
         pEvent->m_pData = pCommand;
         appManager->SetEventToAllMainWindows(pEvent);
         
+        Boolean updateThemeInEditor = [[ASCThemesController currentThemeId] isEqualToString:uiThemeSystem];
         for (int uuid : appManager->GetViewsId()) {
             CCefView * cef = appManager->GetViewById((int)uuid);
             if (cef && cef->GetType() == cvwtEditor) {
@@ -861,6 +982,17 @@
                 pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                 pEvent->m_pData = pCommand;
                 cef->Apply(pEvent);
+
+                if ( updateThemeInEditor) {
+                    pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_FrameName(L"frameEditor");
+                    pCommand->put_Command(L"uitheme:changed");
+                    pCommand->put_Param(L"theme-system");
+
+                    pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent->m_pData = pCommand;
+                    cef->Apply(pEvent);
+                }
             }
         }
         
@@ -986,6 +1118,9 @@
             
             NSCefData *cefData = [[NSCefData alloc] initWith:title viewType:cvwtEditor];
             
+            cefData.url = params[@"url"];
+            cefData.path = params[@"path"];
+            cefData.cloudName = params[@"cloud"];
             cefView.data = cefData;
             
             [cefView create:appManager withType:cvwtEditor];
@@ -1123,6 +1258,7 @@
             
             NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
             [cefView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
+            [cefView sendCommand:@"editor:config" withParam:@"request"];
             
         } else {
             [self presentMainWindow];
@@ -1291,6 +1427,43 @@
                                                                                 userInfo: @{@"directory":@""}];
                     [self onCEFOnOpenLocalFile: notification];
                 }
+            }
+        }
+    }
+}
+
+- (void)onCEFWebAppsFeatures:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        NSString * info = json[@"info"];
+        
+        if (viewId) {
+            NSCefView * cefView = nil;
+            for (NSWindow *window in [NSApp windows]) {
+                if ([window isKindOfClass:[ASCTitleWindow class]]) {
+                    ASCCommonViewController * controller = (ASCCommonViewController *)window.contentViewController;
+                    ASCTabView * tab = [controller.tabsControl tabWithUUID:viewId];
+                    if (tab) {
+                        cefView = [controller cefViewWithTab:tab];
+                        break;
+                    }
+                    
+                } else
+                if ([window isKindOfClass:[ASCEditorWindow class]]) {
+                    ASCEditorWindow *editor = (ASCEditorWindow *)window;
+                    ASCEditorWindowController *controller = (ASCEditorWindowController *)editor.windowController;
+                    if (controller && [controller holdView:viewId]) {
+                        cefView = (NSCefView *)editor.webView;
+                        break;
+                    }
+                }
+            }
+            
+            if (cefView) {
+                NSCefData * data = [cefView data];
+                [data setFeatures:info];
             }
         }
     }
@@ -1636,6 +1809,22 @@
     }
 }
 
+- (void)onSettingsNeedRestart:(NSNotification *)notification {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert setMessageText:NSLocalizedString(@"You must restart the application for the settings to take effect.", nil)];
+        [alert setAlertStyle:NSAlertStyleInformational];
+
+        NSInteger result = [alert runModal];
+        if (result == NSAlertFirstButtonReturn) {
+            self.needsRestart = YES;
+            [NSApp terminate:self];
+        }
+    });
+}
+
 -(void)onRecoveryFiles:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
@@ -1675,10 +1864,22 @@
     }
 }
 
+- (BOOL)isMainWindowCoveredByAnotherWindowAtPoint:(NSPoint)point ignoringWindow:(NSWindow *)window {
+    ASCTitleBarController *titlebarController = [self titleBarController];
+    if (!titlebarController) {
+        return NO;
+    }
+    NSInteger mainWindowNumber = [titlebarController.view.window windowNumber];
+    NSInteger current = [NSWindow windowNumberAtPoint:point belowWindowWithWindowNumber:[window windowNumber]];
+    return (current != 0 && current != mainWindowNumber);
+}
+
 - (void)handleDropTimer {
     ASCTitleBarController *titlebarController = [self titleBarController];
     NSPoint currentCursor = [NSEvent mouseLocation];
-    if (titlebarController && [titlebarController canPinTabAtPoint:currentCursor]) {
+    if (titlebarController &&
+        ![self isMainWindowCoveredByAnotherWindowAtPoint:currentCursor ignoringWindow:self.dropEditorWindow] &&
+        [titlebarController canPinTabAtPoint:currentCursor]) {
         if (NSEqualPoints(currentCursor, lastCursorPos)) {
             [self stopDropTimer];
             
@@ -1719,7 +1920,8 @@
         self.dropEditorWindow = editorWindow;
         
         NSPoint pos = [NSEvent mouseLocation];
-        if ([titlebarController canPinTabAtPoint:pos]) {
+        if (![self isMainWindowCoveredByAnotherWindowAtPoint:pos ignoringWindow:editorWindow] &&
+            [titlebarController canPinTabAtPoint:pos]) {
             if (!dropTimer) {
                 dropTimer = [NSTimer scheduledTimerWithTimeInterval:0.15
                                                              target:self
@@ -1744,19 +1946,12 @@
 #pragma mark -
 #pragma mark Tab Detachment Support
 
-- (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event {
-    if (!self.mainWindowController) {
-        return;
-    }
+- (NSWindow *)editorWindowFromCef:(NSView *)cefView withFrame:(NSRect)windowFrame {
     NSCefView *webView = (NSCefView *)cefView;
     
     NSDictionary *widgetInfo = @{@"widgetType": @"window", @"captionHeight": TOOLBTN_HEIGHT};
     [webView setParentWidgetInfoWithJson:[widgetInfo jsonString]];
-    
-    ASCTitleWindowController *mainWindowController = (ASCTitleWindowController *)self.mainWindowController;
-    NSSize size = [mainWindowController normalFrame].size;
-    NSRect windowFrame = NSMakeRect(screenPoint.x - 200, screenPoint.y - size.height + 11, size.width, size.height);
-        
+            
     ASCEditorWindowController *windowController = [ASCEditorWindowController initWithFrame:windowFrame];
     [self.editorWindowControllers addObject:windowController];
     
@@ -1777,12 +1972,289 @@
     
     NSDictionary *windowFeatures = @{@"skiptoparea": TOOLBTN_HEIGHT, @"singlewindow": @YES};
     [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
+    [webView sendCommand:@"editor:config" withParam:@"request"];
     [webView focus];
+    
+    return editorWindow;
+}
 
+- (void)dragDetachedTab:(NSView *)cefView atScreenPoint:(NSPoint)screenPoint withEvent:(NSEvent *)event {
+    if (!self.mainWindowController) {
+        return;
+    }
+    
+    ASCTitleWindowController *mainWindowController = (ASCTitleWindowController *)self.mainWindowController;
+    NSSize size = [mainWindowController normalFrame].size;
+    CGFloat offsetX = [ASCLinguist isUILayoutDirectionRtl] ? size.width - 200 : 200;
+    NSRect windowFrame = NSMakeRect(screenPoint.x - offsetX, screenPoint.y - size.height + 11, size.width, size.height);
+
+    NSWindow *editorWindow = [self editorWindowFromCef:cefView withFrame:windowFrame];
+    
     // Let the event loop process before starting drag to prevent window jerking
     [editorWindow performSelector:@selector(performWindowDragWithEvent:)
                        withObject:event
                        afterDelay:0.016];
 }
+
+#pragma mark -
+#pragma mark Upgrade Support
+
+- (void)onStartPageReady:(NSNotification *)notification {
+#ifdef USE_ADDON_MODE
+    if (self.upgradeInProgress) {
+        return;
+    }
+
+    NSString *addonVersion = nil;
+    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
+    NSDictionary *jsonObj = @{@"installed": @(isAddonInstalled),
+                                @"version": addonVersion,
+                                @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self checkAndSuggestAddonUpdate];
+    });
+#elif !defined(_V8_VERSION)
+    NSDictionary *jsonObj = @{@"integrated": @(true)};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+#endif
+}
+
+#ifdef USE_ADDON_MODE
+- (void)checkAndSuggestAddonUpdate {
+    NSString *addonVersion = nil,
+            *appVersion = [ASCAboutController fullAppVersion];
+    BOOL isAddonInstalled = [[ASCAddonManager sharedManager] isInstalled:&addonVersion];
+
+    if (isAddonInstalled && addonVersion.length > 0 && ![addonVersion isEqualToString:appVersion]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert setMessageText:NSLocalizedString(@"The installed AI Tools component is incompatible with "
+                                                 "this version of the application. Please update the AI "
+                                                 "Tools component to continue.", nil)];
+        [alert setAlertStyle:NSAlertStyleInformational];
+
+        NSInteger code = [alert runModal];
+        if (code == NSAlertFirstButtonReturn) {
+            self.upgradeInProgress = YES;
+
+            [self performSelector:@selector(showUpgradeDialogWithPage:)
+                       withObject:@(ASCUpgradePageInstall)
+                       afterDelay:0];
+        }
+    }
+}
+#endif
+
+- (void)onCEFAddonAction:(NSNotification *)notification {
+    NSString *action = notification.userInfo[@"action"];
+    if (!action) {
+        return;
+    }
+
+#ifdef USE_ADDON_MODE
+    if ([action isEqualToString:@"intro"]) {
+        if (![[ASCAddonManager sharedManager] restartRequired]) {
+            self.upgradeInProgress = YES;
+
+            // Defer the dialog to the next main run loop iteration.
+            [self performSelector:@selector(showUpgradeDialogWithPage:)
+                    withObject:@(ASCUpgradePageIntro)
+                    afterDelay:0];
+        } else {
+            action = @"askrestart";
+        }
+    } else if ([action isEqualToString:@"install"]) {
+        /* "accept and install" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController showStartPage];
+
+//            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionInstall];
+        }
+
+    } else if ([action isEqualToString:@"postpone"]) {
+        /* "may be later" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController reject];
+        }
+
+    } else if ([action isEqualToString:@"disable"]) {
+        /* "don't show again" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController reject];
+        }
+        ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:action", L"disable");
+
+    } else if ([action isEqualToString:@"uninstall"]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [alert setMessageText:NSLocalizedString(@"Are you sure you want to uninstall ONLYOFFICE AI Tools?", nil)];
+        [alert setInformativeText:NSLocalizedString(@"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.", nil)];
+        [alert setAlertStyle:NSAlertStyleWarning];
+
+        NSInteger code = [alert runModalSheet];
+        if (code == NSAlertSecondButtonReturn) {
+            self.upgradeInProgress = YES;
+            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionUninstall];
+        }
+
+    } else if ([action isEqualToString:@"restart"]) {
+        /* clicked "restart now" after addon was installed */
+        if (self.upgradeController) {
+            [self.upgradeController accept:ASCUpgradeDialogResultRestartNow];
+        }
+
+    } else if ([action isEqualToString:@"close"]) {
+        /* "close" clicked */
+        if (self.upgradeController) {
+            [self.upgradeController reject];
+        }
+    } else if ([action isEqualToString:@"incompatible"]) {
+        [self checkAndSuggestAddonUpdate];
+    }
+#endif
+
+    if ([action isEqualToString:@"askrestart"]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [[alert.buttons objectAtIndex:1] setAccessibilityFocused:YES];
+        [alert setMessageText:@"You need to restart the application to finish ONLYOFFICE AI Tools installation.\nRestart now?"];
+        [alert setAlertStyle:NSAlertStyleInformational];
+
+        NSInteger code = [alert runModalSheet];
+        if (code == NSAlertSecondButtonReturn) {
+            self.needsRestart = YES;
+            [NSApp terminate:self];
+        }
+    }
+}
+
+#ifdef USE_ADDON_MODE
+- (void)onCEFAddonInstalling:(NSNotification *)notification {
+    NSDictionary * params = (NSDictionary *)(notification.userInfo[@"info"]);
+    if ( [params[@"status"] isEqual:@"downloaded"] ) {
+        NSString *_tmpPath = params[@"tempfile"];
+        if ([[ASCHelper fileMd5Hash:_tmpPath] isEqual:params[@"md5"]]) {
+            NSString * ext = [_tmpPath pathExtension];
+            if ([[_tmpPath pathExtension] isNotEqualTo:@".zip"]) {
+                NSString *currPath = _tmpPath;
+                _tmpPath = [currPath stringByAppendingPathExtension:@"zip"];
+
+                NSError *err = nil;
+                BOOL res = [[NSFileManager defaultManager] moveItemAtPath:currPath toPath:_tmpPath error:&err];
+                if (!res || err) {
+                    return;
+                }
+            }
+
+            [[ASCAddonManager sharedManager] installFromBundle:_tmpPath];
+        }
+    }
+}
+
+- (void)onAddonUninstallFinished:(NSNotification *)notification {
+    NSDictionary *jsonObj = @{@"installed": @([[ASCAddonManager sharedManager] isInstalled:nil]),
+                                @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+    ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+
+    self.upgradeInProgress = NO;
+//    [self performSelector:@selector(showUpgradeDialogWithPage:)
+//               withObject:@(ASCUpgradePageComplete)
+//               afterDelay:0];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:NSLocalizedString(@"Restart now", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"I'll do it later", nil)];
+    [alert setMessageText:NSLocalizedString(@"ONLYOFFICE AI Tools successfully uninstalled", nil)];
+    [alert setInformativeText:NSLocalizedString(@"Application needs to restart", nil)];
+    [alert setAlertStyle:NSAlertStyleInformational];
+    NSInteger result = [alert runModal];
+    if (result == NSAlertFirstButtonReturn) {
+        self.needsRestart = YES;
+        [NSApp terminate:self];
+    }
+}
+
+- (void)showUpgradeDialogWithPage:(NSNumber *)page {
+    [self showUpgradeDialog:[self getMainWindow] page:(ASCUpgradePage)page.integerValue];
+}
+
+- (void)showUpgradeDialog:(NSWindow *)parentWindow page:(ASCUpgradePage)page {
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Upgrade-Dialog" bundle:nil];
+    NSWindowController *windowController = [storyboard instantiateControllerWithIdentifier:@"ASCUpgradeWindowControllerId"];
+    ASCUpgradeController *upgradeController = (ASCUpgradeController *)windowController.contentViewController;
+    upgradeController.initialPage = page;
+
+    id progressObserver = [[NSNotificationCenter defaultCenter]
+                                       addObserverForName:ASCAddonManagerProgressChangedNotification
+                                                   object:nil
+                                                    queue:[NSOperationQueue mainQueue]
+                                               usingBlock:^(NSNotification *note) {
+        NSNumber *progress = note.userInfo[@"progress"];
+        [upgradeController setProgress:[progress integerValue]];
+    }];
+
+    id installObserver = [[NSNotificationCenter defaultCenter]
+                                      addObserverForName:ASCAddonManagerInstallFinishedNotification
+                                                  object:nil
+                                                   queue:[NSOperationQueue mainQueue]
+                                              usingBlock:^(NSNotification *note) {
+        self.upgradeInProgress = NO;
+
+        ASCAddonManagerResult result = (ASCAddonManagerResult)[note.userInfo[@"result"] integerValue];
+        if (result == ASCAddonManagerResultSuccess) {
+            [upgradeController showFinalPage];
+
+            NSDictionary *jsonObj = @{@"installed": @([[ASCAddonManager sharedManager] isInstalled:nil]),
+                                        @"restart": @([[ASCAddonManager sharedManager] restartRequired])};
+            ASCApplicationManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"addon:status", [[jsonObj jsonString] stdwstring]);
+        } else if (result == ASCAddonManagerResultDownloadAborted) {
+            // Aborted
+        } else {
+            NSString *msg = [ASCAddonManager errorMessageForResult:result];
+            [upgradeController showErrorPage:msg];
+        }
+    }];
+
+    self.upgradeController = upgradeController;
+
+    NSWindow *upgradeWindow = windowController.window;
+    if (parentWindow) {
+        NSRect parentFrame = parentWindow.frame;
+        NSRect windowFrame = upgradeWindow.frame;
+        CGFloat newX = parentFrame.origin.x + (parentFrame.size.width - windowFrame.size.width) / 2.0;
+        CGFloat newY = parentFrame.origin.y + (parentFrame.size.height - windowFrame.size.height) / 2.0;
+        [upgradeWindow setFrameOrigin:NSMakePoint(newX, newY)];
+    } else {
+        [upgradeWindow center];
+    }
+
+    [upgradeWindow makeKeyAndOrderFront:nil];
+    NSInteger result = [upgradeController exec];
+    self.upgradeController = nil;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:progressObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:installObserver];
+
+    switch (result) {
+        case ASCUpgradeDialogResultRestartNow: {
+            self.needsRestart = YES;
+            [NSApp terminate:self];
+            break;
+        }
+        case ASCUpgradeDialogResultRejected: {
+            [[ASCAddonManager sharedManager] doAction:ASCAddonManagerActionStop];
+            self.upgradeInProgress = NO;
+            break;
+        }
+        case ASCUpgradeDialogResultRestartLater:
+        default:
+            break;
+    }
+}
+#endif
 
 @end

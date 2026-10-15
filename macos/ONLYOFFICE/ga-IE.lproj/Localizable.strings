@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@  ann cheana.\nAr mhaith leat ceann eile a chur ina ionad?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Cabhrú";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Admhálacha";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Ní bheidh gnéithe AI Tools ar fáil tar éis díshuiteála. Ní bheidh na socruithe AI go léir (lena n-áirítear eochracha API) á mbaint.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Tharla earráid agus an chartlann á díphacáil";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Tharla earráid gan choinne le linn suiteáil an bhreiseáin.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Ní mór don fheidhmchlár atosú";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "An bhfuil tú cinnte gur mhaith leat ONLYOFFICE AI Tools a dhíshuiteáil?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Sula síneofar an doiciméad, caithfear é a shábháil.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Cealaigh";
+
+/* No comment provided by engineer. */
+"Canceled" = "Cealaithe";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Ní féidir comhad Síniú Digiteach a oscailt";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "Ní féidir fillteán de shuíomh an chomhaid a oscailt.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Luachanna Scartha le Coma (*.csv)";
+"Close" = "Dún";
+
+/* No comment provided by engineer. */
+"Close all" = "Dún gach rud";
+
+/* No comment provided by engineer. */
+"Close saved" = "Dún sábháilte";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Luachanna Scartha le Coma";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Leagan Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Cruthaigh nua";
 
 /* No comment provided by engineer. */
 "Create portal" = "Cruthaigh tairseach";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "Scrios agus Scoir";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Comhad DjVu (*.djvu)";
+"DjVu File" = "Comhad DjVu";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Ar mhaith leat na hathruithe a rinneadh ar an doiciméad a shábháil \"%@\"?";
@@ -44,13 +80,37 @@
 "Document %ld.pdf" = "Doiciméad %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Teimpléad doiciméad Word Open XML (*.dotx)";
+"Document template" = "Teimpléad doiciméad Word Open XML";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Scarbhileog Excel 97-2003 (*.xls)";
+"Don't Save" = "Ná sábháil";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Scarbhileog Office Open XML (*.xlsx)";
+"Electronic Publication" = "Foilseachán Leictreonach";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Leagan Enterprise %@";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Scarbhileog Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Scarbhileog Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Bileog oibre dénártha Excel";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Theip ar íoslódáil an bhreiseáin mar gheall ar earráid líonra.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Theip ar théama a shuiteáil";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Theip ar shábháil pacáiste an bhreiseáin a íoslódáladh.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Comhad FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Ní féidir an comhad \"%@\" a oscailt nó gan a bheith ann.";
@@ -65,13 +125,37 @@
 "Hide %@" = "Folaigh %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "Déanfaidh mé é níos déanaí";
+
+/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Má cheannaigh tú %@ cheana féin, ba cheart duit d’eochair ghníomhachtaithe a fháil i ndeimhniú ríomhphoist.";
+
+/* No comment provided by engineer. */
+"JPG Image" = "Íomha JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Comhaontú Ceadúnais";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-book (*.mobi)";
+"Macro-enabled Presentation" = "Cur i láthair Macra-chumasaithe";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Teimpléad scarbhileog Macra-chumasaithe";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Comhad Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"Move to end" = "Bog go dtí an deireadh";
+
+/* No comment provided by engineer. */
+"Move to start" = "Bog go dtí an tús";
 
 /* No comment provided by engineer. */
 "new-document" = "Doiciméad nua";
@@ -89,7 +173,16 @@
 "No" = "Níl";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Níl aon leagan comhoiriúnach den bhreiseán ar fáil don leagan seo den fheidhmchlár.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Níl go leor cuimhne ann chun íoslódáil an bhreiseáin a chríochnú.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "Díshuiteáladh ONLYOFFICE AI Tools go rathúil";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Ní féidir le ONLYOFFICE an comhad Síniú Digiteach a oscailt. Bain triail as comhad eile a oscailt.";
@@ -98,43 +191,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "Ní féidir le ONLYOFFICE an Eochair Phríobháideach a oscailt. Bain triail as comhad eile a oscailt.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Teimpléad doiciméad OpenDocument (*.ott)";
+"ONLYOFFICE Form Document" = "Foirm PDF ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Teimpléad cur i láthair OpenDocument (*.otp)";
+"OpenDocument Document Template" = "Teimpléad doiciméad OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Teimpléad scarbhileog OpenDocument (*.ots)";
+"OpenDocument Presentation Template" = "Teimpléad cur i láthair OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Teimpléad scarbhileog OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Ag Oscailt";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Comhad Téacs OpenDocument (*.odt)";
+"OpenOffice Document" = "Comhad Téacs OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Láithreoireacht OpenDocument (*.odp)";
+"OpenOffice Presentation" = "Láithreoireacht OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Scarbhileog OpenDocument (*.ods)";
+"OpenOffice Spreadsheet" = "Scarbhileog OpenDocument";
 
 /* No comment provided by engineer. */
-"PDF File" = "Comhad PDF (*.pdf)";
+"PDF File" = "Comhad PDF";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Comhad PDF/A (*.pdf)";
+"PDF/A File" = "Comhad PDF/A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Téacs Plain (*.txt)";
+"Pin to tab" = "Bioráin go cluaisín";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Cur i láthair PowerPoint 97-2003 (*.ppt)";
+"Plain Text" = "Téacs Plain";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Cur i láthair PowerPoint Open XML (*.pptx)";
+"PNG Image" = "Íomha PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Taispeántas sleamhnán Office Open XML (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "Cur i láthair PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Cur i láthair PowerPoint Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Taispeántas sleamhnán Office Open XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Ag Ullmhú...";
@@ -143,16 +245,25 @@
 "Presentation %ld.pptx" = "Cur i láthair %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Teimpléad cur i láthair PowerPoint Open XML (*.potx)";
+"Presentation template" = "Teimpléad cur i láthair PowerPoint Open XML";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Amharc an Láithreora";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Scoir %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Ionadaigh";
+
+/* No comment provided by engineer. */
+"Restart now" = "Atosaigh anois";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Athruithe Athbhreithnithe...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Doiciméad méith-théacs (*.rtf)";
+"Rich Text Document" = "Doiciméad méith-théacs";
 
 /* No comment provided by engineer. */
 "Save" = "Sábháil";
@@ -161,16 +272,55 @@
 "Save the document?" = "Sábháil an doiciméad ?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Roghnaigh comhad téama";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Níl an téama roghnaithe bailí";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Taispeáin sa bhfillteán";
+
+/* No comment provided by engineer. */
+"Show main window" = "Taispeáin an phríomhfhuinneog";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Sonraí sínithe";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Scarbhileog %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Teimpléad scarbhileog Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Teimpléad scarbhileog Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Go raibh maith agat as meastóireacht a dhéanamh %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Tá URL íoslódála an bhreiseáin neamhbhailí.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Tá faisnéis an bhreiseáin neamhbhailí nó neamhiomlán.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Tá pacáiste an bhreiseáin truaillithe nó athraithe.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Caithfear an doiciméad ‘%@’ a thógáil. Leanúint ar aghaidh ?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Tá an chomhpháirt AI Tools suiteáilte neamh-chomhoiriúnach leis an leagan seo den fheidhmchlár. An bhfuil tú ag iarraidh AI Tools a nuashonrú anois?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Tá an téama ann cheana féin. Cuir ina áit é?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Níl téama sa chomhad seo";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Níl an comhad téama seo bailí";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Chun an breiseán a shuiteáil, déan an feidhmchlár a nuashonrú go dtí an leagan is déanaí.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Chun suíomh an chomhaid a oscailt, caithfear é a shábháil.";
@@ -179,19 +329,31 @@
 "Unconfirmed" = "Neamhdhearbhaithe";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Díphionáil an cluaisín";
+
+/* No comment provided by engineer. */
 "Untitled" = "Gan ainm";
+
+/* No comment provided by engineer. */
+"Version %@" = "Leagan %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Líníocht Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Leathanach Gréasáin";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Doiciméad Word 97-2003 (*.doc)";
+"With access to pro features" = "Le rochtain ar ghnéithe gairmiúla";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Doiciméad Office Open XML (*.docx)";
+"Word 97-2003 Document" = "Doiciméad Word 97-2003";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS Cáipéis (*.xps)";
+"Word 2007 Document" = "Doiciméad Office Open XML";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS Cáipéis";
 
 /* No comment provided by engineer. */
 "Yes" = "Tá";
@@ -201,6 +363,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "D'éirigh leat a ghníomhachtú %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Ní mór duit an feidhmchlár a atosú chun go dtiocfaidh na socruithe i bhfeidhm.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Caillfear d’athruithe mura sábhálann tú iad.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Caillfear d’athruithe mura sábhálann tú iad.";

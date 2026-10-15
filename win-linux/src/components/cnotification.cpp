@@ -55,57 +55,30 @@
 #include "defines.h"
 
 #define NOTIF_TIMEOUT_MS 10000
-#ifdef __linux__
-# define toTStr(qstr)     qstr.toStdString()
-#else
-# define toTStr(qstr)     qstr.toStdWString()
-#endif
-
-#define TEXT_CANCEL      toTStr(QObject::tr("Cancel"))
-#define TEXT_YES         toTStr(QObject::tr("Yes"))
-#define TEXT_NO          toTStr(QObject::tr("No"))
-#define TEXT_OK          toTStr(QObject::tr("OK"))
-#define TEXT_SKIP        toTStr(QObject::tr("Skip"))
-#define TEXT_BUY         toTStr(QObject::tr("Buy Now"))
-#define TEXT_ACTIVATE    toTStr(QObject::tr("Activate"))
-#define TEXT_CONTINUE    toTStr(QObject::tr("Continue"))
-#define TEXT_SKIPVER     toTStr(QObject::tr("Skip"))
-#define TEXT_REMIND      toTStr(QObject::tr("Later"))
-#define TEXT_INSTALL     toTStr(QObject::tr("Install"))
-#define TEXT_INSLATER    toTStr(QObject::tr("Later"))
-#define TEXT_RESTART     toTStr(QObject::tr("Restart"))
-#define TEXT_SAVEANDINS  toTStr(QObject::tr("Install"))
-#define TEXT_DOWNLOAD    toTStr(QObject::tr("Download"))
 
 #ifdef __linux__
-# define addAction(action, label) notify_notification_add_action(ntf, action, label, NOTIFY_ACTION_CALLBACK(action_callback), (void*)&pimpl->ntfMap, NULL);
+struct NtfData
+{
+    FnVoidInt callback;
+    std::vector<int> results;
+};
 
-typedef std::unordered_map<NotifyNotification*, FnVoidInt> NtfMap;
+typedef std::unordered_map<NotifyNotification*, NtfData> NtfMap;
 
+// Action names are button indices "0", "1", ...
 static void action_callback(NotifyNotification *ntf, char *action, void *data)
 {
     if (!data)
         return;
-    int res = strcmp(action, "cancel") == 0 ?   MODAL_RESULT_CANCEL :
-              strcmp(action, "yes") == 0 ?      MODAL_RESULT_YES :
-              strcmp(action, "no") == 0 ?       MODAL_RESULT_NO :
-              strcmp(action, "ok") == 0 ?       MODAL_RESULT_OK :
-              strcmp(action, "skip") == 0 ?     MODAL_RESULT_SKIP :
-              strcmp(action, "buy") == 0 ?      MODAL_RESULT_BUY :
-              strcmp(action, "activate") == 0 ? MODAL_RESULT_ACTIVATE :
-              strcmp(action, "continue") == 0 ? MODAL_RESULT_CONTINUE :
-              strcmp(action, "inslater") == 0 ? MODAL_RESULT_INSLATER :
-              strcmp(action, "restart") == 0 ?  MODAL_RESULT_RESTART :
-              strcmp(action, "skipver") == 0 ?  MODAL_RESULT_SKIPVER :
-              strcmp(action, "remind") == 0 ?   MODAL_RESULT_REMIND :
-              strcmp(action, "install") == 0 ?  MODAL_RESULT_INSTALL :
-              strcmp(action, "saveins") == 0 ?  MODAL_RESULT_INSTALL :
-              strcmp(action, "download") == 0 ? MODAL_RESULT_DOWNLOAD : -1;
-
     NtfMap *ntfMap = (NtfMap*)data;
-    if (ntfMap->find(ntf) != ntfMap->end()) {
-        if (FnVoidInt callback = ntfMap->at(ntf))
-            callback(res);
+    auto it = ntfMap->find(ntf);
+    if (it != ntfMap->end()) {
+        const NtfData &ntfData = it->second;
+        if (ntfData.callback) {
+            const size_t index = size_t(atoi(action));
+            int res = index < ntfData.results.size() ? ntfData.results[index] : -1;
+            ntfData.callback(res);
+        }
     }
 }
 
@@ -186,105 +159,13 @@ using namespace WinToastLib;
 
 class ToastHandler : public IWinToastHandler {
 public:
-    ToastHandler(MsgBtns _dlgBtns, FnVoidInt _callback) : dlgBtns(_dlgBtns), callback(_callback)
+    ToastHandler(const std::vector<int> &_results, FnVoidInt _callback) : results(_results), callback(_callback)
     {}
     virtual void toastActivated() const final // The user clicked in this toast
     {}
     virtual void toastActivated(int actionIndex) const final // The user clicked on button #actionIndex
     {
-        int res = -1;
-        switch (actionIndex) {
-        case 0: {
-            switch (dlgBtns) {
-            case MsgBtns::mbOk:
-            case MsgBtns::mbOkCancel:
-            case MsgBtns::mbOkDefCancel:
-                res = MODAL_RESULT_OK;
-                break;
-            case MsgBtns::mbYesNo:
-            case MsgBtns::mbYesDefNo:
-            case MsgBtns::mbYesNoCancel:
-            case MsgBtns::mbYesDefNoCancel:
-            case MsgBtns::mbYesDefSkipNo:
-                res = MODAL_RESULT_YES;
-                break;
-            case MsgBtns::mbBuy:
-                res = MODAL_RESULT_BUY;
-                break;
-            case MsgBtns::mbActivateDefContinue:
-                res = MODAL_RESULT_ACTIVATE;
-                break;
-            case MsgBtns::mbContinue:
-                res = MODAL_RESULT_CONTINUE;
-                break;
-            case MsgBtns::mbInslaterRestart:
-                res = MODAL_RESULT_INSLATER;
-                break;
-            case MsgBtns::mbSkipRemindInstall:
-            case MsgBtns::mbSkipRemindSaveandinstall:
-            case MsgBtns::mbSkipRemindDownload:
-                res = MODAL_RESULT_SKIPVER;
-                break;
-            default:
-                break;
-            }
-            break;
-        }
-        case 1: {
-            switch (dlgBtns) {
-            case MsgBtns::mbOkCancel:
-            case MsgBtns::mbOkDefCancel:
-                res = MODAL_RESULT_CANCEL;
-                break;
-            case MsgBtns::mbYesNo:
-            case MsgBtns::mbYesDefNo:
-            case MsgBtns::mbYesNoCancel:
-            case MsgBtns::mbYesDefNoCancel:
-                res = MODAL_RESULT_NO;
-                break;
-            case MsgBtns::mbYesDefSkipNo:
-                res = MODAL_RESULT_SKIP;
-                break;
-            case MsgBtns::mbActivateDefContinue:
-                res = MODAL_RESULT_CONTINUE;
-                break;
-            case MsgBtns::mbInslaterRestart:
-                res = MODAL_RESULT_RESTART;
-                break;
-            case MsgBtns::mbSkipRemindInstall:
-            case MsgBtns::mbSkipRemindSaveandinstall:
-            case MsgBtns::mbSkipRemindDownload:
-                res = MODAL_RESULT_REMIND;
-                break;
-            default:
-                break;
-            }
-            break;
-        }
-        case 2: {
-            switch (dlgBtns) {
-            case MsgBtns::mbYesNoCancel:
-            case MsgBtns::mbYesDefNoCancel:
-                res = MODAL_RESULT_CANCEL;
-                break;
-            case MsgBtns::mbYesDefSkipNo:
-                res = MODAL_RESULT_NO;
-                break;
-            case MsgBtns::mbSkipRemindDownload:
-                res = MODAL_RESULT_DOWNLOAD;
-                break;
-            case MsgBtns::mbSkipRemindInstall:
-            case MsgBtns::mbSkipRemindSaveandinstall:
-                res = MODAL_RESULT_INSTALL;
-                break;
-            default:
-                break;
-            }
-            break;
-        }
-        default:
-            break;
-        }
+        int res = (actionIndex >= 0 && size_t(actionIndex) < results.size()) ? results[actionIndex] : -1;
         if (callback)
             callback(res);
     }
@@ -310,7 +191,7 @@ public:
     }
 
 private:
-    MsgBtns dlgBtns;
+    std::vector<int> results;
     FnVoidInt callback;
 };
 #endif
@@ -335,8 +216,54 @@ public:
 
     NtfMap ntfMap;
 #endif
+    bool show(const QString &msg, const QString &content,
+              const QStringList &btns, const std::vector<int> &results,
+              const FnVoidInt &callback);
+
     int isInit = -1;
 };
+
+bool CNotification::CNotificationPrivate::show(const QString &msg, const QString &content,
+                                               const QStringList &btns, const std::vector<int> &results,
+                                               const FnVoidInt &callback)
+{
+#ifdef __linux__
+    if (!isNotificationsEnabled())
+        return false;
+    QString lpText = QTextDocumentFragment::fromHtml(msg).toPlainText();
+    NotifyNotification *ntf = notify_notification_new(lpText.toLocal8Bit().data(), content.toLocal8Bit().data(), NULL);
+    g_signal_connect(G_OBJECT(ntf), "closed", G_CALLBACK(on_close), (void*)&ntfMap);
+    notify_notification_set_urgency(ntf, NotifyUrgency::NOTIFY_URGENCY_NORMAL);
+    notify_notification_set_timeout(ntf, NOTIF_TIMEOUT_MS);
+    ntfMap[ntf] = NtfData{callback, results};
+
+    if (callback) {
+        for (int i = 0; i < btns.size(); i++) {
+            const QByteArray action = QByteArray::number(i);
+            notify_notification_add_action(ntf, action.constData(), btns[i].toLocal8Bit().constData(),
+                                           NOTIFY_ACTION_CALLBACK(action_callback), (void*)&ntfMap, NULL);
+        }
+    }
+    return notify_notification_show(ntf, NULL);
+#else
+    std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
+    std::wstring lpContent = content.toStdWString();
+
+    WinToastTemplate tmpl(WinToastTemplate::WinToastTemplateType::ImageAndText02);
+    tmpl.setTextField(lpText, WinToastTemplate::FirstLine);
+    tmpl.setTextField(lpContent, WinToastTemplate::SecondLine);
+    const QString appIcon = QCoreApplication::applicationDirPath() + "/app.ico";
+    if (QFileInfo::exists(appIcon))
+        tmpl.setImagePath(appIcon.toStdWString());
+    tmpl.setAudioPath(WinToastTemplate::AudioSystemFile::Mail);
+    tmpl.setDuration(WinToastTemplate::Duration::System);
+    tmpl.setExpiration(NOTIF_TIMEOUT_MS);
+
+    for (const QString &btn : btns)
+        tmpl.addAction(btn.toStdWString());
+    return WinToast::instance()->showToast(tmpl, new ToastHandler(results, callback)) > -1;
+#endif
+}
 
 
 CNotification& CNotification::instance()
@@ -401,143 +328,56 @@ void CNotification::clear()
 #endif
 }
 
-bool CNotification::show(const QString &msg, const QString &content, MsgBtns dlgBtns, const FnVoidInt &callback)
+bool CNotification::show(const QString &msg, const QString &content)
 {
-#ifdef __linux__
-    if (!isNotificationsEnabled())
-        return false;
-    QString lpText = QTextDocumentFragment::fromHtml(msg).toPlainText();
-    NotifyNotification *ntf = notify_notification_new(lpText.toLocal8Bit().data(), content.toLocal8Bit().data(), NULL);
-    g_signal_connect(G_OBJECT(ntf), "closed", G_CALLBACK(on_close), (void*)&pimpl->ntfMap);
-    notify_notification_set_urgency(ntf, NotifyUrgency::NOTIFY_URGENCY_NORMAL);
-    notify_notification_set_timeout(ntf, NOTIF_TIMEOUT_MS);
-    pimpl->ntfMap[ntf] = callback;
+    return pimpl->show(msg, content, {}, {}, nullptr);
+}
 
-    if (callback) {
-        switch (dlgBtns) {
-        case MsgBtns::mbYesNo:
-        case MsgBtns::mbYesDefNo:
-            addAction("yes", TEXT_YES.c_str());
-            addAction("no", TEXT_NO.c_str());
-            break;
-        case MsgBtns::mbYesNoCancel:
-        case MsgBtns::mbYesDefNoCancel:
-            addAction("yes", TEXT_YES.c_str());
-            addAction("no", TEXT_NO.c_str());
-            addAction("cancel", TEXT_CANCEL.c_str());
-            break;
-        case MsgBtns::mbOkCancel:
-        case MsgBtns::mbOkDefCancel:
-            addAction("ok", TEXT_OK.c_str());
-            addAction("cancel", TEXT_CANCEL.c_str());
-            break;
-        case MsgBtns::mbYesDefSkipNo:
-            addAction("yes", TEXT_YES.c_str());
-            addAction("skip", TEXT_SKIP.c_str());
-            addAction("no", TEXT_NO.c_str());
-            break;
-        case MsgBtns::mbBuy:
-            addAction("buy", TEXT_BUY.c_str());
-            break;
-        case MsgBtns::mbActivateDefContinue:
-            addAction("activate", TEXT_ACTIVATE.c_str());
-            addAction("continue", TEXT_CONTINUE.c_str());
-            break;
-        case MsgBtns::mbContinue:
-            addAction("continue", TEXT_CONTINUE.c_str());
-            break;
-        case MsgBtns::mbInslaterRestart:
-            addAction("inslater", TEXT_INSLATER.c_str());
-            addAction("restart", TEXT_RESTART.c_str());
-            break;
-        case MsgBtns::mbSkipRemindInstall:
-            addAction("skipver", TEXT_SKIPVER.c_str());
-            addAction("remind", TEXT_REMIND.c_str());
-            addAction("install", TEXT_INSTALL.c_str());
-            break;
-        case MsgBtns::mbSkipRemindSaveandinstall:
-            addAction("skipver", TEXT_SKIPVER.c_str());
-            addAction("remind", TEXT_REMIND.c_str());
-            addAction("saveins", TEXT_SAVEANDINS.c_str());
-            break;
-        case MsgBtns::mbSkipRemindDownload:
-            addAction("skipver", TEXT_SKIPVER.c_str());
-            addAction("remind", TEXT_REMIND.c_str());
-            addAction("download", TEXT_DOWNLOAD.c_str());
-            break;
-        default:
-            break;
-        }
-    }
-    return notify_notification_show(ntf, NULL);
-#else
-    std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
-    std::wstring lpContent = content.toStdWString();
+bool CNotification::show(const QString &msg, const QString &content,
+                         CMessage::Buttons dlgBtns, const FnVoidInt &callback)
+{
+    using Buttons = CMessage::Buttons;
+    using Result = CMessage::Result;
+    using BtnText = CMessage::ButtonText;
 
-    WinToastTemplate tmpl(WinToastTemplate::WinToastTemplateType::ImageAndText02);
-    tmpl.setTextField(lpText, WinToastTemplate::FirstLine);
-    tmpl.setTextField(lpContent, WinToastTemplate::SecondLine);
-    const QString appIcon = QCoreApplication::applicationDirPath() + "/app.ico";
-    if (QFileInfo::exists(appIcon))
-        tmpl.setImagePath(appIcon.toStdWString());
-    tmpl.setAudioPath(WinToastTemplate::AudioSystemFile::Mail);
-    tmpl.setDuration(WinToastTemplate::Duration::System);
-    tmpl.setExpiration(NOTIF_TIMEOUT_MS);
-
+    QStringList btns;
+    std::vector<int> results;
     switch (dlgBtns) {
-    case MsgBtns::mbYesNo:
-    case MsgBtns::mbYesDefNo:
-        tmpl.addAction(TEXT_YES);
-        tmpl.addAction(TEXT_NO);
+    case Buttons::Ok:
+        btns << BtnText::ok();
+        results = {int(Result::Ok)};
         break;
-    case MsgBtns::mbYesNoCancel:
-    case MsgBtns::mbYesDefNoCancel:
-        tmpl.addAction(TEXT_YES);
-        tmpl.addAction(TEXT_NO);
-        tmpl.addAction(TEXT_CANCEL);
+    case Buttons::OkCancel:
+    case Buttons::OkDefCancel:
+        btns << BtnText::ok() << BtnText::cancel();
+        results = {int(Result::Ok), int(Result::Cancel)};
         break;
-    case MsgBtns::mbOkCancel:
-    case MsgBtns::mbOkDefCancel:
-        tmpl.addAction(TEXT_OK);
-        tmpl.addAction(TEXT_CANCEL);
+    case Buttons::YesNo:
+    case Buttons::YesDefNo:
+        btns << BtnText::yes() << BtnText::no();
+        results = {int(Result::Yes), int(Result::No)};
         break;
-    case MsgBtns::mbYesDefSkipNo:
-        tmpl.addAction(TEXT_YES);
-        tmpl.addAction(TEXT_SKIP);
-        tmpl.addAction(TEXT_NO);
-        break;
-    case MsgBtns::mbBuy:
-        tmpl.addAction(TEXT_BUY);
-        break;
-    case MsgBtns::mbActivateDefContinue:
-        tmpl.addAction(TEXT_ACTIVATE);
-        tmpl.addAction(TEXT_CONTINUE);
-        break;
-    case MsgBtns::mbContinue:
-        tmpl.addAction(TEXT_CONTINUE);
-        break;
-    case MsgBtns::mbInslaterRestart:
-        tmpl.addAction(TEXT_INSLATER);
-        tmpl.addAction(TEXT_RESTART);
-        break;
-    case MsgBtns::mbSkipRemindInstall:
-        tmpl.addAction(TEXT_SKIPVER);
-        tmpl.addAction(TEXT_REMIND);
-        tmpl.addAction(TEXT_INSTALL);
-        break;
-    case MsgBtns::mbSkipRemindSaveandinstall:
-        tmpl.addAction(TEXT_SKIPVER);
-        tmpl.addAction(TEXT_REMIND);
-        tmpl.addAction(TEXT_SAVEANDINS);
-        break;
-    case MsgBtns::mbSkipRemindDownload:
-        tmpl.addAction(TEXT_SKIPVER);
-        tmpl.addAction(TEXT_REMIND);
-        tmpl.addAction(TEXT_DOWNLOAD);
+    case Buttons::YesNoCancel:
+    case Buttons::YesDefNoCancel:
+        btns << BtnText::yes() << BtnText::no() << BtnText::cancel();
+        results = {int(Result::Yes), int(Result::No), int(Result::Cancel)};
         break;
     default:
         break;
     }
-    return WinToast::instance()->showToast(tmpl, new ToastHandler(dlgBtns, callback)) > -1;
-#endif
+    return pimpl->show(msg, content, btns, results, callback);
+}
+
+bool CNotification::show(const QString &msg, const QString &content,
+                         std::initializer_list<QString> btns, const FnVoidInt &callback)
+{
+    QStringList btnList;
+    std::vector<int> results;
+    int index = 0;
+    for (const QString &btn : btns) {
+        btnList << btn;
+        results.push_back(int(CMessage::Result::FirstButton) + index);
+        index++;
+    }
+    return pimpl->show(msg, content, btnList, results, callback);
 }

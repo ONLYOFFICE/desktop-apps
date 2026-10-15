@@ -1,0 +1,242 @@
+{
+  "id": "extract-images",
+  "group": "pdf",
+  "prompt": "Please extract all images from the attached PDF file and provide them as separate image files.",
+  "locale": {
+    "en": {
+      "title": "Extract Images",
+      "description": "Extract images from a PDF file",
+      "usertext": "Select a PDF file to extract all images as separate files"
+    },
+    "ar-SA": {
+      "title": "استخراج الصور",
+      "description": "استخراج الصور من ملف PDF",
+      "usertext": "اختر ملف PDF لاستخراج جميع الصور كملفات منفصلة"
+    },
+    "be": {
+      "title": "Выняць малюнкі",
+      "description": "Выняць малюнкі з файла PDF",
+      "usertext": "Выберыце файл PDF, каб выняць усе малюнкі як асобныя файлы"
+    },
+    "bg": {
+      "title": "Извличане на изображения",
+      "description": "Извличане на изображения от PDF файл",
+      "usertext": "Изберете PDF файл, за да извлечете всички изображения като отделни файлове"
+    },
+    "ca": {
+      "title": "Extreure imatges",
+      "description": "Extreure imatges d'un fitxer PDF",
+      "usertext": "Seleccioneu un fitxer PDF per extreure totes les imatges com a fitxers separats"
+    },
+    "cs": {
+      "title": "Extrahovat obrázky",
+      "description": "Extrahovat obrázky ze souboru PDF",
+      "usertext": "Vyberte soubor PDF, ze kterého chcete extrahovat všechny obrázky jako samostatné soubory"
+    },
+    "da": {
+      "title": "Udtræk billeder",
+      "description": "Udtræk billeder fra en PDF-fil",
+      "usertext": "Vælg en PDF-fil for at udtrække alle billeder som separate filer"
+    },
+    "de": {
+      "title": "Bilder extrahieren",
+      "description": "Bilder aus einer PDF-Datei extrahieren",
+      "usertext": "Wählen Sie eine PDF-Datei, um alle Bilder als separate Dateien zu extrahieren"
+    },
+    "el": {
+      "title": "Εξαγωγή εικόνων",
+      "description": "Εξαγωγή εικόνων από αρχείο PDF",
+      "usertext": "Επιλέξτε ένα αρχείο PDF για εξαγωγή όλων των εικόνων ως ξεχωριστά αρχεία"
+    },
+    "en-GB": {
+      "title": "Extract Images",
+      "description": "Extract images from a PDF file",
+      "usertext": "Select a PDF file to extract all images as separate files"
+    },
+    "es": {
+      "title": "Extraer imágenes",
+      "description": "Extraer imágenes de un archivo PDF",
+      "usertext": "Seleccione un archivo PDF para extraer todas las imágenes como archivos separados"
+    },
+    "et": {
+      "title": "Piltide eraldamine",
+      "description": "Piltide eraldamine PDF-failist",
+      "usertext": "Valige PDF-fail, et eraldada kõik pildid eraldi failidena"
+    },
+    "fi": {
+      "title": "Poimi kuvat",
+      "description": "Poimi kuvat PDF-tiedostosta",
+      "usertext": "Valitse PDF-tiedosto kaikkien kuvien poimimiseksi erillisinä tiedostoina"
+    },
+    "fr": {
+      "title": "Extraire les images",
+      "description": "Extraire des images d'un fichier PDF",
+      "usertext": "Sélectionnez un fichier PDF pour extraire toutes les images en fichiers séparés"
+    },
+    "ga": {
+      "title": "Íomhánna a Bhaint",
+      "description": "Bain íomhánna as comhad PDF",
+      "usertext": "Roghnaigh comhad PDF chun gach íomhá a bhaint mar chomhaid ar leith"
+    },
+    "gl": {
+      "title": "Extraer imaxes",
+      "description": "Extraer imaxes dun ficheiro PDF",
+      "usertext": "Seleccione un ficheiro PDF para extraer todas as imaxes como ficheiros separados"
+    },
+    "he": {
+      "title": "חילוץ תמונות",
+      "description": "חלץ תמונות מקובץ PDF",
+      "usertext": "בחר קובץ PDF לחילוץ כל התמונות כקבצים נפרדים"
+    },
+    "hi": {
+      "title": "छवियां निकालें",
+      "description": "PDF फ़ाइल से छवियां निकालें",
+      "usertext": "सभी छवियों को अलग फ़ाइलों के रूप में निकालने के लिए एक PDF फ़ाइल चुनें"
+    },
+    "hr": {
+      "title": "Izdvoji slike",
+      "description": "Izdvoji slike iz PDF datoteke",
+      "usertext": "Odaberite PDF datoteku za izdvajanje svih slika kao zasebnih datoteka"
+    },
+    "hu": {
+      "title": "Képek kinyerése",
+      "description": "Képek kinyerése PDF-fájlból",
+      "usertext": "Válasszon PDF-fájlt az összes kép külön fájlként való kinyeréséhez"
+    },
+    "hy": {
+      "title": "Պատկերների արտահանում",
+      "description": "Պատկերների արտահանում PDF ֆայլից",
+      "usertext": "Ընտրեք PDF ֆայլ՝ բոլոր պատկերները որպես առանձին ֆայլեր արտահանելու համար"
+    },
+    "it": {
+      "title": "Estrai immagini",
+      "description": "Estrai immagini da un file PDF",
+      "usertext": "Seleziona un file PDF per estrarre tutte le immagini come file separati"
+    },
+    "ja": {
+      "title": "画像を抽出",
+      "description": "PDFファイルから画像を抽出",
+      "usertext": "すべての画像を個別のファイルとして抽出するPDFファイルを選択してください"
+    },
+    "ko": {
+      "title": "이미지 추출",
+      "description": "PDF 파일에서 이미지 추출",
+      "usertext": "모든 이미지를 별도 파일로 추출할 PDF 파일을 선택하세요"
+    },
+    "lo": {
+      "title": "ດຶງຮູບພາບ",
+      "description": "ດຶງຮູບພາບຈາກໄຟລ໌ PDF",
+      "usertext": "ເລືອກໄຟລ໌ PDF ເພື່ອດຶງຮູບພາບທັງໝົດເປັນໄຟລ໌ແຍກຕ່າງຫາກ"
+    },
+    "lt": {
+      "title": "Ištraukti vaizdus",
+      "description": "Ištraukti vaizdus iš PDF failo",
+      "usertext": "Pasirinkite PDF failą, kad ištrauktumėte visus vaizdus kaip atskirus failus"
+    },
+    "lv": {
+      "title": "Izvilkt attēlus",
+      "description": "Izvilkt attēlus no PDF faila",
+      "usertext": "Atlasiet PDF failu, lai izvilktu visus attēlus kā atsevišķus failus"
+    },
+    "nl": {
+      "title": "Afbeeldingen extraheren",
+      "description": "Afbeeldingen uit een PDF-bestand extraheren",
+      "usertext": "Selecteer een PDF-bestand om alle afbeeldingen als afzonderlijke bestanden te extraheren"
+    },
+    "no": {
+      "title": "Hent ut bilder",
+      "description": "Hent ut bilder fra en PDF-fil",
+      "usertext": "Velg en PDF-fil for å hente ut alle bilder som separate filer"
+    },
+    "pl": {
+      "title": "Wyodrębnij obrazy",
+      "description": "Wyodrębnij obrazy z pliku PDF",
+      "usertext": "Wybierz plik PDF, aby wyodrębnić wszystkie obrazy jako oddzielne pliki"
+    },
+    "pt-BR": {
+      "title": "Extrair imagens",
+      "description": "Extrair imagens de um arquivo PDF",
+      "usertext": "Selecione um arquivo PDF para extrair todas as imagens como arquivos separados"
+    },
+    "pt-PT": {
+      "title": "Extrair imagens",
+      "description": "Extrair imagens de um ficheiro PDF",
+      "usertext": "Selecione um ficheiro PDF para extrair todas as imagens como ficheiros separados"
+    },
+    "ro": {
+      "title": "Extrage imagini",
+      "description": "Extrage imagini dintr-un fișier PDF",
+      "usertext": "Selectați un fișier PDF pentru a extrage toate imaginile ca fișiere separate"
+    },
+    "ru": {
+      "title": "Извлечь изображения",
+      "description": "Извлечь изображения из PDF-файла",
+      "usertext": "Выберите PDF-файл, чтобы извлечь все изображения как отдельные файлы"
+    },
+    "si": {
+      "title": "රූප උපුටා ගැනීම",
+      "description": "PDF ගොනුවෙන් රූප උපුටා ගන්න",
+      "usertext": "සියලු රූප වෙනම ගොනු ලෙස උපුටා ගැනීමට PDF ගොනුවක් තෝරන්න"
+    },
+    "sk": {
+      "title": "Extrahovať obrázky",
+      "description": "Extrahovať obrázky zo súboru PDF",
+      "usertext": "Vyberte súbor PDF, z ktorého chcete extrahovať všetky obrázky ako samostatné súbory"
+    },
+    "sl": {
+      "title": "Izvleci slike",
+      "description": "Izvleci slike iz datoteke PDF",
+      "usertext": "Izberite datoteko PDF za izvlečenje vseh slik kot ločenih datotek"
+    },
+    "sq": {
+      "title": "Nxirr imazhet",
+      "description": "Nxirr imazhet nga një skedar PDF",
+      "usertext": "Zgjidhni një skedar PDF për të nxjerrë të gjitha imazhet si skedarë të veçantë"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Издвоји слике",
+      "description": "Издвоји слике из PDF датотеке",
+      "usertext": "Изаберите PDF датотеку за издвајање свих слика као засебних датотека"
+    },
+    "sr-Latn-RS": {
+      "title": "Izdvoji slike",
+      "description": "Izdvoji slike iz PDF datoteke",
+      "usertext": "Izaberite PDF datoteku za izdvajanje svih slika kao zasebnih datoteka"
+    },
+    "sv": {
+      "title": "Extrahera bilder",
+      "description": "Extrahera bilder från en PDF-fil",
+      "usertext": "Välj en PDF-fil för att extrahera alla bilder som separata filer"
+    },
+    "tr": {
+      "title": "Görselleri Çıkart",
+      "description": "PDF dosyasından görselleri çıkart",
+      "usertext": "Tüm görselleri ayrı dosyalar olarak çıkarmak için bir PDF dosyası seçin"
+    },
+    "uk": {
+      "title": "Витягти зображення",
+      "description": "Витягти зображення з PDF-файлу",
+      "usertext": "Виберіть PDF-файл, щоб витягти всі зображення як окремі файли"
+    },
+    "ur": {
+      "title": "تصاویر نکالیں",
+      "description": "PDF فائل سے تصاویر نکالیں",
+      "usertext": "تمام تصاویر کو علیحدہ فائلوں کے طور پر نکالنے کے لیے PDF فائل منتخب کریں"
+    },
+    "vi": {
+      "title": "Trích xuất hình ảnh",
+      "description": "Trích xuất hình ảnh từ tệp PDF",
+      "usertext": "Chọn tệp PDF để trích xuất tất cả hình ảnh thành các tệp riêng lẻ"
+    },
+    "zh-CN": {
+      "title": "提取图片",
+      "description": "从 PDF 文件中提取图片",
+      "usertext": "选择 PDF 文件以将所有图片提取为单独文件"
+    },
+    "zh-TW": {
+      "title": "提取圖片",
+      "description": "從 PDF 檔案中提取圖片",
+      "usertext": "選擇 PDF 檔案以將所有圖片提取為單獨檔案"
+    }
+  }
+}

@@ -36,30 +36,62 @@
 #include "windows/platform_linux/cwindowplatform.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
+#include "platform_linux/xcbutils.h"
 #include "utils.h"
 #include <QTimer>
 #include <QPainter>
+#include <QPainterPath>
 #include <QX11Info>
-#include <xcb/xcb.h>
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 # include "platform_linux/cdialogopenssl.h"
 #endif
-#define WINDOW_CORNER_RADIUS 6
+
+#define RESIZABLE_AREA_WIDTH  9
 
 
-CWindowPlatform::CWindowPlatform(const QRect &rect) :
-    CWindowBase(rect),
-    CX11Decoration(this)
+AscMainPanel::AscMainPanel(QWidget *parent)
+    : QWidget(parent)
+    , parent(static_cast<CWindowBase*>(parent))
+{}
+
+AscMainPanel::~AscMainPanel()
+{}
+
+void AscMainPanel::resizeEvent(QResizeEvent *re)
+{
+    QWidget::resizeEvent(re);
+    if ( !parent->m_shouldUseThinFrame ) {
+        return;
+    }
+
+    double radius = 0;
+    if ( !parent->isMaximized() )
+        radius = WINDOW_CORNER_RADIUS * parent->m_dpiRatio;
+
+    QPainterPath path;
+    path.addRoundedRect(rect(), radius, radius);
+
+    QRegion rg(path.toFillPolygon().toPolygon());
+    setMask(rg);
+}
+
+
+CWindowPlatform::CWindowPlatform(QWidget *parent, const QRect &rect) :
+    CWindowBase(parent, rect),
+    CX11Decoration(this),
+    m_efectiveFrameMargin(0),
+    m_isWindowActive(false)
 {
     if (AscAppManager::isRtlEnabled())
         setLayoutDirection(Qt::RightToLeft);
     if (isCustomWindowStyle()) {
-        if (QX11Info::isCompositingManagerRunning())
-            setAttribute(Qt::WA_TranslucentBackground);
         CX11Decoration::turnOff();
+        if ( m_shouldUseThinFrame )
+            setAttribute(Qt::WA_TranslucentBackground);
+
+        m_efectiveFrameMargin = CX11Decoration::effectiveFrameMargin();
     }
-    setIsCustomWindowStyle(!CX11Decoration::isDecorated());
     setFocusPolicy(Qt::StrongFocus);
     setProperty("stabilized", true);
     m_propertyTimer = new QTimer(this);
@@ -76,6 +108,27 @@ CWindowPlatform::~CWindowPlatform()
 }
 
 /** Public **/
+
+bool CWindowPlatform::isResizable() const
+{
+    return CX11Decoration::isResizable();
+}
+
+void CWindowPlatform::setResizable(bool isResizable)
+{
+    if (CX11Decoration::isResizable() != isResizable) {
+        CX11Decoration::setResizable(isResizable);
+        if (isResizable)
+        {
+            setMinimumSize(0, 0);
+            setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+        }
+        else
+        {
+            setFixedSize(size());
+        }
+    }
+}
 
 void CWindowPlatform::bringToTop()
 {
@@ -105,17 +158,32 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
 
 void CWindowPlatform::adjustGeometry()
 {
-    int border = (CX11Decoration::isDecorated() || isMaximized()) ? 0 : qRound(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
-    setContentsMargins(border, border, border, border);
+    if ( !CX11Decoration::isDecorated() ) {
+        m_efectiveFrameMargin = CX11Decoration::effectiveFrameMargin();
+        int top = m_efectiveFrameMargin;
+        int bottom = m_efectiveFrameMargin;
+        if ( m_shouldUseThinFrame ) {
+            if ( m_efectiveFrameMargin != 0 ) {
+                top -= int(SHADOW_OFFSET_Y * m_dpiRatio);
+                bottom += int(SHADOW_OFFSET_Y * m_dpiRatio);
+            }
+            CX11Decoration::updateFrameExtents();
+        }
+        setContentsMargins(m_efectiveFrameMargin, top, m_efectiveFrameMargin, bottom);
+    }
 }
 
 /** Protected **/
 
 void CWindowPlatform::onWindowActivate(bool is_active)
 {
+    m_isWindowActive = is_active;
     for (auto *btn : m_pTopButtons) {
         if (btn)
             btn->setFaded(!is_active);
+    }
+    if ( m_shouldUseThinFrame ) {
+        update();
     }
 }
 
@@ -130,6 +198,10 @@ bool CWindowPlatform::event(QEvent * event)
         CX11Decoration::setMaximized(isMaximized());
         applyWindowState();
         adjustGeometry();
+    } else
+    if (event->type() == QEvent::Resize) {
+        if ( m_shouldUseThinFrame )
+            updateInputShape();
     } else
     if (event->type() == QEvent::HoverLeave) {
         if (m_boxTitleBtns)
@@ -178,27 +250,78 @@ void CWindowPlatform::setScreenScalingFactor(double factor, bool resize)
     CWindowBase::setScreenScalingFactor(factor, resize);
 }
 
+void CWindowPlatform::updateInputShape()
+{
+    if ( !m_shouldUseThinFrame || !isVisible() )
+        return;
+
+    const int resizable_area = RESIZABLE_AREA_WIDTH * dpi_ratio;
+
+    xcb_rectangle_t rc = {};
+    if (m_efectiveFrameMargin != 0) {
+        rc.x = m_efectiveFrameMargin - resizable_area;
+        rc.y = m_efectiveFrameMargin - resizable_area - int(SHADOW_OFFSET_Y * m_dpiRatio);
+        rc.width = width() - 2 * (m_efectiveFrameMargin - resizable_area);
+        rc.height = height() - 2 * (m_efectiveFrameMargin - resizable_area);
+    }
+    XcbUtils::setInputShape((xcb_window_t)winId(), rc);
+}
+
 void CWindowPlatform::paintEvent(QPaintEvent *event)
 {
-    if (!QX11Info::isCompositingManagerRunning()) {
+    if ( !m_shouldUseThinFrame ) {
         CWindowBase::paintEvent(event);
         return;
     }
 
+    int cornerRadius = 0;
+    const int borderWidth = WINDOW_THIN_BORDER_WIDTH * m_dpiRatio;
+    QRectF rc = rect();
     QPainter pnt(this);
     pnt.setRenderHint(QPainter::Antialiasing);
-    int d = 2 * WINDOW_CORNER_RADIUS * m_dpiRatio;
+
+    if (m_efectiveFrameMargin > 0) {
+        // Draw shadow
+        const int shadowWidth = SHADOW_WIDTH * m_dpiRatio;
+        const int shadowOffset = SHADOW_OFFSET_Y * m_dpiRatio;
+        const int shadowRadius = SHADOW_RADIUS * m_dpiRatio;
+        const int transparentAreaWidth = 9 * m_dpiRatio;
+        constexpr int alphaThreshold = 2;
+        int shadowTransparency = m_isWindowActive ? SHADOW_ALPHA_ACTIVE : SHADOW_ALPHA_INACTIVE;
+
+        for (int i = transparentAreaWidth; i < shadowWidth + abs(shadowOffset) + 1; ++i) {
+            double t = static_cast<double>(i) / (shadowWidth + shadowOffset);
+            int alpha = shadowTransparency * std::pow(t, 3);
+            if (alpha < alphaThreshold) continue;
+
+            int x = rc.left() + i + 1;
+            int y = rc.top() + i + 1;
+            int w = rc.width() - i * 2 - 2;
+            int h = rc.height() - i * 2 - 2;
+
+            double radiusFactor = (2.0 - static_cast<double>(i) / (shadowWidth + shadowOffset)) * shadowRadius;
+
+            QPainterPath path;
+            path.addRoundedRect(x, y, w, h, radiusFactor, radiusFactor);
+
+            QPen pen(QColor(0, 0, 0, alpha), 1);
+            pnt.strokePath(path, pen);
+        }
+
+        const double halfBorderWidth = borderWidth / 2.0;
+        cornerRadius = WINDOW_CORNER_RADIUS * m_dpiRatio;
+        rc.adjust(shadowWidth + halfBorderWidth, shadowWidth - shadowOffset + halfBorderWidth,
+                  -shadowWidth - halfBorderWidth, -shadowWidth - shadowOffset - halfBorderWidth);
+    }
+
     QPainterPath path;
-    path.moveTo(width(), d/2);
-    path.arcTo(width() - d, 0, d, d, 0, 90);
-    path.lineTo(d/2, 0);
-    path.arcTo(0, 0, d, d, 90, 90);
-    path.lineTo(0, height());
-    path.lineTo(width(), height());
-    path.lineTo(width(), d/2);
-    path.closeSubpath();
-    pnt.fillPath(path, palette().window().color());
-    pnt.strokePath(path, QPen(m_brdColor, 1));
+    path.addRoundedRect(rc, cornerRadius, cornerRadius);
+    // Draw background
+    pnt.fillPath(path, palette().window().color());    
+    if (m_efectiveFrameMargin > 0) {
+        // Draw border
+        pnt.strokePath(path, QPen(m_brdColor, borderWidth));
+    }
     pnt.end();
 }
 
@@ -222,8 +345,9 @@ void CWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
 
 void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *me)
 {
-    if (m_boxTitleBtns) {
-        if (m_boxTitleBtns->geometry().contains(me->pos()))
+    if (m_boxTitleBtns && CX11Decoration::isResizable()) {
+        QRect titleRect = m_boxTitleBtns->geometry().translated(m_efectiveFrameMargin, m_efectiveFrameMargin);
+        if (titleRect.contains(me->pos()))
             onMaximizeEvent();
     }
 }

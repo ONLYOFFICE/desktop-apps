@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ は既存します。\n置き換えますか?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ヘルプ";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "謝辞";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "アンインストール後はAI Toolsの機能が利用できなくなります。すべてのAI設定（APIキーを含む）は削除されません。";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "アーカイブの解凍中にエラーが発生しました";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "アドオンのインストール中に予期しないエラーが発生しました。";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "アプリケーションを再起動する必要があります";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "ONLYOFFICE AI Toolsをアンインストールしてもよろしいですか？";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "署名する前に、ドキュメントを保存する必要があります。";
 
 /* No comment provided by engineer. */
 "Cancel" = "キャンセル";
+
+/* No comment provided by engineer. */
+"Canceled" = "キャンセル済み";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "デジタル署名のファイルを開けません";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "ファイルの場所にあるフォルダを開けません。";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "コンマで区切られた値 (*.csv)";
+"Close" = "閉じる";
+
+/* No comment provided by engineer. */
+"Close all" = "すべて閉じる";
+
+/* No comment provided by engineer. */
+"Close saved" = "保存して閉じる";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "コンマで区切られた値";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community  バージョン %@";
+
+/* No comment provided by engineer. */
+"Create new" = "新規作成";
 
 /* No comment provided by engineer. */
 "Create portal" = "ポータルサイトの作成";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "削除して終了";
 
 /* No comment provided by engineer. */
-"DjVu File" = "デジタルドキュメント(*.djvu)";
+"DjVu File" = "デジタルドキュメント";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "ドキュメントに加えた変更を保存しますか\"%@\"?";
@@ -44,19 +80,37 @@
 "Document %ld.pdf" = "ドキュメント %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word オープン XMLドキュメントテンプレート (*.dotx)";
+"Document template" = "Word オープン XMLドキュメントテンプレート";
 
 /* No comment provided by engineer. */
 "Don't Save" = "保存しない";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 スプレッドシート(*.xls)";
+"Electronic Publication" = "電子出版ファイル";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office オープン XML スプレッドシート(*.xlsx)";
+"Enterprise version %@" = "Enterprise バージョン %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "FictionBook 2ファイル (*.fb2)";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 スプレッドシート";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office オープン XML スプレッドシート";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel バイナリワークシート";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "ネットワークエラーによりアドオンのダウンロードに失敗しました。";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "テーマのインストールに失敗しました";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "ダウンロードしたアドオンパッケージの保存に失敗しました。";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2ファイル";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "ファイル \"%@\" が開けないか、または存在しません。";
@@ -71,19 +125,37 @@
 "Hide %@" = "%@を非表示";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "後でします";
+
+/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "既に%@を購入されている方は、確認メールに活発化キーが記載されています。";
+
+/* No comment provided by engineer. */
+"JPG Image" = "JPG 画像";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
 
 /* No comment provided by engineer. */
 "License Agreement" = "ライセンス契約";
 
 /* No comment provided by engineer. */
-"Macro-enabled Presentation" = "マクロ対応プレゼンテーション（*.pptm）";
+"Macro-enabled Presentation" = "マクロ対応プレゼンテーション";
 
 /* No comment provided by engineer. */
-"Macro-enabled spreadsheet template" = "マクロ対応表計算テンプレート（*.xltm）";
+"Macro-enabled spreadsheet template" = "マクロ対応表計算テンプレート";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocketファイル (*.mobi)";
+"Markdown File" = "Markdown ファイル";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocketファイル";
+
+/* No comment provided by engineer. */
+"Move to end" = "末尾に移動";
+
+/* No comment provided by engineer. */
+"Move to start" = "先頭に移動";
 
 /* No comment provided by engineer. */
 "new-document" = "新規ドキュメント";
@@ -101,7 +173,16 @@
 "No" = "いいえ";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "このバージョンのアプリケーションに対応する互換性のあるアドオンバージョンはありません。";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "アドオンのダウンロードを完了するためのメモリが不足しています。";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Toolsが正常にアンインストールされました";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICEでは、デジタル署名ファイルを開けません。別のファイルを開いてみてください。";
@@ -110,43 +191,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICEは、非公開鍵を開けません。別のファイルを開いてみてください。";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument ドキュメントテンプレート (*.ott)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDFフォーム";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument プレゼンテーションテンプレート (*.otp)";
+"OpenDocument Document Template" = "OpenDocument ドキュメントテンプレート";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument スプレッドシートテンプレート (*.ots)";
+"OpenDocument Presentation Template" = "OpenDocument プレゼンテーションテンプレート";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument スプレッドシートテンプレート";
 
 /* No comment provided by engineer. */
 "Opening" = "開いている";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument テキスト ファイル (*.odt)";
+"OpenOffice Document" = "OpenDocument テキスト ファイル";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocumentプレゼンテーションく(*.odp)";
+"OpenOffice Presentation" = "OpenDocumentプレゼンテーションく";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocumentスプレッドシート(*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocumentスプレッドシート";
 
 /* No comment provided by engineer. */
-"PDF File" = "ポータブルドキュメント (*.pdf)";
+"PDF File" = "ポータブルドキュメント";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "ポータブルドキュメント /A (*.pdf)";
+"PDF/A File" = "ポータブルドキュメント /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "プレーンテキストファイル (*.txt)";
+"Pin to tab" = "タブに固定";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003プレゼンテーション(*.ppt)";
+"Plain Text" = "プレーンテキストファイル";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "OfficeオープンXMLプレゼンテーション(*.pptx)";
+"PNG Image" = "PNG 画像";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office オープン XMLスライドショー(*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003プレゼンテーション";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "OfficeオープンXMLプレゼンテーション";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office オープン XMLスライドショー";
 
 /* No comment provided by engineer. */
 "Preparing..." = "準備中...";
@@ -155,7 +245,7 @@
 "Presentation %ld.pptx" = "プレゼンテーション%ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint オープン XMLプレゼンテーションテンプレート (*.potx)";
+"Presentation template" = "PowerPoint オープン XMLプレゼンテーションテンプレート";
 
 /* No comment provided by engineer. */
 "Presenter View" = "発表者ビュー";
@@ -164,10 +254,16 @@
 "Quit %@" = "%@を中止";
 
 /* No comment provided by engineer. */
+"Replace" = "置き換える";
+
+/* No comment provided by engineer. */
+"Restart now" = "今すぐ再起動する";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "レビュー変更...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "リッチ テキスト形式ファイル(*.rtf)";
+"Rich Text Document" = "リッチ テキスト形式ファイル";
 
 /* No comment provided by engineer. */
 "Save" = "保存";
@@ -176,19 +272,55 @@
 "Save the document?" = "ドキュメントの保存？";
 
 /* No comment provided by engineer. */
+"Select theme file" = "テーマファイルを選択";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "選択したテーマは無効です";
+
+/* No comment provided by engineer. */
+"Show in folder" = "フォルダーに表示";
+
+/* No comment provided by engineer. */
+"Show main window" = "メインウィンドウを表示";
+
+/* No comment provided by engineer. */
 "Signature Details" = "サインの詳細";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "スプレッドシート %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel オープン XML スプレッドシートテンプレート (*.xltx)";
+"Spreadsheet template" = "Excel オープン XML スプレッドシートテンプレート";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "%@評価いただきありがとうございました!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "アドオンのダウンロードURLが無効です。";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "アドオン情報が無効または不完全です。";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "アドオンパッケージが破損しているか、変更されています。";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "ドキュメント\"%@\"を作成する必要があります。続けますか？";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "インストールされているAI Toolsコンポーネントは、このバージョンのアプリケーションと互換性がありません。AI Tools を今すぐ更新しますか？";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "テーマは既に存在します。置き換えますか？";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "このファイルにはテーマが含まれていません";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "このテーマファイルは無効です";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "アドオンをインストールするには、アプリケーションを最新バージョンに更新してください。";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "ファイルの場所を開くには、保存されている必要があります。";
@@ -197,7 +329,16 @@
 "Unconfirmed" = "未確認";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "タブの固定を解除";
+
+/* No comment provided by engineer. */
 "Untitled" = "無題";
+
+/* No comment provided by engineer. */
+"Version %@" = "バージョン %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio 図面";
 
 /* No comment provided by engineer. */
 "Web Page" = "ホームページ";
@@ -206,13 +347,13 @@
 "With access to pro features" = "プロ機能へのアクセス";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003ドキュメント(*.doc)";
+"Word 97-2003 Document" = "Word 97-2003ドキュメント";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office オープン XML ドキュメント(*.docx)";
+"Word 2007 Document" = "Office オープン XML ドキュメント";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPSドキュメント (*.xps)";
+"XML Paper Specification" = "OpenXPSドキュメント";
 
 /* No comment provided by engineer. */
 "Yes" = "はい";
@@ -222,6 +363,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "正常に %@ を起動されました。";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "設定を有効にするには、アプリケーションを再起動する必要があります。";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "保存しないと変更内容が失われてしまいます。";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "保存しないと変更内容が失われてしまいます。";

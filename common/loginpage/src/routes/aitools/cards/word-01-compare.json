@@ -1,0 +1,242 @@
+{
+  "id": "compare-documents",
+  "group": "word",
+  "prompt": "Please compare the two attached documents and highlight all differences between them, including text changes, insertions, deletions, and formatting differences.",
+  "locale": {
+    "en": {
+      "title": "Compare Documents",
+      "description": "Compare and highlight differences between document versions",
+      "usertext": "Select two documents to compare and highlight differences (text, insertions, deletions, formatting)"
+    },
+    "ar-SA": {
+      "title": "مقارنة المستندات",
+      "description": "مقارنة وإبراز الاختلافات بين إصدارات المستند",
+      "usertext": "اختر مستندين لمقارنة وإبراز الاختلافات (النص، الإدراجات، الحذف، التنسيق)"
+    },
+    "be": {
+      "title": "Параўнаць дакументы",
+      "description": "Параўнаць і выдзеліць адрозненні паміж версіямі дакумента",
+      "usertext": "Выберыце два дакументы для параўнання і выдзялення адрозненняў (тэкст, устаўкі, выдаленні, фарматаванне)"
+    },
+    "bg": {
+      "title": "Сравняване на документи",
+      "description": "Сравняване и маркиране на разликите между версии на документ",
+      "usertext": "Изберете два документа за сравнение и маркиране на разликите (текст, вмъквания, изтривания, форматиране)"
+    },
+    "ca": {
+      "title": "Comparar documents",
+      "description": "Comparar i ressaltar diferències entre versions de documents",
+      "usertext": "Seleccioneu dos documents per comparar i ressaltar les diferències (text, insercions, eliminacions, format)"
+    },
+    "cs": {
+      "title": "Porovnat dokumenty",
+      "description": "Porovnat a zvýraznit rozdíly mezi verzemi dokumentu",
+      "usertext": "Vyberte dva dokumenty pro porovnání a zvýraznění rozdílů (text, vložení, smazání, formátování)"
+    },
+    "da": {
+      "title": "Sammenlign dokumenter",
+      "description": "Sammenlign og fremhæv forskelle mellem dokumentversioner",
+      "usertext": "Vælg to dokumenter for at sammenligne og fremhæve forskelle (tekst, indsætninger, sletninger, formatering)"
+    },
+    "de": {
+      "title": "Dokumente vergleichen",
+      "description": "Unterschiede zwischen Dokumentversionen vergleichen und hervorheben",
+      "usertext": "Wählen Sie zwei Dokumente zum Vergleichen und Hervorheben von Unterschieden (Text, Einfügungen, Löschungen, Formatierung)"
+    },
+    "el": {
+      "title": "Σύγκριση εγγράφων",
+      "description": "Σύγκριση και επισήμανση διαφορών μεταξύ εκδόσεων εγγράφου",
+      "usertext": "Επιλέξτε δύο έγγραφα για σύγκριση και επισήμανση διαφορών (κείμενο, εισαγωγές, διαγραφές, μορφοποίηση)"
+    },
+    "en-GB": {
+      "title": "Compare Documents",
+      "description": "Compare and highlight differences between document versions",
+      "usertext": "Select two documents to compare and highlight differences (text, insertions, deletions, formatting)"
+    },
+    "es": {
+      "title": "Comparar documentos",
+      "description": "Comparar y resaltar diferencias entre versiones de documentos",
+      "usertext": "Seleccione dos documentos para comparar y resaltar las diferencias (texto, inserciones, eliminaciones, formato)"
+    },
+    "et": {
+      "title": "Dokumentide võrdlemine",
+      "description": "Dokumentide versioonide erinevuste võrdlemine ja esiletõstmine",
+      "usertext": "Valige kaks dokumenti erinevuste võrdlemiseks ja esiletõstmiseks (tekst, lisad, kustutused, vormindus)"
+    },
+    "fi": {
+      "title": "Vertaile asiakirjoja",
+      "description": "Vertaile ja korosta eroja asiakirjaversioiden välillä",
+      "usertext": "Valitse kaksi asiakirjaa erojen vertailemiseksi ja korostamiseksi (teksti, lisäykset, poistot, muotoilu)"
+    },
+    "fr": {
+      "title": "Comparer les documents",
+      "description": "Comparer et mettre en évidence les différences entre les versions de documents",
+      "usertext": "Sélectionnez deux documents pour comparer et mettre en évidence les différences (texte, insertions, suppressions, mise en forme)"
+    },
+    "ga": {
+      "title": "Cáipéisí a Chur i gComparáid",
+      "description": "Cuir leaganacha cáipéisí i gcomparáid agus aibhsigh na difríochtaí",
+      "usertext": "Roghnaigh dhá cháipéis chun difríochtaí a chur i gcomparáid agus a aibhsiú (téacs, ionsáití, scriosadh, formáidiú)"
+    },
+    "gl": {
+      "title": "Comparar documentos",
+      "description": "Comparar e destacar as diferenzas entre versións de documentos",
+      "usertext": "Seleccione dous documentos para comparar e destacar as diferenzas (texto, insercións, eliminacións, formato)"
+    },
+    "he": {
+      "title": "השוואת מסמכים",
+      "description": "השווה והדגש הבדלים בין גרסאות מסמך",
+      "usertext": "בחר שני מסמכים להשוואה ולהדגשת הבדלים (טקסט, הוספות, מחיקות, עיצוב)"
+    },
+    "hi": {
+      "title": "दस्तावेज़ तुलना करें",
+      "description": "दस्तावेज़ संस्करणों के बीच अंतर तुलना करें और हाइलाइट करें",
+      "usertext": "अंतर तुलना करने और हाइलाइट करने के लिए दो दस्तावेज़ चुनें (पाठ, सम्मिलन, विलोपन, स्वरूपण)"
+    },
+    "hr": {
+      "title": "Usporedi dokumente",
+      "description": "Usporedi i istakni razlike između verzija dokumenta",
+      "usertext": "Odaberite dva dokumenta za usporedbu i isticanje razlika (tekst, umetanja, brisanja, oblikovanje)"
+    },
+    "hu": {
+      "title": "Dokumentumok összehasonlítása",
+      "description": "Dokumentumverziók közötti különbségek összehasonlítása és kiemelése",
+      "usertext": "Válasszon két dokumentumot a különbségek összehasonlításához és kiemeléshez (szöveg, beszúrások, törlések, formázás)"
+    },
+    "hy": {
+      "title": "Փաստաթղթերի համեմատություն",
+      "description": "Փաստաթղթի տարբերակների տարբերությունների համեմատություն և ընդգծում",
+      "usertext": "Ընտրեք երկու փաստաթուղթ՝ տարբերությունները համեմատելու և ընդգծելու համար (տեքստ, ներդրումներ, ջնջումներ, ֆորմատավորում)"
+    },
+    "it": {
+      "title": "Confronta documenti",
+      "description": "Confronta ed evidenzia le differenze tra versioni di documenti",
+      "usertext": "Seleziona due documenti per confrontare ed evidenziare le differenze (testo, inserimenti, eliminazioni, formattazione)"
+    },
+    "ja": {
+      "title": "文書を比較",
+      "description": "文書バージョン間の違いを比較してハイライト",
+      "usertext": "違いを比較してハイライトする2つの文書を選択してください（テキスト、挿入、削除、書式）"
+    },
+    "ko": {
+      "title": "문서 비교",
+      "description": "문서 버전 간의 차이점 비교 및 강조",
+      "usertext": "차이를 비교하고 강조할 두 문서를 선택하세요 (텍스트, 삽입, 삭제, 서식)"
+    },
+    "lo": {
+      "title": "ປຽບທຽບເອກະສານ",
+      "description": "ປຽບທຽບແລະເນັ້ນຄວາມແຕກຕ່າງລະຫວ່າງເວີຊັນເອກະສານ",
+      "usertext": "ເລືອກສອງເອກະສານເພື່ອປຽບທຽບແລະເນັ້ນຄວາມແຕກຕ່າງ (ຂໍ້ຄວາມ, ການໃສ່, ການລຶບ, ການຈັດຮູບແບບ)"
+    },
+    "lt": {
+      "title": "Palyginti dokumentus",
+      "description": "Palyginti ir paryškinti skirtumus tarp dokumento versijų",
+      "usertext": "Pasirinkite du dokumentus skirtumams palyginti ir paryškinti (tekstas, įterpimai, ištrinimai, formatavimas)"
+    },
+    "lv": {
+      "title": "Salīdzināt dokumentus",
+      "description": "Salīdzināt un izcelt atšķirības starp dokumentu versijām",
+      "usertext": "Atlasiet divus dokumentus atšķirību salīdzināšanai un izcelšanai (teksts, ievietojumi, dzēsumi, formatējums)"
+    },
+    "nl": {
+      "title": "Documenten vergelijken",
+      "description": "Verschillen tussen documentversies vergelijken en markeren",
+      "usertext": "Selecteer twee documenten om verschillen te vergelijken en te markeren (tekst, invoegingen, verwijderingen, opmaak)"
+    },
+    "no": {
+      "title": "Sammenlign dokumenter",
+      "description": "Sammenlign og fremhev forskjeller mellom dokumentversjoner",
+      "usertext": "Velg to dokumenter for å sammenligne og fremheve forskjeller (tekst, innsettinger, slettinger, formatering)"
+    },
+    "pl": {
+      "title": "Porównaj dokumenty",
+      "description": "Porównaj i wyróżnij różnice między wersjami dokumentu",
+      "usertext": "Wybierz dwa dokumenty do porównania i wyróżnienia różnic (tekst, wstawienia, usunięcia, formatowanie)"
+    },
+    "pt-BR": {
+      "title": "Comparar documentos",
+      "description": "Comparar e destacar diferenças entre versões de documentos",
+      "usertext": "Selecione dois documentos para comparar e destacar as diferenças (texto, inserções, exclusões, formatação)"
+    },
+    "pt-PT": {
+      "title": "Comparar documentos",
+      "description": "Comparar e realçar diferenças entre versões de documentos",
+      "usertext": "Selecione dois documentos para comparar e realçar as diferenças (texto, inserções, eliminações, formatação)"
+    },
+    "ro": {
+      "title": "Comparare documente",
+      "description": "Comparați și evidențiați diferențele dintre versiunile documentului",
+      "usertext": "Selectați două documente pentru a compara și evidenția diferențele (text, inserări, ștergeri, formatare)"
+    },
+    "ru": {
+      "title": "Сравнить документы",
+      "description": "Сравнить и выделить различия между версиями документа",
+      "usertext": "Выберите два документа для сравнения и выделения различий (текст, вставки, удаления, форматирование)"
+    },
+    "si": {
+      "title": "ලේඛන සංසන්දනය",
+      "description": "ලේඛන අනුවාද අතර වෙනස්කම් සංසන්දනය කර ඉස්මතු කරන්න",
+      "usertext": "වෙනස්කම් (පෙළ, ඇතුළු කිරීම්, මකාදැමීම්, හැඩතල ගැන්වීම) සංසන්දනය කර ඉස්මතු කිරීමට ලේඛන දෙකක් තෝරන්න"
+    },
+    "sk": {
+      "title": "Porovnať dokumenty",
+      "description": "Porovnať a zvýrazniť rozdiely medzi verziami dokumentu",
+      "usertext": "Vyberte dva dokumenty na porovnanie a zvýraznenie rozdielov (text, vloženia, vymazania, formátovanie)"
+    },
+    "sl": {
+      "title": "Primerjaj dokumente",
+      "description": "Primerjaj in označi razlike med različicami dokumenta",
+      "usertext": "Izberite dva dokumenta za primerjavo in označitev razlik (besedilo, vstavljanja, brisanja, oblikovanje)"
+    },
+    "sq": {
+      "title": "Krahaso dokumentet",
+      "description": "Krahaso dhe nxirr në pah ndryshimet midis versioneve të dokumentit",
+      "usertext": "Zgjidhni dy dokumente për të krahasuar dhe nxjerrë në pah ndryshimet (tekst, futje, fshirje, formatim)"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Упореди документе",
+      "description": "Упореди и истакни разлике између верзија документа",
+      "usertext": "Изаберите два документа за упоређивање и истицање разлика (текст, убацивања, брисања, форматирање)"
+    },
+    "sr-Latn-RS": {
+      "title": "Uporedi dokumente",
+      "description": "Uporedi i istakni razlike između verzija dokumenta",
+      "usertext": "Izaberite dva dokumenta za upoređivanje i isticanje razlika (tekst, ubacivanja, brisanja, formatiranje)"
+    },
+    "sv": {
+      "title": "Jämför dokument",
+      "description": "Jämför och markera skillnader mellan dokumentversioner",
+      "usertext": "Välj två dokument för att jämföra och markera skillnader (text, infogningar, raderingar, formatering)"
+    },
+    "tr": {
+      "title": "Belgeleri Karşılaştır",
+      "description": "Belge sürümleri arasındaki farkları karşılaştırın ve vurgulayın",
+      "usertext": "Farkları karşılaştırmak ve vurgulamak için iki belge seçin (metin, eklemeler, silmeler, biçimlendirme)"
+    },
+    "uk": {
+      "title": "Порівняти документи",
+      "description": "Порівняти та виділити відмінності між версіями документа",
+      "usertext": "Виберіть два документи для порівняння та виділення відмінностей (текст, вставки, видалення, форматування)"
+    },
+    "ur": {
+      "title": "دستاویزات کا موازنہ",
+      "description": "دستاویز کے ورژنز کے درمیان فرق کا موازنہ کریں اور اجاگر کریں",
+      "usertext": "فرق کا موازنہ کرنے اور اجاگر کرنے کے لیے دو دستاویزات منتخب کریں (متن، اضافے، حذف، فارمیٹنگ)"
+    },
+    "vi": {
+      "title": "So sánh tài liệu",
+      "description": "So sánh và làm nổi bật sự khác biệt giữa các phiên bản tài liệu",
+      "usertext": "Chọn hai tài liệu để so sánh và làm nổi bật sự khác biệt (văn bản, chèn, xóa, định dạng)"
+    },
+    "zh-CN": {
+      "title": "比较文档",
+      "description": "比较并突出显示文档版本之间的差异",
+      "usertext": "选择两个文档以比较并突出显示差异（文本、插入、删除、格式）"
+    },
+    "zh-TW": {
+      "title": "比較文件",
+      "description": "比較並突出顯示文件版本之間的差異",
+      "usertext": "選擇兩個文件以比較並突出顯示差異（文字、插入、刪除、格式）"
+    }
+  }
+}

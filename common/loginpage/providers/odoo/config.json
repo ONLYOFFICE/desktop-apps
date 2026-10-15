@@ -1,0 +1,20 @@
+{
+    "provider": "odoo",
+    "name": "Odoo",
+    "check": {
+        "url": "web/health"
+    },
+    "startPage": "/web",
+    "editorPage": "/onlyoffice/editor/document",
+    "order": 4,
+    "icons": {
+        "themeLight": {
+            "connectionsList": "./assets/listicon.svg",
+            "buttonLogo": "./assets/buttonlogo.svg"
+        },
+        "themeDark": {
+            "connectionsList": "./assets/listicon_dark.svg",
+            "buttonLogo": "./assets/buttonlogo_dark.svg"
+        }
+    }
+}

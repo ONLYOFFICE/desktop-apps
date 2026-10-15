@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@  zaten var.\nÜzerine yazmak istiyor musunuz?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Yardım";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Teşekkürler";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Kaldırma işleminden sonra AI Tools özellikleri kullanılamayacak. Tüm AI ayarları (API anahtarları dahil) kaldırılmayacak.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Arşivi açarken bir hata oluştu";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Eklenti yüklenirken beklenmedik bir hata oluştu.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Uygulamanın yeniden başlatılması gerekiyor";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "ONLYOFFICE AI Tools'u kaldırmak istediğinizden emin misiniz?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Belgenin imzalanmasından önce kaydedilmesi gerekir.";
 
 /* No comment provided by engineer. */
 "Cancel" = "İptal";
+
+/* No comment provided by engineer. */
+"Canceled" = "İptal edildi";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Elektronik İmza dosyası açılamıyor";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "Dosya konumunun klasörü açılamıyor";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Virgülle Ayrılmış Değerler (*.csv)";
+"Close" = "Kapat";
+
+/* No comment provided by engineer. */
+"Close all" = "Tümünü kapat";
+
+/* No comment provided by engineer. */
+"Close saved" = "Kapat kaydedildi";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Virgülle Ayrılmış Değerler";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community sürümü %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Yeni oluştur";
 
 /* No comment provided by engineer. */
 "Create portal" = "Portal yarat";
@@ -32,22 +68,49 @@
 "Delete and Quit" = "Sil ve Çıkış Yap";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Dijital Belge (*.djvu)";
+"DjVu File" = "Dijital Belge";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Belgeye yapılan değişiklikleri kaydetmek istiyor musunuz \"%@\"?";
 
 /* No comment provided by engineer. */
+"Document %ld.docx" = "Belge %ld.docx";
+
+/* No comment provided by engineer. */
 "Document %ld.pdf" = "Belge %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML Belge şablonu (*.dotx)";
+"Document template" = "Word Open XML Belge şablonu";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Elektronik Tablosu (*.xls)";
+"Don't Save" = "Kaydetme";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML Elektronik Tablosu (*.xlsx)";
+"Electronic Publication" = "Elektronik Yayın";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise sürümü %@";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Elektronik Tablosu";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML Elektronik Tablosu";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel İkili çalışma sayfası";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Bir ağ hatası nedeniyle eklenti indirilemedi.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Tema yüklenemedi";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "İndirilen eklenti paketi kaydedilemedi.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2 Dosyası";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = " \"%@\" dosyası açılamıyor veya mevcut değil.";
@@ -62,16 +125,40 @@
 "Hide %@" = "Gizle %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "Bunu daha sonra yapacağım";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Eğer belgelerinizi gözden geçirmezseniz, tüm değişiklikleriniz kaybolacaktır.";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Eğer %@ satın aldıysanız, aktivasyon anahtarını onay e-mailinde bulabilirsiniz.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG Resmi";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Lisans Anlaşması";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-kitap (*.mobi)";
+"Macro-enabled Presentation" = "Makro Etkinleştirilmiş sunum";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Makro Etkinleştirilmiş Elektronik Tablo Şablonu";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown dosyası";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-kitap";
+
+/* No comment provided by engineer. */
+"Move to end" = "Sonuna geç";
+
+/* No comment provided by engineer. */
+"Move to start" = "Başlamak için hareket et";
 
 /* No comment provided by engineer. */
 "new-document" = "Yeni belge";
@@ -89,7 +176,16 @@
 "No" = "Hayır";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Bu uygulama sürümü için uyumlu bir eklenti sürümü mevcut değildir.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Eklenti indirmesini tamamlamak için yeterli bellek yok.";
+
+/* No comment provided by engineer. */
 "OK" = "Tamam";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools başarıyla kaldırıldı";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE Elektronik İmza dosyasını açamıyor. Başka bir dosya açmayı deneyin.";
@@ -98,43 +194,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE Özel Anahtar dosyasını açamıyor. Başka bir dosya açmayı deneyin.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument Belge Şablonu (*.ott)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF Formu";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument Sunum Şablonu (*.otp)";
+"OpenDocument Document Template" = "OpenDocument Belge Şablonu";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument Tablo Şablonu (*.ots)";
+"OpenDocument Presentation Template" = "OpenDocument Sunum Şablonu";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Tablo Şablonu";
 
 /* No comment provided by engineer. */
 "Opening" = "Açılıyor";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument Metin dosyası (*.odt)";
+"OpenOffice Document" = "OpenDocument Metin dosyası";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument Sunumu (*.odp)";
+"OpenOffice Presentation" = "OpenDocument Sunumu";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument Tablosu (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument Tablosu";
 
 /* No comment provided by engineer. */
-"PDF File" = "Taşınabilir Belge (*.pdf)";
+"PDF File" = "Taşınabilir Belge";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Taşınabilir Belge /A (*.pdf)";
+"PDF/A File" = "Taşınabilir Belge /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Düz Metin Dosyası (*.txt)";
+"Pin to tab" = "Sekmeye sabitle";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Sunumu (*.ppt)";
+"Plain Text" = "Düz Metin Dosyası";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML Sunumu (*.pptx)";
+"PNG Image" = "PNG Resmi";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML Slayt Gösterisi (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Sunumu";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML Sunumu";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML Slayt Gösterisi";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Hazırlanıyor...";
@@ -143,16 +248,25 @@
 "Presentation %ld.pptx" = "Sunum %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML Sunum Şablonu (*.potx)";
+"Presentation template" = "PowerPoint Open XML Sunum Şablonu";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Sunucu Görünümü";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Çık %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Değiştir";
+
+/* No comment provided by engineer. */
+"Restart now" = "Şimdi Yeniden Başlat";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Değişiklikleri Gözden Geçir...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Zengin Metin Format Dosyası (*.rtf)";
+"Rich Text Document" = "Zengin Metin Format Dosyası";
 
 /* No comment provided by engineer. */
 "Save" = "Kaydet";
@@ -161,16 +275,55 @@
 "Save the document?" = "Belgeyi kaydet?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Tema dosyasını seçin";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Seçilen tema geçerli değil";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Klasörde göster";
+
+/* No comment provided by engineer. */
+"Show main window" = "Ana pencereyi göster";
+
+/* No comment provided by engineer. */
+"Signature Details" = "İmza Ayrıntıları";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Tablo %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML Tablo Şablonu (*.xltx)";
+"Spreadsheet template" = "Excel Open XML Tablo Şablonu";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "%@ değerlendirmeniz için teşekkürler!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Eklenti indirme URL'si geçersiz.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Eklenti bilgileri geçersiz veya eksik.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Eklenti paketi bozuk veya değiştirilmiş.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Belge \"%@\" oluşturulmalı. Devam et?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Yüklü AI Tools bileşeni bu uygulama sürümüyle uyumsuz. AI Tools şimdi güncellensin mi?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Tema zaten mevcut. Değiştirilsin mi?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Bu dosya tema içermiyor";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Bu tema dosyası geçerli değil";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Eklentiyi yüklemek için uygulamayı en son sürüme güncelleyin.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Dosya konumunun açılması için kaydedilmesi gerekir.";
@@ -179,19 +332,31 @@
 "Unconfirmed" = "Onaylanmamış";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Sekmeyi sabitle'yi kaldır";
+
+/* No comment provided by engineer. */
 "Untitled" = "Başlıksız";
+
+/* No comment provided by engineer. */
+"Version %@" = "Sürüm %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Çizim Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Web Sayfası";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Belgesi (*.doc)";
+"With access to pro features" = "Profesyonel özelliklere erişimle";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML Belgesi (*.docx)";
+"Word 97-2003 Document" = "Word 97-2003 Belgesi";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS Belgesi (*.xps)";
+"Word 2007 Document" = "Office Open XML Belgesi";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS Belgesi";
 
 /* No comment provided by engineer. */
 "Yes" = "Evet";
@@ -201,6 +366,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = " %@ başarıyla aktifleştirildi.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Ayarların etkili olması için uygulamayı yeniden başlatmanız gerekmektedir.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Kaydetmezseniz değişiklikleriniz kaybolacaktır.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Kaydetmezseniz değişiklikleriniz kaybolacaktır.";

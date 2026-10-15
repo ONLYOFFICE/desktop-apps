@@ -40,12 +40,25 @@
 #include "cx11decoration.h"
 
 
+class AscMainPanel : public QWidget
+{
+public:
+    explicit AscMainPanel(QWidget *parent);
+    virtual ~AscMainPanel();
+
+private:
+    virtual void resizeEvent(QResizeEvent *re) override;
+    CWindowBase *parent;
+};
+
 class CWindowPlatform : public CWindowBase, public CX11Decoration
 {
 public:
-    explicit CWindowPlatform(const QRect&);
+    explicit CWindowPlatform(QWidget *parent = nullptr, const QRect &rc = QRect());
     virtual ~CWindowPlatform();
 
+    virtual bool isResizable() const override;
+    virtual void setResizable(bool) override;
     void bringToTop();
     void show(bool);
     virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) final;
@@ -65,7 +78,12 @@ private:
     virtual void mousePressEvent(QMouseEvent *) final;
     virtual void mouseReleaseEvent(QMouseEvent *) final;
     virtual void mouseDoubleClickEvent(QMouseEvent *) final;
+
+    void updateInputShape();
+
     QTimer *m_propertyTimer;
+    int     m_efectiveFrameMargin;
+    bool    m_isWindowActive;
 };
 
 #endif // CWINDOWPLATFORM_H

@@ -1,4 +1,3 @@
-
 QT  += core gui widgets printsupport
 QT  += svg
 
@@ -60,6 +59,7 @@ TRANSLATIONS = ./langs/en.ts \
 CORE_ROOT_DIR = $$PWD/../../core
 BASEEDITORS_PATH = $$PWD/../../desktop-sdk/ChromiumBasedEditors
 CORE_3DPARTY_PATH = $$PWD/../../core/Common/3dParty
+COMMON_PATH = $$PWD/../common/sources
 
 CONFIG += core_no_dst
 include($$CORE_ROOT_DIR/Common/base.pri)
@@ -73,6 +73,7 @@ INCLUDEPATH += \
     $$BASEEDITORS_PATH/lib/qt_wrapper/include \
     $$CORE_ROOT_DIR/DesktopEditor \
     $$CORE_ROOT_DIR/Common \
+    $$COMMON_PATH \
     $$PWD/src
 
 HEADERS += \
@@ -164,6 +165,21 @@ updmodule:!build_xp {
     SOURCES += $$PWD/src/cupdatemanager.cpp
 }
 
+!disable_addon_mode {
+    DEFINES += USE_ADDON_MODE
+
+    HEADERS += \
+        # $$COMMON_PATH/cdownloader.h \
+        $$PWD/src/caddonmanager.h \
+        $$PWD/src/dialogs/ascdialog.h \
+        $$PWD/src/dialogs/upgradedialog.h
+
+    SOURCES += \
+        $$PWD/src/caddonmanager.cpp \
+        $$PWD/src/dialogs/ascdialog.cpp \
+        $$PWD/src/dialogs/upgradedialog.cpp
+}
+
 RESOURCES += $$PWD/resources.qrc
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 
@@ -193,7 +209,7 @@ PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 
-ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, OFDFile, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
 include($$CORE_ROOT_DIR/../desktop-sdk/ChromiumBasedEditors/videoplayerlib/videoplayerlib_deps.pri)
 
 core_linux {
@@ -233,8 +249,15 @@ core_linux {
                 $$PWD/extras/update-daemon/src/classes/csocket.cpp
 
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xext libnotify
-    LIBS += -lX11 -lX11-xcb -lcups
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb xcb-shape libnotify
+    LIBS += -lX11 -lcups
+
+    # !disable_addon_mode {
+        # SOURCES += \
+            # $$COMMON_PATH/cdownloader_linux.cpp
+
+        # LIBS += -lcurl
+    # }
 
     cef_version_107 {
         LIBS += $$PWD/../../build_tools/tools/linux/sysroot/ubuntu14/libdbus-1.so.3
@@ -307,12 +330,21 @@ core_windows {
             -lrpcrt4
 #            -lOpenGL32
 
+    # !disable_addon_mode {
+    #     SOURCES += \
+    #         $$COMMON_PATH/cdownloader_win32.cpp
+
+    #     LIBS += -lwinhttp
+    # }
+
     build_xp {
         DEFINES += __OS_WIN_XP
     } else {
         HEADERS += $$PWD/src/platform_win/wintoastlib.h \
+                   $$PWD/src/platform_win/taskdialogtheme.h \
                    $$PWD/src/components/cnotification.h
         SOURCES += $$PWD/src/platform_win/wintoastlib.cpp \
+                   $$PWD/src/platform_win/taskdialogtheme.cpp \
                    $$PWD/src/components/cnotification.cpp
     }
 }
@@ -322,6 +354,7 @@ core_debug:DESTDIR = $$DESTDIR/build/debug
 
 !isEmpty(OO_BUILD_BRANDING) {
     DESTDIR = $$DESTDIR/$$OO_BUILD_BRANDING
+    DEFINES += OO_BRANDING=SS{OO_BUILD_BRANDING}
 }
 
 DESTDIR = $$DESTDIR/$$PLATFORM_BUILD
@@ -331,6 +364,13 @@ build_xp {
 
 exists($$PWD/../common/loginpage/deploy/noconnect.html) {
     RESOURCES += $$PWD/extras.qrc
+}
+
+exists($$PWD/../../document-formats/onlyoffice-docs-formats.json) {
+    copy_formats_json.target = copy_formats_json
+    copy_formats_json.commands = $$QMAKE_COPY $$shell_path($$PWD/../../document-formats/onlyoffice-docs-formats.json) $$shell_path($$PWD/../common/converter/)
+    QMAKE_EXTRA_TARGETS += copy_formats_json
+    PRE_TARGETDEPS += copy_formats_json
 }
 
 OBJECTS_DIR = $$DESTDIR/obj

@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ już istnieje.\nCzy chcesz go zastąpić?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Pomoc";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Podziękowania";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Funkcje AI Tools będą niedostępne po odinstalowaniu. Wszystkie ustawienia AI (w tym klucze API) nie zostaną usunięte.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Wystąpił błąd podczas rozpakowywania archiwum";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Podczas instalacji dodatku wystąpił nieoczekiwany błąd.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Aplikacja wymaga ponownego uruchomienia";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Czy na pewno chcesz odinstalować ONLYOFFICE AI Tools?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Dokument należy zapisać przed jego podpisaniem.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Anuluj";
+
+/* No comment provided by engineer. */
+"Canceled" = "Anulowano";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Nie można otworzyć pliku Podpisu Cyfrowego";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "Nie można otworzyć folderu lokalizacji pliku.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Wartości rozdzielone przecinkiem (*.csv)";
+"Close" = "Zamknij";
+
+/* No comment provided by engineer. */
+"Close all" = "Zamknij wszystko";
+
+/* No comment provided by engineer. */
+"Close saved" = "Zamknij zapisane";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Wartości rozdzielone przecinkiem";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Wersja Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Utwórz nowy";
 
 /* No comment provided by engineer. */
 "Create portal" = "Stwórz portal";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "Usuń i Zamknij";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Dokument cyfrowy (*.djvu)";
+"DjVu File" = "Dokument cyfrowy";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Czy chcesz zapisać zmiany dokonane w dokumencie \"%@\"?";
@@ -44,19 +80,37 @@
 "Document %ld.pdf" = "Dokument %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Szablon dokumentu Word Open XML (*.dotx)";
+"Document template" = "Szablon dokumentu Word Open XML";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Nie zapisuj";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Arkusz kalkulacyjny Excel 97-2003 (*.xls)";
+"Electronic Publication" = "Plik Electronic Publication";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Arkusz kalkulacyjny Open Office XML (*.xlsx)";
+"Enterprise version %@" = "Wersja Enterprise %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "Plik FictionBook 2 (*.fb2)";
+"Excel 97-2003 Spreadsheet" = "Arkusz kalkulacyjny Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Arkusz kalkulacyjny Open Office XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Arkusz kalkulacyjny binarny Excel";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Pobranie dodatku nie powiodło się z powodu błędu sieci.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Nie udało się zainstalować motywu";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Zapisanie pobranego pakietu dodatku nie powiodło się.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Plik FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Plik „% @” nie może być otworzony lub nie istnieje.";
@@ -71,16 +125,40 @@
 "Hide %@" = "Ukryj %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "Zrobię to później";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Jeśli nie sprawdzisz swoich dokumentów, wszystkie zmiany zostaną utracone.";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Jeśli zakupiłeś już %@, Twój klucz aktywacyjny powinien znajdować się w e-mailu potwierdzającym.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "Obraz JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Umowa licencyjna";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "E-Book Mobipocket (*.mobi)";
+"Macro-enabled Presentation" = "Prezentacja z obsługą makr";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Szablon arkusza kalkulacyjnego z obsługą makr";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Plik Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "E-Book Mobipocket";
+
+/* No comment provided by engineer. */
+"Move to end" = "Przenieś do końca";
+
+/* No comment provided by engineer. */
+"Move to start" = "Przesuń, aby rozpocząć";
 
 /* No comment provided by engineer. */
 "new-document" = "Nowy dokument";
@@ -98,7 +176,16 @@
 "No" = "Nie";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Brak zgodnej wersji dodatku dla tej wersji aplikacji.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Brak wystarczającej ilości pamięci do ukończenia pobierania dodatku.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools został pomyślnie odinstalowany";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nie może otworzyć pliku Podpisu Cyfrowego. Spróbuj otworzyć inny plik.";
@@ -107,43 +194,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nie może otworzyć Kucza Prywatnego. Spróbuj otworzyć inny plik.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Szablon dokumentu OpenDocument (*.ott)";
+"ONLYOFFICE Form Document" = "Formularz PDF ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Szablon prezentacji OpenDocument (*.otp)";
+"OpenDocument Document Template" = "Szablon dokumentu OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Szablon arkusza kalkulacyjnego OpenDocument (*.ots)";
+"OpenDocument Presentation Template" = "Szablon prezentacji OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Szablon arkusza kalkulacyjnego OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Otwieranie";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Plik tekstowy OpenDocument (*.odt)";
+"OpenOffice Document" = "Plik tekstowy OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Prezentacja OpenDocument (*.odp)";
+"OpenOffice Presentation" = "Prezentacja OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Arkusz Kalkulacyjny OpenDocument (*.ods)";
+"OpenOffice Spreadsheet" = "Arkusz Kalkulacyjny OpenDocument";
 
 /* No comment provided by engineer. */
-"PDF File" = "Przenośny document (*.pdf)";
+"PDF File" = "Przenośny document";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Przenośny document /A (*.pdf)";
+"PDF/A File" = "Przenośny document /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Zwykły Tekst (*.txt)";
+"Pin to tab" = "Przypnij do karty";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Prezentacja PowerPoint 97-2003 (*.ppt)";
+"Plain Text" = "Zwykły Tekst";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Prezentacja Open Office XML (*.pptx)";
+"PNG Image" = "Obraz PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Pokaz slajdów Open Office XML (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "Prezentacja PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Prezentacja Open Office XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Pokaz slajdów Open Office XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Przygotowywanie…";
@@ -152,7 +248,7 @@
 "Presentation %ld.pptx" = "Prezentacja %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Szablon prezentacji PowerPoint Open XML (*.potx)";
+"Presentation template" = "Szablon prezentacji PowerPoint Open XML";
 
 /* No comment provided by engineer. */
 "Presenter View" = "Widok Prezentera";
@@ -161,10 +257,16 @@
 "Quit %@" = "Zakończ %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Zamień";
+
+/* No comment provided by engineer. */
+"Restart now" = "Uruchom ponownie teraz";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Sprawdź Zmiany...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Plik w formacie Rich Text (*.rtf)";
+"Rich Text Document" = "Plik w formacie Rich Text";
 
 /* No comment provided by engineer. */
 "Save" = "Zapisz";
@@ -173,19 +275,55 @@
 "Save the document?" = "Czy zapisać dokument?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Wybierz plik motywu";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Wybrany motyw jest nieprawidłowy";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Pokaż w folderze";
+
+/* No comment provided by engineer. */
+"Show main window" = "Pokaż główne okno";
+
+/* No comment provided by engineer. */
 "Signature Details" = "Szczegóły sygnatury";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Arkusz kalkulacyjny %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Szablon arkusza kalkulacyjnego Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Szablon arkusza kalkulacyjnego Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Dziękujemy za ocenę %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Adres URL pobierania dodatku jest nieprawidłowy.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Informacje o dodatku są nieprawidłowe lub niekompletne.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Pakiet dodatku jest uszkodzony lub został zmodyfikowany.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokument \"%@\" musi zostać utworzony. Kontynuować?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Zainstalowany komponent AI Tools jest niezgodny z tą wersją aplikacji. Zaktualizować AI Tools teraz?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Motyw już istnieje. Zastąpić go?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Ten plik nie zawiera motywu";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Ten plik motywu jest nieprawidłowy";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Aby zainstalować dodatek, zaktualizuj aplikację do najnowszej wersji.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Aby otworzyć lokalizację pliku, należy go zapisać.";
@@ -194,7 +332,16 @@
 "Unconfirmed" = "Niepotwierdzone";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Odepnij kartę";
+
+/* No comment provided by engineer. */
 "Untitled" = "Bez Nazwy";
+
+/* No comment provided by engineer. */
+"Version %@" = "Wersja %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Rysunek programu Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Strona Internetowa";
@@ -203,13 +350,13 @@
 "With access to pro features" = "Z dostępem do funkcji pro";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Dokument Word 97-2003 (*.doc)";
+"Word 97-2003 Document" = "Dokument Word 97-2003";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Dokument Open Office XML (*.docx)";
+"Word 2007 Document" = "Dokument Open Office XML";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Dokument OpenXPS (*.xps)";
+"XML Paper Specification" = "Dokument OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "Tak";
@@ -219,6 +366,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Pomyślnie aktywowano % @.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Należy ponownie uruchomić aplikację, aby ustawienia zaczęły obowiązywać.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Twoje zmiany zostaną utracone, jeśli ich nie zapiszesz.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Twoje zmiany zostaną utracone, jeśli ich nie zapiszesz.";

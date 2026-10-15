@@ -78,6 +78,9 @@
                           CLogger::log("Locking and further execution:" + FUNCTION_INFO);
 #define __UNLOCK m_lock = false; CLogger::log("Unlocked in:" + FUNCTION_INFO);
 
+// TODO: Remove in version 10.1
+#define CHECK_UPDATES_ONCE_ON_STARTUP
+
 using std::vector;
 
 const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unpacking the archive"),
@@ -103,7 +106,7 @@ const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An er
            *TXT_ERR_CHECK       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while check updates: the Update Service is not installed or is not running!"),
            *TXT_ERR_LOAD        = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: the Update Service is not installed or is not running!"),
            *TXT_ERR_UNZIP       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unzip updates: the Update Service is not installed or is not running!"),
-           *TXT_ERR_JSON        = QT_TRANSLATE_NOOP("CUpdateManager", "Error opening JSON file."),
+           *TXT_ERR_JSON        = QT_TRANSLATE_NOOP("CUpdateManager", "The update information is invalid or incomplete."),
            *TXT_ERR_MD5         = QT_TRANSLATE_NOOP("CUpdateManager", "Update package error: md5 sum does not match the original."),
 
            *BTN_TXT_CHECK    = QT_TRANSLATE_NOOP("CUpdateManager", "Check for updates"),
@@ -489,8 +492,10 @@ void CUpdateManager::checkUpdates(bool manualCheck)
     reg_user.beginGroup("Updates");
     reg_user.setValue("last_check", static_cast<qlonglong>(m_lastCheck));
     reg_user.endGroup();
+#ifndef CHECK_UPDATES_ONCE_ON_STARTUP
     if (getUpdateMode() != UpdateMode::DISABLE)
         m_pIntervalStartTimer->start();
+#endif
 
     __GLOBAL_LOCK
 
@@ -519,6 +524,11 @@ void CUpdateManager::updateNeededCheking()
 {
     if (m_pIntervalTimer) {
         m_pIntervalTimer->stop();
+
+#ifdef CHECK_UPDATES_ONCE_ON_STARTUP
+        if (!m_manualCheck)
+            checkUpdates();
+#else
         int elapsed_time = int(time(nullptr) - m_lastCheck);
         if (elapsed_time > m_interval) {
             checkUpdates();
@@ -527,6 +537,7 @@ void CUpdateManager::updateNeededCheking()
             m_pIntervalTimer->setInterval(remaining_time < CHECK_ON_STARTUP_MS + 1000 ? CHECK_ON_STARTUP_MS + 1000 : remaining_time);
             m_pIntervalTimer->start();
         }
+#endif
     }
 }
 
@@ -898,7 +909,7 @@ void CUpdateManager::showUpdateMessage(QWidget *parent, bool forceModal, int res
             if (CNotification::instance().show(title,
                         QString("%1\n%2: %3\n%4: %5").arg(name, tr("Current version"),
                         curr_version, tr("New version"), m_packageData->version),
-                        MsgBtns::mbSkipRemindDownload, [=](int res) {
+                        {tr("Skip"), tr("Later"), tr("Download")}, [=](int res) {
                             QMetaObject::invokeMethod(this, "showUpdateMessage", Qt::QueuedConnection, Q_ARG(QWidget*, parent), Q_ARG(bool, res == NOTIF_FAILED), Q_ARG(int, res));
                         })) {
                 __UNLOCK
@@ -908,21 +919,27 @@ void CUpdateManager::showUpdateMessage(QWidget *parent, bool forceModal, int res
 
         QString content = QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)")
                               .arg(name, tr("Current version"), curr_version, tr("New version"), m_packageData->version, text, m_packageData->fileSize);
-        CMessageOpts opts;
+        CMessage::Config opts;
         opts.contentText = QString("%1\n").arg(content);
         if (!QString(RELEASE_NOTES).isEmpty())
             opts.linkText =  LINK_TEXT;
-        result = CMessage::showMessage(parent, title, MsgType::MSG_BRAND, MsgBtns::mbSkipRemindDownload, opts);
+        CMessage msg(parent);
+        msg.setText(title);
+        msg.setIcon(CMessage::Icon::Brand);
+        msg.setButtons({tr("Skip this version"), tr("Remind me later"), tr("Download update")});
+        msg.setDefaultButton(CMessage::DefaultButton::ThirdButton);
+        msg.setConfig(opts);
+        result = msg.exec();
         __UNLOCK
     }
     switch (result) {
-    case MsgRes::MODAL_RESULT_DOWNLOAD:
+    case CMessage::Result::ThirdButton: // Download
         if (m_packageData->isInstallable)
             loadUpdates();
         else
             Utils::openUrl(DOWNLOAD_PAGE);
         break;
-    case MsgRes::MODAL_RESULT_SKIPVER: {
+    case CMessage::Result::FirstButton: { // Skip
         skipVersion();
         refreshStartPage({"success", {TXT_UPDATED}, BTN_TXT_CHECK, "check", "false"});
         m_pLastCheckMsgTimer->start();
@@ -944,7 +961,7 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent, bool forceModal, i
             if (CNotification::instance().show(title,
                         QString("%1\n%2: %3\n%4: %5").arg(name, tr("Current version"),
                         curr_version, tr("New version"), m_packageData->version),
-                        MsgBtns::mbInslaterRestart, [=](int res) {
+                        {tr("Later"), tr("Restart")}, [=](int res) {
                             QMetaObject::invokeMethod(this, "showStartInstallMessage", Qt::QueuedConnection, Q_ARG(QWidget*, parent), Q_ARG(bool, res == NOTIF_FAILED), Q_ARG(int, res));
                         })) {
                 __UNLOCK
@@ -955,21 +972,27 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent, bool forceModal, i
         QString content = QString("%1\n%2: %3\n%4: %5\n%6")
                               .arg(name, tr("Current version"), curr_version, tr("New version"), m_packageData->version,
                                    tr("To finish updating, restart the app"));
-        CMessageOpts opts;
+        CMessage::Config opts;
         opts.contentText = QString("%1\n").arg(content);
         if (!QString(RELEASE_NOTES).isEmpty())
             opts.linkText =  LINK_TEXT;
-        result = CMessage::showMessage(parent, title, MsgType::MSG_BRAND, MsgBtns::mbInslaterRestart, opts);
+        CMessage msg(parent);
+        msg.setText(title);
+        msg.setIcon(CMessage::Icon::Brand);
+        msg.setButtons({tr("Later"), tr("Restart Now")});
+        msg.setDefaultButton(CMessage::DefaultButton::SecondButton);
+        msg.setConfig(opts);
+        result = msg.exec();
          __UNLOCK
     }
     switch (result) {
-    case MsgRes::MODAL_RESULT_RESTART: {
+    case CMessage::Result::SecondButton: { // Restart Now
         m_startUpdateOnClose = true;
         m_restartAfterUpdate = true;
         AscAppManager::closeAppWindows();
         break;
     }
-    case MsgRes::MODAL_RESULT_INSLATER: {
+    case CMessage::Result::FirstButton: { // Later
 #ifdef _WIN32
         m_startUpdateOnClose = (m_packageData->fileType == "archive");
 #else

@@ -82,6 +82,18 @@
         <target state="translated">%@ Pomoć</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="%@ already exists.&#10;Do you want to replace it?" xml:space="preserve">
+        <source>%@ already exists.
+Do you want to replace it?</source>
+        <target state="translated">%@  već postoji.
+Želite li da ga zamenite?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." xml:space="preserve">
+        <source>AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed.</source>
+        <target state="translated">Funkcije AI Tools neće biti dostupne nakon deinstalacije. Sva AI podešavanja (uključujući API ključeve) neće biti uklonjena.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
         <target state="translated">U vezi%@</target>
@@ -92,6 +104,26 @@
         <target state="translated">Priznanja</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="An error occurred while unpacking the archive" xml:space="preserve">
+        <source>An error occurred while unpacking the archive</source>
+        <target state="translated">Greška se pojavila prilikom otpakivanja arhive</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="An unexpected error occurred while installing the add-on." xml:space="preserve">
+        <source>An unexpected error occurred while installing the add-on.</source>
+        <target state="translated">Došlo je do neočekivane greške pri instalaciji dodatka.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Application needs to restart" xml:space="preserve">
+        <source>Application needs to restart</source>
+        <target state="translated">Aplikacija mora da se ponovo pokrene</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Are you sure you want to uninstall ONLYOFFICE AI Tools?" xml:space="preserve">
+        <source>Are you sure you want to uninstall ONLYOFFICE AI Tools?</source>
+        <target state="translated">Da li ste sigurni da želite da deinstalirate ONLYOFFICE AI Tools?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
         <source>Before signing the document, it must be saved.</source>
         <target state="translated">Pre potpisivanja dokumenta, mora biti sačuvan.</target>
@@ -100,6 +132,11 @@
       <trans-unit id="Cancel" xml:space="preserve">
         <source>Cancel</source>
         <target state="translated">Otkaži</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Canceled" xml:space="preserve">
+        <source>Canceled</source>
+        <target state="translated">Otkazano</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
@@ -117,9 +154,34 @@
         <target state="translated">Nemoguće otvoriti folder lokacije fajla.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Close" xml:space="preserve">
+        <source>Close</source>
+        <target state="translated">Zatvori</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close all" xml:space="preserve">
+        <source>Close all</source>
+        <target>Zatvori sve</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Close saved" xml:space="preserve">
+        <source>Close saved</source>
+        <target>Zatvori sačuvano</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
         <target state="translated">Vrednosti odvojene zarezom</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Community version %@" xml:space="preserve">
+        <source>Community version %@</source>
+        <target state="translated">Verzija Community %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create new" xml:space="preserve">
+        <source>Create new</source>
+        <target>Kreiraj novo</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -167,6 +229,11 @@
         <target state="translated">Elektronski izdavački fajl</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Enterprise version %@" xml:space="preserve">
+        <source>Enterprise version %@</source>
+        <target state="translated">Verzija Enterprise %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Excel 97-2003 proračunska tabela</target>
@@ -180,6 +247,26 @@
       <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
         <source>Macro-enabled spreadsheet template</source>
         <target state="translated">Makro-omogućeni šablon proračunske tabele</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel Binary Workbook" xml:space="preserve">
+        <source>Excel Binary Workbook</source>
+        <target state="translated">Excel binarni proračunska tabela</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to download the add-on due to a network error." xml:space="preserve">
+        <source>Failed to download the add-on due to a network error.</source>
+        <target state="translated">Preuzimanje dodatka nije uspelo zbog mrežne greške.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to install theme" xml:space="preserve">
+        <source>Failed to install theme</source>
+        <target state="translated">Instaliranje teme nije uspelo</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Failed to save the downloaded add-on package." xml:space="preserve">
+        <source>Failed to save the downloaded add-on package.</source>
+        <target state="translated">Čuvanje preuzetog paketa dodatka nije uspelo.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
@@ -202,14 +289,14 @@
         <target state="translated">Fajl ne može biti otvoren.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="HTML File" xml:space="preserve">
-        <source>HTML File</source>
-        <target state="translated">HyperText Markup Language fajl (*html)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target state="translated">Sakrij %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="I'll do it later" xml:space="preserve">
+        <source>I'll do it later</source>
+        <target state="translated">Uradiću to kasnije</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
@@ -222,14 +309,14 @@
         <target state="translated">Ako ste već kupili %@, trebalo bi da pronađete vaš aktivacioni ključ u email konfirmaciji.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="JPG Image" xml:space="preserve">
+        <source>JPG Image</source>
+        <target state="translated">JPG slika</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
         <target state="translated">Dogovor o licenci</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="MHT File" xml:space="preserve">
-        <source>MHT File</source>
-        <target state="translated">Veb Stranica Arhiva Fajl</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
@@ -237,14 +324,59 @@
         <target state="translated">Mobipocket fajl</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Markdown File" xml:space="preserve">
+        <source>Markdown File</source>
+        <target state="translated">Markdown datoteka</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to end" xml:space="preserve">
+        <source>Move to end</source>
+        <target>Premesti na kraj</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to start" xml:space="preserve">
+        <source>Move to start</source>
+        <target>Premesti na početak</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="No" xml:space="preserve">
         <source>No</source>
         <target state="translated">Ne</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="No compatible add-on version is available for this version of the application." xml:space="preserve">
+        <source>No compatible add-on version is available for this version of the application.</source>
+        <target state="translated">Za ovu verziju aplikacije nije dostupna nijedna kompatibilna verzija dodatka.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Not enough memory to complete the add-on download." xml:space="preserve">
+        <source>Not enough memory to complete the add-on download.</source>
+        <target state="translated">Nema dovoljno memorije za završetak preuzimanja dodatka.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target state="translated">OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Document Form Template" xml:space="preserve">
+        <source>ONLYOFFICE Document Form Template</source>
+        <target state="translated">ONLYOFFICE šablon obrasca dokumenta</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Fillable Online Form" xml:space="preserve">
+        <source>ONLYOFFICE Fillable Online Form</source>
+        <target state="translated">ONLYOFFICE popunjivi onlajn obrazac</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE AI Tools successfully uninstalled" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools successfully uninstalled</source>
+        <target state="translated">ONLYOFFICE AI Tools je uspešno deinstaliran</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Form Document" xml:space="preserve">
+        <source>ONLYOFFICE Form Document</source>
+        <target state="translated">ONLYOFFICE PDF obrazac</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
@@ -302,6 +434,16 @@
         <target state="translated">Prenosivi dokument /A</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="PNG Image" xml:space="preserve">
+        <source>PNG Image</source>
+        <target state="translated">PNG slika</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Pin to tab" xml:space="preserve">
+        <source>Pin to tab</source>
+        <target state="translated">Prikači na karticu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
         <target state="translated">Običan tekst fajl</target>
@@ -352,6 +494,16 @@
         <target state="translated">Odustani %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Replace" xml:space="preserve">
+        <source>Replace</source>
+        <target state="translated">Zameni</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restart now" xml:space="preserve">
+        <source>Restart now</source>
+        <target state="translated">Restartuj sada</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
         <target state="translated">Pregledaj promene…</target>
@@ -370,6 +522,26 @@
       <trans-unit id="Save the document?" xml:space="preserve">
         <source>Save the document?</source>
         <target state="translated">Sačuvaj dokument?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select theme file" xml:space="preserve">
+        <source>Select theme file</source>
+        <target state="translated">Izaberite datoteku teme</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Selected theme isn't valid" xml:space="preserve">
+        <source>Selected theme isn't valid</source>
+        <target state="translated">Izabrana tema nije važeća</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show in folder" xml:space="preserve">
+        <source>Show in folder</source>
+        <target state="translated">Prikaži u folderu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show main window" xml:space="preserve">
+        <source>Show main window</source>
+        <target>Prikaži glavni prozor</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Signature Details" xml:space="preserve">
@@ -392,9 +564,49 @@
         <target state="translated">Hvala na evaluaciji %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The add-on download URL is invalid." xml:space="preserve">
+        <source>The add-on download URL is invalid.</source>
+        <target state="translated">URL za preuzimanje dodatka je nevažeći.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on information is invalid or incomplete." xml:space="preserve">
+        <source>The add-on information is invalid or incomplete.</source>
+        <target state="translated">Informacije o dodatku su nevažeće ili nepotpune.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The add-on package is corrupted or has been modified." xml:space="preserve">
+        <source>The add-on package is corrupted or has been modified.</source>
+        <target state="translated">Paket dodatka je oštećen ili promenjen.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
         <target state="translated">Dokument "%@” mora biti izgrađen. Nastaviti?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." xml:space="preserve">
+        <source>The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue.</source>
+        <target state="translated">Instalirana komponenta AI Tools nije kompatibilna sa ovom verzijom aplikacije. Ažurirati AI Tools sada?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Theme already exists. Replace it?" xml:space="preserve">
+        <source>Theme already exists. Replace it?</source>
+        <target state="translated">Tema već postoji. Da li želite da je zamenite?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This file doesn't contain theme" xml:space="preserve">
+        <source>This file doesn't contain theme</source>
+        <target state="translated">Ova datoteka ne sadrži temu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This theme file is not valid" xml:space="preserve">
+        <source>This theme file is not valid</source>
+        <target state="translated">Ova datoteka teme nije važeća</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="To install the add-on, update the application to the latest version." xml:space="preserve">
+        <source>To install the add-on, update the application to the latest version.</source>
+        <target state="translated">Da biste instalirali dodatak, ažurirajte aplikaciju na najnoviju verziju.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -407,19 +619,29 @@
         <target state="translated">Nepotvrđeno</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Unpin tab" xml:space="preserve">
+        <source>Unpin tab</source>
+        <target>Otkači karticu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
         <target state="translated">Nenaslovljeno</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Version %@ (%@)" xml:space="preserve">
-        <source>Version %1$@ (%2$@)</source>
-        <target state="translated">Verzija %1$@ (%2$@)</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
         <target state="translated">Web stranica</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="VSDX File" xml:space="preserve">
+        <source>VSDX File</source>
+        <target state="translated">Visio crtež</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@" xml:space="preserve">
+        <source>Version %@</source>
+        <target state="translated">Верзија %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -457,6 +679,16 @@
         <target state="translated">Uspešno ste aktivirali %@.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="You must restart the application for the settings to take effect." xml:space="preserve">
+        <source>You must restart the application for the settings to take effect.</source>
+        <target state="translated">Morate ponovo pokrenuti aplikaciju da bi podešavanja stupila na snagu.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your changes will be lost if you don't save them." xml:space="preserve">
+        <source>Your changes will be lost if you don't save them.</source>
+        <target state="translated">Vaše promene će biti izgubljene ako ih ne sačuvate.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
         <target state="translated">Vaše promene će biti izgubljene ako ih ne sačuvate.</target>
@@ -484,6 +716,11 @@ We have a special offer for you.</source>
 (%d dana ostalo).
 
 Imamo specijalnu ponudu za vas.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="kBps" xml:space="preserve">
+        <source>kBps</source>
+        <target state="translated">kBps</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
@@ -518,6 +755,11 @@ Imamo specijalnu ponudu za vas.</target>
         <target state="translated">%#@dani@</target>
         <note/>
       </trans-unit>
+      <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/few:dict/:string" xml:space="preserve">
+        <source>%d days are left until the license expiration.</source>
+        <target>%d days are left until the license expiration.</target>
+        <note/>
+      </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>%d day are left until the license expiration.</source>
         <target state="translated">%d dan je preostao do isteka licence.</target>
@@ -531,6 +773,13 @@ Imamo specijalnu ponudu za vas.</target>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
         <target state="translated">%#@dani@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
+        <source>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
@@ -550,17 +799,22 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
         <target state="translated">%#@dokumenti@</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/few:dict/:string" xml:space="preserve">
+        <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target state="translated">Imate %ld %@ dokumenata sa nepotvrđenim promenama. Želite li da pregledate ove promene pre odustajanja?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target state="translated">Imate %ld %@ dokumenata sa nepotvrđenim promenama. Želite li da pregledate ove promene pre odustajanja?</target>
-        <note/>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
@@ -598,6 +852,11 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <source>Transformations</source>
         <target state="translated">Transformacije</target>
         <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
+      </trans-unit>
+      <trans-unit id="3FX-nT-Klk.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="translated">Zatvori</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source>
@@ -663,11 +922,6 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <source>New</source>
         <target state="translated">Novo</target>
         <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
-      </trans-unit>
-      <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
-        <source>none</source>
-        <target state="translated">nijedan</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
       </trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source>
@@ -748,11 +1002,6 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <source>Substitutions</source>
         <target state="translated">Zamene</target>
         <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
-      </trans-unit>
-      <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
-        <source>User Name</source>
-        <target state="translated">Korisničko Ime</target>
-        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
       </trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source>
@@ -909,21 +1158,6 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <target state="translated">	Desno do levo</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
       </trans-unit>
-      <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
-        <source>Close</source>
-        <target state="translated">Zatvori</target>
-        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
-      </trans-unit>
-      <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
-        <source>none</source>
-        <target state="translated">nijedan</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
-      </trans-unit>
-      <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
-        <source>Logout</source>
-        <target state="translated">Izloguj se</target>
-        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
-      </trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source>
         <target state="translated">Eksponent</target>
@@ -1014,11 +1248,6 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <target state="translated">Verzija</target>
         <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
       </trans-unit>
-      <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
-        <source>Email:</source>
-        <target>Email:</target>
-        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
-      </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source>
         <target state="translated">Paragraf</target>
@@ -1044,6 +1273,26 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <target state="translated">Koristi podrazumevano</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
       </trans-unit>
+      <trans-unit id="aiL-Ab-t19.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">Licenciran pod</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19";</note>
+      </trans-unit>
+      <trans-unit id="aiL-Ab-t22.title" xml:space="preserve">
+        <source>Commercial</source>
+        <target state="translated">Komercijalni</target>
+        <note>Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22";</note>
+      </trans-unit>
+      <trans-unit id="aiN-Ab-t14.title" xml:space="preserve">
+        <source>ONLYOFFICE AI Tools</source>
+        <target state="translated">ONLYOFFICE AI Tools</target>
+        <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14";</note>
+      </trans-unit>
+      <trans-unit id="aiV-Ab-t16.title" xml:space="preserve">
+        <source>Version</source>
+        <target state="translated">Верзија</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16";</note>
+      </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
         <target state="translated">Prikaži boje</target>
@@ -1068,6 +1317,11 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <source>Use None</source>
         <target state="translated">Koristi nijedan</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
+      </trans-unit>
+      <trans-unit id="clr-Cl-d05.title" xml:space="preserve">
+        <source>Clear</source>
+        <target state="translated">Obriši</target>
+        <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source>
@@ -1164,6 +1418,11 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <target>ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
       </trans-unit>
+      <trans-unit id="lLc-Ab-t05.title" xml:space="preserve">
+        <source>Licensed under</source>
+        <target state="translated">Licenciran pod</target>
+        <note>Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05";</note>
+      </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>
         <target state="translated">Otkaži</target>
@@ -1173,6 +1432,11 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <source>Check Grammar With Spelling</source>
         <target state="translated">Proveri gramatiku sa pravopisom</target>
         <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
+      </trans-unit>
+      <trans-unit id="ne5-Gy-5by.title" xml:space="preserve">
+        <source>PDF Form</source>
+        <target state="translated">PDF</target>
+        <note>Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by";</note>
       </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source>
@@ -1184,10 +1448,20 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <target state="translated">Otvori Skorije</target>
         <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
       </trans-unit>
+      <trans-unit id="ofn-Cl-d04.title" xml:space="preserve">
+        <source>Show in folder</source>
+        <target state="translated">Prikaži u fascikli</target>
+        <note>Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04";</note>
+      </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source>
         <target state="translated">Olabavi</target>
         <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
+      </trans-unit>
+      <trans-unit id="opn-Cl-d03.title" xml:space="preserve">
+        <source>Open</source>
+        <target state="translated">Otvori</target>
+        <note>Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source>
@@ -1243,6 +1517,11 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <source>Kern</source>
         <target state="translated">Kerniranje</target>
         <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
+      </trans-unit>
+      <trans-unit id="ttl-Cl-d03.title" xml:space="preserve">
+        <source>Downloads</source>
+        <target state="translated">Preuzimanja</target>
+        <note>Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
@@ -1323,11 +1602,6 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
         <source>Show Substitutions</source>
         <target state="translated">Prikaži zamene</target>
         <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
-      </trans-unit>
-      <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
-        <source>Portal:</source>
-        <target state="translated">Portal:</target>
-        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
       </trans-unit>
     </body>
   </file>

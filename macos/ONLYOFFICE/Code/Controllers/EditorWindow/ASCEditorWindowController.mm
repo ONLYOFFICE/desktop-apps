@@ -42,6 +42,8 @@
 
 #import "ASCEditorWindowController.h"
 #import "ASCEditorWindow.h"
+#import "ASCEditorTitleBarController.h"
+#import "ASCHeaderButton.h"
 #import "AppDelegate.h"
 #import "ASCConstants.h"
 #import "AnalyticsHelper.h"
@@ -50,14 +52,33 @@
 #import "NSCefData.h"
 #import "ASCEventsController.h"
 #import "ASCPresentationReporter.h"
+#import "ASCThemesController.h"
 #import "NSString+Extensions.h"
 #import "NSDictionary+Extensions.h"
 #import "PureLayout.h"
+#import "NSView+Extensions.h"
 
-@interface ASCEditorWindowController () <NSWindowDelegate> {
+
+static const CGFloat kToolButtonWidth  = 40.0;
+static const CGFloat kToolButtonHeight = 28.0;
+static const CGFloat kIconSize         = 20.0;
+
+@interface ASCEditorWindowController () <NSWindowDelegate, ASCEditorTitleBarControllerDelegate> {
     id mouseUpMonitor;
 }
+
+typedef NS_ENUM(NSInteger, EditorHeaderLayout) {
+    LayoutNone = 0,
+    LayoutSimple
+};
+
+@property (nonatomic, assign) EditorHeaderLayout headerLayout;
 @property (nonatomic) BOOL waitingForClose;
+@property (nonatomic) ASCEditorTitleBarController *titlebarController;
+@property (nonatomic) NSView *simpleEditorHeader;
+@property (nonatomic) ASCHeaderButton *btnHome;
+@property (nonatomic) NSImage *btnHomeImage;
+@property (nonatomic) NSTextField *headerLabel;
 @end
 
 @implementation ASCEditorWindowController
@@ -81,7 +102,11 @@
     [super windowDidLoad];
     [self setShouldCascadeWindows:YES];
     self.window.delegate = self;
-    
+    if (@available(macOS 11.0, *)) {
+        self.window.toolbarStyle = NSWindowToolbarStyleUnifiedCompact;
+    }
+    [self setupToolbar];
+
     NSString *savedFrame = [[NSUserDefaults standardUserDefaults] stringForKey:@"ASCEditorWindowFrame"];
     if (savedFrame) {
         [self.window setFrameFromString:savedFrame];
@@ -94,6 +119,7 @@
                                                    object:nil];
     };
     
+    addObserverFor(ASCEventNameChangedUITheme, @selector(onChangedUITheme:));
     addObserverFor(CEFEventNameModifyChanged, @selector(onCEFModifyChanged:));
     addObserverFor(CEFEventNameTabEditorNameChanged, @selector(onCEFChangedTabEditorName:));
     addObserverFor(CEFEventNameTabEditorType, @selector(onCEFChangedTabEditorType:));
@@ -104,6 +130,250 @@
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
     addObserverFor(CEFEventNameWebAppsEntry, @selector(onCEFWebAppsEntry:));
     addObserverFor(CEFEventNameWebTitleChanged, @selector(onWebTitleChanged:));
+    addObserverFor(CEFEventNameEditorConfig, @selector(onCEFEditorConfig:));
+}
+
+- (void)createSimpleEditorHeader {
+    ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+    NSView *webView = window.webView;
+
+    self.simpleEditorHeader = [[NSView alloc] initForAutoLayout];
+    self.simpleEditorHeader.wantsLayer = YES;
+
+    NSView *rootView = self.contentViewController.view;
+    [rootView addSubview:self.simpleEditorHeader];
+
+    [self.simpleEditorHeader autoPinEdgeToSuperviewEdge:ALEdgeTop];
+    [self.simpleEditorHeader autoPinEdgeToSuperviewEdge:ALEdgeLeading];
+    [self.simpleEditorHeader autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
+    [self.simpleEditorHeader autoSetDimension:ALDimensionHeight toSize:kToolButtonHeight];
+
+    for (NSLayoutConstraint *constraint in rootView.constraints.copy) {
+        BOOL isTopConstraint = (constraint.firstItem == webView && constraint.firstAttribute == NSLayoutAttributeTop) ||
+                               (constraint.secondItem == webView && constraint.secondAttribute == NSLayoutAttributeTop);
+        if (isTopConstraint) {
+            [rootView removeConstraint:constraint];
+        }
+    }
+
+    [webView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.simpleEditorHeader];
+
+    self.btnHomeImage = [[NSImage imageNamed:@"icon-home_normal"] copy];
+    self.btnHomeImage.size = NSMakeSize(kIconSize, kIconSize);
+
+    self.btnHome = [[ASCHeaderButton alloc] initForAutoLayout];
+    self.btnHome.image = self.btnHomeImage;
+    self.btnHome.imageScaling = NSImageScaleNone;
+    self.btnHome.imagePosition = NSImageOnly;
+    self.btnHome.bordered = NO;
+    self.btnHome.target = self;
+    self.btnHome.action = @selector(onBtnHomeClicked:);
+    [self.simpleEditorHeader addSubview:self.btnHome];
+    [self.btnHome setToolTip:NSLocalizedString(@"Show main window", nil)];
+
+    [self.btnHome autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
+    [self.btnHome autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [self.btnHome autoSetDimensionsToSize:CGSizeMake(kToolButtonWidth, kToolButtonHeight)];
+
+    self.headerLabel = [[NSTextField alloc] initForAutoLayout];
+    self.headerLabel.stringValue = @"ONLYOFFICE";
+    self.headerLabel.editable = NO;
+    self.headerLabel.selectable = NO;
+    self.headerLabel.bordered = NO;
+    self.headerLabel.backgroundColor = [NSColor clearColor];
+    self.headerLabel.font = [NSFont systemFontOfSize:13.0 weight:NSFontWeightRegular];
+    self.headerLabel.alignment = NSTextAlignmentCenter;
+
+    [self.simpleEditorHeader addSubview:self.headerLabel];
+    [self.headerLabel autoCenterInSuperview];
+
+    [self applyHeaderColors];
+}
+
+- (void)removeSimpleEditorHeader {
+    ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+    NSView *webView = window.webView;
+    NSView *rootView = self.contentViewController.view;
+
+    for (NSLayoutConstraint *constraint in rootView.constraints.copy) {
+        BOOL isTopConstraint = (constraint.firstItem == webView && constraint.firstAttribute == NSLayoutAttributeTop) ||
+                               (constraint.secondItem == webView && constraint.secondAttribute == NSLayoutAttributeTop);
+        if (isTopConstraint) {
+            [rootView removeConstraint:constraint];
+        }
+    }
+
+    [self.simpleEditorHeader removeFromSuperview];
+    self.simpleEditorHeader = nil;
+    self.headerLabel = nil;
+    self.btnHomeImage = nil;
+    self.btnHome = nil;
+
+    [webView autoPinEdgesToSuperviewEdges];
+}
+
+- (void)onBtnHomeClicked:(id)sender {
+    AppDelegate *app = (AppDelegate *)[NSApp delegate];
+    [app presentMainWindow];
+}
+
+- (void)applyHeaderColors {
+    NSString *colorTag = nil;
+    NSCefData *cefData = [self cefData];
+    switch ([cefData contentType]) {
+        case AscEditorType::etDocument     : colorTag = tabWordActiveBackgroundColor; break;
+        case AscEditorType::etSpreadsheet  : colorTag = tabCellActiveBackgroundColor; break;
+        case AscEditorType::etPresentation : colorTag = tabSlideActiveBackgroundColor; break;
+        case AscEditorType::etPdf          : colorTag = tabPdfActiveBackgroundColor; break;
+        case AscEditorType::etDraw         : colorTag = tabDrawActiveBackgroundColor; break;
+        default:
+            colorTag = windowBackgroundColor;
+            break;
+    }
+
+    NSColor *bkgColor = [ASCThemesController currentThemeColor:colorTag];
+    NSColor *txtColor = [ASCThemesController isColorDark:bkgColor]
+        ? [NSColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]
+        : [NSColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
+
+    self.simpleEditorHeader.layer.backgroundColor = [bkgColor CGColor];
+    self.headerLabel.textColor = txtColor;
+
+    self.btnHome.bgHoverColor = [ASCThemesController isCurrentThemeDark]
+        ? [NSColor colorWithWhite:1.0 alpha:0.15]
+        : [NSColor colorWithWhite:0.0 alpha:0.15];
+
+    [self.btnHomeImage lockFocus];
+    [txtColor set];
+    NSRectFillUsingOperation(NSMakeRect(0, 0, kIconSize, kIconSize), NSCompositingOperationSourceAtop);
+    [self.btnHomeImage unlockFocus];
+    [self.btnHome setNeedsDisplay:YES];
+}
+
+- (void)setupToolbar {
+    ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+    self.titlebarController = [self.storyboard instantiateControllerWithIdentifier:@"editorTitleBarControllerID"];
+
+    NSView * titlebar = [[window standardWindowButton:NSWindowCloseButton] superview];
+    [titlebar addSubview:self.titlebarController.view];
+
+    NSView * view = self.titlebarController.view;
+    NSView * superview = view.superview;
+
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:view
+                                                          attribute:NSLayoutAttributeLeading
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:superview
+                                                          attribute:NSLayoutAttributeLeading
+                                                         multiplier:1
+                                                           constant:0]];
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:view
+                                                          attribute:NSLayoutAttributeTop
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:superview
+                                                          attribute:NSLayoutAttributeTop
+                                                         multiplier:1
+                                                           constant:0]];
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:superview
+                                                          attribute:NSLayoutAttributeTrailing
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:view
+                                                          attribute:NSLayoutAttributeTrailing
+                                                         multiplier:1
+                                                           constant:0]];
+    [superview addConstraint:[NSLayoutConstraint constraintWithItem:superview
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:view
+                                                          attribute:NSLayoutAttributeHeight
+                                                         multiplier:1
+                                                           constant:0]];
+
+    [self.titlebarController setupWithWindow:window];
+    self.titlebarController.delegate = self;
+}
+
+#pragma mark -
+#pragma mark Title bar context menu
+
+- (void)editorTitleBar:(ASCEditorTitleBarController *)controller didRequestContextMenuAtPoint:(NSPoint)screenPoint {
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Editor Window Context Menu"];
+    [menu setAutoenablesItems:NO];
+
+    // Close window
+    NSMenuItem *closeItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Close", nil)
+                                                       action:@selector(menuCloseWindow:)
+                                                keyEquivalent:@""];
+    closeItem.target = self;
+    [menu addItem:closeItem];
+
+    [menu addItem:[NSMenuItem separatorItem]];
+
+    // Show in folder
+    NSMenuItem *showInFolderItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Show in folder", nil)
+                                                              action:@selector(menuShowInFolder:)
+                                                       keyEquivalent:@""];
+    showInFolderItem.target = self;
+
+    // Enable only for local files
+    NSString *filePath = [self documentFilePath];
+    BOOL isLocalFile = filePath && filePath.length > 0 && [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    [showInFolderItem setEnabled:isLocalFile];
+    [menu addItem:showInFolderItem];
+
+    [menu addItem:[NSMenuItem separatorItem]];
+
+    // Pin to tab
+    NSMenuItem *pinToTabItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Pin to tab", nil)
+                                                          action:@selector(menuPinToTab:)
+                                                   keyEquivalent:@""];
+    pinToTabItem.target = self;
+    [menu addItem:pinToTabItem];
+
+    [menu popUpMenuPositioningItem:nil atLocation:screenPoint inView:nil];
+}
+
+- (NSString *)documentFilePath {
+    NSCefData *cefData = [self cefData];
+    if (!cefData) {
+        return nil;
+    }
+
+    NSString *filePath = cefData.path;
+    if (filePath.length == 0) {
+        filePath = cefData.url;
+    }
+    return filePath;
+}
+
+- (void)menuCloseWindow:(NSMenuItem *)sender {
+    [self.window performClose:nil];
+}
+
+- (void)menuShowInFolder:(NSMenuItem *)sender {
+    NSString *filePath = [self documentFilePath];
+    if (filePath.length > 0 && [[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[NSURL fileURLWithPath:filePath]]];
+    }
+}
+
+- (void)menuPinToTab:(NSMenuItem *)sender {
+    AppDelegate *app = (AppDelegate *)[NSApp delegate];
+    ASCEditorWindow *window = (ASCEditorWindow *)self.window;
+
+    [window orderOut:nil];
+    [app presentMainWindow];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSWindow *mainWindow = app.mainWindowController.window;
+        BOOL isRtl = [[NSApplication sharedApplication] userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft;
+        NSPoint attachPoint = mainWindow
+            ? NSMakePoint(isRtl ? NSMinX(mainWindow.frame) : NSMaxX(mainWindow.frame), NSMaxY(mainWindow.frame))
+            : NSZeroPoint;
+        [app pinWindowToTab:window atPoint:attachPoint];
+    });
 }
 
 - (void)windowDidMove:(NSNotification *)notification {
@@ -247,6 +517,14 @@
     return _params;
 }
 
+-(void)onChangedUITheme:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        if ( self.headerLayout == LayoutSimple ) {
+            [self applyHeaderColors];
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark CEF events handlers
 
@@ -269,6 +547,10 @@
         
         if ([self holdView:viewId]) {
             [self.cefData setContentType:AscEditorType(type)];
+
+            if ( self.headerLayout == LayoutSimple ) {
+                [self applyHeaderColors];
+            }
         }
     }
 }
@@ -354,7 +636,14 @@
         } else if ([cefView isInFullScreenMode]) {
             [self.window setIsVisible:YES];
             [cefView exitFullScreenModeWithOptions:nil];
-            [cefView autoPinEdgesToSuperviewEdges];
+            if ( self.headerLayout == LayoutSimple ) {
+                [cefView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.simpleEditorHeader];
+                [cefView autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+                [cefView autoPinEdgeToSuperviewEdge:ALEdgeRight];
+                [cefView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+            } else {
+                [cefView autoPinEdgesToSuperviewEdges];
+            }
 
             NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
             pCommand->put_Command(L"editor:stopDemonstration");
@@ -456,6 +745,39 @@
             }
         }
     }
+}
+
+- (void)onCEFEditorConfig:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        // NSDictionary * data = json[@"data"];
+
+        if ( /*data &&*/ [self holdView:viewId] ) {
+            if ( [self simpleHeaderRequired] ) {
+                if (self.headerLayout == LayoutSimple) {
+                    return;
+                }
+                self.headerLayout = LayoutSimple;
+                [self createSimpleEditorHeader];
+
+            } else {
+                if (self.headerLayout == LayoutNone) {
+                    return;
+                }
+                self.headerLayout = LayoutNone;
+                [self removeSimpleEditorHeader];
+            }
+        }
+    }
+}
+
+- (BOOL)simpleHeaderRequired {
+    NSCefData *cefData = [self cefData];
+    if ( !cefData ) {
+        return NO;
+    } else return [cefData hasFeature:@"viewmode\":true"] || (![cefData isLocal] && [cefData hasFrame]);
 }
 
 @end

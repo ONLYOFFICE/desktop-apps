@@ -55,6 +55,7 @@
 #import "NSApplication+Extensions.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCThemesController.h"
+#import "ASCProviders.h"
 
 #pragma mark -
 #pragma mark ========================================================
@@ -555,7 +556,7 @@ public:
                                 NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
 
                                 NSMutableArray * qitems = urlPage.queryItems ? [NSMutableArray arrayWithArray:urlPage.queryItems] : [[NSMutableArray alloc] init];
-                                [qitems addObjectsFromArray:@[countryCode, portalAddress]];
+                                [qitems addObjectsFromArray:@[/*countryCode,*/ portalAddress]];
                                 urlPage.queryItems = qitems;
 
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
@@ -578,6 +579,8 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
                                                                                 object:nil
                                                                               userInfo:[[NSString stringWithstdwstring:param] dictionary]];
+                        } else if (cmd.compare(L"provider:list") == 0) {
+                            [[ASCProviders sharedInstance] configureWithJson:[NSString stringWithstdwstring:param]];
                         } else if (cmd.compare(L"portal:create") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalCreate
                                                                                 object:nil
@@ -600,6 +603,21 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFilesCheck
                                                                                 object:nil
                                                                               userInfo:[[NSString stringWithstdwstring:param] dictionary]];
+                        } else if (cmd.find(L"addon:action") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddonAction
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"action": [NSString stringWithstdwstring:param]
+                                                                                         }];
+#ifdef USE_ADDON_MODE
+                        } else if (cmd.find(L"addon:install") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddonInstallation
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"info": [[NSString stringWithstdwstring:param] dictionary]
+                                                                                         }];
+#endif
                         } else if (cmd.find(L"app:onready") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartPageReady
                                                                                 object:nil
@@ -618,6 +636,13 @@ public:
                                                                                          }];
                         } else if (cmd.find(L"editor:event") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorEvent
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"data": [[NSString stringWithstdwstring:param] dictionary]
+                                                                                         }];
+                        } else if (cmd.find(L"editor:config") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorConfig
                                                                                 object:nil
                                                                               userInfo:@{
                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId],
@@ -714,27 +739,36 @@ public:
                                     [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
                                 }
 
+                                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                 if ( [json objectForKey:@"usegpu"] != nil ) {
-                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"disable-gpu", [json[@"usegpu"] boolValue] ? L"0" : L"1");
                                 }
 
                                 if ( [json objectForKey:@"useai"] != nil ) {
-                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"disable-ai", [json[@"useai"] boolValue] ? L"0" : L"1");
                                 }
 
                                 if ( [json objectForKey:@"editorwindowmode"] != nil ) {
-                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"editor-window-mode", [json[@"editorwindowmode"] boolValue] ? L"1" : L"0");
                                 }
 
                                 if ( [json objectForKey:@"spellcheckdetect"] != nil ) {
-                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                     appManager->GetUserSettings()->Set(L"spell-check-input-mode", [json[@"spellcheckdetect"] isEqualToString:@"off"] ? L"0" : L"1");
                                 }
 
+                                if ( id country = json[@"country"] ) {
+                                    NSString * countryCode = [country isKindOfClass:[NSString class]] ? country : [country description];
+                                    appManager->GetUserSettings()->Set(L"country", [countryCode stdwstring]);
+                                    [[ASCEditorJSVariables instance] setVariable:@"country" withString:countryCode];
+                                }
+
                                 [[ASCEditorJSVariables instance] applyParameters];
+
+                                if ( [json objectForKey:@"restart"] != nil && [json[@"restart"] boolValue] ) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameSettingsNeedRestart
+                                                                                        object:nil
+                                                                                      userInfo:nil];
+                                }
                             }
                         } else if (cmd.find(L"encrypt:isneedbuild") != std::wstring::npos) {
                             bool isFragmented = pData->get_Param() == L"true" ? true : false;
@@ -859,6 +893,13 @@ public:
                                                                                         @"files":[NSString stringWithstdwstring:param]
                                                                                 }];
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameWebAppsFeatures
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"info": [NSString stringWithstdwstring:param]
+                                                                                         }];
+                            
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);
 
@@ -906,6 +947,103 @@ public:
 //                                    }
 //                                }
 //                            }
+                        } else if (cmd.find(L"add:templates") != std::wstring::npos) {
+                            if ( param == L"local" ) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddUserTemplateFiles
+                                                                                    object:nil
+                                                                                  userInfo:nil];
+                            } else if ( param == L"local:folder" ) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameAddUserTemplateFolder
+                                                                                    object:nil
+                                                                                  userInfo:nil];
+                            }
+                        } else if (cmd.find(L"uitheme:add") != std::wstring::npos) {
+                            NSOpenPanel *panel = [NSOpenPanel openPanel];
+                            panel.canChooseFiles = YES;
+                            panel.canChooseDirectories = NO;
+                            panel.allowsMultipleSelection = NO;
+                            panel.allowedFileTypes = @[@"json"];
+                            panel.title = NSLocalizedString(@"Select theme file", nil);
+
+                            if ([panel runModal] != NSModalResponseOK) break;
+
+                            NSString *filePath = panel.URL.path;
+                            NSError *jsonError = nil;
+                            NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+
+                            if (!fileData) {
+                                NSAlert *alert = [[NSAlert alloc] init];
+                                [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+                                [alert setMessageText:NSLocalizedString(@"This theme file is not valid", nil)];
+                                [alert setAlertStyle:NSAlertStyleWarning];
+                                [alert runModal];
+                                break;
+                            }
+
+                            id jsonRoot = [NSJSONSerialization JSONObjectWithData:fileData
+                                                                         options:0
+                                                                           error:&jsonError];
+                            if (jsonError || ![jsonRoot isKindOfClass:[NSDictionary class]]) {
+                                NSAlert *alert = [[NSAlert alloc] init];
+                                [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+                                [alert setMessageText:NSLocalizedString(@"This file doesn't contain theme", nil)];
+                                [alert setAlertStyle:NSAlertStyleWarning];
+                                [alert runModal];
+                                break;
+                            }
+
+                            NSDictionary *jsonObj = (NSDictionary *)jsonRoot;
+
+                            if (![ASCThemesController validateTheme:jsonObj]) {
+                                NSAlert *alert = [[NSAlert alloc] init];
+                                [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+                                [alert setMessageText:NSLocalizedString(@"Selected theme isn't valid", nil)];
+                                [alert setAlertStyle:NSAlertStyleWarning];
+                                [alert runModal];
+                                break;
+                            }
+
+                            if ([ASCThemesController checkDestinationThemeFileExist:filePath]) {
+                                NSAlert *confirm = [[NSAlert alloc] init];
+                                [confirm addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
+                                [confirm addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                                [confirm setMessageText:NSLocalizedString(@"Theme already exists. Replace it?", nil)];
+                                [confirm setAlertStyle:NSAlertStyleWarning];
+                                if ([confirm runModal] != NSAlertFirstButtonReturn) break;
+                            }
+
+                            if ([ASCThemesController addLocalTheme:jsonObj filePath:filePath]) {
+                                NSArray *localThemes = [ASCThemesController localThemesToJson];
+                                if (localThemes.count > 0) {
+                                    [[ASCEditorJSVariables instance] setVariable:@"localthemes" withArray:localThemes];
+                                    [[ASCEditorJSVariables instance] apply];
+                                }
+
+                                NSArray *newThemes = @[jsonObj];
+                                NSData *themesData = [NSJSONSerialization dataWithJSONObject:newThemes
+                                                                                    options:0
+                                                                                      error:nil];
+                                if (themesData) {
+                                    NSString *themesStr = [[NSString alloc] initWithData:themesData
+                                                                                encoding:NSUTF8StringEncoding];
+                                    CAscApplicationManager *appManager = [NSAscApplicationWorker getAppManager];
+
+                                    NSEditorApi::CAscExecCommandJS *pCommand = new NSEditorApi::CAscExecCommandJS;
+                                    pCommand->put_Command(L"uitheme:added");
+                                    pCommand->put_Param([themesStr stdwstring]);
+
+                                    NSEditorApi::CAscMenuEvent *pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                                    pEvent->m_pData = pCommand;
+                                    appManager->SetEventToAllMainWindows(pEvent);
+                                }
+                            } else {
+                                NSAlert *alert = [[NSAlert alloc] init];
+                                [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+                                [alert setMessageText:NSLocalizedString(@"Failed to install theme", nil)];
+                                [alert setAlertStyle:NSAlertStyleCritical];
+                                [alert runModal];
+                            }
+
                         } else if (cmd.find(L"uitheme:changed") != std::wstring::npos) {
                             if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
                                 if ( NSString * newTheme = json[@"name"] ) {
@@ -972,6 +1110,11 @@ public:
     {
         fullscreen_view_id = -1;
     }
+    
+    bool hasFullscreenState()
+    {
+        return (fullscreen_view_id >= 0);
+    }
 };
 
 
@@ -1021,6 +1164,14 @@ public:
     if (ec && ec->_listener) {
         ec->_listener->resetFullscreenState();
     }
+}
+
++ (BOOL)hasFullscreenState {
+    ASCEventsController *ec = [ASCEventsController sharedInstance];
+    if (ec && ec->_listener) {
+        return ec->_listener->hasFullscreenState();
+    }
+    return NO;
 }
 
 @end

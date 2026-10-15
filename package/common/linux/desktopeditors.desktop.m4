@@ -63,6 +63,7 @@ application/wps-office.ett;dnl
 application/wps-office.dps;dnl
 application/wps-office.dpt;dnl
 application/x-hwp;dnl
+application/x-hwpx;dnl
 application/epub+zip;dnl
 application/oxps;dnl
 application/pdf;dnl

@@ -53,6 +53,12 @@ mkdir -p %{buildroot}
 cp -rt %{buildroot}/ $BUILD_DIR/main/*
 echo "package = rpm" > $OPT_DIR/%{_desktopeditors_prefix}/converter/package.config
 
+%if "%{_media_player}" == "libvlc"
+# libVLC plugins are already stripped, and vlc/plugins/plugins.dat stores their sizes:
+# without the exec bit brp-strip-comment-note leaves them untouched
+find $OPT_DIR -path '*/vlc/plugins/*' -name '*.so' -type f -exec chmod 644 {} +
+%endif
+
 %if "%{_company_name}" == "ONLYOFFICE"
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
 cp -rt %{buildroot}/ $BUILD_DIR/help/*

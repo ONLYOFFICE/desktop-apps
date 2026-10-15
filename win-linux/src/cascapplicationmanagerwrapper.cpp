@@ -75,6 +75,7 @@
 #else
 # include <unistd.h>
 # include "platform_linux/singleapplication.h"
+# include "platform_linux/xcbutils.h"
 # ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 #  include "platform_linux/cdialogcertificateinfo.h"
 # endif
@@ -200,6 +201,27 @@ void CAscApplicationManagerWrapper::setHasFrameFeature(CCefView *cef, const wstr
         }
     }
 }
+
+#ifdef USE_ADDON_MODE
+void CAscApplicationManagerWrapper::checkAndSuggestAddonUpdate()
+{
+    QString version;
+    if (m_private->m_pAddonManager->isInstalled(&version) &&
+        !version.isEmpty() && version != QString(VER_FILEVERSION_STR))
+    {
+        int result = CMessage::showMessage(m_pMainWindow,
+                                           tr("The installed AI Tools component is incompatible with "
+                                              "this version of the application. Please update the AI "
+                                              "Tools component to continue."),
+                                           CMessage::Icon::Info, CMessage::Buttons::YesDefNo);
+        if (result == CMessage::Result::Yes)
+        {
+            m_private->m_bUpgradeInProgress = true;
+            showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Install);
+        }
+    }
+}
+#endif
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
 {
@@ -405,6 +427,121 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
         } else
 #endif
+#ifdef USE_ADDON_MODE
+        if ( !(cmd.find(L"addon:status") == std::wstring::npos) ) {     // params: query
+            if (m_private->m_pAddonManager) {
+                if (!m_private->m_bUpgradeInProgress)
+                {
+                    if (m_pMainWindow)
+                        m_pMainWindow->sendAddonStatusToStartPage();
+                }
+                return true;
+            }
+        } else
+        if ( !(cmd.find(L"addon:install") == std::wstring::npos) ) {     // params: install
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                if (objRoot["status"].toString() == "downloaded") {
+                    QString hash = objRoot["md5"].toString();
+                    QString tmpPath = objRoot["tempfile"].toString();
+                    if (!hash.isEmpty() && Utils::getFileHash(tmpPath) == hash) {
+                        addonManager()->installFromBundle(tmpPath);
+                    } else {
+                        if (m_private->m_upgradeDialog)
+                            m_private->m_upgradeDialog->showErrorPage("Downloaded file is broken");
+                    }
+                }
+            }
+            return true;
+        } else
+#endif
+        if ( !(cmd.find(L"addon:action") == std::wstring::npos) ) {     // params: install
+            wstring param = pData->get_Param();
+#ifdef USE_ADDON_MODE
+            if (m_private->m_pAddonManager) {
+                if (param == L"install")
+                {
+                    /* "accept and install" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->showStartPage();
+                    // m_private->m_pAddonManager->doAction(CAddonManager::Action::Install);
+                }
+                else if (param == L"intro")
+                {
+                    if (!m_private->m_pAddonManager->restartRequired()) {
+                        m_private->m_bUpgradeInProgress = true;
+                        if (m_pMainWindow)
+                            showUpgradeDialog(m_pMainWindow);
+                    } else {
+                        param = L"askrestart";
+                    }
+                }
+                else if (param == L"postpone" || param == L"close")
+                {
+                    /* "may be later" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->reject();
+                }
+                else if (param == L"disable")
+                {
+                    /* "don't show again" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->reject();
+
+                    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "addon:action", "disable");
+                    setUserSettings(L"disable-ai", L"1");
+                    // TODO: add impl "don't show again"
+                }
+                else if (param == L"uninstall")
+                {
+                    CMessage msg(mainWindow());
+                    msg.setText(tr("Are you sure you want to uninstall ONLYOFFICE AI Tools?"));
+                    msg.setIcon(CMessage::Icon::Confirm);
+                    msg.setButtons(CMessage::Buttons::YesNo);
+                    msg.setDefaultButton(CMessage::DefaultButton::SecondButton);
+                    CMessage::Config cfg;
+                    cfg.contentText = tr("AI Tools features will be unavailable after uninstalling. "
+                                         "All AI settings (including API keys) will not be removed.");
+                    msg.setConfig(cfg);
+                    if (msg.exec() == CMessage::Result::Yes)
+                    {
+                        m_private->m_bUpgradeInProgress = true;
+                        m_private->m_pAddonManager->doAction(CAddonManager::Action::Uninstall);
+                    }
+                }
+                else if (param == L"restart")
+                {
+                    /* clicked "restart now" after addon was installed */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->accept(UpgradeDialog::RestartNow);
+                }
+                else if (param == L"close")
+                {
+                    /* "close" clicked */
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->reject();
+                }
+                else if (param == L"incompatible")
+                {
+                    checkAndSuggestAddonUpdate();
+                }
+            }
+#endif
+            if (param == L"askrestart")
+            {
+                if (CMessage::Result::Yes == CMessage::showMessage(mainWindow(),
+                                                                   tr("You must restart the application to finish addon installation."),
+                                                                   CMessage::Icon::Info, CMessage::Buttons::YesDefNo))
+                {
+                    m_private->m_needRestart = true;
+                    AscAppManager::closeAppWindows();
+                }
+            }
+            return true;
+        } else
         if ( cmd.compare(L"title:button") == 0 ) {
             map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(event->get_SenderId());
             if ( it != m_receivers.cend() ) {
@@ -439,8 +576,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         if ( m_themes->checkDestinationThemeFileExist(file_path) ) {
                             int res = CMessage::showMessage(mainWindow(),
                                                             QObject::tr("File %1 is already loaded. Replace it?").arg(QFileInfo(file_path).fileName()),
-                                                            MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
-                            if ( res == MODAL_RESULT_NO )
+                                                            CMessage::Icon::Confirm, CMessage::Buttons::YesDefNo);
+                            if ( res == CMessage::Result::No )
                                 return true;
                         }
 
@@ -510,6 +647,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             return true;
         } else
+        if ( !(cmd.find(L"open:license") == std::wstring::npos) ) {
+            if ( !pData->get_Param().empty() )
+                Utils::openUrl(QString::fromStdWString(pData->get_Param()));
+        } else
         if ( !(cmd.find(L"open:template") == std::wstring::npos) ) {
             if ( pData->get_Param() == L"external" ) {
                 static QByteArray _json_to_open;
@@ -531,6 +672,14 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
 
             return true;
+        } else
+        if ( !(cmd.find(L"add:templates") == std::wstring::npos) ) {
+            if ( pData->get_Param() == L"local" ) {
+                mainWindow()->onAddUserTemplateFiles();
+            }
+            else if ( pData->get_Param() == L"local:folder" ) {
+                mainWindow()->onAddUserTemplateFolder();
+            }
         } else
         if ( !(cmd.find(L"quickaccess:changed") == std::wstring::npos) ) {
             int sid = event->get_SenderId();
@@ -636,7 +785,18 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( m_countViews == 1 && mainWindow() && mainWindow()->isAboutToClose() ) {        // if only start page exists
             emit aboutToQuit();
-//            DestroyCefView(-1);
+            // The quit itself (DestroyCefView(-1)) is done by launchAppClose() once the last tab or editor
+            // window is closed. Their DESTROYWINDOW comes here while they are still in tabWidget / m_vecEditors
+            // (they are removed later, in onEditorAllowedClose), so for them the condition below is false and
+            // the quit stays with launchAppClose() (quitting right here caused bug 63491).
+            // A view that is neither can outlive the main window: the add-on dialog after "Restart now".
+            // launchAppClose() then ran while that view was alive, did not quit, and nothing calls it again:
+            // the process would hang with no windows. So the quit is done here, deferred as in launchAppClose().
+            if ( m_vecEditors.empty() && !mainWindow()->tabWidget()->count() ) {
+                QTimer::singleShot(0, this, [=]() {
+                    DestroyCefView(-1);
+                });
+            }
         }
 
         break;
@@ -931,7 +1091,7 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
     additional.append("&osver=winxp");
 #endif
 
-    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
+    std::wstring start_path = (HTML_SCHEME + data_path + additional).toStdWString();
     _startPanel->GetCefView()->load(start_path);
 
 
@@ -1192,6 +1352,86 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
     }
 #endif
 
+#ifdef USE_ADDON_MODE
+    if (!m_private->m_pAddonManager) {
+        m_private->m_pAddonManager = new CAddonManager(this);
+
+        connect(m_private->m_pAddonManager, &CAddonManager::installFinished, this,
+                [this](int result)
+                {
+                    m_private->m_bUpgradeInProgress = false;
+
+                    if (result == CAddonManager::Success)
+                    {
+                        if (m_private->m_upgradeDialog)
+                            m_private->m_upgradeDialog->showFinalPage();
+                        if (m_pMainWindow)
+                            m_pMainWindow->sendAddonStatusToStartPage();
+                    }
+                    else if (result == CAddonManager::DownloadAborted)
+                    {
+                        // Aborted
+                    }
+                    else
+                    {
+                        const QString msg = CAddonManager::errorMessageForResult(result);
+                        if (m_private->m_upgradeDialog)
+                            m_private->m_upgradeDialog->showErrorPage(msg);
+                        if (m_pMainWindow)
+                            m_pMainWindow->sendAddonStatusToStartPage(msg, "error");
+                    }
+                });
+
+        connect(m_private->m_pAddonManager, &CAddonManager::uninstallFinished, this,
+                [this]()
+                {
+                    m_private->m_bUpgradeInProgress = false;
+                    if (m_pMainWindow)
+                    {
+                        m_pMainWindow->sendAddonStatusToStartPage();
+                        // showUpgradeDialog(m_pMainWindow, UpgradeDialog::Page::Complete);
+                        CMessage msg(m_pMainWindow);
+                        msg.setText(tr("ONLYOFFICE AI Tools successfully uninstalled"));
+                        msg.setIcon(CMessage::Icon::Info);
+                        msg.setButtons({tr("I'll do it later"), tr("Restart now")});
+                        msg.setDefaultButton(CMessage::DefaultButton::SecondButton);
+                        CMessage::Config cfg;
+                        cfg.contentText = tr("Application needs to restart");
+                        msg.setConfig(cfg);
+                        int result = msg.exec();
+                        if (result == CMessage::Result::SecondButton)
+                        {
+                            m_private->m_needRestart = true;
+                            AscAppManager::closeAppWindows();
+                        }
+                    }
+                });
+
+        connect(m_private->m_pAddonManager, &CAddonManager::progressChanged, this,
+                [this](int progress)
+                {
+                    if (m_private->m_upgradeDialog)
+                        m_private->m_upgradeDialog->setProgress(progress);
+
+                    // if (m_pMainWindow)
+                    //     m_pMainWindow->sendAddonStatusToStartPage(tr("Installing... %1%", "CAddonManager")
+                    //                                   .arg(progress), "load", true);
+                });
+    }
+    if (uid < 0) {
+        QTimer::singleShot(50, this, [=]() {
+            if (!m_private->m_bUpgradeInProgress)
+            {
+                if (m_pMainWindow)
+                {
+                    m_pMainWindow->sendAddonStatusToStartPage();
+                    checkAndSuggestAddonUpdate();
+                }
+            }
+        });
+    }
+#endif
+
 #ifdef _WIN32
     Association::instance().chekForAssociations(uid);
 #endif
@@ -1330,7 +1570,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
     connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
         std::vector<std::wstring> vec_inargs;
-        foreach (auto arg, args.split(";")) {
+        foreach (auto arg, args.split("\x01")) {
             if ( !arg.isEmpty() )
                 vec_inargs.push_back(arg.toStdWString());
         }
@@ -1444,6 +1684,9 @@ void CAscApplicationManagerWrapper::initializeApp()
     EditorJSVariables::setVariable("rtl", _is_rtl ? "yes" : "no");
 
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
+    std::wstring _country = userSettings(L"country");
+    EditorJSVariables::setVariable("country", !_country.empty() ?
+            QString::fromStdWString(_country) : CLangater::getCurrentLangCode());
 
     std::vector<std::pair<std::string, std::string>> layouts = _app.GetKeyboardLayoutList();
     QJsonObject kbLangs;
@@ -1574,11 +1817,11 @@ void CAscApplicationManagerWrapper::launchAppClose()
                 if ( it != m_vecEditors.end() ) {
                     CEditorWindow * _editor = reinterpret_cast<CEditorWindow *>(*it);
 
-                    if ( _editor && _editor->closeWindow() == MODAL_RESULT_CANCEL )
+                    if ( _editor && _editor->closeWindow() == CMessage::Result::Cancel )
                         AscAppManager::cancelClose();
                 }
             } else {
-                if ( AscAppManager::mainWindow()->tabCloseRequest() == MODAL_RESULT_CANCEL )
+                if ( AscAppManager::mainWindow()->tabCloseRequest() == CMessage::Result::Cancel )
                     AscAppManager::cancelClose();
             }
         } else {
@@ -1696,6 +1939,30 @@ ParentHandle CAscApplicationManagerWrapper::windowHandleFromId(int id)
 }
 
 namespace Drop {
+    auto isMainWindowCoveredByAnotherWindow(QWidget *mainWindow, QWidget *ignoringWindow, const QPoint &pt) -> bool
+    {
+#ifdef _WIN32
+        HWND hwnd = GetWindow((HWND)ignoringWindow->winId(), GW_HWNDNEXT);
+        while (hwnd) {
+            if (!IsWindowVisible(hwnd)) {
+                hwnd = GetWindow(hwnd, GW_HWNDNEXT);
+                continue;
+            }
+
+            RECT rc;
+            GetWindowRect(hwnd, &rc);
+            if (!PtInRect(&rc, {pt.x(), pt.y()})) {
+                hwnd = GetWindow(hwnd, GW_HWNDNEXT);
+                continue;
+            }
+            return hwnd != (HWND)mainWindow->winId();
+        }
+        return false;
+#else
+        return XcbUtils::isWindowCoveredAt(mainWindow->winId(), ignoringWindow->winId(), pt.x(), pt.y());
+#endif
+    }
+
     const int drop_timeout = 300;
     auto callback_to_attach(const CEditorWindow * editor) -> void {
         if ( editor ) {
@@ -1718,12 +1985,15 @@ namespace Drop {
                 QObject::connect(drop_timer, &QTimer::timeout, []{
                     CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
                     QPoint current_cursor = QCursor::pos();
-                    if ( main_window->canPinTabAtPoint(current_cursor) ) {
+                    if ( drop_handle && main_window->canPinTabAtPoint(current_cursor)
+                            && !isMainWindowCoveredByAnotherWindow(main_window, (QWidget*)drop_handle, current_cursor) ) {
                         if ( current_cursor == last_cursor_pos ) {
                             drop_timer->stop();
 
-                            if ( WindowHelper::isLeftButtonPressed() )
+                            if ( WindowHelper::isLeftButtonPressed() ) {
                                 callback_to_attach(CAscApplicationManagerWrapper::editorWindowFromHandle(drop_handle) );
+                                drop_handle = 0;
+                            }
                         } else {
                             last_cursor_pos = current_cursor;
                         }
@@ -1733,7 +2003,8 @@ namespace Drop {
                 });
             }
 
-            if ( main_window->canPinTabAtPoint(pt) ) {
+            if ( main_window->canPinTabAtPoint(pt)
+                    && !isMainWindowCoveredByAnotherWindow(main_window, (QWidget*)drop_handle, pt) ) {
                 if ( !drop_timer->isActive() )
                     drop_timer->start(drop_timeout);
 
@@ -1760,6 +2031,81 @@ const CEditorWindow * CAscApplicationManagerWrapper::editorWindowFromHandle(size
     return nullptr;
 }
 
+#ifdef USE_ADDON_MODE
+CAddonManager* CAscApplicationManagerWrapper::addonManager()
+{
+    APP_CAST(_app)
+    return _app.m_private->m_pAddonManager;
+}
+
+bool CAscApplicationManagerWrapper::upgradeInProgress()
+{
+    APP_CAST(_app)
+    return _app.m_private->m_bUpgradeInProgress;
+}
+
+void CAscApplicationManagerWrapper::setUpgradeInProgress(bool upgradeInProgress)
+{
+    APP_CAST(_app)
+    _app.m_private->m_bUpgradeInProgress = upgradeInProgress;
+}
+
+void CAscApplicationManagerWrapper::showUpgradeDialog(QWidget *parent, int page)
+{
+    APP_CAST(_app);
+
+    double dpiRatio = parent ? Utils::getScreenDpiRatioByWidget(parent) : 1.0;
+    QSize size = (page == UpgradeDialog::Page::Intro)
+                     ? UpgradeDialog::IntroPageSize
+                     : UpgradeDialog::InstallPageSize;
+    QRect rc(QPoint(0, 0), size * dpiRatio);
+    rc.moveCenter(parent->geometry().center());
+
+    const QRect scrRc = QtComp::DesktopWidget::availableGeometry(parent);
+    if (rc.bottom() > scrRc.bottom())
+        rc.moveBottom(scrRc.bottom());
+    if (rc.top() < scrRc.top())
+        rc.moveTop(scrRc.top());
+    if (rc.right() > scrRc.right())
+        rc.moveRight(scrRc.right());
+    if (rc.left() < scrRc.left())
+        rc.moveLeft(scrRc.left());
+
+#ifdef __linux__
+    WindowHelper::CParentDisable oDisabler(parent);
+#endif
+    _app.m_private->m_upgradeDialog = new UpgradeDialog(parent, rc, page);
+    _app.m_private->m_upgradeDialog->setModal();
+    _app.m_private->m_upgradeDialog->setEnabled(true);
+    _app.m_private->m_upgradeDialog->setResizable(false);
+    int result = _app.m_private->m_upgradeDialog->exec();
+    delete _app.m_private->m_upgradeDialog;
+    _app.m_private->m_upgradeDialog = nullptr;
+
+    switch (result)
+    {
+    case UpgradeDialog::RestartNow:
+    {
+        _app.m_private->m_needRestart = true;
+        QTimer::singleShot(100, &_app,
+            []()
+            {
+                AscAppManager::closeAppWindows();
+            });
+        break;
+    }    
+    case UpgradeDialog::Rejected:
+    {
+        _app.m_private->m_pAddonManager->doAction(CAddonManager::Action::Stop);
+        _app.m_private->m_bUpgradeInProgress = false;
+        break;
+    }
+    case UpgradeDialog::RestartLater:
+    default:
+        break;
+    }    
+}
+#endif
 
 void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPoint& pt)
 {
@@ -2058,6 +2404,12 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             setUserSettings(L"disable-ai", objRoot["useai"].toBool(true) ? L"0" : L"1");
         }
 
+        if ( objRoot.contains("country") ) {
+            QString _tmpl_country_code = objRoot["country"].toString();
+            setUserSettings(L"country", _tmpl_country_code.toStdWString());
+            EditorJSVariables::setVariable("country", _tmpl_country_code);
+        }
+
 #ifdef _UPDMODULE
         if ( objRoot.contains("autoupdatemode") ) {
             if (m_pUpdateManager)
@@ -2066,8 +2418,8 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 #endif
         if (objRoot.contains("restart") && objRoot["restart"].toBool()) {
             QTimer::singleShot(500, this, [=]() {
-                if (MODAL_RESULT_YES == CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
-                                                              MsgType::MSG_INFO, MsgBtns::mbYesDefNo)) {
+                if (CMessage::Result::Yes == CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
+                                                              CMessage::Icon::Info, CMessage::Buttons::YesDefNo)) {
                     m_private.get()->m_needRestart = true;
                     AscAppManager::closeAppWindows();
                 }
@@ -2384,7 +2736,7 @@ void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
     } else {
         CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
         int res = _e->closeWindow();
-        if ( res == MODAL_RESULT_CANCEL ) {
+        if ( res == CMessage::Result::Cancel ) {
             AscAppManager::getInstance().closeQueue().cancel();
         } else {
             AscAppManager::getInstance().closeQueue().leave(t);

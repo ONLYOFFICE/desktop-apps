@@ -100,6 +100,7 @@ static NSString * const ASCUserLockPageConnections          = @"asc_lock_page_co
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
+static NSString * const ASCEventNameEditorWindowSetFrame    = @"UI_editorWindowSetFrame";
 static NSString * const ASCEventNameEditorWindowMoving      = @"UI_editorWindowMoving";
 static NSString * const ASCEventNameEditorWindowEndMoving   = @"UI_editorWindowEndMoving";
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
@@ -107,6 +108,7 @@ static NSString * const ASCEventNameOpenAppLinks            = @"UI_openAppLinks"
 static NSString * const ASCEventNameChangedUITheme          = @"UI_changedUITheme";
 static NSString * const ASCEventNameChangedSystemTheme      = @"UI_changedSystemTheme";
 static NSString * const ASCEventNameRecoveryFiles           = @"UI_recoveryFiles";
+static NSString * const ASCEventNameSettingsNeedRestart     = @"UI_settingsNeedRestart";
 
 // CEF types
 static NSString * const CEFOpenFileFilterImage              = @"images";
@@ -151,13 +153,19 @@ static NSString * const CEFEventNameOpenSSLCertificate      = @"CEF_openSSLCerti
 static NSString * const CEFEventNameEditorDocumentReady     = @"CEF_editorDocumentReady";
 static NSString * const CEFEventNameEditorAppReady          = @"CEF_editorAppReady";
 static NSString * const CEFEventNameEditorEvent             = @"CEF_editorEvent";
+static NSString * const CEFEventNameEditorConfig            = @"CEF_editorConfig";
 static NSString * const CEFEventNameEditorAppActionRequest  = @"CEF_editorAppActionRequest";
 static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
 static NSString * const CEFEventNameDocumentFragmentBuild   = @"CEF_documentFragmentBuild";
 static NSString * const CEFEventNameDocumentFragmented      = @"CEF_documentFragmented";
 static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificatePreview";
 static NSString * const CEFEventNameWebAppsEntry            = @"CEF_webAppsEntry";
+static NSString * const CEFEventNameWebAppsFeatures         = @"CEF_webAppsFeatures";
 static NSString * const CEFEventNameWebTitleChanged         = @"CEF_webTitleChanged";
+static NSString * const CEFEventNameAddUserTemplateFiles    = @"CEF_addUserTemplateFiles";
+static NSString * const CEFEventNameAddUserTemplateFolder   = @"CEF_addUserTemplateFolder";
+static NSString * const CEFEventNameAddonAction             = @"CEF_addonAction";
+static NSString * const CEFEventNameAddonInstallation       = @"CEF_addonInstallation";
 
 @interface ASCConstants : NSObject
 

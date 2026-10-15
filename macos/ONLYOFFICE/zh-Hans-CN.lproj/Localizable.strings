@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ 已存在。\n您要替换它吗？";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@帮助";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "确认";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "卸载后 AI Tools 功能将不可用。所有 AI 设置（包括 API 密钥）不会被删除。";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "解压压缩包时发生错误";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "安装加载项时发生意外错误。";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "应用程序需要重新启动";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "您确定要卸载 ONLYOFFICE AI Tools 吗？";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "在签名之前，您必须首先保存文档。";
 
 /* No comment provided by engineer. */
 "Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Canceled" = "已取消";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "无法打开数字签名文件";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "无法打开文件位置的文件夹。";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "逗号分隔值（*.csv)";
+"Close" = "关闭";
+
+/* No comment provided by engineer. */
+"Close all" = "全部关闭";
+
+/* No comment provided by engineer. */
+"Close saved" = "关闭已保存的文件";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "逗号分隔值";
+
+/* No comment provided by engineer. */
+"Community version %@" = "社区版 %@";
+
+/* No comment provided by engineer. */
+"Create new" = "新建";
 
 /* No comment provided by engineer. */
 "Create portal" = "创建门户";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "删除并退出";
 
 /* No comment provided by engineer. */
-"DjVu File" = "数字文件（*.djvu)";
+"DjVu File" = "数字文件";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "您是否要保存对文档“%@”所做的更改？";
@@ -44,19 +80,37 @@
 "Document %ld.pdf" = "文档%ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word开放式XML文档模板 (*.dotx)";
+"Document template" = "Word开放式XML文档模板";
 
 /* No comment provided by engineer. */
 "Don't Save" = "不保存";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 电子表格（*.xls)";
+"Electronic Publication" = "电子出版物文件（*.epub）";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML 电子表格（*.xlsx)";
+"Enterprise version %@" = "企业版 %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "小说书2文件（*.fb2)";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 电子表格";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML 电子表格";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel 二进制工作表";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "由于网络错误，加载项下载失败。";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "主题安装失败";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "保存已下载的加载项包失败。";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "小说书2文件";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "文件“%@”无法打开或不存在。";
@@ -71,22 +125,40 @@
 "Hide %@" = "隐藏%@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "我稍后再做";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "如果您不审阅文档，您所做的所有更改都将丢失。";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "如果您已经购买了%@，您可以在确认电子邮件中找到您的激活密钥。";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG 图像";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "许可协议";
 
 /* No comment provided by engineer. */
-"Macro-enabled Presentation" = "支持宏的演示文稿（*.pptm）";
+"Macro-enabled Presentation" = "支持宏的演示文稿";
 
 /* No comment provided by engineer. */
-"Macro-enabled spreadsheet template" = "支持宏的电子表格模板（*.xltm）";
+"Macro-enabled spreadsheet template" = "支持宏的电子表格模板";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket文件 （*.mobi)";
+"Markdown File" = "Markdown 文件";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket文件";
+
+/* No comment provided by engineer. */
+"Move to end" = "移到末尾";
+
+/* No comment provided by engineer. */
+"Move to start" = "移到开头";
 
 /* No comment provided by engineer. */
 "new-document" = "新建文档";
@@ -104,52 +176,70 @@
 "No" = "否";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "此应用程序版本没有可用的兼容加载项版本。";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "内存不足，无法完成加载项下载。";
+
+/* No comment provided by engineer. */
 "OK" = "确定";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE无法打开该数字签名文件。请尝试打开另一个文件。";
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools 已成功卸载";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE无法打开该私钥。请尝试打开另一个文件。";
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE 无法打开该数字签名文件。请尝试打开另一个文件。";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument文档模板 (*.ott)";
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE 无法打开该私钥。请尝试打开另一个文件。";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument演示模板 (*.otp)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF 表单";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument电子表格模板 (*.ots)";
+"OpenDocument Document Template" = "OpenDocument文档模板";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument演示模板";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument电子表格模板";
 
 /* No comment provided by engineer. */
 "Opening" = "正在打开";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument文本文件 (*.odt)";
+"OpenOffice Document" = "OpenDocument文本文件";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument演示文稿（*.odp)";
+"OpenOffice Presentation" = "OpenDocument演示文稿";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument电子表格（*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument电子表格";
 
 /* No comment provided by engineer. */
-"PDF File" = "便携式文件（*.pdf)";
+"PDF File" = "便携式文件";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "便携式文件/A（*.pdf)";
+"PDF/A File" = "便携式文件/A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "纯文本文件（*.txt)";
+"Pin to tab" = "固定标签";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 演示文稿（*.ppt)";
+"Plain Text" = "纯文本文件";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML 演示文稿（*.pptx)";
+"PNG Image" = "PNG 图像";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML 幻灯片（*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 演示文稿";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML 演示文稿";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML 幻灯片";
 
 /* No comment provided by engineer. */
 "Preparing..." = "准备中...";
@@ -167,10 +257,16 @@
 "Quit %@" = "退出%@";
 
 /* No comment provided by engineer. */
+"Replace" = "替换";
+
+/* No comment provided by engineer. */
+"Restart now" = "立即重启";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "审阅更改...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "富文本格式（*.rtf)";
+"Rich Text Document" = "富文本格式";
 
 /* No comment provided by engineer. */
 "Save" = "保存";
@@ -179,19 +275,55 @@
 "Save the document?" = "保存该文件？";
 
 /* No comment provided by engineer. */
+"Select theme file" = "选择主题文件";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "所选主题无效";
+
+/* No comment provided by engineer. */
+"Show in folder" = "在文件夹中显示";
+
+/* No comment provided by engineer. */
+"Show main window" = "显示主窗口";
+
+/* No comment provided by engineer. */
 "Signature Details" = "签名详情";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "电子表格%ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel开放式XML电子表格模板（*.xltx)";
+"Spreadsheet template" = "Excel开放式XML电子表格模板";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "感谢您对%@的评价！";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "加载项下载 URL 无效。";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "加载项信息无效或不完整。";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "加载项包已损坏或已被修改。";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "必须创建“%@”。继续？";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "已安装的 AI Tools 组件与此版本的应用程序不兼容。现在更新 AI Tools？";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "主题已存在。是​​否替换？";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "此文件不包含主题";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "此主题文件无效";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "要安装加载项，请将应用程序更新到最新版本。";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "您必须保存后才能打开文件位置。";
@@ -200,7 +332,16 @@
 "Unconfirmed" = "未确认";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "取消固定标签页";
+
+/* No comment provided by engineer. */
 "Untitled" = "无标题";
+
+/* No comment provided by engineer. */
+"Version %@" = "版本 %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio 绘图";
 
 /* No comment provided by engineer. */
 "Web Page" = "网页";
@@ -209,13 +350,13 @@
 "With access to pro features" = "可使用专业功能";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 文档（*.doc)";
+"Word 97-2003 Document" = "Word 97-2003 文档";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML 文档（*.docx)";
+"Word 2007 Document" = "Office Open XML 文档";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS文件（*.xps）";
+"XML Paper Specification" = "OpenXPS 文档";
 
 /* No comment provided by engineer. */
 "Yes" = "是";
@@ -225,6 +366,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "您已经成功激活%@。";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "需要重新启动应用程序设置才能生效。";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "如果不保存，您的更改都将丢失。";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "如果不保存，您的更改都将丢失。";

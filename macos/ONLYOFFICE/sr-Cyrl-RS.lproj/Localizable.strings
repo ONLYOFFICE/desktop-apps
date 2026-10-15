@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ већ постоји.\nЖелите ли да га замените?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Помоћ";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Признања";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Функције AI Tools неће бити доступне након деинсталације. Сва AI подешавања (укључујући API кључеве) неће бити уклоњена.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Грешка се појавила приликом отпакивања архиве";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Дошло је до неочекиване грешке при инсталацији додатка.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Апликација мора да се поново покрене";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Да ли сте сигурни да желите да деинсталирате ONLYOFFICE AI Tools?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Пре потписивања документа, мора бити сачуван.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Откажи";
+
+/* No comment provided by engineer. */
+"Canceled" = "Отказано";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Немогуће отворити фајл Дигиталног потписа";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "Немогуће отворити фолдер локације фајла.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Вредности одвојене зарезом (*.csv)";
+"Close" = "Затвори";
+
+/* No comment provided by engineer. */
+"Close all" = "Затвори све";
+
+/* No comment provided by engineer. */
+"Close saved" = "Затвори сачувано";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Вредности одвојене зарезом";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Верзија Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Направи ново";
 
 /* No comment provided by engineer. */
 "Create portal" = "Креирај портал";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "Обриши и одустани";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Дигитални документ (*.djvu)";
+"DjVu File" = "Дигитални документ";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Желите ли да сачувате промене направљене на документу \"%@\"?";
@@ -44,19 +80,37 @@
 "Document %ld.pdf" = "Документ %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML документ шаблон (*.dotx)";
+"Document template" = "Word Open XML документ шаблон";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Немој да сачуваш";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 прорачунска табела (*.xls)";
+"Electronic Publication" = "Електронски издавачки фајл";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML прорачунска табела (*.xlsx)";
+"Enterprise version %@" = "Верзија Enterprise %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "КњигаФикције 2 Фајл (*.fb2)";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 прорачунска табела";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML прорачунска табела";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel бинарна прорачунска табела";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Преузимање додатка није успело због мрежне грешке.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Инсталирање теме није успело";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Чување преузетог пакета додатка није успело.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "КњигаФикције 2 Фајл";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Фајл \"%@\" не може бити отворен или не постоји.";
@@ -71,22 +125,40 @@
 "Hide %@" = "Сакриј %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "Урадићу то касније";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Ако не прегледате ваше документе, све ваше промене ће бити изгубљене.";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Ако сте већ купили %@, требало би да пронађете ваш активациони кључ у емаил конфирмацији.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "JPG слика";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Договор о лиценци";
 
 /* No comment provided by engineer. */
-"Macro-enabled Presentation" = "Макро-омогућена презентација (*.pptm)";
+"Macro-enabled Presentation" = "Макро-омогућена презентација)";
 
 /* No comment provided by engineer. */
-"Macro-enabled spreadsheet template" = "Макро-омогућени шаблон прорачунске табеле (*.xltm)";
+"Macro-enabled spreadsheet template" = "Макро-омогућени шаблон прорачунске табеле";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket фајл (*.mobi)";
+"Markdown File" = "Markdown датотека";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket фајл";
+
+/* No comment provided by engineer. */
+"Move to end" = "Помери на крај";
+
+/* No comment provided by engineer. */
+"Move to start" = "Премести на почетак";
 
 /* No comment provided by engineer. */
 "new-document" = "Нови документ";
@@ -104,7 +176,16 @@
 "No" = "Не";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "За ову верзију апликације није доступна ниједна компатибилна верзија додатка.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Нема довољно меморије за завршетак преузимања додатка.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools је успешно деинсталиран";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE не може отворити фајл Дигиталног потписа. Покушајте отворити други фајл.";
@@ -113,43 +194,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не може отворити Приватни кључ. Покушајте отворити други фајл.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument документ шаблон (*.ott)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF образац";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument шаблон презентације (*.otp)";
+"OpenDocument Document Template" = "OpenDocument документ шаблон";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument шаблон прорачунске табеле (*.ots)";
+"OpenDocument Presentation Template" = "OpenDocument шаблон презентације";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument шаблон прорачунске табеле";
 
 /* No comment provided by engineer. */
 "Opening" = "Отварање";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument текст фајл (*.odt)";
+"OpenOffice Document" = "OpenDocument текст фајл";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument презентација (*.odp)";
+"OpenOffice Presentation" = "OpenDocument презентација";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument прорачунска табела (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument прорачунска табела";
 
 /* No comment provided by engineer. */
-"PDF File" = "Преносиви документ (*.pdf)";
+"PDF File" = "Преносиви документ";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Преносиви документ /A (*.pdf)";
+"PDF/A File" = "Преносиви документ /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Обичан текст фајл (*.txt)";
+"Pin to tab" = "Прикачи на картицу";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 презентација (*.ppt)";
+"Plain Text" = "Обичан текст фајл";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML презентација (*.pptx)";
+"PNG Image" = "PNG слика";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML слајд шоу (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 презентација";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML презентација";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML слајд шоу";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Препаринг…";
@@ -158,7 +248,7 @@
 "Presentation %ld.pptx" = "Презентација %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML шаблон презентације (*.potx)";
+"Presentation template" = "PowerPoint Open XML шаблон презентације";
 
 /* No comment provided by engineer. */
 "Presenter View" = "Приказ за Презентера";
@@ -167,10 +257,16 @@
 "Quit %@" = "Одустани %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Замени";
+
+/* No comment provided by engineer. */
+"Restart now" = "Рестартуј сада";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Прегледај промене…";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Богати текст формат фајл (*.rtf)";
+"Rich Text Document" = "Богати текст формат фајл";
 
 /* No comment provided by engineer. */
 "Save" = "Сачувај";
@@ -179,19 +275,55 @@
 "Save the document?" = "Сачувај документ?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Изаберите датотеку теме";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Изабрана тема није важећа";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Прикажи у фолдеру";
+
+/* No comment provided by engineer. */
+"Show main window" = "Прикажи главни прозор";
+
+/* No comment provided by engineer. */
 "Signature Details" = "Детаљи потписа";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Прорачунска табела %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML шаблон прорачунске табеле (*.xltx)";
+"Spreadsheet template" = "Excel Open XML шаблон прорачунске табеле";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Хвала на евалуацији %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL за преузимање додатка је неважећи.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Информације о додатку су неважеће или непотпуне.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Пакет додатка је оштећен или промењен.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Документ \"%@” мора бити изграђен. Наставити?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Инсталирана компонента AI Tools није компатибилна са овом верзијом апликације. Ажурирати AI Tools сада?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Тема већ постоји. Да ли желите да је замените?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Ова датотека не садржи тему";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Ова датотека теме није важећа";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Да бисте инсталирали додатак, ажурирајте апликацију на најновију верзију.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Да бисте отворили локацију фајла, мора бити сачуван.";
@@ -200,7 +332,16 @@
 "Unconfirmed" = "Непотврђено";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Откачи картицу";
+
+/* No comment provided by engineer. */
 "Untitled" = "Ненасловљено";
+
+/* No comment provided by engineer. */
+"Version %@" = "Верзија %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio цртеж";
 
 /* No comment provided by engineer. */
 "Web Page" = "Веб страница";
@@ -209,13 +350,13 @@
 "With access to pro features" = "Са приступом на про функције";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 документ (*.doc)";
+"Word 97-2003 Document" = "Word 97-2003 документ";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML документ (*.docx)";
+"Word 2007 Document" = "Office Open XML документ";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS документ (*.xps)";
+"XML Paper Specification" = "OpenXPS документ";
 
 /* No comment provided by engineer. */
 "Yes" = "Да";
@@ -225,6 +366,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Успешно сте активирали %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Морате поново покренути апликацију да би подешавања ступила на снагу.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Ваше промене ће бити изгубљене ако их не сачувате.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Ваше промене ће бити изгубљене ако их не сачувате.";

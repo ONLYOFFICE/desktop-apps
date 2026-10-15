@@ -51,6 +51,8 @@
 #include <QStorageInfo>
 #include <QPrinterInfo>
 #include <QProcess>
+#include <QCryptographicHash>
+#include <QUuid>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
@@ -386,23 +388,38 @@ QString Utils::systemLocationCode()
 #endif
 }
 
+#ifdef __linux
+// Wrap an argument for /bin/sh in single quotes: inside them nothing is
+// interpreted ($(), backticks, ; ...), the only special case is ' itself.
+static std::string shell_quote(const std::string& s)
+{
+    std::string r = "'";
+    for (char c : s)
+        r += (c == '\'') ? "'\\''" : std::string(1, c);
+    r += "'";
+    return r;
+}
+#endif
+
 void Utils::openUrl(const QString& url)
 {
 #ifdef __linux
     QUrl _url(url);
     if ( _url.scheme() == "mailto" ) {
-        system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
-                            .arg(QString( _url.toEncoded() )).toUtf8());
+        std::string sCommand = "LD_LIBRARY_PATH='' xdg-email " +
+                               shell_quote(QString(_url.toEncoded()).toStdString());
+        system(sCommand.c_str());
     } else {
 		if (url.startsWith("xdg:")) {
 			// url is already encoded for xdg
 			std::wstring sUrlW = url.toStdWString().substr(4);
-			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " + U_TO_UTF8(sUrlW);
+			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " + shell_quote(U_TO_UTF8(sUrlW));
 			system(sCommand.c_str());
 		} else {
 			// xdg-open workingpath path
-			system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"")
-			       .arg(QString( _url.toEncoded() )).toUtf8());
+			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " +
+			                       shell_quote(QString(_url.toEncoded()).toStdString());
+			system(sCommand.c_str());
 
 
 		}
@@ -485,8 +502,11 @@ void Utils::openFileLocation(const QString& path)
     if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
         qputenv("LD_LIBRARY_PATH", "");
         QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});
-    } else
-        system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
+    } else {
+        std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " +
+                               shell_quote(fileInfo.path().toStdString());
+        system(sCommand.c_str());
+    }
 #endif
 }
 
@@ -519,6 +539,50 @@ QString Utils::uniqFileName(const QString& path)
     }
 
     return path;
+}
+
+QString Utils::targetArchitecture()
+{
+#if defined(_M_ARM64) || defined(__aarch64__)
+    return "arm64";
+#elif defined(_M_X64) || defined(__x86_64__)
+    return "x64";
+#elif defined(_M_IX86)
+    return "x86";
+#else
+# error Unsupported architecture
+#endif
+}
+
+QString Utils::getFileHash(const QString &fileName)
+{
+    if (fileName.isEmpty())
+        return {};
+
+    QFile file(fileName);
+    if (file.open(QFile::ReadOnly))
+    {
+        QCryptographicHash hash(QCryptographicHash::Md5);
+        if (hash.addData(&file))
+        {
+            file.close();
+            return QString(hash.result().toHex()).toLower();
+        }
+        file.close();
+    }
+    return {};
+}
+
+QString Utils::generateTmpFileName(const QString &ext)
+{
+    const QString fileName =
+        QString(FILE_PREFIX)
+        + QUuid::createUuid().toString().remove('{').remove('}')
+        + "_"
+        + Utils::targetArchitecture()
+        + ext;
+
+    return QDir::temp().filePath(fileName);
 }
 
 QString Utils::getPortalName(const QString& url)
@@ -565,23 +629,24 @@ double Utils::getScreenDpiRatio(int scrnum)
 
 double Utils::getScreenDpiRatio(const QPoint& pt)
 {
-    QWidget _w;
-    _w.setGeometry(QRect(pt, QSize(10,10)));
-
-#ifdef Q_OS_LINUX
-    return getScreenDpiRatioByWidget(&_w);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    int nScreenNumber = -1;
+    QScreen *screen = QGuiApplication::screenAt(pt);
+    if (screen)
+        nScreenNumber = QGuiApplication::screens().indexOf(screen);
 #else
-    return getScreenDpiRatioByHWND(_w.winId());
+    int nScreenNumber = QApplication::desktop()->screenNumber(pt);
 #endif
+    return getScreenDpiRatio(nScreenNumber);
 }
 
-double Utils::getScreenDpiRatioByHWND(int hwnd)
-{
-    unsigned int _dpi_x = 0;
-    unsigned int _dpi_y = 0;
-    double nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
-    return choose_scaling(nScale);
-}
+// double Utils::getScreenDpiRatioByHWND(int hwnd)
+// {
+//     unsigned int _dpi_x = 0;
+//     unsigned int _dpi_y = 0;
+//     double nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
+//     return choose_scaling(nScale);
+// }
 
 double Utils::getScreenDpiRatioByWidget(QWidget* wid)
 {
@@ -1096,6 +1161,33 @@ namespace WindowHelper {
 
 //        return _window_min_size;
 //    }
+
+    auto isCustomWindowStyle() -> bool {
+        static const bool value = []() {
+#ifdef Q_OS_LINUX
+            GET_REGISTRY_SYSTEM(reg_system)
+            GET_REGISTRY_USER(reg_user)
+            return (reg_user.value("titlebar") == "custom" ||
+                    reg_system.value("titlebar") == "custom");
+#else
+            return true;
+#endif
+        }();
+
+        return value;
+    }
+
+    auto shouldUseThinFrame() -> bool {
+        static const bool value = []() {
+#ifdef Q_OS_LINUX
+            return isCustomWindowStyle() && QX11Info::isCompositingManagerRunning();
+#else
+            return isCustomWindowStyle() && Utils::getWinVersion() >= Utils::WinVer::Win10;
+#endif
+        }();
+
+        return value;
+    }
 
     auto isLeftButtonPressed() -> bool {
 #ifdef Q_OS_LINUX

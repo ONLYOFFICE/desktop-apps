@@ -46,10 +46,12 @@
 #define SCREEN_THRESHOLD_SIZE    QSize(1366,768)
 
 #define BUTTON_MAIN_WIDTH   112
+#define BUTTON_MAIN_LEFT_MARGIN 4
 #define MAIN_WINDOW_BORDER_WIDTH 3
 #define WINDOW_TITLE_MIN_WIDTH 200
 #define TOOLBTN_HEIGHT_WIN10 35
 #define TOOLBTN_HEIGHT      28
+#define CAPTION_EXTRA_HEIGHT 4
 #define TOOLBTN_WIDTH       40
 #ifdef _WIN32
 # define TITLEBTN_WIDTH     40
@@ -68,20 +70,27 @@ class CPushButton;
 class CWindowBase : public QMainWindow
 {
 public:
-    explicit CWindowBase(const QRect&);
+    explicit CWindowBase(QWidget *parent = nullptr, const QRect &rc = QRect());
     virtual ~CWindowBase();   
 
     static QRect startRect(const QRect &rc, double &dpi);
     static QSize expectedContentSize(const QRect &rc, bool extended = false);
+    QRect adjustWindowRect(const QRect &rc, double dpi) const;
     QWidget * handle() const;
     QWidget * mainPanel() const;
     bool isCustomWindowStyle();
     void updateScaling(bool resize = true);
+    virtual bool isResizable() const = 0;
+    virtual void setResizable(bool) = 0;
     virtual void adjustGeometry() = 0;
     virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) = 0;
     virtual void applyTheme(const std::wstring&);
 
 protected:
+    friend class CAscApplicationManagerWrapper;
+#ifdef __linux__
+    friend class AscMainPanel;
+#endif
     enum BtnType {
         Btn_Minimize, Btn_Maximize, Btn_Close
     };
@@ -110,13 +119,14 @@ protected:
                    m_bkgColor;
     QRect          m_window_rect;
     int            m_toolbtn_height = TOOLBTN_HEIGHT;
+    bool           m_shouldUseThinFrame;
+    bool           m_ignoreMinSize = false;
 
     virtual void showEvent(QShowEvent *);
 
 private:
     class CWindowBasePrivate;
     std::unique_ptr<CWindowBasePrivate> pimpl;
-    bool  m_windowActivated;
 };
 
 #endif // CWINDOWBASE_H

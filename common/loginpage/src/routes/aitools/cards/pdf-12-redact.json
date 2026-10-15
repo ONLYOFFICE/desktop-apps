@@ -1,0 +1,242 @@
+{
+  "id": "redact-pdf",
+  "group": "pdf",
+  "prompt": "Please permanently redact all sensitive information from the attached PDF, such as names, addresses, phone numbers, and other personal or confidential data.",
+  "locale": {
+    "en": {
+      "title": "Redact PDF",
+      "description": "Permanently remove sensitive information from a PDF",
+      "usertext": "Select a PDF file and describe what sensitive information to redact"
+    },
+    "ar-SA": {
+      "title": "تنقيح PDF",
+      "description": "إزالة المعلومات الحساسة بشكل دائم من PDF",
+      "usertext": "اختر ملف PDF وصف المعلومات الحساسة التي تريد تنقيحها"
+    },
+    "be": {
+      "title": "Рэдагаваць PDF",
+      "description": "Назаўжды выдаліць канфідэнцыяльную інфармацыю з PDF",
+      "usertext": "Выберыце файл PDF і апішыце, якую канфідэнцыяльную інфармацыю трэба выдаліць"
+    },
+    "bg": {
+      "title": "Редактиране на PDF",
+      "description": "Трайно премахване на чувствителна информация от PDF",
+      "usertext": "Изберете PDF файл и опишете каква чувствителна информация да се заличи"
+    },
+    "ca": {
+      "title": "Redactar PDF",
+      "description": "Eliminar permanentment informació sensible d'un PDF",
+      "usertext": "Seleccioneu un fitxer PDF i descriviu quina informació sensible cal redactar"
+    },
+    "cs": {
+      "title": "Redigovat PDF",
+      "description": "Trvale odstranit citlivé informace z PDF",
+      "usertext": "Vyberte soubor PDF a popište, jaké citlivé informace mají být začerněny"
+    },
+    "da": {
+      "title": "Rediger PDF",
+      "description": "Fjern permanent følsomme oplysninger fra en PDF",
+      "usertext": "Vælg en PDF-fil og beskriv, hvilke følsomme oplysninger der skal redigeres"
+    },
+    "de": {
+      "title": "PDF schwärzen",
+      "description": "Sensible Informationen dauerhaft aus einer PDF entfernen",
+      "usertext": "Wählen Sie eine PDF-Datei und beschreiben Sie, welche vertraulichen Informationen geschwärzt werden sollen"
+    },
+    "el": {
+      "title": "Επεξεργασία PDF",
+      "description": "Μόνιμη αφαίρεση ευαίσθητων πληροφοριών από PDF",
+      "usertext": "Επιλέξτε αρχείο PDF και περιγράψτε ποιες ευαίσθητες πληροφορίες πρέπει να διαγραφούν"
+    },
+    "en-GB": {
+      "title": "Redact PDF",
+      "description": "Permanently remove sensitive information from a PDF",
+      "usertext": "Select a PDF file and describe what sensitive information to redact"
+    },
+    "es": {
+      "title": "Redactar PDF",
+      "description": "Eliminar permanentemente información sensible de un PDF",
+      "usertext": "Seleccione un archivo PDF y describa qué información sensible debe redactarse"
+    },
+    "et": {
+      "title": "PDF redigeerimine",
+      "description": "Tundliku teabe püsiv eemaldamine PDF-ist",
+      "usertext": "Valige PDF-fail ja kirjeldage, millist tundlikku teavet redigeerida"
+    },
+    "fi": {
+      "title": "Muokkaa PDF",
+      "description": "Poista arkaluonteiset tiedot pysyvästi PDF:stä",
+      "usertext": "Valitse PDF-tiedosto ja kuvaile, mitä arkaluonteisia tietoja poistetaan"
+    },
+    "fr": {
+      "title": "Expurger le PDF",
+      "description": "Supprimer définitivement les informations sensibles d'un PDF",
+      "usertext": "Sélectionnez un fichier PDF et décrivez quelles informations sensibles doivent être expurgées"
+    },
+    "ga": {
+      "title": "PDF a Cheimiú",
+      "description": "Bain faisnéis íogair go buan as PDF",
+      "usertext": "Roghnaigh comhad PDF agus cuir síos ar cén fhaisnéis íogair atá le ceimiú"
+    },
+    "gl": {
+      "title": "Redactar PDF",
+      "description": "Eliminar permanentemente información confidencial dun PDF",
+      "usertext": "Seleccione un ficheiro PDF e describa que información confidencial se debe redactar"
+    },
+    "he": {
+      "title": "עריכת PDF",
+      "description": "הסר לצמיתות מידע רגיש מ-PDF",
+      "usertext": "בחר קובץ PDF ותאר איזה מידע רגיש לצנזר"
+    },
+    "hi": {
+      "title": "PDF संपादित करें",
+      "description": "PDF से संवेदनशील जानकारी स्थायी रूप से हटाएं",
+      "usertext": "PDF फ़ाइल चुनें और बताएं कि कौन सी संवेदनशील जानकारी हटानी है"
+    },
+    "hr": {
+      "title": "Uredi PDF",
+      "description": "Trajno ukloni osjetljive informacije iz PDF-a",
+      "usertext": "Odaberite PDF datoteku i opišite koje osjetljive informacije treba urediti"
+    },
+    "hu": {
+      "title": "PDF szerkesztése",
+      "description": "Érzékeny adatok végleges eltávolítása PDF-ből",
+      "usertext": "Válasszon PDF-fájlt és írja le, milyen érzékeny adatokat kell eltávolítani"
+    },
+    "hy": {
+      "title": "PDF-ի խմբագրում",
+      "description": "PDF-ից զգայուն տեղեկատվության մշտական հեռացում",
+      "usertext": "Ընտրեք PDF ֆայլ և նկարագրեք, թե ինչ զգայուն տեղեկատվություն հեռացնել"
+    },
+    "it": {
+      "title": "Oscura PDF",
+      "description": "Rimuovi definitivamente le informazioni sensibili da un PDF",
+      "usertext": "Seleziona un file PDF e descrivi quali informazioni sensibili oscurare"
+    },
+    "ja": {
+      "title": "PDFを編集",
+      "description": "PDFから機密情報を永久に削除",
+      "usertext": "PDFファイルを選択し、どの機密情報を墨消しするか説明してください"
+    },
+    "ko": {
+      "title": "PDF 편집",
+      "description": "PDF에서 민감한 정보를 영구적으로 제거",
+      "usertext": "PDF 파일을 선택하고 어떤 민감한 정보를 삭제할지 설명하세요"
+    },
+    "lo": {
+      "title": "ແກ້ໄຂ PDF",
+      "description": "ລຶບຂໍ້ມູນລະອຽດອ່ອນຖາວອນຈາກ PDF",
+      "usertext": "ເລືອກໄຟລ໌ PDF ແລະອະທິບາຍຂໍ້ມູນລະອຽດອ່ອນທີ່ຕ້ອງລຶບ"
+    },
+    "lt": {
+      "title": "Redaguoti PDF",
+      "description": "Visam laikui pašalinti jautrią informaciją iš PDF",
+      "usertext": "Pasirinkite PDF failą ir apibūdinkite, kokią slaptą informaciją reikia ištrinti"
+    },
+    "lv": {
+      "title": "Rediģēt PDF",
+      "description": "Neatgriezeniski noņemt sensitīvu informāciju no PDF",
+      "usertext": "Atlasiet PDF failu un aprakstiet, kāda sensitīva informācija ir jāizdzēš"
+    },
+    "nl": {
+      "title": "PDF redigeren",
+      "description": "Gevoelige informatie permanent verwijderen uit een PDF",
+      "usertext": "Selecteer een PDF-bestand en beschrijf welke gevoelige informatie geredigeerd moet worden"
+    },
+    "no": {
+      "title": "Rediger PDF",
+      "description": "Fjern sensitiv informasjon permanent fra en PDF",
+      "usertext": "Velg en PDF-fil og beskriv hvilken sensitiv informasjon som skal redigeres"
+    },
+    "pl": {
+      "title": "Redaguj PDF",
+      "description": "Trwale usuń poufne informacje z PDF",
+      "usertext": "Wybierz plik PDF i opisz, jakie poufne informacje należy zredagować"
+    },
+    "pt-BR": {
+      "title": "Redigir PDF",
+      "description": "Remover permanentemente informações confidenciais de um PDF",
+      "usertext": "Selecione um arquivo PDF e descreva quais informações confidenciais devem ser redigidas"
+    },
+    "pt-PT": {
+      "title": "Redigir PDF",
+      "description": "Remover permanentemente informações confidenciais de um PDF",
+      "usertext": "Selecione um ficheiro PDF e descreva que informações confidenciais devem ser redigidas"
+    },
+    "ro": {
+      "title": "Editare PDF",
+      "description": "Eliminați permanent informațiile sensibile dintr-un PDF",
+      "usertext": "Selectați un fișier PDF și descrieți ce informații sensibile trebuie eliminate"
+    },
+    "ru": {
+      "title": "Редактировать PDF",
+      "description": "Навсегда удалить конфиденциальную информацию из PDF",
+      "usertext": "Выберите PDF-файл и опишите, какую конфиденциальную информацию нужно удалить"
+    },
+    "si": {
+      "title": "PDF සංස්කරණය",
+      "description": "PDF වෙතින් සංවේදී තොරතුරු ස්ථිරව ඉවත් කරන්න",
+      "usertext": "PDF ගොනුවක් තෝරන්න සහ ඉවත් කළ යුතු සංවේදී තොරතුරු මොනවාදැයි විස්තර කරන්න"
+    },
+    "sk": {
+      "title": "Redigovať PDF",
+      "description": "Trvalo odstrániť citlivé informácie z PDF",
+      "usertext": "Vyberte súbor PDF a opíšte, aké citlivé informácie treba začierniť"
+    },
+    "sl": {
+      "title": "Uredi PDF",
+      "description": "Trajno odstrani občutljive informacije iz PDF",
+      "usertext": "Izberite datoteko PDF in opišite, katere občutljive informacije je treba urediti"
+    },
+    "sq": {
+      "title": "Redakto PDF",
+      "description": "Hiq përgjithmonë informacionin e ndjeshëm nga PDF",
+      "usertext": "Zgjidhni një skedar PDF dhe përshkruani cilat informacione të ndjeshme duhen redaktuar"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Уреди PDF",
+      "description": "Трајно уклони осетљиве информације из PDF-а",
+      "usertext": "Изаберите PDF датотеку и опишите које осетљиве информације треба уредити"
+    },
+    "sr-Latn-RS": {
+      "title": "Uredi PDF",
+      "description": "Trajno ukloni osetljive informacije iz PDF-a",
+      "usertext": "Izaberite PDF datoteku i opišite koje osetljive informacije treba urediti"
+    },
+    "sv": {
+      "title": "Redigera PDF",
+      "description": "Ta bort känslig information permanent från en PDF",
+      "usertext": "Välj en PDF-fil och beskriv vilken känslig information som ska redigeras"
+    },
+    "tr": {
+      "title": "PDF Düzenle",
+      "description": "PDF'den hassas bilgileri kalıcı olarak kaldırın",
+      "usertext": "Bir PDF dosyası seçin ve hangi hassas bilgilerin düzenleneceğini açıklayın"
+    },
+    "uk": {
+      "title": "Редагувати PDF",
+      "description": "Назавжди видалити конфіденційну інформацію з PDF",
+      "usertext": "Виберіть PDF-файл і опишіть, яку конфіденційну інформацію потрібно видалити"
+    },
+    "ur": {
+      "title": "PDF میں تدوین",
+      "description": "PDF سے حساس معلومات مستقل طور پر ہٹائیں",
+      "usertext": "PDF فائل منتخب کریں اور بتائیں کہ کون سی حساس معلومات ہٹانی ہیں"
+    },
+    "vi": {
+      "title": "Biên tập PDF",
+      "description": "Xóa vĩnh viễn thông tin nhạy cảm khỏi PDF",
+      "usertext": "Chọn tệp PDF và mô tả thông tin nhạy cảm nào cần biên tập"
+    },
+    "zh-CN": {
+      "title": "编辑 PDF",
+      "description": "从 PDF 中永久删除敏感信息",
+      "usertext": "选择 PDF 文件并描述需要删除的敏感信息"
+    },
+    "zh-TW": {
+      "title": "編輯 PDF",
+      "description": "從 PDF 中永久刪除敏感資訊",
+      "usertext": "選擇 PDF 檔案並描述需要刪除的敏感資訊"
+    }
+  }
+}

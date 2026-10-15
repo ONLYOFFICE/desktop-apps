@@ -211,14 +211,14 @@ static bool isThemeActive()
     return IsThemeActive ? (bool)IsThemeActive() : true;
 }
 
-CWindowPlatform::CWindowPlatform(const QRect &rect) :
-    CWindowBase(rect),
+CWindowPlatform::CWindowPlatform(QWidget *parent, const QRect &rect) :
+    CWindowBase(parent, rect),
     m_dpi(1.0),
     m_hWnd(nullptr),
     m_resAreaWidth(MAIN_WINDOW_BORDER_WIDTH),
     m_borderless(true),
     m_closed(false),
-    m_isResizeable(true)
+    m_isResizable(true)
 //    m_allowMaximize(true)
 {
     m_isThemeActive = isThemeActive();
@@ -257,6 +257,11 @@ CWindowPlatform::~CWindowPlatform()
     m_closed = true;
 }
 
+bool CWindowPlatform::isResizable() const
+{
+    return m_isResizable;
+}
+
 /** Public **/
 
 //void CWindowPlatform::toggleBorderless(bool showmax)
@@ -267,10 +272,26 @@ CWindowPlatform::~CWindowPlatform()
 //    }
 //}
 
-//void CWindowPlatform::toggleResizeable()
-//{
-//    m_isResizeable = !m_isResizeable;
-//}
+void CWindowPlatform::setResizable(bool isResizable)
+{
+    if (m_isResizable != isResizable)
+    {
+        m_isResizable = isResizable;
+        LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
+        ::SetWindowLong(m_hWnd, GWL_STYLE, m_isResizable
+                                            ? style | WS_MAXIMIZEBOX
+                                            : style & ~WS_MAXIMIZEBOX);
+        if (isResizable)
+        {
+            setMinimumSize(0, 0);
+            setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+        }
+        else
+        {
+            setFixedSize(size());
+        }
+    }
+}
 
 void CWindowPlatform::bringToTop()
 {
@@ -427,10 +448,14 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
         if (AscAppManager::IsUseSystemScaling())
             updateScaling(false);
-        SKIP_EVENTS_QUEUE([=]() {
-            double dpi = Utils::getScreenDpiRatioByWidget(this);
-            setMinimumSize(WINDOW_MIN_WIDTH * dpi, WINDOW_MIN_HEIGHT * dpi);
-        });
+
+        if (!m_ignoreMinSize)
+        {
+            SKIP_EVENTS_QUEUE([=]() {
+                double dpi = Utils::getScreenDpiRatioByWidget(this);
+                setMinimumSize(WINDOW_MIN_WIDTH * dpi, WINDOW_MIN_HEIGHT * dpi);
+            });
+        }
         break;
     }
 
@@ -470,7 +495,19 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_NCHITTEST: {
-        if (m_borderless && m_isResizeable) {
+        if (!m_isResizable)
+        {
+            LRESULT hit = DefWindowProc(m_hWnd, msg->message, msg->wParam, msg->lParam);
+            if (hit == HTBOTTOM || hit == HTLEFT || hit == HTRIGHT || hit == HTTOP ||
+                hit == HTBOTTOMLEFT || hit == HTBOTTOMRIGHT || hit == HTTOPLEFT || hit == HTTOPRIGHT)
+            {
+                *result = HTCLIENT;
+                return true;
+            }
+        }
+
+        if (m_borderless)
+        {
             *result = 0;
             RECT rect;
             GetWindowRect(msg->hwnd, &rect);

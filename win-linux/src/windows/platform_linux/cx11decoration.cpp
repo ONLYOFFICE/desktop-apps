@@ -43,6 +43,7 @@
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
 #include <X11/Xutil.h>
+#include <X11/Xatom.h>
 #include "platform_linux/xcbutils.h"
 
 #define CUSTOM_BORDER_WIDTH MAIN_WINDOW_BORDER_WIDTH
@@ -305,7 +306,7 @@ CX11Decoration::CX11Decoration(QWidget * w)
     , m_motionTimer(nullptr)
     , m_currentCursor(0)
     , m_decoration(true)
-    , m_nBorderSize(CUSTOM_BORDER_WIDTH)
+    , m_frameMargin(CUSTOM_BORDER_WIDTH)
     , m_bIsMaximized(false)
     , m_startSize(QSize())
 {
@@ -314,7 +315,9 @@ CX11Decoration::CX11Decoration(QWidget * w)
 
     need_to_check_motion = guess_window_manager() == WM_KWIN;
     dpi_ratio = Utils::getScreenDpiRatioByWidget(w);
-    m_nBorderSize = CUSTOM_BORDER_WIDTH * dpi_ratio;
+    m_frameMargin = QX11Info::isCompositingManagerRunning()
+        ? int(SHADOW_WIDTH * dpi_ratio) + int(WINDOW_THIN_BORDER_WIDTH * dpi_ratio)
+        : int(CUSTOM_BORDER_WIDTH * dpi_ratio);
 }
 
 CX11Decoration::~CX11Decoration()
@@ -358,11 +361,11 @@ void CX11Decoration::freeCursors()
 
 int CX11Decoration::hitTest(int x, int y) const
 {
-    if (m_bIsMaximized)
+    if (m_bIsMaximized || !m_bIsResizable)
         return -1;
 
     QRect rect = m_window->rect();
-    int bw = m_nBorderSize, bbw = m_nBorderSize;
+    int bw = m_frameMargin, bbw = m_frameMargin;
     int w = rect.width(), h = rect.height();
 
     QRect rc_top_left       = rect.adjusted(0, 0, -(w-bbw), -(h-bbw));
@@ -431,13 +434,13 @@ void CX11Decoration::checkCursor(QPoint & p)
 
 void CX11Decoration::dispatchMouseDown(QMouseEvent *e)
 {
-    if (m_decoration) return;
+    if (m_decoration || ! m_title) return;
 
     if (e->buttons() == Qt::LeftButton) {
         QRect oTitleRect = m_title->geometry();
 
         if (!m_bIsMaximized)
-            oTitleRect.adjust(m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1);
+            oTitleRect.adjust(m_frameMargin + 1, m_frameMargin + 1, m_frameMargin + 1, m_frameMargin + 1);
 
         m_nDirection = oTitleRect.contains(e->pos()) ?
                         k_NET_WM_MOVERESIZE_MOVE : hitTest(e->pos().x(), e->pos().y());
@@ -552,9 +555,19 @@ void CX11Decoration::switchDecoration(bool on)
     }
 }
 
-bool CX11Decoration::isDecorated()
+bool CX11Decoration::isDecorated() const
 {
     return m_decoration;
+}
+
+void CX11Decoration::setResizable(bool isResizable)
+{
+    m_bIsResizable = isResizable;
+}
+
+bool CX11Decoration::isResizable() const
+{
+    return m_bIsResizable;
 }
 
 void CX11Decoration::setMaximized(bool bVal)
@@ -565,7 +578,9 @@ void CX11Decoration::setMaximized(bool bVal)
 void CX11Decoration::onDpiChanged(double f)
 {
     dpi_ratio = f;
-    m_nBorderSize = CUSTOM_BORDER_WIDTH * dpi_ratio;
+    m_frameMargin = QX11Info::isCompositingManagerRunning()
+        ? int(SHADOW_WIDTH * f) + int(WINDOW_THIN_BORDER_WIDTH * f)
+        : int(CUSTOM_BORDER_WIDTH * f);
 }
 
 bool CX11Decoration::isNativeFocus()
@@ -573,9 +588,41 @@ bool CX11Decoration::isNativeFocus()
     return XcbUtils::isNativeFocus(m_window->winId());
 }
 
-int CX11Decoration::customWindowBorderWith()
+int CX11Decoration::effectiveFrameMargin() const
 {
-    return CUSTOM_BORDER_WIDTH;
+    return ( m_decoration || m_window->isMaximized() ) ? 0 : m_frameMargin;
+}
+
+void CX11Decoration::updateFrameExtents()
+{
+    Display *disp = QX11Info::display();
+    if (!disp) return;
+
+    Window wnd = (Window)m_window->winId();
+
+    int x = 0;
+    int y1 = 0;
+    int y2 = 0;
+    const int frameMargin = effectiveFrameMargin();
+
+    if (frameMargin != 0) {
+        x = frameMargin - int(WINDOW_THIN_BORDER_WIDTH * dpi_ratio);
+        y1 = x - int(SHADOW_OFFSET_Y * dpi_ratio);
+        y2 = x + int(SHADOW_OFFSET_Y * dpi_ratio);
+    }
+    long extents[4] = { x, x, y1, y2 }; // left right top bottom
+
+    Atom atomNet = XInternAtom(disp, "_NET_FRAME_EXTENTS", False);
+    if (atomNet != None) {
+        XChangeProperty(disp, wnd, atomNet, XA_CARDINAL, 32,
+                        PropModeReplace, (unsigned char*)extents, 4);
+    }
+
+    Atom atomGtk = XInternAtom(disp, "_GTK_FRAME_EXTENTS", False);
+    if (atomGtk != None) {
+        XChangeProperty(disp, wnd, atomGtk, XA_CARDINAL, 32,
+                        PropModeReplace, (unsigned char*)extents, 4);
+    }
 }
 
 void CX11Decoration::raiseWindow()

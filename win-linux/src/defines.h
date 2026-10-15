@@ -67,6 +67,7 @@
 #define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"
 #define APP_PROTOCOL "oo-office"
 #define FILE_PREFIX "onlyoffice_"
+#define HTML_SCHEME "onlyoffice://plugin/"
 
 #define URL_SITE                "http://www.onlyoffice.com"
 #define URL_SIGNUP              "https://onlyoffice.com/registration.aspx?desktop=true"
@@ -85,6 +86,14 @@
 #define URL_AGPL "https://www.gnu.org/licenses/agpl-3.0.en.html"
 #define DOWNLOAD_PAGE "https://www.onlyoffice.com/en/download-desktop.aspx"
 #define RELEASE_NOTES "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md"
+
+// Enterprise addon (Business Source License)
+#define URL_BSL_LICENSE         "https://docspace.onlyoffice.com/s/b_rVPpqtF-pqKBr"
+#define ADDON_BSL_NAME          "BSL 1.1"
+// TODO: point to the real Enterprise addon archive distributed by ONLYOFFICE
+#define URL_ADDON_ENTERPRISE    ""
+#define ADDON_ENTERPRISE_ID     "enterprise"
+#define ADDON_INSTALL_SUBDIR    "/addons"
 
 #ifdef __linux
 typedef unsigned char BYTE;

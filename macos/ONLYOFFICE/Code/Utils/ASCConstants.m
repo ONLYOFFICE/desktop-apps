@@ -58,7 +58,7 @@
 }
 
 + (NSArray *)images {
-    return @[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tif", @"tiff", @"heif", @"heic", @"ico", @"svg"];
+    return @[@"jpg", @"jpeg", @"jpe", @"jfif", @"jif", @"png", @"gif", @"bmp", @"tif", @"tiff", @"webp", @"heif", @"heic", @"avif", @"ico", @"svg"];
 }
 
 + (NSArray *)videos {
@@ -71,9 +71,9 @@
 }
 
 + (NSArray *)documents {
-    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dot", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
-             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
-             @"fb2", @"oform", @"sxw", @"stw", @"md", @"pages", @"hwp", @"hwpx", @"md", @"hml"];
+    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dot", @"dotx", @"dotm", @"fodt", @"wps", @"wpt",
+             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"ofd", @"doctx",
+             @"fb2", @"sxw", @"stw", @"md", @"pages", @"hwp", @"hwpx", @"md", @"hml"];
 }
 
 + (NSArray *)spreadsheets {
@@ -89,7 +89,7 @@
 }
 
 + (NSArray *)cancryptformats {
-    return @[@"docm", @"docx", @"docxf", @"dotm", @"dotx", @"oform", @"potm", @"potx", @"ppsm", @"pptm", @"ppsx", @"pptx", @"xlsm", @"xlsx", @"xltm", @"xltx"];
+    return @[@"docm", @"docx", @"dotm", @"dotx", @"potm", @"potx", @"ppsm", @"pptm", @"ppsx", @"pptx", @"xlsm", @"xlsx", @"xltm", @"xltx"];
 }
 
 + (NSArray *)plugins {
@@ -151,7 +151,7 @@
                      @"extension"   : @"mht"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB): @{
-                     @"description" : NSLocalizedString(@"Mobipocket e-book", nil),
+                     @"description" : NSLocalizedString(@"Electronic Publication", nil),
                      @"extension"   : @"epub"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MD): @{
@@ -248,14 +248,6 @@
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2): @{
                      @"description" : NSLocalizedString(@"FictionBook File", nil),
                      @"extension"   : @"fb2"
-             },
-             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF): @{
-                     @"description" : NSLocalizedString(@"ONLYOFFICE Document Form Template", nil),
-                     @"extension"   : @"docxf"
-             },
-             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM): @{
-                     @"description" : NSLocalizedString(@"ONLYOFFICE Fillable Online Form", nil),
-                     @"extension"   : @"oform"
              },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF): @{
                      @"description" : NSLocalizedString(@"ONLYOFFICE Form Document", nil),

@@ -1,0 +1,17 @@
+.section {
+  width: 100%;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 0 12px;
+  color: var(--text-normal);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

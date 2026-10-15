@@ -1,0 +1,242 @@
+{
+  "id": "convert-to-epub",
+  "group": "word",
+  "prompt": "Please convert the attached document into EPUB format, preserving the structure, headings, and formatting so it reads well on e-readers.",
+  "locale": {
+    "en": {
+      "title": "Convert to EPUB",
+      "description": "Convert your document into a book",
+      "usertext": "Select a document to convert to EPUB format for e-readers"
+    },
+    "ar-SA": {
+      "title": "تحويل إلى EPUB",
+      "description": "تحويل مستندك إلى كتاب",
+      "usertext": "اختر مستنداً لتحويله إلى تنسيق EPUB لأجهزة القراءة الإلكترونية"
+    },
+    "be": {
+      "title": "Пераўтварыць у EPUB",
+      "description": "Пераўтварыць дакумент у кнігу",
+      "usertext": "Выберыце дакумент для пераўтварэння ў фармат EPUB для электронных чытальнікаў"
+    },
+    "bg": {
+      "title": "Конвертиране в EPUB",
+      "description": "Конвертирайте документа си в книга",
+      "usertext": "Изберете документ за конвертиране във формат EPUB за електронни четци"
+    },
+    "ca": {
+      "title": "Convertir a EPUB",
+      "description": "Convertiu el vostre document en un llibre",
+      "usertext": "Seleccioneu un document per convertir-lo al format EPUB per a lectors electrònics"
+    },
+    "cs": {
+      "title": "Převést do EPUB",
+      "description": "Převeďte svůj dokument na knihu",
+      "usertext": "Vyberte dokument pro převod do formátu EPUB pro elektronické čtečky"
+    },
+    "da": {
+      "title": "Konverter til EPUB",
+      "description": "Konverter dit dokument til en bog",
+      "usertext": "Vælg et dokument til konvertering til EPUB-format til e-læsere"
+    },
+    "de": {
+      "title": "In EPUB konvertieren",
+      "description": "Ihr Dokument in ein Buch umwandeln",
+      "usertext": "Wählen Sie ein Dokument zur Konvertierung in das EPUB-Format für E-Reader"
+    },
+    "el": {
+      "title": "Μετατροπή σε EPUB",
+      "description": "Μετατρέψτε το έγγραφό σας σε βιβλίο",
+      "usertext": "Επιλέξτε ένα έγγραφο για μετατροπή σε μορφή EPUB για ηλεκτρονικούς αναγνώστες"
+    },
+    "en-GB": {
+      "title": "Convert to EPUB",
+      "description": "Convert your document into a book",
+      "usertext": "Select a document to convert to EPUB format for e-readers"
+    },
+    "es": {
+      "title": "Convertir a EPUB",
+      "description": "Convierta su documento en un libro",
+      "usertext": "Seleccione un documento para convertirlo al formato EPUB para lectores electrónicos"
+    },
+    "et": {
+      "title": "Teisendamine EPUB-i",
+      "description": "Teisendage oma dokument raamatuks",
+      "usertext": "Valige dokument EPUB-vormingusse teisendamiseks e-lugeritele"
+    },
+    "fi": {
+      "title": "Muunna EPUB:ksi",
+      "description": "Muunna asiakirjasi kirjaksi",
+      "usertext": "Valitse asiakirja muunnettavaksi EPUB-muotoon e-lukulaitteille"
+    },
+    "fr": {
+      "title": "Convertir en EPUB",
+      "description": "Convertissez votre document en livre",
+      "usertext": "Sélectionnez un document à convertir au format EPUB pour les liseuses"
+    },
+    "ga": {
+      "title": "Tiontaigh go EPUB",
+      "description": "Tiontaigh do cháipéis go leabhar",
+      "usertext": "Roghnaigh cáipéis le tiontú go formáid EPUB le haghaidh léitheoirí leictreonacha"
+    },
+    "gl": {
+      "title": "Converter a EPUB",
+      "description": "Converta o seu documento nun libro",
+      "usertext": "Seleccione un documento para convertelo ao formato EPUB para lectores electrónicos"
+    },
+    "he": {
+      "title": "המרה ל-EPUB",
+      "description": "המר את המסמך שלך לספר",
+      "usertext": "בחר מסמך להמרה לפורמט EPUB לקוראים אלקטרוניים"
+    },
+    "hi": {
+      "title": "EPUB में बदलें",
+      "description": "अपने दस्तावेज़ को किताब में बदलें",
+      "usertext": "ई-रीडर के लिए EPUB प्रारूप में बदलने के लिए एक दस्तावेज़ चुनें"
+    },
+    "hr": {
+      "title": "Pretvori u EPUB",
+      "description": "Pretvorite dokument u knjigu",
+      "usertext": "Odaberite dokument za pretvorbu u EPUB format za e-čitače"
+    },
+    "hu": {
+      "title": "Konvertálás EPUB-ba",
+      "description": "Dokumentum könyvvé konvertálása",
+      "usertext": "Válasszon dokumentumot EPUB formátumba konvertáláshoz e-olvasókhoz"
+    },
+    "hy": {
+      "title": "Փոխարկել EPUB-ի",
+      "description": "Փոխարկեք ձեր փաստաթուղթը գրքի",
+      "usertext": "Ընտրեք փաստաթուղթ՝ EPUB ձևաչափի փոխարկելու համար էլեկտրոնային ընթերցողների համար"
+    },
+    "it": {
+      "title": "Converti in EPUB",
+      "description": "Converti il tuo documento in un libro",
+      "usertext": "Seleziona un documento da convertire in formato EPUB per i lettori e-book"
+    },
+    "ja": {
+      "title": "EPUBに変換",
+      "description": "文書を電子書籍に変換",
+      "usertext": "電子書籍リーダー用にEPUB形式に変換するドキュメントを選択してください"
+    },
+    "ko": {
+      "title": "EPUB으로 변환",
+      "description": "문서를 책으로 변환",
+      "usertext": "전자책 리더용 EPUB 형식으로 변환할 문서를 선택하세요"
+    },
+    "lo": {
+      "title": "ແປງເປັນ EPUB",
+      "description": "ແປງເອກະສານຂອງທ່ານເປັນໜັງສື",
+      "usertext": "ເລືອກເອກະສານເພື່ອແປງເປັນຮູບແບບ EPUB ສຳລັບເຄື່ອງອ່ານ e-book"
+    },
+    "lt": {
+      "title": "Konvertuoti į EPUB",
+      "description": "Konvertuokite dokumentą į knygą",
+      "usertext": "Pasirinkite dokumentą, kurį norite konvertuoti į EPUB formatą el. skaitytuvams"
+    },
+    "lv": {
+      "title": "Konvertēt uz EPUB",
+      "description": "Konvertējiet dokumentu grāmatā",
+      "usertext": "Atlasiet dokumentu konvertēšanai EPUB formātā e-lasītājiem"
+    },
+    "nl": {
+      "title": "Converteren naar EPUB",
+      "description": "Converteer uw document naar een boek",
+      "usertext": "Selecteer een document om te converteren naar EPUB-formaat voor e-readers"
+    },
+    "no": {
+      "title": "Konverter til EPUB",
+      "description": "Konverter dokumentet ditt til en bok",
+      "usertext": "Velg et dokument for å konvertere til EPUB-format for e-lesere"
+    },
+    "pl": {
+      "title": "Konwertuj do EPUB",
+      "description": "Konwertuj dokument do formatu książki",
+      "usertext": "Wybierz dokument do konwersji do formatu EPUB dla czytników e-book"
+    },
+    "pt-BR": {
+      "title": "Converter para EPUB",
+      "description": "Converta seu documento em um livro",
+      "usertext": "Selecione um documento para converter para o formato EPUB para e-readers"
+    },
+    "pt-PT": {
+      "title": "Converter para EPUB",
+      "description": "Converta o seu documento num livro",
+      "usertext": "Selecione um documento para converter para o formato EPUB para leitores de e-books"
+    },
+    "ro": {
+      "title": "Convertire în EPUB",
+      "description": "Convertiți documentul în carte",
+      "usertext": "Selectați un document pentru a-l converti în format EPUB pentru cititoare electronice"
+    },
+    "ru": {
+      "title": "Конвертировать в EPUB",
+      "description": "Преобразуйте документ в книгу",
+      "usertext": "Выберите документ для преобразования в формат EPUB для электронных читалок"
+    },
+    "si": {
+      "title": "EPUB ලෙස පරිවර්තනය",
+      "description": "ඔබේ ලේඛනය පොතකට පරිවර්තනය කරන්න",
+      "usertext": "ඊ-ශ්‍රවකයන් සඳහා EPUB ආකෘතියට පරිවර්තනය කිරීමට ලේඛනයක් තෝරන්න"
+    },
+    "sk": {
+      "title": "Previesť do EPUB",
+      "description": "Preveďte dokument na knihu",
+      "usertext": "Vyberte dokument na konverziu do formátu EPUB pre elektronické čítačky"
+    },
+    "sl": {
+      "title": "Pretvori v EPUB",
+      "description": "Pretvorite dokument v knjigo",
+      "usertext": "Izberite dokument za pretvorbo v format EPUB za e-bralce"
+    },
+    "sq": {
+      "title": "Konverto në EPUB",
+      "description": "Konverto dokumentin tuaj në libër",
+      "usertext": "Zgjidhni një dokument për ta konvertuar në formatin EPUB për lexuesit elektronikë"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Претвори у EPUB",
+      "description": "Претворите документ у књигу",
+      "usertext": "Изаберите документ за претварање у EPUB формат за е-читаче"
+    },
+    "sr-Latn-RS": {
+      "title": "Pretvori u EPUB",
+      "description": "Pretvorite dokument u knjigu",
+      "usertext": "Izaberite dokument za pretvaranje u EPUB format za e-čitače"
+    },
+    "sv": {
+      "title": "Konvertera till EPUB",
+      "description": "Konvertera ditt dokument till en bok",
+      "usertext": "Välj ett dokument för att konvertera till EPUB-format för e-läsare"
+    },
+    "tr": {
+      "title": "EPUB'a Dönüştür",
+      "description": "Belgenizi bir kitaba dönüştürün",
+      "usertext": "E-okuyucular için EPUB formatına dönüştürmek üzere bir belge seçin"
+    },
+    "uk": {
+      "title": "Конвертувати в EPUB",
+      "description": "Перетворіть документ на книгу",
+      "usertext": "Виберіть документ для перетворення у формат EPUB для електронних читалок"
+    },
+    "ur": {
+      "title": "EPUB میں تبدیل کریں",
+      "description": "اپنی دستاویز کو کتاب میں تبدیل کریں",
+      "usertext": "ای ریڈرز کے لیے EPUB فارمیٹ میں تبدیل کرنے کے لیے دستاویز منتخب کریں"
+    },
+    "vi": {
+      "title": "Chuyển đổi sang EPUB",
+      "description": "Chuyển đổi tài liệu của bạn thành sách",
+      "usertext": "Chọn tài liệu để chuyển đổi sang định dạng EPUB cho máy đọc sách điện tử"
+    },
+    "zh-CN": {
+      "title": "转换为 EPUB",
+      "description": "将文档转换为电子书",
+      "usertext": "选择文档以转换为适合电子阅读器的 EPUB 格式"
+    },
+    "zh-TW": {
+      "title": "轉換為 EPUB",
+      "description": "將文件轉換為電子書",
+      "usertext": "選擇文件以轉換為適合電子閱讀器的 EPUB 格式"
+    }
+  }
+}

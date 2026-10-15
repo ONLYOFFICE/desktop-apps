@@ -99,6 +99,7 @@ enum class CScalingFactor
     SCALING_FACTOR_5
 };
 
+class CAddonManager;
 class CAscApplicationManagerWrapper;
 class CAscApplicationManagerWrapper_Private;
 typedef CAscApplicationManagerWrapper AscAppManager;
@@ -148,6 +149,9 @@ private:
     void applyTheme(const std::wstring&, bool force = false);
     void handleDeeplinkActions(const std::vector<std::wstring>& actions);
     void setHasFrameFeature(CCefView*, const std::wstring&, int);
+#ifdef USE_ADDON_MODE
+    void checkAndSuggestAddonUpdate();
+#endif
 
     CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
@@ -189,6 +193,12 @@ public:
     static void             editorWindowMoving(const size_t, const QPoint&);
     static CMainWindow *    mainWindow();
     static const CEditorWindow *  editorWindowFromHandle(size_t);
+#ifdef USE_ADDON_MODE
+    static CAddonManager*   addonManager();
+    static bool             upgradeInProgress();
+    static void             setUpgradeInProgress(bool);
+    static void             showUpgradeDialog(QWidget *parent, int page = 0);
+#endif
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = L"");
     static void             sendCommandToAllEditors(const std::wstring& cmd, const std::wstring& args = L"");

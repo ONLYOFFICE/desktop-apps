@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>История изменений ONLYOFFICE</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 8.1.3 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .badge {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 1px 8px;
+            border-radius: 10px;
+            background: var(--color-gray-500);
+            color: var(--color-white);
+            font-size: 0.8em;
+            font-weight: normal;
+            vertical-align: middle;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        .note-warning {
+            border-left: 4px solid #e8a317;
+            padding: 4px 16px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        .note-warning .note-warning-label-important {
+            text-decoration: underline;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 10.0.0<span class="releasedate"> - {{DATE}}</span></h1>
+
+        <aside class="note note-warning" role="note">
+            <p><strong class="note-warning-label-important">Important:</strong> Version 10.0 is a fully rebuilt app, so some settings can’t be transferred from previous versions.
+After updating, just sign in to your clouds again in the Clouds section. If you used a custom user name instead of your system account name, simply enter it again in Settings.</p>
+        </aside>
+
+        <h2>New features</h2>
+
+        <h4>AI</h4>
+        <ul>
+            <li>Added the ability to install AI Tools (beta) with support for ONLYOFFICE Document Builder functionality, PowerShell and Bash command execution, as well as calculations in macros and in the agent itself</li>
+            <li>Redesigned the chat interface: renamed the AI tab to AI Tools and Chatbot to AI Chat; organized the tab elements into the Quick Actions and AI Assistants groups <b>(ai-tools)</b></li>
+            <li>Added prompt templates for different editors <b>(ai-tools)</b></li>
+            <li>Added the ability to create Quick Actions (custom one-time commands for the selected text) and choose a model for AI assistants in the Document Editor and Form Editor <b>(ai-tools)</b></li>
+            <li>Added support for internal links in the AI plugin: when answering questions about the content of documents and spreadsheets, the assistant formats references to locations as clickable links <b>(ai-tools)</b></li>
+            <li>Improved the text rewriting tool in the AI plugin in the Document Editor: any text selection is supported, including inside tables, with formatting and the position of inline objects preserved <b>(ai-tools)</b></li>
+            <li>Added support for MCP servers in the editors <b>(ai-tools)</b></li>
+            <li>Added web search support in the editors <b>(ai-tools)</b></li>
+        </ul>
+
+        <h4>All Editors</h4>
+        <ul>
+            <li>Updated the start page: moved the buttons to the left sidebar and redesigned the cloud service and template panels</li>
+            <li>Removed local document templates (only online templates remain)</li>
+            <li>Removed the AI plugin from the default package; it is now installed as an add-on</li>
+            <li>Reduced the window border thickness and added a window shadow (Linux)</li>
+        </ul>
+
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Added the horizontal line settings window</li>
+            <li>Implemented clipping of text by lines in a paragraph with exact line spacing</li>
+            <li>Added support for the <code>keepNext</code> parameter for tables, as well as for paragraphs and tables inside block content controls</li>
+            <li>Improved support for graphic equations and other inline objects in right-to-left (RTL) text</li>
+            <li>Implemented a table row option that prevents a row from breaking across pages</li>
+            <li>Added items for continuing a list or restarting numbering to the Paste Special menu</li>
+            <li>Implemented the ability to go to another user's cursor and follow it during co-editing</li>
+        </ul>
+
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Added range highlighting in the formula bar</li>
+            <li>Added saving to the <code>XLS</code> format</li>
+            <li>Sped up some operations by storing styles and data separately</li>
+            <li>Implemented creating charts from non-adjacent data</li>
+            <li>Added an option to enable and disable AutoComplete for cell values</li>
+            <li>Added tooltips for constants in function arguments (the <code>AGGREGATE</code> function)</li>
+            <li>Added an animated selection border after copying or cutting</li>
+            <li>Implemented support for sheet background when opening and saving files</li>
+            <li>Improved performance of array formulas that reference entire columns or rows (<code>ROW</code>, <code>COLUMN</code>, <code>SEQUENCE</code>, <code>SUM</code>, <code>SUMPRODUCT</code>, etc.): calculations are faster and use less memory</li>
+            <li>Extended the capabilities for working with hidden rows and columns, including unhiding hidden edge rows and columns via the context menu</li>
+        </ul>
+
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Extended print settings: added modes for printing notes, handouts, and outline, as well as printing hidden slides, slide background and frame, comments, slide numbers on handouts, and fitting to the page size</li>
+            <li>Added view modes: Outline, Notes, Handout Master, and Notes Master</li>
+            <li>Added the Reading View mode</li>
+            <li>Added the Animated and Video buttons to the File menu for exporting a presentation with a choice of slide range, resolution, slide duration, and format</li>
+            <li>Set a separate default duration for each transition type</li>
+        </ul>
+
+        <h4>Forms</h4>
+        <ul>
+            <li>Added the ability to save a signature in signature fields and reuse it from the list of saved signatures</li>
+            <li>Added an option to enable and disable spell checking when filling out a specific form</li>
+        </ul>
+
+        <h4>PDF Editor</h4>
+        <ul>
+            <li>Implemented removal of annotations in the Redact area</li>
+            <li>Added the ability to remove metadata from a document using the Redact feature</li>
+            <li>Added the annotation settings panel</li>
+            <li>Added the ability to insert a signature into a document via the Comment tab</li>
+            <li>The Comments panel now displays all annotations indicating their type</li>
+            <li>Added the ability to edit PDF form actions via Advanced Settings in the form settings panel</li>
+            <li>Implemented creating and filling out forms by roles, as well as collecting data from filled-out forms</li>
+            <li>Added recognition of tables with visible borders in the Edit Text mode</li>
+            <li>Added the signature field to the Forms tab in the Edit PDF mode</li>
+            <li>Added field visibility options to the right form settings panel</li>
+        </ul>
+
+        <h4>Convert</h4>
+        <ul>
+            <li>Added support for the <code>OFD</code> format: files can be opened for viewing and converted to other formats in the same way as <code>XPS</code></li>
+        </ul>
+
+        <h2>Fixes</h2>
+
+        <h4>Security</h4>
+        <ul>
+            <li>Fixed XSS vulnerability in hyperlinks in <code>DOCX</code> documents</li>
+            <li>Fixed CVE-2022-23308 vulnerability during document conversion</li>
+            <li>Fixed macro sandbox bypass</li>
+            <li>Fixed incorrect memory write when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed XSS vulnerability in the Name field when creating an AI assistant</li>
+            <li>Fixed converter crash when processing circular style inheritance chains in <code>DOCX</code></li>
+            <li>Fixed stack buffer overflow when reading OLE data during conversion of legacy format documents</li>
+            <li>Fixed heap buffer overflow when rendering image masks in <code>PDF</code></li>
+            <li>Fixed macro sandbox bypass with access to cookies</li>
+            <li>Fixed out-of-bounds read when converting <code>DOC</code> to <code>DOCX</code></li>
+            <li>Fixed out-of-bounds read when processing <code>PPT</code> metafiles, which led to memory disclosure in the resulting <code>PPTX</code></li>
+            <li>Fixed out-of-bounds read when parsing character formatting in <code>DOC</code> files</li>
+            <li>Fixed out-of-bounds read when parsing the piece table in <code>DOC</code> files</li>
+            <li>Fixed execution of embedded JavaScript in <code>PDF</code> documents</li>
+            <li>Fixed double free when converting some <code>DOCX</code> files</li>
+            <li>Fixed out-of-bounds read when parsing the font table in <code>DOC</code> files</li>
+            <li>Fixed availability of the <code>AscDesktopEditor</code> object to untrusted web pages opened via an <code>oo-office://</code> link</li>
+            <li>Fixed heap out-of-bounds write caused by integer overflow during document conversion</li>
+            <li>Fixed arbitrary command execution via the document name when using the Send feature</li>
+            <li>Fixed XSS vulnerability in the function arguments window in the Spreadsheet Editor</li>
+            <li>Fixed execution of malicious JavaScript added to <code>PDF</code> file actions</li>
+            <li>Fixed path traversal vulnerability when processing <code>HML</code> files</li>
+            <li>Fixed arbitrary file write when extracting archives during conversion</li>
+            <li>Fixed local file read during <code>EPUB</code> conversion</li>
+            <li>Fixed XSS vulnerability in the Document Editor via a font or style name in the Review panel</li>
+            <li>Fixed out-of-bounds read when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed arbitrary file deletion from a <code>PDF</code> document</li>
+            <li>Fixed document crash when calling <code>AscDesktopEditor.execCommand()</code> and <code>AscDesktopEditor.PluginInstall()</code> without arguments</li>
+            <li>Fixed stack buffer overflow when processing fonts in <code>XPS</code> files</li>
+            <li>Fixed XSS vulnerability in the HTML plugin when pasting into a document</li>
+            <li>Fixed out-of-bounds read when processing <code>EMF+</code> bitmaps, which led to memory disclosure</li>
+            <li>Fixed out-of-bounds read when processing hyperlinks in <code>XLS</code>, which led to memory disclosure</li>
+            <li>Fixed out-of-bounds read when rendering <code>WMF</code>, which led to memory disclosure in the resulting document</li>
+        </ul>
+
+    </div>
+</body>
+</html>

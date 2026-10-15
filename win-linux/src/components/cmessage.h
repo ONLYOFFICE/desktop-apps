@@ -36,70 +36,103 @@
 #ifndef CMESSAGE_H
 #define CMESSAGE_H
 
+#include <QCoreApplication>
 #include <QString>
-
-
-enum class MsgBtns {
-    mbOk = 0,
-    mbYesNo,
-    mbYesDefNo,
-    mbYesNoCancel,
-    mbYesDefNoCancel,
-    mbOkCancel,
-    mbOkDefCancel,
-    mbYesDefSkipNo,
-    mbBuy,
-    mbActivateDefContinue,
-    mbContinue,
-    mbSkipRemindInstall,
-    mbSkipRemindSaveandinstall,
-    mbSkipRemindDownload,
-    mbInslaterRestart
-};
-enum class MsgType {
-    MSG_INFO = 0,
-    MSG_WARN,
-    MSG_CONFIRM,
-    MSG_ERROR,
-    MSG_BRAND
-};
-enum MsgRes {
-    MODAL_RESULT_CANCEL = 0,
-    MODAL_RESULT_YES,
-    MODAL_RESULT_NO,
-    MODAL_RESULT_OK,
-    MODAL_RESULT_SKIP,
-    MODAL_RESULT_BUY,
-    MODAL_RESULT_ACTIVATE,
-    MODAL_RESULT_CONTINUE,
-    MODAL_RESULT_SKIPVER,
-    MODAL_RESULT_REMIND,
-    MODAL_RESULT_DOWNLOAD,
-    MODAL_RESULT_INSTALL,
-    MODAL_RESULT_INSLATER,
-    MODAL_RESULT_RESTART
-};
-
-struct CMessageOpts {
-    bool *checkBoxState = nullptr;
-    QString chekBoxText;
-    QString contentText;
-    QString linkText;
-};
+#include <initializer_list>
 
 class QWidget;
-namespace CMessage
-{
-int showMessage(QWidget *parent,
-                const QString &msg,
-                MsgType msgType,
-                MsgBtns msgBtns = MsgBtns::mbOk,
-                const CMessageOpts &opts = {});
+class MessageQtBackend;
+class MessagePlatformBackend;
 
-void confirm(QWidget *parent, const QString &msg);
-void info(QWidget *parent, const QString &msg);
-void warning(QWidget *parent, const QString &msg);
-void error(QWidget *parent, const QString &msg);
-}
+class CMessage
+{
+public:
+    explicit CMessage(QWidget *parent);
+    ~CMessage();
+
+    enum class Buttons
+    {
+        Ok = 0,
+        OkCancel,
+        OkDefCancel,
+        YesNo,
+        YesDefNo,
+        YesNoCancel,
+        YesDefNoCancel,
+    };
+
+    enum class DefaultButton
+    {
+        FirstButton = 0,
+        SecondButton,
+        ThirdButton
+    };
+
+    enum class Icon
+    {
+        Info = 0,
+        Warning,
+        Confirm,
+        Error,
+        Brand
+    };
+
+    enum Result
+    {
+        Ok = 0,
+        Yes,
+        No,
+        Cancel,
+
+        // Results for custom buttons.
+        FirstButton,
+        SecondButton,
+        ThirdButton
+    };
+
+    struct Config
+    {
+        Config() : checkBoxState(nullptr) {}
+        bool *checkBoxState;
+        QString checkBoxText;
+        QString contentText;
+        QString linkText;
+    };
+
+    static int showMessage(QWidget *parent,
+                           const QString &msg,
+                           Icon msgIcon,
+                           Buttons msgBtns = Buttons::Ok,
+                           const Config &conf = {});
+
+    static void confirm(QWidget *parent, const QString &msg);
+    static void info(QWidget *parent, const QString &msg);
+    static void warning(QWidget *parent, const QString &msg);
+    static void error(QWidget *parent, const QString &msg);
+
+    void setButtons(std::initializer_list<QString>);
+    void setButtons(Buttons);
+    void setDefaultButton(DefaultButton);
+    void setIcon(Icon);
+    void setText(const QString&);
+    void setConfig(const Config&);
+    int exec();
+
+private:
+    friend class MessageQtBackend;
+    friend class MessagePlatformBackend;
+    friend class CNotification;
+
+    struct ButtonText
+    {
+        static QString ok()     { return QCoreApplication::translate("CMessage", "OK"); }
+        static QString yes()    { return QCoreApplication::translate("CMessage", "Yes"); }
+        static QString no()     { return QCoreApplication::translate("CMessage", "No"); }
+        static QString cancel() { return QCoreApplication::translate("CMessage", "Cancel"); }
+    };
+
+    MessageQtBackend       *m_pQtBackend;
+    MessagePlatformBackend *m_pPlatformBackend;
+};
 
 #endif // CMESSAGE_H

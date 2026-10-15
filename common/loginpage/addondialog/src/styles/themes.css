@@ -1,0 +1,9 @@
+/* sourced directly from loginpage/src/styles/themes so both projects always
+   share the exact same theme definitions instead of drifting duplicates. */
+@import "../../../src/styles/themes/colors.css";
+@import "../../../src/styles/themes/colors_white.css";
+@import "../../../src/styles/themes/colors_night.css";
+@import "../../../src/styles/themes/colors_gray.css";
+@import "../../../src/styles/themes/colors_dark.css";
+@import "../../../src/styles/themes/colors_contrast_dark.css";
+@import "../../../src/styles/themes/colors_classic.css";

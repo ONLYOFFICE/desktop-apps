@@ -108,6 +108,11 @@ public:
 #endif
     void doOpenLocalFile(COpenOptions&);
     void handleWindowAction(const std::wstring& action);
+#ifdef USE_ADDON_MODE
+    void sendAddonStatusToStartPage(const QString& text = QString(),
+                                    const QString& icon = QString(),
+                                    bool buttonLock = false);
+#endif
     virtual void setScreenScalingFactor(double, bool resize = true) final;
     virtual void updateScalingFactor(double) final;
 
@@ -115,9 +120,7 @@ protected:
     virtual QString getSaveMessage() const;
     virtual void refreshAboutVersion() {};
     virtual void onLayoutDirectionChanged() final;
-#ifdef _WIN32
     virtual void applyWindowState() final;
-#endif
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
 
@@ -158,12 +161,15 @@ public slots:
     void onDocumentPrint(void *);
     void onReporterMode(int, bool);
     void onErrorPage(int, const std::wstring&);
+    void onAddUserTemplateFiles();
+    void onAddUserTemplateFolder();
     virtual void onDocumentReady(int);
 
 private:
     QWidget * createMainPanel(QWidget *parent);
     int  trySaveDocument(int);
     void setTabMenu(int index, const QPoint &pos);
+    void importUserTemplates(const QStringList &filePaths);
 
     CAscTabWidget *  m_pTabs = nullptr;
     CSVGPushButton*  m_pButtonMain = nullptr;

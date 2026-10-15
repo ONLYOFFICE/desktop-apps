@@ -1,0 +1,26 @@
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  background: var(--background-primary-button);
+  color: var(--text-inverse);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: toast-fade-in 0.2s ease;
+  white-space: nowrap;
+}
+
+@keyframes toast-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

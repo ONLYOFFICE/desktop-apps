@@ -1,0 +1,242 @@
+{
+  "id": "clear-formatting",
+  "group": "word",
+  "prompt": "Please remove all custom formatting from the attached document including styles, fonts, colors, and spacing, leaving clean consistently formatted plain text.",
+  "locale": {
+    "en": {
+      "title": "Clear Formatting",
+      "description": "Clean styles, fonts, and colors",
+      "usertext": "Select a document to remove all custom formatting (styles, fonts, colors)"
+    },
+    "ar-SA": {
+      "title": "مسح التنسيق",
+      "description": "تنظيف الأنماط والخطوط والألوان",
+      "usertext": "اختر مستنداً لإزالة جميع التنسيقات المخصصة (الأنماط، الخطوط، الألوان)"
+    },
+    "be": {
+      "title": "Ачысціць фарматаванне",
+      "description": "Ачысціць стылі, шрыфты і колеры",
+      "usertext": "Выберыце дакумент для выдалення ўсяго карыстальніцкага фарматавання (стылі, шрыфты, колеры)"
+    },
+    "bg": {
+      "title": "Изчистване на форматиране",
+      "description": "Почистване на стилове, шрифтове и цветове",
+      "usertext": "Изберете документ за премахване на цялото персонализирано форматиране (стилове, шрифтове, цветове)"
+    },
+    "ca": {
+      "title": "Esborrar format",
+      "description": "Netejar estils, tipus de lletra i colors",
+      "usertext": "Seleccioneu un document per eliminar tot el format personalitzat (estils, tipus de lletra, colors)"
+    },
+    "cs": {
+      "title": "Vymazat formátování",
+      "description": "Vyčistit styly, písma a barvy",
+      "usertext": "Vyberte dokument, ze kterého chcete odstranit veškeré vlastní formátování (styly, písma, barvy)"
+    },
+    "da": {
+      "title": "Ryd formatering",
+      "description": "Rens typografier, skrifttyper og farver",
+      "usertext": "Vælg et dokument for at fjerne al brugerdefineret formatering (typografier, skrifttyper, farver)"
+    },
+    "de": {
+      "title": "Formatierung entfernen",
+      "description": "Stile, Schriften und Farben bereinigen",
+      "usertext": "Wählen Sie ein Dokument, um alle benutzerdefinierte Formatierung zu entfernen (Stile, Schriften, Farben)"
+    },
+    "el": {
+      "title": "Εκκαθάριση μορφοποίησης",
+      "description": "Καθαρισμός στυλ, γραμματοσειρών και χρωμάτων",
+      "usertext": "Επιλέξτε ένα έγγραφο για κατάργηση όλης της προσαρμοσμένης μορφοποίησης (στυλ, γραμματοσειρές, χρώματα)"
+    },
+    "en-GB": {
+      "title": "Clear Formatting",
+      "description": "Clean styles, fonts, and colours",
+      "usertext": "Select a document to remove all custom formatting (styles, fonts, colours)"
+    },
+    "es": {
+      "title": "Borrar formato",
+      "description": "Limpiar estilos, fuentes y colores",
+      "usertext": "Seleccione un documento para eliminar todo el formato personalizado (estilos, fuentes, colores)"
+    },
+    "et": {
+      "title": "Vorminduse kustutamine",
+      "description": "Stiilide, fontide ja värvide puhastamine",
+      "usertext": "Valige dokument, millest eemaldatakse kogu kohandatud vormindus (stiilid, fondid, värvid)"
+    },
+    "fi": {
+      "title": "Tyhjennä muotoilu",
+      "description": "Puhdista tyylit, fontit ja värit",
+      "usertext": "Valitse asiakirja kaiken mukautetun muotoilun poistamiseksi (tyylit, fontit, värit)"
+    },
+    "fr": {
+      "title": "Effacer la mise en forme",
+      "description": "Nettoyer les styles, les polices et les couleurs",
+      "usertext": "Sélectionnez un document pour supprimer toute la mise en forme personnalisée (styles, polices, couleurs)"
+    },
+    "ga": {
+      "title": "Glan Formáidiú",
+      "description": "Glan stíleanna, clónna agus dathanna",
+      "usertext": "Roghnaigh cáipéis chun gach formáidiú saincheaptha a bhaint (stíleanna, clónna, dathanna)"
+    },
+    "gl": {
+      "title": "Borrar formato",
+      "description": "Limpar estilos, fontes e cores",
+      "usertext": "Seleccione un documento para eliminar todo o formato personalizado (estilos, fontes, cores)"
+    },
+    "he": {
+      "title": "ניקוי עיצוב",
+      "description": "נקה סגנונות, גופנים וצבעים",
+      "usertext": "בחר מסמך להסרת כל העיצוב המותאם אישית (סגנונות, גופנים, צבעים)"
+    },
+    "hi": {
+      "title": "फ़ॉर्मेटिंग साफ़ करें",
+      "description": "शैलियां, फ़ॉन्ट और रंग साफ़ करें",
+      "usertext": "सभी कस्टम फ़ॉर्मेटिंग हटाने के लिए एक दस्तावेज़ चुनें (शैलियां, फ़ॉन्ट, रंग)"
+    },
+    "hr": {
+      "title": "Ukloni oblikovanje",
+      "description": "Obrišite stilove, fontove i boje",
+      "usertext": "Odaberite dokument za uklanjanje svih prilagođenih oblikovanja (stilovi, fontovi, boje)"
+    },
+    "hu": {
+      "title": "Formázás törlése",
+      "description": "Stílusok, betűtípusok és színek megtisztítása",
+      "usertext": "Válasszon dokumentumot az összes egyéni formázás eltávolításához (stílusok, betűtípusok, színek)"
+    },
+    "hy": {
+      "title": "Ջնջել ֆորմատավորումը",
+      "description": "Մաքրել ոճերը, տառատեսակները և գույները",
+      "usertext": "Ընտրեք փաստաթուղթ՝ բոլոր հատուկ ֆորմատավորումը հեռացնելու համար (ոճեր, տառատեսակներ, գույներ)"
+    },
+    "it": {
+      "title": "Cancella formattazione",
+      "description": "Pulisci stili, font e colori",
+      "usertext": "Seleziona un documento per rimuovere tutta la formattazione personalizzata (stili, font, colori)"
+    },
+    "ja": {
+      "title": "書式をクリア",
+      "description": "スタイル、フォント、色をクリーンアップ",
+      "usertext": "すべてのカスタム書式を削除するドキュメントを選択してください（スタイル、フォント、色）"
+    },
+    "ko": {
+      "title": "서식 지우기",
+      "description": "스타일, 글꼴 및 색상 정리",
+      "usertext": "모든 사용자 지정 서식을 제거할 문서를 선택하세요 (스타일, 글꼴, 색상)"
+    },
+    "lo": {
+      "title": "ລ້າງການຈັດຮູບແບບ",
+      "description": "ລ້າງຮູບແບບ, ຟອນ, ແລະສີ",
+      "usertext": "ເລືອກເອກະສານເພື່ອລຶບການຈັດຮູບແບບທັງໝົດ (ຮູບແບບ, ຟອນ, ສີ)"
+    },
+    "lt": {
+      "title": "Išvalyti formatavimą",
+      "description": "Valyti stilius, šriftus ir spalvas",
+      "usertext": "Pasirinkite dokumentą, iš kurio norite pašalinti visą pasirinktinį formatavimą (stiliai, šriftai, spalvos)"
+    },
+    "lv": {
+      "title": "Notīrīt formatējumu",
+      "description": "Notīrīt stilus, fontus un krāsas",
+      "usertext": "Atlasiet dokumentu, lai noņemtu visu pielāgoto formatējumu (stili, fonti, krāsas)"
+    },
+    "nl": {
+      "title": "Opmaak wissen",
+      "description": "Stijlen, lettertypen en kleuren opschonen",
+      "usertext": "Selecteer een document om alle aangepaste opmaak te verwijderen (stijlen, lettertypen, kleuren)"
+    },
+    "no": {
+      "title": "Fjern formatering",
+      "description": "Rens stiler, skrifter og farger",
+      "usertext": "Velg et dokument for å fjerne all tilpasset formatering (stiler, skrifter, farger)"
+    },
+    "pl": {
+      "title": "Wyczyść formatowanie",
+      "description": "Oczyść style, czcionki i kolory",
+      "usertext": "Wybierz dokument, aby usunąć całe niestandardowe formatowanie (style, czcionki, kolory)"
+    },
+    "pt-BR": {
+      "title": "Limpar formatação",
+      "description": "Limpar estilos, fontes e cores",
+      "usertext": "Selecione um documento para remover toda a formatação personalizada (estilos, fontes, cores)"
+    },
+    "pt-PT": {
+      "title": "Limpar formatação",
+      "description": "Limpar estilos, tipos de letra e cores",
+      "usertext": "Selecione um documento para remover toda a formatação personalizada (estilos, tipos de letra, cores)"
+    },
+    "ro": {
+      "title": "Ștergere formatare",
+      "description": "Curățați stiluri, fonturi și culori",
+      "usertext": "Selectați un document pentru a elimina toată formatarea personalizată (stiluri, fonturi, culori)"
+    },
+    "ru": {
+      "title": "Очистить форматирование",
+      "description": "Очистить стили, шрифты и цвета",
+      "usertext": "Выберите документ для удаления всего пользовательского форматирования (стили, шрифты, цвета)"
+    },
+    "si": {
+      "title": "හැඩතල ගැන්වීම ඉවත් කරන්න",
+      "description": "විලාස, අකුරු සහ වර්ණ පිරිසිදු කරන්න",
+      "usertext": "සියලු අභිරුචි හැඩතල ගැන්වීම (විලාස, අකුරු, වර්ණ) ඉවත් කිරීමට ලේඛනයක් තෝරන්න"
+    },
+    "sk": {
+      "title": "Vymazať formátovanie",
+      "description": "Vyčistiť štýly, písma a farby",
+      "usertext": "Vyberte dokument na odstránenie všetkého vlastného formátovania (štýly, písma, farby)"
+    },
+    "sl": {
+      "title": "Počisti oblikovanje",
+      "description": "Očistite sloge, pisave in barve",
+      "usertext": "Izberite dokument za odstranitev vsega prilagojenega oblikovanja (slogi, pisave, barve)"
+    },
+    "sq": {
+      "title": "Pastro formatimin",
+      "description": "Pastro stilet, fontet dhe ngjyrat",
+      "usertext": "Zgjidhni një dokument për të hequr të gjithë formatimin e personalizuar (stile, fonte, ngjyra)"
+    },
+    "sr-Cyrl-RS": {
+      "title": "Уклони обликовање",
+      "description": "Очистите стилове, фонтове и боје",
+      "usertext": "Изаберите документ за уклањање свих прилагођених обликовања (стилови, фонтови, боје)"
+    },
+    "sr-Latn-RS": {
+      "title": "Ukloni oblikovanje",
+      "description": "Očistite stilove, fontove i boje",
+      "usertext": "Izaberite dokument za uklanjanje svih prilagođenih oblikovanja (stilovi, fontovi, boje)"
+    },
+    "sv": {
+      "title": "Rensa formatering",
+      "description": "Rensa stilar, typsnitt och färger",
+      "usertext": "Välj ett dokument för att ta bort all anpassad formatering (stilar, typsnitt, färger)"
+    },
+    "tr": {
+      "title": "Biçimlendirmeyi Temizle",
+      "description": "Stilleri, yazı tiplerini ve renkleri temizleyin",
+      "usertext": "Tüm özel biçimlendirmeyi kaldırmak için bir belge seçin (stiller, yazı tipleri, renkler)"
+    },
+    "uk": {
+      "title": "Очистити форматування",
+      "description": "Очистити стилі, шрифти та кольори",
+      "usertext": "Виберіть документ для видалення всього нестандартного форматування (стилі, шрифти, кольори)"
+    },
+    "ur": {
+      "title": "فارمیٹنگ صاف کریں",
+      "description": "اسٹائلز، فانٹس اور رنگ صاف کریں",
+      "usertext": "تمام حسب ضرورت فارمیٹنگ ہٹانے کے لیے دستاویز منتخب کریں (اسٹائلز، فانٹس، رنگ)"
+    },
+    "vi": {
+      "title": "Xóa định dạng",
+      "description": "Làm sạch kiểu, phông chữ và màu sắc",
+      "usertext": "Chọn tài liệu để xóa tất cả định dạng tùy chỉnh (kiểu, phông chữ, màu sắc)"
+    },
+    "zh-CN": {
+      "title": "清除格式",
+      "description": "清理样式、字体和颜色",
+      "usertext": "选择文档以删除所有自定义格式（样式、字体、颜色）"
+    },
+    "zh-TW": {
+      "title": "清除格式",
+      "description": "清理樣式、字體和顏色",
+      "usertext": "選擇文件以刪除所有自訂格式（樣式、字體、顏色）"
+    }
+  }
+}

@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ כבר קיים.\nהאם ברצונך להחליף אותו?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ עזרה";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "תודות";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "תכונות AI Tools לא יהיו זמינות לאחר הסרת ההתקנה. כל הגדרות הבינה המלאכותית (כולל מפתחות API) לא יוסרו.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "אירעה שגיאה בפריסת הארכיון";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "אירעה שגיאה בלתי צפויה בעת התקנת התוסף.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "היישום צריך להפעיל מחדש";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "האם אתה בטוח שברצונך להסיר את ההתקנה של ONLYOFFICE AI Tools?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "לפני החתימה על המסמך, יש לשמור אותו.";
 
 /* No comment provided by engineer. */
 "Cancel" = "ביטל";
+
+/* No comment provided by engineer. */
+"Canceled" = "בוטל";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "אין אפשרות לפתוח קובץ של חתימה דיגיטלית";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "אין אפשרות לפתוח תיקיה של מיקום הקובץ.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "ערכים מופרדים באמצעות פסיקים (*.csv)";
+"Close" = "סגירה";
+
+/* No comment provided by engineer. */
+"Close all" = "סגירת הכל";
+
+/* No comment provided by engineer. */
+"Close saved" = "סגירת נשמר";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "ערכים מופרדים באמצעות פסיקים";
+
+/* No comment provided by engineer. */
+"Community version %@" = "גרסת Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "יצירת חדש";
 
 /* No comment provided by engineer. */
 "Create portal" = "יצירת פורטל";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "מחיקה ויציאה";
 
 /* No comment provided by engineer. */
-"DjVu File" = "מסמך דיגיטלי (*.djvu)";
+"DjVu File" = "מסמך דיגיטלי";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "האם ברצונך לשמור את השינויים שבוצעו במסמך \"%@\"?";
@@ -44,19 +80,37 @@
 "Document %ld.pdf" = "%ld.pdf מסמכים";
 
 /* No comment provided by engineer. */
-"Document template" = "תבנית מסמך Word Open XML (*.dotx)";
+"Document template" = "תבנית מסמך Word Open XML";
 
 /* No comment provided by engineer. */
 "Don't Save" = "אל תשמור";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "גיליון אלקטרוני של Excel 97-2003 (*.xls)";
+"Electronic Publication" = "קובץ פרסום אלקטרוני";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "גיליון אלקטרוני Office Open XML (*.xlsx)";
+"Enterprise version %@" = "גרסת Enterprise %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "קובץ FictionBook 2 (*.fb2)";
+"Excel 97-2003 Spreadsheet" = "גיליון אלקטרוני של Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "גיליון אלקטרוני Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "גליון עבודה בינארי של Excel";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "הורדת התוסף נכשלה עקב שגיאת רשת.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "התקנת ערכת נושא נכשלה";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "שמירת חבילת התוסף שהורדה נכשלה.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "קובץ FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "הקובץ \"%@\" אינו יכול להיות פתוח או לא קיים.";
@@ -71,22 +125,40 @@
 "Hide %@" = "הסתר % @";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "אעשה זאת מאוחר יותר";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "אם לא תסקור את המסמכים שלך, כל השינויים יאבדו.";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "אם כבר רכשת %@, מפתח ההפעלה אמור למצוא באישור דואר אלקטרוני.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "תמונת JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "הסכם רישיון";
 
 /* No comment provided by engineer. */
-"Macro-enabled Presentation" = "מצגת מותאמת מאקרו (*.pptm)";
+"Macro-enabled Presentation" = "מצגת מותאמת מאקרו";
 
 /* No comment provided by engineer. */
-"Macro-enabled spreadsheet template" = "תבנית גיליון אלקטרוני מותאמת מאקרו (*.xltm)";
+"Macro-enabled spreadsheet template" = "תבנית גיליון אלקטרוני מותאמת מאקרו";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "קובץ Mobipocket (*.mobi)";
+"Markdown File" = "קובץ Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "קובץ Mobipocket";
+
+/* No comment provided by engineer. */
+"Move to end" = "העברה לסוף";
+
+/* No comment provided by engineer. */
+"Move to start" = "העברה להתחלה";
 
 /* No comment provided by engineer. */
 "new-document" = "מסמך חדש";
@@ -104,7 +176,16 @@
 "No" = "לא";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "אין גרסה תואמת של התוסף זמינה עבור גרסה זו של היישום.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "אין מספיק זיכרון להשלמת הורדת התוסף.";
+
+/* No comment provided by engineer. */
 "OK" = "אוקיי";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools הוסר בהצלחה";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ל- ONLYOFFICE אין אפשרות לפתוח את קובץ החתימה הדיגיטלית. נסה לפתוח קובץ אחר.";
@@ -113,43 +194,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ל- ONLYOFFICE אין אפשרות לפתוח את המפתח הפרטי. נסה לפתוח קובץ אחר.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "תבנית מסמך OpenDocument (*.ott)";
+"ONLYOFFICE Form Document" = "טופס ONLYOFFICE PDF";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "תבנית OpenDocument Presentation (*.otp)";
+"OpenDocument Document Template" = "תבנית מסמך OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "תבנית גיליון אלקטרוני OpenDocument (*.ots)";
+"OpenDocument Presentation Template" = "תבנית OpenDocument Presentation";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "תבנית גיליון אלקטרוני OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "פתיחה";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "קובץ טקסט OpenDocument (*.odt)";
+"OpenOffice Document" = "קובץ טקסט OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "מצגת OpenDocument Presentation (*.odp)";
+"OpenOffice Presentation" = "מצגת OpenDocument Presentation";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "גיליון נתונים OpenDocument Spreadsheet (*.ods)";
+"OpenOffice Spreadsheet" = "גיליון נתונים OpenDocument Spreadsheet";
 
 /* No comment provided by engineer. */
-"PDF File" = "מסמך נייד (*.pdf)";
+"PDF File" = "מסמך נייד";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "מסמך נייד /A (*.pdf)";
+"PDF/A File" = "מסמך נייד /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "קובץ טקסט רגיל (*.txt)";
+"Pin to tab" = "הצמד לשונית";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "מצגת PowerPoint 97-2003 (*.ppt)";
+"Plain Text" = "קובץ טקסט רגיל";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "מצגת Office Open XML (*.pptx)";
+"PNG Image" = "תמונת PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "הצגת שקופיות Office Open XML (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "מצגת PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "מצגת Office Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "הצגת שקופיות Office Open XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "בהכנה...";
@@ -158,7 +248,7 @@
 "Presentation %ld.pptx" = "מצגת %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "תבנית מצגת Open XML של PowerPoint (*.potx)";
+"Presentation template" = "תבנית מצגת Open XML של PowerPoint";
 
 /* No comment provided by engineer. */
 "Presenter View" = "תצוגת מגיש";
@@ -167,10 +257,16 @@
 "Quit %@" = "צא % @";
 
 /* No comment provided by engineer. */
+"Replace" = "החלף";
+
+/* No comment provided by engineer. */
+"Restart now" = "הפעל מחדש עכשיו";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "סקור שינויים...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "קובץ בתבנית טקסט עשיר (*.rtf)";
+"Rich Text Document" = "קובץ בתבנית טקסט עשיר";
 
 /* No comment provided by engineer. */
 "Save" = "שמר";
@@ -179,19 +275,55 @@
 "Save the document?" = "לשמור את המסמך?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "בחר קובץ ערכת נושא";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "ערכת הנושא שנבחרה אינה חוקית";
+
+/* No comment provided by engineer. */
+"Show in folder" = "הצגה בתיקייה";
+
+/* No comment provided by engineer. */
+"Show main window" = "הצגת חלון ראשי";
+
+/* No comment provided by engineer. */
 "Signature Details" = "פרטי חתימה";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "גיליון אלקטרוני %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "תבנית גיליון אלקטרוני של Excel Open XML (*.xltx)";
+"Spreadsheet template" = "תבנית גיליון אלקטרוני של Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "תודה שהערכתם %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "כתובת ה-URL להורדת התוסף אינה חוקית.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "פרטי התוסף אינם חוקיים או שלמים.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "חבילת התוסף פגומה או שונתה.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "המסמך \"%@\" חייב להיות מובנה. נמשך?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "רכיב AI Tools המותקן אינו תואם לגרסה זו של היישום. לעדכן את AI Tools עכשיו?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "ערכת הנושא כבר קיימת. להחליף אותה?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "קובץ זה אינו מכיל ערכת נושא";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "קובץ ערכת נושא זה אינו חוקי";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "כדי להתקין את התוסף, עדכן את היישום לגרסה האחרונה.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "כדי לפתוח את מיקום הקובץ, יש לשמור אותו.";
@@ -200,7 +332,16 @@
 "Unconfirmed" = "לא אושר";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "ניתוק הצמדה של לשונית";
+
+/* No comment provided by engineer. */
 "Untitled" = "ללא כותרת";
+
+/* No comment provided by engineer. */
+"Version %@" = "גירסה %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "ציור Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "דף";
@@ -209,13 +350,13 @@
 "With access to pro features" = "עם גישה לתכונות מקצועיות";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "מסמך Word 97-2003 (*.doc)";
+"Word 97-2003 Document" = "מסמך Word 97-2003";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "מסמך Office Open XML (*.docx)";
+"Word 2007 Document" = "מסמך Office Open XML";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "מסמך OpenXPS (*.xps)";
+"XML Paper Specification" = "מסמך OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "כן";
@@ -225,6 +366,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "הפעלת בהצלחה את %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "עליך להפעיל מחדש את היישום כדי שההגדרות ייכנסו לתוקף.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "השינויים יאבדו אם לא תשמור אותם.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "השינויים יאבדו אם לא תשמור אותם.";

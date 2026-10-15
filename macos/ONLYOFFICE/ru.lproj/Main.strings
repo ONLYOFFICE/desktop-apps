@@ -16,6 +16,9 @@
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC"; */
 "2oI-Rn-ZJC.title" = "Преобразования";
 
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "3FX-nT-Klk"; */
+"3FX-nT-Klk.title" = "Закрыть";
+
 /* Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg"; */
 "3IN-sU-3Bg.title" = "Правописание";
 
@@ -55,9 +58,6 @@
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS"; */
 "9aQ-wl-gjS.title" = "Создать";
 
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B"; */
-"9i7-kj-42B.title" = "нет";
-
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
 "9ic-FL-obx.title" = "Замены";
 
@@ -72,6 +72,18 @@
 
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3"; */
 "agt-UL-0e3.title" = "По умолчанию";
+
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "aiL-Ab-t19"; */
+"aiL-Ab-t19.title" = "Лицензировано по";
+
+/* Class = "NSButtonCell"; title = "Commercial"; ObjectID = "aiL-Ab-t22"; */
+"aiL-Ab-t22.title" = "Коммерческая";
+
+/* Class = "NSTextFieldCell"; title = "ONLYOFFICE AI Tools"; ObjectID = "aiN-Ab-t14"; */
+"aiN-Ab-t14.title" = "ONLYOFFICE AI Tools";
+
+/* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "aiV-Ab-t16"; */
+"aiV-Ab-t16.title" = "Версия";
 
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
 "aTl-1u-JFS.title" = "Печать…";
@@ -112,6 +124,9 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l"; */
 "CJU-dx-a9l.title" = "Лицензии";
 
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "clr-Cl-d05"; */
+"clr-Cl-d05.title" = "Очистить";
+
 /* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
 "cqv-fj-IhA.title" = "Выделенный фрагмент";
 
@@ -150,9 +165,6 @@
 
 /* Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum"; */
 "FKE-Sm-Kum.title" = "Справка";
-
-/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi"; */
-"FoF-wl-Dxi.title" = "Имя";
 
 /* Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27"; */
 "GB9-OM-e27.title" = "Жирный";
@@ -247,6 +259,9 @@
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "Все окна - на передний план";
 
+/* Class = "NSTextFieldCell"; title = "Licensed under"; ObjectID = "lLc-Ab-t05"; */
+"lLc-Ab-t05.title" = "Лицензировано по";
+
 /* Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI"; */
 "LVM-kO-fVI.title" = "Вставить линейку";
 
@@ -258,6 +273,9 @@
 
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "Скопировать линейку";
+
+/* Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by"; */
+"ne5-Gy-5by.title" = "PDF";
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
 "NMo-om-nkz.title" = "Службы";
@@ -274,11 +292,17 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
 "oas-Oc-fiZ.title" = "Недавние";
 
+/* Class = "NSButtonCell"; title = "Show in folder"; ObjectID = "ofn-Cl-d04"; */
+"ofn-Cl-d04.title" = "Показать в папке";
+
 /* Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1"; */
 "ogc-rX-tC1.title" = "Разредить";
 
 /* Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "Скрыть ONLYOFFICE";
+
+/* Class = "NSButtonCell"; title = "Open"; ObjectID = "opn-Cl-d03"; */
+"opn-Cl-d03.title" = "Открыть";
 
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
 "OwM-mh-QMV.title" = "Найти предыдущее";
@@ -319,15 +343,6 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "Умные дефисы";
 
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj"; */
-"Riu-oE-8dj.title" = "Закрыть";
-
-/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ"; */
-"Rkd-xb-FRJ.title" = "нет";
-
-/* Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh"; */
-"RmO-tv-UKh.title" = "Выйти";
-
 /* Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF"; */
 "Rqc-34-cIF.title" = "Надстрочные";
 
@@ -354,6 +369,9 @@
 
 /* Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS"; */
 "tRr-pd-1PS.title" = "Детекторы данных";
+
+/* Class = "NSTextFieldCell"; title = "Downloads"; ObjectID = "ttl-Cl-d03"; */
+"ttl-Cl-d03.title" = "Загрузки";
 
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
 "tXI-mr-wws.title" = "Недавние";
@@ -410,7 +428,7 @@
 "wpr-3q-Mcd.title" = "Помощь";
 
 /* Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S"; */
-"WRG-CD-K1S.title" = "Подчёркнутый";
+"WRG-CD-K1S.title" = "Подчеркнутый";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
 "x3v-GG-iWU.title" = "Копировать";
@@ -445,12 +463,6 @@
 /* Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1"; */
 "ZM1-6Q-yy1.title" = "По левому краю";
 
-/* Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl"; */
-"Zsi-3o-ASl.title" = "Е-майл:";
-
 /* Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH"; */
 "ZvO-Gk-QUH.title" = "Абзац";
-
-/* Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N"; */
-"zwS-9G-S0N.title" = "Портал:";
 

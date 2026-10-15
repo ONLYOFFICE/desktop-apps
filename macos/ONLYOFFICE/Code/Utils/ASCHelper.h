@@ -57,4 +57,9 @@
 + (void)createCloudPath;
 + (NSString *)appName;
 + (NSString *)appNameShort;
++ (void)restartApp;
++ (BOOL)processArgsContain:(NSString *)arg;
++ (NSString *)generateTmpFileName:(NSString *)ext;
++ (NSString *)fileMd5Hash:(NSString *)filePath;
++ (NSDictionary *)parseJsonFile:(NSString *)path;
 @end

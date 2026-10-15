@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ sudah ada.\nApakah Anda ingin menggantinya?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "Bantuan %@";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Pernyataan";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Fitur AI Tools tidak akan tersedia setelah penghapusan instalasi. Semua pengaturan AI (termasuk kunci API) tidak akan dihapus.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Terjadi kesalahan saat membuka arsip";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Terjadi kesalahan tak terduga saat menginstal add-on.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Aplikasi perlu dimulai ulang";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Apakah Anda yakin ingin menghapus instalasi ONLYOFFICE AI Tools?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Sebelum menandatangani dokumen, dokumen harus disimpan.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Batal";
+
+/* No comment provided by engineer. */
+"Canceled" = "Dibatalkan";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Tidak dapat membuka file Tanda Tangan Digital";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "Tidak dapat membuka folder lokasi file.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Nilai Koma Terpisah (*.csv)";
+"Close" = "Menutup";
+
+/* No comment provided by engineer. */
+"Close all" = "Tutup semua";
+
+/* No comment provided by engineer. */
+"Close saved" = "Tutup tersimpan";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Nilai Koma Terpisah";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Versi Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Buat yang baru";
 
 /* No comment provided by engineer. */
 "Create portal" = "Buat portal";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "Hapus dan Keluar";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Dokumen Digital (*.djvu)";
+"DjVu File" = "Dokumen Digital";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Simpan perubahan pada dokumen \"%@\"?";
@@ -44,19 +80,37 @@
 "Document %ld.pdf" = "Dokumen %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Dokumen templat Word Open XML (*.dotx)";
+"Document template" = "Dokumen templat Word Open XML";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Jangan Simpan";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Lembar bentang Excel 97-2003 (*.xls)";
+"Electronic Publication" = "File Electronic Publication";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Lembar bentang Office Open XML (*.xlsx)";
+"Enterprise version %@" = "Versi Enterprise %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "File FictionBook 2 (*.fb2)";
+"Excel 97-2003 Spreadsheet" = "Lembar bentang Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Lembar bentang Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Lembar kerja biner Excel";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Gagal mengunduh add-on karena kesalahan jaringan.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Gagal memasang tema";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Gagal menyimpan paket add-on yang diunduh.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "File FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "File \"%@\" tidak dapat dibuka atau tidak ada.";
@@ -71,13 +125,37 @@
 "Hide %@" = "Sembunyikan %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "Saya akan melakukannya nanti";
+
+/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Jika Anda telah membeli %@, Anda akan mendapatkan kunci aktivasi di email konfirmasi.";
+
+/* No comment provided by engineer. */
+"JPG Image" = "Gambar JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Perjanjian Lisensi";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "E-book mobipocket (*.mobi)";
+"Macro-enabled Presentation" = "Presentasi yang Diaktifkan Makro";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Templat spreadsheet yang Diaktifkan Makro";
+
+/* No comment provided by engineer. */
+"Markdown File" = "File Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "E-book mobipocket";
+
+/* No comment provided by engineer. */
+"Move to end" = "Pindah ke akhir";
+
+/* No comment provided by engineer. */
+"Move to start" = "Pindahkan ke awal";
 
 /* No comment provided by engineer. */
 "new-document" = "Dokumen baru";
@@ -95,7 +173,16 @@
 "No" = "Tidak";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Tidak ada versi add-on yang kompatibel untuk versi aplikasi ini.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Memori tidak cukup untuk menyelesaikan unduhan add-on.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools berhasil dihapus instalasinya";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE tidak dapat membuka file Tanda Tangan Digital. Coba buka file lain.";
@@ -104,43 +191,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE tidak dapat membuka Kunci Pribadi. Coba buka file lain.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Templat Dokumen OpenDocument (*.ott)";
+"ONLYOFFICE Form Document" = "Formulir PDF ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Templat Presentasi OpenDocument (*.otp)";
+"OpenDocument Document Template" = "Templat Dokumen OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Templat Lembar Bentang OpenDocument (*.ots)";
+"OpenDocument Presentation Template" = "Templat Presentasi OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Templat Lembar Bentang OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Membuka";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "File Teks OpenDocument (*.odt)";
+"OpenOffice Document" = "File Teks OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Presentasi OpenDocument (*.odp)";
+"OpenOffice Presentation" = "Presentasi OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Lembar Bentang OpenDocument (*.ods)";
+"OpenOffice Spreadsheet" = "Lembar Bentang OpenDocument";
 
 /* No comment provided by engineer. */
-"PDF File" = "Portable Document (*.pdf)";
+"PDF File" = "Portable Document";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portable Document /A (*.pdf)";
+"PDF/A File" = "Portable Document /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Teks Biasa (*.txt)";
+"Pin to tab" = "Pin ke tab";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Presentasi PowerPoint 97-2003 (*.ppt)";
+"Plain Text" = "Teks Biasa";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Presentasi Office Open XML (*.pptx)";
+"PNG Image" = "Gambar PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Peragaan Slide Office Open XML (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "Presentasi PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Presentasi Office Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Peragaan Slide Office Open XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Menyiapkan...";
@@ -149,16 +245,25 @@
 "Presentation %ld.pptx" = "Presentasi %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Templat Presentasi PowerPoint Open XML (*.potx)";
+"Presentation template" = "Templat Presentasi PowerPoint Open XML";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Tampilan Penyaji";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Keluar %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Ganti";
+
+/* No comment provided by engineer. */
+"Restart now" = "Restart sekarang";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Peninjauan Berubah...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Dokumen Rich Text (*.rtf)";
+"Rich Text Document" = "Dokumen Rich Text";
 
 /* No comment provided by engineer. */
 "Save" = "Simpan";
@@ -167,16 +272,55 @@
 "Save the document?" = "Simpan dokumen?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Pilih file tema";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Tema yang dipilih tidak valid";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Tampilkan di dalam folder";
+
+/* No comment provided by engineer. */
+"Show main window" = "Tampilkan jendela utama";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Detail Tanda Tangan";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Lembar Bentang %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Templat lembar bentang Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Templat lembar bentang Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Terima kasih telah mengevaluasi %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL unduhan add-on tidak valid.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Informasi add-on tidak valid atau tidak lengkap.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Paket add-on rusak atau telah dimodifikasi.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Dokumen \"%@\" harus dibuat. Lanjutkan?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Komponen AI Tools yang terinstal tidak kompatibel dengan versi aplikasi ini. Perbarui AI Tools sekarang?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Tema sudah ada. Ganti?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "File ini tidak berisi tema";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "File tema ini tidak valid";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Untuk menginstal add-on, perbarui aplikasi ke versi terbaru.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Untuk membuka lokasi file, file harus disimpan.";
@@ -185,19 +329,31 @@
 "Unconfirmed" = "Belum dikonfirmasi";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Lepaskan pin tab";
+
+/* No comment provided by engineer. */
 "Untitled" = "Tanpa Judul";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versi %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Gambar Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Halaman Web";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Dokumen Word 97-2003 (*.doc)";
+"With access to pro features" = "Dengan akses ke fitur pro";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Dokumen Office Open XML (*.docx)";
+"Word 97-2003 Document" = "Dokumen Word 97-2003";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Dokumen OpenXPS (*.xps)";
+"Word 2007 Document" = "Dokumen Office Open XML";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Dokumen OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "Ya";
@@ -207,6 +363,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Anda telah berhasil mengaktifkan %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Anda harus restart aplikasi agar pengaturan bisa berfungsi.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Perubahan akan hilang jika Anda tidak menyimpannya.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Perubahan akan hilang jika Anda tidak menyimpannya.";

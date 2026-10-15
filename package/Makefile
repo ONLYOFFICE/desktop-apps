@@ -17,6 +17,7 @@ PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
 
 BRANDING_DIR ?= .
+BRANDING ?= onlyoffice
 
 PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
 PACKAGE_OPENSOURCE := $(PACKAGE_NAME)
@@ -28,6 +29,10 @@ else
 RPM_PARAMS += --define 'cc_license 1'
 endif
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
+
+# videoplayer backend of the build, it defines the media dependencies:
+# libvlc - bundled libVLC, qtmultimedia - Qt Multimedia over the system GStreamer
+MEDIA_PLAYER ?= qtmultimedia
 
 UNAME_M ?= $(shell uname -m)
 ifeq ($(UNAME_M),x86_64)
@@ -86,7 +91,7 @@ DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).links
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME)-help.install
 DEB_DEPS += deb/build/package.config
 
-SOURCE_DIR := ../../build_tools/out/$(PLATFORM)/$(COMPANY_NAME_LOW)
+SOURCE_DIR := ../../build_tools/out/$(PLATFORM)/$(BRANDING)
 
 M4_PARAMS += -D M4_COMPANY_NAME='$(COMPANY_NAME)'
 M4_PARAMS += -D M4_COMPANY_NAME_LOW='$(COMPANY_NAME_LOW)'
@@ -99,6 +104,7 @@ M4_PARAMS += -D M4_PACKAGE_NAME='$(PACKAGE_NAME)'
 M4_PARAMS += -D M4_PACKAGE_OPENSOURCE='$(PACKAGE_OPENSOURCE)'
 M4_PARAMS += -D M4_PACKAGE_COMMERCIAL='$(PACKAGE_COMMERCIAL)'
 M4_PARAMS += -D M4_PACKAGE_EDITION='$(PACKAGE_EDITION)'
+M4_PARAMS += -D M4_MEDIA_PLAYER='$(MEDIA_PLAYER)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX='$(DESKTOPEDITORS_PREFIX)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC='$(DESKTOPEDITORS_EXEC)'
 M4_PARAMS += -D M4_SCHEME_HANDLER='$(SCHEME_HANDLER)'
@@ -120,6 +126,7 @@ RPM_PARAMS += --define '_package_name $(PACKAGE_NAME)'
 RPM_PARAMS += --define '_package_opensource $(PACKAGE_OPENSOURCE)'
 RPM_PARAMS += --define '_package_commercial $(PACKAGE_COMMERCIAL)'
 RPM_PARAMS += --define '_package_edition $(PACKAGE_EDITION)'
+RPM_PARAMS += --define '_media_player $(MEDIA_PLAYER)'
 RPM_PARAMS += --define '_product_version $(PRODUCT_VERSION)'
 RPM_PARAMS += --define '_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)'
 RPM_PARAMS += --define '_desktopeditors_exec $(DESKTOPEDITORS_EXEC)'

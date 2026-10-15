@@ -1,0 +1,19 @@
+{
+  "name": "@onlyoffice/addondialog",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.20.0"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "lightningcss": "^1.32.0",
+    "solid-js": "^1.9.12",
+    "vite": "6.2.7",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vite-plugin-solid": "^2.11.12"
+  }
+}

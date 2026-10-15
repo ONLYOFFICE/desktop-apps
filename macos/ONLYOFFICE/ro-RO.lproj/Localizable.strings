@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ există deja.\nDoriți să îl înlocuiți?";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Asistenţă";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Confirmări";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "Funcțiile AI Tools nu vor fi disponibile după dezinstalare. Toate setările AI (inclusiv cheile API) nu vor fi eliminate.";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "A intervenit o eroare în timpul dezarhivării";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "A apărut o eroare neașteptată în timpul instalării programului de completare.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Aplicația trebuie repornită";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Sigur doriți să dezinstalați ONLYOFFICE AI Tools?";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Salvați fișierul înainte de semnarea";
 
 /* No comment provided by engineer. */
 "Cancel" = "Revocare";
+
+/* No comment provided by engineer. */
+"Canceled" = "Anulat";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Fișierul de Semnătură Digitală nu poate fi salvat.";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "Nu se poate deschide dosarul fișierului.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Valori separate prin virgulă (*.csv)";
+"Close" = "Închidere";
+
+/* No comment provided by engineer. */
+"Close all" = "Închide tot";
+
+/* No comment provided by engineer. */
+"Close saved" = "Închideți salvat";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Valori separate prin virgulă";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Versiunea Community %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Creare document nou";
 
 /* No comment provided by engineer. */
 "Create portal" = "Crearea unui portal";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "Șterge și Părăsește";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Document Digital (*.djvu)";
+"DjVu File" = "Document Digital";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Doriți să salvați modificările fișierului\"%@\"?";
@@ -44,13 +80,37 @@
 "Document %ld.pdf" = "Document %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Șablon document Word Open XML (*.dotx)";
+"Document template" = "Șablon document Word Open XML";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Foaia de calcul Excel 97-2003 (*.xls)";
+"Don't Save" = "Nu salvați";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Foaia de calcul Office Open XML (*.xlsx)";
+"Electronic Publication" = "Publicare electronică";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Versiunea Enterprise %@";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Foaia de calcul Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Foaia de calcul Office Open XML";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Foaie de calcu binarl Excel";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Descărcarea programului de completare a eșuat din cauza unei erori de rețea.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Nu s-a putut instala tema";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Salvarea pachetului descărcat al programului de completare a eșuat.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Fișier FictionBook 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Fișierul \"%@\" nu se poate deschide sau nu nu există.";
@@ -65,22 +125,40 @@
 "Hide %@" = "Ascunde %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "O voi face mai târziu";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Vă rugăm să revizuiţi documentul, în caz contrar toate modificările vor fi pierdute.";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Dacă ați cumpărat %@, cheia de produs se află în mesajul de e-mail de confirmare.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "Imagine JPG";
+
+/* No comment provided by engineer. */
+"kBps" = "kBps";
+
+/* No comment provided by engineer. */
 "License Agreement" = "Acord de licență";
 
 /* No comment provided by engineer. */
-"Macro-enabled Presentation" = "Prezentare cu macrocomenzi activate (*.pptm)";
+"Macro-enabled Presentation" = "Prezentare cu macrocomenzi activate";
 
 /* No comment provided by engineer. */
-"Macro-enabled spreadsheet template" = "Şablon foaie de calcul cu macrocomenzi activate (*.xltm)";
+"Macro-enabled spreadsheet template" = "Şablon foaie de calcul cu macrocomenzi activate";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-book (*.mobi)";
+"Markdown File" = "Fișier Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"Move to end" = "Mută ​​la sfârșit";
+
+/* No comment provided by engineer. */
+"Move to start" = "Mută ​​la început";
 
 /* No comment provided by engineer. */
 "new-document" = "Document nou";
@@ -98,7 +176,16 @@
 "No" = "Nu";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Nu există nicio versiune compatibilă a programului de completare disponibilă pentru această versiune a aplicației.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Memorie insuficientă pentru a finaliza descărcarea programului de completare.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools a fost dezinstalat cu succes";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nu poate deschide fişierul de Semnătură Digitală. Încercați să deschideți un alt fișier.";
@@ -107,43 +194,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nu poate deschide Cheia Privată. Încercați să deschideți un alt fișier.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Șablon document OpenDocument (*.ott)";
+"ONLYOFFICE Form Document" = "Formular PDF ONLYOFFICE";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Șablon prezentare OpenDocument (*.otp)";
+"OpenDocument Document Template" = "Șablon document OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Șablon foaie de calcul OpenDocument (*.ots)";
+"OpenDocument Presentation Template" = "Șablon prezentare OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Șablon foaie de calcul OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Deschidere";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Fișierul text OpenDocument (*.odt)";
+"OpenOffice Document" = "Fișierul text OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Prezentare OpenDocument (*.odp)";
+"OpenOffice Presentation" = "Prezentare OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Foaie de calcul OpenDocument (*.ods)";
+"OpenOffice Spreadsheet" = "Foaie de calcul OpenDocument";
 
 /* No comment provided by engineer. */
-"PDF File" = "Formatul de Document Portabil (*.pdf)";
+"PDF File" = "Formatul de Document Portabil";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Formatul de Document Portabil /A (*.pdf)";
+"PDF/A File" = "Formatul de Document Portabil /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Fișier text simplu (*.txt)";
+"Pin to tab" = "Fixare la filă";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Prezentare PowerPoint 97-2003 (*.ppt)";
+"Plain Text" = "Fișier text simplu";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Prezentare Office Open XML (*.pptx)";
+"PNG Image" = "Imagine PNG";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Expunere diapozitive Office Open XML (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "Prezentare PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Prezentare Office Open XML";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Expunere diapozitive Office Open XML";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Pregătire...";
@@ -152,16 +248,25 @@
 "Presentation %ld.pptx" = "Prezentarea %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Șablon de prezentare PowerPoint Open XML (*.potx)";
+"Presentation template" = "Șablon de prezentare PowerPoint Open XML";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Vizualizarea prezentator";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Părăsește %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Înlocuiți";
+
+/* No comment provided by engineer. */
+"Restart now" = "Repornire acum";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Revizuirea modificărilor...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Fișier Format text îmbogățit (*.rtf)";
+"Rich Text Document" = "Fișier Format text îmbogățit";
 
 /* No comment provided by engineer. */
 "Save" = "Salvare";
@@ -170,16 +275,55 @@
 "Save the document?" = "Doriți să salvați documentul?";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Selectați fișierul temei";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Tema selectată nu este validă";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Afișare în folder";
+
+/* No comment provided by engineer. */
+"Show main window" = "Afișare fereastră principală";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Detalii semnătură";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Foaie de calcul %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Șablon de foaie de calcul Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Șablon de foaie de calcul Excel Open XML";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Vă mulțumim pentru evaluarea %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "URL-ul de descărcare al programului de completare este nevalid.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Informațiile despre programul de completare sunt nevalide sau incomplete.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Pachetul programului de completare este corupt sau a fost modificat.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Trebuie să creați documentul \"%@\". Doriți să continuați?";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Componenta AI Tools instalată este incompatibilă cu această versiune a aplicației. Actualizați AI Tools acum?";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Tema există deja. O înlocuiți?";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Acest fișier nu conține o temă";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Acest fișier temă nu este valid";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Pentru a instala programul de completare, actualizați aplicația la cea mai recentă versiune.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Înainte să acesați locația fișierulu, trebuie să-l salvați.";
@@ -188,19 +332,31 @@
 "Unconfirmed" = "Neconfirmat";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Anulează fixarea filei";
+
+/* No comment provided by engineer. */
 "Untitled" = "Fără titlu";
+
+/* No comment provided by engineer. */
+"Version %@" = "Versiunea %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Desen Visio";
 
 /* No comment provided by engineer. */
 "Web Page" = "Pagină web";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Document Word 97-2003 (*.doc)";
+"With access to pro features" = "Cu acces la funcții pro";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Document Office Open XML (*.docx)";
+"Word 97-2003 Document" = "Document Word 97-2003";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Document OpenXPS (*.xps)";
+"Word 2007 Document" = "Document Office Open XML";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Document OpenXPS";
 
 /* No comment provided by engineer. */
 "Yes" = "Da";
@@ -210,6 +366,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Activarea %@ cu succes.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Trebuie să reporniți aplicația pentru ca setările să intre în vigoare.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Modificările dumneavoastră vor fi pierdute dacă nu le salvați.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Modificările dumneavoastră vor fi pierdute dacă nu le salvați.";

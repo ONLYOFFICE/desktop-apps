@@ -63,7 +63,9 @@
 
     [self.window setFrameAutosaveName:@"MainWindow"];
     [self setShouldCascadeWindows:NO];
-    
+    if (@available(macOS 11.0, *)) {
+        self.window.toolbarStyle = NSWindowToolbarStyleUnifiedCompact;
+    }
     [self setupToolbar];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameMainWindowLoaded

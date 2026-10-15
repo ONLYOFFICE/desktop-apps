@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ موجود بالفعل.\n هل تريد استبداله؟";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ مساعدة";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "شكر وتقدير لـ";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "ستكون ميزات AI Tools غير متاحة بعد إلغاء التثبيت. لن تتم إزالة جميع إعدادات الذكاء الاصطناعي (بما في ذلك مفاتيح API).";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "حدث خطأ أثناء فك ضغط الأرشيف";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "حدث خطأ غير متوقع أثناء تثبيت الوظيفة الإضافية.";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "يحتاج التطبيق إلى إعادة التشغيل";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "هل أنت متأكد أنك تريد إلغاء تثبيت ONLYOFFICE AI Tools؟";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "لإجراء توقيع المستند، يجب الحفظ أولًا";
 
 /* No comment provided by engineer. */
 "Cancel" = "إلغاء";
+
+/* No comment provided by engineer. */
+"Canceled" = "تم الإلغاء";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "غير قادر على فتح ملف التوقيع الرقمي";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "غير قادر على فتح المجلد للمكان المختار";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "قيم مفرّقة بفاصلة (*.csv)";
+"Close" = "إغلاق";
+
+/* No comment provided by engineer. */
+"Close all" = "إغلاق الكل";
+
+/* No comment provided by engineer. */
+"Close saved" = "تم الحفظ مع الإغلاق";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "قيم مفرّقة بفاصلة";
+
+/* No comment provided by engineer. */
+"Community version %@" = "إصدار \"المجتمع\" %@";
+
+/* No comment provided by engineer. */
+"Create new" = "أنشئ جديد";
 
 /* No comment provided by engineer. */
 "Create portal" = "إنشاء بوابة سحابية";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "حذف وخروج";
 
 /* No comment provided by engineer. */
-"DjVu File" = "مستند رقمي (*.djvu)";
+"DjVu File" = "مستند رقمي";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "هل تريد حفظ التغييرات للمستند \"%@\"؟";
@@ -44,19 +80,37 @@
 "Document %ld.pdf" = "مستند %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "قالب وورد (*.dotx)";
+"Document template" = "قالب وورد";
 
 /* No comment provided by engineer. */
 "Don't Save" = "عدم الحفظ";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "جدول إكسل 97-2003 (*.xls)";
+"Electronic Publication" = "كتاب النشر الإلكتروني";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "جدول إكسل (*.xlsx)";
+"Enterprise version %@" = "إصدار \"المؤسسات\" %@";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "ملف فكشنبوك 2 (*.fb2)";
+"Excel 97-2003 Spreadsheet" = "جدول إكسل 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "جدول إكسل";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "ورقة عمل Excel ثنائية";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "فشل تنزيل الوظيفة الإضافية بسبب خطأ في الشبكة.";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "فشل تثبيت السمة";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "فشل حفظ حزمة الوظيفة الإضافية التي تم تنزيلها.";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "ملف فكشنبوك 2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "\"%@\" غير قابل للفتح أو غير موجود.";
@@ -71,22 +125,40 @@
 "Hide %@" = "إخفاء %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "سأقوم بذلك لاحقاً";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "إن لم تراجع مستنداتك، فستخسر التغييرات.";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "إن قمت بشراء %@ من قبل، فسوف تجد رمز التفعيل في رسالة تأكيدية بالبريد الإلكتروني.";
 
 /* No comment provided by engineer. */
+"JPG Image" = "صورة بخلفية";
+
+/* No comment provided by engineer. */
+"kBps" = "كيلوبايت في الثانية";
+
+/* No comment provided by engineer. */
 "License Agreement" = "الموافقة على الترخيص";
 
 /* No comment provided by engineer. */
-"Macro-enabled Presentation" = "عرض بوربوينت مع خاصية الماكرو (*.pptm)";
+"Macro-enabled Presentation" = "عرض بوربوينت مع خاصية الماكرو";
 
 /* No comment provided by engineer. */
-"Macro-enabled spreadsheet template" = "قالب جدول إكسيل مع خاصية الماكرو (*.xltm)";
+"Macro-enabled spreadsheet template" = "قالب جدول إكسيل مع خاصية الماكرو";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "ملف موبي بوكيت (*.mobi)";
+"Markdown File" = "ملف Markdown";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "ملف موبي بوكيت";
+
+/* No comment provided by engineer. */
+"Move to end" = "انتقل إلى النهاية";
+
+/* No comment provided by engineer. */
+"Move to start" = "انتقل للبدء";
 
 /* No comment provided by engineer. */
 "new-document" = "مستند جديد";
@@ -104,7 +176,16 @@
 "No" = "لا";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "لا يتوفر إصدار متوافق من الوظيفة الإضافية لهذا الإصدار من التطبيق.";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "الذاكرة غير كافية لإكمال تنزيل الوظيفة الإضافية.";
+
+/* No comment provided by engineer. */
 "OK" = "حسنًا";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "تم إلغاء تثبيت ONLYOFFICE AI Tools بنجاح";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE غير قادر على فتح ملف التوقيع الرقمي. جرّب ملفًّا آخر.";
@@ -113,43 +194,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE غير قادر على فتح المفتاح الخاص، حاول فتح ملف آخر.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "مستند ليبري أوفس (*.ott)";
+"ONLYOFFICE Form Document" = "نموذج ONLYOFFICE PDF";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "قالب عرض ليبري أوفس (*.otp)";
+"OpenDocument Document Template" = "مستند ليبري أوفس";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "قالب جدول ليبري أوفس (*.ots)";
+"OpenDocument Presentation Template" = "قالب عرض ليبري أوفس";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "قالب جدول ليبري أوفس";
 
 /* No comment provided by engineer. */
 "Opening" = "جاري الفتح";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "ملف نصي ليبري أوفس (*.odt)";
+"OpenOffice Document" = "ملف نصي ليبري أوفس";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "عرض ليبري أوفس (*.odp)";
+"OpenOffice Presentation" = "عرض ليبري أوفس";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "جدول ليبري أوفس (*.ods)";
+"OpenOffice Spreadsheet" = "جدول ليبري أوفس";
 
 /* No comment provided by engineer. */
-"PDF File" = "بي دي إف (*.pdf)";
+"PDF File" = "بي دي إف";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "بي دي إف طويل الأجل (*.pdf)";
+"PDF/A File" = "بي دي إف طويل الأجل";
 
 /* No comment provided by engineer. */
-"Plain Text" = "ملف نصي (*.txt)";
+"Pin to tab" = "تثبيت في التبويب";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "عرض بوربوينت 97-2003 (*.ppt)";
+"Plain Text" = "ملف نصي";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "عرض بوربوينت قابل للتعديل (*.pptx)";
+"PNG Image" = "صورة بلا خلفية";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "عرض بوربوينت غير قابل للتعديل (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "عرض بوربوينت 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "عرض بوربوينت قابل للتعديل";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "عرض بوربوينت غير قابل للتعديل";
 
 /* No comment provided by engineer. */
 "Preparing..." = "تجهيز...";
@@ -158,7 +248,7 @@
 "Presentation %ld.pptx" = "عرض %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "قالب عرض بوربوينت (*.potx)";
+"Presentation template" = "قالب عرض بوربوينت";
 
 /* No comment provided by engineer. */
 "Presenter View" = "وضع إلقاء العرض";
@@ -167,10 +257,16 @@
 "Quit %@" = "خروج من %@";
 
 /* No comment provided by engineer. */
+"Replace" = "استبدال";
+
+/* No comment provided by engineer. */
+"Restart now" = "إعادة التشغيل الآن";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "مراجعة التغييرات...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "ملف نصي غني  (*.rtf)";
+"Rich Text Document" = "ملف نصي غني";
 
 /* No comment provided by engineer. */
 "Save" = "حفظ";
@@ -179,19 +275,55 @@
 "Save the document?" = "حفظ المستند؟";
 
 /* No comment provided by engineer. */
+"Select theme file" = "حدد ملف السمة";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "السمة المحددة غير صالحة";
+
+/* No comment provided by engineer. */
+"Show in folder" = "عرض في المجلد";
+
+/* No comment provided by engineer. */
+"Show main window" = "إظهار النافذة الرئيسية";
+
+/* No comment provided by engineer. */
 "Signature Details" = "معلومات التوقيع";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "جدول %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "قالب جدول إكسل (*.xltx)";
+"Spreadsheet template" = "قالب جدول إكسل";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "شكرًا على تقييم %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "عنوان URL لتنزيل الوظيفة الإضافية غير صالح.";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "معلومات الوظيفة الإضافية غير صالحة أو غير مكتملة.";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "حزمة الوظيفة الإضافية تالفة أو تم تعديلها.";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "المستند \"%@\" يجب بناؤه. استمر؟";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "مكوّن AI Tools المثبت غير متوافق مع هذا الإصدار من التطبيق. هل تريد تحديث AI Tools الآن؟";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "السمة موجودة بالفعل. هل تريد استبدالها؟";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "هذا الملف لا يحتوي على السمة";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "ملف السمة هذا غير صالح";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "لتثبيت الوظيفة الإضافية، قم بتحديث التطبيق إلى أحدث إصدار.";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "لفتح مكان الملف، يجب الحفظ.";
@@ -200,7 +332,16 @@
 "Unconfirmed" = "غير مؤكد";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "إلغاء تثبيت علامة التبويب";
+
+/* No comment provided by engineer. */
 "Untitled" = "بدون عنوان";
+
+/* No comment provided by engineer. */
+"Version %@" = "الإصدار %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "رسم مرئي";
 
 /* No comment provided by engineer. */
 "Web Page" = "صفحة ويب";
@@ -209,13 +350,13 @@
 "With access to pro features" = "مع صلاحية استخدام للميزات المدفوعة";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "مستند وورد 97-2003 (*.doc)";
+"Word 97-2003 Document" = "مستند وورد 97-2003";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "مستند وورد (*.docx)";
+"Word 2007 Document" = "مستند وورد";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "مستند أوبن إكس بي إس (*.xps)";
+"XML Paper Specification" = "مستند أوبن إكس بي إس";
 
 /* No comment provided by engineer. */
 "Yes" = "نعم";
@@ -225,6 +366,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "لقد تم تفعيل %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "يجب إعادة تشغيل التطبيق لتطبيق الإعدادات.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "سوف يتم فقد التغييرات إن لم تقم بالحفظ.";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "سوف يتم فقد التغييرات إن لم تقم بالحفظ.";

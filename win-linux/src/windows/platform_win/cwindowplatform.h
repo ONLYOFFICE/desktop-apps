@@ -40,6 +40,8 @@
 #include <QtWidgets/QApplication>
 #include <qtcomp/qnativeevent.h>
 
+using AscMainPanel = QWidget;
+
 struct FRAME {
     FRAME() : left(0), top(0)
     {}
@@ -53,11 +55,12 @@ struct FRAME {
 class CWindowPlatform : public CWindowBase
 {
 public:
-    explicit CWindowPlatform(const QRect&);
+    explicit CWindowPlatform(QWidget *parent = nullptr, const QRect &rc = QRect());
     virtual ~CWindowPlatform();
 
 //    void toggleBorderless(bool);
-//    void toggleResizeable();
+    virtual bool isResizable() const override;
+    virtual void setResizable(bool) override;
     void bringToTop();
     virtual void show(bool);
     virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) final;
@@ -83,7 +86,7 @@ private:
     FRAME m_frame;
     bool m_borderless,
          m_closed,
-         m_isResizeable,
+         m_isResizable,
 //         m_allowMaximize,
          m_isMaximized = false,
          m_isThemeActive = true,

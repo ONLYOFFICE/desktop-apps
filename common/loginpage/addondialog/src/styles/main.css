@@ -1,0 +1,33 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  user-select: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.rtl-font {
+  &[applang^=ar], &[applang^=ur] {
+    --font-family-base-custom: system-ui, -apple-system, "Geeza Pro", "Segoe UI", "Traditional Arabic", "Noto Sans";
+  }
+}
+
+.panel-error {
+  .icon-logo {
+    margin-bottom: 10px;
+  }
+
+  .message {
+    margin-bottom: 12px;
+  }
+}

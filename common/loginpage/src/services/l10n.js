@@ -1,0 +1,68 @@
+import { createSignal } from "solid-js";
+import { parseQueryParams } from "@/utils/url";
+
+const l10n = {};
+const localeModules = import.meta.glob("../../locale/*.js", { eager: true });
+for (const path in localeModules) {
+  const code = path.match(/([^/]+)\.js$/)[1];
+  l10n[code.replaceAll("-", "_")] = localeModules[path].default;
+}
+
+const [translations, setTranslations] = createSignal({});
+const [langCode, setLangCode] = createSignal('en-US');
+export { langCode };
+
+export function initLocale() {
+  const en = l10n?.en ?? {};
+  setTranslations({ ...en });
+
+  const inParams = parseQueryParams();
+  if (inParams.lang) applyLocale(inParams.lang);
+}
+
+export function t(key, defstring) {
+  return translations()[key] ?? defstring ?? key;
+}
+
+export function applyLocale(locale) {
+  const correct = locale.replaceAll("-", "_");
+  let table = l10n?.[correct],
+      new_lang = locale;
+
+  if (!table) {
+    const code = /^\w{2}/.exec(correct)?.[0];
+    if (code) {
+      for (const l in l10n || {}) {
+        if (l.startsWith(code)) {
+          new_lang = l;
+          table = l10n[l];
+          break;
+        }
+      }
+    }
+  }
+
+  if (table) {
+    setLangCode(new_lang);
+    setTranslations({ ...(l10n.en ?? {}), ...table });
+  }
+}
+
+export function isRTL(code) {
+  const rtl = ["ar", "he", "ur"];
+  return rtl.some((l) => code.startsWith(l));
+}
+
+export function getTranslationFor(locale, key) {
+  const correct = locale.replaceAll("-", "_");
+  let table = l10n?.[correct];
+  if (!table) {
+    const code = /^\w{2}/.exec(correct)?.[0];
+    if (code) {
+      for (const l in l10n || {}) {
+        if (l.startsWith(code)) { table = l10n[l]; break; }
+      }
+    }
+  }
+  return table?.[key] ?? null;
+}

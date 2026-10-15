@@ -48,13 +48,26 @@
 #import <AppKit/NSColor.h>
 
 static NSString * const btnPortalActiveBackgroundColor  = @"portal-button-background-active-color";
+static NSString * const btnHoverBackgroundColor         = @"button-hover-background-color";
+static NSString * const btnPressedBackgroundColor       = @"button-pressed-background-color";
 static NSString * const tabWordActiveBackgroundColor    = @"tab-word-background-active-color";
 static NSString * const tabCellActiveBackgroundColor    = @"tab-cell-background-active-color";
 static NSString * const tabSlideActiveBackgroundColor   = @"tab-slide-background-active-color";
 static NSString * const tabPdfActiveBackgroundColor     = @"tab-pdf-background-active-color";
 static NSString * const tabDrawActiveBackgroundColor    = @"tab-draw-background-active-color";
 static NSString * const tabActiveTextColor              = @"tab-editor-text-active-color";
-static NSString * const windowBackgroundColor           = @"window-background-color";
+static NSString * const windowBackgroundColor           = @"window-background-color";
+static NSString * const downloadWidgetBackgroundColor   = @"download-widget-background-color";
+static NSString * const downloadWidgetBorderColor       = @"download-widget-border-color";
+static NSString * const downloadItemHoverBackgroundColor = @"download-item-hover-background-color";
+static NSString * const downloadGhostButtonTextColor    = @"download-ghost-button-text-color";
+static NSString * const downloadGhostButtonTextHoverColor = @"download-ghost-button-text-hover-color";
+static NSString * const downloadGhostButtonTextPressedColor = @"download-ghost-button-text-pressed-color";
+static NSString * const downloadLabelTextColor          = @"download-label-text-color";
+static NSString * const downloadLabelTextInfoColor      = @"download-label-text-info-color";
+static NSString * const downloadProgressbarChunkColor   = @"download-progressbar-chunk-color";
+static NSString * const downloadProgressbarBackgroundColor = @"download-progressbar-background-color";
+static NSString * const downloadScrollbarHandleColor    = @"download-scrollbar-handle-color";
 
 @interface ASCThemesController : NSObject
 
@@ -62,12 +75,21 @@ static NSString * const windowBackgroundColor           = @"window-backg
 
 + (NSString*)currentThemeId;
 + (BOOL)isCurrentThemeDark;
++ (BOOL)isColorDark:(NSColor*)color;
 + (NSString*)defaultThemeId:(BOOL)isdark;
 + (NSString*)actualThemeId;
 + (NSColor*)color:(NSString*)name forTheme:(NSString*)theme;
 + (NSColor*)currentThemeColor:(NSString*)name;
 + (BOOL)isSystemDarkMode;
 + (BOOL)isDarkWindowAppearance;
+
++ (NSString*)userThemesPath;
++ (BOOL)validateTheme:(NSDictionary*)jsonObj;
++ (BOOL)containsTheme:(NSString*)themeId;
++ (BOOL)isLocalTheme:(NSString*)themeId;
++ (BOOL)addLocalTheme:(NSDictionary*)jsonObj filePath:(NSString*)filePath;
++ (NSArray*)localThemesToJson;
++ (BOOL)checkDestinationThemeFileExist:(NSString*)srcPath;
 
 @end
 

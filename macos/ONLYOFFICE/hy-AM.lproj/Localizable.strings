@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"%@ already exists.\nDo you want to replace it?" = "%@ արդեն գոյություն ունի։\nՑանկանու՞մ եք փոխարինել այն։";
+
+/* No comment provided by engineer. */
 "%@ Help" = "%@ Օգնություն";
 
 /* No comment provided by engineer. */
@@ -8,10 +11,28 @@
 "Acknowledgments" = "Նշումներ";
 
 /* No comment provided by engineer. */
+"AI Tools features will be unavailable after uninstalling. All AI settings (including API keys) will not be removed." = "AI Tools-ի գործառույթները հասանելի չեն լինի տեղահանումից հետո: AI-ի բոլոր կարգաբերումները (ներառյալ API բանալիները) չեն հեռացվի:";
+
+/* No comment provided by engineer. */
+"An error occurred while unpacking the archive" = "Արխիվը բացելիս սխալ է տեղի ունեցել։";
+
+/* No comment provided by engineer. */
+"An unexpected error occurred while installing the add-on." = "Հավելումը տեղադրելիս տեղի ունեցավ անսպասելի սխալ:";
+
+/* No comment provided by engineer. */
+"Application needs to restart" = "Հավելվածը պետք է վերագործարկվի";
+
+/* No comment provided by engineer. */
+"Are you sure you want to uninstall ONLYOFFICE AI Tools?" = "Վստա՞հ եք, որ ցանկանում եք տեղահանել ONLYOFFICE AI Tools-ը:";
+
+/* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Այս փաստաթուղթը ստորագրելուց առաջ այն պետք է պահպանվի։";
 
 /* No comment provided by engineer. */
 "Cancel" = "Չեղարկել";
+
+/* No comment provided by engineer. */
+"Canceled" = "Չեղարկված է";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Հնարավոր չէ բացել Թվային ստորագրության ֆայլը";
@@ -23,7 +44,22 @@
 "Cannot open folder of the file location." = "Հնարավոր չէ բացել Գաղտնի բանալու ֆայլը:";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Ստորակետերով առանձնացված արժեքներ (*.csv)";
+"Close" = "Փակել";
+
+/* No comment provided by engineer. */
+"Close all" = "Փակել բոլորը";
+
+/* No comment provided by engineer. */
+"Close saved" = "Փակել պահպանվածը";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Ստորակետերով առանձնացված արժեքներ";
+
+/* No comment provided by engineer. */
+"Community version %@" = "Community տարբերակ %@";
+
+/* No comment provided by engineer. */
+"Create new" = "Ստեղծել նորը";
 
 /* No comment provided by engineer. */
 "Create portal" = "Ստեղծել պորտալ";
@@ -32,7 +68,7 @@
 "Delete and Quit" = "Ջնջել և դուրս գալ";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Թվային փաստաթուղթ (*.djvu)";
+"DjVu File" = "Թվային փաստաթուղթ";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Ցանկանու՞մ եք պահպանել փաստաթղթում արած փոփոխությունները։ \"%@\"?";
@@ -44,13 +80,37 @@
 "Document %ld.pdf" = "Փաստաթուղթ %ld.pdf";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML Փաստաթղթի ձևանմուշ (*.dotx)";
+"Document template" = "Word Open XML Փաստաթղթի ձևանմուշ";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 աղյուսակ (*.xls)";
+"Don't Save" = "Չպահպանել";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML աղյուսակ (*.xlsx)";
+"Electronic Publication" = "Էլեկտրոնային հրապարակման";
+
+/* No comment provided by engineer. */
+"Enterprise version %@" = "Enterprise տարբերակ %@";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 աղյուսակ";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML աղյուսակ";
+
+/* No comment provided by engineer. */
+"Excel Binary Workbook" = "Excel երկուական աշխատանքային թերթ";
+
+/* No comment provided by engineer. */
+"Failed to download the add-on due to a network error." = "Հավելման ներբեռնումն ձախողվեց ցանցի սխալի պատճառով:";
+
+/* No comment provided by engineer. */
+"Failed to install theme" = "Թեմայի տեղադրումը չհաջողվեց";
+
+/* No comment provided by engineer. */
+"Failed to save the downloaded add-on package." = "Չհաջողվեց պահպանել ներբեռնված հավելման փաթեթը։";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Գեղարվեստական ​​Գիրք 2 ֆայլ";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Ֆայլ \"%@\"-ը գոյություն չունի, կամ հնարավոր չէ այն բացել։";
@@ -65,13 +125,37 @@
 "Hide %@" = "Թաքցնել %@";
 
 /* No comment provided by engineer. */
+"I'll do it later" = "Կանեմ դա ավելի ուշ";
+
+/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Եթե արդեն գնել եք %@, պետք է գտնեք ակտիվացման Ձեր բանալին հաստատող էլ․ նամակում։";
+
+/* No comment provided by engineer. */
+"JPG Image" = "JPG պատկեր";
+
+/* No comment provided by engineer. */
+"kBps" = "կԲ/վ";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Լիցենզիայի պայմանագիր";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket էլեկտրոնային գիրք (*.mobi)";
+"Macro-enabled Presentation" = "Մակրո-միացված ներկայացման";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Մակրո-միացված աղյուսակի ձևանմուշ";
+
+/* No comment provided by engineer. */
+"Markdown File" = "Markdown ֆայլ";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket էլեկտրոնային գիրք";
+
+/* No comment provided by engineer. */
+"Move to end" = "Տեղափոխել վերջ";
+
+/* No comment provided by engineer. */
+"Move to start" = "Տեղափոխել սկիզբ";
 
 /* No comment provided by engineer. */
 "new-document" = "Նոր փաստաթուղթ";
@@ -89,7 +173,16 @@
 "No" = "Ոչ";
 
 /* No comment provided by engineer. */
+"No compatible add-on version is available for this version of the application." = "Այս հավելվածի տարբերակի համար հասանելի չէ հարմար հավելման տարբերակ:";
+
+/* No comment provided by engineer. */
+"Not enough memory to complete the add-on download." = "Հավելման ներբեռնումն ավարտելու համար հիշողությունը բավականաչափ չէ:";
+
+/* No comment provided by engineer. */
 "OK" = "Լավ";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE AI Tools successfully uninstalled" = "ONLYOFFICE AI Tools-ը հաջողությամբ տեղահանվեց";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE-ը չի կարող բացել Թվային ստորագրության ֆայլը։ Փորձեք բացել այլ ֆայլ։";
@@ -98,43 +191,52 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE-ի չի կարող բացել Գաղտնի բանալին։ Փորձեք բացել այլ ֆայլ։";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument փաստաթղթի ձևանմուշ (*.ott)";
+"ONLYOFFICE Form Document" = "ONLYOFFICE PDF Ֆորմ";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument շնորհանդեսի ձևանմուշ (*.otp)";
+"OpenDocument Document Template" = "OpenDocument փաստաթղթի ձևանմուշ";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument աղյուսակի ձևանմուշ (*.ots)";
+"OpenDocument Presentation Template" = "OpenDocument շնորհանդեսի ձևանմուշ";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument աղյուսակի ձևանմուշ";
 
 /* No comment provided by engineer. */
 "Opening" = "Բացվում է";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument տեսքստային փաստաթուղթ (*.odt)";
+"OpenOffice Document" = "OpenDocument տեսքստային փաստաթուղթ";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenDocument ներկայացնում (*.odp)";
+"OpenOffice Presentation" = "OpenDocument ներկայացնում";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenDocument աղյուսակ (*.ods)";
+"OpenOffice Spreadsheet" = "OpenDocument աղյուսակ";
 
 /* No comment provided by engineer. */
-"PDF File" = "Դյուրակիր փաստաթղթի ձևաչափ (*.pdf)";
+"PDF File" = "Դյուրակիր փաստաթղթի ձևաչափ";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Դյուրակիր փաստաթղթի ձևաչափ /A (*.pdf)";
+"PDF/A File" = "Դյուրակիր փաստաթղթի ձևաչափ /A";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Պարզ տեքստային ֆայլ (*.txt)";
+"Pin to tab" = "Ամրացնել ներդիրին";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 ներկայացում (*.ppt)";
+"Plain Text" = "Պարզ տեքստային ֆայլ";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Office Open XML ներկայացում (*.pptx)";
+"PNG Image" = "PNG պատկեր";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Office Open XML սահիկաշար (*.ppsx)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 ներկայացում";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML ներկայացում";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML սահիկաշար";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Պատրաստվում է...";
@@ -143,16 +245,25 @@
 "Presentation %ld.pptx" = "Շնորհանդես %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML Ներկայացման ձևանմուշ (*.potx)";
+"Presentation template" = "PowerPoint Open XML Ներկայացման ձևանմուշ";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Ներկայացնողի դիտում";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Դուրս գալ %@";
 
 /* No comment provided by engineer. */
+"Replace" = "Փոխարինել";
+
+/* No comment provided by engineer. */
+"Restart now" = "Վերագործարկեք Հիմա";
+
+/* No comment provided by engineer. */
 "Review Changes..." = "Վերանայել փոփոխությունները...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Հարուստ տեքստի ձևաչափի ֆայլ (*.rtf)";
+"Rich Text Document" = "Հարուստ տեքստի ձևաչափի ֆայլ";
 
 /* No comment provided by engineer. */
 "Save" = "Պահպանել";
@@ -161,16 +272,55 @@
 "Save the document?" = "Պահպանե՞լ փաստաթուղթը։";
 
 /* No comment provided by engineer. */
+"Select theme file" = "Ընտրեք թեմայի ֆայլը";
+
+/* No comment provided by engineer. */
+"Selected theme isn't valid" = "Ընտրված թեման վավեր չէ";
+
+/* No comment provided by engineer. */
+"Show in folder" = "Ցույց տալ թղթապանակում";
+
+/* No comment provided by engineer. */
+"Show main window" = "Ցուցադրել հիմնական պատուհանը";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Ստորագրության մանրամասներ";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Աղյուսակ %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML Աղյուսակի ձևանմուշ (*.xltx)";
+"Spreadsheet template" = "Excel Open XML Աղյուսակի ձևանմուշ";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Շնորհակալություն գնահատելոը համար %@!";
 
 /* No comment provided by engineer. */
+"The add-on download URL is invalid." = "Հավելման ներբեռնման URL-ն անվավեր է:";
+
+/* No comment provided by engineer. */
+"The add-on information is invalid or incomplete." = "Հավելման տեղեկությունները անվավեր են կամ թերի:";
+
+/* No comment provided by engineer. */
+"The add-on package is corrupted or has been modified." = "Հավելման փաթեթը վնասված է կամ փոփոխված:";
+
+/* No comment provided by engineer. */
 "The document \"%@\" must be built. Continue?" = "Փաստաթուղթը &quot;%@&quot; պետք է կազմվի։ Շարունակե՞լ։";
+
+/* No comment provided by engineer. */
+"The installed AI Tools component is incompatible with this version of the application. Please update the AI Tools component to continue." = "Տեղադրված AI Tools բաղադրիչը անհամատեղելի է հավելվածի այս տարբերակի հետ: Թարմացնե՞լ AI Tools-ը հիմա։";
+
+/* No comment provided by engineer. */
+"Theme already exists. Replace it?" = "Թեման արդեն գոյություն ունի՞։ Փոխարինել այն՞";
+
+/* No comment provided by engineer. */
+"This file doesn't contain theme" = "Այս ֆայլը թեմա չի պարունակում";
+
+/* No comment provided by engineer. */
+"This theme file is not valid" = "Այս թեմայի ֆայլը վավեր չէ";
+
+/* No comment provided by engineer. */
+"To install the add-on, update the application to the latest version." = "Հավելումը տեղադրելու համար թարմացրեք հավելվածը վերջին տարբերակին:";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Ֆայլի գտնվելու տեղը բացելու համար այն պետք է պահպանվի։";
@@ -179,19 +329,31 @@
 "Unconfirmed" = "Չհաստատված";
 
 /* No comment provided by engineer. */
+"Unpin tab" = "Ապամրացնել ներդիրը";
+
+/* No comment provided by engineer. */
 "Untitled" = "Անվերնագիր";
+
+/* No comment provided by engineer. */
+"Version %@" = "Տարբերակ %@";
+
+/* No comment provided by engineer. */
+"VSDX File" = "Visio Նկար";
 
 /* No comment provided by engineer. */
 "Web Page" = "Վեբ էջ";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 փաստաթուղթ (*.doc)";
+"With access to pro features" = "Մուտք ունենալով pro գործառույթներին";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Office Open XML փաստաթուղթ (*.docx)";
+"Word 97-2003 Document" = "Word 97-2003 փաստաթուղթ";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS փաստաթուղթ (*.xps)";
+"Word 2007 Document" = "Office Open XML փաստաթուղթ";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS փաստաթուղթ";
 
 /* No comment provided by engineer. */
 "Yes" = "Այո";
@@ -201,6 +363,12 @@
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Դուք հաջողությամբ ակտիվացրել եք %@.";
+
+/* No comment provided by engineer. */
+"You must restart the application for the settings to take effect." = "Դուք պետք է վերագործարկեք հավելվածը, որպեսզի կարգավորումներն ուժի մեջ մտնեն:";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don't save them." = "Ձեր փոփոխությունները կկորչեն, եթե չպահպանեք դրանք։";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Ձեր փոփոխությունները կկորչեն, եթե չպահպանեք դրանք։";

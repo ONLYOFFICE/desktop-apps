@@ -55,6 +55,7 @@
 #import "ASCDownloadController.h"
 #import "ASCMenuButtonCell.h"
 #import "ASCThemesController.h"
+#import "ASCHeaderButton.h"
 #import "ASCApplicationManager.h"
 #import "AppDelegate.h"
 #import "ASCLinguist.h"
@@ -74,16 +75,14 @@ static float kASCRTLTabsRightMargin = 0;
 @property (nonatomic, weak) NSButton *closeButtonFullscreen;
 @property (nonatomic, weak) NSButton *miniaturizeButtonFullscreen;
 @property (nonatomic, weak) NSButton *fullscreenButtonFullscreen;
-@property (nonatomic) NSImageView * miniaturizeButtonImageViewFullscreen;
 
 @property (weak) IBOutlet NSView *titleContainerView;
 @property (weak) IBOutlet NSButton *portalButton;
-@property (weak) IBOutlet NSButton *userProfileButton;
+// @property (weak) IBOutlet NSButton *userProfileButton;
 @property (weak) IBOutlet NSLayoutConstraint *downloadWidthConstraint;
 @property (weak) IBOutlet NSLayoutConstraint *buttonPortalLeadingConstraint;
 @property (weak) IBOutlet NSLayoutConstraint *buttonPortalTrailingConstraint;
-@property (weak) IBOutlet NSImageView *downloadImageView;
-@property (weak) IBOutlet NSView *downloadBackgroundView;
+@property (weak) IBOutlet ASCHeaderButton *downloadButton;
 @property (nonatomic) SFBPopover * popover;
 @end
 
@@ -110,13 +109,10 @@ static float kASCRTLTabsRightMargin = 0;
 
     self.closeButtonFullscreen = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSWindowStyleMaskTitled];
     self.fullscreenButtonFullscreen = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSWindowStyleMaskTitled];
-    NSButton * miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskFullScreen];
+    self.miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskTitled];
+    self.miniaturizeButtonFullscreen.enabled = NO;
 
-    NSImage * miniaturizeButtonImage = [miniaturizeButtonFullscreen imageRepresentation];
-    self.miniaturizeButtonImageViewFullscreen = [[NSImageView alloc] initWithFrame:CGRectMake(0, 0, miniaturizeButtonImage.size.width, miniaturizeButtonImage.size.height)];
-    self.miniaturizeButtonImageViewFullscreen.image = miniaturizeButtonImage;
-
-    self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonImageViewFullscreen, self.fullscreenButtonFullscreen];
+    self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonFullscreen, self.fullscreenButtonFullscreen];
     if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft )
         self.standardButtonsFullscreen = [[self.standardButtonsFullscreen reverseObjectEnumerator] allObjects];
 
@@ -143,27 +139,6 @@ static float kASCRTLTabsRightMargin = 0;
     // Other window controls
 
     self.downloadWidthConstraint.constant = .0f;
-    self.downloadImageView.canDrawSubviewsIntoLayer = YES;
-    self.downloadImageView.animates = NO;
-    self.downloadImageView.hidden = NO;
-
-    NSDataAsset * asset = [[NSDataAsset alloc] initWithName:@"progress_download_icon"];
-    NSBitmapImageRep * rep = [[NSBitmapImageRep alloc] initWithData:[asset data]];
-//    int framescount = [[rep valueForProperty:NSImageFrameCount] intValue];
-    [rep setProperty:NSImageCurrentFrame withValue:[NSNumber numberWithUnsignedInt:15]];
-    NSData *repData = [rep representationUsingType:NSPNGFileType properties:nil];
-    NSImage * img = [[NSImage alloc] initWithData:repData];
-    [self.downloadImageView setImage:img];
-
-//    NSImage * image = [NSImage imageNamed:@"progress_download_icon"];
-//    if ( image ) {
-//
-//        NSLog(@"download1: image loaded, %d", framescount);
-////        self.downloadImageView.image = image;
-//        [self.downloadImageView setImage:img];
-//    } else {
-//        NSLog(@"download1: load failed");
-//    }
 
     kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButtonFullscreen.frame) - 2.0; // OSX 10.11 magic
 
@@ -209,11 +184,21 @@ static float kASCRTLTabsRightMargin = 0;
                                                  name:ASCEventNameChangedSystemTheme
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(windowDidBecomeKey:)
+                                                 name:NSWindowDidBecomeKeyNotification
+                                               object:mainWindow];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(windowDidResignKey:)
+                                                 name:NSWindowDidResignKeyNotification
+                                               object:mainWindow];
+
     [[[ASCDownloadController sharedInstance] multicastDelegate] addDelegate:self];
     [self.tabsControl.multicastDelegate addDelegate:self];
     
 //    [self.userProfileButton setHidden:YES];
-        [self.userProfileButton setHidden:NO];
+//    [self.userProfileButton setHidden:NO];
     [self.portalButton setState:NSControlStateValueOn];
     if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
         self.buttonPortalLeadingConstraint.constant = -1;
@@ -247,8 +232,12 @@ static float kASCRTLTabsRightMargin = 0;
             [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
         }
     }
+    self.downloadButton.bgHoverColor = [ASCThemesController currentThemeColor:btnHoverBackgroundColor];
 
+    [self doLayout];
+}
 
+- (void)viewDidLayout {
     [self doLayout];
 }
 
@@ -279,7 +268,8 @@ static float kASCRTLTabsRightMargin = 0;
 
     // Layout title and tabs
     CGFloat containerWidth  = CGRectGetWidth(self.titleContainerView.frame);
-    CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - 100;
+    CGFloat downloadButtonWidth = self.downloadWidthConstraint.constant;
+    CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - downloadButtonWidth - 50;
     CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
 
     int btnSpacing = 6.0;
@@ -309,11 +299,28 @@ static float kASCRTLTabsRightMargin = 0;
     layoutStandartButtons(self.standardButtonsDefaults, [self isFullScreen]);
     layoutStandartButtons(self.standardButtonsFullscreen, ![self isFullScreen]);
 
-    self.tabsControl.frame  = CGRectMake(rtlDependedTabsLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
+    self.tabsControl.frame  = CGRectMake(rtlDependedTabsLeftOffset, 2, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
     [self doLayout];
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    [self updateWindowButtonsAppearance];
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification {
+    [self updateWindowButtonsAppearance];
+}
+
+- (void)updateWindowButtonsAppearance {
+    [self.standardButtonsFullscreen enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
+        [view setNeedsDisplay:YES];
+    }];
+    [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
+        [view setNeedsDisplay:YES];
+    }];
 }
 
 #pragma mark -
@@ -337,6 +344,9 @@ static float kASCRTLTabsRightMargin = 0;
                 case AscEditorType::etPdf          : docType = ASCTabViewTypePdf; break;
                 case AscEditorType::etDraw         : docType = ASCTabViewTypeDraw; break;
                 default:
+                    if ((ASCTabActionType)[tab.params[@"action"] intValue] == ASCTabActionOpenPortal) {
+                        docType = ASCTabViewTypePortal;
+                    }
                     break;
             }
 
@@ -401,12 +411,12 @@ static float kASCRTLTabsRightMargin = 0;
 }
 
 - (void)onCEFLogin:(NSNotification *)notification {
-    if (notification && notification.userInfo) {
-        NSDictionary * userInfo = (NSDictionary *)notification.userInfo;
-        
-        [[ASCHelper localSettings] setValue:userInfo forKey:ASCUserSettingsNameUserInfo];
-        [self.userProfileButton setHidden:NO];
-    }
+//    if (notification && notification.userInfo) {
+//        NSDictionary * userInfo = (NSDictionary *)notification.userInfo;
+//
+//        [[ASCHelper localSettings] setValue:userInfo forKey:ASCUserSettingsNameUserInfo];
+//        [self.userProfileButton setHidden:NO];
+//    }
 }
 
 -(void)onChangedUITheme:(NSNotification *)notification {
@@ -437,6 +447,8 @@ static float kASCRTLTabsRightMargin = 0;
             [tab setType:tab.type];
             [self.tabsControl updateTab:tab];
         }
+
+        [self applyDownloadIconTheme];
     }
 }
 
@@ -466,6 +478,8 @@ static float kASCRTLTabsRightMargin = 0;
         [tab setType:tab.type];
         [self.tabsControl updateTab:tab];
     }
+
+    [self applyDownloadIconTheme];
 }
 
 #pragma mark -
@@ -479,10 +493,11 @@ static float kASCRTLTabsRightMargin = 0;
     popover.viewMargin                      = 0.0f;
     popover.borderWidth                     = 0.0f;
     popover.cornerRadius                    = 2.0f;
-    popover.drawsArrow                      = YES;
+    popover.drawsArrow                      = NO;
     popover.movable                         = NO;
-    popover.arrowWidth                      = 20.0f;
-    popover.arrowHeight                     = 10.0f;
+    popover.arrowWidth                      = 0.0f;
+    popover.arrowHeight                     = 0.0f;
+    popover.arrowOffset                     = 15.0f;
     popover.distance                        = 10.0f;
 }
 
@@ -492,35 +507,37 @@ static float kASCRTLTabsRightMargin = 0;
     }
 }
 
-- (IBAction)onUserInfoClick:(id)sender {
-    ASCUserInfoViewController * controller = [self.storyboard instantiateControllerWithIdentifier:@"ASCUserInfoControllerId"];
-    self.popover = [[SFBPopover alloc] initWithContentViewController:controller];
-    self.popover.arrowOffset = 8.0f;
-    [self setupCustomPopover:self.popover];
-    
-    NSRect rectOfSender = [sender convertRect:[sender bounds] toView:nil];
-    NSPoint where = rectOfSender.origin;
-    where.x += rectOfSender.size.width / 2;
-
-    [controller setPopover:self.popover];
-    [self.popover displayPopoverInWindow:[sender window] atPoint:where chooseBestLocation:YES];
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(onShowUserInfoController:)]) {
-        [_delegate onShowUserInfoController:controller];
-    }
-}
+//- (IBAction)onUserInfoClick:(id)sender {
+//    ASCUserInfoViewController * controller = [self.storyboard instantiateControllerWithIdentifier:@"ASCUserInfoControllerId"];
+//    self.popover = [[SFBPopover alloc] initWithContentViewController:controller];
+//    self.popover.arrowOffset = 8.0f;
+//    [self setupCustomPopover:self.popover];
+//
+//    NSRect rectOfSender = [sender convertRect:[sender bounds] toView:nil];
+//    NSPoint where = rectOfSender.origin;
+//    where.x += rectOfSender.size.width / 2;
+//
+//    [controller setPopover:self.popover];
+//    [self.popover displayPopoverInWindow:[sender window] atPoint:where chooseBestLocation:YES];
+//
+//    if (_delegate && [_delegate respondsToSelector:@selector(onShowUserInfoController:)]) {
+//        [_delegate onShowUserInfoController:controller];
+//    }
+//}
 
 - (IBAction)onDownloadButton:(id)sender {
+    if (self.popover && [self.popover isVisible]) {
+        return;
+    }
+    
     ASCDownloadViewController * controller = [self.storyboard instantiateControllerWithIdentifier:@"ASCDownloadListControllerId"];
     self.popover = [[SFBPopover alloc] initWithContentViewController:controller];
-    self.popover.arrowOffset = 40.0f;
     [self setupCustomPopover:self.popover];
     
     NSRect rectOfSender = [sender convertRect:[sender bounds] toView:nil];
     NSPoint where = rectOfSender.origin;
     where.x += rectOfSender.size.width / 2;
     
-    [controller setPopover:self.popover];
     [self.popover displayPopoverInWindow:[sender window] atPoint:where chooseBestLocation:YES];
 }
 
@@ -569,6 +586,7 @@ static float kASCRTLTabsRightMargin = 0;
     [control removeTab:tab animated:NO];
     webView.data.url = tab.params[@"url"];
     webView.data.path = tab.params[@"path"];
+    webView.data.cloudName = tab.params[@"cloud"];
     
     AppDelegate *app = [NSApp delegate];
     [app dragDetachedTab:webView atScreenPoint:screenPoint withEvent:event];
@@ -579,16 +597,66 @@ static float kASCRTLTabsRightMargin = 0;
 #pragma mark -
 #pragma mark ASCDownloadController Delegate
 
+- (NSImage *)themedDownloadImage:(NSImage *)image {
+    NSImage *copy = [image copy];
+    copy.size = NSMakeSize(20.0, 20.0);
+    if ([ASCThemesController isDarkWindowAppearance]) {
+        [copy lockFocus];
+        [[NSColor colorWithWhite:1.0 alpha:1.0] set];
+        NSRectFillUsingOperation(NSMakeRect(0, 0, 20.0, 20.0), NSCompositingOperationSourceAtop);
+        [copy unlockFocus];
+    }
+    return copy;
+}
+
+- (void)applyDownloadIconTheme {
+    self.downloadButton.bgHoverColor = [ASCThemesController currentThemeColor:btnHoverBackgroundColor];
+    NSImage * image = [NSImage imageNamed:self.downloadButton.isSpinning
+                                            ? @"icon-loading_normal"
+                                            : @"icon-loading-finished_normal"];
+    [self.downloadButton setImage:[self themedDownloadImage:image]];
+}
+
+- (void)updateDownloadIcon:(ASCDownloadController *)controller {
+    if ([controller downloads].count == 0) return;
+
+    BOOL allFinished = YES;
+    for (id dl in [controller downloads]) {
+        if (![dl[@"finished"] boolValue]) {
+            allFinished = NO;
+            break;
+        }
+    }
+
+    if (allFinished) {
+        [self.downloadButton stopAnimation];
+        [self.downloadButton setImage:[self themedDownloadImage:[NSImage imageNamed:@"icon-loading-finished_normal"]]];
+    } else {
+        if (!self.downloadButton.isSpinning) {
+            [self.downloadButton setImage:[self themedDownloadImage:[NSImage imageNamed:@"icon-loading_normal"]]];
+            [self.downloadButton startAnimation];
+        }
+    }
+}
+
 - (void)downloadController:(ASCDownloadController *)controler didAddDownload:(id)download {
-    self.downloadWidthConstraint.constant = ([[controler downloads] count] > 0) ? 30.f : .0f;
+    self.downloadWidthConstraint.constant = ([[controler downloads] count] > 0) ? 40.f : .0f;
+    [self.downloadButton setImage:[self themedDownloadImage:[NSImage imageNamed:@"icon-loading_normal"]]];
+    [self.downloadButton startAnimation];
 }
 
 - (void)downloadController:(ASCDownloadController *)controler didRemovedDownload:(id)download {
-    self.downloadWidthConstraint.constant = ([[controler downloads] count] > 0) ? 30.f : .0f;
+    self.downloadWidthConstraint.constant = ([[controler downloads] count] > 0) ? 40.f : .0f;
+    if ([[controler downloads] count] == 0) {
+        [self.downloadButton stopAnimation];
+        [self.downloadButton setImage:[self themedDownloadImage:[NSImage imageNamed:@"icon-loading-finished_normal"]]];
+    } else {
+        [self updateDownloadIcon:controler];
+    }
 }
 
 - (void)downloadController:(ASCDownloadController *)controler didUpdatedDownload:(id)download {
-    //
+    [self updateDownloadIcon:controler];
 }
 
 #pragma mark -
@@ -639,6 +707,7 @@ static float kASCRTLTabsRightMargin = 0;
     NSDictionary *windowFeatures = @{@"skiptoparea": @0, @"singlewindow": @NO};
     [webView sendCommand:@"window:features" withParam:[windowFeatures jsonString]];
     
+    [webView.window setAcceptsMouseMovedEvents:YES];
     [webView focus];
 }
 
@@ -689,6 +758,16 @@ static float kASCRTLTabsRightMargin = 0;
             NSRect titleBarRect = NSMakeRect(windowFrame.origin.x, contentRect.origin.y + contentRect.size.height,
                                              windowFrame.size.width, windowFrame.size.height - contentRect.size.height);
             containsPoint = NSPointInRect(screenPoint, titleBarRect);
+        }
+        
+        if (containsPoint) {
+            NSRect portalButtonRect = [self.portalButton convertRect:self.portalButton.bounds toView:nil];
+            portalButtonRect = [mainWindow convertRectToScreen:portalButtonRect];
+            if (NSMidX(portalButtonRect) < NSMidX(windowFrame)
+                    ? screenPoint.x <= NSMaxX(portalButtonRect)
+                    : screenPoint.x >= NSMinX(portalButtonRect)) {
+                containsPoint = NO;
+            }
         }
     }
     

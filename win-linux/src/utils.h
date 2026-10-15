@@ -102,7 +102,7 @@ public:
     static QString getPortalName(const QString&);
     static double getScreenDpiRatio(int);
     static double getScreenDpiRatio(const QPoint&);
-    static double getScreenDpiRatioByHWND(int);
+    // static double getScreenDpiRatioByHWND(int);
     static double getScreenDpiRatioByWidget(QWidget*);
     static QScreen * screenAt(const QPoint&);
     static QString replaceBackslash(const QString&);
@@ -110,6 +110,9 @@ public:
     static void replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace);
     static bool isFileLocal(const QString&);
     static QString uniqFileName(const QString& path);
+    static QString targetArchitecture();
+    static QString getFileHash(const QString &fileName);
+    static QString generateTmpFileName(const QString &ext);
     static bool makepath(const QString&);
     static bool writeFile(const QString &filePath, const QByteArray &data);
 
@@ -174,6 +177,8 @@ namespace WindowHelper {
 #endif
 
 //    auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
+    auto isCustomWindowStyle() -> bool;
+    auto shouldUseThinFrame() -> bool;
     auto isLeftButtonPressed() -> bool;
     auto constructFullscreenWidget(QWidget * panel) -> CFullScrWidget *;
     auto useNativeDialog() -> bool;
