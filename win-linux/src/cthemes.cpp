@@ -49,6 +49,7 @@
 #include <QColor>
 #include <QFile>
 #include <QDir>
+#include <QStandardPaths>
 #include <QRegularExpression>
 #include <QProcess>
 #include <QPalette>
@@ -270,20 +271,55 @@ static void onSettingsChanged(GDBusConnection *conn, const gchar *sender,
 
 static bool themeExists(const char *theme)
 {
-    char path[256];
-    snprintf(path, sizeof(path), "/usr/share/themes/%s/gtk-3.0", theme);
-    return access(path, F_OK) == 0;
+    // A theme name may carry a color-scheme variant, e.g. "Adwaita:dark".
+    // Only the theme name itself is part of the directory path.
+    const QString name = QString::fromUtf8(theme).section(QLatin1Char(':'), 0, 0);
+    if (name.isEmpty())
+        return false;
+
+    const QString themePath = name + QStringLiteral("/gtk-3.0");
+
+    // Legacy per-user directory. Unlike the XDG data directories below, it holds
+    // the themes themselves rather than a "themes" subdirectory.
+    if (QDir(QDir::homePath() + QLatin1String("/.themes")).exists(themePath))
+        return true;
+
+    // The XDG base directory specification, which is where GTK itself looks.
+    // The previous implementation only checked /usr/share/themes, so themes
+    // installed for a single user were never found.
+    const QStringList dataDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+    for (const QString &dataDir : dataDirs)
+    {
+        if (QDir(dataDir).exists(QStringLiteral("themes/") + themePath))
+            return true;
+    }
+    return false;
 }
 
 static void applyGtkTheme(bool isDark)
 {
-    const char *theme_light = "Adwaita";
-    const char *theme_dark = "Adwaita-dark";
-    if (!themeExists(theme_light) || !themeExists(theme_dark))
+    GtkSettings *stn = gtk_settings_get_default();
+    if (!stn)
         return;
-    qputenv("GTK_THEME", isDark ? theme_dark : theme_light);
-    if (GtkSettings *stn = gtk_settings_get_default())
-        g_object_set(stn, "gtk-theme-name", isDark ? theme_dark : theme_light, NULL);
+
+    // Render the theme the user has chosen in dark or light mode, instead of
+    // replacing it with Adwaita. Since GTK 3.14 the dark variant of the active
+    // theme is selected through this setting, so a custom theme keeps being
+    // used while still following the application's appearance.
+    if (g_object_class_find_property(G_OBJECT_GET_CLASS(stn), "gtk-application-prefer-dark-theme"))
+    {
+        g_object_set(stn, "gtk-application-prefer-dark-theme", isDark ? TRUE : FALSE, NULL);
+        return;
+    }
+
+    // Fallback for GTK older than 3.14, which has no such setting. Note that
+    // "Adwaita-dark" has not existed as a standalone theme since GTK 3.24: the
+    // dark variant is selected with the "name:variant" syntax instead.
+    const char *theme = isDark ? "Adwaita:dark" : "Adwaita";
+    if (!themeExists(theme))
+        return;
+    qputenv("GTK_THEME", theme);
+    g_object_set(stn, "gtk-theme-name", theme, NULL);
 }
 #endif
 
@@ -979,6 +1015,12 @@ auto CThemes::onSystemDarkColorScheme(bool isdark) -> void
 {
     if ( isdark != m_priv->is_system_theme_dark ) {
         m_priv->is_system_theme_dark = isdark;
+#ifdef __linux__
+        // Keep the native GTK file dialog in sync when the system appearance
+        // changes at runtime. Without this the dialog keeps the appearance it
+        // had at startup, so it can stay light while the application is dark.
+        applyGtkTheme(isdark);
+#endif
     }
 }
 
