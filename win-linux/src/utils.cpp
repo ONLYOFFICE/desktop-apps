@@ -55,6 +55,7 @@
 #include <QUuid>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
+#include "cupsavailability.h"
 #include "common/File.h"
 #if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
 # include <QDesktopWidget>
@@ -179,6 +180,11 @@ namespace EditorJSVariables {
                 vars_object["helpUrl"] = URL_WEBAPPS_HELP;
 #endif
         }
+#ifdef __linux__
+        if (!cupsLocalSocketAvailable() && !cupsRemoteServerConfigured())
+            vars_object["defaultPrinterName"] = QString();
+        else
+#endif
         vars_object["defaultPrinterName"] = QPrinterInfo::defaultPrinterName();
     }
 
